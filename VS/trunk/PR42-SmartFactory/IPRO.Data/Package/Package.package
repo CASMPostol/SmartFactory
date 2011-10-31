@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="3281430d-0926-4292-9887-ad6d8c77748e" solutionId="3281430d-0926-4292-9887-ad6d8c77748e" resetWebServer="false" name="CAS.SmartFactory.IPR.Data" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="ede71ac8-1114-4ddb-95e5-d5b7e5093963" />
+  </features>
+</package>

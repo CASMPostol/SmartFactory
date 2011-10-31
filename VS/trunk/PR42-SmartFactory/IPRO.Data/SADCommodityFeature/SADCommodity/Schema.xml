@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint"
+      Title="SADCommodity"
+      FolderCreation="FALSE"
+      Direction="$Resources:Direction;"
+      Url="Lists/CAS.SmartFactory.IPR-SADCommodity"
+      BaseType="0"
+      xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x01003016924817E4AF4A9AD790284C0BAE65" Name="SAD.Commodity" Group="IPR" Description="SAD.Towar" Overwrite="TRUE">
+        <Folder TargetName="_cts/SAD.Commodity" />
+        <FieldRefs>
+          <FieldRef ID="{46522ede-4acd-4497-9288-b638748930ab}" Name="GoodsName" />
+          <FieldRef ID="{2a582f5b-99c0-4982-bf9b-ed88ed65f46d}" Name="Type" />
+          <FieldRef ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Name="SKU" />
+          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+          <FieldRef ID="{db454782-449a-4ec5-b0cd-55a7d7af3428}" Name="Net mass" />
+          <FieldRef ID="{4e14f686-584a-4ee8-9784-4b7aa4dcd1e7}" Name="PCN tariff code" />
+          <FieldRef ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" Name="Gross mass" />
+          <FieldRef ID="{ff92b9dc-f23f-455d-9783-d54af95e3c8f}" Name="Procedure" />
+          <FieldRef ID="{218a57ca-6aad-4c08-8b14-7bb92323cb68}" Name="Package" />
+          <FieldRef ID="{ef4e42b5-f9da-415a-8e2d-335c0f31cd07}" Name="Total amount invoiced" />
+          <FieldRef ID="{a71ae110-34d7-4468-a64e-00bd0b4a76d5}" Name="Duty" />
+          <FieldRef ID="{1c4fc96e-0e0c-4dbf-96fb-fec8e079d18b}" Name="VAT" />
+          <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+          <FieldRef ID="{3f9793ef-e8dd-4e89-bc8b-08db33b118b5}" Name="Cartons in kg" />
+          <FieldRef ID="{d370a4fb-d494-4b43-a607-8715793bb283}" Name="Unit price" />
+          <FieldRef ID="{68e8720f-d812-4b95-878c-3247f33ec9d4}" Name="Duty.Unit" />
+          <FieldRef ID="{860ce050-6373-4dda-aa4c-f8e701d2baed}" Name="VAT.Unit" />
+          <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="Item No" />
+          <FieldRef ID="{320ACE66-79FF-4F6E-A7AA-7DFE6BE316B5}" Name="ParentList" />
+          <FieldRef ID="{ED32E365-EB0C-4995-9596-4591644E2EE4}" Name="MasterDocument" />
+        </FieldRefs>
+        <XmlDocuments>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
+          </XmlDocument>
+        </XmlDocuments>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+      <Field DisplayName="Goods Name" Name="GoodsName" Type="Text" ID="{46522ede-4acd-4497-9288-b638748930ab}" Group="SAD" StaticName="GoodsName" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Nazwa" Customization="" ColName="nvarchar3" RowOrdinal="0" />
+      <Field DisplayName="Type" Name="Type" Type="Number" ID="{2a582f5b-99c0-4982-bf9b-ed88ed65f46d}" Group="SAD" StaticName="Type" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Customization="" ColName="float1" RowOrdinal="0" />
+      <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="SAD" StaticName="SKU" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="sku" Customization="" ColName="nvarchar4" RowOrdinal="0" />
+      <Field DisplayName="Batch" Name="Batch" Type="Text" ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Group="SAD" StaticName="Batch" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Batch" Customization="" ColName="nvarchar5" RowOrdinal="0" />
+      <Field DisplayName="Net mass" Name="Net_x0020_mass" Type="Number" ID="{db454782-449a-4ec5-b0cd-55a7d7af3428}" Group="SAD" StaticName="Net_x0020_mass" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Customization="" ColName="float2" RowOrdinal="0" />
+      <Field DisplayName="PCN tariff code" Name="PCN_x0020_tariff_x0020_code" Type="Text" ID="{4e14f686-584a-4ee8-9784-4b7aa4dcd1e7}" Group="SAD" StaticName="PCN_x0020_tariff_x0020_code" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Kod taryfy PCN" Customization="" ColName="nvarchar6" RowOrdinal="0" />
+      <Field DisplayName="Gross mass" Name="Gross_x0020_mass" Type="Number" ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" Group="SAD" StaticName="Gross_x0020_mass" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Customization="" ColName="float3" RowOrdinal="0" />
+      <Field DisplayName="Procedure" Name="Procedure" Type="Text" ID="{ff92b9dc-f23f-455d-9783-d54af95e3c8f}" Group="SAD" StaticName="Procedure" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Procedura celna" Customization="" ColName="nvarchar7" RowOrdinal="0" />
+      <Field DisplayName="Package" Name="Package" Type="Text" ID="{218a57ca-6aad-4c08-8b14-7bb92323cb68}" Group="SAD" StaticName="Package" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Rodzaj opakowania" Customization="" ColName="nvarchar8" RowOrdinal="0" />
+      <Field DisplayName="Total amount invoiced" Name="Total_x0020_amount_x0020_invoice" Type="Text" ID="{ef4e42b5-f9da-415a-8e2d-335c0f31cd07}" Group="SAD" StaticName="Total_x0020_amount_x0020_invoiced" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Wartość" Customization="" ColName="nvarchar9" RowOrdinal="0" />
+      <Field DisplayName="Duty" Name="Duty" Type="Number" ID="{a71ae110-34d7-4468-a64e-00bd0b4a76d5}" Group="SAD" StaticName="Duty" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Cło" Customization="" ColName="float4" RowOrdinal="0" />
+      <Field DisplayName="VAT" Name="VAT" Type="Number" ID="{1c4fc96e-0e0c-4dbf-96fb-fec8e079d18b}" Group="SAD" StaticName="VAT" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Vat" Customization="" ColName="float5" RowOrdinal="0" />
+      <Field DisplayName="Units" Name="Units" Type="Text" ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Group="SAD" StaticName="Units" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="j.m." Customization="" ColName="nvarchar10" RowOrdinal="0" />
+      <Field DisplayName="Item No" Name="Item_x0020_No" Type="Number" ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Group="SAD" StaticName="Item_x0020_No" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="PozID" Customization="" ColName="float6" RowOrdinal="0" />
+      <Field ResultType="Number" LCID="1045" Format="DateTime" Description="Kartony w kg" DisplayName="Cartons in kg" Type="Calculated" ID="{3f9793ef-e8dd-4e89-bc8b-08db33b118b5}" Name="Cartons_x0020_in_x0020_kg" Group="SAD" ReadOnly="TRUE" StaticName="Cartons_x0020_in_x0020_kg" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Customization="" ColName="sql_variant1" RowOrdinal="0">
+        <Formula>=Gross_x0020_mass-Net_x0020_mass</Formula>
+        <FormulaDisplayNames>=[Gross mass]-[Net mass]</FormulaDisplayNames>
+        <FieldRefs>
+          <FieldRef Name="Net_x0020_mass" />
+          <FieldRef Name="Gross_x0020_mass" />
+        </FieldRefs>
+      </Field>
+      <Field ResultType="Number" LCID="1045" Format="DateTime" Description="Cena jednostkowa" DisplayName="Unit price" Type="Calculated" ID="{d370a4fb-d494-4b43-a607-8715793bb283}" Name="Unit_x0020_price" Group="SAD" ReadOnly="TRUE" StaticName="Unit_x0020_price" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Customization="" ColName="sql_variant2" RowOrdinal="0">
+        <Formula>=Total_x0020_amount_x0020_invoice/Net_x0020_mass</Formula>
+        <FormulaDisplayNames>=[Total amount invoiced]/[Net mass]</FormulaDisplayNames>
+        <FieldRefs>
+          <FieldRef Name="Net_x0020_mass" />
+          <FieldRef Name="Total_x0020_amount_x0020_invoice" />
+        </FieldRefs>
+      </Field>
+      <Field ResultType="Number" LCID="1045" Format="DateTime" Description="Cło na j.m." DisplayName="Duty.Unit" Type="Calculated" ID="{68e8720f-d812-4b95-878c-3247f33ec9d4}" Name="Duty_x002e_Unit" Group="SAD" ReadOnly="TRUE" StaticName="Duty.Unit" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Customization="" ColName="sql_variant3" RowOrdinal="0">
+        <Formula>=Duty/Net_x0020_mass</Formula>
+        <FormulaDisplayNames>=[Duty]/[Net mass]</FormulaDisplayNames>
+        <FieldRefs>
+          <FieldRef Name="Net_x0020_mass" />
+          <FieldRef Name="Duty" />
+        </FieldRefs>
+      </Field>
+      <Field ResultType="Number" LCID="1045" Format="DateTime" Description="VAT na j.m." DisplayName="VAT.Unit" Type="Calculated" ID="{860ce050-6373-4dda-aa4c-f8e701d2baed}" Name="VAT_x002e_Unit" Group="SAD" ReadOnly="TRUE" StaticName="VAT.Unit" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Customization="" ColName="sql_variant4" RowOrdinal="0">
+        <Formula>=VAT/Net_x0020_mass</Formula>
+        <FormulaDisplayNames>=[VAT]/[Net mass]</FormulaDisplayNames>
+        <FieldRefs>
+          <FieldRef Name="Net_x0020_mass" />
+          <FieldRef Name="VAT" />
+        </FieldRefs>
+      </Field>
+      <Field DisplayName="Parent List" Name="ParentList" ID="{320ace66-79ff-4f6e-a7aa-7dfe6be316b5}" Group="SAD" StaticName="ParentList" Description="Foreign key" Required="TRUE" Hidden="FALSE" DisplaceOnUpgrade="TRUE" EnforceUniqueValues="FALSE" Type="Lookup" List="Lists/SAD" ShowField="ID" UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" />
+      <Field Name="MasterDocument" DisplayName="Declaration" ID="{ed32e365-eb0c-4995-9596-4591644e2ee4}" Group="SAD" Type="Lookup" FieldRef="320ACE66-79FF-4F6E-A7AA-7DFE6BE316B5" List="Lists/SAD" ShowField="Title" ReadOnly="True" Required="False" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu">
+          </FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments"/>
+          <FieldRef Name="LinkTitle"/>
+          <FieldRef ID="{46522ede-4acd-4497-9288-b638748930ab}" Name="GoodsName" />
+          <FieldRef ID="{2a582f5b-99c0-4982-bf9b-ed88ed65f46d}" Name="Type" />
+          <FieldRef ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Name="SKU" />
+          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+          <FieldRef ID="{db454782-449a-4ec5-b0cd-55a7d7af3428}" Name="Net mass" />
+          <FieldRef ID="{4e14f686-584a-4ee8-9784-4b7aa4dcd1e7}" Name="PCN tariff code" />
+          <FieldRef ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" Name="Gross mass" />
+          <FieldRef ID="{ff92b9dc-f23f-455d-9783-d54af95e3c8f}" Name="Procedure" />
+          <FieldRef ID="{218a57ca-6aad-4c08-8b14-7bb92323cb68}" Name="Package" />
+          <FieldRef ID="{ef4e42b5-f9da-415a-8e2d-335c0f31cd07}" Name="Total amount invoiced" />
+          <FieldRef ID="{a71ae110-34d7-4468-a64e-00bd0b4a76d5}" Name="Duty" />
+          <FieldRef ID="{1c4fc96e-0e0c-4dbf-96fb-fec8e079d18b}" Name="VAT" />
+          <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+          <FieldRef ID="{3f9793ef-e8dd-4e89-bc8b-08db33b118b5}" Name="Cartons in kg" />
+          <FieldRef ID="{d370a4fb-d494-4b43-a607-8715793bb283}" Name="Unit price" />
+          <FieldRef ID="{68e8720f-d812-4b95-878c-3247f33ec9d4}" Name="Duty.Unit" />
+          <FieldRef ID="{860ce050-6373-4dda-aa4c-f8e701d2baed}" Name="VAT.Unit" />
+          <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="Item No" />
+          <FieldRef ID="{320ACE66-79FF-4F6E-A7AA-7DFE6BE316B5}" Name="ParentList" />
+          <FieldRef ID="{ED32E365-EB0C-4995-9596-4591644E2EE4}" Name="MasterDocument" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

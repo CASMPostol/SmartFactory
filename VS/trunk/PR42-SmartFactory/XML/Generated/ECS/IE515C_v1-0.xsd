@@ -1,0 +1,2079 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.mf.gov.pl/xsd/ECS/IE515C_v1-0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.mf.gov.pl/xsd/ECS/IE515C_v1-0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation source="doc">Zgłoszenie celne uproszczone do procedury wywozu.</xs:documentation>
+		<xs:documentation source="doc">Komunikat zawiera dane zgłoszenia celnego uproszczonego do procedury wywozu. Jest przekazywany do Systemu przez podmiot dokonujący zgłoszenia.</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="IE515C">
+		<xs:annotation>
+			<xs:documentation source="doc">IE515C.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Zgloszenie">
+					<xs:annotation>
+						<xs:documentation source="doc">Zgłoszenie uproszczone.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Nadawca" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation source="doc">Nadawca/Eksporter.</xs:documentation>
+									<xs:documentation source="rule">RW9</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="TIN" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer identyfikacyjny podmiotu (Trader Identification Number). W przypadku podmiotów polskich - NIP poprzedzony znakami "PL".</xs:documentation>
+											<xs:documentation source="box">2</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Nazwa" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Nazwa firmy lub nazwisko i imię.</xs:documentation>
+											<xs:documentation source="box">2</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="UlicaNumer" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Ulica, numer domu.</xs:documentation>
+											<xs:documentation source="box">2</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KodPocztowy" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod pocztowy.</xs:documentation>
+											<xs:documentation source="box">2</xs:documentation>
+											<xs:documentation source="rule">G6, G7</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Miejscowosc" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Miejscowość.</xs:documentation>
+											<xs:documentation source="box">2</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Kraj" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju.</xs:documentation>
+											<xs:documentation source="box">2</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Regon" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer Regon.</xs:documentation>
+											<xs:documentation source="box">2</xs:documentation>
+											<xs:documentation source="rule">G13</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="14"/>
+												<xs:pattern value="[0-9]{14}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="EORI" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Odbiorca" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation source="doc">Odbiorca.</xs:documentation>
+									<xs:documentation source="rule">RW10</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="TIN" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer identyfikacyjny podmiotu (Trader Identification Number). W przypadku podmiotów polskich - NIP poprzedzony znakami "PL".</xs:documentation>
+											<xs:documentation source="box">8</xs:documentation>
+											<xs:documentation source="rule">G3</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Nazwa" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Nazwa firmy lub nazwisko i imię.</xs:documentation>
+											<xs:documentation source="box">8</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="UlicaNumer" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Ulica, numer domu.</xs:documentation>
+											<xs:documentation source="box">8</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KodPocztowy" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod pocztowy.</xs:documentation>
+											<xs:documentation source="box">8</xs:documentation>
+											<xs:documentation source="rule">G6, G7</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Miejscowosc" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Miejscowość.</xs:documentation>
+											<xs:documentation source="box">8</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Kraj" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju.</xs:documentation>
+											<xs:documentation source="box">8</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Regon" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer Regon.</xs:documentation>
+											<xs:documentation source="box">8</xs:documentation>
+											<xs:documentation source="rule">G13</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="14"/>
+												<xs:pattern value="[0-9]{14}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="EORI" use="optional">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ZglaszajacyPrzedstawiciel">
+								<xs:annotation>
+									<xs:documentation source="doc">Zgłaszający/przedstawiciel.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="TIN" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer identyfikacyjny podmiotu (Trader Identification Number). W przypadku podmiotów polskich - NIP poprzedzony znakami "PL".</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">G3</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Nazwa" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Nazwa firmy lub nazwisko i imię.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="UlicaNumer" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Ulica, numer domu.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KodPocztowy" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod pocztowy.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">G6, G7</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Miejscowosc" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Miejscowość.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Kraj" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Regon" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer Regon.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">G13</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="14"/>
+												<xs:pattern value="[0-9]{14}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Przedstawicielstwo" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod rodzaju przedstawicielstwa.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="list">077</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Wskaznik" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod wskazujący na eksportera/nadawcę.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="list">083</xs:documentation>
+											<xs:documentation source="rule">RW38, R8</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="5"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="NrWpisu" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer wpisu na listę agentów celnych.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="35"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="DataWpisu" type="xs:date" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Data wpisu na listę agentów celnych.</xs:documentation>
+											<xs:documentation source="box">14</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="EORI" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TransportWewnetrzny" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation source="doc">Dane dotyczące środka transportu towaru w urzędzie wywozu.</xs:documentation>
+									<xs:documentation source="rule">RW12</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Rodzaj" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod rodzaju transportu.</xs:documentation>
+											<xs:documentation source="box">26</xs:documentation>
+											<xs:documentation source="list">005</xs:documentation>
+											<xs:documentation source="rule">R25</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Znaki" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Znaki środka transportu.</xs:documentation>
+											<xs:documentation source="box">18(1)</xs:documentation>
+											<xs:documentation source="rule">RW42, R18, G6, RW54, RW55</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="27"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="TransportNaGranicy">
+								<xs:annotation>
+									<xs:documentation source="doc">Dane dotyczące środka transportu towaru w urzędzie wyprowadzenia.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Rodzaj" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod rodzaju transportu.</xs:documentation>
+											<xs:documentation source="box">25</xs:documentation>
+											<xs:documentation source="list">005</xs:documentation>
+											<xs:documentation source="rule">R25</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Znaki" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Znaki środka transportu.</xs:documentation>
+											<xs:documentation source="box">21(1)</xs:documentation>
+											<xs:documentation source="rule">RW43, R18, G6, RW56</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="27"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Kraj" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju środka transportu.</xs:documentation>
+											<xs:documentation source="box">21(2)</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+											<xs:documentation source="rule">RW41</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Lokalizacja">
+								<xs:annotation>
+									<xs:documentation source="doc">Lokalizacja przedstawienia towaru.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="UC" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod urzędu celnego.</xs:documentation>
+											<xs:documentation source="box">30</xs:documentation>
+											<xs:documentation source="list">001</xs:documentation>
+											<xs:documentation source="rule">RW6, G23</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="8"/>
+												<xs:pattern value="PL.{6}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Miejsce" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod miejsca innego niż urząd celny.</xs:documentation>
+											<xs:documentation source="box">30</xs:documentation>
+											<xs:documentation source="list">084</xs:documentation>
+											<xs:documentation source="rule">RW6, RW40</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Opis" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Opis miejsca innego niż urząd celny i nieposiadającego kodu.</xs:documentation>
+											<xs:documentation source="box">30</xs:documentation>
+											<xs:documentation source="rule">RW6, G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Trasa" minOccurs="0" maxOccurs="99">
+								<xs:annotation>
+									<xs:documentation source="doc">Dane kraju występującego na trasie przewozu.</xs:documentation>
+									<xs:documentation source="rule">R23</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Kraj" use="required">
+										<xs:annotation>
+											<xs:documentation source="list">007</xs:documentation>
+											<xs:documentation source="doc">Kod kraju.</xs:documentation>
+											<xs:documentation source="box">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="WarunkiDostawy" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation source="doc">Warunki dostawy.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Kod" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod warunków dostawy.</xs:documentation>
+											<xs:documentation source="box">20(1)</xs:documentation>
+											<xs:documentation source="list">002</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Miejsce" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Miejsce dostawy.</xs:documentation>
+											<xs:documentation source="box">20(2)</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="MiejsceKod" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod miejsca dostawy.</xs:documentation>
+											<xs:documentation source="box">20(3)</xs:documentation>
+											<xs:documentation source="list">078</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Transakcja" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation source="doc">Dane transakcji.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Waluta" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Symbol waluty (brak atrybutu przy podanej wartości oznacza "PLN").</xs:documentation>
+											<xs:documentation source="box">22(1)</xs:documentation>
+											<xs:documentation source="list">026</xs:documentation>
+											<xs:documentation source="rule">RW50</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Wartosc" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Wartość.</xs:documentation>
+											<xs:documentation source="box">22(2)</xs:documentation>
+											<xs:documentation source="rule">RW45, G12</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:totalDigits value="15"/>
+												<xs:fractionDigits value="2"/>
+												<xs:minInclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Kurs" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kurs waluty.</xs:documentation>
+											<xs:documentation source="box">23</xs:documentation>
+											<xs:documentation source="rule">RW44, G8</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:totalDigits value="6"/>
+												<xs:fractionDigits value="5"/>
+												<xs:minExclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Rodzaj" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod rodzaju transakcji.</xs:documentation>
+											<xs:documentation source="box">24</xs:documentation>
+											<xs:documentation source="list">004</xs:documentation>
+											<xs:documentation source="rule">RW45</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Towar" maxOccurs="999">
+								<xs:annotation>
+									<xs:documentation source="doc">Pozycja towarowa.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Nadawca" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation source="doc">Nadawca/Eksporter pozycji towarowej.</xs:documentation>
+												<xs:documentation source="rule">RW9</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="TIN" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Numer identyfikacyjny podmiotu (Trader Identification Number). W przypadku podmiotów polskich - NIP poprzedzony znakami "PL".</xs:documentation>
+														<xs:documentation source="rule">G3</xs:documentation>
+														<xs:documentation source="box">ex2</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="17"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Nazwa" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Nazwa firmy lub nazwisko i imię.</xs:documentation>
+														<xs:documentation source="rule">G6</xs:documentation>
+														<xs:documentation source="box">ex2</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="35"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="UlicaNumer" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Ulica, numer domu.</xs:documentation>
+														<xs:documentation source="rule">G6</xs:documentation>
+														<xs:documentation source="box">ex2</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="35"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="KodPocztowy" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod pocztowy.</xs:documentation>
+														<xs:documentation source="rule">G6, G7</xs:documentation>
+														<xs:documentation source="box">ex2</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="9"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Miejscowosc" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Miejscowość.</xs:documentation>
+														<xs:documentation source="rule">G6</xs:documentation>
+														<xs:documentation source="box">ex2</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="35"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Kraj" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod kraju.</xs:documentation>
+														<xs:documentation source="list">007</xs:documentation>
+														<xs:documentation source="box">ex2</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Regon" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Numer Regon.</xs:documentation>
+														<xs:documentation source="rule">G13</xs:documentation>
+														<xs:documentation source="box">ex2</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="14"/>
+															<xs:pattern value="[0-9]{14}"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="EORI" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="17"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Odbiorca" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation source="doc">Odbiorca pozycji towarowej.</xs:documentation>
+												<xs:documentation source="rule">RW10</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="TIN" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Numer identyfikacyjny podmiotu (Trader Identification Number). W przypadku podmiotów polskich - NIP poprzedzony znakami "PL".</xs:documentation>
+														<xs:documentation source="rule">G3</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="17"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Nazwa" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Nazwa firmy lub nazwisko i imię.</xs:documentation>
+														<xs:documentation source="rule">G6</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="35"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="UlicaNumer" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Ulica, numer domu.</xs:documentation>
+														<xs:documentation source="rule">G6</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="35"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="KodPocztowy" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod pocztowy.</xs:documentation>
+														<xs:documentation source="rule">G6, G7</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="9"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Miejscowosc" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Miejscowość.</xs:documentation>
+														<xs:documentation source="rule">G6</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="35"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Kraj" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod kraju.</xs:documentation>
+														<xs:documentation source="list">007</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Regon" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Numer Regon.</xs:documentation>
+														<xs:documentation source="rule">G13</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="14"/>
+															<xs:pattern value="[0-9]{14}"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="EORI" use="optional">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="17"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="IloscTowaru" minOccurs="0" maxOccurs="9">
+											<xs:annotation>
+												<xs:documentation source="doc">Ilość towaru.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Jm" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Jednostka miary używana w formule do wyliczenia stawki.</xs:documentation>
+														<xs:documentation source="box">31</xs:documentation>
+														<xs:documentation source="list">068</xs:documentation>
+														<xs:documentation source="rule">RW35</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="3"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="KwalifikatorJm" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Kwalifikator jednostki miary używany w formule do wyliczenia stawki.</xs:documentation>
+														<xs:documentation source="box">31</xs:documentation>
+														<xs:documentation source="list">069</xs:documentation>
+														<xs:documentation source="rule">RW35</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="1"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Ilosc" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Ilość towaru w podanej jednostce miary.</xs:documentation>
+														<xs:documentation source="box">31</xs:documentation>
+														<xs:documentation source="rule">G12</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:minInclusive value="0"/>
+															<xs:totalDigits value="15"/>
+															<xs:fractionDigits value="5"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Opakowanie" maxOccurs="99">
+											<xs:annotation>
+												<xs:documentation source="doc">Opakowanie.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Rodzaj" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Rodzaj opakowania.</xs:documentation>
+														<xs:documentation source="box">31</xs:documentation>
+														<xs:documentation source="list">033</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Znaki" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Znaki opakowań.</xs:documentation>
+														<xs:documentation source="box">31</xs:documentation>
+														<xs:documentation source="rule">RW39, G6</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="42"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="LiczbaOpakowan" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Liczba opakowań.</xs:documentation>
+														<xs:documentation source="box">31</xs:documentation>
+														<xs:documentation source="rule">RW39, G12, R20</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:totalDigits value="5"/>
+															<xs:fractionDigits value="0"/>
+															<xs:minInclusive value="0"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="LiczbaSztuk" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Liczba sztuk towarów nieopakowanych.</xs:documentation>
+														<xs:documentation source="box">31</xs:documentation>
+														<xs:documentation source="rule">RW39, G8</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:totalDigits value="5"/>
+															<xs:fractionDigits value="0"/>
+															<xs:minExclusive value="0"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Kontener" minOccurs="0" maxOccurs="99">
+											<xs:annotation>
+												<xs:documentation source="doc">Kontener.</xs:documentation>
+												<xs:documentation source="rule">RW30</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Nr" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Numer kontenera.</xs:documentation>
+														<xs:documentation source="box">31</xs:documentation>
+														<xs:documentation source="rule">G22</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="17"/>
+															<xs:pattern value="[A-Za-z0-9]{1,17}"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="KodDodatkowyUE" minOccurs="0" maxOccurs="9">
+											<xs:annotation>
+												<xs:documentation source="doc">Unijny kod dodatkowy. Jeżeli TARIC nie jest wymagany dla dodatkowego kodu zawartość tego atrybutu jest ustawiona na ‘0000’.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Kod" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod dodatkowy.</xs:documentation>
+														<xs:documentation source="box">33(3,4)</xs:documentation>
+														<xs:documentation source="list">088</xs:documentation>
+														<xs:documentation source="rule">-</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="4"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="KodDodatkowyPL" minOccurs="0" maxOccurs="9">
+											<xs:annotation>
+												<xs:documentation source="doc">Polski kod dodatkowy.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Kod" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod dodatkowy.</xs:documentation>
+														<xs:documentation source="box">33(5)</xs:documentation>
+														<xs:documentation source="list">109</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="4"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DokumentPoprzedni" minOccurs="0" maxOccurs="9">
+											<xs:annotation>
+												<xs:documentation source="doc">Dokument poprzedni.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Kod" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod dokumentu. Grupy danych ‘Dokument Poprzedni’ oraz ‘Dokument Wymagany’ są wysyłane do przeznaczenia/wywozu za pomocą komunikatu IE501 jedynie w sytuacji, gdy zadeklarowany kod dokumentu poprzedniego (box 40)  i /albo kod dokumentu wymaganego zawierają kody traktowane jako ‘wspólne’ dla wszystkich krajów wymieniających komunikaty.</xs:documentation>
+														<xs:documentation source="box">40</xs:documentation>
+														<xs:documentation source="list">081</xs:documentation>
+														<xs:documentation source="rule">RW7</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="6"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Nr" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Numer dokumentu.</xs:documentation>
+														<xs:documentation source="box">40</xs:documentation>
+														<xs:documentation source="rule">R12, G6, RW7</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="35"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DokumentPoprzedniProcGosp" minOccurs="0" maxOccurs="99">
+											<xs:annotation>
+												<xs:documentation source="doc">Dokument poprzedni.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Kod" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod dokumentu. </xs:documentation>
+														<xs:documentation source="list">081</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="6"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Nr" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Numer dokumentu.</xs:documentation>
+														<xs:documentation source="rule">G6</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="35"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DokumentWymagany" minOccurs="0" maxOccurs="99">
+											<xs:annotation>
+												<xs:documentation source="doc">Dokument wymagany.</xs:documentation>
+												<xs:documentation source="rule">RW51</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Kod" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod dokumentu. Grupy danych ‘Dokument Poprzedni’ oraz ‘Dokument Wymagany’ są wysyłane do przeznaczenia/wywozu za pomocą komunikatu IE501 jedynie w sytuacji gdy, zadeklarowany kod dokumentu poprzedniego (box 40)  i /albo kod dokumentu wymaganego zawierają kody traktowane jako ‘wspólne’.  </xs:documentation>
+														<xs:documentation source="box">44</xs:documentation>
+														<xs:documentation source="list">034</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="4"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Nr" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Numer dokumentu.</xs:documentation>
+														<xs:documentation source="box">44</xs:documentation>
+														<xs:documentation source="rule">G6</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="35"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="DokumentProwizoryczny" minOccurs="0" maxOccurs="99">
+											<xs:annotation>
+												<xs:documentation source="doc">Dokument prowizoryczny.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Kod" use="required">
+													<xs:annotation>
+														<xs:documentation source="box">40</xs:documentation>
+														<xs:documentation source="list">034</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="4"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Nr" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Numer dokumentu.</xs:documentation>
+														<xs:documentation source="box">44</xs:documentation>
+														<xs:documentation source="rule">G6</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="35"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="InformacjaDodatkowa" minOccurs="0" maxOccurs="99">
+											<xs:annotation>
+												<xs:documentation source="doc">Informacja dodatkowa.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Kod" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod informacji dodatkowej.</xs:documentation>
+														<xs:documentation source="box">44</xs:documentation>
+														<xs:documentation source="list">036</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="5"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Tekst" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Tekst uszczegóławiający kod informacji dodatkowej.</xs:documentation>
+														<xs:documentation source="rule">G6</xs:documentation>
+														<xs:documentation source="box">44</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="70"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="WartoscTowaru">
+											<xs:annotation>
+												<xs:documentation source="doc">Wartość towaru.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Korekta" minOccurs="0" maxOccurs="99">
+														<xs:annotation>
+															<xs:documentation source="doc">Korekta.</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:attribute name="Kod" use="required">
+																<xs:annotation>
+																	<xs:documentation source="doc">Kod.</xs:documentation>
+																	<xs:documentation source="box">44</xs:documentation>
+																	<xs:documentation source="list">087</xs:documentation>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:length value="4"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attribute name="Wartosc" use="required">
+																<xs:annotation>
+																	<xs:documentation source="doc">Wartość.</xs:documentation>
+																	<xs:documentation source="box">44</xs:documentation>
+																	<xs:documentation source="list">-</xs:documentation>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:decimal">
+																		<xs:totalDigits value="15"/>
+																		<xs:fractionDigits value="2"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="Waluta" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod waluty wartości statystycznej (tj. "PLN").</xs:documentation>
+														<xs:documentation source="box">44</xs:documentation>
+														<xs:documentation source="rule">R19</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="3"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="WartoscStatystyczna" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Wartość statystyczna.</xs:documentation>
+														<xs:documentation source="box">46</xs:documentation>
+														<xs:documentation source="rule">G12</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:totalDigits value="15"/>
+															<xs:fractionDigits value="2"/>
+															<xs:minInclusive value="0"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Oplata" minOccurs="0" maxOccurs="99">
+											<xs:annotation>
+												<xs:documentation source="doc">Opłata.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Typ" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod typu opłaty.</xs:documentation>
+														<xs:documentation source="box">47</xs:documentation>
+														<xs:documentation source="list">014</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="3"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Podstawa" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Podstawa opłaty.</xs:documentation>
+														<xs:documentation source="box">47</xs:documentation>
+														<xs:documentation source="rule">G12</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:totalDigits value="15"/>
+															<xs:fractionDigits value="2"/>
+															<xs:minInclusive value="0"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Stawka" use="optional">
+													<xs:annotation>
+														<xs:documentation source="doc">Stawka.</xs:documentation>
+														<xs:documentation source="box">47</xs:documentation>
+														<xs:documentation source="rule">G12</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:totalDigits value="5"/>
+															<xs:fractionDigits value="2"/>
+															<xs:minInclusive value="0"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="Kwota" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kwota.</xs:documentation>
+														<xs:documentation source="box">47</xs:documentation>
+														<xs:documentation source="rule">G12</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:totalDigits value="15"/>
+															<xs:fractionDigits value="2"/>
+															<xs:minInclusive value="0"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="MP" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Kod metody płatności.</xs:documentation>
+														<xs:documentation source="box">47</xs:documentation>
+														<xs:documentation source="list">006</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="1"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Nr" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer pozycji towarowej.</xs:documentation>
+											<xs:documentation source="box">32</xs:documentation>
+											<xs:documentation source="rule">R22</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:totalDigits value="3"/>
+												<xs:fractionDigits value="0"/>
+												<xs:minExclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="CRN" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Unikalny, przypisany do danej przesyłki numer nadany towarom (Commercial Reference Number). Zalecane jest użycie kodu o strukturze przewidzianej przez WCO (ISO15459) lub jego odpowiednika.</xs:documentation>
+											<xs:documentation source="box">-</xs:documentation>
+											<xs:documentation source="rule">G6, RW36, RW51</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+												<xs:maxLength value="70"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KrajWysylki" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju wysyłki.</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+											<xs:documentation source="rule">RW2, RW11</xs:documentation>
+											<xs:documentation source="box">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KrajPrzeznaczenia" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju przeznaczenia.</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+											<xs:documentation source="rule">RW3, RW11</xs:documentation>
+											<xs:documentation source="box">-</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="OpisTowaru" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Opis towaru.</xs:documentation>
+											<xs:documentation source="box">31</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+											<xs:documentation source="doc" xml:lang="en">Goods description.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="280"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KodTowarowy" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod towaru według nomenklatury scalonej (Combined Nomenclature).</xs:documentation>
+											<xs:documentation source="box">33(1)</xs:documentation>
+											<xs:documentation source="list">028</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="8"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KodTaric" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Rozszerzenie kodu towaru według nomenklatury scalonej o kod systemu TARIC (tutaj zawsze "00").</xs:documentation>
+											<xs:documentation source="box">33(2)</xs:documentation>
+											<xs:documentation source="rule">R21</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+												<xs:pattern value="00"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KrajPochodzenia" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju pochodzenia.</xs:documentation>
+											<xs:documentation source="box">34a</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+											<xs:documentation source="rule">RW22</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="MasaBrutto" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Masa brutto pozycji towarowej.</xs:documentation>
+											<xs:documentation source="box">35</xs:documentation>
+											<xs:documentation source="rule">RW23, G8</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:totalDigits value="15"/>
+												<xs:fractionDigits value="3"/>
+												<xs:minExclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="ProceduraWnioskowana" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod wnioskowanej celnej (pierwsze dwa znaki).</xs:documentation>
+											<xs:documentation source="box">37(1)</xs:documentation>
+											<xs:documentation source="rule">R10, R11</xs:documentation>
+											<xs:documentation source="list">003</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="ProceduraPoprzednia" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod procedury celnej (drugie dwa znaki).</xs:documentation>
+											<xs:documentation source="box">37(1)</xs:documentation>
+											<xs:documentation source="list">003</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="ProceduraSzczegoly" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod uszczegóławiający procedurę celną.</xs:documentation>
+											<xs:documentation source="box">37(2)</xs:documentation>
+											<xs:documentation source="list">076</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="MasaNetto" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Masa netto pozycji towarowej.</xs:documentation>
+											<xs:documentation source="box">38</xs:documentation>
+											<xs:documentation source="rule">G8</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:totalDigits value="15"/>
+												<xs:fractionDigits value="3"/>
+												<xs:minExclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="IloscUzupelniajacaJm" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Ilość towaru w uzupełniającej jednostce miary. Ten atrybut jest wymagany w przypadku, gdy wymaga tego kod TARIC.</xs:documentation>
+											<xs:documentation source="box">41</xs:documentation>
+											<xs:documentation source="rule">G12</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:totalDigits value="15"/>
+												<xs:fractionDigits value="3"/>
+												<xs:minInclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="SumaOplat" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Suma opłat pozycji towarowej.</xs:documentation>
+											<xs:documentation source="rule">RW46, G8</xs:documentation>
+											<xs:documentation source="box">47</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:totalDigits value="15"/>
+												<xs:fractionDigits value="2"/>
+												<xs:minExclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="TowarNiebezpieczny" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod UN dla towarów niebezpiecznych (UN Dangerous Goods Code).</xs:documentation>
+											<xs:documentation source="box">44</xs:documentation>
+											<xs:documentation source="list">219</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="4"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="OplatyTransportoweMP" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod metody płatności opłat transportowych.</xs:documentation>
+											<xs:documentation source="list">300</xs:documentation>
+											<xs:documentation source="rule">RW34, RW11</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="UCKontrolny" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation source="doc">Urząd kontrolny.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="UC" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod urzędu.</xs:documentation>
+											<xs:documentation source="list">001</xs:documentation>
+											<xs:documentation source="box">44</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="8"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Nazwa" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Nazwa urzędu.</xs:documentation>
+											<xs:documentation source="box">44</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="UlicaNumer" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Ulica, numer domu.</xs:documentation>
+											<xs:documentation source="box">44</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="KodPocztowy" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod pocztowy.</xs:documentation>
+											<xs:documentation source="box">44</xs:documentation>
+											<xs:documentation source="rule">G6, G7</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Miejscowosc" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Miejscowość.</xs:documentation>
+											<xs:documentation source="box">44</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Kraj" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju.</xs:documentation>
+											<xs:documentation source="box">44</xs:documentation>
+											<xs:documentation source="list">007</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="PlatnoscOdroczona" minOccurs="0" maxOccurs="9">
+								<xs:annotation>
+									<xs:documentation source="doc">Dane dotyczące pozwolenia na płatność odroczoną.</xs:documentation>
+									<xs:documentation source="rule">RW5</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Nr" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer pozwolenia.</xs:documentation>
+											<xs:documentation source="box">48</xs:documentation>
+											<xs:documentation source="rule">R5</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="17"/>
+												<xs:pattern value="\d{2}PL\d{6}[CS]\d{5}[BP]"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="SkladCelny" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation source="doc">Oznaczenie składu.</xs:documentation>
+									<xs:documentation source="rule">RW8</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Typ" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Typ składu.</xs:documentation>
+											<xs:documentation source="box">49</xs:documentation>
+											<xs:documentation source="list">085</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Miejsce" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod składu celnego, składu/obszaru wolnocłowego, innego składu.</xs:documentation>
+											<xs:documentation source="box">49</xs:documentation>
+											<xs:documentation source="list">084</xs:documentation>
+											<xs:documentation source="rule">R6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="14"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Kraj" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod kraju, który wydał pozwolenie na prowadzenie składu (tj. "PL").</xs:documentation>
+											<xs:documentation source="box">49</xs:documentation>
+											<xs:documentation source="rule">R7</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+												<xs:pattern value="PL"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="WynikKontroli" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation source="doc">Wynik kontroli. Grupa danych musi być podana, gdy zgłoszenie składane jest w ramach procedury uproszczonej.</xs:documentation>
+									<xs:documentation source="rule">RW31</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Kod" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Kod wyniku kontroli.</xs:documentation>
+											<xs:documentation source="box">D</xs:documentation>
+											<xs:documentation source="list">050</xs:documentation>
+											<xs:documentation source="rule">R13</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Termin" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Termin na dotarcie towaru do urzędu wyprowadzenia.</xs:documentation>
+											<xs:documentation source="box">D</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ZamknieciaCelne" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation source="doc">Zamknięcia celne. Grupa danych musi być podana, jeśli zgłoszenie jest składane w ramach procedury uproszczonej i przewiduje się zastosowanie zamknięć celnych.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Zamkniecie" maxOccurs="99">
+											<xs:annotation>
+												<xs:documentation source="doc">Dane zamknięcia celnego.</xs:documentation>
+												<xs:documentation source="rule">RW4</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="Nr" use="required">
+													<xs:annotation>
+														<xs:documentation source="doc">Numer zamknięcia.</xs:documentation>
+														<xs:documentation source="box">D</xs:documentation>
+														<xs:documentation source="rule">G6</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="20"/>
+															<xs:minLength value="1"/>
+															<xs:whiteSpace value="collapse"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Liczba" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Liczba zamknięć celnych.</xs:documentation>
+											<xs:documentation source="box">D</xs:documentation>
+											<xs:documentation source="rule">G12</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:totalDigits value="4"/>
+												<xs:fractionDigits value="0"/>
+												<xs:minInclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="MiejsceData">
+								<xs:annotation>
+									<xs:documentation source="doc">Miejsce i data.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Miejsce" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Miejsce wypełnienia zgłoszenia.</xs:documentation>
+											<xs:documentation source="box">54</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Data" type="xs:date" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Data wypełnienia zgłoszenia.</xs:documentation>
+											<xs:documentation source="box">54</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="NazwiskoImie" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Nazwisko i imię.</xs:documentation>
+											<xs:documentation source="box">54</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Stanowisko" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Stanowisko.</xs:documentation>
+											<xs:documentation source="box">54</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Telefon" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Telefon kontaktowy.</xs:documentation>
+											<xs:documentation source="box">54</xs:documentation>
+											<xs:documentation source="rule">G6</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="15"/>
+												<xs:minLength value="1"/>
+												<xs:whiteSpace value="collapse"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="UCWyprowadzenia" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod deklarowanego urzędu celnego wyprowadzenia.</xs:documentation>
+								<xs:documentation source="box">29</xs:documentation>
+								<xs:documentation source="list">001</xs:documentation>
+								<xs:documentation source="rule">R24</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="8"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="P1a" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Deklaracja.</xs:documentation>
+								<xs:documentation source="box">1(1)</xs:documentation>
+								<xs:documentation source="list">016</xs:documentation>
+								<xs:documentation source="rule">R16</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="P1b" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Deklaracja. Wartość "Z" oznacza, że zgłoszenie jest jednocześnie powiadomieniem.</xs:documentation>
+								<xs:documentation source="box">1(2)</xs:documentation>
+								<xs:documentation source="list">017</xs:documentation>
+								<xs:documentation source="rule">R15</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="LiczbaPozycji" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Liczba pozycji towarowych.</xs:documentation>
+								<xs:documentation source="box">5</xs:documentation>
+								<xs:documentation source="rule">R2</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:totalDigits value="3"/>
+									<xs:fractionDigits value="0"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="LiczbaOpakowan" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Całkowita liczba opakowań.</xs:documentation>
+								<xs:documentation source="box">6</xs:documentation>
+								<xs:documentation source="rule">RW58, R3</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:totalDigits value="7"/>
+									<xs:fractionDigits value="0"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="UCWywozu" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod deklarowanego urzędu celnego wyprowadzenia.</xs:documentation>
+								<xs:documentation source="box">A</xs:documentation>
+								<xs:documentation source="list">001</xs:documentation>
+								<xs:documentation source="rule">R23</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="8"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="CRN" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Unikalny, przypisany do danej przesyłki numer nadany towarom (Commercial Reference Number). Zalecane jest użycie kodu o strukturze przewidzianej przez WCO (ISO15459) lub jego odpowiednika.</xs:documentation>
+								<xs:documentation source="rule">G6, RW36, RW51</xs:documentation>
+								<xs:documentation source="box">7</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="70"/>
+									<xs:whiteSpace value="collapse"/>
+									<xs:minLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="KrajWysylki" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod kraju wysyłki/eksportu.</xs:documentation>
+								<xs:documentation source="box">15</xs:documentation>
+								<xs:documentation source="list">007</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="KrajPrzeznaczenia" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod kraju przeznaczenia.</xs:documentation>
+								<xs:documentation source="box">17</xs:documentation>
+								<xs:documentation source="list">007</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="Kontenery" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Informacja o występowaniu kontenerów przy przekraczaniu granicy wspólnoty. "0" - nie występują, "1" - występują.</xs:documentation>
+								<xs:documentation source="box">19</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:boolean">
+									<xs:pattern value="0|1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="MasaBrutto" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Całkowita masa brutto.</xs:documentation>
+								<xs:documentation source="rule">R4, G8, RW23</xs:documentation>
+								<xs:documentation source="box">35</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:totalDigits value="15"/>
+									<xs:fractionDigits value="3"/>
+									<xs:minExclusive value="0"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="SumaOplat" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Całkowita suma opłat pozycji towarowych.</xs:documentation>
+								<xs:documentation source="rule">RW47, G8</xs:documentation>
+								<xs:documentation source="box">47</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:totalDigits value="15"/>
+									<xs:fractionDigits value="2"/>
+									<xs:minExclusive value="0"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="SpecyficzneOkolicznosci" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod specyficznych okoliczności tzn. wyłączeń z podstawowego zakresu danych.</xs:documentation>
+								<xs:documentation source="box">1(3)</xs:documentation>
+								<xs:documentation source="list">215</xs:documentation>
+								<xs:documentation source="rule">RW32, RW37</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="OplatyTransportoweMP" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod metody płatności opłat transportowych.</xs:documentation>
+								<xs:documentation source="list">300</xs:documentation>
+								<xs:documentation source="rule">-</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>						
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="NrWlasny" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc">Numer własny tego komunikatu.</xs:documentation>
+					<xs:documentation source="rule">R1, G19, G20</xs:documentation>
+					<xs:documentation source="box">A</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="22"/>
+						<xs:pattern value="[A-Z0-9\-#][A-Z0-9\-]{0,21}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="EmailPodmiotu" use="optional">
+				<xs:annotation>
+					<xs:documentation source="doc">Adres email, na który mają być przesyłane komunikaty zwrotne dotyczące tego komunikatu. W przypadku braku tego atrybutu komunikaty zwrotne nie będą przesyłane do podmiotu za pomocą poczty elektronicznej.</xs:documentation>
+					<xs:documentation source="rule">G14</xs:documentation>
+					<xs:documentation source="box">14</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35"/>
+						<xs:pattern value="[A-Za-z0-9]+((\.|-|_)[A-Za-z0-9]+)*(@[A-Za-z0-9]+((\.|-|_)[A-Za-z0-9]+)*){1}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="PlacowkaPodmiotu" use="optional">
+				<xs:annotation>
+					<xs:documentation source="doc">Identyfikator placówki podmiotu. Atrybut używany jest do identyfikacji placówki podmiotu przy wysyłaniu i odbieraniu komunikatów poprzez interfejs niewizualny.</xs:documentation>
+					<xs:documentation source="rule">G26</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="2"/>
+						<xs:pattern value="[A-Z0-9]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

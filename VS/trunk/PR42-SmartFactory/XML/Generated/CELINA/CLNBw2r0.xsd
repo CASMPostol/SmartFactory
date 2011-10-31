@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by RSzwarga (Systemy Komputerowe Glowka SA) -->
+<xs:schema targetNamespace="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/CLNBw2r0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/CLNBw2r0.xsd" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
+  <xs:element name="CLNB">
+    <xs:annotation>
+      <xs:documentation source="rule">-</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Odrzucenie">
+          <xs:annotation>
+            <xs:documentation source="rule">-</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Blad" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="PozId" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G4</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="3" />
+                        <xs:fractionDigits value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Wskaznik" use="optional">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Komunikat" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Podmiot">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="TIN" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G3</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="NrWlasny" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="14" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="CzasOdrzucenia" type="xs:dateTime" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature" minOccurs="0" />
+      </xs:sequence>
+      <xs:attribute name="EmailPodmiotu" use="optional">
+        <xs:annotation>
+          <xs:documentation source="list">-</xs:documentation>
+          <xs:documentation source="rule">-</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="35" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="NrWlasny" use="optional">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="40" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

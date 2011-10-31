@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.mf.gov.pl/xsd/PWK/PWK1_v2-0.xsd" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.mf.gov.pl/xsd/PWK/PWK1_v2-0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation source="doc">Komunikat PWK1 jest potwierdzeniem przyjęcia komunikatu przesłanego przez Podmiot. Jeśli jest podpisany elektronicznie i zawiera przyjęty komunikat pełni również rolę Urzędowego Potwierdzenia Odbioru (tzw. UPO).</xs:documentation>
+		<xs:documentation source="doc">Jest zwrotnie przesyłany do podmiotu,  jako potwierdzenie przyjęcia przesłanego przez podmiot komunikatu XML i ewentualnych binarnych załączników (załącznik nie jest używany w tym systemie) . Oznacza również, że przesłany przez podmiot komunikat i załącznik został przekazany do odpowiedniego systemu docelowego (zależnego od rodzaju przesłanego dokumentu XML).</xs:documentation>
+		<xs:documentation source="doc">Uwaga. System docelowy może niezależnie odrzucić przyjęty przez PWK komunikat, przekazując podmiotowi zwrotnie stosowny komunikat informujący o odrzuceniu.</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="PWK1">
+		<xs:annotation>
+			<xs:documentation source="doc">Element główny. Zawiera wszystkie pozostałe elementy.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Przyjecie">
+					<xs:annotation>
+						<xs:documentation source="doc">Przyjęcie. Element grupujący dane dotyczące przyjęcia przekazanego komunikatu wraz z jego ewentualnymi załącznikami.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Dokument" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation source="doc">Element grupujący informacje o przyjętym komunikacie XML.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Zawartosc" type="xs:string" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Zawartość przyjętego komunikatu XML.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Zalacznik" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="doc">Element grupujący informacje o przyjętym załączniku do komunikatu XML. (Załącznik nie jest używany w tym systemie.)</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Opis" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Tekstowy opis załącznika, jaki był nadany przez podmiot.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="70"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Zawartosc" type="xs:base64Binary" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Zawartość załącznika.</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Ostrzezenie" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation source="doc">Ostrzeżenie.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Wskaznik" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Ścieżka XPath do miejsca w przyjętym komunikacie XML, którego ostrzeżenie dotyczy.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="Tekst" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Treść ostrzeżenia.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="255"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Data" type="xs:dateTime" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Data i czas przyjęcia.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="DataUPO" type="xs:dateTime" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Data i czas wygenerowania Urzędowego Poświadczenia Odbioru (UPO). Stosowana, gdy komunikat PWK1 jest traktowany jako UPO.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="NrWlasny" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer własny przyjętego komunikatu.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="40"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="IdSystemowy" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Wewnętrzny identyfikator nadany przyjętemu komunikatowi.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="40"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="TIN" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer identyfikacyjny podmiotu (Trader Identification Number) z przyjętego komunikatu, którego dotyczy przyjęty dokument (podmiot zgłaszający).</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="17"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="UC" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod urzędu celnego, do którego jest skierowany przyjęty dokument i w imieniu, którego system PWK dokonał jego przyjęcia.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="8"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="UCNazwa" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Pełna nazwa urzędu celnego, do którego jest skierowany przyjęty dokument i w imieniu, którego system PWK dokonał jego przyjęcia. Atrybut stosowany jeśli komunikat PWK1 jest traktowany jako Urzędowe Poświadczenie Odbioru (UPO).</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="255"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="NrWlasny" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc">Identyfikator nadany przez system PWK. </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
