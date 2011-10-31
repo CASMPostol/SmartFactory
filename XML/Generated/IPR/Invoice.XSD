@@ -1,0 +1,40 @@
+﻿<?xml version='1.0' encoding="utf-8"?>
+<!-- XmlMap.DataBinding.SourceUrl:  -->
+<xsd:schema xmlns="http://cas.eu/schemas/jti/ipr/Invoice.xsd"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://cas.eu/schemas/jti/ipr/Invoice.xsd"
+			elementFormDefault="qualified">
+	<xsd:element nillable="true" name="Invoice">
+		<xsd:complexType>
+			<xsd:sequence minOccurs="0">
+				<xsd:element minOccurs="1" maxOccurs="unbounded" nillable="false" name="Item" >
+					<xsd:complexType>
+						<xsd:sequence minOccurs="0">
+							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Bill_doc" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Item" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="HgLvIt" />
+							<xsd:element minOccurs="1" nillable="false" type="xsd:integer" name="Billed_quantity" />
+							<xsd:element minOccurs="1" nillable="false" type="xsd:string" name="SU" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Bill_qty_in_SKU" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="BUn" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Ref_doc" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="RefItm" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="PrCat" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Sales_doc" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Item2" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Sales_doc__has_resulted_from_r" />
+							<xsd:element minOccurs="1" nillable="false" type="xsd:integer" name="Material" />
+							<xsd:element minOccurs="1" nillable="false" type="xsd:string" name="Description" />
+							<xsd:element minOccurs="1" nillable="false" type="xsd:integer" name="Batch" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ItCa" />
+							<xsd:element minOccurs="1" nillable="false" type="xsd:date" name="Created_on" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:time" name="Time" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="SLoc" />
+							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Ship_to" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CAS.SmartFactory.xml</RootNamespace>
+    <AssemblyName>CAS.SmartFactory.xml</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="cas.snk" />
+    <None Include="Generated\CELINA\CLNBw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\CLNDw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\CLNEw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\CLNNw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\CLNRw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\CLNTw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\CLNWw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\CLNZw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\DSw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\IPTw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\PODw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\PWDw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Compile Include="Generated\CELINA\CLNE.ext.cs" />
+    <Compile Include="Generated\CELINA\PZC.ext.cs" />
+    <None Include="Generated\CELINA\PZCw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\SADw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\WOUw2r0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\CELINA\xmldsig-core-schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\DTI.AcceptDocumentResult_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\DTI.AcceptDocument_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\DTI.GetAcceptDocumentStatusResult_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\DTI.GetAcceptDocumentStatus_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\DTI.GetDocumentsResult_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\DTI.GetDocuments_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\DTI.GetLostDocumentsResult_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\DTI.GetLostDocuments_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\DTI.SendDocumentResult_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\DTI.SendDocument_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE504_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE505_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE507_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE508_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE509_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE513B_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE513C_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE513_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE514_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE515B_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE515C_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE515XY_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE515_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE516_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE521_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE522_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE525_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE528_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Compile Include="Generated\ECS\IE529.ext.cs" />
+    <None Include="Generated\ECS\IE529_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE547_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE548_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE551_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE560_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE561_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE582_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE583_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE590_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE591_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE599_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE5PU_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE604_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE605_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE613_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE615_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE616_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IE628_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IEST1_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\IEST2_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\PWK1_v2-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\PWK2_v2-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\PWK3_v1-0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\ECS\xmldsig-core-schema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\IPR\Invoice.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\Scripts\goxsd.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Invoice.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Generated\CELINA\CLNEw2r0_xmldsig-core-schema.cs" />
+    <Compile Include="Generated\CELINA\PZCw2r0_xmldsig-core-schema.cs" />
+    <Compile Include="Generated\CELINA\SAD.ext..cs" />
+    <Compile Include="Generated\CELINA\SADw2r0_xmldsig-core-schema.cs" />
+    <Compile Include="CustomsDocument.cs" />
+    <Compile Include="Generated\ECS\IE529_v1-0_xmldsig-core-schema.cs" />
+    <Compile Include="Generated\IPR\Invoice.cs">
+      <DependentUpon>Invoice.XSD</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,3164 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Andrzej Heller (Systemy Komputerowe Glowka SA) -->
+<xs:schema targetNamespace="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/SADw2r0.xsd" xmlns="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/SADw2r0.xsd" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
+  <xs:element name="SAD">
+    <xs:annotation>
+      <xs:documentation source="rule">-</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Zgloszenie">
+          <xs:annotation>
+            <xs:documentation source="rule">-</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rodzaj">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Typ" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">15</xs:documentation>
+                      <xs:documentation source="rule">R39, R40</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Podtyp" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">31</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Powiadomienie" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">R11</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:boolean">
+                        <xs:pattern value="0|1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="TypWPR1" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">113</xs:documentation>
+                      <xs:documentation source="rule">RW143</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="UC">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Lokalizacja" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW124</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="Miejsce" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="rule">RW18, RW19</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:minLength value="1" />
+                              <xs:maxLength value="17" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="UC" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">1</xs:documentation>
+                            <xs:documentation source="rule">RW19, R32</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="8" />
+                              <xs:pattern value="PL\d{6}" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Opis" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW19, G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="UCKontrolny" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="rule">-</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="UCKontrolny" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">1</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="8" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Nazwa" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="UlicaNumer" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="KodPocztowy" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6, G7</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="9" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Miejscowosc" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kraj" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">7</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="2" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="SkladCelny" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW89</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="Typ" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">85</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Miejsce" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="rule">R25</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:minLength value="1" />
+                              <xs:maxLength value="14" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kraj" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">R33</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="2" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="UCTranzytowy" minOccurs="0" maxOccurs="9">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW8, RW94</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="1" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="UCTranzytowy" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">1</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="8" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="UCZgloszenia" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">1</xs:documentation>
+                      <xs:documentation source="rule">R26</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="8" />
+                        <xs:pattern value="PL\d{6}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="UCGraniczny" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">1</xs:documentation>
+                      <xs:documentation source="rule">RW90</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="8" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="UCPrzeznaczenia" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">1</xs:documentation>
+                      <xs:documentation source="rule">RW30</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="8" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Nadawca" minOccurs="0" maxOccurs="99">
+                <xs:annotation>
+                  <xs:documentation source="rule">RW72</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="PozId" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G4</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="2" />
+                        <xs:fractionDigits value="0" />
+                        <xs:minExclusive value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Nazwa" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="UlicaNumer" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KodPocztowy" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, G7</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="9" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Miejscowosc" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Kraj" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">7</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="TIN" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G3, RW135, RW136</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Regon" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G13, RW132</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="14" />
+                        <xs:pattern value="[0-9]{14}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Pesel" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G16, RW132</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="11" />
+                        <xs:pattern value="[0-9]{11}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="CRP" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G17</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="19" />
+                        <xs:pattern value="\d{10}\*\d{8}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="EORI" use="optional">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Odbiorca" minOccurs="0" maxOccurs="99">
+                <xs:annotation>
+                  <xs:documentation source="rule">RW3, RW74</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="PozId" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G4</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="2" />
+                        <xs:fractionDigits value="0" />
+                        <xs:minExclusive value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Nazwa" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="UlicaNumer" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KodPocztowy" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, G7</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="9" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Miejscowosc" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Kraj" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">7</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="TIN" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G3, RW136</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Regon" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G13, RW133</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="14" />
+                        <xs:pattern value="[0-9]{14}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Pesel" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G16, RW133</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="11" />
+                        <xs:pattern value="[0-9]{11}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="EORI" use="optional">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ZglaszajacyPrzedstawiciel" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="rule">RW92</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Przedstawicielstwo" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">77</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Nazwa" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, RW95</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="UlicaNumer" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, RW95</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KodPocztowy" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, G7, RW95</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="9" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Miejscowosc" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, RW95</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Kraj" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">7</xs:documentation>
+                      <xs:documentation source="rule">RW95</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="TIN" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G3, RW95, RW134, RW136</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Regon" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G13, RW95</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="14" />
+                        <xs:pattern value="[0-9]{14}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Wskaznik" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">83</xs:documentation>
+                      <xs:documentation source="rule">RW95, R30</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="5" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="NrWpisu" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, RW95</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="35" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="DataWpisu" type="xs:date" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">RW95</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="EORI" use="optional">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="GlownyZobowiazany" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="rule">RW29</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Przedstawiciel" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW136</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="TIN" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G3</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="17" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Nazwa" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="UlicaNumer" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KodPocztowy" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, G7</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="9" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Miejscowosc" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Kraj" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">7</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="TIN" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G3, RW77, RW136</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="OdbiorcaKarty3" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="rule">RW97</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Nazwa" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="UlicaNumer" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KodPocztowy" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, G7</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="9" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Miejscowosc" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Kraj" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">7</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="UpowaznionyOdbiorca" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="rule">RW91</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="TIN" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Transport" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Rodzaj" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">5</xs:documentation>
+                      <xs:documentation source="rule">RW98</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Znaki" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">RW100, G5, G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="27" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Kraj" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">7</xs:documentation>
+                      <xs:documentation source="rule">RW101</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="TransportNaGranicy" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Rodzaj" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">5</xs:documentation>
+                      <xs:documentation source="rule">RW99</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Znaki" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G5, G6, RW102</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="27" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Kraj" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">7</xs:documentation>
+                      <xs:documentation source="rule">RW103</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="WarunkiDostawy" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="rule">RW104</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Kod" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">2</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="3" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Miejsce" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="MiejsceKod" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">78</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="WartoscTowarow" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="SzczegolyWartosci" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">79</xs:documentation>
+                      <xs:documentation source="rule">RW106</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Waluta" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">26</xs:documentation>
+                      <xs:documentation source="rule">RW105</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="3" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Wartosc" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G12, RW107</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="15" />
+                        <xs:fractionDigits value="2" />
+                        <xs:minInclusive value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KursWaluty" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">RW120</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="6" />
+                        <xs:fractionDigits value="4" />
+                        <xs:minExclusive value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Towar" maxOccurs="999">
+                <xs:annotation>
+                  <xs:documentation source="rule">RW67, RW137, R38</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Nadawca" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW72</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="Nazwa" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="UlicaNumer" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="KodPocztowy" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6, G7</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="9" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Miejscowosc" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kraj" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">7</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="2" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="TIN" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G3</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="17" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Odbiorca" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW4, RW74</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="Nazwa" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="UlicaNumer" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="KodPocztowy" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6, G7</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="9" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Miejscowosc" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kraj" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">7</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="2" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="TIN" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G3</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="17" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="IloscTowaru" minOccurs="0" maxOccurs="9">
+                      <xs:annotation>
+                        <xs:documentation source="rule">-</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="1" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Jm" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">68</xs:documentation>
+                            <xs:documentation source="rule">RW152</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="3" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="KwalifikatorJm" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">69</xs:documentation>
+                            <xs:documentation source="rule">RW152</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Ilosc" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G12</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:minInclusive value="0" />
+                              <xs:totalDigits value="15" />
+                              <xs:fractionDigits value="5" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Samochod" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="rule">-</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="Marka" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">110</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="3" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="NrNadwozia" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:minLength value="1" />
+                              <xs:maxLength value="35" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="NrSilnika" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:minLength value="1" />
+                              <xs:maxLength value="35" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Pojemnosc" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW142</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="5" />
+                              <xs:fractionDigits value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="RodzajPaliwa" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">111</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="2" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="RokProdukcji" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">R41</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="4" />
+                              <xs:fractionDigits value="0" />
+                              <xs:pattern value="\d{4}" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="TowarWrazliwy" minOccurs="0" maxOccurs="9">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW6</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="1" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kod" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">37</xs:documentation>
+                            <xs:documentation source="rule">RW22</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="2" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Ilosc" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G8</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="11" />
+                              <xs:fractionDigits value="3" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Opakowanie" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW69, GW9</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="2" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Rodzaj" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">33</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="3" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Znaki" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW154, G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="42" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="LiczbaOpakowan" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW154, G12</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="5" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minInclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="IloscSztuk" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW154, G8</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="5" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Kontener" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW5</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="2" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Nr" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G10</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="17" />
+                              <xs:pattern value="[A-Z0-9]{1,}" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="KodDodatkowyUE" minOccurs="0" maxOccurs="9">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW114</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="1" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kod" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="rule">R23</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="4" />
+                              <xs:pattern value="[A-Z0-9]{4}" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="KodDodatkowyPL" minOccurs="0" maxOccurs="9">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW115</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="1" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kod" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="rule">R23</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="4" />
+                              <xs:pattern value="[A-Z0-9]{4}" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Kontyngent" minOccurs="0" maxOccurs="9">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW121</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="1" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="NrPorzadkowy" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">R22</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="6" />
+                              <xs:pattern value="\d{6}" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="WnioskowanaIlosc" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G12</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="15" />
+                              <xs:fractionDigits value="3" />
+                              <xs:minInclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Jm" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">101</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="JednostkaMiary" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">68</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="3" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="KwalifikatorJednostkiMiary" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">69</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DokumentPoprzedni" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW122, RW130</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="2" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kategoria" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">80</xs:documentation>
+                            <xs:documentation source="rule">R34</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kod" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">81</xs:documentation>
+                            <xs:documentation source="rule">RW122</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="3" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="TypSAD" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">16</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="2" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Nr" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6, R34, R48</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="NrCelina" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G15</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="25" />
+                              <xs:pattern value="[A-Z]{3}/\d{6}/\d{2}/\d{6}/\d{4}" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DokumentPoprzedniWPT" minOccurs="0" maxOccurs="9">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW131</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="1" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kod" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">35</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="6" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Nr" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="20" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Uwagi" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="26" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DokumentWymagany" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW126</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="2" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kod" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">34</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="4" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Nr" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Uwagi" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6, RW155</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:minLength value="1" />
+                              <xs:maxLength value="35" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DokumentWymaganyWPT" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW127</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="2" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kod" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">90</xs:documentation>
+                            <xs:documentation source="rule">RW125</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="3" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Nr" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW125, G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="20" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Uwagi" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW125, G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="26" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="InformacjaDodatkowa" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW128</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="2" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kod" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">36</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="5" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Tekst" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW146, G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="255" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="InformacjaDodatkowaWPT" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW129, R47</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="2" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kod" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">91</xs:documentation>
+                            <xs:documentation source="rule">RW26</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="3" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="WywozZUE" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW27</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:boolean">
+                              <xs:pattern value="1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="KrajWywozu" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">53</xs:documentation>
+                            <xs:documentation source="rule">RW27</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="2" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Tekst" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW26, G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="70" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="WartoscTowaru" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="rule">-</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="SzczegolyWartosci" minOccurs="0" maxOccurs="9">
+                            <xs:annotation>
+                              <xs:documentation source="rule">-</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:attribute name="PozId" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G4</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:decimal">
+                                    <xs:totalDigits value="1" />
+                                    <xs:fractionDigits value="0" />
+                                    <xs:minExclusive value="0" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Kod" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">86</xs:documentation>
+                                  <xs:documentation source="rule">-</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:length value="5" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Korekta" minOccurs="0" maxOccurs="99">
+                            <xs:annotation>
+                              <xs:documentation source="rule">RW139</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:attribute name="PozId" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G4</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:decimal">
+                                    <xs:totalDigits value="2" />
+                                    <xs:fractionDigits value="0" />
+                                    <xs:minExclusive value="0" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Kod" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">87</xs:documentation>
+                                  <xs:documentation source="rule">-</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:length value="4" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Wartosc" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">-</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:decimal">
+                                    <xs:totalDigits value="15" />
+                                    <xs:fractionDigits value="2" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="WartoscPozycji" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G12, RW116</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="15" />
+                              <xs:fractionDigits value="2" />
+                              <xs:minInclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="MetodaWartosciowania" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">82</xs:documentation>
+                            <xs:documentation source="rule">RW117</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="WartoscStatystyczna" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G12, RW119</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="15" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minInclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Oplata" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW140, RW150</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="2" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Typ" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">14</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="3" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Podstawa" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G12</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="15" />
+                              <xs:fractionDigits value="2" />
+                              <xs:minInclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Stawka" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G12</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="5" />
+                              <xs:fractionDigits value="2" />
+                              <xs:minInclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kwota" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G12</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="15" />
+                              <xs:fractionDigits value="2" />
+                              <xs:minInclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="MP" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">6</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="WPR" minOccurs="0">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW144</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Skladnik" minOccurs="0" maxOccurs="9">
+                            <xs:annotation>
+                              <xs:documentation source="rule">-</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:attribute name="PozId" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G4</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:decimal">
+                                    <xs:totalDigits value="1" />
+                                    <xs:fractionDigits value="0" />
+                                    <xs:minExclusive value="0" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="KodCN" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="rule">-</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:length value="8" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="KodERN" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation source="rule">R43</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:length value="4" />
+                                    <xs:pattern value="9[A-Z0-9]{3}" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Ilosc" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G12</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:decimal">
+                                    <xs:totalDigits value="15" />
+                                    <xs:fractionDigits value="5" />
+                                    <xs:minInclusive value="0" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Jm" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">121</xs:documentation>
+                                  <xs:documentation source="rule">-</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:length value="1" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="SwiadectwoRefundacji" minOccurs="0" maxOccurs="9">
+                            <xs:annotation>
+                              <xs:documentation source="rule">-</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:attribute name="PozId" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G4</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:decimal">
+                                    <xs:totalDigits value="1" />
+                                    <xs:fractionDigits value="0" />
+                                    <xs:minExclusive value="0" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Nr" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G6</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="35" />
+                                    <xs:minLength value="1" />
+                                    <xs:whiteSpace value="collapse" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="DU" minOccurs="0" maxOccurs="9">
+                            <xs:annotation>
+                              <xs:documentation source="rule">-</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:attribute name="PozId" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G4</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:decimal">
+                                    <xs:totalDigits value="1" />
+                                    <xs:fractionDigits value="0" />
+                                    <xs:minExclusive value="0" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Kod" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation source="list">122</xs:documentation>
+                                  <xs:documentation source="rule">RW145</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="20" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Tekst" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">RW145, G6</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="70" />
+                                    <xs:minLength value="1" />
+                                    <xs:whiteSpace value="collapse" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Parametr" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G12</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:decimal">
+                                    <xs:totalDigits value="15" />
+                                    <xs:fractionDigits value="5" />
+                                    <xs:minInclusive value="0" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Dostawa" minOccurs="0" maxOccurs="99">
+                            <xs:annotation>
+                              <xs:documentation source="rule">RW148</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:attribute name="PozId" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G4</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:decimal">
+                                    <xs:totalDigits value="2" />
+                                    <xs:fractionDigits value="0" />
+                                    <xs:minExclusive value="0" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Kod" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">123</xs:documentation>
+                                  <xs:documentation source="rule">-</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:length value="2" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Miejsce" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G6</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="35" />
+                                    <xs:minLength value="1" />
+                                    <xs:whiteSpace value="collapse" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Data" type="xs:date" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">-</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Swiadectwo" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G6</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:maxLength value="35" />
+                                    <xs:minLength value="1" />
+                                    <xs:whiteSpace value="collapse" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="KodReceptury" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Pochodzenie" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">120</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Przeladunek" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW149</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:boolean">
+                              <xs:pattern value="0|1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="KrajPrzeladunku" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">49</xs:documentation>
+                            <xs:documentation source="rule">RW151</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="2" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="PozId" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G4</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="3" />
+                        <xs:fractionDigits value="0" />
+                        <xs:minExclusive value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="P1c" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">18</xs:documentation>
+                      <xs:documentation source="rule">RW20, RW67, R16</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="5" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KrajWysylki" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">7</xs:documentation>
+                      <xs:documentation source="rule">RW13, RW67</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KrajPrzeznaczenia" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">7</xs:documentation>
+                      <xs:documentation source="rule">RW14, RW67</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="OpisTowaru" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">R17, G6, RW138</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="260" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KodTowarowy" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="rule">RW21, RW52, RW67, R3</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="8" />
+                        <xs:pattern value="\d{1,}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KodTaric" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="rule">RW110, R27</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                        <xs:pattern value="\d{2}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KrajPochodzenia" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">7</xs:documentation>
+                      <xs:documentation source="rule">RW109</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="MasaBrutto" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">RW67, RW147</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="11" />
+                        <xs:fractionDigits value="3" />
+                        <xs:minInclusive value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Preferencje" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">13</xs:documentation>
+                      <xs:documentation source="rule">RW111</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="3" />
+                        <xs:pattern value="\d{3}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Procedura" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="rule">R10, RW82, R29, R42</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="4" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="ProceduraSzczegoly" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">76</xs:documentation>
+                      <xs:documentation source="rule">RW83</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="3" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="MasaNetto" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">RW67, RW112</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="11" />
+                        <xs:fractionDigits value="3" />
+                        <xs:minInclusive value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="IloscUzupelniajacaJm" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G12, RW113</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="11" />
+                        <xs:fractionDigits value="3" />
+                        <xs:minInclusive value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Gwarancje" minOccurs="0" maxOccurs="9">
+                <xs:annotation>
+                  <xs:documentation source="rule">RW31</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Gwarancja" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation source="rule">RW11</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="NiewaznaNaKraj" minOccurs="0" maxOccurs="99">
+                            <xs:annotation>
+                              <xs:documentation source="rule">-</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:attribute name="PozId" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">-</xs:documentation>
+                                  <xs:documentation source="rule">G4</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:decimal">
+                                    <xs:totalDigits value="2" />
+                                    <xs:fractionDigits value="0" />
+                                    <xs:minExclusive value="0" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Kraj" use="required">
+                                <xs:annotation>
+                                  <xs:documentation source="list">53</xs:documentation>
+                                  <xs:documentation source="rule">-</xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:length value="2" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="2" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Nr" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW78, G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="35" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="GRN" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW78</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="24" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="KodDostepu" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">RW12</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="4" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="NiewaznaNaUE" use="optional">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:boolean">
+                              <xs:pattern value="0|1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="PozId" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G4</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="1" />
+                        <xs:fractionDigits value="0" />
+                        <xs:minExclusive value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Rodzaj" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">8</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="WynikKontroli" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="rule">RW9</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Kod" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">50</xs:documentation>
+                      <xs:documentation source="rule">R13</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="TerminDostarczenia" type="xs:date" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ZamknieciaCelne" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation source="rule">RW10</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Zamkniecie" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation source="rule">-</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G4</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:minExclusive value="0" />
+                              <xs:totalDigits value="2" />
+                              <xs:fractionDigits value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Nr" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                            <xs:documentation source="rule">G6</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="20" />
+                              <xs:minLength value="1" />
+                              <xs:whiteSpace value="collapse" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Ilosc" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G8</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="4" />
+                        <xs:fractionDigits value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Nakladajacy" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="MiejsceData">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Miejsce" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, RW141</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Data" type="xs:date" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">RW141</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="NazwiskoImie" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, RW141</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Stanowisko" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Telefon" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="15" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="NrWlasny" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">R1, R45, R46, GW7</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="10" />
+                  <xs:pattern value="\d{2}S[A-Z0-9]{1,7}" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="P1a" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">16</xs:documentation>
+                <xs:documentation source="rule">RW34</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="2" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="P1b" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">17</xs:documentation>
+                <xs:documentation source="rule">RW35, R35, R36</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="1" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="P1c" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">18</xs:documentation>
+                <xs:documentation source="rule">RW32, R24</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="5" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ListyTowarowe" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">RW37, G8</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:decimal">
+                  <xs:totalDigits value="5" />
+                  <xs:fractionDigits value="0" />
+                  <xs:minExclusive value="0" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="LiczbaPozycji" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">G8, R19</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:decimal">
+                  <xs:totalDigits value="3" />
+                  <xs:fractionDigits value="0" />
+                  <xs:minExclusive value="0" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="LiczbaOpakowan" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">R2, G8, RW84</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:decimal">
+                  <xs:totalDigits value="7" />
+                  <xs:fractionDigits value="0" />
+                  <xs:minExclusive value="0" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="KrajWysylki" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">7</xs:documentation>
+                <xs:documentation source="rule">RW13, RW67</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="2" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="KrajPrzeznaczenia" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">7</xs:documentation>
+                <xs:documentation source="rule">RW14</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="2" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="Kontenery" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">RW87</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:boolean">
+                  <xs:pattern value="0|1" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="RodzajTransakcji" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">4</xs:documentation>
+                <xs:documentation source="rule">RW108</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="2" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="MasaBrutto" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">R20, R21</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:decimal">
+                  <xs:totalDigits value="11" />
+                  <xs:fractionDigits value="3" />
+                  <xs:minInclusive value="0" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="PlatnoscOdroczona" use="optional">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">R37, RW88</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:length value="17" />
+                  <xs:pattern value="\d{2}PL\d{6}[CS]\d{5}[BP]" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="DataDoKalkulacji" type="xs:date" use="optional">
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Sprostowanie" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation source="rule">-</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="NrCelina" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">G18</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="40" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="Nr" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:decimal">
+                  <xs:totalDigits value="2" />
+                  <xs:fractionDigits value="0" />
+                  <xs:minExclusive value="0" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="Data" type="xs:date" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">R44</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature" minOccurs="0" />
+      </xs:sequence>
+      <xs:attribute name="EmailPodmiotu" use="optional">
+        <xs:annotation>
+          <xs:documentation source="list">-</xs:documentation>
+          <xs:documentation source="rule">G14, GW10, RW153</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="35" />
+            <xs:pattern value="[A-Za-z0-9]+((\.|-|_)[A-Za-z0-9]+)*(@[A-Za-z0-9]+((\.|-|_)[A-Za-z0-9]+)*){1}" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 U (http://www.xmlspy.com) by www (wola.info) -->
+<xs:schema xmlns="http://www.mf.gov.pl/xsd/ECS/IE590_v1-0.xsd" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.mf.gov.pl/xsd/ECS/IE590_v1-0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation source="doc">Przekroczenie granicy.</xs:documentation>
+		<xs:documentation source="doc">Komunikat zawiera informację o przekroczeniu granicy przez towar ze zgłoszenia wywozowego lub manifestu eksportowego. Jest przekazywany do Systemu przez podmiot odpowiedzialny za potwierdzenie przekroczenia granicy (podmiot inny niż urząd celny).</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="IE590">
+		<xs:annotation>
+			<xs:documentation source="doc">IE590.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PrzekroczenieGranicy">
+					<xs:annotation>
+						<xs:documentation source="doc">Przekroczenie granicy.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Potwierdzajacy">
+								<xs:annotation>
+									<xs:documentation source="doc">Podmiot potwierdzający przekroczenie granicy.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="Id" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Identyfikator podmiotu.</xs:documentation>
+											<xs:documentation source="list">160</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:length value="8"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="TIN" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Numer identyfikacyjny podmiotu (Trader Identification Number). W przypadku podmiotów polskich - NIP poprzedzony znakami "PL".</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="EORI" use="optional">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="17"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="EmailPodmiotu" use="optional">
+										<xs:annotation>
+											<xs:documentation source="doc">Adres email, na który mają być przesyłane komunikaty zwrotne dotyczące tego komunikatu. W przypadku braku tego atrybutu komunikaty zwrotne nie będą przesyłane do podmiotu za pomocą poczty elektronicznej.</xs:documentation>
+											<xs:documentation source="rule">G14</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+												<xs:pattern value="[A-Za-z0-9]+((\.|-|_)[A-Za-z0-9]+)*(@[A-Za-z0-9]+((\.|-|_)[A-Za-z0-9]+)*){1}"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="MRN" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer ewidencyjny zgłoszenia.</xs:documentation>
+								<xs:documentation source="rule">RW1</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="18"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="MRX" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer ewidencyjny manifestu.</xs:documentation>
+								<xs:documentation source="rule">RW1</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="22"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="UCWywozu" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod urzędu wywozu.</xs:documentation>
+								<xs:documentation source="list">001</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="8"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="UCWyprowadzenia" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Kod urzędu wyprowadzenia.</xs:documentation>
+								<xs:documentation source="list">001</xs:documentation>
+								<xs:documentation source="rule">G23</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:length value="8"/>
+									<xs:pattern value="PL.{6}"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="DataPrzekroczenia" type="xs:date" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Data i czas przekroczenia granicy.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ds:Signature" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="NrWlasny" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc">Numer własny tego komunikatu.</xs:documentation>
+					<xs:documentation source="rule">R1, G19, G20</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="22"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="PlacowkaPodmiotu" use="optional">
+				<xs:annotation>
+					<xs:documentation source="doc">Identyfikator placówki podmiotu. Atrybut używany jest do identyfikacji placówki podmiotu przy wysyłaniu i odbieraniu komunikatów poprzez interfejs niewizualny.</xs:documentation>
+					<xs:documentation source="rule">G26</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="2"/>
+						<xs:pattern value="[A-Z0-9]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

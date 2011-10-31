@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    DisplayName="Parent List"
+    Name="ParentList"
+    ID="{320ACE66-79FF-4F6E-A7AA-7DFE6BE316B5}"
+    Group="SAD"
+    StaticName="ParentList"
+    Description="Foreign key"
+    Required="TRUE"
+    Hidden="FALSE"
+    DisplaceOnUpgrade="TRUE"
+    EnforceUniqueValues="FALSE"
+    Type="Lookup"
+    List="Lists/SAD"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    RelationshipDeleteBehavior="None"
+    />
+  <Field
+    Name="MasterDocument"
+    DisplayName="Declaration"
+    ID="{ED32E365-EB0C-4995-9596-4591644E2EE4}"
+    Group="SAD"
+    Type ="Lookup"
+    FieldRef="320ACE66-79FF-4F6E-A7AA-7DFE6BE316B5"
+    List="Lists/SAD"
+    ShowField="Title"
+    ReadOnly="True"
+    Required="False"
+    Hidden="False"
+    Description="SAD Declaration"
+    />
+</Elements>

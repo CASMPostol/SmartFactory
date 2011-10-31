@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by S³awomir Kubis (Systemy Komputerowe Glowka SA) -->
+<xs:schema targetNamespace="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/IPTw2r0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/IPTw2r0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
+  <xs:element name="IPT">
+    <xs:annotation>
+      <xs:documentation source="rule">-</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="InformacjaOPrzedstawieniu">
+          <xs:annotation>
+            <xs:documentation source="rule">-</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UC">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="UCZgloszenia" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">1</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="8" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Zglaszajacy">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Nazwa" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="UlicaNumer" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KodPocztowy" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6, G7</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="9" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Miejscowosc" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G6</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Kraj" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">7</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="TIN" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G3</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Regon" use="optional">
+                    <xs:annotation>
+                      <xs:documentation source="rule">G13</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="14" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="MiejsceData">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Miejsce" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Data" type="xs:date" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="NazwiskoImie" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                        <xs:minLength value="1" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="NrWlasny" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">R1, R2</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="14" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="IdDokSAD" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="40" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature" minOccurs="0" />
+      </xs:sequence>
+      <xs:attribute name="EmailPodmiotu" use="optional">
+        <xs:annotation>
+          <xs:documentation source="list">-</xs:documentation>
+          <xs:documentation source="rule">G14, GW10</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="35" />
+            <xs:pattern value="[A-Za-z0-9]+((\.|-|_)[A-Za-z0-9]+)*(@[A-Za-z0-9]+((\.|-|_)[A-Za-z0-9]+)*){1}" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
