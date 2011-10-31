@@ -60,19 +60,10 @@
     <None Include="Columns\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{53daf94c-cf2d-42bb-91a8-2269800a5ba5}</SharePointProjectItemId>
     </None>
-    <None Include="ContentType1\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0e777363-1356-44bb-bc6b-7bbcaa46bc30}</SharePointProjectItemId>
-    </None>
     <None Include="Features\Data\Data.feature">
       <FeatureId>{ede71ac8-1114-4ddb-95e5-d5b7e5093963}</FeatureId>
     </None>
     <None Include="key.snk" />
-    <None Include="ListDefinition1\ListInstance1\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{1d309226-13c9-4989-aaf8-490a68500ebb}</SharePointProjectItemId>
-    </None>
-    <None Include="ListDefinition1\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{350aaa57-91a3-4982-9295-bb3a3075728b}</SharePointProjectItemId>
-    </None>
     <None Include="Package\Package.package">
       <PackageId>{3281430d-0926-4292-9887-ad6d8c77748e}</PackageId>
     </None>
@@ -99,14 +90,8 @@
   <ItemGroup>
     <Content Include="ActivityLog\Elements.xml" />
     <Content Include="Columns\Elements.xml" />
-    <Content Include="ContentType1\Elements.xml" />
     <Content Include="Features\Data\Data.Template.xml">
       <DependentUpon>Data.feature</DependentUpon>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="ListDefinition1\Elements.xml" />
-    <Content Include="ListDefinition1\ListInstance1\Elements.xml" />
-    <Content Include="ListDefinition1\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SADCommodityFeature\ContentType\Elements.xml" />
