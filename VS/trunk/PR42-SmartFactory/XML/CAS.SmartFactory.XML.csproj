@@ -200,6 +200,8 @@
     <None Include="Generated\ECS\IE528_v1-0.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Compile Include="Generated\CELINA\PZCZwolnienieDoProceduryTowar.cs" />
+    <Compile Include="Generated\CELINA\SADZgloszenieTowar.cs" />
     <Compile Include="Generated\ECS\IE529.ext.cs" />
     <None Include="Generated\ECS\IE529_v1-0.xsd">
       <SubType>Designer</SubType>
@@ -287,10 +289,12 @@
     <Compile Include="Generated\CELINA\SAD.ext..cs" />
     <Compile Include="Generated\CELINA\SADw2r0_xmldsig-core-schema.cs" />
     <Compile Include="CustomsDocument.cs" />
+    <Compile Include="Generated\ECS\IE529ZwolnienieTowar.cs" />
     <Compile Include="Generated\ECS\IE529_v1-0_xmldsig-core-schema.cs" />
     <Compile Include="Generated\IPR\Invoice.cs">
       <DependentUpon>Invoice.XSD</DependentUpon>
     </Compile>
+    <Compile Include="GoodDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

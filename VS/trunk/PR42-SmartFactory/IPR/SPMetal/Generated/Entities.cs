@@ -34,16 +34,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// My List Instance
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="IPRData - ListInstance1")]
-		public Microsoft.SharePoint.Linq.EntityList<SADCommodity> IPRDataListInstance1 {
-			get {
-				return this.GetList<SADCommodity>("IPRData - ListInstance1");
-			}
-		}
-		
-		/// <summary>
 		/// SAD xml files collection
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="SAD")]
@@ -79,8 +69,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Element", Id="0x01")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Anons))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADCommodity))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Dokument))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADCommodity))]
 	public partial class Element : Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging {
 		
 		private System.Nullable<int> _identyfikator;

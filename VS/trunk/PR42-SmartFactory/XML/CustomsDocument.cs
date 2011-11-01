@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 using CAS.SmartFactory.xml.CELINA.SAD;
-using System.Xml;
 
 namespace CAS.SmartFactory.xml
 {
@@ -39,10 +36,10 @@ namespace CAS.SmartFactory.xml
         return (CustomsDocument)invoice.Deserialize(reader);
       }
     }
-
+    public abstract GoodDescription this[int index] {get; }
     public abstract string GetNrWlasny();
     public abstract string GetReferenceNumber();
-    public abstract decimal GetItemNo(int index);
     public abstract int GoodsTableLength();
+    public abstract string MessageRootName();
   }
 }

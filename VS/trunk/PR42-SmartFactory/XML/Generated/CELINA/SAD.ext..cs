@@ -7,8 +7,7 @@ namespace CAS.SmartFactory.xml.CELINA.SAD
 {
   public partial class SAD : CustomsDocument
   {
-
-    #region MyRegion
+    #region CustomsDocument
     public override string GetNrWlasny()
     {
       return Zgloszenie.NrWlasny;
@@ -17,13 +16,19 @@ namespace CAS.SmartFactory.xml.CELINA.SAD
     {
       return String.Empty;
     }
-    public override decimal GetItemNo(int index)
-    {
-      return Zgloszenie.Towar[index].PozId;
-    }
     public override int GoodsTableLength()
     {
+      if (this.Zgloszenie.Towar == null)
+        return 0;
       return Zgloszenie.Towar.Length;
+    }
+    public override string MessageRootName()
+    {
+      return "SAD";
+    }
+    public override GoodDescription this[int index]
+    {
+      get { return Zgloszenie.Towar[index]; }
     }
     #endregion
   }

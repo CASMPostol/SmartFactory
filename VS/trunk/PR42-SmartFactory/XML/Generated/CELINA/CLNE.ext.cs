@@ -16,14 +16,17 @@ namespace CAS.SmartFactory.xml.CELINA.CLNE
     {
       return this.Przyjecie.NrCelina;
     }
-
-    public override decimal GetItemNo(int index)
-    {
-      throw new NotImplementedException();
-    }
     public override int GoodsTableLength()
     {
       return 0;
+    }
+    public override string MessageRootName()
+    {
+      return "CLNE";
+    }
+    public override GoodDescription this[int index]
+    {
+      get { return null; }
     }
     #endregion
   }
