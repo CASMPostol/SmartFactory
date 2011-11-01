@@ -15,7 +15,8 @@
     List="Lists/SAD"
     ShowField="ID"
     UnlimitedLengthInDocumentLibrary="FALSE"
-    RelationshipDeleteBehavior="None"
+    RelationshipDeleteBehavior="Cascade"
+    Indexed="TRUE"
     />
   <Field
     Name="MasterDocument"

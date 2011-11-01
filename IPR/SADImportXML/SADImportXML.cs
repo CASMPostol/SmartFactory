@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Xml;
-using System.Xml.Serialization;
-using CAS.SmartFactory.xml.CELINA.SAD;
-using Microsoft.SharePoint;
-using CAS.SmartFactory.xml;
 using System.Collections.Generic;
 using CAS.SmartFactory.IPR.Entities;
-using Microsoft.SharePoint.Linq;
+using CAS.SmartFactory.xml;
+using Microsoft.SharePoint;
+using System.Diagnostics;
 
-namespace CAS.SmartFactory.IPR.SADImportXML
+namespace CAS.SmartFactory.IPR.Customs
 {
   /// <summary>
   /// List Item Events
   /// </summary>
   public class SADImportXML : SPItemEventReceiver
   {
-
     /// <summary>
     /// An item is being added
     /// </summary>
@@ -23,10 +19,12 @@ namespace CAS.SmartFactory.IPR.SADImportXML
     {
       base.ItemAdding(properties);
     }
-
     /// <summary>
     /// An item was added
     /// </summary>
+    /// <param name="properties"> Contains properties for asynchronous list item event handlers, and serves as a base class for 
+    /// event handlers.
+    /// </param>
     public override void ItemAdded(SPItemEventProperties properties)
     {
       try
@@ -35,41 +33,32 @@ namespace CAS.SmartFactory.IPR.SADImportXML
         CustomsDocument document = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
         using (EntitiesDataContext edc = new EntitiesDataContext("http://casmp/sites/IPR/"))
         {
-          Anons mess = new Anons() { Tytuł = "Import SAD starting", Treść = document.GetNrWlasny() };
+          Anons mess = new Anons() 
+          { 
+            Tytuł = String.Format("Import of the {0} starting.", document.MessageRootName()), 
+            Treść = document.GetNrWlasny() 
+          };
           edc.ActivityLog.InsertOnSubmit(mess);
           edc.SubmitChanges();
-          //List<string> columns = new List<string>();
-          //foreach (SPField li in properties.ListItem.Fields)
-          //  columns.Add(li.InternalName);
-          //SPList goods = properties.Web.Lists.TryGetList("SADCommodity");
-          //if (goods == null)
-          //  throw new ApplicationException("Cannot find the SADCommodity list");
           List<SADCommodity> cmdts = new List<SADCommodity>();
           for (int i = 0; i < document.GoodsTableLength(); i++)
           {
             SADCommodity newRow = new SADCommodity()
             {
               ParentListIdentyfikator = properties.ListItem.ID,
-              Tytuł = document.GetNrWlasny()
+              Tytuł = String.Format("{0}: {1}", document.MessageRootName(),  document.GetNrWlasny()),
+              GoodsName = document[i].GetDescription(),
+              NetMass = document[i].GetNetMass(),
+              Units = document[i].GetUnits(),
+              PCNTariffCode = document[i].GetPCNTariffCode(),
+              GrossMass = document[i].GetGrossMass(),
+              Procedure = document[i].GetProcedure(),
+              Package = document[i].GetPackage(),
+              TotalAmountInvoiced = document[i].GetTotalAmountInvoiced(),
+              CartonsInKg = document[i].GetCartonsInKg(),
+              ItemNo = document[i].GetItemNo()
             };
             cmdts.Add(newRow);
-
-            //SPListItem entry = goods.AddItem();
-            //entry["Title"] = document.GetNrWlasny();
-            //entry["Type"] = document.GetNrWlasny();
-            //entry["SKU"] = document.GetNrWlasny();
-            //entry["Batch"] = document.GetNrWlasny();
-            //entry["Net_x0020_mass"] = document.GetNrWlasny();
-            //entry["PCN_x0020_tariff_x0020_code"] = document.GetNrWlasny();
-            //entry["Gross_x0020_mass"] = document.GetNrWlasny();
-            //entry["Procedure"] = document.GetNrWlasny();
-            //entry["Package"] = document.GetNrWlasny();
-            //entry["Total_x0020_amount_x0020_invoice"] = document.GetNrWlasny();
-            //entry["Duty"] = document.GetNrWlasny();
-            //entry["VAT"] = document.GetNrWlasny();
-            //entry["Units"] = document.GetNrWlasny();
-            //entry["Item_x0020_No"] = document.GetItemNo(i);
-            //entry.UpdateOverwriteVersion();
           }
           edc.SADCommodity.InsertAllOnSubmit(cmdts);
           edc.SubmitChanges();
@@ -81,13 +70,12 @@ namespace CAS.SmartFactory.IPR.SADImportXML
         SPList log = web.Lists.TryGetList("Activity Log");
         if (log == null)
           return;
-
+        EventLog.WriteEntry("CAS.SmartFActory", "Cannot open \"Activity Log\" list", EventLogEntryType.Error, 114);
         SPListItem item = log.AddItem();
         item["Title"] = "Customs document import error";
         item["Body"] = ex.Message;
         item.UpdateOverwriteVersion();
-
-        properties.ListItem["Name"] = "Import Error";
+        properties.ListItem["Name"] = properties.ListItem["Name"] + "Import Error !!";
         properties.ListItem.UpdateOverwriteVersion();
       }
       finally
