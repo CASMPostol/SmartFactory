@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{65CEFE18-D7FB-4189-AC46-5ACFD7BE80D8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IPRWebsite</RootNamespace>
+    <AssemblyName>IPRWebsite</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="Microsoft.SharePoint.Security" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content types\Batch1\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{493cc443-602a-4c01-9bbb-af5803a764a8}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\BatchSet\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e1c17ad3-bd75-4e27-b8d8-1d324499b7a7}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\City\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2388e847-3584-4f95-8039-26fe2f6e91a0}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Clearence\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{05e85136-22e8-49ba-b015-653945e66640}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Commodity\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{baed53c3-aeb2-4959-9e4a-6489b2a37f4a}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\ConsentList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c2d96cb5-a4c2-4c1d-baee-22b4ee988f72}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Country1\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{834b33a6-d070-471d-9c9e-9c152362834e}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\CutfillerCoeff\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{dbf86379-0a72-4c55-9194-8022bf5d435f}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\DisposalsList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a7623e99-a779-4b3a-b191-7248321dc770}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dust\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0e98c630-bc2a-4087-9324-7b66245dd6d8}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Invoice\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{19acd3a3-963e-4394-af15-952f36367983}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\IPRList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{69bc9a83-7899-4177-898d-6c2fa67a1540}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Materials List\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a2361a40-4c60-44df-9e3d-062b073f7a18}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\SAD.Commodity\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{46676983-6562-44e3-954b-663e8808a4a4}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\SAD.RequiredDocuments\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ecce2355-0e16-4e04-b9ca-1c5da63519c7}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\SADDuties\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9734b2c7-a90f-4d54-83f9-deb08637a4fa}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\SADPackage\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c6127614-aec8-4a6e-a61e-5ecac9253618}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\SADQuantity\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ddfb062c-2b9a-4727-b587-adcf3e552814}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\SHMentholList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0c57f9bf-33ff-4033-924f-937cc7b52023}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\SKU\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ac361253-77e4-48a2-bc0a-215c631da3ca}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Stock\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{201a1ba0-3754-409d-b1ab-4878ee2821a2}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Usage\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d32cdcd8-925e-4030-a833-0d7bc394a99b}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Warehouse\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4b4cc449-7f53-482a-9ee1-f298cea428dc}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Waste\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bcfc249f-481d-4a47-988f-09d3351476e7}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{1e1a1536-3f22-4966-806a-01f05c0ec2ed}</FeatureId>
+    </None>
+    <None Include="Fields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{311c83d6-5331-4688-a917-03ff420bf9b7}</SharePointProjectItemId>
+    </None>
+    <None Include="key.snk" />
+    <None Include="Package\Package.package">
+      <PackageId>{ba9dd6bf-0f86-469d-9821-2290a484169f}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content types\Batch1\Elements.xml" />
+    <Content Include="Content types\BatchSet\Elements.xml" />
+    <Content Include="Content types\City\Elements.xml" />
+    <Content Include="Content types\Clearence\Elements.xml" />
+    <Content Include="Content types\Commodity\Elements.xml" />
+    <Content Include="Content types\ConsentList\Elements.xml" />
+    <Content Include="Content types\Country1\Elements.xml" />
+    <Content Include="Content types\CutfillerCoeff\Elements.xml" />
+    <Content Include="Content types\DisposalsList\Elements.xml" />
+    <Content Include="Content types\Dust\Elements.xml" />
+    <Content Include="Content types\Invoice\Elements.xml" />
+    <Content Include="Content types\IPRList\Elements.xml" />
+    <Content Include="Content types\Materials List\Elements.xml" />
+    <Content Include="Content types\SAD.Commodity\Elements.xml" />
+    <Content Include="Content types\SAD.RequiredDocuments\Elements.xml" />
+    <Content Include="Content types\SADDuties\Elements.xml" />
+    <Content Include="Content types\SADPackage\Elements.xml" />
+    <Content Include="Content types\SADQuantity\Elements.xml" />
+    <Content Include="Content types\SHMentholList\Elements.xml" />
+    <Content Include="Content types\SKU\Elements.xml" />
+    <Content Include="Content types\Stock\Elements.xml" />
+    <Content Include="Content types\Usage\Elements.xml" />
+    <Content Include="Content types\Warehouse\Elements.xml" />
+    <Content Include="Content types\Waste\Elements.xml" />
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
+    <Content Include="Fields\Elements.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Features\Feature1\resources.pl-PL.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
+</Project>
