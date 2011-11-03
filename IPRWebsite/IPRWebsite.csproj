@@ -166,7 +166,9 @@
     <Content Include="Features\Feature1\Feature1.Template.xml">
       <DependentUpon>Feature1.feature</DependentUpon>
     </Content>
-    <Content Include="Fields\Elements.xml" />
+    <Content Include="Fields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\Feature1\resources.pl-PL.resx" />
