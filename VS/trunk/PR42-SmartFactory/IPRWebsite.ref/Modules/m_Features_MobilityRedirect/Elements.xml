@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+	<Module Name="m_Features\MobilityRedirect" Url="m" SetupPath="Features\MobilityRedirect" RootWebOnly="FALSE" Path="Files\m" xmlns="http://schemas.microsoft.com/sharepoint/">
+		<File Url="default.aspx" Type="Ghostable" Path="default.aspx" />
+	</Module>
+</Elements>
