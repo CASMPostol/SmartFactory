@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="917e362b-5832-4cf2-ac38-198a8157c16f" solutionId="cca43dab-dce5-4321-b6a2-3b81ce211a05" resetWebServer="false" name="IPRWebsite.@ref" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <activationDependencies>
+    <customSolutionActivationDependency solutionId="f5f511a8-0434-452a-8543-cc3a397ee40e" solutionName="IPRWebsite.wsp" solutionUrl="" />
+  </activationDependencies>
+  <features>
+    <featureReference itemId="1af1ac0b-aab4-4559-85f8-9b57e632c178" />
+    <featureReference itemId="afe1bf24-21fa-4e58-b1db-d76f71f38716" />
+    <featureReference itemId="43bf94bc-0cb9-471a-ae65-7a22045ee0bf" />
+    <featureReference itemId="d63dc64b-ca5a-4e17-b99c-a2358e57262f" />
+  </features>
+</package>

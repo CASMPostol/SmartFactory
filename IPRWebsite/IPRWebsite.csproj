@@ -121,7 +121,7 @@
     <None Include="Content types\Waste\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bcfc249f-481d-4a47-988f-09d3351476e7}</SharePointProjectItemId>
     </None>
-    <None Include="Features\Feature\Feature.feature">
+    <None Include="Features\DataModel\DataModel.feature">
       <FeatureId>{1e1a1536-3f22-4966-806a-01f05c0ec2ed}</FeatureId>
     </None>
     <None Include="Fields\SharePointProjectItem.spdata">
@@ -159,15 +159,15 @@
     <Content Include="Content types\Usage\Elements.xml" />
     <Content Include="Content types\Warehouse\Elements.xml" />
     <Content Include="Content types\Waste\Elements.xml" />
-    <Content Include="Features\Feature\Feature.Template.xml">
-      <DependentUpon>Feature.feature</DependentUpon>
+    <Content Include="Features\DataModel\DataModel.Template.xml">
+      <DependentUpon>DataModel.feature</DependentUpon>
     </Content>
     <Content Include="Fields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\Feature\resources.pl-PL.resx" />
+    <Content Include="Features\DataModel\resources.pl-PL.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
