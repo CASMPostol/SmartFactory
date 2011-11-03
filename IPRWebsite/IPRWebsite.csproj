@@ -64,8 +64,8 @@
     <None Include="Content types\Commodity\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{baed53c3-aeb2-4959-9e4a-6489b2a37f4a}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\ConsentList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{c2d96cb5-a4c2-4c1d-baee-22b4ee988f72}</SharePointProjectItemId>
+    <None Include="Content types\Consent\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e230fd7c-8ec2-41fa-9f3d-919a6a25562e}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Country\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{834b33a6-d070-471d-9c9e-9c152362834e}</SharePointProjectItemId>
@@ -73,8 +73,8 @@
     <None Include="Content types\CutfillerCoeff\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{dbf86379-0a72-4c55-9194-8022bf5d435f}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\DisposalsList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{a7623e99-a779-4b3a-b191-7248321dc770}</SharePointProjectItemId>
+    <None Include="Content types\Disposal\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{349dcee6-f137-4e12-8015-646459874020}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dust\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0e98c630-bc2a-4087-9324-7b66245dd6d8}</SharePointProjectItemId>
@@ -140,10 +140,10 @@
     <Content Include="Content types\City\Elements.xml" />
     <Content Include="Content types\Clearence\Elements.xml" />
     <Content Include="Content types\Commodity\Elements.xml" />
-    <Content Include="Content types\ConsentList\Elements.xml" />
+    <Content Include="Content types\Consent\Elements.xml" />
     <Content Include="Content types\Country\Elements.xml" />
     <Content Include="Content types\CutfillerCoeff\Elements.xml" />
-    <Content Include="Content types\DisposalsList\Elements.xml" />
+    <Content Include="Content types\Disposal\Elements.xml" />
     <Content Include="Content types\Dust\Elements.xml" />
     <Content Include="Content types\Invoice\Elements.xml" />
     <Content Include="Content types\IPRList\Elements.xml" />
