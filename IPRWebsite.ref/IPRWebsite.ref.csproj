@@ -379,7 +379,9 @@
     <Content Include="Content types\Administrative Task\Elements.xml" />
     <Content Include="Content types\Announcement\Elements.xml" />
     <Content Include="Content types\Basic Page\Elements.xml" />
-    <Content Include="Content types\Batch1\Elements.xml" />
+    <Content Include="Content types\Batch1\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Circulation\Elements.xml" />
     <Content Include="Content types\City1\Elements.xml" />
     <Content Include="Content types\Clearence\Elements.xml" />
