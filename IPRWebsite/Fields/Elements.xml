@@ -4,27 +4,41 @@
   <Field DisplayName="BatchStatus" Name="BatchStatus" Type="Text" ID="{CA980625-03DA-4C63-B23A-B60F472CA2B3}" Group="IPR" StaticName="BatchStatus" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="BillDoc" Name="BillDoc" Type="Text" ID="{C169E96E-F73B-4A1F-9B0D-BB5FD8782119}" Group="IPR" StaticName="BillDoc" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Blocked" Name="Blocked" Type="Number" ID="{4C65897D-CBD2-4468-8520-50E371EF3A3F}" Group="IPR" StaticName="Blocked" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ResultType="Number" LCID="1045" Format="DateTime" Description="Kartony w kg" DisplayName="Cartons in kg" Type="Calculated" ID="{3F9793EF-E8DD-4E89-BC8B-08DB33B118B5}" Name="Cartons in kg" Group="SAD" ReadOnly="TRUE" StaticName="Cartons_x0020_in_x0020_kg" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
-    <Formula>=[Gross mass]-[Net mass]</Formula>
-    <FormulaDisplayNames>=[Gross mass]-[Net mass]</FormulaDisplayNames>
+  
+  <!--<Field ResultType="Number" LCID="1045" Format="DateTime" Description="Kartony w kg" DisplayName="Cartons in kg" Type="Calculated" ID="{3F9793EF-E8DD-4E89-BC8B-08DB33B118B5}" Name="Cartons in kg" Group="SAD" ReadOnly="TRUE" StaticName="Cartons_x0020_in_x0020_kg" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Formula>=Gross mass-Net mass</Formula>
+    <FormulaDisplayNames>=Gross mass-Net mass</FormulaDisplayNames>
+    <FieldRefs>
+      <FieldRef ID=""
+    </FieldRefs>
+  </Field>-->
+  
+  <Field ResultType="Number" LCID="1045" Description="CFTProductivityNormMax" DisplayName="CFTProductivityNormMax" Type="Calculated" ID="{2A6EE086-6D19-429B-A9FF-5F6BF33062B8}" Name="CFTProductivityNormMax" Group="IPR" ReadOnly="TRUE" StaticName="CFTProductivityNormMax" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Formula>=CFTProductivityRateMax/1000</Formula>
+    <FormulaDisplayNames>=CFTProductivityRateMax/1000</FormulaDisplayNames>
+    <FieldRefs>
+      <FieldRef ID ="368C844B-0491-42AE-A102-D888646823FD" Name="CFTProductivityRateMax"/>
+    </FieldRefs>
   </Field>
-  <Field ResultType="Number" LCID="1045" Format="DateTime" Description="CFTProductivityNormMax" DisplayName="CFTProductivityNormMax" Type="Calculated" ID="{2A6EE086-6D19-429B-A9FF-5F6BF33062B8}" Name="CFTProductivityNormMax" Group="IPR" ReadOnly="TRUE" StaticName="CFTProductivityNormMax" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
-    <Formula>=[CFTProductivityRateMax]/1000</Formula>
-    <FormulaDisplayNames>=[CFTProductivityRateMax]/1000</FormulaDisplayNames>
-  </Field>
+  
   <Field ResultType="Number" LCID="1045" Format="DateTime" Description="CFTProductivityNormMin" DisplayName="CFTProductivityNormMin" Type="Calculated" ID="{5ADF1294-84C9-44F8-9A47-3CA5AC37B17A}" Name="CFTProductivityNormMin" Group="IPR" ReadOnly="TRUE" StaticName="CFTProductivityNormMin" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
-    <Formula>=[CFTProductivityRateMin]/1000</Formula>
-    <FormulaDisplayNames>=[CFTProductivityRateMin]/1000</FormulaDisplayNames>
+    <Formula>=CFTProductivityRateMin/1000</Formula>
+    <FormulaDisplayNames>=CFTProductivityRateMin/1000</FormulaDisplayNames>
+    <FieldRefs>
+      <FieldRef Name="CFTProductivityRateMin"/>
+    </FieldRefs>
   </Field>
   <Field DisplayName="CFTProductivityRateMax" Name="CFTProductivityRateMax" Type="Number" ID="{368C844B-0491-42AE-A102-D888646823FD}" Group="IPR" StaticName="CFTProductivityRateMax" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="CFTProductivityRateMin" Name="CFTProductivityRateMin" Type="Number" ID="{8238B9F6-7172-4FAD-BEBF-B576B9DBD76A}" Group="IPR" StaticName="CFTProductivityRateMin" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Code" Name="Code" Type="Text" ID="{DB36BA74-4C91-4793-9AB2-A48CE633CCBE}" Group="SAD" StaticName="Code" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field List="{53e77add-b2c9-47fa-89f2-8b4327bdfe7a}" ShowField="Title" Required="TRUE" Type="Lookup" Description="Commodity name" DisplayName="Commodity name" ID="{D480D875-24CB-42D4-820C-3F5D9154173B}" Name="Commodity name" WebId="{0B9605A9-756C-45CA-9407-165441813E62}" Group="Smart Factory" StaticName="Commodity_x0020_name" SourceID="{0b9605a9-756c-45ca-9407-165441813e62}" Hidden="FALSE" CanToggleHidden="TRUE" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <!--<Field List="{53e77add-b2c9-47fa-89f2-8b4327bdfe7a}" ShowField="Title" Required="TRUE" Type="Lookup" Description="Commodity name" DisplayName="Commodity name" ID="{D480D875-24CB-42D4-820C-3F5D9154173B}" Name="Commodity name" WebId="{0B9605A9-756C-45CA-9407-165441813E62}" Group="Smart Factory" StaticName="Commodity_x0020_name" SourceID="{0b9605a9-756c-45ca-9407-165441813e62}" Hidden="FALSE" CanToggleHidden="TRUE" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />-->
+  <!--
   <Field ID="{35363960-D998-4aad-B7E8-058DFE2C669E}" Name="Completed" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Completed" Group="Kolumny podstawowe" Type="Boolean" DisplayName="Completed" Hidden="TRUE" Sealed="TRUE" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Default>FALSE</Default>
   </Field>
+  -->
   <Field DisplayName="ConsentNo" Name="ConsentNo" Type="Text" ID="{7E356924-ECC1-4AE2-B5AF-4501388062D8}" Group="IPR" StaticName="ConsentNo" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="ContentType" Group="_Hidden" Type="Computed" DisplayName="Typ zawartości" Sealed="TRUE" Sortable="FALSE" RenderXMLUsingPattern="TRUE" PITarget="MicrosoftWindowsSharePointServices" PIAttribute="ContentTypeID" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <!--<Field ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="ContentType" Group="_Hidden" Type="Computed" DisplayName="Typ zawartości" Sealed="TRUE" Sortable="FALSE" RenderXMLUsingPattern="TRUE" PITarget="MicrosoftWindowsSharePointServices" PIAttribute="ContentTypeID" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
     <FieldRefs>
       <FieldRef ID="{03e45e84-1992-4d42-9116-26f756012634}" Name="ContentTypeId" />
     </FieldRefs>
@@ -33,8 +47,8 @@
         <Column Name="ContentTypeId" />
       </MapToContentType>
     </DisplayPattern>
-  </Field>
-  <Field List="{03f5fa45-539d-4020-9d41-cf8d3289b606}" ShowField="Title" Required="TRUE" Type="Lookup" Description="Country" DisplayName="Country" ID="{46B540C1-2A32-4B0A-A433-58D66CA00A55}" Name="Country" WebId="{0B9605A9-756C-45CA-9407-165441813E62}" Group="Smart Factory" StaticName="Country" SourceID="{0b9605a9-756c-45ca-9407-165441813e62}" Hidden="FALSE" CanToggleHidden="TRUE" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  </Field>-->
+  <!--<Field List="{03f5fa45-539d-4020-9d41-cf8d3289b606}" ShowField="Title" Required="TRUE" Type="Lookup" Description="Country" DisplayName="Country" ID="{46B540C1-2A32-4B0A-A433-58D66CA00A55}" Name="Country" WebId="{0B9605A9-756C-45CA-9407-165441813E62}" Group="Smart Factory" StaticName="Country" SourceID="{0b9605a9-756c-45ca-9407-165441813e62}" Hidden="FALSE" CanToggleHidden="TRUE" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />-->
   <Field DisplayName="Currency" Name="Currency" Type="Text" ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Group="SAD" StaticName="Currency" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Waluta" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Customs debt date" Name="Customs debt date" Type="Text" ID="{0209C89F-5F3A-4852-8EB2-8D18FCD5FD00}" Group="SAD" StaticName="Customs_x0020_debt_x0020_date" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Czas przyjęcia" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="DocumentNo" Name="DocumentNo" Type="Text" ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Group="IPR" StaticName="DocumentNo" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
@@ -42,4 +56,39 @@
     <Default>[today]</Default>
   </Field>
   <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" Group="Kolumny podstawowe" Type="Text" DisplayName="Title" Required="TRUE" FromBaseType="TRUE" EnforceUniqueValues="TRUE" Indexed="TRUE" MaxLength="255" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field Type="Choice" DisplayName="MaterialType" ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Format="Dropdown" BaseType="Text" Required="TRUE" Description="Material Type" Name="MaterialType" Group="IPR" StaticName="MaterialType" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Hidden="FALSE" CanToggleHidden="TRUE" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Default>Cigarette</Default>
+    <CHOICES>
+      <CHOICE>Cutfiller</CHOICE>
+      <CHOICE>Cigarette</CHOICE>
+    </CHOICES>
+  </Field>
+  <!--Add columns-->
+  <Field DisplayName="Duty" Name="Duty" Type="Number" ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}" Group="SAD" StaticName="Duty" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Cło" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="External" Name="External" Type="Boolean" ID="{9EAB9F89-5490-4F0F-B33D-25AA398202C0}" Group="Smart Factory" StaticName="External" SourceID="{0b9605a9-756c-45ca-9407-165441813e62}" Description="External" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="FormatID" Name="FormatID" Type="Text" ID="{7E4F526E-E011-414E-8FDB-6A6CB4738E37}" Group="IPR" StaticName="FormatID" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Gross mass" Name="Gross mass" Type="Number" ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" Group="SAD" StaticName="Gross_x0020_mass" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="InQualityInsp" Name="InQualityInsp" Type="Number" ID="{5D27EABE-C74B-4233-9A07-D7389C831E3A}" Group="IPR" StaticName="InQualityInsp" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="IPR Material" Name="IPR Material" Type="Boolean" ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}" Group="Smart Factory" StaticName="IPR_x0020_Material" SourceID="{0b9605a9-756c-45ca-9407-165441813e62}" Description="IPR Material" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Item No" Name="Item No" Type="Number" ID="{FFFDD6D0-160F-43A2-BFF0-C27CA9DE1FD1}" Group="SAD" StaticName="Item_x0020_No" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="PozID" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Material" Name="Material" Type="Text" ID="{3AE267C0-9560-4259-9224-572DEF900DD2}" Group="IPR" StaticName="Material" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="MaterialDescription" Name="MaterialDescription" Type="Text" ID="{CF44612E-FDF4-47AD-B730-43F88EE2D9D0}" Group="IPR" StaticName="MaterialDescription" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Net mass" Name="Net mass" Type="Number" ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}" Group="SAD" StaticName="Net_x0020_mass" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Number" Name="Number" Type="Text" ID="{12104636-B615-4F4E-A0B9-23158B9ADAD8}" Group="SAD" StaticName="Number" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Package" Name="Package" Type="Text" ID="{218A57CA-6AAD-4C08-8B14-7BB92323CB68}" Group="SAD" StaticName="Package" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Rodzaj opakowania" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="PCN tariff code" Name="PCN tariff code" Type="Text" ID="{4E14F686-584A-4EE8-9784-4B7AA4DCD1E7}" Group="SAD" StaticName="PCN_x0020_tariff_x0020_code" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Kod taryfy PCN" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <!--<Field List="{7ae3bfeb-e2a0-432c-a9e7-295dcfd859a6}" ShowField="ID" Type="Lookup" Description="PK_SADGood_ID" DisplayName="PK_SADGood_ID" ID="{8C13C2B4-E229-491D-8048-5CF2B398EF5C}" Name="PK_SADGood_ID" WebId="{AB8F53EC-F5BD-49F2-8632-594DF92D771D}" Group="SAD Good&#xA;" StaticName="PK_SADGood_ID" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />-->
+  <Field DisplayName="Procedure" Name="Procedure" Type="Text" ID="{FF92B9DC-F23F-455D-9783-D54AF95E3C8F}" Group="SAD" StaticName="Procedure" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Procedura celna" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Quality" Name="Quality" Type="Text" ID="{D29FAB3C-9144-4655-9C82-DF35995C78F8}" Group="IPR" StaticName="Quality" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Quantity" Name="Quantity" Type="Number" ID="{85512A2C-C60C-400E-AA53-94ED8FBEF321}" Group="IPR" StaticName="Quantity" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="RestrictedUse" Name="RestrictedUse" Type="Number" ID="{76C04784-3D54-46DB-BB7F-686EB7EF8254}" Group="IPR" StaticName="RestrictedUse" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Group="SAD" StaticName="SKU" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="sku" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="StorLoc" Name="StorLoc" Type="Text" ID="{1F5787F4-8A41-4BD3-B45C-D2BB65465120}" Group="IPR" StaticName="StorLoc" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Total amount invoiced" Name="Total amount invoiced" Type="Text" ID="{EF4E42B5-F9DA-415A-8E2D-335C0F31CD07}" Group="SAD" StaticName="Total_x0020_amount_x0020_invoiced" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Wartość" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Type" Name="Type" Type="Number" ID="{2A582F5B-99C0-4982-BF9B-ED88ED65F46D}" Group="SAD" StaticName="Type" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Units" Name="Units" Type="Text" ID="{DD3EEFD0-C2B4-411D-B0CE-E72B2484DD5A}" Group="SAD" StaticName="Units" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="j.m." Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="Unrestricted" Name="Unrestricted" Type="Number" ID="{A748D4BC-74C0-4F52-90E9-46A9E0140324}" Group="IPR" StaticName="Unrestricted" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="UsageMax" Name="UsageMax" Type="Number" ID="{1D56FC71-6866-4A9F-A9C9-629E91B54AE1}" Group="IPR" StaticName="UsageMax" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="UsageMin" Name="UsageMin" Type="Number" ID="{A5854E29-EF45-49D8-8CF8-8C5C91F1C0C6}" Group="IPR" StaticName="UsageMin" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="VAT" Name="VAT" Type="Number" ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Group="SAD" StaticName="VAT" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Vat" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
 </Elements>
