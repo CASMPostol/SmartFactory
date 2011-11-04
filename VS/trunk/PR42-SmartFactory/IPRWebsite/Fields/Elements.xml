@@ -91,4 +91,5 @@
   <Field DisplayName="UsageMax" Name="UsageMax" Type="Number" ID="{1D56FC71-6866-4A9F-A9C9-629E91B54AE1}" Group="IPR" StaticName="UsageMax" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="UsageMin" Name="UsageMin" Type="Number" ID="{A5854E29-EF45-49D8-8CF8-8C5C91F1C0C6}" Group="IPR" StaticName="UsageMin" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="VAT" Name="VAT" Type="Number" ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Group="SAD" StaticName="VAT" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Vat" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="WasteRatio" Name="WasteRatio" Type="Number" ID="{440BD88D-3870-480E-B01E-F934D478593F}" Group="IPR" StaticName="WasteRatio" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
 </Elements>

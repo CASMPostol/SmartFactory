@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x01004D0C63D616EA814E8B077CF59ADDB12B" Name="Materials List" Group="IPR" Description="Batch: Materials List" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
-		<Folder TargetName="_cts/Materials List" />
+	<ContentType ID="0x01004D0C63D616EA814E8B077CF59ADDB12B" Name="Material" Group="IPR" Description="Batch: Material" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+		<Folder TargetName="_cts/Material" />
 		<FieldRefs>
 			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />
 			<FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Required="FALSE" Hidden="FALSE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" ReadOnly="FALSE" PITarget="" PrimaryPITarget="" PIAttribute="" PrimaryPIAttribute="" Aggregation="" Node="" />
