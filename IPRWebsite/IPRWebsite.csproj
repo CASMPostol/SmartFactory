@@ -85,8 +85,8 @@
     <None Include="Content types\IPRList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{69bc9a83-7899-4177-898d-6c2fa67a1540}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Materials List\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{a2361a40-4c60-44df-9e3d-062b073f7a18}</SharePointProjectItemId>
+    <None Include="Content types\Material\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d757c298-bbfd-456e-b150-f06f2744cba6}</SharePointProjectItemId>
     </None>
     <None Include="Content types\SADCommodity\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{46676983-6562-44e3-954b-663e8808a4a4}</SharePointProjectItemId>
@@ -147,7 +147,7 @@
     <Content Include="Content types\Dust\Elements.xml" />
     <Content Include="Content types\Invoice\Elements.xml" />
     <Content Include="Content types\IPRList\Elements.xml" />
-    <Content Include="Content types\Materials List\Elements.xml" />
+    <Content Include="Content types\Material\Elements.xml" />
     <Content Include="Content types\SADCommodity\Elements.xml" />
     <Content Include="Content types\SADRequiredDocuments\Elements.xml" />
     <Content Include="Content types\SADDuties\Elements.xml" />
