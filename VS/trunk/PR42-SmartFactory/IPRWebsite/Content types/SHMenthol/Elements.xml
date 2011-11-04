@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x010029964D9D2D53F84CB1083741C40FA8D1" Name="SHMentholList" Group="IPR" Description="It contains a table of entries describing all the coefficients of menthol usage in cigarettes, including the date of their validity." Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
-		<Folder TargetName="_cts/SHMentholList" />
+	<ContentType ID="0x010029964D9D2D53F84CB1083741C40FA8D1" Name="SHMenthol" Group="IPR" Description="It contains a table of entries describing all the coefficients of menthol usage in cigarettes, including the date of their validity." Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+		<Folder TargetName="_cts/SHMenthol" />
 		<FieldRefs>
 			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />
 			<FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
