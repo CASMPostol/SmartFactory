@@ -103,8 +103,8 @@
     <None Include="Content types\SADQuantity\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ddfb062c-2b9a-4727-b587-adcf3e552814}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\SHMentholList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0c57f9bf-33ff-4033-924f-937cc7b52023}</SharePointProjectItemId>
+    <None Include="Content types\SHMenthol\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{48d3cd13-74d8-453f-aec7-944d2a2951f3}</SharePointProjectItemId>
     </None>
     <None Include="Content types\SKU\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ac361253-77e4-48a2-bc0a-215c631da3ca}</SharePointProjectItemId>
@@ -153,7 +153,7 @@
     <Content Include="Content types\SADDuties\Elements.xml" />
     <Content Include="Content types\SADPackage\Elements.xml" />
     <Content Include="Content types\SADQuantity\Elements.xml" />
-    <Content Include="Content types\SHMentholList\Elements.xml" />
+    <Content Include="Content types\SHMenthol\Elements.xml" />
     <Content Include="Content types\SKU\Elements.xml" />
     <Content Include="Content types\Stock\Elements.xml" />
     <Content Include="Content types\Usage\Elements.xml" />
