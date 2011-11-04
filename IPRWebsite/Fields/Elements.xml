@@ -59,11 +59,6 @@
     </FieldRefs>
   </Field>-->
   <Field DisplayName="Code" Name="Code" Type="Text" ID="{DB36BA74-4C91-4793-9AB2-A48CE633CCBE}" Group="CAS Smart Factory IPR Customs" StaticName="Code" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <!--
-  <Field ID="{35363960-D998-4aad-B7E8-058DFE2C669E}" Name="Completed" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Completed" Group="Kolumny podstawowe" Type="Boolean" DisplayName="Completed" Hidden="TRUE" Sealed="TRUE" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
-    <Default>FALSE</Default>
-  </Field>
-  -->
   <!--<Field ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="ContentType" Group="_Hidden" Type="Computed" DisplayName="Typ zawartości" Sealed="TRUE" Sortable="FALSE" RenderXMLUsingPattern="TRUE" PITarget="MicrosoftWindowsSharePointServices" PIAttribute="ContentTypeID" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
     <FieldRefs>
       <FieldRef ID="{03e45e84-1992-4d42-9116-26f756012634}" Name="ContentTypeId" />
@@ -76,11 +71,6 @@
   </Field>-->
   <Field DisplayName="Currency" Name="Currency" Type="Text" ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Group="CAS Smart Factory IPR Customs" StaticName="Currency" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Waluta" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Customs debt date" Name="Customs debt date" Type="Text" ID="{0209C89F-5F3A-4852-8EB2-8D18FCD5FD00}" Group="CAS Smart Factory IPR Customs" StaticName="Customs_x0020_debt_x0020_date" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Czas przyjęcia" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <!--<Field ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="StartDate" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="StartDate" Group="Kolumny podstawowe" Type="DateTime" Format="DateOnly" DisplayName="Data rozpoczęcia" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
-    <Default>[today]</Default>
-  </Field>-->
-  <!--<Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" Group="Kolumny podstawowe" Type="Text" DisplayName="Title" Required="TRUE" FromBaseType="TRUE" EnforceUniqueValues="TRUE" Indexed="TRUE" MaxLength="255" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />-->
-  <!--Add columns-->
   <Field DisplayName="Duty" Name="Duty" Type="Number" ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}" Group="CAS Smart Factory IPR Customs" StaticName="Duty" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Cło" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Gross mass" Name="Gross mass" Type="Number" ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" Group="CAS Smart Factory IPR Customs" StaticName="Gross_x0020_mass" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Item No" Name="Item No" Type="Number" ID="{FFFDD6D0-160F-43A2-BFF0-C27CA9DE1FD1}" Group="CAS Smart Factory IPR Customs" StaticName="Item_x0020_No" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="PozID" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
@@ -95,4 +85,16 @@
   <Field DisplayName="Type" Name="Type" Type="Number" ID="{2A582F5B-99C0-4982-BF9B-ED88ED65F46D}" Group="CAS Smart Factory IPR Customs" StaticName="Type" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Units" Name="Units" Type="Text" ID="{DD3EEFD0-C2B4-411D-B0CE-E72B2484DD5A}" Group="CAS Smart Factory IPR Customs" StaticName="Units" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="j.m." Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="VAT" Name="VAT" Type="Number" ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Group="CAS Smart Factory IPR Customs" StaticName="VAT" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Vat" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  
+  <!--Group="Kolumny podstawowe"-->
+  <!--
+  <Field ID="{35363960-D998-4aad-B7E8-058DFE2C669E}" Name="Completed" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Completed" Group="Kolumny podstawowe" Type="Boolean" DisplayName="Completed" Hidden="TRUE" Sealed="TRUE" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Default>FALSE</Default>
+  </Field>
+  -->
+  <!--<Field ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="StartDate" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="StartDate" Group="Kolumny podstawowe" Type="DateTime" Format="DateOnly" DisplayName="Data rozpoczęcia" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Default>[today]</Default>
+  </Field>-->
+  <!--<Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" Group="Kolumny podstawowe" Type="Text" DisplayName="Title" Required="TRUE" FromBaseType="TRUE" EnforceUniqueValues="TRUE" Indexed="TRUE" MaxLength="255" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />-->
+
 </Elements>
