@@ -82,8 +82,8 @@
     <None Include="Content types\Invoice\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{19acd3a3-963e-4394-af15-952f36367983}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\IPRList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{69bc9a83-7899-4177-898d-6c2fa67a1540}</SharePointProjectItemId>
+    <None Include="Content types\IPR\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{65f83157-c06c-417d-a9e9-733f43b842d2}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Material\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d757c298-bbfd-456e-b150-f06f2744cba6}</SharePointProjectItemId>
@@ -146,19 +146,27 @@
     <Content Include="Content types\Disposal\Elements.xml" />
     <Content Include="Content types\Dust\Elements.xml" />
     <Content Include="Content types\Invoice\Elements.xml" />
-    <Content Include="Content types\IPRList\Elements.xml" />
+    <Content Include="Content types\IPR\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Material\Elements.xml" />
     <Content Include="Content types\SADCommodity\Elements.xml" />
     <Content Include="Content types\SADRequiredDocuments\Elements.xml" />
     <Content Include="Content types\SADDuties\Elements.xml" />
     <Content Include="Content types\SADPackage\Elements.xml" />
     <Content Include="Content types\SADQuantity\Elements.xml" />
-    <Content Include="Content types\SHMenthol\Elements.xml" />
+    <Content Include="Content types\SHMenthol\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\SKU\Elements.xml" />
     <Content Include="Content types\Stock\Elements.xml" />
     <Content Include="Content types\Usage\Elements.xml" />
-    <Content Include="Content types\Warehouse\Elements.xml" />
-    <Content Include="Content types\Waste\Elements.xml" />
+    <Content Include="Content types\Warehouse\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content types\Waste\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Features\DataModel\DataModel.Template.xml">
       <DependentUpon>DataModel.feature</DependentUpon>
     </Content>
