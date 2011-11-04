@@ -8,8 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss.xml = ..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPRWebsite.ref", "IPRWebsite.ref\IPRWebsite.ref.csproj", "{90BB8C47-95F7-4F1F-AC59-B51D57239142}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,12 +20,6 @@ Global
 		{65CEFE18-D7FB-4189-AC46-5ACFD7BE80D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65CEFE18-D7FB-4189-AC46-5ACFD7BE80D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{65CEFE18-D7FB-4189-AC46-5ACFD7BE80D8}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{90BB8C47-95F7-4F1F-AC59-B51D57239142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90BB8C47-95F7-4F1F-AC59-B51D57239142}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90BB8C47-95F7-4F1F-AC59-B51D57239142}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{90BB8C47-95F7-4F1F-AC59-B51D57239142}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90BB8C47-95F7-4F1F-AC59-B51D57239142}.Release|Any CPU.Build.0 = Release|Any CPU
-		{90BB8C47-95F7-4F1F-AC59-B51D57239142}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
