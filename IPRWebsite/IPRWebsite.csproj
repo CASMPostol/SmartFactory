@@ -52,75 +52,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content types\Batch\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{f07f57e8-cdd7-48fa-9456-48ea6191134a}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\City\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0c6abf22-a618-48e0-8ff7-2d8b3b0bdc4e}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Clearence\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{d5bf3b0a-d2da-4b75-b10a-d868f852bff6}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Commodity\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{db6b04d0-6aee-4ab2-8f89-05cee682a4c9}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Consent\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0fe3447d-b2c9-4dd7-b4c6-0e9d184d9270}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Country\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{31f5abe8-010c-419e-8c93-24be5daff49b}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Customs\Commodity\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e54a9177-6f48-439f-84aa-a8c4d79362d0}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\CutfillerCoeff\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{b4da7537-fb14-4000-9266-9dfc41d1ca57}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Disposal\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0be0a4b0-335a-44b4-a9a3-e45cab3d107c}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Dust\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0359bb1e-efd9-4a61-86c2-e824297bb980}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Invoice\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{57e2a87a-3257-4f2f-a22e-a1d11925e7d8}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\IPR\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{04e55298-d607-400c-8fda-12fce448afa0}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Material\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{7730e7dc-ccdc-4fbf-ac7c-c74deb6f0af2}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SADDuties\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{a30c29c7-dab7-4202-be59-cde53ade7b9f}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SADPackage\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{194a5e2e-974b-4ff5-9551-0da9fc1a04aa}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SADQuantity\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e237f7b3-9c38-4563-93c4-76f01cbb4c86}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SADRequiredDocuments\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{46e72f5e-62d7-4586-8890-f865dc8a5665}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SHMenthol\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e0c4bb89-55e2-4061-b421-664229ccf92e}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SKU\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{6969eafd-74bd-43e8-8ae1-e9d414fdf284}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Stock\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{fb4d74d3-b58a-4331-9545-8aa07f72a340}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Usage\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{cdc832ba-4b6e-4721-a9ee-784e6c05f4a9}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Warehouse\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{db5391ef-ce4f-426d-9558-4a538b64ba5f}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Waste\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{3a62a240-8c59-4f58-8887-1b07b0b6026d}</SharePointProjectItemId>
-    </None>
     <None Include="Features\DataModel\DataModel.feature">
       <FeatureId>{1e1a1536-3f22-4966-806a-01f05c0ec2ed}</FeatureId>
     </None>
@@ -136,29 +67,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content types\Batch\Elements.xml" />
-    <Content Include="Content types\City\Elements.xml" />
-    <Content Include="Content types\Clearence\Elements.xml" />
-    <Content Include="Content types\Commodity\Elements.xml" />
-    <Content Include="Content types\Consent\Elements.xml" />
-    <Content Include="Content types\Country\Elements.xml" />
-    <Content Include="Content types\Customs\Commodity\Elements.xml" />
-    <Content Include="Content types\CutfillerCoeff\Elements.xml" />
-    <Content Include="Content types\Disposal\Elements.xml" />
-    <Content Include="Content types\Dust\Elements.xml" />
-    <Content Include="Content types\Invoice\Elements.xml" />
-    <Content Include="Content types\IPR\Elements.xml" />
-    <Content Include="Content types\Material\Elements.xml" />
-    <Content Include="Content types\SADDuties\Elements.xml" />
-    <Content Include="Content types\SADPackage\Elements.xml" />
-    <Content Include="Content types\SADQuantity\Elements.xml" />
-    <Content Include="Content types\SADRequiredDocuments\Elements.xml" />
-    <Content Include="Content types\SHMenthol\Elements.xml" />
-    <Content Include="Content types\SKU\Elements.xml" />
-    <Content Include="Content types\Stock\Elements.xml" />
-    <Content Include="Content types\Usage\Elements.xml" />
-    <Content Include="Content types\Warehouse\Elements.xml" />
-    <Content Include="Content types\Waste\Elements.xml" />
     <Content Include="Features\DataModel\DataModel.Template.xml">
       <DependentUpon>DataModel.feature</DependentUpon>
     </Content>
@@ -169,11 +77,7 @@
   <ItemGroup>
     <Content Include="Features\DataModel\resources.pl-PL.resx" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content types\Dictionaries\" />
-    <Folder Include="Content types\ERP\" />
-    <Folder Include="Content types\Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
 </Project>
