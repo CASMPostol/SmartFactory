@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x010016BC5B99EA5169458266BB52B8784B3F" Name="SADQuantity" Group="IPR Customs" Description="Utwórz nowy element listy." Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+	<ContentType ID="0x010016BC5B99EA5169458266BB52B8784B3F" 
+                 Name="SADQuantity" 
+                 Group="CAS Smart Factory IPR Customs" 
+                 Overwrite="TRUE" 
+                 xmlns="http://schemas.microsoft.com/sharepoint/">
 		<Folder TargetName="_cts/SADQuantity" />
 		<FieldRefs>
 			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />

@@ -61,6 +61,9 @@
     <None Include="Content types\Customs\Invoice\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0c33e275-a7da-4393-86c5-7955dd7643ef}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Customs\SADDocument\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{be5b2e88-3736-4198-bf34-8df05e212028}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Customs\SADDuties\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9d5b4b09-3c03-48e2-81bc-5e2dc406495f}</SharePointProjectItemId>
     </None>
@@ -139,6 +142,7 @@
     <Content Include="Content types\Batch\Elements.xml" />
     <Content Include="Content types\Customs\Clearence\Elements.xml" />
     <Content Include="Content types\Customs\Invoice\Elements.xml" />
+    <Content Include="Content types\Customs\SADDocument\Elements.xml" />
     <Content Include="Content types\Customs\SADDuties\Elements.xml" />
     <Content Include="Content types\Customs\SADGood\Elements.xml" />
     <Content Include="Content types\Customs\SADPackage\Elements.xml" />
