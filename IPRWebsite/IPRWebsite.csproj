@@ -61,6 +61,9 @@
     <None Include="Content types\Customs\Invoice\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0c33e275-a7da-4393-86c5-7955dd7643ef}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Customs\SADDuties\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9d5b4b09-3c03-48e2-81bc-5e2dc406495f}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Customs\SADGood\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{35f801d8-2ff6-4ac5-87b5-9b824645408b}</SharePointProjectItemId>
     </None>
