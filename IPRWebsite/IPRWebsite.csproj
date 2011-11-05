@@ -7,8 +7,8 @@
     <ProjectGuid>{65CEFE18-D7FB-4189-AC46-5ACFD7BE80D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IPRWebsite</RootNamespace>
-    <AssemblyName>IPRWebsite</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.IPR</RootNamespace>
+    <AssemblyName>CAS.SmartFactory.IPR.IPRWebsite</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -52,75 +52,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content types\Batch\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{493cc443-602a-4c01-9bbb-af5803a764a8}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\City\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{2388e847-3584-4f95-8039-26fe2f6e91a0}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Clearence\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{05e85136-22e8-49ba-b015-653945e66640}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Commodity\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{baed53c3-aeb2-4959-9e4a-6489b2a37f4a}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Consent\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e230fd7c-8ec2-41fa-9f3d-919a6a25562e}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Country\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{834b33a6-d070-471d-9c9e-9c152362834e}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\CutfillerCoeff\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{dbf86379-0a72-4c55-9194-8022bf5d435f}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Disposal\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{349dcee6-f137-4e12-8015-646459874020}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Dust\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0e98c630-bc2a-4087-9324-7b66245dd6d8}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Invoice\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{19acd3a3-963e-4394-af15-952f36367983}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\IPR\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{65f83157-c06c-417d-a9e9-733f43b842d2}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Material\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{d757c298-bbfd-456e-b150-f06f2744cba6}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SADCommodity\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{46676983-6562-44e3-954b-663e8808a4a4}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SADRequiredDocuments\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{ecce2355-0e16-4e04-b9ca-1c5da63519c7}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SADDuties\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{9734b2c7-a90f-4d54-83f9-deb08637a4fa}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SADPackage\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{c6127614-aec8-4a6e-a61e-5ecac9253618}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SADQuantity\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{ddfb062c-2b9a-4727-b587-adcf3e552814}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SHMenthol\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{48d3cd13-74d8-453f-aec7-944d2a2951f3}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\SKU\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{ac361253-77e4-48a2-bc0a-215c631da3ca}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Stock\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{201a1ba0-3754-409d-b1ab-4878ee2821a2}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Usage\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{d32cdcd8-925e-4030-a833-0d7bc394a99b}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Warehouse\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{4b4cc449-7f53-482a-9ee1-f298cea428dc}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Waste\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{bcfc249f-481d-4a47-988f-09d3351476e7}</SharePointProjectItemId>
-    </None>
     <None Include="Features\DataModel\DataModel.feature">
       <FeatureId>{1e1a1536-3f22-4966-806a-01f05c0ec2ed}</FeatureId>
     </None>
@@ -136,37 +67,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content types\Batch\Elements.xml" />
-    <Content Include="Content types\City\Elements.xml" />
-    <Content Include="Content types\Clearence\Elements.xml" />
-    <Content Include="Content types\Commodity\Elements.xml" />
-    <Content Include="Content types\Consent\Elements.xml" />
-    <Content Include="Content types\Country\Elements.xml" />
-    <Content Include="Content types\CutfillerCoeff\Elements.xml" />
-    <Content Include="Content types\Disposal\Elements.xml" />
-    <Content Include="Content types\Dust\Elements.xml" />
-    <Content Include="Content types\Invoice\Elements.xml" />
-    <Content Include="Content types\IPR\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content types\Material\Elements.xml" />
-    <Content Include="Content types\SADCommodity\Elements.xml" />
-    <Content Include="Content types\SADRequiredDocuments\Elements.xml" />
-    <Content Include="Content types\SADDuties\Elements.xml" />
-    <Content Include="Content types\SADPackage\Elements.xml" />
-    <Content Include="Content types\SADQuantity\Elements.xml" />
-    <Content Include="Content types\SHMenthol\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content types\SKU\Elements.xml" />
-    <Content Include="Content types\Stock\Elements.xml" />
-    <Content Include="Content types\Usage\Elements.xml" />
-    <Content Include="Content types\Warehouse\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content types\Waste\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Features\DataModel\DataModel.Template.xml">
       <DependentUpon>DataModel.feature</DependentUpon>
     </Content>
