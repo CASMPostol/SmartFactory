@@ -52,11 +52,77 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content types\Batch\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{53656ba7-5af2-433e-899c-e756a404c50d}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Customs\Clearence\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{baeb8126-42ea-432c-84e1-4c59bfa5f4d1}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Customs\Invoice\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0c33e275-a7da-4393-86c5-7955dd7643ef}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Customs\SADGood\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{35f801d8-2ff6-4ac5-87b5-9b824645408b}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Customs\SADPackage\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e6b32e32-55c4-4093-abc9-74ef36485eec}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Customs\SADQuantity\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5c68fe0d-2625-4a03-a83d-b4f9eee54949}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Customs\SADRequiredDocuments\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{738095ac-6989-40e9-a3b0-f58d86295a8d}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\ CutfillerCoefficient\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8705df43-b8b9-4a57-9fb0-291ae9f27211}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Consent\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2896fc51-4f19-41cb-9a1c-8fc41a099c98}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Dust\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{58d52a60-887b-401a-baeb-86dc9b21b9ae}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\SHMenthol\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{797c49f3-9927-4c85-a87b-5cfa078d4383}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\SKU\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d14ee4e8-8cb1-44fe-a37d-4c40dd5497ad}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Usage\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{26a34bf3-956c-40f7-8703-17fe745b9a1d}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Waste\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a00dc4fd-b80b-4033-8ffa-79db1b5792ff}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Disposal\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{56158b8c-8462-4a3b-911c-d00a0b580331}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\IPR\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{725238fe-cddd-422a-a613-bd8e07fbfe0e}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Material\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{36410db9-ddc6-4730-9f67-ffc3b8e6eebb}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Reports\Stock\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3298cd6e-b3d7-4019-ae34-9cbf1fb82db7}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\SmartFactory\City\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3d8face3-f48c-4d05-bca5-8d2a3ef6bcee}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\SmartFactory\Commodity\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3cfdcb23-3ea8-47e4-acd4-ee97167879ce}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\SmartFactory\Country\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0a52a024-440a-4c81-b13a-ca5e2c479c22}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\SmartFactory\Warehouse\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ff00af0f-e6a7-42f3-84dc-4c0248d8825c}</SharePointProjectItemId>
+    </None>
     <None Include="Features\DataModel\DataModel.feature">
       <FeatureId>{1e1a1536-3f22-4966-806a-01f05c0ec2ed}</FeatureId>
     </None>
     <None Include="Fields\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{311c83d6-5331-4688-a917-03ff420bf9b7}</SharePointProjectItemId>
+      <SharePointProjectItemId>{80dc7039-dc4f-452d-9b57-b127478f1444}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
     <None Include="Package\Package.package">
@@ -67,6 +133,29 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content types\Batch\Elements.xml" />
+    <Content Include="Content types\Customs\Clearence\Elements.xml" />
+    <Content Include="Content types\Customs\Invoice\Elements.xml" />
+    <Content Include="Content types\Customs\SADDuties\Elements.xml" />
+    <Content Include="Content types\Customs\SADGood\Elements.xml" />
+    <Content Include="Content types\Customs\SADPackage\Elements.xml" />
+    <Content Include="Content types\Customs\SADQuantity\Elements.xml" />
+    <Content Include="Content types\Customs\SADRequiredDocuments\Elements.xml" />
+    <Content Include="Content types\Dictionaries\ CutfillerCoefficient\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Consent\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Dust\Elements.xml" />
+    <Content Include="Content types\Dictionaries\SHMenthol\Elements.xml" />
+    <Content Include="Content types\Dictionaries\SKU\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Usage\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Waste\Elements.xml" />
+    <Content Include="Content types\Disposal\Elements.xml" />
+    <Content Include="Content types\IPR\Elements.xml" />
+    <Content Include="Content types\Material\Elements.xml" />
+    <Content Include="Content types\Reports\Stock\Elements.xml" />
+    <Content Include="Content types\SmartFactory\City\Elements.xml" />
+    <Content Include="Content types\SmartFactory\Commodity\Elements.xml" />
+    <Content Include="Content types\SmartFactory\Country\Elements.xml" />
+    <Content Include="Content types\SmartFactory\Warehouse\Elements.xml" />
     <Content Include="Features\DataModel\DataModel.Template.xml">
       <DependentUpon>DataModel.feature</DependentUpon>
     </Content>
