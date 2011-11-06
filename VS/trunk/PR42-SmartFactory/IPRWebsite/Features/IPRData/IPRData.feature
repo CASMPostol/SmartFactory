@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="4cdcf677-35f2-41fe-86c6-dcbaaf001b75" description="IPR Data Model" featureId="4cdcf677-35f2-41fe-86c6-dcbaaf001b75" imageUrl="" solutionId="00000000-0000-0000-0000-000000000000" title="IPRData" version="" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
+<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="4cdcf677-35f2-41fe-86c6-dcbaaf001b75" description="IPR Data Model" featureId="4cdcf677-35f2-41fe-86c6-dcbaaf001b75" imageUrl="" imageAltText="IPR Data" scope="Site" solutionId="00000000-0000-0000-0000-000000000000" title="IPRData" version="AAEAAAD/////AQAAAAAAAAAEAQAAAA5TeXN0ZW0uVmVyc2lvbgQAAAAGX01ham9yBl9NaW5vcgZfQnVpbGQJX1JldmlzaW9uAAAAAAgICAgBAAAAAAAAAP//////////Cw==" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
   <projectItems>
     <projectItemReference itemId="53656ba7-5af2-433e-899c-e756a404c50d" />
     <projectItemReference itemId="baeb8126-42ea-432c-84e1-4c59bfa5f4d1" />
@@ -26,5 +26,6 @@
     <projectItemReference itemId="0a52a024-440a-4c81-b13a-ca5e2c479c22" />
     <projectItemReference itemId="ff00af0f-e6a7-42f3-84dc-4c0248d8825c" />
     <projectItemReference itemId="80dc7039-dc4f-452d-9b57-b127478f1444" />
+    <projectItemReference itemId="44333795-3705-41bb-b281-78660212521f" />
   </projectItems>
 </feature>

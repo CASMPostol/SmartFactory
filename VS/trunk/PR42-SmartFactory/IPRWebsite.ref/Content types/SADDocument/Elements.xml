@@ -11,6 +11,12 @@
 			<FieldRef ID="{28cf69c5-fa48-462a-b5cd-27b6f9d2bd5f}" Name="Modified" Hidden="TRUE" />
 			<FieldRef ID="{822c78e3-1ea9-4943-b449-57863ad33ca9}" Name="Modified_x0020_By" Hidden="FALSE" />
 			<FieldRef ID="{4dd7e525-8d6b-4cb4-9d3e-44ee25f973eb}" Name="Created_x0020_By" Hidden="FALSE" />
+			<FieldRef ID="{8c9856b8-0ed9-42e8-99a2-9c58aa31810e}" Name="ReferenceNumber" />
+			<FieldRef ID="{0209c89f-5f3a-4852-8eb2-8d18fcd5fd00}" Name="CustomsDebtDate" />
+			<FieldRef ID="{760b5433-5802-47aa-bb65-6438772d78b5}" Name="DocumentNoumber" />
+			<FieldRef ID="{91f0305a-9f13-468a-85ca-1ae1c859dbd7}" Name="Currency" />
+			<FieldRef ID="{2995a5af-ec77-4fd7-89f8-898b5068a5e4}" Name="ExchangeRate" />
+			<FieldRef ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" Name="GrossMass" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
