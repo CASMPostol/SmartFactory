@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feature deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" title="WspImportProject1 Feature2" dslVersion="1.0.0.0" Id="98539561-9805-486e-a7ce-0b062ef6223d" featureId="98539561-9805-486e-a7ce-0b062ef6223d" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
+<feature deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" title="WspImportProject1 Feature2" dslVersion="1.0.0.0" Id="d3ace815-3929-4bf5-97d2-05511167c03c" featureId="d3ace815-3929-4bf5-97d2-05511167c03c" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
 </feature>

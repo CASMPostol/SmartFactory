@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x01001D2AFAE51342C546A5F1677134421FD5" Name="CutfillerCoefficient" Group="IPR" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+	<ContentType ID="0x01001D2AFAE51342C546A5F1677134421FD5" Name="CutfillerCoefficient" Group="CAS Smart Factory IPR Dictionaries" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
 		<Folder TargetName="_cts/ CutfillerCoefficient" />
 		<FieldRefs>
 			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />

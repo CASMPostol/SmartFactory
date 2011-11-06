@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x01002D6DCE3B847D5942ACDD176925283176" Name="Waste" Group="IPR" Description="Utwórz nowy element listy." Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+	<ContentType ID="0x01002D6DCE3B847D5942ACDD176925283176" Name="Waste" Group="CAS Smart Factory IPR Dictionaries" Description="Utwórz nowy element listy." Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
 		<Folder TargetName="_cts/Waste" />
 		<FieldRefs>
 			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />
