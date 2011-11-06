@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="d19f847b-6945-4073-9bf9-c42867eea066" featureId="f92e8998-915f-4741-af3c-1790882b1a73" imageUrl="" solutionId="00000000-0000-0000-0000-000000000000" title="List Instances feature of exported web template &quot;IPR Home Page&quot;" version="" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
+<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="d19f847b-6945-4073-9bf9-c42867eea066" creator="CAS" featureId="f92e8998-915f-4741-af3c-1790882b1a73" imageUrl="" imageAltText="IPR" solutionId="00000000-0000-0000-0000-000000000000" title="&quot;IPR Home Page&quot;" version="" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
   <projectItems>
     <projectItemReference itemId="311c83d6-5331-4688-a917-03ff420bf9b7" />
     <projectItemReference itemId="493cc443-602a-4c01-9bbb-af5803a764a8" />
