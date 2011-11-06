@@ -124,8 +124,8 @@
     <None Include="Content types\SmartFactory\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ff00af0f-e6a7-42f3-84dc-4c0248d8825c}</SharePointProjectItemId>
     </None>
-    <None Include="Features\DataModel\DataModel.feature">
-      <FeatureId>{1e1a1536-3f22-4966-806a-01f05c0ec2ed}</FeatureId>
+    <None Include="Features\IPRDataModel\DataModel.feature">
+      <FeatureId>{5cf5eb6f-a730-4a1c-9e47-4efa2cc741fb}</FeatureId>
     </None>
     <None Include="Fields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{80dc7039-dc4f-452d-9b57-b127478f1444}</SharePointProjectItemId>
@@ -165,7 +165,7 @@
     <Content Include="Content types\SmartFactory\Commodity\Elements.xml" />
     <Content Include="Content types\SmartFactory\Country\Elements.xml" />
     <Content Include="Content types\SmartFactory\Warehouse\Elements.xml" />
-    <Content Include="Features\DataModel\DataModel.Template.xml">
+    <Content Include="Features\IPRDataModel\DataModel.Template.xml">
       <DependentUpon>DataModel.feature</DependentUpon>
     </Content>
     <Content Include="Fields\Elements.xml">
@@ -173,9 +173,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\DataModel\resources.pl-PL.resx" />
+    <EmbeddedResource Include="Features\IPRDataModel\resources.pl-PL.resx" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
 </Project>
