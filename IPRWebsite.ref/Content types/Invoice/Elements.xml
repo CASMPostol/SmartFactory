@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x01008BF42A00B5B85E4E85D3CD58E7644E92" Name="Invoice" Group="IPR" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+	<ContentType ID="0x01008BF42A00B5B85E4E85D3CD58E7644E92" Name="Invoice" Group="CAS Smart Factory IPR Customs" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
 		<Folder TargetName="_cts/Invoice" />
 		<FieldRefs>
 			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />

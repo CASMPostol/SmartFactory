@@ -147,7 +147,9 @@
     <Content Include="Content types\Customs\SADGood\Elements.xml" />
     <Content Include="Content types\Customs\SADPackage\Elements.xml" />
     <Content Include="Content types\Customs\SADQuantity\Elements.xml" />
-    <Content Include="Content types\Customs\SADRequiredDocuments\Elements.xml" />
+    <Content Include="Content types\Customs\SADRequiredDocuments\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\ CutfillerCoefficient\Elements.xml" />
     <Content Include="Content types\Dictionaries\Consent\Elements.xml" />
     <Content Include="Content types\Dictionaries\Dust\Elements.xml" />

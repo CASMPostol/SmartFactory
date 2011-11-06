@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x01003346FE22663EFC47A4C57D80F0BCE768" Name="SKU" Group="IPR" Description="A catalog containing of entries providing a unique number and description of all kinds of materials, semi-finished and finished goods." Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+	<ContentType ID="0x01003346FE22663EFC47A4C57D80F0BCE768" 
+                 Name="SKU" 
+                 Group="CAS Smart Factory IPR Dictionaries" 
+                 Description="A catalog containing of entries providing a unique number and description of all kinds of materials, semi-finished and finished goods." 
+                 Overwrite="TRUE" 
+                 xmlns="http://schemas.microsoft.com/sharepoint/">
 		<Folder TargetName="_cts/SKU" />
 		<FieldRefs>
 			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />

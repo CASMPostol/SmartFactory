@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x01004D0C63D616EA814E8B077CF59ADDB12B" Name="Material" Group="IPR" Description="Batch: Material" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+	<ContentType ID="0x01004D0C63D616EA814E8B077CF59ADDB12B" Name="Material" Group="CAS Smart Factory IPR" Description="Batch: Material" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
 		<Folder TargetName="_cts/Material" />
 		<FieldRefs>
 			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />

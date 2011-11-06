@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x0100FCF87F15D5BE244EBA39ACA130B1ABDB" Name="Batch" Group="IPR" Description="SAP: Batch.&#xD;&#xA; An instance of this class represents one of the following object:&#xD;&#xA;CigarettesProcess&#xD;&#xA;CutfillerProcess&#xD;&#xA;&#xD;&#xA;" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+	<ContentType ID="0x0100FCF87F15D5BE244EBA39ACA130B1ABDB" Name="Batch" Group="CAS Smart Factory" Description="SAP: Batch.&#xD;&#xA; An instance of this class represents one of the following object:&#xD;&#xA;CigarettesProcess&#xD;&#xA;CutfillerProcess&#xD;&#xA;&#xD;&#xA;" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
 		<Folder TargetName="_cts/Batch" />
 		<FieldRefs>
 			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />

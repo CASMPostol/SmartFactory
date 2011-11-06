@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x01001E57547208B49B46B4AA7CB4536B1A55" Name="Warehouse" Group="CAS Smart Factory" Description="Warehouse" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+	<ContentType ID="0x01001E57547208B49B46B4AA7CB4536B1A55" 
+                 Name="Warehouse" 
+                 Group="CAS Smart Factory" 
+                 Description="Warehouse" 
+                 Overwrite="TRUE" 
+                 xmlns="http://schemas.microsoft.com/sharepoint/">
 		<Folder TargetName="_cts/Warehouse" />
 		<FieldRefs>
 			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />

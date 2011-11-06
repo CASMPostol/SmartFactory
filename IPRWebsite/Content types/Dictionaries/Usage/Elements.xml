@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x01000E2260EFB66F324B9CC50EEEC274F5FD" Name="Usage" Group="IPR" Description="It contains all relevant norms of tobacco usage for cigarette production. Tobacco consumption for the different formats will be entered into the system as the max and min numbers; the user should declare (select from list) an appropriate format for the norm. The list must contain information as to since when the norm has been valid and when it expires." Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
+	<ContentType ID="0x01000E2260EFB66F324B9CC50EEEC274F5FD" 
+                 Name="Usage" 
+                 Group="CAS Smart Factory IPR Dictionaries" 
+                 Description="It contains all relevant norms of tobacco usage for cigarette production. Tobacco consumption for the different formats will be entered into the system as the max and min numbers; the user should declare (select from list) an appropriate format for the norm. The list must contain information as to since when the norm has been valid and when it expires." 
+                 Overwrite="TRUE" 
+                 xmlns="http://schemas.microsoft.com/sharepoint/">
 		<Folder TargetName="_cts/Usage" />
 		<FieldRefs>
 			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />
