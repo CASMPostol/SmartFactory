@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPRWebsite", "IPRWebsite\IP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAS.SmartFactory.XML", "XML\CAS.SmartFactory.XML.csproj", "{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WspImportProject1", "WspImportProject1\WspImportProject1.csproj", "{EF93C3C4-2743-4B85-968B-BBFF5C618549}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,14 +34,6 @@ Global
 		{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}.Release|x86.ActiveCfg = Release|x86
 		{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}.Release|x86.Build.0 = Release|x86
-		{EF93C3C4-2743-4B85-968B-BBFF5C618549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF93C3C4-2743-4B85-968B-BBFF5C618549}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF93C3C4-2743-4B85-968B-BBFF5C618549}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{EF93C3C4-2743-4B85-968B-BBFF5C618549}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EF93C3C4-2743-4B85-968B-BBFF5C618549}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF93C3C4-2743-4B85-968B-BBFF5C618549}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF93C3C4-2743-4B85-968B-BBFF5C618549}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{EF93C3C4-2743-4B85-968B-BBFF5C618549}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
