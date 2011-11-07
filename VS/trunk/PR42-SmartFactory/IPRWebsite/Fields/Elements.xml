@@ -48,8 +48,8 @@
   <Field DisplayName="UsageMax" Name="UsageMax" Type="Number" ID="{1D56FC71-6866-4A9F-A9C9-629E91B54AE1}" Group="CAS Smart Factory IPR" StaticName="UsageMax" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="UsageMin" Name="UsageMin" Type="Number" ID="{A5854E29-EF45-49D8-8CF8-8C5C91F1C0C6}" Group="CAS Smart Factory IPR" StaticName="UsageMin" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="WasteRatio" Name="WasteRatio" Type="Number" ID="{440BD88D-3870-480E-B01E-F934D478593F}" Group="CAS Smart Factory IPR" StaticName="WasteRatio" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-
-
+  <Field DisplayName="ProductCodeNumber" Name="ProductCodeNumber" Type="Number" ID="{FAB1E4CF-D883-45A5-B682-97B78EDF1F75}" Group="CAS Smart Factory IPR" StaticName="ProductCodeNumber" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  <Field DisplayName="ProductName" Name="ProductName" Type="Text" ID="{D547D6AE-F714-4D76-9CAE-3DD228DA4300}" Group="CAS Smart Factory IPR" StaticName="ProductName" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
 
   <!--<Field ResultType="Number" LCID="1045" Format="DateTime" Description="Kartony w kg" DisplayName="Cartons in kg" Type="Calculated" ID="{3F9793EF-E8DD-4E89-BC8B-08DB33B118B5}" Name="Cartons in kg" Group="CAS Smart Factory IPR Customs" ReadOnly="TRUE" StaticName="Cartons_x0020_in_x0020_kg" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Formula>=Gross mass-Net mass</Formula>

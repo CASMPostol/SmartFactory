@@ -156,7 +156,9 @@
     <Content Include="Content types\Customs\SADRequiredDocuments\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Dictionaries\ CutfillerCoefficient\Elements.xml" />
+    <Content Include="Content types\Dictionaries\ CutfillerCoefficient\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\Consent\Elements.xml" />
     <Content Include="Content types\Dictionaries\Dust\Elements.xml" />
     <Content Include="Content types\Dictionaries\SHMenthol\Elements.xml" />

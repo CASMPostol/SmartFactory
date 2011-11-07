@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x01002e9f09b06acf47f7ada76c12453c7af7"
+               Name="PCNCode"
+               Group="CAS Smart Factory IPR Dictionaries"
+               Description="PCNCode"
+               Overwrite="TRUE"
+               xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Folder TargetName="_cts/PCNCode" />
+    <FieldRefs>
+      <FieldRef ID="{E730DA94-F1D0-4211-A23C-05864537AD0F}" Name="ContentType" />
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
+      <FieldRef ID="{FAB1E4CF-D883-45A5-B682-97B78EDF1F75}" Name="ProductCodeNumber" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
+      <FieldRef ID="{D547D6AE-F714-4D76-9CAE-3DD228DA4300}" Name="ProductName" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />      
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
+</Elements>
