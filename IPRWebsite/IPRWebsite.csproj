@@ -89,6 +89,12 @@
     <None Include="Content types\Dictionaries\Dust\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{58d52a60-887b-401a-baeb-86dc9b21b9ae}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\Format\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{eb515dee-0f59-49f7-be7f-700e75e201c1}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\PCNCode\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c4916495-cad4-4270-b888-f5c2491ccd32}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\SHMenthol\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{797c49f3-9927-4c85-a87b-5cfa078d4383}</SharePointProjectItemId>
     </None>
@@ -143,8 +149,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content types\Batch\Elements.xml" />
-    <Content Include="Content types\Customs\Clearence\Elements.xml" />
+    <Content Include="Content types\Batch\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content types\Customs\Clearence\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Customs\Invoice\Elements.xml" />
     <Content Include="Content types\Customs\SADDocument\Elements.xml">
       <SubType>Designer</SubType>
@@ -160,12 +170,18 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\Consent\Elements.xml" />
-    <Content Include="Content types\Dictionaries\Dust\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Dust\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content types\Dictionaries\Format\Elements.xml" />
+    <Content Include="Content types\Dictionaries\PCNCode\Elements.xml" />
     <Content Include="Content types\Dictionaries\SHMenthol\Elements.xml" />
     <Content Include="Content types\Dictionaries\SKU\Elements.xml" />
     <Content Include="Content types\Dictionaries\Usage\Elements.xml" />
     <Content Include="Content types\Dictionaries\Waste\Elements.xml" />
-    <Content Include="Content types\Disposal\Elements.xml" />
+    <Content Include="Content types\Disposal\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\IPR\Elements.xml" />
     <Content Include="Content types\Material\Elements.xml" />
     <Content Include="Content types\Reports\Stock\Elements.xml" />
