@@ -1,19 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ContentType ID="0x01008229b51223914bb3b88f3abdb737237b"
-               Name="Format"
-               Group="CAS Smart Factory IPR Dictionaries"
-               Description="Format"
+  <ContentType ID="0x010082e2fd28f40c4269ac5c796f220f10c3"
+               Name="InvoiceContent"
+               Group="CAS Smart Factory IPR Customs"
+               Description="InvoiceContent"
                Overwrite="TRUE"
                xmlns="http://schemas.microsoft.com/sharepoint/">
-    <Folder TargetName="_cts/Format" />
+    <Folder TargetName="_cts/InvoiceContent" />
     <FieldRefs>
       <FieldRef ID="{E730DA94-F1D0-4211-A23C-05864537AD0F}" Name="ContentType" />
       <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
-      <FieldRef ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}" Name="CigaretteLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
-      <FieldRef ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}" Name="FilterSegmentLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
-      <FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="StartDate" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
-      <FieldRef ID="{2684F9F2-54BE-429f-BA06-76754FC056BF}" Name="EndDate" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
