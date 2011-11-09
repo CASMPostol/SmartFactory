@@ -4,8 +4,9 @@
                Name="SADGood"
                Group="CAS Smart Factory IPR Customs"
                Description="\SAD\Towar"
-               Overwrite="TRUE"
-               xmlns="http://schemas.microsoft.com/sharepoint/">
+               Inherits="true"
+               Version="100000"
+               >
     <Folder TargetName="_cts/SADGood" />
     <FieldRefs>
       <FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />
