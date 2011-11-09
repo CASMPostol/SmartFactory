@@ -191,7 +191,9 @@
     <Content Include="Content types\Customs\SADDuties\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Customs\SADGood\Elements.xml" />
+    <Content Include="Content types\Customs\SADGood\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Customs\SADPackage\Elements.xml" />
     <Content Include="Content types\Customs\SADQuantity\Elements.xml" />
     <Content Include="Content types\Customs\SADRequiredDocuments\Elements.xml">
@@ -238,7 +240,9 @@
     <Content Include="Fields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="IPRCustomsFields\Elements.xml" />
+    <Content Include="IPRCustomsFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\SADDocumentTemplate\EditDlg.htm" />
     <Content Include="Lists\Customs\SADDocumentTemplate\Elements.xml">
       <SubType>Designer</SubType>
@@ -250,7 +254,9 @@
     <Content Include="Lists\Customs\SADDocumentTemplate\Upload.aspx" />
     <Content Include="Lists\Customs\SADGoodTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADGoodTemplate\SADGood\Elements.xml" />
-    <Content Include="Lists\Customs\SADGoodTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\SADGoodTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
