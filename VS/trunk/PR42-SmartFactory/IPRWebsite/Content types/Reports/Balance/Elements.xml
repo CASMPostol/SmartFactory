@@ -5,8 +5,8 @@
                Name="Balance"
                Group="CAS Smart Factory IPR Reports"
                Description="Balance"
-               Inherits="TRUE"
-               Version="0">
+               Overwrite="TRUE"
+               xmlns="http://schemas.microsoft.com/sharepoint/">
     <Folder TargetName="_cts/Balance" />
     <FieldRefs>
       <FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />

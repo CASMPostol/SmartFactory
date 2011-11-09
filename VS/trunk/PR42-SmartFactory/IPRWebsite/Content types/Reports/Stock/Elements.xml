@@ -3,7 +3,7 @@
 	<ContentType ID="0x01001A55BDA09C39724B9FAF87A859B9D82C" 
                  Name="Stock" 
                  Group="CAS Smart Factory IPR Reports" 
-                 Description="" 
+                 Description="Stock" 
                  Overwrite="TRUE" 
                  xmlns="http://schemas.microsoft.com/sharepoint/">
 		<Folder TargetName="_cts/Stock" />
