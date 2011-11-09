@@ -64,7 +64,7 @@
     <None Include="Content types\Customs\Invoice\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0c33e275-a7da-4393-86c5-7955dd7643ef}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Customs\SADDocument\SharePointProjectItem.spdata">
+    <None Include="Content types\Customs\SADDocumentType\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{be5b2e88-3736-4198-bf34-8df05e212028}</SharePointProjectItemId>
       <SubType>Designer</SubType>
     </None>
@@ -151,8 +151,21 @@
     </None>
     <None Include="IPRCustomsFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{44333795-3705-41bb-b281-78660212521f}</SharePointProjectItemId>
+      <SubType>Designer</SubType>
     </None>
     <None Include="key.snk" />
+    <None Include="Lists\Customs\SADDocumentTemplate\SADDocument\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ba83dcf3-f8a7-41ca-926a-184974e2de2e}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\SADDocumentTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b48be32e-2042-42f7-befd-1a4899caa438}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\SADGoodTemplate\SADGood\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{34e2da2b-7afd-48f2-9c6e-b5b74deef3f1}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\SADGoodTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1091be26-f90f-4c2e-8905-109f721bcff1}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{ba9dd6bf-0f86-469d-9821-2290a484169f}</PackageId>
     </None>
@@ -169,10 +182,12 @@
     </Content>
     <Content Include="Content types\Customs\InvoiceContent\Elements.xml" />
     <Content Include="Content types\Customs\Invoice\Elements.xml" />
-    <Content Include="Content types\Customs\SADDocument\Elements.xml">
+    <Content Include="Content types\Customs\SADDocumentType\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Customs\SADDuties\Elements.xml" />
+    <Content Include="Content types\Customs\SADDuties\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Customs\SADGood\Elements.xml" />
     <Content Include="Content types\Customs\SADPackage\Elements.xml" />
     <Content Include="Content types\Customs\SADQuantity\Elements.xml" />
@@ -212,7 +227,20 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="IPRCustomsFields\Elements.xml" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\EditDlg.htm" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Lists\Customs\SADDocumentTemplate\FileDlg.htm" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\SADDocument\Elements.xml" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\Repair.aspx" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\Upload.aspx" />
+    <Content Include="Lists\Customs\SADGoodTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\SADGoodTemplate\SADGood\Elements.xml" />
+    <Content Include="Lists\Customs\SADGoodTemplate\Schema.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
 </Project>

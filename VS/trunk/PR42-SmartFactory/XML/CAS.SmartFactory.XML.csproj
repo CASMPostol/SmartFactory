@@ -278,6 +278,12 @@
     <None Include="Generated\IPR\Invoice.XSD">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Generated\IPR\invoice2.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\IPR\stock.XSD">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Generated\Scripts\goxsd.ps1" />
   </ItemGroup>
   <ItemGroup>
