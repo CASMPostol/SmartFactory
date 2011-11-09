@@ -78,12 +78,18 @@
       <Field ID="{822c78e3-1ea9-4943-b449-57863ad33ca9}" Name="Modified_x0020_By" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Modified_x0020_By" Group="_Hidden" ReadOnly="TRUE" Hidden="FALSE" Type="Text" DisplayName="$Resources:core,Document_Modified_By;" Customization="" />
       <Field ID="{4dd7e525-8d6b-4cb4-9d3e-44ee25f973eb}" Name="Created_x0020_By" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Created_x0020_By" Group="_Hidden" ReadOnly="TRUE" Hidden="FALSE" Type="Text" DisplayName="$Resources:core,Document_Created_By;" Customization="">
       </Field>
-      <Field DisplayName="Gross mass" Name="Gross_x0020_mass" Type="Number" ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" Group="SAD" StaticName="Gross_x0020_mass" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Customization="" ColName="float3" RowOrdinal="0" />
+      <Field DisplayName="Gross mass" Name="GrossMass" Type="Number" ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" Group="SAD" StaticName="Gross_x0020_mass" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Customization="" ColName="float3" RowOrdinal="0" />
       <Field Name="ReferenceNumber" ID="{8c9856b8-0ed9-42e8-99a2-9c58aa31810e}" Type="Text" DisplayName="Reference Number" AuthoringInfo="SAD Document Reference Number - box 7." Group="CAS Smart Factory IPR Customs" Indexed="True" Description="SAD Document Reference Number - box 7." Required="False" />
       <Field Name="CustomsDebtDate" ID="{0209c89f-5f3a-4852-8eb2-8d18fcd5fd00}" Type="DateTime" DisplayName="Customs debt date" Group="CAS Smart Factory IPR Customs" />
       <Field Name="DocumentNoumber" ID="{760b5433-5802-47aa-bb65-6438772d78b5}" Type="Text" DisplayName="DocumentcNoumber" Group="CAS Smart Factory IPR Customs" />
       <Field Name="Currency" ID="{91f0305a-9f13-468a-85ca-1ae1c859dbd7}" Type="Text" DisplayName="Currency" Group="CAS Smart Factory IPR Customs" AuthoringInfo="Box 22 first part" />
-      <Field Name="ExchangeRate" ID="{2995a5af-ec77-4fd7-89f8-898b5068a5e4}" Type="Number" DisplayName="Exchange rate" Group="CAS Smart Factory IPR Customs" AuthoringInfo="Box 23" />
+      <Field 
+        Name="ExchangeRate" 
+        ID="{2995a5af-ec77-4fd7-89f8-898b5068a5e4}" 
+        Type="Number" 
+        DisplayName="Exchange rate" 
+        Group="CAS Smart Factory IPR Customs" 
+        AuthoringInfo="Box 23" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE" FreeForm="TRUE">

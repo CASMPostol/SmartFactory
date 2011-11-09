@@ -49,6 +49,14 @@
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
+    Name="GoodsName" 
+    Type="Text" 
+    ID="{46522ede-4acd-4497-9288-b638748930ab}" 
+    DisplayName="GoodsName" 
+    Group="CAS Smart Factory IPR Customs" 
+    Description="TBD" 
+    />
+  <Field
     Name="SADDocumentIndex"
     ID="{3C43B503-165E-47D1-B931-342AC32AF61F}"
     Type="Lookup"
@@ -63,6 +71,6 @@
     Hidden="False"
     DisplaceOnUpgrade="True"
     EnforceUniqueValues="False"
-    ReadOnly="True"
+    ReadOnly="False"
     />
 </Elements>
