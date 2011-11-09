@@ -122,6 +122,9 @@
     <None Include="Content types\Reports\Balance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bc77ba1d-ceeb-40f6-b569-f17217aa68e4}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Reports\JSOX\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b20f3efc-0b6a-44e3-989f-aa34bc464c40}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Reports\StockEntry\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{04ff6c8d-1184-497b-acad-65c061b435df}</SharePointProjectItemId>
     </None>
@@ -212,10 +215,19 @@
     </Content>
     <Content Include="Content types\IPR\Elements.xml" />
     <Content Include="Content types\Material\Elements.xml" />
-    <Content Include="Content types\Reports\Balance\Elements.xml" />
-    <Content Include="Content types\Reports\StockEntry\Elements.xml" />
-    <Content Include="Content types\Reports\Stock\Elements.xml" />
-    <Content Include="Content types\Reports\TobaccoBatchSummary\Elements.xml" />
+    <Content Include="Content types\Reports\Balance\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content types\Reports\JSOX\Elements.xml" />
+    <Content Include="Content types\Reports\StockEntry\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content types\Reports\Stock\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content types\Reports\TobaccoBatchSummary\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\SmartFactory\City\Elements.xml" />
     <Content Include="Content types\SmartFactory\Commodity\Elements.xml" />
     <Content Include="Content types\SmartFactory\Country\Elements.xml" />
