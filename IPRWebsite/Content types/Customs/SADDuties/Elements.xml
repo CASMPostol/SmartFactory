@@ -1,26 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x0100307F2A8F2886D24FBF3393F84E0E616B" 
-                 Name="SADDuties" 
-                 Group="CAS Smart Factory IPR Customs" 
-                 Overwrite="TRUE" 
-                 xmlns="http://schemas.microsoft.com/sharepoint/">
-		<Folder TargetName="_cts/SADDuties" />
-		<FieldRefs>
-			<!--
-            <FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />
-			<FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
-            -->
-			<FieldRef Name="SADDocumentIndex" ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" />
-		</FieldRefs>
-		<XmlDocuments>
-			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-				<FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-					<Display>ListForm</Display>
-					<Edit>ListForm</Edit>
-					<New>ListForm</New>
-				</FormTemplates>
-			</XmlDocument>
-		</XmlDocuments>
-	</ContentType>
+  <ContentType ID="0x0100307F2A8F2886D24FBF3393F84E0E616B"
+               Name="SADDuties"
+               Group="CAS Smart Factory IPR Customs"
+               Description="SADDuties"
+               Inherits="True"
+               Version="100000"
+                 >
+    <Folder TargetName="_cts/SADDuties" />
+    <FieldRefs>
+      <FieldRef Name="SADDocumentIndex" ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" />
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
 </Elements>
