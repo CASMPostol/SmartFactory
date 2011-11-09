@@ -2,11 +2,12 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <!-- Parent ContentType: Document (0x0101) -->
   <ContentType ID="0x010100844099fc49b54d30a1516ea17a6883fc"
-               Name="SADDocument"
+               Name="SADDocumentType"
                Group="CAS Smart Factory IPR Customs"
                Description="My Content Type"
                Inherits="TRUE"
                Version="0">
+    <Folder TargetName="_cts/SADDocumentType" />
     <FieldRefs>
       <FieldRef Name="ReferenceNumber" ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}"/>
       <FieldRef Name="CustomsDebtDate" ID="{0209C89F-5F3A-4852-8EB2-8D18FCD5FD00}"/>
