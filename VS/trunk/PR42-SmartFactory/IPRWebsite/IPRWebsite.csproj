@@ -58,6 +58,9 @@
     <None Include="Content types\Customs\Clearence\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{baeb8126-42ea-432c-84e1-4c59bfa5f4d1}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Customs\InvoiceContent\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bd026985-5b5f-464f-831e-a9b8b5603d46}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Customs\Invoice\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0c33e275-a7da-4393-86c5-7955dd7643ef}</SharePointProjectItemId>
     </None>
@@ -116,8 +119,17 @@
     <None Include="Content types\Material\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{36410db9-ddc6-4730-9f67-ffc3b8e6eebb}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Reports\Balance\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bc77ba1d-ceeb-40f6-b569-f17217aa68e4}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Reports\StockEntry\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{04ff6c8d-1184-497b-acad-65c061b435df}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Reports\Stock\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3298cd6e-b3d7-4019-ae34-9cbf1fb82db7}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Reports\TobaccoBatchSummary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3e38bc27-775d-4bb1-9607-30ef421c0c3b}</SharePointProjectItemId>
     </None>
     <None Include="Content types\SmartFactory\City\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3d8face3-f48c-4d05-bca5-8d2a3ef6bcee}</SharePointProjectItemId>
@@ -155,6 +167,7 @@
     <Content Include="Content types\Customs\Clearence\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\Customs\InvoiceContent\Elements.xml" />
     <Content Include="Content types\Customs\Invoice\Elements.xml" />
     <Content Include="Content types\Customs\SADDocument\Elements.xml">
       <SubType>Designer</SubType>
@@ -184,7 +197,10 @@
     </Content>
     <Content Include="Content types\IPR\Elements.xml" />
     <Content Include="Content types\Material\Elements.xml" />
+    <Content Include="Content types\Reports\Balance\Elements.xml" />
+    <Content Include="Content types\Reports\StockEntry\Elements.xml" />
     <Content Include="Content types\Reports\Stock\Elements.xml" />
+    <Content Include="Content types\Reports\TobaccoBatchSummary\Elements.xml" />
     <Content Include="Content types\SmartFactory\City\Elements.xml" />
     <Content Include="Content types\SmartFactory\Commodity\Elements.xml" />
     <Content Include="Content types\SmartFactory\Country\Elements.xml" />
