@@ -5,12 +5,14 @@
                Group="CAS Smart Factory IPR Customs"
                Description="SADQuantity"
                Inherits="True"
+               Overwrite="TRUE"
                Version="100000">
     <Folder TargetName="_cts/SADQuantity" />
     <FieldRefs>
-      <FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />
-      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE"/>
-      <FieldRef Name="SADDocumentIndex" ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" />
+      <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="Item No" />
+      <FieldRef ID="{db454782-449a-4ec5-b0cd-55a7d7af3428}" Name="Net mass" />
+      <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+      <FieldRef ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" Name="SADDocumentIndex" /> 
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

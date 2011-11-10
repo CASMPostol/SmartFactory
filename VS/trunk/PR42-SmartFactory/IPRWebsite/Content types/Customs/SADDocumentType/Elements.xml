@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <!-- Parent ContentType: Document (0x0101) -->
   <ContentType ID="0x010100844099fc49b54d30a1516ea17a6883fc"
                Name="SADDocumentType"
                Group="CAS Smart Factory IPR Customs"
-               Description="SAD Document Type"
+               Description="SADDocumentType"
                Inherits="TRUE"
+               Overwrite="TRUE"
                Version="100000">
     <Folder TargetName="_cts/SADDocumentType" />
     <FieldRefs>
-      <FieldRef Name="ReferenceNumber" ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}"/>
-      <FieldRef Name="CustomsDebtDate" ID="{0209C89F-5F3A-4852-8EB2-8D18FCD5FD00}"/>
-      <FieldRef Name="DocumentNoumber" ID="{760B5433-5802-47AA-BB65-6438772D78B5}"/>
-      <FieldRef Name="Currency" ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}"  />
+      <FieldRef Name="ReferenceNumber" ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}" />
+      <FieldRef Name="CustomsDebtDate" ID="{0209C89F-5F3A-4852-8EB2-8D18FCD5FD00}" />
+      <FieldRef Name="DocumentNumber" ID="{760B5433-5802-47AA-BB65-6438772D78B5}" />
+      <FieldRef Name="Currency" ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" />
       <FieldRef Name="ExchangeRate" ID="{2995A5AF-EC77-4FD7-89F8-898B5068A5E4}" />
       <FieldRef Name="GrossMass" ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" />
     </FieldRefs>
