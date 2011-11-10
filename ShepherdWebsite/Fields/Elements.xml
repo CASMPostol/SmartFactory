@@ -55,7 +55,7 @@
     Format="Dropdown" 
     BaseType="Text"
     Description="Job Title"
-    Name="JobTitle"
+    Name="ExternalWorkerJobTitle"
     Group="CAS Smart Factory Shepherd">
     <Default>Driver</Default>
     <CHOICES>

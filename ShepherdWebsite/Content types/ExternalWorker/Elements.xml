@@ -10,7 +10,7 @@
 		<FieldRefs>
 			<FieldRef ID="{475c2610-c157-4b91-9e2d-6855031b3538}" Name="FullName" />
 			<FieldRef ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="EMail" />
-			<FieldRef ID="{115c2292-bb1e-433d-9815-ff26b40097df}" Name="JobTitle" />
+			<FieldRef ID="{115c2292-bb1e-433d-9815-ff26b40097df}" Name="ExternalWorkerJobTitle" />
 			<FieldRef ID="{d69bcc0e-57c3-4f3b-bbc5-b090edf21f0f}" Name="PrimaryNumber" />
 			<FieldRef ID="{2ab923eb-9880-4b47-9965-ebf93ae15487}" Name="HomePhone" />
 			<FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
