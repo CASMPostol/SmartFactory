@@ -9,8 +9,8 @@
                Version="100000">
     <Folder TargetName="_cts/SADQuantity" />
     <FieldRefs>
-      <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="Item No" />
-      <FieldRef ID="{db454782-449a-4ec5-b0cd-55a7d7af3428}" Name="Net mass" />
+      <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />
+      <FieldRef ID="{db454782-449a-4ec5-b0cd-55a7d7af3428}" Name="NetMass" />
       <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
       <FieldRef ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" Name="SADDocumentIndex" /> 
     </FieldRefs>

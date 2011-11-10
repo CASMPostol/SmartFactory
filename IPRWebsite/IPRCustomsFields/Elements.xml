@@ -97,4 +97,140 @@
     Group="CAS Smart Factory IPR Customs"
     Description="Amount"
     />
+  <Field
+    DisplayName="Code"
+    Name="Code"
+    Type="Text"
+    ID="{DB36BA74-4C91-4793-9AB2-A48CE633CCBE}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Code"
+    />
+  <Field
+    DisplayName="BilledQuantity"
+    Name="BilledQuantity"
+    Type="Number"
+    ID="{BB77D0AB-0759-4F6A-A8AC-FF064702A62A}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="BilledQuantity"
+    />
+  <Field
+    DisplayName="BUn"
+    Name="BUn"
+    Type="Text"
+    ID="{3616AB1A-7C13-4247-B5CF-F3043BBA1885}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="BUn"
+    />
+  <Field
+    DisplayName="MaterialType"
+    Name="MaterialType"
+    Type="Text"
+    ID="{D6FBF1B9-C37A-463C-B012-C984BB1516B9}"
+    Group="CAS Smart Factory IPR Customs" StaticName="Material"
+    Description="MaterialType"
+    />
+  <Field
+    DisplayName="Material"
+    Name="Material"
+    Type="Text"
+    ID="{3AE267C0-9560-4259-9224-572DEF900DD2}"
+    Group="CAS Smart Factory IPR Customs" StaticName="Material"
+    Description="Material"
+    />
+  <Field
+    DisplayName="BillQtyInSKU"
+    Name="BillQtyInSKU"
+    Type="Number"
+    ID="{2E58F2C1-968B-47FC-8390-36283EBFE205}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="BillQtyInSKU"
+    />
+  <Field
+    DisplayName="Duty"
+    Name="Duty"
+    Type="Number"
+    ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Cło"
+    />
+  <Field
+    DisplayName="Item No"
+    Name="ItemNo"
+    Type="Number"
+    ID="{FFFDD6D0-160F-43A2-BFF0-C27CA9DE1FD1}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="PozID"
+    />
+  <Field
+    DisplayName="Net mass"
+    Name="NetMass"
+    Type="Number"
+    ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Net mass"
+    />
+  <Field
+    DisplayName="Number"
+    Name="Number"
+    Type="Text"
+    ID="{12104636-B615-4F4E-A0B9-23158B9ADAD8}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Number"
+    />
+  <Field
+    DisplayName="Package"
+    Name="Package"
+    Type="Text"
+    ID="{218A57CA-6AAD-4C08-8B14-7BB92323CB68}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Rodzaj opakowania"
+    />
+  <Field
+    DisplayName="PCN tariff code"
+    Name="PCNTariffCode"
+    Type="Text"
+    ID="{4E14F686-584A-4EE8-9784-4B7AA4DCD1E7}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Kod taryfy PCN"
+    />
+  <Field
+    DisplayName="Procedure"
+    Name="Procedure"
+    Type="Text"
+    ID="{FF92B9DC-F23F-455D-9783-D54AF95E3C8F}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Procedura celna"
+    />
+  <Field
+    DisplayName="SKU"
+    Name="SKU"
+    Type="Text"
+    ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="SKU"
+    />
+  <Field
+    DisplayName="Total amount invoiced"
+    Name="TotalAmountInvoiced"
+    Type="Number"
+    ID="{EF4E42B5-F9DA-415A-8E2D-335C0F31CD07}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Wartość"
+    />
+  <Field
+    DisplayName="Units"
+    Name="Units"
+    Type="Text"
+    ID="{DD3EEFD0-C2B4-411D-B0CE-E72B2484DD5A}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="j.m."
+    />
+  <Field
+    DisplayName="VAT"
+    Name="VAT"
+    Type="Number"
+    ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Vat"
+    />
 </Elements>

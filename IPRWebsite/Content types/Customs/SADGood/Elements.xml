@@ -9,12 +9,12 @@
                Version="100000">
     <Folder TargetName="_cts/SADGood" />
     <FieldRefs>
-      <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="Item No" />
+      <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />
       <FieldRef ID="{8566B26C-CC3A-445A-B54E-8D3EE093E577}" Name="GoodsDescription" />
-      <FieldRef ID="{4e14f686-584a-4ee8-9784-4b7aa4dcd1e7}" Name="PCN tariff code" />
-      <FieldRef ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" Name="Gross mass" />
+      <FieldRef ID="{4e14f686-584a-4ee8-9784-4b7aa4dcd1e7}" Name="PCNTariffCode" />
+      <FieldRef ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" Name="GrossMass" />
       <FieldRef ID="{ff92b9dc-f23f-455d-9783-d54af95e3c8f}" Name="Procedure" />
-      <FieldRef ID="{ef4e42b5-f9da-415a-8e2d-335c0f31cd07}" Name="Total amount invoiced" />
+      <FieldRef ID="{ef4e42b5-f9da-415a-8e2d-335c0f31cd07}" Name="TotalAmountInvoiced" />
       <FieldRef ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" Name="SADDocumentIndex" />
     </FieldRefs>
     <XmlDocuments>
