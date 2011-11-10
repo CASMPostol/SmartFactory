@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+	<ContentType ID="0x0100031016D7B7E13A43B8C38B5CC145E5C2" 
+               Name="Company" 
+               Group="CAS Smart Factory Shepherd" 
+               Description="Company" 
+               Overwrite="TRUE" 
+               Inherits="TRUE">
+		<Folder TargetName="_cts/Company" />
+		<FieldRefs>
+			<FieldRef ID="{d69bcc0e-57c3-4f3b-bbc5-b090edf21f0f}" Name="PrimaryNumber" />
+			<FieldRef ID="{9d1cacc8-f452-4bc1-a751-050595ad96e1}" Name="WorkFax" />
+			<FieldRef ID="{fc2e188e-ba91-48c9-9dd3-16431afddd50}" Name="WorkAddress" />
+			<FieldRef ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Name="WorkCountry" />
+			<FieldRef ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Name="WorkCity" />
+			<FieldRef ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Name="WorkZip" />
+			<FieldRef ID="{c29e077d-f466-4d8e-8bbe-72b66c5f205c}" Name="URL" />
+			<FieldRef ID="{6f534579-f010-432c-be79-5ae3b369e7cf}" Name="ServiceType" />
+		</FieldRefs>
+		<XmlDocuments>
+			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+				<FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+					<Display>ListForm</Display>
+					<Edit>ListForm</Edit>
+					<New>ListForm</New>
+				</FormTemplates>
+			</XmlDocument>
+		</XmlDocuments>
+	</ContentType>
+</Elements>
