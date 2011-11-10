@@ -122,14 +122,6 @@
     Description="BUn"
     />
   <Field
-    DisplayName="MaterialType"
-    Name="MaterialType"
-    Type="Text"
-    ID="{D6FBF1B9-C37A-463C-B012-C984BB1516B9}"
-    Group="CAS Smart Factory IPR Customs" StaticName="Material"
-    Description="MaterialType"
-    />
-  <Field
     DisplayName="Material"
     Name="Material"
     Type="Text"
