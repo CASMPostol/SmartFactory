@@ -5,11 +5,9 @@
                  Group="CAS Smart Factory IPR" 
                  Description="IPR: IPR List" 
                  Overwrite="TRUE" 
-                 xmlns="http://schemas.microsoft.com/sharepoint/">
+                 Inherits="TRUE">
 		<Folder TargetName="_cts/IPR" />
 		<FieldRefs>
-			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />
-			<FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
