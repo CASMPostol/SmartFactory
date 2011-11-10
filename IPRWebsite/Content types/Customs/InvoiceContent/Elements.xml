@@ -11,7 +11,7 @@
     <FieldRefs>
       <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" />
       <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />
-      <FieldRef ID="{D6FBF1B9-C37A-463C-B012-C984BB1516B9}" Name="MaterialType" />
+      <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="MaterialType" />
       <FieldRef ID="{3AE267C0-9560-4259-9224-572DEF900DD2}" Name="Material" />
       <FieldRef ID="{CF44612E-FDF4-47AD-B730-43F88EE2D9D0}" Name="MaterialDescription" />
       <FieldRef ID="{500870DA-A1F2-44FD-B34F-B1DF21DCD317}" Name="Batch" />
