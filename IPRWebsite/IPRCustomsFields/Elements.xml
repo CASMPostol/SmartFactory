@@ -19,10 +19,10 @@
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    Name="DocumentNoumber"
+    Name="DocumentNumber"
     ID="{760B5433-5802-47AA-BB65-6438772D78B5}"
     Type="Text"
-    DisplayName="DocumentcNoumber"
+    DisplayName="DocumentNumber"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
@@ -72,5 +72,29 @@
     DisplaceOnUpgrade="True"
     EnforceUniqueValues="False"
     ReadOnly="False"
+    />
+  <Field
+    Name="GoodsDescription"
+    Type="Text"
+    ID="{8566B26C-CC3A-445A-B54E-8D3EE093E577}"
+    DisplayName="Goods Description"
+    Group="CAS Smart Factory IPR Customs"
+    Description="TBD"
+    />
+  <Field 
+    DisplayName="Type" 
+    Name="Type" 
+    Type="Text" 
+    ID="{2A582F5B-99C0-4982-BF9B-ED88ED65F46D}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Type"
+    />
+  <Field
+    DisplayName="Amount"
+    Name="Amount"
+    Type="Number"
+    ID="{1A8DEAD6-163D-45BB-B278-E946F49C071B}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Amount"
     />
 </Elements>

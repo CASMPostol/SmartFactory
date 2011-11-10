@@ -3,9 +3,56 @@
   <!--Group="CAS Smart Factory"-->
   <!--<Field List="{53e77add-b2c9-47fa-89f2-8b4327bdfe7a}" ShowField="Title" Required="TRUE" Type="Lookup" Description="Commodity name" DisplayName="Commodity name" ID="{D480D875-24CB-42D4-820C-3F5D9154173B}" Name="Commodity name" WebId="{0B9605A9-756C-45CA-9407-165441813E62}" Group="CAS Smart Factory" StaticName="Commodity_x0020_name" SourceID="{0b9605a9-756c-45ca-9407-165441813e62}" Hidden="FALSE" CanToggleHidden="TRUE" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />-->
   <!--<Field List="{03f5fa45-539d-4020-9d41-cf8d3289b606}" ShowField="Title" Required="TRUE" Type="Lookup" Description="Country" DisplayName="Country" ID="{46B540C1-2A32-4B0A-A433-58D66CA00A55}" Name="Country" WebId="{0B9605A9-756C-45CA-9407-165441813E62}" Group="CAS Smart Factory" StaticName="Country" SourceID="{0b9605a9-756c-45ca-9407-165441813e62}" Hidden="FALSE" CanToggleHidden="TRUE" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />-->
+  <Field
+    DisplayName="BilledQuantity"
+    Name="BilledQuantity"
+    Type="Number"
+    ID="{BB77D0AB-0759-4F6A-A8AC-FF064702A62A}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="BilledQuantity"
+    />
+  <Field
+    DisplayName="BUn"
+    Name="BUn"
+    Type="Text"
+    ID="{3616AB1A-7C13-4247-B5CF-F3043BBA1885}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="BUn"
+    />
+  <Field
+    DisplayName="MaterialType"
+    Name="MaterialType"
+    Type="Text"
+    ID="{D6FBF1B9-C37A-463C-B012-C984BB1516B9}"
+    Group="CAS Smart Factory IPR Customs" StaticName="Material"
+    Description="MaterialType"
+    />
+  <Field
+    DisplayName="Material"
+    Name="Material"
+    Type="Text"
+    ID="{3AE267C0-9560-4259-9224-572DEF900DD2}"
+    Group="CAS Smart Factory IPR Customs" StaticName="Material"
+    Description="Material"
+    />
+  <Field
+    DisplayName="MaterialDescription"
+    Name="MaterialDescription"
+    Type="Text"
+    ID="{CF44612E-FDF4-47AD-B730-43F88EE2D9D0}"
+    Group="CAS Smart Factory IPR"
+    Description="MaterialDescription"
+    />
+  <Field
+    DisplayName="BillQtyInSKU"
+    Name="BillQtyInSKU"
+    Type="Number"
+    ID="{2E58F2C1-968B-47FC-8390-36283EBFE205}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="BillQtyInSKU"
+    />
   <Field DisplayName="External" Name="External" Type="Boolean" ID="{9EAB9F89-5490-4F0F-B33D-25AA398202C0}" Group="CAS Smart Factory" StaticName="External" SourceID="{0b9605a9-756c-45ca-9407-165441813e62}" Description="External" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field DisplayName="IPR Material" Name="IPR Material" Type="Boolean" ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}" Group="CAS Smart Factory" StaticName="IPR_x0020_Material" SourceID="{0b9605a9-756c-45ca-9407-165441813e62}" Description="IPR Material" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-
+  <Field DisplayName="IPR Material" Name="IPRMaterial" Type="Boolean" ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}" Group="CAS Smart Factory" StaticName="IPR_x0020_Material" SourceID="{0b9605a9-756c-45ca-9407-165441813e62}" Description="IPR Material" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Batch" Name="Batch" Type="Text" ID="{500870DA-A1F2-44FD-B34F-B1DF21DCD317}" Group="CAS Smart Factory IPR" StaticName="Batch" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Batch" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="BatchStatus" Name="BatchStatus" Type="Text" ID="{CA980625-03DA-4C63-B23A-B60F472CA2B3}" Group="CAS Smart Factory IPR" StaticName="BatchStatus" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="BillDoc" Name="BillDoc" Type="Text" ID="{C169E96E-F73B-4A1F-9B0D-BB5FD8782119}" Group="CAS Smart Factory IPR" StaticName="BillDoc" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
@@ -38,8 +85,6 @@
   </Field>
   <Field DisplayName="FormatID" Name="FormatID" Type="Text" ID="{7E4F526E-E011-414E-8FDB-6A6CB4738E37}" Group="CAS Smart Factory IPR" StaticName="FormatID" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="InQualityInsp" Name="InQualityInsp" Type="Number" ID="{5D27EABE-C74B-4233-9A07-D7389C831E3A}" Group="CAS Smart Factory IPR" StaticName="InQualityInsp" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field DisplayName="Material" Name="Material" Type="Text" ID="{3AE267C0-9560-4259-9224-572DEF900DD2}" Group="CAS Smart Factory IPR" StaticName="Material" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field DisplayName="MaterialDescription" Name="MaterialDescription" Type="Text" ID="{CF44612E-FDF4-47AD-B730-43F88EE2D9D0}" Group="CAS Smart Factory IPR" StaticName="MaterialDescription" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Quality" Name="Quality" Type="Text" ID="{D29FAB3C-9144-4655-9C82-DF35995C78F8}" Group="CAS Smart Factory IPR" StaticName="Quality" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Quantity" Name="Quantity" Type="Number" ID="{85512A2C-C60C-400E-AA53-94ED8FBEF321}" Group="CAS Smart Factory IPR" StaticName="Quantity" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="RestrictedUse" Name="RestrictedUse" Type="Number" ID="{76C04784-3D54-46DB-BB7F-686EB7EF8254}" Group="CAS Smart Factory IPR" StaticName="RestrictedUse" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
@@ -80,7 +125,6 @@
   <Field DisplayName="Procedure" Name="Procedure" Type="Text" ID="{FF92B9DC-F23F-455D-9783-D54AF95E3C8F}" Group="CAS Smart Factory IPR Customs" StaticName="Procedure" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Procedura celna" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Group="CAS Smart Factory IPR Customs" StaticName="SKU" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="sku" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Total amount invoiced" Name="Total amount invoiced" Type="Number" ID="{EF4E42B5-F9DA-415A-8E2D-335C0F31CD07}" Group="CAS Smart Factory IPR Customs" StaticName="Total_x0020_amount_x0020_invoiced" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Wartość" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field DisplayName="Type" Name="Type" Type="Number" ID="{2A582F5B-99C0-4982-BF9B-ED88ED65F46D}" Group="CAS Smart Factory IPR Customs" StaticName="Type" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="Units" Name="Units" Type="Text" ID="{DD3EEFD0-C2B4-411D-B0CE-E72B2484DD5A}" Group="CAS Smart Factory IPR Customs" StaticName="Units" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="j.m." Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   <Field DisplayName="VAT" Name="VAT" Type="Number" ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Group="CAS Smart Factory IPR Customs" StaticName="VAT" SourceID="{ab8f53ec-f5bd-49f2-8632-594df92d771d}" Description="Vat" Overwrite="TRUE" xmlns="http://schemas.microsoft.com/sharepoint/" />
   

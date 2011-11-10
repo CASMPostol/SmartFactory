@@ -4,11 +4,19 @@
                Name="InvoiceContent"
                Group="CAS Smart Factory IPR Customs"
                Description="InvoiceContent"
-               Inherits="True"
-               Version="100000"
-               >
+               Inherits="TRUE"
+               Overwrite="TRUE"
+               Version="100000">
     <Folder TargetName="_cts/InvoiceContent" />
     <FieldRefs>
+      <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" />
+      <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="Item No" />
+      <FieldRef ID="{D6FBF1B9-C37A-463C-B012-C984BB1516B9}" Name="MaterialType" />
+      <FieldRef ID="{3AE267C0-9560-4259-9224-572DEF900DD2}" Name="Material" />
+      <FieldRef ID="{CF44612E-FDF4-47AD-B730-43F88EE2D9D0}" Name="MaterialDescription" />
+      <FieldRef ID="{500870DA-A1F2-44FD-B34F-B1DF21DCD317}" Name="Batch" />
+      <FieldRef ID="{2E58F2C1-968B-47FC-8390-36283EBFE205}" Name="BillQtyInSKU" />
+      <FieldRef ID="{3616AB1A-7C13-4247-B5CF-F3043BBA1885}" Name="BUn" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

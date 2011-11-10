@@ -4,12 +4,14 @@
                Name="SADDuties"
                Group="CAS Smart Factory IPR Customs"
                Description="SADDuties"
-               Inherits="True"
-               Version="100000"
-                 >
+               Inherits="TRUE"
+               Overwrite="TRUE"
+               Version="100000">
     <Folder TargetName="_cts/SADDuties" />
     <FieldRefs>
-      <FieldRef Name="SADDocumentIndex" ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" />
+      <FieldRef ID="{2a582f5b-99c0-4982-bf9b-ed88ed65f46d}" Name="Type" />
+      <FieldRef ID="{1A8DEAD6-163D-45BB-B278-E946F49C071B}" Name="Amount" />
+      <FieldRef ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" Name="SADDocumentIndex" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
