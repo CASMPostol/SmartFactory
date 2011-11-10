@@ -46,17 +46,21 @@ namespace CAS.SmartFactory.xml.IPR {
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/jti/ipr/Invoice.xsd")]
     public partial class InvoiceItem {
         
-        private string bill_docField;
+        private decimal bill_docField;
         
-        private string itemField;
+        private System.Nullable<decimal> itemField;
         
-        private string hgLvItField;
+        private bool itemFieldSpecified;
         
-        private string billed_quantityField;
+        private System.Nullable<decimal> hgLvItField;
+        
+        private bool hgLvItFieldSpecified;
+        
+        private decimal billed_quantityField;
         
         private string suField;
         
-        private string bill_qty_in_SKUField;
+        private System.Nullable<decimal> bill_qty_in_SKUField;
         
         private string bUnField;
         
@@ -91,8 +95,7 @@ namespace CAS.SmartFactory.xml.IPR {
         private string ship_toField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
-        public string Bill_doc {
+        public decimal Bill_doc {
             get {
                 return this.bill_docField;
             }
@@ -102,8 +105,8 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
-        public string Item {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> Item {
             get {
                 return this.itemField;
             }
@@ -113,8 +116,19 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
-        public string HgLvIt {
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool ItemSpecified {
+            get {
+                return this.itemFieldSpecified;
+            }
+            set {
+                this.itemFieldSpecified = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> HgLvIt {
             get {
                 return this.hgLvItField;
             }
@@ -124,8 +138,18 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
-        public string Billed_quantity {
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool HgLvItSpecified {
+            get {
+                return this.hgLvItFieldSpecified;
+            }
+            set {
+                this.hgLvItFieldSpecified = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public decimal Billed_quantity {
             get {
                 return this.billed_quantityField;
             }
@@ -145,8 +169,8 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
-        public string Bill_qty_in_SKU {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> Bill_qty_in_SKU {
             get {
                 return this.bill_qty_in_SKUField;
             }
@@ -167,7 +191,7 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Ref_doc {
             get {
                 return this.ref_docField;
@@ -178,7 +202,7 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string RefItm {
             get {
                 return this.refItmField;
@@ -200,7 +224,7 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Sales_doc {
             get {
                 return this.sales_docField;
@@ -211,7 +235,7 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Item2 {
             get {
                 return this.item2Field;
@@ -233,7 +257,6 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
         public string Material {
             get {
                 return this.materialField;
@@ -254,7 +277,6 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
         public string Batch {
             get {
                 return this.batchField;
@@ -309,7 +331,7 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string SLoc {
             get {
                 return this.sLocField;
@@ -320,7 +342,7 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Ship_to {
             get {
                 return this.ship_toField;

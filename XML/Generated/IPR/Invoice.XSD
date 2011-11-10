@@ -1,40 +1,39 @@
 ﻿<?xml version='1.0' encoding="utf-8"?>
-<!-- XmlMap.DataBinding.SourceUrl:  -->
-<xsd:schema xmlns="http://cas.eu/schemas/jti/ipr/Invoice.xsd"
-			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+<xs:schema xmlns="http://cas.eu/schemas/jti/ipr/Invoice.xsd"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
 			targetNamespace="http://cas.eu/schemas/jti/ipr/Invoice.xsd"
 			elementFormDefault="qualified">
-	<xsd:element nillable="true" name="Invoice">
-		<xsd:complexType>
-			<xsd:sequence minOccurs="0">
-				<xsd:element minOccurs="1" maxOccurs="unbounded" nillable="false" name="Item" >
-					<xsd:complexType>
-						<xsd:sequence minOccurs="0">
-							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Bill_doc" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Item" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="HgLvIt" />
-							<xsd:element minOccurs="1" nillable="false" type="xsd:integer" name="Billed_quantity" />
-							<xsd:element minOccurs="1" nillable="false" type="xsd:string" name="SU" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Bill_qty_in_SKU" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="BUn" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Ref_doc" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="RefItm" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="PrCat" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Sales_doc" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Item2" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Sales_doc__has_resulted_from_r" />
-							<xsd:element minOccurs="1" nillable="false" type="xsd:integer" name="Material" />
-							<xsd:element minOccurs="1" nillable="false" type="xsd:string" name="Description" />
-							<xsd:element minOccurs="1" nillable="false" type="xsd:integer" name="Batch" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ItCa" />
-							<xsd:element minOccurs="1" nillable="false" type="xsd:date" name="Created_on" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:time" name="Time" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="SLoc" />
-							<xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Ship_to" />
-						</xsd:sequence>
-					</xsd:complexType>
-				</xsd:element>
-			</xsd:sequence>
-		</xsd:complexType>
-	</xsd:element>
-</xsd:schema>
+  <xs:element name="Invoice" nillable="true">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="Item">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="1" maxOccurs="1" name="Bill_doc" type="xs:decimal" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Item" nillable="true" type="xs:decimal" />
+              <xs:element minOccurs="0" maxOccurs="1" name="HgLvIt" nillable="true" type="xs:decimal" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Billed_quantity" type="xs:decimal" />
+              <xs:element minOccurs="0" maxOccurs="1" name="SU" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Bill_qty_in_SKU" nillable="true" type="xs:decimal" />
+              <xs:element minOccurs="1" maxOccurs="1" name="BUn" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Ref_doc" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="RefItm" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="PrCat" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Sales_doc" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Item2" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Sales_doc__has_resulted_from_r" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Material" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="ItCa" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Created_on" type="xs:date" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Time" nillable="true" type="xs:time" />
+              <xs:element minOccurs="1" maxOccurs="1" name="SLoc" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Ship_to" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

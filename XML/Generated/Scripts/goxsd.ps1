@@ -20,6 +20,7 @@ xsd.exe IE529_v1-0.xsd xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.ECS.IE529
 Write-host IPR Processing
 set-location ..\IPR
 xsd.exe Invoice.xsd /N:CAS.SmartFactory.xml.IPR /c  |write-host
+xsd.exe stock.xsd /N:CAS.SmartFactory.xml.IPR /c  |write-host
 
 set-location $cpath
 Write-host Done, press any key to continue .....

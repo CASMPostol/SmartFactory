@@ -65,6 +65,9 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="bin\Debug\schema0.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="cas.snk" />
     <None Include="Generated\CELINA\CLNBw2r0.xsd">
       <SubType>Designer</SubType>
@@ -275,19 +278,15 @@
     <None Include="Generated\ECS\xmldsig-core-schema.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Generated\IPR\Invoice.xltx" />
     <None Include="Generated\IPR\Invoice.XSD">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Generated\IPR\invoice2.XSD">
       <SubType>Designer</SubType>
     </None>
     <None Include="Generated\IPR\stock.XSD">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Generated\Scripts\CreateInvoiceSchema.ps1" />
     <None Include="Generated\Scripts\goxsd.ps1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\Invoice.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Generated\CELINA\CLNEw2r0_xmldsig-core-schema.cs" />
@@ -299,6 +298,9 @@
     <Compile Include="Generated\ECS\IE529_v1-0_xmldsig-core-schema.cs" />
     <Compile Include="Generated\IPR\Invoice.cs">
       <DependentUpon>Invoice.XSD</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\IPR\stock.cs">
+      <DependentUpon>stock.XSD</DependentUpon>
     </Compile>
     <Compile Include="GoodDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
