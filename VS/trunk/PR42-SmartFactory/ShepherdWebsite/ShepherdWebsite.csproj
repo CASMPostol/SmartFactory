@@ -111,9 +111,15 @@
     <Content Include="Content types\Commodity\Elements.xml" />
     <Content Include="Content types\Company\Elements.xml" />
     <Content Include="Content types\Country\Elements.xml" />
-    <Content Include="Content types\Destination\Elements.xml" />
-    <Content Include="Content types\ExchangeRate\Elements.xml" />
-    <Content Include="Content types\ExternalWorker\Elements.xml" />
+    <Content Include="Content types\Destination\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content types\ExchangeRate\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content types\ExternalWorker\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Market\Elements.xml" />
     <Content Include="Content types\PalletTypes\Elements.xml" />
     <Content Include="Content types\ShippingPoint\Elements.xml" />
@@ -123,7 +129,9 @@
     <Content Include="Features\Feature1\Feature1.Template.xml">
       <DependentUpon>Feature1.feature</DependentUpon>
     </Content>
-    <Content Include="Fields\Elements.xml" />
+    <Content Include="Fields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
