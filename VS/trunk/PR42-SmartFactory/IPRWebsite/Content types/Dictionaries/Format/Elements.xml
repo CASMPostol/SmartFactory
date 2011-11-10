@@ -5,11 +5,9 @@
                Group="CAS Smart Factory IPR Dictionaries"
                Description="Format"
                Overwrite="TRUE"
-               xmlns="http://schemas.microsoft.com/sharepoint/">
+               Inherits="TRUE">
     <Folder TargetName="_cts/Format" />
     <FieldRefs>
-      <FieldRef ID="{E730DA94-F1D0-4211-A23C-05864537AD0F}" Name="ContentType" />
-      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
       <FieldRef ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}" Name="CigaretteLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
       <FieldRef ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}" Name="FilterSegmentLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
       <FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="StartDate" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />

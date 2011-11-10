@@ -4,7 +4,7 @@
                Name="SADQuantity"
                Group="CAS Smart Factory IPR Customs"
                Description="SADQuantity"
-               Inherits="True"
+               Inherits="TRUE"
                Overwrite="TRUE"
                Version="100000">
     <Folder TargetName="_cts/SADQuantity" />
