@@ -6,11 +6,11 @@ using System.Security;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IPRWebsite.ref")]
+[assembly: AssemblyTitle("WspImportProject1")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("IPRWebsite.ref")]
+[assembly: AssemblyProduct("WspImportProject1")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Security;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("90bb8c47-95f7-4f1f-ac59-b51d57239142")]
+[assembly: Guid("3427b306-0e6a-4740-b96e-12b684a54d0f")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -35,4 +35,3 @@ using System.Security;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: AllowPartiallyTrustedCallers()]

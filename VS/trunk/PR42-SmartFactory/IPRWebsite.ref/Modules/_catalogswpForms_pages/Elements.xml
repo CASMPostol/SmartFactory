@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
 	<Module Name="_catalogswpForms_pages" Url="_catalogs/wp/Forms" SetupPath="pages" RootWebOnly="TRUE" Path="Files\_catalogs\wp\Forms" xmlns="http://schemas.microsoft.com/sharepoint/">
 		<File Url="DispForm.aspx" Type="Ghostable" Path="form.aspx">
-			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_5f232a80_a48b_4195_9754_a1c367921d22"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
+			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_4f9f20f4_0032_4d31_8e29_9eaae470c1c9"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
   <Title />
   <FrameType>Default</FrameType>
   <Description />
@@ -40,7 +40,7 @@
 </WebPart>]]></AllUsersWebPart>
 		</File>
 		<File Url="EditForm.aspx" Type="Ghostable" Path="form.aspx">
-			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_e6d43174_035e_473e_9a49_8d97f04aa419"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
+			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_a6138b83_efbe_4cb8_aa56_50b4dc80ed7a"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
   <Title />
   <FrameType>Default</FrameType>
   <Description />
