@@ -122,14 +122,16 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <FieldRef Name="DocIcon">
-          </FieldRef>
-          <FieldRef Name="LinkFilename">
-          </FieldRef>
-          <FieldRef Name="Modified">
-          </FieldRef>
-          <FieldRef Name="Editor">
-          </FieldRef>
+          <FieldRef Name="DocIcon"/>
+          <FieldRef Name="LinkFilename"/>
+          <FieldRef Name="GrossMass"/>
+          <FieldRef Name="ReferenceNumber" />
+          <FieldRef Name="CustomsDebtDate" />
+          <FieldRef Name="DocumentNumber" />
+          <FieldRef Name="Currency" />
+          <FieldRef Name="ExchangeRate"/>
+          <FieldRef Name="Modified"/>
+          <FieldRef Name="Editor"/>
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />

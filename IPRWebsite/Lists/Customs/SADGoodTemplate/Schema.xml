@@ -85,10 +85,23 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <FieldRef Name="Attachments">
-          </FieldRef>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
+          <FieldRef Name="Attachments"/>
+          <FieldRef Name="LinkTitle"/>
+          <FieldRef ID="{46522ede-4acd-4497-9288-b638748930ab}" Name="GoodsName" />
+          <FieldRef ID="{2a582f5b-99c0-4982-bf9b-ed88ed65f46d}" Name="Type" />
+          <FieldRef ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Name="SKU" />
+          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+          <FieldRef ID="{db454782-449a-4ec5-b0cd-55a7d7af3428}" Name="NetMass" />
+          <FieldRef ID="{4e14f686-584a-4ee8-9784-4b7aa4dcd1e7}" Name="PCNTariffCode" />
+          <FieldRef ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" Name="GrossMass" />
+          <FieldRef ID="{ff92b9dc-f23f-455d-9783-d54af95e3c8f}" Name="Procedure" />
+          <FieldRef ID="{218a57ca-6aad-4c08-8b14-7bb92323cb68}" Name="Package" />
+          <FieldRef ID="{ef4e42b5-f9da-415a-8e2d-335c0f31cd07}" Name="TotalAmountInvoiced" />
+          <FieldRef ID="{a71ae110-34d7-4468-a64e-00bd0b4a76d5}" Name="Duty" />
+          <FieldRef ID="{1c4fc96e-0e0c-4dbf-96fb-fec8e079d18b}" Name="VAT" />
+          <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+          <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />
+          <FieldRef ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" Name="SADDocumentIndex" />
         </ViewFields>
         <Query>
           <OrderBy>
