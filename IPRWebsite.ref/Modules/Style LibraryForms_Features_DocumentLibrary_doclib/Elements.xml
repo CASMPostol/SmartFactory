@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
 	<Module Name="Style LibraryForms_Features\DocumentLibrary\doclib" Url="Style Library/Forms" SetupPath="Features\DocumentLibrary\doclib" RootWebOnly="TRUE" Path="Files\1StyleLibrary\Forms" xmlns="http://schemas.microsoft.com/sharepoint/">
 		<File Url="Upload.aspx" Type="Ghostable" Path="Upload.aspx">
-			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_0282f4d6_e0c4_4f1f_856b_4f5977de1230"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
+			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_68f976a9_7ec2_4925_86e1_625b31c36e15"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
   <Title />
   <FrameType>Default</FrameType>
   <Description />
