@@ -175,6 +175,12 @@
     <None Include="Lists\Customs\SADGoodTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1091be26-f90f-4c2e-8905-109f721bcff1}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\SADPackageTemplate\SADPackageList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7f0035de-4829-4587-ae8f-8012a2155417}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\SADPackageTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e66da2d9-51e5-4ed3-a403-8d01638ce2a8}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{ba9dd6bf-0f86-469d-9821-2290a484169f}</PackageId>
     </None>
@@ -266,6 +272,9 @@
     <Content Include="Lists\Customs\SADGoodTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Customs\SADPackageTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\SADPackageTemplate\SADPackageList\Elements.xml" />
+    <Content Include="Lists\Customs\SADPackageTemplate\Schema.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
