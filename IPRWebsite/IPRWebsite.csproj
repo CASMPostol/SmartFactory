@@ -163,6 +163,12 @@
     <None Include="Lists\Customs\SADDocumentTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b48be32e-2042-42f7-befd-1a4899caa438}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6d8c3a53-d0c2-4e20-bafd-bd5a33aa883b}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\SADDutiesTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{16ae83ef-af3a-41a9-ad52-4bd6ad3f28e3}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Customs\SADGoodTemplate\SADGood\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{34e2da2b-7afd-48f2-9c6e-b5b74deef3f1}</SharePointProjectItemId>
     </None>
@@ -252,6 +258,9 @@
     <Content Include="Lists\Customs\SADDocumentTemplate\Repair.aspx" />
     <Content Include="Lists\Customs\SADDocumentTemplate\Schema.xml" />
     <Content Include="Lists\Customs\SADDocumentTemplate\Upload.aspx" />
+    <Content Include="Lists\Customs\SADDutiesTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\Elements.xml" />
+    <Content Include="Lists\Customs\SADDutiesTemplate\Schema.xml" />
     <Content Include="Lists\Customs\SADGoodTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADGoodTemplate\SADGood\Elements.xml" />
     <Content Include="Lists\Customs\SADGoodTemplate\Schema.xml">
