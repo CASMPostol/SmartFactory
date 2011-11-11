@@ -8,7 +8,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="SADGood"
-        Description="TBD"
+        DisplayName="SAD Good"
+        Description="The SAD Good List Definition"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

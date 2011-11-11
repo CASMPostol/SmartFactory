@@ -8,7 +8,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="SADDutiesTemplate"
+        DisplayName="SAD Duties"
         Description="The SADDuties List Definition"
         Image="/_layouts/images/itgen.png"/>
 </Elements>
