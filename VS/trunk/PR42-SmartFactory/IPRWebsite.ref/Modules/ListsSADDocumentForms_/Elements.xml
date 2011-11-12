@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
 	<Module Name="ListsSADDocumentForms_" HyperlinkBaseUrl="http://casmp/sites/IPR" Url="Lists/SADDocument/Forms" RootWebOnly="FALSE" Path="Files\Lists\SADDocument\Forms" xmlns="http://schemas.microsoft.com/sharepoint/">
 		<File Url="Upload.aspx" Path="Upload.aspx">
-			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_0d0f243b_2753_49be_b716_bce1163dce8d"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
+			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_ef6c85fa_6ce9_4ab0_a5b6_ba58933c1d6f"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
   <Title />
   <FrameType>Default</FrameType>
   <Description />
