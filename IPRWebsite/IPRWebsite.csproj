@@ -181,6 +181,12 @@
     <None Include="Lists\Customs\SADPackageTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e66da2d9-51e5-4ed3-a403-8d01638ce2a8}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\SADQuantityTemplate\SADQuantityList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{38105a2c-59f9-4d97-bf50-8a2f48164159}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\SADQuantityTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0ca8892f-91f2-48b3-966d-e2d0099d5038}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{ba9dd6bf-0f86-469d-9821-2290a484169f}</PackageId>
     </None>
@@ -275,6 +281,9 @@
     <Content Include="Lists\Customs\SADPackageTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADPackageTemplate\SADPackageList\Elements.xml" />
     <Content Include="Lists\Customs\SADPackageTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\SADQuantityTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\SADQuantityTemplate\SADQuantityList\Elements.xml" />
+    <Content Include="Lists\Customs\SADQuantityTemplate\Schema.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
