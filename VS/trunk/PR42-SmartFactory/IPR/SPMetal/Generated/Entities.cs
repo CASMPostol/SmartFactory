@@ -34,22 +34,62 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// SAD xml files collection
+		/// SADDocument - collection of all customs declaration.
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="SAD")]
-		public Microsoft.SharePoint.Linq.EntityList<Dokument> SAD {
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="SAD Document")]
+		public Microsoft.SharePoint.Linq.EntityList<SADDocumentType> SADDocument {
 			get {
-				return this.GetList<Dokument>("SAD");
+				return this.GetList<SADDocumentType>("SAD Document");
 			}
 		}
 		
 		/// <summary>
-		/// My List Instance
+		/// SAD Duties List
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="SADCommodity")]
-		public Microsoft.SharePoint.Linq.EntityList<SADCommodity> SADCommodity {
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="SAD Duties")]
+		public Microsoft.SharePoint.Linq.EntityList<SADDuties> SADDuties {
 			get {
-				return this.GetList<SADCommodity>("SADCommodity");
+				return this.GetList<SADDuties>("SAD Duties");
+			}
+		}
+		
+		/// <summary>
+		/// The SAD Good List
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="SAD Good")]
+		public Microsoft.SharePoint.Linq.EntityList<SADGoodSADGood> SADGood {
+			get {
+				return this.GetList<SADGoodSADGood>("SAD Good");
+			}
+		}
+		
+		/// <summary>
+		/// The SAD Package List
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="SAD Package")]
+		public Microsoft.SharePoint.Linq.EntityList<SADPackage> SADPackage {
+			get {
+				return this.GetList<SADPackage>("SAD Package");
+			}
+		}
+		
+		/// <summary>
+		/// The SAD Quantity List
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="SAD Quantity")]
+		public Microsoft.SharePoint.Linq.EntityList<SADQuantity> SADQuantity {
+			get {
+				return this.GetList<SADQuantity>("SAD Quantity");
+			}
+		}
+		
+		/// <summary>
+		/// The SAD Required Documents List
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="SAD Required Documents")]
+		public Microsoft.SharePoint.Linq.EntityList<SADRequiredDocuments> SADRequiredDocuments {
+			get {
+				return this.GetList<SADRequiredDocuments>("SAD Required Documents");
 			}
 		}
 		
@@ -70,7 +110,11 @@ namespace CAS.SmartFactory.IPR.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Element", Id="0x01")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Anons))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Dokument))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADCommodity))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDuties))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADGood))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADPackage))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADQuantity))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADRequiredDocuments))]
 	public partial class Element : Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging {
 		
 		private System.Nullable<int> _identyfikator;
@@ -247,6 +291,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// Utwórz nowy dokument.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Dokument", Id="0x0101")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentType))]
 	public partial class Dokument : Element {
 		
 		private string _nazwa;
@@ -311,46 +356,14 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// <summary>
 	/// Utwórz nowy element listy.
 	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SAD.Commodity", Id="0x01003016924817E4AF4A9AD790284C0BAE65")]
-	public partial class SADCommodity : Element {
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDuties", Id="0x0100307F2A8F2886D24FBF3393F84E0E616B")]
+	public partial class SADDuties : Element {
 		
-		private string _goodsName;
+		private string _type;
 		
-		private System.Nullable<double> _type;
+		private System.Nullable<double> _amount;
 		
-		private string _sKU;
-		
-		private string _batch;
-		
-		private System.Nullable<double> _netMass;
-		
-		private string _pCNTariffCode;
-		
-		private System.Nullable<double> _grossMass;
-		
-		private string _procedure;
-		
-		private string _package;
-		
-		private string _totalAmountInvoiced;
-		
-		private System.Nullable<double> _duty;
-		
-		private System.Nullable<double> _vAT;
-		
-		private string _units;
-		
-		private System.Nullable<double> _cartonsInKg;
-		
-		private System.Nullable<double> _unitPrice;
-		
-		private System.Nullable<double> _dutyUnit;
-		
-		private System.Nullable<double> _vATUnit;
-		
-		private System.Nullable<double> _itemNo;
-		
-		private System.Nullable<int> _parentListIdentyfikator;
+		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentIndex;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -358,12 +371,643 @@ namespace CAS.SmartFactory.IPR.Entities {
 		partial void OnCreated();
 		#endregion
 		
-		public SADCommodity() {
+		public SADDuties() {
+			this._sADDocumentIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
+			this._sADDocumentIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIndexSync);
+			this._sADDocumentIndex.OnChanged += new System.EventHandler(this.OnSADDocumentIndexChanged);
+			this._sADDocumentIndex.OnChanging += new System.EventHandler(this.OnSADDocumentIndexChanging);
 			this.OnCreated();
 		}
 		
 		/// <summary>
-		/// Nazwa
+		/// Type
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Type", Storage="_type", FieldType="Text")]
+		public string Type {
+			get {
+				return this._type;
+			}
+			set {
+				if ((value != this._type)) {
+					this.OnPropertyChanging("Type", this._type);
+					this._type = value;
+					this.OnPropertyChanged("Type");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Amount
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Amount", Storage="_amount", FieldType="Number")]
+		public System.Nullable<double> Amount {
+			get {
+				return this._amount;
+			}
+			set {
+				if ((value != this._amount)) {
+					this.OnPropertyChanging("Amount", this._amount);
+					this._amount = value;
+					this.OnPropertyChanged("Amount");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADDocumentIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
+		public SADDocumentType SADDocumentIndex {
+			get {
+				return this._sADDocumentIndex.GetEntity();
+			}
+			set {
+				this._sADDocumentIndex.SetEntity(value);
+			}
+		}
+		
+		private void OnSADDocumentIndexChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADDocumentIndex", this._sADDocumentIndex.Clone());
+		}
+		
+		private void OnSADDocumentIndexChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADDocumentIndex");
+		}
+		
+		private void OnSADDocumentIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADGood", Id="0x01003016924817E4AF4A9AD790284C0BAE65")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADGoodSADGood))]
+	public partial class SADGood : Element {
+		
+		private System.Nullable<double> _itemNo;
+		
+		private string _goodsDescription;
+		
+		private string _pCNTariffCode;
+		
+		private System.Nullable<double> _grossMass;
+		
+		private string _procedure;
+		
+		private System.Nullable<double> _totalAmountInvoiced;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentIndex;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SADGood() {
+			this._sADDocumentIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
+			this._sADDocumentIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIndexSync);
+			this._sADDocumentIndex.OnChanged += new System.EventHandler(this.OnSADDocumentIndexChanged);
+			this._sADDocumentIndex.OnChanging += new System.EventHandler(this.OnSADDocumentIndexChanging);
+			this.OnCreated();
+		}
+		
+		/// <summary>
+		/// PozID
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ItemNo", Storage="_itemNo", FieldType="Number")]
+		public System.Nullable<double> ItemNo {
+			get {
+				return this._itemNo;
+			}
+			set {
+				if ((value != this._itemNo)) {
+					this.OnPropertyChanging("ItemNo", this._itemNo);
+					this._itemNo = value;
+					this.OnPropertyChanged("ItemNo");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// TBD
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GoodsDescription", Storage="_goodsDescription", FieldType="Text")]
+		public string GoodsDescription {
+			get {
+				return this._goodsDescription;
+			}
+			set {
+				if ((value != this._goodsDescription)) {
+					this.OnPropertyChanging("GoodsDescription", this._goodsDescription);
+					this._goodsDescription = value;
+					this.OnPropertyChanged("GoodsDescription");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Kod taryfy PCN
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PCNTariffCode", Storage="_pCNTariffCode", FieldType="Text")]
+		public string PCNTariffCode {
+			get {
+				return this._pCNTariffCode;
+			}
+			set {
+				if ((value != this._pCNTariffCode)) {
+					this.OnPropertyChanging("PCNTariffCode", this._pCNTariffCode);
+					this._pCNTariffCode = value;
+					this.OnPropertyChanged("PCNTariffCode");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GrossMass", Storage="_grossMass", FieldType="Number")]
+		public System.Nullable<double> GrossMass {
+			get {
+				return this._grossMass;
+			}
+			set {
+				if ((value != this._grossMass)) {
+					this.OnPropertyChanging("GrossMass", this._grossMass);
+					this._grossMass = value;
+					this.OnPropertyChanged("GrossMass");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Procedura celna
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Procedure", Storage="_procedure", FieldType="Text")]
+		public string Procedure {
+			get {
+				return this._procedure;
+			}
+			set {
+				if ((value != this._procedure)) {
+					this.OnPropertyChanging("Procedure", this._procedure);
+					this._procedure = value;
+					this.OnPropertyChanged("Procedure");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Wartość
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TotalAmountInvoiced", Storage="_totalAmountInvoiced", FieldType="Number")]
+		public System.Nullable<double> TotalAmountInvoiced {
+			get {
+				return this._totalAmountInvoiced;
+			}
+			set {
+				if ((value != this._totalAmountInvoiced)) {
+					this.OnPropertyChanging("TotalAmountInvoiced", this._totalAmountInvoiced);
+					this._totalAmountInvoiced = value;
+					this.OnPropertyChanged("TotalAmountInvoiced");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADDocumentIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
+		public SADDocumentType SADDocumentIndex {
+			get {
+				return this._sADDocumentIndex.GetEntity();
+			}
+			set {
+				this._sADDocumentIndex.SetEntity(value);
+			}
+		}
+		
+		private void OnSADDocumentIndexChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADDocumentIndex", this._sADDocumentIndex.Clone());
+		}
+		
+		private void OnSADDocumentIndexChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADDocumentIndex");
+		}
+		
+		private void OnSADDocumentIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADPackage", Id="0x01007F42F9669FE35A41801B017E1D69C7D9")]
+	public partial class SADPackage : Element {
+		
+		private System.Nullable<double> _itemNo;
+		
+		private string _package;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentIndex;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SADPackage() {
+			this._sADDocumentIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
+			this._sADDocumentIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIndexSync);
+			this._sADDocumentIndex.OnChanged += new System.EventHandler(this.OnSADDocumentIndexChanged);
+			this._sADDocumentIndex.OnChanging += new System.EventHandler(this.OnSADDocumentIndexChanging);
+			this.OnCreated();
+		}
+		
+		/// <summary>
+		/// PozID
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ItemNo", Storage="_itemNo", FieldType="Number")]
+		public System.Nullable<double> ItemNo {
+			get {
+				return this._itemNo;
+			}
+			set {
+				if ((value != this._itemNo)) {
+					this.OnPropertyChanging("ItemNo", this._itemNo);
+					this._itemNo = value;
+					this.OnPropertyChanged("ItemNo");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Rodzaj opakowania
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Package", Storage="_package", FieldType="Text")]
+		public string Package {
+			get {
+				return this._package;
+			}
+			set {
+				if ((value != this._package)) {
+					this.OnPropertyChanging("Package", this._package);
+					this._package = value;
+					this.OnPropertyChanged("Package");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADDocumentIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
+		public SADDocumentType SADDocumentIndex {
+			get {
+				return this._sADDocumentIndex.GetEntity();
+			}
+			set {
+				this._sADDocumentIndex.SetEntity(value);
+			}
+		}
+		
+		private void OnSADDocumentIndexChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADDocumentIndex", this._sADDocumentIndex.Clone());
+		}
+		
+		private void OnSADDocumentIndexChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADDocumentIndex");
+		}
+		
+		private void OnSADDocumentIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADQuantity", Id="0x010016BC5B99EA5169458266BB52B8784B3F")]
+	public partial class SADQuantity : Element {
+		
+		private System.Nullable<double> _itemNo;
+		
+		private System.Nullable<double> _netMass;
+		
+		private string _units;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentIndex;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SADQuantity() {
+			this._sADDocumentIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
+			this._sADDocumentIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIndexSync);
+			this._sADDocumentIndex.OnChanged += new System.EventHandler(this.OnSADDocumentIndexChanged);
+			this._sADDocumentIndex.OnChanging += new System.EventHandler(this.OnSADDocumentIndexChanging);
+			this.OnCreated();
+		}
+		
+		/// <summary>
+		/// PozID
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ItemNo", Storage="_itemNo", FieldType="Number")]
+		public System.Nullable<double> ItemNo {
+			get {
+				return this._itemNo;
+			}
+			set {
+				if ((value != this._itemNo)) {
+					this.OnPropertyChanging("ItemNo", this._itemNo);
+					this._itemNo = value;
+					this.OnPropertyChanged("ItemNo");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Net mass
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NetMass", Storage="_netMass", FieldType="Number")]
+		public System.Nullable<double> NetMass {
+			get {
+				return this._netMass;
+			}
+			set {
+				if ((value != this._netMass)) {
+					this.OnPropertyChanging("NetMass", this._netMass);
+					this._netMass = value;
+					this.OnPropertyChanged("NetMass");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// j.m.
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Units", Storage="_units", FieldType="Text")]
+		public string Units {
+			get {
+				return this._units;
+			}
+			set {
+				if ((value != this._units)) {
+					this.OnPropertyChanging("Units", this._units);
+					this._units = value;
+					this.OnPropertyChanged("Units");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADDocumentIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
+		public SADDocumentType SADDocumentIndex {
+			get {
+				return this._sADDocumentIndex.GetEntity();
+			}
+			set {
+				this._sADDocumentIndex.SetEntity(value);
+			}
+		}
+		
+		private void OnSADDocumentIndexChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADDocumentIndex", this._sADDocumentIndex.Clone());
+		}
+		
+		private void OnSADDocumentIndexChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADDocumentIndex");
+		}
+		
+		private void OnSADDocumentIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADRequiredDocuments", Id="0x0100CAF95BD14627B343981DE5345DD0BD37")]
+	public partial class SADRequiredDocuments : Element {
+		
+		private string _code;
+		
+		private string _number;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentIndex;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SADRequiredDocuments() {
+			this._sADDocumentIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
+			this._sADDocumentIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIndexSync);
+			this._sADDocumentIndex.OnChanged += new System.EventHandler(this.OnSADDocumentIndexChanged);
+			this._sADDocumentIndex.OnChanging += new System.EventHandler(this.OnSADDocumentIndexChanging);
+			this.OnCreated();
+		}
+		
+		/// <summary>
+		/// Code
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Code", Storage="_code", FieldType="Text")]
+		public string Code {
+			get {
+				return this._code;
+			}
+			set {
+				if ((value != this._code)) {
+					this.OnPropertyChanging("Code", this._code);
+					this._code = value;
+					this.OnPropertyChanged("Code");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Number
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Number", Storage="_number", FieldType="Text")]
+		public string Number {
+			get {
+				return this._number;
+			}
+			set {
+				if ((value != this._number)) {
+					this.OnPropertyChanging("Number", this._number);
+					this._number = value;
+					this.OnPropertyChanged("Number");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADDocumentIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
+		public SADDocumentType SADDocumentIndex {
+			get {
+				return this._sADDocumentIndex.GetEntity();
+			}
+			set {
+				this._sADDocumentIndex.SetEntity(value);
+			}
+		}
+		
+		private void OnSADDocumentIndexChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADDocumentIndex", this._sADDocumentIndex.Clone());
+		}
+		
+		private void OnSADDocumentIndexChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADDocumentIndex");
+		}
+		
+		private void OnSADDocumentIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy dokument.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDocumentType", Id="0x010100844099FC49B54D30A1516EA17A6883FC")]
+	public partial class SADDocumentType : Dokument {
+		
+		private string _referenceNumber;
+		
+		private System.Nullable<System.DateTime> _customsDebtDate;
+		
+		private string _documentNumber;
+		
+		private string _currency;
+		
+		private System.Nullable<double> _exchangeRate;
+		
+		private System.Nullable<double> _grossMass;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SADDocumentType() {
+			this.OnCreated();
+		}
+		
+		/// <summary>
+		/// SAD Document Reference Number - box 7.
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ReferenceNumber", Storage="_referenceNumber", FieldType="Text")]
+		public string ReferenceNumber {
+			get {
+				return this._referenceNumber;
+			}
+			set {
+				if ((value != this._referenceNumber)) {
+					this.OnPropertyChanging("ReferenceNumber", this._referenceNumber);
+					this._referenceNumber = value;
+					this.OnPropertyChanged("ReferenceNumber");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsDebtDate", Storage="_customsDebtDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> CustomsDebtDate {
+			get {
+				return this._customsDebtDate;
+			}
+			set {
+				if ((value != this._customsDebtDate)) {
+					this.OnPropertyChanging("CustomsDebtDate", this._customsDebtDate);
+					this._customsDebtDate = value;
+					this.OnPropertyChanged("CustomsDebtDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DocumentNumber", Storage="_documentNumber", FieldType="Text")]
+		public string DocumentNumber {
+			get {
+				return this._documentNumber;
+			}
+			set {
+				if ((value != this._documentNumber)) {
+					this.OnPropertyChanging("DocumentNumber", this._documentNumber);
+					this._documentNumber = value;
+					this.OnPropertyChanged("DocumentNumber");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Currency", Storage="_currency", FieldType="Text")]
+		public string Currency {
+			get {
+				return this._currency;
+			}
+			set {
+				if ((value != this._currency)) {
+					this.OnPropertyChanging("Currency", this._currency);
+					this._currency = value;
+					this.OnPropertyChanged("Currency");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ExchangeRate", Storage="_exchangeRate", FieldType="Number")]
+		public System.Nullable<double> ExchangeRate {
+			get {
+				return this._exchangeRate;
+			}
+			set {
+				if ((value != this._exchangeRate)) {
+					this.OnPropertyChanging("ExchangeRate", this._exchangeRate);
+					this._exchangeRate = value;
+					this.OnPropertyChanged("ExchangeRate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GrossMass", Storage="_grossMass", FieldType="Number")]
+		public System.Nullable<double> GrossMass {
+			get {
+				return this._grossMass;
+			}
+			set {
+				if ((value != this._grossMass)) {
+					this.OnPropertyChanging("GrossMass", this._grossMass);
+					this._grossMass = value;
+					this.OnPropertyChanged("GrossMass");
+				}
+			}
+		}
+	}
+	
+	/// <summary>
+	/// \SAD\Towar
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADGood", Id="0x01003016924817E4AF4A9AD790284C0BAE65", List="SAD Good")]
+	public partial class SADGoodSADGood : SADGood {
+		
+		private string _goodsName;
+		
+		private string _type;
+		
+		private string _sKU;
+		
+		private string _batch;
+		
+		private System.Nullable<double> _netMass;
+		
+		private string _package;
+		
+		private System.Nullable<double> _duty;
+		
+		private System.Nullable<double> _vAT;
+		
+		private string _units;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SADGoodSADGood() {
+			this.OnCreated();
+		}
+		
+		/// <summary>
+		/// TBD
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GoodsName", Storage="_goodsName", FieldType="Text")]
 		public string GoodsName {
@@ -379,8 +1023,11 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Type", Storage="_type", FieldType="Number")]
-		public System.Nullable<double> Type {
+		/// <summary>
+		/// Type
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Type", Storage="_type", FieldType="Text")]
+		public string Type {
 			get {
 				return this._type;
 			}
@@ -394,7 +1041,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// sku
+		/// SKU
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
 		public string SKU {
@@ -427,7 +1074,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Net_x0020_mass", Storage="_netMass", FieldType="Number")]
+		/// <summary>
+		/// Net mass
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NetMass", Storage="_netMass", FieldType="Number")]
 		public System.Nullable<double> NetMass {
 			get {
 				return this._netMass;
@@ -437,54 +1087,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("NetMass", this._netMass);
 					this._netMass = value;
 					this.OnPropertyChanged("NetMass");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Kod taryfy PCN
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PCN_x0020_tariff_x0020_code", Storage="_pCNTariffCode", FieldType="Text")]
-		public string PCNTariffCode {
-			get {
-				return this._pCNTariffCode;
-			}
-			set {
-				if ((value != this._pCNTariffCode)) {
-					this.OnPropertyChanging("PCNTariffCode", this._pCNTariffCode);
-					this._pCNTariffCode = value;
-					this.OnPropertyChanged("PCNTariffCode");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Gross_x0020_mass", Storage="_grossMass", FieldType="Number")]
-		public System.Nullable<double> GrossMass {
-			get {
-				return this._grossMass;
-			}
-			set {
-				if ((value != this._grossMass)) {
-					this.OnPropertyChanging("GrossMass", this._grossMass);
-					this._grossMass = value;
-					this.OnPropertyChanged("GrossMass");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Procedura celna
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Procedure", Storage="_procedure", FieldType="Text")]
-		public string Procedure {
-			get {
-				return this._procedure;
-			}
-			set {
-				if ((value != this._procedure)) {
-					this.OnPropertyChanging("Procedure", this._procedure);
-					this._procedure = value;
-					this.OnPropertyChanged("Procedure");
 				}
 			}
 		}
@@ -502,23 +1104,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("Package", this._package);
 					this._package = value;
 					this.OnPropertyChanged("Package");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Wartość
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Total_x0020_amount_x0020_invoice", Storage="_totalAmountInvoiced", FieldType="Text")]
-		public string TotalAmountInvoiced {
-			get {
-				return this._totalAmountInvoiced;
-			}
-			set {
-				if ((value != this._totalAmountInvoiced)) {
-					this.OnPropertyChanging("TotalAmountInvoiced", this._totalAmountInvoiced);
-					this._totalAmountInvoiced = value;
-					this.OnPropertyChanged("TotalAmountInvoiced");
 				}
 			}
 		}
@@ -570,108 +1155,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("Units", this._units);
 					this._units = value;
 					this.OnPropertyChanged("Units");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Kartony w kg
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Cartons_x0020_in_x0020_kg", Storage="_cartonsInKg", ReadOnly=true, IsCalculated=true, FieldType="Number")]
-		public System.Nullable<double> CartonsInKg {
-			get {
-				return this._cartonsInKg;
-			}
-			set {
-				if ((value != this._cartonsInKg)) {
-					this.OnPropertyChanging("CartonsInKg", this._cartonsInKg);
-					this._cartonsInKg = value;
-					this.OnPropertyChanged("CartonsInKg");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Cena jednostkowa
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Unit_x0020_price", Storage="_unitPrice", ReadOnly=true, IsCalculated=true, FieldType="Number")]
-		public System.Nullable<double> UnitPrice {
-			get {
-				return this._unitPrice;
-			}
-			set {
-				if ((value != this._unitPrice)) {
-					this.OnPropertyChanging("UnitPrice", this._unitPrice);
-					this._unitPrice = value;
-					this.OnPropertyChanged("UnitPrice");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Cło na j.m.
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Duty_x002e_Unit", Storage="_dutyUnit", ReadOnly=true, IsCalculated=true, FieldType="Number")]
-		public System.Nullable<double> DutyUnit {
-			get {
-				return this._dutyUnit;
-			}
-			set {
-				if ((value != this._dutyUnit)) {
-					this.OnPropertyChanging("DutyUnit", this._dutyUnit);
-					this._dutyUnit = value;
-					this.OnPropertyChanged("DutyUnit");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// VAT na j.m.
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VAT_x002e_Unit", Storage="_vATUnit", ReadOnly=true, IsCalculated=true, FieldType="Number")]
-		public System.Nullable<double> VATUnit {
-			get {
-				return this._vATUnit;
-			}
-			set {
-				if ((value != this._vATUnit)) {
-					this.OnPropertyChanging("VATUnit", this._vATUnit);
-					this._vATUnit = value;
-					this.OnPropertyChanged("VATUnit");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// PozID
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Item_x0020_No", Storage="_itemNo", FieldType="Number")]
-		public System.Nullable<double> ItemNo {
-			get {
-				return this._itemNo;
-			}
-			set {
-				if ((value != this._itemNo)) {
-					this.OnPropertyChanging("ItemNo", this._itemNo);
-					this._itemNo = value;
-					this.OnPropertyChanged("ItemNo");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Foreign key
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ParentList", Storage="_parentListIdentyfikator", Required=true, FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> ParentListIdentyfikator {
-			get {
-				return this._parentListIdentyfikator;
-			}
-			set {
-				if ((value != this._parentListIdentyfikator)) {
-					this.OnPropertyChanging("ParentListIdentyfikator", this._parentListIdentyfikator);
-					this._parentListIdentyfikator = value;
-					this.OnPropertyChanged("ParentListIdentyfikator");
 				}
 			}
 		}
