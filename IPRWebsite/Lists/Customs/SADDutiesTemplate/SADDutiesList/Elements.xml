@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10000"
                 Url="Lists/SADDutiesList"
-                Description="SAD Duties List Instance">
+                Description="SAD Duties List">
   </ListInstance>
 </Elements>

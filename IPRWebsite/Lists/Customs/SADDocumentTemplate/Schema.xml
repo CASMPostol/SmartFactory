@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="SADDocumentTemplate" Direction="$Resources:Direction;" Url="IPRWebsite-SADDocumentTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List 
+  xmlns:ows="Microsoft SharePoint" 
+  Title="SADDocumentTemplate" 
+  Direction="$Resources:Direction;" 
+  Url="IPRWebsite-SADDocumentTemplate" 
+  BaseType="1" 
+  xmlns="http://schemas.microsoft.com/sharepoint/"
+  VersioningEnabled="True" >
   <MetaData>
     <ContentTypes>
       <ContentType ID="0x010100844099fc49b54d30a1516ea17a6883fc" Name="SADDocument" Group="CAS Smart Factory IPR Customs" Description="My Content Type" Inherits="TRUE" Version="0">
