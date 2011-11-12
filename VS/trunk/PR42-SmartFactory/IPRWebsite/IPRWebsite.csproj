@@ -169,9 +169,6 @@
     <None Include="Lists\Customs\SADDutiesTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{16ae83ef-af3a-41a9-ad52-4bd6ad3f28e3}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Customs\SADGoodTemplate\SADGood\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{34e2da2b-7afd-48f2-9c6e-b5b74deef3f1}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Customs\SADGoodTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1091be26-f90f-4c2e-8905-109f721bcff1}</SharePointProjectItemId>
     </None>
@@ -280,9 +277,6 @@
     <Content Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\Elements.xml" />
     <Content Include="Lists\Customs\SADDutiesTemplate\Schema.xml" />
     <Content Include="Lists\Customs\SADGoodTemplate\Elements.xml" />
-    <Content Include="Lists\Customs\SADGoodTemplate\SADGood\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Lists\Customs\SADGoodTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
