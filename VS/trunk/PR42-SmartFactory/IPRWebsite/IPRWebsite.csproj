@@ -283,7 +283,9 @@
     <Content Include="Lists\Customs\SADPackageTemplate\Schema.xml" />
     <Content Include="Lists\Customs\SADQuantityTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADQuantityTemplate\SADQuantityList\Elements.xml" />
-    <Content Include="Lists\Customs\SADQuantityTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\SADQuantityTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
