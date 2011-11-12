@@ -53,10 +53,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ActivityLog\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{97851ef4-a5f5-4f48-928a-b4513940fe93}</SharePointProjectItemId>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Columns\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{53daf94c-cf2d-42bb-91a8-2269800a5ba5}</SharePointProjectItemId>
     </None>
@@ -88,7 +84,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="ActivityLog\Elements.xml" />
     <Content Include="Columns\Elements.xml" />
     <Content Include="Features\Data\Data.Template.xml">
       <DependentUpon>Data.feature</DependentUpon>

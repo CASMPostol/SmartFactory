@@ -157,6 +157,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="key.snk" />
+    <None Include="Lists\ActivityLog\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f6ccae4c-19b2-4186-b214-e81b93e94daa}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Customs\SADDocumentTemplate\SADDocument\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ba83dcf3-f8a7-41ca-926a-184974e2de2e}</SharePointProjectItemId>
     </None>
@@ -267,6 +270,7 @@
     <Content Include="IPRCustomsFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\ActivityLog\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentTemplate\EditDlg.htm" />
     <Content Include="Lists\Customs\SADDocumentTemplate\Elements.xml">
       <SubType>Designer</SubType>
