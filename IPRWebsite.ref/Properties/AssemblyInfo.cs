@@ -21,7 +21,7 @@ using System.Security;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3427b306-0e6a-4740-b96e-12b684a54d0f")]
+[assembly: Guid("b5c501ab-37cf-431b-b1f0-aefd2802dc81")]
 
 // Version information for an assembly consists of the following four values:
 //

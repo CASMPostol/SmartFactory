@@ -4,10 +4,14 @@
 			<NavBarPage Name="Home" Url="" />
 		</NavBar>
 		<NavBar Name="Libraries" Url="_layouts/viewlsts.aspx?BaseType=1" ID="1004">
-			<NavBarPage Name="SADDocument" Url="Lists/SADDocument/Forms/AllItems.aspx" />
+			<NavBarPage Name="SAD Document" Url="Lists/SADDocument/Forms/AllItems.aspx" />
 		</NavBar>
 		<NavBar Name="Lists" Url="_layouts/viewlsts.aspx?BaseType=0" ID="1003">
-			<NavBarPage Name="SADGood" Url="Lists/SADGood/AllItems.aspx" />
+			<NavBarPage Name="SAD Duties" Url="Lists/SADDutiesList/AllItems.aspx" />
+			<NavBarPage Name="SAD Package" Url="Lists/SADPackageList/AllItems.aspx" />
+			<NavBarPage Name="SAD Quantity" Url="Lists/SADQuantityList/AllItems.aspx" />
+			<NavBarPage Name="SAD Required Documents" Url="Lists/SADRequiredDocumentsList/AllItems.aspx" />
+			<NavBarPage Name="SAD Good" Url="Lists/SADGoodList/AllItems.aspx" />
 		</NavBar>
 		<NavBar Name="Discussions" Url="_layouts/viewlsts.aspx?BaseType=0&amp;ListTemplate=108" ID="1006" />
 	</NavBars>
@@ -71,19 +75,19 @@
 				<!--XmlFormLibrary Feature-->
 				<Feature ID="{00bfea71-1e1d-4562-b56a-f05371bb0115}" Name="FeatureDefinition/00bfea71-1e1d-4562-b56a-f05371bb0115" SourceVersion="0.0.0.0" />
 				<!--List Feature-->
-				<Feature ID="{28ca310b-d225-4b33-8f4f-3373368702dc}" Name="List Feature">
+				<Feature ID="{c748dbad-e2d2-4171-987d-1c0906a0ae93}" Name="List Feature">
 					<Properties>
 						<Property Key="GeneratedBySaveAsTemplate" Value="1" />
 					</Properties>
 				</Feature>
 				<!--Module Feature-->
-				<Feature ID="{96c8e748-2474-40e2-bac5-189e0541b1d1}" Name="Module Feature">
+				<Feature ID="{ea67d662-fa66-4f56-8214-e416c532130f}" Name="Module Feature">
 					<Properties>
 						<Property Key="GeneratedBySaveAsTemplate" Value="1" />
 					</Properties>
 				</Feature>
 				<!--Property Bag Feature-->
-				<Feature ID="{9266b755-5ae9-4445-aa93-5cd147b7fd8f}" Name="Property Bag Feature">
+				<Feature ID="{03fb73a2-25df-40b3-a5e7-a4041d93c8b3}" Name="Property Bag Feature">
 					<Properties>
 						<Property Key="GeneratedBySaveAsTemplate" Value="1" />
 					</Properties>

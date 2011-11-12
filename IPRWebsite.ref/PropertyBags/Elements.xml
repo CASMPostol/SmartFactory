@@ -14,7 +14,7 @@
     <Property Name="vti_isexecutable" Value="false" Type="string" />
     <Property Name="vti_timelastmodified" Value="2011-11-09T19:29:56Z" Type="DateTime" />
     <Property Name="vti_hassubdirs" Value="false" Type="string" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:20:55Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:51Z" Type="DateTime" />
     <Property Name="vti_isbrowsable" Value="true" Type="string" />
     <Property Name="vti_rtag" Value="rt:B105C97D-6A3F-4D4D-8866-17F02C73BB11@00000000000" Type="string" />
   </PropertyBag>
@@ -31,7 +31,7 @@
     <Property Name="vti_listservertemplate" Value="114" Type="int" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_timecreated" Value="2011-11-09T19:30:08Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:21:02Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:57Z" Type="DateTime" />
     <Property Name="vti_listbasetype" Value="1" Type="int" />
     <Property Name="vti_listenablemoderation" Value="false" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
@@ -177,7 +177,7 @@
     <Property Name="vti_listservertemplate" Value="116" Type="int" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_timecreated" Value="2011-11-09T19:30:05Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:20:59Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:54Z" Type="DateTime" />
     <Property Name="vti_listbasetype" Value="1" Type="int" />
     <Property Name="vti_listenablemoderation" Value="false" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
@@ -239,7 +239,7 @@
     <Property Name="vti_replid" Value="rid:{20BF96E2-A784-464C-9718-558D56FA0132}" Type="string" />
     <Property Name="vti_isscriptable" Value="false" Type="string" />
     <Property Name="vti_timecreated" Value="2011-11-09T19:30:05Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:21:00Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:55Z" Type="DateTime" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
     <Property Name="vti_timelastmodified" Value="2011-11-09T19:30:05Z" Type="DateTime" />
@@ -453,17 +453,17 @@
     <Property Name="vti_listrequirecheckout" Value="false" Type="string" />
     <Property Name="vti_docstoretype" Value="1" Type="int" />
     <Property Name="vti_listenableminorversions" Value="false" Type="string" />
-    <Property Name="vti_nexttolasttimemodified" Value="2011-11-10T22:12:20Z" Type="DateTime" />
+    <Property Name="vti_nexttolasttimemodified" Value="2011-11-12T19:28:50Z" Type="DateTime" />
     <Property Name="vti_listname" Value="{$ListId:_catalogs/solutions;}" Type="string" />
     <Property Name="vti_listservertemplate" Value="121" Type="int" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_timecreated" Value="2011-11-09T19:30:04Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:21:03Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:58Z" Type="DateTime" />
     <Property Name="vti_listbasetype" Value="1" Type="int" />
     <Property Name="vti_listenablemoderation" Value="false" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
     <Property Name="vti_replid" Value="rid:{B47D6105-2102-4CF5-A66E-3F137784853A}" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:19Z" Type="DateTime" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:01Z" Type="DateTime" />
     <Property Name="vti_isbrowsable" Value="true" Type="string" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_hassubdirs" Value="false" Type="string" />
@@ -634,7 +634,7 @@
     <Property Name="vti_listservertemplate" Value="123" Type="int" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_timecreated" Value="2011-11-09T19:30:08Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:20:59Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:54Z" Type="DateTime" />
     <Property Name="vti_listbasetype" Value="1" Type="int" />
     <Property Name="vti_listenablemoderation" Value="false" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
@@ -658,7 +658,7 @@
     <Property Name="vti_replid" Value="rid:{6FC58EEE-9CB8-4D77-9ED7-A8F37C1A1B3E}" Type="string" />
     <Property Name="vti_isscriptable" Value="false" Type="string" />
     <Property Name="vti_timecreated" Value="2011-11-09T19:30:08Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:21:00Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:55Z" Type="DateTime" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
     <Property Name="vti_timelastmodified" Value="2011-11-09T19:30:08Z" Type="DateTime" />
@@ -800,7 +800,7 @@
     <Property Name="vti_listservertemplate" Value="112" Type="int" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_timecreated" Value="2011-11-09T19:30:07Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:20:59Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:54Z" Type="DateTime" />
     <Property Name="vti_listbasetype" Value="0" Type="int" />
     <Property Name="vti_listenablemoderation" Value="false" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
@@ -916,7 +916,7 @@
     <Property Name="vti_listservertemplate" Value="113" Type="int" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_timecreated" Value="2011-11-09T19:30:08Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:20:59Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:54Z" Type="DateTime" />
     <Property Name="vti_listbasetype" Value="1" Type="int" />
     <Property Name="vti_listenablemoderation" Value="false" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
@@ -940,7 +940,7 @@
     <Property Name="vti_replid" Value="rid:{EBC47EF8-5B5D-491E-BCFC-B8AF0C81B863}" Type="string" />
     <Property Name="vti_isscriptable" Value="false" Type="string" />
     <Property Name="vti_timecreated" Value="2011-11-09T19:30:08Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:21:00Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:55Z" Type="DateTime" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
     <Property Name="vti_timelastmodified" Value="2011-11-09T19:30:08Z" Type="DateTime" />
@@ -1482,7 +1482,7 @@
   <PropertyBag Url="Lists/SADDocument" ParentType="Folder" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_isexecutable" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{CB466517-01CD-4170-A570-31B41EF9B5E9},0&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{6347BB9C-5F00-4844-965E-DD96AC90A16B},0&quot;" Type="string" />
     <Property Name="vti_isscriptable" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_listrequirecheckout" Value="false" Type="string" />
@@ -1491,90 +1491,90 @@
     <Property Name="vti_listname" Value="{$ListId:Lists/SADDocument;}" Type="string" />
     <Property Name="vti_listservertemplate" Value="10001" Type="int" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:30Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:21:02Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:58Z" Type="DateTime" />
     <Property Name="vti_listbasetype" Value="1" Type="int" />
     <Property Name="vti_listenablemoderation" Value="false" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{CB466517-01CD-4170-A570-31B41EF9B5E9}" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:30Z" Type="DateTime" />
+    <Property Name="vti_replid" Value="rid:{6347BB9C-5F00-4844-965E-DD96AC90A16B}" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_isbrowsable" Value="true" Type="string" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_hassubdirs" Value="false" Type="string" />
-    <Property Name="vti_listtitle" Value="SADDocument" Type="string" />
-    <Property Name="vti_rtag" Value="rt:CB466517-01CD-4170-A570-31B41EF9B5E9@00000000000" Type="string" />
+    <Property Name="vti_listtitle" Value="SAD Document" Type="string" />
+    <Property Name="vti_rtag" Value="rt:6347BB9C-5F00-4844-965E-DD96AC90A16B@00000000000" Type="string" />
     <Property Name="vti_listenableversioning" Value="false" Type="string" />
   </PropertyBag>
   <PropertyBag Url="Lists/SADDocument/Forms" ParentType="Folder" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_isexecutable" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{0E536BAD-3577-4E61-AF83-E04800E1D50A},0&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{0BD94CB3-C35C-4947-B124-1D0BD349AAAA},0&quot;" Type="string" />
     <Property Name="vti_docstoretype" Value="1" Type="int" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_winfileattribs" Value="00000012" Type="string" />
-    <Property Name="vti_replid" Value="rid:{0E536BAD-3577-4E61-AF83-E04800E1D50A}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{0BD94CB3-C35C-4947-B124-1D0BD349AAAA}" Type="string" />
     <Property Name="vti_isscriptable" Value="false" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:30Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:21:01Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:56Z" Type="DateTime" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:30Z" Type="DateTime" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_isbrowsable" Value="true" Type="string" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_hassubdirs" Value="false" Type="string" />
-    <Property Name="vti_rtag" Value="rt:0E536BAD-3577-4E61-AF83-E04800E1D50A@00000000000" Type="string" />
+    <Property Name="vti_rtag" Value="rt:0BD94CB3-C35C-4947-B124-1D0BD349AAAA@00000000000" Type="string" />
   </PropertyBag>
   <PropertyBag Url="Lists/SADDocument/Forms/AllItems.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
     <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{ADD39DB0-E118-4612-B9E4-05CA1EB2D4CD},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{8324E658-DAB6-4729-83A0-CA0DEAE0B1DA},1&quot;" Type="string" />
     <Property Name="vti_cachedhastheme" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_setuppathversion" Value="4" Type="int" />
     <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
-    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{ADD39DB0-E118-4612-B9E4-05CA1EB2D4CD}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{8324E658-DAB6-4729-83A0-CA0DEAE0B1DA}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_cachedzones" Value="Main" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="3370" Type="int" />
-    <Property Name="vti_contenttag" Value="{ADD39DB0-E118-4612-B9E4-05CA1EB2D4CD},1,0" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_contenttag" Value="{8324E658-DAB6-4729-83A0-CA0DEAE0B1DA},1,0" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
     <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
     <Property Name="vti_setuppath" Value="pages\viewpage.aspx" Type="string" />
     <Property Name="vti_charset" Value="utf-8" Type="string" />
-    <Property Name="vti_rtag" Value="rt:ADD39DB0-E118-4612-B9E4-05CA1EB2D4CD@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:8324E658-DAB6-4729-83A0-CA0DEAE0B1DA@00000000001" Type="string" />
   </PropertyBag>
   <PropertyBag Url="Lists/SADDocument/Forms/Combine.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
     <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{7F1FEE17-3793-4848-AC37-AA6EDEFB5E0E},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{9D6D7BB9-10A8-4D28-8D45-3AD80655FBFE},1&quot;" Type="string" />
     <Property Name="vti_cachedhastheme" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_setuppathversion" Value="4" Type="int" />
     <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{7F1FEE17-3793-4848-AC37-AA6EDEFB5E0E}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{9D6D7BB9-10A8-4D28-8D45-3AD80655FBFE}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_cachedzones" Value="Main" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="3370" Type="int" />
-    <Property Name="vti_contenttag" Value="{7F1FEE17-3793-4848-AC37-AA6EDEFB5E0E},1,0" Type="string" />
+    <Property Name="vti_contenttag" Value="{9D6D7BB9-10A8-4D28-8D45-3AD80655FBFE},1,0" Type="string" />
     <Property Name="vti_themeaggregate" Value="default" Type="string" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
@@ -1582,29 +1582,29 @@
     <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
     <Property Name="vti_setuppath" Value="pages\viewpage.aspx" Type="string" />
     <Property Name="vti_charset" Value="utf-8" Type="string" />
-    <Property Name="vti_rtag" Value="rt:7F1FEE17-3793-4848-AC37-AA6EDEFB5E0E@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:9D6D7BB9-10A8-4D28-8D45-3AD80655FBFE@00000000001" Type="string" />
   </PropertyBag>
   <PropertyBag Url="Lists/SADDocument/Forms/DispForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
     <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{72C2D808-1905-48B8-B4AE-622C4FFC288B},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{B2C8803E-485F-41FE-A680-8FE88DFD863D},1&quot;" Type="string" />
     <Property Name="vti_cachedhastheme" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_setuppathversion" Value="4" Type="int" />
     <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{72C2D808-1905-48B8-B4AE-622C4FFC288B}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{B2C8803E-485F-41FE-A680-8FE88DFD863D}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_cachedzones" Value="Main" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="13743" Type="int" />
-    <Property Name="vti_contenttag" Value="{72C2D808-1905-48B8-B4AE-622C4FFC288B},1,0" Type="string" />
+    <Property Name="vti_contenttag" Value="{B2C8803E-485F-41FE-A680-8FE88DFD863D},1,0" Type="string" />
     <Property Name="vti_themeaggregate" Value="default" Type="string" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
@@ -1612,29 +1612,29 @@
     <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
     <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
     <Property Name="vti_charset" Value="utf-8" Type="string" />
-    <Property Name="vti_rtag" Value="rt:72C2D808-1905-48B8-B4AE-622C4FFC288B@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:B2C8803E-485F-41FE-A680-8FE88DFD863D@00000000001" Type="string" />
   </PropertyBag>
   <PropertyBag Url="Lists/SADDocument/Forms/EditForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
     <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{3AAEA0BF-A414-40CC-B28A-D09A03C407A6},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{3A093542-C261-4320-9B6E-43BED881CC7C},1&quot;" Type="string" />
     <Property Name="vti_cachedhastheme" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_setuppathversion" Value="4" Type="int" />
     <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{3AAEA0BF-A414-40CC-B28A-D09A03C407A6}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{3A093542-C261-4320-9B6E-43BED881CC7C}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_cachedzones" Value="Main" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="13743" Type="int" />
-    <Property Name="vti_contenttag" Value="{3AAEA0BF-A414-40CC-B28A-D09A03C407A6},1,0" Type="string" />
+    <Property Name="vti_contenttag" Value="{3A093542-C261-4320-9B6E-43BED881CC7C},1,0" Type="string" />
     <Property Name="vti_themeaggregate" Value="default" Type="string" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
@@ -1642,40 +1642,40 @@
     <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
     <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
     <Property Name="vti_charset" Value="utf-8" Type="string" />
-    <Property Name="vti_rtag" Value="rt:3AAEA0BF-A414-40CC-B28A-D09A03C407A6@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:3A093542-C261-4320-9B6E-43BED881CC7C@00000000001" Type="string" />
   </PropertyBag>
   <PropertyBag Url="Lists/SADDocument/Forms/repair.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
     <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{D889FA00-E50F-4AD8-A9F5-92DEF7E10E7B},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{497D8D3E-A444-41C9-BC83-D62F8B6E9075},1&quot;" Type="string" />
     <Property Name="vti_cachedhastheme" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_setuppathversion" Value="4" Type="int" />
     <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
     <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{D889FA00-E50F-4AD8-A9F5-92DEF7E10E7B}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{497D8D3E-A444-41C9-BC83-D62F8B6E9075}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:30Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_cachedzones" Value="Main" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="3908" Type="int" />
-    <Property Name="vti_contenttag" Value="{D889FA00-E50F-4AD8-A9F5-92DEF7E10E7B},1,1" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:30Z" Type="DateTime" />
+    <Property Name="vti_contenttag" Value="{497D8D3E-A444-41C9-BC83-D62F8B6E9075},1,1" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
     <Property Name="vti_doclibdbpromote" Value="false" Type="string" />
     <Property Name="vti_charset" Value="windows-1250" Type="string" />
-    <Property Name="vti_rtag" Value="rt:D889FA00-E50F-4AD8-A9F5-92DEF7E10E7B@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:497D8D3E-A444-41C9-BC83-D62F8B6E9075@00000000001" Type="string" />
   </PropertyBag>
   <PropertyBag Url="Lists/SADDocument/Forms/template.dotx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
-    <Property Name="vti_etag" Value="&quot;{3F6389AB-1EFA-422F-B2C8-5082BC016DBA},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{AE24A663-6B15-4351-A611-08493FB33A6C},1&quot;" Type="string" />
     <Property Name="_Category" Value="" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="ContentType" Value="" Type="string" />
@@ -1686,47 +1686,47 @@
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
     <Property Name="_Author" Value="" Type="string" />
     <Property Name="_Status" Value="" Type="string" />
-    <Property Name="vti_replid" Value="rid:{3F6389AB-1EFA-422F-B2C8-5082BC016DBA}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{AE24A663-6B15-4351-A611-08493FB33A6C}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_title" Value="" Type="string" />
     <Property Name="Subject" Value="" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:30Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="Keywords" Value="" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="15312" Type="int" />
-    <Property Name="vti_contenttag" Value="{3F6389AB-1EFA-422F-B2C8-5082BC016DBA},1,0" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:30Z" Type="DateTime" />
+    <Property Name="vti_contenttag" Value="{AE24A663-6B15-4351-A611-08493FB33A6C},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
     <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
     <Property Name="vti_setuppath" Value="1033\STS\doctemp\word\wdtmpl.dotx" Type="string" />
     <Property Name="vti_stickycachedpluggableparserprops" Value="Subject Keywords _Status vti_title _Author _Category ContentType _Comments" Type="string" />
-    <Property Name="vti_rtag" Value="rt:3F6389AB-1EFA-422F-B2C8-5082BC016DBA@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:AE24A663-6B15-4351-A611-08493FB33A6C@00000000001" Type="string" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
   </PropertyBag>
   <PropertyBag Url="Lists/SADDocument/Forms/Thumbnails.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
     <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{CDA87706-71D4-48B6-8617-D37317ED60DF},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{1A7EE449-1869-42B5-AFA3-CB848552A0C7},1&quot;" Type="string" />
     <Property Name="vti_cachedhastheme" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_setuppathversion" Value="4" Type="int" />
     <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{CDA87706-71D4-48B6-8617-D37317ED60DF}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{1A7EE449-1869-42B5-AFA3-CB848552A0C7}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_cachedzones" Value="Main" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="3370" Type="int" />
-    <Property Name="vti_contenttag" Value="{CDA87706-71D4-48B6-8617-D37317ED60DF},1,0" Type="string" />
+    <Property Name="vti_contenttag" Value="{1A7EE449-1869-42B5-AFA3-CB848552A0C7},1,0" Type="string" />
     <Property Name="vti_themeaggregate" Value="default" Type="string" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
@@ -1734,67 +1734,67 @@
     <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
     <Property Name="vti_setuppath" Value="pages\viewpage.aspx" Type="string" />
     <Property Name="vti_charset" Value="utf-8" Type="string" />
-    <Property Name="vti_rtag" Value="rt:CDA87706-71D4-48B6-8617-D37317ED60DF@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:1A7EE449-1869-42B5-AFA3-CB848552A0C7@00000000001" Type="string" />
   </PropertyBag>
   <PropertyBag Url="Lists/SADDocument/Forms/Upload.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
     <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{3BC81339-EF8F-4754-92A3-A5E92551219C},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{07648E13-3F30-41E7-8360-06E351D19F35},1&quot;" Type="string" />
     <Property Name="vti_cachedhastheme" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_setuppathversion" Value="4" Type="int" />
     <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
     <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{3BC81339-EF8F-4754-92A3-A5E92551219C}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{07648E13-3F30-41E7-8360-06E351D19F35}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_cachedzones" Value="Main" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="15035" Type="int" />
-    <Property Name="vti_contenttag" Value="{3BC81339-EF8F-4754-92A3-A5E92551219C},1,1" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:31Z" Type="DateTime" />
+    <Property Name="vti_contenttag" Value="{07648E13-3F30-41E7-8360-06E351D19F35},1,1" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
     <Property Name="vti_doclibdbpromote" Value="false" Type="string" />
     <Property Name="vti_charset" Value="windows-1250" Type="string" />
-    <Property Name="vti_rtag" Value="rt:3BC81339-EF8F-4754-92A3-A5E92551219C@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:07648E13-3F30-41E7-8360-06E351D19F35@00000000001" Type="string" />
   </PropertyBag>
-  <PropertyBag Url="Lists/SADGood" ParentType="Folder" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <PropertyBag Url="Lists/SADDutiesList" ParentType="Folder" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_isexecutable" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{744036CD-8C19-4F38-AD27-EECC49A6E3BF},0&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{8ABF6B2D-C9D9-4262-AC37-17FB2C72FF28},0&quot;" Type="string" />
     <Property Name="vti_isscriptable" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_listrequirecheckout" Value="false" Type="string" />
     <Property Name="vti_docstoretype" Value="1" Type="int" />
     <Property Name="vti_listenableminorversions" Value="false" Type="string" />
-    <Property Name="vti_listname" Value="{$ListId:Lists/SADGood;}" Type="string" />
-    <Property Name="vti_listservertemplate" Value="10002" Type="int" />
+    <Property Name="vti_listname" Value="{$ListId:Lists/SADDutiesList;}" Type="string" />
+    <Property Name="vti_listservertemplate" Value="10000" Type="int" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:32Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:21:01Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:56Z" Type="DateTime" />
     <Property Name="vti_listbasetype" Value="0" Type="int" />
     <Property Name="vti_listenablemoderation" Value="false" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{744036CD-8C19-4F38-AD27-EECC49A6E3BF}" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:32Z" Type="DateTime" />
+    <Property Name="vti_replid" Value="rid:{8ABF6B2D-C9D9-4262-AC37-17FB2C72FF28}" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_isbrowsable" Value="true" Type="string" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_hassubdirs" Value="false" Type="string" />
-    <Property Name="vti_listtitle" Value="SADGood" Type="string" />
-    <Property Name="vti_rtag" Value="rt:744036CD-8C19-4F38-AD27-EECC49A6E3BF@00000000000" Type="string" />
+    <Property Name="vti_listtitle" Value="SAD Duties" Type="string" />
+    <Property Name="vti_rtag" Value="rt:8ABF6B2D-C9D9-4262-AC37-17FB2C72FF28@00000000000" Type="string" />
     <Property Name="vti_listenableversioning" Value="false" Type="string" />
   </PropertyBag>
-  <PropertyBag Url="Lists/SADGood/AllItems.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <PropertyBag Url="Lists/SADDutiesList/AllItems.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
     <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{CC781C2B-4F9A-4089-A04C-A2978E4D00BD},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{D7AD9ECD-572E-48AB-9F35-1393C597C071},1&quot;" Type="string" />
     <Property Name="vti_cachedhastheme" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_setuppathversion" Value="4" Type="int" />
@@ -1802,29 +1802,29 @@
     <Property Name="vti_themeaggregate" Value="default" Type="string" />
     <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{CC781C2B-4F9A-4089-A04C-A2978E4D00BD}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{D7AD9ECD-572E-48AB-9F35-1393C597C071}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:32Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_cachedzones" Value="Main" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="3370" Type="int" />
-    <Property Name="vti_contenttag" Value="{CC781C2B-4F9A-4089-A04C-A2978E4D00BD},1,0" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:32Z" Type="DateTime" />
+    <Property Name="vti_contenttag" Value="{D7AD9ECD-572E-48AB-9F35-1393C597C071},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
     <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
     <Property Name="vti_setuppath" Value="pages\viewpage.aspx" Type="string" />
     <Property Name="vti_charset" Value="utf-8" Type="string" />
-    <Property Name="vti_rtag" Value="rt:CC781C2B-4F9A-4089-A04C-A2978E4D00BD@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:D7AD9ECD-572E-48AB-9F35-1393C597C071@00000000001" Type="string" />
   </PropertyBag>
-  <PropertyBag Url="Lists/SADGood/DispForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <PropertyBag Url="Lists/SADDutiesList/DispForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
     <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{F8C52081-881B-4E8C-A403-2A86A0677A64},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{854C3EDA-CADE-49A5-9E00-63518B6708E9},1&quot;" Type="string" />
     <Property Name="vti_cachedhastheme" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_setuppathversion" Value="4" Type="int" />
@@ -1832,29 +1832,29 @@
     <Property Name="vti_themeaggregate" Value="default" Type="string" />
     <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{F8C52081-881B-4E8C-A403-2A86A0677A64}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{854C3EDA-CADE-49A5-9E00-63518B6708E9}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:32Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_cachedzones" Value="Main" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="13743" Type="int" />
-    <Property Name="vti_contenttag" Value="{F8C52081-881B-4E8C-A403-2A86A0677A64},1,0" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:32Z" Type="DateTime" />
+    <Property Name="vti_contenttag" Value="{854C3EDA-CADE-49A5-9E00-63518B6708E9},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
     <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
     <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
     <Property Name="vti_charset" Value="utf-8" Type="string" />
-    <Property Name="vti_rtag" Value="rt:F8C52081-881B-4E8C-A403-2A86A0677A64@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:854C3EDA-CADE-49A5-9E00-63518B6708E9@00000000001" Type="string" />
   </PropertyBag>
-  <PropertyBag Url="Lists/SADGood/EditForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <PropertyBag Url="Lists/SADDutiesList/EditForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
     <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{1880EA9B-3D35-4DD2-9F27-EC91FF15FDBD},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{CCA6BAB0-68A4-4653-95D2-C53E958718DA},1&quot;" Type="string" />
     <Property Name="vti_cachedhastheme" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_setuppathversion" Value="4" Type="int" />
@@ -1862,29 +1862,29 @@
     <Property Name="vti_themeaggregate" Value="default" Type="string" />
     <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{1880EA9B-3D35-4DD2-9F27-EC91FF15FDBD}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{CCA6BAB0-68A4-4653-95D2-C53E958718DA}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:32Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_cachedzones" Value="Main" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="13743" Type="int" />
-    <Property Name="vti_contenttag" Value="{1880EA9B-3D35-4DD2-9F27-EC91FF15FDBD},1,0" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:32Z" Type="DateTime" />
+    <Property Name="vti_contenttag" Value="{CCA6BAB0-68A4-4653-95D2-C53E958718DA},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
     <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
     <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
     <Property Name="vti_charset" Value="utf-8" Type="string" />
-    <Property Name="vti_rtag" Value="rt:1880EA9B-3D35-4DD2-9F27-EC91FF15FDBD@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:CCA6BAB0-68A4-4653-95D2-C53E958718DA@00000000001" Type="string" />
   </PropertyBag>
-  <PropertyBag Url="Lists/SADGood/NewForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <PropertyBag Url="Lists/SADDutiesList/NewForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_folderitemcount" Value="0" Type="int" />
     <Property Name="vti_docstoretype" Value="0" Type="int" />
     <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
-    <Property Name="vti_etag" Value="&quot;{D96025F0-EF18-49B7-92DA-E1857BDFB9C6},1&quot;" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{2BA9FD16-E742-4A1B-B8AE-705333AB4B02},1&quot;" Type="string" />
     <Property Name="vti_cachedhastheme" Value="false" Type="string" />
     <Property Name="vti_level" Value="1" Type="int" />
     <Property Name="vti_setuppathversion" Value="4" Type="int" />
@@ -1892,23 +1892,607 @@
     <Property Name="vti_themeaggregate" Value="default" Type="string" />
     <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
-    <Property Name="vti_replid" Value="rid:{D96025F0-EF18-49B7-92DA-E1857BDFB9C6}" Type="string" />
+    <Property Name="vti_replid" Value="rid:{2BA9FD16-E742-4A1B-B8AE-705333AB4B02}" Type="string" />
     <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
-    <Property Name="vti_timecreated" Value="2011-11-11T12:24:32Z" Type="DateTime" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_cachedzones" Value="Main" Type="string" />
     <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
     <Property Name="vti_filesize" Value="13743" Type="int" />
-    <Property Name="vti_contenttag" Value="{D96025F0-EF18-49B7-92DA-E1857BDFB9C6},1,0" Type="string" />
-    <Property Name="vti_timelastmodified" Value="2011-11-11T12:24:32Z" Type="DateTime" />
+    <Property Name="vti_contenttag" Value="{2BA9FD16-E742-4A1B-B8AE-705333AB4B02},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
     <Property Name="vti_docstoreversion" Value="1" Type="int" />
     <Property Name="vti_candeleteversion" Value="true" Type="string" />
     <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
     <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
     <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
     <Property Name="vti_charset" Value="utf-8" Type="string" />
-    <Property Name="vti_rtag" Value="rt:D96025F0-EF18-49B7-92DA-E1857BDFB9C6@00000000001" Type="string" />
+    <Property Name="vti_rtag" Value="rt:2BA9FD16-E742-4A1B-B8AE-705333AB4B02@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADGoodList" ParentType="Folder" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_isexecutable" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{AA4E6E13-976C-42EE-B38D-BF79770E82D2},0&quot;" Type="string" />
+    <Property Name="vti_isscriptable" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_listrequirecheckout" Value="false" Type="string" />
+    <Property Name="vti_docstoretype" Value="1" Type="int" />
+    <Property Name="vti_listenableminorversions" Value="false" Type="string" />
+    <Property Name="vti_listname" Value="{$ListId:Lists/SADGoodList;}" Type="string" />
+    <Property Name="vti_listservertemplate" Value="10002" Type="int" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:56Z" Type="DateTime" />
+    <Property Name="vti_listbasetype" Value="0" Type="int" />
+    <Property Name="vti_listenablemoderation" Value="false" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{AA4E6E13-976C-42EE-B38D-BF79770E82D2}" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_isbrowsable" Value="true" Type="string" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_hassubdirs" Value="false" Type="string" />
+    <Property Name="vti_listtitle" Value="SAD Good" Type="string" />
+    <Property Name="vti_rtag" Value="rt:AA4E6E13-976C-42EE-B38D-BF79770E82D2@00000000000" Type="string" />
+    <Property Name="vti_listenableversioning" Value="false" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADGoodList/AllItems.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{52E7FC08-B87F-416C-AC4C-606F0A13A1F7},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{52E7FC08-B87F-416C-AC4C-606F0A13A1F7}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="3370" Type="int" />
+    <Property Name="vti_contenttag" Value="{52E7FC08-B87F-416C-AC4C-606F0A13A1F7},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\viewpage.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:52E7FC08-B87F-416C-AC4C-606F0A13A1F7@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADGoodList/DispForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{5769DA48-06F0-436B-B79D-F900CFEFE355},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{5769DA48-06F0-436B-B79D-F900CFEFE355}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{5769DA48-06F0-436B-B79D-F900CFEFE355},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:5769DA48-06F0-436B-B79D-F900CFEFE355@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADGoodList/EditForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{9ABE09E3-84B1-4442-88C6-48BAA20FF922},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{9ABE09E3-84B1-4442-88C6-48BAA20FF922}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{9ABE09E3-84B1-4442-88C6-48BAA20FF922},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:9ABE09E3-84B1-4442-88C6-48BAA20FF922@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADGoodList/NewForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{C28B09AF-6922-4A73-99C3-A18BD75A9774},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{C28B09AF-6922-4A73-99C3-A18BD75A9774}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{C28B09AF-6922-4A73-99C3-A18BD75A9774},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:C28B09AF-6922-4A73-99C3-A18BD75A9774@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADPackageList" ParentType="Folder" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_isexecutable" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{0823AFFB-AE24-4F9B-8595-2C7D82F2CAC2},0&quot;" Type="string" />
+    <Property Name="vti_isscriptable" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_listrequirecheckout" Value="false" Type="string" />
+    <Property Name="vti_docstoretype" Value="1" Type="int" />
+    <Property Name="vti_listenableminorversions" Value="false" Type="string" />
+    <Property Name="vti_listname" Value="{$ListId:Lists/SADPackageList;}" Type="string" />
+    <Property Name="vti_listservertemplate" Value="10003" Type="int" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:56Z" Type="DateTime" />
+    <Property Name="vti_listbasetype" Value="0" Type="int" />
+    <Property Name="vti_listenablemoderation" Value="false" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{0823AFFB-AE24-4F9B-8595-2C7D82F2CAC2}" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_isbrowsable" Value="true" Type="string" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_hassubdirs" Value="false" Type="string" />
+    <Property Name="vti_listtitle" Value="SAD Package" Type="string" />
+    <Property Name="vti_rtag" Value="rt:0823AFFB-AE24-4F9B-8595-2C7D82F2CAC2@00000000000" Type="string" />
+    <Property Name="vti_listenableversioning" Value="false" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADPackageList/AllItems.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{098CF5CF-DC2E-46C9-A98B-2FE0169DD877},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{098CF5CF-DC2E-46C9-A98B-2FE0169DD877}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="3370" Type="int" />
+    <Property Name="vti_contenttag" Value="{098CF5CF-DC2E-46C9-A98B-2FE0169DD877},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\viewpage.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:098CF5CF-DC2E-46C9-A98B-2FE0169DD877@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADPackageList/DispForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{76B3D7C1-99A1-403B-A0C8-A47769D3DA04},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{76B3D7C1-99A1-403B-A0C8-A47769D3DA04}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{76B3D7C1-99A1-403B-A0C8-A47769D3DA04},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:76B3D7C1-99A1-403B-A0C8-A47769D3DA04@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADPackageList/EditForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{7CB15F73-7149-4F0D-B88B-C7543E9A0C18},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{7CB15F73-7149-4F0D-B88B-C7543E9A0C18}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{7CB15F73-7149-4F0D-B88B-C7543E9A0C18},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:7CB15F73-7149-4F0D-B88B-C7543E9A0C18@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADPackageList/NewForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{5667F3EB-7D58-42FE-ABF9-1D35F016F25E},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{5667F3EB-7D58-42FE-ABF9-1D35F016F25E}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{5667F3EB-7D58-42FE-ABF9-1D35F016F25E},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:5667F3EB-7D58-42FE-ABF9-1D35F016F25E@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADQuantityList" ParentType="Folder" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_isexecutable" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{B2A04EB5-B7AD-4D0F-ACFF-E9CA6AF36159},0&quot;" Type="string" />
+    <Property Name="vti_isscriptable" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_listrequirecheckout" Value="false" Type="string" />
+    <Property Name="vti_docstoretype" Value="1" Type="int" />
+    <Property Name="vti_listenableminorversions" Value="false" Type="string" />
+    <Property Name="vti_listname" Value="{$ListId:Lists/SADQuantityList;}" Type="string" />
+    <Property Name="vti_listservertemplate" Value="10004" Type="int" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:56Z" Type="DateTime" />
+    <Property Name="vti_listbasetype" Value="0" Type="int" />
+    <Property Name="vti_listenablemoderation" Value="false" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{B2A04EB5-B7AD-4D0F-ACFF-E9CA6AF36159}" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_isbrowsable" Value="true" Type="string" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_hassubdirs" Value="false" Type="string" />
+    <Property Name="vti_listtitle" Value="SAD Quantity" Type="string" />
+    <Property Name="vti_rtag" Value="rt:B2A04EB5-B7AD-4D0F-ACFF-E9CA6AF36159@00000000000" Type="string" />
+    <Property Name="vti_listenableversioning" Value="false" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADQuantityList/AllItems.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{38FAE12F-DE9A-4039-A15B-5E883B07CE34},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{38FAE12F-DE9A-4039-A15B-5E883B07CE34}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="3370" Type="int" />
+    <Property Name="vti_contenttag" Value="{38FAE12F-DE9A-4039-A15B-5E883B07CE34},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\viewpage.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:38FAE12F-DE9A-4039-A15B-5E883B07CE34@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADQuantityList/DispForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{2E7E3B82-A74D-4483-918A-AFF5C7FEACBB},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{2E7E3B82-A74D-4483-918A-AFF5C7FEACBB}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{2E7E3B82-A74D-4483-918A-AFF5C7FEACBB},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:2E7E3B82-A74D-4483-918A-AFF5C7FEACBB@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADQuantityList/EditForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{CAB73180-CB39-47B7-BC12-29647165EC52},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{CAB73180-CB39-47B7-BC12-29647165EC52}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{CAB73180-CB39-47B7-BC12-29647165EC52},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:CAB73180-CB39-47B7-BC12-29647165EC52@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADQuantityList/NewForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{91F6A078-99F2-423F-9722-B2F5E5E759C6},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{91F6A078-99F2-423F-9722-B2F5E5E759C6}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{91F6A078-99F2-423F-9722-B2F5E5E759C6},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:91F6A078-99F2-423F-9722-B2F5E5E759C6@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADRequiredDocumentsList" ParentType="Folder" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_isexecutable" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{286923D6-5804-4E5E-804B-32BDF6C8F452},0&quot;" Type="string" />
+    <Property Name="vti_isscriptable" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_listrequirecheckout" Value="false" Type="string" />
+    <Property Name="vti_docstoretype" Value="1" Type="int" />
+    <Property Name="vti_listenableminorversions" Value="false" Type="string" />
+    <Property Name="vti_listname" Value="{$ListId:Lists/SADRequiredDocumentsList;}" Type="string" />
+    <Property Name="vti_listservertemplate" Value="10005" Type="int" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:56Z" Type="DateTime" />
+    <Property Name="vti_listbasetype" Value="0" Type="int" />
+    <Property Name="vti_listenablemoderation" Value="false" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{286923D6-5804-4E5E-804B-32BDF6C8F452}" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_isbrowsable" Value="true" Type="string" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_hassubdirs" Value="false" Type="string" />
+    <Property Name="vti_listtitle" Value="SAD Required Documents" Type="string" />
+    <Property Name="vti_rtag" Value="rt:286923D6-5804-4E5E-804B-32BDF6C8F452@00000000000" Type="string" />
+    <Property Name="vti_listenableversioning" Value="false" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADRequiredDocumentsList/AllItems.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{419CFFE9-0B93-4C37-9D79-798D282D9835},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{419CFFE9-0B93-4C37-9D79-798D282D9835}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="3370" Type="int" />
+    <Property Name="vti_contenttag" Value="{419CFFE9-0B93-4C37-9D79-798D282D9835},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\viewpage.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:419CFFE9-0B93-4C37-9D79-798D282D9835@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADRequiredDocumentsList/DispForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{E93349AD-8F8D-4ED1-A3B6-29E20A0A5EA7},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{E93349AD-8F8D-4ED1-A3B6-29E20A0A5EA7}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{E93349AD-8F8D-4ED1-A3B6-29E20A0A5EA7},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:E93349AD-8F8D-4ED1-A3B6-29E20A0A5EA7@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADRequiredDocumentsList/EditForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{8C1CC64C-6407-45A6-AC5B-1096022D667A},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{8C1CC64C-6407-45A6-AC5B-1096022D667A}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{8C1CC64C-6407-45A6-AC5B-1096022D667A},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:8C1CC64C-6407-45A6-AC5B-1096022D667A@00000000001" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="Lists/SADRequiredDocumentsList/NewForm.aspx" ParentType="File" RootWebOnly="FALSE" HyperlinkBaseUrl="http://casmp/sites/IPR" xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Property Name="vti_folderitemcount" Value="0" Type="int" />
+    <Property Name="vti_docstoretype" Value="0" Type="int" />
+    <Property Name="vti_cachedneedsrewrite" Value="false" Type="string" />
+    <Property Name="vti_etag" Value="&quot;{675D8C2F-D056-4868-A47A-7599195DF4EC},1&quot;" Type="string" />
+    <Property Name="vti_cachedhastheme" Value="false" Type="string" />
+    <Property Name="vti_level" Value="1" Type="int" />
+    <Property Name="vti_setuppathversion" Value="4" Type="int" />
+    <Property Name="vti_parserversion" Value="14.0.0.6106" Type="string" />
+    <Property Name="vti_themeaggregate" Value="default" Type="string" />
+    <Property Name="vti_author" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_metainfoversion" Value="1" Type="int" />
+    <Property Name="vti_replid" Value="rid:{675D8C2F-D056-4868-A47A-7599195DF4EC}" Type="string" />
+    <Property Name="vti_modifiedby" Value="HQ\mpostol" Type="string" />
+    <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
+    <Property Name="vti_sourcecontrolversion" Value="V1.0" Type="string" />
+    <Property Name="vti_timecreated" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_cachedzones" Value="Main" Type="string" />
+    <Property Name="vti_contentversionisdirty" Value="false" Type="string" />
+    <Property Name="vti_filesize" Value="13743" Type="int" />
+    <Property Name="vti_contenttag" Value="{675D8C2F-D056-4868-A47A-7599195DF4EC},1,0" Type="string" />
+    <Property Name="vti_timelastmodified" Value="2011-11-12T19:38:09Z" Type="DateTime" />
+    <Property Name="vti_docstoreversion" Value="1" Type="int" />
+    <Property Name="vti_candeleteversion" Value="true" Type="string" />
+    <Property Name="vti_sourcecontrolcookie" Value="fp_internal" Type="string" />
+    <Property Name="vti_hasdefaultcontent" Value="true" Type="string" />
+    <Property Name="vti_setuppath" Value="pages\form.aspx" Type="string" />
+    <Property Name="vti_charset" Value="utf-8" Type="string" />
+    <Property Name="vti_rtag" Value="rt:675D8C2F-D056-4868-A47A-7599195DF4EC@00000000001" Type="string" />
   </PropertyBag>
   <PropertyBag Url="m" ParentType="Folder" RootWebOnly="FALSE" xmlns="http://schemas.microsoft.com/sharepoint/">
     <Property Name="vti_docstoretype" Value="1" Type="int" />
@@ -1924,7 +2508,7 @@
     <Property Name="vti_isexecutable" Value="false" Type="string" />
     <Property Name="vti_timelastmodified" Value="2011-11-09T19:30:13Z" Type="DateTime" />
     <Property Name="vti_hassubdirs" Value="false" Type="string" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:20:55Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:51Z" Type="DateTime" />
     <Property Name="vti_isbrowsable" Value="true" Type="string" />
     <Property Name="vti_rtag" Value="rt:ADF6D78B-EF16-4F22-9DCA-79E84B582D58@00000000000" Type="string" />
   </PropertyBag>
@@ -1970,7 +2554,7 @@
     <Property Name="vti_listservertemplate" Value="101" Type="int" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_timecreated" Value="2011-11-09T19:30:08Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:21:03Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:58Z" Type="DateTime" />
     <Property Name="vti_listbasetype" Value="1" Type="int" />
     <Property Name="vti_listenablemoderation" Value="false" Type="string" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
@@ -1993,7 +2577,7 @@
     <Property Name="vti_replid" Value="rid:{7C6AF8A8-849A-4AE1-9340-89C636D79E00}" Type="string" />
     <Property Name="vti_isscriptable" Value="false" Type="string" />
     <Property Name="vti_timecreated" Value="2011-11-09T19:30:08Z" Type="DateTime" />
-    <Property Name="vti_dirlateststamp" Value="2011-11-11T12:20:56Z" Type="DateTime" />
+    <Property Name="vti_dirlateststamp" Value="2011-11-12T19:42:51Z" Type="DateTime" />
     <Property Name="vti_foldersubfolderitemcount" Value="0" Type="int" />
     <Property Name="vti_metainfoversion" Value="1" Type="int" />
     <Property Name="vti_timelastmodified" Value="2011-11-09T19:30:08Z" Type="DateTime" />

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="f3a5a1e6-7da7-4dbe-8d88-0d17df516ed0" solutionId="f3a5a1e6-7da7-4dbe-8d88-0d17df516ed0" resetWebServer="false" name="WspImportProject1" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="076f700f-75e5-4ac2-8eb2-e0017d2c9412" solutionId="076f700f-75e5-4ac2-8eb2-e0017d2c9412" resetWebServer="false" name="WspImportProject1" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
-    <featureReference itemId="9e958705-da2b-4f6b-b5f3-27f04ac1d482" />
-    <featureReference itemId="56955f83-b2db-4028-82b9-bdd1758ae1ff" />
-    <featureReference itemId="1d14ea67-bbd2-4059-a4c0-830de1bc3371" />
-    <featureReference itemId="37f389e4-b77c-4946-840f-e3b599cd6a22" />
+    <featureReference itemId="915eb4fa-e320-4038-9493-962dabba98bf" />
+    <featureReference itemId="51c9b5f7-c084-44eb-a7a1-2d600b8b9d77" />
+    <featureReference itemId="ddf74e79-25c0-4215-862a-198151eac086" />
+    <featureReference itemId="bffb7254-78b4-47b2-91e9-702510cbd3af" />
   </features>
 </package>
