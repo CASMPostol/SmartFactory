@@ -3,7 +3,7 @@
   <ListInstance Title="SAD Good"
                 OnQuickLaunch="TRUE"
                 TemplateType="10002"
-                Url="Lists/SADGood"
+                Url="Lists/SADGoodList"
                 Description="The SAD Good List">
   </ListInstance>
 </Elements>
