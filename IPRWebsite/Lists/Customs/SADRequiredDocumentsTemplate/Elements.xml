@@ -9,6 +9,6 @@
         SecurityBits="11"
         Sequence="410"
         DisplayName="SAD Required Documents"
-        Description="My List Definition"
+        Description="The SAD Required Documents List Definition"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

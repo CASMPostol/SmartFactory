@@ -50,10 +50,11 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <FieldRef Name="Attachments">
-          </FieldRef>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
+          <FieldRef Name="Attachments"/>
+          <FieldRef Name="LinkTitle"/>
+          <FieldRef ID="{db36ba74-4c91-4793-9ab2-a48ce633ccbe}" Name="Code" />
+          <FieldRef ID="{12104636-b615-4f4e-a0b9-23158b9adad8}" Name="Number" />
+          <FieldRef ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" Name="SADDocumentIndex" />
         </ViewFields>
         <Query>
           <OrderBy>

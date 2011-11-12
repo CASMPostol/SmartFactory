@@ -187,17 +187,17 @@
     <None Include="Lists\Customs\SADQuantityTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0ca8892f-91f2-48b3-966d-e2d0099d5038}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c1ae9ff6-3d06-4e1f-8ad2-68c33f6cf24d}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\SADRequiredDocumentsTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{56530d62-779b-4a11-bf23-0e84444a18cf}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{ba9dd6bf-0f86-469d-9821-2290a484169f}</PackageId>
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
-    </None>
-    <None Include="SADRequiredDocumentsTemplate\SADRequiredDocumentsList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{ca4d789c-5261-469d-950d-07a5c5d1c99c}</SharePointProjectItemId>
-    </None>
-    <None Include="SADRequiredDocumentsTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{d374514f-a8f4-4988-9bce-268140ce544a}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -280,7 +280,9 @@
     <Content Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\Elements.xml" />
     <Content Include="Lists\Customs\SADDutiesTemplate\Schema.xml" />
     <Content Include="Lists\Customs\SADGoodTemplate\Elements.xml" />
-    <Content Include="Lists\Customs\SADGoodTemplate\SADGood\Elements.xml" />
+    <Content Include="Lists\Customs\SADGoodTemplate\SADGood\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\SADGoodTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -292,9 +294,9 @@
     <Content Include="Lists\Customs\SADQuantityTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="SADRequiredDocumentsTemplate\Elements.xml" />
-    <Content Include="SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
-    <Content Include="SADRequiredDocumentsTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
+    <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
