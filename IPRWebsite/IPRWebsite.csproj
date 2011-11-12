@@ -193,6 +193,12 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="SADRequiredDocumentsTemplate\SADRequiredDocumentsList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ca4d789c-5261-469d-950d-07a5c5d1c99c}</SharePointProjectItemId>
+    </None>
+    <None Include="SADRequiredDocumentsTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d374514f-a8f4-4988-9bce-268140ce544a}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content types\Batch\Elements.xml">
@@ -286,6 +292,9 @@
     <Content Include="Lists\Customs\SADQuantityTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="SADRequiredDocumentsTemplate\Elements.xml" />
+    <Content Include="SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
+    <Content Include="SADRequiredDocumentsTemplate\Schema.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
