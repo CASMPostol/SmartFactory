@@ -44,11 +44,11 @@ namespace CAS.SmartFactory.xml.CELINA.SAD
         return String.Empty;
       return Opakowanie[0].Rodzaj;
     }
-    public override string GetTotalAmountInvoiced()
+    public override double? GetTotalAmountInvoiced()
     {
-      if (WartoscTowaru == null || ! WartoscTowaru.WartoscPozycjiSpecified)
-        return string.Empty;
-      return Convert.ToString(this.WartoscTowaru.WartoscPozycji);
+      if (WartoscTowaru == null || !WartoscTowaru.WartoscPozycjiSpecified)
+        return null;
+      return Convert.ToDouble(this.WartoscTowaru.WartoscPozycji);
     }
     public override double? GetCartonsInKg()
     {

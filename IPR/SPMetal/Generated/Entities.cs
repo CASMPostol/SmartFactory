@@ -57,9 +57,9 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// The SAD Good List
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="SAD Good")]
-		public Microsoft.SharePoint.Linq.EntityList<SADGoodSADGood> SADGood {
+		public Microsoft.SharePoint.Linq.EntityList<SADGood> SADGood {
 			get {
-				return this.GetList<SADGoodSADGood>("SAD Good");
+				return this.GetList<SADGood>("SAD Good");
 			}
 		}
 		
@@ -439,7 +439,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// Utwórz nowy element listy.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADGood", Id="0x01003016924817E4AF4A9AD790284C0BAE65")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADGoodSADGood))]
 	public partial class SADGood : Element {
 		
 		private System.Nullable<double> _itemNo;
@@ -967,194 +966,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("GrossMass", this._grossMass);
 					this._grossMass = value;
 					this.OnPropertyChanged("GrossMass");
-				}
-			}
-		}
-	}
-	
-	/// <summary>
-	/// \SAD\Towar
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADGood", Id="0x01003016924817E4AF4A9AD790284C0BAE65", List="SAD Good")]
-	public partial class SADGoodSADGood : SADGood {
-		
-		private string _goodsName;
-		
-		private string _type;
-		
-		private string _sKU;
-		
-		private string _batch;
-		
-		private System.Nullable<double> _netMass;
-		
-		private string _package;
-		
-		private System.Nullable<double> _duty;
-		
-		private System.Nullable<double> _vAT;
-		
-		private string _units;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public SADGoodSADGood() {
-			this.OnCreated();
-		}
-		
-		/// <summary>
-		/// TBD
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GoodsName", Storage="_goodsName", FieldType="Text")]
-		public string GoodsName {
-			get {
-				return this._goodsName;
-			}
-			set {
-				if ((value != this._goodsName)) {
-					this.OnPropertyChanging("GoodsName", this._goodsName);
-					this._goodsName = value;
-					this.OnPropertyChanged("GoodsName");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Type
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Type", Storage="_type", FieldType="Text")]
-		public string Type {
-			get {
-				return this._type;
-			}
-			set {
-				if ((value != this._type)) {
-					this.OnPropertyChanging("Type", this._type);
-					this._type = value;
-					this.OnPropertyChanged("Type");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// SKU
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
-		public string SKU {
-			get {
-				return this._sKU;
-			}
-			set {
-				if ((value != this._sKU)) {
-					this.OnPropertyChanging("SKU", this._sKU);
-					this._sKU = value;
-					this.OnPropertyChanged("SKU");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Batch
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Batch", Storage="_batch", FieldType="Text")]
-		public string Batch {
-			get {
-				return this._batch;
-			}
-			set {
-				if ((value != this._batch)) {
-					this.OnPropertyChanging("Batch", this._batch);
-					this._batch = value;
-					this.OnPropertyChanged("Batch");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Net mass
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NetMass", Storage="_netMass", FieldType="Number")]
-		public System.Nullable<double> NetMass {
-			get {
-				return this._netMass;
-			}
-			set {
-				if ((value != this._netMass)) {
-					this.OnPropertyChanging("NetMass", this._netMass);
-					this._netMass = value;
-					this.OnPropertyChanged("NetMass");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Rodzaj opakowania
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Package", Storage="_package", FieldType="Text")]
-		public string Package {
-			get {
-				return this._package;
-			}
-			set {
-				if ((value != this._package)) {
-					this.OnPropertyChanging("Package", this._package);
-					this._package = value;
-					this.OnPropertyChanged("Package");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Cło
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Duty", Storage="_duty", FieldType="Number")]
-		public System.Nullable<double> Duty {
-			get {
-				return this._duty;
-			}
-			set {
-				if ((value != this._duty)) {
-					this.OnPropertyChanging("Duty", this._duty);
-					this._duty = value;
-					this.OnPropertyChanged("Duty");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Vat
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VAT", Storage="_vAT", FieldType="Number")]
-		public System.Nullable<double> VAT {
-			get {
-				return this._vAT;
-			}
-			set {
-				if ((value != this._vAT)) {
-					this.OnPropertyChanging("VAT", this._vAT);
-					this._vAT = value;
-					this.OnPropertyChanged("VAT");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// j.m.
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Units", Storage="_units", FieldType="Text")]
-		public string Units {
-			get {
-				return this._units;
-			}
-			set {
-				if ((value != this._units)) {
-					this.OnPropertyChanging("Units", this._units);
-					this._units = value;
-					this.OnPropertyChanged("Units");
 				}
 			}
 		}

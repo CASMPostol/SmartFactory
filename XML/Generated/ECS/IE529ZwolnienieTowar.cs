@@ -42,11 +42,11 @@ namespace CAS.SmartFactory.xml.ECS.IE529
         return String.Empty;
       return Opakowanie[0].Rodzaj;
     }
-    public override string GetTotalAmountInvoiced()
+    public override double? GetTotalAmountInvoiced()
     {
       if (WartoscTowaru == null)
-        return String.Empty;
-      return Convert.ToString(this.WartoscTowaru.WartoscStatystyczna);
+        return null;
+      return Convert.ToDouble(this.WartoscTowaru.WartoscStatystyczna);
     }
     public override double? GetCartonsInKg()
     {
