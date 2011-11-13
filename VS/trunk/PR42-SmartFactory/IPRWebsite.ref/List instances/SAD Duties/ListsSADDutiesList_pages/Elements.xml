@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
 	<Module Name="ListsSADDutiesList_pages" Url="Lists/SADDutiesList" SetupPath="pages" RootWebOnly="FALSE" Path="Files\Lists\SADDutiesList" xmlns="http://schemas.microsoft.com/sharepoint/">
 		<File Url="DispForm.aspx" Type="Ghostable" Path="form.aspx">
-			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_ffd99d9e_1753_4961_8966_d3b6504e2132"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
+			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_5edbd49f_e656_416a_b18a_31814025779a"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
   <Title />
   <FrameType>Default</FrameType>
   <Description />
@@ -40,7 +40,7 @@
 </WebPart>]]></AllUsersWebPart>
 		</File>
 		<File Url="EditForm.aspx" Type="Ghostable" Path="form.aspx">
-			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_c1404fcf_ef16_48e3_8ed9_8012069a26bb"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
+			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_14828eaa_9bbd_4ccf_a813_268c49c76486"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
   <Title />
   <FrameType>Default</FrameType>
   <Description />
@@ -78,7 +78,7 @@
 </WebPart>]]></AllUsersWebPart>
 		</File>
 		<File Url="NewForm.aspx" Type="Ghostable" Path="form.aspx">
-			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_866cd0c1_0ef0_4827_9958_e9d82217bdfe"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
+			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_faa96bbd_1a80_43e0_8572_98a68f30b38f"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
   <Title />
   <FrameType>Default</FrameType>
   <Description />
