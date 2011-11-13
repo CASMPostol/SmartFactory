@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<Module Name="ListsSADPackageList_pages" Url="Lists/SADPackageList" SetupPath="pages" RootWebOnly="FALSE" Path="Files\Lists\SADPackageList" xmlns="http://schemas.microsoft.com/sharepoint/">
+	<Module Name="ListsActivityLog_pages" Url="Lists/ActivityLog" SetupPath="pages" RootWebOnly="FALSE" Path="Files\Lists\ActivityLog" xmlns="http://schemas.microsoft.com/sharepoint/">
 		<File Url="DispForm.aspx" Type="Ghostable" Path="form.aspx">
-			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_4f549ad5_61f0_4834_9699_6c11cedd307c"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
+			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_1a53ebfc_3dcc_4360_874f_98d8f73d9338"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
   <Title />
   <FrameType>Default</FrameType>
   <Description />
@@ -29,8 +29,8 @@
   <IsIncludedFilter />
   <Assembly>Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
   <TypeName>Microsoft.SharePoint.WebPartPages.ListFormWebPart</TypeName>
-  <ListName xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">{$ListId:Lists/SADPackageList;}</ListName>
-  <ListId xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">$ListId:Lists/SADPackageList;</ListId>
+  <ListName xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">{$ListId:Lists/ActivityLog;}</ListName>
+  <ListId xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">$ListId:Lists/ActivityLog;</ListId>
   <PageType xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">PAGE_DISPLAYFORM</PageType>
   <FormType xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">4</FormType>
   <ControlMode xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">Display</ControlMode>
@@ -40,7 +40,7 @@
 </WebPart>]]></AllUsersWebPart>
 		</File>
 		<File Url="EditForm.aspx" Type="Ghostable" Path="form.aspx">
-			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_31eee077_0152_44ef_bf4c_186cdd6fa34e"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
+			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_aca08e5a_c081_473c_9107_1913888d020b"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
   <Title />
   <FrameType>Default</FrameType>
   <Description />
@@ -67,8 +67,8 @@
   <IsIncludedFilter />
   <Assembly>Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
   <TypeName>Microsoft.SharePoint.WebPartPages.ListFormWebPart</TypeName>
-  <ListName xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">{$ListId:Lists/SADPackageList;}</ListName>
-  <ListId xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">$ListId:Lists/SADPackageList;</ListId>
+  <ListName xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">{$ListId:Lists/ActivityLog;}</ListName>
+  <ListId xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">$ListId:Lists/ActivityLog;</ListId>
   <PageType xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">PAGE_EDITFORM</PageType>
   <FormType xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">6</FormType>
   <ControlMode xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">Edit</ControlMode>
@@ -78,7 +78,7 @@
 </WebPart>]]></AllUsersWebPart>
 		</File>
 		<File Url="NewForm.aspx" Type="Ghostable" Path="form.aspx">
-			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_410e50f9_fa34_4b1c_bb34_db9015fb50c5"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
+			<AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main" ID="g_7a7110c4_a958_4921_9e0f_8dfeed8ba0f5"><![CDATA[<WebPart xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/WebPart/v2">
   <Title />
   <FrameType>Default</FrameType>
   <Description />
@@ -105,8 +105,8 @@
   <IsIncludedFilter />
   <Assembly>Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
   <TypeName>Microsoft.SharePoint.WebPartPages.ListFormWebPart</TypeName>
-  <ListName xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">{$ListId:Lists/SADPackageList;}</ListName>
-  <ListId xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">$ListId:Lists/SADPackageList;</ListId>
+  <ListName xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">{$ListId:Lists/ActivityLog;}</ListName>
+  <ListId xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">$ListId:Lists/ActivityLog;</ListId>
   <PageType xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">PAGE_NEWFORM</PageType>
   <FormType xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">8</FormType>
   <ControlMode xmlns="http://schemas.microsoft.com/WebPart/v2/ListForm">New</ControlMode>

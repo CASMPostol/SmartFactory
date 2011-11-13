@@ -12,6 +12,7 @@
 			<NavBarPage Name="SAD Quantity" Url="Lists/SADQuantityList/AllItems.aspx" />
 			<NavBarPage Name="SAD Required Documents" Url="Lists/SADRequiredDocumentsList/AllItems.aspx" />
 			<NavBarPage Name="SAD Good" Url="Lists/SADGoodList/AllItems.aspx" />
+			<NavBarPage Name="Activity Log" Url="Lists/ActivityLog/AllItems.aspx" />
 		</NavBar>
 		<NavBar Name="Discussions" Url="_layouts/viewlsts.aspx?BaseType=0&amp;ListTemplate=108" ID="1006" />
 	</NavBars>
@@ -75,19 +76,19 @@
 				<!--XmlFormLibrary Feature-->
 				<Feature ID="{00bfea71-1e1d-4562-b56a-f05371bb0115}" Name="FeatureDefinition/00bfea71-1e1d-4562-b56a-f05371bb0115" SourceVersion="0.0.0.0" />
 				<!--List Feature-->
-				<Feature ID="{c748dbad-e2d2-4171-987d-1c0906a0ae93}" Name="List Feature">
+				<Feature ID="{96ef3f14-d4b4-4486-a893-5b6ca2582267}" Name="List Feature">
 					<Properties>
 						<Property Key="GeneratedBySaveAsTemplate" Value="1" />
 					</Properties>
 				</Feature>
 				<!--Module Feature-->
-				<Feature ID="{ea67d662-fa66-4f56-8214-e416c532130f}" Name="Module Feature">
+				<Feature ID="{20e45d30-ef6a-4b95-9310-637aa016ec06}" Name="Module Feature">
 					<Properties>
 						<Property Key="GeneratedBySaveAsTemplate" Value="1" />
 					</Properties>
 				</Feature>
 				<!--Property Bag Feature-->
-				<Feature ID="{03fb73a2-25df-40b3-a5e7-a4041d93c8b3}" Name="Property Bag Feature">
+				<Feature ID="{503e4b48-74ff-47fd-8842-55b08ac98748}" Name="Property Bag Feature">
 					<Properties>
 						<Property Key="GeneratedBySaveAsTemplate" Value="1" />
 					</Properties>
