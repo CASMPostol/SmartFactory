@@ -4,6 +4,8 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10001"
                 Url="Lists/SADDocument"
-                Description="SADDocument - collection of all customs declaration.">
+                Description="SADDocument - collection of all customs declaration." 
+                VersioningEnabled="False"
+                >
   </ListInstance>
 </Elements>
