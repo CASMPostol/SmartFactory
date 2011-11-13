@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="IPRWebsite - ListInstance1"
-                OnQuickLaunch="TRUE"
-                TemplateType="10006"
-                Url="Lists/IPRWebsite-ListInstance1"
-                Description="My List Instance">
-  </ListInstance>
-</Elements>
