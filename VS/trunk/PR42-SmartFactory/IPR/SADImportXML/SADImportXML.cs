@@ -33,34 +33,30 @@ namespace CAS.SmartFactory.IPR.Customs
         CustomsDocument document = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
         using (EntitiesDataContext edc = new EntitiesDataContext("http://casmp/sites/IPR/"))
         {
-          Anons mess = new Anons() 
-          { 
-            Tytuł = String.Format("Import of the {0} starting.", document.MessageRootName()), 
-            Treść = document.GetNrWlasny() 
+          Anons mess = new Anons()
+          {
+            Tytuł = String.Format("Import of the {0} starting.", document.MessageRootName()),
+            Treść = document.GetNrWlasny()
           };
           edc.ActivityLog.InsertOnSubmit(mess);
           edc.SubmitChanges();
-          List<SADCommodity> cmdts = new List<SADCommodity>();
+          List<SADGood> cmdts = new List<SADGood>();
           for (int i = 0; i < document.GoodsTableLength(); i++)
           {
-            SADCommodity newRow = new SADCommodity()
+            SADGood newRow = new SADGood()
             {
-              ParentListIdentyfikator = properties.ListItem.ID,
-              Tytuł = String.Format("{0}: {1}", document.MessageRootName(),  document.GetNrWlasny()),
-              GoodsName = document[i].GetDescription(),
-              NetMass = document[i].GetNetMass(),
-              Units = document[i].GetUnits(),
+              SADDocumentIndex = properties.ListItem,
+              Tytuł = String.Format("{0}: {1}", document.MessageRootName(), document.GetNrWlasny()),
+              GoodsDescription = document[i].GetDescription(),
               PCNTariffCode = document[i].GetPCNTariffCode(),
               GrossMass = document[i].GetGrossMass(),
               Procedure = document[i].GetProcedure(),
-              Package = document[i].GetPackage(),
               TotalAmountInvoiced = document[i].GetTotalAmountInvoiced(),
-              CartonsInKg = document[i].GetCartonsInKg(),
               ItemNo = document[i].GetItemNo()
             };
             cmdts.Add(newRow);
           }
-          edc.SADCommodity.InsertAllOnSubmit(cmdts);
+          edc.SADGood.InsertAllOnSubmit(cmdts);
           edc.SubmitChanges();
         }
       }
