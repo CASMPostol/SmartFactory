@@ -363,7 +363,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<double> _amount;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADGoodLookup;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -372,10 +372,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		#endregion
 		
 		public SADDuties() {
-			this._sADDocumentIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
-			this._sADDocumentIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIndexSync);
-			this._sADDocumentIndex.OnChanged += new System.EventHandler(this.OnSADDocumentIndexChanged);
-			this._sADDocumentIndex.OnChanging += new System.EventHandler(this.OnSADDocumentIndexChanging);
+			this._sADGoodLookup = new Microsoft.SharePoint.Linq.EntityRef<SADGood>();
+			this._sADGoodLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnSADGoodLookupSync);
+			this._sADGoodLookup.OnChanged += new System.EventHandler(this.OnSADGoodLookupChanged);
+			this._sADGoodLookup.OnChanging += new System.EventHandler(this.OnSADGoodLookupChanging);
 			this.OnCreated();
 		}
 		
@@ -413,25 +413,25 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADDocumentIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
-		public SADDocumentType SADDocumentIndex {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADGoodIndex", Storage="_sADGoodLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Good")]
+		public SADGood SADGoodLookup {
 			get {
-				return this._sADDocumentIndex.GetEntity();
+				return this._sADGoodLookup.GetEntity();
 			}
 			set {
-				this._sADDocumentIndex.SetEntity(value);
+				this._sADGoodLookup.SetEntity(value);
 			}
 		}
 		
-		private void OnSADDocumentIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SADDocumentIndex", this._sADDocumentIndex.Clone());
+		private void OnSADGoodLookupChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADGoodLookup", this._sADGoodLookup.Clone());
 		}
 		
-		private void OnSADDocumentIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SADDocumentIndex");
+		private void OnSADGoodLookupChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADGoodLookup");
 		}
 		
-		private void OnSADDocumentIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
+		private void OnSADGoodLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
 		}
 	}
 	
@@ -453,7 +453,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<double> _totalAmountInvoiced;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentLookup;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -462,10 +462,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		#endregion
 		
 		public SADGood() {
-			this._sADDocumentIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
-			this._sADDocumentIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIndexSync);
-			this._sADDocumentIndex.OnChanged += new System.EventHandler(this.OnSADDocumentIndexChanged);
-			this._sADDocumentIndex.OnChanging += new System.EventHandler(this.OnSADDocumentIndexChanging);
+			this._sADDocumentLookup = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
+			this._sADDocumentLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentLookupSync);
+			this._sADDocumentLookup.OnChanged += new System.EventHandler(this.OnSADDocumentLookupChanged);
+			this._sADDocumentLookup.OnChanging += new System.EventHandler(this.OnSADDocumentLookupChanging);
 			this.OnCreated();
 		}
 		
@@ -568,25 +568,31 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADDocumentIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
-		public SADDocumentType SADDocumentIndex {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADDocumentLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
+		public SADDocumentType SADDocumentLookup {
 			get {
-				return this._sADDocumentIndex.GetEntity();
+				return this._sADDocumentLookup.GetEntity();
 			}
 			set {
-				this._sADDocumentIndex.SetEntity(value);
+				this._sADDocumentLookup.SetEntity(value);
 			}
 		}
 		
-		private void OnSADDocumentIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SADDocumentIndex", this._sADDocumentIndex.Clone());
+		private void OnSADDocumentLookupChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADDocumentLookup", this._sADDocumentLookup.Clone());
 		}
 		
-		private void OnSADDocumentIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SADDocumentIndex");
+		private void OnSADDocumentLookupChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADDocumentLookup");
 		}
 		
-		private void OnSADDocumentIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
+		private void OnSADDocumentLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SADGood.Add(this);
+			}
+			else {
+				e.Item.SADGood.Remove(this);
+			}
 		}
 	}
 	
@@ -600,7 +606,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _package;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADGoodLookup;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -609,10 +615,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		#endregion
 		
 		public SADPackage() {
-			this._sADDocumentIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
-			this._sADDocumentIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIndexSync);
-			this._sADDocumentIndex.OnChanged += new System.EventHandler(this.OnSADDocumentIndexChanged);
-			this._sADDocumentIndex.OnChanging += new System.EventHandler(this.OnSADDocumentIndexChanging);
+			this._sADGoodLookup = new Microsoft.SharePoint.Linq.EntityRef<SADGood>();
+			this._sADGoodLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnSADGoodLookupSync);
+			this._sADGoodLookup.OnChanged += new System.EventHandler(this.OnSADGoodLookupChanged);
+			this._sADGoodLookup.OnChanging += new System.EventHandler(this.OnSADGoodLookupChanging);
 			this.OnCreated();
 		}
 		
@@ -650,25 +656,25 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADDocumentIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
-		public SADDocumentType SADDocumentIndex {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADGoodIndex", Storage="_sADGoodLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Good")]
+		public SADGood SADGoodLookup {
 			get {
-				return this._sADDocumentIndex.GetEntity();
+				return this._sADGoodLookup.GetEntity();
 			}
 			set {
-				this._sADDocumentIndex.SetEntity(value);
+				this._sADGoodLookup.SetEntity(value);
 			}
 		}
 		
-		private void OnSADDocumentIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SADDocumentIndex", this._sADDocumentIndex.Clone());
+		private void OnSADGoodLookupChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADGoodLookup", this._sADGoodLookup.Clone());
 		}
 		
-		private void OnSADDocumentIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SADDocumentIndex");
+		private void OnSADGoodLookupChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADGoodLookup");
 		}
 		
-		private void OnSADDocumentIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
+		private void OnSADGoodLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
 		}
 	}
 	
@@ -684,7 +690,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _units;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADGoodLookup;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -693,10 +699,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		#endregion
 		
 		public SADQuantity() {
-			this._sADDocumentIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
-			this._sADDocumentIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIndexSync);
-			this._sADDocumentIndex.OnChanged += new System.EventHandler(this.OnSADDocumentIndexChanged);
-			this._sADDocumentIndex.OnChanging += new System.EventHandler(this.OnSADDocumentIndexChanging);
+			this._sADGoodLookup = new Microsoft.SharePoint.Linq.EntityRef<SADGood>();
+			this._sADGoodLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnSADGoodLookupSync);
+			this._sADGoodLookup.OnChanged += new System.EventHandler(this.OnSADGoodLookupChanged);
+			this._sADGoodLookup.OnChanging += new System.EventHandler(this.OnSADGoodLookupChanging);
 			this.OnCreated();
 		}
 		
@@ -751,25 +757,25 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADDocumentIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
-		public SADDocumentType SADDocumentIndex {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADGoodIndex", Storage="_sADGoodLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Good")]
+		public SADGood SADGoodLookup {
 			get {
-				return this._sADDocumentIndex.GetEntity();
+				return this._sADGoodLookup.GetEntity();
 			}
 			set {
-				this._sADDocumentIndex.SetEntity(value);
+				this._sADGoodLookup.SetEntity(value);
 			}
 		}
 		
-		private void OnSADDocumentIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SADDocumentIndex", this._sADDocumentIndex.Clone());
+		private void OnSADGoodLookupChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADGoodLookup", this._sADGoodLookup.Clone());
 		}
 		
-		private void OnSADDocumentIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SADDocumentIndex");
+		private void OnSADGoodLookupChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADGoodLookup");
 		}
 		
-		private void OnSADDocumentIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
+		private void OnSADGoodLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
 		}
 	}
 	
@@ -783,7 +789,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _number;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADGoodLookup;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -792,10 +798,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		#endregion
 		
 		public SADRequiredDocuments() {
-			this._sADDocumentIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
-			this._sADDocumentIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIndexSync);
-			this._sADDocumentIndex.OnChanged += new System.EventHandler(this.OnSADDocumentIndexChanged);
-			this._sADDocumentIndex.OnChanging += new System.EventHandler(this.OnSADDocumentIndexChanging);
+			this._sADGoodLookup = new Microsoft.SharePoint.Linq.EntityRef<SADGood>();
+			this._sADGoodLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnSADGoodLookupSync);
+			this._sADGoodLookup.OnChanged += new System.EventHandler(this.OnSADGoodLookupChanged);
+			this._sADGoodLookup.OnChanging += new System.EventHandler(this.OnSADGoodLookupChanging);
 			this.OnCreated();
 		}
 		
@@ -833,25 +839,25 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADDocumentIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
-		public SADDocumentType SADDocumentIndex {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADGoodIndex", Storage="_sADGoodLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Good")]
+		public SADGood SADGoodLookup {
 			get {
-				return this._sADDocumentIndex.GetEntity();
+				return this._sADGoodLookup.GetEntity();
 			}
 			set {
-				this._sADDocumentIndex.SetEntity(value);
+				this._sADGoodLookup.SetEntity(value);
 			}
 		}
 		
-		private void OnSADDocumentIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SADDocumentIndex", this._sADDocumentIndex.Clone());
+		private void OnSADGoodLookupChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADGoodLookup", this._sADGoodLookup.Clone());
 		}
 		
-		private void OnSADDocumentIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SADDocumentIndex");
+		private void OnSADGoodLookupChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADGoodLookup");
 		}
 		
-		private void OnSADDocumentIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
+		private void OnSADGoodLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
 		}
 	}
 	
@@ -873,6 +879,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<double> _grossMass;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<SADGood> _sADGood;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -880,6 +888,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		#endregion
 		
 		public SADDocumentType() {
+			this._sADGood = new Microsoft.SharePoint.Linq.EntitySet<SADGood>();
+			this._sADGood.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnSADGoodSync);
+			this._sADGood.OnChanged += new System.EventHandler(this.OnSADGoodChanged);
+			this._sADGood.OnChanging += new System.EventHandler(this.OnSADGoodChanging);
 			this.OnCreated();
 		}
 		
@@ -967,6 +979,33 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this._grossMass = value;
 					this.OnPropertyChanged("GrossMass");
 				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADGood", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="SAD Good")]
+		public Microsoft.SharePoint.Linq.EntitySet<SADGood> SADGood {
+			get {
+				return this._sADGood;
+			}
+			set {
+				this._sADGood.Assign(value);
+			}
+		}
+		
+		private void OnSADGoodChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADGood", this._sADGood.Clone());
+		}
+		
+		private void OnSADGoodChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADGood");
+		}
+		
+		private void OnSADGoodSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SADDocumentLookup = this;
+			}
+			else {
+				e.Item.SADDocumentLookup = null;
 			}
 		}
 	}
