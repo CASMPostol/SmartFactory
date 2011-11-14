@@ -276,7 +276,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Customs\SADDocumentTemplate\FileDlg.htm" />
-    <Content Include="Lists\Customs\SADDocumentTemplate\SADDocument\Elements.xml" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\SADDocument\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\SADDocumentTemplate\Repair.aspx" />
     <Content Include="Lists\Customs\SADDocumentTemplate\Schema.xml" />
     <Content Include="Lists\Customs\SADDocumentTemplate\Upload.aspx" />
