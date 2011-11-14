@@ -49,12 +49,12 @@
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    Name="GoodsName" 
-    Type="Text" 
-    ID="{46522ede-4acd-4497-9288-b638748930ab}" 
-    DisplayName="GoodsName" 
-    Group="CAS Smart Factory IPR Customs" 
-    Description="TBD" 
+    Name="GoodsName"
+    Type="Text"
+    ID="{46522ede-4acd-4497-9288-b638748930ab}"
+    DisplayName="GoodsName"
+    Group="CAS Smart Factory IPR Customs"
+    Description="TBD"
     />
   <Field
     Name="SADDocumentIndex"
@@ -65,13 +65,30 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="SAD DocumentIndex"
+    DisplayName="SAD Document lookup"
     Group="CAS Smart Factory IPR Customs"
     Required="True"
     Hidden="False"
     DisplaceOnUpgrade="True"
     EnforceUniqueValues="False"
     ReadOnly="False"
+    />
+  <Field
+     Name="SADGoodIndex"
+     ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}"
+     Type="Lookup"
+     List="Lists/SADDocument"
+     ShowField="ID"
+     UnlimitedLengthInDocumentLibrary="False"
+     Indexed="True"
+     RelationshipDeleteBehavior="None"
+     DisplayName="SAD Good lookup"
+     Group="CAS Smart Factory IPR Customs"
+     Required="True"
+     Hidden="False"
+     DisplaceOnUpgrade="True"
+     EnforceUniqueValues="False"
+     ReadOnly="False"
     />
   <Field
     Name="GoodsDescription"
@@ -81,10 +98,10 @@
     Group="CAS Smart Factory IPR Customs"
     Description="TBD"
     />
-  <Field 
-    DisplayName="Type" 
-    Name="Type" 
-    Type="Text" 
+  <Field
+    DisplayName="Type"
+    Name="Type"
+    Type="Text"
     ID="{2A582F5B-99C0-4982-BF9B-ED88ED65F46D}"
     Group="CAS Smart Factory IPR Customs"
     Description="Type"

@@ -11,7 +11,7 @@
     <FieldRefs>
       <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />
       <FieldRef ID="{218a57ca-6aad-4c08-8b14-7bb92323cb68}" Name="Package" />
-      <FieldRef ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" Name="SADDocumentIndex" />
+      <FieldRef ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
