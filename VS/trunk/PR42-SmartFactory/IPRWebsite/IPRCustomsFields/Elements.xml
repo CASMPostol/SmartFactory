@@ -77,7 +77,7 @@
      Name="SADGoodIndex"
      ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}"
      Type="Lookup"
-     List="Lists/SADDocument"
+     List="Lists/SADGoodList"
      ShowField="ID"
      UnlimitedLengthInDocumentLibrary="False"
      Indexed="True"

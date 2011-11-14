@@ -22,7 +22,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" Type="Lookup" List="Lists/SADDocument" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SAD DocumentIndex" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" Type="Lookup" List="Lists/SADGoodList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SAD Good index" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field DisplayName="Item No" Name="ItemNo" Type="Number" ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Group="CAS Smart Factory IPR Customs" Description="PozID" />
       <Field DisplayName="Net mass" Name="NetMass" Type="Number" ID="{db454782-449a-4ec5-b0cd-55a7d7af3428}" Group="CAS Smart Factory IPR Customs" Description="Net mass" />
       <Field DisplayName="Units" Name="Units" Type="Text" ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Group="CAS Smart Factory IPR Customs" Description="j.m." />

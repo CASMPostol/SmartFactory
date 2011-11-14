@@ -21,7 +21,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" Type="Lookup" List="Lists/SADDocument" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SAD DocumentIndex" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" Type="Lookup" List="Lists/SADGoodList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SAD Good Index" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field DisplayName="Item No" Name="ItemNo" Type="Number" ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Group="CAS Smart Factory IPR Customs" Description="PozID" />
       <Field DisplayName="Package" Name="Package" Type="Text" ID="{218a57ca-6aad-4c08-8b14-7bb92323cb68}" Group="CAS Smart Factory IPR Customs" Description="Rodzaj opakowania" />
     </Fields>
