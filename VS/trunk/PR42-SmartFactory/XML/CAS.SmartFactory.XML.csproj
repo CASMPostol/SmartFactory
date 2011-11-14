@@ -65,6 +65,10 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Generated\CELINA\PZCZwolnienieDoProceduryTowarIloscTowaru.cs" />
+    <Compile Include="Generated\CELINA\SADZgloszenieTowarIloscTowaru.cs" />
+    <Compile Include="Generated\ECS\IE529ZwolnienieTowarIloscTowaru.cs" />
+    <Compile Include="QuantityDescription.cs" />
     <None Include="bin\Debug\schema0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -105,6 +109,7 @@
     <None Include="Generated\CELINA\PWDw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Compile Include="DutiesDescription.cs" />
     <Compile Include="Generated\CELINA\CLNE.ext.cs" />
     <Compile Include="Generated\CELINA\PZC.ext.cs" />
     <None Include="Generated\CELINA\PZCw2r0.xsd">
@@ -204,7 +209,11 @@
       <SubType>Designer</SubType>
     </None>
     <Compile Include="Generated\CELINA\PZCZwolnienieDoProceduryTowar.cs" />
+    <Compile Include="Generated\CELINA\PZCZwolnienieDoProceduryTowarOpakowanie.cs" />
+    <Compile Include="Generated\CELINA\PZCZwolnienieDoProceduryTowarOplata.cs" />
     <Compile Include="Generated\CELINA\SADZgloszenieTowar.cs" />
+    <Compile Include="Generated\CELINA\SADZgloszenieTowarOpakowanie.cs" />
+    <Compile Include="Generated\CELINA\SADZgloszenieTowarOplata.cs" />
     <Compile Include="Generated\ECS\IE529.ext.cs" />
     <None Include="Generated\ECS\IE529_v1-0.xsd">
       <SubType>Designer</SubType>
@@ -296,6 +305,8 @@
     <Compile Include="Generated\CELINA\SADw2r0_xmldsig-core-schema.cs" />
     <Compile Include="CustomsDocument.cs" />
     <Compile Include="Generated\ECS\IE529ZwolnienieTowar.cs" />
+    <Compile Include="Generated\ECS\IE529ZwolnienieTowarOpakowanie.cs" />
+    <Compile Include="Generated\ECS\IE529ZwolnienieTowarOplata.cs" />
     <Compile Include="Generated\ECS\IE529_v1-0_xmldsig-core-schema.cs" />
     <Compile Include="Generated\IPR\Invoice.cs">
       <DependentUpon>Invoice.XSD</DependentUpon>
@@ -304,6 +315,7 @@
       <DependentUpon>stock.XSD</DependentUpon>
     </Compile>
     <Compile Include="GoodDescription.cs" />
+    <Compile Include="PackageDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

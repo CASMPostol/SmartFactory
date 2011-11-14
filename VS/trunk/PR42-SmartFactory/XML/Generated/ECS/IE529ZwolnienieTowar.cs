@@ -56,6 +56,18 @@ namespace CAS.SmartFactory.xml.ECS.IE529
     {
       return Convert.ToDouble(this.Nr);
     }
+    public override DutiesDescription[] GetSADDuties()
+    {
+      return this.Oplata;
+    }
+    public override PackageDescription[] GetSADPackage()
+    {
+      return this.Opakowanie;
+    }
     #endregion
+    public override QuantityDescription[] GetSADQuantity()
+    {
+      return this.IloscTowaru;
+    }
   }
 }

@@ -58,6 +58,19 @@ namespace CAS.SmartFactory.xml.CELINA.SAD
     {
       return Convert.ToDouble(this.PozId);
     }
+    public override DutiesDescription[] GetSADDuties()
+    {
+     return this.Oplata;
+    }
+    public override PackageDescription[] GetSADPackage()
+    {
+      return this.Opakowanie;
+    }
     #endregion
+
+    public override QuantityDescription[] GetSADQuantity()
+    {
+      return this.IloscTowaru;
+    }
   }
 }

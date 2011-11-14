@@ -17,5 +17,8 @@ namespace CAS.SmartFactory.xml
     public abstract double? GetTotalAmountInvoiced();
     public abstract double? GetCartonsInKg();
     public abstract double? GetItemNo();
+    public abstract DutiesDescription[] GetSADDuties();
+    public abstract PackageDescription[] GetSADPackage();
+    public abstract QuantityDescription[] GetSADQuantity();
   }
 }
