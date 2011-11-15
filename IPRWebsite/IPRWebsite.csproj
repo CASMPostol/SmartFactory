@@ -160,12 +160,6 @@
     <None Include="Lists\ActivityLog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6ccae4c-19b2-4186-b214-e81b93e94daa}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Customs\SADDocumentTemplate\SADDocument\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{ba83dcf3-f8a7-41ca-926a-184974e2de2e}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Customs\SADDocumentTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{b48be32e-2042-42f7-befd-1a4899caa438}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6d8c3a53-d0c2-4e20-bafd-bd5a33aa883b}</SharePointProjectItemId>
     </None>
@@ -271,17 +265,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\ActivityLog\Elements.xml" />
-    <Content Include="Lists\Customs\SADDocumentTemplate\EditDlg.htm" />
-    <Content Include="Lists\Customs\SADDocumentTemplate\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Lists\Customs\SADDocumentTemplate\FileDlg.htm" />
-    <Content Include="Lists\Customs\SADDocumentTemplate\SADDocument\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Lists\Customs\SADDocumentTemplate\Repair.aspx" />
-    <Content Include="Lists\Customs\SADDocumentTemplate\Schema.xml" />
-    <Content Include="Lists\Customs\SADDocumentTemplate\Upload.aspx" />
     <Content Include="Lists\Customs\SADDutiesTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\Elements.xml" />
     <Content Include="Lists\Customs\SADDutiesTemplate\Schema.xml" />
