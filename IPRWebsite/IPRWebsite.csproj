@@ -189,11 +189,11 @@
     <None Include="Lists\Customs\SADPackageTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e66da2d9-51e5-4ed3-a403-8d01638ce2a8}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Customs\SADPackageTemplate\SADQuantityTemplate\SADQuantityList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{38105a2c-59f9-4d97-bf50-8a2f48164159}</SharePointProjectItemId>
+    <None Include="Lists\Customs\SADQuantityTemplate\SADQuantityList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3dbb3ea0-a9d3-40cd-b791-be644b7b86c3}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Customs\SADPackageTemplate\SADQuantityTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0ca8892f-91f2-48b3-966d-e2d0099d5038}</SharePointProjectItemId>
+    <None Include="Lists\Customs\SADQuantityTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2f0b348f-724f-4682-a825-a6f1f3d258d3}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c1ae9ff6-3d06-4e1f-8ad2-68c33f6cf24d}</SharePointProjectItemId>
@@ -297,11 +297,9 @@
     <Content Include="Lists\Customs\SADPackageTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADPackageTemplate\SADPackageList\Elements.xml" />
     <Content Include="Lists\Customs\SADPackageTemplate\Schema.xml" />
-    <Content Include="Lists\Customs\SADPackageTemplate\SADQuantityTemplate\Elements.xml" />
-    <Content Include="Lists\Customs\SADPackageTemplate\SADQuantityTemplate\SADQuantityList\Elements.xml" />
-    <Content Include="Lists\Customs\SADPackageTemplate\SADQuantityTemplate\Schema.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Lists\Customs\SADQuantityTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\SADQuantityTemplate\SADQuantityList\Elements.xml" />
+    <Content Include="Lists\Customs\SADQuantityTemplate\Schema.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
