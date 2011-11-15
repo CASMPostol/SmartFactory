@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="SAD Document Library"
-                OnQuickLaunch="TRUE"
-                TemplateType="10006"
-                Url="Lists/SADDocumentLibrary"
-                Description="My List Instance">
-  </ListInstance>
-</Elements>
