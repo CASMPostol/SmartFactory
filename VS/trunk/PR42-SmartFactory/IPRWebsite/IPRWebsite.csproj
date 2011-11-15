@@ -160,6 +160,18 @@
     <None Include="Lists\ActivityLog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6ccae4c-19b2-4186-b214-e81b93e94daa}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\SADDocumentLibraryTemplate\SADDocumentLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c3a9c8e0-0aa3-48be-869a-c0db83f55eaa}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\SADDocumentLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2016243f-12a2-49dd-8d34-57c3e305626c}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\SADDocumentTemplate\SADDocument\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{196cc2cd-2b67-41c4-ac13-2e666fae4d4c}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\SADDocumentTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{32c78c94-2289-4bc5-8328-73f2f605a786}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6d8c3a53-d0c2-4e20-bafd-bd5a33aa883b}</SharePointProjectItemId>
     </None>
@@ -265,6 +277,16 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\ActivityLog\Elements.xml" />
+    <Content Include="Lists\Customs\SADDocumentLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\Customs\SADDocumentLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\SADDocumentLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\Customs\SADDocumentLibraryTemplate\SADDocumentLibrary\Elements.xml" />
+    <Content Include="Lists\Customs\SADDocumentLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\Customs\SADDocumentLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\SADDocumentLibraryTemplate\Upload.aspx" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\SADDocument\Elements.xml" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\Schema.xml" />
     <Content Include="Lists\Customs\SADDutiesTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\Elements.xml" />
     <Content Include="Lists\Customs\SADDutiesTemplate\Schema.xml" />
