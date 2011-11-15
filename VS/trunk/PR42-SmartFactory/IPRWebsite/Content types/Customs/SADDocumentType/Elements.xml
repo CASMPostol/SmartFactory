@@ -15,6 +15,7 @@
       <FieldRef Name="Currency" ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" />
       <FieldRef Name="ExchangeRate" ID="{2995A5AF-EC77-4FD7-89F8-898B5068A5E4}" />
       <FieldRef Name="GrossMass" ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" />
+      <FieldRef Name="SADDocumenLibrarytIndex" ID="{66D3CFD7-0C8F-4BC9-B896-EF9A680E2FC5}" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
