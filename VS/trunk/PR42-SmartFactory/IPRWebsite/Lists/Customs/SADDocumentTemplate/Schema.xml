@@ -11,6 +11,7 @@
           <FieldRef Name="Currency" ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" />
           <FieldRef Name="ExchangeRate" ID="{2995A5AF-EC77-4FD7-89F8-898B5068A5E4}" />
           <FieldRef Name="GrossMass" ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" />
+          <FieldRef Name="SADDocumenLibrarytIndex" ID="{66D3CFD7-0C8F-4BC9-B896-EF9A680E2FC5}" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -30,6 +31,7 @@
       <Field Name="Currency" ID="{91f0305a-9f13-468a-85ca-1ae1c859dbd7}" Type="Text" DisplayName="Currency" Group="CAS Smart Factory IPR Customs" AuthoringInfo="Box 22 first part" />
       <Field Name="ExchangeRate" ID="{2995a5af-ec77-4fd7-89f8-898b5068a5e4}" Type="Number" DisplayName="Exchange rate" Group="CAS Smart Factory IPR Customs" AuthoringInfo="Box 23" />
       <Field Name="GrossMass" Type="Number" ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" DisplayName="Gross mass" Group="CAS Smart Factory IPR Customs" />
+      <Field Name="SADDocumenLibrarytIndex" ID="{66d3cfd7-0c8f-4bc9-b896-ef9a680e2fc5}" Type="Lookup" List="Lists/SADDocumentLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SAD Document Library lookup" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -67,6 +69,7 @@
           <FieldRef Name="Currency" ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" />
           <FieldRef Name="ExchangeRate" ID="{2995A5AF-EC77-4FD7-89F8-898B5068A5E4}" />
           <FieldRef Name="GrossMass" ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" />
+          <FieldRef Name="SADDocumenLibrarytIndex" ID="{66D3CFD7-0C8F-4BC9-B896-EF9A680E2FC5}" />
         </ViewFields>
         <Query>
           <OrderBy>

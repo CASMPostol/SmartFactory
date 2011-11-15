@@ -59,7 +59,7 @@
       <SharePointProjectItemId>{baeb8126-42ea-432c-84e1-4c59bfa5f4d1}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Customs\InvoiceContent\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{bd026985-5b5f-464f-831e-a9b8b5603d46}</SharePointProjectItemId>
+      <SharePointProjectItemId>{82659c79-17e9-4c17-aa69-29c3e6f8d7d1}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Customs\Invoice\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0c33e275-a7da-4393-86c5-7955dd7643ef}</SharePointProjectItemId>
