@@ -160,6 +160,9 @@
     <None Include="Lists\ActivityLog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6ccae4c-19b2-4186-b214-e81b93e94daa}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\SADDocumentLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{84fd39c1-9caf-4528-8adc-0019c3585bcb}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Customs\SADDocumentTemplate\SADDocument\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{196cc2cd-2b67-41c4-ac13-2e666fae4d4c}</SharePointProjectItemId>
     </None>
@@ -184,10 +187,10 @@
     <None Include="Lists\Customs\SADPackageTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e66da2d9-51e5-4ed3-a403-8d01638ce2a8}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Customs\SADQuantityTemplate\SADQuantityList\SharePointProjectItem.spdata">
+    <None Include="Lists\Customs\SADPackageTemplate\SADQuantityTemplate\SADQuantityList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{38105a2c-59f9-4d97-bf50-8a2f48164159}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Customs\SADQuantityTemplate\SharePointProjectItem.spdata">
+    <None Include="Lists\Customs\SADPackageTemplate\SADQuantityTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0ca8892f-91f2-48b3-966d-e2d0099d5038}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\SharePointProjectItem.spdata">
@@ -271,8 +274,11 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\ActivityLog\Elements.xml" />
+    <Content Include="Lists\Customs\SADDocumentLibrary\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentTemplate\Elements.xml" />
-    <Content Include="Lists\Customs\SADDocumentTemplate\SADDocument\Elements.xml" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\SADDocument\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\SADDocumentTemplate\Schema.xml" />
     <Content Include="Lists\Customs\SADDutiesTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\Elements.xml" />
@@ -285,9 +291,9 @@
     <Content Include="Lists\Customs\SADPackageTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADPackageTemplate\SADPackageList\Elements.xml" />
     <Content Include="Lists\Customs\SADPackageTemplate\Schema.xml" />
-    <Content Include="Lists\Customs\SADQuantityTemplate\Elements.xml" />
-    <Content Include="Lists\Customs\SADQuantityTemplate\SADQuantityList\Elements.xml" />
-    <Content Include="Lists\Customs\SADQuantityTemplate\Schema.xml">
+    <Content Include="Lists\Customs\SADPackageTemplate\SADQuantityTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\SADPackageTemplate\SADQuantityTemplate\SADQuantityList\Elements.xml" />
+    <Content Include="Lists\Customs\SADPackageTemplate\SADQuantityTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Elements.xml" />
