@@ -8,8 +8,8 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="110"
-        DisplayName="SADDocumentLibraryTemplate"
-        Description="My List Definition"
+        DisplayName="SAD Document Library"
+        Description="The SADDocumentLibrary List Definition"
         Image="/_layouts/images/itdl.png"
         DocumentTemplate="121"/>
 </Elements>
