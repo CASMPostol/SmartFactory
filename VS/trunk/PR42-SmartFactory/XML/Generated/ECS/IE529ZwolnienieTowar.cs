@@ -24,7 +24,7 @@ namespace CAS.SmartFactory.xml.ECS.IE529
     }
     public override string GetPCNTariffCode()
     {
-      return this.KodTowarowy + " " + this.KodTaric;
+      return this.KodTowarowy + this.KodTaric;
     }
     public override double? GetGrossMass()
     {
