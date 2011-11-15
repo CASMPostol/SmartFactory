@@ -34,12 +34,22 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// SADDocument - collection of all customs declaration.
+		/// My List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="SAD Document")]
 		public Microsoft.SharePoint.Linq.EntityList<SADDocumentType> SADDocument {
 			get {
 				return this.GetList<SADDocumentType>("SAD Document");
+			}
+		}
+		
+		/// <summary>
+		/// SAD xml files collection
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="SAD Document Library")]
+		public Microsoft.SharePoint.Linq.EntityList<Dokument> SADDocumentLibrary {
+			get {
+				return this.GetList<Dokument>("SAD Document Library");
 			}
 		}
 		
@@ -109,6 +119,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Element", Id="0x01")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Anons))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentType))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Dokument))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDuties))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADGood))]
@@ -291,7 +302,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// Utwórz nowy dokument.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Dokument", Id="0x0101")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentType))]
 	public partial class Dokument : Element {
 		
 		private string _nazwa;
@@ -349,6 +359,182 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this._dokumentUtworzonyPrzez = value;
 					this.OnPropertyChanged("DokumentUtworzonyPrzez");
 				}
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDocumentType", Id="0x0100844099FC49B54D30A1516EA17A6883FC")]
+	public partial class SADDocumentType : Element {
+		
+		private string _referenceNumber;
+		
+		private System.Nullable<System.DateTime> _customsDebtDate;
+		
+		private string _documentNumber;
+		
+		private string _currency;
+		
+		private System.Nullable<double> _exchangeRate;
+		
+		private System.Nullable<double> _grossMass;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _sADDocumentLibraryLookup;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<SADGood> _sADGood;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SADDocumentType() {
+			this._sADDocumentLibraryLookup = new Microsoft.SharePoint.Linq.EntityRef<Dokument>();
+			this._sADDocumentLibraryLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnSADDocumentLibraryLookupSync);
+			this._sADDocumentLibraryLookup.OnChanged += new System.EventHandler(this.OnSADDocumentLibraryLookupChanged);
+			this._sADDocumentLibraryLookup.OnChanging += new System.EventHandler(this.OnSADDocumentLibraryLookupChanging);
+			this._sADGood = new Microsoft.SharePoint.Linq.EntitySet<SADGood>();
+			this._sADGood.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnSADGoodSync);
+			this._sADGood.OnChanged += new System.EventHandler(this.OnSADGoodChanged);
+			this._sADGood.OnChanging += new System.EventHandler(this.OnSADGoodChanging);
+			this.OnCreated();
+		}
+		
+		/// <summary>
+		/// SAD Document Reference Number - box 7.
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ReferenceNumber", Storage="_referenceNumber", FieldType="Text")]
+		public string ReferenceNumber {
+			get {
+				return this._referenceNumber;
+			}
+			set {
+				if ((value != this._referenceNumber)) {
+					this.OnPropertyChanging("ReferenceNumber", this._referenceNumber);
+					this._referenceNumber = value;
+					this.OnPropertyChanged("ReferenceNumber");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsDebtDate", Storage="_customsDebtDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> CustomsDebtDate {
+			get {
+				return this._customsDebtDate;
+			}
+			set {
+				if ((value != this._customsDebtDate)) {
+					this.OnPropertyChanging("CustomsDebtDate", this._customsDebtDate);
+					this._customsDebtDate = value;
+					this.OnPropertyChanged("CustomsDebtDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DocumentNumber", Storage="_documentNumber", FieldType="Text")]
+		public string DocumentNumber {
+			get {
+				return this._documentNumber;
+			}
+			set {
+				if ((value != this._documentNumber)) {
+					this.OnPropertyChanging("DocumentNumber", this._documentNumber);
+					this._documentNumber = value;
+					this.OnPropertyChanged("DocumentNumber");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Currency", Storage="_currency", FieldType="Text")]
+		public string Currency {
+			get {
+				return this._currency;
+			}
+			set {
+				if ((value != this._currency)) {
+					this.OnPropertyChanging("Currency", this._currency);
+					this._currency = value;
+					this.OnPropertyChanged("Currency");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ExchangeRate", Storage="_exchangeRate", FieldType="Number")]
+		public System.Nullable<double> ExchangeRate {
+			get {
+				return this._exchangeRate;
+			}
+			set {
+				if ((value != this._exchangeRate)) {
+					this.OnPropertyChanging("ExchangeRate", this._exchangeRate);
+					this._exchangeRate = value;
+					this.OnPropertyChanged("ExchangeRate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GrossMass", Storage="_grossMass", FieldType="Number")]
+		public System.Nullable<double> GrossMass {
+			get {
+				return this._grossMass;
+			}
+			set {
+				if ((value != this._grossMass)) {
+					this.OnPropertyChanging("GrossMass", this._grossMass);
+					this._grossMass = value;
+					this.OnPropertyChanged("GrossMass");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumenLibrarytIndex", Storage="_sADDocumentLibraryLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document Library")]
+		public Dokument SADDocumentLibraryLookup {
+			get {
+				return this._sADDocumentLibraryLookup.GetEntity();
+			}
+			set {
+				this._sADDocumentLibraryLookup.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADGood", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="SAD Good")]
+		public Microsoft.SharePoint.Linq.EntitySet<SADGood> SADGood {
+			get {
+				return this._sADGood;
+			}
+			set {
+				this._sADGood.Assign(value);
+			}
+		}
+		
+		private void OnSADDocumentLibraryLookupChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADDocumentLibraryLookup", this._sADDocumentLibraryLookup.Clone());
+		}
+		
+		private void OnSADDocumentLibraryLookupChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADDocumentLibraryLookup");
+		}
+		
+		private void OnSADDocumentLibraryLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
+		}
+		
+		private void OnSADGoodChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADGood", this._sADGood.Clone());
+		}
+		
+		private void OnSADGoodChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADGood");
+		}
+		
+		private void OnSADGoodSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SADDocumentLookup = this;
+			}
+			else {
+				e.Item.SADDocumentLookup = null;
 			}
 		}
 	}
@@ -858,155 +1044,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		private void OnSADGoodLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
-		}
-	}
-	
-	/// <summary>
-	/// Utwórz nowy dokument.
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDocumentType", Id="0x010100844099FC49B54D30A1516EA17A6883FC")]
-	public partial class SADDocumentType : Dokument {
-		
-		private string _referenceNumber;
-		
-		private System.Nullable<System.DateTime> _customsDebtDate;
-		
-		private string _documentNumber;
-		
-		private string _currency;
-		
-		private System.Nullable<double> _exchangeRate;
-		
-		private System.Nullable<double> _grossMass;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<SADGood> _sADGood;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public SADDocumentType() {
-			this._sADGood = new Microsoft.SharePoint.Linq.EntitySet<SADGood>();
-			this._sADGood.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnSADGoodSync);
-			this._sADGood.OnChanged += new System.EventHandler(this.OnSADGoodChanged);
-			this._sADGood.OnChanging += new System.EventHandler(this.OnSADGoodChanging);
-			this.OnCreated();
-		}
-		
-		/// <summary>
-		/// SAD Document Reference Number - box 7.
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ReferenceNumber", Storage="_referenceNumber", FieldType="Text")]
-		public string ReferenceNumber {
-			get {
-				return this._referenceNumber;
-			}
-			set {
-				if ((value != this._referenceNumber)) {
-					this.OnPropertyChanging("ReferenceNumber", this._referenceNumber);
-					this._referenceNumber = value;
-					this.OnPropertyChanged("ReferenceNumber");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsDebtDate", Storage="_customsDebtDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> CustomsDebtDate {
-			get {
-				return this._customsDebtDate;
-			}
-			set {
-				if ((value != this._customsDebtDate)) {
-					this.OnPropertyChanging("CustomsDebtDate", this._customsDebtDate);
-					this._customsDebtDate = value;
-					this.OnPropertyChanged("CustomsDebtDate");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DocumentNumber", Storage="_documentNumber", FieldType="Text")]
-		public string DocumentNumber {
-			get {
-				return this._documentNumber;
-			}
-			set {
-				if ((value != this._documentNumber)) {
-					this.OnPropertyChanging("DocumentNumber", this._documentNumber);
-					this._documentNumber = value;
-					this.OnPropertyChanged("DocumentNumber");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Currency", Storage="_currency", FieldType="Text")]
-		public string Currency {
-			get {
-				return this._currency;
-			}
-			set {
-				if ((value != this._currency)) {
-					this.OnPropertyChanging("Currency", this._currency);
-					this._currency = value;
-					this.OnPropertyChanged("Currency");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ExchangeRate", Storage="_exchangeRate", FieldType="Number")]
-		public System.Nullable<double> ExchangeRate {
-			get {
-				return this._exchangeRate;
-			}
-			set {
-				if ((value != this._exchangeRate)) {
-					this.OnPropertyChanging("ExchangeRate", this._exchangeRate);
-					this._exchangeRate = value;
-					this.OnPropertyChanged("ExchangeRate");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GrossMass", Storage="_grossMass", FieldType="Number")]
-		public System.Nullable<double> GrossMass {
-			get {
-				return this._grossMass;
-			}
-			set {
-				if ((value != this._grossMass)) {
-					this.OnPropertyChanging("GrossMass", this._grossMass);
-					this._grossMass = value;
-					this.OnPropertyChanged("GrossMass");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumentIndex", Storage="_sADGood", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="SAD Good")]
-		public Microsoft.SharePoint.Linq.EntitySet<SADGood> SADGood {
-			get {
-				return this._sADGood;
-			}
-			set {
-				this._sADGood.Assign(value);
-			}
-		}
-		
-		private void OnSADGoodChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SADGood", this._sADGood.Clone());
-		}
-		
-		private void OnSADGoodChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SADGood");
-		}
-		
-		private void OnSADGoodSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SADDocumentLookup = this;
-			}
-			else {
-				e.Item.SADDocumentLookup = null;
-			}
 		}
 	}
 }
