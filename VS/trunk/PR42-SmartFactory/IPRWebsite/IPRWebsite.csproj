@@ -162,12 +162,14 @@
     </None>
     <None Include="Lists\Customs\SADDocumentLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{84fd39c1-9caf-4528-8adc-0019c3585bcb}</SharePointProjectItemId>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Lists\Customs\SADDocumentTemplate\SADDocument\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{196cc2cd-2b67-41c4-ac13-2e666fae4d4c}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADDocumentTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{32c78c94-2289-4bc5-8328-73f2f605a786}</SharePointProjectItemId>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6d8c3a53-d0c2-4e20-bafd-bd5a33aa883b}</SharePointProjectItemId>
@@ -279,10 +281,14 @@
     <Content Include="Lists\Customs\SADDocumentTemplate\SADDocument\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\Customs\SADDocumentTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\SADDocumentTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\SADDutiesTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\Elements.xml" />
-    <Content Include="Lists\Customs\SADDutiesTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\SADDutiesTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\SADGoodTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADGoodTemplate\SADGoodList\Elements.xml" />
     <Content Include="Lists\Customs\SADGoodTemplate\Schema.xml">
