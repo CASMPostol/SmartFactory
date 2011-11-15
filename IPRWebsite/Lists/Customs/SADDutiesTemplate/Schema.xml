@@ -55,9 +55,9 @@
         <ViewFields>
           <FieldRef Name="Attachments"/>
           <FieldRef Name="LinkTitle"/>
-          <FieldRef Name="Type" />
-          <FieldRef Name="Amount" />
-          <FieldRef Name="SADDocumentIndex" />
+          <FieldRef ID="{2a582f5b-99c0-4982-bf9b-ed88ed65f46d}" Name="Type" />
+          <FieldRef ID="{1A8DEAD6-163D-45BB-B278-E946F49C071B}" Name="Amount" />
+          <FieldRef ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" />
         </ViewFields>
         <Query>
           <OrderBy>
