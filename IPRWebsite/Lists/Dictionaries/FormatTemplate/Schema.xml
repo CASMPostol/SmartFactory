@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="FormatTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-FormatTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x01008229b51223914bb3b88f3abdb737237b" Name="Format" Group="CAS Smart Factory IPR Dictionaries" Description="Format" Overwrite="TRUE" Inherits="TRUE">
+        <Folder TargetName="_cts/Format" />
+        <FieldRefs>
+          <FieldRef ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}" Name="CigaretteLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
+          <FieldRef ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}" Name="FilterSegmentLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
+        </FieldRefs>
+        <XmlDocuments>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
+          </XmlDocument>
+        </XmlDocuments>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+      <Field DisplayName="CigaretteLenght" Name="CigaretteLenght" Type="Number" ID="{ab755a0a-a98f-4f58-91e9-a5afb1152429}" Group="CAS Smart Factory IPR" Description="CigaretteLenght" />
+      <Field DisplayName="FilterSegmentLenght" Name="FilterSegmentLenght" Type="Number" ID="{7c8a0b7a-55d7-4cb6-8e38-d1e84360b487}" Group="CAS Smart Factory IPR" Description="FilterSegmentLenght" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu">
+          </FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments">
+          </FieldRef>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}" Name="CigaretteLenght" />
+          <FieldRef ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}" Name="FilterSegmentLenght" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

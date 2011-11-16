@@ -137,9 +137,6 @@
     <None Include="Content types\SmartFactory\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ff00af0f-e6a7-42f3-84dc-4c0248d8825c}</SharePointProjectItemId>
     </None>
-    <None Include="Features\Feature2\Feature2.feature">
-      <FeatureId>{877b5bd7-6c99-42a3-ac82-55de959661fa}</FeatureId>
-    </None>
     <None Include="Features\IPRData\IPRData.feature">
       <FeatureId>{f7642b3b-52e4-47c6-89f9-b0eb3120a5a2}</FeatureId>
     </None>
@@ -203,10 +200,10 @@
       <SharePointProjectItemId>{a258c419-589e-4ba3-bef7-ede514dbc4bd}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\FormatTemplate\FormatList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{c8834aac-4082-42b8-afeb-06b04297b243}</SharePointProjectItemId>
+      <SharePointProjectItemId>{9415a884-8bd5-4502-a42b-57af5a8c5272}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\FormatTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{2988a4d3-5dcd-44a8-96cd-c758e79cc353}</SharePointProjectItemId>
+      <SharePointProjectItemId>{411c95fe-9d6d-4bb3-8c69-1466a2139d5d}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\SKULibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{798c6914-90a6-43d7-9cd3-efb3b3debe09}</SharePointProjectItemId>
@@ -259,7 +256,9 @@
     <Content Include="Content types\Dictionaries\Dust\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Dictionaries\Format\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Format\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\PCNCode\Elements.xml" />
     <Content Include="Content types\Dictionaries\SHMenthol\Elements.xml" />
     <Content Include="Content types\Dictionaries\Usage\Elements.xml" />
@@ -282,9 +281,6 @@
     <Content Include="Content types\SmartFactory\Commodity\Elements.xml" />
     <Content Include="Content types\SmartFactory\Country\Elements.xml" />
     <Content Include="Content types\SmartFactory\Warehouse\Elements.xml" />
-    <Content Include="Features\Feature2\Feature2.Template.xml">
-      <DependentUpon>Feature2.feature</DependentUpon>
-    </Content>
     <Content Include="Features\IPRData\IPRData.Template.xml">
       <DependentUpon>IPRData.feature</DependentUpon>
     </Content>
