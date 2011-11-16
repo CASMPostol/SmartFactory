@@ -243,11 +243,11 @@
     Description="CigaretteLenght"
     />
   <Field
-    DisplayName="FilterSegmentLenght"
-    Name="FilterSegmentLenght"
+    DisplayName="FilterLenght"
+    Name="FilterLenght"
     Type="Number"
     ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}"
     Group="CAS Smart Factory IPR"
-    Description="FilterSegmentLenght"
+    Description="FilterLenght"
     />
 </Elements>
