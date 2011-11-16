@@ -124,12 +124,12 @@
     />
   <Field
     Type="Choice"
-    DisplayName="MaterialType"
+    DisplayName="ProductType"
     ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}"
     Format="Dropdown"
     BaseType="Text"
     Description="Material Type"
-    Name="MaterialType"
+    Name="ProductType"
     Group="CAS Smart Factory IPR" 
     CanToggleHidden="TRUE">
     <Default>Cigarette</Default>

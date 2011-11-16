@@ -8,7 +8,7 @@
                Description="Dust">
 		<Folder TargetName="_cts/Dust" />
 		<FieldRefs>
-			<FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="MaterialType" />
+			<FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
 			<FieldRef ID="{b7afdd32-1537-4091-a802-aa52bf8702d2}" Name="DustRatio" />
 			<FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="StartDate" />
 		</FieldRefs>

@@ -8,7 +8,7 @@
                  Inherits="TRUE">
 		<Folder TargetName="_cts/Usage" />
 		<FieldRefs>
-			<FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="MaterialType" />
+			<FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
 			<FieldRef ID="{7e4f526e-e011-414e-8fdb-6a6cb4738e37}" Name="FormatID" />
 			<FieldRef ID="{a5854e29-ef45-49d8-8cf8-8c5c91f1c0c6}" Name="UsageMin" />
 			<FieldRef ID="{1d56fc71-6866-4a9f-a9c9-629e91b54ae1}" Name="UsageMax" />
