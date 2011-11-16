@@ -266,4 +266,12 @@
     Group="CAS Smart Factory IPR"
     Description="SHMentholRatio"
     />
+  <Field
+    DisplayName="SKUDescription"
+    Name="SKUDescription"
+    Type="Text"
+    ID="{F9499FF7-0420-430D-B2B6-672546BA8235}"
+    Group="CAS Smart Factory IPR"
+    Description="SKUDescription"
+    />
 </Elements>

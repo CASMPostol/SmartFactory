@@ -102,4 +102,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="SKUIndex"
+    ID="{7F22FEC8-C867-49E5-B166-28D4454DE7D7}"
+    Type="Lookup"
+    List="Lists/SKUList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="SKU lookup"
+    Group="CAS Smart Factory IPR Dictionaries"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
