@@ -10,8 +10,6 @@
     <FieldRefs>
       <FieldRef ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}" Name="CigaretteLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
       <FieldRef ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}" Name="FilterSegmentLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
-      <FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="StartDate" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
-      <FieldRef ID="{2684F9F2-54BE-429f-BA06-76754FC056BF}" Name="EndDate" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
