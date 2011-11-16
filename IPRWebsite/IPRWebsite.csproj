@@ -119,9 +119,6 @@
     <None Include="Content types\Material\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{36410db9-ddc6-4730-9f67-ffc3b8e6eebb}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Reports\JSOX\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{b20f3efc-0b6a-44e3-989f-aa34bc464c40}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Reports\StockEntry\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{04ff6c8d-1184-497b-acad-65c061b435df}</SharePointProjectItemId>
     </None>
@@ -206,6 +203,9 @@
       <SharePointProjectItemId>{e86b6345-ec06-4949-b684-e9db11b1e1c7}</SharePointProjectItemId>
       <SubType>Designer</SubType>
     </None>
+    <None Include="Lists\Reports\JSOXLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f54e2eeb-930f-4143-94de-f63d77252beb}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Reports\ReportsLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0b4c2c16-6812-4194-a976-7bcc45a1f3a4}</SharePointProjectItemId>
       <SubType>Designer</SubType>
@@ -258,7 +258,6 @@
     </Content>
     <Content Include="Content types\IPR\Elements.xml" />
     <Content Include="Content types\Material\Elements.xml" />
-    <Content Include="Content types\Reports\JSOX\Elements.xml" />
     <Content Include="Content types\Reports\StockEntry\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -311,6 +310,7 @@
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
     <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXLibrary\Elements.xml" />
     <Content Include="Lists\Reports\ReportsLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -268,7 +268,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="SAD Consignment Librarylookup"
+    DisplayName="SAD Consignment Library lookup"
     Group="CAS Smart Factory IPR Customs"
     Required="True"
     Hidden="False"
