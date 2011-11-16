@@ -85,4 +85,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="UsageIndex"
+    ID="{2D9D6AB0-3770-4103-B11A-424CACC27C9A}"
+    Type="Lookup"
+    List="Lists/UsageList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Usage lookup"
+    Group="CAS Smart Factory IPR Dictionaries"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
