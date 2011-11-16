@@ -9,7 +9,7 @@
     <Folder TargetName="_cts/Format" />
     <FieldRefs>
       <FieldRef ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}" Name="CigaretteLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
-      <FieldRef ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}" Name="FilterSegmentLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
+      <FieldRef ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}" Name="FilterLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
