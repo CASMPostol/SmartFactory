@@ -259,4 +259,21 @@
     Group="CAS Smart Factory IPR Customs"
     Description="Vat"
     />
+  <Field
+    Name="SADConsignmentLibraryIndex"
+    ID="{109482BF-107F-44C3-9CD8-6AC9C1FAB851}"
+    Type="Lookup"
+    List="Lists/SADConsignmentLibrary"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="SAD Consignment Librarylookup"
+    Group="CAS Smart Factory IPR Customs"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>

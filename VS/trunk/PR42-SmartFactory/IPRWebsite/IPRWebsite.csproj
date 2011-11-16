@@ -157,6 +157,10 @@
     <None Include="Lists\ActivityLog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6ccae4c-19b2-4186-b214-e81b93e94daa}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\SADConsignmentLibrary\SharePointProjectItem.spdata">
+      <SubType>Designer</SubType>
+      <SharePointProjectItemId>{2c8db621-5051-4981-bb74-896163cf5dfb}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Customs\SADDocumentLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{84fd39c1-9caf-4528-8adc-0019c3585bcb}</SharePointProjectItemId>
       <SubType>Designer</SubType>
@@ -200,9 +204,11 @@
     </None>
     <None Include="Lists\Reports\BalanceLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e86b6345-ec06-4949-b684-e9db11b1e1c7}</SharePointProjectItemId>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Lists\Reports\ReportsLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0b4c2c16-6812-4194-a976-7bcc45a1f3a4}</SharePointProjectItemId>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Package\Package.package">
       <PackageId>{ba9dd6bf-0f86-469d-9821-2290a484169f}</PackageId>
@@ -276,6 +282,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\ActivityLog\Elements.xml" />
+    <Content Include="Lists\Customs\SADConsignmentLibrary\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentLibrary\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentTemplate\SADDocument\Elements.xml">
@@ -304,7 +311,9 @@
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
     <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
-    <Content Include="Lists\Reports\ReportsLookupFields\Elements.xml" />
+    <Content Include="Lists\Reports\ReportsLookupFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
