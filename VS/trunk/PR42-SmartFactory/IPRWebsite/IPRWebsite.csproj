@@ -220,6 +220,12 @@
     <None Include="Lists\Dictionaries\SKULibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{798c6914-90a6-43d7-9cd3-efb3b3debe09}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\UsageTemplate\UsageList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2403f968-82ad-4a4e-92f6-b2da079d0e65}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\UsageTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b8a712ef-bc40-4de5-a71e-a6659b74af0d}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\WasteTemplate\WasteList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{142587ce-9a49-4de4-8880-7ca2d498a62c}</SharePointProjectItemId>
     </None>
@@ -348,6 +354,9 @@
     <Content Include="Lists\Dictionaries\SHMentholTemplate\SHMentholList\Elements.xml" />
     <Content Include="Lists\Dictionaries\SHMentholTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\SKULibrary\Elements.xml" />
+    <Content Include="Lists\Dictionaries\UsageTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\UsageTemplate\UsageList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\UsageTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\WasteTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\WasteTemplate\WasteList\Elements.xml" />
     <Content Include="Lists\Dictionaries\WasteTemplate\Schema.xml" />
