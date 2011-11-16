@@ -101,6 +101,9 @@
     <None Include="Content types\Dictionaries\SHMenthol\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{797c49f3-9927-4c85-a87b-5cfa078d4383}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\SKU\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{868e1e27-e04a-4759-922f-a9f791867893}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\Usage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{26a34bf3-956c-40f7-8703-17fe745b9a1d}</SharePointProjectItemId>
     </None>
@@ -220,6 +223,12 @@
     <None Include="Lists\Dictionaries\SKULibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{798c6914-90a6-43d7-9cd3-efb3b3debe09}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\SKUTemplate\SKUList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{280d02c3-4aca-4e32-a403-8a54d0c39ac1}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\SKUTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1a68161c-e930-4a3c-a8ad-af2a621d96f2}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\UsageTemplate\UsageList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2403f968-82ad-4a4e-92f6-b2da079d0e65}</SharePointProjectItemId>
     </None>
@@ -285,6 +294,7 @@
     </Content>
     <Content Include="Content types\Dictionaries\PCNCode\Elements.xml" />
     <Content Include="Content types\Dictionaries\SHMenthol\Elements.xml" />
+    <Content Include="Content types\Dictionaries\SKU\Elements.xml" />
     <Content Include="Content types\Dictionaries\Usage\Elements.xml" />
     <Content Include="Content types\Dictionaries\Waste\Elements.xml" />
     <Content Include="Content types\Disposal\Elements.xml">
@@ -354,6 +364,9 @@
     <Content Include="Lists\Dictionaries\SHMentholTemplate\SHMentholList\Elements.xml" />
     <Content Include="Lists\Dictionaries\SHMentholTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\SKULibrary\Elements.xml" />
+    <Content Include="Lists\Dictionaries\SKUTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\SKUTemplate\SKUList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\SKUTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\UsageList\Elements.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\Schema.xml" />

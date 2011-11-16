@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x01004e9439152cef4ca3a1ce39315f845648"
+               Name="SKU"
+               Group="CAS Smart Factory IPR Dictionaries"
+               Description="Consent"
+               Overwrite="TRUE"
+               Inherits="True">
+    <Folder TargetName="_cts/SKU" />
+    <FieldRefs>
+      <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="ProductType" />
+      <FieldRef ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}" Name="FormatIndex" />
+      <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+      <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
+      <FieldRef ID="{82DC8814-8EF0-4570-83C9-98211FE1871E}" Name="SKULibraryIndex" />
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
+</Elements>
