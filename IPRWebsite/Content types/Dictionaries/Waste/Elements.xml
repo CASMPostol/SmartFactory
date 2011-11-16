@@ -8,9 +8,8 @@
                  Inherits="TRUE">
 		<Folder TargetName="_cts/Waste" />
 		<FieldRefs>
-			<FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="MaterialType" />
+			<FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
 			<FieldRef ID="{440bd88d-3870-480e-b01e-f934d478593f}" Name="WasteRatio" />
-			<FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="StartDate" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
