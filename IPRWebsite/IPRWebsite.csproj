@@ -199,6 +199,12 @@
     <None Include="Lists\Dictionaries\DictionariesLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a258c419-589e-4ba3-bef7-ede514dbc4bd}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\DustTemplate\DustList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f78043b4-9d06-40e9-a5df-d36edb2adefc}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\DustTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c103c76d-9007-439c-8f3e-8819d8669e70}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\FormatTemplate\FormatList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9415a884-8bd5-4502-a42b-57af5a8c5272}</SharePointProjectItemId>
     </None>
@@ -326,6 +332,9 @@
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\DictionariesLookupFields\Elements.xml" />
+    <Content Include="Lists\Dictionaries\DustTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\DustTemplate\DustList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\DustTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\FormatTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\FormatTemplate\FormatList\Elements.xml" />
     <Content Include="Lists\Dictionaries\FormatTemplate\Schema.xml" />

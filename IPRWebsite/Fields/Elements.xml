@@ -250,4 +250,12 @@
     Group="CAS Smart Factory IPR"
     Description="FilterLenght"
     />
+  <Field
+    DisplayName="DustRatio"
+    Name="DustRatio"
+    Type="Number"
+    ID="{b7afdd32-1537-4091-a802-aa52bf8702d2}"
+    Group="CAS Smart Factory IPR"
+    Description="DustRatio"
+    />
 </Elements>
