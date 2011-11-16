@@ -8,7 +8,6 @@ using Microsoft.SharePoint.Linq;
 using Microsoft.SharePoint.Linq.Provider;
 using System.Linq;
 
-
 namespace CAS.SmartFactory.IPR.Customs
 {
   /// <summary>
@@ -34,23 +33,33 @@ namespace CAS.SmartFactory.IPR.Customs
       try
       {
         this.EventFiringEnabled = false;
-        CustomsDocument document = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
-        using (EntitiesDataContext edc = new EntitiesDataContext("http://casmp/sites/IPR/"))
+        using (EntitiesDataContext edc = new EntitiesDataContext(properties.WebUrl))
         {
+          if (properties.ListItem.File == null)
+          {
+            Anons log = new Anons()
+            {
+              Tytuł = m_Title,
+              Treść = "Import of a SAD declaration message failed because the file is empty."
+            };
+            edc.ActivityLog.InsertOnSubmit(log);
+            edc.SubmitChanges();
+            return;
+          }
           Anons mess = new Anons()
           {
-            Tytuł = String.Format("Import of the {0} starting.", document.MessageRootName()),
-            Treść = document.GetNrWlasny()
+            Tytuł = m_Title,
+            Treść = String.Format("Import of the SAD declaration {0} starting.", properties.ListItem.File.ToString())
           };
           edc.ActivityLog.InsertOnSubmit(mess);
           edc.SubmitChanges();
-          SADDocumentType entry =
-            (from enr in edc.SADDocument
+          CustomsDocument document = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
+          Dokument entry =
+            (from enr in edc.SADDocumentLibrary
              where enr.Identyfikator == properties.ListItem.ID
-             select enr).First<SADDocumentType>();
-          entry.ReferenceNumber = document.GetNrWlasny();
-          entry.Tytuł = document.MessageRootName();
-          GetSADGood(document, edc, entry);
+             select enr).First<Dokument>();
+          GetSADDocument(document, edc, entry);
+          edc.SubmitChanges();
         }
       }
       catch (Exception ex)
@@ -66,7 +75,7 @@ namespace CAS.SmartFactory.IPR.Customs
         item["Title"] = "Customs document import error";
         item["Body"] = ex.Message;
         item.UpdateOverwriteVersion();
-        properties.ListItem["Name"] = properties.ListItem["Name"] + "Import Error !!";
+        properties.ListItem["Name"] = properties.ListItem["Name"] + ": Import Error !!";
         properties.ListItem.UpdateOverwriteVersion();
       }
       finally
@@ -75,68 +84,95 @@ namespace CAS.SmartFactory.IPR.Customs
       }
       base.ItemAdded(properties);
     }
-
-    private static void GetSADGood(CustomsDocument document, EntitiesDataContext edc, SADDocumentType entry)
+    private static void GetSADDocument(CustomsDocument document, EntitiesDataContext edc, Dokument lookup)
     {
-      List<SADGood> cmdts = new List<SADGood>();
-      for (int i = 0; i < document.GoodsTableLength(); i++)
+      SADDocumentType newRow = new SADDocumentType()
+      {
+        SADDocumentLibraryLookup = lookup,
+        Tytuł = String.Format("{0}: {1} / {2}", document.MessageRootName(), document.GetDocumentNumber(), document.GetReferenceNumber()),
+        Currency = document.GetCurrency(),
+        CustomsDebtDate = document.GetCustomsDebtDate(),
+        DocumentNumber = document.GetDocumentNumber(),
+        ExchangeRate = document.GetExchangeRate(),
+        GrossMass = document.GetGrossMass(),
+        ReferenceNumber = document.GetReferenceNumber()
+      };
+      GetSADGood(document.GetSADGood(), edc, newRow);
+      edc.SADDocument.InsertOnSubmit(newRow);
+    }
+    private static void GetSADGood(GoodDescription[] document, EntitiesDataContext edc, SADDocumentType lookup)
+    {
+      if (document.NullOrEmpty<GoodDescription>())
+        return;
+      List<SADGood> rows = new List<SADGood>();
+      foreach (GoodDescription i in document)
       {
         SADGood newRow = new SADGood()
         {
-          SADDocumentLookup = entry,
-          Tytuł = String.Format("{0}: {1}", document.MessageRootName(), document.GetNrWlasny()),
-          GoodsDescription = document[i].GetDescription(),
-          PCNTariffCode = document[i].GetPCNTariffCode(),
-          GrossMass = document[i].GetGrossMass(),
-          Procedure = document[i].GetProcedure(),
-          TotalAmountInvoiced = document[i].GetTotalAmountInvoiced(),
-          ItemNo = document[i].GetItemNo()
+          SADDocumentLookup = lookup,
+          Tytuł = String.Format("{0}: {1}", i.GetDescription(), i.GetPCNTariffCode()),
+          GoodsDescription = i.GetDescription(),
+          PCNTariffCode = i.GetPCNTariffCode(),
+          GrossMass = i.GetGrossMass(),
+          Procedure = i.GetProcedure(),
+          TotalAmountInvoiced = i.GetTotalAmountInvoiced(),
+          ItemNo = i.GetItemNo()
         };
-        cmdts.Add(newRow);
-        GetSADDuties(document[i], edc, newRow);
-        GetSADPackage(document[i], edc, newRow);
+        rows.Add(newRow);
+        GetSADDuties(i.GetSADDuties(), edc, newRow);
+        GetSADPackage(i.GetSADPackage(), edc, newRow);
+        GetSADQuantity(i.GetSADQuantity(), edc, newRow);
+        GetSADRequiredDocuments(i.GetSADRequiredDocuments(), edc, newRow);
       }
-      edc.SADGood.InsertAllOnSubmit(cmdts);
-      edc.SubmitChanges();
+      if (rows.Count == 0) return;
+      edc.SADGood.InsertAllOnSubmit(rows);
     }
-    private static void GetSADDuties(GoodDescription document, EntitiesDataContext edc, SADGood entry)
+    private static void GetSADDuties(DutiesDescription[] document, EntitiesDataContext edc, SADGood lookup)
     {
-      List<SADDuties> cmdts = new List<SADDuties>();
-      foreach (DutiesDescription duty in document.GetSADDuties() )
+      if (document.NullOrEmpty<DutiesDescription>())
+        return;
+      List<SADDuties> rows = new List<SADDuties>();
+      foreach (DutiesDescription duty in document)
       {
         SADDuties newRow = new SADDuties()
         {
-          SADGoodLookup = entry,
+          SADGoodLookup = lookup,
           Tytuł = String.Format("{0}: {1}", duty.GetType(), duty.GetAmount()),
           Amount = duty.GetAmount(),
-          Type = duty.GetDutyType(),
+          Type = duty.GetDutyType()
         };
-        cmdts.Add(newRow);
+        rows.Add(newRow);
       }
-      edc.SADDuties.InsertAllOnSubmit(cmdts);
-      edc.SubmitChanges();
+      if (rows.Count == 0)
+        return;
+      edc.SADDuties.InsertAllOnSubmit(rows);
     }
-    private static void GetSADPackage(GoodDescription document, EntitiesDataContext edc, SADGood entry)
+    private static void GetSADPackage(PackageDescription[] document, EntitiesDataContext edc, SADGood entry)
     {
-      List<SADPackage> cmdts = new List<SADPackage>();
-      foreach (PackageDescription package in document.GetSADPackage())
+      if (document.NullOrEmpty<PackageDescription>())
+        return;
+      List<SADPackage> rows = new List<SADPackage>();
+      foreach (PackageDescription package in document)
       {
         SADPackage newRow = new SADPackage()
         {
           SADGoodLookup = entry,
-          Tytuł = String.Format("{0}: {1}", package.GetItemNo(), document.GetPackage()),
+          Tytuł = String.Format("{0}: {1}", package.GetItemNo(), package.GetPackage()),
           ItemNo = package.GetItemNo(),
           Package = package.GetPackage()
         };
-        cmdts.Add(newRow);
+        rows.Add(newRow);
       }
-      edc.SADPackage.InsertAllOnSubmit(cmdts);
-      edc.SubmitChanges();
+      if (rows.Count == 0)
+        return;
+      edc.SADPackage.InsertAllOnSubmit(rows);
     }
-    private static void GetSADQuantity(GoodDescription document, EntitiesDataContext edc, SADGood entry)
+    private static void GetSADQuantity(QuantityDescription[] document, EntitiesDataContext edc, SADGood entry)
     {
-      List<SADQuantity> cmdts = new List<SADQuantity>();
-      foreach (QuantityDescription quantity in document.GetSADQuantity())
+      if (document.NullOrEmpty<QuantityDescription>())
+        return;
+      List<SADQuantity> rows = new List<SADQuantity>();
+      foreach (QuantityDescription quantity in document)
       {
         SADQuantity newRow = new SADQuantity()
         {
@@ -146,10 +182,32 @@ namespace CAS.SmartFactory.IPR.Customs
           NetMass = quantity.GetNetMass(),
           Units = quantity.GetUnits()
         };
-        cmdts.Add(newRow);
+        rows.Add(newRow);
       }
-      edc.SADQuantity.InsertAllOnSubmit(cmdts);
-      edc.SubmitChanges();
+      if (rows.Count == 0)
+        return;
+      edc.SADQuantity.InsertAllOnSubmit(rows);
     }
+    private static void GetSADRequiredDocuments(RequiredDocumentsDescription[] document, EntitiesDataContext edc, SADGood entry)
+    {
+      if (document.NullOrEmpty<RequiredDocumentsDescription>())
+        return;
+      List<SADRequiredDocuments> rows = new List<SADRequiredDocuments>();
+      foreach (RequiredDocumentsDescription requiredDocument in document)
+      {
+        SADRequiredDocuments newRow = new SADRequiredDocuments()
+        {
+          SADGoodLookup = entry,
+          Tytuł = String.Format("{0}: {1}", requiredDocument.GetCode(), requiredDocument.GetNumber()),
+          Code = requiredDocument.GetCode(),
+          Number = requiredDocument.GetNumber()
+        };
+        rows.Add(newRow);
+      }
+      if (rows.Count == 0)
+        return;
+      edc.SADRequiredDocuments.InsertAllOnSubmit(rows);
+    }
+    private const string m_Title = "SAD Document Import";
   }
 }

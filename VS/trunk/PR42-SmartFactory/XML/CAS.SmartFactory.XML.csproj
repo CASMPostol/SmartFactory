@@ -65,10 +65,15 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Generated\CELINA\PZCZwolnienieDoProceduryTowarDokumentWymagany.cs" />
     <Compile Include="Generated\CELINA\PZCZwolnienieDoProceduryTowarIloscTowaru.cs" />
+    <Compile Include="Generated\CELINA\SADZgloszenieTowarDokumentWymagany.cs" />
     <Compile Include="Generated\CELINA\SADZgloszenieTowarIloscTowaru.cs" />
+    <Compile Include="Generated\ECS\IE529ZwolnienieTowarDokumentWymagany.cs" />
     <Compile Include="Generated\ECS\IE529ZwolnienieTowarIloscTowaru.cs" />
     <Compile Include="QuantityDescription.cs" />
+    <Compile Include="RequiredDocumentsDescription.cs" />
     <None Include="bin\Debug\schema0.xsd">
       <SubType>Designer</SubType>
     </None>

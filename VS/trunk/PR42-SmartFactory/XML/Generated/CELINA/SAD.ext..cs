@@ -1,35 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.xml.CELINA.SAD
 {
   public partial class SAD : CustomsDocument
   {
     #region CustomsDocument
-    public override string GetNrWlasny()
-    {
-      return Zgloszenie.NrWlasny;
-    }
+
     public override string GetReferenceNumber()
     {
-      return String.Empty;
-    }
-    public override int GoodsTableLength()
-    {
-      if (this.Zgloszenie.Towar == null)
-        return 0;
-      return Zgloszenie.Towar.Length;
+      return Zgloszenie.NrWlasny;
     }
     public override string MessageRootName()
     {
       return "SAD";
     }
-    public override GoodDescription this[int index]
+    public override GoodDescription[] GetSADGood()
     {
-      get { return Zgloszenie.Towar[index]; }
+      return this.Zgloszenie.Towar;
     }
+    public override string GetCurrency()
+    {
+      return Wartosc == null ? String.Empty : Wartosc.Waluta;
+    }
+    public override DateTime? GetCustomsDebtDate()
+    {
+      return null;
+    }
+    public override string GetDocumentNumber()
+    {
+      return String.Empty;
+    }
+    public override double? GetExchangeRate()
+    {
+      if (Wartosc == null)
+        return null;
+      return Wartosc.KursWaluty.ConvertToDouble( Wartosc.KursWalutySpecified);
+    }
+    public override double? GetGrossMass()
+    {
+      return null;
+    }
+    #endregion
+
+    #region private
+    private SADZgloszenieWartoscTowarow Wartosc { get { return this.Zgloszenie.WartoscTowarow; } }
     #endregion
   }
 }

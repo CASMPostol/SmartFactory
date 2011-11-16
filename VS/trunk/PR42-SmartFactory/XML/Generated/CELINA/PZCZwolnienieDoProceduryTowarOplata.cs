@@ -10,7 +10,7 @@ namespace CAS.SmartFactory.xml.CELINA.PZC
     }
     public override double? GetAmount()
     {
-      return this.KwotaSpecified ? new Nullable<Double>(Convert.ToDouble(this.Kwota)) : new Nullable<Double>();
+      return this.Kwota.ConvertToDouble( this.KwotaSpecified );
     }
   }
 }
