@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    Name="BalanceLibraryIndex"
+    ID="{40C6B34C-EE93-4282-A6A7-AFEF69F43220}"
+    Type="Lookup"
+    List="Lists/BalanceLibrary"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Balance Library lookup"
+    Group="CAS Smart Factory IPR Reports"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+</Elements>

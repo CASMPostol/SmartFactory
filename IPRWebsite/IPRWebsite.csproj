@@ -201,6 +201,9 @@
     <None Include="Lists\Reports\BalanceLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e86b6345-ec06-4949-b684-e9db11b1e1c7}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Reports\ReportsLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0b4c2c16-6812-4194-a976-7bcc45a1f3a4}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{ba9dd6bf-0f86-469d-9821-2290a484169f}</PackageId>
     </None>
@@ -301,6 +304,7 @@
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
     <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
+    <Content Include="Lists\Reports\ReportsLookupFields\Elements.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
