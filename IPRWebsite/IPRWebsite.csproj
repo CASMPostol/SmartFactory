@@ -137,9 +137,6 @@
     <None Include="Content types\SmartFactory\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ff00af0f-e6a7-42f3-84dc-4c0248d8825c}</SharePointProjectItemId>
     </None>
-    <None Include="Features\Feature1\Feature1.feature">
-      <FeatureId>{37f10905-abc1-40e3-8247-3bb57c1b371b}</FeatureId>
-    </None>
     <None Include="Features\IPRData\IPRData.feature">
       <FeatureId>{f7642b3b-52e4-47c6-89f9-b0eb3120a5a2}</FeatureId>
     </None>
@@ -201,6 +198,12 @@
     </None>
     <None Include="Lists\Dictionaries\DictionariesLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a258c419-589e-4ba3-bef7-ede514dbc4bd}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\FormatTemplate\FormatList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{83ad5b5b-5fbf-4af9-ae7a-f42bdd3dda2d}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\FormatTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d8140fd6-140a-40b9-94f9-80d5a1b47e5c}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\SKULibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{798c6914-90a6-43d7-9cd3-efb3b3debe09}</SharePointProjectItemId>
@@ -276,9 +279,6 @@
     <Content Include="Content types\SmartFactory\Commodity\Elements.xml" />
     <Content Include="Content types\SmartFactory\Country\Elements.xml" />
     <Content Include="Content types\SmartFactory\Warehouse\Elements.xml" />
-    <Content Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
-    </Content>
     <Content Include="Features\IPRData\IPRData.Template.xml">
       <DependentUpon>IPRData.feature</DependentUpon>
     </Content>
@@ -318,6 +318,9 @@
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\DictionariesLookupFields\Elements.xml" />
+    <Content Include="Lists\Dictionaries\FormatTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\FormatTemplate\FormatList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\FormatTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\SKULibrary\Elements.xml" />
     <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
     <Content Include="Lists\Reports\JSOXLibrary\Elements.xml" />
