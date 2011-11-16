@@ -119,9 +119,6 @@
     <None Include="Content types\Material\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{36410db9-ddc6-4730-9f67-ffc3b8e6eebb}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Reports\Balance\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{bc77ba1d-ceeb-40f6-b569-f17217aa68e4}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Reports\JSOX\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b20f3efc-0b6a-44e3-989f-aa34bc464c40}</SharePointProjectItemId>
     </None>
@@ -201,6 +198,9 @@
     <None Include="Lists\Customs\SADRequiredDocumentsTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{56530d62-779b-4a11-bf23-0e84444a18cf}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Reports\BalanceLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e86b6345-ec06-4949-b684-e9db11b1e1c7}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{ba9dd6bf-0f86-469d-9821-2290a484169f}</PackageId>
     </None>
@@ -249,9 +249,6 @@
     </Content>
     <Content Include="Content types\IPR\Elements.xml" />
     <Content Include="Content types\Material\Elements.xml" />
-    <Content Include="Content types\Reports\Balance\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content types\Reports\JSOX\Elements.xml" />
     <Content Include="Content types\Reports\StockEntry\Elements.xml">
       <SubType>Designer</SubType>
@@ -303,6 +300,7 @@
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
+    <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
