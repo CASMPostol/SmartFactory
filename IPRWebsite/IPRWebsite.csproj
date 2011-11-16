@@ -101,9 +101,6 @@
     <None Include="Content types\Dictionaries\SHMenthol\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{797c49f3-9927-4c85-a87b-5cfa078d4383}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Dictionaries\SKU\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{d14ee4e8-8cb1-44fe-a37d-4c40dd5497ad}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Dictionaries\Usage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{26a34bf3-956c-40f7-8703-17fe745b9a1d}</SharePointProjectItemId>
     </None>
@@ -139,6 +136,9 @@
     </None>
     <None Include="Content types\SmartFactory\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ff00af0f-e6a7-42f3-84dc-4c0248d8825c}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{37f10905-abc1-40e3-8247-3bb57c1b371b}</FeatureId>
     </None>
     <None Include="Features\IPRData\IPRData.feature">
       <FeatureId>{f7642b3b-52e4-47c6-89f9-b0eb3120a5a2}</FeatureId>
@@ -199,6 +199,12 @@
     <None Include="Lists\Customs\SADRequiredDocumentsTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{56530d62-779b-4a11-bf23-0e84444a18cf}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\DictionariesLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a258c419-589e-4ba3-bef7-ede514dbc4bd}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\SKULibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{798c6914-90a6-43d7-9cd3-efb3b3debe09}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Reports\BalanceLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e86b6345-ec06-4949-b684-e9db11b1e1c7}</SharePointProjectItemId>
       <SubType>Designer</SubType>
@@ -250,7 +256,6 @@
     <Content Include="Content types\Dictionaries\Format\Elements.xml" />
     <Content Include="Content types\Dictionaries\PCNCode\Elements.xml" />
     <Content Include="Content types\Dictionaries\SHMenthol\Elements.xml" />
-    <Content Include="Content types\Dictionaries\SKU\Elements.xml" />
     <Content Include="Content types\Dictionaries\Usage\Elements.xml" />
     <Content Include="Content types\Dictionaries\Waste\Elements.xml" />
     <Content Include="Content types\Disposal\Elements.xml">
@@ -271,6 +276,9 @@
     <Content Include="Content types\SmartFactory\Commodity\Elements.xml" />
     <Content Include="Content types\SmartFactory\Country\Elements.xml" />
     <Content Include="Content types\SmartFactory\Warehouse\Elements.xml" />
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
     <Content Include="Features\IPRData\IPRData.Template.xml">
       <DependentUpon>IPRData.feature</DependentUpon>
     </Content>
@@ -309,6 +317,8 @@
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\DictionariesLookupFields\Elements.xml" />
+    <Content Include="Lists\Dictionaries\SKULibrary\Elements.xml" />
     <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
     <Content Include="Lists\Reports\JSOXLibrary\Elements.xml" />
     <Content Include="Lists\Reports\ReportsLookupFields\Elements.xml">

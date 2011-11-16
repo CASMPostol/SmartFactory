@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    Name="SKULibraryIndex"
+    ID="{82DC8814-8EF0-4570-83C9-98211FE1871E}"
+    Type="Lookup"
+    List="Lists/SKULibrary"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="JSOX Library lookup"
+    Group="CAS Smart Factory IPR Dictionaries"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+</Elements>
