@@ -258,4 +258,12 @@
     Group="CAS Smart Factory IPR"
     Description="DustRatio"
     />
+  <Field
+    DisplayName="SHMentholRatio"
+    Name="SHMentholRatio"
+    Type="Number"
+    ID="{dd7d6806-45a6-494d-a940-1baae80840a2}"
+    Group="CAS Smart Factory IPR"
+    Description="SHMentholRatio"
+    />
 </Elements>
