@@ -36,10 +36,17 @@ namespace CAS.SmartFactory.xml
         return (CustomsDocument)invoice.Deserialize(reader);
       }
     }
-    public abstract GoodDescription this[int index] {get; }
-    public abstract string GetNrWlasny();
+
+    #region public abstract
+    public abstract GoodDescription[] GetSADGood();
     public abstract string GetReferenceNumber();
-    public abstract int GoodsTableLength();
     public abstract string MessageRootName();
+    public abstract string GetCurrency();
+    public abstract DateTime? GetCustomsDebtDate();
+    public abstract string GetDocumentNumber();
+    public abstract double? GetExchangeRate();
+    public abstract double? GetGrossMass();
+    #endregion
+
   }
 }

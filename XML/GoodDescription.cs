@@ -20,5 +20,6 @@ namespace CAS.SmartFactory.xml
     public abstract DutiesDescription[] GetSADDuties();
     public abstract PackageDescription[] GetSADPackage();
     public abstract QuantityDescription[] GetSADQuantity();
+    public abstract RequiredDocumentsDescription[] GetSADRequiredDocuments();
   }
 }

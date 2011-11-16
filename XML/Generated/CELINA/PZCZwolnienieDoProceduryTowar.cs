@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.xml.CELINA.PZC
 {
@@ -23,7 +20,7 @@ namespace CAS.SmartFactory.xml.CELINA.PZC
     }
     public override string GetUnits()
     {
-      if (this.IloscTowaru == null || this.IloscTowaru.Length == 0)
+      if (this.IloscTowaru.NullOrEmpty<PZCZwolnienieDoProceduryTowarIloscTowaru>())
         return String.Empty;
       return this.IloscTowaru[0].Jm;
     }
@@ -33,9 +30,7 @@ namespace CAS.SmartFactory.xml.CELINA.PZC
     }
     public override double? GetGrossMass()
     {
-      if (!masaBruttoFieldSpecified)
-        return null;
-      return Convert.ToDouble(this.MasaBrutto);
+      return this.MasaBrutto.ConvertToDouble(masaBruttoFieldSpecified);
     }
     public override string GetProcedure()
     {
@@ -43,15 +38,15 @@ namespace CAS.SmartFactory.xml.CELINA.PZC
     }
     public override string GetPackage()
     {
-      if (this.Opakowanie.Length == 0)
+      if (this.Opakowanie.NullOrEmpty<PZCZwolnienieDoProceduryTowarOpakowanie>())
         return String.Empty;
       return Opakowanie[0].Rodzaj;
     }
     public override double? GetTotalAmountInvoiced()
     {
-      if (WartoscTowaru == null || !WartoscTowaru.WartoscPozycjiSpecified)
+      if (WartoscTowaru == null)
         return null;
-      return Convert.ToDouble(this.WartoscTowaru.WartoscPozycji);
+      return this.WartoscTowaru.WartoscPozycji.ConvertToDouble(WartoscTowaru.WartoscPozycjiSpecified);
     }
     public override double? GetCartonsInKg()
     {
@@ -69,11 +64,14 @@ namespace CAS.SmartFactory.xml.CELINA.PZC
     {
       return this.Opakowanie;
     }
-    #endregion
-
     public override QuantityDescription[] GetSADQuantity()
     {
       return this.IloscTowaru;
     }
+    public override RequiredDocumentsDescription[] GetSADRequiredDocuments()
+    {
+      return this.DokumentWymagany;
+    }
+    #endregion
   }
 }

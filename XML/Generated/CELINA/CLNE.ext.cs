@@ -1,32 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.xml.CELINA.CLNE
 {
   public partial class CLNE : CustomsDocument
   {
     #region CustomsDocument
-    public override string GetNrWlasny()
-    {
-      return this.Przyjecie.NrWlasny;
-    }
     public override string GetReferenceNumber()
     {
-      return this.Przyjecie.NrCelina;
-    }
-    public override int GoodsTableLength()
-    {
-      return 0;
+      if (Przyjecie == null)
+        return null;
+      return this.Przyjecie.NrWlasny;
     }
     public override string MessageRootName()
     {
       return "CLNE";
     }
-    public override GoodDescription this[int index]
+    public override GoodDescription[] GetSADGood()
     {
-      get { return null; }
+      return null;
+    }
+    public override string GetCurrency()
+    {
+      return String.Empty;
+    }
+    public override DateTime? GetCustomsDebtDate()
+    {
+      if (Przyjecie == null)
+        return null;
+      return this.Przyjecie.CzasPrzyjecia;
+    }
+    public override string GetDocumentNumber()
+    {
+      if (Przyjecie == null)
+        return null;
+      return this.Przyjecie.NrCelina;
+    }
+    public override double? GetExchangeRate()
+    {
+      return null;
+    }
+    public override double? GetGrossMass()
+    {
+      return null;
     }
     #endregion
   }
