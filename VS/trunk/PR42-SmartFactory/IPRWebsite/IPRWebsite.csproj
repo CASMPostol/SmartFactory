@@ -122,6 +122,9 @@
     <None Include="Content types\Reports\BalanceSummary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a08a0a81-2e44-40ce-85b3-9b878748f834}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Reports\JSOXCustomsSummary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8ce9bf17-26d5-420d-b599-2fd4e0e9bf31}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Reports\JSOX\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ff09157a-bca2-4a89-b5da-9212d512b810}</SharePointProjectItemId>
     </None>
@@ -270,6 +273,12 @@
       <SharePointProjectItemId>{e86b6345-ec06-4949-b684-e9db11b1e1c7}</SharePointProjectItemId>
       <SubType>Designer</SubType>
     </None>
+    <None Include="Lists\Reports\JSOXCustomsSummaryTemplate\JSOXCustomsSummaryList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{fe974d84-8961-4c55-afa6-ec327fe50476}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\JSOXCustomsSummaryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0b7655f1-c0b4-45b5-8961-1df233a68b5d}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Reports\JSOXLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f54e2eeb-930f-4143-94de-f63d77252beb}</SharePointProjectItemId>
     </None>
@@ -337,6 +346,7 @@
     <Content Include="Content types\IPR\Elements.xml" />
     <Content Include="Content types\Material\Elements.xml" />
     <Content Include="Content types\Reports\BalanceSummary\Elements.xml" />
+    <Content Include="Content types\Reports\JSOXCustomsSummary\Elements.xml" />
     <Content Include="Content types\Reports\JSOX\Elements.xml" />
     <Content Include="Content types\Reports\ReportsCommonPart\Elements.xml">
       <SubType>Designer</SubType>
@@ -430,6 +440,9 @@
     <Content Include="Lists\Dictionaries\WasteTemplate\WasteList\Elements.xml" />
     <Content Include="Lists\Dictionaries\WasteTemplate\Schema.xml" />
     <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\JSOXCustomsSummaryList\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Schema.xml" />
     <Content Include="Lists\Reports\JSOXLibrary\Elements.xml" />
     <Content Include="Lists\Reports\JSOXTemplate\Elements.xml" />
     <Content Include="Lists\Reports\JSOXTemplate\JSOXList\Elements.xml" />

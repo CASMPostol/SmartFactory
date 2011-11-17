@@ -51,4 +51,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="JSOXCustomsSummaryIndex"
+    ID="{6E87DAC8-1B60-4246-97E1-9D0DC221F268}"
+    Type="Lookup"
+    List="Lists/JSOXCustomsSummaryList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="JSOX Customs Summary List lookup"
+    Group="CAS Smart Factory IPR Reports"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
