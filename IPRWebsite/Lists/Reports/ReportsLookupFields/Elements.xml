@@ -34,4 +34,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="JSOXIndex"
+    ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}"
+    Type="Lookup"
+    List="Lists/JSOXList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="JSOX List lookup"
+    Group="CAS Smart Factory IPR Reports"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>

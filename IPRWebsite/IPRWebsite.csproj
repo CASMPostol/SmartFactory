@@ -122,6 +122,9 @@
     <None Include="Content types\Reports\BalanceSummary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a08a0a81-2e44-40ce-85b3-9b878748f834}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Reports\JSOX\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ff09157a-bca2-4a89-b5da-9212d512b810}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Reports\ReportsCommonPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cc0f6dce-141b-4cc9-bdf0-4fced812551e}</SharePointProjectItemId>
     </None>
@@ -261,6 +264,12 @@
     <None Include="Lists\Reports\JSOXLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f54e2eeb-930f-4143-94de-f63d77252beb}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Reports\JSOXTemplate\JSOXList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{70d85092-5634-4fa6-9399-adf072ddc961}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\JSOXTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2cde74b2-965b-4029-b8e6-8fcf2ed7b261}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Reports\ReportsFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b45358fb-838f-48a7-bdc1-4e4c4fb6d24a}</SharePointProjectItemId>
     </None>
@@ -317,6 +326,7 @@
     <Content Include="Content types\IPR\Elements.xml" />
     <Content Include="Content types\Material\Elements.xml" />
     <Content Include="Content types\Reports\BalanceSummary\Elements.xml" />
+    <Content Include="Content types\Reports\JSOX\Elements.xml" />
     <Content Include="Content types\Reports\ReportsCommonPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -398,6 +408,9 @@
     <Content Include="Lists\Dictionaries\WasteTemplate\Schema.xml" />
     <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
     <Content Include="Lists\Reports\JSOXLibrary\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXTemplate\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXTemplate\JSOXList\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXTemplate\Schema.xml" />
     <Content Include="Lists\Reports\ReportsFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
