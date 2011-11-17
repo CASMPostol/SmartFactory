@@ -119,4 +119,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="CutfillerCoefficientIndex"
+    ID="{43E20C54-3704-4F77-B755-EF45465F4AB2}"
+    Type="Lookup"
+    List="Lists/CutfillerCoefficientList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="CutfillerCoefficient lookup"
+    Group="CAS Smart Factory IPR Dictionaries"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>

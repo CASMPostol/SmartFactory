@@ -83,11 +83,11 @@
     <None Include="Content types\Customs\SADRequiredDocuments\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{738095ac-6989-40e9-a3b0-f58d86295a8d}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Dictionaries\ CutfillerCoefficient\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{8705df43-b8b9-4a57-9fb0-291ae9f27211}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Dictionaries\Consent\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2896fc51-4f19-41cb-9a1c-8fc41a099c98}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\CutfillerCoefficient\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{95a0472f-7568-48a6-98bd-cb4a81b97f2e}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\Dust\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{58d52a60-887b-401a-baeb-86dc9b21b9ae}</SharePointProjectItemId>
@@ -199,6 +199,12 @@
     <None Include="Lists\Customs\SADRequiredDocumentsTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{56530d62-779b-4a11-bf23-0e84444a18cf}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\CutfillerCoefficientTemplate\CutfillerCoefficientList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ce3c2329-5116-416a-8016-eaa9f95966e6}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\CutfillerCoefficientTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{91d2e3c6-cba3-4c7d-a731-1ba1bbac128a}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\DictionariesLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a258c419-589e-4ba3-bef7-ede514dbc4bd}</SharePointProjectItemId>
     </None>
@@ -282,10 +288,8 @@
     <Content Include="Content types\Customs\SADRequiredDocuments\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Dictionaries\ CutfillerCoefficient\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content types\Dictionaries\Consent\Elements.xml" />
+    <Content Include="Content types\Dictionaries\CutfillerCoefficient\Elements.xml" />
     <Content Include="Content types\Dictionaries\Dust\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -353,7 +357,12 @@
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
-    <Content Include="Lists\Dictionaries\DictionariesLookupFields\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\CutfillerCoefficientList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\DictionariesLookupFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\DustTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\DustTemplate\DustList\Elements.xml" />
     <Content Include="Lists\Dictionaries\DustTemplate\Schema.xml" />
