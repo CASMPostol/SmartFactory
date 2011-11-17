@@ -168,4 +168,53 @@
     DisplayName="Balance"
     Group="CAS Smart Factory IPR Reports"
     />
+  <Field
+    Name="ExportOrFreeCirculationSAD"
+    ID="{0D1243D7-75A7-47EB-A17E-E82C15AEA206}"
+    Type="Text"
+    DisplayName="Export or Free Circulation SAD"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="SADDate"
+    ID="{1CBC328D-A936-4125-A6C6-A2E0E956D250}"
+    Type="Text"
+    DisplayName="SAD Date"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="InvoiceNo"
+    ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}"
+    Type="Text"
+    DisplayName="Invoice No."
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="SADConsignmentNo"
+    ID="{0F90D8BC-23A5-48B8-8089-B91E5ABB5BAE}"
+    Type="Text"
+    DisplayName="SAD Consignment No."
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="SADConsignmentDate"
+    ID="{F16E6D8E-E665-4063-8612-0D0976F82B3B}"
+    Type="Text"
+    DisplayName="SAD Consignment Date"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="CompensationGood"
+    ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}"
+    Type="Text"
+    DisplayName="Compensation Good"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="TotalAmount"
+    ID="{035F50FD-F71B-452B-8F44-7A4DB2486A8E}"
+    Type="Number"
+    DisplayName="Total Amount"
+    Group="CAS Smart Factory IPR Reports"
+    />
 </Elements>
