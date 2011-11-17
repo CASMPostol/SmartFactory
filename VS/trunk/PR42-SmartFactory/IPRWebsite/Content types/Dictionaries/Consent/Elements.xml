@@ -9,11 +9,10 @@
 		<Folder TargetName="_cts/Consent" />
 		<FieldRefs>
 			<FieldRef ID="{7e356924-ecc1-4ae2-b5af-4501388062d8}" Name="ConsentNo" />
-			<FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="StartDate" />
-			<FieldRef ID="{8a121252-85a9-443d-8217-a1b57020fadf}" Name="_EndDate" />
+      <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />
+      <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
 			<FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />
 			<FieldRef ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}" Name="ProductivityRateMax" />
-			<FieldRef ID="{7e9d625d-14fa-4626-9412-14bcd2bce8e6}" Name="DocumentNo" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
