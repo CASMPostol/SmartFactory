@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    Name="TobaccoEnteredIntoIPR"
+    ID="{ECF7BF3D-B3E5-40B6-B7B3-5D843DD18B19}"
+    Type="Number"
+    DisplayName="Tobacco entered into IPR"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="TobaccoCSFinished"
+    ID="{C5727534-8FD5-43C7-A1D4-14F7759A4D7F}"
+    Type="Number"
+    DisplayName="Tobacco (CS - finished)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="TobaccoInFGCSStarted"
+    ID="{D9A43A0B-6058-45FE-B17E-FCE2D2B68F00}"
+    Type="Number"
+    DisplayName="Tobacco in FG (CS - started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="DustCSStarted"
+    ID="{259D6299-703C-4C7E-8B9C-3A6E699AECDC}"
+    Type="Number"
+    DisplayName="Dust (CS - started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="WasteCSStarted"
+    ID="{53B8AE24-354A-4E2D-AAD2-792A2611B4AB}"
+    Type="Number"
+    DisplayName="Waste (CS - started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="SHMentholCSStarted"
+    ID="{5E1AB76D-319C-4E05-932D-FCD0427FD90D}"
+    Type="Number"
+    DisplayName="SH Menthol (CS - started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="OveruseCSStarted"
+    ID="{53F5CC88-8D20-4983-9D3B-B2DFCED84E75}"
+    Type="Number"
+    DisplayName="Overuse (CS - started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="PureTobaccoCSStarted"
+    ID="{63460CC1-5E98-40AD-B397-0DEFB5D7B30A}"
+    Type="Number"
+    DisplayName="Pure tobacco (CS - started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="IPRBook"
+    ID="{1984248F-B28C-46B9-8A5B-1FA889CA6C19}"
+    Type="Number"
+    DisplayName="IPR book"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="WasteCSNotStarted"
+    ID="{60F39E6B-3F9B-4EFF-B23A-415C6C2F0697}"
+    Type="Number"
+    DisplayName="Waste (CS - not started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="SHMentholCSNotStarted"
+    ID="{058A1544-7568-4200-AA24-3D241A556372}"
+    Type="Number"
+    DisplayName="SH Menthol (CS - not started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="OveruseCSNotStarted"
+    ID="{7975EDC7-6647-4948-AA72-5665B3D0587E}"
+    Type="Number"
+    DisplayName="Overuse (CS - not started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="SHWasteOveruseCSNotStarted"
+    ID="{0BFC8F01-34C1-4E57-996B-5CE86BE152C4}"
+    Type="Number"
+    DisplayName="SH, Waste, Overuse (CS - not started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="DustCSNotStarted"
+    ID="{8448C159-547D-4524-A0EE-9E4B43284F07}"
+    Type="Number"
+    DisplayName="Dust (CS - not started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="TobaccoAvailable"
+    ID="{A0E79811-844C-4614-8EEC-AE76CBF1609E}"
+    Type="Number"
+    DisplayName="Tobacco Available"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="TobaccoInFGCSNotStarted"
+    ID="{09D8F5DD-B676-4B39-9529-947391B8C78F}"
+    Type="Number"
+    DisplayName="Tobacco Ain FG (CS - not started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="PureTobaccoCSNotStarted"
+    ID="{65F982E8-3C59-4A27-9EF6-D87948624D63}"
+    Type="Number"
+    DisplayName="Pure tobacco (CS - not started)"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="TobaccoUsedInTheProduction"
+    ID="{2BE8F347-0979-42C2-A021-832891FC786A}"
+    Type="Number"
+    DisplayName="Tobacco used in the production"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="TobaccoToBeUsedInTheProduction"
+    ID="{12BF2F51-FADB-48CE-9948-290A72FEFB0F}"
+    Type="Number"
+    DisplayName="Tobacco to be used in the production"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="TobaccoInWarehouse"
+    ID="{54C90F3E-3C47-4B04-9793-EE1395939864}"
+    Type="Number"
+    DisplayName="Tobacco in Warehouse"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="TobaccoInCigarettesWarehouse"
+    ID="{5683B652-DF3A-4988-A253-7535AE34003A}"
+    Type="Number"
+    DisplayName="Tobacco in Cigarettes Warehouse"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="TobaccoInCigarettesProduction"
+    ID="{5BA601FA-60E5-452C-8D40-832083C03201}"
+    Type="Number"
+    DisplayName="Tobacco in Cigarettes Production"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="TobaccoInCutfillerWarehouse"
+    ID="{ADFF97EF-0414-477C-AF48-D1DEF14D8C5E}"
+    Type="Number"
+    DisplayName="Tobacco in Cutfiller Warehouse"
+    Group="CAS Smart Factory IPR Reports"
+    />
+  <Field
+    Name="Balance"
+    ID="{D341520E-A826-4C16-A8ED-8325153B7D49}"
+    Type="Number"
+    DisplayName="Balance"
+    Group="CAS Smart Factory IPR Reports"
+    />
+</Elements>

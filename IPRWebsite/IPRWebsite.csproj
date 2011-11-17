@@ -119,6 +119,12 @@
     <None Include="Content types\Material\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{36410db9-ddc6-4730-9f67-ffc3b8e6eebb}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Reports\BalanceSummary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a08a0a81-2e44-40ce-85b3-9b878748f834}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Reports\ReportsCommonPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{cc0f6dce-141b-4cc9-bdf0-4fced812551e}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Reports\StockEntry\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{04ff6c8d-1184-497b-acad-65c061b435df}</SharePointProjectItemId>
     </None>
@@ -213,6 +219,7 @@
     </None>
     <None Include="Lists\Dictionaries\DustTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c103c76d-9007-439c-8f3e-8819d8669e70}</SharePointProjectItemId>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Lists\Dictionaries\FormatTemplate\FormatList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9415a884-8bd5-4502-a42b-57af5a8c5272}</SharePointProjectItemId>
@@ -253,6 +260,9 @@
     </None>
     <None Include="Lists\Reports\JSOXLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f54e2eeb-930f-4143-94de-f63d77252beb}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\ReportsFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b45358fb-838f-48a7-bdc1-4e4c4fb6d24a}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Reports\ReportsLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0b4c2c16-6812-4194-a976-7bcc45a1f3a4}</SharePointProjectItemId>
@@ -306,6 +316,10 @@
     </Content>
     <Content Include="Content types\IPR\Elements.xml" />
     <Content Include="Content types\Material\Elements.xml" />
+    <Content Include="Content types\Reports\BalanceSummary\Elements.xml" />
+    <Content Include="Content types\Reports\ReportsCommonPart\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Reports\StockEntry\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -384,6 +398,9 @@
     <Content Include="Lists\Dictionaries\WasteTemplate\Schema.xml" />
     <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
     <Content Include="Lists\Reports\JSOXLibrary\Elements.xml" />
+    <Content Include="Lists\Reports\ReportsFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Reports\ReportsLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
