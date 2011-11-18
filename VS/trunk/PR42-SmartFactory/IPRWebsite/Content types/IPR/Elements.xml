@@ -3,11 +3,36 @@
 	<ContentType ID="0x0100BB872D605E9F0F49B05D98D6A01655F8" 
                  Name="IPR" 
                  Group="CAS Smart Factory IPR" 
-                 Description="IPR: IPR List" 
+                 Description="IPR List" 
                  Overwrite="TRUE" 
                  Inherits="TRUE">
 		<Folder TargetName="_cts/IPR" />
 		<FieldRefs>
+      <FieldRef ID="{7e356924-ecc1-4ae2-b5af-4501388062d8}" Name="ConsentNo" />
+      <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
+      <FieldRef ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}" Name="CustomsDebtDate" />
+      <FieldRef ID="{4D811640-9BD7-4E6D-B081-08B84B6C8123}" Name="OGLValidTo" />
+      <FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />
+      <FieldRef ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}" Name="ProductivityRateMax" />
+      <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
+      <FieldRef ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}" Name="TobaccoName" />
+      <FieldRef ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}" Name="DutyName" />
+      <FieldRef ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}" Name="Duty" />
+      <FieldRef ID="{D0177FD6-5A37-483C-9BA8-9EED9493F16C}" Name="DutyPerUnit" />
+      <FieldRef ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}" Name="VATName" />
+      <FieldRef ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Name="VAT"/>
+      <FieldRef ID="{29466F7A-3E6E-4B25-A93E-3590AE7863A7}" Name="VATPerUnit" />
+      <FieldRef ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}" Name="NetMass" />
+      <FieldRef ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" Name="GrossMass" />
+      <FieldRef ID="{EC985ABA-7AA4-4603-86E6-904837CF0F77}" Name="Cartons" />
+      <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
+      <FieldRef ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}" Name="Value" />
+      <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
+      <FieldRef ID="{D387B1F7-9EE5-4880-A059-BABC25D25596}" Name="UnitPrice" />
+      <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
+      <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
+      <FieldRef ID="{BFF3BF37-6B79-400A-932B-CC75D61E79DA}" Name="ConsentIndex" />
+      <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

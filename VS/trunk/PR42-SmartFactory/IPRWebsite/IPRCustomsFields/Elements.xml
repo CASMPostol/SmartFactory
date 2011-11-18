@@ -12,13 +12,6 @@
     Required="False"
     />
   <Field
-    Name="CustomsDebtDate"
-    ID="{0209C89F-5F3A-4852-8EB2-8D18FCD5FD00}"
-    Type="DateTime"
-    DisplayName="Customs debt date"
-    Group="CAS Smart Factory IPR Customs"
-    />
-  <Field
     Name="DocumentNumber"
     ID="{760B5433-5802-47AA-BB65-6438772D78B5}"
     Type="Text"
@@ -269,6 +262,31 @@
     Indexed="True"
     RelationshipDeleteBehavior="None"
     DisplayName="SAD Consignment Library lookup"
+    Group="CAS Smart Factory IPR Customs"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    DisplayName="Status"
+    Name="Status"
+    Type="Boolean"
+    ID="{CE7B596A-FE29-4F30-A0F2-043CB359B599}"
+    Group="CAS Smart Factory IPR Customs"
+    Description="Status"
+    />
+  <Field
+    Name="ClearenceIndex"
+    ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}"
+    Type="Lookup"
+    List="Lists/ClearenceList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Clearence List lookup"
     Group="CAS Smart Factory IPR Customs"
     Required="True"
     Hidden="False"

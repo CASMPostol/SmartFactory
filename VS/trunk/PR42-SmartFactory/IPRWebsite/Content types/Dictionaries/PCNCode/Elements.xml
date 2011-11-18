@@ -8,8 +8,9 @@
                Inherits="TRUE">
     <Folder TargetName="_cts/PCNCode" />
     <FieldRefs>
-      <FieldRef ID="{FAB1E4CF-D883-45A5-B682-97B78EDF1F75}" Name="ProductCodeNumber" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />
-      <FieldRef ID="{D547D6AE-F714-4D76-9CAE-3DD228DA4300}" Name="ProductName" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />      
+      <FieldRef ID="{FAB1E4CF-D883-45A5-B682-97B78EDF1F75}" Name="ProductCodeNumber" />
+      <FieldRef ID="{D547D6AE-F714-4D76-9CAE-3DD228DA4300}" Name="ProductName" />
+      <FieldRef ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Name="CompensationGood" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
