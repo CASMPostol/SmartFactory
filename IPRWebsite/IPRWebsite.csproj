@@ -152,6 +152,9 @@
     <None Include="Content types\SmartFactory\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ff00af0f-e6a7-42f3-84dc-4c0248d8825c}</SharePointProjectItemId>
     </None>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{a285a5c6-adac-4ba1-83d8-6a63e732c966}</FeatureId>
+    </None>
     <None Include="Features\IPRData\IPRData.feature">
       <FeatureId>{f7642b3b-52e4-47c6-89f9-b0eb3120a5a2}</FeatureId>
     </None>
@@ -165,6 +168,15 @@
     <None Include="key.snk" />
     <None Include="Lists\ActivityLog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6ccae4c-19b2-4186-b214-e81b93e94daa}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\BatchLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ec5bf261-b65f-4d4f-9531-ee025399c797}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\BatchTemplate\BatchList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{68aacb1d-a590-4172-a506-968a57dc3c6a}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\BatchTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b85ee722-97f4-4def-b73c-3ddf3fc9d3eb}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\ClearenceTemplate\ClearenceList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{23608ad8-058e-4c59-8f8c-836af802866f}</SharePointProjectItemId>
@@ -296,6 +308,9 @@
     <None Include="Lists\IPRLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9c8f2898-e1f2-4d5f-9998-321391e553b9}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\IPRLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b35b575f-21b9-4906-aaae-e6b178e43e71}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\IPRTemplate\IPRList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ce08fa6c-05cc-4f86-8c44-c946df0a290f}</SharePointProjectItemId>
     </None>
@@ -408,6 +423,9 @@
     <Content Include="Content types\SmartFactory\Warehouse\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
     <Content Include="Features\IPRData\IPRData.Template.xml">
       <DependentUpon>IPRData.feature</DependentUpon>
     </Content>
@@ -418,6 +436,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\ActivityLog\Elements.xml" />
+    <Content Include="Lists\BatchLibrary\Elements.xml" />
+    <Content Include="Lists\BatchTemplate\Elements.xml" />
+    <Content Include="Lists\BatchTemplate\BatchList\Elements.xml" />
+    <Content Include="Lists\BatchTemplate\Schema.xml" />
     <Content Include="Lists\Customs\ClearenceTemplate\Elements.xml" />
     <Content Include="Lists\Customs\ClearenceTemplate\ClearenceList\Elements.xml" />
     <Content Include="Lists\Customs\ClearenceTemplate\Schema.xml" />
@@ -495,6 +517,7 @@
     <Content Include="Lists\Dictionaries\WasteTemplate\Schema.xml" />
     <Content Include="Lists\IPRFields\Elements.xml" />
     <Content Include="Lists\IPRLibrary\Elements.xml" />
+    <Content Include="Lists\IPRLookupFields\Elements.xml" />
     <Content Include="Lists\IPRTemplate\Elements.xml" />
     <Content Include="Lists\IPRTemplate\IPRList\Elements.xml" />
     <Content Include="Lists\IPRTemplate\Schema.xml" />

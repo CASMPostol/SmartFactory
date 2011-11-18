@@ -2,5 +2,6 @@
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="ba9dd6bf-0f86-469d-9821-2290a484169f" solutionId="f5f511a8-0434-452a-8543-cc3a397ee40e" resetWebServer="false" title="IPR Book Management" description="IPR Website supports management of the inward process relief." name="IPRWebsite" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="f7642b3b-52e4-47c6-89f9-b0eb3120a5a2" />
+    <featureReference itemId="a285a5c6-adac-4ba1-83d8-6a63e732c966" />
   </features>
 </package>

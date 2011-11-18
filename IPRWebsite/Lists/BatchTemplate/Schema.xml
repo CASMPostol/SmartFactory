@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="BatchTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-BatchTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x0100FCF87F15D5BE244EBA39ACA130B1ABDB" Name="Batch" Group="CAS Smart Factory" Description="Batch" Overwrite="TRUE" Inherits="TRUE">
+        <Folder TargetName="_cts/Batch" />
+        <FieldRefs>
+          <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
+          <FieldRef ID="{ca980625-03da-4c63-b23a-b60f472ca2b3}" Name="BatchStatus" />
+          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+          <FieldRef ID="{88259302-82EA-4ADC-90D3-B6B6B7CC3B16}" Name="FGQuantity" />
+          <FieldRef ID="{A0734EE0-F311-4FD8-A912-333C6F6E9690}" Name="FGQuantityPrevious" />
+          <FieldRef ID="{EE831573-9757-4F8C-8DAF-E39E051998F3}" Name="FGQuantityBlocked" />
+          <FieldRef ID="{69ADEE04-E60C-4871-AAB4-8D12A09CEBC1}" Name="FGQuantityAvailable" />
+          <FieldRef ID="{5DFBD671-91CA-498A-8508-7FFCE0FCC909}" Name="MaterialQuantity" />
+          <FieldRef ID="{6F085CA9-2636-4526-8DF2-3A4B67EEE8DC}" Name="MaterialQuantityPrevious" />
+          <FieldRef ID="{725952C1-86DA-41C1-8616-6F5B738B2CA0}" Name="CalculatedOveruse" />
+          <FieldRef ID="{36D134B9-A652-43F1-A650-51F62E079775}" Name="Overuse" />
+          <FieldRef ID="{E00CB825-5594-485D-A232-4DE70F99A939}" Name="Dust" />
+          <FieldRef ID="{41BDDA92-4D8D-4B1F-8C60-1D3B7AEA6B98}" Name="Waste" />
+          <FieldRef ID="{762353C4-D601-4461-84FA-EB26F7E314C2}" Name="SHMenthol" />
+          <FieldRef ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}" Name="Tobacco" />
+          <FieldRef ID="{38CE0A4D-208F-4F49-A344-11728F5B659D}" Name="BatchLibraryIndex" />
+          <FieldRef ID="{43E20C54-3704-4F77-B755-EF45465F4AB2}" Name="CutfillerCoefficientIndex" />
+          <FieldRef ID="{7F22FEC8-C867-49E5-B166-28D4454DE7D7}" Name="SKUIndex" />
+          <FieldRef ID="{2D9D6AB0-3770-4103-B11A-424CACC27C9A}" Name="UsageIndex" />
+          <FieldRef ID="{5674C84E-49A1-4FCE-AA1F-BE89C98CA633}" Name="SHMentholIndex" />
+          <FieldRef ID="{B9FBC416-F875-4C9E-B099-9A14B219015B}" Name="DustIndex" />
+          <FieldRef ID="{CE29CEDB-9FCC-4A9D-9C94-FA6EF041F789}" Name="WasteIndex" />
+        </FieldRefs>
+        <XmlDocuments>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
+          </XmlDocument>
+        </XmlDocuments>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+      <Field DisplayName="Batch" Name="Batch" Type="Text" ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Group="CAS Smart Factory IPR" Description="Batch" />
+      <Field DisplayName="BatchStatus" Name="BatchStatus" Type="Text" ID="{ca980625-03da-4c63-b23a-b60f472ca2b3}" Group="CAS Smart Factory IPR" Description="BatchStatus" />
+      <Field Type="Choice" DisplayName="ProductType" ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Format="Dropdown" BaseType="Text" Description="Material Type" Name="ProductType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
+    <Default>Cigarette</Default>
+    <CHOICES>
+      <CHOICE>Cutfiller</CHOICE>
+      <CHOICE>Cigarette</CHOICE>
+    </CHOICES>
+  </Field>
+      <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="CAS Smart Factory IPR Customs" Description="SKU" />
+      <Field Name="WasteIndex" ID="{ce29cedb-9fcc-4a9d-9c94-fa6ef041f789}" Type="Lookup" List="Lists/WasteList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Waste lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="DustIndex" ID="{b9fbc416-f875-4c9e-b099-9a14b219015b}" Type="Lookup" List="Lists/DustList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Dust lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="SHMentholIndex" ID="{5674c84e-49a1-4fce-aa1f-be89c98ca633}" Type="Lookup" List="Lists/SHMentholList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SHMenthol lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="UsageIndex" ID="{2d9d6ab0-3770-4103-b11a-424cacc27c9a}" Type="Lookup" List="Lists/UsageList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Usage lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="SKUIndex" ID="{7f22fec8-c867-49e5-b166-28d4454de7d7}" Type="Lookup" List="Lists/SKUList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SKU lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="CutfillerCoefficientIndex" ID="{43e20c54-3704-4f77-b755-ef45465f4ab2}" Type="Lookup" List="Lists/CutfillerCoefficientList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="CutfillerCoefficient lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field DisplayName="FG Quantity" Name="FGQuantity" Type="Number" ID="{88259302-82ea-4adc-90d3-b6b6b7cc3b16}" Group="CAS Smart Factory IPR" Description="FG Quantity" />
+      <Field DisplayName="FG Quantity (previous)" Name="FGQuantityPrevious" Type="Number" ID="{a0734ee0-f311-4fd8-a912-333c6f6e9690}" Group="CAS Smart Factory IPR" Description="FG Quantity (previous)" />
+      <Field DisplayName="FG Quantity (blocked)" Name="FGQuantityBlocked" Type="Number" ID="{ee831573-9757-4f8c-8daf-e39e051998f3}" Group="CAS Smart Factory IPR" Description="FG Quantity (blocked)" />
+      <Field DisplayName="FG Quantity (available)" Name="FGQuantityAvailable" Type="Number" ID="{69adee04-e60c-4871-aab4-8d12a09cebc1}" Group="CAS Smart Factory IPR" Description="FG Quantity (available)" />
+      <Field DisplayName="Material Quantity" Name="MaterialQuantity" Type="Number" ID="{5dfbd671-91ca-498a-8508-7ffce0fcc909}" Group="CAS Smart Factory IPR" Description="Material Quantity" />
+      <Field DisplayName="Material Quantity Previous" Name="MaterialQuantityPrevious" Type="Number" ID="{6f085ca9-2636-4526-8df2-3a4b67eee8dc}" Group="CAS Smart Factory IPR" Description="Material Quantity Previous" />
+      <Field DisplayName="Calculated overuse" Name="CalculatedOveruse" Type="Number" ID="{725952c1-86da-41c1-8616-6f5b738b2ca0}" Group="CAS Smart Factory IPR" Description="Calculated overuse" />
+      <Field DisplayName="Overuse" Name="Overuse" Type="Number" ID="{36d134b9-a652-43f1-a650-51f62e079775}" Group="CAS Smart Factory IPR" Description="Overuse" />
+      <Field DisplayName="Dust" Name="Dust" Type="Number" ID="{e00cb825-5594-485d-a232-4de70f99a939}" Group="CAS Smart Factory IPR" Description="Dust" />
+      <Field DisplayName="Waste" Name="Waste" Type="Number" ID="{41bdda92-4d8d-4b1f-8c60-1d3b7aea6b98}" Group="CAS Smart Factory IPR" Description="Waste" />
+      <Field DisplayName="SH Menthol" Name="SHMenthol" Type="Number" ID="{762353c4-d601-4461-84fa-eb26f7e314c2}" Group="CAS Smart Factory IPR" Description="SHMenthol" />
+      <Field DisplayName="Tobacco" Name="Tobacco" Type="Number" ID="{27f1b8c8-6e63-482a-8a25-0904fab70cb7}" Group="CAS Smart Factory IPR" Description="Tobacco" />
+      <Field Name="BatchLibraryIndex" ID="{38ce0a4d-208f-4f49-a344-11728f5b659d}" Type="Lookup" List="Lists/BatchLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Batch Library lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu">
+          </FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments">
+          </FieldRef>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
+          <FieldRef ID="{ca980625-03da-4c63-b23a-b60f472ca2b3}" Name="BatchStatus" />
+          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+          <FieldRef ID="{88259302-82EA-4ADC-90D3-B6B6B7CC3B16}" Name="FGQuantity" />
+          <FieldRef ID="{A0734EE0-F311-4FD8-A912-333C6F6E9690}" Name="FGQuantityPrevious" />
+          <FieldRef ID="{EE831573-9757-4F8C-8DAF-E39E051998F3}" Name="FGQuantityBlocked" />
+          <FieldRef ID="{69ADEE04-E60C-4871-AAB4-8D12A09CEBC1}" Name="FGQuantityAvailable" />
+          <FieldRef ID="{5DFBD671-91CA-498A-8508-7FFCE0FCC909}" Name="MaterialQuantity" />
+          <FieldRef ID="{6F085CA9-2636-4526-8DF2-3A4B67EEE8DC}" Name="MaterialQuantityPrevious" />
+          <FieldRef ID="{725952C1-86DA-41C1-8616-6F5B738B2CA0}" Name="CalculatedOveruse" />
+          <FieldRef ID="{36D134B9-A652-43F1-A650-51F62E079775}" Name="Overuse" />
+          <FieldRef ID="{E00CB825-5594-485D-A232-4DE70F99A939}" Name="Dust" />
+          <FieldRef ID="{41BDDA92-4D8D-4B1F-8C60-1D3B7AEA6B98}" Name="Waste" />
+          <FieldRef ID="{762353C4-D601-4461-84FA-EB26F7E314C2}" Name="SHMenthol" />
+          <FieldRef ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}" Name="Tobacco" />
+          <FieldRef ID="{38CE0A4D-208F-4F49-A344-11728F5B659D}" Name="BatchLibraryIndex" />
+          <FieldRef ID="{43E20C54-3704-4F77-B755-EF45465F4AB2}" Name="CutfillerCoefficientIndex" />
+          <FieldRef ID="{7F22FEC8-C867-49E5-B166-28D4454DE7D7}" Name="SKUIndex" />
+          <FieldRef ID="{2D9D6AB0-3770-4103-B11A-424CACC27C9A}" Name="UsageIndex" />
+          <FieldRef ID="{5674C84E-49A1-4FCE-AA1F-BE89C98CA633}" Name="SHMentholIndex" />
+          <FieldRef ID="{B9FBC416-F875-4C9E-B099-9A14B219015B}" Name="DustIndex" />
+          <FieldRef ID="{CE29CEDB-9FCC-4A9D-9C94-FA6EF041F789}" Name="WasteIndex" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

@@ -130,20 +130,99 @@
     </FieldRefs>
   </Field>
   <Field
-    Name="IPRLibraryIndex"
-    ID="{787756CE-4DEB-46DB-B092-BAED5DBAFA86}"
-    Type="Lookup"
-    List="Lists/IPRLibrary"
-    ShowField="ID"
-    UnlimitedLengthInDocumentLibrary="False"
-    Indexed="True"
-    RelationshipDeleteBehavior="None"
-    DisplayName="IPRLibrary lookup"
+  DisplayName="FG Quantity"
+  Name="FGQuantity"
+  Type="Number"
+  ID="{88259302-82EA-4ADC-90D3-B6B6B7CC3B16}"
+  Group="CAS Smart Factory IPR"
+  Description="FG Quantity"
+    />
+  <Field
+    DisplayName="FG Quantity (previous)"
+    Name="FGQuantityPrevious"
+    Type="Number"
+    ID="{A0734EE0-F311-4FD8-A912-333C6F6E9690}"
     Group="CAS Smart Factory IPR"
-    Required="True"
-    Hidden="False"
-    DisplaceOnUpgrade="True"
-    EnforceUniqueValues="False"
-    ReadOnly="False"
+    Description="FG Quantity (previous)"
+    />
+  <Field
+    DisplayName="FG Quantity (blocked)"
+    Name="FGQuantityBlocked"
+    Type="Number"
+    ID="{EE831573-9757-4F8C-8DAF-E39E051998F3}"
+    Group="CAS Smart Factory IPR"
+    Description="FG Quantity (blocked)"
+    />
+  <Field
+    DisplayName="FG Quantity (available)"
+    Name="FGQuantityAvailable"
+    Type="Number"
+    ID="{69ADEE04-E60C-4871-AAB4-8D12A09CEBC1}"
+    Group="CAS Smart Factory IPR"
+    Description="FG Quantity (available)"
+    />
+  <Field
+    DisplayName="Material Quantity"
+    Name="MaterialQuantity"
+    Type="Number"
+    ID="{5DFBD671-91CA-498A-8508-7FFCE0FCC909}"
+    Group="CAS Smart Factory IPR"
+    Description="Material Quantity"
+    />
+  <Field
+    DisplayName="Material Quantity Previous"
+    Name="MaterialQuantityPrevious"
+    Type="Number"
+    ID="{6F085CA9-2636-4526-8DF2-3A4B67EEE8DC}"
+    Group="CAS Smart Factory IPR"
+    Description="Material Quantity Previous"
+    />
+  <Field
+    DisplayName="Calculated overuse"
+    Name="CalculatedOveruse"
+    Type="Number"
+    ID="{725952C1-86DA-41C1-8616-6F5B738B2CA0}"
+    Group="CAS Smart Factory IPR"
+    Description="Calculated overuse"
+    />
+  <Field
+    DisplayName="Overuse"
+    Name="Overuse"
+    Type="Number"
+    ID="{36D134B9-A652-43F1-A650-51F62E079775}"
+    Group="CAS Smart Factory IPR"
+    Description="Overuse"
+    />
+  <Field
+    DisplayName="Dust"
+    Name="Dust"
+    Type="Number"
+    ID="{E00CB825-5594-485D-A232-4DE70F99A939}"
+    Group="CAS Smart Factory IPR"
+    Description="Dust"
+    />
+  <Field
+    DisplayName="Waste"
+    Name="Waste"
+    Type="Number"
+    ID="{41BDDA92-4D8D-4B1F-8C60-1D3B7AEA6B98}"
+    Group="CAS Smart Factory IPR"
+    Description="Waste"
+    />
+  <Field
+    DisplayName="SH Menthol"
+    Name="SHMenthol"
+    Type="Number"
+    ID="{762353C4-D601-4461-84FA-EB26F7E314C2}"
+    Group="CAS Smart Factory IPR"
+    Description="SHMenthol"
+    />
+  <Field
+    DisplayName="Tobacco"
+    Name="Tobacco"
+    Type="Number"
+    ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}"
+    Group="CAS Smart Factory IPR"
+    Description="Tobacco"
     />
 </Elements>
