@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}"
+    Name="CustomsDebtDate"
+    Group="CAS Smart Factory IPR"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Customs debt date">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    ID="{4D811640-9BD7-4E6D-B081-08B84B6C8123}"
+    Name="OGLValidTo"
+    Group="CAS Smart Factory IPR"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="OGL valid to">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    DisplayName="No."
+    Name="No"
+    Type="Number"
+    ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}"
+    Group="CAS Smart Factory IPR"
+    Description="No."
+    />
+  <Field
+    DisplayName="Tobacco Name"
+    Name="TobaccoName"
+    Type="Text"
+    ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}"
+    Group="CAS Smart Factory IPR"
+    Description="Tobacco Name"
+    />
+  <Field
+    DisplayName="Duty Name"
+    Name="DutyName"
+    Type="Text"
+    ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}"
+    Group="CAS Smart Factory IPR"
+    Description="Duty Name"
+    />
+  <Field
+    DisplayName="VAT Name"
+    Name="VATName"
+    Type="Text"
+    ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}"
+    Group="CAS Smart Factory IPR"
+    Description="VAT Name"
+    />
+  <Field
+    DisplayName="Cartons"
+    Name="Cartons"
+    Type="Number"
+    ID="{EC985ABA-7AA4-4603-86E6-904837CF0F77}"
+    Group="CAS Smart Factory IPR"
+    Description="Cartons"
+    />
+  <Field
+    DisplayName="Value"
+    Name="Value"
+    Type="Number"
+    ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}"
+    Group="CAS Smart Factory IPR"
+    Description="Value"
+    />
+  <Field
+    ID="{E6A94982-F43E-436D-94A5-63C3916455A3}"
+    Name="ClosingDate"
+    Group="CAS Smart Factory IPR"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Closing Date">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    ResultType="Number"
+    LCID="1045"
+    Format="DateTime"
+    Description="Duty per unit"
+    DisplayName="Duty per unit"
+    Type="Calculated"
+    ID="{D0177FD6-5A37-483C-9BA8-9EED9493F16C}"
+    Name="DutyPerUnit"
+    Group="CAS Smart Factory IPR"
+    ReadOnly="TRUE">
+    <Formula>=Duty/NetMass</Formula>
+    <FormulaDisplayNames>=DUTY/NetMass</FormulaDisplayNames>
+    <FieldRefs>
+      <FieldRef Name="Duty" />
+      <FieldRef Name="NetMass" />
+    </FieldRefs>
+  </Field>
+  <Field
+    ResultType="Number"
+    LCID="1045"
+    Format="DateTime"
+    Description="VAT per unit"
+    DisplayName="VAT per unit"
+    Type="Calculated"
+    ID="{29466F7A-3E6E-4B25-A93E-3590AE7863A7}"
+    Name="VATPerUnit"
+    Group="CAS Smart Factory IPR"
+    ReadOnly="TRUE">
+    <Formula>=VAT/NetMass</Formula>
+    <FormulaDisplayNames>=VAT/NetMass</FormulaDisplayNames>
+    <FieldRefs>
+      <FieldRef Name="VAT" />
+      <FieldRef Name="NetMass" />
+    </FieldRefs>
+  </Field>
+  <Field
+    ResultType="Number"
+    LCID="1045"
+    Format="DateTime"
+    Description="Unit price"
+    DisplayName="Unit price"
+    Type="Calculated"
+    ID="{D387B1F7-9EE5-4880-A059-BABC25D25596}"
+    Name="UnitPrice"
+    Group="CAS Smart Factory IPR"
+    ReadOnly="TRUE">
+    <Formula>=Value/NetMass</Formula>
+    <FormulaDisplayNames>=Value/NetMass</FormulaDisplayNames>
+    <FieldRefs>
+      <FieldRef Name="Value" />
+      <FieldRef Name="NetMass" />
+    </FieldRefs>
+  </Field>
+</Elements>

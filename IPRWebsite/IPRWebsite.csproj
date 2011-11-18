@@ -166,50 +166,56 @@
     <None Include="Lists\ActivityLog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6ccae4c-19b2-4186-b214-e81b93e94daa}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\ClearenceTemplate\ClearenceList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{23608ad8-058e-4c59-8f8c-836af802866f}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\ClearenceTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{031f1461-73f3-4e13-a5ab-5f19713e19b4}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Customs\SADConsignmentLibrary\SharePointProjectItem.spdata">
       <SubType>Designer</SubType>
-      <SharePointProjectItemId>{2c8db621-5051-4981-bb74-896163cf5dfb}</SharePointProjectItemId>
+      <SharePointProjectItemId>{e1c71d57-efb8-4aca-99e1-3ad973c6c1cb}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADDocumentLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{84fd39c1-9caf-4528-8adc-0019c3585bcb}</SharePointProjectItemId>
       <SubType>Designer</SubType>
+      <SharePointProjectItemId>{fe6b8c66-3418-4919-b18f-1a95675fbe10}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADDocumentTemplate\SADDocument\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{196cc2cd-2b67-41c4-ac13-2e666fae4d4c}</SharePointProjectItemId>
+      <SharePointProjectItemId>{8a2c4cbd-1bc4-4161-88ba-a79d078f5950}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADDocumentTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{32c78c94-2289-4bc5-8328-73f2f605a786}</SharePointProjectItemId>
       <SubType>Designer</SubType>
+      <SharePointProjectItemId>{5c0149fd-03e2-4071-9276-7937caca088a}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADDutiesTemplate\SADDutiesList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{6d8c3a53-d0c2-4e20-bafd-bd5a33aa883b}</SharePointProjectItemId>
+      <SharePointProjectItemId>{de032ce5-e1ae-41ff-8dd7-87a51e37ae47}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADDutiesTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{16ae83ef-af3a-41a9-ad52-4bd6ad3f28e3}</SharePointProjectItemId>
+      <SharePointProjectItemId>{0e90318c-3fe1-4807-b541-aa2f9deea4e5}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADGoodTemplate\SADGoodList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{bf2cc97b-c5c5-4b93-9b25-f0c9cedb1e6d}</SharePointProjectItemId>
+      <SharePointProjectItemId>{7727eda0-4019-4b4c-a0dc-6b52ce64092a}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADGoodTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{1091be26-f90f-4c2e-8905-109f721bcff1}</SharePointProjectItemId>
+      <SharePointProjectItemId>{614074cd-95bf-43bd-b1bc-3e002f5ad4f3}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADPackageTemplate\SADPackageList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{7f0035de-4829-4587-ae8f-8012a2155417}</SharePointProjectItemId>
+      <SharePointProjectItemId>{957cf6f3-35d7-4e5e-b900-74a1c0213b92}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADPackageTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e66da2d9-51e5-4ed3-a403-8d01638ce2a8}</SharePointProjectItemId>
+      <SharePointProjectItemId>{3d149718-84aa-45b0-86c8-eddb996bf41d}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADQuantityTemplate\SADQuantityList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{3dbb3ea0-a9d3-40cd-b791-be644b7b86c3}</SharePointProjectItemId>
+      <SharePointProjectItemId>{b400e040-cfbc-422d-b4c2-1410f003dc16}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADQuantityTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{2f0b348f-724f-4682-a825-a6f1f3d258d3}</SharePointProjectItemId>
+      <SharePointProjectItemId>{c50c7889-326a-4f19-9866-bf28e2773d9a}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{c1ae9ff6-3d06-4e1f-8ad2-68c33f6cf24d}</SharePointProjectItemId>
+      <SharePointProjectItemId>{2c968a48-0f36-440e-b648-a7dd829ec80d}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\SADRequiredDocumentsTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{56530d62-779b-4a11-bf23-0e84444a18cf}</SharePointProjectItemId>
+      <SharePointProjectItemId>{b35abc17-3532-4292-b725-f4a47db7c049}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\ConsentTemplate\ConsentList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{516c810b-68a3-422d-96be-692ff236a6d6}</SharePointProjectItemId>
@@ -242,6 +248,12 @@
     <None Include="Lists\Dictionaries\FormatTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{411c95fe-9d6d-4bb3-8c69-1466a2139d5d}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\PCNCodeTemplate\PCNCodeList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7ae1b253-9f6b-4cde-be43-caa5af285d42}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\PCNCodeTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8157d7af-f3bc-4a25-a1fe-8d6a0ef0c055}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\SHMentholTemplate\SHMentholList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8b6d2707-c4d6-4b0b-af1b-f7e6f04febff}</SharePointProjectItemId>
     </None>
@@ -268,6 +280,15 @@
     </None>
     <None Include="Lists\Dictionaries\WasteTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{72f4e368-08c6-48ef-8eb6-6492c7ada619}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\IPRFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{677801eb-b35c-41d8-b869-09579ad0e752}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\IPRTemplate\IPRList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ce08fa6c-05cc-4f86-8c44-c946df0a290f}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\IPRTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8df0e185-0aeb-4efd-be8d-7158a1c3ae8c}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Reports\BalanceLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e86b6345-ec06-4949-b684-e9db11b1e1c7}</SharePointProjectItemId>
@@ -363,7 +384,9 @@
     <Content Include="Content types\SmartFactory\City\Elements.xml" />
     <Content Include="Content types\SmartFactory\Commodity\Elements.xml" />
     <Content Include="Content types\SmartFactory\Country\Elements.xml" />
-    <Content Include="Content types\SmartFactory\Warehouse\Elements.xml" />
+    <Content Include="Content types\SmartFactory\Warehouse\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Features\IPRData\IPRData.Template.xml">
       <DependentUpon>IPRData.feature</DependentUpon>
     </Content>
@@ -374,6 +397,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\ActivityLog\Elements.xml" />
+    <Content Include="Lists\Customs\ClearenceTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\ClearenceTemplate\ClearenceList\Elements.xml" />
+    <Content Include="Lists\Customs\ClearenceTemplate\Schema.xml" />
     <Content Include="Lists\Customs\SADConsignmentLibrary\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentLibrary\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentTemplate\Elements.xml" />
@@ -426,6 +452,9 @@
     <Content Include="Lists\Dictionaries\FormatTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\FormatTemplate\FormatList\Elements.xml" />
     <Content Include="Lists\Dictionaries\FormatTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\PCNCodeTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\PCNCodeTemplate\PCNCodeList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\PCNCodeTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\SHMentholTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\SHMentholTemplate\SHMentholList\Elements.xml" />
     <Content Include="Lists\Dictionaries\SHMentholTemplate\Schema.xml" />
@@ -439,10 +468,16 @@
     <Content Include="Lists\Dictionaries\WasteTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\WasteTemplate\WasteList\Elements.xml" />
     <Content Include="Lists\Dictionaries\WasteTemplate\Schema.xml" />
+    <Content Include="Lists\IPRFields\Elements.xml" />
+    <Content Include="Lists\IPRTemplate\Elements.xml" />
+    <Content Include="Lists\IPRTemplate\IPRList\Elements.xml" />
+    <Content Include="Lists\IPRTemplate\Schema.xml" />
     <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\JSOXCustomsSummaryList\Elements.xml" />
-    <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Schema.xml" />
+    <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Reports\JSOXLibrary\Elements.xml" />
     <Content Include="Lists\Reports\JSOXTemplate\Elements.xml" />
     <Content Include="Lists\Reports\JSOXTemplate\JSOXList\Elements.xml" />

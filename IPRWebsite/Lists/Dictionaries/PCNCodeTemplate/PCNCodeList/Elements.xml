@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="PCN Code"
+                OnQuickLaunch="TRUE"
+                TemplateType="10018"
+                Url="Lists/PCNCodeList"
+                Description="PCN Code List Instance">
+  </ListInstance>
+</Elements>
