@@ -129,4 +129,21 @@
       <FieldRef Name="NetMass" />
     </FieldRefs>
   </Field>
+  <Field
+    Name="IPRLibraryIndex"
+    ID="{787756CE-4DEB-46DB-B092-BAED5DBAFA86}"
+    Type="Lookup"
+    List="Lists/IPRLibrary"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="IPRLibrary lookup"
+    Group="CAS Smart Factory IPR"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
