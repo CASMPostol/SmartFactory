@@ -7,6 +7,7 @@
         <FieldRefs>
           <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" />
           <FieldRef ID="{ABFC42DD-1F34-49F0-BEB1-E08512F25105}" Name="InvoiceLibraryIndex" />
+          <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -22,6 +23,7 @@
     <Fields>
       <Field DisplayName="BillDoc" Name="BillDoc" Type="Text" ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Group="CAS Smart Factory IPR" Description="BillDoc" />
       <Field Name="InvoiceLibraryIndex" ID="{abfc42dd-1f34-49f0-beb1-e08512f25105}" Type="Lookup" List="Lists/InvoiceLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Invoice Library lookup" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="ClearenceIndex" ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Type="Lookup" List="Lists/ClearenceList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Clearence List lookup" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -55,6 +57,7 @@
           </FieldRef>
           <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" />
           <FieldRef ID="{ABFC42DD-1F34-49F0-BEB1-E08512F25105}" Name="InvoiceLibraryIndex" />
+          <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
         </ViewFields>
         <Query>
           <OrderBy>

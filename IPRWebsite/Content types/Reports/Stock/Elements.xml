@@ -8,16 +8,8 @@
                  Inherits="TRUE">
 		<Folder TargetName="_cts/Stock" />
 		<FieldRefs>
-			<FieldRef ID="{3ae267c0-9560-4259-9224-572def900dd2}" Name="Material" />
-			<FieldRef ID="{cf44612e-fdf4-47ad-b730-43f88ee2d9d0}" Name="MaterialDescription" />
-			<FieldRef ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Name="StorLoc" />
-			<FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
-			<FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
-			<FieldRef ID="{a748d4bc-74c0-4f52-90e9-46a9e0140324}" Name="Unrestricted" />
-			<FieldRef ID="{5d27eabe-c74b-4233-9a07-d7389c831e3a}" Name="InQualityInsp" />
-			<FieldRef ID="{76c04784-3d54-46db-bb7f-686eb7ef8254}" Name="RestrictedUse" />
-			<FieldRef ID="{4c65897d-cbd2-4468-8520-50e371ef3a3f}" Name="Blocked" />
-			<FieldRef ID="{d29fab3c-9144-4655-9c82-df35995c78f8}" Name="Quality" />
+      <FieldRef ID="{44A7C743-E3C0-4426-94B3-A639903E5EAD}" Name="StockLibraryIndex" />
+      <FieldRef ID="{40C6B34C-EE93-4282-A6A7-AFEF69F43220}" Name="BalanceLibraryIndex" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

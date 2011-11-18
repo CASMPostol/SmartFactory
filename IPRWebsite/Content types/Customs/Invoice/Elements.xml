@@ -9,6 +9,7 @@
 		<FieldRefs>
       <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" />
       <FieldRef ID="{ABFC42DD-1F34-49F0-BEB1-E08512F25105}" Name="InvoiceLibraryIndex" />
+      <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
