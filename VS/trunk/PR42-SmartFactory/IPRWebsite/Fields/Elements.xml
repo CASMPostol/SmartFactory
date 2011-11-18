@@ -179,7 +179,7 @@
     Description="RestrictedUse"
     />
   <Field
-    DisplayName="StorLoc"
+    DisplayName="Location"
     Name="StorLoc"
     Type="Text"
     ID="{1F5787F4-8A41-4BD3-B45C-D2BB65465120}"

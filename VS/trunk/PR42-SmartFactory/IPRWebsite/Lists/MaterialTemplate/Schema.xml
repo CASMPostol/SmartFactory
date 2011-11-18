@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="MaterialTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-MaterialTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x01004D0C63D616EA814E8B077CF59ADDB12B" Name="Material" Group="CAS Smart Factory IPR" Description="Batch: Material" Overwrite="TRUE" Inherits="TRUE">
+        <Folder TargetName="_cts/Material" />
+        <FieldRefs>
+          <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
+          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+          <FieldRef ID="{B523048C-0493-4D33-9166-D336C39F3C90}" Name="ProductID" />
+          <FieldRef ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Name="StorLoc" />
+          <FieldRef ID="{88259302-82EA-4ADC-90D3-B6B6B7CC3B16}" Name="FGQuantity" />
+          <FieldRef ID="{78638A08-748F-4619-A690-299315659702}" Name="TobaccoQuantity" />
+          <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+          <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
+        </FieldRefs>
+        <XmlDocuments>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
+          </XmlDocument>
+        </XmlDocuments>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+      <Field DisplayName="Batch" Name="Batch" Type="Text" ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Group="CAS Smart Factory IPR" Description="Batch" />
+      <Field DisplayName="Location" Name="StorLoc" Type="Text" ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Group="CAS Smart Factory IPR" Description="StorLoc" />
+      <Field DisplayName="SKUDescription" Name="SKUDescription" Type="Text" ID="{f9499ff7-0420-430d-b2b6-672546ba8235}" Group="CAS Smart Factory IPR" Description="SKUDescription" />
+      <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="CAS Smart Factory IPR Customs" Description="SKU" />
+      <Field DisplayName="Units" Name="Units" Type="Text" ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Group="CAS Smart Factory IPR Customs" Description="j.m." />
+      <Field DisplayName="FG Quantity" Name="FGQuantity" Type="Number" ID="{88259302-82ea-4adc-90d3-b6b6b7cc3b16}" Group="CAS Smart Factory IPR" Description="FG Quantity" />
+      <Field DisplayName="Tobacco Quantity" Name="TobaccoQuantity" Type="Number" ID="{78638A08-748F-4619-A690-299315659702}" Group="CAS Smart Factory IPR" Description="Tobacco Quantity" />
+      <Field DisplayName="Product ID" Name="ProductID" Type="Number" ID="{b523048c-0493-4d33-9166-d336c39f3c90}" Group="CAS Smart Factory IPR" Description="Product ID" />
+      <Field Name="BatchIndex" ID="{6b3af163-c404-433f-9801-047c12b9ee42}" Type="Lookup" List="Lists/BatchList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Batch lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu">
+          </FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments">
+          </FieldRef>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
+          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+          <FieldRef ID="{B523048C-0493-4D33-9166-D336C39F3C90}" Name="ProductID" />
+          <FieldRef ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Name="StorLoc" />
+          <FieldRef ID="{88259302-82EA-4ADC-90D3-B6B6B7CC3B16}" Name="FGQuantity" />
+          <FieldRef ID="{78638A08-748F-4619-A690-299315659702}" Name="TobaccoQuantity" />
+          <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+          <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

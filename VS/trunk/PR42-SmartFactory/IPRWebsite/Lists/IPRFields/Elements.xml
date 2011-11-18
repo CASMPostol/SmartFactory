@@ -225,4 +225,20 @@
     Group="CAS Smart Factory IPR"
     Description="Tobacco"
     />
+  <Field
+    DisplayName="Product ID"
+    Name="ProductID"
+    Type="Number"
+    ID="{B523048C-0493-4D33-9166-D336C39F3C90}"
+    Group="CAS Smart Factory IPR"
+    Description="Product ID"
+    />
+  <Field
+    DisplayName="Tobacco Quantity"
+    Name="TobaccoQuantity"
+    Type="Number"
+    ID="{78638A08-748F-4619-A690-299315659702}"
+    Group="CAS Smart Factory IPR"
+    Description="TobaccoQuantity"
+    />
 </Elements>
