@@ -68,4 +68,38 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="StockLibraryIndex"
+    ID="{44A7C743-E3C0-4426-94B3-A639903E5EAD}"
+    Type="Lookup"
+    List="Lists/StockLibrary"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Stock Library lookup"
+    Group="CAS Smart Factory IPR Reports"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Name="StockIndex"
+    ID="{6D5D5BFD-84C0-44A0-B8E2-C3C994748DA5}"
+    Type="Lookup"
+    List="Lists/StockList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Stock List lookup"
+    Group="CAS Smart Factory IPR Reports"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>

@@ -328,6 +328,15 @@
       <SharePointProjectItemId>{0b4c2c16-6812-4194-a976-7bcc45a1f3a4}</SharePointProjectItemId>
       <SubType>Designer</SubType>
     </None>
+    <None Include="Lists\Reports\StockLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1021a00f-50e6-413f-ae99-859e73b92bd6}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\StockTemplate\StockList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b0d1f943-226c-411b-8363-3be922be2f2e}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\StockTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6e8f00c0-2aa8-44f9-bdcb-3ad901f40617}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{ba9dd6bf-0f86-469d-9821-2290a484169f}</PackageId>
     </None>
@@ -505,6 +514,10 @@
     <Content Include="Lists\Reports\ReportsLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Reports\StockLibrary\Elements.xml" />
+    <Content Include="Lists\Reports\StockTemplate\Elements.xml" />
+    <Content Include="Lists\Reports\StockTemplate\StockList\Elements.xml" />
+    <Content Include="Lists\Reports\StockTemplate\Schema.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

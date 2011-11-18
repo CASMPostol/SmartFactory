@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="InvoiceList"
+  <ListInstance Title="Invoice"
                 OnQuickLaunch="TRUE"
                 TemplateType="10019"
                 Url="Lists/InvoiceList"
