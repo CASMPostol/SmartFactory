@@ -225,4 +225,11 @@
       Group="CAS Smart Factory"
       Description="IPR Type"
     />
+  <Field
+    Name="OGLIntroduction"
+    ID="{789DF765-E837-459E-943B-FFEFB702BCC4}"
+    Type="Text"
+    DisplayName="OGL Introduction"
+    Group="CAS Smart Factory IPR Reports"
+    />
 </Elements>

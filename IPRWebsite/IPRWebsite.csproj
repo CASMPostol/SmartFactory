@@ -125,6 +125,9 @@
     <None Include="Content types\Reports\JSOXCustomsSummary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8ce9bf17-26d5-420d-b599-2fd4e0e9bf31}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Reports\JSOXSummary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4151f326-6f8e-47c9-a20b-bb2c1d6e3a30}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Reports\JSOX\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ff09157a-bca2-4a89-b5da-9212d512b810}</SharePointProjectItemId>
     </None>
@@ -324,6 +327,12 @@
       <SharePointProjectItemId>{e86b6345-ec06-4949-b684-e9db11b1e1c7}</SharePointProjectItemId>
       <SubType>Designer</SubType>
     </None>
+    <None Include="Lists\Reports\BalanceSummaryTemplate\BalanceSummaryList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8e4b55a5-e5f2-4b9d-886e-09cc9b6992a3}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\BalanceSummaryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3b1e03df-e484-4252-8c3b-daf5385e066d}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Reports\JSOXCustomsSummaryTemplate\JSOXCustomsSummaryList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fe974d84-8961-4c55-afa6-ec327fe50476}</SharePointProjectItemId>
     </None>
@@ -332,6 +341,12 @@
     </None>
     <None Include="Lists\Reports\JSOXLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f54e2eeb-930f-4143-94de-f63d77252beb}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\JSOXSummaryTemplate\JSOXSummaryList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{24fff617-cc2b-4653-a0d3-b82f0dc7712e}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\JSOXSummaryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{43937ab6-3bde-45f6-9b21-808e5d1bdc11}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Reports\JSOXTemplate\JSOXList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{70d85092-5634-4fa6-9399-adf072ddc961}</SharePointProjectItemId>
@@ -413,6 +428,7 @@
     <Content Include="Content types\Material\Elements.xml" />
     <Content Include="Content types\Reports\BalanceSummary\Elements.xml" />
     <Content Include="Content types\Reports\JSOXCustomsSummary\Elements.xml" />
+    <Content Include="Content types\Reports\JSOXSummary\Elements.xml" />
     <Content Include="Content types\Reports\JSOX\Elements.xml" />
     <Content Include="Content types\Reports\ReportsCommonPart\Elements.xml">
       <SubType>Designer</SubType>
@@ -533,12 +549,18 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
+    <Content Include="Lists\Reports\BalanceSummaryTemplate\Elements.xml" />
+    <Content Include="Lists\Reports\BalanceSummaryTemplate\BalanceSummaryList\Elements.xml" />
+    <Content Include="Lists\Reports\BalanceSummaryTemplate\Schema.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\JSOXCustomsSummaryList\Elements.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Reports\JSOXLibrary\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXSummaryTemplate\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXSummaryTemplate\JSOXSummaryList\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXSummaryTemplate\Schema.xml" />
     <Content Include="Lists\Reports\JSOXTemplate\Elements.xml" />
     <Content Include="Lists\Reports\JSOXTemplate\JSOXList\Elements.xml" />
     <Content Include="Lists\Reports\JSOXTemplate\Schema.xml" />
