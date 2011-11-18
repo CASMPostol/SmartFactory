@@ -346,6 +346,12 @@
       <SharePointProjectItemId>{0b4c2c16-6812-4194-a976-7bcc45a1f3a4}</SharePointProjectItemId>
       <SubType>Designer</SubType>
     </None>
+    <None Include="Lists\Reports\StockEntryTemplate\StockEntryList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b0f81a09-4068-4c16-849d-de875f1f045c}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\StockEntryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d4f5bbeb-ca18-416b-a62b-45a1d8806129}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Reports\StockLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1021a00f-50e6-413f-ae99-859e73b92bd6}</SharePointProjectItemId>
     </None>
@@ -542,6 +548,9 @@
     <Content Include="Lists\Reports\ReportsLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Reports\StockEntryTemplate\Elements.xml" />
+    <Content Include="Lists\Reports\StockEntryTemplate\StockEntryList\Elements.xml" />
+    <Content Include="Lists\Reports\StockEntryTemplate\Schema.xml" />
     <Content Include="Lists\Reports\StockLibrary\Elements.xml" />
     <Content Include="Lists\Reports\StockTemplate\Elements.xml" />
     <Content Include="Lists\Reports\StockTemplate\StockList\Elements.xml" />
