@@ -284,6 +284,9 @@
     <None Include="Lists\IPRFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{677801eb-b35c-41d8-b869-09579ad0e752}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\IPRLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9c8f2898-e1f2-4d5f-9998-321391e553b9}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\IPRTemplate\IPRList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ce08fa6c-05cc-4f86-8c44-c946df0a290f}</SharePointProjectItemId>
     </None>
@@ -469,6 +472,7 @@
     <Content Include="Lists\Dictionaries\WasteTemplate\WasteList\Elements.xml" />
     <Content Include="Lists\Dictionaries\WasteTemplate\Schema.xml" />
     <Content Include="Lists\IPRFields\Elements.xml" />
+    <Content Include="Lists\IPRLibrary\Elements.xml" />
     <Content Include="Lists\IPRTemplate\Elements.xml" />
     <Content Include="Lists\IPRTemplate\IPRList\Elements.xml" />
     <Content Include="Lists\IPRTemplate\Schema.xml" />

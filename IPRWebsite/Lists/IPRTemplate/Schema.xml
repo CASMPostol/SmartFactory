@@ -30,6 +30,7 @@
           <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
           <FieldRef ID="{BFF3BF37-6B79-400A-932B-CC75D61E79DA}" Name="ConsentIndex" />
           <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
+          <FieldRef ID="{787756CE-4DEB-46DB-B092-BAED5DBAFA86}" Name="IPRLibraryIndex" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -94,7 +95,8 @@
       <FieldRef Name="Value" />
       <FieldRef Name="NetMass" />
     </FieldRefs>
-  </Field>
+      </Field>
+        <Field Name="IPRLibraryIndex" ID="{787756CE-4DEB-46DB-B092-BAED5DBAFA86}" Type="Lookup" List="Lists/IPRLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName=" List lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -151,6 +153,7 @@
           <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
           <FieldRef ID="{BFF3BF37-6B79-400A-932B-CC75D61E79DA}" Name="ConsentIndex" />
           <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
+          <FieldRef ID="{787756CE-4DEB-46DB-B092-BAED5DBAFA86}" Name="IPRLibraryIndex" />
         </ViewFields>
         <Query>
           <OrderBy>
