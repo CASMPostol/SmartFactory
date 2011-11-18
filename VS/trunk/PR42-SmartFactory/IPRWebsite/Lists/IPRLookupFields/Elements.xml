@@ -51,4 +51,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="IPRIndex"
+    ID="{47CB6EBB-BC67-466F-BA7F-B89E1E31F5BE}"
+    Type="Lookup"
+    List="Lists/IPRList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="IPR lookup"
+    Group="CAS Smart Factory IPR"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
