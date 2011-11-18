@@ -217,4 +217,12 @@
     DisplayName="Total Amount"
     Group="CAS Smart Factory IPR Reports"
     />
+  <Field
+      DisplayName="IPR Type"
+      Name="IPRType"
+      Type="Boolean"
+      ID="{B31967C9-30E2-44CC-BB55-C9C3F8A64EEB}"
+      Group="CAS Smart Factory"
+      Description="IPR Type"
+    />
 </Elements>
