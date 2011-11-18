@@ -8,8 +8,7 @@
 		<Folder TargetName="_cts/Invoice" />
 		<FieldRefs>
       <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" />
-      <FieldRef ID="{BB77D0AB-0759-4F6A-A8AC-FF064702A62A}" Name="BilledQuantity"/>
-      <FieldRef ID="{3616AB1A-7C13-4247-B5CF-F3043BBA1885}" Name="BUn" />
+      <FieldRef ID="{ABFC42DD-1F34-49F0-BEB1-E08512F25105}" Name="InvoiceLibraryIndex" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

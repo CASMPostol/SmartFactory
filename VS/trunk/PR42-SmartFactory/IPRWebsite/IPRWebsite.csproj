@@ -172,6 +172,15 @@
     <None Include="Lists\Customs\ClearenceTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{031f1461-73f3-4e13-a5ab-5f19713e19b4}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\InvoiceLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{21222733-6ae2-4044-a32c-8cb936f57d8b}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\InvoiceTemplate\InvoiceList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{08493c17-2055-4494-84bc-f64c8ec2b02e}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\InvoiceTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c2152556-b22f-49ed-86f1-3c4a39d1f43e}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Customs\SADConsignmentLibrary\SharePointProjectItem.spdata">
       <SubType>Designer</SubType>
       <SharePointProjectItemId>{e1c71d57-efb8-4aca-99e1-3ad973c6c1cb}</SharePointProjectItemId>
@@ -403,6 +412,10 @@
     <Content Include="Lists\Customs\ClearenceTemplate\Elements.xml" />
     <Content Include="Lists\Customs\ClearenceTemplate\ClearenceList\Elements.xml" />
     <Content Include="Lists\Customs\ClearenceTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\InvoiceLibrary\Elements.xml" />
+    <Content Include="Lists\Customs\InvoiceTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\InvoiceTemplate\InvoiceList\Elements.xml" />
+    <Content Include="Lists\Customs\InvoiceTemplate\Schema.xml" />
     <Content Include="Lists\Customs\SADConsignmentLibrary\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentLibrary\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentTemplate\Elements.xml" />
