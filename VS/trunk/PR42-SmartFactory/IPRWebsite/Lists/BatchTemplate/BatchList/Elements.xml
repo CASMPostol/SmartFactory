@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Batch"
+                OnQuickLaunch="TRUE"
+                TemplateType="10021"
+                Url="Lists/BatchList"
+                Description="Batch List Instance">
+  </ListInstance>
+</Elements>
