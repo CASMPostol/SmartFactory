@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    Type="Choice"
+    DisplayName="Currency"
+    ID="{98F38A38-3D57-43EE-B57A-EC030BB24C87}"
+    Format="Dropdown"
+    BaseType="Text"
+    Description="Currency"
+    Name="Currency"
+    Group="CAS Smart Factory Shepherd">
+    <Default>EUR</Default>
+    <CHOICES>
+      <CHOICE>EUR</CHOICE>
+      <CHOICE>USD</CHOICE>
+      <CHOICE>PLN</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    Type="Choice"
+    DisplayName="Direction"
+    ID="{DA96B8F0-D0F6-471B-A24D-27CFF679CBBA}"
+    Format="Dropdown"
+    BaseType="Text"
+    Description="Direction"
+    Name="Direction"
+    Group="CAS Smart Factory Shepherd">
+    <Default>Inbound</Default>
+    <CHOICES>
+      <CHOICE>Inbound</CHOICE>
+      <CHOICE>Outbound</CHOICE>
+      <CHOICE>Both directions</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    DisplayName="Exchange Rate"
+    Name="ExchangeRate"
+    Type="Number"
+    ID="{70F34CA9-C358-4798-BE5B-17C417FE5F38}"
+    Group="CAS Smart Factory Shepherd"
+    Description="Exchange Rate"
+    />
+  <Field
+    DisplayName="ID Number"
+    Name="IDNumber"
+    Type="Text"
+    ID="{49526B8B-F8B8-47E6-8BF5-A3A30F630EC0}"
+    Group="CAS Smart Factory Shepherd"
+    Description="ID Number"
+    />
+  <Field
+    Type="Choice"
+    DisplayName="Job Title"
+    ID="{115C2292-BB1E-433D-9815-FF26B40097DF}"
+    Format="Dropdown"
+    BaseType="Text"
+    Description="Job Title"
+    Name="ExternalWorkerJobTitle"
+    Group="CAS Smart Factory Shepherd">
+    <Default>Driver</Default>
+    <CHOICES>
+      <CHOICE>Driver</CHOICE>
+      <CHOICE>Escort</CHOICE>
+      <CHOICE>Representative</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    Type="Choice"
+    DisplayName="Loading Type"
+    ID="{E6381646-DB08-4C85-9A2F-59B931D98DBB}"
+    Format="Dropdown"
+    BaseType="Text"
+    Description="Loading Type"
+    Name="LoadingType"
+    Group="CAS Smart Factory Shepherd">
+    <Default>Pallet</Default>
+    <CHOICES>
+      <CHOICE>Manual</CHOICE>
+      <CHOICE>Pallet</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    DisplayName="Plate number"
+    Name="PlateNumber"
+    Type="Text"
+    ID="{6064736B-546A-4B1A-A062-249A7A228BEA}"
+    Group="CAS Smart Factory Shepherd"
+    Description="Plate number"
+    />
+  <Field
+    DisplayName="Security Cost"
+    Name="SecurityCost"
+    Type="Number"
+    ID="{D73A3F7D-6892-4A46-90EE-39BEB668944A}"
+    Group="CAS Smart Factory Shepherd"
+    Description="Security Cost"
+    />
+  <Field Type="Choice"
+         DisplayName="ServiceType"
+         ID="{6F534579-F010-432C-BE79-5AE3B369E7CF}"
+         Format="Dropdown"
+         BaseType="Text"
+         Description="Service"
+         Name="ServiceType"
+         Group="CAS Smart Factory Shepherd">
+    <Default>Vendor</Default>
+    <CHOICES>
+      <CHOICE>Vendor</CHOICE>
+      <CHOICE>Forwarder</CHOICE>
+      <CHOICE>Security Escort</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    Type="Choice"
+    DisplayName="Shipment Type"
+    ID="{CDF9A8E8-73B5-411E-B68D-664F7176E5F5}"
+    Format="Dropdown"
+    BaseType="Text"
+    Description="Shipment Type"
+    Name="ShipmentType"
+    Group="CAS Smart Factory Shepherd">
+    <Default>Land freight</Default>
+    <CHOICES>
+      <CHOICE>Land freight</CHOICE>
+      <CHOICE>Ocean freight</CHOICE>
+      <CHOICE>Air fraight</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    DisplayName="Transport Cost"
+    Name="TransportCost"
+    Type="Number"
+    ID="{19ED35FB-080E-444A-BF71-6BAA4D9C3B54}"
+    Group="CAS Smart Factory Shepherd"
+    Description="Transport Cost"
+    />
+  <Field
+    Type="Choice"
+    DisplayName="Vehicle Type"
+    ID="{4521F780-1838-4A0A-B3B7-04997B3DEA37}"
+    Format="Dropdown"
+    BaseType="Text"
+    Description="Vehicle Type"
+    Name="VehicleType"
+    Group="CAS Smart Factory Shepherd">
+    <Default>Truck</Default>
+    <CHOICES>
+      <CHOICE>Truck</CHOICE>
+      <CHOICE>Trailer</CHOICE>
+      <CHOICE>Van</CHOICE>
+      <CHOICE>Security Car</CHOICE>
+    </CHOICES>
+  </Field>
+</Elements>
