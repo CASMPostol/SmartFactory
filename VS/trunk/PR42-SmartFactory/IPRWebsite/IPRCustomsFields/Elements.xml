@@ -311,4 +311,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="InvoiceIndex"
+    ID="{33CB339C-CA0F-409F-9790-37207A855756}"
+    Type="Lookup"
+    List="Lists/InvoiceList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Invoice lookup"
+    Group="CAS Smart Factory IPR Customs"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
