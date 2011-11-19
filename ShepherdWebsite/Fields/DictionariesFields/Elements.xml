@@ -151,4 +151,18 @@
       <CHOICE>Security Car</CHOICE>
     </CHOICES>
   </Field>
+  <Field
+    DisplayName="Address"
+    Name="FreightPayerAddress"
+    Type="Text"
+    ID="{E0BCC826-1F93-4156-8FC1-7F4506234DFA}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="NIP / VAT No."
+    Name="NIP"
+    Type="Text"
+    ID="{DC0E5632-A487-412B-AA3E-4CC025116C28}"
+    Group="CAS Smart Factory Shepherd"
+    />
 </Elements>
