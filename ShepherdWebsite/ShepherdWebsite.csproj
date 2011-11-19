@@ -94,6 +94,9 @@
     <None Include="Features\Feature1\Feature1.feature">
       <FeatureId>{a0a8b115-1123-4de9-8ac8-5860d8e56d43}</FeatureId>
     </None>
+    <None Include="Fields\DictionariesFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0b882851-1713-4a21-8f5f-fbf6211edec5}</SharePointProjectItemId>
+    </None>
     <None Include="key.snk" />
     <None Include="Package\Package.package">
       <PackageId>{d5b7af74-65b4-4968-a81a-70ba671f405d}</PackageId>
@@ -103,7 +106,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Lists\" />
+    <Folder Include="Lists\Dictionaries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content types\Dictionaries\City\Elements.xml" />
@@ -122,6 +125,7 @@
     <Content Include="Features\Feature1\Feature1.Template.xml">
       <DependentUpon>Feature1.feature</DependentUpon>
     </Content>
+    <Content Include="Fields\DictionariesFields\Elements.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
