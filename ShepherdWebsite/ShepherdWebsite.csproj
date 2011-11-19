@@ -52,14 +52,47 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content types\Dictionaries\City\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a32b0db2-45ae-4660-99c1-ff83095c88b8}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Commodity\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{93426b8f-e2b9-46c6-8566-4ae398549b13}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Company\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{165d4078-9c6a-486d-9317-41fdcfbac62a}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Country\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{51f09d12-4a0e-47ee-9b5f-0ef5d9e07242}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Destination\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5fc4a578-5101-4cf6-8a74-b528459dda63}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\ExchangeRate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f72057a0-fe6d-4c8c-a897-02b2a773b39d}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\ExternalWorker\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{666edfac-d7a7-4326-a14f-86bec362da61}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Market\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6da7f0dc-a9a8-4c86-b2e3-d081b837ab87}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\PalletTypes\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{fd23d244-70eb-4977-b7cb-644d6ce0b6c3}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\ShippingPoint\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{14e553bf-62a7-4a82-a276-23f5c45041d8}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\TranspotUnit\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6422638b-a893-4298-b31b-5b2df8446f08}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Vehicle\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e7563cfe-4edc-4c1e-a8fb-68a5302d8c14}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Warehouse\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{19e4133f-3075-48da-a910-c12b1acefa61}</SharePointProjectItemId>
+    </None>
     <None Include="Features\Feature1\Feature1.feature">
       <FeatureId>{a0a8b115-1123-4de9-8ac8-5860d8e56d43}</FeatureId>
-    </None>
-    <None Include="Features\Feature2\Feature2.feature">
-      <FeatureId>{28332889-a6ef-4338-a0c5-2bc2cb295a42}</FeatureId>
-    </None>
-    <None Include="Fields\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{750a9152-2d7e-4585-8b73-ca36369e43a9}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
     <None Include="Package\Package.package">
@@ -70,18 +103,24 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content types\" />
     <Folder Include="Lists\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content types\Dictionaries\City\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Commodity\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Company\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Country\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Destination\Elements.xml" />
+    <Content Include="Content types\Dictionaries\ExchangeRate\Elements.xml" />
+    <Content Include="Content types\Dictionaries\ExternalWorker\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Market\Elements.xml" />
+    <Content Include="Content types\Dictionaries\PalletTypes\Elements.xml" />
+    <Content Include="Content types\Dictionaries\ShippingPoint\Elements.xml" />
+    <Content Include="Content types\Dictionaries\TranspotUnit\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
     <Content Include="Features\Feature1\Feature1.Template.xml">
       <DependentUpon>Feature1.feature</DependentUpon>
-    </Content>
-    <Content Include="Features\Feature2\Feature2.Template.xml">
-      <DependentUpon>Feature2.feature</DependentUpon>
-    </Content>
-    <Content Include="Fields\Elements.xml">
-      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
