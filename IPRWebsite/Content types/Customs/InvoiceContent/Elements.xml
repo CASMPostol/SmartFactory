@@ -9,14 +9,15 @@
                Version="100000">
     <Folder TargetName="_cts/InvoiceContent" />
     <FieldRefs>
-      <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" />
       <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />
-      <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="ProductType" />
-      <FieldRef ID="{3AE267C0-9560-4259-9224-572DEF900DD2}" Name="Material" />
-      <FieldRef ID="{CF44612E-FDF4-47AD-B730-43F88EE2D9D0}" Name="MaterialDescription" />
-      <FieldRef ID="{500870DA-A1F2-44FD-B34F-B1DF21DCD317}" Name="Batch" />
-      <FieldRef ID="{2E58F2C1-968B-47FC-8390-36283EBFE205}" Name="BillQtyInSKU" />
-      <FieldRef ID="{3616AB1A-7C13-4247-B5CF-F3043BBA1885}" Name="BUn" />
+      <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
+      <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+      <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
+      <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+      <FieldRef ID="{85512A2C-C60C-400E-AA53-94ED8FBEF321}" Name="Quantity" />
+      <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+      <FieldRef ID="{33CB339C-CA0F-409F-9790-37207A855756}" Name="InvoiceIndex" />
+      <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

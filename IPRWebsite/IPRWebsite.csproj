@@ -184,6 +184,12 @@
     <None Include="Lists\Customs\ClearenceTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{031f1461-73f3-4e13-a5ab-5f19713e19b4}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\InvoiceContentTemplate\InvoiceContentList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{090f03b4-7dc8-4864-9eac-ea903a1b571f}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\InvoiceContentTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b40fddee-1715-45ae-806c-d4fbaae9b68f}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Customs\InvoiceLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{21222733-6ae2-4044-a32c-8cb936f57d8b}</SharePointProjectItemId>
     </None>
@@ -465,6 +471,9 @@
     <Content Include="Lists\Customs\ClearenceTemplate\Elements.xml" />
     <Content Include="Lists\Customs\ClearenceTemplate\ClearenceList\Elements.xml" />
     <Content Include="Lists\Customs\ClearenceTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\InvoiceContentTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\InvoiceContentTemplate\InvoiceContentList\Elements.xml" />
+    <Content Include="Lists\Customs\InvoiceContentTemplate\Schema.xml" />
     <Content Include="Lists\Customs\InvoiceLibrary\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceTemplate\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceTemplate\InvoiceList\Elements.xml" />
@@ -551,7 +560,9 @@
     <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
     <Content Include="Lists\Reports\BalanceSummaryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\BalanceSummaryTemplate\BalanceSummaryList\Elements.xml" />
-    <Content Include="Lists\Reports\BalanceSummaryTemplate\Schema.xml" />
+    <Content Include="Lists\Reports\BalanceSummaryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\JSOXCustomsSummaryList\Elements.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Schema.xml">
