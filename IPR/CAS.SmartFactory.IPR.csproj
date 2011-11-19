@@ -51,12 +51,16 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUEventHandlers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SADImportXML\SADImportXML.cs" />
     <Compile Include="SPMetal\Generated\Entities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
+    <None Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f9f76688-a9ac-4d7a-895f-f67e0bb63324}</SharePointProjectItemId>
+    </None>
     <None Include="SADImportXML\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ccb9c50e-0d1c-4582-9f74-eff832a012f6}</SharePointProjectItemId>
     </None>
@@ -79,6 +83,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SADImportXML\Elements.xml" />
     <Content Include="SPMetal\Generated\Parameters.xml" />
   </ItemGroup>
