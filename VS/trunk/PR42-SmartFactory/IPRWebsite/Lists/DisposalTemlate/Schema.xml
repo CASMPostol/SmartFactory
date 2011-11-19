@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="DisposalTemlate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-DisposalTemlate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x01000FAE27B30BF7FC46886DA88A4D425DEF" Name="Disposal" Group="CAS Smart Factory IPR" Description="IPR: Disposals List" Overwrite="TRUE" Inherits="TRUE">
+        <Folder TargetName="_cts/Disposal" />
+        <FieldRefs>
+          <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
+          <FieldRef ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}" Name="SADDocumentNo" />
+          <FieldRef ID="{1CBC328D-A936-4125-A6C6-A2E0E956D250}" Name="SADDate" />
+          <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
+          <FieldRef ID="{4B9400B7-9A5D-4E55-84BF-7B609CF963F2}" Name="IPRDocumentNo" />
+          <FieldRef ID="{333AB237-93FB-4910-B2FC-9A08A08643DA}" Name="SettledQuantity" />
+          <FieldRef ID="{51E5B961-8234-4009-81C0-C6059298044F}" Name="DisposalStatus" />
+          <FieldRef ID="{298F8DD7-97D6-4FE0-8A1F-08621BCF807A}" Name="CustomsStatus" />
+          <FieldRef ID="{334B6AB1-43CD-408A-AAB7-FC37F343B299}" Name="FGSKU" />
+          <FieldRef ID="{BA69B356-48EF-4519-849C-9EAE8B6D6EC0}" Name="FGBatch" />
+          <FieldRef ID="{9B890369-B6CC-403E-A921-F9E686EF094C}" Name="DutyPerSettledAmount" />
+          <FieldRef ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}" Name="VATPerSettledAmount" />
+          <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />
+          <FieldRef ID="{3F511117-AE6F-40FF-801C-C8765D68E86D}" Name="TobaccoValue" />
+          <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
+          <FieldRef ID="{0E24A674-1FE7-4C77-9106-387E12417644}" Name="RemainingQuantity" />
+          <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
+          <FieldRef ID="{4E14F686-584A-4EE8-9784-4B7AA4DCD1E7}" Name="PCNTariffCode" />
+          <FieldRef ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Name="CompensationGood" />
+          <FieldRef ID="{24FB05B0-2DD8-4DDC-B6EC-F6721D9F385E}" Name="PCNCodeIndex" />
+          <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
+          <FieldRef ID="{6E87DAC8-1B60-4246-97E1-9D0DC221F268}" Name="JSOXCustomsSummaryIndex" />
+          <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
+          <FieldRef ID="{47CB6EBB-BC67-466F-BA7F-B89E1E31F5BE}" Name="IPRIndex" />
+        </FieldRefs>
+        <XmlDocuments>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
+          </XmlDocument>
+        </XmlDocuments>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+      <Field Name="Currency" ID="{91f0305a-9f13-468a-85ca-1ae1c859dbd7}" Type="Text" DisplayName="Currency" Group="CAS Smart Factory IPR Customs" AuthoringInfo="Box 22 first part" />
+      <Field DisplayName="PCN tariff code" Name="PCNTariffCode" Type="Text" ID="{4e14f686-584a-4ee8-9784-4b7aa4dcd1e7}" Group="CAS Smart Factory IPR Customs" Description="Kod taryfy PCN" />
+      <Field Name="ClearenceIndex" ID="{c5fa63a7-dc74-4b2f-94eb-ae877dbcccef}" Type="Lookup" List="Lists/ClearenceList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Clearence List lookup" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="PCNCodeIndex" ID="{24fb05b0-2dd8-4ddc-b6ec-f6721d9f385e}" Type="Lookup" List="Lists/PCNCodeList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="PCNCode lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field DisplayName="No." Name="No" Type="Number" ID="{661ec112-f8f2-4cda-88b4-a822f5099ca2}" Group="CAS Smart Factory IPR" Description="No." />
+      <Field DisplayName="SAD Document No." Name="SADDOcumentNo" Type="Text" ID="{e94071cd-b982-45cf-9e1f-a28d4c0b0fc1}" Group="CAS Smart Factory IPR" Description="SAD Document No." />
+      <Field DisplayName="IPR Document No." Name="IPRDocumentNo" Type="Text" ID="{4b9400b7-9a5d-4e55-84bf-7b609cf963f2}" Group="CAS Smart Factory IPR" Description="IPR Document No." />
+      <Field DisplayName="Settled quantity" Name="SettledQuantity" Type="Number" ID="{333ab237-93fb-4910-b2fc-9a08a08643da}" Group="CAS Smart Factory IPR" Description="Settled quantity" />
+      <Field DisplayName="Disposal Status" Name="DisposalStatus" Type="Text" ID="{51e5b961-8234-4009-81c0-c6059298044f}" Group="CAS Smart Factory IPR" Description="Disposal Status" />
+      <Field DisplayName="Customs Status" Name="CustomsStatus" Type="Text" ID="{298f8dd7-97d6-4fe0-8a1f-08621bcf807a}" Group="CAS Smart Factory IPR" Description="Customs Status" />
+      <Field DisplayName="FG SKU" Name="FGSKU" Type="Text" ID="{334b6ab1-43cd-408a-aab7-fc37f343b299}" Group="CAS Smart Factory IPR" Description="FG SKU" />
+      <Field DisplayName="FG Batch" Name="FGBatch" Type="Text" ID="{ba69b356-48ef-4519-849c-9eae8b6d6ec0}" Group="CAS Smart Factory IPR" Description="FG Batch" />
+      <Field DisplayName="Duty per settled amount" Name="DutyPerSettledAmount" Type="Text" ID="{9b890369-b6cc-403e-a921-f9e686ef094c}" Group="CAS Smart Factory IPR" Description="Duty per settled amount" />
+      <Field DisplayName="VAT per settled amount" Name="VATPerSettledAmount" Type="Text" ID="{6aa3ab04-1dc6-4e5a-8602-bc0b06f9386a}" Group="CAS Smart Factory IPR" Description="VAT per settled amount" />
+      <Field ResultType="Number" LCID="1045" Format="DateTime" Description="Duty and VAT" DisplayName="Duty and VAT" Type="Calculated" ID="{e7d69ae8-aeac-4a9f-a597-87a7957950b8}" Name="DutyAndVAT" Group="CAS Smart Factory IPR" ReadOnly="TRUE">
+    <Formula>=DutyPerSettledAmount+VATPerSettledAmount</Formula>
+    <FormulaDisplayNames>=DutyPerSettledAmount+VATPerSettledAmount</FormulaDisplayNames>
+    <FieldRefs>
+      <FieldRef Name="DutyPerSettledAmount" />
+      <FieldRef Name="VATPerSettledAmount" />
+    </FieldRefs>
+  </Field>
+      <Field DisplayName="Tobacco Value" Name="TobaccoValue" Type="Number" ID="{3f511117-ae6f-40ff-801c-c8765d68e86d}" Group="CAS Smart Factory IPR" Description="Tobacco Value" />
+      <Field DisplayName="Remaining quantity" Name="RemainingQuantity" Type="Text" ID="{0e24a674-1fe7-4c77-9106-387e12417644}" Group="CAS Smart Factory IPR" Description="Remaining quantity" />
+      <Field DisplayName="Customs Procedure" Name="CustomsProcedure" Type="Text" ID="{561ef73a-ddb8-4b66-badb-540c80cd83e6}" Group="CAS Smart Factory IPR" Description="CustomsProcedure" />
+      <Field Name="BatchIndex" ID="{6b3af163-c404-433f-9801-047c12b9ee42}" Type="Lookup" List="Lists/BatchList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Batch lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="IPRIndex" ID="{47cb6ebb-bc67-466f-ba7f-b89e1e31f5be}" Type="Lookup" List="Lists/IPRList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="IPR lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="SADDate" ID="{1cbc328d-a936-4125-a6c6-a2e0e956d250}" Type="Text" DisplayName="SAD Date" Group="CAS Smart Factory IPR Reports" />
+      <Field Name="InvoiceNo" ID="{d41c0f0b-a4a9-4d19-bd42-78d3de4a22ec}" Type="Text" DisplayName="Invoice No." Group="CAS Smart Factory IPR Reports" />
+      <Field Name="CompensationGood" ID="{7a251c12-8e16-4bf1-9236-84d1a2d92e27}" Type="Text" DisplayName="Compensation Good" Group="CAS Smart Factory IPR Reports" />
+      <Field Name="JSOXCustomsSummaryIndex" ID="{6e87dac8-1b60-4246-97e1-9d0dc221f268}" Type="Lookup" List="Lists/JSOXCustomsSummaryList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="JSOX Customs Summary List lookup" Group="CAS Smart Factory IPR Reports" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu">
+          </FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments">
+          </FieldRef>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
+          <FieldRef ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}" Name="SADDocumentNo" />
+          <FieldRef ID="{1CBC328D-A936-4125-A6C6-A2E0E956D250}" Name="SADDate" />
+          <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
+          <FieldRef ID="{4B9400B7-9A5D-4E55-84BF-7B609CF963F2}" Name="IPRDocumentNo" />
+          <FieldRef ID="{333AB237-93FB-4910-B2FC-9A08A08643DA}" Name="SettledQuantity" />
+          <FieldRef ID="{51E5B961-8234-4009-81C0-C6059298044F}" Name="DisposalStatus" />
+          <FieldRef ID="{298F8DD7-97D6-4FE0-8A1F-08621BCF807A}" Name="CustomsStatus" />
+          <FieldRef ID="{334B6AB1-43CD-408A-AAB7-FC37F343B299}" Name="FGSKU" />
+          <FieldRef ID="{BA69B356-48EF-4519-849C-9EAE8B6D6EC0}" Name="FGBatch" />
+          <FieldRef ID="{9B890369-B6CC-403E-A921-F9E686EF094C}" Name="DutyPerSettledAmount" />
+          <FieldRef ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}" Name="VATPerSettledAmount" />
+          <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />
+          <FieldRef ID="{3F511117-AE6F-40FF-801C-C8765D68E86D}" Name="TobaccoValue" />
+          <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
+          <FieldRef ID="{0E24A674-1FE7-4C77-9106-387E12417644}" Name="RemainingQuantity" />
+          <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
+          <FieldRef ID="{4E14F686-584A-4EE8-9784-4B7AA4DCD1E7}" Name="PCNTariffCode" />
+          <FieldRef ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Name="CompensationGood" />
+          <FieldRef ID="{24FB05B0-2DD8-4DDC-B6EC-F6721D9F385E}" Name="PCNCodeIndex" />
+          <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
+          <FieldRef ID="{6E87DAC8-1B60-4246-97E1-9D0DC221F268}" Name="JSOXCustomsSummaryIndex" />
+          <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
+          <FieldRef ID="{47CB6EBB-BC67-466F-BA7F-B89E1E31F5BE}" Name="IPRIndex" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

@@ -241,4 +241,118 @@
     Group="CAS Smart Factory IPR"
     Description="TobaccoQuantity"
     />
+  <Field
+    DisplayName="SAD Document No."
+    Name="SADDOcumentNo"
+    Type="Text"
+    ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}"
+    Group="CAS Smart Factory IPR"
+    Description="SAD Document No."
+    />
+  <Field
+    DisplayName="IPR Document No."
+    Name="IPRDocumentNo"
+    Type="Text"
+    ID="{4B9400B7-9A5D-4E55-84BF-7B609CF963F2}"
+    Group="CAS Smart Factory IPR"
+    Description="IPR Document No."
+    />
+  <Field
+    DisplayName="Settled quantity"
+    Name="SettledQuantity"
+    Type="Number"
+    ID="{333AB237-93FB-4910-B2FC-9A08A08643DA}"
+    Group="CAS Smart Factory IPR"
+    Description="Settled quantity"
+    />
+  <Field
+    DisplayName="Disposal Status"
+    Name="DisposalStatus"
+    Type="Text"
+    ID="{51E5B961-8234-4009-81C0-C6059298044F}"
+    Group="CAS Smart Factory IPR"
+    Description="Disposal Status"
+    />
+  <Field
+    DisplayName="Customs Status"
+    Name="CustomsStatus"
+    Type="Text"
+    ID="{298F8DD7-97D6-4FE0-8A1F-08621BCF807A}"
+    Group="CAS Smart Factory IPR"
+    Description="Customs Status"
+    />
+  <Field
+    DisplayName="FG SKU"
+    Name="FGSKU"
+    Type="Text"
+    ID="{334B6AB1-43CD-408A-AAB7-FC37F343B299}"
+    Group="CAS Smart Factory IPR"
+    Description="FG SKU"
+    />
+  <Field
+    DisplayName="FG Batch"
+    Name="FGBatch"
+    Type="Text"
+    ID="{BA69B356-48EF-4519-849C-9EAE8B6D6EC0}"
+    Group="CAS Smart Factory IPR"
+    Description="FG Batch"
+    />
+  <Field
+    DisplayName="Duty per settled amount"
+    Name="DutyPerSettledAmount"
+    Type="Text"
+    ID="{9B890369-B6CC-403E-A921-F9E686EF094C}"
+    Group="CAS Smart Factory IPR"
+    Description="Duty per settled amount"
+    />
+  <Field
+    DisplayName="VAT per settled amount"
+    Name="VATPerSettledAmount"
+    Type="Text"
+    ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}"
+    Group="CAS Smart Factory IPR"
+    Description="VAT per settled amount"
+    />
+  <Field
+    ResultType="Number"
+    LCID="1045"
+    Format="DateTime"
+    Description="Duty and VAT"
+    DisplayName="Duty and VAT"
+    Type="Calculated"
+    ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}"
+    Name="DutyAndVAT"
+    Group="CAS Smart Factory IPR"
+    ReadOnly="TRUE">
+    <Formula>=DutyPerSettledAmount+VATPerSettledAmount</Formula>
+    <FormulaDisplayNames>=DutyPerSettledAmount+VATPerSettledAmount</FormulaDisplayNames>
+    <FieldRefs>
+      <FieldRef Name="DutyPerSettledAmount" />
+      <FieldRef Name="VATPerSettledAmount" />
+    </FieldRefs>
+  </Field>
+  <Field
+    DisplayName="Tobacco Value"
+    Name="TobaccoValue"
+    Type="Number"
+    ID="{3F511117-AE6F-40FF-801C-C8765D68E86D}"
+    Group="CAS Smart Factory IPR"
+    Description="Tobacco Value"
+    />
+  <Field
+    DisplayName="Remaining quantity"
+    Name="RemainingQuantity"
+    Type="Text"
+    ID="{0E24A674-1FE7-4C77-9106-387E12417644}"
+    Group="CAS Smart Factory IPR"
+    Description="Remaining quantity"
+    />
+  <Field
+    DisplayName="Customs Procedure"
+    Name="CustomsProcedure"
+    Type="Text"
+    ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}"
+    Group="CAS Smart Factory IPR"
+    Description="CustomsProcedure"
+    />
 </Elements>
