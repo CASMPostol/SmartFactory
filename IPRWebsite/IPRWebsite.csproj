@@ -308,6 +308,12 @@
     <None Include="Lists\Dictionaries\WasteTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{72f4e368-08c6-48ef-8eb6-6492c7ada619}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\DisposalTemlate\DisposalList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f6e0e0cf-e93e-428e-9f8f-cb6fd5c4e63f}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\DisposalTemlate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1262eb21-6b5b-422d-a06a-ea0da998d51d}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\IPRFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{677801eb-b35c-41d8-b869-09579ad0e752}</SharePointProjectItemId>
     </None>
@@ -546,6 +552,9 @@
     <Content Include="Lists\Dictionaries\WasteTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\WasteTemplate\WasteList\Elements.xml" />
     <Content Include="Lists\Dictionaries\WasteTemplate\Schema.xml" />
+    <Content Include="Lists\DisposalTemlate\Elements.xml" />
+    <Content Include="Lists\DisposalTemlate\DisposalList\Elements.xml" />
+    <Content Include="Lists\DisposalTemlate\Schema.xml" />
     <Content Include="Lists\IPRFields\Elements.xml" />
     <Content Include="Lists\IPRLibrary\Elements.xml" />
     <Content Include="Lists\IPRLookupFields\Elements.xml" />
