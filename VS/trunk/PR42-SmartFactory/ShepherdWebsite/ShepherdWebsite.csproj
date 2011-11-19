@@ -91,8 +91,8 @@
     <None Include="Content types\Dictionaries\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{19e4133f-3075-48da-a910-c12b1acefa61}</SharePointProjectItemId>
     </None>
-    <None Include="Features\Feature1\Feature1.feature">
-      <FeatureId>{a0a8b115-1123-4de9-8ac8-5860d8e56d43}</FeatureId>
+    <None Include="Features\Shepherd\Shepherd.feature">
+      <FeatureId>{8c0e09df-69d3-4029-8937-7f8fd3b244d9}</FeatureId>
     </None>
     <None Include="Fields\DictionariesFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0b882851-1713-4a21-8f5f-fbf6211edec5}</SharePointProjectItemId>
@@ -122,8 +122,8 @@
     <Content Include="Content types\Dictionaries\TranspotUnit\Elements.xml" />
     <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
-    <Content Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
+    <Content Include="Features\Shepherd\Shepherd.Template.xml">
+      <DependentUpon>Shepherd.feature</DependentUpon>
     </Content>
     <Content Include="Fields\DictionariesFields\Elements.xml" />
   </ItemGroup>
