@@ -8,6 +8,7 @@
                Inherits="TRUE">
 		<Folder TargetName="_cts/City" />
 		<FieldRefs>
+      <FieldRef ID="{C4CAE2DF-1DE3-43A3-9500-02091BDADA6E}" Name="CountryTitle" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

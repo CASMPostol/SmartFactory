@@ -97,7 +97,22 @@
     <None Include="Fields\DictionariesFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0b882851-1713-4a21-8f5f-fbf6211edec5}</SharePointProjectItemId>
     </None>
+    <None Include="Fields\DictionariesLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{636e1086-3bb9-4920-91fb-e2d31f4e157a}</SharePointProjectItemId>
+    </None>
     <None Include="key.snk" />
+    <None Include="Lists\Dictionaries\CityTemplate\CityList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{586ec2de-39c7-4a58-bc53-49618b01ab3f}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\CityTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6ae6188c-cad1-407c-9b27-b66863678540}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\CountryTemplate\CountryList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{97307d4c-c39a-41c3-a28b-bdd775498e71}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\CountryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{930f8450-466f-4572-85a0-30783ec4ef69}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{d5b7af74-65b4-4968-a81a-70ba671f405d}</PackageId>
     </None>
@@ -105,9 +120,7 @@
       <DependentUpon>Package.package</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Lists\Dictionaries\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Content types\Dictionaries\City\Elements.xml" />
     <Content Include="Content types\Dictionaries\Commodity\Elements.xml" />
@@ -126,6 +139,13 @@
       <DependentUpon>Shepherd.feature</DependentUpon>
     </Content>
     <Content Include="Fields\DictionariesFields\Elements.xml" />
+    <Content Include="Fields\DictionariesLookupFields\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CityTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CityTemplate\CityList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CityTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\CountryTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CountryTemplate\CountryList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CountryTemplate\Schema.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
