@@ -72,11 +72,11 @@
     <Compile Include="Generated\CELINA\SADZgloszenieTowarIloscTowaru.cs" />
     <Compile Include="Generated\ECS\IE529ZwolnienieTowarDokumentWymagany.cs" />
     <Compile Include="Generated\ECS\IE529ZwolnienieTowarIloscTowaru.cs" />
+    <Compile Include="Generated\IPR\batch.cs">
+      <DependentUpon>Batch.xsd</DependentUpon>
+    </Compile>
     <Compile Include="QuantityDescription.cs" />
     <Compile Include="RequiredDocumentsDescription.cs" />
-    <None Include="bin\Debug\schema0.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="cas.snk" />
     <None Include="Generated\CELINA\CLNBw2r0.xsd">
       <SubType>Designer</SubType>
@@ -292,6 +292,10 @@
     <None Include="Generated\ECS\xmldsig-core-schema.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Generated\IPR\Batch.xltx" />
+    <None Include="Generated\IPR\Batch.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Generated\IPR\Invoice.xltx" />
     <None Include="Generated\IPR\Invoice.XSD">
       <SubType>Designer</SubType>
@@ -300,6 +304,7 @@
     <None Include="Generated\IPR\stock.XSD">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Generated\Scripts\CreateBatchSchema.ps1" />
     <None Include="Generated\Scripts\CreateInvoiceSchema.ps1" />
     <None Include="Generated\Scripts\goxsd.ps1" />
   </ItemGroup>
@@ -327,7 +332,9 @@
     <Reference Include="System" />
     <Reference Include="System.XML" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
