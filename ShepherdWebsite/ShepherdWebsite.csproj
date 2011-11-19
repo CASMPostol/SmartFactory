@@ -52,47 +52,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content types\City\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{116ea8ae-094f-4b2c-9cbd-7b60e5512a77}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Commodity\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{d82534ac-8286-4ae0-859e-435e44ae33fa}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Company\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{5a886bec-7479-4734-804d-d081612f0641}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Country\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{dd9dc062-dbac-4b42-8968-87eac9b0fd5c}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Destination\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{083385df-5c6f-41b3-960d-2a8844452256}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\ExchangeRate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{8cc7ac47-df0e-401d-b671-aaf8ac7edec3}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\ExternalWorker\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{7f7eb5ea-5c7d-4b5b-8fb0-26f7d01447f1}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Market\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{bfbf9f0d-2c9f-409f-87a2-0fabb8256ab4}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\PalletTypes\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0fdac9b5-a02d-435e-828d-2e2c9e42f81b}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\ShippingPoint\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{2da3bb27-c2e0-4408-a449-bb597c517198}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\TranspotUnit\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0f1fa239-d40a-4bfc-af1a-f4bbbc7a75f0}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Vehicle\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{c24adbe2-8c48-431d-b2dc-4a015fdf76c8}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Warehouse\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{f6aadfa0-b0ae-4f3b-82c1-5ed3939d2c84}</SharePointProjectItemId>
-    </None>
     <None Include="Features\Feature1\Feature1.feature">
       <FeatureId>{a0a8b115-1123-4de9-8ac8-5860d8e56d43}</FeatureId>
+    </None>
+    <None Include="Features\Feature2\Feature2.feature">
+      <FeatureId>{28332889-a6ef-4338-a0c5-2bc2cb295a42}</FeatureId>
     </None>
     <None Include="Fields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{750a9152-2d7e-4585-8b73-ca36369e43a9}</SharePointProjectItemId>
@@ -105,29 +69,16 @@
       <DependentUpon>Package.package</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Content types\City\Elements.xml" />
-    <Content Include="Content types\Commodity\Elements.xml" />
-    <Content Include="Content types\Company\Elements.xml" />
-    <Content Include="Content types\Country\Elements.xml" />
-    <Content Include="Content types\Destination\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content types\ExchangeRate\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content types\ExternalWorker\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content types\Market\Elements.xml" />
-    <Content Include="Content types\PalletTypes\Elements.xml" />
-    <Content Include="Content types\ShippingPoint\Elements.xml" />
-    <Content Include="Content types\TranspotUnit\Elements.xml" />
-    <Content Include="Content types\Vehicle\Elements.xml" />
-    <Content Include="Content types\Warehouse\Elements.xml" />
+    <Folder Include="Content types\" />
+    <Folder Include="Lists\" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Features\Feature1\Feature1.Template.xml">
       <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
+    <Content Include="Features\Feature2\Feature2.Template.xml">
+      <DependentUpon>Feature2.feature</DependentUpon>
     </Content>
     <Content Include="Fields\Elements.xml">
       <SubType>Designer</SubType>
