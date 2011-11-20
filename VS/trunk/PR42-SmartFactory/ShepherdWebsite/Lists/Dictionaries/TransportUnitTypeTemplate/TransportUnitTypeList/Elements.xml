@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Transport Unit Type"
+                OnQuickLaunch="TRUE"
+                TemplateType="10035"
+                Url="Lists/TransportUnitTypeList"
+                Description="Transport Unit Type List Instance">
+  </ListInstance>
+</Elements>
