@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Receivers ListUrl="Lists/SKULibrary">
+  <Receivers ListUrl="Lists/StockLibrary" >
       <Receiver>
-        <Name>SKUEventHandlersItemAdded</Name>
+        <Name>StockLibraryEventReceiverItemAdded</Name>
         <Type>ItemAdded</Type>
         <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
-        <Class>CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries.SKUEventHandlers</Class>
+        <Class>CAS.SmartFactory.IPR.ListsEventsHandlers.Reports.StockLibraryEventReceiver</Class>
         <SequenceNumber>10000</SequenceNumber>
       </Receiver>
   </Receivers>
