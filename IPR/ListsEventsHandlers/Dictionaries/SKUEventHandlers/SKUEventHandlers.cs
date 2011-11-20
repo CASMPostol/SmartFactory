@@ -5,7 +5,7 @@ using Microsoft.SharePoint.Security;
 using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.Workflow;
 
-namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries.SKUEventHandlers
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
 {
     /// <summary>
     /// List Item Events

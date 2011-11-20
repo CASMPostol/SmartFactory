@@ -302,7 +302,7 @@
     <None Include="Generated\IPR\Batch.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Generated\IPR\SKUCigarettes.xlsx.xltx" />
+    <None Include="Generated\IPR\SKUCigarettes.xltx" />
     <None Include="Generated\IPR\SKUCutfiller.xltx" />
     <None Include="Generated\IPR\Invoice.xltx" />
     <None Include="Generated\IPR\Invoice.XSD">
