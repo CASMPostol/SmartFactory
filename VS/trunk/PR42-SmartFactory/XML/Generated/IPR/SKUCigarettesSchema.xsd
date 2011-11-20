@@ -1,9 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="SKUCigarettesSchema"
-    targetNamespace="http://tempuri.org/SKUCigarettesSchema.xsd"
+<xsd:schema id="SKUCigarettesSchema"
+    targetNamespace="http://cas.eu/schemas/jti/ipr/SKUCigarettesSchema.xsd"
     elementFormDefault="qualified"
-    xmlns="http://tempuri.org/SKUCigarettesSchema.xsd"
-    xmlns:mstns="http://tempuri.org/SKUCigarettesSchema.xsd"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://cas.eu/schemas/jti/ipr/SKUCigarettesSchema.xsd"
+    xmlns:mstns="http://cas.eu/schemas/jti/ipr/SKUCigarettesSchema.xsd"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-</xs:schema>
+  <xsd:element nillable="true" name="Cigarettes">
+    <xsd:complexType>
+      <xsd:sequence minOccurs="0">
+        <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="Material" >
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Plant" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Material" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Material_Description" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Family" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Family_Des" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Brand" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Brand_Description" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Cigarette_Length" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Filter_Segment_Length" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Pack_Style_Code" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Pack_Style" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Pack_Type" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Pack_Type_Descriptio" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Pack_Profile" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Pack_Profile_Descrip" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Outer_Type_Code" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Outer_Type" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Prime_Market" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Prime_Mark" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Graphic_Feature_Code" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Graphic_Feature_Code2" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Menthol" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Menthol_De" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Cigarettes_Per_Pack" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Cigarettes_per_Outer" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Cigarettes_Per_Case" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Foil_Embossing_Art_Work_No" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Foil_Embossing_Art_W" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Foil_Embossing_Position" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Foil_Embos" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Coupon_Insert_Code" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Coupon_Insert_Code_Description" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Cases_per_Pallet" />
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Pallet_Type" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
