@@ -64,6 +64,9 @@
     <None Include="Content types\Dictionaries\Country\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{51f09d12-4a0e-47ee-9b5f-0ef5d9e07242}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\Currency\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{172ab12f-b1a5-4c3d-84c3-f78d4c6bd3c9}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\Destination\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5fc4a578-5101-4cf6-8a74-b528459dda63}</SharePointProjectItemId>
     </None>
@@ -119,6 +122,12 @@
     <None Include="Lists\Dictionaries\CountryTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{930f8450-466f-4572-85a0-30783ec4ef69}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\CurrencyTemplate\CurrencyList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d30ed19f-0821-43cb-9ce8-91b0e68b11ad}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\CurrencyTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{28af19e4-6b32-4e76-b761-a92b832af126}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\DestinationTemplate\DestinationList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ed417ae5-3a70-4d71-8986-58b92ff2b0cd}</SharePointProjectItemId>
     </None>
@@ -156,6 +165,7 @@
     <Content Include="Content types\Dictionaries\Commodity\Elements.xml" />
     <Content Include="Content types\Dictionaries\Company\Elements.xml" />
     <Content Include="Content types\Dictionaries\Country\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Currency\Elements.xml" />
     <Content Include="Content types\Dictionaries\Destination\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -184,6 +194,9 @@
     <Content Include="Lists\Dictionaries\CountryTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CountryTemplate\CountryList\Elements.xml" />
     <Content Include="Lists\Dictionaries\CountryTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\CurrencyTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CurrencyTemplate\CurrencyList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CurrencyTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\DestinationTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\DestinationTemplate\DestinationList\Elements.xml" />
     <Content Include="Lists\Dictionaries\DestinationTemplate\Schema.xml" />

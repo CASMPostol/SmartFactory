@@ -2,22 +2,6 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
     Type="Choice"
-    DisplayName="Currency"
-    ID="{98F38A38-3D57-43EE-B57A-EC030BB24C87}"
-    Format="Dropdown"
-    BaseType="Text"
-    Description="Currency"
-    Name="Currency"
-    Group="CAS Smart Factory Shepherd">
-    <Default>EUR</Default>
-    <CHOICES>
-      <CHOICE>EUR</CHOICE>
-      <CHOICE>USD</CHOICE>
-      <CHOICE>PLN</CHOICE>
-    </CHOICES>
-  </Field>
-  <Field
-    Type="Choice"
     DisplayName="Direction"
     ID="{DA96B8F0-D0F6-471B-A24D-27CFF679CBBA}"
     Format="Dropdown"

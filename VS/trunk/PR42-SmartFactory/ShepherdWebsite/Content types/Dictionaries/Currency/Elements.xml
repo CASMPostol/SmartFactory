@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x010024c2d44b310a47edb90969b622490cf9"
+               Name="Currency"
+               Group="CAS Smart Factory Shepherd"
+               Description="Currency"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <Folder TargetName="_cts/Currency" />
+    <FieldRefs>
+      <FieldRef ID="{70F34CA9-C358-4798-BE5B-17C417FE5F38}" Name="ExchangeRate" />
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
+</Elements>
