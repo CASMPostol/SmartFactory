@@ -119,4 +119,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="TransportUnitTypeTitle"
+    ID="{621CCC9E-E10F-4AE7-8471-D34C5AA59913}"
+    Type="Lookup"
+    List="Lists/TransportUnitTypeList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Transport Unit Type"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
