@@ -75,6 +75,9 @@
     <Compile Include="Generated\IPR\batch.cs">
       <DependentUpon>Batch.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Generated\IPR\SKUCutfillerSchema.cs">
+      <DependentUpon>SKUCutfillerSchema.xsd</DependentUpon>
+    </Compile>
     <Compile Include="QuantityDescription.cs" />
     <Compile Include="RequiredDocumentsDescription.cs" />
     <None Include="cas.snk" />
@@ -296,8 +299,15 @@
     <None Include="Generated\IPR\Batch.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Generated\IPR\Cutfiller.xltx" />
     <None Include="Generated\IPR\Invoice.xltx" />
     <None Include="Generated\IPR\Invoice.XSD">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\IPR\SKUCigarettesSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Generated\IPR\SKUCutfillerSchema.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Generated\IPR\Stock.xltx" />
