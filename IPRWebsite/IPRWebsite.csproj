@@ -556,7 +556,9 @@
     <Content Include="Lists\Dictionaries\WasteTemplate\Schema.xml" />
     <Content Include="Lists\DisposalTemlate\Elements.xml" />
     <Content Include="Lists\DisposalTemlate\DisposalList\Elements.xml" />
-    <Content Include="Lists\DisposalTemlate\Schema.xml" />
+    <Content Include="Lists\DisposalTemlate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\IPRFields\Elements.xml" />
     <Content Include="Lists\IPRLibrary\Elements.xml" />
     <Content Include="Lists\IPRLookupFields\Elements.xml" />

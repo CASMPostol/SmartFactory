@@ -181,7 +181,9 @@
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\MarketTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\MarketTemplate\MarketList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\MarketTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\MarketTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Schema.xml" />
