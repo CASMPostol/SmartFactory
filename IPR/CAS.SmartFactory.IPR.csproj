@@ -51,6 +51,7 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUEventHandlers.cs" />
     <Compile Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\StockLibraryEventReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
+    <None Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{704bc3de-3679-48ae-a6ad-bb1b59ce31fa}</SharePointProjectItemId>
+    </None>
     <None Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f9f76688-a9ac-4d7a-895f-f67e0bb63324}</SharePointProjectItemId>
     </None>
@@ -87,6 +91,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\Elements.xml" />
     <Content Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
