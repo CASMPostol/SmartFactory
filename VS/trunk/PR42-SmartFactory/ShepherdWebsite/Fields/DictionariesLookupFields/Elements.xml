@@ -68,4 +68,38 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="MarketTitle"
+    ID="{44F4B458-2EA8-4B75-9546-80A495738F59}"
+    Type="Lookup"
+    List="Lists/MarketList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Market"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Name="DestinationTitle"
+    ID="{22D4D6CE-F749-4D22-BF7F-69037CDAA4C5}"
+    Type="Lookup"
+    List="Lists/DestinationList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Destination"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>

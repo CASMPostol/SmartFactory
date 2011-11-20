@@ -119,6 +119,12 @@
     <None Include="Lists\Dictionaries\CountryTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{930f8450-466f-4572-85a0-30783ec4ef69}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\DestinationTemplate\DestinationList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ed417ae5-3a70-4d71-8986-58b92ff2b0cd}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\DestinationTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{77addcfe-a664-4530-8d8e-7ff1d052519d}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\FreightPayerTemplate\FreightPayerList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c82437b8-8ab9-4d13-970d-016dea8c88c7}</SharePointProjectItemId>
     </None>
@@ -150,7 +156,9 @@
     <Content Include="Content types\Dictionaries\Commodity\Elements.xml" />
     <Content Include="Content types\Dictionaries\Company\Elements.xml" />
     <Content Include="Content types\Dictionaries\Country\Elements.xml" />
-    <Content Include="Content types\Dictionaries\Destination\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Destination\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\ExchangeRate\Elements.xml" />
     <Content Include="Content types\Dictionaries\ExternalWorker\Elements.xml" />
     <Content Include="Content types\Dictionaries\FreightPayer\Elements.xml" />
@@ -176,6 +184,9 @@
     <Content Include="Lists\Dictionaries\CountryTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CountryTemplate\CountryList\Elements.xml" />
     <Content Include="Lists\Dictionaries\CountryTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\DestinationTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\DestinationTemplate\DestinationList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\DestinationTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\FreightPayerList\Elements.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\Schema.xml" />
