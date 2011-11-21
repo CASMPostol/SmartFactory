@@ -102,17 +102,14 @@
     <None Include="Content types\Dictionaries\TranspotUnit\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6422638b-a893-4298-b31b-5b2df8446f08}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\Truck\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8d6f7d6f-2212-44fe-8f93-c2714f27bdcc}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\Vehicle\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e7563cfe-4edc-4c1e-a8fb-68a5302d8c14}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{19e4133f-3075-48da-a910-c12b1acefa61}</SharePointProjectItemId>
-    </None>
-    <None Include="Features\Feature1\Feature1.feature">
-      <FeatureId>{4e3ecc53-c496-41cc-a8f7-66930e8923ab}</FeatureId>
-    </None>
-    <None Include="Features\Feature2\Feature2.feature">
-      <FeatureId>{179ec965-d027-402a-b77e-7f61f8f3d13e}</FeatureId>
     </None>
     <None Include="Features\Shepherd\Shepherd.feature">
       <FeatureId>{8c0e09df-69d3-4029-8937-7f8fd3b244d9}</FeatureId>
@@ -199,6 +196,12 @@
     <None Include="Lists\Dictionaries\TransportUnitTypeTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cc0f6fe1-1043-4d4a-9765-1bad1d82339c}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\TruckTemplate\TruckList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{592b65e7-dffe-477e-818e-3901e7fc1c9f}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\TruckTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{53f1ef78-f9a2-4529-99b0-2759381e802f}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\WarehouseTemplate\WarehouseList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{05962056-3618-42be-b14b-088030a4263f}</SharePointProjectItemId>
     </None>
@@ -243,14 +246,9 @@
     </Content>
     <Content Include="Content types\Dictionaries\ShippingPoint\Elements.xml" />
     <Content Include="Content types\Dictionaries\TranspotUnit\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
     <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
-    <Content Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
-    </Content>
-    <Content Include="Features\Feature2\Feature2.Template.xml">
-      <DependentUpon>Feature2.feature</DependentUpon>
-    </Content>
     <Content Include="Features\Shepherd\Shepherd.Template.xml">
       <DependentUpon>Shepherd.feature</DependentUpon>
     </Content>
@@ -299,6 +297,9 @@
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\TransportUnitTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\TruckTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\TruckTemplate\TruckList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\TruckTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\WarehouseTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\WarehouseTemplate\WarehouseList\Elements.xml" />
     <Content Include="Lists\Dictionaries\WarehouseTemplate\Schema.xml" />

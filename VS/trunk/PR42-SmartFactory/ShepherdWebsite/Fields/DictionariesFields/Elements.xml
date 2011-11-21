@@ -80,7 +80,7 @@
     Description="Security Cost"
     />
   <Field Type="Choice"
-         DisplayName="ServiceType"
+         DisplayName="Service Type"
          ID="{6F534579-F010-432C-BE79-5AE3B369E7CF}"
          Format="Dropdown"
          BaseType="Text"
@@ -91,6 +91,7 @@
     <CHOICES>
       <CHOICE>Vendor</CHOICE>
       <CHOICE>Forwarder</CHOICE>
+      <CHOICE>Security Escort Provider</CHOICE>
     </CHOICES>
   </Field>
   <Field
@@ -123,15 +124,13 @@
     ID="{4521F780-1838-4A0A-B3B7-04997B3DEA37}"
     Format="Dropdown"
     BaseType="Text"
-    Description="Vehicle Type"
     Name="VehicleType"
     Group="CAS Smart Factory Shepherd">
     <Default>Truck</Default>
     <CHOICES>
       <CHOICE>Truck</CHOICE>
-      <CHOICE>Trailer</CHOICE>
       <CHOICE>Van</CHOICE>
-      <CHOICE>Security Car</CHOICE>
+      <CHOICE>Security Escort Car</CHOICE>
     </CHOICES>
   </Field>
   <Field
@@ -160,6 +159,13 @@
     Name="ShippingPointDescription"
     Type="Text"
     ID="{6B96ECFD-6D52-43BE-8FB3-DE80AB77E732}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Comments"
+    Name="AdditionalComments"
+    Type="Text"
+    ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}"
     Group="CAS Smart Factory Shepherd"
     />
 </Elements>

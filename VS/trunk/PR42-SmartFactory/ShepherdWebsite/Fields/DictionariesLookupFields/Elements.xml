@@ -221,4 +221,38 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="PartnerTitle"
+    ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}"
+    Type="Lookup"
+    List="Lists/PartnerList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Vendor Name"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Name="TruckTitle"
+    ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}"
+    Type="Lookup"
+    List="Lists/TruckList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Truck / Car: Registration Number"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
