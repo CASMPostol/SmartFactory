@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <!-- Parent ContentType: Item (0x01) -->
+  <ContentType ID="0x010091765907174d4799b44c4df249630d28"
+               Name="ScheduleTemplate"
+               Group="CAS Smart Factory Shepherd Dictionaries"
+               Description="A schedule template is a predefined table of time slots."
+               Inherits="TRUE"
+               Version="0">
+    <FieldRefs>
+      <FieldRef Name="ShippingPointTitle" ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}"/>
+    </FieldRefs>
+  </ContentType>
+</Elements>

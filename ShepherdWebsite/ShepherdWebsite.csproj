@@ -102,11 +102,17 @@
     <None Include="Content types\Dictionaries\SAPDestinationPlant\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{294f6eaf-7dba-4ea2-8bd9-d6f336a83095}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\ScheduleTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{59f818ba-6219-4bbe-ae79-1de661130c44}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\ShipmentType\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0b3c6951-bd7f-4d2a-ae4b-956fb04d3efb}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\ShippingPoint\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{14e553bf-62a7-4a82-a276-23f5c45041d8}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\TimeSlotTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{736fbb6c-0492-4ef2-b53c-98dfe84cded7}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\Trailer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5106151e-de91-42a2-9737-4689fbf62562}</SharePointProjectItemId>
@@ -214,6 +220,12 @@
     <None Include="Lists\Dictionaries\SAPDestinationPlantTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c8122a59-a360-4cc6-8ffb-74f86529b31a}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\ScheduleTemplateTemplate\ScheduleTemplateList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{57d2d7fe-91e6-4b1a-be0f-050fcb4bf03c}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\ScheduleTemplateTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5dba4162-119e-4b37-b46b-e148144735df}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{54f62c7f-7014-461d-81c5-5d84080bcb45}</SharePointProjectItemId>
     </None>
@@ -225,6 +237,12 @@
     </None>
     <None Include="Lists\Dictionaries\ShippingPointTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6da95305-1cb1-4d19-a0c6-3605112ee85f}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\TimeSlotTemplateTemplate\TimeSlotTemplateList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0baf6821-4c6a-41fd-9c57-9e1969b5fdcb}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\TimeSlotTemplateTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{069d4e27-66c4-423f-975e-9983f36c1995}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\TrailerTemplate\TrailerList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{90db5152-64d8-402f-b1c1-19eeedec2ceb}</SharePointProjectItemId>
@@ -269,7 +287,9 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Content types\Dictionaries\Carrier\Elements.xml" />
-    <Content Include="Content types\Dictionaries\City\Elements.xml" />
+    <Content Include="Content types\Dictionaries\City\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\Commodity\Elements.xml" />
     <Content Include="Content types\Dictionaries\Company\Elements.xml" />
     <Content Include="Content types\Dictionaries\Country\Elements.xml" />
@@ -286,10 +306,12 @@
     <Content Include="Content types\Dictionaries\Partner\Elements.xml" />
     <Content Include="Content types\Dictionaries\Route\Elements.xml" />
     <Content Include="Content types\Dictionaries\SAPDestinationPlant\Elements.xml" />
+    <Content Include="Content types\Dictionaries\ScheduleTemplate\Elements.xml" />
     <Content Include="Content types\Dictionaries\ShipmentType\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\ShippingPoint\Elements.xml" />
+    <Content Include="Content types\Dictionaries\TimeSlotTemplate\Elements.xml" />
     <Content Include="Content types\Dictionaries\Trailer\Elements.xml" />
     <Content Include="Content types\Dictionaries\TranspotUnit\Elements.xml" />
     <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
@@ -346,12 +368,22 @@
     <Content Include="Lists\Dictionaries\SAPDestinationPlantTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\SAPDestinationPlantTemplate\SAPDestinationPlantList\Elements.xml" />
     <Content Include="Lists\Dictionaries\SAPDestinationPlantTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\ScheduleTemplateTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\ScheduleTemplateTemplate\ScheduleTemplateList\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Lists\Dictionaries\ScheduleTemplateTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\ShippingPointTemplate\ShippingPointList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\ShippingPointTemplate\ShippingPointList\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\TimeSlotTemplateTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\TimeSlotTemplateTemplate\TimeSlotTemplateList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\TimeSlotTemplateTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\TrailerList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\Schema.xml" />

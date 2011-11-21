@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <!-- Parent ContentType: Event (0x0102) -->
+  <ContentType ID="0x0102006938e4112c9f4152aac91debc05389b1"
+               Name="TimeSlotTemplate"
+               Group="CAS Smart Factory Shepherd Dictionaries"
+               Description="Time Slot Template"
+               Inherits="TRUE"
+               Version="100000">
+    <FieldRefs>
+      <FieldRef Name="ScheduleTemplateTitle" ID="{BFA0D483-0643-4E54-8AED-B0170A8E0091}" />
+    </FieldRefs>
+  </ContentType>
+</Elements>

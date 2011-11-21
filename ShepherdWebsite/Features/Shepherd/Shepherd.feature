@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="58930a90-15b8-4f27-8bac-651a46bf294c" featureId="58930a90-15b8-4f27-8bac-651a46bf294c" imageUrl="" solutionId="00000000-0000-0000-0000-000000000000" title="ShepherdWebsite Feature2" version="" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
+<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="58930a90-15b8-4f27-8bac-651a46bf294c" featureId="58930a90-15b8-4f27-8bac-651a46bf294c" imageUrl="" scope="Site" solutionId="00000000-0000-0000-0000-000000000000" title="ShepherdWebsite Feature" version="" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
   <projectItems>
     <projectItemReference itemId="0b882851-1713-4a21-8f5f-fbf6211edec5" />
     <projectItemReference itemId="19e4133f-3075-48da-a910-c12b1acefa61" />
@@ -68,5 +68,11 @@
     <projectItemReference itemId="0c5494ef-6764-4b8c-b2aa-9545afa9d33b" />
     <projectItemReference itemId="bb4facac-1cdf-4988-8a0a-cfeb847d62f5" />
     <projectItemReference itemId="697bd4d1-bc70-40ef-b1a7-b98ddbe6e6eb" />
+    <projectItemReference itemId="736fbb6c-0492-4ef2-b53c-98dfe84cded7" />
+    <projectItemReference itemId="59f818ba-6219-4bbe-ae79-1de661130c44" />
+    <projectItemReference itemId="57d2d7fe-91e6-4b1a-be0f-050fcb4bf03c" />
+    <projectItemReference itemId="5dba4162-119e-4b37-b46b-e148144735df" />
+    <projectItemReference itemId="0baf6821-4c6a-41fd-9c57-9e1969b5fdcb" />
+    <projectItemReference itemId="069d4e27-66c4-423f-975e-9983f36c1995" />
   </projectItems>
 </feature>
