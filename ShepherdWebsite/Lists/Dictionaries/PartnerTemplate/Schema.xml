@@ -49,6 +49,21 @@
       <Field ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="CellPhone" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Mobile_Phone;" Type="Text" IMEMode="inactive" />
       <Field ID="{a71affd2-dcc7-4529-81bc-2fe593154a5f}" Name="WebPage" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WebPage" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Web_Page;" Type="URL" />
       <Field ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Name="WorkZip" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkZip" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,ZIP_Postal_Code;" Type="Text" IMEMode="inactive" />
+      <Field Type="Choice"
+         DisplayName="Service Type"
+         ID="{6F534579-F010-432C-BE79-5AE3B369E7CF}"
+         Format="Dropdown"
+         BaseType="Text"
+         Description="Service"
+         Name="ServiceType"
+         Group="CAS Smart Factory Shepherd">
+        <Default>Vendor</Default>
+        <CHOICES>
+          <CHOICE>Vendor</CHOICE>
+          <CHOICE>Forwarder</CHOICE>
+          <CHOICE>Security Escort Provider</CHOICE>
+        </CHOICES>
+      </Field>
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

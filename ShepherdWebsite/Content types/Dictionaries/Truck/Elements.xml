@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x01003e7761aef97a4c619f44d01b53a56568"
+               Name="Truck"
+               Group="CAS Smart Factory Shepherd"
+               Description="Truck"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <Folder TargetName="_cts/Truck" />
+    <FieldRefs>
+      <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+      <FieldRef ID="{4521F780-1838-4A0A-B3B7-04997B3DEA37}" Name="VehicleType" />
+      <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
+</Elements>

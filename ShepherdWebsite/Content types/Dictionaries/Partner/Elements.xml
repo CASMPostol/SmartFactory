@@ -9,6 +9,7 @@
     <Folder TargetName="_cts/Partner" />
     <FieldRefs>
       <FieldRef ID="{7A847280-FE50-471A-B399-1F7D7EF19DA3}" Name="VendorNumber" />
+      <FieldRef ID="{6F534579-F010-432C-BE79-5AE3B369E7CF}" Name="ServiceType" />
       <FieldRef ID="{E0BCC826-1F93-4156-8FC1-7F4506234DFA}" Name="CompanyAddress" />
       <FieldRef ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Name="WorkCity" />
       <FieldRef ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Name="WorkCountry" />
