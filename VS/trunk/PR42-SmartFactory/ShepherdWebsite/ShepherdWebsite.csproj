@@ -128,6 +128,12 @@
     <None Include="Lists\Dictionaries\CityTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6ae6188c-cad1-407c-9b27-b66863678540}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\CommodityTemplate\CommodityList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ae7c7fcf-a6eb-48a9-9ef7-f8f48ac3bb97}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\CommodityTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{22f9a0a2-8589-4fd4-ab2a-b7b5736ee6dd}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\CountryTemplate\CountryList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{97307d4c-c39a-41c3-a28b-bdd775498e71}</SharePointProjectItemId>
     </None>
@@ -222,6 +228,9 @@
     <Content Include="Lists\Dictionaries\CityTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CityTemplate\CityList\Elements.xml" />
     <Content Include="Lists\Dictionaries\CityTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\CommodityTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CommodityTemplate\CommodityList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CommodityTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\CountryTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CountryTemplate\CountryList\Elements.xml" />
     <Content Include="Lists\Dictionaries\CountryTemplate\Schema.xml" />

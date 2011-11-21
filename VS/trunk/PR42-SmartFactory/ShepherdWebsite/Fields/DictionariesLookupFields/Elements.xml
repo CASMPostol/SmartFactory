@@ -170,4 +170,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="CommodityTitle"
+    ID="{612E92FE-DAEF-4E47-9750-C1C7397E120B}"
+    Type="Lookup"
+    List="Lists/CommodityList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Commodity"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
