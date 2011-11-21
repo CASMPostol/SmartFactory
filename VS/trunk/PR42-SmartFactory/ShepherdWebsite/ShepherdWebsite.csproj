@@ -178,6 +178,12 @@
     <None Include="Lists\Dictionaries\ShipmentTypeTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{80e3ab06-4da4-48f7-9793-4647891f6630}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\ShippingPointTemplate\ShippingPointList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{af0f1b32-bfea-491d-9238-c1479fcc672b}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\ShippingPointTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6da95305-1cb1-4d19-a0c6-3605112ee85f}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\TransportUnitTypeTemplate\TransportUnitTypeList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{16ea5f48-0bd1-4be0-ae75-8afaeccabe86}</SharePointProjectItemId>
     </None>
@@ -262,6 +268,9 @@
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\ShippingPointTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\ShippingPointTemplate\ShippingPointList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\ShippingPointTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\TransportUnitTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\Schema.xml" />
