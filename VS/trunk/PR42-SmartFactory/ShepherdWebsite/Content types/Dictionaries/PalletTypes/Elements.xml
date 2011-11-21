@@ -8,6 +8,7 @@
                Inherits="TRUE">
 		<Folder TargetName="_cts/PalletTypes" />
 		<FieldRefs>
+      <FieldRef ID="{F1E0E6E5-DABC-4654-AA8C-4AA52B475896}" Name="PalletSize" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

@@ -188,4 +188,11 @@
     ID="{97AEFA6D-9B71-466D-9F53-58C7F3436B0A}"
     Group="CAS Smart Factory Shepherd"
     />
+  <Field
+    DisplayName="Pallet Size"
+    Name="PalletSize"
+    Type="Text"
+    ID="{F1E0E6E5-DABC-4654-AA8C-4AA52B475896}"
+    Group="CAS Smart Factory Shepherd"
+    />
 </Elements>
