@@ -108,6 +108,12 @@
     <None Include="Content types\Dictionaries\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{19e4133f-3075-48da-a910-c12b1acefa61}</SharePointProjectItemId>
     </None>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{4e3ecc53-c496-41cc-a8f7-66930e8923ab}</FeatureId>
+    </None>
+    <None Include="Features\Feature2\Feature2.feature">
+      <FeatureId>{179ec965-d027-402a-b77e-7f61f8f3d13e}</FeatureId>
+    </None>
     <None Include="Features\Shepherd\Shepherd.feature">
       <FeatureId>{8c0e09df-69d3-4029-8937-7f8fd3b244d9}</FeatureId>
     </None>
@@ -116,6 +122,9 @@
     </None>
     <None Include="Fields\DictionariesLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{636e1086-3bb9-4920-91fb-e2d31f4e157a}</SharePointProjectItemId>
+    </None>
+    <None Include="Fields\LibrariesLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{206dc054-3529-4baa-b94b-b95a57182dda}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
     <None Include="Lists\Dictionaries\CarrierTemplate\CarrierList\SharePointProjectItem.spdata">
@@ -196,6 +205,15 @@
     <None Include="Lists\Dictionaries\WarehouseTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{09a720dd-b9b2-4178-848c-849ce8426099}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Libraries\GoodsHandlingPOLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{412f3366-5025-4c67-8d31-48d45aa8916f}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Libraries\SecurityPOLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e8a6c778-901a-4362-a161-6c2c12985ea2}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Libraries\SecuritySealProtocolLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{64b86b44-1e47-4b2e-ae13-e5a71f32e45c}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{d5b7af74-65b4-4968-a81a-70ba671f405d}</PackageId>
     </None>
@@ -227,6 +245,12 @@
     <Content Include="Content types\Dictionaries\TranspotUnit\Elements.xml" />
     <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
+    <Content Include="Features\Feature2\Feature2.Template.xml">
+      <DependentUpon>Feature2.feature</DependentUpon>
+    </Content>
     <Content Include="Features\Shepherd\Shepherd.Template.xml">
       <DependentUpon>Shepherd.feature</DependentUpon>
     </Content>
@@ -236,6 +260,7 @@
     <Content Include="Fields\DictionariesLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Fields\LibrariesLookupFields\Elements.xml" />
     <Content Include="Lists\Dictionaries\CarrierTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CarrierTemplate\CarrierList\Elements.xml" />
     <Content Include="Lists\Dictionaries\CarrierTemplate\Schema.xml" />
@@ -277,6 +302,9 @@
     <Content Include="Lists\Dictionaries\WarehouseTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\WarehouseTemplate\WarehouseList\Elements.xml" />
     <Content Include="Lists\Dictionaries\WarehouseTemplate\Schema.xml" />
+    <Content Include="Lists\Libraries\GoodsHandlingPOLibrary\Elements.xml" />
+    <Content Include="Lists\Libraries\SecurityPOLibrary\Elements.xml" />
+    <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
