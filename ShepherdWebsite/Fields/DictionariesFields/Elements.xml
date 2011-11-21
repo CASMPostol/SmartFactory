@@ -168,4 +168,11 @@
     ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}"
     Group="CAS Smart Factory Shepherd"
     />
+  <Field
+    DisplayName="Identity document number"
+    Name="IdentityDocumentNumber"
+    Type="Text"
+    ID="{9889C906-2676-4309-A8C3-CE3F91D8A640}"
+    Group="CAS Smart Factory Shepherd"
+    />
 </Elements>
