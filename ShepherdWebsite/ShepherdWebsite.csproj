@@ -43,6 +43,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
@@ -182,6 +184,12 @@
     <None Include="Lists\Dictionaries\TransportUnitTypeTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cc0f6fe1-1043-4d4a-9765-1bad1d82339c}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\WarehouseTemplate\WarehouseList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{05962056-3618-42be-b14b-088030a4263f}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\WarehouseTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{09a720dd-b9b2-4178-848c-849ce8426099}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{d5b7af74-65b4-4968-a81a-70ba671f405d}</PackageId>
     </None>
@@ -257,6 +265,9 @@
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\TransportUnitTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\WarehouseTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\WarehouseTemplate\WarehouseList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\WarehouseTemplate\Schema.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
