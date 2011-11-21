@@ -272,4 +272,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="DriverTitle"
+    ID="{ABE1FBCA-A3B4-4425-A819-80CD436CC98D}"
+    Type="Lookup"
+    List="Lists/DriverList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Driver"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
