@@ -289,4 +289,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="SAPDestinationPlantTitle"
+    ID="{396E8164-1398-4378-8D2C-E78495BC12DA}"
+    Type="Lookup"
+    List="Lists/SAPDestinationPlantList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="SAP Destination Plant"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
