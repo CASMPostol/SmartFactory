@@ -190,6 +190,12 @@
     <None Include="Lists\Dictionaries\MarketTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6bec2630-2f9e-4a97-a991-2d1e04be5df9}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\PalletTypesTemplate\PalletTypesList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bb4facac-1cdf-4988-8a0a-cfeb847d62f5}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\PalletTypesTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{697bd4d1-bc70-40ef-b1a7-b98ddbe6e6eb}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\PartnerTemplate\PartnerList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{275d0099-2f08-4e6d-9c51-3bfaa0b2e267}</SharePointProjectItemId>
     </None>
@@ -328,6 +334,9 @@
     <Content Include="Lists\Dictionaries\MarketTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Dictionaries\PalletTypesTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\PalletTypesTemplate\PalletTypesList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\PalletTypesTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\PartnerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\PartnerTemplate\PartnerList\Elements.xml" />
     <Content Include="Lists\Dictionaries\PartnerTemplate\Schema.xml" />
