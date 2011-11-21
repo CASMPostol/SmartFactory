@@ -99,6 +99,9 @@
     <None Include="Content types\Dictionaries\ShippingPoint\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{14e553bf-62a7-4a82-a276-23f5c45041d8}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\Trailer\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5106151e-de91-42a2-9737-4689fbf62562}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\TranspotUnit\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6422638b-a893-4298-b31b-5b2df8446f08}</SharePointProjectItemId>
     </None>
@@ -190,6 +193,12 @@
     <None Include="Lists\Dictionaries\ShippingPointTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6da95305-1cb1-4d19-a0c6-3605112ee85f}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\TrailerTemplate\TrailerList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{90db5152-64d8-402f-b1c1-19eeedec2ceb}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\TrailerTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{be0fe7d4-c68c-48f3-aef5-458f3aca5b01}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\TransportUnitTypeTemplate\TransportUnitTypeList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{16ea5f48-0bd1-4be0-ae75-8afaeccabe86}</SharePointProjectItemId>
     </None>
@@ -245,6 +254,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\ShippingPoint\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Trailer\Elements.xml" />
     <Content Include="Content types\Dictionaries\TranspotUnit\Elements.xml" />
     <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
     <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
@@ -294,6 +304,9 @@
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\ShippingPointList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\TrailerTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\TrailerTemplate\TrailerList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\TrailerTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\TransportUnitTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\Schema.xml" />
