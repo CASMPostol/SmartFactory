@@ -155,4 +155,11 @@
     ID="{7A847280-FE50-471A-B399-1F7D7EF19DA3}"
     Group="CAS Smart Factory Shepherd"
     />
+  <Field
+    DisplayName="Description"
+    Name="ShippingPointDescription"
+    Type="Text"
+    ID="{6B96ECFD-6D52-43BE-8FB3-DE80AB77E732}"
+    Group="CAS Smart Factory Shepherd"
+    />
 </Elements>
