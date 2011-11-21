@@ -1,14 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="FreightPayerTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-FreightPayerTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List xmlns:ows="Microsoft SharePoint" Title="PartnerTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-PartnerTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01002bd66f0631854603a0815888852526d0" Name="FreightPayer" Group="CAS Smart Factory Shepherd" Description="ShipmentType" Overwrite="TRUE" Inherits="TRUE">
-        <Folder TargetName="_cts/FreightPayer" />
+      <ContentType ID="0x010017a675502be747db9fb9dcb304429eef" Name="Partner" Group="CAS Smart Factory Shepherd" Description="Partner" Overwrite="TRUE" Inherits="TRUE">
+        <Folder TargetName="_cts/Partner" />
         <FieldRefs>
+          <FieldRef ID="{7A847280-FE50-471A-B399-1F7D7EF19DA3}" Name="VendorNumber" />
+          <FieldRef ID="{6F534579-F010-432C-BE79-5AE3B369E7CF}" Name="ServiceType" />
           <FieldRef ID="{E0BCC826-1F93-4156-8FC1-7F4506234DFA}" Name="CompanyAddress" />
-          <FieldRef ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Name="WorkZip" />
           <FieldRef ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Name="WorkCity" />
           <FieldRef ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Name="WorkCountry" />
+          <FieldRef ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Name="WorkZip" />
+          <FieldRef ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="Email" />
+          <FieldRef ID="{a71affd2-dcc7-4529-81bc-2fe593154a5f}" Name="WebPage" />
+          <FieldRef ID="{fd630629-c165-4513-b43c-fdb16b86a14d}" Name="WorkPhone" />
+          <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
+          <FieldRef ID="{9d1cacc8-f452-4bc1-a751-050595ad96e1}" Name="WorkFax" />
           <FieldRef ID="{DC0E5632-A487-412B-AA3E-4CC025116C28}" Name="NIP" />
         </FieldRefs>
         <XmlDocuments>
@@ -23,10 +30,24 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field DisplayName="Address" Name="CompanyAddress" Type="Text" ID="{e0bcc826-1f93-4156-8fc1-7f4506234dfa}" Group="CAS Smart Factory Shepherd" Description="Address" />
-      <Field DisplayName="NIP / VAT No." Name="NIP" Type="Text" ID="{dc0e5632-a487-412b-aa3e-4cc025116c28}" Group="CAS Smart Factory Shepherd" Description="NIP" />
+      <Field Type="Choice" DisplayName="ServiceType" ID="{6f534579-f010-432c-be79-5ae3b369e7cf}" Format="Dropdown" BaseType="Text" Description="Service" Name="ServiceType" Group="CAS Smart Factory Shepherd">
+    <Default>Vendor</Default>
+    <CHOICES>
+      <CHOICE>Vendor</CHOICE>
+      <CHOICE>Forwarder</CHOICE>
+      <CHOICE>Security Escort</CHOICE>
+    </CHOICES>
+  </Field>
+      <Field DisplayName="Address" Name="CompanyAddress" Type="Text" ID="{e0bcc826-1f93-4156-8fc1-7f4506234dfa}" Group="CAS Smart Factory Shepherd" />
+      <Field DisplayName="NIP / VAT No." Name="NIP" Type="Text" ID="{dc0e5632-a487-412b-aa3e-4cc025116c28}" Group="CAS Smart Factory Shepherd" />
+      <Field DisplayName="Vendor Number (from SAP)" Name="VendorNumber" Type="Number" ID="{7a847280-fe50-471a-b399-1f7d7ef19da3}" Group="CAS Smart Factory Shepherd" />
+      <Field ID="{fd630629-c165-4513-b43c-fdb16b86a14d}" Name="WorkPhone" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkPhone" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Business_Phone;" Type="Text" IMEMode="inactive" />
       <Field ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Name="WorkCity" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkCity" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,City;" Type="Text" />
       <Field ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Name="WorkCountry" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkCountry" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Country_Region;" Type="Text" />
+      <Field ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="EMail" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EMail" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,E-Mail;" ReadOnly="FALSE" Type="Text" FromBaseType="TRUE" AllowDeletion="TRUE" />
+      <Field ID="{9d1cacc8-f452-4bc1-a751-050595ad96e1}" Name="WorkFax" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkFax" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Fax_Number;" Type="Text" IMEMode="inactive" />
+      <Field ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="CellPhone" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Mobile_Phone;" Type="Text" IMEMode="inactive" />
+      <Field ID="{a71affd2-dcc7-4529-81bc-2fe593154a5f}" Name="WebPage" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WebPage" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Web_Page;" Type="URL" />
       <Field ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Name="WorkZip" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkZip" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,ZIP_Postal_Code;" Type="Text" IMEMode="inactive" />
     </Fields>
     <Views>
@@ -59,10 +80,17 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
+          <FieldRef ID="{7A847280-FE50-471A-B399-1F7D7EF19DA3}" Name="VendorNumber" />
+          <FieldRef ID="{6F534579-F010-432C-BE79-5AE3B369E7CF}" Name="ServiceType" />
           <FieldRef ID="{E0BCC826-1F93-4156-8FC1-7F4506234DFA}" Name="CompanyAddress" />
-          <FieldRef ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Name="WorkZip" />
           <FieldRef ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Name="WorkCity" />
           <FieldRef ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Name="WorkCountry" />
+          <FieldRef ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Name="WorkZip" />
+          <FieldRef ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="Email" />
+          <FieldRef ID="{a71affd2-dcc7-4529-81bc-2fe593154a5f}" Name="WebPage" />
+          <FieldRef ID="{fd630629-c165-4513-b43c-fdb16b86a14d}" Name="WorkPhone" />
+          <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
+          <FieldRef ID="{9d1cacc8-f452-4bc1-a751-050595ad96e1}" Name="WorkFax" />
           <FieldRef ID="{DC0E5632-A487-412B-AA3E-4CC025116C28}" Name="NIP" />
         </ViewFields>
         <Query>
