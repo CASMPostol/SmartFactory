@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="ScheduleTemplateTitle"
+    ID="{BFA0D483-0643-4E54-8AED-B0170A8E0091}"
+    Type="Lookup"
+    List="Lists/ScheduleTemplateList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Schedule Template"
+    Group="CAS Smart Factory"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="CountryTitle"
     ID="{C4CAE2DF-1DE3-43A3-9500-02091BDADA6E}"
     Type="Lookup"
@@ -208,7 +225,7 @@
     Name="ShippingPointTitle"
     ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}"
     Type="Lookup"
-    List="Lists/WhippingPointList"
+    List="Lists/ShippingPointList"
     ShowField="Title"
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
