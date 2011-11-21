@@ -8,9 +8,7 @@
                Inherits="TRUE">
 		<Folder TargetName="_cts/Warehouse" />
 		<FieldRefs>
-			<FieldRef ID="{9eab9f89-5490-4f0f-b33d-25aa398202c0}" Name="External" />
-			<FieldRef ID="{ef284845-c1d8-44ef-a2b1-d9e73fd9ef1c}" Name="IPRMaterial" />
-			<FieldRef ID="{d480d875-24cb-42d4-820c-3f5d9154173b}" Name="CommodityName" />
+      <FieldRef ID="{612E92FE-DAEF-4E47-9750-C1C7397E120B}" Name="CommodityTitle" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
