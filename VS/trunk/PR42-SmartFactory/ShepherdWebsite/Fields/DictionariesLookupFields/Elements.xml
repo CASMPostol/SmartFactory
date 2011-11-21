@@ -136,4 +136,38 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="MarketTitle"
+    ID="{44F4B458-2EA8-4B75-9546-80A495738F59}"
+    Type="Lookup"
+    List="Lists/MarketList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Market"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Name="CarrierTitle"
+    ID="{3F47B50A-D2D1-4B7B-845D-2EC0E9461388}"
+    Type="Lookup"
+    List="Lists/CarrierList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Carrier"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
