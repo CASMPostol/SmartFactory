@@ -137,7 +137,7 @@
   </Field>
   <Field
     DisplayName="Address"
-    Name="FreightPayerAddress"
+    Name="CompanyAddress"
     Type="Text"
     ID="{E0BCC826-1F93-4156-8FC1-7F4506234DFA}"
     Group="CAS Smart Factory Shepherd"
@@ -147,6 +147,13 @@
     Name="NIP"
     Type="Text"
     ID="{DC0E5632-A487-412B-AA3E-4CC025116C28}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Vendor Number (from SAP)"
+    Name="VendorNumber"
+    Type="Number"
+    ID="{7A847280-FE50-471A-B399-1F7D7EF19DA3}"
     Group="CAS Smart Factory Shepherd"
     />
 </Elements>

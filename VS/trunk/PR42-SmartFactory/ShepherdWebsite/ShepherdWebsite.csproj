@@ -88,6 +88,9 @@
     <None Include="Content types\Dictionaries\PalletTypes\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fd23d244-70eb-4977-b7cb-644d6ce0b6c3}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\Partner\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{20e4e827-8808-4ac0-ad37-a926e6504d4b}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\ShipmentType\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0b3c6951-bd7f-4d2a-ae4b-956fb04d3efb}</SharePointProjectItemId>
     </None>
@@ -155,6 +158,12 @@
     <None Include="Lists\Dictionaries\MarketTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6bec2630-2f9e-4a97-a991-2d1e04be5df9}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\PartnerTemplate\PartnerList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{275d0099-2f08-4e6d-9c51-3bfaa0b2e267}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\PartnerTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{98b8133f-8677-4585-81f8-895167d8b5a0}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{54f62c7f-7014-461d-81c5-5d84080bcb45}</SharePointProjectItemId>
     </None>
@@ -190,6 +199,7 @@
     <Content Include="Content types\Dictionaries\FreightPayer\Elements.xml" />
     <Content Include="Content types\Dictionaries\Market\Elements.xml" />
     <Content Include="Content types\Dictionaries\PalletTypes\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Partner\Elements.xml" />
     <Content Include="Content types\Dictionaries\ShipmentType\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -229,6 +239,9 @@
     <Content Include="Lists\Dictionaries\MarketTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Dictionaries\PartnerTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\PartnerTemplate\PartnerList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\PartnerTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Schema.xml" />
