@@ -64,14 +64,6 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="Plate number"
-    Name="PlateNumber"
-    Type="Text"
-    ID="{6064736B-546A-4B1A-A062-249A7A228BEA}"
-    Group="CAS Smart Factory Shepherd"
-    Description="Plate number"
-    />
-  <Field
     DisplayName="Security Cost"
     Name="SecurityCost"
     Type="Number"
@@ -173,6 +165,27 @@
     Name="IdentityDocumentNumber"
     Type="Text"
     ID="{9889C906-2676-4309-A8C3-CE3F91D8A640}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Remark MM"
+    Name="RemarkMM"
+    Type="Text"
+    ID="{40088770-43E3-441B-9973-D3B093DC131C}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Transport Costs"
+    Name="TransportCosts"
+    Type="Number"
+    ID="{3D76E122-FD59-46A6-BA25-38AEBB4AF138}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Total Transit Time"
+    Name="TotalTransitTime"
+    Type="Number"
+    ID="{97AEFA6D-9B71-466D-9F53-58C7F3436B0A}"
     Group="CAS Smart Factory Shepherd"
     />
 </Elements>

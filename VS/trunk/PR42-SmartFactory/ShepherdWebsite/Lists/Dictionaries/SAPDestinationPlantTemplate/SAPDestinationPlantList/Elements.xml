@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="SAP Destination Plant"
+                OnQuickLaunch="TRUE"
+                TemplateType="10044"
+                Url="Lists/SAPDestinationPlantList"
+                Description="SAP Destination Plant List Instance">
+  </ListInstance>
+</Elements>
