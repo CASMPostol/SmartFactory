@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ListTemplate
+        Name="CommodityTemplate"
+        Type="10038"
+        BaseType="0"
+        OnQuickLaunch="TRUE"
+        SecurityBits="11"
+        Sequence="410"
+        DisplayName="ShepherdWebsite - CommodityTemplate"
+        Description="My List Definition"
+        Image="/_layouts/images/itgen.png"/>
+</Elements>

@@ -91,7 +91,6 @@
     <CHOICES>
       <CHOICE>Vendor</CHOICE>
       <CHOICE>Forwarder</CHOICE>
-      <CHOICE>Security Escort</CHOICE>
     </CHOICES>
   </Field>
   <Field
