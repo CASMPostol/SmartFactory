@@ -103,7 +103,7 @@
       <SharePointProjectItemId>{294f6eaf-7dba-4ea2-8bd9-d6f336a83095}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\ScheduleTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{59f818ba-6219-4bbe-ae79-1de661130c44}</SharePointProjectItemId>
+      <SharePointProjectItemId>{8284706c-e072-4566-bfef-a533885f764c}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\ShipmentType\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0b3c6951-bd7f-4d2a-ae4b-956fb04d3efb}</SharePointProjectItemId>
@@ -112,7 +112,7 @@
       <SharePointProjectItemId>{14e553bf-62a7-4a82-a276-23f5c45041d8}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\TimeSlotTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{736fbb6c-0492-4ef2-b53c-98dfe84cded7}</SharePointProjectItemId>
+      <SharePointProjectItemId>{5babe184-86dd-45f7-8b2d-b87282b17192}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\Trailer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5106151e-de91-42a2-9737-4689fbf62562}</SharePointProjectItemId>
@@ -190,6 +190,12 @@
     <None Include="Lists\Dictionaries\FreightPayerTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d6515b68-59ed-4eee-bc1e-59ff326e4971}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\JTIPartnerTemplate\JTIPartnerList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a7410f4b-bd49-4707-b0da-b2865a22c2e5}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\JTIPartnerTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d1213c1e-1e90-41d9-93e3-f72dc432beb3}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\MarketTemplate\MarketList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{62f1ef4b-057c-44d8-8e2f-af1f160021ef}</SharePointProjectItemId>
     </None>
@@ -201,12 +207,6 @@
     </None>
     <None Include="Lists\Dictionaries\PalletTypesTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{697bd4d1-bc70-40ef-b1a7-b98ddbe6e6eb}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Dictionaries\PartnerTemplate\PartnerList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{275d0099-2f08-4e6d-9c51-3bfaa0b2e267}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Dictionaries\PartnerTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{98b8133f-8677-4585-81f8-895167d8b5a0}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\RouteTemplate\RouteList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8d6b6b09-28f3-427e-be79-045481ea53ac}</SharePointProjectItemId>
@@ -221,10 +221,10 @@
       <SharePointProjectItemId>{c8122a59-a360-4cc6-8ffb-74f86529b31a}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\ScheduleTemplateTemplate\ScheduleTemplateList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{57d2d7fe-91e6-4b1a-be0f-050fcb4bf03c}</SharePointProjectItemId>
+      <SharePointProjectItemId>{a43be9fd-b16e-4208-8bda-a8f8b2c0df7e}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\ScheduleTemplateTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{5dba4162-119e-4b37-b46b-e148144735df}</SharePointProjectItemId>
+      <SharePointProjectItemId>{0d1d5580-2907-4c0f-8ffd-e881b9e50f52}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{54f62c7f-7014-461d-81c5-5d84080bcb45}</SharePointProjectItemId>
@@ -238,11 +238,11 @@
     <None Include="Lists\Dictionaries\ShippingPointTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6da95305-1cb1-4d19-a0c6-3605112ee85f}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Dictionaries\TimeSlotTemplateTemplate\TimeSlotTemplateList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0baf6821-4c6a-41fd-9c57-9e1969b5fdcb}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Dictionaries\TimeSlotTemplateTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{069d4e27-66c4-423f-975e-9983f36c1995}</SharePointProjectItemId>
+      <SharePointProjectItemId>{093f3bb0-c2c8-41fe-aad9-aa1f794313e8}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\TimeSlotTemplateTemplate\TimeSlotTemplateList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2eb3d4ea-94bb-4b97-8e45-71facf21d805}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\TrailerTemplate\TrailerList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{90db5152-64d8-402f-b1c1-19eeedec2ceb}</SharePointProjectItemId>
@@ -351,6 +351,11 @@
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\FreightPayerList\Elements.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\JTIPartnerTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\JTIPartnerTemplate\JTIPartnerList\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Lists\Dictionaries\JTIPartnerTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\MarketTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\MarketTemplate\MarketList\Elements.xml" />
     <Content Include="Lists\Dictionaries\MarketTemplate\Schema.xml">
@@ -359,9 +364,6 @@
     <Content Include="Lists\Dictionaries\PalletTypesTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\PalletTypesTemplate\PalletTypesList\Elements.xml" />
     <Content Include="Lists\Dictionaries\PalletTypesTemplate\Schema.xml" />
-    <Content Include="Lists\Dictionaries\PartnerTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\PartnerTemplate\PartnerList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\PartnerTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\RouteTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\RouteTemplate\RouteList\Elements.xml" />
     <Content Include="Lists\Dictionaries\RouteTemplate\Schema.xml" />
@@ -382,8 +384,8 @@
     </Content>
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\TimeSlotTemplateTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\TimeSlotTemplateTemplate\TimeSlotTemplateList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TimeSlotTemplateTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\TimeSlotTemplateTemplate\TimeSlotTemplateList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\TrailerList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\Schema.xml" />

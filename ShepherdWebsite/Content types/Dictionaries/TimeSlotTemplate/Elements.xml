@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <!-- Parent ContentType: Event (0x0102) -->
   <ContentType ID="0x0102006938e4112c9f4152aac91debc05389b1"
                Name="TimeSlotTemplate"
                Group="CAS Smart Factory Shepherd Dictionaries"

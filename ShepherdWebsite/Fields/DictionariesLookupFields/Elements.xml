@@ -242,7 +242,7 @@
     Name="PartnerTitle"
     ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}"
     Type="Lookup"
-    List="Lists/PartnerList"
+    List="Lists/JTIPartnerList"
     ShowField="Title"
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
