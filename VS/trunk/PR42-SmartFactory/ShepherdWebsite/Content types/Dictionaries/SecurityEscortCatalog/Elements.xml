@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x01004d883ad19a284d1f826ea7b4e70f0aca"
+               Name="SecurityEscortCatalog"
+               Group="CAS Smart Factory Shepherd"
+               Description="Security Escort Catalog"
+               Inherits="TRUE"
+               Overwrite="TRUE">
+    <Folder TargetName="_cts/SecurityEscortCatalog" />
+    <FieldRefs>
+      <FieldRef ID="{22D4D6CE-F749-4D22-BF7F-69037CDAA4C5}" Name="DestinationTitle" />
+      <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+      <FieldRef ID="{D73A3F7D-6892-4A46-90EE-39BEB668944A}" Name="SecurityCost" />
+      <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
+    </FieldRefs>
+  </ContentType>
+</Elements>

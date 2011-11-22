@@ -105,11 +105,17 @@
     <None Include="Content types\Dictionaries\ScheduleTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8284706c-e072-4566-bfef-a533885f764c}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\SecurityEscortCatalog\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3fdd0749-a50e-4de8-82b1-9edd2f9bcf14}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\ShipmentType\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0b3c6951-bd7f-4d2a-ae4b-956fb04d3efb}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\ShippingPoint\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{14e553bf-62a7-4a82-a276-23f5c45041d8}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\Shipping\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{71f31a71-a6cb-436e-823e-e0ab9dc3f751}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\TimeSlotTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5babe184-86dd-45f7-8b2d-b87282b17192}</SharePointProjectItemId>
@@ -226,6 +232,12 @@
     <None Include="Lists\Dictionaries\ScheduleTemplateTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0d1d5580-2907-4c0f-8ffd-e881b9e50f52}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\SecurityEscortCatalogList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3ea03cde-f62e-462d-9ecd-b1427b96b994}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{417198cd-2b38-4203-bb8d-3b43c6793875}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{54f62c7f-7014-461d-81c5-5d84080bcb45}</SharePointProjectItemId>
     </None>
@@ -307,10 +319,12 @@
     <Content Include="Content types\Dictionaries\Route\Elements.xml" />
     <Content Include="Content types\Dictionaries\SAPDestinationPlant\Elements.xml" />
     <Content Include="Content types\Dictionaries\ScheduleTemplate\Elements.xml" />
+    <Content Include="Content types\Dictionaries\SecurityEscortCatalog\Elements.xml" />
     <Content Include="Content types\Dictionaries\ShipmentType\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\ShippingPoint\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Shipping\Elements.xml" />
     <Content Include="Content types\Dictionaries\TimeSlotTemplate\Elements.xml" />
     <Content Include="Content types\Dictionaries\Trailer\Elements.xml" />
     <Content Include="Content types\Dictionaries\TranspotUnit\Elements.xml" />
@@ -375,6 +389,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Dictionaries\ScheduleTemplateTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\SecurityEscortCatalogList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Schema.xml" />
