@@ -30,58 +30,59 @@ namespace CAS.SmartFactory.IPR.Customs
     /// </param>
     public override void ItemAdded(SPItemEventProperties properties)
     {
-      try
-      {
-        this.EventFiringEnabled = false;
-        using (EntitiesDataContext edc = new EntitiesDataContext(properties.WebUrl))
+      if (properties.List.Title.Contains("SAD"))
+        try
         {
-          if (properties.ListItem.File == null)
+          this.EventFiringEnabled = false;
+          using (EntitiesDataContext edc = new EntitiesDataContext(properties.WebUrl))
           {
-            Anons log = new Anons()
+            if (properties.ListItem.File == null)
+            {
+              Anons log = new Anons()
+              {
+                Tytuł = m_Title,
+                Treść = "Import of a SAD declaration message failed because the file is empty."
+              };
+              edc.ActivityLog.InsertOnSubmit(log);
+              edc.SubmitChanges();
+              return;
+            }
+            Anons mess = new Anons()
             {
               Tytuł = m_Title,
-              Treść = "Import of a SAD declaration message failed because the file is empty."
+              Treść = String.Format("Import of the SAD declaration {0} starting.", properties.ListItem.File.ToString())
             };
-            edc.ActivityLog.InsertOnSubmit(log);
+            edc.ActivityLog.InsertOnSubmit(mess);
             edc.SubmitChanges();
+            CustomsDocument document = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
+            Dokument entry =
+              (from enr in edc.SADDocumentLibrary
+               where enr.Identyfikator == properties.ListItem.ID
+               select enr).First<Dokument>();
+            GetSADDocument(document, edc, entry);
+            edc.SubmitChanges();
+          }
+        }
+        catch (Exception ex)
+        {
+          SPWeb web = properties.Web;
+          SPList log = web.Lists.TryGetList("Activity Log");
+          if (log == null)
+          {
+            EventLog.WriteEntry("CAS.SmartFActory", "Cannot open \"Activity Log\" list", EventLogEntryType.Error, 114);
             return;
           }
-          Anons mess = new Anons()
-          {
-            Tytuł = m_Title,
-            Treść = String.Format("Import of the SAD declaration {0} starting.", properties.ListItem.File.ToString())
-          };
-          edc.ActivityLog.InsertOnSubmit(mess);
-          edc.SubmitChanges();
-          CustomsDocument document = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
-          Dokument entry =
-            (from enr in edc.SADDocumentLibrary
-             where enr.Identyfikator == properties.ListItem.ID
-             select enr).First<Dokument>();
-          GetSADDocument(document, edc, entry);
-          edc.SubmitChanges();
+          SPListItem item = log.AddItem();
+          item["Title"] = "Customs document import error";
+          item["Body"] = ex.Message;
+          item.UpdateOverwriteVersion();
+          properties.ListItem["Name"] = properties.ListItem["Name"] + ": Import Error !!";
+          properties.ListItem.UpdateOverwriteVersion();
         }
-      }
-      catch (Exception ex)
-      {
-        SPWeb web = properties.Web;
-        SPList log = web.Lists.TryGetList("Activity Log");
-        if (log == null)
+        finally
         {
-          EventLog.WriteEntry("CAS.SmartFActory", "Cannot open \"Activity Log\" list", EventLogEntryType.Error, 114);
-          return;
+          this.EventFiringEnabled = true;
         }
-        SPListItem item = log.AddItem();
-        item["Title"] = "Customs document import error";
-        item["Body"] = ex.Message;
-        item.UpdateOverwriteVersion();
-        properties.ListItem["Name"] = properties.ListItem["Name"] + ": Import Error !!";
-        properties.ListItem.UpdateOverwriteVersion();
-      }
-      finally
-      {
-        this.EventFiringEnabled = true;
-      }
       base.ItemAdded(properties);
     }
     private static void GetSADDocument(CustomsDocument document, EntitiesDataContext edc, Dokument lookup)
