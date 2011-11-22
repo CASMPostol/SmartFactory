@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.xml.IPR {
         private StockRow[] rowField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute("Row", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute("Row", IsNullable=true)]
         public StockRow[] Row {
             get {
                 return this.rowField;
@@ -46,49 +46,36 @@ namespace CAS.SmartFactory.xml.IPR {
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/jti/ipr/Stock.xsd")]
     public partial class StockRow {
         
-        private string storage_LocationField;
-        
         private string materialField;
         
-        private string material_DescriptionField;
+        private string materialDescriptionField;
+        
+        private string plntField;
+        
+        private string sLocField;
         
         private string batchField;
         
-        private string base_Unit_of_MeasureField;
+        private string bUnField;
         
-        private System.Nullable<decimal> unrestrictedField;
+        private System.Nullable<double> unrestrictedField;
         
         private bool unrestrictedFieldSpecified;
         
-        private System.Nullable<decimal> in_Quality_InspField;
+        private System.Nullable<double> inQualityInspField;
         
-        private bool in_Quality_InspFieldSpecified;
+        private bool inQualityInspFieldSpecified;
         
-        private System.Nullable<decimal> blockedField;
+        private System.Nullable<double> restrictedUseField;
+        
+        private bool restrictedUseFieldSpecified;
+        
+        private System.Nullable<double> blockedField;
         
         private bool blockedFieldSpecified;
         
-        private System.Nullable<decimal> restricted_Use_StockField;
-        
-        private bool restricted_Use_StockFieldSpecified;
-        
-        private string material_TypeField;
-        
-        private string material_GroupField;
-        
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
-        public string Storage_Location {
-            get {
-                return this.storage_LocationField;
-            }
-            set {
-                this.storage_LocationField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Material {
             get {
                 return this.materialField;
@@ -99,18 +86,40 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public string Material_Description {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string MaterialDescription {
             get {
-                return this.material_DescriptionField;
+                return this.materialDescriptionField;
             }
             set {
-                this.material_DescriptionField = value;
+                this.materialDescriptionField = value;
             }
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Plnt {
+            get {
+                return this.plntField;
+            }
+            set {
+                this.plntField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string SLoc {
+            get {
+                return this.sLocField;
+            }
+            set {
+                this.sLocField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Batch {
             get {
                 return this.batchField;
@@ -121,19 +130,19 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public string Base_Unit_of_Measure {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string BUn {
             get {
-                return this.base_Unit_of_MeasureField;
+                return this.bUnField;
             }
             set {
-                this.base_Unit_of_MeasureField = value;
+                this.bUnField = value;
             }
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public System.Nullable<decimal> Unrestricted {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> Unrestricted {
             get {
                 return this.unrestrictedField;
             }
@@ -154,30 +163,52 @@ namespace CAS.SmartFactory.xml.IPR {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public System.Nullable<decimal> In_Quality_Insp {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> InQualityInsp {
             get {
-                return this.in_Quality_InspField;
+                return this.inQualityInspField;
             }
             set {
-                this.in_Quality_InspField = value;
+                this.inQualityInspField = value;
             }
         }
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool In_Quality_InspSpecified {
+        public bool InQualityInspSpecified {
             get {
-                return this.in_Quality_InspFieldSpecified;
+                return this.inQualityInspFieldSpecified;
             }
             set {
-                this.in_Quality_InspFieldSpecified = value;
+                this.inQualityInspFieldSpecified = value;
             }
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public System.Nullable<decimal> Blocked {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> RestrictedUse {
+            get {
+                return this.restrictedUseField;
+            }
+            set {
+                this.restrictedUseField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool RestrictedUseSpecified {
+            get {
+                return this.restrictedUseFieldSpecified;
+            }
+            set {
+                this.restrictedUseFieldSpecified = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> Blocked {
             get {
                 return this.blockedField;
             }
@@ -194,50 +225,6 @@ namespace CAS.SmartFactory.xml.IPR {
             }
             set {
                 this.blockedFieldSpecified = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public System.Nullable<decimal> Restricted_Use_Stock {
-            get {
-                return this.restricted_Use_StockField;
-            }
-            set {
-                this.restricted_Use_StockField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool Restricted_Use_StockSpecified {
-            get {
-                return this.restricted_Use_StockFieldSpecified;
-            }
-            set {
-                this.restricted_Use_StockFieldSpecified = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public string Material_Type {
-            get {
-                return this.material_TypeField;
-            }
-            set {
-                this.material_TypeField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public string Material_Group {
-            get {
-                return this.material_GroupField;
-            }
-            set {
-                this.material_GroupField = value;
             }
         }
     }
