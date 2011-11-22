@@ -3,7 +3,7 @@
   <ListInstance
     Title="SADCommodity"
     OnQuickLaunch="TRUE"
-    TemplateType="10000"
+    TemplateType="11000"
     Url="Lists/SADCommodity"
     Description="My List Instance">
   </ListInstance>

@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <!-- Parent ContentType: Item (0x01) -->
   <ContentType ID="0x010091765907174d4799b44c4df249630d28"
                Name="ScheduleTemplate"
                Group="CAS Smart Factory Shepherd Dictionaries"

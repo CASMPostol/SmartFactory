@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="JTI Partner"
+                OnQuickLaunch="TRUE"
+                TemplateType="10047"
+                Url="Lists/JTIPartnerList"
+                Description="JTI Partner List Instance">
+  </ListInstance>
+</Elements>

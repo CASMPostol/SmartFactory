@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
     <ListTemplate
-        Name="ShippingPointTemplate"
-        Type="10040"
+        Name="JTIPartnerTemplate"
+        Type="10047"
         BaseType="0"
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="Shipping Point"
-        Description="Shipping Point List Definition"
+        DisplayName="JTIPartnerTemplate"
+        Description="My List Definition"
         Image="/_layouts/images/itgen.png"/>
 </Elements>
