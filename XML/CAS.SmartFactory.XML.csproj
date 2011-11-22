@@ -85,6 +85,7 @@
       <DependentUpon>SKUCutfillerSchema.xsd</DependentUpon>
     </Compile>
     <Compile Include="Generated\IPR\SKUCutfillerSchema.partial.cs" />
+    <Compile Include="Generated\IPR\Stock.partial.cs" />
     <Compile Include="QuantityDescription.cs" />
     <Compile Include="RequiredDocumentsDescription.cs" />
     <None Include="cas.snk" />
