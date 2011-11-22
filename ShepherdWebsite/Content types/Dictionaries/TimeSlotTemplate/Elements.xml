@@ -5,7 +5,8 @@
                Group="CAS Smart Factory Shepherd Dictionaries"
                Description="Time Slot Template"
                Inherits="TRUE"
-               Version="100000">
+               Overwrite="TRUE">
+    <Folder TargetName="_cts/TimeSlotTemplate" />
     <FieldRefs>
       <FieldRef Name="ScheduleTemplateTitle" ID="{BFA0D483-0643-4E54-8AED-B0170A8E0091}" />
     </FieldRefs>

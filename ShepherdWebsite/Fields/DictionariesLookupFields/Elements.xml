@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="SecurityEscortCatalogTitle"
+    ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}"
+    Type="Lookup"
+    List="Lists/SecurityEscortCatalogList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Security Escort"
+    Group="CAS Smart Factory Shepherd"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="ScheduleTemplateTitle"
     ID="{BFA0D483-0643-4E54-8AED-B0170A8E0091}"
     Type="Lookup"
@@ -9,7 +26,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="Schedule Template"
+    DisplayName="Schedule Template Shepherd"
     Group="CAS Smart Factory"
     Required="True"
     Hidden="False"

@@ -5,7 +5,8 @@
                Group="CAS Smart Factory Shepherd Dictionaries"
                Description="A schedule template is a predefined table of time slots."
                Inherits="TRUE"
-               Version="0">
+               Overwrite="TRUE">
+    <Folder TargetName="_cts/ScheduleTemplate" />
     <FieldRefs>
       <FieldRef Name="ShippingPointTitle" ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}"/>
     </FieldRefs>

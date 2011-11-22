@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x01005802c1f99fad405eac344aaaed596cc3"
+               Name="Shipping"
+               Group="CAS Smart Factory Shepherd"
+               Description="Shipping Operation"
+               Inherits="TRUE"
+               Overwrite="TRUE">
+    <Folder TargetName="_cts/Shipping" />
+    <FieldRefs>
+      <FieldRef />
+    </FieldRefs>
+  </ContentType>
+</Elements>
