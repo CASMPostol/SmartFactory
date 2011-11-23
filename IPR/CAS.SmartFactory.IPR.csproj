@@ -51,14 +51,19 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Anons.cs" />
+    <Compile Include="Entities\Batch.cs" />
+    <Compile Include="Entities\Entities.cs" />
+    <Compile Include="Entities\SKU.cs" />
     <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUEventHandlers.cs" />
     <Compile Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\StockLibraryEventReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SADImportXML\SADImportXML.cs" />
-    <Compile Include="SPMetal\Generated\Entities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Entities\Scripts\GetEntities.ps1" />
+    <None Include="Entities\Scripts\psconsole.psc1" />
     <None Include="key.snk" />
     <None Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{704bc3de-3679-48ae-a6ad-bb1b59ce31fa}</SharePointProjectItemId>
@@ -72,8 +77,6 @@
     <None Include="SADImportXML\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ccb9c50e-0d1c-4582-9f74-eff832a012f6}</SharePointProjectItemId>
     </None>
-    <None Include="SPMetal\Generated\GetEntities.ps1" />
-    <None Include="SPMetal\Generated\psconsole.psc1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Package\Package.package">
@@ -91,13 +94,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Entities\Scripts\Parameters.xml" />
     <Content Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\Elements.xml" />
     <Content Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\Elements.xml" />
     <Content Include="SADImportXML\Elements.xml" />
-    <Content Include="SPMetal\Generated\Parameters.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XML\CAS.SmartFactory.XML.csproj">
