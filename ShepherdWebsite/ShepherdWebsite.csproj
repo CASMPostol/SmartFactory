@@ -414,7 +414,9 @@
     <Content Include="Lists\Dictionaries\TruckTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\WarehouseTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\WarehouseTemplate\WarehouseList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\WarehouseTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\WarehouseTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Libraries\GoodsHandlingPOLibrary\Elements.xml" />
     <Content Include="Lists\Libraries\SecurityPOLibrary\Elements.xml" />
     <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />

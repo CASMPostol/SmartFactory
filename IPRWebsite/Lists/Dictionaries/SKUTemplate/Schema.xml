@@ -33,7 +33,7 @@
       <Field DisplayName="SKUDescription" Name="SKUDescription" Type="Text" ID="{f9499ff7-0420-430d-b2b6-672546ba8235}" Group="CAS Smart Factory IPR" Description="SKUDescription" />
       <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="CAS Smart Factory IPR Customs" Description="SKU" />
       <Field Name="SKULibraryIndex" ID="{82dc8814-8ef0-4570-83c9-98211fe1871e}" Type="Lookup" List="Lists/SKULibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SKU Library lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="FormatIndex" ID="{54fe0a48-e3c8-4e8f-bc10-a1c4935ea8d0}" Type="Lookup" List="Lists/Formatist" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Format lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="FormatIndex" ID="{54fe0a48-e3c8-4e8f-bc10-a1c4935ea8d0}" Type="Lookup" List="Lists/FormatList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Format lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

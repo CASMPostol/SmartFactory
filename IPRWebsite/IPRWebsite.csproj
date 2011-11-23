@@ -83,6 +83,9 @@
     <None Include="Content types\Customs\SADRequiredDocuments\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{738095ac-6989-40e9-a3b0-f58d86295a8d}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\CigaretteSKU\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c18e52cb-a4d3-43c4-af9e-7620eb616f9b}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\Consent\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2896fc51-4f19-41cb-9a1c-8fc41a099c98}</SharePointProjectItemId>
     </None>
@@ -418,6 +421,7 @@
     <Content Include="Content types\Customs\SADRequiredDocuments\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\Dictionaries\CigaretteSKU\Elements.xml" />
     <Content Include="Content types\Dictionaries\Consent\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

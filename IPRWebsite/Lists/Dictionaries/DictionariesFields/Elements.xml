@@ -1,6 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="PrimeMarket"
+    ID="{FEF25D85-B84C-4E2E-B5AD-21970B6351F5}"
+    Type="Text"
+    DisplayName="Prime Market"
+    Group="CAS Smart Factory IPR Dictionaries"
+    />
+  <Field
+    Name="Brand"
+    ID="{65BBF47E-B763-4421-8FF2-2C66A66EA900}"
+    Type="Text"
+    DisplayName="Brand"
+    Group="CAS Smart Factory IPR Dictionaries"
+    />
+  <Field
+    Name="Family"
+    ID="{37C6BB68-8EDF-4C0D-ADAC-3C26766EB3F7}"
+    Type="Text"
+    DisplayName="Family"
+    Group="CAS Smart Factory IPR Dictionaries"
+    />
+  <Field
     Name="ProductivityRateMin"
     ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}"
     Type="Number"
