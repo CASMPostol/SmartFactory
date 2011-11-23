@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CAS.SmartFactory.IPR.Entities;
 using Microsoft.SharePoint;
 using StockXml = CAS.SmartFactory.xml.IPR.Stock;
 using StockXmlRow = CAS.SmartFactory.xml.IPR.StockRow;
-using System.Diagnostics;
-using System.Collections.Generic;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
 {
@@ -26,12 +26,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         {
           if (properties.ListItem.File == null)
           {
-            Anons log = new Anons()
-            {
-              Tytuł = m_Title,
-              Treść = "Import of a stock xml message failed because the file is empty."
-            };
-            edc.ActivityLog.InsertOnSubmit(log);
+            Anons.WriteEntry(edc, m_Title, "Import of a stock xml message failed because the file is empty.");
             edc.SubmitChanges();
             return;
           }
@@ -90,7 +85,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       {
         StockEntry nse = new StockEntry()
         {
-          StockListLookup = entry, 
+          StockListLookup = entry,
           Batch = item.Batch.Trim(),
           Blocked = item.Blocked,
           DocumentNo = "To be removed",
@@ -104,24 +99,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
           Units = item.BUn,
           Unrestricted = item.Unrestricted,
           Quantity = 0,
-          BatchLookup = null
+          BatchLookup = Batch.GetLookup(edc, item.Batch.Trim())
         };
         nse.Quantity = item.Blocked.GetValueOrDefault(0) +
           item.InQualityInsp.GetValueOrDefault(0) +
           item.RestrictedUse.GetValueOrDefault(0) +
           item.Unrestricted.GetValueOrDefault(0);
-        var cb =
-          from batch in edc.Batch where batch.Batch0.Contains(nse.Batch) select batch;
-        if (cb.Count<Batch>() == 0)
-        {
-          Batch newBatch = new Batch()
-          {
-            Batch0 = nse.Batch,
-            BatchStatus = "Preliminary",
-            Tytuł = nse.Batch
-          };
-          batchEntries.Add(newBatch);
-        }
+        ;
         stockEntities.Add(nse);
       }
       if (stockEntities.Count > 0)
