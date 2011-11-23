@@ -92,6 +92,9 @@
     <None Include="Content types\Dictionaries\CutfillerCoefficient\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{95a0472f-7568-48a6-98bd-cb4a81b97f2e}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\CutfillerSKU\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1d4ccd93-8f1c-4047-a3c0-1d73a040366c}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\Dust\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{58d52a60-887b-401a-baeb-86dc9b21b9ae}</SharePointProjectItemId>
     </None>
@@ -103,9 +106,6 @@
     </None>
     <None Include="Content types\Dictionaries\SHMenthol\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{797c49f3-9927-4c85-a87b-5cfa078d4383}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Dictionaries\SKU\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{868e1e27-e04a-4759-922f-a9f791867893}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\Usage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{26a34bf3-956c-40f7-8703-17fe745b9a1d}</SharePointProjectItemId>
@@ -294,10 +294,10 @@
       <SharePointProjectItemId>{798c6914-90a6-43d7-9cd3-efb3b3debe09}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\SKUTemplate\SKUList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{280d02c3-4aca-4e32-a403-8a54d0c39ac1}</SharePointProjectItemId>
+      <SharePointProjectItemId>{ea494229-40fb-4eeb-a055-deb48ca0dcac}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\SKUTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{1a68161c-e930-4a3c-a8ad-af2a621d96f2}</SharePointProjectItemId>
+      <SharePointProjectItemId>{fded13c3-3fb8-44e7-9f85-27cf18cf71e8}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\UsageTemplate\UsageList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2403f968-82ad-4a4e-92f6-b2da079d0e65}</SharePointProjectItemId>
@@ -426,6 +426,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\CutfillerCoefficient\Elements.xml" />
+    <Content Include="Content types\Dictionaries\CutfillerSKU\Elements.xml" />
     <Content Include="Content types\Dictionaries\Dust\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -434,7 +435,6 @@
     </Content>
     <Content Include="Content types\Dictionaries\PCNCode\Elements.xml" />
     <Content Include="Content types\Dictionaries\SHMenthol\Elements.xml" />
-    <Content Include="Content types\Dictionaries\SKU\Elements.xml" />
     <Content Include="Content types\Dictionaries\Usage\Elements.xml" />
     <Content Include="Content types\Dictionaries\Waste\Elements.xml" />
     <Content Include="Content types\Disposal\Elements.xml">

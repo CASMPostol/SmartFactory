@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x010030c69cfdd5874bda85e28aa90a4c7667"
+               Name="CigaretteSKU"
+               Group="CAS Smart Factory IPR Dictionaries"
+               Description="Cigarette SKU"
+               Overwrite="TRUE"
+               Inherits="True">
+    <Folder TargetName="_cts/CigaretteSKU" />
+    <FieldRefs>
+      <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="ProductType" />
+      <FieldRef ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}" Name="FormatIndex" />
+      <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+      <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
+      <FieldRef ID="{37C6BB68-8EDF-4C0D-ADAC-3C26766EB3F7}" Name="Family" />
+      <FieldRef ID="{65BBF47E-B763-4421-8FF2-2C66A66EA900}" Name="Brand" />
+      <FieldRef ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}" Name="CigaretteLenght" />
+      <FieldRef ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}" Name="FilterLenght" />
+      <FieldRef ID="{FEF25D85-B84C-4E2E-B5AD-21970B6351F5}" Name="PrimeMarket" />
+      <FieldRef ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}" Name="IPRMaterial" />
+      <FieldRef ID="{97EE3235-0816-43E7-AB77-AF9D4E040DF1}" Name="Menthol" />
+      <FieldRef ID="{82DC8814-8EF0-4570-83C9-98211FE1871E}" Name="SKULibraryIndex" />
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
+</Elements>
