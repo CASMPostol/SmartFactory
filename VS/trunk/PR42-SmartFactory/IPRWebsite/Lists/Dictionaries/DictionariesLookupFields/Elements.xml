@@ -21,7 +21,7 @@
     Name="FormatIndex"
     ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}"
     Type="Lookup"
-    List="Lists/Formatist"
+    List="Lists/FormatList"
     ShowField="Title"
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
