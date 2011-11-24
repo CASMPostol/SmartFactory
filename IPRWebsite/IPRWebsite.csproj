@@ -391,6 +391,12 @@
     <None Include="Lists\Reports\StockTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6e8f00c0-2aa8-44f9-bdcb-3ad901f40617}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\SmartFactory\WarehouseTemplate\WarehouseList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4554477a-6759-4b77-ba04-85c085604db0}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\SmartFactory\WarehouseTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{03eb702b-b8fe-41b1-b338-02905c87dabb}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{ba9dd6bf-0f86-469d-9821-2290a484169f}</PackageId>
     </None>
@@ -611,6 +617,9 @@
     <Content Include="Lists\Reports\StockTemplate\Elements.xml" />
     <Content Include="Lists\Reports\StockTemplate\StockList\Elements.xml" />
     <Content Include="Lists\Reports\StockTemplate\Schema.xml" />
+    <Content Include="Lists\SmartFactory\WarehouseTemplate\Elements.xml" />
+    <Content Include="Lists\SmartFactory\WarehouseTemplate\WarehouseList\Elements.xml" />
+    <Content Include="Lists\SmartFactory\WarehouseTemplate\Schema.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
