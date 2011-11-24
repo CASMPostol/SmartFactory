@@ -19,7 +19,6 @@
           <FieldRef ID="{36D134B9-A652-43F1-A650-51F62E079775}" Name="Overuse" />
           <FieldRef ID="{E00CB825-5594-485D-A232-4DE70F99A939}" Name="Dust" />
           <FieldRef ID="{41BDDA92-4D8D-4B1F-8C60-1D3B7AEA6B98}" Name="Waste" />
-          <FieldRef ID="{762353C4-D601-4461-84FA-EB26F7E314C2}" Name="SHMenthol" />
           <FieldRef ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}" Name="Tobacco" />
           <FieldRef ID="{38CE0A4D-208F-4F49-A344-11728F5B659D}" Name="BatchLibraryIndex" />
           <FieldRef ID="{43E20C54-3704-4F77-B755-EF45465F4AB2}" Name="CutfillerCoefficientIndex" />
@@ -70,7 +69,6 @@
       <Field DisplayName="Overuse" Name="Overuse" Type="Number" ID="{36d134b9-a652-43f1-a650-51f62e079775}" Group="CAS Smart Factory IPR" Description="Overuse" />
       <Field DisplayName="Dust" Name="Dust" Type="Number" ID="{e00cb825-5594-485d-a232-4de70f99a939}" Group="CAS Smart Factory IPR" Description="Dust" />
       <Field DisplayName="Waste" Name="Waste" Type="Number" ID="{41bdda92-4d8d-4b1f-8c60-1d3b7aea6b98}" Group="CAS Smart Factory IPR" Description="Waste" />
-      <Field DisplayName="SH Menthol" Name="SHMenthol" Type="Number" ID="{762353c4-d601-4461-84fa-eb26f7e314c2}" Group="CAS Smart Factory IPR" Description="SHMenthol" />
       <Field DisplayName="Tobacco" Name="Tobacco" Type="Number" ID="{27f1b8c8-6e63-482a-8a25-0904fab70cb7}" Group="CAS Smart Factory IPR" Description="Tobacco" />
       <Field Name="BatchLibraryIndex" ID="{38ce0a4d-208f-4f49-a344-11728f5b659d}" Type="Lookup" List="Lists/BatchLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Batch Library lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
@@ -118,7 +116,6 @@
           <FieldRef ID="{36D134B9-A652-43F1-A650-51F62E079775}" Name="Overuse" />
           <FieldRef ID="{E00CB825-5594-485D-A232-4DE70F99A939}" Name="Dust" />
           <FieldRef ID="{41BDDA92-4D8D-4B1F-8C60-1D3B7AEA6B98}" Name="Waste" />
-          <FieldRef ID="{762353C4-D601-4461-84FA-EB26F7E314C2}" Name="SHMenthol" />
           <FieldRef ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}" Name="Tobacco" />
           <FieldRef ID="{38CE0A4D-208F-4F49-A344-11728F5B659D}" Name="BatchLibraryIndex" />
           <FieldRef ID="{43E20C54-3704-4F77-B755-EF45465F4AB2}" Name="CutfillerCoefficientIndex" />
