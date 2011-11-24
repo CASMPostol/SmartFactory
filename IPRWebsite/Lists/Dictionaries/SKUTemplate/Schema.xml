@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="SKUTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-SKUTemplate" DisableAttachments="TRUE" EnableContentTypes="TRUE" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x010030c69cfdd5874bda85e28aa90a4c7667" Name="CigaretteSKU" Group="CAS Smart Factory IPR Dictionaries" Description="Cigarette SKU" Overwrite="TRUE" Inherits="True">
+        <Folder TargetName="_cts/CigaretteSKU" />
+        <FieldRefs>
+          <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="ProductType" />
+          <FieldRef ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}" Name="FormatIndex" />
+          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+          <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
+          <FieldRef ID="{37C6BB68-8EDF-4C0D-ADAC-3C26766EB3F7}" Name="Family" />
+          <FieldRef ID="{65BBF47E-B763-4421-8FF2-2C66A66EA900}" Name="Brand" />
+          <FieldRef ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}" Name="CigaretteLenght" />
+          <FieldRef ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}" Name="FilterLenght" />
+          <FieldRef ID="{FEF25D85-B84C-4E2E-B5AD-21970B6351F5}" Name="PrimeMarket" />
+          <FieldRef ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}" Name="IPRMaterial" />
+          <FieldRef ID="{97EE3235-0816-43E7-AB77-AF9D4E040DF1}" Name="Menthol" />
+          <FieldRef ID="{82DC8814-8EF0-4570-83C9-98211FE1871E}" Name="SKULibraryIndex" />
+        </FieldRefs>
+        <XmlDocuments>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
+          </XmlDocument>
+        </XmlDocuments>
+      </ContentType>
+      <ContentType ID="0x01009472a47f15ad49e68b34c732d7136ecc" Name="CutfillerSKU" Group="CAS Smart Factory IPR Dictionaries" Description="Cutfiller SKU" Overwrite="TRUE" Inherits="True">
+        <Folder TargetName="_cts/CutfillerSKU" />
+        <FieldRefs>
+          <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="ProductType" />
+          <FieldRef ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}" Name="FormatIndex" />
+          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+          <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
+          <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+          <FieldRef ID="{EFB4D543-B0D4-4371-A1DC-24F0EB576021}" Name="BlendPurpose" />
+          <FieldRef ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}" Name="IPRMaterial" />
+          <FieldRef ID="{82DC8814-8EF0-4570-83C9-98211FE1871E}" Name="SKULibraryIndex" />
+        </FieldRefs>
+        <XmlDocuments>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
+          </XmlDocument>
+        </XmlDocuments>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+      <Field DisplayName="Units" Name="Units" Type="Text" ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Group="CAS Smart Factory IPR Customs" Description="j.m." />
+      <Field Name="BlendPurpose" ID="{efb4d543-b0d4-4371-a1dc-24f0eb576021}" Type="Text" DisplayName="Blend Purpose" Group="CAS Smart Factory IPR Dictionaries" />
+      <Field DisplayName="IPR Material" Name="IPRMaterial" Type="Boolean" ID="{ef284845-c1d8-44ef-a2b1-d9e73fd9ef1c}" Group="CAS Smart Factory" Description="IPR Material" />
+      <Field Type="Choice" DisplayName="ProductType" ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Format="Dropdown" BaseType="Text" Description="Material Type" Name="ProductType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
+    <Default>Cigarette</Default>
+    <CHOICES>
+      <CHOICE>Cutfiller</CHOICE>
+      <CHOICE>Cigarette</CHOICE>
+      <CHOICE>Tobacco</CHOICE>
+      <CHOICE>IPRTobacco</CHOICE>
+      <CHOICE>Other</CHOICE>
+    </CHOICES>
+  </Field>
+      <Field DisplayName="CigaretteLenght" Name="CigaretteLenght" Type="Number" ID="{ab755a0a-a98f-4f58-91e9-a5afb1152429}" Group="CAS Smart Factory IPR" Description="CigaretteLenght" />
+      <Field DisplayName="FilterLenght" Name="FilterLenght" Type="Number" ID="{7c8a0b7a-55d7-4cb6-8e38-d1e84360b487}" Group="CAS Smart Factory IPR" Description="FilterLenght" />
+      <Field DisplayName="SKUDescription" Name="SKUDescription" Type="Text" ID="{f9499ff7-0420-430d-b2b6-672546ba8235}" Group="CAS Smart Factory IPR" Description="SKUDescription" />
+      <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="CAS Smart Factory IPR Customs" Description="SKU" />
+      <Field Name="Menthol" ID="{97ee3235-0816-43e7-ab77-af9d4e040df1}" Type="Text" DisplayName="Menthol" Group="CAS Smart Factory IPR Dictionaries" />
+      <Field Name="PrimeMarket" ID="{fef25d85-b84c-4e2e-b5ad-21970b6351f5}" Type="Text" DisplayName="Prime Market" Group="CAS Smart Factory IPR Dictionaries" />
+      <Field Name="Brand" ID="{65bbf47e-b763-4421-8ff2-2c66a66ea900}" Type="Text" DisplayName="Brand" Group="CAS Smart Factory IPR Dictionaries" />
+      <Field Name="Family" ID="{37c6bb68-8edf-4c0d-adac-3c26766eb3f7}" Type="Text" DisplayName="Family" Group="CAS Smart Factory IPR Dictionaries" />
+      <Field Name="SKULibraryIndex" ID="{82dc8814-8ef0-4570-83c9-98211fe1871e}" Type="Lookup" List="Lists/SKULibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SKU Library lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="FormatIndex" ID="{54fe0a48-e3c8-4e8f-bc10-a1c4935ea8d0}" Type="Lookup" List="Lists/FormatList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Format lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu">
+          </FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments">
+          </FieldRef>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="ProductType" />
+          <FieldRef ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}" Name="FormatIndex" />
+          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+          <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
+          <FieldRef ID="{37C6BB68-8EDF-4C0D-ADAC-3C26766EB3F7}" Name="Family" />
+          <FieldRef ID="{65BBF47E-B763-4421-8FF2-2C66A66EA900}" Name="Brand" />
+          <FieldRef ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}" Name="CigaretteLenght" />
+          <FieldRef ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}" Name="FilterLenght" />
+          <FieldRef ID="{FEF25D85-B84C-4E2E-B5AD-21970B6351F5}" Name="PrimeMarket" />
+          <FieldRef ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}" Name="IPRMaterial" />
+          <FieldRef ID="{97EE3235-0816-43E7-AB77-AF9D4E040DF1}" Name="Menthol" />
+          <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+          <FieldRef ID="{EFB4D543-B0D4-4371-A1DC-24F0EB576021}" Name="BlendPurpose" />
+          <FieldRef ID="{82DC8814-8EF0-4570-83C9-98211FE1871E}" Name="SKULibraryIndex" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>
