@@ -53,8 +53,17 @@
   <ItemGroup>
     <Compile Include="Entities\Anons.cs" />
     <Compile Include="Entities\Batch.cs" />
+    <Compile Include="Entities\CutfillerCoefficient.cs" />
+    <Compile Include="Entities\Dokument.cs" />
+    <Compile Include="Entities\Dust.cs" />
     <Compile Include="Entities\Entities.cs" />
+    <Compile Include="Entities\EntitiesDataContext.cs" />
+    <Compile Include="Entities\Material.cs" />
+    <Compile Include="Entities\SHMenthol.cs" />
     <Compile Include="Entities\SKU.cs" />
+    <Compile Include="Entities\Usage.cs" />
+    <Compile Include="Entities\Waste.cs" />
+    <Compile Include="ListsEventsHandlers\BatchEventReceiver\BatchEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUEventHandlers.cs" />
     <Compile Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\StockLibraryEventReceiver.cs" />
@@ -65,6 +74,9 @@
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Entities\Scripts\psconsole.psc1" />
     <None Include="key.snk" />
+    <None Include="ListsEventsHandlers\BatchEventReceiver\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f69844e7-ba69-4ebf-bdff-8eef85f1dd78}</SharePointProjectItemId>
+    </None>
     <None Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{704bc3de-3679-48ae-a6ad-bb1b59ce31fa}</SharePointProjectItemId>
     </None>
@@ -95,6 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entities\Scripts\Parameters.xml" />
+    <Content Include="ListsEventsHandlers\BatchEventReceiver\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\Elements.xml" />
     <Content Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\Elements.xml">
       <SubType>Designer</SubType>

@@ -38,10 +38,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
           edc.ActivityLog.InsertOnSubmit(mess);
           edc.SubmitChanges();
           StockXml document = StockXml.ImportDocument(properties.ListItem.File.OpenBinaryStream());
-          Dokument entry =
-            (from enr in edc.StockLibrary
-             where enr.Identyfikator == properties.ListItem.ID
-             select enr).First<Dokument>();
+          Dokument entry = Dokument.GetEntity(properties.ListItem.ID, edc.StockLibrary);
           GetStock(document, edc, entry);
           edc.SubmitChanges();
         }

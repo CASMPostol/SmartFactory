@@ -3892,7 +3892,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private void OnBatchLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch> e) {
 		}
-	}
+
+    }
 	
 	/// <summary>
 	/// Utwórz nowy element listy.
