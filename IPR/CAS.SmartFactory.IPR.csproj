@@ -62,6 +62,7 @@
     <Compile Include="Entities\SHMenthol.cs" />
     <Compile Include="Entities\SKU.cs" />
     <Compile Include="Entities\Usage.cs" />
+    <Compile Include="Entities\Warehouse.cs" />
     <Compile Include="Entities\Waste.cs" />
     <Compile Include="ListsEventsHandlers\BatchEventReceiver\BatchEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />

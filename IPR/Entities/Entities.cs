@@ -337,9 +337,9 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// SKU List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="SKU")]
-		public Microsoft.SharePoint.Linq.EntityList<SKU> SKU {
+		public Microsoft.SharePoint.Linq.EntityList<SKUCommonPart> SKU {
 			get {
-				return this.GetList<SKU>("SKU");
+				return this.GetList<SKUCommonPart>("SKU");
 			}
 		}
 		
@@ -404,6 +404,16 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
+		/// Warehouse List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Warehouse")]
+		public Microsoft.SharePoint.Linq.EntityList<Warehouse> Warehouse {
+			get {
+				return this.GetList<Warehouse>("Warehouse");
+			}
+		}
+		
+		/// <summary>
 		/// Waste List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Waste")]
@@ -442,10 +452,11 @@ namespace CAS.SmartFactory.IPR.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADQuantity))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADRequiredDocuments))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SHMenthol))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SKU))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SKUCommonPart))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Stock))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(StockEntry))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Usage))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Warehouse))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Waste))]
 	public partial class Element : Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging {
 		
@@ -1077,8 +1088,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<double> _waste;
 		
-		private System.Nullable<double> _sHMenthol;
-		
 		private System.Nullable<double> _tobacco;
 		
 		private System.Nullable<ProductType> _productType;
@@ -1087,7 +1096,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CutfillerCoefficient> _cutfillerCoefficientLookup;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<SKU> _sKULookup;
+		private Microsoft.SharePoint.Linq.EntityRef<SKUCommonPart> _sKULookup;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Usage> _usageLookup;
 		
@@ -1112,8 +1121,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this._cutfillerCoefficientLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CutfillerCoefficient>>(this.OnCutfillerCoefficientLookupSync);
 			this._cutfillerCoefficientLookup.OnChanged += new System.EventHandler(this.OnCutfillerCoefficientLookupChanged);
 			this._cutfillerCoefficientLookup.OnChanging += new System.EventHandler(this.OnCutfillerCoefficientLookupChanging);
-			this._sKULookup = new Microsoft.SharePoint.Linq.EntityRef<SKU>();
-			this._sKULookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SKU>>(this.OnSKULookupSync);
+			this._sKULookup = new Microsoft.SharePoint.Linq.EntityRef<SKUCommonPart>();
+			this._sKULookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SKUCommonPart>>(this.OnSKULookupSync);
 			this._sKULookup.OnChanged += new System.EventHandler(this.OnSKULookupChanged);
 			this._sKULookup.OnChanging += new System.EventHandler(this.OnSKULookupChanging);
 			this._usageLookup = new Microsoft.SharePoint.Linq.EntityRef<Usage>();
@@ -1357,23 +1366,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// SHMenthol
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SHMenthol", Storage="_sHMenthol", FieldType="Number")]
-		public System.Nullable<double> SHMenthol {
-			get {
-				return this._sHMenthol;
-			}
-			set {
-				if ((value != this._sHMenthol)) {
-					this.OnPropertyChanging("SHMenthol", this._sHMenthol);
-					this._sHMenthol = value;
-					this.OnPropertyChanged("SHMenthol");
-				}
-			}
-		}
-		
-		/// <summary>
 		/// Tobacco
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Tobacco", Storage="_tobacco", FieldType="Number")]
@@ -1428,7 +1420,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SKUIndex", Storage="_sKULookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SKU")]
-		public SKU SKULookup {
+		public SKUCommonPart SKULookup {
 			get {
 				return this._sKULookup.GetEntity();
 			}
@@ -1513,7 +1505,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this.OnPropertyChanged("SKULookup");
 		}
 		
-		private void OnSKULookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SKU> e) {
+		private void OnSKULookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SKUCommonPart> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Batch.Add(this);
 			}
@@ -3720,6 +3712,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _units;
 		
+		private System.Nullable<ProductType> _productType;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<Batch> _batchLookup;
 		
 		#region Extensibility Method Definitions
@@ -3868,6 +3862,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("Units", this._units);
 					this._units = value;
 					this.OnPropertyChanged("Units");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Material Type
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
+		public System.Nullable<ProductType> ProductType {
+			get {
+				return this._productType;
+			}
+			set {
+				if ((value != this._productType)) {
+					this.OnPropertyChanging("ProductType", this._productType);
+					this._productType = value;
+					this.OnPropertyChanged("ProductType");
 				}
 			}
 		}
@@ -4774,10 +4785,12 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// <summary>
 	/// Utwórz nowy element listy.
 	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SKU", Id="0x01004E9439152CEF4CA3A1CE39315F845648")]
-	public partial class SKU : Element {
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SKUCommonPart", Id="0x010014C98F440FB04C679F1D9D39ACC92D8A")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SKUCigarette))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SKUCutfiller))]
+	public partial class SKUCommonPart : Element {
 		
-		private string _sKU0;
+		private string _sKU;
 		
 		private string _sKUDescription;
 		
@@ -4785,9 +4798,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Batch> _batch;
 		
-		private System.Nullable<int> _formatLookupIdentyfikator;
-		
-		private string _formatLookupTitle;
+		private Microsoft.SharePoint.Linq.EntityRef<Format> _formatLookup;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _sKULibraryLookup;
 		
@@ -4797,11 +4808,15 @@ namespace CAS.SmartFactory.IPR.Entities {
 		partial void OnCreated();
 		#endregion
 		
-		public SKU() {
+		public SKUCommonPart() {
 			this._batch = new Microsoft.SharePoint.Linq.EntitySet<Batch>();
 			this._batch.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch>>(this.OnBatchSync);
 			this._batch.OnChanged += new System.EventHandler(this.OnBatchChanged);
 			this._batch.OnChanging += new System.EventHandler(this.OnBatchChanging);
+			this._formatLookup = new Microsoft.SharePoint.Linq.EntityRef<Format>();
+			this._formatLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Format>>(this.OnFormatLookupSync);
+			this._formatLookup.OnChanged += new System.EventHandler(this.OnFormatLookupChanged);
+			this._formatLookup.OnChanging += new System.EventHandler(this.OnFormatLookupChanging);
 			this._sKULibraryLookup = new Microsoft.SharePoint.Linq.EntityRef<Dokument>();
 			this._sKULibraryLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnSKULibraryLookupSync);
 			this._sKULibraryLookup.OnChanged += new System.EventHandler(this.OnSKULibraryLookupChanged);
@@ -4812,16 +4827,16 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// <summary>
 		/// SKU
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU0", FieldType="Text")]
-		public string SKU0 {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
+		public string SKU {
 			get {
-				return this._sKU0;
+				return this._sKU;
 			}
 			set {
-				if ((value != this._sKU0)) {
-					this.OnPropertyChanging("SKU0", this._sKU0);
-					this._sKU0 = value;
-					this.OnPropertyChanged("SKU0");
+				if ((value != this._sKU)) {
+					this.OnPropertyChanging("SKU", this._sKU);
+					this._sKU = value;
+					this.OnPropertyChanged("SKU");
 				}
 			}
 		}
@@ -4870,31 +4885,13 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FormatIndex", Storage="_formatLookupIdentyfikator", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> FormatLookupIdentyfikator {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FormatIndex", Storage="_formatLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Format")]
+		public Format FormatLookup {
 			get {
-				return this._formatLookupIdentyfikator;
+				return this._formatLookup.GetEntity();
 			}
 			set {
-				if ((value != this._formatLookupIdentyfikator)) {
-					this.OnPropertyChanging("FormatLookupIdentyfikator", this._formatLookupIdentyfikator);
-					this._formatLookupIdentyfikator = value;
-					this.OnPropertyChanged("FormatLookupIdentyfikator");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FormatIndex", Storage="_formatLookupTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
-		public string FormatLookupTitle {
-			get {
-				return this._formatLookupTitle;
-			}
-			set {
-				if ((value != this._formatLookupTitle)) {
-					this.OnPropertyChanging("FormatLookupTitle", this._formatLookupTitle);
-					this._formatLookupTitle = value;
-					this.OnPropertyChanged("FormatLookupTitle");
-				}
+				this._formatLookup.SetEntity(value);
 			}
 		}
 		
@@ -4923,6 +4920,17 @@ namespace CAS.SmartFactory.IPR.Entities {
 			else {
 				e.Item.SKULookup = null;
 			}
+		}
+		
+		private void OnFormatLookupChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FormatLookup", this._formatLookup.Clone());
+		}
+		
+		private void OnFormatLookupChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FormatLookup");
+		}
+		
+		private void OnFormatLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Format> e) {
 		}
 		
 		private void OnSKULibraryLookupChanging(object sender, System.EventArgs e) {
@@ -5358,9 +5366,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Batch> _batch;
 		
-		private System.Nullable<int> _formatLookupIdentyfikator;
-		
-		private string _formatLookupTitle;
+		private Microsoft.SharePoint.Linq.EntityRef<Format> _formatLookup;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -5373,6 +5379,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this._batch.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch>>(this.OnBatchSync);
 			this._batch.OnChanged += new System.EventHandler(this.OnBatchChanged);
 			this._batch.OnChanging += new System.EventHandler(this.OnBatchChanging);
+			this._formatLookup = new Microsoft.SharePoint.Linq.EntityRef<Format>();
+			this._formatLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Format>>(this.OnFormatLookupSync);
+			this._formatLookup.OnChanged += new System.EventHandler(this.OnFormatLookupChanged);
+			this._formatLookup.OnChanging += new System.EventHandler(this.OnFormatLookupChanging);
 			this.OnCreated();
 		}
 		
@@ -5420,31 +5430,13 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FormatIndex", Storage="_formatLookupIdentyfikator", Required=true, FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> FormatLookupIdentyfikator {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FormatIndex", Storage="_formatLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Format")]
+		public Format FormatLookup {
 			get {
-				return this._formatLookupIdentyfikator;
+				return this._formatLookup.GetEntity();
 			}
 			set {
-				if ((value != this._formatLookupIdentyfikator)) {
-					this.OnPropertyChanging("FormatLookupIdentyfikator", this._formatLookupIdentyfikator);
-					this._formatLookupIdentyfikator = value;
-					this.OnPropertyChanged("FormatLookupIdentyfikator");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FormatIndex", Storage="_formatLookupTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
-		public string FormatLookupTitle {
-			get {
-				return this._formatLookupTitle;
-			}
-			set {
-				if ((value != this._formatLookupTitle)) {
-					this.OnPropertyChanging("FormatLookupTitle", this._formatLookupTitle);
-					this._formatLookupTitle = value;
-					this.OnPropertyChanged("FormatLookupTitle");
-				}
+				this._formatLookup.SetEntity(value);
 			}
 		}
 		
@@ -5462,6 +5454,73 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 			else {
 				e.Item.UsageLookup = null;
+			}
+		}
+		
+		private void OnFormatLookupChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FormatLookup", this._formatLookup.Clone());
+		}
+		
+		private void OnFormatLookupChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FormatLookup");
+		}
+		
+		private void OnFormatLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Format> e) {
+		}
+
+    }
+	
+	/// <summary>
+	/// Warehouse
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Warehouse", Id="0x01001E57547208B49B46B4AA7CB4536B1A55")]
+	public partial class Warehouse : Element {
+		
+		private System.Nullable<bool> _external;
+		
+		private System.Nullable<ProductType> _productType;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public Warehouse() {
+			this.OnCreated();
+		}
+		
+		/// <summary>
+		/// External
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="External", Storage="_external", Required=true, FieldType="Boolean")]
+		public System.Nullable<bool> External {
+			get {
+				return this._external;
+			}
+			set {
+				if ((value != this._external)) {
+					this.OnPropertyChanging("External", this._external);
+					this._external = value;
+					this.OnPropertyChanged("External");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Material Type
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
+		public System.Nullable<ProductType> ProductType {
+			get {
+				return this._productType;
+			}
+			set {
+				if ((value != this._productType)) {
+					this.OnPropertyChanging("ProductType", this._productType);
+					this._productType = value;
+					this.OnPropertyChanged("ProductType");
+				}
 			}
 		}
 	}
@@ -5781,6 +5840,177 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 	}
 	
+	/// <summary>
+	/// Cigarette SKU
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SKUCigarette", Id="0x010014C98F440FB04C679F1D9D39ACC92D8A0029E2E9BC132C4633B01B0DF733A64ADA")]
+	public partial class SKUCigarette : SKUCommonPart {
+		
+		private string _family;
+		
+		private string _brand;
+		
+		private System.Nullable<double> _cigaretteLenght;
+		
+		private System.Nullable<double> _filterLenght;
+		
+		private string _primeMarket;
+		
+		private string _menthol;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SKUCigarette() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Family", Storage="_family", FieldType="Text")]
+		public string Family {
+			get {
+				return this._family;
+			}
+			set {
+				if ((value != this._family)) {
+					this.OnPropertyChanging("Family", this._family);
+					this._family = value;
+					this.OnPropertyChanged("Family");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Brand", Storage="_brand", FieldType="Text")]
+		public string Brand {
+			get {
+				return this._brand;
+			}
+			set {
+				if ((value != this._brand)) {
+					this.OnPropertyChanging("Brand", this._brand);
+					this._brand = value;
+					this.OnPropertyChanged("Brand");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// CigaretteLenght
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CigaretteLenght", Storage="_cigaretteLenght", FieldType="Number")]
+		public System.Nullable<double> CigaretteLenght {
+			get {
+				return this._cigaretteLenght;
+			}
+			set {
+				if ((value != this._cigaretteLenght)) {
+					this.OnPropertyChanging("CigaretteLenght", this._cigaretteLenght);
+					this._cigaretteLenght = value;
+					this.OnPropertyChanged("CigaretteLenght");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// FilterLenght
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FilterLenght", Storage="_filterLenght", FieldType="Number")]
+		public System.Nullable<double> FilterLenght {
+			get {
+				return this._filterLenght;
+			}
+			set {
+				if ((value != this._filterLenght)) {
+					this.OnPropertyChanging("FilterLenght", this._filterLenght);
+					this._filterLenght = value;
+					this.OnPropertyChanged("FilterLenght");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PrimeMarket", Storage="_primeMarket", FieldType="Text")]
+		public string PrimeMarket {
+			get {
+				return this._primeMarket;
+			}
+			set {
+				if ((value != this._primeMarket)) {
+					this.OnPropertyChanging("PrimeMarket", this._primeMarket);
+					this._primeMarket = value;
+					this.OnPropertyChanged("PrimeMarket");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Menthol", Storage="_menthol", FieldType="Text")]
+		public string Menthol {
+			get {
+				return this._menthol;
+			}
+			set {
+				if ((value != this._menthol)) {
+					this.OnPropertyChanging("Menthol", this._menthol);
+					this._menthol = value;
+					this.OnPropertyChanged("Menthol");
+				}
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Cutfiller SKU
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SKUCutfiller", Id="0x010014C98F440FB04C679F1D9D39ACC92D8A00AE74B7010F534DB980D221D41D0BCBA1")]
+	public partial class SKUCutfiller : SKUCommonPart {
+		
+		private string _units;
+		
+		private string _blendPurpose;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SKUCutfiller() {
+			this.OnCreated();
+		}
+		
+		/// <summary>
+		/// j.m.
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Units", Storage="_units", FieldType="Text")]
+		public string Units {
+			get {
+				return this._units;
+			}
+			set {
+				if ((value != this._units)) {
+					this.OnPropertyChanging("Units", this._units);
+					this._units = value;
+					this.OnPropertyChanged("Units");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BlendPurpose", Storage="_blendPurpose", FieldType="Text")]
+		public string BlendPurpose {
+			get {
+				return this._blendPurpose;
+			}
+			set {
+				if ((value != this._blendPurpose)) {
+					this.OnPropertyChanging("BlendPurpose", this._blendPurpose);
+					this._blendPurpose = value;
+					this.OnPropertyChanged("BlendPurpose");
+				}
+			}
+		}
+	}
+	
 	public enum ProductType : int {
 		
 		None = 0,
@@ -5792,5 +6022,14 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Cigarette")]
 		Cigarette = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco")]
+		Tobacco = 8,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="IPRTobacco")]
+		IPRTobacco = 16,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Other")]
+		Other = 32,
 	}
 }
