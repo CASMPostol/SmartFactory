@@ -16,6 +16,7 @@
       <FieldRef ID="{88259302-82EA-4ADC-90D3-B6B6B7CC3B16}" Name="FGQuantity" />
       <FieldRef ID="{78638A08-748F-4619-A690-299315659702}" Name="TobaccoQuantity" />
 			<FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+      <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
       <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
 		</FieldRefs>
 		<XmlDocuments>

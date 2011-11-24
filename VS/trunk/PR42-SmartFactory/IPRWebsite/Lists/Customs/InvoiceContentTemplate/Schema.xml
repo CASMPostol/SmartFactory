@@ -33,6 +33,9 @@
     <CHOICES>
       <CHOICE>Cutfiller</CHOICE>
       <CHOICE>Cigarette</CHOICE>
+      <CHOICE>Tobacco</CHOICE>
+      <CHOICE>IPRTobacco</CHOICE>
+      <CHOICE>Other</CHOICE>
     </CHOICES>
   </Field>
       <Field DisplayName="Quantity" Name="Quantity" Type="Number" ID="{85512a2c-c60c-400e-aa53-94ed8fbef321}" Group="CAS Smart Factory IPR" Description="Quantity" />
