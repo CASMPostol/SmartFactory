@@ -421,12 +421,16 @@
     <Content Include="Content types\Customs\SADRequiredDocuments\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Dictionaries\CigaretteSKU\Elements.xml" />
+    <Content Include="Content types\Dictionaries\CigaretteSKU\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\Consent\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\CutfillerCoefficient\Elements.xml" />
-    <Content Include="Content types\Dictionaries\CutfillerSKU\Elements.xml" />
+    <Content Include="Content types\Dictionaries\CutfillerSKU\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\Dust\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -551,7 +555,9 @@
     </Content>
     <Content Include="Lists\Dictionaries\SKUTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\SKUTemplate\SKUList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\SKUTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\SKUTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\UsageTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\UsageList\Elements.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\Schema.xml" />

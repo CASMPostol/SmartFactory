@@ -48,6 +48,9 @@
     <CHOICES>
       <CHOICE>Cutfiller</CHOICE>
       <CHOICE>Cigarette</CHOICE>
+      <CHOICE>Tobacco</CHOICE>
+      <CHOICE>IPRTobacco</CHOICE>
+      <CHOICE>Other</CHOICE>
     </CHOICES>
   </Field>
       <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="CAS Smart Factory IPR Customs" Description="SKU" />

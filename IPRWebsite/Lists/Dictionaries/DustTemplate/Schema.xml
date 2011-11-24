@@ -25,6 +25,9 @@
     <CHOICES>
       <CHOICE>Cutfiller</CHOICE>
       <CHOICE>Cigarette</CHOICE>
+      <CHOICE>Tobacco</CHOICE>
+      <CHOICE>IPRTobacco</CHOICE>
+      <CHOICE>Other</CHOICE>
     </CHOICES>
   </Field>
     </Fields>
