@@ -33,19 +33,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
         String message = String.Format("Import of the invoice message {0} starting.", properties.ListItem.File.ToString());
         Anons.WriteEntry(edc, m_Title, message);
         InvoiceXml document = InvoiceXml.ImportDocument(properties.ListItem.File.OpenBinaryStream());
-        Dokument entry =
-          (from enr in edc.InvoiceLibrary
-           where enr.Identyfikator == properties.ListItem.ID
-           select enr).First<Dokument>();
+        Dokument entry = Dokument.GetEntity(properties.ListItem.ID, edc.InvoiceLibrary);
         GetXmlContent(document, edc, entry);
       }
       catch (Exception ex)
       {
-        if (edc == null)
-        {
-          EventLog.WriteEntry("CAS.SmartFActory", "Cannot open \"Activity Log\" list", EventLogEntryType.Error, 114);
-          return;
-        }
         Anons.WriteEntry(edc, "Invoice message import error", ex.Message);
       }
       finally
@@ -89,6 +81,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
           Units = item.BUn
         };
       }
+      if (itemsList.Count != 0)
+        edc.InvoiceContent.InsertAllOnSubmit(itemsList);
       return functionValue;
     }
     private const string m_Title = "Stock Message Import";

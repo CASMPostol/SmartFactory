@@ -75,6 +75,7 @@
     <Compile Include="Generated\IPR\batch.cs">
       <DependentUpon>Batch.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Generated\IPR\Batch.partial.cs" />
     <Compile Include="Generated\IPR\Invoice.partial.cs" />
     <Compile Include="Generated\IPR\SKU.cs" />
     <Compile Include="Generated\IPR\SKUCigarettesSchema.cs">

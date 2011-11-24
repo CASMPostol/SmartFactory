@@ -55,10 +55,7 @@ namespace CAS.SmartFactory.IPR.Customs
             edc.ActivityLog.InsertOnSubmit(mess);
             edc.SubmitChanges();
             CustomsDocument document = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
-            Dokument entry =
-              (from enr in edc.SADDocumentLibrary
-               where enr.Identyfikator == properties.ListItem.ID
-               select enr).First<Dokument>();
+            Dokument entry = Dokument.GetEntity(properties.ListItem.ID, edc.SADDocumentLibrary);
             GetSADDocument(document, edc, entry);
             edc.SubmitChanges();
           }

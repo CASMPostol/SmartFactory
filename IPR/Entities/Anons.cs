@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
@@ -26,6 +27,11 @@ namespace CAS.SmartFactory.IPR.Entities
     /// <param name="message">The string to write to the event log.</param>
     internal static void WriteEntry(EntitiesDataContext edc, string source, string message)
     {
+      if (edc == null)
+      {
+        EventLog.WriteEntry("CAS.SmartFActory", "Cannot open \"Activity Log\" list", EventLogEntryType.Error, 114);
+        return;
+      }
       Anons log = new Anons(source, message);
       edc.ActivityLog.InsertOnSubmit(log);
     }

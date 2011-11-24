@@ -24,6 +24,13 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       return newBatch;
     }
-
+    internal Disposal[] GetDisposals(EntitiesDataContext edc)
+    {
+      var disposals =
+          from idx in edc.Disposal
+          where this.Identyfikator == idx.BatchLookup.Identyfikator
+          select idx;
+      return disposals.ToArray<Disposal>();
+    }
   }
 }
