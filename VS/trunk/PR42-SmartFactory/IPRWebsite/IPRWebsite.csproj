@@ -83,17 +83,11 @@
     <None Include="Content types\Customs\SADRequiredDocuments\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{738095ac-6989-40e9-a3b0-f58d86295a8d}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Dictionaries\CigaretteSKU\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{c18e52cb-a4d3-43c4-af9e-7620eb616f9b}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Dictionaries\Consent\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2896fc51-4f19-41cb-9a1c-8fc41a099c98}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\CutfillerCoefficient\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{95a0472f-7568-48a6-98bd-cb4a81b97f2e}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Dictionaries\CutfillerSKU\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{1d4ccd93-8f1c-4047-a3c0-1d73a040366c}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\Dust\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{58d52a60-887b-401a-baeb-86dc9b21b9ae}</SharePointProjectItemId>
@@ -106,6 +100,15 @@
     </None>
     <None Include="Content types\Dictionaries\SHMenthol\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{797c49f3-9927-4c85-a87b-5cfa078d4383}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\SKUCigarette\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8ed95612-0377-47e4-b7e2-38dd467a660b}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\SKUCommonPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7742d0e0-ca22-42ca-803b-defb42cf8e45}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Dictionaries\SKUCutfiller\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{97ed9468-5f32-4053-8bf2-1b184cbc28fa}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Dictionaries\Usage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{26a34bf3-956c-40f7-8703-17fe745b9a1d}</SharePointProjectItemId>
@@ -294,10 +297,10 @@
       <SharePointProjectItemId>{798c6914-90a6-43d7-9cd3-efb3b3debe09}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\SKUTemplate\SKUList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{ea494229-40fb-4eeb-a055-deb48ca0dcac}</SharePointProjectItemId>
+      <SharePointProjectItemId>{e6ce4fac-ec94-4c65-8b46-8fb2b0bab3f2}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\SKUTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{fded13c3-3fb8-44e7-9f85-27cf18cf71e8}</SharePointProjectItemId>
+      <SharePointProjectItemId>{89ca0d63-2a1c-4015-9615-ce92f919987a}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\UsageTemplate\UsageList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2403f968-82ad-4a4e-92f6-b2da079d0e65}</SharePointProjectItemId>
@@ -427,16 +430,10 @@
     <Content Include="Content types\Customs\SADRequiredDocuments\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Dictionaries\CigaretteSKU\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content types\Dictionaries\Consent\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\CutfillerCoefficient\Elements.xml" />
-    <Content Include="Content types\Dictionaries\CutfillerSKU\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content types\Dictionaries\Dust\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -445,6 +442,9 @@
     </Content>
     <Content Include="Content types\Dictionaries\PCNCode\Elements.xml" />
     <Content Include="Content types\Dictionaries\SHMenthol\Elements.xml" />
+    <Content Include="Content types\Dictionaries\SKUCigarette\Elements.xml" />
+    <Content Include="Content types\Dictionaries\SKUCommonPart\Elements.xml" />
+    <Content Include="Content types\Dictionaries\SKUCutfiller\Elements.xml" />
     <Content Include="Content types\Dictionaries\Usage\Elements.xml" />
     <Content Include="Content types\Dictionaries\Waste\Elements.xml" />
     <Content Include="Content types\Disposal\Elements.xml">
@@ -561,9 +561,7 @@
     </Content>
     <Content Include="Lists\Dictionaries\SKUTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\SKUTemplate\SKUList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\SKUTemplate\Schema.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Lists\Dictionaries\SKUTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\UsageList\Elements.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\Schema.xml" />
