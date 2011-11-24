@@ -1,20 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ContentType ID="0x01009472a47f15ad49e68b34c732d7136ecc"
-               Name="CutfillerSKU"
+  <ContentType ID="0x010014c98f440fb04c679f1d9d39acc92d8a"
+               Name="IPRWebsite - SKUCommonPart"
                Group="CAS Smart Factory IPR Dictionaries"
-               Description="Cutfiller SKU"
+               Description="Cigarette SKU"
                Overwrite="TRUE"
                Inherits="True">
-    <Folder TargetName="_cts/CutfillerSKU" />
+    <Folder TargetName="_cts/SKUCommonPart" />
     <FieldRefs>
       <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="ProductType" />
       <FieldRef ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}" Name="FormatIndex" />
       <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
       <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
-      <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
-      <FieldRef ID="{EFB4D543-B0D4-4371-A1DC-24F0EB576021}" Name="BlendPurpose" />
-      <FieldRef ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}" Name="IPRMaterial" />
       <FieldRef ID="{82DC8814-8EF0-4570-83C9-98211FE1871E}" Name="SKULibraryIndex" />
     </FieldRefs>
     <XmlDocuments>
