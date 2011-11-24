@@ -63,13 +63,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       newBatch.Tytuł = String.Format("SKU: {}; Batch: {1}", newBatch.SKU, newBatch.Batch0);
       newBatch.FGQuantity = fg.Product.FGQuantity;
       newBatch.MaterialQuantity = fg.Product.TobaccoQuantity;
-      newBatch.ProductType = fg.Product.MaterialType;
+      newBatch.ProductType = fg.Product.ProductType;
       //interconnect 
-      newBatch.SKULookup = SKU.GetLookup(edc, fg.Product.SKU);
+      newBatch.SKULookup = SKUCommonPart.GetLookup(edc, fg.Product.SKU);
       newBatch.CutfillerCoefficientLookup = CutfillerCoefficient.GetLookup(edc);
       newBatch.DustLookup = Dust.GetLookup(newBatch.ProductType.Value, edc);
       newBatch.SHMentholLookup = SHMenthol.GetLookup(newBatch.ProductType.Value, edc);
-      newBatch.UsageLookup = Usage.GetLookup(newBatch.SKULookup.FormatLookupTitle, edc);
+      newBatch.UsageLookup = Usage.GetLookup(newBatch.SKULookup.FormatLookup, edc);
       newBatch.WasteLookup = Waste.GetLookup(newBatch.ProductType.Value, edc);
       newBatch.CalculatedOveruse = fg.ProcessDisposals();
       edc.Batch.InsertOnSubmit(newBatch);
@@ -93,14 +93,14 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         {
           ce.FGQuantity = ce.FGQuantity + value.FGQuantity;
           ce.TobaccoQuantity = ce.TobaccoQuantity + value.TobaccoQuantity;
-          if (value.MaterialType == ProductType.None) //TODO replace with tobacco
+          if (value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco)
             TotalTobacco = TotalTobacco + value.TobaccoQuantity.GetValueOrDefault(0);
         }
         else
         {
-          if (value.MaterialType == ProductType.Cigarette)
+          if (value.ProductType == ProductType.Cigarette)
             Product = value;
-          else if (Product == null && value.MaterialType == ProductType.Cutfiller)
+          else if (Product == null && value.ProductType == ProductType.Cutfiller)
             Product = value;
           base.Add(value.GetKey(), value);
         }
@@ -131,8 +131,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           Units = item.Unit,
           FGQuantity = Convert.ToDouble(item.Quantity),
           TobaccoQuantity = Convert.ToDouble(item.Quantity_calculated),
-          MaterialType = Material.GetMaterialType(item.material_group)
+          MaterialGroup = item.material_group.Trim(),
+          ProductType = ProductType.Invalid
         };
+        newMaterial.GetProductType(edc);
         itemsList.Add(newMaterial.SKU, newMaterial);
       }
       edc.Material.InsertAllOnSubmit(itemsList.GeContentEnumerator());

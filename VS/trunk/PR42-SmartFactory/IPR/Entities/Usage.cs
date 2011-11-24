@@ -7,12 +7,13 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class Usage
   {
-    internal static Usage GetLookup(string format, EntitiesDataContext edc)
+
+    internal static Usage GetLookup(Format format, EntitiesDataContext edc)
     {
       Usage value = null;
       try
       {
-        value = (from idx in edc.Usage where idx.Tytuł.Contains(format) select idx).Aggregate((x, y) => (x.Wersja < y.Wersja ? y : x));
+        value = (from idx in edc.Usage where idx.FormatLookup.Identyfikator == format.Identyfikator select idx).Aggregate((x, y) => (x.Wersja < y.Wersja ? y : x));
         return value;
       }
       catch (ArgumentNullException)

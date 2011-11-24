@@ -73,7 +73,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
           BatchLookup = Batch.GetLookup(edc, item.Batch.Trim()),
           InvoiceLookup = parent,
           ItemNo = item.Item.ConvertToDouble(),
-          ProductType = SKU.GetLookup(edc, item.Material.Trim()).ProductType,
+          ProductType = SKUCommonPart.GetLookup(edc, item.Material.Trim()).ProductType,
           Quantity = item.Bill_qty_in_SKU.ConvertToDouble(),
           SKU = item.Material.Trim(),
           SKUDescription = "To be removed",
