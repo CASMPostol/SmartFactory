@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ListTemplate
+        Name="CustomsUnionTemplate"
+        Type="10049"
+        BaseType="0"
+        OnQuickLaunch="TRUE"
+        SecurityBits="11"
+        Sequence="410"
+        DisplayName="Customs Union Template"
+        Description="Customs Union List Definition"
+        Image="/_layouts/images/itgen.png"/>
+</Elements>
