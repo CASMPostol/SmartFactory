@@ -33,13 +33,23 @@
     Description="Batch"
     />
   <Field
+    Type="Choice"
     DisplayName="BatchStatus"
-    Name="BatchStatus"
-    Type="Text"
     ID="{CA980625-03DA-4C63-B23A-B60F472CA2B3}"
+    Format="Dropdown"
+    BaseType="Text"
+    Description="BatchS tatus"
+    Name="BatchStatus"
     Group="CAS Smart Factory IPR"
-    Description="BatchStatus"
-    />
+    CanToggleHidden="TRUE">
+        <Default>Preliminary</Default>
+        <CHOICES>
+          <CHOICE>Preliminary</CHOICE>
+          <CHOICE>Progress</CHOICE>
+          <CHOICE>Intermediate</CHOICE>
+          <CHOICE>Final</CHOICE>
+        </CHOICES>
+  </Field>
   <Field
     DisplayName="BillDoc"
     Name="BillDoc"

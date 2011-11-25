@@ -41,7 +41,15 @@
     </ContentTypes>
     <Fields>
       <Field DisplayName="Batch" Name="Batch" Type="Text" ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Group="CAS Smart Factory IPR" Description="Batch" />
-      <Field DisplayName="BatchStatus" Name="BatchStatus" Type="Text" ID="{ca980625-03da-4c63-b23a-b60f472ca2b3}" Group="CAS Smart Factory IPR" Description="BatchStatus" />
+      <Field Type="Choice" DisplayName="BatchStatus" ID="{CA980625-03DA-4C63-B23A-B60F472CA2B3}" Format="Dropdown" BaseType="Text" Description="BatchS tatus" Name="BatchStatus" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
+        <Default>Preliminary</Default>
+        <CHOICES>
+          <CHOICE>Preliminary</CHOICE>
+          <CHOICE>Progress</CHOICE>
+          <CHOICE>Intermediate</CHOICE>
+          <CHOICE>Final</CHOICE>
+        </CHOICES>
+      </Field>
       <Field Type="Choice" DisplayName="ProductType" ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Format="Dropdown" BaseType="Text" Description="Material Type" Name="ProductType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
     <Default>Cigarette</Default>
     <CHOICES>

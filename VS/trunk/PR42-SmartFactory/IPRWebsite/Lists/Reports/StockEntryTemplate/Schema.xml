@@ -5,9 +5,7 @@
       <ContentType ID="0x0100060fe33d5aae473abdc2777ae86fed6c" Name="StockEntry" Group="CAS Smart Factory IPR Reports" Description="StockEntry" Overwrite="TRUE" Inherits="TRUE">
         <Folder TargetName="_cts/StockEntry" />
         <FieldRefs>
-          <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
           <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
-          <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
           <FieldRef ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Name="StorLoc" />
           <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
           <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
@@ -34,13 +32,11 @@
     <Fields>
       <Field DisplayName="Batch" Name="Batch" Type="Text" ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Group="CAS Smart Factory IPR" Description="Batch" />
       <Field DisplayName="Blocked" Name="Blocked" Type="Number" ID="{4c65897d-cbd2-4468-8520-50e371ef3a3f}" Group="CAS Smart Factory IPR" Description="Blocked" />
-      <Field DisplayName="DocumentNo" Name="DocumentNo" Type="Text" ID="{7e9d625d-14fa-4626-9412-14bcd2bce8e6}" Group="CAS Smart Factory IPR" Description="DocumentNo" />
       <Field DisplayName="InQualityInsp" Name="InQualityInsp" Type="Number" ID="{5d27eabe-c74b-4233-9a07-d7389c831e3a}" Group="CAS Smart Factory IPR" Description="InQualityInsp" />
       <Field DisplayName="Quantity" Name="Quantity" Type="Number" ID="{85512a2c-c60c-400e-aa53-94ed8fbef321}" Group="CAS Smart Factory IPR" Description="Quantity" />
       <Field DisplayName="RestrictedUse" Name="RestrictedUse" Type="Number" ID="{76c04784-3d54-46db-bb7f-686eb7ef8254}" Group="CAS Smart Factory IPR" Description="RestrictedUse" />
       <Field DisplayName="Location" Name="StorLoc" Type="Text" ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Group="CAS Smart Factory IPR" Description="StorLoc" />
       <Field DisplayName="Unrestricted" Name="Unrestricted" Type="Number" ID="{a748d4bc-74c0-4f52-90e9-46a9e0140324}" Group="CAS Smart Factory IPR" Description="Unrestricted" />
-      <Field DisplayName="SKUDescription" Name="SKUDescription" Type="Text" ID="{f9499ff7-0420-430d-b2b6-672546ba8235}" Group="CAS Smart Factory IPR" Description="SKUDescription" />
       <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="CAS Smart Factory IPR Customs" Description="SKU" />
       <Field DisplayName="Units" Name="Units" Type="Text" ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Group="CAS Smart Factory IPR Customs" Description="j.m." />
       <Field Name="BatchIndex" ID="{6b3af163-c404-433f-9801-047c12b9ee42}" Type="Lookup" List="Lists/BatchList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Batch lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
@@ -77,9 +73,7 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
           <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
-          <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
           <FieldRef ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Name="StorLoc" />
           <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
           <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
