@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="CustomsUnion"
+                OnQuickLaunch="TRUE"
+                TemplateType="10049"
+                Url="Lists/CustomsUnionList"
+                Description="Customs Union List Instance">
+  </ListInstance>
+</Elements>

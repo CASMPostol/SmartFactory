@@ -86,6 +86,9 @@
     <None Include="Content types\Dictionaries\Consent\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2896fc51-4f19-41cb-9a1c-8fc41a099c98}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\CustomsUnion\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{42fcde34-e541-4220-bab7-839d10ea0d59}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\CutfillerCoefficient\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{95a0472f-7568-48a6-98bd-cb4a81b97f2e}</SharePointProjectItemId>
     </None>
@@ -255,6 +258,12 @@
     </None>
     <None Include="Lists\Dictionaries\ConsentTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{03fc9141-b404-4038-948e-7783e1ba1a85}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\CustomsUnionTemplate\CustomsUnionList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{083a8d37-8bee-4f9a-b9c1-856e4adc5fcd}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\CustomsUnionTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f6e6bf4a-ca01-4843-b08b-5a81276e398f}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\CutfillerCoefficientTemplate\CutfillerCoefficientList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ce3c2329-5116-416a-8016-eaa9f95966e6}</SharePointProjectItemId>
@@ -433,6 +442,7 @@
     <Content Include="Content types\Dictionaries\Consent\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\Dictionaries\CustomsUnion\Elements.xml" />
     <Content Include="Content types\Dictionaries\CutfillerCoefficient\Elements.xml" />
     <Content Include="Content types\Dictionaries\Dust\Elements.xml">
       <SubType>Designer</SubType>
@@ -451,7 +461,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\IPR\Elements.xml" />
-    <Content Include="Content types\Material\Elements.xml" />
+    <Content Include="Content types\Material\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Reports\BalanceSummary\Elements.xml" />
     <Content Include="Content types\Reports\JSOXCustomsSummary\Elements.xml" />
     <Content Include="Content types\Reports\JSOXSummary\Elements.xml" />
@@ -537,6 +549,9 @@
     <Content Include="Lists\Dictionaries\ConsentTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Dictionaries\CustomsUnionTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CustomsUnionTemplate\CustomsUnionList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CustomsUnionTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\CutfillerCoefficientList\Elements.xml" />
     <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\Schema.xml" />

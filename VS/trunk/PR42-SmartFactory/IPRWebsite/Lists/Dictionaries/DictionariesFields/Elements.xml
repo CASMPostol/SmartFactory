@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="EUPrimeMarket"
+    ID="{C5AEA337-BDDC-4F77-AF0C-A8C925B6BB5B}"
+    Type="Text"
+    DisplayName="EU Prime Market"
+    Group="CAS Smart Factory IPR Dictionaries"
+    />
+  <Field
     Name="BlendPurpose"
     ID="{EFB4D543-B0D4-4371-A1DC-24F0EB576021}"
     Type="Text"
