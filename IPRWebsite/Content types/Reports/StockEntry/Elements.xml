@@ -10,7 +10,6 @@
     <FieldRefs>
       <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
       <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
-      <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
       <FieldRef ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Name="StorLoc" />
       <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
       <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />

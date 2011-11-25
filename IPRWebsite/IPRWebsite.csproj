@@ -487,7 +487,9 @@
     <Content Include="Lists\BatchLibrary\Elements.xml" />
     <Content Include="Lists\BatchTemplate\Elements.xml" />
     <Content Include="Lists\BatchTemplate\BatchList\Elements.xml" />
-    <Content Include="Lists\BatchTemplate\Schema.xml" />
+    <Content Include="Lists\BatchTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\ClearenceTemplate\Elements.xml" />
     <Content Include="Lists\Customs\ClearenceTemplate\ClearenceList\Elements.xml" />
     <Content Include="Lists\Customs\ClearenceTemplate\Schema.xml" />
