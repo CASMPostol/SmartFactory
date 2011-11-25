@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="CustomsUnion"
+  <ListInstance Title="Customs Union"
                 OnQuickLaunch="TRUE"
                 TemplateType="10049"
                 Url="Lists/CustomsUnionList"
