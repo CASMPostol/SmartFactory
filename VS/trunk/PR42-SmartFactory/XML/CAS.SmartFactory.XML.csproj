@@ -76,7 +76,10 @@
       <DependentUpon>Batch.xsd</DependentUpon>
     </Compile>
     <Compile Include="Generated\IPR\Batch.partial.cs" />
+    <Compile Include="Generated\IPR\CigarettesMaterial.cs" />
+    <Compile Include="Generated\IPR\CutfillerMaterial.cs" />
     <Compile Include="Generated\IPR\Invoice.partial.cs" />
+    <Compile Include="Generated\IPR\Material.cs" />
     <Compile Include="Generated\IPR\SKU.cs" />
     <Compile Include="Generated\IPR\SKUCigarettesSchema.cs">
       <DependentUpon>SKUCigarettesSchema.xsd</DependentUpon>
@@ -90,6 +93,7 @@
     <Compile Include="QuantityDescription.cs" />
     <Compile Include="RequiredDocumentsDescription.cs" />
     <None Include="cas.snk" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Generated\CELINA\CLNBw2r0.xsd">
       <SubType>Designer</SubType>
     </None>

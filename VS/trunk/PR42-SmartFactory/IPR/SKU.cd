@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAS.SmartFactory.IPR.Entities.SKUCigarette" Collapsed="true">
+    <Position X="2.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAARACCAABQAEAAAEAACAgAAABAQAAgAAFBAA=</HashCode>
+      <FileName>Entities\Entities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.SKUCommonPart" Collapsed="true">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQGgAAgQABEAAQRAQQEAQgAAAKAAACABCgAJEIAABAI=</HashCode>
+      <FileName>Entities\Entities.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SKULibraryLookup" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.SKUCutfiller" Collapsed="true">
+    <Position X="4.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAQAEAAAAAACAAAAIAEAAAAgAAAAI=</HashCode>
+      <FileName>Entities\Entities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.Dokument" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgBAAAAAAAAAAAAQAEBAAAQACAAAAAAAABwAAAAAAA=</HashCode>
+      <FileName>Entities\Dokument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

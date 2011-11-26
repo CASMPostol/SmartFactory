@@ -30,5 +30,7 @@ namespace CAS.SmartFactory.xml.IPR
         return (SKU)invoice.Deserialize(reader);
       }
     }
+    public enum SKUType { Cigarettes, Cutfiller }
+    public abstract SKUType Type { get; }
   }
 }

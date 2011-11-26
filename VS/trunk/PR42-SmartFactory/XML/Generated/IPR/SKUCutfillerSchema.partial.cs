@@ -5,8 +5,12 @@ using System.Text;
 
 namespace CAS.SmartFactory.xml.IPR
 {
-  public partial class Cutfiller: SKU
+  public partial class Cutfiller : SKU
   {
+    public override SKU.SKUType Type
+    {
+      get { return SKUType.Cutfiller; }
     }
   }
+}
 

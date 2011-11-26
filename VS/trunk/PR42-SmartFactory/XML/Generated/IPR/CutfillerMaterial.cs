@@ -5,12 +5,7 @@ using System.Text;
 
 namespace CAS.SmartFactory.xml.IPR
 {
-  
-  public partial class Cigarettes : SKU
+  public partial class CutfillerMaterial: Material
   {
-    public override SKU.SKUType Type
-    {
-      get { return SKUType.Cigarettes; }
-    }
   }
 }
