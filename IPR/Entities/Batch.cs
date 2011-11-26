@@ -12,12 +12,12 @@ namespace CAS.SmartFactory.IPR.Entities
       Batch newBatch = null;
       var cb =
          from batch in edc.Batch where batch.Batch0.Contains(index) select batch;
-      if (cb.Count<Batch>() == 0)
+      if (cb.Count<Batch>() == 0) //TODO Must be implemented
       {
         newBatch = new Batch()
         {
           Batch0 = index,
-          BatchStatus = "Preliminary",
+          BatchStatus = Entities.BatchStatus.Preliminary,
           Tytuł = index
         };
         edc.Batch.InsertOnSubmit(newBatch);

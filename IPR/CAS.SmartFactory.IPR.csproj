@@ -58,9 +58,12 @@
     <Compile Include="Entities\Dust.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\EntitiesDataContext.cs" />
+    <Compile Include="Entities\Format.cs" />
     <Compile Include="Entities\Material.cs" />
     <Compile Include="Entities\SHMenthol.cs" />
-    <Compile Include="Entities\SKU.cs" />
+    <Compile Include="Entities\SKUCigarette.cs" />
+    <Compile Include="Entities\SKUCommonPart.cs" />
+    <Compile Include="Entities\SKUCutfiller.cs" />
     <Compile Include="Entities\Usage.cs" />
     <Compile Include="Entities\Warehouse.cs" />
     <Compile Include="Entities\Waste.cs" />
@@ -72,6 +75,7 @@
     <Compile Include="SADImportXML\SADImportXML.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="SKU.cd" />
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Entities\Scripts\psconsole.psc1" />
     <None Include="key.snk" />

@@ -91,7 +91,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
           Location = item.SLoc,
           RestrictedUse = item.RestrictedUse,
           SKU = item.Material.Trim(),
-          SKUDescription = "To be removed",
           Tytuł = item.MaterialDescription.Trim(),
           Units = item.BUn,
           Unrestricted = item.Unrestricted,

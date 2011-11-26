@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       Batch newBatch = new Batch()
       {
         BatchLibraryLookup = entry,
-        BatchStatus = document.Status.ToString(),
+        BatchStatus = GetBatchStatus(document.Status)
       };
       SummaryContentInfo fg = GetXmlContent(document.Material, edc, newBatch);
       newBatch.Batch0 = fg.Product.Batch;
@@ -73,6 +73,21 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       newBatch.WasteLookup = Waste.GetLookup(newBatch.ProductType.Value, edc);
       newBatch.CalculatedOveruse = fg.ProcessDisposals();
       edc.Batch.InsertOnSubmit(newBatch);
+    }
+
+    private BatchStatus? GetBatchStatus(xml.IPR.BatchStatus batchStatus)
+    {
+      switch (batchStatus)
+      {
+        case CAS.SmartFactory.xml.IPR.BatchStatus.Final:
+          return Entities.BatchStatus.Final;
+        case CAS.SmartFactory.xml.IPR.BatchStatus.Intermediate:
+          return Entities.BatchStatus.Intermediate;
+        case CAS.SmartFactory.xml.IPR.BatchStatus.Progress:
+          return Entities.BatchStatus.Progress;
+        default:
+          return Entities.BatchStatus.Preliminary;
+      }
     }
     private class SummaryContentInfo : SortedList<string, Material>
     {
