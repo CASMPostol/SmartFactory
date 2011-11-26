@@ -8,8 +8,8 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class SKUCutfiller
   {
-    public SKUCutfiller(CutfillerMaterialxML document, Dokument parent)
-      : base(document, parent)
+    public SKUCutfiller(CutfillerMaterialxML document, Dokument parent, EntitiesDataContext edc)
+      : base(document, parent, edc)
     {
       this.BlendPurpose = document.BlendPurpose;
     }
@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         try
         {
-          SKUCutfiller newEntity = new SKUCutfiller(item, parent);
+          SKUCutfiller newEntity = new SKUCutfiller(item, parent, edc);
           entities.Add(newEntity);
         }
         catch (Exception ex)
@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       return Format.GetCutfillerFormatLookup();
     }
-    protected override bool GetIPRMaterial()
+    protected override bool GetIPRMaterial(EntitiesDataContext edc)
     {
       return SKUDescription.EndsWith("NEU");
     }

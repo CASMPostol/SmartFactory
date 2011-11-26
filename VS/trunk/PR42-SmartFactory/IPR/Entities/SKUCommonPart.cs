@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.IPR.Entities
   public abstract partial class SKUCommonPart
   {
     public bool IPRMaterial { get; protected set; }
-    public SKUCommonPart(MaterialXml document, Dokument parent)
+    public SKUCommonPart(MaterialXml document, Dokument parent, EntitiesDataContext edc)
     {
       this.FormatLookup = this.GetFormatLookup(document);
       this.ProductType = GetProductType();
@@ -20,9 +20,8 @@ namespace CAS.SmartFactory.IPR.Entities
       this.SKUDescription = this.GetSKUDescription(document);
       this.SKULibraryLookup = parent;
       this.Tytuł = this.GetSKUDescription(document);
-      this.IPRMaterial = GetIPRMaterial();
+      this.IPRMaterial = GetIPRMaterial(edc);
     }
-
     internal static SKUCommonPart GetLookup(EntitiesDataContext edc, string index)
     {
       SKUCommonPart newSKU = null;
@@ -50,7 +49,7 @@ namespace CAS.SmartFactory.IPR.Entities
     protected abstract string GetSKUDescription(MaterialXml document);
     protected abstract ProductType? GetProductType();
     protected abstract Format GetFormatLookup(MaterialXml document);
-    protected abstract bool GetIPRMaterial();
+    protected abstract bool GetIPRMaterial(EntitiesDataContext edc);
     #endregion
   }
 }

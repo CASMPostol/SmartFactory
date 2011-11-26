@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Entities\Anons.cs" />
     <Compile Include="Entities\Batch.cs" />
+    <Compile Include="Entities\CustomsUnion.cs" />
     <Compile Include="Entities\CutfillerCoefficient.cs" />
     <Compile Include="Entities\Dokument.cs" />
     <Compile Include="Entities\Dust.cs" />
