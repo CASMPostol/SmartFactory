@@ -8,8 +8,8 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class SKUCigarette
   {
-    public SKUCigarette(CigarettesMaterialxML document, Dokument parent)
-      : base(document, parent)
+    public SKUCigarette(CigarettesMaterialxML document, Dokument parent, EntitiesDataContext edc)
+      : base(document, parent, edc)
     {
       this.Brand = document.Brand;
       this.Family = document.Family;
@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         try
         {
-          SKUCigarette newEntity = new SKUCigarette(item, parent);
+          SKUCigarette newEntity = new SKUCigarette(item, parent, edc);
           entities.Add(newEntity);
         }
         catch (Exception ex)
@@ -55,13 +55,9 @@ namespace CAS.SmartFactory.IPR.Entities
       this.FilterLenght = Double.TryParse(xml.Filter_Segment_Length.Trim().Replace(" mm", ""), out cl) ? new Nullable<Double>(cl) : new Nullable<Double>(0);
       return Format.GetFormatLookup(xml.Cigarette_Length, xml.Filter_Segment_Length);
     }
-    protected override bool GetIPRMaterial()
+    protected override bool GetIPRMaterial(EntitiesDataContext edc)
     {
-      return IPRMaterial = CheckIfUnion();
-    }
-    private bool CheckIfUnion()
-    {
-      throw new NotImplementedException();
+      return IPRMaterial = CustomsUnion.CheckIfUnion(this.PrimeMarket, edc);
     }
   }
 }
