@@ -12,5 +12,9 @@ namespace CAS.SmartFactory.xml.IPR
     {
       get { return SKUType.Cigarettes; }
     }
+    public override Material[] GetMaterial()
+    {
+      return Material;
+    }
   }
 }

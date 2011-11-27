@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using CutfillerMaterialxML = CAS.SmartFactory.xml.IPR.CutfillerMaterial;
 using CutfillerXml = CAS.SmartFactory.xml.IPR.Cutfiller;
@@ -11,38 +12,8 @@ namespace CAS.SmartFactory.IPR.Entities
     public SKUCutfiller(CutfillerMaterialxML document, Dokument parent, EntitiesDataContext edc)
       : base(document, parent, edc)
     {
-      this.BlendPurpose = document.BlendPurpose;
-    }
-    protected static void GetXmlContent(CutfillerXml document, EntitiesDataContext edc, Dokument parent)
-    {
-      List<SKUCommonPart> entities = new List<SKUCommonPart>();
-      foreach (CutfillerMaterialxML item in document.Material)
-      {
-        try
-        {
-          SKUCutfiller newEntity = new SKUCutfiller(item, parent, edc);
-          entities.Add(newEntity);
-        }
-        catch (Exception ex)
-        {
-          string message = String.Format("Cannot create: {0}, because of the error: {1}", item.MaterialDescription, ex.Message);
-          Anons.WriteEntry(edc, "SKU cutfiller entry  error", message);
-        }
-      }
-      if (entities.Count > 0)
-        edc.SKU.InsertAllOnSubmit(entities);
-    }
-    protected override string GetSKU(MaterialXml document)
-    {
-      return ((CutfillerMaterialxML)document).Material;
-    }
-    protected override string GetSKUDescription(MaterialXml document)
-    {
-      return ((CutfillerMaterialxML)document).MaterialDescription;
-    }
-    protected override ProductType? GetProductType()
-    {
-      return Entities.ProductType.Cutfiller;
+      ProductType = Entities.ProductType.Cutfiller;
+      BlendPurpose = document.BlendPurpose.Trim();
     }
     protected override Format GetFormatLookup(MaterialXml document)
     {
