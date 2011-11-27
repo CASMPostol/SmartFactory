@@ -122,7 +122,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       }
       internal double ProcessDisposals()
       {
-        //TODO to be implemented
+        //TODO to be implemented: http://itrserver/Bugs/BugDetail.aspx?bid=2869
         return 0;
       }
       internal IEnumerable<Material> GeContentEnumerator()
