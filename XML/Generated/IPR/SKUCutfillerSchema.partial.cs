@@ -11,6 +11,10 @@ namespace CAS.SmartFactory.xml.IPR
     {
       get { return SKUType.Cutfiller; }
     }
+    public override Material[] GetMaterial()
+    {
+      return this.Material;
+    }
   }
 }
 

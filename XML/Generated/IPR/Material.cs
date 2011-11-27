@@ -5,8 +5,9 @@ using System.Text;
 
 namespace CAS.SmartFactory.xml.IPR
 {
-  public partial class Material
+  public  abstract partial class Material
   {
-
+    public abstract string GetMaterial();
+    public abstract string GetMaterialDescription();
   }
 }

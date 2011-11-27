@@ -32,5 +32,6 @@ namespace CAS.SmartFactory.xml.IPR
     }
     public enum SKUType { Cigarettes, Cutfiller }
     public abstract SKUType Type { get; }
+    public abstract Material[] GetMaterial();
   }
 }
