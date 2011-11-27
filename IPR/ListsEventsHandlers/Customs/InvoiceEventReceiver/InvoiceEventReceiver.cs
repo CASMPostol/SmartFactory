@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using CAS.SmartFactory.IPR.Entities;
+using CAS.SmartFactory.xml;
 using Microsoft.SharePoint;
 using InvoiceItemXml = CAS.SmartFactory.xml.IPR.InvoiceItem;
 using InvoiceXml = CAS.SmartFactory.xml.IPR.Invoice;
-using CAS.SmartFactory.xml;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
 {
@@ -66,18 +64,19 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
       List<InvoiceContent> itemsList = new List<InvoiceContent>();
       foreach (InvoiceItemXml item in invoiceEntries)
       {
-        functionValue = String.IsNullOrEmpty(functionValue) ? item.Bill_doc.ToString() : functionValue + "; " + item.Bill_doc.ToString();
+        if (String.IsNullOrEmpty(functionValue))
+          functionValue = item.Bill_doc.ToString();
         InvoiceContent newInvoiceContent = new InvoiceContent()
         {
           Batch = item.Batch.Trim(),
-          BatchLookup = Batch.GetCreateLookup(edc, item.Batch.Trim()),
+          BatchLookup = Batch.GetLookup(edc, item.Batch.Trim()),
           InvoiceLookup = parent,
           ItemNo = item.Item.ConvertToDouble(),
           ProductType = SKUCommonPart.GetLookup(edc, item.Material.Trim()).ProductType,
           Quantity = item.Bill_qty_in_SKU.ConvertToDouble(),
           SKU = item.Material.Trim(),
-          SKUDescription = "To be removed",
-          Tytuł = item.Description,
+          SKUDescription = item.Description.Trim(), //TODO to be removed: http://itrserver/Bugs/BugDetail.aspx?bid=2877
+          Tytuł = item.Description.Trim(),
           Units = item.BUn
         };
       }
