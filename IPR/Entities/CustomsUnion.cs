@@ -7,15 +7,7 @@ namespace CAS.SmartFactory.IPR.Entities
   {
     internal static bool CheckIfUnion(string primeMarket, EntitiesDataContext edc)
     {
-      try
-      {
-        CustomsUnion cu = (from item in edc.CustomsUnion where item.EUPrimeMarket.Contains(primeMarket) select item).DefaultIfEmpty(null).First();
-        return true;
-      }
-      catch (Exception)
-      {
-        return false;
-      };
+      return (from item in edc.CustomsUnion where item.EUPrimeMarket.Contains(primeMarket) select item).Any();
     }
   }
 }
