@@ -11,8 +11,8 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       Batch newBatch = null;
       var cb =
-         from batch in edc.Batch where batch.Batch0.Contains(index) select batch;
-      if (cb.Count<Batch>() == 0) //TODO Must be implemented
+         from batch in edc.Batch where batch.Batch0.Contains(index) orderby batch.Identyfikator descending select batch;
+      if (cb.Count<Batch>() == 0)
       {
         newBatch = new Batch()
         {
@@ -22,6 +22,8 @@ namespace CAS.SmartFactory.IPR.Entities
         };
         edc.Batch.InsertOnSubmit(newBatch);
       }
+      else
+        newBatch = cb.First();
       return newBatch;
     }
     internal Disposal[] GetDisposals(EntitiesDataContext edc)
