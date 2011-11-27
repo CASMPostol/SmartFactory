@@ -65,6 +65,7 @@
     <Compile Include="Entities\SKUCigarette.cs" />
     <Compile Include="Entities\SKUCommonPart.cs" />
     <Compile Include="Entities\SKUCutfiller.cs" />
+    <Compile Include="Entities\StockEntry.cs" />
     <Compile Include="Entities\Usage.cs" />
     <Compile Include="Entities\Warehouse.cs" />
     <Compile Include="Entities\Waste.cs" />
