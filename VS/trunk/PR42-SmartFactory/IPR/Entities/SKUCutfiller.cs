@@ -15,9 +15,9 @@ namespace CAS.SmartFactory.IPR.Entities
       ProductType = Entities.ProductType.Cutfiller;
       BlendPurpose = document.BlendPurpose.Trim();
     }
-    protected override Format GetFormatLookup(MaterialXml document)
+    protected override Format GetFormatLookup(MaterialXml document, EntitiesDataContext edc)
     {
-      return Format.GetCutfillerFormatLookup();
+      return Format.GetCutfillerFormatLookup(edc);
     }
     protected override bool GetIPRMaterial(EntitiesDataContext edc)
     {

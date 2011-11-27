@@ -17,7 +17,7 @@ namespace CAS.SmartFactory.IPR.Entities
       this.SKU = xml.GetMaterial();
       this.SKUDescription = xml.GetMaterialDescription();
       this.Tytuł = xml.GetMaterialDescription();
-      this.FormatLookup = GetFormatLookup(xml);
+      this.FormatLookup = GetFormatLookup(xml, edc);
       this.IPRMaterial = GetIPRMaterial(edc);
     }
     public bool IPRMaterial { get; protected set; } //TODO to be replaced by new column
@@ -73,7 +73,7 @@ namespace CAS.SmartFactory.IPR.Entities
       if (entities.Count > 0)
         edc.SKU.InsertAllOnSubmit(entities);
     }
-    protected abstract Format GetFormatLookup(MaterialXml document);
+    protected abstract Format GetFormatLookup(MaterialXml document, EntitiesDataContext edc);
     protected abstract bool GetIPRMaterial(EntitiesDataContext edc);
     #endregion
   }
