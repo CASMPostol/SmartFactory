@@ -70,7 +70,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
         InvoiceContent newInvoiceContent = new InvoiceContent()
         {
           Batch = item.Batch.Trim(),
-          BatchLookup = Batch.GetLookup(edc, item.Batch.Trim()),
+          BatchLookup = Batch.GetCreateLookup(edc, item.Batch.Trim()),
           InvoiceLookup = parent,
           ItemNo = item.Item.ConvertToDouble(),
           ProductType = SKUCommonPart.GetLookup(edc, item.Material.Trim()).ProductType,

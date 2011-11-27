@@ -74,34 +74,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       edc.Stock.InsertOnSubmit(newStock);
       GetStock(document.Row, edc, newStock);
     }
-    private void GetStock(StockXmlRow[] rows, EntitiesDataContext edc, Stock entry)
+    private void GetStock(StockXmlRow[] rows, EntitiesDataContext edc, Stock parent)
     {
       List<StockEntry> stockEntities = new List<StockEntry>();
       List<Batch> batchEntries = new List<Batch>();
       foreach (StockXmlRow item in rows)
       {
-        StockEntry nse = new StockEntry()
-        {
-          StockListLookup = entry,
-          Batch = item.Batch.Trim(),
-          Blocked = item.Blocked,
-          DocumentNo = "To be removed",
-          InQualityInsp = item.InQualityInsp,
-          IPRType = false,
-          Location = item.SLoc,
-          RestrictedUse = item.RestrictedUse,
-          SKU = item.Material.Trim(),
-          Tytuł = item.MaterialDescription.Trim(),
-          Units = item.BUn,
-          Unrestricted = item.Unrestricted,
-          Quantity = 0,
-          BatchLookup = Batch.GetLookup(edc, item.Batch.Trim())
-        };
-        nse.Quantity = item.Blocked.GetValueOrDefault(0) +
-          item.InQualityInsp.GetValueOrDefault(0) +
-          item.RestrictedUse.GetValueOrDefault(0) +
-          item.Unrestricted.GetValueOrDefault(0);
-        ;
+        StockEntry nse = new StockEntry(item, parent);
         stockEntities.Add(nse);
       }
       if (stockEntities.Count > 0)

@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class Batch
   {
-    internal static Batch GetLookup(EntitiesDataContext edc, string index)
+    internal static Batch GetCreateLookup(EntitiesDataContext edc, string index)
     {
       Batch newBatch = null;
       var cb =
