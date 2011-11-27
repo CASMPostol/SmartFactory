@@ -13,7 +13,6 @@ namespace CAS.SmartFactory.IPR.Entities
       try
       {
         value = (from idx in edc.Waste where idx.ProductType == type select idx).Aggregate((x, y) => (x.Wersja < y.Wersja ? y : x));
-        return value;
       }
       catch (ArgumentNullException)
       {
