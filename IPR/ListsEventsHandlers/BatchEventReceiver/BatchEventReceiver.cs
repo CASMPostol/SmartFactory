@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using CAS.SmartFactory.IPR.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
-using BatchMaterialXml = CAS.SmartFactory.xml.IPR.BatchMaterial;
-using BatchXml = CAS.SmartFactory.xml.IPR.Batch;
+using BatchMaterialXml = CAS.SmartFactory.xml.erp.BatchMaterial;
+using BatchXml = CAS.SmartFactory.xml.erp.Batch;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {
@@ -75,15 +75,15 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       edc.Batch.InsertOnSubmit(newBatch);
     }
 
-    private BatchStatus? GetBatchStatus(xml.IPR.BatchStatus batchStatus)
+    private BatchStatus? GetBatchStatus(xml.erp.BatchStatus batchStatus)
     {
       switch (batchStatus)
       {
-        case CAS.SmartFactory.xml.IPR.BatchStatus.Final:
+        case CAS.SmartFactory.xml.erp.BatchStatus.Final:
           return Entities.BatchStatus.Final;
-        case CAS.SmartFactory.xml.IPR.BatchStatus.Intermediate:
+        case CAS.SmartFactory.xml.erp.BatchStatus.Intermediate:
           return Entities.BatchStatus.Intermediate;
-        case CAS.SmartFactory.xml.IPR.BatchStatus.Progress:
+        case CAS.SmartFactory.xml.erp.BatchStatus.Progress:
           return Entities.BatchStatus.Progress;
         default:
           return Entities.BatchStatus.Preliminary;

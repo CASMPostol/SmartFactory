@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CigarettesMaterialxML = CAS.SmartFactory.xml.IPR.CigarettesMaterial;
-using CutfillerMaterialxML = CAS.SmartFactory.xml.IPR.CutfillerMaterial;
-using MaterialXml = CAS.SmartFactory.xml.IPR.Material;
-using SKUXml = CAS.SmartFactory.xml.IPR.SKU;
+using CigarettesMaterialxML = CAS.SmartFactory.xml.erp.CigarettesMaterial;
+using CutfillerMaterialxML = CAS.SmartFactory.xml.erp.CutfillerMaterial;
+using MaterialXml = CAS.SmartFactory.xml.erp.Material;
+using SKUXml = CAS.SmartFactory.xml.erp.SKU;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
@@ -39,11 +39,11 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       switch (xmlDocument.Type)
       {
-        case CAS.SmartFactory.xml.IPR.SKU.SKUType.Cigarettes:
+        case CAS.SmartFactory.xml.erp.SKU.SKUType.Cigarettes:
           GetXmlContent(xmlDocument.GetMaterial(), edc, entry, delegate(MaterialXml xml, Dokument lib, EntitiesDataContext context)
           { return new SKUCigarette((CigarettesMaterialxML)xml, lib, context); });
           break;
-        case CAS.SmartFactory.xml.IPR.SKU.SKUType.Cutfiller:
+        case CAS.SmartFactory.xml.erp.SKU.SKUType.Cutfiller:
           GetXmlContent(xmlDocument.GetMaterial(), edc, entry, delegate(MaterialXml xml, Dokument lib, EntitiesDataContext context)
           { return new SKUCutfiller((CutfillerMaterialxML)xml, lib, context) as SKUCommonPart; });
           break;

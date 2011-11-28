@@ -19,11 +19,11 @@ $cpath = get-location
 
 Write-host IPR Processing
 set-location ..\IPR
-# xsd.exe Invoice.xsd /N:CAS.SmartFactory.xml.IPR /c  |write-host
-xsd.exe stock.xsd /N:CAS.SmartFactory.xml.IPR /c  |write-host
-#xsd.exe batch.xsd /N:CAS.SmartFactory.xml.IPR /c  |write-host
-#xsd.exe SKUCigarettesSchema.xsd /N:CAS.SmartFactory.xml.IPR /c  |write-host
-#xsd.exe SKUCutfillerSchema.xsd /N:CAS.SmartFactory.xml.IPR /c  |write-host
+# xsd.exe Invoice.xsd /N:CAS.SmartFactory.xml.ERP /c  |write-host
+xsd.exe stock.xsd /N:CAS.SmartFactory.xml.ERP /c  |write-host
+#xsd.exe batch.xsd /N:CAS.SmartFactory.xml.ERP /c  |write-host
+#xsd.exe SKUCigarettesSchema.xsd /N:CAS.SmartFactory.xml.ERP /c  |write-host
+#xsd.exe SKUCutfillerSchema.xsd /N:CAS.SmartFactory.xml.ERP /c  |write-host
 
 set-location $cpath
 Write-host Done...

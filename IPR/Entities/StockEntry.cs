@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using StockXmlRow = CAS.SmartFactory.xml.IPR.StockRow;
+using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
 
 namespace CAS.SmartFactory.IPR.Entities
 {

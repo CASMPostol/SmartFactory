@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CigarettesMaterialxML = CAS.SmartFactory.xml.IPR.CigarettesMaterial;
-using CigarettesXml = CAS.SmartFactory.xml.IPR.Cigarettes;
-using MaterialXml = CAS.SmartFactory.xml.IPR.Material;
+using CigarettesMaterialxML = CAS.SmartFactory.xml.erp.CigarettesMaterial;
+using CigarettesXml = CAS.SmartFactory.xml.erp.Cigarettes;
+using MaterialXml = CAS.SmartFactory.xml.erp.Material;
 
 namespace CAS.SmartFactory.IPR.Entities
 {

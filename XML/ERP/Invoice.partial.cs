@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace CAS.SmartFactory.xml.IPR
+namespace CAS.SmartFactory.xml.erp
 {
   public partial class Invoice
   {
