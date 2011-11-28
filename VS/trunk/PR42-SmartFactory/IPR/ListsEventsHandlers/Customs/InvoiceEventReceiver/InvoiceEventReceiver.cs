@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using CAS.SmartFactory.IPR.Entities;
 using CAS.SmartFactory.xml;
 using Microsoft.SharePoint;
-using InvoiceItemXml = CAS.SmartFactory.xml.IPR.InvoiceItem;
-using InvoiceXml = CAS.SmartFactory.xml.IPR.Invoice;
+using InvoiceItemXml = CAS.SmartFactory.xml.erp.InvoiceItem;
+using InvoiceXml = CAS.SmartFactory.xml.erp.Invoice;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
 {

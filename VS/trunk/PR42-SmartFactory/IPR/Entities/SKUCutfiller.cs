@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using CutfillerMaterialxML = CAS.SmartFactory.xml.IPR.CutfillerMaterial;
-using CutfillerXml = CAS.SmartFactory.xml.IPR.Cutfiller;
-using MaterialXml = CAS.SmartFactory.xml.IPR.Material;
+using CutfillerMaterialxML = CAS.SmartFactory.xml.erp.CutfillerMaterial;
+using CutfillerXml = CAS.SmartFactory.xml.erp.Cutfiller;
+using MaterialXml = CAS.SmartFactory.xml.erp.Material;
 
 namespace CAS.SmartFactory.IPR.Entities
 {

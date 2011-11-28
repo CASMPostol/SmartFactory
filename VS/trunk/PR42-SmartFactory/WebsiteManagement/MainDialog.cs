@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace _pr4_2883__Add_IPRInitializeWebsite_project
+namespace CAS.SmartFactory.Management
 {
-  public partial class Form1 : Form
+  public partial class MainDialog : Form
   {
-    public Form1()
+    public MainDialog()
     {
       InitializeComponent();
     }

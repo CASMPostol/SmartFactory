@@ -4,8 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using CAS.SmartFactory.IPR.Entities;
 using Microsoft.SharePoint;
-using StockXml = CAS.SmartFactory.xml.IPR.Stock;
-using StockXmlRow = CAS.SmartFactory.xml.IPR.StockRow;
+using StockXml = CAS.SmartFactory.xml.erp.Stock;
+using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
 {
