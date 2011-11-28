@@ -12,6 +12,7 @@
       <FieldRef ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}" Name="FormatIndex" />
       <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
       <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
+      <FieldRef ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}" Name="IPRMaterial" />
       <FieldRef ID="{82DC8814-8EF0-4570-83C9-98211FE1871E}" Name="SKULibraryIndex" />
     </FieldRefs>
     <XmlDocuments>
