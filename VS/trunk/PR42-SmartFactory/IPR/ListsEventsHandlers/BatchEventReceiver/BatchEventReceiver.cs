@@ -147,7 +147,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           FGQuantity = Convert.ToDouble(item.Quantity),
           TobaccoQuantity = Convert.ToDouble(item.Quantity_calculated),
           MaterialGroup = item.material_group.Trim(),
-          ProductType = ProductType.Invalid
+          ProductType = ProductType.Invalid,
+          ProductID = 0 //TODO must be replaced by string is the same as Material group: http://itrserver/Bugs/BugDetail.aspx?bid=2854
         };
         newMaterial.GetProductType(edc);
         itemsList.Add(newMaterial.SKU, newMaterial);
