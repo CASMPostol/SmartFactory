@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       CigarettesMaterialxML xml = (CigarettesMaterialxML)document;
       double cl;
-      //TODO see http://itrserver/Bugs/BugDetail.aspx?bid=2867
+      //TODO use strings see http://itrserver/Bugs/BugDetail.aspx?bid=2867
       this.CigaretteLenght = Double.TryParse(xml.Cigarette_Length.Trim().Replace(" mm", ""), out cl) ? new Nullable<Double>(cl) : new Nullable<Double>(0);
       this.FilterLenght = Double.TryParse(xml.Filter_Segment_Length.Trim().Replace(" mm", ""), out cl) ? new Nullable<Double>(cl) : new Nullable<Double>(0);
       return Format.GetFormatLookup(xml.Cigarette_Length, xml.Filter_Segment_Length, edc);

@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShepherdWebsite", "ShepherdWebsite\ShepherdWebsite.csproj", "{6153760E-3C48-4B25-9212-3100AA870FBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebsiteManagement", "WebsiteManagement\WebsiteManagement.csproj", "{588E7760-E1B5-44BA-B6B3-E65D15D8D89F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,16 @@ Global
 		{6153760E-3C48-4B25-9212-3100AA870FBF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6153760E-3C48-4B25-9212-3100AA870FBF}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 		{6153760E-3C48-4B25-9212-3100AA870FBF}.Release|x86.ActiveCfg = Release|Any CPU
+		{588E7760-E1B5-44BA-B6B3-E65D15D8D89F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{588E7760-E1B5-44BA-B6B3-E65D15D8D89F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{588E7760-E1B5-44BA-B6B3-E65D15D8D89F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{588E7760-E1B5-44BA-B6B3-E65D15D8D89F}.Debug|x86.ActiveCfg = Debug|x86
+		{588E7760-E1B5-44BA-B6B3-E65D15D8D89F}.Debug|x86.Build.0 = Debug|x86
+		{588E7760-E1B5-44BA-B6B3-E65D15D8D89F}.Release|Any CPU.ActiveCfg = Release|x86
+		{588E7760-E1B5-44BA-B6B3-E65D15D8D89F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{588E7760-E1B5-44BA-B6B3-E65D15D8D89F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{588E7760-E1B5-44BA-B6B3-E65D15D8D89F}.Release|x86.ActiveCfg = Release|x86
+		{588E7760-E1B5-44BA-B6B3-E65D15D8D89F}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
