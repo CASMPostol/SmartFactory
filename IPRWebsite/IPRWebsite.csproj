@@ -455,7 +455,9 @@
     <Content Include="Content types\Dictionaries\SKUCigarette\Elements.xml" />
     <Content Include="Content types\Dictionaries\SKUCommonPart\Elements.xml" />
     <Content Include="Content types\Dictionaries\SKUCutfiller\Elements.xml" />
-    <Content Include="Content types\Dictionaries\Usage\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Usage\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\Waste\Elements.xml" />
     <Content Include="Content types\Disposal\Elements.xml">
       <SubType>Designer</SubType>
@@ -550,7 +552,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Dictionaries\CustomsUnionTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\CustomsUnionTemplate\CustomsUnionList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\CustomsUnionTemplate\CustomsUnionList\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\CustomsUnionTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\CutfillerCoefficientList\Elements.xml" />
