@@ -250,7 +250,7 @@
   <Field
     DisplayName="CigaretteLenght"
     Name="CigaretteLenght"
-    Type="Number"
+    Type="Text"
     ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}"
     Group="CAS Smart Factory IPR"
     Description="CigaretteLenght"
@@ -258,7 +258,7 @@
   <Field
     DisplayName="FilterLenght"
     Name="FilterLenght"
-    Type="Number"
+    Type="Text"
     ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}"
     Group="CAS Smart Factory IPR"
     Description="FilterLenght"
