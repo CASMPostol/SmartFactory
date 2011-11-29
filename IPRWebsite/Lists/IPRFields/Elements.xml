@@ -1,6 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Type="Choice"
+    DisplayName="Clearing Type"
+    ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}"
+    Format="Dropdown"
+    BaseType="Text"
+    Description="Clearing Type"
+    Name="ClearingType"
+    Group="CAS Smart Factory IPR"
+    CanToggleHidden="TRUE">
+    <Default>l. czesciowa</Default>
+    <CHOICES>
+      <CHOICE>l. czesciowa</CHOICE>
+      <CHOICE>l. calkowita</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
     ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}"
     Name="CustomsDebtDate"
     Group="CAS Smart Factory IPR"

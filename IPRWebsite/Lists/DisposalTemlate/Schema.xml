@@ -24,6 +24,7 @@
           <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
           <FieldRef ID="{4E14F686-584A-4EE8-9784-4B7AA4DCD1E7}" Name="PCNTariffCode" />
           <FieldRef ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Name="CompensationGood" />
+          <FieldRef ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Name="ClearingType" />
           <FieldRef ID="{24FB05B0-2DD8-4DDC-B6EC-F6721D9F385E}" Name="PCNCodeIndex" />
           <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
           <FieldRef ID="{6E87DAC8-1B60-4246-97E1-9D0DC221F268}" Name="JSOXCustomsSummaryIndex" />
@@ -73,6 +74,13 @@
       <Field Name="InvoiceNo" ID="{d41c0f0b-a4a9-4d19-bd42-78d3de4a22ec}" Type="Text" DisplayName="Invoice No." Group="CAS Smart Factory IPR Reports" />
       <Field Name="CompensationGood" ID="{7a251c12-8e16-4bf1-9236-84d1a2d92e27}" Type="Text" DisplayName="Compensation Good" Group="CAS Smart Factory IPR Reports" />
       <Field Name="JSOXCustomsSummaryIndex" ID="{6e87dac8-1b60-4246-97e1-9d0dc221f268}" Type="Lookup" List="Lists/JSOXCustomsSummaryList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="JSOX Customs Summary List lookup" Group="CAS Smart Factory IPR Reports" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Type="Choice" DisplayName="Clearing Type" ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Format="Dropdown" BaseType="Text" Description="Clearing Type" Name="ClearingType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
+        <Default>l. czesciowa</Default>
+        <CHOICES>
+          <CHOICE>l. czesciowa</CHOICE>
+          <CHOICE>l. calkowita</CHOICE>
+        </CHOICES>
+      </Field>
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -123,6 +131,7 @@
           <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
           <FieldRef ID="{4E14F686-584A-4EE8-9784-4B7AA4DCD1E7}" Name="PCNTariffCode" />
           <FieldRef ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Name="CompensationGood" />
+          <FieldRef ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Name="ClearingType" />
           <FieldRef ID="{24FB05B0-2DD8-4DDC-B6EC-F6721D9F385E}" Name="PCNCodeIndex" />
           <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
           <FieldRef ID="{6E87DAC8-1B60-4246-97E1-9D0DC221F268}" Name="JSOXCustomsSummaryIndex" />
