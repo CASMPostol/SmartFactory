@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace _pr4_2883__Add_IPRInitializeWebsite_project
+namespace CAS.SmartFactory.Management
 {
   static class Program
   {
@@ -15,7 +15,7 @@ namespace _pr4_2883__Add_IPRInitializeWebsite_project
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new Form1());
+      Application.Run(new MainDialog());
     }
   }
 }
