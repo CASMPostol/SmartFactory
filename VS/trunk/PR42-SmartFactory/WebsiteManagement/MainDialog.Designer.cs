@@ -1,6 +1,6 @@
-﻿namespace _pr4_2883__Add_IPRInitializeWebsite_project
+﻿namespace CAS.SmartFactory.Management
 {
-  partial class Form1
+  partial class MainDialog
   {
     /// <summary>
     /// Required designer variable.
