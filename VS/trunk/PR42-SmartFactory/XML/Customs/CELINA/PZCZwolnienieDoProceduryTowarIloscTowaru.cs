@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CAS.SmartFactory.xml.CELINA.PZC
+namespace CAS.SmartFactory.xml.Customs.PZC
 {
   public partial class PZCZwolnienieDoProceduryTowarIloscTowaru : QuantityDescription
   {

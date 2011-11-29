@@ -7,15 +7,15 @@ $env:path += "; C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\x64\"
 $cpath = get-location
 # Write-host CELINA processing
 # set-location ..\CELINA
-# xsd.exe SADw2r0.xsd xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.CELINA.SAD /c  |write-host
-# xsd.exe CLNEw2r0.xsd xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.CELINA.CLNE /c  |write-host
-# xsd.exe PZCw2r0.xsd xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.CELINA.PZC /c  |write-host
-# xsd.exe DSw2r0.xsd  xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.CELINA.DS /c  |write-host
-# xsd.exe PWDw2r0.xsd xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.CELINA.PWD /c  |write-host
+# xsd.exe SADw2r0.xsd xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.Customs.SAD /c  |write-host
+# xsd.exe CLNEw2r0.xsd xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.Customs.CLNE /c  |write-host
+# xsd.exe PZCw2r0.xsd xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.Customs.PZC /c  |write-host
+# xsd.exe DSw2r0.xsd  xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.Customs.DS /c  |write-host
+# xsd.exe PWDw2r0.xsd xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.Customs.PWD /c  |write-host
 
 # Write-host ECS processing
 # set-location ..\ECS
-# xsd.exe IE529_v1-0.xsd xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.ECS.IE529 /c  |write-host
+# xsd.exe IE529_v1-0.xsd xmldsig-core-schema.xsd /N:CAS.SmartFactory.xml.Customs.IE529 /c  |write-host
 
 Write-host IPR Processing
 set-location ..\IPR

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CAS.SmartFactory.xml.ECS.IE529
+namespace CAS.SmartFactory.xml.Customs.IE529
 {
   public partial class IE529ZwolnienieTowarOplata : DutiesDescription
   {

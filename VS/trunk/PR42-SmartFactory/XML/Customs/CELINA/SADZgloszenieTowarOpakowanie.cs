@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CAS.SmartFactory.xml.CELINA.SAD
+namespace CAS.SmartFactory.xml.Customs.SAD
 {
   public partial class SADZgloszenieTowarOpakowanie: PackageDescription
   {

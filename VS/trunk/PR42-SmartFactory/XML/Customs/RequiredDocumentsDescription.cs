@@ -1,5 +1,5 @@
 ﻿
-namespace CAS.SmartFactory.xml
+namespace CAS.SmartFactory.xml.Customs
 {
   public abstract class RequiredDocumentsDescription
   {

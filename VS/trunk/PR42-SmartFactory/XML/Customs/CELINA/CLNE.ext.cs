@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CAS.SmartFactory.xml.CELINA.CLNE
+namespace CAS.SmartFactory.xml.Customs.CLNE
 {
   public partial class CLNE : CustomsDocument
   {

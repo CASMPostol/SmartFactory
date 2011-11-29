@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using CAS.SmartFactory.IPR.Entities;
 using CAS.SmartFactory.xml;
+using CAS.SmartFactory.xml.Customs;
 using Microsoft.SharePoint;
-using Microsoft.SharePoint.Linq;
-using Microsoft.SharePoint.Linq.Provider;
-using System.Linq;
 
 namespace CAS.SmartFactory.IPR.Customs
 {
