@@ -1,5 +1,5 @@
 ﻿
-namespace CAS.SmartFactory.xml.CELINA.PZC
+namespace CAS.SmartFactory.xml.Customs.PZC
 {
   public partial class PZCZwolnienieDoProceduryTowarDokumentWymagany: RequiredDocumentsDescription
   {

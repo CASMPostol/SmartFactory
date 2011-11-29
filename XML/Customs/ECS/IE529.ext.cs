@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CAS.SmartFactory.xml.ECS.IE529
+namespace CAS.SmartFactory.xml.Customs.IE529
 {
   public partial class IE529 : CustomsDocument
   {

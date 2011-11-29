@@ -1,5 +1,5 @@
 ﻿
-namespace CAS.SmartFactory.xml.CELINA.SAD
+namespace CAS.SmartFactory.xml.Customs.SAD
 {
   public partial class SADZgloszenieTowarDokumentWymagany: RequiredDocumentsDescription
   {

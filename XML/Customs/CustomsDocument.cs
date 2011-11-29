@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Xml;
 using System.Xml.Serialization;
-using CAS.SmartFactory.xml.CELINA.SAD;
 
-namespace CAS.SmartFactory.xml
+namespace CAS.SmartFactory.xml.Customs
 {
   /// <summary>
   /// Represents any custom document from xml file.
@@ -19,13 +18,13 @@ namespace CAS.SmartFactory.xml
         if (reader.MoveToContent() != XmlNodeType.Element)
           throw new ApplicationException("The file does not contain valid xml file.");
         if (reader.Name.Contains("SAD"))
-          type = typeof(SAD);
+          type = typeof(SAD.SAD);
         else if (reader.Name.Contains("IE529"))
-          type = typeof(ECS.IE529.IE529);
+          type = typeof(IE529.IE529);
         else if (reader.Name.Contains("CLNE"))
-          type = typeof(CELINA.CLNE.CLNE);
+          type = typeof(CLNE.CLNE);
         else if (reader.Name.Contains("PZC"))
-          type = typeof(CELINA.PZC.PZC);
+          type = typeof(PZC.PZC);
       }
       if (type == null)
         throw new ApplicationException("The file does not contain a valid customs declaration xml document");

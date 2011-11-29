@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CAS.SmartFactory.xml.CELINA.SAD
+namespace CAS.SmartFactory.xml.Customs.SAD
 {
   /// <summary>
   /// Import ofthe XPath: SAD/Zgloszenie/Towar

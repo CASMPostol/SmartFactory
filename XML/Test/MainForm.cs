@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using CAS.SmartFactory.xml.Customs;
 
 namespace CAS.SmartFactory.xml.Test
 {

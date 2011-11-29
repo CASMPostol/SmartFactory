@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CAS.SmartFactory.xml.CELINA.PZC
+namespace CAS.SmartFactory.xml.Customs.PZC
 {
   public partial class PZCZwolnienieDoProceduryTowarOplata: DutiesDescription
   {
