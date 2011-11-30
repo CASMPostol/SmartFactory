@@ -4,10 +4,11 @@
                Name="Dust" 
                Group="CAS Smart Factory IPR Dictionaries" 
                Overwrite="TRUE"
-               Inherits="TRUE"
+               Inherits="False"
                Description="Dust">
 		<Folder TargetName="_cts/Dust" />
 		<FieldRefs>
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
 			<FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
 			<FieldRef ID="{b7afdd32-1537-4091-a802-aa52bf8702d2}" Name="DustRatio" />
 		</FieldRefs>
