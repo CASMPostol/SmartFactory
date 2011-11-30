@@ -94,6 +94,10 @@
     <Compile Include="Customs\PackageDescription.cs" />
     <Compile Include="Customs\QuantityDescription.cs" />
     <Compile Include="Customs\RequiredDocumentsDescription.cs" />
+    <Compile Include="Dictionaries\Configuration.partial.cs" />
+    <Compile Include="Dictionaries\Configuration.cs">
+      <DependentUpon>Configuration.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ERP\batch.cs">
       <DependentUpon>Batch.xsd</DependentUpon>
     </Compile>
@@ -328,6 +332,12 @@
     <None Include="Customs\Scripts\CreateBatchSchema.ps1" />
     <None Include="Customs\Scripts\CreateInvoiceSchema.ps1" />
     <None Include="Customs\Scripts\goxsd.ps1" />
+    <None Include="Dictionaries\Configuration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dictionaries\GoXSD.ps1" />
+    <None Include="Dictionaries\JTIConfiguration.xlsx" />
+    <None Include="Dictionaries\JTIConfigurationData.xlsx" />
     <None Include="ERP\Batch.xltx" />
     <None Include="ERP\Batch.xsd">
       <SubType>Designer</SubType>
