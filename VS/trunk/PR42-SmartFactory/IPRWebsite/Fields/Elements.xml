@@ -234,7 +234,7 @@
   <Field
     DisplayName="ProductCodeNumber"
     Name="ProductCodeNumber"
-    Type="Number"
+    Type="Text"
     ID="{FAB1E4CF-D883-45A5-B682-97B78EDF1F75}"
     Group="CAS Smart Factory IPR"
     Description="ProductCodeNumber"
