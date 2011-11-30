@@ -460,7 +460,9 @@
     <Content Include="Content types\Dictionaries\Usage\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Dictionaries\Waste\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Waste\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Disposal\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
