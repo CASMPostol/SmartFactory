@@ -5,9 +5,10 @@
                Group="CAS Smart Factory IPR Dictionaries" 
                Description="It contains a table of entries describing all the coefficients of menthol usage in cigarettes, including the date of their validity." 
                Overwrite="TRUE" 
-               Inherits="TRUE">
+               Inherits="False">
 		<Folder TargetName="_cts/SHMenthol" />
 		<FieldRefs>
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
 			<FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" Required="TRUE" />
 			<FieldRef ID="{dd7d6806-45a6-494d-a940-1baae80840a2}" Name="SHMentholRatio" Required="TRUE" />
 		</FieldRefs>
