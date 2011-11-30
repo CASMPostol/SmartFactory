@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CAS.SmartFactory.xml.Dictionaries;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
@@ -20,6 +21,21 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       const string frmt = "{0:d}:{1:d}";
       return String.Format(frmt, this.CigaretteLenght, this.FilterLenght).CompareTo(String.Format(frmt, cigaretteLength, filterSegmentLength)) == 0;
+    }
+    internal static void ImportData(ConfigurationFormatItem[] configurationFormatItem, EntitiesDataContext edc)
+    {
+      List<Format> list = new List<Format>();
+      foreach (ConfigurationFormatItem item in configurationFormatItem)
+      {
+        Format frmt = new Format
+        {
+          CigaretteLenght = Double.Parse(item.CigaretteLenght),
+          FilterLenght = Double.Parse(item.FilterLenght),
+          Tytuł = item.Title
+        };
+        list.Add(frmt);
+      };
+      edc.Format.InsertAllOnSubmit(list);
     }
   }
 }

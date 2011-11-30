@@ -336,7 +336,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Dictionaries\GoXSD.ps1" />
-    <None Include="Dictionaries\JTIConfiguration.xlsx" />
     <None Include="Dictionaries\JTIConfigurationData.xlsx" />
     <None Include="ERP\Batch.xltx" />
     <None Include="ERP\Batch.xsd">

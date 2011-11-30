@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using CAS.SmartFactory.xml.Dictionaries;
+using CAS.SmartFactory.IPR.Entities;
 
 namespace CAS.SmartFactory.Management
 {
@@ -21,6 +24,34 @@ namespace CAS.SmartFactory.Management
     public MainDialog()
     {
       InitializeComponent();
+    }
+
+    private void m_ImportButton_Click(object sender, EventArgs e)
+    {
+      m_Status.Text = "Openning the file";
+      Stream strm = null;
+      using (OpenFileDialog od = new OpenFileDialog())
+      {
+        if (od.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+          return;
+        strm = od.OpenFile();
+      }
+      try
+      {
+        m_Status.Text = "Reading Data";
+        Configuration cnfg = Configuration.ImportDocument(strm);
+        EntitiesDataContext.ImportData(cnfg, @"http://casmp/sites/IPR");
+        m_Status.Text = "Done";
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+      finally
+      {
+        if (strm != null)
+          strm.Dispose();
+      }
     }
   }
 }

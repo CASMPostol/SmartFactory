@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.SharePoint.Linq;
+using XmlConfiguration = CAS.SmartFactory.xml.Dictionaries.Configuration;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
@@ -29,6 +30,24 @@ namespace CAS.SmartFactory.IPR.Entities
       catch (Exception)
       {
       }// end catch
+    }
+    public static void ImportData(XmlConfiguration data, string url)
+    {
+      EntitiesDataContext edc = null;
+      try
+      {
+        edc = new EntitiesDataContext(url);
+        Entities.Format.ImportData(data.Format, edc);
+        //Entities.CutfillerCoefficient.ImportData(data.Format, edc);
+      }
+      finally
+      {
+        if (edc != null)
+        {
+          edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+          edc.Dispose();
+        }
+      }
     }
   }
 }
