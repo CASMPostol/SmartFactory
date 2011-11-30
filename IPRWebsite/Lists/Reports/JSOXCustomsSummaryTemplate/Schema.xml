@@ -22,7 +22,17 @@
       <Field Name="InvoiceNo" ID="{d41c0f0b-a4a9-4d19-bd42-78d3de4a22ec}" Type="Text" DisplayName="Invoice No." Group="CAS Smart Factory IPR Reports" />
       <Field Name="SADConsignmentNo" ID="{0f90d8bc-23a5-48b8-8089-b91e5abb5bae}" Type="Text" DisplayName="SAD Consignment No." Group="CAS Smart Factory IPR Reports" />
       <Field Name="SADConsignmentDate" ID="{f16e6d8e-e665-4063-8612-0d0976f82b3b}" Type="Text" DisplayName="SAD Consignment Date" Group="CAS Smart Factory IPR Reports" />
-      <Field Name="CompensationGood" ID="{7a251c12-8e16-4bf1-9236-84d1a2d92e27}" Type="Text" DisplayName="Compensation Good" Group="CAS Smart Factory IPR Reports" />
+      <Field Type="Choice" DisplayName="Compensation Good" ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Format="Dropdown" BaseType="Text" Description="Compensation Good" Name="CompensationGood" Group="CAS Smart Factory IPR Reports" CanToggleHidden="TRUE">
+        <Default>tytoń</Default>
+        <CHOICES>
+          <CHOICE>tytoń</CHOICE>
+          <CHOICE>krajanka</CHOICE>
+          <CHOICE>papierosy</CHOICE>
+          <CHOICE>pył tytoiowy</CHOICE>
+          <CHOICE>odpad tytoniowy</CHOICE>
+          <CHOICE>kartony</CHOICE>
+        </CHOICES>
+      </Field>
       <Field Name="TotalAmount" ID="{035f50fd-f71b-452b-8f44-7a4db2486a8e}" Type="Number" DisplayName="Total Amount" Group="CAS Smart Factory IPR Reports" />
       <Field Name="JSOXIndex" ID="{5d491f29-ca90-4d15-9b54-58fc967b3597}" Type="Lookup" List="Lists/JSOXList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="JSOX List lookup" Group="CAS Smart Factory IPR Reports" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>

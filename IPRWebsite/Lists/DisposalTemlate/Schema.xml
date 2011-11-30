@@ -72,7 +72,17 @@
       <Field Name="IPRIndex" ID="{47cb6ebb-bc67-466f-ba7f-b89e1e31f5be}" Type="Lookup" List="Lists/IPRList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="IPR lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="SADDate" ID="{1cbc328d-a936-4125-a6c6-a2e0e956d250}" Type="Text" DisplayName="SAD Date" Group="CAS Smart Factory IPR Reports" />
       <Field Name="InvoiceNo" ID="{d41c0f0b-a4a9-4d19-bd42-78d3de4a22ec}" Type="Text" DisplayName="Invoice No." Group="CAS Smart Factory IPR Reports" />
-      <Field Name="CompensationGood" ID="{7a251c12-8e16-4bf1-9236-84d1a2d92e27}" Type="Text" DisplayName="Compensation Good" Group="CAS Smart Factory IPR Reports" />
+      <Field Type="Choice" DisplayName="Compensation Good" ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Format="Dropdown" BaseType="Text" Description="Compensation Good" Name="CompensationGood" Group="CAS Smart Factory IPR Reports" CanToggleHidden="TRUE">
+        <Default>tytoń</Default>
+        <CHOICES>
+          <CHOICE>tytoń</CHOICE>
+          <CHOICE>krajanka</CHOICE>
+          <CHOICE>papierosy</CHOICE>
+          <CHOICE>pył tytoiowy</CHOICE>
+          <CHOICE>odpad tytoniowy</CHOICE>
+          <CHOICE>kartony</CHOICE>
+        </CHOICES>
+      </Field>
       <Field Name="JSOXCustomsSummaryIndex" ID="{6e87dac8-1b60-4246-97e1-9d0dc221f268}" Type="Lookup" List="Lists/JSOXCustomsSummaryList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="JSOX Customs Summary List lookup" Group="CAS Smart Factory IPR Reports" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Type="Choice" DisplayName="Clearing Type" ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Format="Dropdown" BaseType="Text" Description="Clearing Type" Name="ClearingType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
         <Default>l. czesciowa</Default>

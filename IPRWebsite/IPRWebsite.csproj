@@ -450,7 +450,9 @@
     <Content Include="Content types\Dictionaries\Format\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Dictionaries\PCNCode\Elements.xml" />
+    <Content Include="Content types\Dictionaries\PCNCode\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\SHMenthol\Elements.xml" />
     <Content Include="Content types\Dictionaries\SKUCigarette\Elements.xml" />
     <Content Include="Content types\Dictionaries\SKUCommonPart\Elements.xml" />

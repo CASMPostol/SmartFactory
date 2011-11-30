@@ -204,12 +204,25 @@
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
-    Name="CompensationGood"
-    ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}"
-    Type="Text"
+    Type="Choice"
     DisplayName="Compensation Good"
+    ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}"
+    Format="Dropdown"
+    BaseType="Text"
+    Description="Compensation Good"
+    Name="CompensationGood"
     Group="CAS Smart Factory IPR Reports"
-    />
+    CanToggleHidden="TRUE">
+    <Default>tytoń</Default>
+    <CHOICES>
+      <CHOICE>tytoń</CHOICE>
+      <CHOICE>krajanka</CHOICE>
+      <CHOICE>papierosy</CHOICE>
+      <CHOICE>pył tytoiowy</CHOICE>
+      <CHOICE>odpad tytoniowy</CHOICE>
+      <CHOICE>kartony</CHOICE>
+    </CHOICES>
+  </Field>
   <Field
     Name="TotalAmount"
     ID="{035F50FD-F71B-452B-8F44-7A4DB2486A8E}"
