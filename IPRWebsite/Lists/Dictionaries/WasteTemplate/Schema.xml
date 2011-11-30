@@ -60,8 +60,6 @@
         <ViewFields>
           <FieldRef Name="Attachments">
           </FieldRef>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
           <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
           <FieldRef ID="{440bd88d-3870-480e-b01e-f934d478593f}" Name="WasteRatio" />
         </ViewFields>
