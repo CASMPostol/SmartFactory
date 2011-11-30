@@ -59,8 +59,6 @@
         <ViewFields>
           <FieldRef Name="Attachments">
           </FieldRef>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
           <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
           <FieldRef ID="{dd7d6806-45a6-494d-a940-1baae80840a2}" Name="SHMentholRatio" />
         </ViewFields>
