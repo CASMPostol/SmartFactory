@@ -556,8 +556,6 @@ namespace CAS.SmartFactory.xml.Dictionaries {
         
         private string productCodeNumberField;
         
-        private string productNameField;
-        
         private string compensationGoodField;
         
         /// <uwagi/>
@@ -579,17 +577,6 @@ namespace CAS.SmartFactory.xml.Dictionaries {
             }
             set {
                 this.productCodeNumberField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string ProductName {
-            get {
-                return this.productNameField;
-            }
-            set {
-                this.productNameField = value;
             }
         }
         

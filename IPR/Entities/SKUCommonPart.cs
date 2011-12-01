@@ -15,12 +15,10 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       this.SKULibraryLookup = parent;
       this.SKU = xml.GetMaterial();
-      this.SKUDescription = xml.GetMaterialDescription();
       this.Tytuł = xml.GetMaterialDescription();
       this.FormatLookup = GetFormatLookup(xml, edc);
       this.IPRMaterial = GetIPRMaterial(edc);
     }
-    public bool IPRMaterial { get; protected set; } //TODO to be replaced by new column: http://itrserver/Bugs/BugDetail.aspx?bid=2868
     internal static SKUCommonPart GetLookup(EntitiesDataContext edc, string index)
     {
       SKUCommonPart newSKU = null;

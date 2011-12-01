@@ -29,8 +29,8 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         Format frmt = new Format
         {
-          CigaretteLenght = Double.Parse(item.CigaretteLenght),
-          FilterLenght = Double.Parse(item.FilterLenght),
+          CigaretteLenght = item.CigaretteLenght,
+          FilterLenght = item.FilterLenght,
           Tytuł = item.Title
         };
         list.Add(frmt);

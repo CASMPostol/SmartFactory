@@ -17,23 +17,21 @@ namespace CAS.SmartFactory.IPR.Entities
       this.Family = xmlDocument.Family;
       this.Menthol = xmlDocument.Menthol;
       this.PrimeMarket = xmlDocument.Prime_Market;
-    } 
+    }
     #endregion
 
     #region private
     protected override Format GetFormatLookup(MaterialXml document, EntitiesDataContext edc)
     {
       CigarettesMaterialxML xml = (CigarettesMaterialxML)document;
-      double cl;
-      //TODO use strings see http://itrserver/Bugs/BugDetail.aspx?bid=2867
-      this.CigaretteLenght = Double.TryParse(xml.Cigarette_Length.Trim().Replace(" mm", ""), out cl) ? new Nullable<Double>(cl) : new Nullable<Double>(0);
-      this.FilterLenght = Double.TryParse(xml.Filter_Segment_Length.Trim().Replace(" mm", ""), out cl) ? new Nullable<Double>(cl) : new Nullable<Double>(0);
+      this.CigaretteLenght = xml.Cigarette_Length.Trim();
+      this.FilterLenght = xml.Filter_Segment_Length.Trim();
       return Format.GetFormatLookup(xml.Cigarette_Length, xml.Filter_Segment_Length, edc);
     }
     protected override bool GetIPRMaterial(EntitiesDataContext edc)
     {
-      return IPRMaterial = CustomsUnion.CheckIfUnion(this.PrimeMarket, edc);
-    } 
+      return CustomsUnion.CheckIfUnion(this.PrimeMarket, edc);
+    }
     #endregion
   }
 }

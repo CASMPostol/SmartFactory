@@ -126,7 +126,6 @@
                   <xsd:sequence minOccurs="0">
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title"/>
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ProductCodeNumber"/>
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ProductName"/>
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="CompensationGood"/>
                   </xsd:sequence>
                 </xsd:complexType>
