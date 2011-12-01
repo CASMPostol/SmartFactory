@@ -401,10 +401,6 @@ namespace CAS.SmartFactory.xml.Dictionaries {
         
         private double cFTProductivityRateMaxField;
         
-        private double cFTProductivityNormMinField;
-        
-        private double cFTProductivityNormMaxField;
-        
         /// <uwagi/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Title {
@@ -433,26 +429,6 @@ namespace CAS.SmartFactory.xml.Dictionaries {
             }
             set {
                 this.cFTProductivityRateMaxField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double CFTProductivityNormMin {
-            get {
-                return this.cFTProductivityNormMinField;
-            }
-            set {
-                this.cFTProductivityNormMinField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double CFTProductivityNormMax {
-            get {
-                return this.cFTProductivityNormMaxField;
-            }
-            set {
-                this.cFTProductivityNormMaxField = value;
             }
         }
     }

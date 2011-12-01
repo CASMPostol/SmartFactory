@@ -38,13 +38,22 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         edc = new EntitiesDataContext(url);
         Entities.Format.ImportData(data.Format, edc);
-        //Entities.CutfillerCoefficient.ImportData(data.Format, edc);
+        edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+        Entities.Consent.ImportData(data.Consent, edc);
+        Entities.CustomsUnion.ImportData(data.CustomsUnion, edc);
+        Entities.CutfillerCoefficient.ImportData(data.CutfillerCoefficient, edc);
+        Entities.Dust.ImportData(data.Dust, edc);
+        Entities.PCNCode.ImportData(data.PCNCode, edc);
+        Entities.SHMenthol.ImportData(data.SHMenthol, edc);
+        Entities.Usage.ImportData(data.Usage, edc);
+        Entities.Warehouse.ImportData(data.Warehouse, edc);
+        Entities.Waste.ImportData(data.Waste, edc);
+        edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
       }
       finally
       {
         if (edc != null)
         {
-          edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
           edc.Dispose();
         }
       }

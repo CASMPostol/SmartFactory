@@ -53,14 +53,17 @@
   <ItemGroup>
     <Compile Include="Entities\Anons.cs" />
     <Compile Include="Entities\Batch.cs" />
+    <Compile Include="Entities\Consent.cs" />
     <Compile Include="Entities\CustomsUnion.cs" />
     <Compile Include="Entities\CutfillerCoefficient.cs" />
     <Compile Include="Entities\Dokument.cs" />
     <Compile Include="Entities\Dust.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\EntitiesDataContext.cs" />
+    <Compile Include="Entities\Extensions.cs" />
     <Compile Include="Entities\Format.cs" />
     <Compile Include="Entities\Material.cs" />
+    <Compile Include="Entities\PCNCode.cs" />
     <Compile Include="Entities\SHMenthol.cs" />
     <Compile Include="Entities\SKUCigarette.cs" />
     <Compile Include="Entities\SKUCommonPart.cs" />

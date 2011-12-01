@@ -37,5 +37,10 @@ namespace CAS.SmartFactory.IPR.Entities
       };
       edc.Format.InsertAllOnSubmit(list);
     }
+    internal static Format GetFormatLookup(string name, EntitiesDataContext edc)
+    {
+      Format frmt = (from idx in edc.Format where idx.Tytuł.StartsWith(name) orderby idx.Identyfikator descending, idx.Wersja descending select idx).First();
+      return frmt;
+    }
   }
 }

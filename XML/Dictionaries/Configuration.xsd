@@ -92,8 +92,8 @@
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title"/>
                     <xsd:element minOccurs="1" type="xsd:double" name="CFTProductivityRateMin"/>
                     <xsd:element minOccurs="1" type="xsd:double" name="CFTProductivityRateMax"/>
-                    <xsd:element minOccurs="1" type="xsd:double" name="CFTProductivityNormMin"/>
-                    <xsd:element minOccurs="1" type="xsd:double" name="CFTProductivityNormMax"/>
+                    <!--<xsd:element minOccurs="1" type="xsd:double" name="CFTProductivityNormMin"/>
+                    <xsd:element minOccurs="1" type="xsd:double" name="CFTProductivityNormMax"/>-->
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
