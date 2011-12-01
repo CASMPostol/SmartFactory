@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CAS.SmartFactory.xml.Dictionaries;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
@@ -11,6 +12,22 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       SHMenthol value = (from idx in edc.SHMenthol where idx.ProductType == type orderby idx.Wersja descending select idx).First();
       return value;
+    }
+    internal static void ImportData(ConfigurationSHMentholItem[] configuration, EntitiesDataContext edc)
+    {
+      List<SHMenthol> list = new List<SHMenthol>();
+      foreach (ConfigurationSHMentholItem item in configuration)
+      {
+        SHMenthol shm = new SHMenthol
+        {
+          Batch = null,
+          ProductType = item.ProductType.ParseProductType(),
+          SHMentholRatio = item.SHMentholRatio,
+          Tytuł = item.Title
+        };
+        list.Add(shm);
+      };
+      edc.SHMenthol.InsertAllOnSubmit(list);
     }
   }
 }
