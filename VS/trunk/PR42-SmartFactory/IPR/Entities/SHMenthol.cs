@@ -20,10 +20,9 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         SHMenthol shm = new SHMenthol
         {
-          Batch = null,
+          Batch = null, //TODO to be removed ??
           ProductType = item.ProductType.ParseProductType(),
           SHMentholRatio = item.SHMentholRatio,
-          Tytuł = item.Title
         };
         list.Add(shm);
       };

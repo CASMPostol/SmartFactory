@@ -23,7 +23,6 @@ namespace CAS.SmartFactory.IPR.Entities
           Batch = null,
           DustRatio = item.DustRatio,
           ProductType = item.ProductType.ParseProductType(),
-          Tytuł = "Unawailable in the source data"
         };
         list.Add(dst);
       };
