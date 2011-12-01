@@ -23,7 +23,6 @@ namespace CAS.SmartFactory.IPR.Entities
         {
           Batch = null,
           ProductType = item.ProductType.ParseProductType(),
-          Tytuł = "Not in the source data", //TODO to be removed
           WasteRatio = item.WasteRatio
         };
         list.Add(wst);
