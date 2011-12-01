@@ -8,13 +8,11 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class StockEntry
   {
-    internal Entities.ProductType Type { get; set; } //TODO replace by the column: http://itrserver/Bugs/BugDetail.aspx?bid=2875
     public StockEntry(StockXmlRow xml, Stock parent)
     {
       StockListLookup = parent;
       Batch = xml.Batch.Trim();
       Blocked = xml.Blocked;
-      DocumentNo = "To be removed"; //TODO remove after http://itrserver/Bugs/BugDetail.aspx?bid=2871
       InQualityInsp = xml.InQualityInsp;
       IPRType = false;
       Location = xml.SLoc;
@@ -25,7 +23,7 @@ namespace CAS.SmartFactory.IPR.Entities
       Unrestricted = xml.Unrestricted;
       Quantity = 0;
       BatchLookup = null;
-      Type = ProductType.Invalid;
+      ProductType = Entities.ProductType.Invalid;
       Quantity = xml.Blocked.GetValueOrDefault(0) + xml.InQualityInsp.GetValueOrDefault(0) + xml.RestrictedUse.GetValueOrDefault(0) + xml.Unrestricted.GetValueOrDefault(0);
     }
     internal void ProcessEntry(EntitiesDataContext edc)
@@ -35,11 +33,11 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     private void GetProductType()
     {
-      Type = ProductType.Invalid;  //TODO implement GetProductType:http://itrserver/Bugs/BugDetail.aspx?bid=2876
+      ProductType = Entities.ProductType.Invalid;  //TODO implement GetProductType:http://itrserver/Bugs/BugDetail.aspx?bid=2876
     }
     private void GetBatchLookup(EntitiesDataContext edc)
     {
-      if (Type != ProductType.Cigarette || Type != ProductType.Cutfiller)
+      if (ProductType != Entities.ProductType.Cigarette || ProductType != Entities.ProductType.Cutfiller)
         return;
       if (!IPRType.GetValueOrDefault(false))
         return;

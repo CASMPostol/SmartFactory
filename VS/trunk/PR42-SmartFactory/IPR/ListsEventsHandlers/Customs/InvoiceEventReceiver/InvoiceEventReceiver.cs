@@ -75,7 +75,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
           ProductType = SKUCommonPart.GetLookup(edc, item.Material.Trim()).ProductType,
           Quantity = item.Bill_qty_in_SKU.ConvertToDouble(),
           SKU = item.Material.Trim(),
-          SKUDescription = item.Description.Trim(), //TODO to be removed: http://itrserver/Bugs/BugDetail.aspx?bid=2877
           Tytuł = item.Description.Trim(),
           Units = item.BUn
         };

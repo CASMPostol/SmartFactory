@@ -2029,7 +2029,9 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _pCNTariffCode;
 		
-		private string _compensationGood;
+		private System.Nullable<CompensationGood> _compensationGood;
+		
+		private System.Nullable<ClearingType> _clearingType;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _pCNCodeLookup;
 		
@@ -2368,8 +2370,11 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CompensationGood", Storage="_compensationGood", FieldType="Text")]
-		public string CompensationGood {
+		/// <summary>
+		/// Compensation Good
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CompensationGood", Storage="_compensationGood", FieldType="Choice")]
+		public System.Nullable<CompensationGood> CompensationGood {
 			get {
 				return this._compensationGood;
 			}
@@ -2378,6 +2383,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("CompensationGood", this._compensationGood);
 					this._compensationGood = value;
 					this.OnPropertyChanged("CompensationGood");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Clearing Type
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ClearingType", Storage="_clearingType", FieldType="Choice")]
+		public System.Nullable<ClearingType> ClearingType {
+			get {
+				return this._clearingType;
+			}
+			set {
+				if ((value != this._clearingType)) {
+					this.OnPropertyChanging("ClearingType", this._clearingType);
+					this._clearingType = value;
+					this.OnPropertyChanged("ClearingType");
 				}
 			}
 		}
@@ -2501,7 +2523,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Dust
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Dust", Id="0x0100E2A6EE8469AA524286812782556DFFF0")]
 	public partial class Dust : Element {
@@ -2540,6 +2562,17 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this._dustRatio = value;
 					this.OnPropertyChanged("DustRatio");
 				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Dust.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Dust.");
 			}
 		}
 		
@@ -2594,9 +2627,9 @@ namespace CAS.SmartFactory.IPR.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Format", Id="0x01008229B51223914BB3B88F3ABDB737237B")]
 	public partial class Format : Element {
 		
-		private System.Nullable<double> _cigaretteLenght;
+		private string _cigaretteLenght;
 		
-		private System.Nullable<double> _filterLenght;
+		private string _filterLenght;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2611,8 +2644,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// <summary>
 		/// CigaretteLenght
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CigaretteLenght", Storage="_cigaretteLenght", Required=true, FieldType="Number")]
-		public System.Nullable<double> CigaretteLenght {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CigaretteLenght", Storage="_cigaretteLenght", Required=true, FieldType="Text")]
+		public string CigaretteLenght {
 			get {
 				return this._cigaretteLenght;
 			}
@@ -2628,8 +2661,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// <summary>
 		/// FilterLenght
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FilterLenght", Storage="_filterLenght", Required=true, FieldType="Number")]
-		public System.Nullable<double> FilterLenght {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FilterLenght", Storage="_filterLenght", Required=true, FieldType="Text")]
+		public string FilterLenght {
 			get {
 				return this._filterLenght;
 			}
@@ -2776,8 +2809,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _sKU;
 		
-		private string _sKUDescription;
-		
 		private string _batch;
 		
 		private System.Nullable<double> _quantity;
@@ -2838,23 +2869,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("SKU", this._sKU);
 					this._sKU = value;
 					this.OnPropertyChanged("SKU");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// SKUDescription
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKUDescription", Storage="_sKUDescription", FieldType="Text")]
-		public string SKUDescription {
-			get {
-				return this._sKUDescription;
-			}
-			set {
-				if ((value != this._sKUDescription)) {
-					this.OnPropertyChanging("SKUDescription", this._sKUDescription);
-					this._sKUDescription = value;
-					this.OnPropertyChanged("SKUDescription");
 				}
 			}
 		}
@@ -3561,9 +3575,9 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _sADConsignmentDate;
 		
-		private string _compensationGood;
-		
 		private System.Nullable<double> _totalAmount;
+		
+		private System.Nullable<CompensationGood> _compensationGood;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
 		
@@ -3657,20 +3671,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CompensationGood", Storage="_compensationGood", FieldType="Text")]
-		public string CompensationGood {
-			get {
-				return this._compensationGood;
-			}
-			set {
-				if ((value != this._compensationGood)) {
-					this.OnPropertyChanging("CompensationGood", this._compensationGood);
-					this._compensationGood = value;
-					this.OnPropertyChanged("CompensationGood");
-				}
-			}
-		}
-		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TotalAmount", Storage="_totalAmount", FieldType="Number")]
 		public System.Nullable<double> TotalAmount {
 			get {
@@ -3681,6 +3681,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("TotalAmount", this._totalAmount);
 					this._totalAmount = value;
 					this.OnPropertyChanged("TotalAmount");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Compensation Good
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CompensationGood", Storage="_compensationGood", FieldType="Choice")]
+		public System.Nullable<CompensationGood> CompensationGood {
+			get {
+				return this._compensationGood;
+			}
+			set {
+				if ((value != this._compensationGood)) {
+					this.OnPropertyChanging("CompensationGood", this._compensationGood);
+					this._compensationGood = value;
+					this.OnPropertyChanged("CompensationGood");
 				}
 			}
 		}
@@ -3955,11 +3972,9 @@ namespace CAS.SmartFactory.IPR.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="PCNCode", Id="0x01002E9F09B06ACF47F7ADA76C12453C7AF7")]
 	public partial class PCNCode : Element {
 		
-		private System.Nullable<double> _productCodeNumber;
+		private string _productCodeNumber;
 		
-		private string _productName;
-		
-		private string _compensationGood;
+		private System.Nullable<CompensationGood> _compensationGood;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
 		
@@ -3980,8 +3995,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// <summary>
 		/// ProductCodeNumber
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductCodeNumber", Storage="_productCodeNumber", FieldType="Number")]
-		public System.Nullable<double> ProductCodeNumber {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductCodeNumber", Storage="_productCodeNumber", FieldType="Text")]
+		public string ProductCodeNumber {
 			get {
 				return this._productCodeNumber;
 			}
@@ -3995,24 +4010,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// ProductName
+		/// Compensation Good
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductName", Storage="_productName", FieldType="Text")]
-		public string ProductName {
-			get {
-				return this._productName;
-			}
-			set {
-				if ((value != this._productName)) {
-					this.OnPropertyChanging("ProductName", this._productName);
-					this._productName = value;
-					this.OnPropertyChanged("ProductName");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CompensationGood", Storage="_compensationGood", FieldType="Text")]
-		public string CompensationGood {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CompensationGood", Storage="_compensationGood", FieldType="Choice")]
+		public System.Nullable<CompensationGood> CompensationGood {
 			get {
 				return this._compensationGood;
 			}
@@ -4738,7 +4739,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// It contains a table of entries describing all the coefficients of menthol usage in cigarettes, including the date of their validity.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SHMenthol", Id="0x010029964D9D2D53F84CB1083741C40FA8D1")]
 	public partial class SHMenthol : Element {
@@ -4777,6 +4778,17 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this._sHMentholRatio = value;
 					this.OnPropertyChanged("SHMentholRatio");
 				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości SHMenthol.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości SHMenthol.");
 			}
 		}
 		
@@ -4835,7 +4847,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _sKU;
 		
-		private string _sKUDescription;
+		private System.Nullable<bool> _iPRMaterial;
 		
 		private System.Nullable<ProductType> _productType;
 		
@@ -4885,18 +4897,18 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// SKUDescription
+		/// IPR Material
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKUDescription", Storage="_sKUDescription", FieldType="Text")]
-		public string SKUDescription {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IPRMaterial", Storage="_iPRMaterial", FieldType="Boolean")]
+		public System.Nullable<bool> IPRMaterial {
 			get {
-				return this._sKUDescription;
+				return this._iPRMaterial;
 			}
 			set {
-				if ((value != this._sKUDescription)) {
-					this.OnPropertyChanging("SKUDescription", this._sKUDescription);
-					this._sKUDescription = value;
-					this.OnPropertyChanged("SKUDescription");
+				if ((value != this._iPRMaterial)) {
+					this.OnPropertyChanging("IPRMaterial", this._iPRMaterial);
+					this._iPRMaterial = value;
+					this.OnPropertyChanged("IPRMaterial");
 				}
 			}
 		}
@@ -5098,8 +5110,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="StockEntry", Id="0x0100060FE33D5AAE473ABDC2777AE86FED6C")]
 	public partial class StockEntry : Element {
 		
-		private string _documentNo;
-		
 		private string _sKU;
 		
 		private string _location;
@@ -5119,6 +5129,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		private System.Nullable<double> _quantity;
 		
 		private System.Nullable<bool> _iPRType;
+		
+		private System.Nullable<ProductType> _productType;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Batch> _batchLookup;
 		
@@ -5140,23 +5152,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this._stockListLookup.OnChanged += new System.EventHandler(this.OnStockListLookupChanged);
 			this._stockListLookup.OnChanging += new System.EventHandler(this.OnStockListLookupChanging);
 			this.OnCreated();
-		}
-		
-		/// <summary>
-		/// DocumentNo
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DocumentNo", Storage="_documentNo", FieldType="Text")]
-		public string DocumentNo {
-			get {
-				return this._documentNo;
-			}
-			set {
-				if ((value != this._documentNo)) {
-					this.OnPropertyChanging("DocumentNo", this._documentNo);
-					this._documentNo = value;
-					this.OnPropertyChanged("DocumentNo");
-				}
-			}
 		}
 		
 		/// <summary>
@@ -5325,6 +5320,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("IPRType", this._iPRType);
 					this._iPRType = value;
 					this.OnPropertyChanged("IPRType");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Material Type
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
+		public System.Nullable<ProductType> ProductType {
+			get {
+				return this._productType;
+			}
+			set {
+				if ((value != this._productType)) {
+					this.OnPropertyChanging("ProductType", this._productType);
+					this._productType = value;
+					this.OnPropertyChanged("ProductType");
 				}
 			}
 		}
@@ -5588,6 +5600,17 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this._wasteRatio = value;
 					this.OnPropertyChanged("WasteRatio");
 				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Waste.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Waste.");
 			}
 		}
 		
@@ -5873,9 +5896,9 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _brand;
 		
-		private System.Nullable<double> _cigaretteLenght;
+		private string _cigaretteLenght;
 		
-		private System.Nullable<double> _filterLenght;
+		private string _filterLenght;
 		
 		private string _primeMarket;
 		
@@ -5922,8 +5945,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// <summary>
 		/// CigaretteLenght
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CigaretteLenght", Storage="_cigaretteLenght", FieldType="Number")]
-		public System.Nullable<double> CigaretteLenght {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CigaretteLenght", Storage="_cigaretteLenght", FieldType="Text")]
+		public string CigaretteLenght {
 			get {
 				return this._cigaretteLenght;
 			}
@@ -5939,8 +5962,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// <summary>
 		/// FilterLenght
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FilterLenght", Storage="_filterLenght", FieldType="Number")]
-		public System.Nullable<double> FilterLenght {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FilterLenght", Storage="_filterLenght", FieldType="Text")]
+		public string FilterLenght {
 			get {
 				return this._filterLenght;
 			}
@@ -6073,5 +6096,43 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Final")]
 		Final = 16,
+	}
+	
+	public enum CompensationGood : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="tytoń")]
+		Tytoń = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="krajanka")]
+		Krajanka = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="papierosy")]
+		Papierosy = 8,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="pył tytoiowy")]
+		PyłTytoiowy = 16,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="odpad tytoniowy")]
+		OdpadTytoniowy = 32,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="kartony")]
+		Kartony = 64,
+	}
+	
+	public enum ClearingType : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="l. czesciowa")]
+		LCzesciowa = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="l. calkowita")]
+		LCalkowita = 4,
 	}
 }
