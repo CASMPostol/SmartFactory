@@ -28,12 +28,28 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     internal void ProcessEntry(EntitiesDataContext edc)
     {
-      GetProductType();
+      GetProductType(edc);
       GetBatchLookup(edc);
     }
-    private void GetProductType()
+    private void GetProductType(EntitiesDataContext edc)
     {
-      ProductType = Entities.ProductType.Invalid;  //TODO implement GetProductType:http://itrserver/Bugs/BugDetail.aspx?bid=2876
+      SKUCommonPart sku = SKUCommonPart.GetLookup(edc, SKU);
+      if (sku != null)
+      {
+        this.ProductType = sku.ProductType;
+        this.IPRType = sku.IPRMaterial;
+        return;
+      };
+      Warehouse wrh = Warehouse.GetLookup(edc, this.Location);
+      if (wrh != null)
+      {
+        this.ProductType = wrh.ProductType;
+        this.IPRType = false;
+        if (Entities.ProductType.IPRTobacco == wrh.ProductType.Value)
+          this.IPRType = true;
+        return;
+      }
+      ProductType = Entities.ProductType.Invalid;
     }
     private void GetBatchLookup(EntitiesDataContext edc)
     {
