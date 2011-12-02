@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
 	<ContentType ID="0x0100FCF87F15D5BE244EBA39ACA130B1ABDB" 
                Name="Batch" 
-               Group="CAS Smart Factory" 
+               Group="CAS Smart Factory IPR" 
                Description="Batch" 
                Overwrite="TRUE"
                Inherits="TRUE">
