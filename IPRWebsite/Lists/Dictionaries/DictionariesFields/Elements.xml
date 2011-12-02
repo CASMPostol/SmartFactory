@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="ConsentPeriod"
+    ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}"
+    Type="Number"
+    DisplayName="Consent period"
+    Group="CAS Smart Factory IPR Dictionaries"
+    />
+  <Field
     Name="EUPrimeMarket"
     ID="{C5AEA337-BDDC-4F77-AF0C-A8C925B6BB5B}"
     Type="Text"
