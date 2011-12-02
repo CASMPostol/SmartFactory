@@ -53,8 +53,6 @@
         <ViewFields>
           <FieldRef Name="Attachments">
           </FieldRef>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
           <FieldRef ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}" Name="FormatIndex" />
           <FieldRef ID="{a5854e29-ef45-49d8-8cf8-8c5c91f1c0c6}" Name="UsageMin" />
           <FieldRef ID="{1d56fc71-6866-4a9f-a9c9-629e91b54ae1}" Name="UsageMax" />
