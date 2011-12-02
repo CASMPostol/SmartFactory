@@ -244,7 +244,7 @@
   <Field
     DisplayName="Product ID"
     Name="ProductID"
-    Type="Number"
+    Type="Text"
     ID="{B523048C-0493-4D33-9166-D336C39F3C90}"
     Group="CAS Smart Factory IPR"
     Description="Product ID"
