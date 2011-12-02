@@ -30,6 +30,7 @@
       <CHOICE>Other</CHOICE>
     </CHOICES>
   </Field>
+      <Field DisplayName="DustRatio" Percentage="TRUE" Min="0" Max="5" Name="DustRatio" Type="Number" ID="{b7afdd32-1537-4091-a802-aa52bf8702d2}" Group="CAS Smart Factory IPR" Description="DustRatio" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

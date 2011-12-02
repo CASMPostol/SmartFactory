@@ -30,7 +30,7 @@
       <CHOICE>Other</CHOICE>
     </CHOICES>
   </Field>
-      <Field DisplayName="WasteRatio" Name="WasteRatio" Type="Number" ID="{440bd88d-3870-480e-b01e-f934d478593f}" Group="CAS Smart Factory IPR" Description="WasteRatio" />
+      <Field DisplayName="WasteRatio" Name="WasteRatio" Type="Number" ID="{440bd88d-3870-480e-b01e-f934d478593f}" Group="CAS Smart Factory IPR" Description="WasteRatio" Percentage="TRUE" Min="0" Max="5" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

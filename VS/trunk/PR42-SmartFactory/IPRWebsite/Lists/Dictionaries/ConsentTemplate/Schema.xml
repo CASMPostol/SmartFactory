@@ -24,8 +24,8 @@
     </ContentTypes>
     <Fields>
       <Field DisplayName="ConsentNo" Name="ConsentNo" Type="Text" ID="{7e356924-ecc1-4ae2-b5af-4501388062d8}" Group="CAS Smart Factory IPR" Description="ConsentNo" />
-      <Field Name="ProductivityRateMin" ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Type="Number" DisplayName="Productivity rate - min" Group="CAS Smart Factory IPR Dictionaries" />
-      <Field Name="ProductivityRateMax" ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}" Type="Number" DisplayName="Productivity rate - max" Group="CAS Smart Factory IPR Dictionaries" />
+      <Field Name="ProductivityRateMin" ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Type="Number" Percentage="TRUE" Min="0" Max="5" DisplayName="Productivity rate - min" Group="CAS Smart Factory IPR Dictionaries" />
+      <Field Name="ProductivityRateMax" ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}" Type="Number" Percentage="TRUE" Min="0" Max="5" DisplayName="Productivity rate - max" Group="CAS Smart Factory IPR Dictionaries" />
       <Field ID="{7bf919f9-500d-4584-a5ac-ac03d705d2b1}" Name="ValidFromDate" Group="CAS Smart Factory IPR Dictionaries" Type="DateTime" Format="DateOnly" DisplayName="Valid from date">
     <Default>[today]</Default>
   </Field>
