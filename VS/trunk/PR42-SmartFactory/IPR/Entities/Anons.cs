@@ -16,7 +16,8 @@ namespace CAS.SmartFactory.IPR.Entities
     public Anons(string source, string message)
     {
       Tytuł = source;
-      Treść = "Import of a stock xml message failed because the file is empty.";
+      Treść = message;
+      this.Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0);
     }
     /// <summary>
     /// Writes an entry with the given message text and application-defined event identifier to the event log list. 

@@ -19,6 +19,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
     /// </summary>
     public override void ItemAdded(SPItemEventProperties properties)
     {
+      if (!properties.List.Title.Contains("Stock"))
+        return;
       try
       {
         this.EventFiringEnabled = false;

@@ -19,6 +19,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <param name="properties">Contains properties for asynchronous list item event handlers.</param>
     public override void ItemAdded(SPItemEventProperties properties)
     {
+      if (!properties.List.Title.Contains("Batch"))
+        return;
       EntitiesDataContext edc = null;
       try
       {
@@ -148,7 +150,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           TobaccoQuantity = Convert.ToDouble(item.Quantity_calculated),
           MaterialGroup = item.material_group.Trim(),
           ProductType = ProductType.Invalid,
-          ProductID = 0 //TODO must be replaced by string is the same as Material group: http://itrserver/Bugs/BugDetail.aspx?bid=2854
+          ProductID = 0 //TODO must be replaced by string is the same as Material group: http://itrserver/Bugs/BugDetail.aspx?bid=2898
         };
         newMaterial.GetProductType(edc);
         itemsList.Add(newMaterial.SKU, newMaterial);

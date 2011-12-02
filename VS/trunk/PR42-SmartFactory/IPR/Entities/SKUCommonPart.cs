@@ -12,12 +12,11 @@ namespace CAS.SmartFactory.IPR.Entities
   {
     #region public
     public SKUCommonPart(MaterialXml xml, Dokument parent, EntitiesDataContext edc)
+      : this()
     {
       this.SKULibraryLookup = parent;
       this.SKU = xml.GetMaterial();
       this.Tytuł = xml.GetMaterialDescription();
-      this.FormatLookup = GetFormatLookup(xml, edc);
-      this.IPRMaterial = GetIPRMaterial(edc);
     }
     internal static SKUCommonPart GetLookup(EntitiesDataContext edc, string index)
     {
@@ -43,7 +42,7 @@ namespace CAS.SmartFactory.IPR.Entities
           break;
         case CAS.SmartFactory.xml.erp.SKU.SKUType.Cutfiller:
           GetXmlContent(xmlDocument.GetMaterial(), edc, entry, delegate(MaterialXml xml, Dokument lib, EntitiesDataContext context)
-          { return new SKUCutfiller((CutfillerMaterialxML)xml, lib, context) as SKUCommonPart; });
+          { return new SKUCutfiller((CutfillerMaterialxML)xml, lib, context); });
           break;
       }
     }
@@ -59,17 +58,25 @@ namespace CAS.SmartFactory.IPR.Entities
         try
         {
           SKUCommonPart entity = GetLookup(edc, item.GetMaterial());
-          if (entity == null)
-            entities.Add(creator(item, parent, edc));
+          if (entity != null)
+            break;
+          SKUCommonPart sku = creator(item, parent, edc);
+          sku.ProcessData(item, edc);
+          entities.Add(sku);
         }
         catch (Exception ex)
         {
           string message = String.Format("Cannot create: {0}, because of the error: {1}", item.GetMaterialDescription(), ex.Message);
-          Anons.WriteEntry(edc, "SKU entry  error", message);
+          Anons.WriteEntry(edc, "SKU entry error", message);
         }
       }
       if (entities.Count > 0)
         edc.SKU.InsertAllOnSubmit(entities);
+    }
+    private void ProcessData(MaterialXml xml, EntitiesDataContext edc)
+    {
+      this.FormatLookup = GetFormatLookup(xml, edc);
+      this.IPRMaterial = GetIPRMaterial(edc);
     }
     protected abstract Format GetFormatLookup(MaterialXml document, EntitiesDataContext edc);
     protected abstract bool GetIPRMaterial(EntitiesDataContext edc);

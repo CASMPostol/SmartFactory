@@ -18,6 +18,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     /// </summary>
     public override void ItemAdded(SPItemEventProperties properties)
     {
+      if (!properties.List.Title.Contains("Invoice"))
+        return;
       EntitiesDataContext edc = null;
       try
       {

@@ -21,16 +21,16 @@ namespace CAS.SmartFactory.IPR.Entities
     #endregion
 
     #region private
-    protected override Format GetFormatLookup(MaterialXml document, EntitiesDataContext edc)
+    protected override Format GetFormatLookup(MaterialXml xml, EntitiesDataContext edc)
     {
-      CigarettesMaterialxML xml = (CigarettesMaterialxML)document;
-      this.CigaretteLenght = xml.Cigarette_Length.Trim();
-      this.FilterLenght = xml.Filter_Segment_Length.Trim();
-      return Format.GetFormatLookup(xml.Cigarette_Length, xml.Filter_Segment_Length, edc);
+      CigarettesMaterialxML cxml = (CigarettesMaterialxML)xml;
+      this.CigaretteLenght = cxml.Cigarette_Length.Trim();
+      this.FilterLenght = cxml.Filter_Segment_Length.Trim();
+      return Format.GetFormatLookup(cxml.Cigarette_Length, cxml.Filter_Segment_Length, edc);
     }
     protected override bool GetIPRMaterial(EntitiesDataContext edc)
     {
-      return CustomsUnion.CheckIfUnion(this.PrimeMarket, edc);
+      return ! CustomsUnion.CheckIfUnion(this.PrimeMarket, edc);
     }
     #endregion
   }
