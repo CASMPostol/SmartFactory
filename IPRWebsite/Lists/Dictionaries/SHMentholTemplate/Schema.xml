@@ -30,6 +30,7 @@
       <CHOICE>Other</CHOICE>
     </CHOICES>
   </Field>
+      <Field DisplayName="SHMentholRatio" Name="SHMentholRatio" Type="Number" Percentage="TRUE" Min="0" Max="5" ID="{dd7d6806-45a6-494d-a940-1baae80840a2}" Group="CAS Smart Factory IPR" Description="SHMentholRatio" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

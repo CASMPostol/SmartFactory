@@ -76,8 +76,8 @@
     Name="CFTProductivityNormMax"
     Group="CAS Smart Factory IPR"
     ReadOnly="TRUE">
-    <Formula>=CFTProductivityRateMax/1000</Formula>
-    <FormulaDisplayNames>=CFTProductivityRateMax/1000</FormulaDisplayNames>
+    <Formula>=CFTProductivityRateMax*1000</Formula>
+    <FormulaDisplayNames>=CFTProductivityRateMax*1000</FormulaDisplayNames>
     <FieldRefs>
       <FieldRef ID ="368C844B-0491-42AE-A102-D888646823FD" Name="CFTProductivityRateMax"/>
     </FieldRefs>
@@ -93,8 +93,8 @@
     Name="CFTProductivityNormMin"
     Group="CAS Smart Factory IPR"
     ReadOnly="TRUE">
-    <Formula>=CFTProductivityRateMin/1000</Formula>
-    <FormulaDisplayNames>=CFTProductivityRateMin/1000</FormulaDisplayNames>
+    <Formula>=CFTProductivityRateMin*1000</Formula>
+    <FormulaDisplayNames>=CFTProductivityRateMin*1000</FormulaDisplayNames>
     <FieldRefs>
       <FieldRef Name="CFTProductivityRateMin"/>
     </FieldRefs>
@@ -103,18 +103,22 @@
     DisplayName="CFTProductivityRateMax"
     Name="CFTProductivityRateMax"
     Type="Number"
+    Percentage="TRUE"
+    Min="0"
+    Max="5"
     ID="{368C844B-0491-42AE-A102-D888646823FD}"
     Group="CAS Smart Factory IPR"
     StaticName="CFTProductivityRateMax"
-    Description="CFTProductivityRateMax"
     />
   <Field
     DisplayName="CFTProductivityRateMin"
     Name="CFTProductivityRateMin"
     Type="Number"
+    Percentage="TRUE"
+    Min="0"
+    Max="5"
     ID="{8238B9F6-7172-4FAD-BEBF-B576B9DBD76A}"
     Group="CAS Smart Factory IPR"
-    Description="CFTProductivityRateMin"
     />
   <Field
     DisplayName="ConsentNo"
@@ -226,6 +230,9 @@
   <Field
     DisplayName="WasteRatio"
     Name="WasteRatio"
+    Percentage="TRUE"
+    Min="0"
+    Max="5"
     Type="Number"
     ID="{440BD88D-3870-480E-B01E-F934D478593F}"
     Group="CAS Smart Factory IPR"
@@ -265,6 +272,9 @@
     />
   <Field
     DisplayName="DustRatio"
+    Percentage="TRUE"
+    Min="0"
+    Max="5"
     Name="DustRatio"
     Type="Number"
     ID="{b7afdd32-1537-4091-a802-aa52bf8702d2}"
@@ -275,6 +285,9 @@
     DisplayName="SHMentholRatio"
     Name="SHMentholRatio"
     Type="Number"
+    Percentage="TRUE"
+    Min="0"
+    Max="5"
     ID="{dd7d6806-45a6-494d-a940-1baae80840a2}"
     Group="CAS Smart Factory IPR"
     Description="SHMentholRatio"
