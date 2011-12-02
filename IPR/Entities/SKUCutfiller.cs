@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     protected override bool GetIPRMaterial(EntitiesDataContext edc)
     {
-      return Tytuł.EndsWith("NEU");
+      return BlendPurpose.Contains("NEU");
     }
   }
 }

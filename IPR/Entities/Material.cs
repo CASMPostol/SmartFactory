@@ -5,7 +5,7 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class Material
   {
-    internal string MaterialGroup { get; set; } //TODO must be replaced by the ProductID: http://itrserver/Bugs/BugDetail.aspx?bid=2854
+    internal string MaterialGroup { get; set; } //TODO must be replaced by the ProductID: http://itrserver/Bugs/BugDetail.aspx?bid=2898
     internal void GetProductType(EntitiesDataContext edc)
     {
       SKUCommonPart sku = SKUCommonPart.GetLookup(edc, this.SKU);
