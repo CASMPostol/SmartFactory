@@ -342,6 +342,7 @@
     <None Include="ERP\Batch.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ERP\GoXSD.ps1" />
     <None Include="ERP\Invoice.xltx" />
     <None Include="ERP\Invoice.XSD">
       <SubType>Designer</SubType>

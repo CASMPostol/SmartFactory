@@ -14,7 +14,7 @@ namespace CAS.SmartFactory.IPR.Entities
       : base(document, parent, edc)
     {
       ProductType = Entities.ProductType.Cutfiller;
-      BlendPurpose = document.BlendPurpose;
+      BlendPurpose = String.IsNullOrEmpty(document.BlendPurpose) ? String.Empty : document.BlendPurpose;
     }
     protected override Format GetFormatLookup(MaterialXml document, EntitiesDataContext edc)
     {
@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     protected override bool? GetIPRMaterial(EntitiesDataContext edc)
     {
-      return BlendPurpose.Contains("NEU");
+      return (!String.IsNullOrEmpty(BlendPurpose)) && BlendPurpose.Contains("NEU");
     }
   }
 }

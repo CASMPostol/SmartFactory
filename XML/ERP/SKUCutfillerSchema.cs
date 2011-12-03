@@ -54,9 +54,7 @@ namespace CAS.SmartFactory.xml.erp {
         
         private string revision_LevelField;
         
-        private System.Nullable<System.DateTime> valid_from_Date_DDMMYYYYField;
-        
-        private bool valid_from_Date_DDMMYYYYFieldSpecified;
+        private string valid_from_Date_DDMMYYYYField;
         
         private string baseUnitOfMeasureField;
         
@@ -325,24 +323,13 @@ namespace CAS.SmartFactory.xml.erp {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true)]
-        public System.Nullable<System.DateTime> Valid_from_Date_DDMMYYYY {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Valid_from_Date_DDMMYYYY {
             get {
                 return this.valid_from_Date_DDMMYYYYField;
             }
             set {
                 this.valid_from_Date_DDMMYYYYField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool Valid_from_Date_DDMMYYYYSpecified {
-            get {
-                return this.valid_from_Date_DDMMYYYYFieldSpecified;
-            }
-            set {
-                this.valid_from_Date_DDMMYYYYFieldSpecified = value;
             }
         }
         
