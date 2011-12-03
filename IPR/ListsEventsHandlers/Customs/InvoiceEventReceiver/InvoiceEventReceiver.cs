@@ -70,14 +70,14 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
           functionValue = item.Bill_doc.ToString();
         InvoiceContent newInvoiceContent = new InvoiceContent()
         {
-          Batch = item.Batch.Trim(),
-          BatchLookup = Batch.GetLookup(edc, item.Batch.Trim()),
+          Batch = item.Batch,
+          BatchLookup = Batch.GetLookup(edc, item.Batch),
           InvoiceLookup = parent,
           ItemNo = item.Item.ConvertToDouble(),
-          ProductType = SKUCommonPart.GetLookup(edc, item.Material.Trim()).ProductType,
+          ProductType = SKUCommonPart.GetLookup(edc, item.Material).ProductType,
           Quantity = item.Bill_qty_in_SKU.ConvertToDouble(),
-          SKU = item.Material.Trim(),
-          Tytuł = item.Description.Trim(),
+          SKU = item.Material,
+          Tytuł = item.Description,
           Units = item.BUn
         };
       }

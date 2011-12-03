@@ -5,6 +5,7 @@ using CigarettesMaterialxML = CAS.SmartFactory.xml.erp.CigarettesMaterial;
 using CutfillerMaterialxML = CAS.SmartFactory.xml.erp.CutfillerMaterial;
 using MaterialXml = CAS.SmartFactory.xml.erp.Material;
 using SKUXml = CAS.SmartFactory.xml.erp.SKU;
+using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
@@ -32,17 +33,25 @@ namespace CAS.SmartFactory.IPR.Entities
       catch (Exception) { }
       return newSKU;
     }
-    internal static void GetXmlContent(SKUXml xmlDocument, EntitiesDataContext edc, Dokument entry)
+    internal static void GetXmlContent
+      (SKUXml xmlDocument, EntitiesDataContext edc, Dokument entry, ProgressChangedEventHandler progressChanged)
     {
       switch (xmlDocument.Type)
       {
         case CAS.SmartFactory.xml.erp.SKU.SKUType.Cigarettes:
-          GetXmlContent(xmlDocument.GetMaterial(), edc, entry, delegate(MaterialXml xml, Dokument lib, EntitiesDataContext context)
-          { return new SKUCigarette((CigarettesMaterialxML)xml, lib, context); });
+          GetXmlContent(
+            xmlDocument.GetMaterial(), 
+            edc, 
+            entry, 
+            (MaterialXml xml, Dokument lib, EntitiesDataContext context) => { return new SKUCigarette((CigarettesMaterialxML)xml, lib, context);}, 
+            progressChanged);
           break;
         case CAS.SmartFactory.xml.erp.SKU.SKUType.Cutfiller:
-          GetXmlContent(xmlDocument.GetMaterial(), edc, entry, delegate(MaterialXml xml, Dokument lib, EntitiesDataContext context)
-          { return new SKUCutfiller((CutfillerMaterialxML)xml, lib, context); });
+          GetXmlContent(
+            xmlDocument.GetMaterial(), 
+            edc, 
+            entry, 
+            (MaterialXml xml, Dokument lib, EntitiesDataContext context) => { return new SKUCutfiller((CutfillerMaterialxML)xml, lib, context); }, progressChanged);
           break;
       }
     }
@@ -50,23 +59,25 @@ namespace CAS.SmartFactory.IPR.Entities
 
     #region private
     private delegate SKUCommonPart CreateMaterialXml(MaterialXml xml, Dokument lib, EntitiesDataContext context);
-    private static void GetXmlContent(MaterialXml[] material, EntitiesDataContext edc, Dokument parent, CreateMaterialXml creator)
+    private static void GetXmlContent
+      (MaterialXml[] material, EntitiesDataContext edc, Dokument parent, CreateMaterialXml creator, ProgressChangedEventHandler progressChanged)
     {
       List<SKUCommonPart> entities = new List<SKUCommonPart>();
       foreach (MaterialXml item in material)
       {
         try
         {
+          progressChanged(null, new ProgressChangedEventArgs(1, "Processing: " + item.GetMaterial()));
           SKUCommonPart entity = GetLookup(edc, item.GetMaterial());
           if (entity != null)
-            break;
+            continue;
           SKUCommonPart sku = creator(item, parent, edc);
           sku.ProcessData(item, edc);
           entities.Add(sku);
         }
         catch (Exception ex)
         {
-          string message = String.Format("Cannot create: {0}, because of the error: {1}", item.GetMaterialDescription(), ex.Message);
+          string message = String.Format("Cannot create: {0}:{1} because of the error: {2}", item.GetMaterial(), item.GetMaterialDescription(), ex.Message);
           Anons.WriteEntry(edc, "SKU entry error", message);
         }
       }
@@ -78,8 +89,8 @@ namespace CAS.SmartFactory.IPR.Entities
       this.FormatLookup = GetFormatLookup(xml, edc);
       this.IPRMaterial = GetIPRMaterial(edc);
     }
-    protected abstract Format GetFormatLookup(MaterialXml document, EntitiesDataContext edc);
-    protected abstract bool GetIPRMaterial(EntitiesDataContext edc);
+    protected abstract Format GetFormatLookup(MaterialXml xml, EntitiesDataContext edc);
+    protected abstract bool? GetIPRMaterial(EntitiesDataContext edc);
     #endregion
   }
 }

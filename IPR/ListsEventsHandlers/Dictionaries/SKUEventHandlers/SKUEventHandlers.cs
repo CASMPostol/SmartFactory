@@ -9,6 +9,7 @@ using SKUXml = CAS.SmartFactory.xml.erp.SKU;
 using CigarettesXml = CAS.SmartFactory.xml.erp.Cigarettes;
 using CutfillerXml = CAS.SmartFactory.xml.erp.Cutfiller;
 using Microsoft.SharePoint.Linq;
+using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
 {
@@ -24,21 +25,36 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
     {
       if (!properties.List.Title.Contains("SKU"))
         return;
+      //TODo remove or implement
+      //if (properties.ListItem.File == null)
+      //{
+      //  Anons.WriteEntry(edc, m_Title, "Import of a SKU xml message failed because the file is empty.");
+      //  return;
+      //}
+      this.EventFiringEnabled = false;
+      SKUEvetReceiher(
+        properties.ListItem.File.OpenBinaryStream(),
+        properties.WebUrl,
+        properties.ListItem.ID,
+        (object obj, ProgressChangedEventArgs progres) =>
+        {
+          return;
+        });
+      this.EventFiringEnabled = true;
+      base.ItemAdded(properties);
+    }
+    public static void SKUEvetReceiher(System.IO.Stream stream, string url, int listIndex, ProgressChangedEventHandler progressChanged)
+    {
       EntitiesDataContext edc = null;
       try
       {
-        this.EventFiringEnabled = false;
-        if (properties.ListItem.File == null)
-        {
-          Anons.WriteEntry(edc, m_Title, "Import of a SKU xml message failed because the file is empty.");
-          return;
-        }
-        edc = new EntitiesDataContext(properties.WebUrl);
-        String message = String.Format("Import of the SKU message {0} starting.", properties.ListItem.File.ToString());
+        edc = new EntitiesDataContext(url);
+        String message = String.Format("Import of the SKU message {0} starting.", listIndex);
         Anons.WriteEntry(edc, m_Title, message);
-        SKUXml xml = SKUXml.ImportDocument(properties.ListItem.File.OpenBinaryStream());
-        Dokument entry = Dokument.GetEntity(properties.ListItem.ID, edc.SKULibrary);
-        SKUCommonPart.GetXmlContent(xml, edc, entry);
+        SKUXml xml = SKUXml.ImportDocument(stream);
+        Dokument entry = Dokument.GetEntity(listIndex, edc.SKULibrary);
+        SKUCommonPart.GetXmlContent(xml, edc, entry, progressChanged);
+        progressChanged(null, new ProgressChangedEventArgs(1, "Submiting Changes"));
         edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
       }
       catch (Exception ex)
@@ -54,8 +70,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
           edc.SubmitChangesSilently(RefreshMode.KeepCurrentValues);
           edc.Dispose();
         }
-        this.EventFiringEnabled = true;
-        base.ItemAdded(properties);
       }
     }
     private const string m_Title = "SKU Message Import";
