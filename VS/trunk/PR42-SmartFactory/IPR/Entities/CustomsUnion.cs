@@ -7,8 +7,10 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class CustomsUnion
   {
-    internal static bool CheckIfUnion(string primeMarket, EntitiesDataContext edc)
+    internal static bool? CheckIfUnion(string primeMarket, EntitiesDataContext edc)
     {
+      if (String.IsNullOrEmpty(primeMarket))
+        throw new InvalidProgramException("CustomsUnion.CheckIfUnion the primeMarket parameter cannot be null");
       return (from item in edc.CustomsUnion where item.EUPrimeMarket.Contains(primeMarket) select item).Any();
     }
     internal static void ImportData(ConfigurationCustomsUnionItem[] configuration, EntitiesDataContext edc)
@@ -25,5 +27,6 @@ namespace CAS.SmartFactory.IPR.Entities
       };
       edc.CustomsUnion.InsertAllOnSubmit(list);
     }
+    private const string  m_Source = "Customs Union List";
   }
 }

@@ -11,14 +11,14 @@ namespace CAS.SmartFactory.IPR.Entities
     public StockEntry(StockXmlRow xml, Stock parent)
     {
       StockListLookup = parent;
-      Batch = xml.Batch.Trim();
+      Batch = xml.Batch;
       Blocked = xml.Blocked;
       InQualityInsp = xml.InQualityInsp;
       IPRType = false;
       Location = xml.SLoc;
       RestrictedUse = xml.RestrictedUse;
-      SKU = xml.Material.Trim();
-      Tytuł = xml.MaterialDescription.Trim();
+      SKU = xml.Material;
+      Tytuł = xml.MaterialDescription;
       Units = xml.BUn;
       Unrestricted = xml.Unrestricted;
       Quantity = 0;

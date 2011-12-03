@@ -10,11 +10,14 @@ namespace CAS.SmartFactory.IPR.Entities
   {
     internal static Dokument GetEntity(int id, EntityList<Dokument> list)
     {
-      Dokument entry =
-        (from enr in list
-         where enr.Identyfikator == id
-         select enr).First<Dokument>();
-      return entry;
+      try
+      {
+        return (from enr in list where enr.Identyfikator == id select enr).First<Dokument>();
+      }
+      catch (Exception)
+      {
+        return null;
+      }
     }
   }
 }

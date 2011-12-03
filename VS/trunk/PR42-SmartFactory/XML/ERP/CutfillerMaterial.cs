@@ -9,11 +9,11 @@ namespace CAS.SmartFactory.xml.erp
   {
     public override string GetMaterial()
     {
-      return this.Material.Trim();
+      return this.Material;
     }
     public override string GetMaterialDescription()
     {
-      return this.MaterialDescription.Trim();
+      return this.MaterialDescription;
     }
   }
 }
