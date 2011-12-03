@@ -15,23 +15,21 @@ namespace CAS.SmartFactory.xml.erp
       using (XmlReader reader = XmlReader.Create(documetStream))
       {
         if (reader.MoveToContent() != XmlNodeType.Element)
-          throw new ApplicationException("The file does not contain valid xml file.");
+          throw new ImputDataErrorException(m_Source, "The file does not contain valid xml file.", null);
         if (reader.Name.Contains("Cutfiller"))
           type = typeof(Cutfiller);
         else if (reader.Name.Contains("Cigarettes"))
           type = typeof(Cigarettes);
       }
       if (type == null)
-        throw new ApplicationException("The file does not contain a valid SKU xml document");
+        throw new ImputDataErrorException(m_Source, "The file does not contain a valid SKU xml document", null);
       documetStream.Seek(0, System.IO.SeekOrigin.Begin);
-      using (XmlReader reader = XmlReader.Create(documetStream, new XmlReaderSettings() { }))
-      {
-        XmlSerializer invoice = new XmlSerializer(type);
-        return (SKU)invoice.Deserialize(reader);
-      }
+      XmlSerializer serializer = new XmlSerializer(type);
+      return (SKU)serializer.Deserialize(documetStream);
     }
     public enum SKUType { Cigarettes, Cutfiller }
     public abstract SKUType Type { get; }
     public abstract Material[] GetMaterial();
+    private const string m_Source = "SKU processing";
   }
 }

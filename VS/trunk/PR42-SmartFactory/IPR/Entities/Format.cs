@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     internal static Format GetCutfillerFormatLookup(EntitiesDataContext edc)
     {
-      return GetFormatLookup(String.Empty, String.Empty, edc);
+      return GetFormatLookup(m_CutfillerLength, m_CutfillerLength, edc);
     }
     internal static Format GetFormatLookup(string cigaretteLength, string filterSegmentLength, EntitiesDataContext edc)
     {
@@ -50,6 +50,6 @@ namespace CAS.SmartFactory.IPR.Entities
       return String.Format(frmt, this.CigaretteLenght, this.FilterLenght).CompareTo(String.Format(frmt, cigaretteLength, filterSegmentLength)) == 0;
     }
     private const string m_Souece = "Format processing";
-
+    private const string m_CutfillerLength = "0.00 mm";
   }
 }
