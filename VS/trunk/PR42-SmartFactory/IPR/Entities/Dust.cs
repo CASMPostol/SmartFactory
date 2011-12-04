@@ -20,7 +20,6 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         Dust dst = new Dust
         {
-          Batch = null,
           DustRatio = item.DustRatio,
           ProductType = item.ProductType.ParseProductType(),
         };

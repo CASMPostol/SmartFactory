@@ -16,12 +16,11 @@ namespace CAS.SmartFactory.IPR.Entities
         Consent cns = new Consent
         {
           ConsentNo = item.ConsentNo,
-          IPR = null, //TODO to be removed
           ProductivityRateMax = item.ProductivityRateMax,
           ProductivityRateMin = item.ProductivityRateMin,
-          Tytuł = item.Title,
           ValidFromDate = item.ValidFromDate,
-          ValidToDate = item.ValidToDate
+          ValidToDate = item.ValidToDate,
+          ConsentPeriod = 0 //TODO ger from impout data http://itrserver/Bugs/BugDetail.aspx?bid=2907
         };
         list.Add(cns);
       };
