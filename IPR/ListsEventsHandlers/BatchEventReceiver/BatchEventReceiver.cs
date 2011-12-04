@@ -132,7 +132,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         return this.Values;
       }
     }
-    private SummaryContentInfo GetXmlContent(BatchMaterialXml[] batchEntries, EntitiesDataContext edc, Batch parent)
+    private static SummaryContentInfo GetXmlContent(BatchMaterialXml[] batchEntries, EntitiesDataContext edc, Batch parent)
     {
       SummaryContentInfo itemsList = new SummaryContentInfo();
       foreach (BatchMaterialXml item in batchEntries)
@@ -148,9 +148,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           Units = item.Unit,
           FGQuantity = Convert.ToDouble(item.Quantity),
           TobaccoQuantity = Convert.ToDouble(item.Quantity_calculated),
-          MaterialGroup = item.material_group,
           ProductType = ProductType.Invalid,
-          ProductID = 0 //TODO must be replaced by string is the same as Material group: http://itrserver/Bugs/BugDetail.aspx?bid=2898
+          ProductID = item.material_group
         };
         newMaterial.GetProductType(edc);
         itemsList.Add(newMaterial.SKU, newMaterial);
