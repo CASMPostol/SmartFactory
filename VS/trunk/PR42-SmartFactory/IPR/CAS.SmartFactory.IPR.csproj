@@ -74,12 +74,15 @@
     <Compile Include="Entities\Waste.cs" />
     <Compile Include="ListsEventsHandlers\BatchEventReceiver\BatchEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />
+    <Compile Include="ListsEventsHandlers\Customs\SADImportXML\SADImportXML.cs" />
     <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUEventHandlers.cs" />
     <Compile Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\StockLibraryEventReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SADImportXML\SADImportXML.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ListsEventsHandlers\Customs\SADImportXML\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{32323fbc-d26b-4398-b3d0-963410cce328}</SharePointProjectItemId>
+    </None>
     <None Include="SKU.cd" />
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Entities\Scripts\psconsole.psc1" />
@@ -95,9 +98,6 @@
     </None>
     <None Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e8d364ea-bf70-4d56-a5b2-880a07138cc4}</SharePointProjectItemId>
-    </None>
-    <None Include="SADImportXML\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{ccb9c50e-0d1c-4582-9f74-eff832a012f6}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -121,11 +121,11 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\Elements.xml" />
+    <Content Include="ListsEventsHandlers\Customs\SADImportXML\Elements.xml" />
     <Content Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\Elements.xml" />
-    <Content Include="SADImportXML\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XML\CAS.SmartFactory.XML.csproj">
