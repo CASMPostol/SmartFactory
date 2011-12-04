@@ -1696,7 +1696,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Consent
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Consent", Id="0x0100A7FE6CFCCADBB7409C1F0FA102B9C573")]
 	public partial class Consent : Element {
@@ -1710,6 +1710,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		private System.Nullable<double> _productivityRateMin;
 		
 		private System.Nullable<double> _productivityRateMax;
+		
+		private System.Nullable<double> _consentPeriod;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<IPR> _iPR;
 		
@@ -1800,6 +1802,31 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ConsentPeriod", Storage="_consentPeriod", FieldType="Number")]
+		public System.Nullable<double> ConsentPeriod {
+			get {
+				return this._consentPeriod;
+			}
+			set {
+				if ((value != this._consentPeriod)) {
+					this.OnPropertyChanging("ConsentPeriod", this._consentPeriod);
+					this._consentPeriod = value;
+					this.OnPropertyChanged("ConsentPeriod");
+				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Consent.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Consent.");
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ConsentIndex", Storage="_iPR", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="IPR")]
 		public Microsoft.SharePoint.Linq.EntitySet<IPR> IPR {
 			get {
@@ -1862,7 +1889,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// CutfillerCoefficient
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CutfillerCoefficient", Id="0x01001D2AFAE51342C546A5F1677134421FD5")]
 	public partial class CutfillerCoefficient : Element {
@@ -1891,9 +1918,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// CFTProductivityRateMin
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CFTProductivityRateMin", Storage="_cFTProductivityRateMin", FieldType="Number")]
 		public System.Nullable<double> CFTProductivityRateMin {
 			get {
@@ -1908,9 +1932,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		/// <summary>
-		/// CFTProductivityRateMax
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CFTProductivityRateMax", Storage="_cFTProductivityRateMax", FieldType="Number")]
 		public System.Nullable<double> CFTProductivityRateMax {
 			get {
@@ -1956,6 +1977,17 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this._cFTProductivityNormMax = value;
 					this.OnPropertyChanged("CFTProductivityNormMax");
 				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości CutfillerCoefficient.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości CutfillerCoefficient.");
 			}
 		}
 		
@@ -3763,7 +3795,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _batch;
 		
-		private System.Nullable<double> _productID;
+		private string _productID;
 		
 		private string _location;
 		
@@ -3845,8 +3877,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// <summary>
 		/// Product ID
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductID", Storage="_productID", FieldType="Number")]
-		public System.Nullable<double> ProductID {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductID", Storage="_productID", FieldType="Text")]
+		public string ProductID {
 			get {
 				return this._productID;
 			}
@@ -5391,7 +5423,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// It contains all relevant norms of tobacco usage for cigarette production. Tobacco consumption for the different formats will be entered into the system as the max and min numbers; the user should declare (select from list) an appropriate format for the norm. The list must contain information as to since when the norm has been valid and when it expires.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Usage", Id="0x01000E2260EFB66F324B9CC50EEEC274F5FD")]
 	public partial class Usage : Element {
@@ -5453,6 +5485,17 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this._usageMax = value;
 					this.OnPropertyChanged("UsageMax");
 				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Usage.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Usage.");
 			}
 		}
 		
