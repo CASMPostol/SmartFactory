@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.IPR.Entities
           ProductivityRateMin = item.ProductivityRateMin,
           ValidFromDate = item.ValidFromDate,
           ValidToDate = item.ValidToDate,
-          ConsentPeriod = 0 //TODO ger from impout data http://itrserver/Bugs/BugDetail.aspx?bid=2907
+          ConsentPeriod = item.ConsentPeriod 
         };
         list.Add(cns);
       };
