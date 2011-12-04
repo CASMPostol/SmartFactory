@@ -29,6 +29,7 @@ namespace CAS.SmartFactory.Management
 
     private void m_ImportButton_Click(object sender, EventArgs e)
     {
+      m_fastRefresh = true;
       Stream strm = OpenFile();
       if (strm == null)
       {
@@ -57,6 +58,7 @@ namespace CAS.SmartFactory.Management
     }
     private void m_SKUReadButton_Click(object sender, EventArgs e)
     {
+      m_fastRefresh = true;
       Stream strm = OpenFile();
       if (strm == null)
       {
@@ -84,10 +86,13 @@ namespace CAS.SmartFactory.Management
     {
       m_ToolStripStatusLabel.Text = (string)progres.UserState;
       m_ToolStripProgressBar.Value += progres.ProgressPercentage;
+      if (m_fastRefresh)
+        this.Refresh();
       if (m_ToolStripProgressBar.Value >= m_ToolStripProgressBar.Maximum)
       {
         m_ToolStripProgressBar.Value = m_ToolStripProgressBar.Minimum;
         this.Refresh();
+        m_fastRefresh = false;
       }
     }
     private void SetDone()
@@ -105,5 +110,6 @@ namespace CAS.SmartFactory.Management
         return od.OpenFile();
       }
     }
+    private bool m_fastRefresh = true;
   }
 }
