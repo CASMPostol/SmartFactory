@@ -106,7 +106,6 @@
               <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="ConsentItem">
                 <xsd:complexType>
                   <xsd:sequence minOccurs="0">
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title"/>
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ConsentNo"/>
                     <xsd:element minOccurs="0" type="xsd:date" name="ValidFromDate"/>
                     <xsd:element minOccurs="0" type="xsd:date" name="ValidToDate"/>
