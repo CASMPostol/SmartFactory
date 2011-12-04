@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     {
       Invoice newInvoice = new Invoice
       {
-        InvoiceLibraryLookup = entry
+        InvoiceLibraryLookup = entry, //TODO Initialize all properties 
       };
       edc.Invoice.InsertOnSubmit(newInvoice);
       newInvoice.BillDoc = GetXmlContent(document.Item, edc, newInvoice);

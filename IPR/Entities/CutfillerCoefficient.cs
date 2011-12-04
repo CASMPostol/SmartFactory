@@ -19,10 +19,8 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         CutfillerCoefficient cc = new CutfillerCoefficient
         {
-          Batch = null,
           CFTProductivityRateMax = item.CFTProductivityRateMax,
-          CFTProductivityRateMin = item.CFTProductivityRateMin,
-           Tytuł = item.Title
+          CFTProductivityRateMin = item.CFTProductivityRateMin
         };
         list.Add(cc);
       };

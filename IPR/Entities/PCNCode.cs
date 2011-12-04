@@ -16,7 +16,6 @@ namespace CAS.SmartFactory.IPR.Entities
         PCNCode pcn = new PCNCode
         {
           CompensationGood = item.CompensationGood.ParseCompensationGood(),
-          Disposal = null, //TODO to be remove - it is actualy removed from the model but it is still here ?
           ProductCodeNumber = item.ProductCodeNumber,
           Tytuł = item.Title
         };

@@ -71,7 +71,9 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
     {
       Stock newStock = new Stock
       {
-        StockLibraryLookup = entry
+        StockLibraryLookup = entry,
+        BalanceLibraryLookup = null, //TODO Must be implemented http://itrserver/Bugs/BugDetail.aspx?bid=2909
+        Tytuł = "" //TODO What to assign to it http://itrserver/Bugs/BugDetail.aspx?bid=2910
       };
       edc.Stock.InsertOnSubmit(newStock);
       GetStock(document.Row, edc, newStock);
