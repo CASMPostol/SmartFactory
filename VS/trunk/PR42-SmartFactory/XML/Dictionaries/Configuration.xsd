@@ -73,7 +73,6 @@
               <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="UsageItem">
                 <xsd:complexType>
                   <xsd:sequence minOccurs="0">
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title"/>
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Format_lookup"/>
                     <xsd:element minOccurs="1" type="xsd:double" name="UsageMin"/>
                     <xsd:element minOccurs="1" type="xsd:double" name="UsageMax"/>
@@ -111,6 +110,7 @@
                     <xsd:element minOccurs="0" type="xsd:date" name="ValidToDate"/>
                     <xsd:element minOccurs="1" type="xsd:double" name="ProductivityRateMin"/>
                     <xsd:element minOccurs="1" type="xsd:double" name="ProductivityRateMax"/>
+                    <xsd:element minOccurs="1" type="xsd:double" name="ConsentPeriod"/>
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
