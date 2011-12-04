@@ -336,24 +336,11 @@ namespace CAS.SmartFactory.xml.Dictionaries {
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/jti/ipr/Batch.xsd")]
     public partial class ConfigurationUsageItem {
         
-        private string titleField;
-        
         private string format_lookupField;
         
         private double usageMinField;
         
         private double usageMaxField;
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Title {
-            get {
-                return this.titleField;
-            }
-            set {
-                this.titleField = value;
-            }
-        }
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
@@ -395,22 +382,9 @@ namespace CAS.SmartFactory.xml.Dictionaries {
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/jti/ipr/Batch.xsd")]
     public partial class ConfigurationCutfillerCoefficientItem {
         
-        private string titleField;
-        
         private double cFTProductivityRateMinField;
         
         private double cFTProductivityRateMaxField;
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Title {
-            get {
-                return this.titleField;
-            }
-            set {
-                this.titleField = value;
-            }
-        }
         
         /// <uwagi/>
         public double CFTProductivityRateMin {
@@ -441,8 +415,6 @@ namespace CAS.SmartFactory.xml.Dictionaries {
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/jti/ipr/Batch.xsd")]
     public partial class ConfigurationConsentItem {
         
-        private string titleField;
-        
         private string consentNoField;
         
         private System.DateTime validFromDateField;
@@ -457,16 +429,7 @@ namespace CAS.SmartFactory.xml.Dictionaries {
         
         private double productivityRateMaxField;
         
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Title {
-            get {
-                return this.titleField;
-            }
-            set {
-                this.titleField = value;
-            }
-        }
+        private double consentPeriodField;
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
@@ -540,6 +503,16 @@ namespace CAS.SmartFactory.xml.Dictionaries {
             }
             set {
                 this.productivityRateMaxField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double ConsentPeriod {
+            get {
+                return this.consentPeriodField;
+            }
+            set {
+                this.consentPeriodField = value;
             }
         }
     }
