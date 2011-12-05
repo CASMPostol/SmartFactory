@@ -35,6 +35,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       Anons log = new Anons(source, message);
       edc.ActivityLog.InsertOnSubmit(log);
+      edc.SubmitChangesSilently(Microsoft.SharePoint.Linq.RefreshMode.OverwriteCurrentValues);
     }
   }
 }
