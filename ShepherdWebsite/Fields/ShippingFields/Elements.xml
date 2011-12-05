@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    ID="{768BE52D-0FCD-480D-B180-2D492C2A4629}"
+    Name="EstimateTimeOfArrival"
+    Group="CAS Smart Factory Shepherd"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Estimated Time of Arrival">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    DisplayName="Dock number"
+    Name="DockNumber"
+    Type="Number"
+    ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+   Type="Choice"
+   DisplayName="State"
+   ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}"
+   Format="Dropdown"
+   BaseType="Text"
+   Description="Direction"
+   Name="ShippingState"
+   Group="CAS Smart Factory Shepherd">
+    <Default>Creation</Default>
+    <CHOICES>
+      <CHOICE>Canceled</CHOICE>
+      <CHOICE>Completed</CHOICE>
+      <CHOICE>Confirmed</CHOICE>
+      <CHOICE>Creation</CHOICE>
+      <CHOICE>Delayed</CHOICE>
+      <CHOICE>Scheduled</CHOICE>
+      <CHOICE>Underway</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}"
+    Name="StartTime"
+    Group="CAS Smart Factory Shepherd"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Start Time">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    DisplayName="Duration"
+    Name="Duration"
+    Type="Number"
+    ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Additional costs"
+    Name="AdditionalCosts"
+    Type="Number"
+    ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}"
+    Group="CAS Smart Factory Shepherd"
+    />
+</Elements>
