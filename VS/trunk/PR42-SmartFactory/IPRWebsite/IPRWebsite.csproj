@@ -503,7 +503,9 @@
     </Content>
     <Content Include="Lists\ActivityLog\Elements.xml" />
     <Content Include="Lists\BatchLibrary\Elements.xml" />
-    <Content Include="Lists\BatchTemplate\Elements.xml" />
+    <Content Include="Lists\BatchTemplate\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\BatchTemplate\BatchList\Elements.xml" />
     <Content Include="Lists\BatchTemplate\Schema.xml">
       <SubType>Designer</SubType>

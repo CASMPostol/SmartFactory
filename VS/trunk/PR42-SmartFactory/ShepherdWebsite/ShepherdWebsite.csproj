@@ -114,9 +114,6 @@
     <None Include="Content types\Dictionaries\ShippingPoint\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{14e553bf-62a7-4a82-a276-23f5c45041d8}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Dictionaries\Shipping\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{71f31a71-a6cb-436e-823e-e0ab9dc3f751}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Dictionaries\TimeSlotTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5babe184-86dd-45f7-8b2d-b87282b17192}</SharePointProjectItemId>
     </None>
@@ -135,6 +132,9 @@
     <None Include="Content types\Dictionaries\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{19e4133f-3075-48da-a910-c12b1acefa61}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\Shipping\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a4ba4bab-a705-4c28-becb-2e4d84c39f79}</SharePointProjectItemId>
+    </None>
     <None Include="Features\Shepherd\Shepherd.feature">
       <FeatureId>{8c0e09df-69d3-4029-8937-7f8fd3b244d9}</FeatureId>
     </None>
@@ -146,6 +146,12 @@
     </None>
     <None Include="Fields\LibrariesLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{206dc054-3529-4baa-b94b-b95a57182dda}</SharePointProjectItemId>
+    </None>
+    <None Include="Fields\ShippingFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{16083ee4-aeaf-4172-abd8-e16e62b409b6}</SharePointProjectItemId>
+    </None>
+    <None Include="Fields\ShippingLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4c6353ca-6c58-4663-bccb-db9a06d80fcb}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
     <None Include="Lists\Dictionaries\CarrierTemplate\CarrierList\SharePointProjectItem.spdata">
@@ -324,13 +330,13 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\ShippingPoint\Elements.xml" />
-    <Content Include="Content types\Dictionaries\Shipping\Elements.xml" />
     <Content Include="Content types\Dictionaries\TimeSlotTemplate\Elements.xml" />
     <Content Include="Content types\Dictionaries\Trailer\Elements.xml" />
     <Content Include="Content types\Dictionaries\TranspotUnit\Elements.xml" />
     <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
     <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
+    <Content Include="Content types\Shipping\Shipping\Elements.xml" />
     <Content Include="Features\Shepherd\Shepherd.Template.xml">
       <DependentUpon>Shepherd.feature</DependentUpon>
     </Content>
@@ -341,6 +347,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Fields\LibrariesLookupFields\Elements.xml" />
+    <Content Include="Fields\ShippingFields\Elements.xml" />
+    <Content Include="Fields\ShippingLookupFields\Elements.xml" />
     <Content Include="Lists\Dictionaries\CarrierTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CarrierTemplate\CarrierList\Elements.xml" />
     <Content Include="Lists\Dictionaries\CarrierTemplate\Schema.xml" />
