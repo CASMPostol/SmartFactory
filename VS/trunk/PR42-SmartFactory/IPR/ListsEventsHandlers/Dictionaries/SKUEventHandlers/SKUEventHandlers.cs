@@ -10,6 +10,7 @@ using CigarettesXml = CAS.SmartFactory.xml.erp.Cigarettes;
 using CutfillerXml = CAS.SmartFactory.xml.erp.Cutfiller;
 using Microsoft.SharePoint.Linq;
 using System.ComponentModel;
+using System.IO;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
 {
@@ -36,14 +37,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
         properties.ListItem.File.OpenBinaryStream(),
         properties.WebUrl,
         properties.ListItem.ID,
-        (object obj, ProgressChangedEventArgs progres) =>
-        {
-          return;
-        });
+        properties.ListItem.File.ToString(),
+        (object obj, ProgressChangedEventArgs progres) => { return; });
       this.EventFiringEnabled = true;
       base.ItemAdded(properties);
     }
-    public static void SKUEvetReceiher(System.IO.Stream stream, string url, int listIndex, ProgressChangedEventHandler progressChanged)
+    public static void SKUEvetReceiher
+      (Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged)
     {
       EntitiesDataContext edc = null;
       try
@@ -59,15 +59,14 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       }
       catch (Exception ex)
       {
-        if (edc != null)
-          Anons.WriteEntry(edc, "SKU message import error", ex.Message);
+        Anons.WriteEntry(edc, "SKU message import error", ex.Message);
       }
       finally
       {
         if (edc != null)
         {
           Anons.WriteEntry(edc, m_Title, "Import of the message finished");
-          edc.SubmitChangesSilently(RefreshMode.KeepCurrentValues);
+          edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
           edc.Dispose();
         }
       }

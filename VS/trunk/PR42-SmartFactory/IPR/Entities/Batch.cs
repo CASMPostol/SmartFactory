@@ -9,10 +9,12 @@ namespace CAS.SmartFactory.IPR.Entities
   {
     internal static Batch GetCreateLookup(EntitiesDataContext edc, string index)
     {
-      Batch newBatch = null;
-      var cb =
-         from batch in edc.Batch where batch.Batch0.Contains(index) orderby batch.Identyfikator descending select batch;
-      if (cb.Count<Batch>() == 0)
+      Batch newBatch;
+      try
+      {
+        newBatch = (from batch in edc.Batch where batch.Batch0.Contains(index) orderby batch.Identyfikator descending select batch).First();
+      }
+      catch (Exception)
       {
         newBatch = new Batch()
         {
@@ -20,10 +22,9 @@ namespace CAS.SmartFactory.IPR.Entities
           BatchStatus = Entities.BatchStatus.Preliminary,
           Tytuł = index
         };
+        Anons.WriteEntry(edc, m_Source, String.Format(m_BatchLookupFiledMessage, index));
         edc.Batch.InsertOnSubmit(newBatch);
       }
-      else
-        newBatch = cb.First();
       return newBatch;
     }
     /// <summary>
@@ -35,7 +36,7 @@ namespace CAS.SmartFactory.IPR.Entities
     /// <exception cref="System.ArgumentNullException">The source is null.</exception>
     internal static Batch GetLookup(EntitiesDataContext edc, string index)
     {
-      Batch newBatch =  (from batch in edc.Batch where batch.Batch0.Contains(index) orderby batch.Identyfikator descending select batch).First();
+      Batch newBatch = (from batch in edc.Batch where batch.Batch0.Contains(index) orderby batch.Identyfikator descending select batch).First();
       return newBatch;
     }
     internal Disposal[] GetDisposals(EntitiesDataContext edc)
@@ -46,5 +47,7 @@ namespace CAS.SmartFactory.IPR.Entities
           select idx;
       return disposals.ToArray<Disposal>();
     }
+    private const string m_Source = "Batch processing";
+    private const string m_BatchLookupFiledMessage = "I cannot recognize batch (0) - added preliminary entry do the list that must be edited.";
   }
 }

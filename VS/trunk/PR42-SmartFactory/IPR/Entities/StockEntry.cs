@@ -21,7 +21,6 @@ namespace CAS.SmartFactory.IPR.Entities
       Tytuł = xml.MaterialDescription;
       Units = xml.BUn;
       Unrestricted = xml.Unrestricted;
-      Quantity = 0;
       BatchLookup = null;
       ProductType = Entities.ProductType.Invalid;
       Quantity = xml.Blocked.GetValueOrDefault(0) + xml.InQualityInsp.GetValueOrDefault(0) + xml.RestrictedUse.GetValueOrDefault(0) + xml.Unrestricted.GetValueOrDefault(0);
@@ -44,12 +43,10 @@ namespace CAS.SmartFactory.IPR.Entities
       if (wrh != null)
       {
         this.ProductType = wrh.ProductType;
-        this.IPRType = false;
-        if (Entities.ProductType.IPRTobacco == wrh.ProductType.Value)
-          this.IPRType = true;
+        this.IPRType = Entities.ProductType.IPRTobacco == wrh.ProductType.Value;
         return;
       }
-      ProductType = Entities.ProductType.Invalid;
+      throw new IPRDataConsistencyException(m_Source, String.Format(m_WrongProductTypeMessage, this.SKU, this.Location), null);
     }
     private void GetBatchLookup(EntitiesDataContext edc)
     {
@@ -59,5 +56,7 @@ namespace CAS.SmartFactory.IPR.Entities
         return;
       BatchLookup = Entities.Batch.GetCreateLookup(edc, this.Batch);
     }
+    private const string m_Source = "Stock Entry";
+    private const string m_WrongProductTypeMessage = "I cannot recognize product type of the for stock entry SKU: (0) in location: {1}";
   }
 }

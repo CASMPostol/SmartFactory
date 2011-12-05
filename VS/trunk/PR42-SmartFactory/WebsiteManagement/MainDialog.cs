@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.Management
       {
         m_ToolStripStatusLabel.Text = "Reading Data";
         m_ToolStripProgressBar.Value = 0;
-        SKUEventHandlers.SKUEvetReceiher(strm, m_URLTextBox.Text.Trim(), 0, UpdateToolStrip);
+        SKUEventHandlers.SKUEvetReceiher(strm, m_URLTextBox.Text.Trim(), 0, m_OpenFileDialog.FileName, UpdateToolStrip);
         SetDone();
       }
       catch (Exception ex)
@@ -102,13 +102,10 @@ namespace CAS.SmartFactory.Management
     }
     private Stream OpenFile()
     {
-      m_ToolStripStatusLabel.Text = "Openning the file";
-      using (OpenFileDialog od = new OpenFileDialog())
-      {
-        if (od.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-          return null;
-        return od.OpenFile();
-      }
+      UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Openning the file"));
+      if (m_OpenFileDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+        return null;
+      return m_OpenFileDialog.OpenFile();
     }
     private bool m_fastRefresh = true;
   }

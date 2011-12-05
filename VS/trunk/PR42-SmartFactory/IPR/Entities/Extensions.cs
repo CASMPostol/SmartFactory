@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
-  public static class Extensions
+  internal static class Extensions
   {
     public static ProductType ParseProductType(this string entry)
     {
@@ -27,6 +28,19 @@ namespace CAS.SmartFactory.IPR.Entities
       catch (Exception)
       {
         return CompensationGood.Invalid;
+      }
+    }
+    //TODO Must be implemented http://itrserver/Bugs/BugDetail.aspx?bid=2909
+    public static Dokument GetTopMostDocumentLookup(this  EntityList<Dokument> library)
+    {
+      try
+      {
+        return (from idx in library orderby idx.Identyfikator descending select idx).First();
+      }
+      catch (Exception ex)
+      {
+        string msg = "Cannot find a library";
+        throw new IPRDataConsistencyException("Extensions - GetTopMostDocumentLookup", msg, ex);
       }
     }
   }

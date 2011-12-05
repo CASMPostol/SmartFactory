@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+using System.ComponentModel;
+using System.IO;
 using CAS.SmartFactory.IPR.Entities;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Linq;
 using StockXml = CAS.SmartFactory.xml.erp.Stock;
-using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
 {
@@ -21,76 +20,52 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
     {
       if (!properties.List.Title.Contains("Stock"))
         return;
+      this.EventFiringEnabled = false;
+      //if (properties.ListItem.File == null)
+      //{
+      //  Anons.WriteEntry(edc, m_Title, "Import of a stock xml message failed because the file is empty.");
+      //  edc.SubmitChanges();
+      //  return;
+      //}
+      IportStockFromXML
+        (
+        properties.ListItem.File.OpenBinaryStream(),
+        properties.WebUrl,
+        properties.ListItem.ID,
+        properties.ListItem.File.ToString(),
+        (object obj, ProgressChangedEventArgs progres) => { return; }
+        );
+      this.EventFiringEnabled = true;
+      base.ItemAdded(properties);
+    }
+    public void IportStockFromXML
+      (Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged)
+    {
+      EntitiesDataContext edc = null;
       try
       {
-        this.EventFiringEnabled = false;
-        using (EntitiesDataContext edc = new EntitiesDataContext(properties.WebUrl))
-        {
-          if (properties.ListItem.File == null)
-          {
-            Anons.WriteEntry(edc, m_Title, "Import of a stock xml message failed because the file is empty.");
-            edc.SubmitChanges();
-            return;
-          }
-          Anons mess = new Anons()
-          {
-            Tytuł = m_Title,
-            Treść = String.Format("Import of the stock message {0} starting.", properties.ListItem.File.ToString())
-          };
-          edc.ActivityLog.InsertOnSubmit(mess);
-          edc.SubmitChanges();
-          StockXml document = StockXml.ImportDocument(properties.ListItem.File.OpenBinaryStream());
-          Dokument entry = Dokument.GetEntity(properties.ListItem.ID, edc.StockLibrary);
-          GetStock(document, edc, entry);
-          edc.SubmitChanges();
-        }
+        edc = new EntitiesDataContext(url);
+        String message = String.Format("Import of the stock message {0} starting.", fileName);
+        Anons.WriteEntry(edc, m_Title, message);
+        StockXml document = StockXml.ImportDocument(stream);
+        Dokument entry = Dokument.GetEntity(listIndex, edc.StockLibrary);
+        Stock.IportXml(document, edc, entry, progressChanged);
+        progressChanged(null, new ProgressChangedEventArgs(1, "Submiting Changes"));
+        edc.SubmitChanges();
       }
       catch (Exception ex)
       {
-        SPWeb web = properties.Web;
-        SPList log = web.Lists.TryGetList("Activity Log");
-        if (log == null)
-        {
-          EventLog.WriteEntry("CAS.SmartFActory", "Cannot open \"Activity Log\" list", EventLogEntryType.Error, 114);
-          return;
-        }
-        SPListItem item = log.AddItem();
-        item["Title"] = "Stock message import error";
-        item["Body"] = ex.Message;
-        item.UpdateOverwriteVersion();
-        properties.ListItem["Name"] = properties.ListItem["Name"] + ": Import Error !!";
-        properties.ListItem.UpdateOverwriteVersion();
+        Anons.WriteEntry(edc, "SKU message import error", ex.Message);
       }
       finally
       {
-        this.EventFiringEnabled = true;
+        if (edc != null)
+        {
+          Anons.WriteEntry(edc, m_Title, "Import of the message finished");
+          edc.SubmitChangesSilently(RefreshMode.KeepCurrentValues);
+          edc.Dispose();
+        }
       }
-      base.ItemAdded(properties);
-    }
-    private void GetStock(StockXml document, EntitiesDataContext edc, Dokument entry)
-    {
-      Stock newStock = new Stock
-      {
-        StockLibraryLookup = entry,
-        BalanceLibraryLookup = null, //TODO Must be implemented http://itrserver/Bugs/BugDetail.aspx?bid=2909
-        Tytuł = "" //TODO What to assign to it http://itrserver/Bugs/BugDetail.aspx?bid=2910
-      };
-      edc.Stock.InsertOnSubmit(newStock);
-      GetStock(document.Row, edc, newStock);
-    }
-    private void GetStock(StockXmlRow[] rows, EntitiesDataContext edc, Stock parent)
-    {
-      List<StockEntry> stockEntities = new List<StockEntry>();
-      List<Batch> batchEntries = new List<Batch>();
-      foreach (StockXmlRow item in rows)
-      {
-        StockEntry nse = new StockEntry(item, parent);
-        stockEntities.Add(nse);
-      }
-      if (stockEntities.Count > 0)
-        edc.StockEntry.InsertAllOnSubmit(stockEntities);
-      if (batchEntries.Count > 0)
-        edc.Batch.InsertAllOnSubmit(batchEntries);
     }
     private const string m_Title = "Stock Message Import";
   }

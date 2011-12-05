@@ -68,10 +68,12 @@
     <Compile Include="Entities\SKUCigarette.cs" />
     <Compile Include="Entities\SKUCommonPart.cs" />
     <Compile Include="Entities\SKUCutfiller.cs" />
+    <Compile Include="Entities\Stock.cs" />
     <Compile Include="Entities\StockEntry.cs" />
     <Compile Include="Entities\Usage.cs" />
     <Compile Include="Entities\Warehouse.cs" />
     <Compile Include="Entities\Waste.cs" />
+    <Compile Include="IPRDataConsistencyException.cs" />
     <Compile Include="ListsEventsHandlers\BatchEventReceiver\BatchEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\SADImportXML\SADImportXML.cs" />
