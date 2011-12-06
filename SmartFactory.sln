@@ -18,7 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss.xml = ..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss.xml
 		..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss2.xml = ..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss2.xml
 		..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss3.xml = ..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss3.xml
-		\\hq.cas.com.pl\cas_dfs\cas\Projekty\2011\P-1101_JTI_SHEPHERD\P-110105_Oprogramowanie\TestData\SAP\SKU\SKU ustalanie formatów.xml = \\hq.cas.com.pl\cas_dfs\cas\Projekty\2011\P-1101_JTI_SHEPHERD\P-110105_Oprogramowanie\TestData\SAP\SKU\SKU ustalanie formatów.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShepherdWebsite", "ShepherdWebsite\ShepherdWebsite.csproj", "{6153760E-3C48-4B25-9212-3100AA870FBF}"
