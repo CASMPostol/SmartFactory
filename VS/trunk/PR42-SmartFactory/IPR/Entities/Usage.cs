@@ -10,17 +10,14 @@ namespace CAS.SmartFactory.IPR.Entities
 
     internal static Usage GetLookup(Format format, EntitiesDataContext edc)
     {
-      Usage value = null;
       try
       {
-        value = (from idx in edc.Usage where idx.FormatLookup.Identyfikator == format.Identyfikator select idx).Aggregate((x, y) => (x.Wersja < y.Wersja ? y : x));
-        return value;
+        return (from idx in edc.Usage where idx.FormatLookup.Identyfikator == format.Identyfikator select idx).Aggregate((x, y) => (x.Wersja < y.Wersja ? y : x));
       }
-      catch (ArgumentNullException)
+      catch (Exception ex)
       {
-        //value = new Usage() {   = 0, ProductType = type, Tytuł = type.ToString() }; //TODO remove in final version and replace by throwin an exception
+        throw new IPRDataConsistencyException(m_Source, String.Format(m_Message, format), ex);
       }
-      return value;
     }
     internal static void ImportData(ConfigurationUsageItem[] configuration, EntitiesDataContext edc)
     {
@@ -38,5 +35,10 @@ namespace CAS.SmartFactory.IPR.Entities
       };
       edc.Usage.InsertAllOnSubmit(list);
     }
+
+    #region private
+    private const string m_Source = "Usage";
+    private const string m_Message = "I cannot find usage coefficient for the format: {0}";
+    #endregion
   }
 }

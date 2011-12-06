@@ -10,8 +10,14 @@ namespace CAS.SmartFactory.IPR.Entities
   {
     internal static SHMenthol GetLookup(ProductType type, EntitiesDataContext edc)
     {
-      SHMenthol value = (from idx in edc.SHMenthol where idx.ProductType == type orderby idx.Wersja descending select idx).First();
-      return value;
+      try
+      {
+        return (from idx in edc.SHMenthol where idx.ProductType == type orderby idx.Wersja descending select idx).First();
+      }
+      catch (Exception ex)
+      {
+        throw new IPRDataConsistencyException(m_Source, m_Message, ex);
+      }
     }
     internal static void ImportData(ConfigurationSHMentholItem[] configuration, EntitiesDataContext edc)
     {
@@ -27,5 +33,9 @@ namespace CAS.SmartFactory.IPR.Entities
       };
       edc.SHMenthol.InsertAllOnSubmit(list);
     }
+    #region private
+    private const string m_Source = "SHMenthol";
+    private const string m_Message = "I cannot find any SHMenthol coefficient";
+    #endregion
   }
 }

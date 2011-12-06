@@ -74,7 +74,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
           BatchLookup = Batch.GetLookup(edc, item.Batch),
           InvoiceLookup = parent,
           ItemNo = item.Item.ConvertToDouble(),
-          ProductType = SKUCommonPart.GetLookup(edc, item.Material).ProductType,
+          ProductType = SKUCommonPart.Find(edc, item.Material).ProductType,
           Quantity = item.Bill_qty_in_SKU.ConvertToDouble(),
           SKU = item.Material,
           Tytuł = item.Description,

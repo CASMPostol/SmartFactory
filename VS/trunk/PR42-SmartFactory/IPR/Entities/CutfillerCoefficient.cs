@@ -6,11 +6,17 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class CutfillerCoefficient
   {
+    #region public
     internal static CutfillerCoefficient GetLookup(EntitiesDataContext edc)
     {
-      CutfillerCoefficient value = null;
-      value = (from idx in edc.CutfillerCoefficient orderby idx.Wersja select idx).First();
-      return value;
+      try
+      {
+        return (from idx in edc.CutfillerCoefficient orderby idx.Wersja select idx).First();
+      }
+      catch (System.Exception ex)
+      {
+        throw new IPRDataConsistencyException(m_Source, m_Message, ex);
+      }
     }
     internal static void ImportData(ConfigurationCutfillerCoefficientItem[] configuration, EntitiesDataContext edc)
     {
@@ -25,6 +31,12 @@ namespace CAS.SmartFactory.IPR.Entities
         list.Add(cc);
       };
       edc.CutfillerCoefficient.InsertAllOnSubmit(list);
-    }
+    } 
+    #endregion
+
+    #region private
+    private const string m_Source = "Cutfiller Coefficient";
+    private const string m_Message = "I cannot find any cutfiller coefficient"; 
+    #endregion
   }
 }
