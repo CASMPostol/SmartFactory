@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x01000a5d8b5f3f67453882811c27556d5d30"
+               Name="ShippingDriversTeam"
+               Group="CAS Smart Factory Shepherd"
+               Description="Drivers Team"
+               Overwrite="True"
+               Inherits="True">
+    <Folder TargetName="_cts/ShippingDriversTeam" />
+    <FieldRefs>
+      <FieldRef ID="{39DA0D47-6429-49C0-90A8-677774DD52AC}" Name="1stDriverTitle" />
+      <FieldRef ID="{E15318D4-66CD-41A1-99CA-0E995A475D1B}" Name="1stDriverIdentityDocumentNumber" />
+      <FieldRef ID="{6B2F2779-B815-4E68-A6B8-9B9094F9DC67}" Name="1stDriverPhone" />
+      <FieldRef ID="{FA0BE693-8A9B-4C2E-B1D9-15C533532C83}" Name="2ndDriverTitle" />
+      <FieldRef ID="{CF847D75-7FB3-4340-BFCB-E002027FAF1E}" Name="2ndDriverIdentityDocumentNumber" />
+      <FieldRef ID="{161BFE61-3E5D-494B-A191-13D11B15B777}" Name="2ndDriverPhone" /> 
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
+</Elements>

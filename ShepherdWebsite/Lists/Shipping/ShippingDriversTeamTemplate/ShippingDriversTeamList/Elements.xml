@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Drivers Team List"
+                OnQuickLaunch="TRUE"
+                TemplateType="10002"
+                Url="Lists/ShippingDriversTeamList"
+                Description="Drivers Team List Instance">
+  </ListInstance>
+</Elements>

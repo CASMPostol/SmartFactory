@@ -5,7 +5,7 @@
                Group="CAS Smart Factory Shepherd"
                Description="Partner"
                Overwrite="TRUE"
-               Inherits="TRUE">
+               Inherits="True">
     <Folder TargetName="_cts/Partner" />
     <FieldRefs>
       <FieldRef ID="{7A847280-FE50-471A-B399-1F7D7EF19DA3}" Name="VendorNumber" />

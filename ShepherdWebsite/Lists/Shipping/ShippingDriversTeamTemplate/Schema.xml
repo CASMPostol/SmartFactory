@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="ShippingDriversTeamTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-ShippingDriversTeamTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x01000a5d8b5f3f67453882811c27556d5d30" Name="ShippingDriversTeam" Group="CAS Smart Factory Shepherd" Description="Drivers Team" Overwrite="True" Inherits="True">
+        <Folder TargetName="_cts/ShippingDriversTeam" />
+        <FieldRefs>
+          <FieldRef ID="{39DA0D47-6429-49C0-90A8-677774DD52AC}" Name="1stDriverTitle" />
+          <FieldRef ID="{E15318D4-66CD-41A1-99CA-0E995A475D1B}" Name="1stDriverIdentityDocumentNumber" />
+          <FieldRef ID="{6B2F2779-B815-4E68-A6B8-9B9094F9DC67}" Name="1stDriverPhone" />
+          <FieldRef ID="{FA0BE693-8A9B-4C2E-B1D9-15C533532C83}" Name="2ndDriverTitle" />
+          <FieldRef ID="{CF847D75-7FB3-4340-BFCB-E002027FAF1E}" Name="2ndDriverIdentityDocumentNumber" />
+          <FieldRef ID="{161BFE61-3E5D-494B-A191-13D11B15B777}" Name="2ndDriverPhone" />
+        </FieldRefs>
+        <XmlDocuments>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
+          </XmlDocument>
+        </XmlDocuments>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+      <Field Name="1stDriverTitle" ID="{39da0d47-6429-49c0-90a8-677774dd52ac}" Type="Lookup" List="Lists/DriverList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="1st Driver" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Type="Lookup" DisplayName="Phone number" List="Lists/DriverList" ShowField="CellPhone" FieldRef="39DA0D47-6429-49C0-90A8-677774DD52AC" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{6b2f2779-b815-4e68-a6b8-9b9094f9dc67}" Name="1stDriverPhone" Overwrite="TRUE" />
+      <Field Type="Lookup" DisplayName="Identity Document Number" List="Lists/DriverList" ShowField="IdentityDocumentNumber" FieldRef="39DA0D47-6429-49C0-90A8-677774DD52AC" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{e15318d4-66cd-41a1-99ca-0e995a475d1b}" Name="1stDriverIdentityDocumentNumber" Overwrite="TRUE" />
+      <Field Name="2ndDriverTitle" ID="{fa0be693-8a9b-4c2e-b1d9-15c533532c83}" Type="Lookup" List="Lists/DriverList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="2nd Driver" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Type="Lookup" DisplayName="Phone number" List="Lists/DriverList" ShowField="CellPhone" FieldRef="FA0BE693-8A9B-4C2E-B1D9-15C533532C83" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{161bfe61-3e5d-494b-a191-13d11b15b777}" Name="2ndDriverPhone" Overwrite="TRUE" />
+      <Field Type="Lookup" DisplayName="Identity Document Number" List="Lists/DriverList" ShowField="IdentityDocumentNumber" FieldRef="FA0BE693-8A9B-4C2E-B1D9-15C533532C83" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{cf847d75-7fb3-4340-bfcb-e002027faf1e}" Name="2ndDriverIdentityDocumentNumber" Overwrite="TRUE" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu">
+          </FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments">
+          </FieldRef>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef ID="{39DA0D47-6429-49C0-90A8-677774DD52AC}" Name="1stDriverTitle" />
+          <FieldRef ID="{E15318D4-66CD-41A1-99CA-0E995A475D1B}" Name="1stDriverIdentityDocumentNumber" />
+          <FieldRef ID="{6B2F2779-B815-4E68-A6B8-9B9094F9DC67}" Name="1stDriverPhone" />
+          <FieldRef ID="{FA0BE693-8A9B-4C2E-B1D9-15C533532C83}" Name="2ndDriverTitle" />
+          <FieldRef ID="{CF847D75-7FB3-4340-BFCB-E002027FAF1E}" Name="2ndDriverIdentityDocumentNumber" />
+          <FieldRef ID="{161BFE61-3E5D-494B-A191-13D11B15B777}" Name="2ndDriverPhone" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

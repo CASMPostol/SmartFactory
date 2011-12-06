@@ -6,12 +6,12 @@
                Description="Shipping"
                Overwrite="TRUE"
                Inherits="TRUE">
-    <Folder TargetName="_cts/Route" />
+    <Folder TargetName="_cts/Shipping" />
     <FieldRefs>
       <FieldRef ID="{768BE52D-0FCD-480D-B180-2D492C2A4629}" Name="EstimateTimeOfArrival" />
       <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
       <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
-      <FieldRef ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}" Name="Duration" />
+      <FieldRef ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}" Name="ShippingDuration" />
       <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
       <FieldRef ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}" Name="AdditionalCosts" />
       <FieldRef ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}" Name="ShippingPointTitle" />
