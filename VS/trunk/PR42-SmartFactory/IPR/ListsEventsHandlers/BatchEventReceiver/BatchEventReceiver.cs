@@ -5,6 +5,8 @@ using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
 using BatchMaterialXml = CAS.SmartFactory.xml.erp.BatchMaterial;
 using BatchXml = CAS.SmartFactory.xml.erp.Batch;
+using System.IO;
+using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {
@@ -21,38 +23,51 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     {
       if (!properties.List.Title.Contains("Batch"))
         return;
+      this.EventFiringEnabled = false;
+      //if (properties.ListItem.File == null)
+      //{
+      //  Anons.WriteEntry(edc, m_Title, "Import of a batch xml message failed because the file is empty.");
+      //  return;
+      //}
+      ImportBatchFromXml(
+        properties.ListItem.File.OpenBinaryStream(),
+        properties.WebUrl,
+        properties.ListItem.ID,
+        properties.ListItem.File.ToString(),
+        (object obj, ProgressChangedEventArgs progres) => { return; });
+      this.EventFiringEnabled = true;
+      base.ItemAdded(properties);
+    }
+    public static void ImportBatchFromXml
+      (Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged)
+    {
       EntitiesDataContext edc = null;
       try
       {
-        this.EventFiringEnabled = false;
-        edc = new EntitiesDataContext(properties.WebUrl);
-        if (properties.ListItem.File == null)
-        {
-          Anons.WriteEntry(edc, m_Title, "Import of a batch xml message failed because the file is empty.");
-          return;
-        }
-        String message = String.Format("Import of the batch message {0} starting.", properties.ListItem.File.ToString());
+        edc = new EntitiesDataContext(url);
+        String message = String.Format("Import of the batch message {0} starting.", fileName);
         Anons.WriteEntry(edc, m_Title, message);
-        BatchXml document = BatchXml.ImportDocument(properties.ListItem.File.OpenBinaryStream());
-        Dokument entry = Dokument.GetEntity(properties.ListItem.ID, edc.BatchLibrary);
+        edc.SubmitChanges();
+        BatchXml document = BatchXml.ImportDocument(stream);
+        Dokument entry = Dokument.GetEntity(listIndex, edc.BatchLibrary);
         GetXmlContent(document, edc, entry);
+        edc.SubmitChanges();
       }
       catch (Exception ex)
       {
-        Anons.WriteEntry(edc, "Invoice message import error", ex.Message);
+        Anons.WriteEntry(edc, "Batch message import error", ex.Message);
       }
       finally
       {
         if (edc != null)
         {
-          edc.SubmitChangesSilently(RefreshMode.KeepCurrentValues);
+          Anons.WriteEntry(edc, m_Title, "Import of the stock message finished");
+          edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
           edc.Dispose();
         }
-        this.EventFiringEnabled = true;
-        base.ItemAdded(properties);
       }
     }
-    private void GetXmlContent(BatchXml document, EntitiesDataContext edc, Dokument entry)
+    private static void GetXmlContent(BatchXml document, EntitiesDataContext edc, Dokument entry)
     {
       Batch newBatch = new Batch()
       {
@@ -77,7 +92,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       edc.Batch.InsertOnSubmit(newBatch);
     }
 
-    private BatchStatus? GetBatchStatus(xml.erp.BatchStatus batchStatus)
+    private static BatchStatus? GetBatchStatus(xml.erp.BatchStatus batchStatus)
     {
       switch (batchStatus)
       {
