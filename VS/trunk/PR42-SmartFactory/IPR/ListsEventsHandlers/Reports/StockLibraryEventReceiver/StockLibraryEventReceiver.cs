@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       this.EventFiringEnabled = true;
       base.ItemAdded(properties);
     }
-    public void IportStockFromXML
+    public static void IportStockFromXML
       (Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged)
     {
       EntitiesDataContext edc = null;
@@ -55,13 +55,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       }
       catch (Exception ex)
       {
-        Anons.WriteEntry(edc, "SKU message import error", ex.Message);
+        Anons.WriteEntry(edc, "Stock message import error", ex.Message);
       }
       finally
       {
         if (edc != null)
         {
-          Anons.WriteEntry(edc, m_Title, "Import of the message finished");
+          Anons.WriteEntry(edc, m_Title, "Import of the stock message finished");
           edc.SubmitChangesSilently(RefreshMode.KeepCurrentValues);
           edc.Dispose();
         }

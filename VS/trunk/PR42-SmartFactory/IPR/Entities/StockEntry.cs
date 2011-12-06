@@ -9,6 +9,7 @@ namespace CAS.SmartFactory.IPR.Entities
   public partial class StockEntry
   {
     public StockEntry(StockXmlRow xml, Stock parent)
+      : this()
     {
       StockListLookup = parent;
       Batch = xml.Batch;
@@ -57,6 +58,6 @@ namespace CAS.SmartFactory.IPR.Entities
       BatchLookup = Entities.Batch.GetCreateLookup(edc, this.Batch);
     }
     private const string m_Source = "Stock Entry";
-    private const string m_WrongProductTypeMessage = "I cannot recognize product type of the for stock entry SKU: (0) in location: {1}";
+    private const string m_WrongProductTypeMessage = "I cannot recognize product type of the stock entry SKU: {0} in location: {1}";
   }
 }

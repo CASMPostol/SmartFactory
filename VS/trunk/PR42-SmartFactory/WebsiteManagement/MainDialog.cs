@@ -10,6 +10,7 @@ using System.IO;
 using CAS.SmartFactory.xml.Dictionaries;
 using CAS.SmartFactory.IPR.Entities;
 using CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries;
+using CAS.SmartFactory.IPR.ListsEventsHandlers.Reports;
 
 namespace CAS.SmartFactory.Management
 {
@@ -82,6 +83,33 @@ namespace CAS.SmartFactory.Management
           strm.Dispose();
       }
     }
+    private void m_GetStockButton_Click(object sender, EventArgs e)
+    {
+      m_fastRefresh = true;
+      Stream strm = OpenFile();
+      if (strm == null)
+      {
+        m_ToolStripStatusLabel.Text = "Aborted";
+        m_ToolStripProgressBar.Value = 0;
+        return;
+      }
+      try
+      {
+        m_ToolStripStatusLabel.Text = "Reading Data";
+        m_ToolStripProgressBar.Value = 0;
+        StockLibraryEventReceiver.IportStockFromXML(strm, m_URLTextBox.Text.Trim(), 0, m_OpenFileDialog.FileName, UpdateToolStrip);
+        SetDone();
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+      finally
+      {
+        if (strm != null)
+          strm.Dispose();
+      }
+    }
     private void UpdateToolStrip(object obj, ProgressChangedEventArgs progres)
     {
       m_ToolStripStatusLabel.Text = (string)progres.UserState;
@@ -108,5 +136,7 @@ namespace CAS.SmartFactory.Management
       return m_OpenFileDialog.OpenFile();
     }
     private bool m_fastRefresh = true;
+
+
   }
 }
