@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     private void GetProductType(EntitiesDataContext edc)
     {
-      SKUCommonPart sku = SKUCommonPart.GetLookup(edc, SKU);
+      SKUCommonPart sku = SKUCommonPart.Find(edc, SKU);
       if (sku != null)
       {
         this.ProductType = sku.ProductType;
@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.IPR.Entities
         return;
       if (!IPRType.GetValueOrDefault(false))
         return;
-      BatchLookup = Entities.Batch.GetCreateLookup(edc, this.Batch);
+      BatchLookup = Entities.Batch.GetOrCreateLookup(edc, this.Batch);
     }
     private const string m_Source = "Stock Entry";
     private const string m_WrongProductTypeMessage = "I cannot recognize product type of the stock entry SKU: {0} in location: {1}";

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
-using CAS.SmartFactory.xml.Dictionaries;
+using System.Windows.Forms;
 using CAS.SmartFactory.IPR.Entities;
+using CAS.SmartFactory.IPR.ListsEventsHandlers;
 using CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries;
 using CAS.SmartFactory.IPR.ListsEventsHandlers.Reports;
+using CAS.SmartFactory.xml.Dictionaries;
 
 namespace CAS.SmartFactory.Management
 {
@@ -27,7 +23,32 @@ namespace CAS.SmartFactory.Management
     {
       InitializeComponent();
     }
-
+    private void UpdateToolStrip(object obj, ProgressChangedEventArgs progres)
+    {
+      m_ToolStripStatusLabel.Text = (string)progres.UserState;
+      m_ToolStripProgressBar.Value += progres.ProgressPercentage;
+      if (m_fastRefresh)
+        this.Refresh();
+      if (m_ToolStripProgressBar.Value >= m_ToolStripProgressBar.Maximum)
+      {
+        m_ToolStripProgressBar.Value = m_ToolStripProgressBar.Minimum;
+        this.Refresh();
+        m_fastRefresh = false;
+      }
+    }
+    private void SetDone()
+    {
+      m_ToolStripStatusLabel.Text = "Done";
+      m_ToolStripProgressBar.Value = m_ToolStripProgressBar.Minimum;
+    }
+    private Stream OpenFile()
+    {
+      UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Openning the file"));
+      if (m_OpenFileDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+        return null;
+      return m_OpenFileDialog.OpenFile();
+    }
+    private bool m_fastRefresh = true;
     private void m_ImportButton_Click(object sender, EventArgs e)
     {
       m_fastRefresh = true;
@@ -110,33 +131,33 @@ namespace CAS.SmartFactory.Management
           strm.Dispose();
       }
     }
-    private void UpdateToolStrip(object obj, ProgressChangedEventArgs progres)
+    private void m_BatchImportButton_Click(object sender, EventArgs e)
     {
-      m_ToolStripStatusLabel.Text = (string)progres.UserState;
-      m_ToolStripProgressBar.Value += progres.ProgressPercentage;
-      if (m_fastRefresh)
-        this.Refresh();
-      if (m_ToolStripProgressBar.Value >= m_ToolStripProgressBar.Maximum)
+      m_fastRefresh = true;
+      Stream strm = OpenFile();
+      if (strm == null)
       {
-        m_ToolStripProgressBar.Value = m_ToolStripProgressBar.Minimum;
+        m_ToolStripStatusLabel.Text = "Aborted";
+        m_ToolStripProgressBar.Value = 0;
+        return;
+      }
+      try
+      {
+        m_ToolStripStatusLabel.Text = "Reading Data";
+        m_ToolStripProgressBar.Value = 0;
         this.Refresh();
-        m_fastRefresh = false;
+        BatchEventReceiver.ImportBatchFromXml(strm, m_URLTextBox.Text.Trim(), 0, m_OpenFileDialog.FileName, UpdateToolStrip);
+        SetDone();
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+      finally
+      {
+        if (strm != null)
+          strm.Dispose();
       }
     }
-    private void SetDone()
-    {
-      m_ToolStripStatusLabel.Text = "Done";
-      m_ToolStripProgressBar.Value = m_ToolStripProgressBar.Minimum;
-    }
-    private Stream OpenFile()
-    {
-      UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Openning the file"));
-      if (m_OpenFileDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-        return null;
-      return m_OpenFileDialog.OpenFile();
-    }
-    private bool m_fastRefresh = true;
-
-
   }
 }

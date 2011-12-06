@@ -9,9 +9,14 @@ namespace CAS.SmartFactory.IPR.Entities
   {
     internal static Dust GetLookup(ProductType type, EntitiesDataContext edc)
     {
-      Dust value = null;
-      value = (from idx in edc.Dust where idx.ProductType == type orderby idx.Wersja select idx).First();
-      return value;
+      try
+      {
+        return (from idx in edc.Dust where idx.ProductType == type orderby idx.Wersja select idx).First();
+      }
+      catch (Exception ex)
+      {
+        throw new IPRDataConsistencyException(m_Source, m_Message, ex);
+      }
     }
     internal static void ImportData(ConfigurationDustItem[] configuration, EntitiesDataContext edc)
     {
@@ -27,5 +32,9 @@ namespace CAS.SmartFactory.IPR.Entities
       };
       edc.Dust.InsertAllOnSubmit(list);
     }
+    #region private
+    private const string m_Source = "Dust";
+    private const string m_Message = "I cannot find any dust coefficient";
+    #endregion
   }
 }
