@@ -24,6 +24,7 @@ namespace CAS.SmartFactory.IPR.Entities
         };
         Anons.WriteEntry(edc, m_Source, String.Format(m_BatchLookupFiledMessage, index));
         edc.Batch.InsertOnSubmit(newBatch);
+        edc.SubmitChanges();
       }
       return newBatch;
     }
