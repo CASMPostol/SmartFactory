@@ -47,7 +47,7 @@
   </Field>
   <Field
     DisplayName="Duration"
-    Name="Duration"
+    Name="ShippingDuration"
     Type="Number"
     ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}"
     Group="CAS Smart Factory Shepherd"
