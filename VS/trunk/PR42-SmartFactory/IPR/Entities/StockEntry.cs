@@ -51,7 +51,7 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     private void GetBatchLookup(EntitiesDataContext edc)
     {
-      if (ProductType != Entities.ProductType.Cigarette || ProductType != Entities.ProductType.Cutfiller)
+      if (ProductType != Entities.ProductType.Cigarette && ProductType != Entities.ProductType.Cutfiller)
         return;
       if (!IPRType.GetValueOrDefault(false))
         return;
