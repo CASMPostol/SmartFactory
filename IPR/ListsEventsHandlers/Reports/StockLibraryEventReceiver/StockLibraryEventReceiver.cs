@@ -47,6 +47,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         edc = new EntitiesDataContext(url);
         String message = String.Format("Import of the stock message {0} starting.", fileName);
         Anons.WriteEntry(edc, m_Title, message);
+        edc.SubmitChanges();
         StockXml document = StockXml.ImportDocument(stream);
         Dokument entry = Dokument.GetEntity(listIndex, edc.StockLibrary);
         Stock.IportXml(document, edc, entry, progressChanged);
