@@ -60,6 +60,8 @@ namespace CAS.SmartFactory.IPR.Entities
       edc.Material.InsertAllOnSubmit(itemsList.GeContentEnumerator());
       return itemsList;
     }
+    internal SKUCommonPart SKULookup { get; set; }
+    internal bool IPRMaterial { get; set; }
     #endregion
 
     #region private
@@ -84,17 +86,12 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     private void GetProductType(EntitiesDataContext edc)
     {
-      SKUCommonPart sku = SKUCommonPart.Find(edc, this.SKU);
-      if (sku != null)
-      {
-        this.ProductType = sku.ProductType;
-        return;
-      }
-      Warehouse wrh = Warehouse.GetLookup(edc, this.Location);
-      if (wrh != null)
-        this.ProductType = wrh.ProductType;
+      EntitiesDataContext.ProductDescription product = edc.GetProductType(this.SKU, this.Location);
+      this.ProductType = product.productType;
+      this.SKULookup = product.skuLookup;
+      this.IPRMaterial = product.IPRMaterial;
     }
-    private const string keyForam = "{0}:{1}:{2}"; 
+    private const string keyForam = "{0}:{1}:{2}";
     #endregion
   }
 }

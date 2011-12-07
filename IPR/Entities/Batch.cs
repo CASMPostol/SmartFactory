@@ -20,6 +20,7 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       Batch newBatch = new Batch(xml, entry);
       Material.SummaryContentInfo fg = Material.GetXmlContent(xml.Material, edc, newBatch);
+      newBatch.BatchProcessing(xml, edc, fg);
       Batch oldBatch = null;
       try
       {
@@ -27,9 +28,8 @@ namespace CAS.SmartFactory.IPR.Entities
           (from batch in edc.Batch where batch.Batch0.Contains(fg.Product.Batch) && batch.BatchStatus.Value == Entities.BatchStatus.Preliminary select batch).First();
       }
       catch (Exception) { }
-      newBatch.BatchProcessing(xml, edc, fg);
       edc.Batch.InsertOnSubmit(newBatch);
-      if (oldBatch == null)
+      if (oldBatch != null)
         edc.Batch.DeleteOnSubmit(oldBatch);
     }
     /// <summary>
@@ -94,7 +94,7 @@ namespace CAS.SmartFactory.IPR.Entities
       SKU = fg.Product.SKU;
       Tytuł = String.Format("SKU: {0}; Batch: {1}", SKU, Batch0);
       FGQuantity = fg.Product.FGQuantity;
-      MaterialQuantity = fg.Product.TobaccoQuantity;
+      MaterialQuantity = fg.TotalTobacco;
       ProductType = fg.Product.ProductType;
       //interconnect 
       SKULookup = SKUCommonPart.GetLookup(edc, fg.Product.SKU);

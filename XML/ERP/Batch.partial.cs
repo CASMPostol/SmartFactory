@@ -10,8 +10,8 @@ namespace CAS.SmartFactory.xml.erp
     {
       using (XmlReader reader = XmlReader.Create(documetStream, new XmlReaderSettings() { }))
       {
-        XmlSerializer invoice = new XmlSerializer(typeof(Batch));
-        return (Batch)invoice.Deserialize(reader);
+        XmlSerializer serializer = new XmlSerializer(typeof(Batch));
+        return (Batch)serializer.Deserialize(reader);
       }
     }
 
