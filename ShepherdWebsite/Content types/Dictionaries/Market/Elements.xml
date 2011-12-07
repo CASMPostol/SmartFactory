@@ -8,7 +8,6 @@
                Inherits="TRUE">
 		<Folder TargetName="_cts/Market" />
 		<FieldRefs>
-      <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerIndex" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

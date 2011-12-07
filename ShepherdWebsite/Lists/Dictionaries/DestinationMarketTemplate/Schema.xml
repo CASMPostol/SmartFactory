@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="DestinationTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-DestinationTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List xmlns:ows="Microsoft SharePoint" Title="DestinationMarketTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-DestinationMarketTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01009D1AA218257345479707EEA31491A298" Name="Destination" Group="CAS Smart Factory Shepherd" Description="Destination" Overwrite="TRUE" Inherits="TRUE">
-        <Folder TargetName="_cts/Destination" />
+      <ContentType ID="0x01002cd380c2a0bc484caf14a0a71dadef4e" Name="DestinationMarket" Group="CAS Smart Factory Shepherd" Description="Destination Market - Markets associated with routs" Overwrite="TRUE" Inherits="TRUE">
+        <Folder TargetName="_cts/DestinationMarket" />
         <FieldRefs>
-          <FieldRef ID="{816868C2-FBCF-46C3-91B4-D6CF0F057E83}" Name="CityTitle" />
-          <FieldRef ID="{A673B418-E331-448A-AC32-CD58D861015D}" Name="ShipmentTypeTitle" />
-          <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerTitle" />
+          <FieldRef ID="{E94BF458-8886-4E27-BA2A-32CDCA4B2DB2}" Name="RouteTitle" />
+          <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -21,9 +20,8 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="CityTitle" ID="{816868c2-fbcf-46c3-91b4-d6cf0f057e83}" Type="Lookup" List="Lists/CityList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="City Name" Group="CAS Smart Factory" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="ShipmentTypeTitle" ID="{a673b418-e331-448a-ac32-cd58d861015d}" Type="Lookup" List="Lists/ShipmentTypeList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipment Type" Group="CAS Smart Factory Shepherd" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="FreightPayerTitle" ID="{b5d7d15b-e7ba-4768-b746-ac71d70ef53f}" Type="Lookup" List="Lists/FreightPayerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Freight Payer" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="MarketTitle" ID="{44f4b458-2ea8-4b75-9546-80a495738f59}" Type="Lookup" List="Lists/MarketList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Market" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="RouteTitle" ID="{e94bf458-8886-4e27-ba2a-32cdca4b2db2}" Type="Lookup" List="Lists/RouteList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Route" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -55,9 +53,8 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{816868C2-FBCF-46C3-91B4-D6CF0F057E83}" Name="CityTitle" />
-          <FieldRef ID="{A673B418-E331-448A-AC32-CD58D861015D}" Name="ShipmentTypeTitle" />
-          <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerTitle" />
+          <FieldRef ID="{E94BF458-8886-4E27-BA2A-32CDCA4B2DB2}" Name="RouteTitle" />
+          <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
         </ViewFields>
         <Query>
           <OrderBy>
