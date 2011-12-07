@@ -38,8 +38,9 @@ namespace CAS.SmartFactory.IPR.Entities
       int progress = 0;
       try
       {
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "Format"));
+        progressChanged(null, new ProgressChangedEventArgs(progress++, "Connecting to website"));
         edc = new EntitiesDataContext(url);
+        progressChanged(null, new ProgressChangedEventArgs(progress++, "Format"));
         Entities.Format.ImportData(data.Format, edc);
         edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Consent"));
