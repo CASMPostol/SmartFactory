@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class Warehouse
   {
-    internal static Warehouse GetLookup(EntitiesDataContext edc, string index)
+    internal static Warehouse Find(EntitiesDataContext edc, string index)
     {
       Warehouse newWarehouse = null;
       try

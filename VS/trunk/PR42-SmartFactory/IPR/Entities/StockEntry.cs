@@ -33,21 +33,9 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     private void GetProductType(EntitiesDataContext edc)
     {
-      SKUCommonPart sku = SKUCommonPart.Find(edc, SKU);
-      if (sku != null)
-      {
-        this.ProductType = sku.ProductType;
-        this.IPRType = sku.IPRMaterial;
-        return;
-      };
-      Warehouse wrh = Warehouse.GetLookup(edc, this.Location);
-      if (wrh != null)
-      {
-        this.ProductType = wrh.ProductType;
-        this.IPRType = Entities.ProductType.IPRTobacco == wrh.ProductType.Value;
-        return;
-      }
-      throw new IPRDataConsistencyException(m_Source, String.Format(m_WrongProductTypeMessage, this.SKU, this.Location), null);
+      EntitiesDataContext.ProductDescription product = edc.GetProductType(this.SKU, this.Location);
+      this.ProductType = product.productType;
+      this.IPRType = product.IPRMaterial;
     }
     private void GetBatchLookup(EntitiesDataContext edc)
     {

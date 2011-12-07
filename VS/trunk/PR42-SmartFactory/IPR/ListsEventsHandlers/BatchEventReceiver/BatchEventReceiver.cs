@@ -42,13 +42,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       try
       {
         edc = new EntitiesDataContext(url);
-        String message = String.Format("Import of the batch message {0} starting.", fileName);
-        Anons.WriteEntry(edc, m_Title, message);
+        Anons.WriteEntry(edc, m_Title, String.Format(m_Message, fileName));
         edc.SubmitChanges();
-        BatchXml document = BatchXml.ImportDocument(stream);
+        BatchXml xml = BatchXml.ImportDocument(stream);
         Dokument entry = Dokument.GetEntity(listIndex, edc.BatchLibrary);
-        Batch.GetXmlContent(document, edc, entry);
-        Anons.WriteEntry(edc, m_Title, "Import of the stock message finished");
+        Batch.GetXmlContent(xml, edc, entry);
+        Anons.WriteEntry(edc, m_Title, "Import of the batch message finished");
         edc.SubmitChanges();
       }
       catch (Exception ex)
@@ -65,5 +64,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       }
     }
     private const string m_Title = "Batch Message Import";
+    private const string m_Message = "Import of the batch message {0} starting.";
   }
 }
