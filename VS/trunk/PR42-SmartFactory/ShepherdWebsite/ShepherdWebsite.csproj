@@ -147,6 +147,9 @@
     <None Include="Content types\Shipping\ShippingOperationOutbound\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{13e529b5-265a-415c-a6bc-e030f1c1fe77}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\TrailerCondition\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{dc3be53a-9498-4462-a18d-4fe314c6ac70}</SharePointProjectItemId>
+    </None>
     <None Include="Features\Shepherd\Shepherd.feature">
       <FeatureId>{8c0e09df-69d3-4029-8937-7f8fd3b244d9}</FeatureId>
     </None>
@@ -331,6 +334,12 @@
     <None Include="Lists\Shipping\ShippingTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4ddcbb71-d14a-44b8-aed8-f67e233069f3}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Shipping\TrailerConditionTemplate\TrailerConditionList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6af42c8b-51b3-4714-b667-6495ba41f4f4}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Shipping\TrailerConditionTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{931662e9-1ca7-4bf2-ac50-e4dbe2dfaa63}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{d5b7af74-65b4-4968-a81a-70ba671f405d}</PackageId>
     </None>
@@ -379,6 +388,7 @@
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml" />
+    <Content Include="Content types\Shipping\TrailerCondition\Elements.xml" />
     <Content Include="Features\Shepherd\Shepherd.Template.xml">
       <DependentUpon>Shepherd.feature</DependentUpon>
     </Content>
@@ -484,6 +494,9 @@
     <Content Include="Lists\Shipping\ShippingTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingTemplate\ShippingList\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\TrailerConditionTemplate\Elements.xml" />
+    <Content Include="Lists\Shipping\TrailerConditionTemplate\TrailerConditionList\Elements.xml" />
+    <Content Include="Lists\Shipping\TrailerConditionTemplate\Schema.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />

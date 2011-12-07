@@ -101,4 +101,29 @@
     ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}"
     Group="CAS Smart Factory Shepherd"
     />
+  <Field
+   Type="Choice"
+   DisplayName="Trailer Condition"
+   ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}"
+   Format="Dropdown"
+   BaseType="Text"
+   Description="Trailer Condition"
+   Name="TrailerCondition"
+   Group="CAS Smart Factory Shepherd">
+    <Default>5 - excellent</Default>
+    <CHOICES>
+      <CHOICE>5- excellent</CHOICE>
+      <CHOICE>4</CHOICE>
+      <CHOICE>3</CHOICE>
+      <CHOICE>2</CHOICE>
+      <CHOICE>1 - unexceptable</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    DisplayName="Comments"
+    Name="TrailerConditionComments"
+    Type="Note"
+    ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}"
+    Group="CAS Smart Factory Shepherd"
+    />
 </Elements>
