@@ -135,6 +135,9 @@
     <None Include="Content types\Dictionaries\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{19e4133f-3075-48da-a910-c12b1acefa61}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\LoadDescription\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c0509c90-b44b-4167-b0e4-4069c85b1bf9}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Shipping\ShippingDriversTeam\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fcc0da24-3072-46fa-863f-adf611c20ef0}</SharePointProjectItemId>
     </None>
@@ -310,6 +313,12 @@
     <None Include="Lists\Libraries\SecuritySealProtocolLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{64b86b44-1e47-4b2e-ae13-e5a71f32e45c}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a8cb96f1-7e6f-428a-9232-c5b4d9f2321a}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Shipping\LoadDescriptionTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{851c1bf3-52dd-40b7-833c-9268ec4d0d20}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Shipping\ShippingDriversTeamTemplate\ShippingDriversTeamList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{35200135-95d9-4f8a-a63f-df1955637b92}</SharePointProjectItemId>
     </None>
@@ -366,6 +375,7 @@
     <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
     <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
+    <Content Include="Content types\Shipping\LoadDescription\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml" />
@@ -465,6 +475,9 @@
     <Content Include="Lists\Libraries\GoodsHandlingPOLibrary\Elements.xml" />
     <Content Include="Lists\Libraries\SecurityPOLibrary\Elements.xml" />
     <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />
+    <Content Include="Lists\Shipping\LoadDescriptionTemplate\Elements.xml" />
+    <Content Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\Elements.xml" />
+    <Content Include="Lists\Shipping\LoadDescriptionTemplate\Schema.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\ShippingDriversTeamList\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Schema.xml" />

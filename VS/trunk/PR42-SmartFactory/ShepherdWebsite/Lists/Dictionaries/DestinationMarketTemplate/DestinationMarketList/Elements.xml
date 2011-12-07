@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Destination Market List"
+  <ListInstance Title="Destination Market"
                 OnQuickLaunch="TRUE"
                 TemplateType="10003"
                 Url="Lists/DestinationMarketList"

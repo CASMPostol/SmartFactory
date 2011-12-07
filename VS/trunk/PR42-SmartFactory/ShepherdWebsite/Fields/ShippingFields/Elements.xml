@@ -80,4 +80,25 @@
     ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}"
     Group="CAS Smart Factory Shepherd"
     />
+  <Field
+    DisplayName="Delivery Number"
+    Name="DeliveryNumber"
+    Type="Text"
+    ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Goods Quantity"
+    Name="GoodsQuantity"
+    Type="Number"
+    ID="{E7BFEA15-E33C-4E18-8E55-B68D0B3A09D0}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Number of pallets"
+    Name="NumberOfPallets"
+    Type="Number"
+    ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}"
+    Group="CAS Smart Factory Shepherd"
+    />
 </Elements>
