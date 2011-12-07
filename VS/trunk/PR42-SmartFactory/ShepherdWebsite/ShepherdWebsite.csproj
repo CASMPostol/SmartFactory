@@ -138,9 +138,6 @@
     <None Include="Content types\Shipping\ShippingDriversTeam\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fcc0da24-3072-46fa-863f-adf611c20ef0}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Shipping\Shipping\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{a4ba4bab-a705-4c28-becb-2e4d84c39f79}</SharePointProjectItemId>
-    </None>
     <None Include="Features\Shepherd\Shepherd.feature">
       <FeatureId>{8c0e09df-69d3-4029-8937-7f8fd3b244d9}</FeatureId>
     </None>
@@ -358,7 +355,6 @@
     <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml" />
-    <Content Include="Content types\Shipping\Shipping\Elements.xml" />
     <Content Include="Features\Shepherd\Shepherd.Template.xml">
       <DependentUpon>Shepherd.feature</DependentUpon>
     </Content>
