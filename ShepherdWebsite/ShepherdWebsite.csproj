@@ -138,6 +138,12 @@
     <None Include="Content types\Shipping\ShippingDriversTeam\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fcc0da24-3072-46fa-863f-adf611c20ef0}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\ShippingOperationInbound\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{abd67ee8-eba1-44e3-860e-cda5b9227325}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Shipping\ShippingOperationOutbound\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{13e529b5-265a-415c-a6bc-e030f1c1fe77}</SharePointProjectItemId>
+    </None>
     <None Include="Features\Shepherd\Shepherd.feature">
       <FeatureId>{8c0e09df-69d3-4029-8937-7f8fd3b244d9}</FeatureId>
     </None>
@@ -310,6 +316,12 @@
     <None Include="Lists\Shipping\ShippingDriversTeamTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{aa699c61-301c-4609-a16a-90346870280d}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Shipping\ShippingTemplate\ShippingList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2a7ea42c-6330-4758-a256-8fe4d5ec8970}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Shipping\ShippingTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4ddcbb71-d14a-44b8-aed8-f67e233069f3}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{d5b7af74-65b4-4968-a81a-70ba671f405d}</PackageId>
     </None>
@@ -355,6 +367,8 @@
     <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml" />
+    <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml" />
+    <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml" />
     <Content Include="Features\Shepherd\Shepherd.Template.xml">
       <DependentUpon>Shepherd.feature</DependentUpon>
     </Content>
@@ -454,6 +468,9 @@
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\ShippingDriversTeamList\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\ShippingTemplate\Elements.xml" />
+    <Content Include="Lists\Shipping\ShippingTemplate\ShippingList\Elements.xml" />
+    <Content Include="Lists\Shipping\ShippingTemplate\Schema.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />

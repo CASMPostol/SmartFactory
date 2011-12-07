@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="ShippingDriversTeamTitle"
+    ID="{29BDF275-7636-4114-9506-81506BFBB287}"
+    Type="Lookup"
+    List="Lists/ShippingDriversTeamList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Drivers Team"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="1stDriverTitle"
     ID="{39DA0D47-6429-49C0-90A8-677774DD52AC}"
     Type="Lookup"

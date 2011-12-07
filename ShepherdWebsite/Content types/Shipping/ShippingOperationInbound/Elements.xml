@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x010047c1f2ab865840e598fe69dec5d5b021"
+               Name="ShippingOperationInbound"
+               Group="CAS Smart Factory Shepherd"
+               Description="Shipping Operation - Inbound"
+               Overwrite="TRUE"
+               Inherits="True">
+    <Folder TargetName="_cts/ShippingOperationInbound" />
+    <FieldRefs>
+      <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+      <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
+      <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
+      <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
+      <FieldRef ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}" Name="ShippingDuration" />
+      <FieldRef ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}" Name="ShippingPointTitle" />
+      <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
+      <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
+      <FieldRef ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}" Name="GoodsHandlingPO" />
+      <FieldRef ID="{29BDF275-7636-4114-9506-81506BFBB287}" Name="ShippingDriversTeamTitle" />
+      <FieldRef ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}" Name="CancelationReason" />
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
+</Elements>

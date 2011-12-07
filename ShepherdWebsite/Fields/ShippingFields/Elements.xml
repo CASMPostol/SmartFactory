@@ -59,4 +59,25 @@
     ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}"
     Group="CAS Smart Factory Shepherd"
     />
+  <Field
+    DisplayName="Security Escort PO"
+    Name="SecurityEscrotPO"
+    Type="Text"
+    ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Goods Handling PO"
+    Name="GoodsHandlingPO"
+    Type="Text"
+    ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Cancelation reason"
+    Name="CancelationReason"
+    Type="Number"
+    ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}"
+    Group="CAS Smart Factory Shepherd"
+    />
 </Elements>
