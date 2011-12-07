@@ -72,6 +72,9 @@
     <None Include="Content types\Dictionaries\Currency\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{172ab12f-b1a5-4c3d-84c3-f78d4c6bd3c9}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\DestinationMarket\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8dbc99c2-b909-41f0-b478-ed92b788c4f4}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\Destination\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5fc4a578-5101-4cf6-8a74-b528459dda63}</SharePointProjectItemId>
     </None>
@@ -186,6 +189,12 @@
     </None>
     <None Include="Lists\Dictionaries\CurrencyTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{28af19e4-6b32-4e76-b761-a92b832af126}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\DestinationMarketTemplate\DestinationMarketList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{046ca281-f4da-4bd6-af40-e5b7c10e5eb6}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\DestinationMarketTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{68b93bcb-dba1-493c-8dbe-cd6dd4254c06}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\DestinationTemplate\DestinationList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ed417ae5-3a70-4d71-8986-58b92ff2b0cd}</SharePointProjectItemId>
@@ -321,6 +330,7 @@
     <Content Include="Content types\Dictionaries\Company\Elements.xml" />
     <Content Include="Content types\Dictionaries\Country\Elements.xml" />
     <Content Include="Content types\Dictionaries\Currency\Elements.xml" />
+    <Content Include="Content types\Dictionaries\DestinationMarket\Elements.xml" />
     <Content Include="Content types\Dictionaries\Destination\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -376,6 +386,9 @@
     <Content Include="Lists\Dictionaries\CurrencyTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CurrencyTemplate\CurrencyList\Elements.xml" />
     <Content Include="Lists\Dictionaries\CurrencyTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\DestinationMarketTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\DestinationMarketTemplate\DestinationMarketList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\DestinationMarketTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\DestinationTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\DestinationTemplate\DestinationList\Elements.xml" />
     <Content Include="Lists\Dictionaries\DestinationTemplate\Schema.xml" />
@@ -400,7 +413,9 @@
     <Content Include="Lists\Dictionaries\PalletTypesTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\RouteTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\RouteTemplate\RouteList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\RouteTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\RouteTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\SAPDestinationPlantTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\SAPDestinationPlantTemplate\SAPDestinationPlantList\Elements.xml" />
     <Content Include="Lists\Dictionaries\SAPDestinationPlantTemplate\Schema.xml" />

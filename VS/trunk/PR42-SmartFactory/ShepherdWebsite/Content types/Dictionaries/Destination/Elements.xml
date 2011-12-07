@@ -8,9 +8,9 @@
                Inherits="TRUE">
 		<Folder TargetName="_cts/Destination" />
 		<FieldRefs>
-      <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
       <FieldRef ID="{816868C2-FBCF-46C3-91B4-D6CF0F057E83}" Name="CityTitle" />
       <FieldRef ID="{A673B418-E331-448A-AC32-CD58D861015D}" Name="ShipmentTypeTitle" />
+      <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerIndex" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

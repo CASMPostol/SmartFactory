@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x01002cd380c2a0bc484caf14a0a71dadef4e"
+               Name="DestinationMarket"
+               Group="CAS Smart Factory Shepherd" 
+               Description="Destination Market - Markets associated with routs"
+               Overwrite="TRUE" 
+               Inherits="TRUE">
+		<Folder TargetName="_cts/DestinationMarket" />
+		<FieldRefs>
+      <FieldRef ID="{E94BF458-8886-4E27-BA2A-32CDCA4B2DB2}" Name="RouteTitle" />
+      <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
+		</FieldRefs>
+		<XmlDocuments>
+			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+				<FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+					<Display>ListForm</Display>
+					<Edit>ListForm</Edit>
+					<New>ListForm</New>
+				</FormTemplates>
+			</XmlDocument>
+		</XmlDocuments>
+	</ContentType>
+</Elements>

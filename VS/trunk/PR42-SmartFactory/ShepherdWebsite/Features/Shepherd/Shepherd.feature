@@ -83,5 +83,8 @@
     <projectItemReference itemId="fcc0da24-3072-46fa-863f-adf611c20ef0" />
     <projectItemReference itemId="35200135-95d9-4f8a-a63f-df1955637b92" />
     <projectItemReference itemId="aa699c61-301c-4609-a16a-90346870280d" />
+    <projectItemReference itemId="8dbc99c2-b909-41f0-b478-ed92b788c4f4" />
+    <projectItemReference itemId="046ca281-f4da-4bd6-af40-e5b7c10e5eb6" />
+    <projectItemReference itemId="68b93bcb-dba1-493c-8dbe-cd6dd4254c06" />
   </projectItems>
 </feature>
