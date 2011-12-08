@@ -22,7 +22,8 @@ namespace CAS.SmartFactory.IPR.Entities
         edc.InvoiceContent.InsertAllOnSubmit(itemsList);
       return functionValue;
     }
-    private InvoiceContent(EntitiesDataContext edc, Invoice parent, InvoiceItemXml item)
+    private InvoiceContent(EntitiesDataContext edc, Invoice parent, InvoiceItemXml item) :
+      this()
     {
       Batch = item.Batch;
       BatchLookup = Entities.Batch.GetLookup(edc, item.Batch);
