@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ListTemplate
+        Name="TimeSlotTemplate"
+        Type="10007"
+        BaseType="0"
+        OnQuickLaunch="TRUE"
+        FolderCreation="FALSE"
+        SecurityBits="11"
+        Sequence="340"
+        DisplayName="TimeSlot Template"
+        Description="TimeSlot List Definition"
+        Image="/_layouts/images/itevent.png"/>
+</Elements>
