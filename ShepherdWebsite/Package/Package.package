@@ -2,6 +2,12 @@
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="d5b7af74-65b4-4968-a81a-70ba671f405d" solutionId="d5b7af74-65b4-4968-a81a-70ba671f405d" resetWebServer="false" title="Shepherd" description="Shepherd sdata model " name="ShepherdWebsite" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="8c0e09df-69d3-4029-8937-7f8fd3b244d9" />
-    <featureReference itemId="cbf150e9-325f-4385-8d53-0088c4c2a890" />
   </features>
+  <projectItems>
+    <projectItemReference itemId="0b882851-1713-4a21-8f5f-fbf6211edec5" />
+    <projectItemReference itemId="636e1086-3bb9-4920-91fb-e2d31f4e157a" />
+    <projectItemReference itemId="206dc054-3529-4baa-b94b-b95a57182dda" />
+    <projectItemReference itemId="4c6353ca-6c58-4663-bccb-db9a06d80fcb" />
+    <projectItemReference itemId="16083ee4-aeaf-4172-abd8-e16e62b409b6" />
+  </projectItems>
 </package>

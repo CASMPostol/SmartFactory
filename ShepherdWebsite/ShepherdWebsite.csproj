@@ -135,6 +135,9 @@
     <None Include="Content types\Dictionaries\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{19e4133f-3075-48da-a910-c12b1acefa61}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\AlarmsAndEvents\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{fb5db4c0-6c0f-4bc1-9f64-be2f02c7f1a0}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Shipping\LoadDescription\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c0509c90-b44b-4167-b0e4-4069c85b1bf9}</SharePointProjectItemId>
     </None>
@@ -152,9 +155,6 @@
     </None>
     <None Include="Content types\Shipping\TrailerCondition\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{dc3be53a-9498-4462-a18d-4fe314c6ac70}</SharePointProjectItemId>
-    </None>
-    <None Include="Features\Feature1\Feature1.feature">
-      <FeatureId>{cbf150e9-325f-4385-8d53-0088c4c2a890}</FeatureId>
     </None>
     <None Include="Features\Shepherd\Shepherd.feature">
       <FeatureId>{8c0e09df-69d3-4029-8937-7f8fd3b244d9}</FeatureId>
@@ -322,6 +322,12 @@
     <None Include="Lists\Libraries\SecuritySealProtocolLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{64b86b44-1e47-4b2e-ae13-e5a71f32e45c}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{72417b29-0966-48df-a875-b4340b3fac63}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Shipping\AlarmsAndEventsTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9b6d3b0e-9a65-42fa-8fbb-733c68a911d4}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a8cb96f1-7e6f-428a-9232-c5b4d9f2321a}</SharePointProjectItemId>
     </None>
@@ -396,6 +402,7 @@
     <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
     <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
+    <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml" />
     <Content Include="Content types\Shipping\LoadDescription\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -405,9 +412,6 @@
     <Content Include="Content types\Shipping\TimeSlot\Elements.xml" />
     <Content Include="Content types\Shipping\TrailerCondition\Elements.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
     </Content>
     <Content Include="Features\Shepherd\Shepherd.Template.xml">
       <DependentUpon>Shepherd.feature</DependentUpon>
@@ -507,6 +511,9 @@
     <Content Include="Lists\Libraries\GoodsHandlingPOLibrary\Elements.xml" />
     <Content Include="Lists\Libraries\SecurityPOLibrary\Elements.xml" />
     <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />
+    <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />
+    <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\Elements.xml" />
+    <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Schema.xml" />
