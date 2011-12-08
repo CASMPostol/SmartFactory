@@ -159,5 +159,33 @@ namespace CAS.SmartFactory.Management
           strm.Dispose();
       }
     }
+    private void m_InvoiceReadButton_Click(object sender, EventArgs e)
+    {
+      m_fastRefresh = true;
+      Stream strm = OpenFile();
+      if (strm == null)
+      {
+        m_ToolStripStatusLabel.Text = "Aborted";
+        m_ToolStripProgressBar.Value = 0;
+        return;
+      }
+      try
+      {
+        m_ToolStripStatusLabel.Text = "Reading Data";
+        m_ToolStripProgressBar.Value = 0;
+        this.Refresh();
+        CAS.SmartFactory.IPR.ListsEventsHandlers.Customs.InvoiceEventReceiver.IportInvoiceFromXml(strm, m_URLTextBox.Text.Trim(), 0, m_OpenFileDialog.FileName, UpdateToolStrip);
+        SetDone();
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+      finally
+      {
+        if (strm != null)
+          strm.Dispose();
+      }
+    }
   }
 }
