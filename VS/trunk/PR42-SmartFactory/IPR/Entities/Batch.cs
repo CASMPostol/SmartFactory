@@ -53,7 +53,7 @@ namespace CAS.SmartFactory.IPR.Entities
           BatchStatus = Entities.BatchStatus.Preliminary,
           Tytuł = index
         };
-        Anons.WriteEntry(edc, m_Source, String.Format(m_BatchLookupFiledMessage, index));
+        Anons.WriteEntry(edc, m_Source, String.Format(m_LookupFailedAndAddedMessage, index));
         edc.Batch.InsertOnSubmit(newBatch);
         edc.SubmitChanges();
       }
@@ -68,8 +68,14 @@ namespace CAS.SmartFactory.IPR.Entities
     /// <exception cref="System.ArgumentNullException">The source is null.</exception>
     internal static Batch GetLookup(EntitiesDataContext edc, string index)
     {
-      Batch newBatch = (from batch in edc.Batch where batch.Batch0.Contains(index) orderby batch.Identyfikator descending select batch).First();
-      return newBatch;
+      try
+      {
+        return (from batch in edc.Batch where batch.Batch0.Contains(index) orderby batch.Identyfikator descending select batch).First();
+      }
+      catch (Exception ex)
+      {
+        throw new IPRDataConsistencyException(m_Source, String.Format(m_LookupFailedMessage, index), ex);
+      } 
     }
     internal Disposal[] GetDisposals(EntitiesDataContext edc)
     {
@@ -120,7 +126,8 @@ namespace CAS.SmartFactory.IPR.Entities
       }
     }
     private const string m_Source = "Batch processing";
-    private const string m_BatchLookupFiledMessage = "I cannot recognize batch (0) - added preliminary entry do the list that must be edited.";
-	#endregion  
+    private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry do the list that must be edited.";
+    private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
+    #endregion  
   }
 }

@@ -5,6 +5,8 @@ using CAS.SmartFactory.xml;
 using Microsoft.SharePoint;
 using InvoiceItemXml = CAS.SmartFactory.xml.erp.InvoiceItem;
 using InvoiceXml = CAS.SmartFactory.xml.erp.Invoice;
+using System.IO;
+using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
 {
@@ -20,25 +22,41 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     {
       if (!properties.List.Title.Contains("Invoice"))
         return;
+      this.EventFiringEnabled = false;
+      //if (properties.ListItem.File == null)
+      //{
+      //  Anons.WriteEntry(edc, m_Title, "Import of an invoice xml message failed because the file is empty.");
+      //  return;
+      //}
+      IportInvoiceFromXml
+      (
+        properties.ListItem.File.OpenBinaryStream(),
+        properties.WebUrl,
+        properties.ListItem.ID,
+        properties.ListItem.File.ToString(),
+        (object obj, ProgressChangedEventArgs progres) => { return; }
+      );
+      this.EventFiringEnabled = true;
+      base.ItemAdded(properties);
+    }
+    public static void IportInvoiceFromXml(Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged)
+    {
       EntitiesDataContext edc = null;
       try
       {
-        this.EventFiringEnabled = false;
-        edc = new EntitiesDataContext(properties.WebUrl);
-        if (properties.ListItem.File == null)
-        {
-          Anons.WriteEntry(edc, m_Title, "Import of an invoice xml message failed because the file is empty.");
-          return;
-        }
-        String message = String.Format("Import of the invoice message {0} starting.", properties.ListItem.File.ToString());
+        edc = new EntitiesDataContext(url);
+        String message = String.Format("Import of the invoice message {0} starting.", fileName);
         Anons.WriteEntry(edc, m_Title, message);
-        InvoiceXml document = InvoiceXml.ImportDocument(properties.ListItem.File.OpenBinaryStream());
-        Dokument entry = Dokument.GetEntity(properties.ListItem.ID, edc.InvoiceLibrary);
-        GetXmlContent(document, edc, entry);
+        edc.SubmitChanges();
+        InvoiceXml document = InvoiceXml.ImportDocument(stream);
+        Dokument entry = Dokument.GetEntity(listIndex, edc.InvoiceLibrary);
+        Invoice.GetXmlContent(document, edc, entry);
+        Anons.WriteEntry(edc, m_Title, "Import of the stock message finished");
+        edc.SubmitChanges();
       }
       catch (Exception ex)
       {
-        Anons.WriteEntry(edc, "Invoice message import error", ex.Message);
+        Anons.WriteEntry(edc, "Aborted Invoice message import because of the error", ex.Message);
       }
       finally
       {
@@ -47,43 +65,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
           edc.SubmitChanges();
           edc.Dispose();
         }
-        this.EventFiringEnabled = true;
-        base.ItemAdded(properties);
       }
-    }
-    private void GetXmlContent(InvoiceXml document, EntitiesDataContext edc, Dokument entry)
-    {
-      Invoice newInvoice = new Invoice
-      {
-        InvoiceLibraryLookup = entry, //TODO Initialize all properties 
-      };
-      edc.Invoice.InsertOnSubmit(newInvoice);
-      newInvoice.BillDoc = GetXmlContent(document.Item, edc, newInvoice);
-    }
-    private string GetXmlContent(InvoiceItemXml[] invoiceEntries, EntitiesDataContext edc, Invoice parent)
-    {
-      string functionValue = String.Empty;
-      List<InvoiceContent> itemsList = new List<InvoiceContent>();
-      foreach (InvoiceItemXml item in invoiceEntries)
-      {
-        if (String.IsNullOrEmpty(functionValue))
-          functionValue = item.Bill_doc.ToString();
-        InvoiceContent newInvoiceContent = new InvoiceContent()
-        {
-          Batch = item.Batch,
-          BatchLookup = Batch.GetLookup(edc, item.Batch),
-          InvoiceLookup = parent,
-          ItemNo = item.Item.ConvertToDouble(),
-          ProductType = SKUCommonPart.Find(edc, item.Material).ProductType,
-          Quantity = item.Bill_qty_in_SKU.ConvertToDouble(),
-          SKU = item.Material,
-          Tytuł = item.Description,
-          Units = item.BUn
-        };
-      }
-      if (itemsList.Count != 0)
-        edc.InvoiceContent.InsertAllOnSubmit(itemsList);
-      return functionValue;
     }
     private const string m_Title = "Stock Message Import";
   }

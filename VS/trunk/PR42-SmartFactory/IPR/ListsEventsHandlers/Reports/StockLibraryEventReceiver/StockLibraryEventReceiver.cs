@@ -52,6 +52,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         Dokument entry = Dokument.GetEntity(listIndex, edc.StockLibrary);
         Stock.IportXml(document, edc, entry, progressChanged);
         progressChanged(null, new ProgressChangedEventArgs(1, "Submiting Changes"));
+        Anons.WriteEntry(edc, m_Title, "Import of the stock message finished");
         edc.SubmitChanges();
       }
       catch (Exception ex)
@@ -62,7 +63,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       {
         if (edc != null)
         {
-          Anons.WriteEntry(edc, m_Title, "Import of the stock message finished");
           edc.SubmitChangesSilently(RefreshMode.KeepCurrentValues);
           edc.Dispose();
         }
