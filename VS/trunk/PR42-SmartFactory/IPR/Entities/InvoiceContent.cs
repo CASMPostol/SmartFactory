@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.IPR.Entities
         if (String.IsNullOrEmpty(functionValue))
           functionValue = item.Bill_doc.ToString();
       }
-      if (itemsList.Count < 0)
+      if (itemsList.Count > 0)
         edc.InvoiceContent.InsertAllOnSubmit(itemsList);
       return functionValue;
     }
