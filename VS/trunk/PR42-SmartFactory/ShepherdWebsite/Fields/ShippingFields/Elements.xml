@@ -126,4 +126,38 @@
     ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}"
     Group="CAS Smart Factory Shepherd"
     />
+  <Field
+    ID="{AAA1FBFE-205C-46DF-A996-47D3AFEF9484}"
+    Name="ShippingActualTime"
+    Group="CAS Smart Factory Shepherd"
+    Type="DateTime"
+    Format="DateTime"
+    DisplayName="Actual Time">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    ID="{9C0CFEA4-22DA-4837-B50E-F1A31AF0E1EC}"
+    Name="ShipingActualTimeSpan"
+    Group="CAS Smart Factory Shepherd"
+    Type="DateTime"
+    Format="TimeOnly"
+    DisplayName="Actual Time Span">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    ID="{C8009083-7850-4CC1-848D-552F7569C2BE}"
+    Name="ShipingTimeSpan"
+    Group="CAS Smart Factory Shepherd"
+    Type="DateTime"
+    Format="TimeOnly"
+    DisplayName="Time Span">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    DisplayName="Occupied"
+    Name="Occupied"
+    Type="Boolean"
+    ID="{4F4BDC32-689F-4664-9D1E-D78C21148178}"
+    Group="CAS Smart Factory Shepherd"
+    />
 </Elements>
