@@ -15,22 +15,22 @@ namespace CAS.SmartFactory.IPR.Entities
     /// </summary>
     /// <param name="xml">The document.</param>
     /// <param name="edc">The edc.</param>
-    /// <param name="entry">The entry.</param>
-    internal static void GetXmlContent(BatchXml xml, EntitiesDataContext edc, Dokument entry)
+    /// <param name="parent">The entry.</param>
+    internal static void GetXmlContent(BatchXml xml, EntitiesDataContext edc, Dokument parent)
     {
-      Batch newBatch = new Batch(xml, entry);
-      Material.SummaryContentInfo fg = Material.GetXmlContent(xml.Material, edc, newBatch);
-      newBatch.BatchProcessing(xml, edc, fg);
-      Batch oldBatch = null;
+      Material.SummaryContentInfo fg = Material.GetXmlContent(xml.Material, edc);
+      Batch batch = null;
       try
       {
-        oldBatch =
-          (from batch in edc.Batch where batch.Batch0.Contains(fg.Product.Batch) && batch.BatchStatus.Value == Entities.BatchStatus.Preliminary select batch).First();
+        batch =
+          (from idx in edc.Batch where idx.Batch0.Contains(fg.Product.Batch) && idx.BatchStatus.Value == Entities.BatchStatus.Preliminary select idx).First();
       }
-      catch (Exception) { }
-      edc.Batch.InsertOnSubmit(newBatch);
-      if (oldBatch != null)
-        edc.Batch.DeleteOnSubmit(oldBatch);
+      catch (Exception) 
+      {
+        batch = new Batch();
+        edc.Batch.InsertOnSubmit(batch);
+      }
+      batch.BatchProcessing(xml, edc, fg, parent);
     }
     /// <summary>
     /// Gets or creates lookup.
@@ -51,7 +51,8 @@ namespace CAS.SmartFactory.IPR.Entities
         {
           Batch0 = index,
           BatchStatus = Entities.BatchStatus.Preliminary,
-          Tytuł = index
+          Tytuł = index, 
+          ProductType = Entities.ProductType.Invalid
         };
         Anons.WriteEntry(edc, m_Source, String.Format(m_LookupFailedAndAddedMessage, index));
         edc.Batch.InsertOnSubmit(newBatch);
@@ -75,7 +76,7 @@ namespace CAS.SmartFactory.IPR.Entities
       catch (Exception ex)
       {
         throw new IPRDataConsistencyException(m_Source, String.Format(m_LookupFailedMessage, index), ex);
-      } 
+      }
     }
     internal Disposal[] GetDisposals(EntitiesDataContext edc)
     {
@@ -84,18 +85,14 @@ namespace CAS.SmartFactory.IPR.Entities
           where this.Identyfikator == idx.BatchLookup.Identyfikator
           select idx;
       return disposals.ToArray<Disposal>();
-    } 
+    }
     #endregion
 
     #region private
-    private Batch(BatchXml document, Dokument entry)
-      : this()
+    private void BatchProcessing(BatchXml xml, EntitiesDataContext edc, Material.SummaryContentInfo fg, Dokument parent)
     {
-      this.BatchLibraryLookup = entry;
-      this.BatchStatus = GetBatchStatus(document.Status);
-    }
-	private void BatchProcessing(BatchXml document, EntitiesDataContext edc, Material.SummaryContentInfo fg)
-    {
+      this.BatchLibraryLookup = parent;
+      this.BatchStatus = GetBatchStatus(xml.Status);
       Batch0 = fg.Product.Batch;
       SKU = fg.Product.SKU;
       Tytuł = String.Format("SKU: {0}; Batch: {1}", SKU, Batch0);
@@ -110,8 +107,9 @@ namespace CAS.SmartFactory.IPR.Entities
       UsageLookup = Usage.GetLookup(SKULookup.FormatLookup, edc);
       WasteLookup = Entities.Waste.GetLookup(ProductType.Value, edc);
       CalculatedOveruse = fg.ProcessDisposals();
+      fg.InsertAllOnSubmit(edc, this);
     }
-    private static BatchStatus? GetBatchStatus(xml.erp.BatchStatus batchStatus)
+    private static BatchStatus GetBatchStatus(xml.erp.BatchStatus batchStatus)
     {
       switch (batchStatus)
       {
@@ -128,6 +126,6 @@ namespace CAS.SmartFactory.IPR.Entities
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry do the list that must be edited.";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
-    #endregion  
+    #endregion
   }
 }

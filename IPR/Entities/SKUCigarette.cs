@@ -15,8 +15,8 @@ namespace CAS.SmartFactory.IPR.Entities
       : base(xmlDocument, parent, edc)
     {
       this.ProductType = Entities.ProductType.Cigarette;
-      this.Brand = xmlDocument.Brand;
-      this.Family = xmlDocument.Family;
+      this.Brand = xmlDocument.Brand_Description;
+      this.Family = xmlDocument.Family_Des;
       this.Menthol = xmlDocument.Menthol;
       this.PrimeMarket = xmlDocument.Prime_Market;
     }

@@ -12,6 +12,12 @@ namespace CAS.SmartFactory.IPR.Entities
       public SummaryContentInfo() { }
       public Material Product { get; private set; }
       public double TotalTobacco { get; private set; }
+      internal void InsertAllOnSubmit(EntitiesDataContext edc, Batch parent)
+      {
+        foreach (var item in Values)
+          item.BatchLookup = parent;
+        edc.Material.InsertAllOnSubmit(GeContentEnumerator());
+      }
       /// <summary>
       /// Adds an element with the specified key and value into the System.Collections.Generic.SortedList<TKey,TValue>.
       /// </summary>
@@ -22,12 +28,12 @@ namespace CAS.SmartFactory.IPR.Entities
       public void Add(Material value)
       {
         Material ce = null;
+        if (value.ProductType == Entities.ProductType.IPRTobacco || value.ProductType == Entities.ProductType.Tobacco)
+          TotalTobacco = TotalTobacco + value.TobaccoQuantity.GetValueOrDefault(0);
         if (this.TryGetValue(value.GetKey(), out ce))
         {
           ce.FGQuantity = ce.FGQuantity + value.FGQuantity;
           ce.TobaccoQuantity = ce.TobaccoQuantity + value.TobaccoQuantity;
-          if (value.ProductType == Entities.ProductType.IPRTobacco || value.ProductType == Entities.ProductType.Tobacco)
-            TotalTobacco = TotalTobacco + value.TobaccoQuantity.GetValueOrDefault(0);
         }
         else
         {
@@ -48,16 +54,15 @@ namespace CAS.SmartFactory.IPR.Entities
         return this.Values;
       }
     }
-    internal static SummaryContentInfo GetXmlContent(BatchMaterialXml[] xml, EntitiesDataContext edc, Batch parent)
+    internal static SummaryContentInfo GetXmlContent(BatchMaterialXml[] xml, EntitiesDataContext edc)
     {
       SummaryContentInfo itemsList = new SummaryContentInfo();
       foreach (BatchMaterialXml item in xml)
       {
-        Material newMaterial = new Material(parent, item);
+        Material newMaterial = new Material(item);
         newMaterial.GetProductType(edc);
         itemsList.Add(newMaterial);
       }
-      edc.Material.InsertAllOnSubmit(itemsList.GeContentEnumerator());
       return itemsList;
     }
     internal SKUCommonPart SKULookup { get; set; }
@@ -65,11 +70,11 @@ namespace CAS.SmartFactory.IPR.Entities
     #endregion
 
     #region private
-    private Material(Batch parent, BatchMaterialXml item)
+    private Material(BatchMaterialXml item)
       : this()
     {
       Batch = item.Batch;
-      BatchLookup = parent;
+      BatchLookup = null;
       SKU = item.Material;
       Location = item.Stor__Loc;
       SKUDescription = item.Material_description;

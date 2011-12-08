@@ -60,11 +60,9 @@ namespace CAS.SmartFactory.Management
       }
       try
       {
-        m_ToolStripStatusLabel.Text = "Reading Data";
-        m_ToolStripProgressBar.Value = 0;
+        UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Reading Data"));
         Configuration cnfg = Configuration.ImportDocument(strm);
-        m_ToolStripProgressBar.Value = 10;
-        m_ToolStripStatusLabel.Text = "Importing Data";
+        UpdateToolStrip(this, new ProgressChangedEventArgs(10, "Importing Data"));
         EntitiesDataContext.ImportData(cnfg, m_URLTextBox.Text.Trim(), UpdateToolStrip);
         SetDone();
       }
