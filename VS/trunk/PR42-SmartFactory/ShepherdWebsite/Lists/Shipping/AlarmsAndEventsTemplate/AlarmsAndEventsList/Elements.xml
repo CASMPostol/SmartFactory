@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Alarms and events"
+                OnQuickLaunch="TRUE"
+                TemplateType="10008"
+                Url="Lists/AlarmsAndEventsList"
+                Description="Alarms and events List Instance">
+  </ListInstance>
+</Elements>
