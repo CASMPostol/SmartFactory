@@ -117,6 +117,9 @@
     <None Include="Content types\Dictionaries\ShippingPoint\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{14e553bf-62a7-4a82-a276-23f5c45041d8}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\TimeSlotTemplates\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5acd18dd-0b21-4626-a6c9-8be9a3a24a3f}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\Trailer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5106151e-de91-42a2-9737-4689fbf62562}</SharePointProjectItemId>
     </None>
@@ -280,6 +283,12 @@
     <None Include="Lists\Dictionaries\ShippingPointTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6da95305-1cb1-4d19-a0c6-3605112ee85f}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\TimeSlotTemplatesTemplate\TimeSlotTemplatesList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{22a8d226-6198-4d78-a497-d5a4687350ee}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\TimeSlotTemplatesTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{40f80328-565f-4290-9a34-a1143774df2c}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\TrailerTemplate\TrailerList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{90db5152-64d8-402f-b1c1-19eeedec2ceb}</SharePointProjectItemId>
     </None>
@@ -385,6 +394,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\ShippingPoint\Elements.xml" />
+    <Content Include="Content types\Dictionaries\TimeSlotTemplates\Elements.xml" />
     <Content Include="Content types\Dictionaries\Trailer\Elements.xml" />
     <Content Include="Content types\Dictionaries\TranspotUnit\Elements.xml">
       <SubType>Designer</SubType>
@@ -483,6 +493,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\TimeSlotTemplatesTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\TimeSlotTemplatesTemplate\TimeSlotTemplatesList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\TimeSlotTemplatesTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\TrailerList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\Schema.xml" />
