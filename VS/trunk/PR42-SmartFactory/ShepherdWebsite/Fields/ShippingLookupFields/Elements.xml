@@ -35,6 +35,23 @@
     ReadOnly="False"
     />
   <Field
+    Name="ShippingSecurityEscortTeamTitle"
+    ID="{3E3A79D1-F698-49AD-9A3E-9839D73918BC}"
+    Type="Lookup"
+    List="Lists/ShippingDriversTeamList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Security Escort Team"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="1stDriverTitle"
     ID="{39DA0D47-6429-49C0-90A8-677774DD52AC}"
     Type="Lookup"
