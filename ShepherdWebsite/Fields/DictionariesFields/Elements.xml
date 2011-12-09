@@ -25,6 +25,13 @@
     Description="Exchange Rate"
     />
   <Field
+    DisplayName="Material Master"
+    Name="MaterialMaster"
+    Type="Text"
+    ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     DisplayName="ID Number"
     Name="IDNumber"
     Type="Text"

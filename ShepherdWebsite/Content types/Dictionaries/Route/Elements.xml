@@ -9,6 +9,7 @@
     <Folder TargetName="_cts/Route" />
     <FieldRefs>
       <FieldRef ID="{22D4D6CE-F749-4D22-BF7F-69037CDAA4C5}" Name="DestinationTitle" />
+      <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />
       <FieldRef ID="{40088770-43E3-441B-9973-D3B093DC131C}" Name="RemarkMM" />
       <FieldRef ID="{396E8164-1398-4378-8D2C-E78495BC12DA}" Name="SAPDestinationPlantTitle" />
       <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />

@@ -9,6 +9,7 @@
     <Folder TargetName="_cts/SecurityEscortCatalog" />
     <FieldRefs>
       <FieldRef ID="{22D4D6CE-F749-4D22-BF7F-69037CDAA4C5}" Name="DestinationTitle" />
+      <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />
       <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
       <FieldRef ID="{D73A3F7D-6892-4A46-90EE-39BEB668944A}" Name="SecurityCost" />
       <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />

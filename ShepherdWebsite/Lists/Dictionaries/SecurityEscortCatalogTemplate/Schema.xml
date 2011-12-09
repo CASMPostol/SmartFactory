@@ -6,6 +6,7 @@
         <Folder TargetName="_cts/SecurityEscortCatalog" />
         <FieldRefs>
           <FieldRef ID="{22D4D6CE-F749-4D22-BF7F-69037CDAA4C5}" Name="DestinationTitle" />
+          <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{D73A3F7D-6892-4A46-90EE-39BEB668944A}" Name="SecurityCost" />
           <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
@@ -14,6 +15,7 @@
     </ContentTypes>
     <Fields>
       <Field DisplayName="Security Cost" Name="SecurityCost" Type="Number" ID="{d73a3f7d-6892-4a46-90ee-39beb668944a}" Group="CAS Smart Factory Shepherd" Description="Security Cost" />
+      <Field DisplayName="Material Master" Name="MaterialMaster" Type="Text" ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Group="CAS Smart Factory Shepherd" />
       <Field Name="DestinationTitle" ID="{22d4d6ce-f749-4d22-bf7f-69037cdaa4c5}" Type="Lookup" List="Lists/DestinationList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Destination" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="CurrencyTitle" ID="{e1c985aa-f1a4-4275-87d3-ee0df7b44223}" Type="Lookup" List="Lists/CurrencyList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Currency" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="PartnerTitle" ID="{c7ca4aa6-8399-4714-a4a4-42145faba936}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
@@ -49,6 +51,7 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{22D4D6CE-F749-4D22-BF7F-69037CDAA4C5}" Name="DestinationTitle" />
+          <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{D73A3F7D-6892-4A46-90EE-39BEB668944A}" Name="SecurityCost" />
           <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
