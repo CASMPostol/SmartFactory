@@ -169,4 +169,11 @@
     Group="CAS Smart Factory Shepherd">
     <Default>[today]</Default>
     </Field>
+  <Field
+    DisplayName="Security Escort Required"
+    Name="SecuirtyEscortRequired"
+    Type="Boolean"
+    ID="{BE819A05-1E08-46BD-8E97-65A2C0D80708}"
+    Group="CAS Smart Factory Shepherd"
+    />
 </Elements>
