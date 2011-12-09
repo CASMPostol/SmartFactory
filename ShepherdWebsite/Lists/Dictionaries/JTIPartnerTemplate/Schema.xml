@@ -31,7 +31,7 @@
       <CHOICE>Security Escort Provider</CHOICE>
     </CHOICES>
   </Field>
-      <Field DisplayName="Vendor Number (from SAP)" Name="VendorNumber" Type="Number" ID="{7a847280-fe50-471a-b399-1f7d7ef19da3}" Group="CAS Smart Factory Shepherd" />
+      <Field DisplayName="Vendor Number (from SAP)" Name="VendorNumber" Type="Text" ID="{7a847280-fe50-471a-b399-1f7d7ef19da3}" Group="CAS Smart Factory Shepherd" />
       <Field ID="{fd630629-c165-4513-b43c-fdb16b86a14d}" Name="WorkPhone" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkPhone" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Business_Phone;" Type="Text" IMEMode="inactive" />
       <Field ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="EMail" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EMail" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,E-Mail;" ReadOnly="FALSE" Type="Text" FromBaseType="TRUE" AllowDeletion="TRUE" />
       <Field ID="{9d1cacc8-f452-4bc1-a751-050595ad96e1}" Name="WorkFax" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkFax" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Fax_Number;" Type="Text" IMEMode="inactive" />
