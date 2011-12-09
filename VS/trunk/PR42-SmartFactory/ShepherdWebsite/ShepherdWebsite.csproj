@@ -117,9 +117,6 @@
     <None Include="Content types\Dictionaries\ShippingPoint\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{14e553bf-62a7-4a82-a276-23f5c45041d8}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Dictionaries\TimeSlotTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{5babe184-86dd-45f7-8b2d-b87282b17192}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Dictionaries\Trailer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5106151e-de91-42a2-9737-4689fbf62562}</SharePointProjectItemId>
     </None>
@@ -283,12 +280,6 @@
     <None Include="Lists\Dictionaries\ShippingPointTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6da95305-1cb1-4d19-a0c6-3605112ee85f}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Dictionaries\TimeSlotTemplateTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{093f3bb0-c2c8-41fe-aad9-aa1f794313e8}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Dictionaries\TimeSlotTemplateTemplate\TimeSlotTemplateList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{2eb3d4ea-94bb-4b97-8e45-71facf21d805}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Dictionaries\TrailerTemplate\TrailerList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{90db5152-64d8-402f-b1c1-19eeedec2ceb}</SharePointProjectItemId>
     </None>
@@ -346,11 +337,11 @@
     <None Include="Lists\Shipping\ShippingTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4ddcbb71-d14a-44b8-aed8-f67e233069f3}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Shipping\TimeSlotTemplate\TimeSlotList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{a4d5d69b-f66e-4114-ab18-48935fe726cd}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Shipping\TimeSlotTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{6bb209cf-e3f5-43d5-a13a-699ebd7b2a8f}</SharePointProjectItemId>
+      <SharePointProjectItemId>{366e304a-165c-42c5-8058-824c780426aa}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Shipping\TimeSlotTemplate\TimeSlotList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{94ded09f-99f8-4b6a-9e24-4a6186f52a13}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\TrailerConditionTemplate\TrailerConditionList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6af42c8b-51b3-4714-b667-6495ba41f4f4}</SharePointProjectItemId>
@@ -394,7 +385,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\ShippingPoint\Elements.xml" />
-    <Content Include="Content types\Dictionaries\TimeSlotTemplate\Elements.xml" />
     <Content Include="Content types\Dictionaries\Trailer\Elements.xml" />
     <Content Include="Content types\Dictionaries\TranspotUnit\Elements.xml">
       <SubType>Designer</SubType>
@@ -409,7 +399,9 @@
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml" />
-    <Content Include="Content types\Shipping\TimeSlot\Elements.xml" />
+    <Content Include="Content types\Shipping\TimeSlot\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Shipping\TrailerCondition\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -491,9 +483,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\Schema.xml" />
-    <Content Include="Lists\Dictionaries\TimeSlotTemplateTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\TimeSlotTemplateTemplate\Schema.xml" />
-    <Content Include="Lists\Dictionaries\TimeSlotTemplateTemplate\TimeSlotTemplateList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\TrailerList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\Schema.xml" />
@@ -524,8 +513,8 @@
     <Content Include="Lists\Shipping\ShippingTemplate\ShippingList\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingTemplate\Schema.xml" />
     <Content Include="Lists\Shipping\TimeSlotTemplate\Elements.xml" />
-    <Content Include="Lists\Shipping\TimeSlotTemplate\TimeSlotList\Elements.xml" />
     <Content Include="Lists\Shipping\TimeSlotTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\TimeSlotTemplate\TimeSlotList\Elements.xml" />
     <Content Include="Lists\Shipping\TrailerConditionTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\TrailerConditionTemplate\TrailerConditionList\Elements.xml" />
     <Content Include="Lists\Shipping\TrailerConditionTemplate\Schema.xml" />

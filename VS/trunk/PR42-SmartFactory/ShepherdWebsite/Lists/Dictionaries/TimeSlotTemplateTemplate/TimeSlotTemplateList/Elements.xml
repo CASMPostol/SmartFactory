@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="TimeSlot Template"
-                OnQuickLaunch="TRUE"
-                TemplateType="10001"
-                Url="Lists/TimeSlotTemplateList"
-                Description="Time Slot Template">
-  </ListInstance>
-</Elements>
