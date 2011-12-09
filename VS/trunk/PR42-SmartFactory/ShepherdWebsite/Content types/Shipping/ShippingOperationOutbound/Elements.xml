@@ -9,7 +9,6 @@
     <Folder TargetName="_cts/ShippingOperationOutbound" />
     <FieldRefs>
       <FieldRef ID="{E94BF458-8886-4E27-BA2A-32CDCA4B2DB2}" Name="RouteTitle" />
-      <FieldRef ID="{768BE52D-0FCD-480D-B180-2D492C2A4629}" Name="EstimateTimeOfArrival" />
       <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
       <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
       <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />

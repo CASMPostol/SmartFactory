@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
-    ID="{768BE52D-0FCD-480D-B180-2D492C2A4629}"
-    Name="EstimateTimeOfArrival"
-    Group="CAS Smart Factory Shepherd"
-    Type="DateTime"
-    Format="DateOnly"
-    DisplayName="Estimated Time of Arrival">
-    <Default>[today]</Default>
-  </Field>
-  <Field
     DisplayName="Dock number"
     Name="DockNumber"
     Type="Number"
