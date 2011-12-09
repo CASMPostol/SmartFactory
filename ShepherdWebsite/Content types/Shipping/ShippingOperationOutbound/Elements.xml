@@ -22,6 +22,7 @@
       <FieldRef ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}" Name="GoodsHandlingPO" />
       <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
       <FieldRef ID="{29BDF275-7636-4114-9506-81506BFBB287}" Name="ShippingDriversTeamTitle" />
+      <FieldRef ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Name="EstimateDeliveryTime" />
       <FieldRef ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}" Name="CancelationReason" />
     </FieldRefs>
     <XmlDocuments>

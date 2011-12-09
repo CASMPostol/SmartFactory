@@ -19,6 +19,7 @@
           <FieldRef ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}" Name="GoodsHandlingPO" />
           <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
           <FieldRef ID="{29BDF275-7636-4114-9506-81506BFBB287}" Name="ShippingDriversTeamTitle" />
+          <FieldRef ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Name="EstimateDeliveryTime" />
           <FieldRef ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}" Name="CancelationReason" />
         </FieldRefs>
         <XmlDocuments>
@@ -57,6 +58,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
+      <Field DisplayName="Estimate Delivery Time" Name="EstimateDeliveryTime" Type="DateTime" Format="TimeOnly" ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Group="CAS Smart Factory Shepherd"> <Default>[today]</Default> </Field>
       <Field Name="RouteTitle" ID="{e94bf458-8886-4e27-ba2a-32cdca4b2db2}" Type="Lookup" List="Lists/RouteList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Route" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="PartnerTitle" ID="{c7ca4aa6-8399-4714-a4a4-42145faba936}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="ShippingPointTitle" ID="{1a53314b-d7a0-448c-9eaa-757ab59ee242}" Type="Lookup" List="Lists/ShippingPointList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Point" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
@@ -134,6 +136,7 @@
           <FieldRef ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}" Name="GoodsHandlingPO" />
           <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
           <FieldRef ID="{29BDF275-7636-4114-9506-81506BFBB287}" Name="ShippingDriversTeamTitle" />
+          <FieldRef ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Name="EstimateDeliveryTime" />
           <FieldRef ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}" Name="CancelationReason" />
         </ViewFields>
         <Query>
