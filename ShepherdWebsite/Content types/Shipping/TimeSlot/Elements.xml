@@ -6,7 +6,7 @@
                Description="Time Slot"
                Overwrite="True"
                Inherits="False">
-    <Folder TargetName="_cts/TimeSot" />
+    <Folder TargetName="_cts/TimeSlot" />
     <FieldRefs>
       <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
       <FieldRef ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Name="Location" Hidden="TRUE" />
