@@ -32,7 +32,7 @@
     Name="StartTime"
     Group="CAS Smart Factory Shepherd"
     Type="DateTime"
-    Format="DateOnly"
+    Format="TimeOnly"
     DisplayName="Start Time">
     <Default>[today]</Default>
   </Field>
