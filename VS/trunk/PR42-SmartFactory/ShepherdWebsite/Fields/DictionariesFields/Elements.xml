@@ -142,7 +142,7 @@
   <Field
     DisplayName="Vendor Number (from SAP)"
     Name="VendorNumber"
-    Type="Number"
+    Type="Text"
     ID="{7A847280-FE50-471A-B399-1F7D7EF19DA3}"
     Group="CAS Smart Factory Shepherd"
     />
