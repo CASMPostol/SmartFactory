@@ -80,7 +80,7 @@
       <CHOICE>Underway</CHOICE>
     </CHOICES>
   </Field>
-      <Field ID="{0c674e8b-70ed-4bcf-84c7-8942292e3954}" Name="StartTime" Group="CAS Smart Factory Shepherd" Type="DateTime" Format="DateOnly" DisplayName="Start Time">
+      <Field ID="{0c674e8b-70ed-4bcf-84c7-8942292e3954}" Name="StartTime" Group="CAS Smart Factory Shepherd" Type="DateTime" Format="TimeOnly" DisplayName="Start Time">
     <Default>[today]</Default>
   </Field>
       <Field DisplayName="Duration" Name="ShippingDuration" Type="Number" ID="{a826b26e-82db-45d0-b078-f69cebb1ed05}" Group="CAS Smart Factory Shepherd" />
