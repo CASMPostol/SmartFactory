@@ -182,13 +182,6 @@
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Total Transit Time"
-    Name="TotalTransitTime"
-    Type="Number"
-    ID="{97AEFA6D-9B71-466D-9F53-58C7F3436B0A}"
-    Group="CAS Smart Factory Shepherd"
-    />
-  <Field
     DisplayName="Pallet Size"
     Name="PalletSize"
     Type="Text"

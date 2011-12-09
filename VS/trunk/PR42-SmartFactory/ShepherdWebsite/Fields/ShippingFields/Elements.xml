@@ -160,4 +160,13 @@
     ID="{4F4BDC32-689F-4664-9D1E-D78C21148178}"
     Group="CAS Smart Factory Shepherd"
     />
+  <Field
+    DisplayName="Estimate Delivery Time"
+    Name="EstimateDeliveryTime"
+    Type="DateTime"
+    Format="TimeOnly"
+    ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}"
+    Group="CAS Smart Factory Shepherd">
+    <Default>[today]</Default>
+    </Field>
 </Elements>

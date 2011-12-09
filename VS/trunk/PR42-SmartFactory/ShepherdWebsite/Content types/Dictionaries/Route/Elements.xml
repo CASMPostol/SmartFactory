@@ -14,7 +14,6 @@
       <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
       <FieldRef ID="{3F47B50A-D2D1-4B7B-845D-2EC0E9461388}" Name="CarrierTitle" />
       <FieldRef ID="{621CCC9E-E10F-4AE7-8471-D34C5AA59913}" Name="TransportUnitTypeTitle" />
-      <FieldRef ID="{97AEFA6D-9B71-466D-9F53-58C7F3436B0A}" Name="TotalTransitTime"/>
       <FieldRef ID="{3D76E122-FD59-46A6-BA25-38AEBB4AF138}" Name="TransportCosts" />
       <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
     </FieldRefs>
