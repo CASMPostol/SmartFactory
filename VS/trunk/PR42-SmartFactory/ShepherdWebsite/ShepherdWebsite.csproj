@@ -75,9 +75,6 @@
     <None Include="Content types\Dictionaries\DestinationMarket\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8dbc99c2-b909-41f0-b478-ed92b788c4f4}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Dictionaries\Destination\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{5fc4a578-5101-4cf6-8a74-b528459dda63}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Dictionaries\Driver\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2893f301-494b-4b50-b6e9-2408b93e7aca}</SharePointProjectItemId>
     </None>
@@ -210,12 +207,6 @@
     </None>
     <None Include="Lists\Dictionaries\DestinationMarketTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{68b93bcb-dba1-493c-8dbe-cd6dd4254c06}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Dictionaries\DestinationTemplate\DestinationList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{ed417ae5-3a70-4d71-8986-58b92ff2b0cd}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Dictionaries\DestinationTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{77addcfe-a664-4530-8d8e-7ff1d052519d}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\DriverTemplate\DriverList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0a2db3c9-8677-4faf-939c-5556a342109e}</SharePointProjectItemId>
@@ -376,9 +367,6 @@
     <Content Include="Content types\Dictionaries\Country\Elements.xml" />
     <Content Include="Content types\Dictionaries\Currency\Elements.xml" />
     <Content Include="Content types\Dictionaries\DestinationMarket\Elements.xml" />
-    <Content Include="Content types\Dictionaries\Destination\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content types\Dictionaries\Driver\Elements.xml" />
     <Content Include="Content types\Dictionaries\ExchangeRate\Elements.xml" />
     <Content Include="Content types\Dictionaries\ExternalWorker\Elements.xml" />
@@ -408,7 +396,9 @@
     </Content>
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml" />
-    <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml" />
+    <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Shipping\TimeSlot\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -447,9 +437,6 @@
     <Content Include="Lists\Dictionaries\DestinationMarketTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\DestinationMarketTemplate\DestinationMarketList\Elements.xml" />
     <Content Include="Lists\Dictionaries\DestinationMarketTemplate\Schema.xml" />
-    <Content Include="Lists\Dictionaries\DestinationTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\DestinationTemplate\DestinationList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\DestinationTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\DriverTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\DriverTemplate\DriverList\Elements.xml" />
     <Content Include="Lists\Dictionaries\DriverTemplate\Schema.xml" />

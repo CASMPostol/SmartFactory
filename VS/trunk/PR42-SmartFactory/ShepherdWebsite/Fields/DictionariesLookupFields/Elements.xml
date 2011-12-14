@@ -11,7 +11,7 @@
     RelationshipDeleteBehavior="None"
     DisplayName="Security Escort"
     Group="CAS Smart Factory Shepherd"
-    Required="True"
+    Required="False"
     Hidden="False"
     DisplaceOnUpgrade="True"
     EnforceUniqueValues="False"
