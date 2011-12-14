@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using BatchXml = CAS.SmartFactory.xml.erp.Batch;
+using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
@@ -16,9 +17,9 @@ namespace CAS.SmartFactory.IPR.Entities
     /// <param name="xml">The document.</param>
     /// <param name="edc">The edc.</param>
     /// <param name="parent">The entry.</param>
-    internal static void GetXmlContent(BatchXml xml, EntitiesDataContext edc, Dokument parent)
+    internal static void GetXmlContent(BatchXml xml, EntitiesDataContext edc, Dokument parent, ProgressChangedEventHandler progressChanged)
     {
-      Material.SummaryContentInfo fg = Material.GetXmlContent(xml.Material, edc);
+      Material.SummaryContentInfo fg = Material.GetXmlContent(xml.Material, edc, progressChanged);
       Batch batch = null;
       try
       {

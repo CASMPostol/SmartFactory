@@ -19,7 +19,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <param name="properties">Contains properties for asynchronous list item event handlers.</param>
     public override void ItemAdded(SPItemEventProperties properties)
     {
-      if (!properties.List.Title.Contains("Batch"))
+      if (!properties.List.Title.Contains("Batch Library"))
         return;
       this.EventFiringEnabled = false;
       //if (properties.ListItem.File == null)
@@ -41,12 +41,15 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       EntitiesDataContext edc = null;
       try
       {
+        progressChanged(null, new ProgressChangedEventArgs(1, "Importing XML"));
         edc = new EntitiesDataContext(url);
         Anons.WriteEntry(edc, m_Title, String.Format(m_Message, fileName));
         edc.SubmitChanges();
         BatchXml xml = BatchXml.ImportDocument(stream);
+        progressChanged(null, new ProgressChangedEventArgs(1, "Finding lookup to the library"));
         Dokument entry = Dokument.GetEntity(listIndex, edc.BatchLibrary);
-        Batch.GetXmlContent(xml, edc, entry);
+        progressChanged(null, new ProgressChangedEventArgs(1, "Getting Data"));
+        Batch.GetXmlContent(xml, edc, entry, progressChanged);
         progressChanged(null, new ProgressChangedEventArgs(1, "Submiting Changes"));
         Anons.WriteEntry(edc, m_Title, "Import of the batch message finished");
         edc.SubmitChanges();

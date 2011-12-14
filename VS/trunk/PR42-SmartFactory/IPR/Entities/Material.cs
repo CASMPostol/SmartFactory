@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using BatchMaterialXml = CAS.SmartFactory.xml.erp.BatchMaterial;
 
 namespace CAS.SmartFactory.IPR.Entities
@@ -46,6 +48,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       internal double ProcessDisposals()
       {
+        Debug.Assert(Product != null, "Summary content info has unassigned Product property");
         //TODO to be implemented: http://itrserver/Bugs/BugDetail.aspx?bid=2869
         return 0;
       }
@@ -53,16 +56,23 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         return this.Values;
       }
+      internal void CheckCosistence()
+      {
+        if (Product == null)
+          throw new IPRDataConsistencyException("Processing disposals", "Unrecognized finisched good", null);
+      }
     }
-    internal static SummaryContentInfo GetXmlContent(BatchMaterialXml[] xml, EntitiesDataContext edc)
+    internal static SummaryContentInfo GetXmlContent(BatchMaterialXml[] xml, EntitiesDataContext edc, ProgressChangedEventHandler progressChanged)
     {
       SummaryContentInfo itemsList = new SummaryContentInfo();
       foreach (BatchMaterialXml item in xml)
       {
         Material newMaterial = new Material(item);
         newMaterial.GetProductType(edc);
+        progressChanged(null, new ProgressChangedEventArgs(1, String.Format("SKU={0}", newMaterial.SKU)));
         itemsList.Add(newMaterial);
       }
+      itemsList.CheckCosistence();
       return itemsList;
     }
     internal SKUCommonPart SKULookup { get; set; }
