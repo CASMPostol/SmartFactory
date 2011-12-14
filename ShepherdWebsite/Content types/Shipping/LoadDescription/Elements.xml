@@ -9,6 +9,7 @@
     <Folder TargetName="_cts/LoadDescription" />
     <FieldRefs>
       <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="ShippingIndex" />
+      <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
       <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
       <FieldRef ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}" Name="DeliveryNumber" />
       <FieldRef ID="{E7BFEA15-E33C-4E18-8E55-B68D0B3A09D0}" Name="GoodsQuantity" />
