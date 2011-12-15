@@ -7,8 +7,8 @@
     <ProjectGuid>{6153760E-3C48-4B25-9212-3100AA870FBF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ShepherdWebsite</RootNamespace>
-    <AssemblyName>ShepherdWebsite</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.Shepherd.Website</RootNamespace>
+    <AssemblyName>CAS.ShepherdWebsite</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
