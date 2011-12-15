@@ -471,7 +471,9 @@
     <Content Include="Lists\Dictionaries\ScheduleTemplateTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\SecurityEscortCatalogList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Schema.xml" />
@@ -505,7 +507,9 @@
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\Elements.xml" />
-    <Content Include="Lists\Shipping\LoadDescriptionTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\LoadDescriptionTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\ShippingDriversTeamList\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Schema.xml" />
