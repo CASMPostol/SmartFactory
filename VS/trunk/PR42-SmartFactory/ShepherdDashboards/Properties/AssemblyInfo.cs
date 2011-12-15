@@ -6,13 +6,13 @@ using System.Security;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CAS Shepherd Website")]
-[assembly: AssemblyDescription("CAS Smart Factory Shepherd Application Website Contenet")]
+[assembly: AssemblyTitle("CAS ShepherdDashboards")]
+[assembly: AssemblyDescription("CAS Smart Factory Shepherd Application Dashboards")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("CAS Smart Factory")]
-[assembly: AssemblyCopyright("Copyright © CAS Company 2011")]
-[assembly: AssemblyTrademark("SmartFactory")]
+[assembly: AssemblyCopyright("Copyright © CAS 2011")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -21,7 +21,7 @@ using System.Security;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6153760e-3c48-4b25-9212-3100aa870fbf")]
+[assembly: Guid("9298a609-7978-4256-8151-c5ebdc2e496e")]
 
 // Version information for an assembly consists of the following four values:
 //
