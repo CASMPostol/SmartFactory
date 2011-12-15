@@ -28,23 +28,7 @@
                     </table>
                 </td>
                 <td width="80%">
-                    <!--shipping operaions-->
-                    <table cellpadding="0" cellspacing="5" border="0" width="100%">
-                        <tr>
-                            <td>
-                                <span style="font-size: 16px; font-family: Verdana, Arial; font-weight: bold;">Shipping operations:</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:GridView ID="GridView1" runat="server">
-                                </asp:GridView>
-                            </td>
-                        </tr>
-
-                    </table>
-                    <!--Shipping Data -->
-                    <table cellpadding="0" cellspacing="5" border="0" width="100%">
+                <table cellpadding="0" cellspacing="5" border="0" width="100%">
                         <tr>
                             <td valign="top" colspan="4">
                                 <span style="font-size: 16px; font-family: Verdana, Arial; font-weight: bold;">Shiping Data</span>
@@ -61,22 +45,6 @@
                                 </asp:GridView>
                             </td>
                          </tr>
-                        <tr>
-                             <td valign="top">
-                                <span style="font-size: 12px; font-family: Verdana, Arial;">JTI PO number:</span>
-                             </td>
-                             <td valign="top">
-                                <asp:GridView ID="GridView4" runat="server">
-                                </asp:GridView>
-                             </td>
-                             <td valign="top">
-                                <span style="font-size: 12px; font-family: Verdana, Arial;">Shipping state:</span>
-                             </td>
-                             <td valign="top">
-                                <asp:GridView ID="GridView5" runat="server">
-                                </asp:GridView>
-                             </td>
-                        </tr>
                         <tr>
                              <td valign="top" colspan="4"><!-- Load Description - pallet types and quantity -->
                                 <span style="font-size: 12px; font-family: Verdana, Arial;">Load Description:</span>
@@ -121,21 +89,28 @@
                                 </asp:GridView>
                              </td>
                         </tr>
-                        <tr>
-                           <td valign="top">
-                                <span style="font-size: 12px; font-family: Verdana, Arial;">Cancelation reason:</span>
-                           </td>
-                           <td valign="top" colspan="3">
-                                <asp:GridView ID="GridView16" runat="server">
-                                </asp:GridView>
-                           </td>
-                        </tr>
                         <tr><!--Cancel/Save Shipping-->
                             <td colspan="4" align="right" valign="top">
+                                <asp:Button ID="Button1" runat="server" Text="Create new shipping" />
                                 <asp:Button ID="Button2" runat="server" Text="Cancel shipping operation" />
                                 <asp:Button ID="Button3" runat="server" Text="Save changes" />
                             </td>
                         </tr>
+                    </table>
+                    <!--shipping operaions-->
+                    <table cellpadding="0" cellspacing="5" border="0" width="100%">
+                        <tr>
+                            <td>
+                                <span style="font-size: 16px; font-family: Verdana, Arial; font-weight: bold;">Shipping operations:</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:GridView ID="GridView1" runat="server">
+                                </asp:GridView>
+                            </td>
+                        </tr>
+
                     </table>
                 </td>
             </tr>
