@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="Username"
+    Name="Username"
+    Type="Text"
+    ID="{022B8810-F6C3-4115-BEA7-F6146200AC86}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Type="Choice"
     DisplayName="Direction"
     ID="{DA96B8F0-D0F6-471B-A24D-27CFF679CBBA}"
