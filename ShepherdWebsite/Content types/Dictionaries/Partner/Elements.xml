@@ -8,6 +8,7 @@
                Inherits="True">
     <Folder TargetName="_cts/Partner" />
     <FieldRefs>
+      <FieldRef ID="{022B8810-F6C3-4115-BEA7-F6146200AC86}" Name="Username" />
       <FieldRef ID="{7A847280-FE50-471A-B399-1F7D7EF19DA3}" Name="VendorNumber" />
       <FieldRef ID="{6F534579-F010-432C-BE79-5AE3B369E7CF}" Name="ServiceType" />
       <FieldRef ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="Email" />
