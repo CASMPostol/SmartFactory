@@ -447,7 +447,9 @@
     <Content Include="Lists\Dictionaries\JTIPartnerTemplate\JTIPartnerList\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\Dictionaries\JTIPartnerTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\JTIPartnerTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\MarketTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\MarketTemplate\MarketList\Elements.xml" />
     <Content Include="Lists\Dictionaries\MarketTemplate\Schema.xml">

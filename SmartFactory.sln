@@ -12,10 +12,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{389A735D-C976-43FF-A3B1-470DD1BD51D9}"
 	ProjectSection(SolutionItems) = preProject
 		\\hq.cas.com.pl\cas_dfs\cas\Projekty\2011\P-1101_JTI_SHEPHERD\P-110105_Oprogramowanie\TestData\SAP\SKU\CFT ZC05.xml = \\hq.cas.com.pl\cas_dfs\cas\Projekty\2011\P-1101_JTI_SHEPHERD\P-110105_Oprogramowanie\TestData\SAP\SKU\CFT ZC05.xml
-		..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\feature.xml = ..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\feature.xml
-		..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss.xml = ..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss.xml
-		..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss2.xml = ..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss2.xml
-		..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss3.xml = ..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss3.xml
+		..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\feature.xml = ..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\feature.xml
+		..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss.xml = ..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss.xml
+		..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss2.xml = ..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss2.xml
+		..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss3.xml = ..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss3.xml
 		\\hq.cas.com.pl\cas_dfs\cas\Projekty\2011\P-1101_JTI_SHEPHERD\P-110105_Oprogramowanie\Configuration\JTIConfigurationData.xml = \\hq.cas.com.pl\cas_dfs\cas\Projekty\2011\P-1101_JTI_SHEPHERD\P-110105_Oprogramowanie\Configuration\JTIConfigurationData.xml
 	EndProjectSection
 EndProject
