@@ -1,12 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Field
-    DisplayName="Username"
-    Name="Username"
-    Type="Text"
-    ID="{022B8810-F6C3-4115-BEA7-F6146200AC86}"
-    Group="CAS Smart Factory Shepherd"
-    />
+  <Field 
+    Type="User" 
+    DisplayName="Shepherd User" 
+    List="UserInfo" 
+    Required="TRUE" 
+    EnforceUniqueValues="FALSE" 
+    ShowField="Title" 
+    UserSelectionMode="PeopleOnly" 
+    UserSelectionScope="0" 
+    Group="CAS Smart Factory Shepherd" 
+    ID="{6483C7B1-BF97-409C-AE10-03B369E9D70F}" 
+    Name="ShepherdUser" 
+    Overwrite="TRUE"  />
   <Field
     Type="Choice"
     DisplayName="Direction"
