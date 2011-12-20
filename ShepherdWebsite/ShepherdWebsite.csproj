@@ -519,7 +519,9 @@
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml" />
-    <Content Include="Lists\Shipping\GoodsHandlingPONumber\Elements.xml" />
+    <Content Include="Lists\Shipping\GoodsHandlingPONumber\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Shipping\GoodsHandlingPONumber\GoodsHandlingPONumberList\Elements.xml" />
     <Content Include="Lists\Shipping\GoodsHandlingPONumber\Schema.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Elements.xml" />

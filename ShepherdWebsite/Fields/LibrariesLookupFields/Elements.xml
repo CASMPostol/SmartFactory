@@ -17,38 +17,4 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
-  <Field
-    Name="SecurityPOIndex"
-    ID="{F9C11A75-FDE5-4417-8A7D-4EAFCF7D772B}"
-    Type="Lookup"
-    List="Lists/SecurityPOLibrary"
-    ShowField="ID"
-    UnlimitedLengthInDocumentLibrary="False"
-    Indexed="True"
-    RelationshipDeleteBehavior="None"
-    DisplayName="Security PO"
-    Group="CAS Smart Factory Shepherd"
-    Required="False"
-    Hidden="False"
-    DisplaceOnUpgrade="True"
-    EnforceUniqueValues="False"
-    ReadOnly="False"
-    />
-  <Field
-    Name="GoodsHandlingPOIndex"
-    ID="{AD077DB3-8D1D-4D46-89E0-9C5C74137051}"
-    Type="Lookup"
-    List="Lists/GoodsHandlingPOLibrary"
-    ShowField="ID"
-    UnlimitedLengthInDocumentLibrary="False"
-    Indexed="True"
-    RelationshipDeleteBehavior="None"
-    DisplayName="Goods Handling PO"
-    Group="CAS Smart Factory Shepherd"
-    Required="False"
-    Hidden="False"
-    DisplaceOnUpgrade="True"
-    EnforceUniqueValues="False"
-    ReadOnly="False"
-    />
 </Elements>
