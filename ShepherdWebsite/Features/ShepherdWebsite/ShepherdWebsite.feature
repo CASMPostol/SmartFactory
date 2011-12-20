@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="693191fd-6a7a-4db6-ac8e-a3f747ddf439" featureId="693191fd-6a7a-4db6-ac8e-a3f747ddf439" imageUrl="" solutionId="00000000-0000-0000-0000-000000000000" title="ShepherdWebsite Feature1" version="" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
+<feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="693191fd-6a7a-4db6-ac8e-a3f747ddf439" featureId="693191fd-6a7a-4db6-ac8e-a3f747ddf439" imageUrl="" solutionId="00000000-0000-0000-0000-000000000000" title="ShepherdWebsite" version="" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
   <projectItems>
     <projectItemReference itemId="6af42c8b-51b3-4714-b667-6495ba41f4f4" />
     <projectItemReference itemId="931662e9-1ca7-4bf2-ac50-e4dbe2dfaa63" />
