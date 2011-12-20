@@ -135,8 +135,14 @@
     <None Include="Content types\Shipping\AlarmsAndEvents\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fb5db4c0-6c0f-4bc1-9f64-be2f02c7f1a0}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\GoodsHandlingPO\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{16046dc3-99fe-4c0e-b132-12e7a9ff5c1c}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Shipping\LoadDescription\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c0509c90-b44b-4167-b0e4-4069c85b1bf9}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Shipping\SecurityPO\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b345b94a-5b77-4dca-ae72-08d0f9f661db}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Shipping\ShippingDriversTeam\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fcc0da24-3072-46fa-863f-adf611c20ef0}</SharePointProjectItemId>
@@ -152,6 +158,9 @@
     </None>
     <None Include="Content types\Shipping\TrailerCondition\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{dc3be53a-9498-4462-a18d-4fe314c6ac70}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{98f8a872-7642-4238-a8f7-024780633722}</FeatureId>
     </None>
     <None Include="Features\Shepherd\Shepherd.feature">
       <FeatureId>{8c0e09df-69d3-4029-8937-7f8fd3b244d9}</FeatureId>
@@ -304,12 +313,6 @@
     <None Include="Lists\Dictionaries\WarehouseTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{09a720dd-b9b2-4178-848c-849ce8426099}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Libraries\GoodsHandlingPOLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{412f3366-5025-4c67-8d31-48d45aa8916f}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Libraries\SecurityPOLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e8a6c778-901a-4362-a161-6c2c12985ea2}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Libraries\SecuritySealProtocolLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{64b86b44-1e47-4b2e-ae13-e5a71f32e45c}</SharePointProjectItemId>
     </None>
@@ -319,11 +322,23 @@
     <None Include="Lists\Shipping\AlarmsAndEventsTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9b6d3b0e-9a65-42fa-8fbb-733c68a911d4}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Shipping\GoodsHandlingPO\GoodsHandlingPO\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f8788722-5a9c-4f8f-bf12-55b040487c09}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Shipping\GoodsHandlingPO\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d4c10aaa-6233-4aa7-891f-c82875afd78d}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a8cb96f1-7e6f-428a-9232-c5b4d9f2321a}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\LoadDescriptionTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{851c1bf3-52dd-40b7-833c-9268ec4d0d20}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Shipping\SecurityPO\SecurityPOList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bb92a606-e5a2-4e0c-8e51-1a92d23ce6ff}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Shipping\SecurityPO\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5fa6f2ee-3c92-4551-a95a-a70aec903eae}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\ShippingDriversTeamTemplate\ShippingDriversTeamList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{35200135-95d9-4f8a-a63f-df1955637b92}</SharePointProjectItemId>
@@ -391,9 +406,11 @@
     <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
     <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml" />
+    <Content Include="Content types\Shipping\GoodsHandlingPO\Elements.xml" />
     <Content Include="Content types\Shipping\LoadDescription\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\Shipping\SecurityPO\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml">
@@ -404,6 +421,9 @@
     </Content>
     <Content Include="Content types\Shipping\TrailerCondition\Elements.xml">
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
     </Content>
     <Content Include="Features\Shepherd\Shepherd.Template.xml">
       <DependentUpon>Shepherd.feature</DependentUpon>
@@ -501,17 +521,21 @@
     <Content Include="Lists\Dictionaries\WarehouseTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\Libraries\GoodsHandlingPOLibrary\Elements.xml" />
-    <Content Include="Lists\Libraries\SecurityPOLibrary\Elements.xml" />
     <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\GoodsHandlingPO\Elements.xml" />
+    <Content Include="Lists\Shipping\GoodsHandlingPO\GoodsHandlingPO\Elements.xml" />
+    <Content Include="Lists\Shipping\GoodsHandlingPO\Schema.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Shipping\SecurityPO\Elements.xml" />
+    <Content Include="Lists\Shipping\SecurityPO\SecurityPOList\Elements.xml" />
+    <Content Include="Lists\Shipping\SecurityPO\Schema.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\ShippingDriversTeamList\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Schema.xml">
