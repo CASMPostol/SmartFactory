@@ -51,6 +51,7 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
+          <FieldRef ID="{612E92FE-DAEF-4E47-9750-C1C7397E120B}" Name="CommodityTitle" />
         </ViewFields>
         <Query>
           <OrderBy>

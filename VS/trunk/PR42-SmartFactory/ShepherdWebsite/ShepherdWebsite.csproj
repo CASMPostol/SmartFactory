@@ -150,9 +150,6 @@
     <None Include="Content types\Shipping\ShippingOperationInbound\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{abd67ee8-eba1-44e3-860e-cda5b9227325}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Shipping\ShippingOperationOutbound\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{13e529b5-265a-415c-a6bc-e030f1c1fe77}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Shipping\TimeSlot\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1e873fc0-7de0-4176-87df-13ac359c1dd5}</SharePointProjectItemId>
     </None>
@@ -410,9 +407,6 @@
     <Content Include="Content types\Shipping\SecurityPO\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml" />
-    <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content types\Shipping\TimeSlot\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -453,7 +447,9 @@
     <Content Include="Lists\Dictionaries\DestinationMarketTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\DriverTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\DriverTemplate\DriverList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\DriverTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\DriverTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\FreightPayerList\Elements.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\Schema.xml" />
@@ -518,7 +514,9 @@
     <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\Elements.xml" />
-    <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Shipping\GoodsHandlingPONumber\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
