@@ -68,6 +68,7 @@
     <None Include="CurrentUserWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2614e454-2e2d-48e2-a02c-9f72cdb22425}</SharePointProjectItemId>
     </None>
+    <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Features\Dashboards\Dashboards.feature">
       <FeatureId>{cf7dc489-0019-4684-9bb2-fde5b31efe5f}</FeatureId>
     </None>
