@@ -150,6 +150,9 @@
     <None Include="Content types\Shipping\ShippingOperationInbound\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{abd67ee8-eba1-44e3-860e-cda5b9227325}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\ShippingOperationOutbound\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1f5d40e5-3526-4a0b-b705-91016f1a166e}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Shipping\TimeSlot\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1e873fc0-7de0-4176-87df-13ac359c1dd5}</SharePointProjectItemId>
     </None>
@@ -407,6 +410,7 @@
     <Content Include="Content types\Shipping\SecurityPO\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml" />
+    <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml" />
     <Content Include="Content types\Shipping\TimeSlot\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
