@@ -514,7 +514,9 @@
     </Content>
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\ShippingDriversTeamList\Elements.xml" />
-    <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Shipping\ShippingTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingTemplate\ShippingList\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingTemplate\Schema.xml" />
