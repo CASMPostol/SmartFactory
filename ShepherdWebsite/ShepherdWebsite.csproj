@@ -159,8 +159,8 @@
     <None Include="Content types\Shipping\TrailerCondition\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{dc3be53a-9498-4462-a18d-4fe314c6ac70}</SharePointProjectItemId>
     </None>
-    <None Include="Features\Shepherd\Shepherd.feature">
-      <FeatureId>{8c0e09df-69d3-4029-8937-7f8fd3b244d9}</FeatureId>
+    <None Include="Features\ShepherdWebsite\ShepherdWebsite.feature">
+      <FeatureId>{4cb45461-1db0-4082-a052-d91586eac38e}</FeatureId>
     </None>
     <None Include="Fields\DictionariesFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0b882851-1713-4a21-8f5f-fbf6211edec5}</SharePointProjectItemId>
@@ -419,8 +419,8 @@
     <Content Include="Content types\Shipping\TrailerCondition\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Features\Shepherd\Shepherd.Template.xml">
-      <DependentUpon>Shepherd.feature</DependentUpon>
+    <Content Include="Features\ShepherdWebsite\ShepherdWebsite.Template.xml">
+      <DependentUpon>ShepherdWebsite.feature</DependentUpon>
     </Content>
     <Content Include="Fields\DictionariesFields\Elements.xml">
       <SubType>Designer</SubType>
