@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="ShepherdWebsite - GoodsHandlingPO"
+  <ListInstance Title="Security Escort PO Number"
                 OnQuickLaunch="TRUE"
                 TemplateType="10051"
-                Url="Lists/ShepherdWebsite-GoodsHandlingPO"
-                Description="My List Instance">
+                Url="Lists/SecurityEscortPONumberList"
+                Description="Security Escort PO Number List Instance">
   </ListInstance>
 </Elements>

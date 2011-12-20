@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
     <ListTemplate
-        Name="GoodsHandlingPO"
-        Type="10051"
+        Name="GoodsHandlingPONumber"
+        Type="10033"
         BaseType="0"
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="Goods Handling PO"
-        Description="Goods Handling PO List Definition"
+        DisplayName="Goods Handling PO Number"
+        Description="Goods Handling PO Number List Definition"
         Image="/_layouts/images/itgen.png"/>
 </Elements>
