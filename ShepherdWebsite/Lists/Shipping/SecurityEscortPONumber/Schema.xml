@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="SecurityPO" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-SecurityPO" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List xmlns:ows="Microsoft SharePoint" Title="SecurityEscortPONumber" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-SecurityEscortPONumber" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
       <ContentType ID="0x01009ecbde2a90f543f8b50ac471f1219d0f" Name="SecurityPO" Group="CAS Smart Factory Shepherd" Description="Security Escort PO" Overwrite="True" Inherits="True">

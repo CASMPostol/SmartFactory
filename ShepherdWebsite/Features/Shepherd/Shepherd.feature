@@ -97,10 +97,16 @@
     <projectItemReference itemId="22a8d226-6198-4d78-a497-d5a4687350ee" />
     <projectItemReference itemId="40f80328-565f-4290-9a34-a1143774df2c" />
     <projectItemReference itemId="b345b94a-5b77-4dca-ae72-08d0f9f661db" />
+<<<<<<< .mine
+=======
     <projectItemReference itemId="bb92a606-e5a2-4e0c-8e51-1a92d23ce6ff" />
     <projectItemReference itemId="d4c10aaa-6233-4aa7-891f-c82875afd78d" />
+>>>>>>> .r6375
     <projectItemReference itemId="16046dc3-99fe-4c0e-b132-12e7a9ff5c1c" />
-    <projectItemReference itemId="f8788722-5a9c-4f8f-bf12-55b040487c09" />
+    <projectItemReference itemId="edadda73-7641-43d9-9848-1242ae0a928c" />
+    <projectItemReference itemId="5c051cae-e82d-4d19-9801-84aab10f7fce" />
+    <projectItemReference itemId="e0fbe166-32c8-45ea-b702-422d3f43cf38" />
+    <projectItemReference itemId="330c6769-1245-4ec9-9e9e-5910d33be595" />
     <projectItemReference itemId="5fa6f2ee-3c92-4551-a95a-a70aec903eae" />
   </projectItems>
 </feature>

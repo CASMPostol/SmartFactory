@@ -319,11 +319,11 @@
     <None Include="Lists\Shipping\AlarmsAndEventsTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9b6d3b0e-9a65-42fa-8fbb-733c68a911d4}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Shipping\GoodsHandlingPO\GoodsHandlingPO\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{f8788722-5a9c-4f8f-bf12-55b040487c09}</SharePointProjectItemId>
+    <None Include="Lists\Shipping\GoodsHandlingPONumber\GoodsHandlingPONumberList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{edadda73-7641-43d9-9848-1242ae0a928c}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Shipping\GoodsHandlingPO\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{d4c10aaa-6233-4aa7-891f-c82875afd78d}</SharePointProjectItemId>
+    <None Include="Lists\Shipping\GoodsHandlingPONumber\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5c051cae-e82d-4d19-9801-84aab10f7fce}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a8cb96f1-7e6f-428a-9232-c5b4d9f2321a}</SharePointProjectItemId>
@@ -331,11 +331,11 @@
     <None Include="Lists\Shipping\LoadDescriptionTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{851c1bf3-52dd-40b7-833c-9268ec4d0d20}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Shipping\SecurityPO\SecurityPOList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{bb92a606-e5a2-4e0c-8e51-1a92d23ce6ff}</SharePointProjectItemId>
+    <None Include="Lists\Shipping\SecurityEscortPONumber\SecurityEscortPONumberList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e0fbe166-32c8-45ea-b702-422d3f43cf38}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Shipping\SecurityPO\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{5fa6f2ee-3c92-4551-a95a-a70aec903eae}</SharePointProjectItemId>
+    <None Include="Lists\Shipping\SecurityEscortPONumber\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{330c6769-1245-4ec9-9e9e-5910d33be595}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\ShippingDriversTeamTemplate\ShippingDriversTeamList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{35200135-95d9-4f8a-a63f-df1955637b92}</SharePointProjectItemId>
@@ -519,17 +519,19 @@
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml" />
-    <Content Include="Lists\Shipping\GoodsHandlingPO\Elements.xml" />
-    <Content Include="Lists\Shipping\GoodsHandlingPO\GoodsHandlingPO\Elements.xml" />
-    <Content Include="Lists\Shipping\GoodsHandlingPO\Schema.xml" />
+    <Content Include="Lists\Shipping\GoodsHandlingPONumber\Elements.xml" />
+    <Content Include="Lists\Shipping\GoodsHandlingPONumber\GoodsHandlingPONumberList\Elements.xml" />
+    <Content Include="Lists\Shipping\GoodsHandlingPONumber\Schema.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\Shipping\SecurityPO\Elements.xml" />
-    <Content Include="Lists\Shipping\SecurityPO\SecurityPOList\Elements.xml" />
-    <Content Include="Lists\Shipping\SecurityPO\Schema.xml" />
+    <Content Include="Lists\Shipping\SecurityEscortPONumber\Elements.xml" />
+    <Content Include="Lists\Shipping\SecurityEscortPONumber\SecurityEscortPONumberList\Elements.xml" />
+    <Content Include="Lists\Shipping\SecurityEscortPONumber\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\ShippingDriversTeamList\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Schema.xml">
