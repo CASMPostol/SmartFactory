@@ -72,6 +72,8 @@
     </Compile>
     <Compile Include="CurrentUserWebPart\InterconnectionData.cs" />
     <Compile Include="Entities\Entities.cs" />
+    <Compile Include="Entities\TimeSlotTimeSlot.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

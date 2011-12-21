@@ -8,17 +8,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.IPR.Entities {
+namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	using System;
 	
 	
-	public partial class Entities : Microsoft.SharePoint.Linq.DataContext {
+	public partial class EntitiesDataContext : Microsoft.SharePoint.Linq.DataContext {
 		
 		#region Extensibility Method Definitions
 		partial void OnCreated();
 		#endregion
 		
-		public Entities(string requestUrl) : 
+		public EntitiesDataContext(string requestUrl) : 
 				base(requestUrl) {
 			this.OnCreated();
 		}

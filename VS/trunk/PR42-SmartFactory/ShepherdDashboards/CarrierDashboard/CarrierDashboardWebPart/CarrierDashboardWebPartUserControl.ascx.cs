@@ -5,6 +5,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Collections.Generic;
 using System.Data;
 using CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart;
+using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
@@ -81,11 +83,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       switch (m_State)
       {
         case ControlState.ViewState:
-          m_TimeSlotHiddenField.Value = e.ID;
-          m_TimeSlotTextBox.Text = e.TimeSlot;
+          m_ShippingHiddenField.Value = e.ID;
           m_TruckRegistrationNumberTextBox.Text = e.TruckCarRegistrationNumber;
           m_TrailerRegistrationNumberTextBox.Text = e.TrailerRegistrationNumber;
           m_WarehouseTextBox.Text = e.Warehouse;
+          EntitiesDataContext edc = null;
+          try
+          {
+            edc = new EntitiesDataContext(SPContext.Current.Web.Url);
+            TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetTimeSlot(edc, e.ID);
+            m_TimeSlotHiddenField.Value = _cts.Identyfikator.ToString();
+            m_TimeSlotTextBox.Text = _cts.StartTime.ToString();
+          }
+          catch (Exception ex)
+          {
+            m_TimeSlotTextBox.Text = ex.Message; 
+          }
           break;
         case ControlState.EditState:
           break;

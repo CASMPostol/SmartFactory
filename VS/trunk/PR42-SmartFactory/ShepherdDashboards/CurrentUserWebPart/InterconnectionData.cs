@@ -67,8 +67,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     { }
     internal string TruckCarRegistrationNumber { get { return GetFieldValue("TruckTitle"); } }
     internal string TrailerRegistrationNumber { get { return GetFieldValue("TrailerTitle"); } }
-    internal string Warehouse {get {return GetFieldValue("ShippingPointTitle");} }
-    internal string TimeSlot {get {return DateTime.Now.ToShortDateString() + DateTime.Now.ToShortTimeString();}}
+    internal string Warehouse { get { return GetFieldValue("ShippingPointTitle"); } }
+    internal string StartTime
+    {
+      get
+      {
+        return DateTime.Now.ToShortDateString() + DateTime.Now.ToShortTimeString();
+      }
+    }
   }
   internal class TimeSlotInterconnectionData : InterconnectionData<TimeSlotInterconnectionData>
   {
