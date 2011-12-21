@@ -10,7 +10,7 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CarrierDashboardWebPartUserControl.ascx.cs"
   Inherits="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPartUserControl" %>
 <asp:Panel ID="m_Panel" runat="server" Width="443px">
-  <asp:Literal ID="m_StateLiteral" runat="server" Text="---" />
+  <asp:Literal ID="m_StateLiteral" runat="server" />
   <br />
   <asp:Label ID="Label1" runat="server" Text="Truck: " AssociatedControlID="m_TruckRegistrationNumberTextBox"></asp:Label>
   <asp:Label ID="m_TruckRegistrationNumberTextBox" runat="server" Text=" " />

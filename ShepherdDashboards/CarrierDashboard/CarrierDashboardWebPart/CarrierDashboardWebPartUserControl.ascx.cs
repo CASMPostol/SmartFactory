@@ -34,25 +34,43 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         }
       }
     }
-    private void NewDataEventHandler(object sender, WarehouseInterconnectionData e)
-    {
-      m_WarehouseTextBox.Text = e.Title;
-      m_WarehouseHiddenField.Value = e.ID;
-    }
     protected override void OnPreRender(EventArgs e)
     {
       base.OnPreRender(e);
     }
+    private void NewDataEventHandler(object sender, WarehouseInterconnectionData e)
+    {
+      bool _same = m_WarehouseHiddenField.Value.Equals(e.ID);
+      m_WarehouseHiddenField.Value = e.ID;
+      switch (m_State)
+      {
+        case ControlState.ViewState:
+          break;
+        case ControlState.EditState:
+          if (!_same)
+            m_WarehouseTextBox.Text = e.Title;
+          break;
+        case ControlState.NewState:
+          m_WarehouseTextBox.Text = e.Title;
+          break;
+        default:
+          break;
+      }
+    }
     private void NewDataEventHandler(object sender, TimeSlotInterconnectionData e)
     {
+      bool _same = m_TimeSlotHiddenField.Value.Equals(e.ID);
       m_TimeSlotHiddenField.Value = e.ID;
       switch (m_State)
       {
         case ControlState.ViewState:
           break;
         case ControlState.NewState:
-        case ControlState.EditState:
           m_TimeSlotTextBox.Text = e.GetDate;
+          break;
+        case ControlState.EditState:
+          if (!_same)
+            m_TimeSlotTextBox.Text = e.GetDate;
           break;
         default:
           break;
@@ -79,13 +97,41 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void NewDataEventHandler(object sender, TruckInterconnectionData e)
     {
-      m_TruckRegistrationNumberTextBox.Text = e.Title;
+      bool _same = m_TruckRegistrationHiddenField.Value.Equals(e.ID);
       m_TruckRegistrationHiddenField.Value = e.ID;
+      switch (m_State)
+      {
+        case ControlState.ViewState:
+          break;
+        case ControlState.EditState:
+          if (!_same)
+            m_TruckRegistrationNumberTextBox.Text = e.Title;
+          break;
+        case ControlState.NewState:
+          m_TruckRegistrationNumberTextBox.Text = e.Title;
+          break;
+        default:
+          break;
+      }
     }
     private void NewDataEventHandler(object sender, TrailerInterconnectionData e)
     {
-      m_TrailerRegistrationNumberTextBox.Text = e.Title;
+      bool _same = m_TrailerHiddenField.Value.Equals(e.ID);
       m_TrailerHiddenField.Value = e.ID;
+      switch (m_State)
+      {
+        case ControlState.ViewState:
+          break;
+        case ControlState.EditState:
+          if (!_same)
+            m_TrailerRegistrationNumberTextBox.Text = e.Title;
+          break;
+        case ControlState.NewState:
+          m_TrailerRegistrationNumberTextBox.Text = e.Title;
+          break;
+        default:
+          break;
+      }
     }
     #region private
     protected void Page_Load(object sender, EventArgs e)
@@ -96,7 +142,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_NewShippingButton.Click += new EventHandler(m_NewShippingButton_Click);
       m_CancelButton.Click += new EventHandler(m_CancelButton_Click);
       m_EditButton.Click += new EventHandler(m_EditButton_Click);
-
     }
     private enum ControlState { ViewState, EditState, NewState }
     private ControlState m_State
@@ -138,6 +183,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private void m_NewShippingButton_Click(object sender, EventArgs e)
     {
       m_State = ControlState.NewState;
+      m_ShippingHiddenField.Value = String.Empty;
     }
     private void m_SaveButton_Click(object sender, EventArgs e)
     {
