@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Web Class="Entities" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
+  <List Name="Warehouse"></List>
+  <List Name="JTI Partner" ></List>
+  <List Name="Country" ></List>
+  <List Name="Trailer"></List>
+  <List Name="Truck"></List>
+  <List Name="Driver"></List>
+  <List Name="Shipping Point"></List>
+  <List Name="Shipping"></List>
+  <List Name="Alarms and events"></List>
+  <List Name="TimeSlot"></List>
+  <List Name="Drivers Team"></List>
+  <List Name="Load Description"></List>
+  <ExcludeOtherLists/>
+</Web>
