@@ -45,12 +45,37 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void NewDataEventHandler(object sender, TimeSlotInterconnectionData e)
     {
-      m_TimeSlotTextBox.Text = e.GetDate();
       m_TimeSlotHiddenField.Value = e.ID;
+      switch (m_State)
+      {
+        case ControlState.ViewState:
+          break;
+        case ControlState.NewState:
+        case ControlState.EditState:
+          m_TimeSlotTextBox.Text = e.GetDate;
+          break;
+        default:
+          break;
+      }
     }
     private void NewDataEventHandler(object sender, ShippingInterconnectionData e)
     {
-      m_TimeSlotHiddenField.Value = e.ID;
+      switch (m_State)
+      {
+        case ControlState.ViewState:
+          m_TimeSlotHiddenField.Value = e.ID;
+          m_TimeSlotTextBox.Text = e.TimeSlot;
+          m_TruckRegistrationNumberTextBox.Text = e.TruckCarRegistrationNumber;
+          m_TrailerRegistrationNumberTextBox.Text = e.TrailerRegistrationNumber;
+          m_WarehouseTextBox.Text = e.Warehouse;
+          break;
+        case ControlState.EditState:
+          break;
+        case ControlState.NewState:
+          break;
+        default:
+          break;
+      }
     }
     private void NewDataEventHandler(object sender, TruckInterconnectionData e)
     {
@@ -82,7 +107,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       get
       {
-        return (ControlState)Enum.Parse(typeof(ControlState), m_StateLiteral.Text);
+        try
+        {
+          return (ControlState)Enum.Parse(typeof(ControlState), m_StateLiteral.Text);
+        }
+        catch (Exception)
+        {
+          return ControlState.ViewState;
+        }
       }
     }
     private void RestoreState()
