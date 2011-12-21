@@ -23,40 +23,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
       m_Update = _update;
       _connector.GetRowData(GetData);
     }
-    internal string ID
-    {
-      get
-      {
-        if (Row == null)
-          return String.Empty;
-        string _val = Row["ID"] as String;
-        if (_val == null)
-          return String.Empty;
-        return _val;
-      }
-    }
-    internal string Title
-    {
-      get
-      {
-        if (Row == null)
-          return String.Empty;
-        try
-        {
-          return (string)Row["Title"];
-        }
-        catch (Exception)
-        {
-          return String.Empty;
-        }
-      }
-    }
+    internal string ID { get { return GetFieldValue("ID"); } }
+    internal string Title { get { return GetFieldValue("Title"); } }
     protected DataRowView Row { get; private set; }
+    protected string GetFieldValue(string _name)
+    {
+      if (Row == null)
+        return String.Empty;
+      string _val = Row[_name] as String;
+      if (_val == null)
+        return String.Empty;
+      return _val;
+    }
     private EventHandler<DerivedType> m_Update;
     private void GetData(object _data)
     {
       Row = _data as DataRowView;
-      m_Update(this, (DerivedType)this );
+      m_Update(this, (DerivedType)this);
     }
   }
   internal class TrailerInterconnectionData : InterconnectionData<TrailerInterconnectionData>
@@ -82,16 +65,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     public ShippingInterconnectionData()
       : base()
     { }
+    internal string TruckCarRegistrationNumber { get { return GetFieldValue("TruckTitle"); } }
+    internal string TrailerRegistrationNumber { get { return GetFieldValue("TrailerTitle"); } }
+    internal string Warehouse {get {return GetFieldValue("ShippingPointTitle");} }
+    internal string TimeSlot {get {return DateTime.Now.ToShortDateString() + DateTime.Now.ToShortTimeString();}}
   }
   internal class TimeSlotInterconnectionData : InterconnectionData<TimeSlotInterconnectionData>
   {
     public TimeSlotInterconnectionData()
       : base()
     { }
-    internal string GetDate()
-    {
-      return String.Empty;
-    }
+    internal string GetDate { get { return GetFieldValue("EventDate"); } }
   }
   //WarehouseInterconnectionData
   internal class WarehouseInterconnectionData : InterconnectionData<WarehouseInterconnectionData>
