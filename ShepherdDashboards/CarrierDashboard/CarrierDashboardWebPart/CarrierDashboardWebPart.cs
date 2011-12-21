@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     protected override void OnPreRender(EventArgs e)
     {
-      m_Control.GetData(m_ProvidesDictionary);
+      m_Control.GetData(m_ProvidesDictionary );
       base.OnPreRender(e);
     }
     private Dictionary<InterconnectionDataBase.ConnectionSelector, IWebPartRow> m_ProvidesDictionary = 
