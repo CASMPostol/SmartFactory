@@ -40,6 +40,7 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -53,6 +54,14 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPart.cs" />
+    <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx.cs">
+      <DependentUpon>CarrierDashboardWebPartUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx.designer.cs">
+      <DependentUpon>CarrierDashboardWebPartUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="CurrentUserWebPart\CurrentUserWebPart.cs" />
     <Compile Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx.cs">
       <DependentUpon>CurrentUserWebPartUserControl.ascx</DependentUpon>
@@ -61,9 +70,15 @@
     <Compile Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx.designer.cs">
       <DependentUpon>CurrentUserWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CurrentUserWebPart\InterconnectionData.cs" />
+    <Compile Include="Entities\Entities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPart.webpart" />
+    <None Include="CarrierDashboard\CarrierDashboardWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8f8432ac-db92-4be2-8696-4c2a45e80124}</SharePointProjectItemId>
+    </None>
     <None Include="CurrentUserWebPart\CurrentUserWebPart.webpart" />
     <None Include="CurrentUserWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2614e454-2e2d-48e2-a02c-9f72cdb22425}</SharePointProjectItemId>
@@ -82,13 +97,23 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="Schemas\SPMetalParameters.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="CarrierDashboard\CarrierDashboardWebPart\Elements.xml" />
     <Content Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CurrentUserWebPart\Elements.xml" />
+    <Content Include="Entities\Scripts\Parameters.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Features\Dashboards\Dashboards.Template.xml">
       <DependentUpon>Dashboards.feature</DependentUpon>
     </Content>

@@ -27,19 +27,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     private class UserDescriptor : DataTable, IWebPartRow
     {
       #region IWebPartRow
-      public PropertyDescriptorCollection Schema
-      {
-        get { return m_Schema; }
-      }
+      public PropertyDescriptorCollection Schema { get; private set; }
       public void GetRowData(RowCallback callback)
       {
-        callback(this.Row);
+        callback(this.Row0);
       }
       #endregion
-
+      
       #region public
       internal UserDescriptor(SPUser _user)
       {
+        this.TableName = "User Descriptor";
         this.User = _user;
         AddColumn("Email");
         AddColumn("ID");
@@ -53,14 +51,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
         row["Name"] = User.Name;
         row["Notes"] = User.Notes;
         this.Rows.Add(row);
-        m_Schema = TypeDescriptor.GetProperties(this.Row);
+        Schema = TypeDescriptor.GetProperties(this.Row0);
       }
       internal SPUser User { get; private set; }
       #endregion
 
       #region private
-      private DataRowView Row { get { return DefaultView[0]; } }
-      private PropertyDescriptorCollection m_Schema;
+      private DataRowView Row0 { get { return DefaultView[0]; } }
       private void AddColumn(string _name)
       {
         DataColumn col = new DataColumn();
@@ -70,7 +67,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
       }
       #endregion
     }
-    private UserDescriptor m_UserDescriptor; 
+    private UserDescriptor m_UserDescriptor;
     #endregion
 
     #region public
