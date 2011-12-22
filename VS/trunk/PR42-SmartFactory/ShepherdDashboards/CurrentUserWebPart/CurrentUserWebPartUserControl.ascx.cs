@@ -7,9 +7,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
   {
     protected void Page_Load(object sender, EventArgs e)
     {}
-    internal void DisplayUserName(string _UserName)
+    internal void DisplayUserName(IUserDescriptor _UserDescriptor)
     {
-      this.m_UserNameLiteral.Text = String.Format("Welcome {0} from {1}!", _UserName, "JTI");
+      this.m_UserNameLiteral.Text = String.Format("Welcome {0} from {1} !", _UserDescriptor.User.Name, _UserDescriptor.Company);
     }
   }
 }

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls.WebParts;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 using System.Data;
+using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
 {
@@ -20,11 +21,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     protected override void CreateChildControls()
     {
       m_Control = Page.LoadControl(_ascxPath) as CurrentUserWebPartUserControl;
-      m_Control.DisplayUserName(m_UserDescriptor.User.Name);
+      m_Control.DisplayUserName(m_UserDescriptor);
       Controls.Add(m_Control);
     }
     private CurrentUserWebPartUserControl m_Control;
-    private class UserDescriptor : DataTable, IWebPartRow
+    private class UserDescriptor : DataTable, IWebPartRow, CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.IUserDescriptor
     {
       #region IWebPartRow
       public PropertyDescriptorCollection Schema { get; private set; }
@@ -33,7 +34,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
         callback(this.Row0);
       }
       #endregion
-      
+
       #region public
       internal UserDescriptor(SPUser _user)
       {
@@ -44,16 +45,28 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
         AddColumn("LoginName");
         AddColumn("Name");
         AddColumn("Notes");
+        AddColumn("Company");
         DataRow row = this.NewRow();
         row["Email"] = User.Email;
         row["ID"] = User.ID;
         row["LoginName"] = User.LoginName;
         row["Name"] = User.Name;
-        row["Notes"] = User.Notes;
+        try
+        {
+          using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
+          {
+            row["Company"] = Company = Partner.FindPartner(edc, _user).Tytuł;
+          }
+        }
+        catch (Exception)
+        {
+          row["Company"] = Company = "Not registered !!!";
+        }
         this.Rows.Add(row);
         Schema = TypeDescriptor.GetProperties(this.Row0);
       }
-      internal SPUser User { get; private set; }
+      public SPUser User { get; private set; }
+      public string Company { get; private set; }
       #endregion
 
       #region private
