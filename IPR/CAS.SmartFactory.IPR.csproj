@@ -60,6 +60,7 @@
     <Compile Include="Entities\CutfillerCoefficient.cs" />
     <Compile Include="Entities\Dokument.cs" />
     <Compile Include="Entities\Dust.cs" />
+    <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\EntitiesDataContext.cs" />
     <Compile Include="Entities\Extensions.cs" />

@@ -72,9 +72,16 @@
     </Compile>
     <Compile Include="CurrentUserWebPart\InterconnectionData.cs" />
     <Compile Include="CurrentUserWebPart\IUserDescriptor.cs" />
+    <Compile Include="CurrentUserWebPart\UserDescriptor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Entities\Driver.cs" />
+    <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\Partner.cs" />
+    <Compile Include="Entities\ShippingOperationInbound.cs" />
     <Compile Include="Entities\TimeSlotTimeSlot.cs" />
+    <Compile Include="Entities\Trailer.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

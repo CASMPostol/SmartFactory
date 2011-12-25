@@ -25,61 +25,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
       Controls.Add(m_Control);
     }
     private CurrentUserWebPartUserControl m_Control;
-    private class UserDescriptor : DataTable, IWebPartRow, CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.IUserDescriptor
-    {
-      #region IWebPartRow
-      public PropertyDescriptorCollection Schema { get; private set; }
-      public void GetRowData(RowCallback callback)
-      {
-        callback(this.Row0);
-      }
-      #endregion
 
-      #region public
-      internal UserDescriptor(SPUser _user)
-      {
-        this.TableName = "User Descriptor";
-        this.User = _user;
-        AddColumn("Email");
-        AddColumn("ID");
-        AddColumn("LoginName");
-        AddColumn("Name");
-        AddColumn("Notes");
-        AddColumn("Company");
-        DataRow row = this.NewRow();
-        row["Email"] = User.Email;
-        row["ID"] = User.ID;
-        row["LoginName"] = User.LoginName;
-        row["Name"] = User.Name;
-        try
-        {
-          using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
-          {
-            row["Company"] = Company = Partner.FindPartner(edc, _user).Tytuł;
-          }
-        }
-        catch (Exception)
-        {
-          row["Company"] = Company = "Not registered !!!";
-        }
-        this.Rows.Add(row);
-        Schema = TypeDescriptor.GetProperties(this.Row0);
-      }
-      public SPUser User { get; private set; }
-      public string Company { get; private set; }
-      #endregion
-
-      #region private
-      private DataRowView Row0 { get { return DefaultView[0]; } }
-      private void AddColumn(string _name)
-      {
-        DataColumn col = new DataColumn();
-        col.DataType = typeof(string);
-        col.ColumnName = _name;
-        this.Columns.Add(col);
-      }
-      #endregion
-    }
     private UserDescriptor m_UserDescriptor;
     #endregion
 
