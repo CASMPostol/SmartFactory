@@ -12,18 +12,21 @@
 <asp:Panel ID="m_Panel" runat="server" Width="443px">
   <asp:Literal ID="m_StateLiteral" runat="server" />
   <br />
+  <asp:Label ID="Label3" runat="server" Text="Warehouse"></asp:Label>
+  <asp:TextBox ID="m_WarehouseTextBox" runat="server"></asp:TextBox>
+  <br />
+  <asp:Label ID="Label4" runat="server" Text="Time Slot: " AssociatedControlID="m_TimeSlotTextBox"></asp:Label>
+  <asp:TextBox ID="m_TimeSlotTextBox" runat="server"></asp:TextBox>
+  <br />
+  <asp:Label ID="Label5" runat="server" Text="PO Number: " />
+  <asp:TextBox ID="m_DocumentTextBox" runat="server"></asp:TextBox>
+  <br />
   <asp:Label ID="Label1" runat="server" Text="Truck: " AssociatedControlID="m_TruckRegistrationNumberTextBox"></asp:Label>
   <asp:Label ID="m_TruckRegistrationNumberTextBox" runat="server" Text=" " />
   <br />
   <asp:Label ID="Label2" runat="server" AssociatedControlID="m_TrailerRegistrationNumberTextBox"
     Text="Trailer: "></asp:Label>
   <asp:TextBox ID="m_TrailerRegistrationNumberTextBox" runat="server" />
-  <br />
-  <asp:Label ID="Label3" runat="server" Text="Warehouse"></asp:Label>
-  <asp:TextBox ID="m_WarehouseTextBox" runat="server"></asp:TextBox>
-  <br />
-  <asp:Label ID="Label4" runat="server" Text="Time Slot" AssociatedControlID="m_TimeSlotTextBox"></asp:Label>
-  <asp:TextBox ID="m_TimeSlotTextBox" runat="server"></asp:TextBox>
   <br />
   <asp:Button ID="m_NewShippingButton" runat="server" Text="New Shipping" />
   <asp:Button ID="m_EditButton" runat="server" Text="Edit" />

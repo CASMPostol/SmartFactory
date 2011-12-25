@@ -1,9 +1,10 @@
 ﻿using System;
+using Microsoft.SharePoint;
 namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
 {
   interface IUserDescriptor
   {
     string Company { get; }
-    Microsoft.SharePoint.SPUser User { get; }
+    string User { get; }
   }
 }

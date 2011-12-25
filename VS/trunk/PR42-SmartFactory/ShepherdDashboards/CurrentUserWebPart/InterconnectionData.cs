@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Web.UI.WebControls.WebParts;
+using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
 {
@@ -11,7 +12,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
   {
     internal enum ConnectionSelector
     {
-      TrailerInterconnection, TruckInterconnection, ShippingInterconnection, TimeSlotInterconnection, WarehouseInterconnection
+      TrailerInterconnection, TruckInterconnection, ShippingInterconnection, TimeSlotInterconnection, PartnerInterconnection
     }
   }
   internal abstract class InterconnectionData<DerivedType> : InterconnectionDataBase
@@ -23,9 +24,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
       m_Update = _update;
       _connector.GetRowData(GetData);
     }
-    internal string ID { get { return GetFieldValue("ID"); } }
-    internal string Title { get { return GetFieldValue("Title"); } }
-    protected DataRowView Row { get; private set; }
+    internal string ID { get { return GetFieldValue(Element.IDColunmName); } }
+    internal string Title { get { return GetFieldValue(Element.TitleColunmName); } }
+    protected virtual DataRowView Row { get; set; }
     protected string GetFieldValue(string _name)
     {
       if (Row == null)
@@ -65,9 +66,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     public ShippingInterconnectionData()
       : base()
     { }
-    internal string TruckCarRegistrationNumber { get { return GetFieldValue("TruckTitle"); } }
-    internal string TrailerRegistrationNumber { get { return GetFieldValue("TrailerTitle"); } }
-    internal string Warehouse { get { return GetFieldValue("ShippingPointTitle"); } }
     internal string StartTime
     {
       get
@@ -81,13 +79,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     public TimeSlotInterconnectionData()
       : base()
     { }
-    internal string GetDate { get { return GetFieldValue("EventDate"); } }
   }
-  //WarehouseInterconnectionData
-  internal class WarehouseInterconnectionData : InterconnectionData<WarehouseInterconnectionData>
+  internal class PartnerInterconnectionData : InterconnectionData<PartnerInterconnectionData>
   {
-    public WarehouseInterconnectionData()
-      : base()
-    { }
+
   }
 }

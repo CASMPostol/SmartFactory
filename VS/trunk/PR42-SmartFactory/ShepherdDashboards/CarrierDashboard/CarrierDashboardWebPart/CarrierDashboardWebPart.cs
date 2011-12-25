@@ -59,11 +59,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       m_ProvidesDictionary.Add(InterconnectionDataBase.ConnectionSelector.TimeSlotInterconnection, _provider);
     }
-    //WarehouseInterconnection
-    [ConnectionConsumer("Warehouse table interconnection", "WarehouseInterconnection", AllowsMultipleConnections = false)]
+    //PartnerInterconnection
+    [ConnectionConsumer("Current user table interconnection", "PartnerInterconnection", AllowsMultipleConnections = false)]
     public void SetWarehouseProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InterconnectionDataBase.ConnectionSelector.WarehouseInterconnection, _provider);
+      m_ProvidesDictionary.Add(InterconnectionDataBase.ConnectionSelector.PartnerInterconnection, _provider);
     }
     #endregion
 
