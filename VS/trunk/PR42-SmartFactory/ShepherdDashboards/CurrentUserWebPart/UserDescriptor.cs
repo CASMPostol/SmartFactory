@@ -54,6 +54,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
       row[_CompanyIDColumnName] = _drw.Row[_CompanyIDColumnName];
       row[_CompanyTitleColumnName] = Company = (string)_drw.Row[_CompanyTitleColumnName];
       this.Rows.Add(row);
+      Schema = TypeDescriptor.GetProperties(this.Row0);
     }
 
     #region IUserDescriptor
@@ -75,7 +76,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
       AddColumn(_NameColumnName);
       AddColumn(_NotesColumnName);
       AddColumn(_CompanyIDColumnName);
-      Schema = TypeDescriptor.GetProperties(this.Row0);
+      AddColumn(_CompanyTitleColumnName);
     }
     #endregion
 
