@@ -102,10 +102,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
+          bool _same = m_ShippingHiddenField.Value.Equals(e.ID);
+          if (_same)
+            return;
+          m_ShippingHiddenField.Value = e.ID;
           ShowShipping(e);
           break;
         case InterfaceState.EditState:
-          break;
         case InterfaceState.NewState:
           break;
         default:
@@ -226,7 +229,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           switch (_event)
           {
             case InterfaceEvent.FirstRound:
-              SetButtons(ButtonsSet.CancelOn | ButtonsSet.SaveOn);
+              SetButtons(ButtonsSet.CancelOn | ButtonsSet.SaveOn | ButtonsSet.DocumentOn);
               ClearUserInterface();
               break;
             case InterfaceEvent.SaveClick:
@@ -276,28 +279,34 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_WarehouseHiddenField.Value = String.Empty;
       m_DocumentTextBox.TextBoxTextProperty(String.Empty, true);
     }
-    private void ShowShipping(ShippingInterconnectionData e)
+    private void ShowShipping(ShippingInterconnectionData _interconnectionData)
     {
       try
       {
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
-          TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, e.ID);
+          TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _interconnectionData.ID);
+          List<LoadDescription> _ld = LoadDescription.GetForShipping(edc, _interconnectionData.ID);
           ShowTimeSlot(_cts);
+          string _ldLabel = String.Empty;
+          foreach (var _item in _ld)
+            _ldLabel += _item.Tytuł + "; ";
+          m_DocumentTextBox.TextBoxTextProperty(_ldLabel, true);
         }
       }
       catch (Exception ex)
       {
         m_TimeSlotTextBox.TextBoxTextProperty(ex.Message, true);
+        m_DocumentTextBox.TextBoxTextProperty(ex.Message, true);
       }
     }
-    private void ShowTimeSlot(TimeSlotInterconnectionData e)
+    private void ShowTimeSlot(TimeSlotInterconnectionData _interconnectionData)
     {
       try
       {
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
-          TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetAtIndex(edc, e.ID);
+          TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetAtIndex(edc, _interconnectionData.ID);
           ShowTimeSlot(_cts);
         }
       }
@@ -311,7 +320,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TimeSlotHiddenField.Value = _cts.Identyfikator.ToString();
       m_TimeSlotTextBox.TextBoxTextProperty(String.Format("{0:R}", _cts.StartTime), true);
       Warehouse _wrs = _cts.GetWarehouse();
-      m_WarehouseTextBox.Text = _wrs.Tytuł;
+      m_WarehouseTextBox.TextBoxTextProperty(_wrs.Tytuł, true);
     }
     private void SetButtons(ButtonsSet _set)
     {
@@ -327,21 +336,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         Partner _prtnr = Partner.GetAtIndex(edc, m_MyControlState.PartnerIndex);
         TimeSlotTimeSlot _ts = TimeSlotTimeSlot.GetAtIndex(edc, m_TimeSlotHiddenField.Value);
-        _ts.Occupied = true;
-        ShippingOperationInbound _si = new ShippingOperationInbound
+        ShippingOperationInbound _sp = new ShippingOperationInbound
         {
-          Tytuł = String.Format("{0}/({1:R})", m_DocumentTextBox.Text, _ts.StartTime),
+          Tytuł = String.Format("{0}", m_DocumentTextBox.Text),
           VendorName = _prtnr,
-          State = Entities.State.Scheduled
+          State = Entities.State.Scheduled,
+          StartTime = _ts.StartTime
         };
-        _ts.ShippingIndex = _si;
+        _ts.MakeBooking(_sp);
         LoadDescription _ld = new LoadDescription()
         {
           Tytuł = m_DocumentTextBox.Text,
-          ShippingIndex = _si
+          ShippingIndex = _sp
         };
-        edc.Shipping.InsertOnSubmit(_si);
-        edc.TimeSlot.InsertOnSubmit(_ts);
+        edc.Shipping.InsertOnSubmit(_sp);
         edc.LoadDescription.InsertOnSubmit(_ld);
         edc.SubmitChanges();
       }
@@ -353,13 +361,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         TimeSlotTimeSlot _newts = TimeSlotTimeSlot.GetAtIndex(edc, m_TimeSlotHiddenField.Value);
         ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(edc, m_ShippingHiddenField.HiddenField2Int());
         TimeSlotTimeSlot _oldts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _si.Identyfikator);
-        _newts.Occupied = true;
-        _newts.ShippingIndex = _si;
-        _oldts.Occupied = false;
-        _oldts.ShippingIndex = null;
-        edc.Shipping.InsertOnSubmit(_si);
-        edc.TimeSlot.InsertOnSubmit(_oldts);
-        edc.TimeSlot.InsertOnSubmit(_newts);
+        _newts.MakeBooking(_si);
+        _oldts.ReleaseBooking();
         edc.SubmitChanges();
       }
     }

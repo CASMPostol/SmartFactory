@@ -78,6 +78,7 @@
     <Compile Include="Entities\Driver.cs" />
     <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />
+    <Compile Include="Entities\LoadDescription.cs" />
     <Compile Include="Entities\Partner.cs" />
     <Compile Include="Entities\ShippingOperationInbound.cs" />
     <Compile Include="Entities\TimeSlotTimeSlot.cs" />

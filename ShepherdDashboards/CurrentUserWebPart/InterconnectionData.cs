@@ -66,13 +66,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     public ShippingInterconnectionData()
       : base()
     { }
-    internal string StartTime
-    {
-      get
-      {
-        return DateTime.Now.ToShortDateString() + DateTime.Now.ToShortTimeString();
-      }
-    }
   }
   internal class TimeSlotInterconnectionData : InterconnectionData<TimeSlotInterconnectionData>
   {
