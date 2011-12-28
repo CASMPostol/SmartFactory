@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint;
 
