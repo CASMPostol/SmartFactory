@@ -14,6 +14,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     {
       TimeSlotWebPartUserControl control = Page.LoadControl(_ascxPath) as TimeSlotWebPartUserControl;
       Controls.Add(control);
+      control.SimpleTimeSlotList = SimpleTimeSlotList;
     }
+    public TimeSlotWebPart()
+    {
+      SimpleTimeSlotList = true;
+    }
+    //TODO Add it to the editor as personalizable property
+    public bool SimpleTimeSlotList { get; set; }
   }
 }
