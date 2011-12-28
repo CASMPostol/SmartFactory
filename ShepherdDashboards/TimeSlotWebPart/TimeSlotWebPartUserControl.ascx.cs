@@ -1,12 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using Microsoft.SharePoint.WebControls;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint;
-using System.Drawing;
-using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 {

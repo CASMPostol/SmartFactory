@@ -62,6 +62,7 @@
     <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx.designer.cs">
       <DependentUpon>CarrierDashboardWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CarrierDashboard\CarrierDashboardWebPart\InterconnectionData.cs" />
     <Compile Include="CurrentUserWebPart\CurrentUserWebPart.cs" />
     <Compile Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx.cs">
       <DependentUpon>CurrentUserWebPartUserControl.ascx</DependentUpon>
@@ -70,7 +71,6 @@
     <Compile Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx.designer.cs">
       <DependentUpon>CurrentUserWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="CurrentUserWebPart\InterconnectionData.cs" />
     <Compile Include="CurrentUserWebPart\IUserDescriptor.cs" />
     <Compile Include="CurrentUserWebPart\UserDescriptor.cs">
       <SubType>Component</SubType>
