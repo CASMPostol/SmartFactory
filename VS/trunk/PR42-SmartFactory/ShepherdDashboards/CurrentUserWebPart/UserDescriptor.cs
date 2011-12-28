@@ -80,7 +80,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     }
     #endregion
 
-    private Partner m_Partner = null;
     private const string m_TableName = "User Descriptor";
     private const string _EmailColumnName = "Email";
     private const string _IDColumnName = "MemberID";

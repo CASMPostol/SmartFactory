@@ -16,9 +16,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       foreach (var item in _ProvidesDictionary)
         switch (item.Key)
         {
-          case InterconnectionDataBase.ConnectionSelector.TrailerInterconnection:
-            new TrailerInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
-            break;
+          //case InterconnectionDataBase.ConnectionSelector.TrailerInterconnection:
+          //  new TrailerInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
+          //  break;
           case InterconnectionDataBase.ConnectionSelector.TruckInterconnection:
             new TruckInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
             break;
@@ -133,24 +133,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
-    private void NewDataEventHandler(object sender, TrailerInterconnectionData e)
-    {
-      bool _same = m_TrailerHiddenField.Value.Equals(e.ID);
-      if (_same)
-        return;
-      m_TrailerHiddenField.Value = e.ID;
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.ViewState:
-          break;
-        case InterfaceState.NewState:
-        case InterfaceState.EditState:
-          m_TrailerRegistrationNumberTextBox.TextBoxTextProperty(e.Title, false);
-          break;
-        default:
-          break;
-      }
-    }
+    //private void NewDataEventHandler(object sender, TrailerInterconnectionData e)
+    //{
+    //  bool _same = m_TrailerHiddenField.Value.Equals(e.ID);
+    //  if (_same)
+    //    return;
+    //  m_TrailerHiddenField.Value = e.ID;
+    //  switch (CurrentMachineState)
+    //  {
+    //    case InterfaceState.ViewState:
+    //      break;
+    //    case InterfaceState.NewState:
+    //    case InterfaceState.EditState:
+    //      m_TrailerRegistrationNumberTextBox.TextBoxTextProperty(e.Title, false);
+    //      break;
+    //    default:
+    //      break;
+    //  }
+    //}
     private void NewDataEventHandler(object sender, PartnerInterconnectionData e)
     {
       m_MyControlState.PartnerIndex = e.ID;
@@ -271,8 +271,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ShippingHiddenField.Value = String.Empty;
       m_TimeSlotTextBox.TextBoxTextProperty(String.Empty, true);
       m_TimeSlotHiddenField.Value = String.Empty;
-      m_TrailerRegistrationNumberTextBox.TextBoxTextProperty(String.Empty, false);
-      m_TrailerHiddenField.Value = String.Empty;
+      //m_TrailerRegistrationNumberTextBox.TextBoxTextProperty(String.Empty, false);
+      //m_TrailerHiddenField.Value = String.Empty;
       m_TruckRegistrationNumberTextBox.LabelTextProperty(String.Empty, false);
       m_TruckRegistrationHiddenField.Value = String.Empty;
       m_WarehouseTextBox.TextBoxTextProperty(String.Empty, true);
@@ -370,7 +370,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 
     #region variables
     private MyControlState m_MyControlState = new MyControlState();
-    private string m_NoConnectionMessage = "No Connection";
     #endregion
 
     #region Event Handlers

@@ -17,6 +17,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     {
       return _val.HasValue ? _val.Value.ToString() : String.Empty;
     }
+    public static string ToString(this DateTime? _val, string _format)
+    {
+      return _val.HasValue ? string.Format(_format, _val.Value.ToString()) : String.Empty;
+    }
     public static string ControlTextProperty(this string _val)
     {
       return String.IsNullOrEmpty(_val) ? " -- Select from list -- " : _val;
