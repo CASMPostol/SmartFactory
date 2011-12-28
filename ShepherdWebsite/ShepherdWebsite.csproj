@@ -313,9 +313,6 @@
     <None Include="Lists\Libraries\SecuritySealProtocolLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{64b86b44-1e47-4b2e-ae13-e5a71f32e45c}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Libraries\Site Pages\Dashboards\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{97325564-7683-4f0d-9de0-9f67268a04de}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{72417b29-0966-48df-a875-b4340b3fac63}</SharePointProjectItemId>
     </None>
@@ -363,9 +360,6 @@
     </None>
     <None Include="Lists\Shipping\TrailerConditionTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{931662e9-1ca7-4bf2-ac50-e4dbe2dfaa63}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Libraries\Site Pages\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{7f2d5dcb-3d73-4fbf-893f-6e2c91074547}</SharePointProjectItemId>
     </None>
     <None Include="Package\Package.package">
       <PackageId>{d5b7af74-65b4-4968-a81a-70ba671f405d}</PackageId>
@@ -522,9 +516,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />
-    <Content Include="Lists\Libraries\Site Pages\Dashboards\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml">
@@ -559,9 +550,6 @@
     <Content Include="Lists\Shipping\TrailerConditionTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\TrailerConditionTemplate\TrailerConditionList\Elements.xml" />
     <Content Include="Lists\Shipping\TrailerConditionTemplate\Schema.xml" />
-    <Content Include="Lists\Libraries\Site Pages\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />

@@ -10,6 +10,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 {
   public partial class TimeSlotWebPartUserControl : UserControl
   {
+    public TimeSlotWebPartUserControl()
+    {
+      SimpleTimeSlotList = true;
+    }
+    internal bool SimpleTimeSlotList
+    {
+      set
+      {
+        if (value)
+          m_UpdateTimeSlotListMethod = UpdateTimeSlotListSimple;
+        else
+          m_UpdateTimeSlotListMethod = UpdateTimeSlotListExtended;
+      }
+    }
     protected override void OnInit(EventArgs e)
     {
       base.OnInit(e);
@@ -25,7 +39,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           m_WarehouseDropDownList.DataSource = Warehouse.GatAll(edc);
           m_WarehouseDropDownList.DataBind();
           m_WarehouseDropDownList.SelectedIndex = 0;
-          UpdateTimeSlotList(edc, m_Calendar.SelectedDate, m_WarehouseDropDownList.SelectedValue);
+          m_UpdateTimeSlotListMethod(edc, m_Calendar.SelectedDate, m_WarehouseDropDownList.SelectedValue);
         }
       }
       m_Calendar.DayRender += new DayRenderEventHandler(m_Calendar_DayRender);
@@ -42,9 +56,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           return;
         m_TimeSlotList.Items.Clear();
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
-        {
-          UpdateTimeSlotList(edc, _sd, _wrhs);
-        }
+          m_UpdateTimeSlotListMethod(edc, _sd, _wrhs);
       }
       catch (Exception ex)
       {
@@ -78,7 +90,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           }
       base.OnPreRender(e);
     }
-    private void UpdateTimeSlotList(EntitiesDataContext edc, DateTime _sd, string _wrhs)
+    private delegate void UpdateTimeSlotListEventHandler(EntitiesDataContext edc, DateTime _sd, string _wrhs);
+    private UpdateTimeSlotListEventHandler m_UpdateTimeSlotListMethod;
+    private void UpdateTimeSlotListSimple(EntitiesDataContext edc, DateTime _sd, string _wrhs)
+    {
+      bool _first = false;
+      foreach (var _cts in TimeSlotTimeSlot.GetForSelectedDay(edc, _sd, _wrhs))
+      {
+        ListItem _ni = new ListItem(String.Format("{0:HH:mm}", _cts.StartTime), _cts.Identyfikator.ToString(), true);
+        if (_first)
+        {
+          _ni.Selected = true;
+          _first = false;
+        }
+        m_TimeSlotList.Items.Add(_ni);
+      }
+    }
+    private void UpdateTimeSlotListExtended(EntitiesDataContext edc, DateTime _sd, string _wrhs)
     {
       int _hr = 0;
       bool _first = false;
