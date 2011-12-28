@@ -29,10 +29,6 @@
             <asp:TableCell><asp:Label ID="Label1" runat="server" Text="Truck" AssociatedControlID="m_TruckRegistrationNumberTextBox"></asp:Label></asp:TableCell>
             <asp:TableCell><asp:Label ID="m_TruckRegistrationNumberTextBox" runat="server"></asp:Label></asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell><asp:Label ID="Label2" runat="server" AssociatedControlID="m_TrailerRegistrationNumberTextBox" Text="Trailer"></asp:Label></asp:TableCell>
-            <asp:TableCell><asp:TextBox ID="m_TrailerRegistrationNumberTextBox" runat="server" Font-Names="Verdana" Font-Size="10pt"  BackColor="White" BorderColor="Green"></asp:TextBox></asp:TableCell>
-        </asp:TableRow>
     </asp:Table>
   <asp:Button ID="m_NewShippingButton" runat="server" Text="New Shipping" BackColor="White" BorderColor="Green" Font-Names="Verdana" Font-Size="10pt" />
   <asp:Button ID="m_EditButton" runat="server" Text="Edit" BackColor="White" BorderColor="Green" Font-Names="Verdana" Font-Size="10pt" />
@@ -41,9 +37,10 @@
 </asp:Panel>
 <asp:Panel ID="m_HiddenPanel" runat="server">
   <asp:HiddenField ID="m_TruckRegistrationHiddenField" runat="server" />
-  <asp:HiddenField ID="m_TrailerHiddenField" runat="server" />
   <asp:HiddenField ID="m_DriverHiddenField" runat="server" />
   <asp:HiddenField ID="m_TimeSlotHiddenField" runat="server" />
   <asp:HiddenField ID="m_ShippingHiddenField" runat="server" />
   <asp:HiddenField ID="m_WarehouseHiddenField" runat="server" />
 </asp:Panel>
+<div>
+</div>

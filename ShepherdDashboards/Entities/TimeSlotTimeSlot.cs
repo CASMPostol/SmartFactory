@@ -1,10 +1,31 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
   public partial class TimeSlotTimeSlot
   {
+    internal class DateTimeClass
+    {
+      public DateTime StartTime { get; set; }
+    }
+    internal static IQueryable<TimeSlotTimeSlot> GetForSelectedDay(EntitiesDataContext _edc, DateTime _day, string _warehouseID)
+    {
+      int _intWrhs = int.Parse(_warehouseID);
+      return from _idx in _edc.TimeSlot
+             where IsExpected(_idx, _intWrhs) && (_idx.StartTime.Value.Date == _day.Date )
+             orderby _idx.StartTime ascending 
+             select _idx;
+    }
+    internal static IQueryable<DateTime> GetForSelectedMonth(EntitiesDataContext _edc, DateTime _day, string _warehouseID)
+    {
+      int _intWrhs = int.Parse(_warehouseID);
+      return from _idx in _edc.TimeSlot
+             where IsExpected(_idx, _intWrhs) && (_idx.StartTime.Value.Year == _day.Year) && (_idx.StartTime.Value.Month == _day.Month)
+             select _idx.StartTime.Value;
+    }
     internal static TimeSlotTimeSlot GetShippingTimeSlot(EntitiesDataContext edc, int? _id)
     {
       try
@@ -30,7 +51,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     internal static TimeSlotTimeSlot GetAtIndex(EntitiesDataContext edc, string _id)
     {
       if (string.IsNullOrEmpty(_id))
-        throw new ApplicationException("Cannot found the Time Slot because the index is null");
+        throw new ApplicationException("Cannot find the Time Slot because the index is null");
       try
       {
         int _intid = int.Parse(_id);
@@ -63,6 +84,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       this.Occupied = false;
       this.ShippingIndex = null;
+    }
+    private static bool IsExpected(TimeSlotTimeSlot _ts, int _warehouseID)
+    {
+      return _ts.ShippingPoint == null ? false : _ts.ShippingPoint.Warehouse == null ? false : _ts.ShippingPoint.Warehouse.Identyfikator == _warehouseID;
     }
   }
 }
