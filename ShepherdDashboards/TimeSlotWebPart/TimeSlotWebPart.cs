@@ -12,15 +12,26 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 
     protected override void CreateChildControls()
     {
-      TimeSlotWebPartUserControl control = Page.LoadControl(_ascxPath) as TimeSlotWebPartUserControl;
-      Controls.Add(control);
-      control.SimpleTimeSlotList = SimpleTimeSlotList;
+      m_control = Page.LoadControl(_ascxPath) as TimeSlotWebPartUserControl;
+      m_control.SimpleTimeSlotList = SimpleTimeSlotList;
+      Controls.Add(m_control);
     }
+    TimeSlotWebPartUserControl m_control = null;
+    private InterconnectionDataTable<Entities.TimeSlotTimeSlot> m_SelectedTimeSlot = null;
     public TimeSlotWebPart()
     {
       SimpleTimeSlotList = true;
     }
     //TODO Add it to the editor as personalizable property
     public bool SimpleTimeSlotList { get; set; }
+    [ConnectionProvider("Selected TimeSlot", "SelectedTimeSlotProviderPoint", AllowsMultipleConnections = true)]
+    public IWebPartRow GetConnectionInterface()
+    {
+      if (m_control == null)
+        return new InterconnectionDataTable<Entities.TimeSlotTimeSlot>();
+      if (m_SelectedTimeSlot == null)
+        m_SelectedTimeSlot = m_control.GetSelectedTimeSlotInterconnectionData();
+      return m_SelectedTimeSlot;
+    }
   }
 }

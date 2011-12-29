@@ -10,10 +10,30 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 {
   public partial class TimeSlotWebPartUserControl : UserControl
   {
+    #region public
     public TimeSlotWebPartUserControl()
     {
       SimpleTimeSlotList = true;
     }
+    internal InterconnectionDataTable<TimeSlotTimeSlot> GetSelectedTimeSlotInterconnectionData()
+    {
+      string _tn = typeof(TimeSlotTimeSlot).GetType().Name;
+      int _sts = -1;
+      if (!String.IsNullOrEmpty(m_TimeSlotList.SelectedValue))
+        _sts = int.Parse(m_TimeSlotList.SelectedValue);
+      try
+      {
+        using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
+          return new InterconnectionDataTable<TimeSlotTimeSlot>(TimeSlotTimeSlot.GetAtIndex(edc, _sts, true), typeof(TimeSlotTimeSlot).Name);
+      }
+      catch (Exception)
+      {
+        return new InterconnectionDataTable<TimeSlotTimeSlot>();
+      }
+    }
+    #endregion
+
+    #region private
     internal bool SimpleTimeSlotList
     {
       set
@@ -66,7 +86,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     private void m_Calendar_DayRender(object sender, DayRenderEventArgs e)
     {
       if (e.Day.IsOtherMonth)
-        e.Cell.BackColor = Color.LightCoral;
+        e.Cell.BackColor = Color.LightGray; ;
       if (m_AvailableDays.ContainsKey(e.Day.Date))
       {
         e.Cell.BackColor = Color.LightGreen;
@@ -81,7 +101,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       string _wrhs = m_WarehouseDropDownList.SelectedValue;
       if ((_sd != null) && (!String.IsNullOrEmpty(_wrhs)))
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
-          foreach (var item in TimeSlotTimeSlot.GetForSelectedMonth(edc, _sd, _wrhs))
+          foreach (var item in TimeSlotTimeSlot.GetFreeForSelectedMonth(edc, _sd, _wrhs))
           {
             if (!m_AvailableDays.ContainsKey(item.Date))
               m_AvailableDays.Add(item.Date, 1);
@@ -128,5 +148,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     }
     private const string m_EmptyTimeSlot = "_______";
     private SortedDictionary<DateTime, int> m_AvailableDays = new SortedDictionary<DateTime, int>();
+    #endregion
   }
 }
