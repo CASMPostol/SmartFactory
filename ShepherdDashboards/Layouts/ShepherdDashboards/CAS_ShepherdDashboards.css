@@ -1,28 +1,62 @@
 ﻿.TextBox 
 {
     border-width:1px 1px 1px 1px;
-    border-color:#CDCDCD;
+    border-color:#DDDDDD;
+    border-style:solid;
     font-family:Verdana;
     font-size:10pt;
+    width:300px;
 }
 .Button
 {
+    border-width:1px 1px 1px 12px;
+    border-color:#DDDDDD;
+    border-style:solid;
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:10pt; 
+}
+.Table
+{
+    width:auto;
+    padding:10px;
+    border:0px;
+}
+.Label
+{
+    font-size:10pt;
+    font-family:Verdana;
+    font-weight:bold;
+}
+.DropDown
+{
     border-width:1px 1px 1px 1px;
-    border-color:#cdcdcd;
+    border-color:#DDDDDD;
+    border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
     font-size:10pt;
 }
-.Table
+/* TimeSlot Callendar Part */
+.DashboardCalendar
 {
-    width: 500px;
-    padding: 3px;
-    border: 0px;
+    width:450px;
+    height:auto;
 }
-.Label
+/*do użycia w kalendarzu */
+.DashboardCalendarOtherMonths
 {
-    font-size: 10pt;
-    font-family: Verdana;
-    font-weight: bold;
-}   
-    
+    background-color:#F8F8F8;
+}
+.DashboardCalendarSelected
+{
+    background-color:#99CC00;
+}    
+.DashboardTimeSlotList
+{
+    width:100px;
+    height:auto;
+    border-width:1px 1px 1px 1px;
+    border-color:#DDDDDD;
+    border-style:solid;
+}
