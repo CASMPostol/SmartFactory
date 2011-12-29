@@ -13,6 +13,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     public partial class CarrierDashboardWebPartUserControl {
         
         /// <summary>
+        /// cssreg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.CssRegistration cssreg;
+        
+        /// <summary>
         /// m_Panel control.
         /// </summary>
         /// <remarks>

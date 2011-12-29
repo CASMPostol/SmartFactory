@@ -1,0 +1,28 @@
+﻿.TextBox 
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#CDCDCD;
+    font-family:Verdana;
+    font-size:10pt;
+}
+.Button
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#cdcdcd;
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:10pt;
+}
+.Table
+{
+    width: 500px;
+    padding: 3px;
+    border: 0px;
+}
+.Label
+{
+    font-size: 10pt;
+    font-family: Verdana;
+    font-weight: bold;
+}   
+    
