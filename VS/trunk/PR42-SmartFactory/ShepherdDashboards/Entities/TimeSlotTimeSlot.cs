@@ -13,11 +13,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       int _intWrhs = int.Parse(_warehouseID);
       return from _idx in _edc.TimeSlot
-             where IsExpected(_idx, _intWrhs) && (_idx.StartTime.Value.Date == _day.Date )
-             orderby _idx.StartTime ascending 
+             where IsExpected(_idx, _intWrhs) && (_idx.StartTime.Value.Date == _day.Date)
+             orderby _idx.StartTime ascending
              select _idx;
     }
-    internal static IQueryable<DateTime> GetForSelectedMonth(EntitiesDataContext _edc, DateTime _day, string _warehouseID)
+    internal static IQueryable<DateTime> GetFreeForSelectedMonth(EntitiesDataContext _edc, DateTime _day, string _warehouseID)
     {
       int _intWrhs = int.Parse(_warehouseID);
       return from _idx in _edc.TimeSlot
@@ -46,22 +46,29 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       int _intid = int.Parse(_id);
       return GetShippingTimeSlot(_edc, _intid);
     }
-    internal static TimeSlotTimeSlot GetAtIndex(EntitiesDataContext edc, string _id)
+    internal static IQueryable<TimeSlotTimeSlot> GetAtIndex(EntitiesDataContext edc, int _id, bool free)
     {
-      if (string.IsNullOrEmpty(_id))
-        throw new ApplicationException("Cannot find the Time Slot because the index is null");
       try
       {
-        int _intid = int.Parse(_id);
         return (
               from idx in edc.TimeSlot
-              where idx.Identyfikator == _intid
-              select idx).First();
+              where (idx.Identyfikator == _id) && (idx.Occupied != free)
+
+              select idx);
       }
       catch (Exception)
       {
         throw new ApplicationException("Time slot not found");
       }
+    }
+    internal static TimeSlotTimeSlot GetAtIndex(EntitiesDataContext edc, string _id, bool free)
+    {
+      if (string.IsNullOrEmpty(_id))
+        throw new ApplicationException("Cannot find the Time Slot because the index is null");
+      int _intid = -1;
+      if (!int.TryParse(_id, out _intid))
+        throw new ApplicationException("Wrong Time Slot index syntax");
+      return GetAtIndex(edc, _intid, free).First<TimeSlotTimeSlot>();
     }
     internal Warehouse GetWarehouse()
     {
@@ -85,6 +92,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     private static bool IsExpected(TimeSlotTimeSlot _ts, int _warehouseID)
     {
+      if (_ts.Occupied.Value)
+        return false;
       return _ts.ShippingPoint == null ? false : _ts.ShippingPoint.Warehouse == null ? false : _ts.ShippingPoint.Warehouse.Identyfikator == _warehouseID;
     }
   }

@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
+using System.Reflection;
 using System.Web.UI.WebControls;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
   public static class Extensions
   {
+    #region public
     public static string ToString(this int? _val)
     {
       return _val.HasValue ? _val.Value.ToString() : String.Empty;
@@ -61,6 +65,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       }
       return null;
     }
+    #endregion
+
+    #region private
+
     private static Color _warrningBackColor = Color.Tomato;
+    #endregion
   }
 }
