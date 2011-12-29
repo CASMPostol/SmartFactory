@@ -108,9 +108,6 @@
     <None Include="Features\Dashboards\Dashboards.feature">
       <FeatureId>{cf7dc489-0019-4684-9bb2-fde5b31efe5f}</FeatureId>
     </None>
-    <None Include="Images\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{ea103371-fde6-4eb5-bb32-bc2cf2914488}</SharePointProjectItemId>
-    </None>
     <None Include="key.snk" />
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ddc2d1ed-9fa7-4c38-81c5-fdc652827078}</SharePointProjectItemId>
@@ -129,9 +126,7 @@
     </None>
     <None Include="TimeSlotWebPart\TimeSlotWebPart.webpart" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\ShepherdDashboards\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
