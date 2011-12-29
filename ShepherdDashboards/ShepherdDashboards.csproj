@@ -86,7 +86,6 @@
     <Compile Include="Entities\Warehouse.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimeSlotWebPart\IEnumerabl.cs" />
     <Compile Include="TimeSlotWebPart\TimeSlotWebPart.cs" />
     <Compile Include="TimeSlotWebPart\TimeSlotWebPartUserControl.ascx.cs">
       <DependentUpon>TimeSlotWebPartUserControl.ascx</DependentUpon>
