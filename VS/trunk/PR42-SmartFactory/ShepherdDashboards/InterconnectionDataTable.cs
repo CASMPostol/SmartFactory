@@ -5,6 +5,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Reflection;
 using System;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
@@ -22,18 +23,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     #region public
     public InterconnectionDataTable() : this("Schema of " + typeof(T).Name) { }
     public InterconnectionDataTable(string _TableName) : this(null, _TableName) { }
-    public InterconnectionDataTable(IEnumerable<T> items, string _TableName)
+    public InterconnectionDataTable(IEnumerable<T> _list, string _tableName)
     {
-      List<PropertyInfo> props = CreateSchema(_TableName);
-      if (items != null)
-        foreach (var item in items)
+      Dictionary<string, PropertyInfo> _properties = CreateSchema(_tableName);
+      if (_list != null)
+        foreach (var item in _list)
         {
-          DataRow _nr = this.NewRow();
-          foreach (PropertyInfo _prop in props)
+          DataRow _row = this.NewRow();
+          foreach (var _cp in _properties)
           {
             try
             {
-              object _cv = _prop.GetValue(item, null);
+              object _cv = _cp.Value.GetValue(item, null);
               string _strVal;
               if (_cv == null)
                 _strVal = String.Empty;
@@ -45,14 +46,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
                 else
                   _strVal = _cv.ToString();
               }
-              _nr[_prop.Name] = _strVal;
+              _row[_cp.Key] = _strVal;
             }
             catch (Exception)
             {
-              _nr[_prop.Name] = String.Empty;
+              _row[_cp.Key] = String.Empty;
             }
           }
-          this.Rows.Add(_nr);
+          this.Rows.Add(_row);
         }
       if (this.Rows.Count == 0)
       {
@@ -66,28 +67,32 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     #endregion
 
     #region private
-    private List<PropertyInfo> CreateSchema(string _TableName)
+    private Dictionary<string, PropertyInfo> CreateSchema(string _TableName)
     {
       PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-      List<PropertyInfo> _ret = new List<PropertyInfo>();
+      Dictionary<string, PropertyInfo> _ret = new Dictionary<string, PropertyInfo>();
       foreach (PropertyInfo prop in props)
       {
-        if (IsRemoved(prop.GetCustomAttributes(true)))
+        object[] _attributes = prop.GetCustomAttributes(false);
+        bool _isRemoved = false;
+        string _ColName = prop.Name;
+        foreach (var item in _attributes)
+        {
+          if (item is RemovedColumnAttribute)
+          {
+            _isRemoved = true;
+            break;
+          }
+          if (item is ColumnAttribute)
+            _ColName = ((ColumnAttribute)item).Name;
+        }
+        if (_isRemoved)
           continue;
-        this.Columns.Add(prop.Name, typeof(String));
-        _ret.Add(prop);
+        this.Columns.Add(_ColName, typeof(String));
+        _ret.Add(_ColName, prop);
       }
       this.TableName = _TableName;
       return _ret;
-    }
-    private static bool IsRemoved(object[] _attributes)
-    {
-      foreach (var item in _attributes)
-      {
-        if (item.GetType() == typeof(Microsoft.SharePoint.Linq.RemovedColumnAttribute))
-          return true;
-      }
-      return false;
     }
     /// <summary>
     /// Determine of specified type is nullable
