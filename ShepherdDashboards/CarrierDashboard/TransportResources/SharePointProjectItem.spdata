@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.VisualWebPart" DefaultFile="TransportResourcesUserControl.ascx" SupportedTrustLevels="FullTrust" SupportedDeploymentScopes="Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="TransportResources\" Type="ElementManifest" />
+    <ProjectItemFile Source="TransportResources.webpart" Target="TransportResources\" Type="ElementFile" />
+    <ProjectItemFile Source="TransportResourcesUserControl.ascx" Target="CONTROLTEMPLATES\CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard\TransportResources\" Type="TemplateFile" />
+  </Files>
+  <SafeControls>
+    <SafeControl Name="SafeControlEntry1" Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResources" TypeName="*" IsSafe="true" IsSafeAgainstScript="false" />
+  </SafeControls>
+</ProjectItem>

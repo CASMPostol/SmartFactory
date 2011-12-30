@@ -63,6 +63,14 @@
       <DependentUpon>CarrierDashboardWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="CarrierDashboard\CarrierDashboardWebPart\InterconnectionData.cs" />
+    <Compile Include="CarrierDashboard\TransportResources\TransportResources.cs" />
+    <Compile Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx.cs">
+      <DependentUpon>TransportResourcesUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx.designer.cs">
+      <DependentUpon>TransportResourcesUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="CurrentUserWebPart\CurrentUserWebPart.cs" />
     <Compile Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx.cs">
       <DependentUpon>CurrentUserWebPartUserControl.ascx</DependentUpon>
@@ -103,6 +111,10 @@
     <None Include="CarrierDashboard\CarrierDashboardWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8f8432ac-db92-4be2-8696-4c2a45e80124}</SharePointProjectItemId>
     </None>
+    <None Include="CarrierDashboard\TransportResources\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d154fb9f-ec8f-4a8e-8994-b9fc03606128}</SharePointProjectItemId>
+    </None>
+    <None Include="CarrierDashboard\TransportResources\TransportResources.webpart" />
     <None Include="CurrentUserWebPart\CurrentUserWebPart.webpart" />
     <None Include="CurrentUserWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2614e454-2e2d-48e2-a02c-9f72cdb22425}</SharePointProjectItemId>
@@ -135,6 +147,10 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="CarrierDashboard\CarrierDashboardWebPart\Elements.xml" />
+    <Content Include="CarrierDashboard\TransportResources\Elements.xml" />
+    <Content Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
