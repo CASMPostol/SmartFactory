@@ -36,13 +36,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       }
       catch (Exception)
       {
-        throw new ApplicationException("Time slot not found");
+        throw new ApplicationException(m_TSNotFpundMessage);
       }
     }
     internal static TimeSlotTimeSlot GetShippingTimeSlot(EntitiesDataContext _edc, string _id)
     {
       if (string.IsNullOrEmpty(_id))
-        throw new ApplicationException("Cannot found the Time Slot because the index is null");
+        throw new ApplicationException("Shipping is not selected.");
       int _intid = int.Parse(_id);
       return GetShippingTimeSlot(_edc, _intid);
     }
@@ -58,13 +58,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       }
       catch (Exception)
       {
-        throw new ApplicationException("Time slot not found");
+        throw new ApplicationException(m_TSNotFpundMessage);
       }
     }
     internal static TimeSlotTimeSlot GetAtIndex(EntitiesDataContext edc, string _id, bool free)
     {
       if (string.IsNullOrEmpty(_id))
-        throw new ApplicationException("Cannot find the Time Slot because the index is null");
+        throw new ApplicationException(m_TSNotFpundMessage);
       int _intid = -1;
       if (!int.TryParse(_id, out _intid))
         throw new ApplicationException("Wrong Time Slot index syntax");
@@ -73,7 +73,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     internal Warehouse GetWarehouse()
     {
       if (this.ShippingPoint == null)
-        throw new ApplicationException("Shipping Point not found");
+        throw new ApplicationException(m_ShippingNotFpundMessage);
       if (this.ShippingPoint.Warehouse == null)
         throw new ApplicationException("Warehouse not found");
       return this.ShippingPoint.Warehouse;
@@ -96,5 +96,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         return false;
       return _ts.ShippingPoint == null ? false : _ts.ShippingPoint.Warehouse == null ? false : _ts.ShippingPoint.Warehouse.Identyfikator == _warehouseID;
     }
+    private const string m_TSNotFpundMessage = "Time slot is not selected";
+    private const string m_ShippingNotFpundMessage = "Shipping slot is not selected"
   }
 }
