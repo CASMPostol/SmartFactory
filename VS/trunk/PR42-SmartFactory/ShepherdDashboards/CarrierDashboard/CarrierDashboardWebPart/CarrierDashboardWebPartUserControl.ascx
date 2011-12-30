@@ -11,26 +11,38 @@
   Inherits="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPartUserControl" %>
 <SharePoint:CssRegistration runat="server" ID="cssreg" Name="/_layouts/ShepherdDashboards/CAS_ShepherdDashboards.css" />
 <asp:Panel ID="m_Panel" runat="server">
-    <asp:Table ID="CarrierDashboardLayout1" runat="server" CssClass="Table">
-        <asp:TableRow>
-            <asp:TableCell><asp:Literal ID="m_StateLiteral" runat="server" /> </asp:TableCell></asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell><asp:Label ID="Label6" runat="server" Text="Warehouse" CssClass="Label"></asp:Label>    </asp:TableCell>
-            <asp:TableCell><asp:TextBox ID="m_WarehouseTextBox" runat="server" CssClass="TextBox"></asp:TextBox></asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell><asp:Label ID="Label4" runat="server" Text="Time Slot" AssociatedControlID="m_TimeSlotTextBox"  CssClass="Label"></asp:Label></asp:TableCell>
-            <asp:TableCell><asp:TextBox ID="m_TimeSlotTextBox" runat="server" CssClass="TextBox"></asp:TextBox></asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell><asp:Label ID="Label5" runat="server" Text="PO Number"  CssClass="Label"/></asp:TableCell>
-            <asp:TableCell><asp:TextBox ID="m_DocumentTextBox" runat="server" CssClass="TextBox"></asp:TextBox></asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell><asp:Label ID="Label1" runat="server" Text="Truck" AssociatedControlID="m_TruckRegistrationNumberTextBox"></asp:Label></asp:TableCell>
-            <asp:TableCell><asp:Label ID="m_TruckRegistrationNumberTextBox" runat="server"></asp:Label></asp:TableCell>
-        </asp:TableRow>
-    </asp:Table>
+  <asp:Table ID="CarrierDashboardLayout1" runat="server" CssClass="Table">
+    <asp:TableRow>
+      <asp:TableCell>
+        <asp:Literal ID="m_StateLiteral" runat="server" />
+      </asp:TableCell></asp:TableRow>
+    <asp:TableRow>
+      <asp:TableCell>
+        <asp:Label ID="Label6" runat="server" Text="Warehouse" CssClass="Label"></asp:Label>
+      </asp:TableCell>
+      <asp:TableCell>
+        <asp:TextBox ID="m_WarehouseTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox></asp:TableCell>
+    </asp:TableRow>
+    <asp:TableRow>
+      <asp:TableCell>
+        <asp:Label ID="Label4" runat="server" Text="Time Slot" AssociatedControlID="m_TimeSlotTextBox"
+          CssClass="Label"></asp:Label></asp:TableCell>
+      <asp:TableCell>
+        <asp:TextBox ID="m_TimeSlotTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox></asp:TableCell>
+    </asp:TableRow>
+    <asp:TableRow>
+      <asp:TableCell>
+        <asp:Label ID="Label5" runat="server" Text="PO Number" CssClass="Label" /></asp:TableCell>
+      <asp:TableCell>
+        <asp:TextBox ID="m_DocumentTextBox" runat="server" CssClass="TextBox"></asp:TextBox></asp:TableCell>
+    </asp:TableRow>
+    <asp:TableRow>
+      <asp:TableCell>
+        <asp:Label ID="Label1" runat="server" Text="Truck" AssociatedControlID="m_TruckRegistrationNumberTextBox"></asp:Label></asp:TableCell>
+      <asp:TableCell>
+        <asp:Label ID="m_TruckRegistrationNumberTextBox" runat="server"></asp:Label></asp:TableCell>
+    </asp:TableRow>
+  </asp:Table>
   <asp:Button ID="m_NewShippingButton" runat="server" Text="New Shipping" CssClass="Button" />
   <asp:Button ID="m_EditButton" runat="server" Text="Edit" CssClass="Button" />
   <asp:Button ID="m_SaveButton" runat="server" Text="Save" CssClass="Button" />
@@ -43,5 +55,3 @@
   <asp:HiddenField ID="m_ShippingHiddenField" runat="server" />
   <asp:HiddenField ID="m_WarehouseHiddenField" runat="server" />
 </asp:Panel>
-<div>
-</div>
