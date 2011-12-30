@@ -37,6 +37,15 @@
     font-family:Verdana;
     font-size:10pt;
 }
+.ListBox
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#DDDDDD;
+    border-style:solid;
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:10pt;
+}
 /* TimeSlot Callendar Part */
 .DashboardCalendar
 {

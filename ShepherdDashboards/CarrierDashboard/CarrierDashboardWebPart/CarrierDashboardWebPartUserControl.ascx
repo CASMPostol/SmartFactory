@@ -11,7 +11,7 @@
   Inherits="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPartUserControl" %>
 <SharePoint:CssRegistration runat="server" ID="cssreg" Name="/_layouts/ShepherdDashboards/CAS_ShepherdDashboards.css" />
 <asp:Panel ID="m_Panel" runat="server">
-  <asp:Table ID="CarrierDashboardLayout1" runat="server" CssClass="Table">
+  <asp:Table ID="CarrierDashboardWebPart" runat="server" CssClass="Table">
     <asp:TableRow>
       <asp:TableCell>
         <asp:Literal ID="m_StateLiteral" runat="server" />
