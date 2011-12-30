@@ -44,13 +44,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     //PartnerInterconnection
     [ConnectionConsumer("Current user table interconnection", "PartnerInterconnection", AllowsMultipleConnections = false)]
-    public void SetWarehouseProvider(IWebPartRow _provider)
+    public void SetCurrentUserProvider(IWebPartRow _provider)
     {
       m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.PartnerInterconnection, _provider);
     }
     #endregion
 
     #endregion
-
   }
 }

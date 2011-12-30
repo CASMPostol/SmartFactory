@@ -9,11 +9,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       public DateTime StartTime { get; set; }
     }
-    internal static IQueryable<TimeSlotTimeSlot> GetForSelectedDay(EntitiesDataContext _edc, DateTime _day, string _warehouseID)
+    internal static IQueryable<TimeSlotTimeSlot> GetForSelectedDay(EntitiesDataContext _edc, DateTime _day, int _warehouseID)
     {
-      int _intWrhs = int.Parse(_warehouseID);
       return from _idx in _edc.TimeSlot
-             where IsExpected(_idx, _intWrhs) && (_idx.StartTime.Value.Date == _day.Date)
+             where IsExpected(_idx, _warehouseID) && (_idx.StartTime.Value.Date == _day.Date)
              orderby _idx.StartTime ascending
              select _idx;
     }
