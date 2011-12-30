@@ -3,16 +3,16 @@ using System.Data;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 
-namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
+namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
 {
-  internal class InterconnectionDataBase : EventArgs
+  internal class InboundInterconnectionData : EventArgs
   {
     internal enum ConnectionSelector
     {
       TrailerInterconnection, TruckInterconnection, ShippingInterconnection, TimeSlotInterconnection, PartnerInterconnection
     }
   }
-  internal abstract class InterconnectionData<DerivedType> : InterconnectionDataBase
+  internal abstract class InterconnectionData<DerivedType> : InboundInterconnectionData
     where DerivedType : InterconnectionData<DerivedType>
   {
     internal InterconnectionData() { }

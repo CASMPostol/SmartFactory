@@ -10,7 +10,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
   public partial class CarrierDashboardWebPartUserControl : UserControl
   {
     #region public
-    internal void GetData(Dictionary<InterconnectionDataBase.ConnectionSelector, IWebPartRow> _ProvidesDictionary)
+    internal void GetData(Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary)
     {
       foreach (var item in _ProvidesDictionary)
         switch (item.Key)
@@ -18,16 +18,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           //case InterconnectionDataBase.ConnectionSelector.TrailerInterconnection:
           //  new TrailerInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
           //  break;
-          case InterconnectionDataBase.ConnectionSelector.TruckInterconnection:
+          case InboundInterconnectionData.ConnectionSelector.TruckInterconnection:
             new TruckInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
             break;
-          case InterconnectionDataBase.ConnectionSelector.ShippingInterconnection:
+          case InboundInterconnectionData.ConnectionSelector.ShippingInterconnection:
             new ShippingInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
             break;
-          case InterconnectionDataBase.ConnectionSelector.TimeSlotInterconnection:
+          case InboundInterconnectionData.ConnectionSelector.TimeSlotInterconnection:
             new TimeSlotInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
             break;
-          case InterconnectionDataBase.ConnectionSelector.PartnerInterconnection:
+          case InboundInterconnectionData.ConnectionSelector.PartnerInterconnection:
             new PartnerInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
             break;
           default:

@@ -62,7 +62,7 @@
     <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx.designer.cs">
       <DependentUpon>CarrierDashboardWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="CarrierDashboard\CarrierDashboardWebPart\InterconnectionData.cs" />
+    <Compile Include="CarrierDashboard\InboundInterconnectionData.cs" />
     <Compile Include="CarrierDashboard\TransportResources\TransportResources.cs" />
     <Compile Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx.cs">
       <DependentUpon>TransportResourcesUserControl.ascx</DependentUpon>

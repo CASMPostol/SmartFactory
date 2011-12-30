@@ -23,42 +23,30 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_Control.GetData(m_ProvidesDictionary );
       base.OnPreRender(e);
     }
-    private Dictionary<InterconnectionDataBase.ConnectionSelector, IWebPartRow> m_ProvidesDictionary = 
-      new Dictionary<InterconnectionDataBase.ConnectionSelector, IWebPartRow>();
+    private Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary = 
+      new Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow>();
     #endregion
 
     #region public
 
     #region Interconnections Providers
-    //TrailerInterconnection
-    [ConnectionConsumer("Trailer table interconnection", "TrailerInterconnection", AllowsMultipleConnections = false)]
-    public void SetTrailerProvider(IWebPartRow _provider)
-    {
-      m_ProvidesDictionary.Add(InterconnectionDataBase.ConnectionSelector.TrailerInterconnection, _provider);
-    }
-    //TruckInterconnection
-    [ConnectionConsumer("Truck table interconnection", "TruckInterconnection", AllowsMultipleConnections = false)]
-    public void SetTruckProvider(IWebPartRow _provider)
-    {
-      m_ProvidesDictionary.Add(InterconnectionDataBase.ConnectionSelector.TruckInterconnection, _provider);
-    }
     //ShippingInterconnection
     [ConnectionConsumer("Shipping table interconnection", "ShippingInterconnection", AllowsMultipleConnections = false)]
     public void SetShippingProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InterconnectionDataBase.ConnectionSelector.ShippingInterconnection, _provider);
+      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.ShippingInterconnection, _provider);
     }
     //TimeSlotInterconnection
     [ConnectionConsumer("Time Slots calendar interconnection", "TimeSlotInterconnection", AllowsMultipleConnections = false)]
     public void SetTimeSlotsProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InterconnectionDataBase.ConnectionSelector.TimeSlotInterconnection, _provider);
+      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.TimeSlotInterconnection, _provider);
     }
     //PartnerInterconnection
     [ConnectionConsumer("Current user table interconnection", "PartnerInterconnection", AllowsMultipleConnections = false)]
     public void SetWarehouseProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InterconnectionDataBase.ConnectionSelector.PartnerInterconnection, _provider);
+      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.PartnerInterconnection, _provider);
     }
     #endregion
 
