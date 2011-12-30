@@ -97,6 +97,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       return _ts.ShippingPoint == null ? false : _ts.ShippingPoint.Warehouse == null ? false : _ts.ShippingPoint.Warehouse.Identyfikator == _warehouseID;
     }
     private const string m_TSNotFpundMessage = "Time slot is not selected";
-    private const string m_ShippingNotFpundMessage = "Shipping slot is not selected"
+    private const string m_ShippingNotFpundMessage = "Shipping slot is not selected";
   }
 }
