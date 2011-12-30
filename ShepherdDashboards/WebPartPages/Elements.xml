@@ -20,6 +20,22 @@
                   </webPart>
                 </webParts>]]>
       </AllUsersWebPart>
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0">
+        <![CDATA[<webParts>
+                  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+                    <metaData>
+                      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
+                      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+                    </metaData>
+                    <data>
+                      <properties>
+                        <property name="Title" type="string">Carrier Dashboard Manager</property>
+                        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
+                      </properties>
+                    </data>
+                  </webPart>
+                </webParts>]]>
+      </AllUsersWebPart>
     </File>
   </Module>
 </Elements>
