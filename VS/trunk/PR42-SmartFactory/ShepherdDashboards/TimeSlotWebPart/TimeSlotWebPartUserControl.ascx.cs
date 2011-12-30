@@ -114,8 +114,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     private UpdateTimeSlotListEventHandler m_UpdateTimeSlotListMethod;
     private void UpdateTimeSlotListSimple(EntitiesDataContext edc, DateTime _sd, string _wrhs)
     {
+      int _intWhr = -1;
+      if (!int.TryParse(_wrhs, out _intWhr) || _intWhr <= 0)
+        return;
       bool _first = false;
-      foreach (var _cts in TimeSlotTimeSlot.GetForSelectedDay(edc, _sd, _wrhs))
+      foreach (var _cts in TimeSlotTimeSlot.GetForSelectedDay(edc, _sd, _intWhr))
       {
         ListItem _ni = new ListItem(String.Format("{0:HH:mm}", _cts.StartTime), _cts.Identyfikator.ToString(), true);
         if (_first)
@@ -128,9 +131,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     }
     private void UpdateTimeSlotListExtended(EntitiesDataContext edc, DateTime _sd, string _wrhs)
     {
+      int _intWhr = -1;
+      if (!int.TryParse(_wrhs, out _intWhr) || _intWhr <= 0)
+        return;
       int _hr = 0;
       bool _first = false;
-      foreach (var _cts in TimeSlotTimeSlot.GetForSelectedDay(edc, _sd, _wrhs))
+      foreach (var _cts in TimeSlotTimeSlot.GetForSelectedDay(edc, _sd, _intWhr))
       {
         while (_hr++ < _cts.StartTime.Value.Hour)
           m_TimeSlotList.Items.Add(new ListItem(m_EmptyTimeSlot, "-1"));
