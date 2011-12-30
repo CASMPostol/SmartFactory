@@ -140,6 +140,9 @@
       <SharePointProjectItemId>{a4f2f6fd-efb5-4f8f-8040-0ce44fd01cfc}</SharePointProjectItemId>
     </None>
     <None Include="TimeSlotWebPart\TimeSlotWebPart.webpart" />
+    <None Include="WebPartPages\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5a1c2296-d4cc-40fb-87ca-b81deda11661}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -168,6 +171,8 @@
     <Content Include="TimeSlotWebPart\TimeSlotWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="WebPartPages\Elements.xml" />
+    <Content Include="WebPartPages\CarrierDashboardTemplate.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
