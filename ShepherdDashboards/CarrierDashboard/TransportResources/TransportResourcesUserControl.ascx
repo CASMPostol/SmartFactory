@@ -14,7 +14,7 @@
             <asp:Table ID="Row1" runat="server" CssClass="TableInside">
                 <asp:TableRow>
                     <asp:TableCell><asp:Label ID="Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label></asp:TableCell>
-                    <asp:TableCell><asp:TextBox ID="TextBox1" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox></asp:TableCell>
+                    <asp:TableCell><asp:TextBox ID="m_ShippingTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox></asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
         </asp:TableCell>
@@ -46,7 +46,7 @@
                 <asp:Label ID="Label2" runat="server" Text="Truck" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:DropDownList ID="m_TruckDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack=true>
+                <asp:DropDownList ID="m_TruckDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack="true">
                 </asp:DropDownList>
             </asp:TableCell>
                 </asp:TableRow>
@@ -61,7 +61,7 @@
                 <asp:Label ID="Label3" runat="server" Text="Trailer" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack=true>
+                <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack="true">
                 </asp:DropDownList>
             </asp:TableCell>
                 </asp:TableRow>

@@ -173,7 +173,9 @@
     <Content Include="TimeSlotWebPart\TimeSlotWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="WebPartPages\Elements.xml" />
+    <Content Include="WebPartPages\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="WebPartPages\CarrierDashboardTemplate.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
