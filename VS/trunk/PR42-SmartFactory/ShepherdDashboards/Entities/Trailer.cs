@@ -23,5 +23,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         return null;
       }
     }
+    internal static IQueryable<Trailer> GetAllForUser(EntitiesDataContext edc, int _partner)
+    {
+      try
+      {
+        return from idx in edc.Trailer
+               where idx.VendorName.Identyfikator == _partner
+               //orderby idx.Tytuł
+               select idx;
+      }
+      catch (Exception ex)
+      {
+        throw new ApplicationException("Trailer.GetAllForUser failed: " + ex.Message);
+      }
+    }
   }
 }

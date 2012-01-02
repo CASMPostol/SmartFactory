@@ -9,17 +9,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
   {
     internal enum ConnectionSelector
     {
-      TrailerInterconnection, TruckInterconnection, ShippingInterconnection, TimeSlotInterconnection, PartnerInterconnection
-    }
-  }
-  internal abstract class InterconnectionData<DerivedType> : InboundInterconnectionData
-    where DerivedType : InterconnectionData<DerivedType>
-  {
-    internal InterconnectionData() { }
-    internal void GetRowData(IWebPartRow _connector, EventHandler<DerivedType> _update)
-    {
-      m_Update = _update;
-      _connector.GetRowData(GetData);
+      TrailerInterconnection, TruckInterconnection, ShippingInterconnection, TimeSlotInterconnection, PartnerInterconnection, DriverInterconnection
     }
     internal string ID { get { return GetFieldValue(Element.IDColunmName); } }
     internal string Title { get { return GetFieldValue(Element.TitleColunmName); } }
@@ -33,7 +23,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
         return String.Empty;
       return _val;
     }
+  }
+  internal abstract class InterconnectionData<DerivedType> : InboundInterconnectionData
+    where DerivedType : InterconnectionData<DerivedType>
+  {
+    internal InterconnectionData() { }
     private EventHandler<DerivedType> m_Update;
+    internal void GetRowData(IWebPartRow _connector, EventHandler<DerivedType> _update)
+    {
+      m_Update = _update;
+      _connector.GetRowData(GetData);
+    }
     private void GetData(object _data)
     {
       Row = _data as DataRowView;
@@ -73,5 +73,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
   internal class PartnerInterconnectionData : InterconnectionData<PartnerInterconnectionData>
   {
 
+  }
+  internal static class InterconnectionExtensions
+  {
+    public static int? GetIndex(this InboundInterconnectionData _id)
+    {
+      if (_id == null) return null;
+      return _id.ID.String2Int();
+    }
   }
 }
