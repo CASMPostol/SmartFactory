@@ -169,6 +169,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           edc.DriversTeam.DeleteOnSubmit(_cd);
           edc.SubmitChanges();
         }
+        UpdateUserInterface();
       }
       catch (Exception ex)
       {
