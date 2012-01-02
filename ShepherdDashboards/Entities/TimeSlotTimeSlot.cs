@@ -40,10 +40,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     internal static TimeSlotTimeSlot GetShippingTimeSlot(EntitiesDataContext _edc, string _id)
     {
-      if (string.IsNullOrEmpty(_id))
+      int? _intId = _id.String2Int();
+      if (!_intId.HasValue)
         throw new ApplicationException("Shipping is not selected.");
-      int _intid = int.Parse(_id);
-      return GetShippingTimeSlot(_edc, _intid);
+      return GetShippingTimeSlot(_edc, _intId.Value);
     }
     internal static IQueryable<TimeSlotTimeSlot> GetAtIndex(EntitiesDataContext edc, int _id, bool free)
     {
@@ -52,7 +52,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         return (
               from idx in edc.TimeSlot
               where (idx.Identyfikator == _id) && (idx.Occupied != free)
-
               select idx);
       }
       catch (Exception)
@@ -64,10 +63,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       if (string.IsNullOrEmpty(_id))
         throw new ApplicationException(m_TSNotFpundMessage);
-      int _intid = -1;
-      if (!int.TryParse(_id, out _intid))
+      int? _intid = _id.String2Int();
+      if (!_intid.HasValue)
         throw new ApplicationException("Wrong Time Slot index syntax");
-      return GetAtIndex(edc, _intid, free).First<TimeSlotTimeSlot>();
+      return GetAtIndex(edc, _intid.Value, free).First<TimeSlotTimeSlot>();
     }
     internal Warehouse GetWarehouse()
     {

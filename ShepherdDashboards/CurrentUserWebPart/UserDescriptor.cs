@@ -26,19 +26,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
       row[_IDColumnName] = _user.ID;
       row[_LoginNameColumnName] = _user.LoginName;
       row[_NameColumnName] = this.User = _user.Name;
-      try
+      using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
       {
-        using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
+        Partner _Partner = Partner.FindForUser(edc, _user);
+        if (_Partner != null)
         {
-          Partner _Partner = Partner.FindForUser(edc, _user);
           row[_CompanyIDColumnName] = _Partner.Identyfikator.ToString();
           row[_CompanyTitleColumnName] = Company = _Partner.Tytuł;
         }
-      }
-      catch (Exception)
-      {
-        row[_CompanyIDColumnName] = String.Empty;
-        row[_CompanyTitleColumnName] = String.Empty;
+        else
+        {
+          row[_CompanyIDColumnName] = String.Empty;
+          row[_CompanyTitleColumnName] = String.Empty;
+        }
       }
       this.Rows.Add(row);
       Schema = TypeDescriptor.GetProperties(this.Row0);

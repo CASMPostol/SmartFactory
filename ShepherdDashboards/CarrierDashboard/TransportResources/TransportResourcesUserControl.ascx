@@ -11,23 +11,23 @@
     <asp:Table ID="TransportResourcesWebPart" runat="server" CssClass="Table">
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Label ID="Label1" runat="server" Text="Shipping" CssClass="Label"></asp:Label>
+                <asp:Label ID="Label1" runat="server" Text="Shipping" CssClass="Label" Enabled=false></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="m_ShippingTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:TextBox ID="m_ShippingTextBox" runat="server" CssClass="TextBox" Enabled=false></asp:TextBox>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:ListBox ID="m_DriversListBox" runat="server" CssClass="ListBox"></asp:ListBox>
+                <asp:ListBox ID="m_DriversListBox" runat="server" CssClass="ListBox" Enabled=false></asp:ListBox>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:Button ID="m_AddDriverButton" runat="server" Text="Add driver" CssClass="Button" />
+                <asp:Button ID="m_AddDriverButton" runat="server" Text="==>" CssClass="Button" Enabled=false/>
                 <br />
-                <asp:Button ID="m_RemoveDriverButton" runat="server" Text="Remove Driver" CssClass="Button" />
+                <asp:Button ID="m_RemoveDriverButton" runat="server" Text="<==" CssClass="Button" Enabled=false/>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:ListBox ID="m_DriversTeamListBox" runat="server" CssClass="ListBox"></asp:ListBox>
+                <asp:ListBox ID="m_DriversTeamListBox" runat="server" CssClass="ListBox" Enabled=false></asp:ListBox>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -35,7 +35,7 @@
                 <asp:Label ID="Label2" runat="server" Text="Truck" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:DropDownList ID="m_TruckDropDown" runat="server" CssClass="DropDown">
+                <asp:DropDownList ID="m_TruckDropDown" runat="server" CssClass="DropDown" Enabled=false>
                 </asp:DropDownList>
             </asp:TableCell>
         </asp:TableRow>
@@ -44,7 +44,7 @@
                 <asp:Label ID="Label3" runat="server" Text="Trailer" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown">
+                <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled=false>
                 </asp:DropDownList>
             </asp:TableCell>
         </asp:TableRow>

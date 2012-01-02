@@ -30,19 +30,28 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region public
 
     #region Interconnections Providers
-    //ShippingInterconnection
+    /// <summary>
+    /// Sets the shipping provider.
+    /// </summary>
+    /// <param name="_provider">The provider interface.</param>
     [ConnectionConsumer("Shipping table interconnection", "ShippingInterconnection", AllowsMultipleConnections = false)]
     public void SetShippingProvider(IWebPartRow _provider)
     {
       m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.ShippingInterconnection, _provider);
     }
-    //TimeSlotInterconnection
+    /// <summary>
+    /// Sets the time slots provider.
+    /// </summary>
+    /// <param name="_provider">The provider.</param>
     [ConnectionConsumer("Time Slots calendar interconnection", "TimeSlotInterconnection", AllowsMultipleConnections = false)]
     public void SetTimeSlotsProvider(IWebPartRow _provider)
     {
       m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.TimeSlotInterconnection, _provider);
     }
-    //PartnerInterconnection
+    /// <summary>
+    /// Sets the current user provider.
+    /// </summary>
+    /// <param name="_provider">The provider interface.</param>
     [ConnectionConsumer("Current user table interconnection", "PartnerInterconnection", AllowsMultipleConnections = false)]
     public void SetCurrentUserProvider(IWebPartRow _provider)
     {

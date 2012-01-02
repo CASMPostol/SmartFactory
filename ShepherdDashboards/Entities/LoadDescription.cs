@@ -9,16 +9,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
   {
     internal static List<LoadDescription> GetForShipping(EntitiesDataContext edc, string _shippingIndex)
     {
-      if (String.IsNullOrEmpty(_shippingIndex))
+      int? _intIndex = _shippingIndex.String2Int();
+      if (!_intIndex.HasValue)
         throw new ApplicationException("Partner not found because the index is null");
-      int _intIndex = int.Parse(_shippingIndex);
       try
       {
-        var ret =
-              from idx in edc.LoadDescription
-              where idx.ShippingIndex.Identyfikator == _intIndex
-              select idx;
-        return new List<LoadDescription>(ret);
+        return (from idx in edc.LoadDescription
+                where idx.ShippingIndex.Identyfikator == _intIndex
+                select idx).ToList<LoadDescription>();
       }
       catch (Exception)
       {

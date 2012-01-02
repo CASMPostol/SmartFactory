@@ -15,12 +15,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       foreach (var item in _ProvidesDictionary)
         switch (item.Key)
         {
-          //case InterconnectionDataBase.ConnectionSelector.TrailerInterconnection:
-          //  new TrailerInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
-          //  break;
-          case InboundInterconnectionData.ConnectionSelector.TruckInterconnection:
-            new TruckInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
-            break;
           case InboundInterconnectionData.ConnectionSelector.ShippingInterconnection:
             new ShippingInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
             break;
@@ -114,42 +108,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
-    private void NewDataEventHandler(object sender, TruckInterconnectionData e)
-    {
-      bool _same = m_TruckRegistrationHiddenField.Value.Equals(e.ID);
-      if (_same)
-        return;
-      m_TruckRegistrationHiddenField.Value = e.ID;
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.ViewState:
-          break;
-        case InterfaceState.NewState:
-        case InterfaceState.EditState:
-          m_TruckRegistrationNumberTextBox.LabelTextProperty(e.Title, false);
-          break;
-        default:
-          break;
-      }
-    }
-    //private void NewDataEventHandler(object sender, TrailerInterconnectionData e)
-    //{
-    //  bool _same = m_TrailerHiddenField.Value.Equals(e.ID);
-    //  if (_same)
-    //    return;
-    //  m_TrailerHiddenField.Value = e.ID;
-    //  switch (CurrentMachineState)
-    //  {
-    //    case InterfaceState.ViewState:
-    //      break;
-    //    case InterfaceState.NewState:
-    //    case InterfaceState.EditState:
-    //      m_TrailerRegistrationNumberTextBox.TextBoxTextProperty(e.Title, false);
-    //      break;
-    //    default:
-    //      break;
-    //  }
-    //}
     private void NewDataEventHandler(object sender, PartnerInterconnectionData e)
     {
       m_MyControlState.PartnerIndex = e.ID;

@@ -88,9 +88,11 @@
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\LoadDescription.cs" />
     <Compile Include="Entities\Partner.cs" />
+    <Compile Include="Entities\ShippingDriversTeam.cs" />
     <Compile Include="Entities\ShippingOperationInbound.cs" />
     <Compile Include="Entities\TimeSlotTimeSlot.cs" />
     <Compile Include="Entities\Trailer.cs" />
+    <Compile Include="Entities\Truck.cs" />
     <Compile Include="Entities\Warehouse.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
