@@ -49,7 +49,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     {
       m_AddDriverButton.Click += new EventHandler(m_AddDriverButton_Click);
       m_RemoveDriverButton.Click += new EventHandler(m_RemoveDriverButton_Click);
+      m_TrailerDropDown.SelectedIndexChanged += new EventHandler(m_TrailerDropDown_SelectedIndexChanged);
+      m_TruckDropDown.SelectedIndexChanged += new EventHandler(m_TruckDropDown_SelectedIndexChanged);
     }
+
     protected override void LoadControlState(object _state)
     {
       if (_state != null)
@@ -57,7 +60,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     }
     protected override object SaveControlState()
     {
-      return m_ControlState; ;
+      return m_ControlState;
     }
     #endregion
 
@@ -65,7 +68,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     private void NewDataEventHandler(object sender, ShippingInterconnectionData e)
     {
       int? _ci = e.GetIndex();
-      if (_ci == m_ControlState.PartnerIndex)
+      if (_ci == m_ControlState.ShippingIdx)
         return;
       m_ControlState.ShippingIdx = _ci;
       UpdateUserInterface();
@@ -94,19 +97,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       {
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
-          Dictionary<int, string> _drivers = new Dictionary<int, string>(); ;
-          foreach (Driver item in Driver.GetAllForUser(edc, m_ControlState.PartnerIndex.Value))
-            _drivers.Add(item.Identyfikator.Value, item.Tytuł);
-          foreach (Driver item in Driver.GetAllForShipping(edc, m_ControlState.ShippingIdx.Value))
+          Dictionary<int, Driver> _drivers = Driver.GetAllForUser(edc, m_ControlState.PartnerIndex.Value).
+            ToDictionary(p => p.Identyfikator.Value);
+          foreach (ShippingDriversTeam item in from idx in edc.DriversTeam
+                                               where idx.ShippingIndex.Identyfikator == m_ControlState.ShippingIdx.Value
+                                               select idx)
           {
-            m_DriversTeamListBox.Items.Add(new ListItem(item.Tytuł, item.Identyfikator.Value.ToString()));
-            _drivers.Remove(item.Identyfikator.Value);
+            Driver _driver = item.Driver;
+            m_DriversTeamListBox.Items.Add(new ListItem(_driver.Tytuł, item.Identyfikator.Value.ToString()));
+            _drivers.Remove(_driver.Identyfikator.Value);
           }
           foreach (var item in _drivers)
-            m_DriversListBox.Items.Add(new ListItem(item.Value, item.Key.ToString()));
-          m_TruckDropDown.Items.Add(new ListItem());
+            m_DriversListBox.Items.Add(new ListItem(item.Value.Tytuł, item.Key.ToString()));
           ShippingOperationInbound _Shipping = ShippingOperationInbound.GetAtIndex(edc, m_ControlState.ShippingIdx);
-          foreach (var item in Truck.GetAllForUser(edc, m_ControlState.PartnerIndex.Value))
+          m_ShippingTextBox.Text = _Shipping.Tytuł;
+          m_TruckDropDown.Items.Add(new ListItem());
+          foreach (Truck item in Truck.GetAllForUser(edc, m_ControlState.PartnerIndex.Value))
           {
             ListItem _li = new ListItem(item.Tytuł, item.Identyfikator.Value.ToString());
             m_TruckDropDown.Items.Add(_li);
@@ -114,7 +120,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
               _li.Selected = true;
           }
           m_TrailerDropDown.Items.Add(new ListItem());
-          foreach (var item in Trailer.GetAllForUser(edc, m_ControlState.PartnerIndex.Value))
+          foreach (Trailer item in Trailer.GetAllForUser(edc, m_ControlState.PartnerIndex.Value))
           {
             ListItem _li = new ListItem(item.Tytuł, item.Identyfikator.Value.ToString());
             m_TrailerDropDown.Items.Add(_li);
@@ -140,9 +146,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     }
     private void SetButtons(bool _enabled)
     {
-      m_AddDriverButton.Enabled = _enabled;
-      m_RemoveDriverButton.Enabled = _enabled;
+      m_AddDriverButton.Enabled = _enabled && m_DriversListBox.Items.Count > 0;
+      m_RemoveDriverButton.Enabled = _enabled && m_DriversTeamListBox.Items.Count >= 0;
       m_TrailerDropDown.Enabled = _enabled;
+      m_TruckDropDown.Enabled = _enabled;
+      m_DriversListBox.Enabled = _enabled;
+      m_DriversTeamListBox.Enabled = _enabled;
     }
     #endregion
 
@@ -151,12 +160,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     {
       try
       {
+        ListItem _sel = m_DriversTeamListBox.SelectedItem;
+        if (_sel == null)
+          return;
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
-          ListItem _sel = m_DriversTeamListBox.SelectedItem;
-          m_DriversTeamListBox.Items.Remove(_sel);
-          m_DriversListBox.Items.Add(_sel);
-          m_DriversListBox = SortTextBox(m_DriversListBox);
           ShippingDriversTeam _cd = ShippingDriversTeam.GetAtIndex(edc, _sel.Value);
           edc.DriversTeam.DeleteOnSubmit(_cd);
           edc.SubmitChanges();
@@ -164,19 +172,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       }
       catch (Exception ex)
       {
-        this.Controls.Add(new LiteralControl("Remove driver error: " + ex.Message));
+        SignalException("Remove driver error: {0}", ex);
       }
     }
     private void m_AddDriverButton_Click(object sender, EventArgs e)
     {
       try
       {
+        ListItem _sel = m_DriversListBox.SelectedItem;
+        if (_sel == null)
+          return;
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
-          ListItem _sel = m_DriversListBox.SelectedItem;
-          m_DriversListBox.Items.Remove(_sel);
-          m_DriversTeamListBox.Items.Add(_sel);
-          m_DriversTeamListBox = SortTextBox(m_DriversTeamListBox);
           ShippingDriversTeam _cd = new ShippingDriversTeam()
             {
               Driver = Driver.GetAtIndex(edc, _sel.Value),
@@ -185,10 +192,55 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           edc.DriversTeam.InsertOnSubmit(_cd);
           edc.SubmitChanges();
         }
+        UpdateUserInterface();
       }
       catch (Exception ex)
       {
-        this.Controls.Add(new LiteralControl("Remove driver error: " + ex.Message));
+        SignalException("Add driver error: {0}", ex);
+      }
+    }
+    private void m_TruckDropDown_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      ListItem _li = m_TruckDropDown.SelectedItem;
+      if (_li == null)
+        return;
+      using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
+      {
+        try
+        {
+          ShippingOperationInbound _sh = ShippingOperationInbound.GetAtIndex(edc, m_ControlState.ShippingIdx.Value);
+          if (String.IsNullOrEmpty(_li.Value))
+            _sh.TruckCarRegistrationNumber = null;
+          else
+            _sh.TruckCarRegistrationNumber = Truck.GetAtIndex(edc, _li.Value);
+          edc.SubmitChanges();
+        }
+        catch (Exception _ex)
+        {
+          SignalException("Truck selection error: {0}", _ex);
+        }
+      }
+    }
+    private void m_TrailerDropDown_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      ListItem _li = m_TrailerDropDown.SelectedItem;
+      if (_li == null)
+        return;
+      using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
+      {
+        try
+        {
+          ShippingOperationInbound _sh = ShippingOperationInbound.GetAtIndex(edc, m_ControlState.ShippingIdx.Value);
+          if (String.IsNullOrEmpty(_li.Value))
+            _sh.TrailerRegistrationNumber = null;
+          else
+            _sh.TrailerRegistrationNumber = Trailer.GetAtIndex(edc, _li.Value);
+          edc.SubmitChanges();
+        }
+        catch (Exception _ex)
+        {
+          SignalException("Truck selection error: {0}", _ex);
+        }
       }
     }
     private ListBox SortTextBox(ListBox _listBox)
@@ -198,6 +250,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       foreach (var item in _ldSorted)
         _ret.Items.Add(new ListItem(item.Text, item.Value));
       return _ret;
+    }
+    private void SignalException(string _format, Exception _ex)
+    {
+      this.Controls.Add(new LiteralControl(String.Format(_format, _ex.Message)));
     }
     #endregion
 
