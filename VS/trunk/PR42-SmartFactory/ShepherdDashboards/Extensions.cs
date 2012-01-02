@@ -66,7 +66,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
 
     #region private
 
-    private static Color _warrningBackColor = Color.Tomato;
+    private static Color _warrningBackColor = Color.MintCream;
     #endregion
   }
 }
