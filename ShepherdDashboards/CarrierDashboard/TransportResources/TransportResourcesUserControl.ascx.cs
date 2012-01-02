@@ -138,6 +138,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     }
     private void ClearUserInterface()
     {
+      m_ShippingTextBox.Text = String.Empty;
       m_DriversListBox.Items.Clear();
       m_DriversTeamListBox.Items.Clear();
       m_TrailerDropDown.Items.Clear();
@@ -147,7 +148,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     private void SetButtons(bool _enabled)
     {
       m_AddDriverButton.Enabled = _enabled && m_DriversListBox.Items.Count > 0;
-      m_RemoveDriverButton.Enabled = _enabled && m_DriversTeamListBox.Items.Count >= 0;
+      m_RemoveDriverButton.Enabled = _enabled && m_DriversTeamListBox.Items.Count > 0;
       m_TrailerDropDown.Enabled = _enabled;
       m_TruckDropDown.Enabled = _enabled;
       m_DriversListBox.Enabled = _enabled;

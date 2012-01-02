@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
+using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 {
@@ -17,18 +18,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       Controls.Add(m_control);
     }
     TimeSlotWebPartUserControl m_control = null;
-    private InterconnectionDataTable<Entities.TimeSlotTimeSlot> m_SelectedTimeSlot = null;
+    private InterconnectionDataTable<TimeSlotTimeSlot> m_SelectedTimeSlot = null;
     public TimeSlotWebPart()
     {
       SimpleTimeSlotList = true;
     }
     //TODO Add it to the editor as personalizable property
     public bool SimpleTimeSlotList { get; set; }
-    [ConnectionProvider("Selected TimeSlot", "SelectedTimeSlotProviderPoint", AllowsMultipleConnections = true)]
+    /// <summary>
+    /// Gets the connection interface allowing to get selected entry of <see cref="TimeSlotTimeSlot"/>.
+    /// </summary>
+    /// <returns>Returns an instance of the <see cref="IWebPartRow"/> representing <see cref="TimeSlotTimeSlot"/>.</returns>
+    [ConnectionProvider("Selected TimeSlot entry", "SelectedTimeSlotProviderPoint", AllowsMultipleConnections = true)]
     public IWebPartRow GetConnectionInterface()
     {
       if (m_control == null)
-        return new InterconnectionDataTable<Entities.TimeSlotTimeSlot>();
+        return new InterconnectionDataTable<TimeSlotTimeSlot>();
       if (m_SelectedTimeSlot == null)
         m_SelectedTimeSlot = m_control.GetSelectedTimeSlotInterconnectionData();
       return m_SelectedTimeSlot;
