@@ -29,6 +29,12 @@
     padding:10px;
     border:0px;
 }
+.TableInside
+{
+    width:auto;
+    padding:0px;
+    border:0px;
+}
 .Label
 {
     font-size:10pt;
