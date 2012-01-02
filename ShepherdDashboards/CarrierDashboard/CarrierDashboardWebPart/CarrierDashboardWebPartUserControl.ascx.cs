@@ -230,7 +230,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TimeSlotHiddenField.Value = String.Empty;
       //m_TrailerRegistrationNumberTextBox.TextBoxTextProperty(String.Empty, false);
       //m_TrailerHiddenField.Value = String.Empty;
-      m_TruckRegistrationNumberTextBox.LabelTextProperty(String.Empty, false);
+      //m_TruckRegistrationNumberTextBox.LabelTextProperty(String.Empty, false);
       m_TruckRegistrationHiddenField.Value = String.Empty;
       m_WarehouseTextBox.TextBoxTextProperty(String.Empty, true);
       m_WarehouseHiddenField.Value = String.Empty;
