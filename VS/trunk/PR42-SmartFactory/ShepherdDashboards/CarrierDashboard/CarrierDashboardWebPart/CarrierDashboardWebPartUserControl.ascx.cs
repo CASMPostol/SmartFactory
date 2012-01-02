@@ -4,6 +4,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Linq;
+using System.Linq;
+
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
@@ -27,6 +30,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           default:
             break;
         }
+    }
+    internal InterconnectionDataTable<ShippingOperationInbound> GetSelectedShippingOperationInboundInterconnectionData()
+    {
+      string _tn = typeof(ShippingOperationInbound).Name;
+      InterconnectionDataTable<ShippingOperationInbound> _interface = new InterconnectionDataTable<ShippingOperationInbound>(_tn);
+      m_ShippintInterconnectionEvent += _interface.SetData;
+      return _interface;
     }
     #endregion
 
@@ -56,15 +66,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected override void LoadControlState(object state)
     {
       if (state != null)
-        m_MyControlState = (MyControlState)state;
+        m_ControlState = (MyControlState)state;
     }
     protected override object SaveControlState()
     {
-      return m_MyControlState; ;
+      return m_ControlState; ;
     }
     protected override void OnPreRender(EventArgs e)
     {
-      m_StateLiteral.Text = m_MyControlState.InterfaceState.ToString();
+      m_StateLiteral.Text = m_ControlState.InterfaceState.ToString();
       base.OnPreRender(e);
     }
     #endregion
@@ -95,6 +105,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
+          SendShippingData(e.ID);
           bool _same = m_ShippingHiddenField.Value.Equals(e.ID);
           if (_same)
             return;
@@ -102,15 +113,34 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           ShowShipping(e);
           break;
         case InterfaceState.EditState:
+          SendShippingData(e.ID);
+          break;
         case InterfaceState.NewState:
           break;
         default:
           break;
       }
     }
+    private void SendShippingData(string _ID)
+    {
+      if (m_ShippintInterconnectionEvent == null)
+        return;
+      int? _intID = _ID.String2Int();
+      if (!_intID.HasValue)
+        return;
+      try
+      {
+        using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
+          m_ShippintInterconnectionEvent
+            (this, new InterconnectionDataTable<ShippingOperationInbound>.InterconnectionEventArgs
+              ( (from idx in edc.Shipping where idx.Identyfikator == _intID select idx).First()));
+      }
+      catch (Exception){}
+    }
+    private event InterconnectionDataTable<ShippingOperationInbound>.SetDataEventArg m_ShippintInterconnectionEvent;
     private void NewDataEventHandler(object sender, PartnerInterconnectionData e)
     {
-      m_MyControlState.PartnerIndex = e.ID;
+      m_ControlState.PartnerIndex = e.ID;
       return;
     }
     #endregion
@@ -124,8 +154,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private InterfaceState CurrentMachineState
     {
-      get { return m_MyControlState.InterfaceState; }
-      set { m_MyControlState.InterfaceState = value; }
+      get { return m_ControlState.InterfaceState; }
+      set { m_ControlState.InterfaceState = value; }
     }
     private void StateMachineEngine(InterfaceEvent _event)
     {
@@ -158,7 +188,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           switch (_event)
           {
             case InterfaceEvent.FirstRound:
-              SetButtons(ButtonsSet.CancelOn | ButtonsSet.SaveOn);
+              SetButtons(ButtonsSet.CancelOn );
               break;
             case InterfaceEvent.SaveClick:
               try
@@ -215,7 +245,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void SMError(InterfaceEvent _event)
     {
-      this.Controls.Add(new LiteralControl(String.Format("State machine error, in {0} the event {1} occured", m_MyControlState.InterfaceState.ToString(), _event.ToString())));
+      this.Controls.Add(new LiteralControl(String.Format("State machine error, in {0} the event {1} occured", m_ControlState.InterfaceState.ToString(), _event.ToString())));
     }
     #endregion
 
@@ -228,9 +258,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ShippingHiddenField.Value = String.Empty;
       m_TimeSlotTextBox.TextBoxTextProperty(String.Empty, true);
       m_TimeSlotHiddenField.Value = String.Empty;
-      //m_TrailerRegistrationNumberTextBox.TextBoxTextProperty(String.Empty, false);
-      //m_TrailerHiddenField.Value = String.Empty;
-      //m_TruckRegistrationNumberTextBox.LabelTextProperty(String.Empty, false);
       m_TruckRegistrationHiddenField.Value = String.Empty;
       m_WarehouseTextBox.TextBoxTextProperty(String.Empty, true);
       m_WarehouseHiddenField.Value = String.Empty;
@@ -265,6 +292,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetAtIndex(edc, _interconnectionData.ID, true);
           ShowTimeSlot(_cts);
+          m_SaveButton.Enabled = true;
         }
       }
       catch (Exception ex)
@@ -291,7 +319,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
       {
-        Partner _prtnr = Partner.GetAtIndex(edc, m_MyControlState.PartnerIndex);
+        Partner _prtnr = Partner.GetAtIndex(edc, m_ControlState.PartnerIndex);
         TimeSlotTimeSlot _ts = TimeSlotTimeSlot.GetAtIndex(edc, m_TimeSlotHiddenField.Value, true);
         ShippingOperationInbound _sp = new ShippingOperationInbound
         {
@@ -313,6 +341,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void UpdateShipping()
     {
+      if (!m_TimeSlotHiddenField.Value.String2Int().HasValue)
+        return;
       using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
       {
         TimeSlotTimeSlot _newts = TimeSlotTimeSlot.GetAtIndex(edc, m_TimeSlotHiddenField.Value, true);
@@ -326,7 +356,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region variables
-    private MyControlState m_MyControlState = new MyControlState();
+    private MyControlState m_ControlState = new MyControlState();
     #endregion
 
     #region Event Handlers
@@ -346,9 +376,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       StateMachineEngine(InterfaceEvent.EditClick);
     }
-
     #endregion
 
     #endregion
+
   }
 }

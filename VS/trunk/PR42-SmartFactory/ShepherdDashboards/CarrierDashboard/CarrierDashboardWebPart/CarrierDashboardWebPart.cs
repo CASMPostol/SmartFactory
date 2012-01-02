@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
+using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
@@ -13,6 +14,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     // Visual Studio might automatically update this path when you change the Visual Web Part project item.
     private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard/CarrierDashboardWebPart/CarrierDashboardWebPartUserControl.ascx";
     private CarrierDashboardWebPartUserControl m_Control;
+    private InterconnectionDataTable<ShippingOperationInbound> m_SelectedTimeSlot = null;
     protected override void CreateChildControls()
     {
       m_Control = Page.LoadControl(_ascxPath) as CarrierDashboardWebPartUserControl;
@@ -56,6 +58,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     public void SetCurrentUserProvider(IWebPartRow _provider)
     {
       m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.PartnerInterconnection, _provider);
+    }
+    /// <summary>
+    /// Gets the connection interface allowing to get selected entry of <see cref="ShippingOperationInbound"/>.
+    /// </summary>
+    /// <returns>Returns an instance of the <see cref="IWebPartRow"/> representing <see cref="ShippingOperationInbound"/>.</returns>
+    [ConnectionProvider("Shipping Operation", "SelectedShippingOperationProviderPoint", AllowsMultipleConnections = true)]
+    public IWebPartRow GetConnectionInterface()
+    {
+      if (m_Control == null)
+        return new InterconnectionDataTable<ShippingOperationInbound>();
+      if (m_SelectedTimeSlot == null)
+        m_SelectedTimeSlot = m_Control.GetSelectedShippingOperationInboundInterconnectionData();
+      return m_SelectedTimeSlot;
     }
     #endregion
 
