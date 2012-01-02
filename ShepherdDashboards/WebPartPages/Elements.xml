@@ -20,6 +20,22 @@
                   </webPart>
                 </webParts>]]>
       </AllUsersWebPart>
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0">
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart.TimeSlotWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Time Slots</property>
+        <property name="Description" type="string">Allows to select Time Slot for planed shipping.</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0">
         <![CDATA[<webParts>
                   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
