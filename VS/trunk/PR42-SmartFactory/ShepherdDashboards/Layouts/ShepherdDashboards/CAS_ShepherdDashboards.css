@@ -49,6 +49,7 @@
     background-color:#FFFFFF;
     font-family:Verdana;
     font-size:10pt;
+    width:300px;
 }
 .ListBox
 {
@@ -58,6 +59,16 @@
     background-color:#FFFFFF;
     font-family:Verdana;
     font-size:10pt;
+}
+.ListBoxInside
+{
+    border-width:1px 1px 1px 1px;
+    border-color:#DDDDDD;
+    border-style:solid;
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:10pt;
+    width:200px;
 }
 /* TimeSlot Callendar Part */
 .DashboardCalendar

@@ -24,15 +24,15 @@
             <asp:Table ID="Row2" runat="server" CssClass="TableInside">
                 <asp:TableRow>
                     <asp:TableCell>
-                <asp:ListBox ID="m_DriversListBox" runat="server" CssClass="ListBox" Enabled=false></asp:ListBox>
+                <asp:ListBox ID="m_DriversListBox" runat="server" CssClass="ListBoxInside" Enabled="false"></asp:ListBox>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:Button ID="m_AddDriverButton" runat="server" Text="Add driver" CssClass="Button" Enabled=false/>
-                <br />
-                <asp:Button ID="m_RemoveDriverButton" runat="server" Text="Remove driver" CssClass="Button" Enabled=false/>
+                <asp:Button ID="m_AddDriverButton" runat="server" Text="Add" CssClass="Button" Enabled="false"/>
+                <br /><br />
+                <asp:Button ID="m_RemoveDriverButton" runat="server" Text="Remove" CssClass="Button" Enabled="false"/>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:ListBox ID="m_DriversTeamListBox" runat="server" CssClass="ListBox" Enabled=false></asp:ListBox>
+                <asp:ListBox ID="m_DriversTeamListBox" runat="server" CssClass="ListBoxInside" Enabled="false"></asp:ListBox>
             </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
@@ -46,7 +46,7 @@
                 <asp:Label ID="Label2" runat="server" Text="Truck" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:DropDownList ID="m_TruckDropDown" runat="server" CssClass="DropDown" Enabled=false>
+                <asp:DropDownList ID="m_TruckDropDown" runat="server" CssClass="DropDown" Enabled="false">
                 </asp:DropDownList>
             </asp:TableCell>
                 </asp:TableRow>
@@ -61,7 +61,7 @@
                 <asp:Label ID="Label3" runat="server" Text="Trailer" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled=false>
+                <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled="false">
                 </asp:DropDownList>
             </asp:TableCell>
                 </asp:TableRow>
