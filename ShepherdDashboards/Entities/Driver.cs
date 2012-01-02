@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       {
         return (
               from idx in edc.Driver
-              where idx.Identyfikator == _index.Value
+              where idx.Identyfikator == _index
               select idx).First();
       }
       catch (Exception)

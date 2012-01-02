@@ -46,7 +46,7 @@
                 <asp:Label ID="Label2" runat="server" Text="Truck" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:DropDownList ID="m_TruckDropDown" runat="server" CssClass="DropDown" Enabled="false">
+                <asp:DropDownList ID="m_TruckDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack=true>
                 </asp:DropDownList>
             </asp:TableCell>
                 </asp:TableRow>
@@ -61,7 +61,7 @@
                 <asp:Label ID="Label3" runat="server" Text="Trailer" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled="false">
+                <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack=true>
                 </asp:DropDownList>
             </asp:TableCell>
                 </asp:TableRow>

@@ -22,5 +22,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         throw new ApplicationException( "Truck.GetAllForUserex failed: " + ex.Message);
       }
     }
+    internal static Truck GetAtIndex(EntitiesDataContext edc, string _ID)
+    {
+      try
+      {
+        int? _intID = _ID.String2Int();
+        return (from idx in edc.Truck
+               where idx.Identyfikator == _intID
+               select idx).First();
+      }
+      catch (Exception ex)
+      {
+        throw new ApplicationException("Truck.GetAtIndex failed: " + ex.Message);
+      }
+    }
+
   }
 }

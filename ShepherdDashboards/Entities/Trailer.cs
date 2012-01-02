@@ -37,5 +37,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         throw new ApplicationException("Trailer.GetAllForUser failed: " + ex.Message);
       }
     }
+
+    internal static Trailer GetAtIndex(EntitiesDataContext edc, string _ID)
+    {
+      int? _intID = _ID.String2Int();
+      try
+      {
+        return (from idx in edc.Trailer
+               where idx.Identyfikator == _intID
+               select idx).First();
+      }
+      catch (Exception ex)
+      {
+        throw new ApplicationException("Trailer.GetAtIndex failed: " + ex.Message);
+      }
+    }
   }
 }
