@@ -20,9 +20,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards/CurrentUserWebPart/CurrentUserWebPartUserControl.ascx";
     protected override void CreateChildControls()
     {
-      m_Control = Page.LoadControl(_ascxPath) as CurrentUserWebPartUserControl;
-      m_Control.DisplayUserName(m_UserDescriptor);
-      Controls.Add(m_Control);
+      string _phase = "Starting";
+      try
+      {
+        Control _ctrl = Page.LoadControl(_ascxPath);
+        _phase = "After Page.Load";
+        m_Control = (CurrentUserWebPartUserControl)_ctrl;
+        _phase = "After cast";
+        m_Control.DisplayUserName(m_UserDescriptor);
+        _phase = "After DisplayUserName";
+        Controls.Add(m_Control);
+        _phase = "Finishing";
+      }
+      catch (Exception ex)
+      {
+        string _frmt = "Cannot lod the user control at: {0} because : {1}";
+        Controls.Add(new LiteralControl(String.Format(_frmt, _phase, ex.Message)));
+      }
     }
     private CurrentUserWebPartUserControl m_Control;
 
