@@ -27,6 +27,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
         _phase = "After Page.Load";
         m_Control = (CurrentUserWebPartUserControl)_ctrl;
         _phase = "After cast";
+        if (m_UserDescriptor == null)
+          m_UserDescriptor = GetUserDescriptor();
         m_Control.DisplayUserName(m_UserDescriptor);
         _phase = "After DisplayUserName";
         Controls.Add(m_Control);
@@ -39,8 +41,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
       }
     }
     private CurrentUserWebPartUserControl m_Control;
-
-    private UserDescriptor m_UserDescriptor;
+    private UserDescriptor m_UserDescriptor = null;
+    private UserDescriptor GetUserDescriptor()
+    {
+      if (this.Context != null)
+        return null;
+      SPWeb currentWeb = SPControl.GetContextWeb(this.Context);
+      return new UserDescriptor(currentWeb.CurrentUser);
+    }
     #endregion
 
     #region public
@@ -52,8 +60,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     public CurrentUserWebPart()
       : base()
     {
-      SPWeb currentWeb = SPControl.GetContextWeb(this.Context);
-      m_UserDescriptor = new UserDescriptor(currentWeb.CurrentUser);
+      m_UserDescriptor = GetUserDescriptor();
     }
     #endregion
   }
