@@ -2,6 +2,7 @@
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using System;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 {
@@ -13,9 +14,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 
     protected override void CreateChildControls()
     {
-      m_control = Page.LoadControl(_ascxPath) as TimeSlotWebPartUserControl;
-      m_control.SimpleTimeSlotList = SimpleTimeSlotList;
-      Controls.Add(m_control);
+      string _phase = "Befor Starting";
+      try
+      {
+        Control _ctrl = Page.LoadControl(_ascxPath);
+        _phase = "After Page.LoadControl";
+        m_control = (TimeSlotWebPartUserControl)_ctrl;
+        _phase = "After Casting";
+         m_control.SimpleTimeSlotList = SimpleTimeSlotList;
+        _phase = "After selection SimpleTimeSlotList";
+        Controls.Add(m_control);
+        _phase = "After Controls.Add";
+      }
+      catch (Exception ex)
+      {
+        string _frmt = "Cannot lod the user control at: {0} because : {1}";
+        Controls.Add(new LiteralControl(String.Format(_frmt, _phase, ex.Message)));
+      }
     }
     TimeSlotWebPartUserControl m_control = null;
     private InterconnectionDataTable<TimeSlotTimeSlot> m_SelectedTimeSlot = null;
