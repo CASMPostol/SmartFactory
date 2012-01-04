@@ -5,5 +5,6 @@
   </features>
   <projectItems>
     <projectItemReference itemId="ddc2d1ed-9fa7-4c38-81c5-fdc652827078" />
+    <projectItemReference itemId="82c5ef5a-5487-4ce2-87c9-f9b327dab264" />
   </projectItems>
 </package>

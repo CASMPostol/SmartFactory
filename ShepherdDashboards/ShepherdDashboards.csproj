@@ -129,6 +129,9 @@
     <None Include="Features\Dashboards\Dashboards.feature">
       <FeatureId>{cf7dc489-0019-4684-9bb2-fde5b31efe5f}</FeatureId>
     </None>
+    <None Include="Images\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{82c5ef5a-5487-4ce2-87c9-f9b327dab264}</SharePointProjectItemId>
+    </None>
     <None Include="key.snk" />
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ddc2d1ed-9fa7-4c38-81c5-fdc652827078}</SharePointProjectItemId>
@@ -172,6 +175,8 @@
     <Content Include="Features\Dashboards\Dashboards.Template.xml">
       <DependentUpon>Dashboards.feature</DependentUpon>
     </Content>
+    <Content Include="Images\ShepherdDashboards\FeatureLogo32x32.gif" />
+    <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
     <Content Include="TimeSlotWebPart\Elements.xml" />
     <Content Include="TimeSlotWebPart\TimeSlotWebPartUserControl.ascx">
