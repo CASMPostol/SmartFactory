@@ -41,7 +41,7 @@
             Title="2nd Main Web Part Zone"
             FrameType="TitleBarOnly" />
         </td>
-      <tr>
+      </tr>
     </table>
   </div>
 

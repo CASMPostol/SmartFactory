@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     private UserDescriptor m_UserDescriptor = null;
     private UserDescriptor GetUserDescriptor()
     {
-      if (this.Context != null)
+      if (this.Context == null)
         return null;
       SPWeb currentWeb = SPControl.GetContextWeb(this.Context);
       return new UserDescriptor(currentWeb.CurrentUser);
