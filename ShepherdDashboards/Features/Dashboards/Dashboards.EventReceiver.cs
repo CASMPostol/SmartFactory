@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
       if (site != null)
       {
         _root.Title = "Shepherd Home";
-        _root.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/SiteLogo49x48.gif";
+        _root.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
         _root.Update();
       }
     }
