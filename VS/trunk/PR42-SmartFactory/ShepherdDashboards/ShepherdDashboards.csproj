@@ -136,6 +136,18 @@
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ddc2d1ed-9fa7-4c38-81c5-fdc652827078}</SharePointProjectItemId>
     </None>
+    <None Include="ListsWebparts\AAE\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5b4561a0-794f-411c-9ed5-3d0fa24f18bd}</SharePointProjectItemId>
+    </None>
+    <None Include="ListsWebparts\AAE\AAE.webpart" />
+    <None Include="ListsWebparts\LoadDescription\LoadDescription.webpart" />
+    <None Include="ListsWebparts\LoadDescription\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{866180ae-41cd-4905-b998-e3d3f9c42a63}</SharePointProjectItemId>
+    </None>
+    <None Include="ListsWebparts\Shipping\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f8f4867b-cacd-4516-889c-617d3c7168de}</SharePointProjectItemId>
+    </None>
+    <None Include="ListsWebparts\Shipping\Shipping.webpart" />
     <None Include="Package\Package.package">
       <PackageId>{212689f5-f797-4a55-8d76-26e83b3a6e30}</PackageId>
     </None>
@@ -178,6 +190,9 @@
     <Content Include="Images\ShepherdDashboards\FeatureLogo32x32.gif" />
     <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
+    <Content Include="ListsWebparts\AAE\Elements.xml" />
+    <Content Include="ListsWebparts\LoadDescription\Elements.xml" />
+    <Content Include="ListsWebparts\Shipping\Elements.xml" />
     <Content Include="TimeSlotWebPart\Elements.xml" />
     <Content Include="TimeSlotWebPart\TimeSlotWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
