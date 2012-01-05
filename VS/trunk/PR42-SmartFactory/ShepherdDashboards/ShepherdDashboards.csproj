@@ -188,6 +188,7 @@
       <DependentUpon>Dashboards.feature</DependentUpon>
     </Content>
     <Content Include="Images\ShepherdDashboards\FeatureLogo32x32.gif" />
+    <Content Include="Images\ShepherdDashboards\Shepherd_50x50.png" />
     <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
     <Content Include="ListsWebparts\AAE\Elements.xml" />
