@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Security;
+using Microsoft.SharePoint.Navigation;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
 {
@@ -28,6 +29,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         _root.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
         _root.Update();
       }
+      // create dropdown menu for custom site pages
+      SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
+      SPNavigationNode _topMenu = _topNav[0].Children.AddAsLast(new SPNavigationNode("Vendor", "WebPartPages/CarrierDashboard.aspx"));
+
     }
 
 
