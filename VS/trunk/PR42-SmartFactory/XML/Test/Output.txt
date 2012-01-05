@@ -1,0 +1,115 @@
+﻿Solutions in the SPFarm
+SPFarm.Solutionscas.smartfactory.ipr.operations.wsp
+SPFarm.Solutionsshepherddashboards.wsp
+SPFarm.Solutionsvisualwebpartprojecttest.wsp
+ShepherdDashboards.wsp status = Online
+You are: HQ\mpostol
+
+Sites in the web application at http://casmp
+Site url: http://casmp/sites/AutoSite Features count: 4
+Features in the SPSite:
+SPFeature Definition.DisplayName=CTypes, Definition.Name=FeatureDefinition/695b6
+570-a48b-4a8e-8ea5-26ea7fc1d162, Definition.Scope=Site, FeatureDefinitionScope=F
+arm, Version=14.0.1.0
+SPFeature Definition.DisplayName=Fields, Definition.Name=FeatureDefinition/ca7bd
+552-10b1-4563-85b9-5ed1d39c962a, Definition.Scope=Site, FeatureDefinitionScope=F
+arm, Version=14.0.1.0
+SPFeature Definition.DisplayName=IssueTrackingWorkflow, Definition.Name=FeatureD
+efinition/fde5d850-671e-4143-950a-87b473922dc7, Definition.Scope=Site, FeatureDe
+finitionScope=Farm, Version=12.0.0.0
+SPFeature Definition.DisplayName=BasicWebParts, Definition.Name=FeatureDefinitio
+n/00bfea71-1c5e-4a24-b310-ba51c3eb7a57, Definition.Scope=Site, FeatureDefinition
+Scope=Farm, Version=14.0.1.0
+Solution in the SPSite:
+SPWeb Name=, Language=1033, ParentWeb.Name=null, PortalName=, PortalUrl=
+Webs in the SPWeb
+This web solutions in the Solution Catalog info:
+Site url: http://casmp/sites/IPR Features count: 9
+Features in the SPSite:
+SPFeature Definition.DisplayName=CTypes, Definition.Name=FeatureDefinition/695b6
+570-a48b-4a8e-8ea5-26ea7fc1d162, Definition.Scope=Site, FeatureDefinitionScope=F
+arm, Version=14.0.1.0
+SPFeature Definition.DisplayName=Fields, Definition.Name=FeatureDefinition/ca7bd
+552-10b1-4563-85b9-5ed1d39c962a, Definition.Scope=Site, FeatureDefinitionScope=F
+arm, Version=14.0.1.0
+SPFeature Definition.DisplayName=IssueTrackingWorkflow, Definition.Name=FeatureD
+efinition/fde5d850-671e-4143-950a-87b473922dc7, Definition.Scope=Site, FeatureDe
+finitionScope=Farm, Version=12.0.0.0
+SPFeature Definition.DisplayName=CAS.SmartFactory.IPR_Operations, Definition.Nam
+e=FeatureDefinition/337c7c22-ae01-4c0d-93d5-ada18f0ee76e, Definition.Scope=Site,
+ FeatureDefinitionScope=Farm, Version=1.1.1.2
+SPFeature Definition.DisplayName=HelpLibrary, Definition.Name=FeatureDefinition/
+071de60d-4b02-4076-b001-b456e93146fe, Definition.Scope=Site, FeatureDefinitionSc
+ope=Farm, Version=1.0.0.0
+SPFeature Definition.DisplayName=BasicWebParts, Definition.Name=FeatureDefinitio
+n/00bfea71-1c5e-4a24-b310-ba51c3eb7a57, Definition.Scope=Site, FeatureDefinition
+Scope=Farm, Version=14.0.1.0
+SPFeature Definition.DisplayName=OpenInClient, Definition.Name=FeatureDefinition
+/8a4b8de2-6fd8-41e9-923c-c7c3c00f8295, Definition.Scope=Site, FeatureDefinitionS
+cope=Farm, Version=1.0.0.0
+SPFeature Definition.DisplayName=SiteHelp, Definition.Name=FeatureDefinition/57f
+f23fc-ec05-4dd8-b7ed-d93faa7c795d, Definition.Scope=Site, FeatureDefinitionScope
+=Farm, Version=1.0.0.0
+SPFeature Definition.DisplayName=IPRWebsite_IPRData, Definition.Name=FeatureDefi
+nition/4cdcf677-35f2-41fe-86c6-dcbaaf001b75, Definition.Scope=Site, FeatureDefin
+itionScope=Site, Version=1.0.0.0
+Solution in the SPSite:
+SPSolution Name=IPRWebsite.wsp, Signature=2+LQZT/l21q1VsqgszZgiHgYGA3Kaaowo2G8+2
+DrDg0=, Status=Activated
+SPWeb Name=, Language=1033, ParentWeb.Name=null, PortalName=, PortalUrl=
+Webs in the SPWeb
+This web solutions in the Solution Catalog info:
+Solution NameIPRWebsite.wsp, Level= Published, Title=IPR Book Management, Url=_c
+atalogs/solutions/IPRWebsite.wsp
+Site url: http://casmp/sites/shr Features count: 6
+Features in the SPSite:
+SPFeature Definition.DisplayName=CTypes, Definition.Name=FeatureDefinition/695b6
+570-a48b-4a8e-8ea5-26ea7fc1d162, Definition.Scope=Site, FeatureDefinitionScope=F
+arm, Version=14.0.1.0
+SPFeature Definition.DisplayName=Fields, Definition.Name=FeatureDefinition/ca7bd
+552-10b1-4563-85b9-5ed1d39c962a, Definition.Scope=Site, FeatureDefinitionScope=F
+arm, Version=14.0.1.0
+SPFeature Definition.DisplayName=IssueTrackingWorkflow, Definition.Name=FeatureD
+efinition/fde5d850-671e-4143-950a-87b473922dc7, Definition.Scope=Site, FeatureDe
+finitionScope=Farm, Version=12.0.0.0
+SPFeature Definition.DisplayName=ShepherdWebsite_ShepherdWebsite, Definition.Nam
+e=FeatureDefinition/693191fd-6a7a-4db6-ac8e-a3f747ddf439, Definition.Scope=Site,
+ FeatureDefinitionScope=Site, Version=0.0.0.0
+SPFeature Definition.DisplayName=BasicWebParts, Definition.Name=FeatureDefinitio
+n/00bfea71-1c5e-4a24-b310-ba51c3eb7a57, Definition.Scope=Site, FeatureDefinition
+Scope=Farm, Version=14.0.1.0
+SPFeature Definition.DisplayName=ShepherdDashboards_Dashboards, Definition.Name=
+FeatureDefinition/3d8f8cb5-f8bb-496a-b561-fb3d36e8d84d, Definition.Scope=Site, F
+eatureDefinitionScope=Farm, Version=1.0.1.0
+Solution in the SPSite:
+SPSolution Name=ShepherdWebsite.wsp, Signature=ZIe1t+z1EuH4bVRwb4l0AEF60Y8mTSyyn
+mkAE0X2pAE=, Status=Activated
+SPWeb Name=, Language=1033, ParentWeb.Name=null, PortalName=, PortalUrl=
+Webs in the SPWeb
+This web solutions in the Solution Catalog info:
+Solution NameShepherdWebsite.wsp, Level= Published, Title=Shepherd, Url=_catalog
+s/solutions/ShepherdWebsite.wsp
+Site url: http://casmp/sites/wp Features count: 6
+Features in the SPSite:
+SPFeature Definition.DisplayName=VisualWebPartProjectTest_Feature1, Definition.N
+ame=FeatureDefinition/1b2acd91-31a9-4a80-ae6b-1f6b65d0d117, Definition.Scope=Sit
+e, FeatureDefinitionScope=Farm, Version=1.0.0.0
+SPFeature Definition.DisplayName=CTypes, Definition.Name=FeatureDefinition/695b6
+570-a48b-4a8e-8ea5-26ea7fc1d162, Definition.Scope=Site, FeatureDefinitionScope=F
+arm, Version=14.0.1.0
+SPFeature Definition.DisplayName=Fields, Definition.Name=FeatureDefinition/ca7bd
+552-10b1-4563-85b9-5ed1d39c962a, Definition.Scope=Site, FeatureDefinitionScope=F
+arm, Version=14.0.1.0
+SPFeature Definition.DisplayName=IssueTrackingWorkflow, Definition.Name=FeatureD
+efinition/fde5d850-671e-4143-950a-87b473922dc7, Definition.Scope=Site, FeatureDe
+finitionScope=Farm, Version=12.0.0.0
+SPFeature Definition.DisplayName=BasicWebParts, Definition.Name=FeatureDefinitio
+n/00bfea71-1c5e-4a24-b310-ba51c3eb7a57, Definition.Scope=Site, FeatureDefinition
+Scope=Farm, Version=14.0.1.0
+SPFeature Definition.DisplayName=ShepherdDashboards_Dashboards, Definition.Name=
+FeatureDefinition/3d8f8cb5-f8bb-496a-b561-fb3d36e8d84d, Definition.Scope=Site, F
+eatureDefinitionScope=Farm, Version=0.0.0.0
+Solution in the SPSite:
+SPWeb Name=, Language=1033, ParentWeb.Name=null, PortalName=, PortalUrl=
+Webs in the SPWeb
+This web solutions in the Solution Catalog info:
