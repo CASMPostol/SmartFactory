@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart, Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Load Description</property>
+        <property name="Description" type="string">Load Description Web Part</property>
+        <property name="AutoRefresh" type="bool">False</property>
+        <property name="ViewFlag" type="string">5</property>
+        <property name="AutoRefreshInterval" type="int">60</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="Xsl" type="string" null="true" />
+        <property name="CacheXslTimeOut" type="int">86400</property>
+        <property name="ListUrl" type="string">Lists/LoadDescriptionList</property>
+        <property name="UseSQLDataSourcePaging" type="bool">True</property>
+        <XmlDefinition>
+          <View Name="{64F0319E-8138-43F6-AF4F-4954789EF08B}" Type="HTML" DisplayName="LoadDescription_CarrierDashboard_Vendor" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/images/generic.png">
+            <Query/>
+            <ViewFields>
+              <FieldRef Name="LinkTitle"/>
+              <FieldRef Name="PalletTypesTitle" />
+              <FieldRef Name="NumberOfPallets" />
+            </ViewFields>
+            <RowLimit Paged="TRUE">30</RowLimit>
+            <Toolbar Type="None"/>
+          </View>
+        </XmlDefinition>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
