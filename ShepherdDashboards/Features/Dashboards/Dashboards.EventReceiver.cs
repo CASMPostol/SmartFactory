@@ -4,6 +4,11 @@ using System.Security.Permissions;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Security;
 using Microsoft.SharePoint.Navigation;
+using System.Web.UI.WebControls.WebParts;
+using System.Linq;
+using SPWebPartConnection = Microsoft.SharePoint.WebPartPages.SPWebPartConnection;
+using System.Collections.Generic;
+using System.Text;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
 {
@@ -33,8 +38,77 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
       SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
       SPNavigationNode _topMenu = _topNav[0].Children.AddAsLast(new SPNavigationNode("Vendor", "WebPartPages/CarrierDashboard.aspx"));
 
+      //SetupConnections(_root);
     }
 
+    private static void SetupConnections(SPWeb _root)
+    {
+      SPFile file = _root.GetFile("WebPartPages/CarrierDashboard.aspx");
+      System.Collections.Generic.Dictionary<string, WebPart> _dict = new System.Collections.Generic.Dictionary<string, WebPart>();
+      string _phase = "starting";
+      using (Microsoft.SharePoint.WebPartPages.SPLimitedWebPartManager wpMgr = file.GetLimitedWebPartManager(PersonalizationScope.Shared))
+      {
+        try
+        {
+          _dict = wpMgr.WebParts.Cast<WebPart>().ToDictionary(key => key.ID); //.ForEach(wp => wpMgr.DeleteWebPart(wp));
+          _phase = "After wpMgr.WebParts.Cast";
+          SPWebPartConnection _CarrierDashboardWebPartPartner = new SPWebPartConnection
+          {
+            ConsumerID = "CarrierDashboardWebPart",
+            ProviderID = "CurrentUserWebPart",
+            ConsumerConnectionPointID = "PartnerInterconnection",
+            ProviderConnectionPointID = "CurrentUserProviderPoint",
+            ID = "CarrierDashboardWebPartPartner"
+          };
+          _phase = "After new SPWebPartConnection";
+          wpMgr.SPWebPartConnections.Add(_CarrierDashboardWebPartPartner);
+          _phase = "After Add(_CarrierDashboardWebPartPartner)";
+          wpMgr.SaveChanges(_dict["CarrierDashboardWebPart"]);
+          _phase = "after SaveChanges(_dict['CarrierDashboardWebPart'])";
+          wpMgr.SaveChanges(_dict["CurrentUserWebPart"]);
+          _phase = "Finished";
+        }
+        catch (Exception ex)
+        {
+          StringBuilder _names = new StringBuilder();
+          _dict.Keys.ToList<string>().ForEach(name => _names.Append(name + ", "));
+          throw new ApplicationException(String.Format("Phase={0}, Count={1}, First={2}, Ex={3}", _phase, _dict.Count, _names.ToString(), ex.Message));
+        }
+        //SPWebPartConnection connection = new SPWebPartConnection
+        //{
+        //  ConsumerID = "CarrierDashboardWebPart",
+        //  ProviderID = "CurrentUserWebPart",
+        //  ConsumerConnectionPointID = "PartnerInterconnection",
+        //  ProviderConnectionPointID = "CurrentUserProviderPoint",
+        //  ID = "CarrierDashboardWebPartPartner"
+        //};
+
+        ////RssWebPart rssWebPart = new RssWebPart
+        //{
+        //  ID = "RssWebPart",
+        //  Title = "RSS Reader",
+        //  ItemCount = 5
+        //};
+        //FeedInputWebPart feedInput = new FeedInputWebPart
+        //{
+        //  ID = "FeedInput",
+        //  Title = "Feed input"
+        //};
+        //wpMgr.AddWebPart(feedInput, "Main", 0);
+        //wpMgr.AddWebPart(rssWebPart, "Main", 1);
+        //SPWebPartConnection connection = new SPWebPartConnection
+        //{
+        //  ConsumerID = "RssWebPart",
+        //  ProviderID = "FeedInput",
+        //  ConsumerConnectionPointID = "feed",
+        //  ProviderConnectionPointID = "",
+        //  ID = "connection"
+        //};
+        //wpMgr.SPWebPartConnections.Add(connection);
+        //wpMgr.SaveChanges(rssWebPart);
+        //wpMgr.SaveChanges(feedInput);
+      }
+    }
 
     // Uncomment the method below to handle the event raised before a feature is deactivated.
 

@@ -45,7 +45,7 @@ namespace CAS.SmartFactory.xml.Test
       Console.WriteLine("Sites in the web application at http://casmp");
       foreach (SPSite _spsite in _wa.Sites)
       {
-        Console.WriteLine(String.Format("Site url: {0} Features count: {1}", item.Url, item.Features.Count));
+        Console.WriteLine(String.Format("Site url: {0} Features count: {1}", _spsite.Url, _spsite.Features.Count));
         Console.WriteLine("Features in the SPSite:");
         foreach (SPFeature _ftr in _spsite.Features)
         {
@@ -56,7 +56,7 @@ namespace CAS.SmartFactory.xml.Test
         Console.WriteLine("Features in the SPSite:");
         foreach (SPFeatureDefinition item in _spsite.FeatureDefinitions)
         {
-          Console.WriteLine(String.Format("SPFeatureDefinition SPFeatureDefinition", item.Name);
+          Console.WriteLine(String.Format("SPFeatureDefinition SPFeatureDefinition", item.Name));
         }
         Console.WriteLine("Solution in the SPSite:");
         foreach (SPUserSolution _sl in _spsite.Solutions)
