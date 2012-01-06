@@ -38,7 +38,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     {
       SimpleTimeSlotList = true;
     }
-    //TODO Add it to the editor as personalizable property
+    [WebBrowsable(true)]
+    [Personalizable(PersonalizationScope.Shared)]
+    [WebDisplayName("Simple list of available slots")]
+    [WebDescription("Just a list instead of full day calendar page with rows")]
+    [Microsoft.SharePoint.WebPartPages.SPWebCategoryName("CAS Custom Properties")]
     public bool SimpleTimeSlotList { get; set; }
     /// <summary>
     /// Gets the connection interface allowing to get selected entry of <see cref="TimeSlotTimeSlot"/>.
