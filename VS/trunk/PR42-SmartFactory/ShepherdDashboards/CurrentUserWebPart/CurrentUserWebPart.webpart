@@ -11,6 +11,7 @@
         <property name="Description" type="string">Provides information about current user and his affiliation.</property>
         <property name="AllowZoneChange" type="bool">True</property>
         <property name="AllowConnect" type="bool">True</property>
+        <property name="ID" type="string">CurrentUserWebPart</property>
       </properties>
     </data>
   </webPart>
