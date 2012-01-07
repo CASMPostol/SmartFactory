@@ -72,8 +72,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_SelectedTimeSlot = m_Control.GetSelectedShippingOperationInboundInterconnectionData();
       return m_SelectedTimeSlot;
     }
+    internal static string ConsumertIDPartnerInterconnection = "PartnerInterconnection";
+    internal static string ConsumertIDTimeSlotInterconnection = "TimeSlotInterconnection";
+    internal static string ConsumertIDShippingInterconnection = "ShippingInterconnection";
+    internal static string ProviderIDSelectedShippingOperationProviderPoint = "SelectedShippingOperationProviderPoint";
     #endregion
 
     #endregion
+
   }
 }
