@@ -3,11 +3,11 @@ using System.ComponentModel;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 using System.Data;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using Microsoft.SharePoint.WebPartPages;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
 {
@@ -52,8 +52,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     #endregion
 
     #region public
-    [ConnectionProvider("Current User", "CurrentUserProviderPoint", AllowsMultipleConnections = true)]
-    public IWebPartRow GetConnectionInterface()
+    [System.Web.UI.WebControls.WebParts.ConnectionProvider("Current User", "CurrentUserProviderPoint", AllowsMultipleConnections = true)]
+    public System.Web.UI.WebControls.WebParts.IWebPartRow GetConnectionInterface()
     {
       return m_UserDescriptor;
     }
@@ -62,6 +62,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     {
       m_UserDescriptor = GetUserDescriptor();
     }
+    internal static string CurrentUserProviderPoint = "CurrentUserProviderPoint";
     #endregion
   }
 }
