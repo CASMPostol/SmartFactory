@@ -55,7 +55,7 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0"  ID="CDTimeSlots">
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="CDTimeSlots">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >
     <metaData>
