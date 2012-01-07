@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
   <Module Name="AAE" List="113" Url="_catalogs/wp">
-    <File Path="AAE\AAE.webpart" Url="AAE.webpart" Type="GhostableInLibrary">
-      <Property Name="Group" Value="Custom" />
+    <File Path="AAE\AAE.webpart"
+          Url="$SharePoint.Project.FileNameWithoutExtension$_AAE.webpart"
+          Type="GhostableInLibrary">
+      <Property Name="Group" Value="CAS Smart Factory Shepherd" />
     </File>
   </Module>
 </Elements>

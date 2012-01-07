@@ -64,6 +64,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		/// <summary>
+		/// Collect all application events.
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Event Log List")]
+		public Microsoft.SharePoint.Linq.EntityList<Anons> EventLogList {
+			get {
+				return this.GetList<Anons>("Event Log List");
+			}
+		}
+		
+		/// <summary>
 		/// JTI Partner List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="JTI Partner")]
@@ -151,6 +161,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(AlarmsAndEvents))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Driver))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingDriversTeam))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Anons))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Partner))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(LoadDescription))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingOperationInbound))]
@@ -278,6 +289,55 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			if ((null != this.PropertyChanging)) {
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element wiadomości, stan lub inną krótką informację.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Anons", Id="0x0104")]
+	public partial class Anons : Element {
+		
+		private string _treść;
+		
+		private System.Nullable<System.DateTime> _wygasa;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public Anons() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Body", Storage="_treść", FieldType="Note")]
+		public string Treść {
+			get {
+				return this._treść;
+			}
+			set {
+				if ((value != this._treść)) {
+					this.OnPropertyChanging("Treść", this._treść);
+					this._treść = value;
+					this.OnPropertyChanged("Treść");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Expires", Storage="_wygasa", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> Wygasa {
+			get {
+				return this._wygasa;
+			}
+			set {
+				if ((value != this._wygasa)) {
+					this.OnPropertyChanging("Wygasa", this._wygasa);
+					this._wygasa = value;
+					this.OnPropertyChanged("Wygasa");
+				}
 			}
 		}
 	}

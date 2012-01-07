@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
   <Module Name="TimeSlotWebPart" List="113" Url="_catalogs/wp">
-    <File
-      Path="TimeSlotWebPart\TimeSlotWebPart.webpart"
-      Url="ShepherdDashboards_TimeSlotWebPart.webpart"
-      Type="GhostableInLibrary" >
+    <File Path="TimeSlotWebPart\TimeSlotWebPart.webpart"
+          Url="$SharePoint.Project.FileNameWithoutExtension$_TimeSlotWebPart.webpart"
+          Type="GhostableInLibrary" >
       <Property Name="Group" Value="CAS Smart Factory Shepherd" />
     </File>
   </Module>

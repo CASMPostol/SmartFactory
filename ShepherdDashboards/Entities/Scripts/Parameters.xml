@@ -12,5 +12,6 @@
   <List Name="TimeSlot"></List>
   <List Name="Drivers Team"></List>
   <List Name="Load Description"></List>
+  <List Name="Event Log List"/>
   <ExcludeOtherLists/>
 </Web>
