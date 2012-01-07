@@ -9,6 +9,7 @@ using System.Linq;
 using SPWebPartConnection = Microsoft.SharePoint.WebPartPages.SPWebPartConnection;
 using System.Collections.Generic;
 using System.Text;
+using WebPartPagesManagement = CAS.SmartFactory.Shepherd.Dashboards.WebPartPages.ProjectElementManagement;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
 {
@@ -36,21 +37,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
       }
       // create dropdown menu for custom site pages
       SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
-      SPNavigationNode _topMenu = _topNav[0].Children.AddAsLast(new SPNavigationNode("Vendor", "WebPartPages/CarrierDashboard.aspx"));
-
-      //SetupConnections(_root);
+      SPNavigationNode _topMenu = _topNav[0].Children.AddAsLast(new SPNavigationNode("Vendor", WebPartPagesManagement.CarrierDashboardURL));
+      SetupConnections(_root);
     }
-
     private static void SetupConnections(SPWeb _root)
     {
-      SPFile file = _root.GetFile("WebPartPages/CarrierDashboard.aspx");
+      SPFile file = _root.GetFile(WebPartPagesManagement.CarrierDashboardURL);
       System.Collections.Generic.Dictionary<string, WebPart> _dict = new System.Collections.Generic.Dictionary<string, WebPart>();
       string _phase = "starting";
-      using (Microsoft.SharePoint.WebPartPages.SPLimitedWebPartManager wpMgr = file.GetLimitedWebPartManager(PersonalizationScope.Shared))
+      using (Microsoft.SharePoint.WebPartPages.SPLimitedWebPartManager _pageMgr = file.GetLimitedWebPartManager(PersonalizationScope.Shared))
       {
         try
         {
-          _dict = wpMgr.WebParts.Cast<WebPart>().ToDictionary(key => key.ID); //.ForEach(wp => wpMgr.DeleteWebPart(wp));
+          _dict = _pageMgr.WebParts.Cast<WebPart>().ToDictionary(key => key.ID); //.ForEach(wp => wpMgr.DeleteWebPart(wp));
           _phase = "After wpMgr.WebParts.Cast";
           SPWebPartConnection _CarrierDashboardWebPartPartner = new SPWebPartConnection
           {
@@ -61,11 +60,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
             ID = "CarrierDashboardWebPartPartner"
           };
           _phase = "After new SPWebPartConnection";
-          wpMgr.SPWebPartConnections.Add(_CarrierDashboardWebPartPartner);
+          _pageMgr.SPWebPartConnections.Add(_CarrierDashboardWebPartPartner);
           _phase = "After Add(_CarrierDashboardWebPartPartner)";
-          wpMgr.SaveChanges(_dict["CarrierDashboardWebPart"]);
+          _pageMgr.SaveChanges(_dict["CarrierDashboardWebPart"]);
           _phase = "after SaveChanges(_dict['CarrierDashboardWebPart'])";
-          wpMgr.SaveChanges(_dict["CurrentUserWebPart"]);
+          _pageMgr.SaveChanges(_dict["CurrentUserWebPart"]);
           _phase = "Finished";
         }
         catch (Exception ex)

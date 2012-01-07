@@ -2,8 +2,8 @@
 <ProjectItem Type="Microsoft.VisualStudio.SharePoint.VisualWebPart" DefaultFile="CurrentUserWebPartUserControl.ascx" SupportedTrustLevels="FullTrust" SupportedDeploymentScopes="Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="CurrentUserWebPart\" Type="ElementManifest" />
-    <ProjectItemFile Source="CurrentUserWebPart.webpart" Target="CurrentUserWebPart\" Type="ElementFile" />
     <ProjectItemFile Source="CurrentUserWebPartUserControl.ascx" Target="CONTROLTEMPLATES\CAS.SmartFactory.Shepherd.Dashboards\CurrentUserWebPart\" Type="TemplateFile" />
+    <ProjectItemFile Source="CurrentUserWebPart.webpart" Target="CurrentUserWebPart\" Type="ElementFile" />
   </Files>
   <SafeControls>
     <SafeControl Name="SafeControlEntry1" Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart" TypeName="*" IsSafe="true" IsSafeAgainstScript="false" />

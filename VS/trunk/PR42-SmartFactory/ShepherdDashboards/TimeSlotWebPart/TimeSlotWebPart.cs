@@ -49,6 +49,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     /// </summary>
     /// <returns>Returns an instance of the <see cref="IWebPartRow"/> representing <see cref="TimeSlotTimeSlot"/>.</returns>
     [ConnectionProvider("Selected TimeSlot entry", "SelectedTimeSlotProviderPoint", AllowsMultipleConnections = true)]
+    [DefaultValue(false)]
     public IWebPartRow GetConnectionInterface()
     {
       if (m_control == null)

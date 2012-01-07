@@ -84,9 +84,12 @@
     <Compile Include="CurrentUserWebPart\UserDescriptor.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Entities\AlarmsAndEvents.cs" />
+    <Compile Include="Entities\Anons.cs" />
     <Compile Include="Entities\Driver.cs" />
     <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />
+    <Compile Include="Entities\EntitiesDataContext.cs" />
     <Compile Include="Entities\LoadDescription.cs" />
     <Compile Include="Entities\Partner.cs" />
     <Compile Include="Entities\ShippingDriversTeam.cs" />
@@ -111,6 +114,7 @@
     <Compile Include="InterconnectionDataTable.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WebPartPages\ProjectElementManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPart.webpart" />
@@ -120,10 +124,13 @@
     <None Include="CarrierDashboard\TransportResources\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d154fb9f-ec8f-4a8e-8994-b9fc03606128}</SharePointProjectItemId>
     </None>
-    <None Include="CarrierDashboard\TransportResources\TransportResources.webpart" />
+    <None Include="CarrierDashboard\TransportResources\TransportResources.webpart">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="CurrentUserWebPart\CurrentUserWebPart.webpart" />
     <None Include="CurrentUserWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2614e454-2e2d-48e2-a02c-9f72cdb22425}</SharePointProjectItemId>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Features\Dashboards\Dashboards.feature">
@@ -139,7 +146,9 @@
     <None Include="ListsWebparts\AAE\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5b4561a0-794f-411c-9ed5-3d0fa24f18bd}</SharePointProjectItemId>
     </None>
-    <None Include="ListsWebparts\AAE\AAE.webpart" />
+    <None Include="ListsWebparts\AAE\AAE.webpart">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ListsWebparts\LoadDescription\LoadDescription.webpart" />
     <None Include="ListsWebparts\LoadDescription\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{866180ae-41cd-4905-b998-e3d3f9c42a63}</SharePointProjectItemId>
@@ -160,7 +169,9 @@
     <None Include="TimeSlotWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a4f2f6fd-efb5-4f8f-8040-0ce44fd01cfc}</SharePointProjectItemId>
     </None>
-    <None Include="TimeSlotWebPart\TimeSlotWebPart.webpart" />
+    <None Include="TimeSlotWebPart\TimeSlotWebPart.webpart">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="WebPartPages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5a1c2296-d4cc-40fb-87ca-b81deda11661}</SharePointProjectItemId>
     </None>
@@ -194,9 +205,13 @@
     <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
     <Content Include="ListsWebparts\AAE\Elements.xml" />
-    <Content Include="ListsWebparts\LoadDescription\Elements.xml" />
+    <Content Include="ListsWebparts\LoadDescription\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ListsWebparts\Shipping\Elements.xml" />
-    <Content Include="TimeSlotWebPart\Elements.xml" />
+    <Content Include="TimeSlotWebPart\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="TimeSlotWebPart\TimeSlotWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
