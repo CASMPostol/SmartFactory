@@ -71,6 +71,5 @@ namespace CAS.SmartFactory.Deployment
     /// </value>
     internal static SPFarm Farm { get; set; }
     public static Uri WebApplicationURL { get; set; }
-
   }
 }
