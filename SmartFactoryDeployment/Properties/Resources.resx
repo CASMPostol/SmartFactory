@@ -117,8 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ApplicationFound" xml:space="preserve">
+    <value>Found the Web application that is located at the specified URL={0}, Name={1}, DisplayName={2}.</value>
+  </data>
+  <data name="AreYouSure2Cancel" xml:space="preserve">
+    <value>Are you sure to cancel and rollback the installation? Press OK to exit, or Cancel to continue.</value>
+  </data>
+  <data name="CancelButtonTextEXIT" xml:space="preserve">
+    <value>EXIT</value>
+  </data>
+  <data name="CancelInstallationCaption" xml:space="preserve">
+    <value>Cancel installation ?</value>
+  </data>
+  <data name="CannotDelete" xml:space="preserve">
+    <value>Cannot delete the website because it does not exist.</value>
+  </data>
+  <data name="CannotGetAccessToLocalServer" xml:space="preserve">
+    <value>Cannot get access to the local SharePoint server.</value>
+  </data>
   <data name="CaptionOperationFailure" xml:space="preserve">
     <value>Operation failed</value>
+  </data>
+  <data name="CheckIinProcessFfailed" xml:space="preserve">
+    <value>The check in process failed. Learn more from the log list box, go back and review the provided parameters to try again.</value>
+  </data>
+  <data name="CheckIinProcessFfailedCaption" xml:space="preserve">
+    <value>Check in process failed !</value>
   </data>
   <data name="CreateSiteCollectionFailed" xml:space="preserve">
     <value>Create site collection failed with exception: {0}.</value>
@@ -126,10 +150,47 @@
   <data name="DeploySolutionFailed" xml:space="preserve">
     <value>DeploySolution failed for the site: {0}, file: {1}, feature: {2} with the exception: {3}.</value>
   </data>
+  <data name="FinishButtonText" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="GettingAccess2ApplicationFailed" xml:space="preserve">
+    <value>Getting access to the Web application that is located at the specified URL= {0} failed.</value>
+  </data>
+  <data name="GettingAccess2LocalFarm" xml:space="preserve">
+    <value>Getting access to the local server farm failed.</value>
+  </data>
+  <data name="GettingAccess2LocalFarmException" xml:space="preserve">
+    <value>Getting access to the local server farm failed wit the exception: {0}.</value>
+  </data>
+  <data name="GetWebApplicationFfailed" xml:space="preserve">
+    <value>Get Web Application failed wit the exception {0}.</value>
+  </data>
+  <data name="GotAccess2Farm" xml:space="preserve">
+    <value>Got access to the local server farm. Name ={0}, DisplayName={1}, Status={2}.</value>
+  </data>
+  <data name="HTTPNotValid" xml:space="preserve">
+    <value>The application address must be valid http address format. 
+For example 'http://computer.domain:Port'</value>
+  </data>
   <data name="LastOperationFailed" xml:space="preserve">
     <value>Last operation failed with exception {0}.</value>
   </data>
   <data name="SiteCollectionExist" xml:space="preserve">
     <value>The site collection {0} exist. Press Yes to use this site, No to delete it and create new with the same name, Cancel to cancel the installation.</value>
+  </data>
+  <data name="SiteExistAndDelete" xml:space="preserve">
+    <value>The specified site collection exist and will be deleted.</value>
+  </data>
+  <data name="SiteExistAndReuse" xml:space="preserve">
+    <value>The specified site collection exist and will be reused.</value>
+  </data>
+  <data name="UrlMustBeHttp" xml:space="preserve">
+    <value>Url must be Http protocol.</value>
+  </data>
+  <data name="ValidationProcessFailed" xml:space="preserve">
+    <value>Validation process failed because: {0}. Go back and review the provided parameters and try again.</value>
+  </data>
+  <data name="ValidationProcessStarting" xml:space="preserve">
+    <value>The local environment validation process starting.</value>
   </data>
 </root>

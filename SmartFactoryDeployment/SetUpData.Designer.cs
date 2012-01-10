@@ -34,6 +34,7 @@
       System.Windows.Forms.Label m_OwnerEmailabel;
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetUpData));
       System.Windows.Forms.Label m_SiteURLLabel;
+      System.Windows.Forms.Label label1;
       this.m_OwnerLoginTextBox = new System.Windows.Forms.TextBox();
       this.m_ApplicationURLTextBox = new System.Windows.Forms.TextBox();
       this.m_SiteUrlTextBox = new System.Windows.Forms.TextBox();
@@ -45,19 +46,36 @@
       this.m_OwnerEmailErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
       this.m_WebApplicationURLErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
       this.m_ApplicationSetupDataDialogPanel = new System.Windows.Forms.Panel();
-      this.m_ApplicationInstalationPane = new System.Windows.Forms.Panel();
-      this.m_EnvironmentCheckedListBox = new System.Windows.Forms.CheckedListBox();
+      this.m_InstalationDataConfirmationPanel = new System.Windows.Forms.Panel();
+      this.m_InstalationDataConfirmationListBox = new System.Windows.Forms.ListBox();
       this.m_PreviousButton = new System.Windows.Forms.Button();
       this.m_ManualSelectionPanel = new System.Windows.Forms.Panel();
+      this.m_DeleteWebsite = new System.Windows.Forms.Button();
+      this.m_RetrackWebsite = new System.Windows.Forms.Button();
+      this.m_RetrackDaschboard = new System.Windows.Forms.Button();
+      this.m_CreateWebCollectionButton = new System.Windows.Forms.Button();
+      this.m_DeployActiwateWebsiteButton = new System.Windows.Forms.Button();
+      this.m_DeployDaschboardsButton = new System.Windows.Forms.Button();
+      this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+      this.m_ApplicationInstalationPanel = new System.Windows.Forms.Panel();
+      this.m_InstallationInprogressLabel = new System.Windows.Forms.Label();
+      this.m_InstallationProgresListBox = new System.Windows.Forms.ListBox();
+      this.m_FinischedPanel = new System.Windows.Forms.Panel();
+      this.m_FinishedLabel = new System.Windows.Forms.Label();
       m_ApplicationSetupTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
       m_ApplicationURL = new System.Windows.Forms.Label();
       m_OwnerEmailabel = new System.Windows.Forms.Label();
       m_SiteURLLabel = new System.Windows.Forms.Label();
+      label1 = new System.Windows.Forms.Label();
       m_ApplicationSetupTableLayoutPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.m_OwnerEmailErrorProvider)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.m_WebApplicationURLErrorProvider)).BeginInit();
       this.m_ApplicationSetupDataDialogPanel.SuspendLayout();
-      this.m_ApplicationInstalationPane.SuspendLayout();
+      this.m_InstalationDataConfirmationPanel.SuspendLayout();
+      this.m_ManualSelectionPanel.SuspendLayout();
+      this.flowLayoutPanel1.SuspendLayout();
+      this.m_ApplicationInstalationPanel.SuspendLayout();
+      this.m_FinischedPanel.SuspendLayout();
       this.SuspendLayout();
       // 
       // m_ApplicationSetupTableLayoutPanel
@@ -76,7 +94,6 @@
       m_ApplicationSetupTableLayoutPanel.Controls.Add(m_SiteURLLabel, 0, 1);
       m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_OwnerEmailLabel, 0, 3);
       m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_OwnerEmailTextBox, 1, 3);
-      m_ApplicationSetupTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       m_ApplicationSetupTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
       m_ApplicationSetupTableLayoutPanel.Name = "m_ApplicationSetupTableLayoutPanel";
       m_ApplicationSetupTableLayoutPanel.RowCount = 5;
@@ -85,7 +102,7 @@
       m_ApplicationSetupTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
       m_ApplicationSetupTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       m_ApplicationSetupTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      m_ApplicationSetupTableLayoutPanel.Size = new System.Drawing.Size(484, 253);
+      m_ApplicationSetupTableLayoutPanel.Size = new System.Drawing.Size(484, 98);
       m_ApplicationSetupTableLayoutPanel.TabIndex = 0;
       // 
       // m_ApplicationURL
@@ -179,10 +196,20 @@
       this.m_OwnerEmailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.m_OwnerEmailTextBox_Validating);
       this.m_OwnerEmailTextBox.Validated += new System.EventHandler(this.m_OwnerEmailTextBox_Validated);
       // 
+      // label1
+      // 
+      label1.AutoSize = true;
+      label1.Location = new System.Drawing.Point(10, 4);
+      label1.Name = "label1";
+      label1.Size = new System.Drawing.Size(114, 13);
+      label1.TabIndex = 1;
+      label1.Text = "Checking prerequisites";
+      label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
       // m_NextButton
       // 
       this.m_NextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.m_NextButton.Location = new System.Drawing.Point(114, 211);
+      this.m_NextButton.Location = new System.Drawing.Point(114, 120);
       this.m_NextButton.MaximumSize = new System.Drawing.Size(0, 30);
       this.m_NextButton.MinimumSize = new System.Drawing.Size(100, 30);
       this.m_NextButton.Name = "m_NextButton";
@@ -190,12 +217,13 @@
       this.m_NextButton.TabIndex = 2;
       this.m_NextButton.Text = ">>";
       this.m_NextButton.UseVisualStyleBackColor = true;
+      this.m_NextButton.Click += new System.EventHandler(this.m_NextButton_Click);
       // 
       // m_CancelButton
       // 
       this.m_CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.m_CancelButton.CausesValidation = false;
-      this.m_CancelButton.Location = new System.Drawing.Point(222, 211);
+      this.m_CancelButton.Location = new System.Drawing.Point(222, 120);
       this.m_CancelButton.MaximumSize = new System.Drawing.Size(0, 30);
       this.m_CancelButton.MinimumSize = new System.Drawing.Size(100, 30);
       this.m_CancelButton.Name = "m_CancelButton";
@@ -222,36 +250,39 @@
       // 
       // m_ApplicationSetupDataDialogPanel
       // 
+      this.m_ApplicationSetupDataDialogPanel.AutoSize = true;
+      this.m_ApplicationSetupDataDialogPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.m_ApplicationSetupDataDialogPanel.Controls.Add(m_ApplicationSetupTableLayoutPanel);
-      this.m_ApplicationSetupDataDialogPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_ApplicationSetupDataDialogPanel.Location = new System.Drawing.Point(0, 0);
+      this.m_ApplicationSetupDataDialogPanel.Location = new System.Drawing.Point(3, 256);
       this.m_ApplicationSetupDataDialogPanel.Name = "m_ApplicationSetupDataDialogPanel";
-      this.m_ApplicationSetupDataDialogPanel.Size = new System.Drawing.Size(484, 253);
+      this.m_ApplicationSetupDataDialogPanel.Size = new System.Drawing.Size(487, 101);
       this.m_ApplicationSetupDataDialogPanel.TabIndex = 4;
       // 
-      // m_ApplicationInstalationPane
+      // m_InstalationDataConfirmationPanel
       // 
-      this.m_ApplicationInstalationPane.Controls.Add(this.m_EnvironmentCheckedListBox);
-      this.m_ApplicationInstalationPane.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_ApplicationInstalationPane.Location = new System.Drawing.Point(0, 0);
-      this.m_ApplicationInstalationPane.Name = "m_ApplicationInstalationPane";
-      this.m_ApplicationInstalationPane.Size = new System.Drawing.Size(484, 253);
-      this.m_ApplicationInstalationPane.TabIndex = 5;
+      this.m_InstalationDataConfirmationPanel.Controls.Add(label1);
+      this.m_InstalationDataConfirmationPanel.Controls.Add(this.m_InstalationDataConfirmationListBox);
+      this.m_InstalationDataConfirmationPanel.Location = new System.Drawing.Point(3, 3);
+      this.m_InstalationDataConfirmationPanel.Name = "m_InstalationDataConfirmationPanel";
+      this.m_InstalationDataConfirmationPanel.Size = new System.Drawing.Size(487, 118);
+      this.m_InstalationDataConfirmationPanel.TabIndex = 5;
       // 
-      // m_EnvironmentCheckedListBox
+      // m_InstalationDataConfirmationListBox
       // 
-      this.m_EnvironmentCheckedListBox.FormattingEnabled = true;
-      this.m_EnvironmentCheckedListBox.Location = new System.Drawing.Point(6, 4);
-      this.m_EnvironmentCheckedListBox.Name = "m_EnvironmentCheckedListBox";
-      this.m_EnvironmentCheckedListBox.Size = new System.Drawing.Size(475, 184);
-      this.m_EnvironmentCheckedListBox.TabIndex = 0;
+      this.m_InstalationDataConfirmationListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.m_InstalationDataConfirmationListBox.FormattingEnabled = true;
+      this.m_InstalationDataConfirmationListBox.Location = new System.Drawing.Point(0, 23);
+      this.m_InstalationDataConfirmationListBox.Name = "m_InstalationDataConfirmationListBox";
+      this.m_InstalationDataConfirmationListBox.Size = new System.Drawing.Size(481, 95);
+      this.m_InstalationDataConfirmationListBox.TabIndex = 0;
       // 
       // m_PreviousButton
       // 
       this.m_PreviousButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.m_PreviousButton.CausesValidation = false;
-      this.m_PreviousButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.m_PreviousButton.Location = new System.Drawing.Point(6, 211);
+      this.m_PreviousButton.Location = new System.Drawing.Point(6, 120);
       this.m_PreviousButton.MaximumSize = new System.Drawing.Size(0, 30);
       this.m_PreviousButton.MinimumSize = new System.Drawing.Size(100, 30);
       this.m_PreviousButton.Name = "m_PreviousButton";
@@ -259,26 +290,149 @@
       this.m_PreviousButton.TabIndex = 6;
       this.m_PreviousButton.Text = "<<";
       this.m_PreviousButton.UseVisualStyleBackColor = true;
+      this.m_PreviousButton.Click += new System.EventHandler(this.m_PreviousButton_Click);
       // 
       // m_ManualSelectionPanel
       // 
-      this.m_ManualSelectionPanel.Dock = System.Windows.Forms.DockStyle.Top;
-      this.m_ManualSelectionPanel.Location = new System.Drawing.Point(0, 0);
+      this.m_ManualSelectionPanel.Controls.Add(this.m_DeleteWebsite);
+      this.m_ManualSelectionPanel.Controls.Add(this.m_RetrackWebsite);
+      this.m_ManualSelectionPanel.Controls.Add(this.m_RetrackDaschboard);
+      this.m_ManualSelectionPanel.Controls.Add(this.m_CreateWebCollectionButton);
+      this.m_ManualSelectionPanel.Controls.Add(this.m_DeployActiwateWebsiteButton);
+      this.m_ManualSelectionPanel.Controls.Add(this.m_DeployDaschboardsButton);
+      this.m_ManualSelectionPanel.Location = new System.Drawing.Point(3, 127);
       this.m_ManualSelectionPanel.Name = "m_ManualSelectionPanel";
-      this.m_ManualSelectionPanel.Size = new System.Drawing.Size(484, 205);
+      this.m_ManualSelectionPanel.Size = new System.Drawing.Size(487, 123);
       this.m_ManualSelectionPanel.TabIndex = 1;
+      this.m_ManualSelectionPanel.Visible = false;
+      // 
+      // m_DeleteWebsite
+      // 
+      this.m_DeleteWebsite.Location = new System.Drawing.Point(180, 11);
+      this.m_DeleteWebsite.Name = "m_DeleteWebsite";
+      this.m_DeleteWebsite.Size = new System.Drawing.Size(150, 23);
+      this.m_DeleteWebsite.TabIndex = 4;
+      this.m_DeleteWebsite.Text = "Delete Website";
+      this.m_DeleteWebsite.UseVisualStyleBackColor = true;
+      // 
+      // m_RetrackWebsite
+      // 
+      this.m_RetrackWebsite.Location = new System.Drawing.Point(180, 50);
+      this.m_RetrackWebsite.Name = "m_RetrackWebsite";
+      this.m_RetrackWebsite.Size = new System.Drawing.Size(150, 23);
+      this.m_RetrackWebsite.TabIndex = 5;
+      this.m_RetrackWebsite.Text = "Retrack Website";
+      this.m_RetrackWebsite.UseVisualStyleBackColor = true;
+      // 
+      // m_RetrackDaschboard
+      // 
+      this.m_RetrackDaschboard.Location = new System.Drawing.Point(180, 89);
+      this.m_RetrackDaschboard.Name = "m_RetrackDaschboard";
+      this.m_RetrackDaschboard.Size = new System.Drawing.Size(150, 23);
+      this.m_RetrackDaschboard.TabIndex = 3;
+      this.m_RetrackDaschboard.Text = "Retrack Daschboard";
+      this.m_RetrackDaschboard.UseVisualStyleBackColor = true;
+      // 
+      // m_CreateWebCollectionButton
+      // 
+      this.m_CreateWebCollectionButton.Location = new System.Drawing.Point(14, 11);
+      this.m_CreateWebCollectionButton.Name = "m_CreateWebCollectionButton";
+      this.m_CreateWebCollectionButton.Size = new System.Drawing.Size(150, 23);
+      this.m_CreateWebCollectionButton.TabIndex = 1;
+      this.m_CreateWebCollectionButton.Text = "Create Website";
+      this.m_CreateWebCollectionButton.UseVisualStyleBackColor = true;
+      // 
+      // m_DeployActiwateWebsiteButton
+      // 
+      this.m_DeployActiwateWebsiteButton.Location = new System.Drawing.Point(14, 50);
+      this.m_DeployActiwateWebsiteButton.Name = "m_DeployActiwateWebsiteButton";
+      this.m_DeployActiwateWebsiteButton.Size = new System.Drawing.Size(150, 23);
+      this.m_DeployActiwateWebsiteButton.TabIndex = 2;
+      this.m_DeployActiwateWebsiteButton.Text = "Deploy Website";
+      this.m_DeployActiwateWebsiteButton.UseVisualStyleBackColor = true;
+      // 
+      // m_DeployDaschboardsButton
+      // 
+      this.m_DeployDaschboardsButton.Location = new System.Drawing.Point(14, 89);
+      this.m_DeployDaschboardsButton.Name = "m_DeployDaschboardsButton";
+      this.m_DeployDaschboardsButton.Size = new System.Drawing.Size(150, 23);
+      this.m_DeployDaschboardsButton.TabIndex = 0;
+      this.m_DeployDaschboardsButton.Text = "Deploy Daschboard";
+      this.m_DeployDaschboardsButton.UseVisualStyleBackColor = true;
+      // 
+      // flowLayoutPanel1
+      // 
+      this.flowLayoutPanel1.AutoSize = true;
+      this.flowLayoutPanel1.Controls.Add(this.m_InstalationDataConfirmationPanel);
+      this.flowLayoutPanel1.Controls.Add(this.m_ManualSelectionPanel);
+      this.flowLayoutPanel1.Controls.Add(this.m_ApplicationSetupDataDialogPanel);
+      this.flowLayoutPanel1.Controls.Add(this.m_ApplicationInstalationPanel);
+      this.flowLayoutPanel1.Controls.Add(this.m_FinischedPanel);
+      this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+      this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+      this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+      this.flowLayoutPanel1.Size = new System.Drawing.Size(484, 442);
+      this.flowLayoutPanel1.TabIndex = 6;
+      // 
+      // m_ApplicationInstalationPanel
+      // 
+      this.m_ApplicationInstalationPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.m_ApplicationInstalationPanel.Controls.Add(this.m_InstallationInprogressLabel);
+      this.m_ApplicationInstalationPanel.Controls.Add(this.m_InstallationProgresListBox);
+      this.m_ApplicationInstalationPanel.Location = new System.Drawing.Point(3, 363);
+      this.m_ApplicationInstalationPanel.Name = "m_ApplicationInstalationPanel";
+      this.m_ApplicationInstalationPanel.Size = new System.Drawing.Size(484, 0);
+      this.m_ApplicationInstalationPanel.TabIndex = 6;
+      // 
+      // m_InstallationInprogressLabel
+      // 
+      this.m_InstallationInprogressLabel.AutoSize = true;
+      this.m_InstallationInprogressLabel.Location = new System.Drawing.Point(0, 0);
+      this.m_InstallationInprogressLabel.Name = "m_InstallationInprogressLabel";
+      this.m_InstallationInprogressLabel.Size = new System.Drawing.Size(123, 13);
+      this.m_InstallationInprogressLabel.TabIndex = 0;
+      this.m_InstallationInprogressLabel.Text = "Installation in progress ...";
+      // 
+      // m_InstallationProgresListBox
+      // 
+      this.m_InstallationProgresListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.m_InstallationProgresListBox.HorizontalScrollbar = true;
+      this.m_InstallationProgresListBox.Location = new System.Drawing.Point(0, 13);
+      this.m_InstallationProgresListBox.Name = "m_InstallationProgresListBox";
+      this.m_InstallationProgresListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
+      this.m_InstallationProgresListBox.Size = new System.Drawing.Size(481, 69);
+      this.m_InstallationProgresListBox.TabIndex = 0;
+      // 
+      // m_FinischedPanel
+      // 
+      this.m_FinischedPanel.Controls.Add(this.m_FinishedLabel);
+      this.m_FinischedPanel.Location = new System.Drawing.Point(3, 369);
+      this.m_FinischedPanel.Name = "m_FinischedPanel";
+      this.m_FinischedPanel.Size = new System.Drawing.Size(487, 70);
+      this.m_FinischedPanel.TabIndex = 7;
+      // 
+      // m_FinishedLabel
+      // 
+      this.m_FinishedLabel.AutoSize = true;
+      this.m_FinishedLabel.Location = new System.Drawing.Point(4, 7);
+      this.m_FinishedLabel.Name = "m_FinishedLabel";
+      this.m_FinishedLabel.Size = new System.Drawing.Size(99, 13);
+      this.m_FinishedLabel.TabIndex = 0;
+      this.m_FinishedLabel.Text = "Installation finished.";
       // 
       // SetUpData
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(484, 253);
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+      this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+      this.ClientSize = new System.Drawing.Size(484, 162);
+      this.Controls.Add(this.flowLayoutPanel1);
       this.Controls.Add(this.m_CancelButton);
       this.Controls.Add(this.m_PreviousButton);
       this.Controls.Add(this.m_NextButton);
-      this.Controls.Add(this.m_ManualSelectionPanel);
-      this.Controls.Add(this.m_ApplicationInstalationPane);
-      this.Controls.Add(this.m_ApplicationSetupDataDialogPanel);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MinimumSize = new System.Drawing.Size(500, 200);
       this.Name = "SetUpData";
@@ -289,8 +443,17 @@
       ((System.ComponentModel.ISupportInitialize)(this.m_WebApplicationURLErrorProvider)).EndInit();
       this.m_ApplicationSetupDataDialogPanel.ResumeLayout(false);
       this.m_ApplicationSetupDataDialogPanel.PerformLayout();
-      this.m_ApplicationInstalationPane.ResumeLayout(false);
+      this.m_InstalationDataConfirmationPanel.ResumeLayout(false);
+      this.m_InstalationDataConfirmationPanel.PerformLayout();
+      this.m_ManualSelectionPanel.ResumeLayout(false);
+      this.flowLayoutPanel1.ResumeLayout(false);
+      this.flowLayoutPanel1.PerformLayout();
+      this.m_ApplicationInstalationPanel.ResumeLayout(false);
+      this.m_ApplicationInstalationPanel.PerformLayout();
+      this.m_FinischedPanel.ResumeLayout(false);
+      this.m_FinischedPanel.PerformLayout();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -307,10 +470,22 @@
     private System.Windows.Forms.TextBox m_OwnerEmailTextBox;
     private System.Windows.Forms.ErrorProvider m_WebApplicationURLErrorProvider;
     private System.Windows.Forms.Button m_PreviousButton;
-    private System.Windows.Forms.Panel m_ApplicationInstalationPane;
+    private System.Windows.Forms.Panel m_InstalationDataConfirmationPanel;
     private System.Windows.Forms.Panel m_ApplicationSetupDataDialogPanel;
-    private System.Windows.Forms.CheckedListBox m_EnvironmentCheckedListBox;
     private System.Windows.Forms.Panel m_ManualSelectionPanel;
+    private System.Windows.Forms.Button m_DeployActiwateWebsiteButton;
+    private System.Windows.Forms.Button m_CreateWebCollectionButton;
+    private System.Windows.Forms.Button m_DeployDaschboardsButton;
+    private System.Windows.Forms.Button m_DeleteWebsite;
+    private System.Windows.Forms.Button m_RetrackWebsite;
+    private System.Windows.Forms.Button m_RetrackDaschboard;
+    private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+    private System.Windows.Forms.Panel m_ApplicationInstalationPanel;
+    private System.Windows.Forms.Panel m_FinischedPanel;
+    private System.Windows.Forms.Label m_InstallationInprogressLabel;
+    private System.Windows.Forms.Label m_FinishedLabel;
+    private System.Windows.Forms.ListBox m_InstallationProgresListBox;
+    private System.Windows.Forms.ListBox m_InstalationDataConfirmationListBox;
 
   }
 }

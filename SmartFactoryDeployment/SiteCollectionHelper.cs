@@ -13,6 +13,7 @@ namespace CAS.SmartFactory.Deployment
 {
   internal static class SiteCollectionHelper
   {
+    internal static bool DeleteIfExist { get; set; }
     internal static SPSite Create(SPWebApplication _wa, string _uri, string _owner, string _email)
     {
       try
@@ -32,6 +33,19 @@ namespace CAS.SmartFactory.Deployment
         throw new ApplicationException(String.Format(Resources.CreateSiteCollectionFailed, ex.Message));
       }
     }
+    internal static void Delete(SPWebApplication _wa, string _uri, string _owner, string _email)
+    {
+      try
+      {
+        if (!_wa.Sites.Names.Contains(_uri))
+          throw new ApplicationException(Resources.CannotDelete);
+        _wa.Sites.Delete(_uri);
+      }
+      catch (Exception ex)
+      {
+        throw new ApplicationException(String.Format(Resources.CreateSiteCollectionFailed, ex.Message));
+      }
+    }
     internal static void DeploySolution(SPSite _site, FileInfo _featuteFile, string _featureName)
     {
       try
@@ -41,7 +55,7 @@ namespace CAS.SmartFactory.Deployment
         SPUserSolution solution = _site.Solutions.Add(file.Item.ID);
         SPFeatureDefinition _fd = _site.FeatureDefinitions[_featureName];
         Guid _fg = _fd.Id;
-        _site.Features.Add(_fd.Id, false, SPFeatureDefinitionScope.Site );
+        _site.Features.Add(_fd.Id, false, SPFeatureDefinitionScope.Site);
       }
       catch (Exception ex)
       {
