@@ -61,11 +61,83 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Found the Web application that is located at the specified URL={0}, Name={1}, DisplayName={2}..
+        /// </summary>
+        internal static string ApplicationFound {
+            get {
+                return ResourceManager.GetString("ApplicationFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure to cancel and rollback the installation? Press OK to exit, or Cancel to continue..
+        /// </summary>
+        internal static string AreYouSure2Cancel {
+            get {
+                return ResourceManager.GetString("AreYouSure2Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXIT.
+        /// </summary>
+        internal static string CancelButtonTextEXIT {
+            get {
+                return ResourceManager.GetString("CancelButtonTextEXIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel installation ?.
+        /// </summary>
+        internal static string CancelInstallationCaption {
+            get {
+                return ResourceManager.GetString("CancelInstallationCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot delete the website because it does not exist..
+        /// </summary>
+        internal static string CannotDelete {
+            get {
+                return ResourceManager.GetString("CannotDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot get access to the local SharePoint server..
+        /// </summary>
+        internal static string CannotGetAccessToLocalServer {
+            get {
+                return ResourceManager.GetString("CannotGetAccessToLocalServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operation failed.
         /// </summary>
         internal static string CaptionOperationFailure {
             get {
                 return ResourceManager.GetString("CaptionOperationFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The check in process failed. Learn more from the log list box, go back and review the provided parameters to try again..
+        /// </summary>
+        internal static string CheckIinProcessFfailed {
+            get {
+                return ResourceManager.GetString("CheckIinProcessFfailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check in process failed !.
+        /// </summary>
+        internal static string CheckIinProcessFfailedCaption {
+            get {
+                return ResourceManager.GetString("CheckIinProcessFfailedCaption", resourceCulture);
             }
         }
         
@@ -88,6 +160,70 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finish.
+        /// </summary>
+        internal static string FinishButtonText {
+            get {
+                return ResourceManager.GetString("FinishButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting access to the Web application that is located at the specified URL= {0} failed..
+        /// </summary>
+        internal static string GettingAccess2ApplicationFailed {
+            get {
+                return ResourceManager.GetString("GettingAccess2ApplicationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting access to the local server farm failed..
+        /// </summary>
+        internal static string GettingAccess2LocalFarm {
+            get {
+                return ResourceManager.GetString("GettingAccess2LocalFarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting access to the local server farm failed wit the exception: {0}..
+        /// </summary>
+        internal static string GettingAccess2LocalFarmException {
+            get {
+                return ResourceManager.GetString("GettingAccess2LocalFarmException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Web Application failed wit the exception {0}..
+        /// </summary>
+        internal static string GetWebApplicationFfailed {
+            get {
+                return ResourceManager.GetString("GetWebApplicationFfailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Got access to the local server farm. Name ={0}, DisplayName={1}, Status={2}..
+        /// </summary>
+        internal static string GotAccess2Farm {
+            get {
+                return ResourceManager.GetString("GotAccess2Farm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application address must be valid http address format. 
+        ///For example &apos;http://computer.domain:Port&apos;.
+        /// </summary>
+        internal static string HTTPNotValid {
+            get {
+                return ResourceManager.GetString("HTTPNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last operation failed with exception {0}..
         /// </summary>
         internal static string LastOperationFailed {
@@ -102,6 +238,51 @@ namespace CAS.SmartFactory.Deployment.Properties {
         internal static string SiteCollectionExist {
             get {
                 return ResourceManager.GetString("SiteCollectionExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified site collection exist and will be deleted..
+        /// </summary>
+        internal static string SiteExistAndDelete {
+            get {
+                return ResourceManager.GetString("SiteExistAndDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified site collection exist and will be reused..
+        /// </summary>
+        internal static string SiteExistAndReuse {
+            get {
+                return ResourceManager.GetString("SiteExistAndReuse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Url must be Http protocol..
+        /// </summary>
+        internal static string UrlMustBeHttp {
+            get {
+                return ResourceManager.GetString("UrlMustBeHttp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation process failed because: {0}. Go back and review the provided parameters and try again..
+        /// </summary>
+        internal static string ValidationProcessFailed {
+            get {
+                return ResourceManager.GetString("ValidationProcessFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The local environment validation process starting..
+        /// </summary>
+        internal static string ValidationProcessStarting {
+            get {
+                return ResourceManager.GetString("ValidationProcessStarting", resourceCulture);
             }
         }
     }

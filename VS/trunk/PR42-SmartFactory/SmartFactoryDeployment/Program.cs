@@ -4,13 +4,14 @@ using System.Linq;
 using Microsoft.SharePoint.Administration;
 using Microsoft.SharePoint;
 using System.Security.Principal;
+using CAS.SmartFactory.Deployment.Properties;
 
 namespace CAS.SmartFactory.Deployment
 {
   class structure
   {
     public SPFarm SPFarm { get; set; }
-    public SPWebApplication SPWebApplication{ get; private set; }
+    public SPWebApplication SPWebApplication { get; private set; }
   }
   static class Program
   {
@@ -21,7 +22,12 @@ namespace CAS.SmartFactory.Deployment
     [STAThread]
     static void Main()
     {
-      new SetUpData().ShowDialog();
+      SetUpData _dialog = new SetUpData() { Manual = false };
+      if (_dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+        System.Windows.Forms.MessageBox.Show(
+          Resources.AreYouSure2Cancel, Resources.CancelInstallationCaption,
+          System.Windows.Forms.MessageBoxButtons.OKCancel,
+          System.Windows.Forms.MessageBoxIcon.Question);
       //ShowDialog( new SetUp
       //LookupEnvironment();
     }
