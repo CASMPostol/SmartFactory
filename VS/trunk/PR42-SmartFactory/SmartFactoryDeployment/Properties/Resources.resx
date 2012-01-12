@@ -148,7 +148,7 @@
     <value>Create site collection failed with exception: {0}.</value>
   </data>
   <data name="DeploySolutionFailed" xml:space="preserve">
-    <value>DeploySolution failed for the site: {0}, file: {1}, feature: {2} with the exception: {3}.</value>
+    <value>DeploySolution failed for the site: {0}, file: {1} with the exception: {2}.</value>
   </data>
   <data name="FinishButtonText" xml:space="preserve">
     <value>Finish</value>
@@ -173,10 +173,10 @@
 For example 'http://computer.domain:Port'</value>
   </data>
   <data name="LastOperationFailed" xml:space="preserve">
-    <value>Last operation failed with exception {0}.</value>
+    <value>Last operation failed with exception {0}. Press Ok to continue or Cancel to aboard.</value>
   </data>
   <data name="SiteCollectionExist" xml:space="preserve">
-    <value>The site collection {0} exist. Press Yes to use this site, No to delete it and create new with the same name, Cancel to cancel the installation.</value>
+    <value>The site collection {0} exist. Press Yes to use this site, No to delete it and create new with the same name.</value>
   </data>
   <data name="SiteExistAndDelete" xml:space="preserve">
     <value>The specified site collection exist and will be deleted.</value>
@@ -192,5 +192,35 @@ For example 'http://computer.domain:Port'</value>
   </data>
   <data name="ValidationProcessStarting" xml:space="preserve">
     <value>The local environment validation process starting.</value>
+  </data>
+  <data name="FarmSolutionFailed" xml:space="preserve">
+    <value>DeploySolution failed for the site: {0}, file: {1}, feature: {2} with the exception: {3}.</value>
+  </data>
+  <data name="NullReference" xml:space="preserve">
+    <value>&lt;null reference&gt;</value>
+  </data>
+  <data name="SiteCollectionNotExist" xml:space="preserve">
+    <value>Site Collection not yet created</value>
+  </data>
+  <data name="SiteCreation" xml:space="preserve">
+    <value>Site creation</value>
+  </data>
+  <data name="CannotFindTheSolution" xml:space="preserve">
+    <value>Cannot find the solution on the local farm server.</value>
+  </data>
+  <data name="DeactivateFeatureFailed" xml:space="preserve">
+    <value>Deactivation of the feature failed with the exception: {0}</value>
+  </data>
+  <data name="RetracDeploySolutionFailed" xml:space="preserve">
+    <value>Retrack of farm solution failed : Name = {0}, file: {1}, feature: {2} with the exception: {3}.</value>
+  </data>
+  <data name="DeplymentTimeout" xml:space="preserve">
+    <value>Timeout encountered during solution deployment.</value>
+  </data>
+  <data name="DeployFarmSolutionFailed" xml:space="preserve">
+    <value>DeploySolution failed for the file: {0} with the exception: {1}. </value>
+  </data>
+  <data name="FeatureActivationFailed" xml:space="preserve">
+    <value>Activation of the feature: {0} at site: {1} with the scope {2} failed with the exception {3}.</value>
   </data>
 </root>

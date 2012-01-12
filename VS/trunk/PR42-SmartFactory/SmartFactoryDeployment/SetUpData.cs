@@ -11,6 +11,7 @@ using System.Security.Principal;
 using CAS.SmartFactory.Deployment.Properties;
 using System.Diagnostics;
 using System.Threading;
+using System.IO;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -28,11 +29,9 @@ namespace CAS.SmartFactory.Deployment
       InitializeComponent();
       State = CurrentStae.ApplicationSetupDataDialog;
       Manual = true;
+      m_ApplicationURLTextBox.Text = Properties.Settings.Default.SiteCollectionURL;
     }
     internal bool Manual { get; set; }
-    /// <summary>
-    /// Gets the web application URL.
-    /// </summary>
     #endregion
 
     #region private
@@ -68,7 +67,7 @@ namespace CAS.SmartFactory.Deployment
         m_ApplicationInstalationPanel.Visible = value == CurrentStae.ApplicationInstalation;
         m_FinischedPanel.Visible = value == CurrentStae.Finisched;
         this.Refresh();
-        StateMachine(new StateEvenArgs(LocalEvent.EnterState));
+        StateMachine(new StateMachineEvenArgs(LocalEvent.EnterState));
       }
     }
     CurrentStae m_State;
@@ -76,24 +75,24 @@ namespace CAS.SmartFactory.Deployment
     {
       Previous, Next, Cancel, Exception, EnterState
     }
-    private class StateEvenArgs : EventArgs
+    private class StateMachineEvenArgs : EventArgs
     {
       internal LocalEvent Event { get; private set; }
-      public StateEvenArgs(LocalEvent _event)
+      public StateMachineEvenArgs(LocalEvent _event)
       {
         Event = _event;
       }
     }
-    private class ExceptionEventArgs : StateEvenArgs
+    private class StateMachineExceptionEventArgs : StateMachineEvenArgs
     {
       internal Exception Exception { get; private set; }
-      public ExceptionEventArgs(Exception _exception)
+      public StateMachineExceptionEventArgs(Exception _exception)
         : base(LocalEvent.Exception)
       {
         Exception = _exception;
       }
     }
-    private void StateMachine(StateEvenArgs _event)
+    private void StateMachine(StateMachineEvenArgs _event)
     {
       switch (State)
       {
@@ -102,30 +101,28 @@ namespace CAS.SmartFactory.Deployment
           switch (_event.Event)
           {
             case LocalEvent.Previous:
-              StateError();
+              State = CurrentStae.ApplicationSetupDataDialog;
               break;
             case LocalEvent.Next:
-              State = CurrentStae.ApplicationSetupDataDialog;
+              StateError();
               break;
             case LocalEvent.Cancel:
               ExitlInstallation();
               break;
             case LocalEvent.Exception:
-              Exception _eea = ((ExceptionEventArgs)_event).Exception;
+              Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
               if (MessageBox.Show(
-                String.Format(Resources.LastOperationFailed, _eea),
+                String.Format(Resources.LastOperationFailed, _eea.Message),
                 Resources.CaptionOperationFailure,
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-              {
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                this.Close();
-              }
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK)
+                CancelInstallation();
               break;
             case LocalEvent.EnterState:
-              m_PreviousButton.Visible = false;
+              m_PreviousButton.Visible = true;
               m_NextButton.Enabled = false;
               m_CancelButton.Enabled = true;
               m_CancelButton.Text = Resources.CancelButtonTextEXIT;
+              m_PropertyGrid.SelectedObject = m_ApplicationState;
               break;
             default:
               break;
@@ -139,10 +136,7 @@ namespace CAS.SmartFactory.Deployment
             case LocalEvent.Previous:
               break;
             case LocalEvent.Next:
-              if (Manual)
-                State = CurrentStae.ManualSelection;
-              else
-                State = CurrentStae.InstalationDataConfirmation;
+              State = CurrentStae.InstalationDataConfirmation;
               break;
             case LocalEvent.Cancel:
               CancelInstallation();
@@ -167,7 +161,10 @@ namespace CAS.SmartFactory.Deployment
               State = CurrentStae.ApplicationSetupDataDialog;
               break;
             case LocalEvent.Next:
-              State = CurrentStae.ApplicationInstalation;
+              if (Manual)
+                State = CurrentStae.ManualSelection;
+              else
+                State = CurrentStae.ApplicationInstalation;
               break;
             case LocalEvent.Cancel:
               CancelInstallation();
@@ -175,11 +172,15 @@ namespace CAS.SmartFactory.Deployment
             case LocalEvent.Exception:
               break;
             case LocalEvent.EnterState:
+              m_ApplicationState = new ApplicationState();
               m_PreviousButton.Visible = true;
               m_NextButton.Enabled = false;
               m_CancelButton.Visible = true;
               if (!CheckPrerequisites())
+              {
+                m_ApplicationState = null;
                 MessageBox.Show(Resources.CheckIinProcessFfailed, Resources.CheckIinProcessFfailedCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+              }
               else
                 m_NextButton.Enabled = true;
               break;
@@ -251,13 +252,19 @@ namespace CAS.SmartFactory.Deployment
           break;
       }
     }
+    private ApplicationState m_ApplicationState;
     private bool CheckPrerequisites()
     {
       try
       {
-        m_InstalationDataConfirmationListBox.Items.Add(Resources.ValidationProcessStarting);
-        this.Refresh();
-        FarmHelpers.GetUri(m_ApplicationURLTextBox.Text);
+        LogValidationMessage(Resources.ValidationProcessStarting);
+        //TODO add validation to:
+        m_ApplicationState.GetUri(m_ApplicationURLTextBox.Text);
+        m_ApplicationState.GetSiteCollectionURL(m_SiteUrlTextBox.Text);
+        m_ApplicationState.GetOwnerLogin(m_OwnerLoginTextBox.Text);
+        m_ApplicationState.GetOwnerEmail(m_OwnerEmailTextBox.Text);
+        m_ApplicationState.FarmFetureId = new Guid(Settings.Default.FarmFeatureGuid);
+        m_ApplicationState.SiteCollectionFetureId = new Guid(Settings.Default.SiteCollectionFeatureGuid);
         FarmHelpers.GetFarm();
         string _msg = string.Empty;
         if (FarmHelpers.Farm != null)
@@ -267,18 +274,23 @@ namespace CAS.SmartFactory.Deployment
         }
         else
           throw new ApplicationException(Resources.GettingAccess2LocalFarm);
-        FarmHelpers.GetWebApplication(FarmHelpers.WebApplicationURL);
+        FarmHelpers.GetWebApplication(m_ApplicationState.WebApplicationURL);
         if (FarmHelpers.WebApplication != null)
         {
-          _msg = String.Format(Resources.ApplicationFound, FarmHelpers.WebApplicationURL, FarmHelpers.WebApplication.Name, FarmHelpers.WebApplication.DisplayName);
+          _msg = String.Format(Resources.ApplicationFound, m_ApplicationState.WebApplicationURL, FarmHelpers.WebApplication.Name, FarmHelpers.WebApplication.DisplayName);
           LogValidationMessage(_msg);
         }
         else
-          throw new ApplicationException(String.Format(Resources.GettingAccess2ApplicationFailed, FarmHelpers.WebApplicationURL));
-        if (FarmHelpers.WebApplication.Sites.Names.Contains(m_SiteUrlTextBox.Text))
+          throw new ApplicationException(String.Format(Resources.GettingAccess2ApplicationFailed, m_ApplicationState.WebApplicationURL));
+        if (FarmHelpers.WebApplication.Sites.Names.Contains(m_ApplicationState.SiteCollectionURL))
         {
-          string _ms = String.Format(Resources.SiteCollectionExist, m_SiteUrlTextBox.Text);
-          SiteCollectionHelper.DeleteIfExist = MessageBox.Show(_ms, "Site creation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+          SiteCollectionHelper.SiteCollection = FarmHelpers.WebApplication.Sites[m_ApplicationState.SiteCollectionURL];
+          string _ms = String.Format(Resources.SiteCollectionExist, m_ApplicationState.SiteCollectionURL);
+          SiteCollectionHelper.DeleteIfExist = MessageBox.Show(
+            _ms,
+            Resources.SiteCreation,
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question) != DialogResult.Yes;
           if (SiteCollectionHelper.DeleteIfExist)
             LogValidationMessage(Resources.SiteExistAndDelete);
           else
@@ -321,6 +333,35 @@ namespace CAS.SmartFactory.Deployment
     {
       Debug.Assert(false, "State error");
     }
+    private static FileInfo GetFile(string _fileName)
+    {
+      FileInfo _fi = new FileInfo(_fileName);
+      if (!_fi.Exists)
+        throw new FileNotFoundException(_fi.ToString());
+      return _fi;
+    }
+    private static bool ValidEmailAddress(string _emailAddress, out string _errorMessage)
+    {
+      // Confirm that the e-mail address string is not empty.
+      if (_emailAddress.Length == 0)
+      {
+        _errorMessage = "e-mail address is required.";
+        return false;
+      }
+      // Confirm that there is an "@" and a "." in the e-mail address, and in the correct order.
+      if (_emailAddress.IndexOf("@") > -1)
+      {
+        if (_emailAddress.IndexOf(".", _emailAddress.IndexOf("@")) > _emailAddress.IndexOf("@"))
+        {
+          _errorMessage = "";
+          return true;
+        }
+      }
+      _errorMessage = "e-mail address must be valid e-mail address format.\n" +
+         "For example 'someone@example.com' ";
+      return false;
+    }
+
     #region base override
     /// <summary>
     /// Raises the <see cref="E:System.Windows.Forms.Form.Load"/> event.
@@ -353,6 +394,8 @@ namespace CAS.SmartFactory.Deployment
     /// <param name="e">A <see cref="T:System.ComponentModel.CancelEventArgs"/> that contains the event data.</param>
     protected override void OnClosing(CancelEventArgs e)
     {
+      if (m_ApplicationState != null)
+        Settings.Default.SiteCollectionURL = m_ApplicationState.SiteCollectionURL;
       base.OnClosing(e);
     }
     #endregion
@@ -362,11 +405,8 @@ namespace CAS.SmartFactory.Deployment
     {
       Uri _auri = null;
       string _errorMessage = String.Empty;
-      if (FarmHelpers.ValidateUrl(m_ApplicationURLTextBox.Text, out _auri, out _errorMessage))
-      {
+      if (ApplicationState.ValidateUrl(m_ApplicationURLTextBox.Text, out _auri, out _errorMessage))
         m_WebApplicationURLErrorProvider.Clear();
-        FarmHelpers.WebApplicationURL = _auri;
-      }
       else
         m_WebApplicationURLErrorProvider.SetError(m_ApplicationURLTextBox, _errorMessage);
     }
@@ -386,44 +426,93 @@ namespace CAS.SmartFactory.Deployment
       // Set the ErrorProvider error with the text to display. 
       this.m_OwnerEmailErrorProvider.SetError(m_OwnerEmailTextBox, _errorMsg);
     }
-    private bool ValidEmailAddress(string _emailAddress, out string _errorMessage)
-    {
-      // Confirm that the e-mail address string is not empty.
-      if (_emailAddress.Length == 0)
-      {
-        _errorMessage = "e-mail address is required.";
-        return false;
-      }
-      // Confirm that there is an "@" and a "." in the e-mail address, and in the correct order.
-      if (_emailAddress.IndexOf("@") > -1)
-      {
-        if (_emailAddress.IndexOf(".", _emailAddress.IndexOf("@")) > _emailAddress.IndexOf("@"))
-        {
-          _errorMessage = "";
-          return true;
-        }
-      }
-      _errorMessage = "e-mail address must be valid e-mail address format.\n" +
-         "For example 'someone@example.com' ";
-      return false;
-    }
     private void m_OwnerEmailTextBox_Validated(object sender, EventArgs e)
     {
     }
     private void m_CancelButton_Click(object sender, EventArgs e)
     {
-      StateMachine(new StateEvenArgs(LocalEvent.Cancel));
+      StateMachine(new StateMachineEvenArgs(LocalEvent.Cancel));
     }
     private void m_PreviousButton_Click(object sender, EventArgs e)
     {
-      StateMachine(new StateEvenArgs(LocalEvent.Previous));
+      StateMachine(new StateMachineEvenArgs(LocalEvent.Previous));
     }
     private void m_NextButton_Click(object sender, EventArgs e)
     {
-      StateMachine(new StateEvenArgs(LocalEvent.Next));
+      StateMachine(new StateMachineEvenArgs(LocalEvent.Next));
+    }
+    private void m_CreateWebCollectionButton_Click(object sender, EventArgs e)
+    {
+      try
+      {
+        SiteCollectionHelper.CreateSPSite(
+          FarmHelpers.WebApplication,
+          m_ApplicationState.SiteCollectionURL,
+          m_ApplicationState.OwnerLogin,
+          m_ApplicationState.OwnerEmail);
+        m_ApplicationState.SiteCollectionCreated = true;
+      }
+      catch (Exception ex)
+      {
+        this.StateMachine(new StateMachineExceptionEventArgs(ex));
+      }
+    }
+    private void m_DeployActiwateWebsiteButton_Click(object sender, EventArgs e)
+    {
+      try
+      {
+        FileInfo _fi = GetFile(Settings.Default.SiteCollectionSolutionFileName);
+        SiteCollectionHelper.DeploySolution(SiteCollectionHelper.SiteCollection, _fi);
+        SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.SiteCollectionFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Site);
+      }
+      catch (Exception ex)
+      {
+        this.StateMachine(new StateMachineExceptionEventArgs(ex));
+      }
+    }
+    private void m_DeployDaschboardsButton_Click(object sender, EventArgs e)
+    {
+      try
+      {
+        FileInfo _fi = GetFile(Settings.Default.FarmSolutionFileName);
+        if (SiteCollectionHelper.SiteCollection == null)
+          throw new ApplicationException(Resources.SiteCollectionNotExist);
+        Guid _solutionID;
+        FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, out _solutionID);
+        m_ApplicationState.SolutionID = _solutionID;
+        SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Site);
+      }
+      catch (Exception ex)
+      {
+        this.StateMachine(new StateMachineExceptionEventArgs(ex));
+      }
+    }
+    private void m_DeleteWebsite_Click(object sender, EventArgs e)
+    {
+      try
+      {
+        SiteCollectionHelper.DeleteSiteCollection(FarmHelpers.WebApplication, m_ApplicationState.SiteCollectionURL);
+      }
+      catch (Exception ex)
+      {
+        this.StateMachine(new StateMachineExceptionEventArgs(ex));
+      }
+    }
+    private void m_RetrackDaschboard_Click(object sender, EventArgs e)
+    {
+      try
+      {
+        FarmHelpers.DeactivateFeature(m_ApplicationState.FarmFetureId, SiteCollectionHelper.SiteCollection);
+        FarmHelpers.RetrackSolution(m_ApplicationState.SolutionID);
+      }
+      catch (Exception ex)
+      {
+        this.StateMachine(new StateMachineExceptionEventArgs(ex));
+      }
     }
     #endregion
 
     #endregion
+
   }
 }

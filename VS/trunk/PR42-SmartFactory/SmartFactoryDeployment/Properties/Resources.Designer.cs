@@ -106,6 +106,15 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot find the solution on the local farm server..
+        /// </summary>
+        internal static string CannotFindTheSolution {
+            get {
+                return ResourceManager.GetString("CannotFindTheSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot get access to the local SharePoint server..
         /// </summary>
         internal static string CannotGetAccessToLocalServer {
@@ -151,11 +160,56 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DeploySolution failed for the site: {0}, file: {1}, feature: {2} with the exception: {3}..
+        ///   Looks up a localized string similar to Deactivation of the feature failed with the exception: {0}.
+        /// </summary>
+        internal static string DeactivateFeatureFailed {
+            get {
+                return ResourceManager.GetString("DeactivateFeatureFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeploySolution failed for the file: {0} with the exception: {1}. .
+        /// </summary>
+        internal static string DeployFarmSolutionFailed {
+            get {
+                return ResourceManager.GetString("DeployFarmSolutionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeploySolution failed for the site: {0}, file: {1} with the exception: {2}..
         /// </summary>
         internal static string DeploySolutionFailed {
             get {
                 return ResourceManager.GetString("DeploySolutionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timeout encountered during solution deployment..
+        /// </summary>
+        internal static string DeplymentTimeout {
+            get {
+                return ResourceManager.GetString("DeplymentTimeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeploySolution failed for the site: {0}, file: {1}, feature: {2} with the exception: {3}..
+        /// </summary>
+        internal static string FarmSolutionFailed {
+            get {
+                return ResourceManager.GetString("FarmSolutionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activation of the feature: {0} at site: {1} with the scope {2} failed with the exception {3}..
+        /// </summary>
+        internal static string FeatureActivationFailed {
+            get {
+                return ResourceManager.GetString("FeatureActivationFailed", resourceCulture);
             }
         }
         
@@ -224,7 +278,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last operation failed with exception {0}..
+        ///   Looks up a localized string similar to Last operation failed with exception {0}. Press Ok to continue or Cancel to aboard..
         /// </summary>
         internal static string LastOperationFailed {
             get {
@@ -233,11 +287,47 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The site collection {0} exist. Press Yes to use this site, No to delete it and create new with the same name, Cancel to cancel the installation..
+        ///   Looks up a localized string similar to &lt;null reference&gt;.
+        /// </summary>
+        internal static string NullReference {
+            get {
+                return ResourceManager.GetString("NullReference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Retrack of farm solution failed : Name = {0}, file: {1}, feature: {2} with the exception: {3}..
+        /// </summary>
+        internal static string RetracDeploySolutionFailed {
+            get {
+                return ResourceManager.GetString("RetracDeploySolutionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The site collection {0} exist. Press Yes to use this site, No to delete it and create new with the same name..
         /// </summary>
         internal static string SiteCollectionExist {
             get {
                 return ResourceManager.GetString("SiteCollectionExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site Collection not yet created.
+        /// </summary>
+        internal static string SiteCollectionNotExist {
+            get {
+                return ResourceManager.GetString("SiteCollectionNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site creation.
+        /// </summary>
+        internal static string SiteCreation {
+            get {
+                return ResourceManager.GetString("SiteCreation", resourceCulture);
             }
         }
         

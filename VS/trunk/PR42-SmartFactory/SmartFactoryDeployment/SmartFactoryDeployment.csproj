@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationState.cs" />
     <Compile Include="FarmHelpers.cs" />
     <Compile Include="Installer.cs">
       <SubType>Component</SubType>
