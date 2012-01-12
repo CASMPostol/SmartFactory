@@ -60,10 +60,10 @@ namespace CAS.SmartFactory.Deployment
         do
         {
           Thread.Sleep(200);
-          if (_round++ > 25)
+          if (_round++ > 200)
             throw new ApplicationException(Resources.DeplymentTimeout);
         } while (! _sol.Deployed );
-        Debug.Assert(_sol.JobStatus == SPRunningJobStatus.Succeeded, "Job status error");
+        //Debug.Assert(_sol.JobStatus == SPRunningJobStatus.Succeeded, "Job status error");
       }
       catch (Exception ex)
       {

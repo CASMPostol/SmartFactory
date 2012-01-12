@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Deployment
     public SetUpData()
     {
       InitializeComponent();
-      State = CurrentStae.ApplicationSetupDataDialog;
+      State = ProcessState.ApplicationSetupDataDialog;
       Manual = true;
       m_ApplicationURLTextBox.Text = Properties.Settings.Default.SiteCollectionURL;
     }
@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.Deployment
     /// <summary>
     /// Current state of the installation.
     /// </summary>
-    private enum CurrentStae
+    private enum ProcessState
     {
       ApplicationSetupDataDialog,
       ManualSelection,
@@ -46,31 +46,8 @@ namespace CAS.SmartFactory.Deployment
       ApplicationInstalation,
       Finisched
     }
-    /// <summary>
-    /// Gets or sets the state of the installation.
-    /// </summary>
-    /// <value>
-    /// The state of the installation.
-    /// </value>
-    private CurrentStae State
-    {
-      get
-      {
-        return m_State;
-      }
-      set
-      {
-        m_State = value;
-        m_ApplicationSetupDataDialogPanel.Visible = value == CurrentStae.ApplicationSetupDataDialog;
-        m_ManualSelectionPanel.Visible = value == CurrentStae.ManualSelection;
-        m_InstalationDataConfirmationPanel.Visible = value == CurrentStae.InstalationDataConfirmation;
-        m_ApplicationInstalationPanel.Visible = value == CurrentStae.ApplicationInstalation;
-        m_FinischedPanel.Visible = value == CurrentStae.Finisched;
-        this.Refresh();
-        StateMachine(new StateMachineEvenArgs(LocalEvent.EnterState));
-      }
-    }
-    CurrentStae m_State;
+    private ProcessState m_State;
+    private ApplicationState m_ApplicationState;
     private enum LocalEvent
     {
       Previous, Next, Cancel, Exception, EnterState
@@ -92,16 +69,40 @@ namespace CAS.SmartFactory.Deployment
         Exception = _exception;
       }
     }
+    /// <summary>
+    /// Gets or sets the state of the installation.
+    /// </summary>
+    /// <value>
+    /// The state of the installation.
+    /// </value>
+    private ProcessState State
+    {
+      get
+      {
+        return m_State;
+      }
+      set
+      {
+        m_State = value;
+        m_ApplicationSetupDataDialogPanel.Visible = value == ProcessState.ApplicationSetupDataDialog;
+        m_ManualSelectionPanel.Visible = value == ProcessState.ManualSelection;
+        m_InstalationDataConfirmationPanel.Visible = value == ProcessState.InstalationDataConfirmation;
+        m_ApplicationInstalationPanel.Visible = value == ProcessState.ApplicationInstalation;
+        m_FinischedPanel.Visible = value == ProcessState.Finisched;
+        this.Refresh();
+        StateMachine(new StateMachineEvenArgs(LocalEvent.EnterState));
+      }
+    }
     private void StateMachine(StateMachineEvenArgs _event)
     {
       switch (State)
       {
-        case CurrentStae.ManualSelection:
+        case ProcessState.ManualSelection:
           #region ManualSelection
           switch (_event.Event)
           {
             case LocalEvent.Previous:
-              State = CurrentStae.ApplicationSetupDataDialog;
+              State = ProcessState.ApplicationSetupDataDialog;
               break;
             case LocalEvent.Next:
               StateError();
@@ -129,14 +130,14 @@ namespace CAS.SmartFactory.Deployment
           }
           break;
           #endregion
-        case CurrentStae.ApplicationSetupDataDialog:
+        case ProcessState.ApplicationSetupDataDialog:
           #region ApplicationSetupDataDialog
           switch (_event.Event)
           {
             case LocalEvent.Previous:
               break;
             case LocalEvent.Next:
-              State = CurrentStae.InstalationDataConfirmation;
+              State = ProcessState.InstalationDataConfirmation;
               break;
             case LocalEvent.Cancel:
               CancelInstallation();
@@ -153,18 +154,18 @@ namespace CAS.SmartFactory.Deployment
           }
           break;
           #endregion
-        case CurrentStae.InstalationDataConfirmation:
+        case ProcessState.InstalationDataConfirmation:
           #region InstalationDataConfirmation
           switch (_event.Event)
           {
             case LocalEvent.Previous:
-              State = CurrentStae.ApplicationSetupDataDialog;
+              State = ProcessState.ApplicationSetupDataDialog;
               break;
             case LocalEvent.Next:
               if (Manual)
-                State = CurrentStae.ManualSelection;
+                State = ProcessState.ManualSelection;
               else
-                State = CurrentStae.ApplicationInstalation;
+                State = ProcessState.ApplicationInstalation;
               break;
             case LocalEvent.Cancel:
               CancelInstallation();
@@ -189,7 +190,7 @@ namespace CAS.SmartFactory.Deployment
           }
           break;
           #endregion
-        case CurrentStae.ApplicationInstalation:
+        case ProcessState.ApplicationInstalation:
           #region ApplicationInstalation
           switch (_event.Event)
           {
@@ -225,7 +226,7 @@ namespace CAS.SmartFactory.Deployment
           }
           break;
           #endregion
-        case CurrentStae.Finisched:
+        case ProcessState.Finisched:
           #region Finisched
           switch (_event.Event)
           {
@@ -252,7 +253,6 @@ namespace CAS.SmartFactory.Deployment
           break;
       }
     }
-    private ApplicationState m_ApplicationState;
     private bool CheckPrerequisites()
     {
       try
@@ -472,6 +472,7 @@ namespace CAS.SmartFactory.Deployment
     }
     private void m_DeployDaschboardsButton_Click(object sender, EventArgs e)
     {
+      this.UseWaitCursor = true;
       try
       {
         FileInfo _fi = GetFile(Settings.Default.FarmSolutionFileName);
@@ -480,12 +481,13 @@ namespace CAS.SmartFactory.Deployment
         Guid _solutionID;
         FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, out _solutionID);
         m_ApplicationState.SolutionID = _solutionID;
-        SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Site);
+        SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Farm);
       }
       catch (Exception ex)
       {
         this.StateMachine(new StateMachineExceptionEventArgs(ex));
       }
+      finally { this.UseWaitCursor = false; }
     }
     private void m_DeleteWebsite_Click(object sender, EventArgs e)
     {
