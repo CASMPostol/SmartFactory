@@ -214,8 +214,10 @@
     <Content Include="Images\ShepherdDashboards\Shepherd_50x50.png" />
     <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
     <Content Include="Images\ShepherdImages\DefaultBanner.jpg" />
+    <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
     <Content Include="DefaultPage\DefaultTemplate.aspx" />
+    <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDefault.css" />
     <Content Include="ListsWebparts\AAE\Elements.xml" />
     <Content Include="ListsWebparts\LoadDescription\Elements.xml">
       <SubType>Designer</SubType>
