@@ -11,11 +11,14 @@
     <Setting Name="SiteCollectionSolutionFileName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Solutions\ShepherdWebsite.wsp</Value>
     </Setting>
-    <Setting Name="FarmSolutionFileName" Type="System.String" Scope="User">
+    <Setting Name="FarmSolutionFileName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Solutions\ShepherdDashboards.wsp</Value>
     </Setting>
-    <Setting Name="FarmFeatureGuid" Type="System.String" Scope="User">
+    <Setting Name="FarmFeatureGuid" Type="System.String" Scope="Application">
       <Value Profile="(Default)">{3d8f8cb5-f8bb-496a-b561-fb3d36e8d84d}</Value>
+    </Setting>
+    <Setting Name="ManualMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

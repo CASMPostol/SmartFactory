@@ -53,27 +53,33 @@ namespace CAS.SmartFactory.Deployment.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Solutions\\ShepherdDashboards.wsp")]
         public string FarmSolutionFileName {
             get {
                 return ((string)(this["FarmSolutionFileName"]));
             }
-            set {
-                this["FarmSolutionFileName"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("{3d8f8cb5-f8bb-496a-b561-fb3d36e8d84d}")]
         public string FarmFeatureGuid {
             get {
                 return ((string)(this["FarmFeatureGuid"]));
             }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ManualMode {
+            get {
+                return ((bool)(this["ManualMode"]));
+            }
             set {
-                this["FarmFeatureGuid"] = value;
+                this["ManualMode"] = value;
             }
         }
     }

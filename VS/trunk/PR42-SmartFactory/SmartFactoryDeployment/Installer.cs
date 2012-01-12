@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration.Install;
 using System.Linq;
+using CAS.SmartFactory.Deployment.Properties;
 
 
 namespace CAS.SmartFactory.Deployment
@@ -37,6 +38,13 @@ namespace CAS.SmartFactory.Deployment
     public override void Install(IDictionary stateSaver)
     {
       base.Install(stateSaver);
+      SetUpData _dialog = new SetUpData() { Manual = true };
+      if (_dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+        System.Windows.Forms.MessageBox.Show(
+          Resources.AreYouSure2Cancel, Resources.CancelInstallationCaption,
+          System.Windows.Forms.MessageBoxButtons.OKCancel,
+          System.Windows.Forms.MessageBoxIcon.Question);
+
     }
     /// <summary>
     /// Completes the install transaction.

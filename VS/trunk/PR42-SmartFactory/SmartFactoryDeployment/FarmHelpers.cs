@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.Deployment
     /// The farm.
     /// </value>
     internal static SPFarm Farm { get; set; }
-    internal static void DeploySolution(System.IO.FileInfo _fi, SPWebApplication _wa, out Guid _solutionId  )
+    internal static SPSolution DeploySolution(System.IO.FileInfo _fi, SPWebApplication _wa, out Guid _solutionId)
     {
       try
       {
@@ -63,6 +63,7 @@ namespace CAS.SmartFactory.Deployment
           if (_round++ > 200)
             throw new ApplicationException(Resources.DeplymentTimeout);
         } while (! _sol.Deployed );
+        return _sol;
         //Debug.Assert(_sol.JobStatus == SPRunningJobStatus.Succeeded, "Job status error");
       }
       catch (Exception ex)

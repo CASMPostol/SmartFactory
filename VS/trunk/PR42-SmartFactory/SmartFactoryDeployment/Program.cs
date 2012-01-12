@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.SharePoint.Administration;
-using Microsoft.SharePoint;
 using System.Security.Principal;
+using System.Windows.Forms;
 using CAS.SmartFactory.Deployment.Properties;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -22,13 +21,9 @@ namespace CAS.SmartFactory.Deployment
     [STAThread]
     static void Main()
     {
-      SetUpData _dialog = new SetUpData() { Manual = true };
-      if (_dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-        System.Windows.Forms.MessageBox.Show(
-          Resources.AreYouSure2Cancel, Resources.CancelInstallationCaption,
-          System.Windows.Forms.MessageBoxButtons.OKCancel,
-          System.Windows.Forms.MessageBoxIcon.Question);
-      //ShowDialog( new SetUp
+      Application.EnableVisualStyles();
+      Application.SetCompatibleTextRenderingDefault(false);
+      Application.Run(new SetUpData() );
       //LookupEnvironment();
     }
     private static void LookupEnvironment()
@@ -85,7 +80,6 @@ namespace CAS.SmartFactory.Deployment
         }
       }
     }
-
     private static void WriteSPWebInfo(SPWeb _wp)
     {
       Console.WriteLine(String.Format("SPWeb Name={0}, Language={1}, ParentWeb.Name={2}, PortalName={3}, PortalUrl={4}",

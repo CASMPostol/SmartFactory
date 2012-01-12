@@ -12,6 +12,7 @@ using CAS.SmartFactory.Deployment.Properties;
 using System.Diagnostics;
 using System.Threading;
 using System.IO;
+using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -28,7 +29,7 @@ namespace CAS.SmartFactory.Deployment
     {
       InitializeComponent();
       State = ProcessState.ApplicationSetupDataDialog;
-      Manual = true;
+      Manual = Properties.Settings.Default.ManualMode;
       m_ApplicationURLTextBox.Text = Properties.Settings.Default.SiteCollectionURL;
     }
     internal bool Manual { get; set; }
@@ -47,7 +48,7 @@ namespace CAS.SmartFactory.Deployment
       Finisched
     }
     private ProcessState m_State;
-    private ApplicationState m_ApplicationState;
+    private InstallationStateData m_ApplicationState;
     private enum LocalEvent
     {
       Previous, Next, Cancel, Exception, EnterState
@@ -84,11 +85,31 @@ namespace CAS.SmartFactory.Deployment
       set
       {
         m_State = value;
-        m_ApplicationSetupDataDialogPanel.Visible = value == ProcessState.ApplicationSetupDataDialog;
-        m_ManualSelectionPanel.Visible = value == ProcessState.ManualSelection;
-        m_InstalationDataConfirmationPanel.Visible = value == ProcessState.InstalationDataConfirmation;
-        m_ApplicationInstalationPanel.Visible = value == ProcessState.ApplicationInstalation;
-        m_FinischedPanel.Visible = value == ProcessState.Finisched;
+
+        foreach (TabPage _page in m_ContentTabControl.TabPages)
+          m_ContentTabControl.TabPages.Remove(_page);
+        switch (value)
+        {
+          case ProcessState.ApplicationSetupDataDialog:
+            m_ContentTabControl.TabPages.Add(m_ApplicationSetupDataDialogPanel);
+            break;
+          case ProcessState.ManualSelection:
+            m_ContentTabControl.TabPages.Add(m_ManualSelectionPanel);
+            break;
+          case ProcessState.InstalationDataConfirmation:
+            m_ContentTabControl.TabPages.Add(m_ValidationPanel);
+            break;
+          case ProcessState.ApplicationInstalation:
+            m_ContentTabControl.TabPages.Add(m_ApplicationInstalationPanel);
+            break;
+          case ProcessState.Finisched:
+            m_ContentTabControl.TabPages.Add(m_FinischedPanel);
+            break;
+          default:
+            break;
+        }
+        //this.AutoSize = true;
+        this.PerformLayout();
         this.Refresh();
         StateMachine(new StateMachineEvenArgs(LocalEvent.EnterState));
       }
@@ -123,7 +144,7 @@ namespace CAS.SmartFactory.Deployment
               m_NextButton.Enabled = false;
               m_CancelButton.Enabled = true;
               m_CancelButton.Text = Resources.CancelButtonTextEXIT;
-              m_PropertyGrid.SelectedObject = m_ApplicationState;
+              m_ValidationPropertyGrid.SelectedObject = m_ApplicationState;
               break;
             default:
               break;
@@ -173,7 +194,9 @@ namespace CAS.SmartFactory.Deployment
             case LocalEvent.Exception:
               break;
             case LocalEvent.EnterState:
-              m_ApplicationState = new ApplicationState();
+              m_ApplicationState = new InstallationStateData();
+              m_ValidationPropertyGrid.SelectedObject = m_ApplicationState;
+              m_ValidationPropertyGrid.Text = Resources.InstallationProperties;
               m_PreviousButton.Visible = true;
               m_NextButton.Enabled = false;
               m_CancelButton.Visible = true;
@@ -204,6 +227,12 @@ namespace CAS.SmartFactory.Deployment
               StateError();
               break;
             case LocalEvent.Exception:
+              Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
+              MessageBox.Show(
+                String.Format(Resources.InstalationAbortRollback, _eea.Message),
+                Resources.CaptionOperationFailure,
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+              CancelInstallation();
               break;
             case LocalEvent.EnterState:
               m_PreviousButton.Visible = false;
@@ -211,15 +240,9 @@ namespace CAS.SmartFactory.Deployment
               m_NextButton.Enabled = false;
               m_NextButton.Text = Resources.FinishButtonText;
               m_CancelButton.Visible = false;
-              m_InstallationProgresListBox.Items.Clear();
-              m_InstallationProgresListBox.BeginUpdate();
-              m_InstallationProgresListBox.Items.Add("Instalation started...");
-              m_InstallationProgresListBox.EndUpdate();
-              this.AutoSize = true;
-              this.PerformLayout();
-              this.Refresh();
-              Thread.Sleep(3000);
+              Install();
               m_NextButton.Enabled = true;
+              m_InstallationProgressBar.Value = m_InstallationProgressBar.Maximum;
               break;
             default:
               break;
@@ -265,6 +288,7 @@ namespace CAS.SmartFactory.Deployment
         m_ApplicationState.GetOwnerEmail(m_OwnerEmailTextBox.Text);
         m_ApplicationState.FarmFetureId = new Guid(Settings.Default.FarmFeatureGuid);
         m_ApplicationState.SiteCollectionFetureId = new Guid(Settings.Default.SiteCollectionFeatureGuid);
+        m_ValidationPropertyGrid.Refresh();
         FarmHelpers.GetFarm();
         string _msg = string.Empty;
         if (FarmHelpers.Farm != null)
@@ -297,19 +321,77 @@ namespace CAS.SmartFactory.Deployment
             LogValidationMessage(Resources.SiteExistAndReuse);
           this.Refresh();
         }
+        m_ValidationPropertyGrid.Refresh();
         return true;
       }
       catch (Exception ex)
       {
         string _msg = String.Format(Resources.ValidationProcessFailed, ex.Message);
-        m_InstalationDataConfirmationListBox.Items.Add(_msg);
+        m_ValidationListBox.Items.Add(_msg);
         this.Refresh();
         return false;
       }
     }
+    private void Install()
+    {
+      this.UseWaitCursor = true;
+      try
+      {
+        m_InstallationProgressBar.Minimum = 0;
+        m_InstallationProgressBar.Maximum = 15;
+        m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_InstallationProgresListBox_TextChanged);
+        m_InstallationProgresListBox.AddMessage("Creating SPSite ... ");
+        SiteCollectionHelper.CreateSPSite(
+          FarmHelpers.WebApplication,
+          m_ApplicationState.SiteCollectionURL,
+          m_ApplicationState.OwnerLogin,
+          m_ApplicationState.OwnerEmail);
+        m_ApplicationState.SiteCollectionCreated = true;
+        m_InstallationProgresListBox.AddMessage("Site collection created");
+        m_ApplicationState.SiteCollectionCreated = true;
+        FileInfo _fi = GetFile(Settings.Default.SiteCollectionSolutionFileName);
+        m_InstallationProgresListBox.AddMessage(String.Format("Deploying solution: {0}", _fi.Name));
+        SPUserSolution _solution = SiteCollectionHelper.DeploySolution(SiteCollectionHelper.SiteCollection, _fi);
+        m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed: {0}", _solution.Name));
+        m_ApplicationState.SiteCollectionSolutionsDeployed = true;
+        m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", m_ApplicationState.SiteCollectionFetureId, SiteCollectionHelper.SiteCollection.Url));
+        SPFeature _feature = SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.SiteCollectionFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Site);
+        m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _feature.Definition.DisplayName));
+        m_ApplicationState.SiteCollectionFeturesActivated = true;
+        _fi = GetFile(Settings.Default.FarmSolutionFileName);
+        m_InstallationProgresListBox.AddMessage(String.Format("Deploying Solution : {0}", _fi.Name));
+        if (SiteCollectionHelper.SiteCollection == null)
+          throw new ApplicationException(Resources.SiteCollectionNotExist);
+        Guid _solutionID;
+        m_InstallationProgresListBox.AddMessage("Waiting for completion .... ");
+        SPSolution _sol = FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, out _solutionID);
+        m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed: {0}", _sol.Name));
+        m_ApplicationState.FarmSolutionsDeployed = true;
+        m_ApplicationState.SolutionID = _solutionID;
+        m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", m_ApplicationState.FarmFetureId, SiteCollectionHelper.SiteCollection.Url));
+        _feature = SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Farm);
+        m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _feature.Definition.DisplayName));
+        m_ApplicationState.FarmFeaturesActivated = true;
+        m_InstallationProgresListBox.AddMessage("Installation successfully completed");
+      }
+      catch (Exception ex)
+      {
+        this.StateMachine(new StateMachineExceptionEventArgs(ex));
+      }
+      finally
+      {
+        this.UseWaitCursor = false;
+        m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_InstallationProgresListBox_TextChanged);
+      }
+    }
+    private void m_InstallationProgresListBox_TextChanged(object sender, EventArgs e)
+    {
+      m_InstallationProgressBar.Value++;
+      m_InstallationProgressBar.Refresh();
+    }
     private void LogValidationMessage(string _msg)
     {
-      m_InstalationDataConfirmationListBox.Items.Add(_msg);
+      m_ValidationListBox.Items.Add(_msg);
       this.Refresh();
     }
     private void ExitlInstallation()
@@ -405,7 +487,7 @@ namespace CAS.SmartFactory.Deployment
     {
       Uri _auri = null;
       string _errorMessage = String.Empty;
-      if (ApplicationState.ValidateUrl(m_ApplicationURLTextBox.Text, out _auri, out _errorMessage))
+      if (InstallationStateData.ValidateUrl(m_ApplicationURLTextBox.Text, out _auri, out _errorMessage))
         m_WebApplicationURLErrorProvider.Clear();
       else
         m_WebApplicationURLErrorProvider.SetError(m_ApplicationURLTextBox, _errorMessage);

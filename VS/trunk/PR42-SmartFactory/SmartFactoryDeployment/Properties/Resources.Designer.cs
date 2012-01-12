@@ -278,6 +278,24 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last operation failed with exception {0}. Press OK to aboard the installation and rollback..
+        /// </summary>
+        internal static string InstalationAbortRollback {
+            get {
+                return ResourceManager.GetString("InstalationAbortRollback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installation properties.
+        /// </summary>
+        internal static string InstallationProperties {
+            get {
+                return ResourceManager.GetString("InstallationProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last operation failed with exception {0}. Press Ok to continue or Cancel to aboard..
         /// </summary>
         internal static string LastOperationFailed {
