@@ -132,6 +132,9 @@
       <SharePointProjectItemId>{2614e454-2e2d-48e2-a02c-9f72cdb22425}</SharePointProjectItemId>
       <SubType>Designer</SubType>
     </None>
+    <None Include="DefaultPage\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{707849e5-4a82-4f9b-b735-62f93ff92970}</SharePointProjectItemId>
+    </None>
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Features\Dashboards\Dashboards.feature">
       <FeatureId>{cf7dc489-0019-4684-9bb2-fde5b31efe5f}</FeatureId>
@@ -149,14 +152,18 @@
     <None Include="ListsWebparts\AAE\AAE.webpart">
       <SubType>Designer</SubType>
     </None>
-    <None Include="ListsWebparts\LoadDescription\LoadDescription.webpart" />
+    <None Include="ListsWebparts\LoadDescription\LoadDescription.webpart">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ListsWebparts\LoadDescription\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{866180ae-41cd-4905-b998-e3d3f9c42a63}</SharePointProjectItemId>
     </None>
     <None Include="ListsWebparts\Shipping\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f8f4867b-cacd-4516-889c-617d3c7168de}</SharePointProjectItemId>
     </None>
-    <None Include="ListsWebparts\Shipping\Shipping.webpart" />
+    <None Include="ListsWebparts\Shipping\Shipping.webpart">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{212689f5-f797-4a55-8d76-26e83b3a6e30}</PackageId>
     </None>
@@ -194,6 +201,7 @@
     <Content Include="CurrentUserWebPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DefaultPage\Elements.xml" />
     <Content Include="Entities\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -201,9 +209,13 @@
       <DependentUpon>Dashboards.feature</DependentUpon>
     </Content>
     <Content Include="Images\ShepherdDashboards\FeatureLogo32x32.gif" />
+    <Content Include="Images\ShepherdDashboards\Shepherd_16x16.png" />
+    <Content Include="Images\ShepherdDashboards\Shepherd_32x32.png" />
     <Content Include="Images\ShepherdDashboards\Shepherd_50x50.png" />
     <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
+    <Content Include="Images\ShepherdImages\DefaultBanner.jpg" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
+    <Content Include="DefaultPage\DefaultTemplate.aspx" />
     <Content Include="ListsWebparts\AAE\Elements.xml" />
     <Content Include="ListsWebparts\LoadDescription\Elements.xml">
       <SubType>Designer</SubType>
