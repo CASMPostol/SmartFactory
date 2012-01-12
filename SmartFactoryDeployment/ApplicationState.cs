@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
 using CAS.SmartFactory.Deployment.Properties;
 
 namespace CAS.SmartFactory.Deployment
@@ -10,12 +8,12 @@ namespace CAS.SmartFactory.Deployment
   /// Application State
   /// </summary>
   [Serializable]
-  public class ApplicationState
+  public class InstallationStateData
   {
     /// <summary>
-    /// Initializes a new instance of the <see cref="ApplicationState"/> class.
+    /// Initializes a new instance of the <see cref="InstallationStateData"/> class.
     /// </summary>
-    public ApplicationState()
+    public InstallationStateData()
     {
       SiteCollectionCreated = false;
       SiteCollectionSolutionsDeployed = false;
@@ -69,6 +67,7 @@ namespace CAS.SmartFactory.Deployment
       //TODO Add validation
       OwnerEmail = _text;
     }
+    #region Browsable public properties
     /// <summary>
     /// Gets or sets the web application URL.
     /// </summary>
@@ -76,6 +75,9 @@ namespace CAS.SmartFactory.Deployment
     /// A String that contains the URL for the site collection, for example, Site_Name or sites/Site_Name. 
     /// It may either be server-relative or absolute for typical sites.
     /// </value>
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("User")]
     public Uri WebApplicationURL { get; set; }
     /// <summary>
     /// Gets or sets the web application URL.
@@ -84,6 +86,9 @@ namespace CAS.SmartFactory.Deployment
     /// A String that contains the URL for the site collection, for example, Site_Name or sites/Site_Name. 
     /// It may either be server-relative or absolute for typical sites.
     /// </value>
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("User")]
     public string SiteCollectionURL { get; set; }
     /// <summary>
     /// Gets or sets the owner login.
@@ -93,6 +98,9 @@ namespace CAS.SmartFactory.Deployment
     /// Directory Domain Services account creation mode, the ownerLogin parameter must contain a value even if 
     /// the value does not correspond to an actual user name.
     /// </value>
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("User")]
     public string OwnerLogin { get; set; }
     /// <summary>
     /// Gets or sets the owner email.
@@ -100,6 +108,9 @@ namespace CAS.SmartFactory.Deployment
     /// <value>
     /// A String that contains the e-mail address of the owner of the site collection.
     /// </value>
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("User")]
     public string OwnerEmail { get; set; }
     /// <summary>
     /// Gets or sets a value indicating whether site collection has been created.
@@ -107,6 +118,9 @@ namespace CAS.SmartFactory.Deployment
     /// <value>
     /// 	<c>true</c> if [site collection created]; otherwise, <c>false</c>.
     /// </value>
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("Installation")]
     public bool SiteCollectionCreated { get; set; }
     /// <summary>
     /// Gets or sets a value indicating whether site collection solutions have been deployed.
@@ -114,6 +128,9 @@ namespace CAS.SmartFactory.Deployment
     /// <value>
     /// 	<c>true</c> if site collection solutions deployed; otherwise, <c>false</c>.
     /// </value>
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("Installation")]
     public bool SiteCollectionSolutionsDeployed { get; set; }
     /// <summary>
     /// Gets or sets a value indicating whether site collection fetures have been activated.
@@ -121,6 +138,9 @@ namespace CAS.SmartFactory.Deployment
     /// <value>
     /// 	<c>true</c> if site collection fetures activated; otherwise, <c>false</c>.
     /// </value>
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("Installation")]
     public bool SiteCollectionFeturesActivated { get; set; }
     /// <summary>
     /// Gets or sets a value indicating whether farm solutions have been deployed.
@@ -128,6 +148,9 @@ namespace CAS.SmartFactory.Deployment
     /// <value>
     /// 	<c>true</c> if farm solutions deployed; otherwise, <c>false</c>.
     /// </value>
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("Installation")]
     public bool FarmSolutionsDeployed { get; set; }
     /// <summary>
     /// Gets or sets a value indicating whether farm features have been activated.
@@ -135,6 +158,9 @@ namespace CAS.SmartFactory.Deployment
     /// <value>
     /// 	<c>true</c> if farm features activated; otherwise, <c>false</c>.
     /// </value>
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("Installation")]
     public bool FarmFeaturesActivated { get; set; }
     /// <summary>
     /// Gets or sets the name of the site collection feture.
@@ -142,15 +168,20 @@ namespace CAS.SmartFactory.Deployment
     /// <value>
     /// The name of the site collection feture.
     /// </value>
-    public Guid SiteCollectionFetureId {get; set; }
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("Solutions")]
+    public Guid SiteCollectionFetureId { get; set; }
     /// <summary>
     /// Gets or sets the name of the farm collection feture.
     /// </summary>
     /// <value>
     /// The name of the farm collection feture.
     /// </value>
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("Solutions")]
     public Guid FarmFetureId { get; set; }
-
     /// <summary>
     /// Gets or sets the solution ID.
     /// </summary>
@@ -158,6 +189,10 @@ namespace CAS.SmartFactory.Deployment
     /// The solution ID.
     /// </value>
     /// <remarks>Use the Id property to return the GUID for the solution.</remarks>
+    [Browsable(true)]
+    [ReadOnly(true)]
+    [Category("Installation")]
     public Guid SolutionID { get; set; }
+    #endregion
   }
 }

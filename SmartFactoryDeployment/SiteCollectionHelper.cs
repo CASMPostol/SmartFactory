@@ -34,13 +34,13 @@ namespace CAS.SmartFactory.Deployment
         throw new ApplicationException(String.Format(Resources.CreateSiteCollectionFailed, ex.Message));
       }
     }
-    internal static void DeploySolution(SPSite _site, FileInfo _featuteFile)
+    internal static SPUserSolution DeploySolution(SPSite _site, FileInfo _featuteFile)
     {
       try
       {
         SPDocumentLibrary solutionGallery = (SPDocumentLibrary)_site.GetCatalog(SPListTemplateType.SolutionCatalog);
         SPFile file = solutionGallery.RootFolder.Files.Add(_featuteFile.Name, _featuteFile.OpenRead(), true);
-        SPUserSolution solution = _site.Solutions.Add(file.Item.ID);
+        return _site.Solutions.Add(file.Item.ID);
       }
       catch (Exception ex)
       {
@@ -52,11 +52,11 @@ namespace CAS.SmartFactory.Deployment
         throw new ApplicationException(_msg);
       }
     }
-    internal static void ActivateFeature(SPSite _site, Guid _feature, SPFeatureDefinitionScope _scope)
+    internal static SPFeature ActivateFeature(SPSite _site, Guid _feature, SPFeatureDefinitionScope _scope)
     {
       try
       {
-        _site.Features.Add(_feature, false, _scope);
+        return _site.Features.Add(_feature, false, _scope);
       }
       catch (Exception ex)
       {

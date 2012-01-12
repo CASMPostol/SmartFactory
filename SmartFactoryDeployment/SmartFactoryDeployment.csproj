@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationState.cs" />
+    <Compile Include="Extenshions.cs" />
     <Compile Include="FarmHelpers.cs" />
     <Compile Include="Installer.cs">
       <SubType>Component</SubType>

@@ -223,4 +223,10 @@ For example 'http://computer.domain:Port'</value>
   <data name="FeatureActivationFailed" xml:space="preserve">
     <value>Activation of the feature: {0} at site: {1} with the scope {2} failed with the exception {3}.</value>
   </data>
+  <data name="InstallationProperties" xml:space="preserve">
+    <value>Installation properties</value>
+  </data>
+  <data name="InstalationAbortRollback" xml:space="preserve">
+    <value>Last operation failed with exception {0}. Press OK to aboard the installation and rollback.</value>
+  </data>
 </root>
