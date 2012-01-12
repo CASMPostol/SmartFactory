@@ -50,8 +50,8 @@
       this.m_InstalationDataConfirmationListBox = new System.Windows.Forms.ListBox();
       this.m_PreviousButton = new System.Windows.Forms.Button();
       this.m_ManualSelectionPanel = new System.Windows.Forms.Panel();
+      this.m_PropertyGrid = new System.Windows.Forms.PropertyGrid();
       this.m_DeleteWebsite = new System.Windows.Forms.Button();
-      this.m_RetrackWebsite = new System.Windows.Forms.Button();
       this.m_RetrackDaschboard = new System.Windows.Forms.Button();
       this.m_CreateWebCollectionButton = new System.Windows.Forms.Button();
       this.m_DeployActiwateWebsiteButton = new System.Windows.Forms.Button();
@@ -209,7 +209,7 @@
       // m_NextButton
       // 
       this.m_NextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.m_NextButton.Location = new System.Drawing.Point(114, 120);
+      this.m_NextButton.Location = new System.Drawing.Point(114, 563);
       this.m_NextButton.MaximumSize = new System.Drawing.Size(0, 30);
       this.m_NextButton.MinimumSize = new System.Drawing.Size(100, 30);
       this.m_NextButton.Name = "m_NextButton";
@@ -223,7 +223,7 @@
       // 
       this.m_CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.m_CancelButton.CausesValidation = false;
-      this.m_CancelButton.Location = new System.Drawing.Point(222, 120);
+      this.m_CancelButton.Location = new System.Drawing.Point(222, 563);
       this.m_CancelButton.MaximumSize = new System.Drawing.Size(0, 30);
       this.m_CancelButton.MinimumSize = new System.Drawing.Size(100, 30);
       this.m_CancelButton.Name = "m_CancelButton";
@@ -253,7 +253,7 @@
       this.m_ApplicationSetupDataDialogPanel.AutoSize = true;
       this.m_ApplicationSetupDataDialogPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.m_ApplicationSetupDataDialogPanel.Controls.Add(m_ApplicationSetupTableLayoutPanel);
-      this.m_ApplicationSetupDataDialogPanel.Location = new System.Drawing.Point(3, 256);
+      this.m_ApplicationSetupDataDialogPanel.Location = new System.Drawing.Point(3, 382);
       this.m_ApplicationSetupDataDialogPanel.Name = "m_ApplicationSetupDataDialogPanel";
       this.m_ApplicationSetupDataDialogPanel.Size = new System.Drawing.Size(487, 101);
       this.m_ApplicationSetupDataDialogPanel.TabIndex = 4;
@@ -282,7 +282,7 @@
       // 
       this.m_PreviousButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.m_PreviousButton.CausesValidation = false;
-      this.m_PreviousButton.Location = new System.Drawing.Point(6, 120);
+      this.m_PreviousButton.Location = new System.Drawing.Point(6, 563);
       this.m_PreviousButton.MaximumSize = new System.Drawing.Size(0, 30);
       this.m_PreviousButton.MinimumSize = new System.Drawing.Size(100, 30);
       this.m_PreviousButton.Name = "m_PreviousButton";
@@ -294,17 +294,27 @@
       // 
       // m_ManualSelectionPanel
       // 
+      this.m_ManualSelectionPanel.Controls.Add(this.m_PropertyGrid);
       this.m_ManualSelectionPanel.Controls.Add(this.m_DeleteWebsite);
-      this.m_ManualSelectionPanel.Controls.Add(this.m_RetrackWebsite);
       this.m_ManualSelectionPanel.Controls.Add(this.m_RetrackDaschboard);
       this.m_ManualSelectionPanel.Controls.Add(this.m_CreateWebCollectionButton);
       this.m_ManualSelectionPanel.Controls.Add(this.m_DeployActiwateWebsiteButton);
       this.m_ManualSelectionPanel.Controls.Add(this.m_DeployDaschboardsButton);
       this.m_ManualSelectionPanel.Location = new System.Drawing.Point(3, 127);
       this.m_ManualSelectionPanel.Name = "m_ManualSelectionPanel";
-      this.m_ManualSelectionPanel.Size = new System.Drawing.Size(487, 123);
+      this.m_ManualSelectionPanel.Size = new System.Drawing.Size(487, 249);
       this.m_ManualSelectionPanel.TabIndex = 1;
       this.m_ManualSelectionPanel.Visible = false;
+      // 
+      // m_PropertyGrid
+      // 
+      this.m_PropertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.m_PropertyGrid.Location = new System.Drawing.Point(19, 118);
+      this.m_PropertyGrid.Name = "m_PropertyGrid";
+      this.m_PropertyGrid.Size = new System.Drawing.Size(442, 312);
+      this.m_PropertyGrid.TabIndex = 7;
       // 
       // m_DeleteWebsite
       // 
@@ -314,15 +324,7 @@
       this.m_DeleteWebsite.TabIndex = 4;
       this.m_DeleteWebsite.Text = "Delete Website";
       this.m_DeleteWebsite.UseVisualStyleBackColor = true;
-      // 
-      // m_RetrackWebsite
-      // 
-      this.m_RetrackWebsite.Location = new System.Drawing.Point(180, 50);
-      this.m_RetrackWebsite.Name = "m_RetrackWebsite";
-      this.m_RetrackWebsite.Size = new System.Drawing.Size(150, 23);
-      this.m_RetrackWebsite.TabIndex = 5;
-      this.m_RetrackWebsite.Text = "Retrack Website";
-      this.m_RetrackWebsite.UseVisualStyleBackColor = true;
+      this.m_DeleteWebsite.Click += new System.EventHandler(this.m_DeleteWebsite_Click);
       // 
       // m_RetrackDaschboard
       // 
@@ -332,6 +334,7 @@
       this.m_RetrackDaschboard.TabIndex = 3;
       this.m_RetrackDaschboard.Text = "Retrack Daschboard";
       this.m_RetrackDaschboard.UseVisualStyleBackColor = true;
+      this.m_RetrackDaschboard.Click += new System.EventHandler(this.m_RetrackDaschboard_Click);
       // 
       // m_CreateWebCollectionButton
       // 
@@ -341,6 +344,7 @@
       this.m_CreateWebCollectionButton.TabIndex = 1;
       this.m_CreateWebCollectionButton.Text = "Create Website";
       this.m_CreateWebCollectionButton.UseVisualStyleBackColor = true;
+      this.m_CreateWebCollectionButton.Click += new System.EventHandler(this.m_CreateWebCollectionButton_Click);
       // 
       // m_DeployActiwateWebsiteButton
       // 
@@ -350,6 +354,7 @@
       this.m_DeployActiwateWebsiteButton.TabIndex = 2;
       this.m_DeployActiwateWebsiteButton.Text = "Deploy Website";
       this.m_DeployActiwateWebsiteButton.UseVisualStyleBackColor = true;
+      this.m_DeployActiwateWebsiteButton.Click += new System.EventHandler(this.m_DeployActiwateWebsiteButton_Click);
       // 
       // m_DeployDaschboardsButton
       // 
@@ -359,6 +364,7 @@
       this.m_DeployDaschboardsButton.TabIndex = 0;
       this.m_DeployDaschboardsButton.Text = "Deploy Daschboard";
       this.m_DeployDaschboardsButton.UseVisualStyleBackColor = true;
+      this.m_DeployDaschboardsButton.Click += new System.EventHandler(this.m_DeployDaschboardsButton_Click);
       // 
       // flowLayoutPanel1
       // 
@@ -371,7 +377,7 @@
       this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
       this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-      this.flowLayoutPanel1.Size = new System.Drawing.Size(484, 442);
+      this.flowLayoutPanel1.Size = new System.Drawing.Size(552, 568);
       this.flowLayoutPanel1.TabIndex = 6;
       // 
       // m_ApplicationInstalationPanel
@@ -381,7 +387,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.m_ApplicationInstalationPanel.Controls.Add(this.m_InstallationInprogressLabel);
       this.m_ApplicationInstalationPanel.Controls.Add(this.m_InstallationProgresListBox);
-      this.m_ApplicationInstalationPanel.Location = new System.Drawing.Point(3, 363);
+      this.m_ApplicationInstalationPanel.Location = new System.Drawing.Point(3, 489);
       this.m_ApplicationInstalationPanel.Name = "m_ApplicationInstalationPanel";
       this.m_ApplicationInstalationPanel.Size = new System.Drawing.Size(484, 0);
       this.m_ApplicationInstalationPanel.TabIndex = 6;
@@ -410,7 +416,7 @@
       // m_FinischedPanel
       // 
       this.m_FinischedPanel.Controls.Add(this.m_FinishedLabel);
-      this.m_FinischedPanel.Location = new System.Drawing.Point(3, 369);
+      this.m_FinischedPanel.Location = new System.Drawing.Point(3, 495);
       this.m_FinischedPanel.Name = "m_FinischedPanel";
       this.m_FinischedPanel.Size = new System.Drawing.Size(487, 70);
       this.m_FinischedPanel.TabIndex = 7;
@@ -428,7 +434,7 @@
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-      this.ClientSize = new System.Drawing.Size(484, 162);
+      this.ClientSize = new System.Drawing.Size(552, 605);
       this.Controls.Add(this.flowLayoutPanel1);
       this.Controls.Add(this.m_CancelButton);
       this.Controls.Add(this.m_PreviousButton);
@@ -477,7 +483,6 @@
     private System.Windows.Forms.Button m_CreateWebCollectionButton;
     private System.Windows.Forms.Button m_DeployDaschboardsButton;
     private System.Windows.Forms.Button m_DeleteWebsite;
-    private System.Windows.Forms.Button m_RetrackWebsite;
     private System.Windows.Forms.Button m_RetrackDaschboard;
     private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     private System.Windows.Forms.Panel m_ApplicationInstalationPanel;
@@ -486,6 +491,7 @@
     private System.Windows.Forms.Label m_FinishedLabel;
     private System.Windows.Forms.ListBox m_InstallationProgresListBox;
     private System.Windows.Forms.ListBox m_InstalationDataConfirmationListBox;
+    private System.Windows.Forms.PropertyGrid m_PropertyGrid;
 
   }
 }

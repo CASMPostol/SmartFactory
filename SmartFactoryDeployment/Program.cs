@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.Deployment
     [STAThread]
     static void Main()
     {
-      SetUpData _dialog = new SetUpData() { Manual = false };
+      SetUpData _dialog = new SetUpData() { Manual = true };
       if (_dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
         System.Windows.Forms.MessageBox.Show(
           Resources.AreYouSure2Cancel, Resources.CancelInstallationCaption,

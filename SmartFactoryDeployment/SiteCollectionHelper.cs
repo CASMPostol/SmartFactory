@@ -14,26 +14,57 @@ namespace CAS.SmartFactory.Deployment
   internal static class SiteCollectionHelper
   {
     internal static bool DeleteIfExist { get; set; }
-    internal static SPSite Create(SPWebApplication _wa, string _uri, string _owner, string _email)
+    internal static SPSite SiteCollection { get; set; }
+    internal static void CreateSPSite(SPWebApplication _wapplication, string _uri, string _owner, string _email)
     {
       try
       {
-        if (_wa.Sites.Names.Contains(_uri))
-        {
-          string _ms = String.Format(Resources.SiteCollectionExist, _uri);
-          if (MessageBox.Show(_ms, "Site creation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            return _wa.Sites[_uri];
+        if (_wapplication.Sites.Names.Contains(_uri))
+          if (DeleteIfExist)
+            _wapplication.Sites.Delete(_uri);
           else
-            _wa.Sites.Delete(_uri);
-        }
-        return _wa.Sites.Add(_uri, _owner, _email);
+          {
+            SiteCollection = _wapplication.Sites[_uri];
+            return;
+          }
+        SiteCollection = _wapplication.Sites.Add(_uri, _owner, _email);
       }
       catch (Exception ex)
       {
         throw new ApplicationException(String.Format(Resources.CreateSiteCollectionFailed, ex.Message));
       }
     }
-    internal static void Delete(SPWebApplication _wa, string _uri, string _owner, string _email)
+    internal static void DeploySolution(SPSite _site, FileInfo _featuteFile)
+    {
+      try
+      {
+        SPDocumentLibrary solutionGallery = (SPDocumentLibrary)_site.GetCatalog(SPListTemplateType.SolutionCatalog);
+        SPFile file = solutionGallery.RootFolder.Files.Add(_featuteFile.Name, _featuteFile.OpenRead(), true);
+        SPUserSolution solution = _site.Solutions.Add(file.Item.ID);
+      }
+      catch (Exception ex)
+      {
+        string _msg = String.Format(
+          Resources.DeploySolutionFailed,
+          _site != null ? _site.Url : Resources.NullReference,
+          _featuteFile.Name,
+           ex.Message);
+        throw new ApplicationException(_msg);
+      }
+    }
+    internal static void ActivateFeature(SPSite _site, Guid _feature, SPFeatureDefinitionScope _scope)
+    {
+      try
+      {
+        _site.Features.Add(_feature, false, _scope);
+      }
+      catch (Exception ex)
+      {
+        string _msg = String.Format(Resources.FeatureActivationFailed, _feature, _site.Url, _scope, ex.Message);
+        throw new ApplicationException(_msg); ;
+      }
+    }
+    internal static void DeleteSiteCollection(SPWebApplication _wa, string _uri)
     {
       try
       {
@@ -44,23 +75,6 @@ namespace CAS.SmartFactory.Deployment
       catch (Exception ex)
       {
         throw new ApplicationException(String.Format(Resources.CreateSiteCollectionFailed, ex.Message));
-      }
-    }
-    internal static void DeploySolution(SPSite _site, FileInfo _featuteFile, string _featureName)
-    {
-      try
-      {
-        SPDocumentLibrary solutionGallery = (SPDocumentLibrary)_site.GetCatalog(SPListTemplateType.SolutionCatalog);
-        SPFile file = solutionGallery.RootFolder.Files.Add(_featuteFile.Name, _featuteFile.OpenRead(), true);
-        SPUserSolution solution = _site.Solutions.Add(file.Item.ID);
-        SPFeatureDefinition _fd = _site.FeatureDefinitions[_featureName];
-        Guid _fg = _fd.Id;
-        _site.Features.Add(_fd.Id, false, SPFeatureDefinitionScope.Site);
-      }
-      catch (Exception ex)
-      {
-        string _msg = String.Format(Resources.DeploySolutionFailed, _site.Url, _featuteFile.Name, _featureName, ex.Message);
-        throw new ApplicationException(_msg);
       }
     }
   }
