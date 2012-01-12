@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
   internal class ProjectElementManagement
   {
     internal const string WebPartPagesFolder = "WebPartPages";
-    internal const string CarrierDashboardURL = WebPartPagesFolder + "/CarrierDashboard.aspx";
+    internal const string CarrierDashboardURL = WebPartPagesFolder + "/VendorDashboard.aspx";
     internal const string IDCurrentUser = "CDCurrentUser";
     internal const string IDTimeSlots = "CDTimeSlots";
     internal const string IDCDShipping = "CDShipping";
