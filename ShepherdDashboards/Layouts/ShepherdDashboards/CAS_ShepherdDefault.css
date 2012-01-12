@@ -1,11 +1,13 @@
 ﻿.H1White
 {
+    margin-left:10px;
     font-size:18pt;
     font-family:Verdana;
     color:#FFFFFF;
 }
 .MainText
 {
+    margin-left:10px;
     font-size:10pt;
     font-family:Verdana;
     color:#000000;

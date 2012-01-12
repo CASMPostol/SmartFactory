@@ -12,7 +12,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderId="PlaceHolderMain" runat="server">
   <div id="Body" >
-    <table class="Table" cellspacing="0" cellpadding="0" border="0">
+    <table cellspacing="0" cellpadding="0" border="0">
         <tr>
             <td style="Width:940px;Height:201px;vertical-align:top" background="_layouts/images/ShepherdImages/DefaultBanner.jpg">
             </td>
@@ -23,9 +23,9 @@
             </td>
         </tr>
         <tr>
-            <td class="MainText">
-                <p>Shepherd is designed to simplify inbound/outbound management in the factory to gain maximum benefits. The main idea for inbound is to allow all vendors to book deliveries by themselves (like cinema tickets booking) and for outbound to allow the factory Export Department to book shipments by themselves. On the other hand, forwarders and security escort providers may see online information about planned shipments and provide truck and security escort information by themselves (all the information is available to execute shipments on time and in a safe way). For the global environment it is important that multilingual support is provided.</p>
-                <p>Main Advantages:</p>
+            <td>
+                <p class="MainText">Shepherd is designed to simplify inbound/outbound management in the factory to gain maximum benefits. The main idea for inbound is to allow all vendors to book deliveries by themselves (like cinema tickets booking) and for outbound to allow the factory Export Department to book shipments by themselves. On the other hand, forwarders and security escort providers may see online information about planned shipments and provide truck and security escort information by themselves (all the information is available to execute shipments on time and in a safe way). For the global environment it is important that multilingual support is provided.</p>
+                <p class="MainText">Main Advantages:</p>
                 <ul>
                 <li>Improvement of inbound/outbound controlling</li>
                 <li>Smoothing of inbound and outbound operations</li>
