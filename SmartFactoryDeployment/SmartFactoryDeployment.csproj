@@ -101,6 +101,11 @@
     <Content Include="Solutions\ShepherdWebsite.wsp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="ApplicationState.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Scripts\CreateCs.ps1" />
+    <None Include="Scripts\CreateXSD.ps1" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -372,6 +372,9 @@ namespace CAS.SmartFactory.Deployment
         _feature = SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Farm);
         m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _feature.Definition.DisplayName));
         m_ApplicationState.FarmFeaturesActivated = true;
+        FileInfo _file = new FileInfo(Settings.Default.InstallationStateFileName);
+        m_InstallationProgresListBox.AddMessage(String.Format("Saving installation details to the file {0}.", _file.FullName));
+        m_ApplicationState.Save(_file);
         m_InstallationProgresListBox.AddMessage("Installation successfully completed");
       }
       catch (Exception ex)

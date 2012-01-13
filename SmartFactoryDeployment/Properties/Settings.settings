@@ -20,5 +20,8 @@
     <Setting Name="ManualMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="InstallationStateFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SmartFactoryInstallationState.cas.xml</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
