@@ -12,6 +12,9 @@ namespace CAS.SmartFactory.Deployment
   public partial class InstallationStateData
   {
     #region ctor
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InstallationStateData"/> class.
+    /// </summary>
     public InstallationStateData()
     {
       SiteCollectionCreated = false;

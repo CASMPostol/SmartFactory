@@ -235,4 +235,7 @@ For example 'http://computer.domain:Port'</value>
   <data name="InstallButtonText" xml:space="preserve">
     <value>Install</value>
   </data>
+  <data name="ValidationProcessSuccessfullyFinished" xml:space="preserve">
+    <value>The validation process successfully finished - installation can be started.</value>
+  </data>
 </root>
