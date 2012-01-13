@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using CAS.SmartFactory.Deployment.Properties;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
+using CAS.Lib.RTLib.Processes;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -65,6 +66,7 @@ namespace CAS.SmartFactory.Deployment
         Exception = _exception;
       }
     }
+    internal TraceEvent TraceEvent = new TraceEvent("SharePoint.Deployment");
     /// <summary>
     /// Gets or sets the state of the installation.
     /// </summary>
@@ -277,7 +279,8 @@ namespace CAS.SmartFactory.Deployment
     {
       try
       {
-        LogValidationMessage(Resources.ValidationProcessStarting);
+        m_ValidationListBox.SelectedValueChanged += new EventHandler(this.m_ListBox_TextChanged);
+        m_ValidationListBox.AddMessage(Resources.ValidationProcessStarting);
         //TODO add validation to:
         m_ApplicationState.GetUri(m_ApplicationURLTextBox.Text);
         m_ApplicationState.GetSiteCollectionURL(m_SiteUrlTextBox.Text);
@@ -291,7 +294,7 @@ namespace CAS.SmartFactory.Deployment
         if (FarmHelpers.Farm != null)
         {
           _msg = String.Format(Resources.GotAccess2Farm, FarmHelpers.Farm.Name, FarmHelpers.Farm.DisplayName, FarmHelpers.Farm.Status);
-          LogValidationMessage(_msg);
+          m_ValidationListBox.AddMessage(_msg);
         }
         else
           throw new ApplicationException(Resources.GettingAccess2LocalFarm);
@@ -299,7 +302,7 @@ namespace CAS.SmartFactory.Deployment
         if (FarmHelpers.WebApplication != null)
         {
           _msg = String.Format(Resources.ApplicationFound, m_ApplicationState.WebApplicationURL, FarmHelpers.WebApplication.Name, FarmHelpers.WebApplication.DisplayName);
-          LogValidationMessage(_msg);
+          m_ValidationListBox.AddMessage(_msg);
         }
         else
           throw new ApplicationException(String.Format(Resources.GettingAccess2ApplicationFailed, m_ApplicationState.WebApplicationURL));
@@ -313,11 +316,12 @@ namespace CAS.SmartFactory.Deployment
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question) != DialogResult.Yes;
           if (SiteCollectionHelper.DeleteIfExist)
-            LogValidationMessage(Resources.SiteExistAndDelete);
+            m_ValidationListBox.AddMessage(Resources.SiteExistAndDelete);
           else
-            LogValidationMessage(Resources.SiteExistAndReuse);
+            m_ValidationListBox.AddMessage(Resources.SiteExistAndReuse);
           this.Refresh();
         }
+        m_ValidationListBox.AddMessage(Resources.ValidationProcessSuccessfullyFinished);
         m_ValidationPropertyGrid.Refresh();
         return true;
       }
@@ -327,6 +331,10 @@ namespace CAS.SmartFactory.Deployment
         m_ValidationListBox.AddMessage(_msg);
         return false;
       }
+      finally
+      {
+        m_ValidationListBox.SelectedValueChanged -= new EventHandler(this.m_ListBox_TextChanged);
+      }
     }
     private void Install()
     {
@@ -335,7 +343,7 @@ namespace CAS.SmartFactory.Deployment
       {
         m_InstallationProgressBar.Minimum = 0;
         m_InstallationProgressBar.Maximum = 15;
-        m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_InstallationProgresListBox_TextChanged);
+        m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_ListBox_TextChanged);
         m_InstallationProgresListBox.AddMessage("Creating SPSite ... ");
         SiteCollectionHelper.CreateSPSite(
           FarmHelpers.WebApplication,
@@ -387,7 +395,7 @@ namespace CAS.SmartFactory.Deployment
       finally
       {
         this.UseWaitCursor = false;
-        m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_InstallationProgresListBox_TextChanged);
+        m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_ListBox_TextChanged);
       }
     }
     private void SaveInstallationState()
@@ -396,15 +404,6 @@ namespace CAS.SmartFactory.Deployment
       m_InstallationProgresListBox.AddMessage(String.Format("Saving installation details to the file {0}.", _file.FullName));
       m_ApplicationState.Save(_file);
       m_InstallationProgresListBox.AddMessage("Installation successfully completed");
-    }
-    private void m_InstallationProgresListBox_TextChanged(object sender, EventArgs e)
-    {
-      m_InstallationProgressBar.Value++;
-      m_InstallationProgressBar.Refresh();
-    }
-    private void LogValidationMessage(string _msg)
-    {
-      m_ValidationListBox.AddMessage(_msg);
     }
     private void ExitlInstallation()
     {
@@ -492,9 +491,31 @@ namespace CAS.SmartFactory.Deployment
         Settings.Default.SiteCollectionURL = m_ApplicationState.SiteCollectionURL;
       base.OnClosing(e);
     }
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(bool disposing)
+    {
+
+      if (disposing)
+      {
+        TraceEvent.TraceEventClose();
+        if (components != null)
+          components.Dispose();
+      }
+      base.Dispose(disposing);
+    }
     #endregion
 
     #region Event handlers
+    private void m_ListBox_TextChanged(object sender, EventArgs e)
+    {
+      ListBox _lb = (ListBox)sender;
+      TraceEvent.TraceInformation(0x16B0C2D0, "Extenshions", _lb.Items[_lb.Items.Count-1].ToString());
+      m_InstallationProgressBar.Value++;
+      m_InstallationProgressBar.Refresh();
+    }
     private void m_ApplicationURLTextBox_Validating(object sender, CancelEventArgs e)
     {
       Uri _auri = null;

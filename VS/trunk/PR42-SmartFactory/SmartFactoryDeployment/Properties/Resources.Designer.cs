@@ -411,5 +411,14 @@ namespace CAS.SmartFactory.Deployment.Properties {
                 return ResourceManager.GetString("ValidationProcessStarting", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The validation process successfully finished - installation can be started..
+        /// </summary>
+        internal static string ValidationProcessSuccessfullyFinished {
+            get {
+                return ResourceManager.GetString("ValidationProcessSuccessfullyFinished", resourceCulture);
+            }
+        }
     }
 }
