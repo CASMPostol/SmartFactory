@@ -60,7 +60,7 @@ namespace CAS.SmartFactory.Deployment
         do
         {
           Thread.Sleep(200);
-          if (_round++ > 200)
+          if (_round++ > Settings.Default.FeatureActivationTimeOut)
             throw new ApplicationException(Resources.DeplymentTimeout);
         } while (! _sol.Deployed );
         return _sol;

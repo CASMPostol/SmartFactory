@@ -20,7 +20,8 @@ namespace CAS.SmartFactory.Deployment
   [System.SerializableAttribute()]
   [System.Diagnostics.DebuggerStepThroughAttribute()]
   [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = true)]
+  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://cas.eu/schemas/SharePoint/Deployment/ApplicationState.xsd")]
+  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://cas.eu/schemas/SharePoint/Deployment/ApplicationState.xsd", IsNullable = true)]
   public partial class InstallationStateData
   {
 
@@ -214,6 +215,7 @@ namespace CAS.SmartFactory.Deployment
 
     /// <uwagi/>
     [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI")]
+    [Browsable(false)]
     public string XmlWebApplicationURL
     {
       get
@@ -227,6 +229,7 @@ namespace CAS.SmartFactory.Deployment
     }
 
     /// <uwagi/>
+    [Browsable(false)]
     public string XmlSiteCollectionFetureId
     {
       get
@@ -240,6 +243,7 @@ namespace CAS.SmartFactory.Deployment
     }
 
     /// <uwagi/>
+    [Browsable(false)]
     public string XmlFarmFetureId
     {
       get
@@ -253,6 +257,7 @@ namespace CAS.SmartFactory.Deployment
     }
 
     /// <uwagi/>
+    [Browsable(false)]
     public string XmlSolutionID
     {
       get

@@ -4,6 +4,6 @@ $env:path += "; C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\x64\"
 $cpath = get-location
 Write-host Processing
 set-location ..\
-xsd.exe ApplicationState.xsd /N:CAS.SmartFactory.Deployment /c  |write-host
+xsd.exe ApplicationState.xsd /N:CAS.SmartFactory.Deployment /O:bin /c  |write-host
 set-location $cpath
 Write-host Done...

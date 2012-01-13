@@ -296,6 +296,15 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Install.
+        /// </summary>
+        internal static string InstallButtonText {
+            get {
+                return ResourceManager.GetString("InstallButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last operation failed with Error {0}. Press Ok to continue or Cancel to aboard..
         /// </summary>
         internal static string LastOperationFailed {

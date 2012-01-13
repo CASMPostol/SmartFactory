@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://cas.eu/schemas/SharePoint/Deployment/ApplicationState.xsd"
+           targetNamespace="http://cas.eu/schemas/SharePoint/Deployment/ApplicationState.xsd" 
+           >
   <xs:element name="InstallationStateData" nillable="true" type="InstallationStateData" />
   <xs:complexType name="InstallationStateData">
     <xs:sequence>

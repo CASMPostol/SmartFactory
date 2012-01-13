@@ -94,5 +94,14 @@ namespace CAS.SmartFactory.Deployment.Properties {
                 this["InstallationStateFileName"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200")]
+        public short FeatureActivationTimeOut {
+            get {
+                return ((short)(this["FeatureActivationTimeOut"]));
+            }
+        }
     }
 }
