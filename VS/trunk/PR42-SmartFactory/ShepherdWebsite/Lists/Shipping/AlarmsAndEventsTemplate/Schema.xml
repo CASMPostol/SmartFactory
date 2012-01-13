@@ -6,7 +6,7 @@
         <Folder TargetName="_cts/AlarmsAndEvents" />
         <FieldRefs>
           <FieldRef ID="{FEDB4744-2DA3-47CE-8FCB-76A87CA93E20}" Name="AlarmasAndEvents2ShippingIndex" />
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{2B19EAA6-D7AE-4AC6-A7F2-8131FBD66394}" Name="AlarmasAndEvents2PartnerTitle" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -20,7 +20,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="PartnerTitle" ID="{c7ca4aa6-8399-4714-a4a4-42145faba936}" Type="Lookup" List="Lists/PartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="AlarmasAndEvents2PartnerTitle" ID="{2B19EAA6-D7AE-4AC6-A7F2-8131FBD66394}" Type="Lookup" List="Lists/PartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="AlarmasAndEvents2ShippingIndex" ID="{FEDB4744-2DA3-47CE-8FCB-76A87CA93E20}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
@@ -54,7 +54,7 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{FEDB4744-2DA3-47CE-8FCB-76A87CA93E20}" Name="AlarmasAndEvents2ShippingIndex" />
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{2B19EAA6-D7AE-4AC6-A7F2-8131FBD66394}" Name="AlarmasAndEvents2PartnerTitle" />
         </ViewFields>
         <Query>
           <OrderBy>

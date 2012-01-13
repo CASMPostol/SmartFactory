@@ -8,7 +8,7 @@
                Inherits="True">
     <Folder TargetName="_cts/SecurityPO" />
     <FieldRefs>
-      <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="ShippingIndex" />
+      <FieldRef ID="{66A67CAE-1C75-4BB7-A00C-03A7023B055D}" Name="SecurityPO2ShippingIndex" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
