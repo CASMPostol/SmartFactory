@@ -232,4 +232,7 @@ For example 'http://computer.domain:Port'</value>
   <data name="SaveInstallationStateDataFailure" xml:space="preserve">
     <value>Cannot save the installation state data. The operation finished with the error: {0}</value>
   </data>
+  <data name="InstallButtonText" xml:space="preserve">
+    <value>Install</value>
+  </data>
 </root>

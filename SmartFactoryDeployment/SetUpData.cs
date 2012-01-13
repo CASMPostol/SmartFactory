@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using Microsoft.SharePoint.Administration;
-using System.Security.Principal;
-using CAS.SmartFactory.Deployment.Properties;
 using System.Diagnostics;
-using System.Threading;
 using System.IO;
+using System.Linq;
+using System.Security.Principal;
+using System.Windows.Forms;
+using CAS.SmartFactory.Deployment.Properties;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -199,6 +194,7 @@ namespace CAS.SmartFactory.Deployment
               m_ValidationPropertyGrid.Text = Resources.InstallationProperties;
               m_PreviousButton.Visible = true;
               m_NextButton.Enabled = false;
+              m_NextButton.Text = Resources.InstallButtonText;
               m_CancelButton.Visible = true;
               if (!CheckPrerequisites())
               {
@@ -240,6 +236,7 @@ namespace CAS.SmartFactory.Deployment
               m_NextButton.Enabled = false;
               m_NextButton.Text = Resources.FinishButtonText;
               m_CancelButton.Visible = false;
+              this.Refresh();
               Install();
               m_NextButton.Enabled = true;
               m_InstallationProgressBar.Value = m_InstallationProgressBar.Maximum;
@@ -327,8 +324,7 @@ namespace CAS.SmartFactory.Deployment
       catch (Exception ex)
       {
         string _msg = String.Format(Resources.ValidationProcessFailed, ex.Message);
-        m_ValidationListBox.Items.Add(_msg);
-        this.Refresh();
+        m_ValidationListBox.AddMessage(_msg);
         return false;
       }
     }
@@ -365,20 +361,27 @@ namespace CAS.SmartFactory.Deployment
         Guid _solutionID;
         m_InstallationProgresListBox.AddMessage("Waiting for completion .... ");
         SPSolution _sol = FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, out _solutionID);
-        m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed: {0}", _sol.Name));
+        m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed Name={0}, Deployed={1}, DeploymentState={2}, DisplayName={3} Status={4}", _sol.Name, _sol.Deployed, _sol.DeploymentState, _sol.DisplayName, _sol.Status));
         m_ApplicationState.FarmSolutionsDeployed = true;
         m_ApplicationState.SolutionID = _solutionID;
         m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", m_ApplicationState.FarmFetureId, SiteCollectionHelper.SiteCollection.Url));
         _feature = SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Farm);
         m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _feature.Definition.DisplayName));
         m_ApplicationState.FarmFeaturesActivated = true;
-        FileInfo _file = new FileInfo(Settings.Default.InstallationStateFileName);
-        m_InstallationProgresListBox.AddMessage(String.Format("Saving installation details to the file {0}.", _file.FullName));
-        m_ApplicationState.Save(_file);
-        m_InstallationProgresListBox.AddMessage("Installation successfully completed");
+        SaveInstallationState();
       }
       catch (Exception ex)
       {
+
+        m_InstallationProgresListBox.AddMessage(ex.Message);
+        try
+        {
+          SaveInstallationState();
+        }
+        catch (Exception _SaveEx)
+        {
+          m_InstallationProgresListBox.AddMessage(_SaveEx.Message);
+        }
         this.StateMachine(new StateMachineExceptionEventArgs(ex));
       }
       finally
@@ -387,6 +390,13 @@ namespace CAS.SmartFactory.Deployment
         m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_InstallationProgresListBox_TextChanged);
       }
     }
+    private void SaveInstallationState()
+    {
+      FileInfo _file = new FileInfo(Settings.Default.InstallationStateFileName);
+      m_InstallationProgresListBox.AddMessage(String.Format("Saving installation details to the file {0}.", _file.FullName));
+      m_ApplicationState.Save(_file);
+      m_InstallationProgresListBox.AddMessage("Installation successfully completed");
+    }
     private void m_InstallationProgresListBox_TextChanged(object sender, EventArgs e)
     {
       m_InstallationProgressBar.Value++;
@@ -394,8 +404,7 @@ namespace CAS.SmartFactory.Deployment
     }
     private void LogValidationMessage(string _msg)
     {
-      m_ValidationListBox.Items.Add(_msg);
-      this.Refresh();
+      m_ValidationListBox.AddMessage(_msg);
     }
     private void ExitlInstallation()
     {

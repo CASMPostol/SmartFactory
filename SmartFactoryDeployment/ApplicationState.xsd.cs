@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
-using CAS.SmartFactory.Deployment.Properties;
-using System.Xml.Serialization;
 using System.IO;
+using System.Xml.Serialization;
+using CAS.SmartFactory.Deployment.Properties;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -11,12 +11,23 @@ namespace CAS.SmartFactory.Deployment
   /// </summary>
   public partial class InstallationStateData
   {
+    #region ctor
+    public InstallationStateData()
+    {
+      SiteCollectionCreated = false;
+      SiteCollectionSolutionsDeployed = false;
+      SiteCollectionFeturesActivated = false;
+      FarmSolutionsDeployed = false;
+      FarmFeaturesActivated = false;
+    }
+    #endregion
 
+    #region public
     internal void Save(System.IO.FileInfo _file)
     {
       try
       {
-        using (Stream _strm = _file.OpenRead())
+        using (Stream _strm = _file.OpenWrite())
         {
           XmlSerializer _srlzr = new XmlSerializer(typeof(InstallationStateData));
           _srlzr.Serialize(_strm, this);
@@ -33,10 +44,10 @@ namespace CAS.SmartFactory.Deployment
     {
       try
       {
-        using (Stream _strm = _file.OpenWrite())
+        using (Stream _strm = _file.OpenRead())
         {
           XmlSerializer _srlzr = new XmlSerializer(typeof(InstallationStateData));
-         return (InstallationStateData)_srlzr.Deserialize(_strm);
+          return (InstallationStateData)_srlzr.Deserialize(_strm);
         }
       }
       catch (Exception ex)
@@ -47,14 +58,6 @@ namespace CAS.SmartFactory.Deployment
     /// <summary>
     /// Initializes a new instance of the <see cref="InstallationStateData"/> class.
     /// </summary>
-    public InstallationStateData()
-    {
-      SiteCollectionCreated = false;
-      SiteCollectionSolutionsDeployed = false;
-      SiteCollectionFeturesActivated = false;
-      FarmSolutionsDeployed = false;
-      FarmFeaturesActivated = false;
-    }
     internal static bool ValidateUrl(string _url, out Uri _auri, out string _errorMessage)
     {
       _auri = null;
@@ -101,6 +104,8 @@ namespace CAS.SmartFactory.Deployment
       //TODO Add validation
       OwnerEmail = _text;
     }
+    #endregion
+
     #region Browsable public properties
     /// <summary>
     /// Gets or sets the web application URL.
