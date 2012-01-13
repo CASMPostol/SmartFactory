@@ -133,7 +133,7 @@
     <value>Cannot delete the website because it does not exist.</value>
   </data>
   <data name="CannotGetAccessToLocalServer" xml:space="preserve">
-    <value>Cannot get access to the local SharePoint server.</value>
+    <value>Cannot get access to the local SharePoint server. The software can run only locally on the SharePoint 2010 sewer.</value>
   </data>
   <data name="CaptionOperationFailure" xml:space="preserve">
     <value>Operation failed</value>
@@ -145,13 +145,13 @@
     <value>Check in process failed !</value>
   </data>
   <data name="CreateSiteCollectionFailed" xml:space="preserve">
-    <value>Create site collection failed with exception: {0}.</value>
+    <value>Create site collection failed with error: {0}.</value>
   </data>
   <data name="DeploySolutionFailed" xml:space="preserve">
-    <value>DeploySolution failed for the site: {0}, file: {1} with the exception: {2}.</value>
+    <value>DeploySolution failed for the site: {0}, file: {1} with the error {2}.</value>
   </data>
   <data name="FinishButtonText" xml:space="preserve">
-    <value>Finish</value>
+    <value>Close</value>
   </data>
   <data name="GettingAccess2ApplicationFailed" xml:space="preserve">
     <value>Getting access to the Web application that is located at the specified URL= {0} failed.</value>
@@ -160,10 +160,10 @@
     <value>Getting access to the local server farm failed.</value>
   </data>
   <data name="GettingAccess2LocalFarmException" xml:space="preserve">
-    <value>Getting access to the local server farm failed wit the exception: {0}.</value>
+    <value>Getting access to the local server farm failed wit the error: {0}.</value>
   </data>
   <data name="GetWebApplicationFfailed" xml:space="preserve">
-    <value>Get Web Application failed wit the exception {0}.</value>
+    <value>Get Web Application failed wit the error {0}.</value>
   </data>
   <data name="GotAccess2Farm" xml:space="preserve">
     <value>Got access to the local server farm. Name ={0}, DisplayName={1}, Status={2}.</value>
@@ -173,7 +173,7 @@
 For example 'http://computer.domain:Port'</value>
   </data>
   <data name="LastOperationFailed" xml:space="preserve">
-    <value>Last operation failed with exception {0}. Press Ok to continue or Cancel to aboard.</value>
+    <value>Last operation failed with Error {0}. Press Ok to continue or Cancel to aboard.</value>
   </data>
   <data name="SiteCollectionExist" xml:space="preserve">
     <value>The site collection {0} exist. Press Yes to use this site, No to delete it and create new with the same name.</value>
@@ -194,7 +194,7 @@ For example 'http://computer.domain:Port'</value>
     <value>The local environment validation process starting.</value>
   </data>
   <data name="FarmSolutionFailed" xml:space="preserve">
-    <value>DeploySolution failed for the site: {0}, file: {1}, feature: {2} with the exception: {3}.</value>
+    <value>DeploySolution failed for the site: {0}, file: {1}, feature: {2} with the error: {3}.</value>
   </data>
   <data name="NullReference" xml:space="preserve">
     <value>&lt;null reference&gt;</value>
@@ -209,24 +209,27 @@ For example 'http://computer.domain:Port'</value>
     <value>Cannot find the solution on the local farm server.</value>
   </data>
   <data name="DeactivateFeatureFailed" xml:space="preserve">
-    <value>Deactivation of the feature failed with the exception: {0}</value>
+    <value>Deactivation of the feature failed with the error: {0}</value>
   </data>
   <data name="RetracDeploySolutionFailed" xml:space="preserve">
-    <value>Retrack of farm solution failed : Name = {0}, file: {1}, feature: {2} with the exception: {3}.</value>
+    <value>Retrack of farm solution failed : Name = {0}, file: {1}, feature: {2} with the error: {3}.</value>
   </data>
   <data name="DeplymentTimeout" xml:space="preserve">
     <value>Timeout encountered during solution deployment.</value>
   </data>
   <data name="DeployFarmSolutionFailed" xml:space="preserve">
-    <value>DeploySolution failed for the file: {0} with the exception: {1}. </value>
+    <value>DeploySolution failed for the file: {0} with the error: {1}. </value>
   </data>
   <data name="FeatureActivationFailed" xml:space="preserve">
-    <value>Activation of the feature: {0} at site: {1} with the scope {2} failed with the exception {3}.</value>
+    <value>Activation of the feature: {0} at site: {1} with the scope {2} failed with the error {3}.</value>
   </data>
   <data name="InstallationProperties" xml:space="preserve">
     <value>Installation properties</value>
   </data>
   <data name="InstalationAbortRollback" xml:space="preserve">
     <value>Last operation failed with exception {0}. Press OK to aboard the installation and rollback.</value>
+  </data>
+  <data name="SaveInstallationStateDataFailure" xml:space="preserve">
+    <value>Cannot save the installation state data. The operation finished with the error: {0}</value>
   </data>
 </root>

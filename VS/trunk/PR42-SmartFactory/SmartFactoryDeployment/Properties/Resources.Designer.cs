@@ -115,7 +115,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot get access to the local SharePoint server..
+        ///   Looks up a localized string similar to Cannot get access to the local SharePoint server. The software can run only locally on the SharePoint 2010 sewer..
         /// </summary>
         internal static string CannotGetAccessToLocalServer {
             get {
@@ -151,7 +151,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create site collection failed with exception: {0}..
+        ///   Looks up a localized string similar to Create site collection failed with error: {0}..
         /// </summary>
         internal static string CreateSiteCollectionFailed {
             get {
@@ -160,7 +160,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deactivation of the feature failed with the exception: {0}.
+        ///   Looks up a localized string similar to Deactivation of the feature failed with the error: {0}.
         /// </summary>
         internal static string DeactivateFeatureFailed {
             get {
@@ -169,7 +169,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DeploySolution failed for the file: {0} with the exception: {1}. .
+        ///   Looks up a localized string similar to DeploySolution failed for the file: {0} with the error: {1}. .
         /// </summary>
         internal static string DeployFarmSolutionFailed {
             get {
@@ -178,7 +178,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DeploySolution failed for the site: {0}, file: {1} with the exception: {2}..
+        ///   Looks up a localized string similar to DeploySolution failed for the site: {0}, file: {1} with the error {2}..
         /// </summary>
         internal static string DeploySolutionFailed {
             get {
@@ -196,7 +196,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DeploySolution failed for the site: {0}, file: {1}, feature: {2} with the exception: {3}..
+        ///   Looks up a localized string similar to DeploySolution failed for the site: {0}, file: {1}, feature: {2} with the error: {3}..
         /// </summary>
         internal static string FarmSolutionFailed {
             get {
@@ -205,7 +205,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activation of the feature: {0} at site: {1} with the scope {2} failed with the exception {3}..
+        ///   Looks up a localized string similar to Activation of the feature: {0} at site: {1} with the scope {2} failed with the error {3}..
         /// </summary>
         internal static string FeatureActivationFailed {
             get {
@@ -214,7 +214,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finish.
+        ///   Looks up a localized string similar to Close.
         /// </summary>
         internal static string FinishButtonText {
             get {
@@ -241,7 +241,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Getting access to the local server farm failed wit the exception: {0}..
+        ///   Looks up a localized string similar to Getting access to the local server farm failed wit the error: {0}..
         /// </summary>
         internal static string GettingAccess2LocalFarmException {
             get {
@@ -250,7 +250,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get Web Application failed wit the exception {0}..
+        ///   Looks up a localized string similar to Get Web Application failed wit the error {0}..
         /// </summary>
         internal static string GetWebApplicationFfailed {
             get {
@@ -296,7 +296,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last operation failed with exception {0}. Press Ok to continue or Cancel to aboard..
+        ///   Looks up a localized string similar to Last operation failed with Error {0}. Press Ok to continue or Cancel to aboard..
         /// </summary>
         internal static string LastOperationFailed {
             get {
@@ -314,11 +314,20 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Retrack of farm solution failed : Name = {0}, file: {1}, feature: {2} with the exception: {3}..
+        ///   Looks up a localized string similar to Retrack of farm solution failed : Name = {0}, file: {1}, feature: {2} with the error: {3}..
         /// </summary>
         internal static string RetracDeploySolutionFailed {
             get {
                 return ResourceManager.GetString("RetracDeploySolutionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot save the installation state data. The operation finished with the error: {0}.
+        /// </summary>
+        internal static string SaveInstallationStateDataFailure {
+            get {
+                return ResourceManager.GetString("SaveInstallationStateDataFailure", resourceCulture);
             }
         }
         

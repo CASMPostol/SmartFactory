@@ -82,5 +82,17 @@ namespace CAS.SmartFactory.Deployment.Properties {
                 this["ManualMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SmartFactoryInstallationState.cas.xml")]
+        public string InstallationStateFileName {
+            get {
+                return ((string)(this["InstallationStateFileName"]));
+            }
+            set {
+                this["InstallationStateFileName"] = value;
+            }
+        }
     }
 }
