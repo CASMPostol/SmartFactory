@@ -24,8 +24,8 @@
           <FieldRef ID="{c4b72ed6-45aa-4422-bff1-2b6750d30819}" Name="XMLTZone" Hidden="TRUE" />
           <FieldRef ID="{9b2bed84-7769-40e3-9b1d-7954a4053834}" Name="MasterSeriesItemID" Hidden="TRUE" />
           <FieldRef ID="{881eac4a-55a5-48b6-a28e-8329d7486120}" Name="Workspace" Hidden="TRUE" />
-          <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="ShippingIndex" />
-          <FieldRef ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}" Name="ShippingPointTitle" />
+          <FieldRef ID="{5EBA7A0A-270D-4F08-8DF5-422612615163}" Name="TimeSlot2ShippingIndex" />
+          <FieldRef ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}" Name="TimeSlot2ShippingPointTitle" />
           <FieldRef ID="{AAA1FBFE-205C-46DF-A996-47D3AFEF9484}" Name="ShippingActualTime" />
           <FieldRef ID="{9C0CFEA4-22DA-4837-B50E-F1A31AF0E1EC}" Name="ShipingActualTimeSpan" />
           <FieldRef ID="{C8009083-7850-4CC1-848D-552F7569C2BE}" Name="ShipingTimeSpan" />
@@ -135,7 +135,7 @@
       </Field>
       <Field ID="{453c2d71-c41e-46bc-97c1-a5a9535053a3}" Name="Participants" DisplayName="HiddenParticipants" Type="Note" Sortable="FALSE" Sealed="TRUE" StaticName="Participants" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3">
       </Field>
-      <Field Name="ShippingPointTitle" ID="{1a53314b-d7a0-448c-9eaa-757ab59ee242}" Type="Lookup" List="Lists/ShippingPointList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Point" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}" Name="TimeSlot2ShippingPointTitle" Type="Lookup" List="Lists/ShippingPointList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Point" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field ID="{aaa1fbfe-205c-46df-a996-47d3afef9484}" Name="ShippingActualTime" Group="CAS Smart Factory Shepherd" Type="DateTime" Format="DateTime" DisplayName="Actual Time">
     <Default>[today]</Default>
   </Field>
@@ -146,7 +146,7 @@
     <Default>[today]</Default>
   </Field>
       <Field DisplayName="Occupied" Name="Occupied" Type="Boolean" ID="{4f4bdc32-689f-4664-9d1e-d78c21148178}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="ShippingIndex" ID="{837c9ee8-7f8f-4231-a620-f12b5e91f998}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field ID="{5EBA7A0A-270D-4F08-8DF5-422612615163}" Name="TimeSlot2ShippingIndex" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" RecurrenceRowset="TRUE" TabularView="FALSE" MobileView="TRUE">
