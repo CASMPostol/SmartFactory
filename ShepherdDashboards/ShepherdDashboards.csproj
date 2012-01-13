@@ -195,13 +195,13 @@
     <Content Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx" />
     <Content Include="CurrentUserWebPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DefaultPage\Elements.xml" />
+    <Content Include="DefaultPage\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Entities\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -216,7 +216,9 @@
     <Content Include="Images\ShepherdImages\DefaultBanner.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
-    <Content Include="DefaultPage\DefaultTemplate.aspx" />
+    <Content Include="DefaultPage\DefaultTemplate.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDefault.css" />
     <Content Include="ListsWebparts\AAE\Elements.xml" />
     <Content Include="ListsWebparts\LoadDescription\Elements.xml">

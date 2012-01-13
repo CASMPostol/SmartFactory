@@ -5,7 +5,7 @@
       <ContentType ID="0x0100f5c0c5aaa44e47b1a7ccfecee1e8e94e" Name="LoadDescription" Group="CAS Smart Factory Shepherd" Description="Load description" Overwrite="True" Inherits="True">
         <Folder TargetName="_cts/LoadDescription" />
         <FieldRefs>
-          <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="ShippingIndex" />
+          <FieldRef ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Name="LoadDescription2ShippingIndex" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
           <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
           <FieldRef ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}" Name="DeliveryNumber" />
@@ -29,7 +29,7 @@
       <Field DisplayName="Delivery Number" Name="DeliveryNumber" Type="Text" ID="{0701b3fa-7524-4eb7-b1e4-6c96dc3a993d}" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Goods Quantity" Name="GoodsQuantity" Type="Number" ID="{e7bfea15-e33c-4e18-8e55-b68d0b3a09d0}" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Number of pallets" Name="NumberOfPallets" Type="Number" ID="{ec642bdf-f692-42b9-aab6-90758df7ba20}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="ShippingIndex" ID="{837c9ee8-7f8f-4231-a620-f12b5e91f998}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="LoadDescription2ShippingIndex" ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -61,7 +61,7 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="ShippingIndex" />
+          <FieldRef ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Name="LoadDescription2ShippingIndex" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
           <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
           <FieldRef ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}" Name="DeliveryNumber" />
