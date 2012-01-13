@@ -13,10 +13,8 @@
       <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
       <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
       <FieldRef ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}" Name="ShippingDuration" />
-      <FieldRef ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}" Name="ShippingPointTitle" />
       <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
       <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
-      <FieldRef ID="{29BDF275-7636-4114-9506-81506BFBB287}" Name="ShippingDriversTeamTitle" />
       <FieldRef ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}" Name="CancelationReason" />
     </FieldRefs>
     <XmlDocuments>

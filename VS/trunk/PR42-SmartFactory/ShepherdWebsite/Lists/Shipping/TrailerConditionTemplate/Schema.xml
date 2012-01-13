@@ -5,10 +5,10 @@
       <ContentType ID="0x0100fed3fd4862d5419ca251655768f4749f" Name="TrailerCondition" Group="CAS Smart Factory Shepherd" Description="Trailer Condition" Overwrite="True" Inherits="True">
         <Folder TargetName="_cts/TrailerCondition" />
         <FieldRefs>
-          <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="ShippingIndex" />
+          <FieldRef ID="{CD4FAD7E-C696-458E-B857-5AED9C9F76A1}" Name="TrailerCondition2ShippingIndex" />
           <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
           <FieldRef ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}" Name="TrailerConditionComments" />
-          <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
+          <FieldRef ID="{9CD1AB8A-DCDA-482E-BC11-F81E3EBE9D77}" Name="TrailerCondition2TrailerTitle" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -22,7 +22,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="TrailerTitle" ID="{79166d3d-149d-4423-9a81-c74b4137f13c}" Type="Lookup" List="Lists/TrailerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Trailer : Registration Number" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="TrailerCondition2TrailerTitle" ID="{9CD1AB8A-DCDA-482E-BC11-F81E3EBE9D77}" Type="Lookup" List="Lists/TrailerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Trailer : Registration Number" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Type="Choice" DisplayName="Trailer Condition" ID="{f3dc8106-9485-4b80-bed5-b399f9546cab}" Format="Dropdown" BaseType="Text" Description="Trailer Condition" Name="TrailerCondition" Group="CAS Smart Factory Shepherd">
     <Default>5 - excellent</Default>
     <CHOICES>
@@ -34,7 +34,7 @@
     </CHOICES>
   </Field>
       <Field DisplayName="Comments" Name="TrailerConditionComments" Type="Note" ID="{d28631e5-d7a6-46d4-b2c2-73140ce72704}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="ShippingIndex" ID="{837c9ee8-7f8f-4231-a620-f12b5e91f998}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="TrailerCondition2ShippingIndex" ID="{CD4FAD7E-C696-458E-B857-5AED9C9F76A1}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -66,10 +66,10 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="ShippingIndex" />
+          <FieldRef ID="{CD4FAD7E-C696-458E-B857-5AED9C9F76A1}" Name="TrailerCondition2ShippingIndex" />
           <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
           <FieldRef ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}" Name="TrailerConditionComments" />
-          <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
+          <FieldRef ID="{9CD1AB8A-DCDA-482E-BC11-F81E3EBE9D77}" Name="TrailerCondition2TrailerTitle" />
         </ViewFields>
         <Query>
           <OrderBy>

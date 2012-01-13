@@ -8,7 +8,7 @@
                Inherits="True">
     <Folder TargetName="_cts/AlarmsAndEvents" />
     <FieldRefs>
-      <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="ShippingIndex" />
+      <FieldRef ID="{FEDB4744-2DA3-47CE-8FCB-76A87CA93E20}" Name="AlarmasAndEvents2ShippingIndex" />
       <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
     </FieldRefs>
     <XmlDocuments>
