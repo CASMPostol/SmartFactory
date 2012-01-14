@@ -23,6 +23,7 @@ namespace CAS.SmartFactory.Deployment
     /// </summary>
     public SetUpData()
     {
+      TraceEvent.TraceVerbose(26, "SetUpData", "Starting the application");
       InitializeComponent();
       State = ProcessState.ApplicationSetupDataDialog;
       Manual = Properties.Settings.Default.ManualMode;
@@ -64,9 +65,10 @@ namespace CAS.SmartFactory.Deployment
         : base(LocalEvent.Exception)
       {
         Exception = _exception;
+        SetUpData.TraceEvent.TraceError(68, "StateMachineExceptionEventArgs", String.Format("The following error envountered: {0}.", _exception.Message));
       }
     }
-    internal TraceEvent TraceEvent = new TraceEvent("SharePoint.Deployment");
+    internal static TraceEvent TraceEvent = new TraceEvent("SharePoint.Deployment");
     /// <summary>
     /// Gets or sets the state of the installation.
     /// </summary>
@@ -82,7 +84,7 @@ namespace CAS.SmartFactory.Deployment
       set
       {
         m_State = value;
-
+        TraceEvent.TraceVerbose(86, "State", String.Format("Entered the state: {0}.", value));
         foreach (TabPage _page in m_ContentTabControl.TabPages)
           m_ContentTabControl.TabPages.Remove(_page);
         switch (value)
@@ -123,10 +125,10 @@ namespace CAS.SmartFactory.Deployment
               State = ProcessState.ApplicationSetupDataDialog;
               break;
             case LocalEvent.Next:
-              StateError();
+              ExitlInstallation();
               break;
             case LocalEvent.Cancel:
-              ExitlInstallation();
+              StateError();
               break;
             case LocalEvent.Exception:
               Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
@@ -138,10 +140,9 @@ namespace CAS.SmartFactory.Deployment
               break;
             case LocalEvent.EnterState:
               m_PreviousButton.Visible = true;
-              m_NextButton.Enabled = false;
-              m_CancelButton.Enabled = true;
-              m_CancelButton.Text = Resources.CancelButtonTextEXIT;
-              m_ValidationPropertyGrid.SelectedObject = m_ApplicationState;
+              m_NextButton.Visible = true;
+              m_NextButton.Text = Resources.NextButtonTextEXIT;
+              m_CancelButton.Visible = false;
               break;
             default:
               break;
@@ -153,6 +154,7 @@ namespace CAS.SmartFactory.Deployment
           switch (_event.Event)
           {
             case LocalEvent.Previous:
+              StateError();
               break;
             case LocalEvent.Next:
               State = ProcessState.InstalationDataConfirmation;
@@ -165,6 +167,7 @@ namespace CAS.SmartFactory.Deployment
             case LocalEvent.EnterState:
               m_PreviousButton.Visible = false;
               m_NextButton.Enabled = true;
+              m_NextButton.Text = Resources.NextButtonTextNext;
               m_CancelButton.Visible = true;
               break;
             default:
@@ -191,12 +194,14 @@ namespace CAS.SmartFactory.Deployment
             case LocalEvent.Exception:
               break;
             case LocalEvent.EnterState:
+              m_ValidationListBox.Items.Clear();
               m_ApplicationState = new InstallationStateData();
               m_ValidationPropertyGrid.SelectedObject = m_ApplicationState;
               m_ValidationPropertyGrid.Text = Resources.InstallationProperties;
               m_PreviousButton.Visible = true;
+              m_NextButton.Visible = true;
               m_NextButton.Enabled = false;
-              m_NextButton.Text = Resources.InstallButtonText;
+              m_NextButton.Text = Resources.NextButtonTextInstall;
               m_CancelButton.Visible = true;
               if (!CheckPrerequisites())
               {
@@ -233,6 +238,7 @@ namespace CAS.SmartFactory.Deployment
               CancelInstallation();
               break;
             case LocalEvent.EnterState:
+              m_InstallationProgresListBox.Items.Clear();
               m_PreviousButton.Visible = false;
               m_NextButton.Enabled = true;
               m_NextButton.Enabled = false;
@@ -342,7 +348,7 @@ namespace CAS.SmartFactory.Deployment
       try
       {
         m_InstallationProgressBar.Minimum = 0;
-        m_InstallationProgressBar.Maximum = 15;
+        m_InstallationProgressBar.Maximum = 18;
         m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_ListBox_TextChanged);
         m_InstallationProgresListBox.AddMessage("Creating SPSite ... ");
         SiteCollectionHelper.CreateSPSite(
@@ -377,11 +383,11 @@ namespace CAS.SmartFactory.Deployment
         m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _feature.Definition.DisplayName));
         m_ApplicationState.FarmFeaturesActivated = true;
         SaveInstallationState();
+        m_InstallationProgresListBox.AddMessage("Installation successfully completed");
       }
       catch (Exception ex)
       {
-
-        m_InstallationProgresListBox.AddMessage(ex.Message);
+        StateMachineExceptionEventArgs _smex = new StateMachineExceptionEventArgs(ex);
         try
         {
           SaveInstallationState();
@@ -390,7 +396,8 @@ namespace CAS.SmartFactory.Deployment
         {
           m_InstallationProgresListBox.AddMessage(_SaveEx.Message);
         }
-        this.StateMachine(new StateMachineExceptionEventArgs(ex));
+        m_InstallationProgresListBox.AddMessage("Installation completed with an error.");
+        this.StateMachine(_smex);
       }
       finally
       {
@@ -403,7 +410,6 @@ namespace CAS.SmartFactory.Deployment
       FileInfo _file = new FileInfo(Settings.Default.InstallationStateFileName);
       m_InstallationProgresListBox.AddMessage(String.Format("Saving installation details to the file {0}.", _file.FullName));
       m_ApplicationState.Save(_file);
-      m_InstallationProgresListBox.AddMessage("Installation successfully completed");
     }
     private void ExitlInstallation()
     {
@@ -512,7 +518,7 @@ namespace CAS.SmartFactory.Deployment
     private void m_ListBox_TextChanged(object sender, EventArgs e)
     {
       ListBox _lb = (ListBox)sender;
-      TraceEvent.TraceInformation(0x16B0C2D0, "Extenshions", _lb.Items[_lb.Items.Count-1].ToString());
+      TraceEvent.TraceInformation(521, "SetUpData", _lb.Items[_lb.Items.Count - 1].ToString());
       m_InstallationProgressBar.Value++;
       m_InstallationProgressBar.Refresh();
     }
@@ -619,7 +625,7 @@ namespace CAS.SmartFactory.Deployment
     {
       try
       {
-        FarmHelpers.DeactivateFeature(m_ApplicationState.FarmFetureId, SiteCollectionHelper.SiteCollection);
+        SiteCollectionHelper.DeactivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.FarmFetureId);
         FarmHelpers.RetrackSolution(m_ApplicationState.SolutionID);
       }
       catch (Exception ex)

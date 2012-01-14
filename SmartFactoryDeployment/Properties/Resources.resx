@@ -123,7 +123,7 @@
   <data name="AreYouSure2Cancel" xml:space="preserve">
     <value>Are you sure to cancel and rollback the installation? Press OK to exit, or Cancel to continue.</value>
   </data>
-  <data name="CancelButtonTextEXIT" xml:space="preserve">
+  <data name="NextButtonTextEXIT" xml:space="preserve">
     <value>EXIT</value>
   </data>
   <data name="CancelInstallationCaption" xml:space="preserve">
@@ -208,9 +208,6 @@ For example 'http://computer.domain:Port'</value>
   <data name="CannotFindTheSolution" xml:space="preserve">
     <value>Cannot find the solution on the local farm server.</value>
   </data>
-  <data name="DeactivateFeatureFailed" xml:space="preserve">
-    <value>Deactivation of the feature failed with the error: {0}</value>
-  </data>
   <data name="RetracDeploySolutionFailed" xml:space="preserve">
     <value>Retrack of farm solution failed : Name = {0}, file: {1}, feature: {2} with the error: {3}.</value>
   </data>
@@ -227,15 +224,30 @@ For example 'http://computer.domain:Port'</value>
     <value>Installation properties</value>
   </data>
   <data name="InstalationAbortRollback" xml:space="preserve">
-    <value>Last operation failed with exception {0}. Press OK to aboard the installation and rollback.</value>
+    <value>Last operation failed with Error {0}. Press OK to aboard the installation and rollback.</value>
   </data>
   <data name="SaveInstallationStateDataFailure" xml:space="preserve">
     <value>Cannot save the installation state data. The operation finished with the error: {0}</value>
   </data>
-  <data name="InstallButtonText" xml:space="preserve">
+  <data name="NextButtonTextInstall" xml:space="preserve">
     <value>Install</value>
   </data>
   <data name="ValidationProcessSuccessfullyFinished" xml:space="preserve">
     <value>The validation process successfully finished - installation can be started.</value>
+  </data>
+  <data name="FeatureDeactivationFailed" xml:space="preserve">
+    <value>Deactivation of the feature: {0} at site: {1} failed with the error {2}.</value>
+  </data>
+  <data name="LastOperationFailedWithError" xml:space="preserve">
+    <value>Last operation failed with Error {0}.</value>
+  </data>
+  <data name="NextButtonTextNext" xml:space="preserve">
+    <value>&gt;&gt;</value>
+  </data>
+  <data name="ReadInstallationStateDataFailure" xml:space="preserve">
+    <value>Cannot save the installation state data. The operation finished with the error: {0}</value>
+  </data>
+  <data name="UninstallErrorCaption" xml:space="preserve">
+    <value>Uninstall error !</value>
   </data>
 </root>

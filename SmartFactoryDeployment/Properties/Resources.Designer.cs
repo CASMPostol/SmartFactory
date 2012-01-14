@@ -79,15 +79,6 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EXIT.
-        /// </summary>
-        internal static string CancelButtonTextEXIT {
-            get {
-                return ResourceManager.GetString("CancelButtonTextEXIT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cancel installation ?.
         /// </summary>
         internal static string CancelInstallationCaption {
@@ -160,15 +151,6 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deactivation of the feature failed with the error: {0}.
-        /// </summary>
-        internal static string DeactivateFeatureFailed {
-            get {
-                return ResourceManager.GetString("DeactivateFeatureFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to DeploySolution failed for the file: {0} with the error: {1}. .
         /// </summary>
         internal static string DeployFarmSolutionFailed {
@@ -210,6 +192,15 @@ namespace CAS.SmartFactory.Deployment.Properties {
         internal static string FeatureActivationFailed {
             get {
                 return ResourceManager.GetString("FeatureActivationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deactivation of the feature: {0} at site: {1} failed with the error {2}..
+        /// </summary>
+        internal static string FeatureDeactivationFailed {
+            get {
+                return ResourceManager.GetString("FeatureDeactivationFailed", resourceCulture);
             }
         }
         
@@ -278,7 +269,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last operation failed with exception {0}. Press OK to aboard the installation and rollback..
+        ///   Looks up a localized string similar to Last operation failed with Error {0}. Press OK to aboard the installation and rollback..
         /// </summary>
         internal static string InstalationAbortRollback {
             get {
@@ -296,15 +287,6 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install.
-        /// </summary>
-        internal static string InstallButtonText {
-            get {
-                return ResourceManager.GetString("InstallButtonText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Last operation failed with Error {0}. Press Ok to continue or Cancel to aboard..
         /// </summary>
         internal static string LastOperationFailed {
@@ -314,11 +296,56 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last operation failed with Error {0}..
+        /// </summary>
+        internal static string LastOperationFailedWithError {
+            get {
+                return ResourceManager.GetString("LastOperationFailedWithError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXIT.
+        /// </summary>
+        internal static string NextButtonTextEXIT {
+            get {
+                return ResourceManager.GetString("NextButtonTextEXIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install.
+        /// </summary>
+        internal static string NextButtonTextInstall {
+            get {
+                return ResourceManager.GetString("NextButtonTextInstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt;&gt;.
+        /// </summary>
+        internal static string NextButtonTextNext {
+            get {
+                return ResourceManager.GetString("NextButtonTextNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;null reference&gt;.
         /// </summary>
         internal static string NullReference {
             get {
                 return ResourceManager.GetString("NullReference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot save the installation state data. The operation finished with the error: {0}.
+        /// </summary>
+        internal static string ReadInstallationStateDataFailure {
+            get {
+                return ResourceManager.GetString("ReadInstallationStateDataFailure", resourceCulture);
             }
         }
         
@@ -382,6 +409,15 @@ namespace CAS.SmartFactory.Deployment.Properties {
         internal static string SiteExistAndReuse {
             get {
                 return ResourceManager.GetString("SiteExistAndReuse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstall error !.
+        /// </summary>
+        internal static string UninstallErrorCaption {
+            get {
+                return ResourceManager.GetString("UninstallErrorCaption", resourceCulture);
             }
         }
         
