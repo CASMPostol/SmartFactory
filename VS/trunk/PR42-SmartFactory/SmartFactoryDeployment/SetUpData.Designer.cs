@@ -27,6 +27,7 @@
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel3;
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel4;
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel1;
+      System.Windows.Forms.SplitContainer m_SplitContainer;
       this.m_OwnerLoginTextBox = new System.Windows.Forms.TextBox();
       this.m_ApplicationURLTextBox = new System.Windows.Forms.TextBox();
       this.m_SiteUrlTextBox = new System.Windows.Forms.TextBox();
@@ -66,6 +67,7 @@
       m_tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
       m_tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
       m_tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+      m_SplitContainer = new System.Windows.Forms.SplitContainer();
       m_ApplicationSetupTableLayoutPanel.SuspendLayout();
       m_tableLayoutPanel2.SuspendLayout();
       m_tableLayoutPanel3.SuspendLayout();
@@ -80,6 +82,9 @@
       this.tableLayoutPanel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.m_OwnerEmailErrorProvider)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.m_WebApplicationURLErrorProvider)).BeginInit();
+      m_SplitContainer.Panel1.SuspendLayout();
+      m_SplitContainer.Panel2.SuspendLayout();
+      m_SplitContainer.SuspendLayout();
       this.SuspendLayout();
       // 
       // m_ApplicationSetupTableLayoutPanel
@@ -217,24 +222,22 @@
       m_tableLayoutPanel2.ColumnCount = 1;
       m_tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       m_tableLayoutPanel2.Controls.Add(m_label1, 0, 0);
-      m_tableLayoutPanel2.Controls.Add(this.m_ValidationPropertyGrid, 0, 1);
-      m_tableLayoutPanel2.Controls.Add(this.m_ValidationListBox, 0, 2);
+      m_tableLayoutPanel2.Controls.Add(m_SplitContainer, 0, 1);
       m_tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
       m_tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
       m_tableLayoutPanel2.Name = "m_tableLayoutPanel2";
-      m_tableLayoutPanel2.RowCount = 3;
+      m_tableLayoutPanel2.RowCount = 2;
       m_tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      m_tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      m_tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      m_tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54.32781F));
       m_tableLayoutPanel2.Size = new System.Drawing.Size(597, 559);
       m_tableLayoutPanel2.TabIndex = 6;
       // 
       // m_ValidationPropertyGrid
       // 
       this.m_ValidationPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_ValidationPropertyGrid.Location = new System.Drawing.Point(3, 19);
+      this.m_ValidationPropertyGrid.Location = new System.Drawing.Point(0, 0);
       this.m_ValidationPropertyGrid.Name = "m_ValidationPropertyGrid";
-      this.m_ValidationPropertyGrid.Size = new System.Drawing.Size(591, 236);
+      this.m_ValidationPropertyGrid.Size = new System.Drawing.Size(591, 352);
       this.m_ValidationPropertyGrid.TabIndex = 7;
       this.m_TtoolTip.SetToolTip(this.m_ValidationPropertyGrid, "Installation parameters");
       // 
@@ -243,9 +246,9 @@
       this.m_ValidationListBox.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_ValidationListBox.FormattingEnabled = true;
       this.m_ValidationListBox.ItemHeight = 16;
-      this.m_ValidationListBox.Location = new System.Drawing.Point(3, 261);
+      this.m_ValidationListBox.Location = new System.Drawing.Point(0, 0);
       this.m_ValidationListBox.Name = "m_ValidationListBox";
-      this.m_ValidationListBox.Size = new System.Drawing.Size(591, 295);
+      this.m_ValidationListBox.Size = new System.Drawing.Size(591, 181);
       this.m_ValidationListBox.TabIndex = 0;
       // 
       // m_tableLayoutPanel3
@@ -545,6 +548,24 @@
       // 
       this.m_WebApplicationURLErrorProvider.ContainerControl = this;
       // 
+      // m_SplitContainer
+      // 
+      m_SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+      m_SplitContainer.Location = new System.Drawing.Point(3, 19);
+      m_SplitContainer.Name = "m_SplitContainer";
+      m_SplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+      // 
+      // m_SplitContainer.Panel1
+      // 
+      m_SplitContainer.Panel1.Controls.Add(this.m_ValidationPropertyGrid);
+      // 
+      // m_SplitContainer.Panel2
+      // 
+      m_SplitContainer.Panel2.Controls.Add(this.m_ValidationListBox);
+      m_SplitContainer.Size = new System.Drawing.Size(591, 537);
+      m_SplitContainer.SplitterDistance = 352;
+      m_SplitContainer.TabIndex = 8;
+      // 
       // SetUpData
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -578,6 +599,9 @@
       this.tableLayoutPanel2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.m_OwnerEmailErrorProvider)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.m_WebApplicationURLErrorProvider)).EndInit();
+      m_SplitContainer.Panel1.ResumeLayout(false);
+      m_SplitContainer.Panel2.ResumeLayout(false);
+      m_SplitContainer.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }

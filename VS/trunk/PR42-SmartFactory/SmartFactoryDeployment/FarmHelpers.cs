@@ -72,18 +72,6 @@ namespace CAS.SmartFactory.Deployment
         throw new ApplicationException(_msg);
       }
     }
-    internal static void DeactivateFeature(Guid _feature, SPSite _site)
-    {
-      try
-      {
-        _site.Features.Remove(_feature);
-      }
-      catch (Exception ex)
-      {
-        string _msg = String.Format(Resources.DeactivateFeatureFailed, ex.Message);
-        throw new ApplicationException(_msg);
-      }
-    }
     internal static Guid FindSolution(string _FileName)
     {
       return (from _idx in Farm.Solutions where _idx.SolutionFile.Name == _FileName select _idx).First().Id;

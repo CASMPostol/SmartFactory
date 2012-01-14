@@ -91,11 +91,19 @@
       <DependentUpon>SetUpData.cs</DependentUpon>
     </Compile>
     <Compile Include="SiteCollectionHelper.cs" />
+    <Compile Include="Uninstall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uninstall.Designer.cs">
+      <DependentUpon>Uninstall.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Shepherd_50x50.ico" />
     <Content Include="Shepherd_50x50.ico" />
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="cas.snk" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -120,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SetUpData.resx">
       <DependentUpon>SetUpData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uninstall.resx">
+      <DependentUpon>Uninstall.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
