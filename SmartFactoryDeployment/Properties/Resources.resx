@@ -212,7 +212,7 @@ For example 'http://computer.domain:Port'</value>
     <value>Retrack of farm solution failed : Name = {0}, file: {1}, feature: {2} with the error: {3}.</value>
   </data>
   <data name="DeplymentTimeout" xml:space="preserve">
-    <value>Timeout encountered during solution deployment.</value>
+    <value>Timeout encountered during solution deployment; DeploymentState={0}, Status={1}, LastOperationResult= {2}, LastOperationDetails={3}.</value>
   </data>
   <data name="DeployFarmSolutionFailed" xml:space="preserve">
     <value>DeploySolution failed for the file: {0} with the error: {1}. </value>

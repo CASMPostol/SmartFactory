@@ -30,6 +30,11 @@ namespace CAS.SmartFactory.Deployment
     {
       try
       {
+        if (_file.Exists)
+        {
+          _file.Attributes = 0;
+          _file.Delete();
+        }
         using (Stream _strm = _file.OpenWrite())
         {
           XmlSerializer _srlzr = new XmlSerializer(typeof(InstallationStateData));
@@ -138,7 +143,7 @@ namespace CAS.SmartFactory.Deployment
     [XmlIgnore()]
     public Guid SiteCollectionFetureId
     {
-      get { return new Guid(XmlSiteCollectionFetureId); }
+      get { return XmlSiteCollectionFetureId.Parse(); }
       set { XmlSiteCollectionFetureId = value.ToString(); }
     }
     /// <summary>
@@ -153,7 +158,7 @@ namespace CAS.SmartFactory.Deployment
     [XmlIgnore()]
     public Guid FarmFetureId
     {
-      get { return new Guid(XmlFarmFetureId); }
+      get { return XmlFarmFetureId.Parse(); }
       set { XmlFarmFetureId = value.ToString(); }
     }
     /// <summary>
@@ -169,9 +174,10 @@ namespace CAS.SmartFactory.Deployment
     [XmlIgnore()]
     public Guid SolutionID
     {
-      get { return new Guid(XmlSolutionID); }
+      get { return XmlSolutionID.Parse(); }
       set { XmlSolutionID = value.ToString(); }
     }
     #endregion
+   
   }
 }

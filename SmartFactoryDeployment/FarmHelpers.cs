@@ -55,14 +55,31 @@ namespace CAS.SmartFactory.Deployment
         _solutionId = _sol.Id;
         Collection<SPWebApplication> _collection = new Collection<SPWebApplication>();
         _collection.Add(_wa);
-        _sol.Deploy(DateTime.Now, true, _collection, false);
+        _sol.Deploy(DateTime.Now, true, _collection, true);
         int _round = 0;
-        do
+        while (!_sol.Deployed)
         {
           Thread.Sleep(200);
+          string _msg = String.Format(
+           "Waiting for the solution to be deployed DeploymentState={0}, LastOperationResult={1}, Status={2}",
+           _sol.DeploymentState,
+           _sol.LastOperationResult,
+           _sol.Status);
+          if (_sol.JobExists)
+          {
+            _msg += String.Format(" JobStatus={0}", _sol.JobStatus);
+          }
+          SetUpData.TraceEvent.TraceVerbose(62, "DeploySolution", _msg);
           if (_round++ > Settings.Default.FeatureActivationTimeOut)
+          {
+            string _tom = String.Format(Resources.DeplymentTimeout,
+              _sol.DeploymentState,
+              _sol.Status, 
+              _sol.LastOperationResult,
+              _sol.LastOperationDetails);
             throw new ApplicationException(Resources.DeplymentTimeout);
-        } while (! _sol.Deployed );
+          }
+        };
         return _sol;
         //Debug.Assert(_sol.JobStatus == SPRunningJobStatus.Succeeded, "Job status error");
       }
