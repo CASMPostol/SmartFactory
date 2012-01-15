@@ -169,7 +169,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Timeout encountered during solution deployment..
+        ///   Looks up a localized string similar to Timeout encountered during solution deployment; DeploymentState={0}, Status={1}, LastOperationResult= {2}, LastOperationDetails={3}..
         /// </summary>
         internal static string DeplymentTimeout {
             get {

@@ -23,5 +23,16 @@ namespace CAS.SmartFactory.Deployment
       _box.SelectedItem = _msg;
       _box.Refresh();
     }
+    /// <summary>
+    /// Parses the specified _value to get valid <see cref="Guid"/>.
+    /// </summary>
+    /// <param name="_value">The <see cref="String"/> _value.</param>
+    /// <returns>Valid <see cref="Guid "/></returns>
+    public static Guid Parse(this String _value)
+    {
+      if (String.IsNullOrEmpty(_value))
+        return Guid.Empty;
+      return new Guid(_value);
+    }
   }
 }

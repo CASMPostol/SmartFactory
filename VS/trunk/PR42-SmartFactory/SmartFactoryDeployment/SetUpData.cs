@@ -248,6 +248,7 @@ namespace CAS.SmartFactory.Deployment
               Install();
               m_NextButton.Enabled = true;
               m_InstallationProgressBar.Value = m_InstallationProgressBar.Maximum;
+              m_InstallationProgresListBox.Enabled = true;
               break;
             default:
               break;
@@ -314,7 +315,7 @@ namespace CAS.SmartFactory.Deployment
           throw new ApplicationException(String.Format(Resources.GettingAccess2ApplicationFailed, m_ApplicationState.WebApplicationURL));
         if (FarmHelpers.WebApplication.Sites.Names.Contains(m_ApplicationState.SiteCollectionURL))
         {
-          SiteCollectionHelper.SiteCollection = FarmHelpers.WebApplication.Sites[m_ApplicationState.SiteCollectionURL];
+          //SiteCollectionHelper.SiteCollection = FarmHelpers.WebApplication.Sites[m_ApplicationState.SiteCollectionURL];
           string _ms = String.Format(Resources.SiteCollectionExist, m_ApplicationState.SiteCollectionURL);
           SiteCollectionHelper.DeleteIfExist = MessageBox.Show(
             _ms,
@@ -342,6 +343,7 @@ namespace CAS.SmartFactory.Deployment
         m_ValidationListBox.SelectedValueChanged -= new EventHandler(this.m_ListBox_TextChanged);
       }
     }
+    private SiteCollectionHelper m_SiteCollectionHelper = null;
     private void Install()
     {
       this.UseWaitCursor = true;
@@ -351,7 +353,7 @@ namespace CAS.SmartFactory.Deployment
         m_InstallationProgressBar.Maximum = 18;
         m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_ListBox_TextChanged);
         m_InstallationProgresListBox.AddMessage("Creating SPSite ... ");
-        SiteCollectionHelper.CreateSPSite(
+        m_SiteCollectionHelper = SiteCollectionHelper.CreateSPSite(
           FarmHelpers.WebApplication,
           m_ApplicationState.SiteCollectionURL,
           m_ApplicationState.OwnerLogin,
@@ -361,16 +363,16 @@ namespace CAS.SmartFactory.Deployment
         m_ApplicationState.SiteCollectionCreated = true;
         FileInfo _fi = GetFile(Settings.Default.SiteCollectionSolutionFileName);
         m_InstallationProgresListBox.AddMessage(String.Format("Deploying solution: {0}", _fi.Name));
-        SPUserSolution _solution = SiteCollectionHelper.DeploySolution(SiteCollectionHelper.SiteCollection, _fi);
+        SPUserSolution _solution = m_SiteCollectionHelper.DeploySolution(_fi);
         m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed: {0}", _solution.Name));
         m_ApplicationState.SiteCollectionSolutionsDeployed = true;
-        m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", m_ApplicationState.SiteCollectionFetureId, SiteCollectionHelper.SiteCollection.Url));
-        SPFeature _feature = SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.SiteCollectionFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Site);
+        m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", m_ApplicationState.SiteCollectionFetureId, m_SiteCollectionHelper.SiteCollection.Url));
+        SPFeature _feature = m_SiteCollectionHelper.ActivateFeature(m_ApplicationState.SiteCollectionFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Site);
         m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _feature.Definition.DisplayName));
         m_ApplicationState.SiteCollectionFeturesActivated = true;
         _fi = GetFile(Settings.Default.FarmSolutionFileName);
         m_InstallationProgresListBox.AddMessage(String.Format("Deploying Solution : {0}", _fi.Name));
-        if (SiteCollectionHelper.SiteCollection == null)
+        if (m_SiteCollectionHelper.SiteCollection == null)
           throw new ApplicationException(Resources.SiteCollectionNotExist);
         Guid _solutionID;
         m_InstallationProgresListBox.AddMessage("Waiting for completion .... ");
@@ -378,8 +380,8 @@ namespace CAS.SmartFactory.Deployment
         m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed Name={0}, Deployed={1}, DeploymentState={2}, DisplayName={3} Status={4}", _sol.Name, _sol.Deployed, _sol.DeploymentState, _sol.DisplayName, _sol.Status));
         m_ApplicationState.FarmSolutionsDeployed = true;
         m_ApplicationState.SolutionID = _solutionID;
-        m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", m_ApplicationState.FarmFetureId, SiteCollectionHelper.SiteCollection.Url));
-        _feature = SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Farm);
+        m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", m_ApplicationState.FarmFetureId, m_SiteCollectionHelper.SiteCollection.Url));
+        _feature = m_SiteCollectionHelper.ActivateFeature(m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Farm);
         m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _feature.Definition.DisplayName));
         m_ApplicationState.FarmFeaturesActivated = true;
         SaveInstallationState();
@@ -503,10 +505,11 @@ namespace CAS.SmartFactory.Deployment
     /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
     protected override void Dispose(bool disposing)
     {
-
       if (disposing)
       {
         TraceEvent.TraceEventClose();
+        if (m_SiteCollectionHelper != null)
+          m_SiteCollectionHelper.Dispose();
         if (components != null)
           components.Dispose();
       }
@@ -583,8 +586,8 @@ namespace CAS.SmartFactory.Deployment
       try
       {
         FileInfo _fi = GetFile(Settings.Default.SiteCollectionSolutionFileName);
-        SiteCollectionHelper.DeploySolution(SiteCollectionHelper.SiteCollection, _fi);
-        SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.SiteCollectionFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Site);
+        m_SiteCollectionHelper.DeploySolution(_fi);
+        m_SiteCollectionHelper.ActivateFeature(m_ApplicationState.SiteCollectionFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Site);
       }
       catch (Exception ex)
       {
@@ -597,12 +600,12 @@ namespace CAS.SmartFactory.Deployment
       try
       {
         FileInfo _fi = GetFile(Settings.Default.FarmSolutionFileName);
-        if (SiteCollectionHelper.SiteCollection == null)
+        if (m_SiteCollectionHelper == null)
           throw new ApplicationException(Resources.SiteCollectionNotExist);
         Guid _solutionID;
         FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, out _solutionID);
         m_ApplicationState.SolutionID = _solutionID;
-        SiteCollectionHelper.ActivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Farm);
+        m_SiteCollectionHelper.ActivateFeature(m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Farm);
       }
       catch (Exception ex)
       {
@@ -625,7 +628,7 @@ namespace CAS.SmartFactory.Deployment
     {
       try
       {
-        SiteCollectionHelper.DeactivateFeature(SiteCollectionHelper.SiteCollection, m_ApplicationState.FarmFetureId);
+        m_SiteCollectionHelper.DeactivateFeature(m_ApplicationState.FarmFetureId);
         FarmHelpers.RetrackSolution(m_ApplicationState.SolutionID);
       }
       catch (Exception ex)
