@@ -21,8 +21,8 @@
       this.m_UninstallListBox = new System.Windows.Forms.ListBox();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.m_CloseButton = new System.Windows.Forms.Button();
-      this.m_InstalationStatePropertyGrid = new System.Windows.Forms.PropertyGrid();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+      this.m_InstalationStatePropertyGrid = new System.Windows.Forms.PropertyGrid();
       this.m_UninstallButton = new System.Windows.Forms.Button();
       m_label1 = new System.Windows.Forms.Label();
       this.tableLayoutPanel1.SuspendLayout();
@@ -50,9 +50,9 @@
       this.m_UninstallListBox.FormattingEnabled = true;
       this.m_UninstallListBox.ItemHeight = 16;
       this.m_UninstallListBox.Location = new System.Drawing.Point(0, 0);
-      this.m_UninstallListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.m_UninstallListBox.Margin = new System.Windows.Forms.Padding(4);
       this.m_UninstallListBox.Name = "m_UninstallListBox";
-      this.m_UninstallListBox.Size = new System.Drawing.Size(599, 188);
+      this.m_UninstallListBox.Size = new System.Drawing.Size(599, 189);
       this.m_UninstallListBox.TabIndex = 0;
       // 
       // tableLayoutPanel1
@@ -67,7 +67,7 @@
       this.tableLayoutPanel1.Controls.Add(this.m_UninstallButton, 1, 2);
       this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-      this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
       this.tableLayoutPanel1.RowCount = 3;
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -80,21 +80,13 @@
       // 
       this.m_CloseButton.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_CloseButton.Location = new System.Drawing.Point(4, 409);
-      this.m_CloseButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.m_CloseButton.Margin = new System.Windows.Forms.Padding(4);
       this.m_CloseButton.Name = "m_CloseButton";
       this.m_CloseButton.Size = new System.Drawing.Size(92, 28);
       this.m_CloseButton.TabIndex = 2;
       this.m_CloseButton.Text = "Cancel";
       this.m_CloseButton.UseVisualStyleBackColor = true;
       this.m_CloseButton.Click += new System.EventHandler(this.m_CloseButton_Click);
-      // 
-      // m_InstalationStatePropertyGrid
-      // 
-      this.m_InstalationStatePropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_InstalationStatePropertyGrid.Location = new System.Drawing.Point(0, 0);
-      this.m_InstalationStatePropertyGrid.Name = "m_InstalationStatePropertyGrid";
-      this.m_InstalationStatePropertyGrid.Size = new System.Drawing.Size(599, 191);
-      this.m_InstalationStatePropertyGrid.TabIndex = 3;
       // 
       // splitContainer1
       // 
@@ -112,8 +104,16 @@
       // 
       this.splitContainer1.Panel2.Controls.Add(this.m_UninstallListBox);
       this.splitContainer1.Size = new System.Drawing.Size(599, 383);
-      this.splitContainer1.SplitterDistance = 191;
+      this.splitContainer1.SplitterDistance = 190;
       this.splitContainer1.TabIndex = 4;
+      // 
+      // m_InstalationStatePropertyGrid
+      // 
+      this.m_InstalationStatePropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.m_InstalationStatePropertyGrid.Location = new System.Drawing.Point(0, 0);
+      this.m_InstalationStatePropertyGrid.Name = "m_InstalationStatePropertyGrid";
+      this.m_InstalationStatePropertyGrid.Size = new System.Drawing.Size(599, 190);
+      this.m_InstalationStatePropertyGrid.TabIndex = 3;
       // 
       // m_UninstallButton
       // 
@@ -135,7 +135,7 @@
       this.Controls.Add(this.tableLayoutPanel1);
       this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "Uninstall";
       this.Text = "Smart Factory Uninstall";
       this.tableLayoutPanel1.ResumeLayout(false);
