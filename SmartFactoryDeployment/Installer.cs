@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Configuration.Install;
 using System.Linq;
 using CAS.SmartFactory.Deployment.Properties;
+using System.IO;
+using System.Windows.Forms;
 
 
 namespace CAS.SmartFactory.Deployment
@@ -20,7 +22,6 @@ namespace CAS.SmartFactory.Deployment
     /// </summary>
     public Installer()
     {
-      InitializeComponent();
     }
     /// <summary>
     /// Performs the installation.
@@ -37,15 +38,27 @@ namespace CAS.SmartFactory.Deployment
     ///   </exception>
     public override void Install(IDictionary stateSaver)
     {
+      InitializeComponent();
+      //Directory.SetCurrentDirectory(Path.GetDirectoryName(this.GetType().Assembly.Location));
+      //SetUpData.TraceEvent.TraceVerbose(27, "Installer", String.Format("Setting current directory to {0}.", Directory.GetCurrentDirectory()));
+      //using (SetUpData _sud = new SetUpData())
+      //{
+      //  Application.Run(_sud);
+      //  if (_sud.DialogResult != System.Windows.Forms.DialogResult.OK)
+      //  {
+      //    if (!MBox())
+      //      throw new ApplicationException(String.Format(Resources.SeeLogFile, Directory.GetCurrentDirectory()));
+      //  }
+      //}
       base.Install(stateSaver);
-      SetUpData _dialog = new SetUpData() { Manual = true };
-      if (_dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-        System.Windows.Forms.MessageBox.Show(
-          Resources.AreYouSure2Cancel, Resources.CancelInstallationCaption,
-          System.Windows.Forms.MessageBoxButtons.OKCancel,
-          System.Windows.Forms.MessageBoxIcon.Question);
-
     }
+    //private static bool MBox()
+    //{
+    //  return System.Windows.Forms.MessageBox.Show(
+    //    Resources.InstallationFailed, Resources.CancelInstallationCaption,
+    //    System.Windows.Forms.MessageBoxButtons.OKCancel,
+    //    System.Windows.Forms.MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK;
+    //}
     /// <summary>
     /// Completes the install transaction.
     /// </summary>
@@ -64,6 +77,26 @@ namespace CAS.SmartFactory.Deployment
       base.Commit(savedState);
     }
     /// <summary>
+    /// When overridden in a derived class, restores the pre-installation state of the computer.
+    /// </summary>
+    /// <param name="savedState">An <see cref="T:System.Collections.IDictionary"/> that contains the pre-installation state of the computer.</param>
+    /// <exception cref="T:System.ArgumentException">
+    /// The <paramref name="savedState"/> parameter is null.
+    /// -or-
+    /// The saved-state <see cref="T:System.Collections.IDictionary"/> might have been corrupted.
+    ///   </exception>
+    ///   
+    /// <exception cref="T:System.Configuration.Install.InstallException">
+    /// An exception occurred during the <see cref="M:System.Configuration.Install.Installer.Rollback(System.Collections.IDictionary)"/> phase of the installation. This exception is ignored and the rollback continues. However, the computer might not be fully reverted to its initial state after the rollback completes.
+    ///   </exception>
+    public override void Rollback(IDictionary savedState)
+    {
+      //Directory.SetCurrentDirectory(Path.GetDirectoryName(this.GetType().Assembly.Location));
+      //Uninstall m_dialog = new Uninstall();
+      //m_dialog.ShowDialog();
+      base.Rollback(savedState);
+    }
+    /// <summary>
     /// When overridden in a derived class, removes an installation.
     /// </summary>
     /// <param name="savedState">An <see cref="T:System.Collections.IDictionary"/> that contains the state of the computer after the installation was complete.</param>
@@ -76,6 +109,9 @@ namespace CAS.SmartFactory.Deployment
     ///   </exception>
     public override void Uninstall(IDictionary savedState)
     {
+      //Directory.SetCurrentDirectory(Path.GetDirectoryName(this.GetType().Assembly.Location));
+      //Uninstall m_dialog = new Uninstall();
+      //m_dialog.ShowDialog();
       base.Uninstall(savedState);
     }
   }

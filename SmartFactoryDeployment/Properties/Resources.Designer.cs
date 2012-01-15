@@ -278,6 +278,15 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The installation failed. You can cancel and rollback the installation or keep it for review? Press OK to exit, or Cancel to rollback..
+        /// </summary>
+        internal static string InstallationFailed {
+            get {
+                return ResourceManager.GetString("InstallationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Installation properties.
         /// </summary>
         internal static string InstallationProperties {
@@ -341,7 +350,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot save the installation state data. The operation finished with the error: {0}.
+        ///   Looks up a localized string similar to Cannot read the installation state data. The operation finished with the error: {0}.
         /// </summary>
         internal static string ReadInstallationStateDataFailure {
             get {
@@ -359,11 +368,29 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Retrack.
+        /// </summary>
+        internal static string RetrackCaption {
+            get {
+                return ResourceManager.GetString("RetrackCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot save the installation state data. The operation finished with the error: {0}.
         /// </summary>
         internal static string SaveInstallationStateDataFailure {
             get {
                 return ResourceManager.GetString("SaveInstallationStateDataFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The installation failed. Review the .log file at {0}.
+        /// </summary>
+        internal static string SeeLogFile {
+            get {
+                return ResourceManager.GetString("SeeLogFile", resourceCulture);
             }
         }
         
@@ -409,6 +436,15 @@ namespace CAS.SmartFactory.Deployment.Properties {
         internal static string SiteExistAndReuse {
             get {
                 return ResourceManager.GetString("SiteExistAndReuse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is nothing to uninstall. The software has not been installed or was already removed from this server..
+        /// </summary>
+        internal static string SoftwareIsNotInstalled {
+            get {
+                return ResourceManager.GetString("SoftwareIsNotInstalled", resourceCulture);
             }
         }
         

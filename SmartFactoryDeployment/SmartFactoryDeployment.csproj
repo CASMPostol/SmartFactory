@@ -43,6 +43,11 @@
   <PropertyGroup>
     <ApplicationIcon>Shepherd_50x50.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CAS.RTLibComm">
       <HintPath>..\..\CommonBinaries\PR37-CAS_LIB_PCKG\CAS.RTLibComm.dll</HintPath>
@@ -99,11 +104,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\blok_danych_48_full.ico" />
     <Content Include="Images\Shepherd_50x50.ico" />
     <Content Include="Shepherd_50x50.ico" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="app.manifest" />
     <None Include="cas.snk" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -120,6 +127,7 @@
     </None>
     <None Include="Scripts\CreateCs.ps1" />
     <None Include="Scripts\CreateXSD.ps1" />
+    <None Include="Scripts\SignRelease.cmd" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -135,6 +143,9 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(ProjectDir)Scripts\SignRelease.cmd $(TargetPath)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
