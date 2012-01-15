@@ -60,7 +60,7 @@ namespace CAS.SmartFactory.Deployment
       }
       catch (Exception ex)
       {
-        throw new ApplicationException(string.Format(Resources.SaveInstallationStateDataFailure, ex.Message));
+        throw new ApplicationException(string.Format(Resources.ReadInstallationStateDataFailure, ex.Message));
       }
     }
     /// <summary>

@@ -25,9 +25,7 @@ namespace CAS.SmartFactory.Deployment
     {
       TraceEvent.TraceVerbose(26, "SetUpData", "Starting the application");
       InitializeComponent();
-      State = ProcessState.ApplicationSetupDataDialog;
       Manual = Properties.Settings.Default.ManualMode;
-      m_ApplicationURLTextBox.Text = Properties.Settings.Default.SiteCollectionURL;
     }
     internal bool Manual { get; set; }
     #endregion
@@ -45,6 +43,7 @@ namespace CAS.SmartFactory.Deployment
       Finisched
     }
     private ProcessState m_State;
+    private SiteCollectionHelper m_SiteCollectionHelper = null;
     private InstallationStateData m_ApplicationState;
     private enum LocalEvent
     {
@@ -169,6 +168,7 @@ namespace CAS.SmartFactory.Deployment
               m_NextButton.Enabled = true;
               m_NextButton.Text = Resources.NextButtonTextNext;
               m_CancelButton.Visible = true;
+              InitSetupData();
               break;
             default:
               break;
@@ -282,54 +282,81 @@ namespace CAS.SmartFactory.Deployment
           break;
       }
     }
+    private void InitSetupData()
+    {
+      try
+      {
+        SPSecurity.RunWithElevatedPrivileges(delegate()
+        {
+          m_ApplicationURLTextBox.Text = Properties.Settings.Default.SiteCollectionURL;
+          m_ApplicationURLTextBox.Text = Uri.UriSchemeHttp + Uri.SchemeDelimiter + SPServer.Local.Address;
+        });
+      }
+      catch (Exception)
+      {
+        m_ApplicationURLTextBox.Text = "http://server.domain " + Resources.CannotGetAccessToLocalServer;
+      }
+      try
+      {
+        WindowsIdentity _id = WindowsIdentity.GetCurrent();
+        m_OwnerLoginTextBox.Text = _id.Name;
+      }
+      catch (Exception)
+      {
+        m_OwnerLoginTextBox.Text = @"domain\user";
+      }
+    }
     private bool CheckPrerequisites()
     {
       try
       {
-        m_ValidationListBox.SelectedValueChanged += new EventHandler(this.m_ListBox_TextChanged);
-        m_ValidationListBox.AddMessage(Resources.ValidationProcessStarting);
-        //TODO add validation to:
-        m_ApplicationState.GetUri(m_ApplicationURLTextBox.Text);
-        m_ApplicationState.GetSiteCollectionURL(m_SiteUrlTextBox.Text);
-        m_ApplicationState.GetOwnerLogin(m_OwnerLoginTextBox.Text);
-        m_ApplicationState.GetOwnerEmail(m_OwnerEmailTextBox.Text);
-        m_ApplicationState.FarmFetureId = new Guid(Settings.Default.FarmFeatureGuid);
-        m_ApplicationState.SiteCollectionFetureId = new Guid(Settings.Default.SiteCollectionFeatureGuid);
-        m_ValidationPropertyGrid.Refresh();
-        FarmHelpers.GetFarm();
-        string _msg = string.Empty;
-        if (FarmHelpers.Farm != null)
+        SPSecurity.RunWithElevatedPrivileges(delegate()
         {
-          _msg = String.Format(Resources.GotAccess2Farm, FarmHelpers.Farm.Name, FarmHelpers.Farm.DisplayName, FarmHelpers.Farm.Status);
-          m_ValidationListBox.AddMessage(_msg);
-        }
-        else
-          throw new ApplicationException(Resources.GettingAccess2LocalFarm);
-        FarmHelpers.GetWebApplication(m_ApplicationState.WebApplicationURL);
-        if (FarmHelpers.WebApplication != null)
-        {
-          _msg = String.Format(Resources.ApplicationFound, m_ApplicationState.WebApplicationURL, FarmHelpers.WebApplication.Name, FarmHelpers.WebApplication.DisplayName);
-          m_ValidationListBox.AddMessage(_msg);
-        }
-        else
-          throw new ApplicationException(String.Format(Resources.GettingAccess2ApplicationFailed, m_ApplicationState.WebApplicationURL));
-        if (FarmHelpers.WebApplication.Sites.Names.Contains(m_ApplicationState.SiteCollectionURL))
-        {
-          //SiteCollectionHelper.SiteCollection = FarmHelpers.WebApplication.Sites[m_ApplicationState.SiteCollectionURL];
-          string _ms = String.Format(Resources.SiteCollectionExist, m_ApplicationState.SiteCollectionURL);
-          SiteCollectionHelper.DeleteIfExist = MessageBox.Show(
-            _ms,
-            Resources.SiteCreation,
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question) != DialogResult.Yes;
-          if (SiteCollectionHelper.DeleteIfExist)
-            m_ValidationListBox.AddMessage(Resources.SiteExistAndDelete);
+          m_ValidationListBox.SelectedValueChanged += new EventHandler(this.m_ListBox_TextChanged);
+          m_ValidationListBox.AddMessage(Resources.ValidationProcessStarting);
+          //TODO add validation to:
+          m_ApplicationState.GetUri(m_ApplicationURLTextBox.Text);
+          m_ApplicationState.GetSiteCollectionURL(m_SiteUrlTextBox.Text);
+          m_ApplicationState.GetOwnerLogin(m_OwnerLoginTextBox.Text);
+          m_ApplicationState.GetOwnerEmail(m_OwnerEmailTextBox.Text);
+          m_ApplicationState.FarmFetureId = new Guid(Settings.Default.FarmFeatureGuid);
+          m_ApplicationState.SiteCollectionFetureId = new Guid(Settings.Default.SiteCollectionFeatureGuid);
+          m_ValidationPropertyGrid.Refresh();
+          FarmHelpers.GetFarm();
+          string _msg = string.Empty;
+          if (FarmHelpers.Farm != null)
+          {
+            _msg = String.Format(Resources.GotAccess2Farm, FarmHelpers.Farm.Name, FarmHelpers.Farm.DisplayName, FarmHelpers.Farm.Status);
+            m_ValidationListBox.AddMessage(_msg);
+          }
           else
-            m_ValidationListBox.AddMessage(Resources.SiteExistAndReuse);
-          this.Refresh();
-        }
-        m_ValidationListBox.AddMessage(Resources.ValidationProcessSuccessfullyFinished);
-        m_ValidationPropertyGrid.Refresh();
+            throw new ApplicationException(Resources.GettingAccess2LocalFarm);
+          FarmHelpers.GetWebApplication(m_ApplicationState.WebApplicationURL);
+          if (FarmHelpers.WebApplication != null)
+          {
+            _msg = String.Format(Resources.ApplicationFound, m_ApplicationState.WebApplicationURL, FarmHelpers.WebApplication.Name, FarmHelpers.WebApplication.DisplayName);
+            m_ValidationListBox.AddMessage(_msg);
+          }
+          else
+            throw new ApplicationException(String.Format(Resources.GettingAccess2ApplicationFailed, m_ApplicationState.WebApplicationURL));
+          if (FarmHelpers.WebApplication.Sites.Names.Contains(m_ApplicationState.SiteCollectionURL))
+          {
+            //SiteCollectionHelper.SiteCollection = FarmHelpers.WebApplication.Sites[m_ApplicationState.SiteCollectionURL];
+            string _ms = String.Format(Resources.SiteCollectionExist, m_ApplicationState.SiteCollectionURL);
+            SiteCollectionHelper.DeleteIfExist = MessageBox.Show(
+              _ms,
+              Resources.SiteCreation,
+              MessageBoxButtons.YesNo,
+              MessageBoxIcon.Question) != DialogResult.Yes;
+            if (SiteCollectionHelper.DeleteIfExist)
+              m_ValidationListBox.AddMessage(Resources.SiteExistAndDelete);
+            else
+              m_ValidationListBox.AddMessage(Resources.SiteExistAndReuse);
+            this.Refresh();
+          }
+          m_ValidationListBox.AddMessage(Resources.ValidationProcessSuccessfullyFinished);
+          m_ValidationPropertyGrid.Refresh();
+        });
         return true;
       }
       catch (Exception ex)
@@ -343,49 +370,51 @@ namespace CAS.SmartFactory.Deployment
         m_ValidationListBox.SelectedValueChanged -= new EventHandler(this.m_ListBox_TextChanged);
       }
     }
-    private SiteCollectionHelper m_SiteCollectionHelper = null;
     private void Install()
     {
       this.UseWaitCursor = true;
       try
       {
-        m_InstallationProgressBar.Minimum = 0;
-        m_InstallationProgressBar.Maximum = 18;
-        m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_ListBox_TextChanged);
-        m_InstallationProgresListBox.AddMessage("Creating SPSite ... ");
-        m_SiteCollectionHelper = SiteCollectionHelper.CreateSPSite(
-          FarmHelpers.WebApplication,
-          m_ApplicationState.SiteCollectionURL,
-          m_ApplicationState.OwnerLogin,
-          m_ApplicationState.OwnerEmail);
-        m_ApplicationState.SiteCollectionCreated = true;
-        m_InstallationProgresListBox.AddMessage("Site collection created");
-        m_ApplicationState.SiteCollectionCreated = true;
-        FileInfo _fi = GetFile(Settings.Default.SiteCollectionSolutionFileName);
-        m_InstallationProgresListBox.AddMessage(String.Format("Deploying solution: {0}", _fi.Name));
-        SPUserSolution _solution = m_SiteCollectionHelper.DeploySolution(_fi);
-        m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed: {0}", _solution.Name));
-        m_ApplicationState.SiteCollectionSolutionsDeployed = true;
-        m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", m_ApplicationState.SiteCollectionFetureId, m_SiteCollectionHelper.SiteCollection.Url));
-        SPFeature _feature = m_SiteCollectionHelper.ActivateFeature(m_ApplicationState.SiteCollectionFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Site);
-        m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _feature.Definition.DisplayName));
-        m_ApplicationState.SiteCollectionFeturesActivated = true;
-        _fi = GetFile(Settings.Default.FarmSolutionFileName);
-        m_InstallationProgresListBox.AddMessage(String.Format("Deploying Solution : {0}", _fi.Name));
-        if (m_SiteCollectionHelper.SiteCollection == null)
-          throw new ApplicationException(Resources.SiteCollectionNotExist);
-        Guid _solutionID;
-        m_InstallationProgresListBox.AddMessage("Waiting for completion .... ");
-        SPSolution _sol = FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, out _solutionID);
-        m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed Name={0}, Deployed={1}, DeploymentState={2}, DisplayName={3} Status={4}", _sol.Name, _sol.Deployed, _sol.DeploymentState, _sol.DisplayName, _sol.Status));
-        m_ApplicationState.FarmSolutionsDeployed = true;
-        m_ApplicationState.SolutionID = _solutionID;
-        m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", m_ApplicationState.FarmFetureId, m_SiteCollectionHelper.SiteCollection.Url));
-        _feature = m_SiteCollectionHelper.ActivateFeature(m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Farm);
-        m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _feature.Definition.DisplayName));
-        m_ApplicationState.FarmFeaturesActivated = true;
-        SaveInstallationState();
-        m_InstallationProgresListBox.AddMessage("Installation successfully completed");
+        SPSecurity.RunWithElevatedPrivileges(delegate()
+        {
+          m_InstallationProgressBar.Minimum = 0;
+          m_InstallationProgressBar.Maximum = 18;
+          m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_ListBox_TextChanged);
+          m_InstallationProgresListBox.AddMessage("Creating SPSite ... ");
+          m_SiteCollectionHelper = SiteCollectionHelper.CreateSPSite(
+            FarmHelpers.WebApplication,
+            m_ApplicationState.SiteCollectionURL,
+            m_ApplicationState.OwnerLogin,
+            m_ApplicationState.OwnerEmail);
+          m_ApplicationState.SiteCollectionCreated = true;
+          m_InstallationProgresListBox.AddMessage("Site collection created");
+          m_ApplicationState.SiteCollectionCreated = true;
+          FileInfo _fi = GetFile(Settings.Default.SiteCollectionSolutionFileName);
+          m_InstallationProgresListBox.AddMessage(String.Format("Deploying solution: {0}", _fi.Name));
+          SPUserSolution _solution = m_SiteCollectionHelper.DeploySolution(_fi);
+          m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed: {0}", _solution.Name));
+          m_ApplicationState.SiteCollectionSolutionsDeployed = true;
+          m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", m_ApplicationState.SiteCollectionFetureId, m_SiteCollectionHelper.SiteCollection.Url));
+          SPFeature _feature = m_SiteCollectionHelper.ActivateFeature(m_ApplicationState.SiteCollectionFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Site);
+          m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _feature.Definition.DisplayName));
+          m_ApplicationState.SiteCollectionFeturesActivated = true;
+          _fi = GetFile(Settings.Default.FarmSolutionFileName);
+          m_InstallationProgresListBox.AddMessage(String.Format("Deploying Solution : {0}", _fi.Name));
+          if (m_SiteCollectionHelper.SiteCollection == null)
+            throw new ApplicationException(Resources.SiteCollectionNotExist);
+          Guid _solutionID;
+          m_InstallationProgresListBox.AddMessage("Waiting for completion .... ");
+          SPSolution _sol = FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, out _solutionID);
+          m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed Name={0}, Deployed={1}, DeploymentState={2}, DisplayName={3} Status={4}", _sol.Name, _sol.Deployed, _sol.DeploymentState, _sol.DisplayName, _sol.Status));
+          m_ApplicationState.FarmSolutionsDeployed = true;
+          m_ApplicationState.SolutionID = _solutionID;
+          m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", m_ApplicationState.FarmFetureId, m_SiteCollectionHelper.SiteCollection.Url));
+          _feature = m_SiteCollectionHelper.ActivateFeature(m_ApplicationState.FarmFetureId, Microsoft.SharePoint.SPFeatureDefinitionScope.Farm);
+          m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _feature.Definition.DisplayName));
+          m_ApplicationState.FarmFeaturesActivated = true;
+          SaveInstallationState();
+          m_InstallationProgresListBox.AddMessage("Installation successfully completed");
+        });
       }
       catch (Exception ex)
       {
@@ -404,7 +433,7 @@ namespace CAS.SmartFactory.Deployment
       finally
       {
         this.UseWaitCursor = false;
-        m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_ListBox_TextChanged);
+        m_InstallationProgresListBox.SelectedValueChanged -= new EventHandler(m_ListBox_TextChanged);
       }
     }
     private void SaveInstallationState()
@@ -470,23 +499,7 @@ namespace CAS.SmartFactory.Deployment
     /// <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
     protected override void OnLoad(EventArgs e)
     {
-      try
-      {
-        m_ApplicationURLTextBox.Text = Uri.UriSchemeHttp + Uri.SchemeDelimiter + SPServer.Local.Address;
-      }
-      catch (Exception)
-      {
-        m_ApplicationURLTextBox.Text = "http://server.domain " + Resources.CannotGetAccessToLocalServer;
-      }
-      try
-      {
-        WindowsIdentity _id = WindowsIdentity.GetCurrent();
-        m_OwnerLoginTextBox.Text = _id.Name;
-      }
-      catch (Exception)
-      {
-        m_OwnerLoginTextBox.Text = @"domain\user";
-      }
+      State = ProcessState.ApplicationSetupDataDialog;
       base.OnLoad(e);
     }
     /// <summary>

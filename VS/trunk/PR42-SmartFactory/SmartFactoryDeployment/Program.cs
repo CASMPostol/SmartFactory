@@ -23,9 +23,11 @@ namespace CAS.SmartFactory.Deployment
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new SetUpData());
-      if (MessageBox.Show("Start retracking the solutions", "Uninstall", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-        Application.Run(new Uninstall());
+      if (Environment.CommandLine.Contains(Settings.Default.InstallSwitch))
+        Application.Run(new SetUpData());
+      else
+        if (MessageBox.Show("Start retracking the solutions", "Uninstall", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+          Application.Run(new Uninstall());
       //LookupEnvironment();
     }
     private static void LookupEnvironment()

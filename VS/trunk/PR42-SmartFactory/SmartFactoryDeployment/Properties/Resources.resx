@@ -245,9 +245,21 @@ For example 'http://computer.domain:Port'</value>
     <value>&gt;&gt;</value>
   </data>
   <data name="ReadInstallationStateDataFailure" xml:space="preserve">
-    <value>Cannot save the installation state data. The operation finished with the error: {0}</value>
+    <value>Cannot read the installation state data. The operation finished with the error: {0}</value>
   </data>
   <data name="UninstallErrorCaption" xml:space="preserve">
     <value>Uninstall error !</value>
+  </data>
+  <data name="InstallationFailed" xml:space="preserve">
+    <value>The installation failed. You can cancel and rollback the installation or keep it for review? Press OK to exit, or Cancel to rollback.</value>
+  </data>
+  <data name="SeeLogFile" xml:space="preserve">
+    <value>The installation failed. Review the .log file at {0}</value>
+  </data>
+  <data name="RetrackCaption" xml:space="preserve">
+    <value>Retrack</value>
+  </data>
+  <data name="SoftwareIsNotInstalled" xml:space="preserve">
+    <value>There is nothing to uninstall. The software has not been installed or was already removed from this server.</value>
   </data>
 </root>

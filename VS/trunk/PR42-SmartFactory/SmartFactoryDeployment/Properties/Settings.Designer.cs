@@ -103,5 +103,29 @@ namespace CAS.SmartFactory.Deployment.Properties {
                 return ((short)(this["FeatureActivationTimeOut"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/Install")]
+        public string InstallSwitch {
+            get {
+                return ((string)(this["InstallSwitch"]));
+            }
+            set {
+                this["InstallSwitch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/Retrack")]
+        public string RetracSwitch {
+            get {
+                return ((string)(this["RetracSwitch"]));
+            }
+            set {
+                this["RetracSwitch"] = value;
+            }
+        }
     }
 }
