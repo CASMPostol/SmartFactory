@@ -5,7 +5,7 @@
       <ContentType ID="0x01003bfe19a18ad046eea2c9fd23be8cb4cd" Name="GoodsHandlingPO" Group="CAS Smart Factory Shepherd" Description="Goods Handling PO" Overwrite="True" Inherits="True">
         <Folder TargetName="_cts/GoodsHandlingPO" />
         <FieldRefs>
-          <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="GoodsHandlingPO2ShippingIndex" />
+          <FieldRef ID="{66DC49AE-B072-463A-A95C-14C73ADCB9E6}" Name="FreightPO2ShippingIndex" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -19,7 +19,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="GoodsHandlingPO2ShippingIndex" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field ID="{66DC49AE-B072-463A-A95C-14C73ADCB9E6}" Name="FreightPO2ShippingIndex" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -51,7 +51,7 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="GoodsHandlingPO2ShippingIndex" />
+          <FieldRef ID="{66DC49AE-B072-463A-A95C-14C73ADCB9E6}" Name="FreightPO2ShippingIndex" />
         </ViewFields>
         <Query>
           <OrderBy>

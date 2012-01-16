@@ -118,30 +118,28 @@
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    ID="{AAA1FBFE-205C-46DF-A996-47D3AFEF9484}"
-    Name="ShippingActualTime"
+    ID="{06F0C4D9-BDED-4A99-BF19-F6B1390E2A79}"
+    Name="EntryTime"
     Group="CAS Smart Factory Shepherd"
     Type="DateTime"
     Format="DateTime"
-    DisplayName="Actual Time">
+    DisplayName="Entry Time">
     <Default>[today]</Default>
   </Field>
   <Field
-    ID="{9C0CFEA4-22DA-4837-B50E-F1A31AF0E1EC}"
-    Name="ShipingActualTimeSpan"
+    ID="{1E155AF8-2CB2-43FC-9650-9C0BDD39CD88}"
+    Name="TimeSpan"
     Group="CAS Smart Factory Shepherd"
-    Type="DateTime"
-    Format="TimeOnly"
-    DisplayName="Actual Time Span">
-    <Default>[today]</Default>
-  </Field>
+    Type="Number"
+    DisplayName="Actual Time Span"
+  />
   <Field
-    ID="{C8009083-7850-4CC1-848D-552F7569C2BE}"
-    Name="ShipingTimeSpan"
+    ID="{89F5EF1F-D79D-42B6-BD14-780B9D90A86A}"
+    Name="ExitTime"
     Group="CAS Smart Factory Shepherd"
     Type="DateTime"
     Format="TimeOnly"
-    DisplayName="Time Span">
+    DisplayName="Exit Time">
     <Default>[today]</Default>
   </Field>
   <Field
