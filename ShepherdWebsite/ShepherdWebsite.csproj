@@ -412,7 +412,9 @@
     <Content Include="Content types\Shipping\LoadDescription\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Shipping\SecurityPO\Elements.xml" />
+    <Content Include="Content types\Shipping\SecurityPO\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml" />
