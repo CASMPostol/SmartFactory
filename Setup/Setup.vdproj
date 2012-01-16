@@ -123,6 +123,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3F3E3695C52A4CB3BC8D93E8D07385B0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_475AE0EF08EB2BC6FD173F60243972DD"
         "OwnerKey" = "8:_086D0F343FB44B8A813AB1ED1983F30C"
         "MsmSig" = "8:_UNDEFINED"
@@ -626,11 +632,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_17CB6D1184D6BA44C9076A758D8D03C5"
-                    {
-                    "Name" = "8:Microsoft.Web.CommandUI.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Web.CommandUI.dll"
             "TargetName" = "8:"
@@ -657,11 +658,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SharePoint.Security, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2F2269942EC01AB8B05FC340B096C274"
-                    {
-                    "Name" = "8:Microsoft.SharePoint.Security.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.SharePoint.Security.dll"
             "TargetName" = "8:"
@@ -774,6 +770,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3F3E3695C52A4CB3BC8D93E8D07385B0"
+            {
+            "SourcePath" = "8:Images\\ShepherdInstallBanner.jpg"
+            "TargetName" = "8:ShepherdInstallBanner.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_E108D391945D465A97E70B7CD568263E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_475AE0EF08EB2BC6FD173F60243972DD"
             {
             "AssemblyRegister" = "3:1"
@@ -781,11 +797,6 @@
             "AssemblyAsmDisplayName" = "8:CAS.CodeProtect, Version=4.0.2.19526, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_475AE0EF08EB2BC6FD173F60243972DD"
-                    {
-                    "Name" = "8:CAS.CodeProtect.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:CAS.CodeProtect.dll"
             "TargetName" = "8:"
@@ -936,11 +947,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SharePoint.Search, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
-                    "_A2B5DF89019D7E607635C8F024FB116D"
-                    {
-                    "Name" = "8:Microsoft.SharePoint.Search.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.SharePoint.Search.dll"
             "TargetName" = "8:"
@@ -1193,11 +1199,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F202C5E17AF47AA621A4B9B0827BF272"
-                    {
-                    "Name" = "8:Microsoft.SharePoint.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.SharePoint.dll"
             "TargetName" = "8:"
@@ -1224,11 +1225,6 @@
             "AssemblyAsmDisplayName" = "8:CAS.RTLibComm, Version=4.0.2.19545, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F6274BD22EE194EB13CAC0630C97E42A"
-                    {
-                    "Name" = "8:CAS.RTLibComm.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:CAS.RTLibComm.dll"
             "TargetName" = "8:"
@@ -1326,15 +1322,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Smart Factory"
-        "ProductCode" = "8:{207B3B25-F32F-4F42-8069-32B91148FA44}"
-        "PackageCode" = "8:{F197E24B-582D-4540-8A02-CCD43B7DFE56}"
+        "ProductCode" = "8:{5830B65C-BCC9-47E5-BDFB-43A2601B5D5C}"
+        "PackageCode" = "8:{B9EC1BBD-3D7E-4EDA-964A-5EE3CBC20481}"
         "UpgradeCode" = "8:{49725F07-CD3D-4395-B6F8-B10BB9191215}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:CAS"
         "ARPHELPTELEPHONE" = "8:+48 42 686 25 47"
         "ARPHELPLINK" = "8:http://jti.cas.eu/"
@@ -1342,7 +1338,7 @@
         "Subject" = "8:Smart factory"
         "ARPCONTACT" = "8:CAS"
         "Keywords" = "8:SmartFactory Shepherd, IPR,"
-        "ARPCOMMENTS" = "8:Smart Factory Setup"
+        "ARPCOMMENTS" = "8:Smart Factory Management Setup"
         "ARPURLINFOABOUT" = "8:www.cas.eu"
         "ARPPRODUCTICON" = "8:_086D0F343FB44B8A813AB1ED1983F30C"
         "ARPIconIndex" = "3:32512"
@@ -1552,7 +1548,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_3F3E3695C52A4CB3BC8D93E8D07385B0"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -1574,7 +1571,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_3F3E3695C52A4CB3BC8D93E8D07385B0"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -1622,7 +1620,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_3F3E3695C52A4CB3BC8D93E8D07385B0"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "InstallAllUsersVisible"
@@ -1666,7 +1665,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_3F3E3695C52A4CB3BC8D93E8D07385B0"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -1848,7 +1848,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_3F3E3695C52A4CB3BC8D93E8D07385B0"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "UpdateText"
@@ -1859,8 +1860,8 @@
                             "Type" = "3:15"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1258"
+                            "Setting" = "3:2"
+                            "Value" = "8:Navigate to the CAS\\Smart Factory Administration in the user's menu and select the Deploy Smart Factory entry to install the software on the SharePoint farm., Please use Windows Update to check for any critical updates to the .NET Framework."
                             "DefaultValue" = "8:#1258"
                             "UsePlugInResources" = "11:TRUE"
                             }
