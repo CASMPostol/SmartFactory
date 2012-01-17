@@ -65,9 +65,6 @@
     <None Include="Content types\Dictionaries\Commodity\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{93426b8f-e2b9-46c6-8566-4ae398549b13}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Dictionaries\Company\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{165d4078-9c6a-486d-9317-41fdcfbac62a}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Dictionaries\Country\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{51f09d12-4a0e-47ee-9b5f-0ef5d9e07242}</SharePointProjectItemId>
     </None>
@@ -380,7 +377,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\Commodity\Elements.xml" />
-    <Content Include="Content types\Dictionaries\Company\Elements.xml" />
     <Content Include="Content types\Dictionaries\Country\Elements.xml" />
     <Content Include="Content types\Dictionaries\Currency\Elements.xml" />
     <Content Include="Content types\Dictionaries\DestinationMarket\Elements.xml" />
