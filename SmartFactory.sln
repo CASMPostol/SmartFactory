@@ -32,6 +32,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFactoryDeployment", "SmartFactoryDeployment\SmartFactoryDeployment.csproj", "{CBDBB010-9393-4341-8E9D-2C05B1133D57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShepherdImportExport", "ShepherdImportExport\ShepherdImportExport.csproj", "{29FF7394-7CFF-4184-8551-7D62B515FE6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -154,6 +156,16 @@ Global
 		{CBDBB010-9393-4341-8E9D-2C05B1133D57}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{CBDBB010-9393-4341-8E9D-2C05B1133D57}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{CBDBB010-9393-4341-8E9D-2C05B1133D57}.Release|x86.ActiveCfg = Release|Any CPU
+		{29FF7394-7CFF-4184-8551-7D62B515FE6C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{29FF7394-7CFF-4184-8551-7D62B515FE6C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{29FF7394-7CFF-4184-8551-7D62B515FE6C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{29FF7394-7CFF-4184-8551-7D62B515FE6C}.Debug|x86.ActiveCfg = Debug|x86
+		{29FF7394-7CFF-4184-8551-7D62B515FE6C}.Debug|x86.Build.0 = Debug|x86
+		{29FF7394-7CFF-4184-8551-7D62B515FE6C}.Release|Any CPU.ActiveCfg = Release|x86
+		{29FF7394-7CFF-4184-8551-7D62B515FE6C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{29FF7394-7CFF-4184-8551-7D62B515FE6C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{29FF7394-7CFF-4184-8551-7D62B515FE6C}.Release|x86.ActiveCfg = Release|x86
+		{29FF7394-7CFF-4184-8551-7D62B515FE6C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
