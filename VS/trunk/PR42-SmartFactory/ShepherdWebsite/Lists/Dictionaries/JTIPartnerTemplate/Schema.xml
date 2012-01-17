@@ -30,6 +30,7 @@
     <CHOICES>
       <CHOICE>Vendor</CHOICE>
       <CHOICE>Forwarder</CHOICE>
+      <CHOICE>Vendor and Forwarder</CHOICE>
       <CHOICE>Security Escort Provider</CHOICE>
     </CHOICES>
   </Field>

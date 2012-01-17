@@ -408,15 +408,21 @@
     <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
     <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml" />
-    <Content Include="Content types\Shipping\GoodsHandlingPO\Elements.xml" />
+    <Content Include="Content types\Shipping\GoodsHandlingPO\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Shipping\LoadDescription\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Shipping\SecurityPO\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml" />
-    <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml" />
+    <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml" />
     <Content Include="Content types\Shipping\TimeSlot\Elements.xml">
       <SubType>Designer</SubType>
@@ -434,7 +440,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Fields\LibrariesLookupFields\Elements.xml" />
-    <Content Include="Fields\ShippingFields\Elements.xml" />
+    <Content Include="Fields\ShippingFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Fields\ShippingLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -553,7 +561,9 @@
     <Content Include="Lists\Shipping\ShippingTemplate\ShippingList\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingTemplate\Schema.xml" />
     <Content Include="Lists\Shipping\TimeSlotTemplate\Elements.xml" />
-    <Content Include="Lists\Shipping\TimeSlotTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\TimeSlotTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Shipping\TimeSlotTemplate\TimeSlotList\Elements.xml" />
     <Content Include="Lists\Shipping\TrailerConditionTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\TrailerConditionTemplate\TrailerConditionList\Elements.xml" />
