@@ -1,8 +1,0 @@
-C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdImportExport\obj\x86\Release\ResolveAssemblyReference.cache
-C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdImportExport\obj\x86\Release\CAS.SmartFactory.Shepherd.ImportExport.Properties.Resources.resources
-C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdImportExport\obj\x86\Release\ResGen.read.1.tlog
-C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdImportExport\obj\x86\Release\ResGen.write.1.tlog
-C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdImportExport\bin\Release\CAS.ShepherdImportExport.exe
-C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdImportExport\bin\Release\CAS.ShepherdImportExport.pdb
-C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdImportExport\obj\x86\Release\CAS.ShepherdImportExport.exe
-C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdImportExport\obj\x86\Release\CAS.ShepherdImportExport.pdb

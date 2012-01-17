@@ -1,9 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="PreliminaryData"
+<xsd:schema id="PreliminaryData"
     targetNamespace="http://cas.eu/schemas/Shepherd/PreliminaryData.xsd"
     elementFormDefault="qualified"
     xmlns="http://cas.eu/schemas/Shepherd/PreliminaryData.xsd"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-
-</xs:schema>
+  <xsd:element name="Configuration">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element nillable="true" name="City">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="CityItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Country_Name" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
