@@ -29,6 +29,7 @@
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
+          <FieldRef ID="{7C2E8F52-FD14-4A89-9FA1-944A8D29A194}" Name="ApprovalState" />
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}" Name="ShippingDuration" />
           <FieldRef ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}" Name="ShippingPointTitle" />
@@ -72,6 +73,14 @@
       <Field ID="{0c674e8b-70ed-4bcf-84c7-8942292e3954}" Name="StartTime" Group="CAS Smart Factory Shepherd" Type="DateTime" Format="TimeOnly" DisplayName="Start Time">
     <Default>[today]</Default>
   </Field>
+      <Field Type="Choice" DisplayName="ApprovalState" ID="{7C2E8F52-FD14-4A89-9FA1-944A8D29A194}" Format="Dropdown" BaseType="Text" Name="ApprovalState" Group="CAS Smart Factory Shepherd">
+        <Default>Approved</Default>
+        <CHOICES>
+          <CHOICE>Approved</CHOICE>
+          <CHOICE>To be approved by JTI</CHOICE>
+          <CHOICE>To be approved by Vendor</CHOICE>
+        </CHOICES>
+      </Field>
       <Field DisplayName="Duration" Name="ShippingDuration" Type="Number" ID="{a826b26e-82db-45d0-b078-f69cebb1ed05}" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Additional costs" Name="AdditionalCosts" Type="Number" ID="{4268acd0-80d6-4e4c-a8f4-6cb55813f7a8}" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Security Escort PO" Name="SecurityEscrotPO" Type="Text" ID="{dbcfb052-fb4a-46c1-b72e-bb92f9825142}" Group="CAS Smart Factory Shepherd" />
@@ -116,6 +125,7 @@
           <FieldRef ID="{E94BF458-8886-4E27-BA2A-32CDCA4B2DB2}" Name="RouteTitle" />
           <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
+          <FieldRef ID="{7C2E8F52-FD14-4A89-9FA1-944A8D29A194}" Name="ApprovalState" />
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}" Name="ShippingDuration" />
           <FieldRef ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}" Name="AdditionalCosts" />

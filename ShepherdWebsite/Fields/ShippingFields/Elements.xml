@@ -28,6 +28,21 @@
     </CHOICES>
   </Field>
   <Field
+    Type="Choice"
+    DisplayName="ApprovalState"
+    ID="{7C2E8F52-FD14-4A89-9FA1-944A8D29A194}"
+    Format="Dropdown"
+    BaseType="Text"
+    Name="ApprovalState"
+    Group="CAS Smart Factory Shepherd">
+    <Default>Approved</Default>
+    <CHOICES>
+      <CHOICE>Approved</CHOICE>
+      <CHOICE>To be approved by JTI</CHOICE>
+      <CHOICE>To be approved by Vendor</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
     ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}"
     Name="StartTime"
     Group="CAS Smart Factory Shepherd"
