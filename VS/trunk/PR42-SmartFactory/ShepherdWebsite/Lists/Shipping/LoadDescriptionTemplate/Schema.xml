@@ -11,6 +11,8 @@
           <FieldRef ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}" Name="DeliveryNumber" />
           <FieldRef ID="{E7BFEA15-E33C-4E18-8E55-B68D0B3A09D0}" Name="GoodsQuantity" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
+          <FieldRef ID="{9BD4A74E-9645-488C-99EB-16EDD9912775}" Name="CMRNumber"/>
+          <FieldRef ID="{53A5407C-8FA7-4945-9E22-6DDDE8DC9B4F}" Name="InvoiceNumber"/>
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -30,6 +32,8 @@
       <Field DisplayName="Goods Quantity" Name="GoodsQuantity" Type="Number" ID="{e7bfea15-e33c-4e18-8e55-b68d0b3a09d0}" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Number of pallets" Name="NumberOfPallets" Type="Number" ID="{ec642bdf-f692-42b9-aab6-90758df7ba20}" Group="CAS Smart Factory Shepherd" />
       <Field Name="LoadDescription2ShippingIndex" ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field DisplayName="CMR number" Name="CMRNumber" Type="Text" ID="{9BD4A74E-9645-488C-99EB-16EDD9912775}" Group="CAS Smart Factory Shepherd" />
+      <Field DisplayName="Invoice number"  Name="InvoiceNumber" Type="Text" ID="{53A5407C-8FA7-4945-9E22-6DDDE8DC9B4F}" Group="CAS Smart Factory Shepherd" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -67,6 +71,8 @@
           <FieldRef ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}" Name="DeliveryNumber" />
           <FieldRef ID="{E7BFEA15-E33C-4E18-8E55-B68D0B3A09D0}" Name="GoodsQuantity" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
+          <FieldRef ID="{9BD4A74E-9645-488C-99EB-16EDD9912775}" Name="CMRNumber"/>
+          <FieldRef ID="{53A5407C-8FA7-4945-9E22-6DDDE8DC9B4F}" Name="InvoiceNumber"/>
         </ViewFields>
         <Query>
           <OrderBy>
