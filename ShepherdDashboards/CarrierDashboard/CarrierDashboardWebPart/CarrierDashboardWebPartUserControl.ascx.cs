@@ -38,6 +38,36 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ShippintInterconnectionEvent += _interface.SetData;
       return _interface;
     }
+    internal GlobalDefinitions.Roles Role
+    {
+      set
+      {
+        switch (value)
+        {
+          case GlobalDefinitions.Roles.Owner:
+          case GlobalDefinitions.Roles.Coordinator:
+          case GlobalDefinitions.Roles.Supervisor:
+          case GlobalDefinitions.Roles.Operator:
+            break;
+          case GlobalDefinitions.Roles.Vendor:
+            SelectDefaultWarehouse();
+            break;
+          case GlobalDefinitions.Roles.Guard:
+          case GlobalDefinitions.Roles.Forwarder:
+            m_WarehouseTextBox.Enabled = false;
+            break;
+          case GlobalDefinitions.Roles.Escort:
+            m_WarehouseTextBox.Visible = false;
+            m_WarehouseLabel.Visible = false;
+            break;
+          case GlobalDefinitions.Roles.None:
+            m_WarehouseTextBox.Visible = false;
+            break;
+          default:
+            break;
+        }
+      }
+    }
     #endregion
 
     #region private
@@ -133,9 +163,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
           m_ShippintInterconnectionEvent
             (this, new InterconnectionDataTable<ShippingOperationInbound>.InterconnectionEventArgs
-              ( (from idx in edc.Shipping where idx.Identyfikator == _intID select idx).First()));
+              ((from idx in edc.Shipping where idx.Identyfikator == _intID select idx).First()));
       }
-      catch (Exception){}
+      catch (Exception) { }
     }
     private event InterconnectionDataTable<ShippingOperationInbound>.SetDataEventArg m_ShippintInterconnectionEvent;
     private void NewDataEventHandler(object sender, PartnerInterconnectionData e)
@@ -188,7 +218,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           switch (_event)
           {
             case InterfaceEvent.FirstRound:
-              SetButtons(ButtonsSet.CancelOn );
+              SetButtons(ButtonsSet.CancelOn);
               break;
             case InterfaceEvent.SaveClick:
               try
@@ -380,5 +410,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 
     #endregion
 
+    private void SelectDefaultWarehouse()
+    {
+      //TODO throw new NotImplementedException();
+    }
   }
 }

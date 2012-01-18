@@ -49,13 +49,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.Literal m_StateLiteral;
         
         /// <summary>
-        /// m_Label6 control.
+        /// m_WarehouseLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_Label6;
+        protected global::System.Web.UI.WebControls.Label m_WarehouseLabel;
         
         /// <summary>
         /// m_WarehouseTextBox control.

@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
   /// <summary>
   /// Alarms And Events list entry
   /// </summary>
-  public partial class AlarmsAndEvents
+  public partial class AlarmsAndEventsAlarmsAndEvents
   {
     /// <summary>
     /// Creates an entry with the given message text and application-defined event identifier to the event log list.
@@ -17,7 +17,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     /// <param name="_title">The evrnt title.</param>
     /// <param name="_partner">The partner associated with the event.</param>
     /// <param name="_shippingIndex">Index of the shipping.</param>
-    public AlarmsAndEvents(string _title, Partner _partner, ShippingOperationInbound _shippingIndex)
+    public AlarmsAndEventsAlarmsAndEvents(string _title, Partner _partner, ShippingOperationInbound _shippingIndex)
     {
       Tytuł = _title;
       this.VendorName = _partner;
@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         EventLog.WriteEntry("CAS.SmartFActory", "Cannot open \"Event Log List\" list", EventLogEntryType.Error, 114);
         return;
       }
-      AlarmsAndEvents _log = new AlarmsAndEvents(_title, _partner, _shippingIndex);
+      AlarmsAndEventsAlarmsAndEvents _log = new AlarmsAndEventsAlarmsAndEvents(_title, _partner, _shippingIndex);
       edc.AlarmsAndEvents.InsertOnSubmit(_log);
       edc.SubmitChanges(Microsoft.SharePoint.Linq.ConflictMode.ContinueOnConflict);
     }

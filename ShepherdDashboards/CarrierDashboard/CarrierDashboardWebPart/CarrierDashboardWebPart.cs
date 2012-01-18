@@ -18,19 +18,30 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected override void CreateChildControls()
     {
       m_Control = Page.LoadControl(_ascxPath) as CarrierDashboardWebPartUserControl;
+      m_Control.Role = Role;
       Controls.Add(m_Control);
     }
     protected override void OnPreRender(EventArgs e)
     {
-      m_Control.GetData(m_ProvidesDictionary );
+      m_Control.GetData(m_ProvidesDictionary);
       base.OnPreRender(e);
     }
-    private Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary = 
+    private Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> m_ProvidesDictionary =
       new Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow>();
     #endregion
 
     #region public
-
+    [WebBrowsable(true)]
+    [Personalizable(PersonalizationScope.Shared)]
+    [WebDisplayName("The dashboard role")]
+    [WebDescription("The role of the dashboard this web part is located on. Depending on the role the dashboard customizes" +
+      " the functionality provided to the user.")]
+    [Microsoft.SharePoint.WebPartPages.SPWebCategoryName("CAS Custom Properties")]
+    public GlobalDefinitions.Roles Role { get; set; }
+    public CarrierDashboardWebPart()
+    {
+      Role = GlobalDefinitions.Roles.None;
+    }
     #region Interconnections Providers
     /// <summary>
     /// Sets the shipping provider.

@@ -15,14 +15,15 @@
     <asp:TableRow>
       <asp:TableCell>
         <asp:Literal ID="m_StateLiteral" runat="server" />
-      </asp:TableCell></asp:TableRow>
+      </asp:TableCell>
+    </asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_Label6" runat="server" Text="Warehouse" CssClass="Label"></asp:Label>
+        <asp:Label ID="m_WarehouseLabel" runat="server" Text="Warehouse" CssClass="Label"></asp:Label>
       </asp:TableCell>
       <asp:TableCell>
         <asp:TextBox ID="m_WarehouseTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
-        </asp:TableCell>
+      </asp:TableCell>
     </asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
@@ -30,31 +31,31 @@
           CssClass="Label"></asp:Label></asp:TableCell>
       <asp:TableCell>
         <asp:TextBox ID="m_TimeSlotTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
-        </asp:TableCell>
+      </asp:TableCell>
     </asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
         <asp:Label ID="m_Label5" runat="server" Text="PO Number" CssClass="Label" />
-        </asp:TableCell>
+      </asp:TableCell>
       <asp:TableCell>
         <asp:TextBox ID="m_DocumentTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
-        </asp:TableCell>
+      </asp:TableCell>
     </asp:TableRow>
     <asp:TableRow>
-        <asp:TableCell>
-            <asp:Label ID="m_Label7" runat="server" Text="Comments" CssClass="Label" />
-        </asp:TableCell>
-        <asp:TableCell>
-            <asp:TextBox ID="m_CommentsTextBox" runat="server" TextMode="Multiline" CssClass="TextBox"></asp:TextBox>
-        </asp:TableCell>
+      <asp:TableCell>
+        <asp:Label ID="m_Label7" runat="server" Text="Comments" CssClass="Label" />
+      </asp:TableCell>
+      <asp:TableCell>
+        <asp:TextBox ID="m_CommentsTextBox" runat="server" TextMode="Multiline" CssClass="TextBox"></asp:TextBox>
+      </asp:TableCell>
     </asp:TableRow>
     <asp:TableRow>
-        <asp:TableCell>
-            <asp:Label ID="Label1" runat="server" Text="Delivery Time" CssClass="Label"></asp:Label>
-        </asp:TableCell>
-        <asp:TableCell>
-            <asp:TextBox ID="m_EstimateDeliveryTime" CssClass="TextBox" runat="server"></asp:TextBox>
-        </asp:TableCell>
+      <asp:TableCell>
+        <asp:Label ID="Label1" runat="server" Text="Delivery Time" CssClass="Label"></asp:Label>
+      </asp:TableCell>
+      <asp:TableCell>
+        <asp:TextBox ID="m_EstimateDeliveryTime" CssClass="TextBox" runat="server"></asp:TextBox>
+      </asp:TableCell>
     </asp:TableRow>
   </asp:Table>
   <asp:Button ID="m_NewShippingButton" runat="server" Text="New Shipping" CssClass="Button" />
