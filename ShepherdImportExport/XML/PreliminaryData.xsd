@@ -5,7 +5,7 @@
     xmlns="http://cas.eu/schemas/Shepherd/PreliminaryData.xsd"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-  <xsd:element name="Configuration">
+  <xsd:element name="PreliminaryData">
     <xsd:complexType>
       <xsd:sequence>
         <xsd:element nillable="true" name="City">
