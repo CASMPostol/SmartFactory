@@ -22,6 +22,220 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
+        <xsd:element nillable="true" name="Commodity">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="CommodityItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="Country">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="CountryItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="Currency">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="CurrencyItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                    <xsd:element minOccurs="1" nillable="false" type="xsd:double" name="Exchange_Rate" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="Driver">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="DriverItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Vendor_Name" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Identity_document_number" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Mobile_Number" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="FreightPayer">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="FreightPayerItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Address" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ZIP_Postal_Code" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="City" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Country_Region" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="NIP___VAT_No" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="JTIPartner">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="JTIPartnerItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Shepherd_User" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Vendor_Number__from_SAP" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Service_Type" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Business_Phone" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Mobile_Number" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Warehouse" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="PalletTypes">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="PalletTypesItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Column1" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Column2" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="ShipmentType">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="ShipmentTypeItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="TimeSlot">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="TimeSlotItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="1" nillable="false" type="xsd:string" name="Start_Time" form="unqualified"/>
+                    <xsd:element minOccurs="1" nillable="false" type="xsd:dateTime" name="End_Time" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Recurrence" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Workspace" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Location" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Description" form="unqualified"/>
+                    <xsd:element minOccurs="1" nillable="false" type="xsd:boolean" name="All_Day_Event" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="TransportUnitType">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="TransportUnitTypeItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="ShippingPoint">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="ShippingPointItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Direction" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Warehouse" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Description" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="Trailer">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="TrailerItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Vendor_Name" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Comments" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="Truck">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="TruckItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Vendor_Name" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Vehicle_Type" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Comments" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="Warehouse">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="WarehouseItem" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Commodity" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
       </xsd:sequence>
     </xsd:complexType>
   </xsd:element>
