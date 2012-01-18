@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="CMR number"
+    Name="CMRNumber"
+    Type="Text"
+    ID="{9BD4A74E-9645-488C-99EB-16EDD9912775}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Invoice number"
+    Name="InvoiceNumber"
+    Type="Text"
+    ID="{53A5407C-8FA7-4945-9E22-6DDDE8DC9B4F}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     DisplayName="Dock number"
     Name="DockNumber"
     Type="Number"
