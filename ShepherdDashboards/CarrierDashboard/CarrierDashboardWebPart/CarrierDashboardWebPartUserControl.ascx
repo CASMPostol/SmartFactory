@@ -57,6 +57,24 @@
         <asp:TextBox ID="m_EstimateDeliveryTime" CssClass="TextBox" runat="server"></asp:TextBox>
       </asp:TableCell>
     </asp:TableRow>
+    <asp:TableRow>
+    <asp:TableCell>
+        <asp:Label ID="Label2" runat="server" Text="Route" CssClass="Label"></asp:Label>
+    </asp:TableCell>
+        <asp:TableCell>
+        <asp:DropDownList ID="m_Route" runat="server" CssClass="DropDown">
+        </asp:DropDownList>
+    </asp:TableCell>
+    </asp:TableRow>
+    <asp:TableRow>
+        <asp:TableCell>
+            <asp:Label ID="Label3" runat="server" Text="Security Escort" CssClass="Label"></asp:Label> 
+        </asp:TableCell>
+        <asp:TableCell>
+        <asp:DropDownList ID="m_SecurityEscortCatalog" runat="server" CssClass="DropDown">
+        </asp:DropDownList>
+        </asp:TableCell>
+    </asp:TableRow>
   </asp:Table>
   <asp:Button ID="m_NewShippingButton" runat="server" Text="New Shipping" CssClass="Button" />
   <asp:Button ID="m_EditButton" runat="server" Text="Edit" CssClass="Button" />
