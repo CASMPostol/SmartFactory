@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           ClearUserInterface();
           break;
         case InterfaceState.EditState:
-          SetEnabled(ButtonsSet.CancelOn | ButtonsSet.CommentsOn | ButtonsSet.AbortOn | ButtonsSet.DocumentOn | ButtonsSet.EstimatedDeliveryTime | ButtonsSet.SaveOn);
+          SetEnabled(ButtonsSet.CancelOn | ButtonsSet.CommentsOn | ButtonsSet.AbortOn | ButtonsSet.DocumentOn | ButtonsSet.EstimatedDeliveryTime );
           break;
         case InterfaceState.NewState:
           ClearUserInterface();
@@ -67,7 +67,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected abstract void CreateShipping();
     protected abstract void AbortShipping();
     protected abstract void UpdateTimeSlot(TimeSlotInterconnectionData e);
-
     #endregion
 
     #region Connection call back

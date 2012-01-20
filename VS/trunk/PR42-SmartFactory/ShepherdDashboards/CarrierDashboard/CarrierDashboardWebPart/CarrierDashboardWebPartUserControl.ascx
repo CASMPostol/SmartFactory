@@ -65,7 +65,7 @@
       <asp:TableCell>
         <asp:Label ID="m_SecurityEscortLabel" runat="server" Text="Security Escort" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <asp:DropDownList ID="m_SecurityEscortCatalog" runat="server" CssClass="DropDown">
+        <asp:DropDownList ID="m_SecurityDropDownList" runat="server" CssClass="DropDown">
         </asp:DropDownList>
       </asp:TableCell></asp:TableRow>
   </asp:Table>
