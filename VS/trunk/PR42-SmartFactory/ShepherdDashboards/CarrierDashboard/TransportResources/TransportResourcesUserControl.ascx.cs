@@ -19,10 +19,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         switch (item.Key)
         {
           case InboundInterconnectionData.ConnectionSelector.ShippingInterconnection:
-            new ShippingInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
+            new ShippingInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
             break;
           case InboundInterconnectionData.ConnectionSelector.PartnerInterconnection:
-            new PartnerInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
+            new PartnerInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
             break;
           default:
             break;
@@ -52,7 +52,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       m_TrailerDropDown.SelectedIndexChanged += new EventHandler(m_TrailerDropDown_SelectedIndexChanged);
       m_TruckDropDown.SelectedIndexChanged += new EventHandler(m_TruckDropDown_SelectedIndexChanged);
     }
-
     protected override void LoadControlState(object _state)
     {
       if (_state != null)

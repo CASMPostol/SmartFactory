@@ -154,7 +154,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox m_EstimateDeliveryTime;
+        protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_EstimateDeliveryTime;
         
         /// <summary>
         /// m_RouteLabel control.
@@ -166,13 +166,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.Label m_RouteLabel;
         
         /// <summary>
-        /// m_Route control.
+        /// m_RouteDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList m_Route;
+        protected global::System.Web.UI.WebControls.DropDownList m_RouteDropDownList;
         
         /// <summary>
         /// m_SecurityEscortLabel control.
@@ -211,22 +211,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.Button m_EditButton;
         
         /// <summary>
-        /// m_ConfirmButton control.
+        /// m_AbortButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_ConfirmButton;
-        
-        /// <summary>
-        /// m_Abort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_Abort;
+        protected global::System.Web.UI.WebControls.Button m_AbortButton;
         
         /// <summary>
         /// m_SaveButton control.

@@ -63,6 +63,7 @@
     <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx.designer.cs">
       <DependentUpon>CarrierDashboardWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CarrierDashboard\CarrierDashboardWebPart\StateMachineEngine.cs" />
     <Compile Include="CarrierDashboard\InboundInterconnectionData.cs" />
     <Compile Include="CarrierDashboard\TransportResources\TransportResources.cs" />
     <Compile Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx.cs">
@@ -94,6 +95,7 @@
     <Compile Include="Entities\Partner.cs" />
     <Compile Include="Entities\ShippingDriversTeam.cs" />
     <Compile Include="Entities\ShippingOperationInbound.cs" />
+    <Compile Include="Entities\ShippingOperationOutbound.cs" />
     <Compile Include="Entities\TimeSlotTimeSlot.cs" />
     <Compile Include="Entities\Trailer.cs" />
     <Compile Include="Entities\Truck.cs" />
@@ -136,6 +138,7 @@
     <None Include="DefaultPage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{707849e5-4a82-4f9b-b735-62f93ff92970}</SharePointProjectItemId>
     </None>
+    <None Include="Entities\Entities.cd" />
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Features\Dashboards\Dashboards.feature">
       <FeatureId>{cf7dc489-0019-4684-9bb2-fde5b31efe5f}</FeatureId>
