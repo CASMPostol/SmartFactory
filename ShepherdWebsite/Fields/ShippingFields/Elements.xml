@@ -27,7 +27,6 @@
    ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}"
    Format="Dropdown"
    BaseType="Text"
-   Description="Direction"
    Name="ShippingState"
    Group="CAS Smart Factory Shepherd">
     <Default>Creation</Default>
@@ -37,23 +36,9 @@
       <CHOICE>Confirmed</CHOICE>
       <CHOICE>Creation</CHOICE>
       <CHOICE>Delayed</CHOICE>
-      <CHOICE>Scheduled</CHOICE>
+      <CHOICE>Waiting4ExternalApproval</CHOICE>
+      <CHOICE>Waiting4InternalApproval</CHOICE>
       <CHOICE>Underway</CHOICE>
-    </CHOICES>
-  </Field>
-  <Field
-    Type="Choice"
-    DisplayName="ApprovalState"
-    ID="{7C2E8F52-FD14-4A89-9FA1-944A8D29A194}"
-    Format="Dropdown"
-    BaseType="Text"
-    Name="ApprovalState"
-    Group="CAS Smart Factory Shepherd">
-    <Default>Approved</Default>
-    <CHOICES>
-      <CHOICE>Approved</CHOICE>
-      <CHOICE>To be approved by JTI</CHOICE>
-      <CHOICE>To be approved by Vendor</CHOICE>
     </CHOICES>
   </Field>
   <Field
