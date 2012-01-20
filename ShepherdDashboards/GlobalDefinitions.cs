@@ -9,7 +9,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
   {
     public enum Roles
     {
-      Owner,
+      InboundOwner,
+      OutboundOwner,
       Coordinator,
       Supervisor,
       Operator,

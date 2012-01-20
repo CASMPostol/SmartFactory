@@ -1,67 +1,96 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint;
-using Microsoft.SharePoint.Linq;
-using System.Linq;
-
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
+  using ButtonsSet = StateMachineEngine.ButtonsSet;
+  using InterfaceState = StateMachineEngine.InterfaceState;
   public partial class CarrierDashboardWebPartUserControl : UserControl
   {
     #region public
-    internal void GetData(Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary)
+    internal void SetInterconnectionData(Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary)
     {
       foreach (var item in _ProvidesDictionary)
         switch (item.Key)
         {
           case InboundInterconnectionData.ConnectionSelector.ShippingInterconnection:
-            new ShippingInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
+            new ShippingInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], new EventHandler<ShippingInterconnectionData>( m_StateMachineEngine.NewDataEventHandler));
             break;
           case InboundInterconnectionData.ConnectionSelector.TimeSlotInterconnection:
-            new TimeSlotInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
+            new TimeSlotInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
             break;
           case InboundInterconnectionData.ConnectionSelector.PartnerInterconnection:
-            new PartnerInterconnectionData().GetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
+            new PartnerInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
             break;
           default:
             break;
         }
     }
+    internal void NewDataEventHandler(object sender, PartnerInterconnectionData e)
+    {
+      m_ControlState.PartnerIndex = e.ID;
+      return;
+    }
     internal InterconnectionDataTable<ShippingOperationInbound> GetSelectedShippingOperationInboundInterconnectionData()
     {
       string _tn = typeof(ShippingOperationInbound).Name;
       InterconnectionDataTable<ShippingOperationInbound> _interface = new InterconnectionDataTable<ShippingOperationInbound>(_tn);
-      m_ShippintInterconnectionEvent += _interface.SetData;
+      m_StateMachineEngine.m_ShippintInterconnectionEvent += _interface.SetData;
       return _interface;
     }
     internal GlobalDefinitions.Roles Role
     {
       set
       {
+        m_DashboardType = value;
         switch (value)
         {
-          case GlobalDefinitions.Roles.Owner:
+          case GlobalDefinitions.Roles.OutboundOwner:
+            m_VisibilityACL = m_AllButtons;
+            m_EditbilityACL = m_AllButtons;
+            break;
           case GlobalDefinitions.Roles.Coordinator:
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn;
+            m_EditbilityACL = m_AllButtons;
+            break;
           case GlobalDefinitions.Roles.Supervisor:
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime;
+            break;
+          case GlobalDefinitions.Roles.InboundOwner:
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
+            break;
           case GlobalDefinitions.Roles.Operator:
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AbortOn ^
+              ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.NewOn ^ ButtonsSet.RouteOn ^ ButtonsSet.DockOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
             break;
           case GlobalDefinitions.Roles.Vendor:
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.DockOn;
             SelectDefaultWarehouse();
             break;
           case GlobalDefinitions.Roles.Guard:
+            m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.DocumentOn | ButtonsSet.RouteOn | ButtonsSet.WarehouseOn | ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
+            m_EditbilityACL = 0;
+            break;
           case GlobalDefinitions.Roles.Forwarder:
-            m_WarehouseTextBox.Enabled = false;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.NewOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.WarehouseOn ^ ButtonsSet.SecurityEscortOn;
             break;
           case GlobalDefinitions.Roles.Escort:
-            m_WarehouseTextBox.Visible = false;
-            m_WarehouseLabel.Visible = false;
+            m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.RouteOn | ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.WarehouseOn ^ ButtonsSet.SecurityEscortOn;
             break;
           case GlobalDefinitions.Roles.None:
-            m_WarehouseTextBox.Visible = false;
+            m_VisibilityACL = m_AllButtons;
+            m_EditbilityACL = 0;
             break;
           default:
             break;
@@ -73,6 +102,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region private
 
     #region state management
+    private ButtonsSet m_VisibilityACL;
+    private ButtonsSet m_EditbilityACL;
+    private GlobalDefinitions.Roles m_DashboardType = GlobalDefinitions.Roles.None;
     [Serializable]
     private class MyControlState
     {
@@ -86,21 +118,105 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-      if (!IsPostBack)
-        StateMachineEngine(InterfaceEvent.FirstRound);
-      m_SaveButton.Click += new EventHandler(m_SaveButton_Click);
-      m_NewShippingButton.Click += new EventHandler(m_NewShippingButton_Click);
-      m_CancelButton.Click += new EventHandler(m_CancelButton_Click);
-      m_EditButton.Click += new EventHandler(m_EditButton_Click);
+      m_SaveButton.Click += new EventHandler(m_StateMachineEngine.m_SaveButton_Click);
+      m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.m_NewShippingButton_Click);
+      m_CancelButton.Click += new EventHandler(m_StateMachineEngine.m_CancelButton_Click);
+      m_EditButton.Click += new EventHandler(m_StateMachineEngine.m_EditButton_Click);
+      m_AbortButton.Click += new EventHandler(m_StateMachineEngine.m_AbortButton_Click);
     }
+    private StateMachineEngine m_StateMachineEngine;
+    private class LocalStateMachineEngine : StateMachineEngine
+    {
+      #region ctor
+      public LocalStateMachineEngine(CarrierDashboardWebPartUserControl _Parent, InterfaceState _state)
+        : base(_state)
+      {
+        Parent = _Parent;
+      }
+      public LocalStateMachineEngine(CarrierDashboardWebPartUserControl _Parent)
+        : base()
+      {
+        Parent = _Parent;
+      }
+      #endregion
+
+      #region abstract implementation 
+      protected override void UpdateShowShipping(ShippingInterconnectionData _shipping)
+      {
+        Parent.m_ShippingHiddenField.Value = _shipping.ID;
+        try
+        {
+          using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
+          {
+            Parent.m_EstimateDeliveryTime.SelectedDate = _shipping.EstimateDeliveryTime;
+            TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _shipping.ID);
+            List<LoadDescription> _ld = LoadDescription.GetForShipping(edc, _shipping.ID);
+            Parent.ShowTimeSlot(_cts);
+            string _ldLabel = String.Empty;
+            foreach (var _item in _ld)
+              _ldLabel += _item.Tytuł + "; ";
+            Parent.m_DocumentTextBox.TextBoxTextProperty(_ldLabel, true);
+          }
+        }
+        catch (Exception ex)
+        {
+          Parent.m_TimeSlotTextBox.TextBoxTextProperty(ex.Message, true);
+          Parent.m_DocumentTextBox.TextBoxTextProperty(ex.Message, true);
+        }
+      }
+      protected override void ClearUserInterface()
+      {
+        Parent.ClearUserInterface();
+      }
+      protected override void SetEnabled(ButtonsSet _buttons)
+      {
+        Parent.SetEnabled(_buttons);
+      }
+      protected override void ShowTimeSlot(TimeSlotInterconnectionData _data)
+      {
+        Parent.ShowTimeSlot(_data);
+      }
+      protected override void SMError(StateMachineEngine.InterfaceEvent _interfaceEvent)
+      {
+        Parent.Controls.Add(new LiteralControl
+          (String.Format("State machine error, in {0} the event {1} occured", Parent.m_ControlState.InterfaceState.ToString(), _interfaceEvent.ToString())));
+      }
+      protected override void UpdateShipping()
+      {
+        Parent.UpdateShipping();
+      }
+      protected override void CreateShipping()
+      {
+        Parent.CreateShipping();
+      }
+      protected override void AbortShipping()
+      {
+        Parent.AbortShipping();
+      }
+      protected override void UpdateTimeSlot(TimeSlotInterconnectionData e)
+      {
+        Parent.m_TimeSlotHiddenField.Value = e.ID;
+      }
+      #endregion      
+
+      #region private
+      private CarrierDashboardWebPartUserControl Parent { get; set; }
+      #endregion
+    }
+
     protected override void LoadControlState(object state)
     {
       if (state != null)
+      {
         m_ControlState = (MyControlState)state;
+        m_StateMachineEngine = new LocalStateMachineEngine(this, m_ControlState.InterfaceState);
+      }
+      else
+        m_StateMachineEngine = new LocalStateMachineEngine(this);
     }
     protected override object SaveControlState()
     {
-      return m_ControlState; ;
+      return m_ControlState;
     }
     protected override void OnPreRender(EventArgs e)
     {
@@ -111,172 +227,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 
     #region State machine
 
-    #region Connection call back
-    private void NewDataEventHandler(object sender, TimeSlotInterconnectionData e)
-    {
-      bool _same = m_TimeSlotHiddenField.Value.Equals(e.ID);
-      if (_same)
-        return;
-      m_TimeSlotHiddenField.Value = e.ID;
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.ViewState:
-          break;
-        case InterfaceState.NewState:
-        case InterfaceState.EditState:
-          ShowTimeSlot(e);
-          break;
-        default:
-          break;
-      }
-    }
-    private void NewDataEventHandler(object sender, ShippingInterconnectionData e)
-    {
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.ViewState:
-          SendShippingData(e.ID);
-          bool _same = m_ShippingHiddenField.Value.Equals(e.ID);
-          if (_same)
-            return;
-          m_ShippingHiddenField.Value = e.ID;
-          ShowShipping(e);
-          break;
-        case InterfaceState.EditState:
-          SendShippingData(e.ID);
-          break;
-        case InterfaceState.NewState:
-          break;
-        default:
-          break;
-      }
-    }
-    private void SendShippingData(string _ID)
-    {
-      if (m_ShippintInterconnectionEvent == null)
-        return;
-      int? _intID = _ID.String2Int();
-      if (!_intID.HasValue)
-        return;
-      try
-      {
-        using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
-          m_ShippintInterconnectionEvent
-            (this, new InterconnectionDataTable<ShippingOperationInbound>.InterconnectionEventArgs
-              ((from idx in edc.Shipping where idx.Identyfikator == _intID select idx).First()));
-      }
-      catch (Exception) { }
-    }
-    private event InterconnectionDataTable<ShippingOperationInbound>.SetDataEventArg m_ShippintInterconnectionEvent;
-    private void NewDataEventHandler(object sender, PartnerInterconnectionData e)
-    {
-      m_ControlState.PartnerIndex = e.ID;
-      return;
-    }
-    #endregion
 
-    private enum InterfaceState { ViewState, EditState, NewState }
-    private enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, FirstRound };
-    [Flags]
-    private enum ButtonsSet
-    {
-      SaveOn = 0x01, EditOn = 0x02, CancelOn = 0x04, NewOn = 0x08, DocumentOn = 0x10
-    }
-    private InterfaceState CurrentMachineState
-    {
-      get { return m_ControlState.InterfaceState; }
-      set { m_ControlState.InterfaceState = value; }
-    }
-    private void StateMachineEngine(InterfaceEvent _event)
-    {
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.ViewState:
-          {
-            switch (_event)
-            {
-              case InterfaceEvent.FirstRound:
-                SetButtons(ButtonsSet.EditOn | ButtonsSet.NewOn);
-                ClearUserInterface();
-                break;
-              case InterfaceEvent.NewClick:
-                ClearUserInterface();
-                CurrentMachineState = InterfaceState.NewState;
-                StateMachineEngine(InterfaceEvent.FirstRound);
-                break;
-              case InterfaceEvent.EditClick:
-                CurrentMachineState = InterfaceState.EditState;
-                StateMachineEngine(InterfaceEvent.FirstRound);
-                break;
-              default:
-                SMError(_event);
-                break;
-            }
-            break;
-          }
-        case InterfaceState.EditState:
-          switch (_event)
-          {
-            case InterfaceEvent.FirstRound:
-              SetButtons(ButtonsSet.CancelOn);
-              break;
-            case InterfaceEvent.SaveClick:
-              try
-              {
-                UpdateShipping();
-                CurrentMachineState = InterfaceState.ViewState;
-                StateMachineEngine(InterfaceEvent.FirstRound);
-              }
-              catch (Exception ex)
-              {
-                this.Controls.Add(new LiteralControl(ex.Message));
-              }
-              break;
-            case InterfaceEvent.CancelClick:
-              ClearUserInterface();
-              CurrentMachineState = InterfaceState.ViewState;
-              StateMachineEngine(InterfaceEvent.FirstRound);
-              break;
-            default:
-              SMError(_event);
-              break;
-          }
-          break;
-        case InterfaceState.NewState:
-          switch (_event)
-          {
-            case InterfaceEvent.FirstRound:
-              SetButtons(ButtonsSet.CancelOn | ButtonsSet.SaveOn | ButtonsSet.DocumentOn);
-              ClearUserInterface();
-              break;
-            case InterfaceEvent.SaveClick:
-              try
-              {
-                this.CreateShipping();
-                CurrentMachineState = InterfaceState.ViewState;
-                StateMachineEngine(InterfaceEvent.FirstRound);
-              }
-              catch (Exception ex)
-              {
-                this.Controls.Add(new LiteralControl(ex.Message));
-              }
-              break;
-            case InterfaceEvent.CancelClick:
-              ClearUserInterface();
-              CurrentMachineState = InterfaceState.ViewState;
-              StateMachineEngine(InterfaceEvent.FirstRound);
-              break;
-            default:
-              SMError(_event);
-              break;
-          }
-          break;
-      }
-    }
-    private void SMError(InterfaceEvent _event)
-    {
-      this.Controls.Add(new LiteralControl(String.Format("State machine error, in {0} the event {1} occured", m_ControlState.InterfaceState.ToString(), _event.ToString())));
-    }
+
     #endregion
 
     #region Interface actions
@@ -292,30 +244,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_WarehouseTextBox.TextBoxTextProperty(String.Empty, true);
       m_WarehouseHiddenField.Value = String.Empty;
       m_DocumentTextBox.TextBoxTextProperty(String.Empty, true);
-    }
-    private void ShowShipping(ShippingInterconnectionData _interconnectionData)
-    {
-      try
-      {
-        using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
-        {
-          TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _interconnectionData.ID);
-          List<LoadDescription> _ld = LoadDescription.GetForShipping(edc, _interconnectionData.ID);
-          ShowTimeSlot(_cts);
-          string _ldLabel = String.Empty;
-          foreach (var _item in _ld)
-            _ldLabel += _item.Tytuł + "; ";
-          m_DocumentTextBox.TextBoxTextProperty(_ldLabel, true);
-        }
-      }
-      catch (Exception ex)
-      {
-        m_TimeSlotTextBox.TextBoxTextProperty(ex.Message, true);
-        m_DocumentTextBox.TextBoxTextProperty(ex.Message, true);
-      }
+      m_EstimateDeliveryTime.SelectedDate = DateTime.Now;
     }
     private void ShowTimeSlot(TimeSlotInterconnectionData _interconnectionData)
     {
+      bool _same = m_TimeSlotHiddenField.Value.Equals(_interconnectionData.ID);
+      if (_same)
+        return;
+      m_TimeSlotHiddenField.Value = _interconnectionData.ID;
       try
       {
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
@@ -337,13 +273,40 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       Warehouse _wrs = _cts.GetWarehouse();
       m_WarehouseTextBox.TextBoxTextProperty(_wrs.Tytuł, true);
     }
-    private void SetButtons(ButtonsSet _set)
+    private const StateMachineEngine.ButtonsSet m_AllButtons = (StateMachineEngine.ButtonsSet)int.MaxValue;
+    private void SetVisible(StateMachineEngine.ButtonsSet _set)
     {
-      m_DocumentTextBox.Enabled = (_set & ButtonsSet.DocumentOn) != 0;
+      _set &= m_VisibilityACL;
+      m_AbortButton.Visible = (_set & ButtonsSet.AbortOn) != 0;
+      m_CancelButton.Visible = (_set & ButtonsSet.CancelOn) != 0;
+      m_CommentsTextBox.Visible = (_set & ButtonsSet.CommentsOn) != 0;
+      m_DockNumberTextBox.Visible = (_set & ButtonsSet.DockOn) != 0;
+      m_DocumentTextBox.Visible = (_set & ButtonsSet.DocumentOn) != 0;
+      m_EditButton.Visible = (_set & ButtonsSet.EditOn) != 0;
+      m_EstimateDeliveryTime.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
+      m_NewShippingButton.Visible = (_set & ButtonsSet.NewOn) != 0;
+      m_RouteDropDownList.Visible = (_set & ButtonsSet.RouteOn) != 0;
+      m_SaveButton.Visible = (_set & ButtonsSet.SaveOn) != 0;
+      m_SecurityEscortCatalog.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
+      m_TimeSlotTextBox.Visible = (_set & ButtonsSet.TimeSlotOn) != 0;
+      m_WarehouseTextBox.Visible = (_set & ButtonsSet.WarehouseOn) != 0;
+    }
+    private void SetEnabled(StateMachineEngine.ButtonsSet _set)
+    {
+      _set &= m_EditbilityACL;
+      m_AbortButton.Enabled = (_set & ButtonsSet.AbortOn) != 0;
       m_CancelButton.Enabled = (_set & ButtonsSet.CancelOn) != 0;
-      m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0; ;
+      m_CommentsTextBox.Enabled = (_set & ButtonsSet.CommentsOn) != 0;
+      m_DocumentTextBox.Enabled = (_set & ButtonsSet.DocumentOn) != 0;
+      m_DockNumberTextBox.Enabled = (_set & ButtonsSet.DockOn) != 0;
       m_EditButton.Enabled = (_set & ButtonsSet.EditOn) != 0;
+      m_EstimateDeliveryTime.Enabled = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
+      m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
+      m_RouteDropDownList.Enabled = (_set & ButtonsSet.RouteOn) != 0;
       m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
+      m_SecurityEscortCatalog.Enabled = (_set & ButtonsSet.SecurityEscortOn) != 0;
+      m_TimeSlotTextBox.Enabled = false;
+      m_WarehouseTextBox.Enabled = false;
     }
     private void CreateShipping()
     {
@@ -351,13 +314,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         Partner _prtnr = Partner.GetAtIndex(edc, m_ControlState.PartnerIndex);
         TimeSlotTimeSlot _ts = TimeSlotTimeSlot.GetAtIndex(edc, m_TimeSlotHiddenField.Value, true);
-        ShippingOperationInbound _sp = new ShippingOperationInbound
-        {
-          Tytuł = String.Format("{0}", m_DocumentTextBox.Text),
-          VendorName = _prtnr,
-          State = Entities.State.Scheduled,
-          StartTime = _ts.StartTime
-        };
+        ShippingOperationInbound _sp = null;
+        if (m_DashboardType == GlobalDefinitions.Roles.OutboundOwner)
+          _sp = new ShippingOperationInbound
+          (
+            String.Format("{0}", m_DocumentTextBox.Text),
+            _prtnr,
+            Entities.State.Scheduled,
+            _ts.StartTime
+          );
+        else
+          _sp = new ShippingShippingOperationOutbound
+          (
+            m_EstimateDeliveryTime.SelectedDate,
+            String.Format("{0}", m_DocumentTextBox.Text),
+            _prtnr,
+            Entities.State.Scheduled,
+            _ts.StartTime
+          );
         _ts.MakeBooking(_sp);
         LoadDescription _ld = new LoadDescription()
         {
@@ -375,13 +349,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return;
       using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
       {
-        TimeSlotTimeSlot _newts = TimeSlotTimeSlot.GetAtIndex(edc, m_TimeSlotHiddenField.Value, true);
-        ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(edc, m_ShippingHiddenField.HiddenField2Int());
-        TimeSlotTimeSlot _oldts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _si.Identyfikator);
-        _newts.MakeBooking(_si);
-        _oldts.ReleaseBooking();
-        edc.SubmitChanges();
+        try
+        {
+          TimeSlotTimeSlot _newts = TimeSlotTimeSlot.GetAtIndex(edc, m_TimeSlotHiddenField.Value, true);
+          ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(edc, m_ShippingHiddenField.HiddenField2Int());
+          TimeSlotTimeSlot _oldts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _si.Identyfikator);
+          _newts.MakeBooking(_si);
+          _oldts.ReleaseBooking();
+          edc.SubmitChanges();
+        }
+        catch (Exception ex)
+        {
+          this.Controls.Add(new LiteralControl(ex.Message));
+        }
       }
+    }
+    private void SelectDefaultWarehouse()
+    {
+      //TODO throw new NotImplementedException();
     }
     #endregion
 
@@ -389,30 +374,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private MyControlState m_ControlState = new MyControlState();
     #endregion
 
-    #region Event Handlers
-    private void m_NewShippingButton_Click(object sender, EventArgs e)
-    {
-      StateMachineEngine(InterfaceEvent.NewClick);
-    }
-    private void m_SaveButton_Click(object sender, EventArgs e)
-    {
-      StateMachineEngine(InterfaceEvent.SaveClick);
-    }
-    private void m_CancelButton_Click(object sender, EventArgs e)
-    {
-      StateMachineEngine(InterfaceEvent.CancelClick);
-    }
-    private void m_EditButton_Click(object sender, EventArgs e)
-    {
-      StateMachineEngine(InterfaceEvent.EditClick);
-    }
-    #endregion
 
     #endregion
 
-    private void SelectDefaultWarehouse()
+    internal void AbortShipping()
     {
-      //TODO throw new NotImplementedException();
+      throw new NotImplementedException();
     }
   }
 }

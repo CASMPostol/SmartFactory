@@ -29,12 +29,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
   {
     internal InterconnectionData() { }
     private EventHandler<DerivedType> m_Update;
-    internal void GetRowData(IWebPartRow _connector, EventHandler<DerivedType> _update)
+    internal void SetRowData(IWebPartRow _connector, EventHandler<DerivedType> _update)
     {
       m_Update = _update;
-      _connector.GetRowData(GetData);
+      _connector.GetRowData(SetData);
     }
-    private void GetData(object _data)
+    private void SetData(object _data)
     {
       Row = _data as DataRowView;
       m_Update(this, (DerivedType)this);
@@ -63,6 +63,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
     public ShippingInterconnectionData()
       : base()
     { }
+    internal DateTime EstimateDeliveryTime
+    {
+      get { throw new NotImplementedException();}
+    }
   }
   internal class TimeSlotInterconnectionData : InterconnectionData<TimeSlotInterconnectionData>
   {
