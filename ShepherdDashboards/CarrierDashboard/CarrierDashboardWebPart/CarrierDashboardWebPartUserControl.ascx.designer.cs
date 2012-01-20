@@ -67,13 +67,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.TextBox m_WarehouseTextBox;
         
         /// <summary>
-        /// m_Label4 control.
+        /// m_TimeSlotLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_Label4;
+        protected global::System.Web.UI.WebControls.Label m_TimeSlotLabel;
         
         /// <summary>
         /// m_TimeSlotTextBox control.
@@ -85,13 +85,31 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.TextBox m_TimeSlotTextBox;
         
         /// <summary>
-        /// m_Label5 control.
+        /// m_DockNumberLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_Label5;
+        protected global::System.Web.UI.WebControls.Label m_DockNumberLabel;
+        
+        /// <summary>
+        /// m_DockNumberTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox m_DockNumberTextBox;
+        
+        /// <summary>
+        /// m_PONumberLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_PONumberLabel;
         
         /// <summary>
         /// m_DocumentTextBox control.
@@ -103,13 +121,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.TextBox m_DocumentTextBox;
         
         /// <summary>
-        /// m_Label7 control.
+        /// m_CommentsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_Label7;
+        protected global::System.Web.UI.WebControls.Label m_CommentsLabel;
         
         /// <summary>
         /// m_CommentsTextBox control.
@@ -121,13 +139,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.TextBox m_CommentsTextBox;
         
         /// <summary>
-        /// Label1 control.
+        /// m_DeliveryTimeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label m_DeliveryTimeLabel;
         
         /// <summary>
         /// m_EstimateDeliveryTime control.
@@ -139,13 +157,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.TextBox m_EstimateDeliveryTime;
         
         /// <summary>
-        /// Label2 control.
+        /// m_RouteLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label m_RouteLabel;
         
         /// <summary>
         /// m_Route control.
@@ -157,13 +175,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.DropDownList m_Route;
         
         /// <summary>
-        /// Label3 control.
+        /// m_SecurityEscortLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label m_SecurityEscortLabel;
         
         /// <summary>
         /// m_SecurityEscortCatalog control.
