@@ -27,15 +27,23 @@
     </asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_Label4" runat="server" Text="Time Slot" AssociatedControlID="m_TimeSlotTextBox"
+        <asp:Label ID="m_TimeSlotLabel" runat="server" Text="Time Slot" AssociatedControlID="m_TimeSlotTextBox"
           CssClass="Label"></asp:Label></asp:TableCell>
       <asp:TableCell>
         <asp:TextBox ID="m_TimeSlotTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
       </asp:TableCell>
     </asp:TableRow>
     <asp:TableRow>
+        <asp:TableCell>
+            <asp:Label ID="m_DockNumberLabel" runat="server" Text="Dock No." CssClass="Label"></asp:Label>
+        </asp:TableCell>
+        <asp:TableCell>
+            <asp:TextBox ID="m_DockNumberTextBox" CssClass="TextBox" runat="server"></asp:TextBox>
+        </asp:TableCell>
+    </asp:TableRow>
+    <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_Label5" runat="server" Text="PO Number" CssClass="Label" />
+        <asp:Label ID="m_PONumberLabel" runat="server" Text="PO Number" CssClass="Label" />
       </asp:TableCell>
       <asp:TableCell>
         <asp:TextBox ID="m_DocumentTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
@@ -43,7 +51,7 @@
     </asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_Label7" runat="server" Text="Comments" CssClass="Label" />
+        <asp:Label ID="m_CommentsLabel" runat="server" Text="Comments" CssClass="Label" />
       </asp:TableCell>
       <asp:TableCell>
         <asp:TextBox ID="m_CommentsTextBox" runat="server" TextMode="Multiline" CssClass="TextBox"></asp:TextBox>
@@ -51,7 +59,7 @@
     </asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="Label1" runat="server" Text="Delivery Time" CssClass="Label"></asp:Label>
+        <asp:Label ID="m_DeliveryTimeLabel" runat="server" Text="Delivery Time" CssClass="Label"></asp:Label>
       </asp:TableCell>
       <asp:TableCell>
         <asp:TextBox ID="m_EstimateDeliveryTime" CssClass="TextBox" runat="server"></asp:TextBox>
@@ -59,7 +67,7 @@
     </asp:TableRow>
     <asp:TableRow>
     <asp:TableCell>
-        <asp:Label ID="Label2" runat="server" Text="Route" CssClass="Label"></asp:Label>
+        <asp:Label ID="m_RouteLabel" runat="server" Text="Route" CssClass="Label"></asp:Label>
     </asp:TableCell>
         <asp:TableCell>
         <asp:DropDownList ID="m_Route" runat="server" CssClass="DropDown">
@@ -68,7 +76,7 @@
     </asp:TableRow>
     <asp:TableRow>
         <asp:TableCell>
-            <asp:Label ID="Label3" runat="server" Text="Security Escort" CssClass="Label"></asp:Label> 
+            <asp:Label ID="m_SecurityEscortLabel" runat="server" Text="Security Escort" CssClass="Label"></asp:Label> 
         </asp:TableCell>
         <asp:TableCell>
         <asp:DropDownList ID="m_SecurityEscortCatalog" runat="server" CssClass="DropDown">
