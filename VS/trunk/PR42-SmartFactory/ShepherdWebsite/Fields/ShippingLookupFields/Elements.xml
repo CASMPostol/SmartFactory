@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="LoadDescription2Commodity"
+    ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}"
+    Type="Lookup"
+    List="Lists/CommodityList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Commodity"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="ShippingIndex"
     ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}"
     Type="Lookup"
