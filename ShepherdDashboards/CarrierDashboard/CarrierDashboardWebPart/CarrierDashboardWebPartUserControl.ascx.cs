@@ -10,6 +10,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 {
   using ButtonsSet = StateMachineEngine.ButtonsSet;
   using InterfaceState = StateMachineEngine.InterfaceState;
+  using System.Web.UI.WebControls;
+  /// <summary>
+  /// Carrier Dashboard WebPart UserControl
+  /// </summary>
   public partial class CarrierDashboardWebPartUserControl : UserControl
   {
     #region public
@@ -19,7 +23,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         switch (item.Key)
         {
           case InboundInterconnectionData.ConnectionSelector.ShippingInterconnection:
-            new ShippingInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], new EventHandler<ShippingInterconnectionData>( m_StateMachineEngine.NewDataEventHandler));
+            new ShippingInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
             break;
           case InboundInterconnectionData.ConnectionSelector.TimeSlotInterconnection:
             new TimeSlotInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
@@ -30,11 +34,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           default:
             break;
         }
-    }
-    internal void NewDataEventHandler(object sender, PartnerInterconnectionData e)
-    {
-      m_ControlState.PartnerIndex = e.ID;
-      return;
     }
     internal InterconnectionDataTable<ShippingOperationInbound> GetSelectedShippingOperationInboundInterconnectionData()
     {
@@ -101,29 +100,89 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 
     #region private
 
-    #region state management
-    private ButtonsSet m_VisibilityACL;
-    private ButtonsSet m_EditbilityACL;
-    private GlobalDefinitions.Roles m_DashboardType = GlobalDefinitions.Roles.None;
+    #region UserControl override
     [Serializable]
     private class MyControlState
     {
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       public string PartnerIndex = null;
     }
+    /// <summary>
+    /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
+    /// </summary>
+    /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
+    EntitiesDataContext m_EDC = null;
     protected override void OnInit(EventArgs e)
     {
       Page.RegisterRequiresControlState(this);
+      m_EDC = new EntitiesDataContext(SPContext.Current.Web.Url);
       base.OnInit(e);
     }
+    /// <summary>
+    /// Handles the Load event of the Page control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     protected void Page_Load(object sender, EventArgs e)
     {
+      if (!this.IsPostBack)
+        LoadRotes();
       m_SaveButton.Click += new EventHandler(m_StateMachineEngine.m_SaveButton_Click);
       m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.m_NewShippingButton_Click);
       m_CancelButton.Click += new EventHandler(m_StateMachineEngine.m_CancelButton_Click);
       m_EditButton.Click += new EventHandler(m_StateMachineEngine.m_EditButton_Click);
       m_AbortButton.Click += new EventHandler(m_StateMachineEngine.m_AbortButton_Click);
+      m_EstimateDeliveryTime.DateChanged += new EventHandler(EnableSave);
+      m_RouteDropDownList.SelectedIndexChanged += new EventHandler(EnableSave);
+      m_SecurityDropDownList.SelectedIndexChanged += new EventHandler(EnableSave);
+      m_CommentsTextBox.TextChanged += new EventHandler(EnableSave);
     }
+
+    /// <summary>
+    /// Loads the state of the control.
+    /// </summary>
+    /// <param name="state">The state.</param>
+    protected override void LoadControlState(object state)
+    {
+      if (state != null)
+      {
+        m_ControlState = (MyControlState)state;
+        m_StateMachineEngine = new LocalStateMachineEngine(this, m_ControlState.InterfaceState);
+      }
+      else
+        m_StateMachineEngine = new LocalStateMachineEngine(this);
+    }
+    /// <summary>
+    /// Saves any server control state changes that have occurred since the time the page was posted back to the server.
+    /// </summary>
+    /// <returns>
+    /// Returns the server control's current state. If there is no state associated with the control, this method returns null.
+    /// </returns>
+    protected override object SaveControlState()
+    {
+      return m_ControlState;
+    }
+    /// <summary>
+    /// Raises the <see cref="E:System.Web.UI.Control.PreRender"/> event.
+    /// </summary>
+    /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
+    protected override void OnPreRender(EventArgs e)
+    {
+      m_StateLiteral.Text = m_ControlState.InterfaceState.ToString();
+      base.OnPreRender(e);
+    }
+    /// <summary>
+    /// Raises the <see cref="E:System.Web.UI.Control.Unload"/> event.
+    /// </summary>
+    /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains event data.</param>
+    protected override void OnUnload(EventArgs e)
+    {
+      m_EDC.Dispose();
+      base.OnUnload(e);
+    }
+    #endregion
+
+    #region State machine
     private StateMachineEngine m_StateMachineEngine;
     private class LocalStateMachineEngine : StateMachineEngine
     {
@@ -140,7 +199,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       #endregion
 
-      #region abstract implementation 
+      #region abstract implementation
       protected override void UpdateShowShipping(ShippingInterconnectionData _shipping)
       {
         Parent.m_ShippingHiddenField.Value = _shipping.ID;
@@ -148,6 +207,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
           {
+            ShippingOperationInbound _sppng = ShippingOperationInbound.GetAtIndex(edc, _shipping.ID.String2Int());
+            ShippingShippingOperationOutbound _so = _sppng as ShippingShippingOperationOutbound;
+            if (_so != null)
+            {
+              Parent.m_EstimateDeliveryTime.SelectedDate = _so.EstimateDeliveryTime.HasValue ? _so.EstimateDeliveryTime.Value : DateTime.Now;
+              Parent.SelectEscort(_so.SecurityEscortTeam);
+              //TODO Parent.SelecrRoute() must be implemented.
+            }
             Parent.m_EstimateDeliveryTime.SelectedDate = _shipping.EstimateDeliveryTime;
             TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _shipping.ID);
             List<LoadDescription> _ld = LoadDescription.GetForShipping(edc, _shipping.ID);
@@ -197,41 +264,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         Parent.m_TimeSlotHiddenField.Value = e.ID;
       }
-      #endregion      
+      #endregion
 
       #region private
       private CarrierDashboardWebPartUserControl Parent { get; set; }
       #endregion
     }
-
-    protected override void LoadControlState(object state)
-    {
-      if (state != null)
-      {
-        m_ControlState = (MyControlState)state;
-        m_StateMachineEngine = new LocalStateMachineEngine(this, m_ControlState.InterfaceState);
-      }
-      else
-        m_StateMachineEngine = new LocalStateMachineEngine(this);
-    }
-    protected override object SaveControlState()
-    {
-      return m_ControlState;
-    }
-    protected override void OnPreRender(EventArgs e)
-    {
-      m_StateLiteral.Text = m_ControlState.InterfaceState.ToString();
-      base.OnPreRender(e);
-    }
-    #endregion
-
-    #region State machine
-
-
-
     #endregion
 
     #region Interface actions
+    private void NewDataEventHandler(object sender, PartnerInterconnectionData e)
+    {
+      m_ControlState.PartnerIndex = e.ID;
+      return;
+    }
     /// <summary>
     /// Clears the user interface.
     /// </summary>
@@ -245,6 +291,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_WarehouseHiddenField.Value = String.Empty;
       m_DocumentTextBox.TextBoxTextProperty(String.Empty, true);
       m_EstimateDeliveryTime.SelectedDate = DateTime.Now;
+      m_RouteDropDownList.Items.Clear();
+      m_SecurityDropDownList.Items.Clear();
     }
     private void ShowTimeSlot(TimeSlotInterconnectionData _interconnectionData)
     {
@@ -273,7 +321,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       Warehouse _wrs = _cts.GetWarehouse();
       m_WarehouseTextBox.TextBoxTextProperty(_wrs.Tytuł, true);
     }
-    private const StateMachineEngine.ButtonsSet m_AllButtons = (StateMachineEngine.ButtonsSet)int.MaxValue;
     private void SetVisible(StateMachineEngine.ButtonsSet _set)
     {
       _set &= m_VisibilityACL;
@@ -287,7 +334,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_NewShippingButton.Visible = (_set & ButtonsSet.NewOn) != 0;
       m_RouteDropDownList.Visible = (_set & ButtonsSet.RouteOn) != 0;
       m_SaveButton.Visible = (_set & ButtonsSet.SaveOn) != 0;
-      m_SecurityEscortCatalog.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
+      m_SecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
       m_TimeSlotTextBox.Visible = (_set & ButtonsSet.TimeSlotOn) != 0;
       m_WarehouseTextBox.Visible = (_set & ButtonsSet.WarehouseOn) != 0;
     }
@@ -304,7 +351,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
       m_RouteDropDownList.Enabled = (_set & ButtonsSet.RouteOn) != 0;
       m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
-      m_SecurityEscortCatalog.Enabled = (_set & ButtonsSet.SecurityEscortOn) != 0;
+      m_SecurityDropDownList.Enabled = (_set & ButtonsSet.SecurityEscortOn) != 0;
       m_TimeSlotTextBox.Enabled = false;
       m_WarehouseTextBox.Enabled = false;
     }
@@ -324,6 +371,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             _ts.StartTime
           );
         else
+          //TODO Escort and Route
           _sp = new ShippingShippingOperationOutbound
           (
             m_EstimateDeliveryTime.SelectedDate,
@@ -368,18 +416,37 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       //TODO throw new NotImplementedException();
     }
-    #endregion
-
-    #region variables
-    private MyControlState m_ControlState = new MyControlState();
-    #endregion
-
-
-    #endregion
-
-    internal void AbortShipping()
+    private void AbortShipping()
     {
       throw new NotImplementedException();
     }
+    private void SelectEscort(ShippingDriversTeam shippingDriversTeam)
+    {
+      throw new NotImplementedException();
+    }
+    private void LoadRotes()
+    {
+
+    }
+    #endregion
+
+    #region Eveny handlers
+    private void EnableSave(object sender, EventArgs e)
+    {
+      m_SaveButton.Enabled = true;
+    }
+
+    #endregion    
+    #region variables
+    private ButtonsSet m_VisibilityACL;
+    private ButtonsSet m_EditbilityACL;
+    private MyControlState m_ControlState = new MyControlState();
+    private GlobalDefinitions.Roles m_DashboardType = GlobalDefinitions.Roles.None;
+    private const StateMachineEngine.ButtonsSet m_AllButtons = (StateMachineEngine.ButtonsSet)int.MaxValue;
+    #endregion
+
+    #endregion
+
+
   }
 }

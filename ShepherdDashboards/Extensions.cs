@@ -23,6 +23,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     {
       return String.IsNullOrEmpty(_val) ? " -- Select from list -- " : _val;
     }
+    /// <summary>
+    /// Sets the text property of <see cref="TextBox "/> control.
+    /// </summary>
+    /// <param name="_control">The control.</param>
+    /// <param name="_val">The value.</param>
+    /// <param name="_required">if set to <c>true</c> the property is requires.</param>
     public static void TextBoxTextProperty(this TextBox _control, string _val, bool _required)
     {
       _control.Text = _val;
