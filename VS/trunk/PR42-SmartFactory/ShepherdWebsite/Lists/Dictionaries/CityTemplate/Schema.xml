@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="CityTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-CityTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01003C7CE387CDAEA94B89FEB3FC6264FB71" Name="City" Group="CAS Smart Factory" Description="City" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01003c7ce387cdaea94b89feb3fc6264fb71"
+                 Name="CityType"
+                 Group="CAS Smart Factory"
+                 Description="City collection"
+                 Overwrite="TRUE"
+                 Inherits="TRUE">
         <Folder TargetName="_cts/City" />
         <FieldRefs>
           <FieldRef ID="{C4CAE2DF-1DE3-43A3-9500-02091BDADA6E}" Name="CountryTitle" />
