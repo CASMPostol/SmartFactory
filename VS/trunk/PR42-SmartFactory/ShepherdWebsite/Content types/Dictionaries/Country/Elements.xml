@@ -1,22 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x0100ce031dc456c86c409854d818eda7e1f3" 
-               Name="CountryType" 
-               Group="CAS Smart Factory" 
-               Description="Country" 
-               Overwrite="TRUE" 
-               Inherits="TRUE">
-		<Folder TargetName="_cts/Country" />
-		<FieldRefs>
-		</FieldRefs>
-		<XmlDocuments>
-			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-				<FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-					<Display>ListForm</Display>
-					<Edit>ListForm</Edit>
-					<New>ListForm</New>
-				</FormTemplates>
-			</XmlDocument>
-		</XmlDocuments>
-	</ContentType>
+  <ContentType ID="0x0100ce031dc456c86c409854d818eda7e1f3"
+             Name="CountryType"
+             Group="CAS Smart Factory"
+             Description="Country"
+             Overwrite="TRUE"
+             Inherits="TRUE">
+    <Folder TargetName="_cts/Country" />
+    <FieldRefs>
+      <FieldRef  Name="Dummy" ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}" />
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
 </Elements>
