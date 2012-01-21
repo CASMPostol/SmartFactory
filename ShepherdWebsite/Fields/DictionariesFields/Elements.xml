@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    Name="Dummy"
+    ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}"
+    Type="Number"
+    DisplayName="Dummy"
+    Required="False"
+    EnforceUniqueValues="FALSE"
+    Group="CAS Smart Factory Shepherd"
+    />
   <Field 
     Type="User" 
     DisplayName="Shepherd User" 

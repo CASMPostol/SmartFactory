@@ -4,7 +4,7 @@
   <List Name="Country" >
     <ContentType Name="CountryType" Class="CountryClass"/>
   </List>
-  <!--<List Name="City"></List>-->
+  <List Name="City"></List>
   <List Name="Commodity"></List>
   <List Name="Currency" ></List>
   <List Name="Destination Market" ></List>
@@ -37,6 +37,5 @@
   <ExcludeOtherLists/>
   <ContentType Name="CommodityType" Class="Commodity"/>
   <!--<ContentType Name="CityType" Class="CityClass">
-    <ExcludeColumn Name="CountryTitle"/>
   </ContentType>-->
 </Web>
