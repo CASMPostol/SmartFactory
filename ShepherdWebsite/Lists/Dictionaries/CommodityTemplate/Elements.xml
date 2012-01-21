@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="ShepherdWebsite - CommodityTemplate"
-        Description="My List Definition"
+        DisplayName="Commodity"
+        Description="Commodity catalog"
         Image="/_layouts/images/itgen.png"/>
 </Elements>
