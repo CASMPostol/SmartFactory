@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
   <List Name="Carrier"></List>
+  <List Name="Country" >
+    <ContentType Name="CountryType" Class="CountryClass"/>
+  </List>
   <!--<List Name="City"></List>-->
-  <!--<List Name="Commodity"></List>-->
-  <List Name="Country" ></List>
+  <List Name="Commodity"></List>
   <List Name="Currency" ></List>
   <List Name="Destination Market" ></List>
   <List Name="Driver"></List>
@@ -33,4 +35,8 @@
   <List Name="TimeSlot"></List>
   <List Name="Trailer Condition"></List>
   <ExcludeOtherLists/>
+  <ContentType Name="CommodityType" Class="Commodity"/>
+  <!--<ContentType Name="CityType" Class="CityClass">
+    <ExcludeColumn Name="CountryTitle"/>
+  </ContentType>-->
 </Web>

@@ -2,7 +2,7 @@
 <List xmlns:ows="Microsoft SharePoint" Title="CountryTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-CountryTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100CE031DC456C86C409854D818EDA7E1F3" Name="Country" Group="CAS Smart Factory" Description="Country" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x0100ce031dc456c86c409854d818eda7e1f3" Name="CountryType" Group="CAS Smart Factory" Description="Country" Overwrite="TRUE" Inherits="TRUE">
         <Folder TargetName="_cts/Country" />
         <FieldRefs>
         </FieldRefs>

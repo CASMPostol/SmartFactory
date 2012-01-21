@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x0100CE031DC456C86C409854D818EDA7E1F3" 
-               Name="Country" 
+	<ContentType ID="0x0100ce031dc456c86c409854d818eda7e1f3" 
+               Name="CountryType" 
                Group="CAS Smart Factory" 
                Description="Country" 
                Overwrite="TRUE" 

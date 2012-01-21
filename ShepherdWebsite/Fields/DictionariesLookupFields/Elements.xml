@@ -36,7 +36,7 @@
     />
   <Field
     Name="CountryTitle"
-    ID="{C4CAE2DF-1DE3-43A3-9500-02091BDADA6E}"
+    ID="{c4cae2df-1de3-43a3-9500-02091bdada6e}"
     Type="Lookup"
     List="Lists/CountryList"
     ShowField="Title"

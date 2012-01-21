@@ -44,6 +44,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		/// <summary>
+		/// Commodity List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Commodity")]
+		public Microsoft.SharePoint.Linq.EntityList<Commodity> Commodity {
+			get {
+				return this.GetList<Commodity>("Commodity");
+			}
+		}
+		
+		/// <summary>
 		/// Country List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Country")]
@@ -309,6 +319,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Element", Id="0x01")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(AlarmsAndEvents))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Commodity))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Currency))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DestinationMarket))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Driver))]
@@ -794,6 +805,89 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			else {
 				e.Item.AlarmsAndEvents.Remove(this);
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CommodityType", Id="0x01003A76AB24637A7541B0D982B65D5916CE")]
+	public partial class Commodity : Element {
+		
+		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Warehouse> _warehouse;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public Commodity() {
+			this._loadDescription = new Microsoft.SharePoint.Linq.EntitySet<LoadDescription>();
+			this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>(this.OnLoadDescriptionSync);
+			this._loadDescription.OnChanged += new System.EventHandler(this.OnLoadDescriptionChanged);
+			this._loadDescription.OnChanging += new System.EventHandler(this.OnLoadDescriptionChanging);
+			this._warehouse = new Microsoft.SharePoint.Linq.EntitySet<Warehouse>();
+			this._warehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseSync);
+			this._warehouse.OnChanged += new System.EventHandler(this.OnWarehouseChanged);
+			this._warehouse.OnChanging += new System.EventHandler(this.OnWarehouseChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2Commodity", Storage="_loadDescription", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Load Description")]
+		public Microsoft.SharePoint.Linq.EntitySet<LoadDescription> LoadDescription {
+			get {
+				return this._loadDescription;
+			}
+			set {
+				this._loadDescription.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CommodityTitle", Storage="_warehouse", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Warehouse")]
+		public Microsoft.SharePoint.Linq.EntitySet<Warehouse> Warehouse {
+			get {
+				return this._warehouse;
+			}
+			set {
+				this._warehouse.Assign(value);
+			}
+		}
+		
+		private void OnLoadDescriptionChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("LoadDescription", this._loadDescription.Clone());
+		}
+		
+		private void OnLoadDescriptionChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("LoadDescription");
+		}
+		
+		private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Commodity = this;
+			}
+			else {
+				e.Item.Commodity = null;
+			}
+		}
+		
+		private void OnWarehouseChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Warehouse", this._warehouse.Clone());
+		}
+		
+		private void OnWarehouseChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Warehouse");
+		}
+		
+		private void OnWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Commodity = this;
+			}
+			else {
+				e.Item.Commodity = null;
 			}
 		}
 	}
@@ -1547,9 +1641,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<PalletTypes> _palletTypes;
 		
-		private System.Nullable<int> _commodityIdentyfikator;
-		
-		private string _commodityTitle;
+		private Microsoft.SharePoint.Linq.EntityRef<Commodity> _commodity;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -1566,6 +1658,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._palletTypes.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PalletTypes>>(this.OnPalletTypesSync);
 			this._palletTypes.OnChanged += new System.EventHandler(this.OnPalletTypesChanged);
 			this._palletTypes.OnChanging += new System.EventHandler(this.OnPalletTypesChanging);
+			this._commodity = new Microsoft.SharePoint.Linq.EntityRef<Commodity>();
+			this._commodity.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Commodity>>(this.OnCommoditySync);
+			this._commodity.OnChanged += new System.EventHandler(this.OnCommodityChanged);
+			this._commodity.OnChanging += new System.EventHandler(this.OnCommodityChanging);
 			this.OnCreated();
 		}
 		
@@ -1687,31 +1783,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="LoadDescription2Commodity", Storage="_commodityIdentyfikator", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> CommodityIdentyfikator {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2Commodity", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
+		public Commodity Commodity {
 			get {
-				return this._commodityIdentyfikator;
+				return this._commodity.GetEntity();
 			}
 			set {
-				if ((value != this._commodityIdentyfikator)) {
-					this.OnPropertyChanging("CommodityIdentyfikator", this._commodityIdentyfikator);
-					this._commodityIdentyfikator = value;
-					this.OnPropertyChanged("CommodityIdentyfikator");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="LoadDescription2Commodity", Storage="_commodityTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
-		public string CommodityTitle {
-			get {
-				return this._commodityTitle;
-			}
-			set {
-				if ((value != this._commodityTitle)) {
-					this.OnPropertyChanging("CommodityTitle", this._commodityTitle);
-					this._commodityTitle = value;
-					this.OnPropertyChanged("CommodityTitle");
-				}
+				this._commodity.SetEntity(value);
 			}
 		}
 		
@@ -1741,6 +1819,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnPalletTypesSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PalletTypes> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.LoadDescription.Add(this);
+			}
+			else {
+				e.Item.LoadDescription.Remove(this);
+			}
+		}
+		
+		private void OnCommodityChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Commodity", this._commodity.Clone());
+		}
+		
+		private void OnCommodityChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Commodity");
+		}
+		
+		private void OnCommoditySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Commodity> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.LoadDescription.Add(this);
 			}
@@ -3053,9 +3148,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Warehouse", Id="0x01001E57547208B49B46B4AA7CB4536B1A55")]
 	public partial class Warehouse : Element {
 		
-		private System.Nullable<int> _commodityIdentyfikator;
-		
-		private string _commodityTitle;
+		private Microsoft.SharePoint.Linq.EntityRef<Commodity> _commodity;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -3064,34 +3157,37 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		#endregion
 		
 		public Warehouse() {
+			this._commodity = new Microsoft.SharePoint.Linq.EntityRef<Commodity>();
+			this._commodity.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Commodity>>(this.OnCommoditySync);
+			this._commodity.OnChanged += new System.EventHandler(this.OnCommodityChanged);
+			this._commodity.OnChanging += new System.EventHandler(this.OnCommodityChanging);
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CommodityTitle", Storage="_commodityIdentyfikator", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> CommodityIdentyfikator {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CommodityTitle", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
+		public Commodity Commodity {
 			get {
-				return this._commodityIdentyfikator;
+				return this._commodity.GetEntity();
 			}
 			set {
-				if ((value != this._commodityIdentyfikator)) {
-					this.OnPropertyChanging("CommodityIdentyfikator", this._commodityIdentyfikator);
-					this._commodityIdentyfikator = value;
-					this.OnPropertyChanged("CommodityIdentyfikator");
-				}
+				this._commodity.SetEntity(value);
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CommodityTitle", Storage="_commodityTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
-		public string CommodityTitle {
-			get {
-				return this._commodityTitle;
+		private void OnCommodityChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Commodity", this._commodity.Clone());
+		}
+		
+		private void OnCommodityChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Commodity");
+		}
+		
+		private void OnCommoditySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Commodity> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Warehouse.Add(this);
 			}
-			set {
-				if ((value != this._commodityTitle)) {
-					this.OnPropertyChanging("CommodityTitle", this._commodityTitle);
-					this._commodityTitle = value;
-					this.OnPropertyChanged("CommodityTitle");
-				}
+			else {
+				e.Item.Warehouse.Remove(this);
 			}
 		}
 	}

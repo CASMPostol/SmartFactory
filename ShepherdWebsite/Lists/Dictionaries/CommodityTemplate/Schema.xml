@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="ShepherdWebsite - CommodityTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-CommodityTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01003A76AB24637A7541B0D982B65D5916CE" Name="Commodity" Group="CAS Smart Factory" Description="Commodity" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01003a76ab24637a7541b0d982b65d5916ce"
+                 Name="CommodityType"
+                 Group="CAS Smart Factory"
+                 Description="Commodity content type"
+                 Overwrite="TRUE"
+                 Inherits="TRUE" >
         <Folder TargetName="_cts/Commodity" />
         <FieldRefs>
         </FieldRefs>

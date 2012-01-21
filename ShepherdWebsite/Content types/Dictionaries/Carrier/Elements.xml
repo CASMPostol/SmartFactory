@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <ContentType ID="0x0100fb94be01f9b0429f89e6a98ea44aa06e"
-               Name="Carrier"
+               Name="CarrierType"
                Group="CAS Smart Factory Shepherd"
-               Description="Carrier"
+               Description="Carriers list"
                Overwrite="TRUE"
                Inherits="TRUE">
     <Folder TargetName="_cts/Carrier" />
