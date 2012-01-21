@@ -4,12 +4,12 @@
     <ContentTypes>
       <ContentType ID="0x010091765907174d4799b44c4df249630d28" Name="ScheduleTemplate" Group="CAS Smart Factory Shepherd Dictionaries" Description="A schedule template is a predefined table of time slots." Inherits="TRUE" Version="0">
         <FieldRefs>
-          <FieldRef Name="ShippingPointTitle" ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}" />
+          <FieldRef Name="ShippingPointLookupTitle" ID="{A0CC7498-1A74-4A7A-B88C-E9F1DAD514F2}" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="ShippingPointTitle" ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}" Type="Lookup" List="Lists/ShippingPointList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Point" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="ShippingPointLookupTitle" ID="{A0CC7498-1A74-4A7A-B88C-E9F1DAD514F2}" Type="Lookup" List="Lists/ShippingPointList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Point" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
