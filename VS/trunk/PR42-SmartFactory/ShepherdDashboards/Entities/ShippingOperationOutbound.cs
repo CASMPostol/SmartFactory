@@ -5,9 +5,9 @@ using System.Text;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
-  public partial class ShippingShippingOperationOutbound
+  public partial class ShippingOperationOutbound
   {
-    public ShippingShippingOperationOutbound(DateTime _deliveryTime, string _title, Partner _prtnr, Entities.State _state, DateTime? _startTime)
+    public ShippingOperationOutbound(DateTime _deliveryTime, string _title, Partner _prtnr, Entities.State _state, DateTime? _startTime)
       : this()
     {
       EstimateDeliveryTime = _deliveryTime;

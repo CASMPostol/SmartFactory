@@ -208,11 +208,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
           {
             ShippingOperationInbound _sppng = ShippingOperationInbound.GetAtIndex(edc, _shipping.ID.String2Int());
-            ShippingShippingOperationOutbound _so = _sppng as ShippingShippingOperationOutbound;
+            ShippingOperationOutbound _so = _sppng as ShippingOperationOutbound;
             if (_so != null)
             {
               Parent.m_EstimateDeliveryTime.SelectedDate = _so.EstimateDeliveryTime.HasValue ? _so.EstimateDeliveryTime.Value : DateTime.Now;
-              Parent.SelectEscort(_so.SecurityEscortTeam);
+              Parent.SelectEscort(_so.SecurityEscort);
               //TODO Parent.SelecrRoute() must be implemented.
             }
             Parent.m_EstimateDeliveryTime.SelectedDate = _shipping.EstimateDeliveryTime;
@@ -367,17 +367,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           (
             String.Format("{0}", m_DocumentTextBox.Text),
             _prtnr,
-            Entities.State.Scheduled,
+            Entities.State.Creation,
             _ts.StartTime
           );
         else
           //TODO Escort and Route
-          _sp = new ShippingShippingOperationOutbound
+          _sp = new ShippingOperationOutbound
           (
             m_EstimateDeliveryTime.SelectedDate,
             String.Format("{0}", m_DocumentTextBox.Text),
             _prtnr,
-            Entities.State.Scheduled,
+            Entities.State.Creation,
             _ts.StartTime
           );
         _ts.MakeBooking(_sp);
@@ -424,6 +424,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       throw new NotImplementedException();
     }
+    internal void SelectEscort(SecurityEscortCatalog securityEscortCatalog)
+    {
+      throw new NotImplementedException();
+    }
     private void LoadRotes()
     {
 
@@ -446,6 +450,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #endregion
+
 
 
   }
