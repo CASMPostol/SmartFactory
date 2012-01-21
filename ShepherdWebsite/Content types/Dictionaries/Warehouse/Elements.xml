@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-	<ContentType ID="0x01001E57547208B49B46B4AA7CB4536B1A55" 
-               Name="Warehouse" 
-               Group="CAS Smart Factory" 
-               Description="Warehouse" 
-               Overwrite="TRUE" 
-               Inherits="TRUE">
-		<Folder TargetName="_cts/Warehouse" />
-		<FieldRefs>
+  <ContentType ID="0x01001E57547208B49B46B4AA7CB4536B1A55"
+             Name="Warehouse"
+             Group="CAS Smart Factory"
+             Description="Warehouse"
+             Overwrite="TRUE"
+             Inherits="TRUE">
+    <Folder TargetName="_cts/Warehouse" />
+    <FieldRefs>
       <FieldRef ID="{612E92FE-DAEF-4E47-9750-C1C7397E120B}" Name="CommodityTitle" />
-		</FieldRefs>
-		<XmlDocuments>
-			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-				<FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-					<Display>ListForm</Display>
-					<Edit>ListForm</Edit>
-					<New>ListForm</New>
-				</FormTemplates>
-			</XmlDocument>
-		</XmlDocuments>
-	</ContentType>
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
 </Elements>
