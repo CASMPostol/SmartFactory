@@ -222,8 +222,8 @@
     ReadOnly="False"
     />
   <Field
-    Name="ShippingPointTitle"
-    ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}"
+    Name="ShippingPointLookupTitle"
+    ID="{A0CC7498-1A74-4A7A-B88C-E9F1DAD514F2}"
     Type="Lookup"
     List="Lists/ShippingPointList"
     ShowField="Title"
