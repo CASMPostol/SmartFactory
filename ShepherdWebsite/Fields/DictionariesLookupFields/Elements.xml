@@ -120,23 +120,6 @@
     ReadOnly="False"
     />
   <Field
-    Name="DestinationTitle"
-    ID="{22D4D6CE-F749-4D22-BF7F-69037CDAA4C5}"
-    Type="Lookup"
-    List="Lists/DestinationList"
-    ShowField="Title"
-    UnlimitedLengthInDocumentLibrary="False"
-    Indexed="True"
-    RelationshipDeleteBehavior="None"
-    DisplayName="Destination"
-    Group="CAS Smart Factory Shepherd"
-    Required="False"
-    Hidden="False"
-    DisplaceOnUpgrade="True"
-    EnforceUniqueValues="False"
-    ReadOnly="False"
-    />
-  <Field
     Name="CurrencyTitle"
     ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}"
     Type="Lookup"
