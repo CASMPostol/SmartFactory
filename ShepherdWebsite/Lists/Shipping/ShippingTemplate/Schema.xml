@@ -11,6 +11,8 @@
           <FieldRef ID="{BE819A05-1E08-46BD-8E97-65A2C0D80708}" Name="SecuirtyEscortRequired" />
           <FieldRef ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Name="SecurityEscortCatalogTitle" />
           <FieldRef ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Name="EstimateDeliveryTime" />
+          <FieldRef ID="{5347194E-CED0-405F-8132-A0CA93DE3995}" Name="Shipping2RouteTitle" />
+          <FieldRef ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}" Name="AdditionalCosts" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -46,36 +48,38 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field DisplayName="Estimate Delivery Time" Name="EstimateDeliveryTime" Type="DateTime" Format="TimeOnly" ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Group="CAS Smart Factory Shepherd"> <Default>[today]</Default> </Field>
-      <Field Name="RouteTitle" ID="{e94bf458-8886-4e27-ba2a-32cdca4b2db2}" Type="Lookup" List="Lists/RouteList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Route" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="SecurityEscrotPO" ID="{dbcfb052-fb4a-46c1-b72e-bb92f9825142}" Type="Text" DisplayName="Security Escort PO" Group="CAS Smart Factory Shepherd" />
+      <Field Name="GoodsHandlingPO" ID="{ef1921f3-fd4a-4dc0-bb8f-5f5b95bfac12}" Type="Text" DisplayName="Goods Handling PO" Group="CAS Smart Factory Shepherd" />
+      <Field Name="SecuritySealProtocolIndex" ID="{2b8eaacf-37c5-42dc-ac55-b3dadd464ab5}" Type="Lookup" List="Lists/SecuritySealProtocolLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Security Seal Protocol" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="SecuirtyEscortRequired" ID="{BE819A05-1E08-46BD-8E97-65A2C0D80708}" Type="Boolean" DisplayName="Security Escort Required" Group="CAS Smart Factory Shepherd" />
+      <Field Name="SecurityEscortCatalogTitle" ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Type="Lookup" List="Lists/SecurityEscortCatalogList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Security Escort" Group="CAS Smart Factory Shepherd"  Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="EstimateDeliveryTime" ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Type="DateTime" DisplayName="Estimate Delivery Time" Format="TimeOnly" Group="CAS Smart Factory Shepherd">
+        <Default>[today]</Default>
+      </Field>
+      <Field Name="Shipping2RouteTitle" ID="{5347194E-CED0-405F-8132-A0CA93DE3995}" Type="Lookup" List="Lists/RouteList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Route" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field DisplayName="Additional costs" Name="AdditionalCosts" Type="Number" ID="{4268acd0-80d6-4e4c-a8f4-6cb55813f7a8}" Group="CAS Smart Factory Shepherd" />
       <Field Name="PartnerTitle" ID="{c7ca4aa6-8399-4714-a4a4-42145faba936}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="DockNumber" ID="{c7cd1bed-bb4c-403a-a056-3a787fc44d8d}" Min="0" Max="1000" Decimals="0" Type="Number" DisplayName="Dock number" Group="CAS Smart Factory Shepherd" />
+      <Field Type="Choice" DisplayName="State" ID="{056e8e50-8eec-4e4c-b16d-b748879d882f}" Format="Dropdown" BaseType="Text" Name="ShippingState" Group="CAS Smart Factory Shepherd">
+        <Default>Creation</Default>
+        <CHOICES>
+          <CHOICE>Canceled</CHOICE>
+          <CHOICE>Completed</CHOICE>
+          <CHOICE>Confirmed</CHOICE>
+          <CHOICE>Creation</CHOICE>
+          <CHOICE>Delayed</CHOICE>
+          <CHOICE>Waiting4ExternalApproval</CHOICE>
+          <CHOICE>Waiting4InternalApproval</CHOICE>
+          <CHOICE>Underway</CHOICE>
+        </CHOICES>
+      </Field>
+      <Field Name="StartTime" ID="{0c674e8b-70ed-4bcf-84c7-8942292e3954}" Type="DateTime" Format="TimeOnly" DisplayName="Start Time" Group="CAS Smart Factory Shepherd" >
+        <Default>[today]</Default>
+      </Field>
+      <Field Name="ShippingDuration" ID="{a826b26e-82db-45d0-b078-f69cebb1ed05}" Type="Number" DisplayName="Duration" Group="CAS Smart Factory Shepherd" />
       <Field Name="TruckTitle" ID="{c50e99df-7169-4cf1-a771-47b371f6d3fe}" Type="Lookup" List="Lists/TruckList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Truck / Car: Registration Number" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="TrailerTitle" ID="{79166d3d-149d-4423-9a81-c74b4137f13c}" Type="Lookup" List="Lists/TrailerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Trailer : Registration Number" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="SecuritySealProtocolIndex" ID="{2b8eaacf-37c5-42dc-ac55-b3dadd464ab5}" Type="Lookup" List="Lists/SecuritySealProtocolLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Security Seal Protocol" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field DisplayName="Dock number" Min="0" Max="1000" Decimals="0"  Name="DockNumber" Type="Number" ID="{c7cd1bed-bb4c-403a-a056-3a787fc44d8d}" Group="CAS Smart Factory Shepherd" />
-      <Field Type="Choice" DisplayName="State" ID="{056e8e50-8eec-4e4c-b16d-b748879d882f}" Format="Dropdown" BaseType="Text" Name="ShippingState" Group="CAS Smart Factory Shepherd">
-    <Default>Creation</Default>
-    <CHOICES>
-      <CHOICE>Canceled</CHOICE>
-      <CHOICE>Completed</CHOICE>
-      <CHOICE>Confirmed</CHOICE>
-      <CHOICE>Creation</CHOICE>
-      <CHOICE>Delayed</CHOICE>
-      <CHOICE>Waiting4ExternalApproval</CHOICE>
-      <CHOICE>Waiting4InternalApproval</CHOICE>
-      <CHOICE>Underway</CHOICE>
-    </CHOICES>
-  </Field>
-      <Field ID="{0c674e8b-70ed-4bcf-84c7-8942292e3954}" Name="StartTime" Group="CAS Smart Factory Shepherd" Type="DateTime" Format="TimeOnly" DisplayName="Start Time">
-    <Default>[today]</Default>
-  </Field>
-      <Field DisplayName="Duration" Name="ShippingDuration" Type="Number" ID="{a826b26e-82db-45d0-b078-f69cebb1ed05}" Group="CAS Smart Factory Shepherd" />
-      <Field DisplayName="Additional costs" Name="AdditionalCosts" Type="Number" ID="{4268acd0-80d6-4e4c-a8f4-6cb55813f7a8}" Group="CAS Smart Factory Shepherd" />
-      <Field DisplayName="Security Escort PO" Name="SecurityEscrotPO" Type="Text" ID="{dbcfb052-fb4a-46c1-b72e-bb92f9825142}" Group="CAS Smart Factory Shepherd" />
-      <Field DisplayName="Goods Handling PO" Name="GoodsHandlingPO" Type="Text" ID="{ef1921f3-fd4a-4dc0-bb8f-5f5b95bfac12}" Group="CAS Smart Factory Shepherd" />
-      <Field DisplayName="Cancelation reason" Name="CancelationReason" Type="Number" ID="{d48e22d6-37ca-41f9-9cc9-92faba6e908d}" Group="CAS Smart Factory Shepherd" />
-      <Field DisplayName="Security Escort Required" Name="SecuirtyEscortRequired" Type="Boolean" ID="{BE819A05-1E08-46BD-8E97-65A2C0D80708}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="SecurityEscortCatalogTitle" ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Type="Lookup" List="Lists/SecurityEscortCatalogList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Security Escort" Group="CAS Smart Factory Shepherd"  Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="CancelationReason" ID="{d48e22d6-37ca-41f9-9cc9-92faba6e908d}" Type="Number" DisplayName="Cancelation reason" Group="CAS Smart Factory Shepherd" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -108,22 +112,22 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
-          <FieldRef ID="{E94BF458-8886-4E27-BA2A-32CDCA4B2DB2}" Name="RouteTitle" />
           <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}" Name="ShippingDuration" />
-          <FieldRef ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}" Name="AdditionalCosts" />
-          <FieldRef ID="{1A53314B-D7A0-448C-9EAA-757AB59EE242}" Name="ShippingPointTitle" />
           <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
           <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
+          <FieldRef ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}" Name="CancelationReason" />
+
           <FieldRef ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}" Name="SecurityEscrotPO" />
           <FieldRef ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}" Name="GoodsHandlingPO" />
           <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
           <FieldRef ID="{BE819A05-1E08-46BD-8E97-65A2C0D80708}" Name="SecuirtyEscortRequired" />
           <FieldRef ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Name="SecurityEscortCatalogTitle" />
           <FieldRef ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Name="EstimateDeliveryTime" />
-          <FieldRef ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}" Name="CancelationReason" />
+          <FieldRef ID="{5347194E-CED0-405F-8132-A0CA93DE3995}" Name="Shipping2RouteTitle" />
+          <FieldRef ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}" Name="AdditionalCosts" />
         </ViewFields>
         <Query>
           <OrderBy>

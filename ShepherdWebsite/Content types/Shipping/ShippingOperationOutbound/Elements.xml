@@ -14,6 +14,8 @@
       <FieldRef ID="{BE819A05-1E08-46BD-8E97-65A2C0D80708}" Name="SecuirtyEscortRequired" />
       <FieldRef ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Name="SecurityEscortCatalogTitle" />
       <FieldRef ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Name="EstimateDeliveryTime" />
+      <FieldRef ID="{5347194E-CED0-405F-8132-A0CA93DE3995}" Name="Shipping2RouteTitle" />
+      <FieldRef ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}" Name="AdditionalCosts" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
