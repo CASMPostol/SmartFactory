@@ -25,7 +25,7 @@
           <FieldRef ID="{9b2bed84-7769-40e3-9b1d-7954a4053834}" Name="MasterSeriesItemID" Hidden="TRUE" />
           <FieldRef ID="{881eac4a-55a5-48b6-a28e-8329d7486120}" Name="Workspace" Hidden="TRUE" />
           <FieldRef ID="{5EBA7A0A-270D-4F08-8DF5-422612615163}" Name="TimeSlot2ShippingIndex" />
-          <FieldRef ID="{A3FEA9BE-83A5-446C-A951-E1802F2D3485}" Name="TimeSlot2ShippingPointTitle" />
+          <FieldRef ID="{D8AE2368-2CC5-433B-9AA5-9980ADE3F145}" Name="TimeSlot2ShippingPointLookup" />
           <FieldRef ID="{06F0C4D9-BDED-4A99-BF19-F6B1390E2A79}" Name="EntryTime" />
           <FieldRef ID="{1E155AF8-2CB2-43FC-9650-9C0BDD39CD88}" Name="TimeSpan" />
           <FieldRef ID="{89F5EF1F-D79D-42B6-BD14-780B9D90A86A}" Name="ExitTime" />
@@ -114,7 +114,7 @@
       <Field Name="MasterSeriesItemID" ID="{9b2bed84-7769-40e3-9b1d-7954a4053834}" Type="Integer" DisplayName="$Resources:core,MasterSeriesItemID;" Sealed="TRUE" Hidden="TRUE" Indexed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="MasterSeriesItemID"> </Field>
       <Field Name="Workspace" ID="{881eac4a-55a5-48b6-a28e-8329d7486120}" Type="URL" DisplayName="$Resources:core,WorkspaceUrl;" Hidden="TRUE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Workspace"> </Field>
       <Field Name="TimeSlot2ShippingIndex" ID="{5EBA7A0A-270D-4F08-8DF5-422612615163}"  Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="TimeSlot2ShippingPointTitle" ID="{A3FEA9BE-83A5-446C-A951-E1802F2D3485}"  Type="Lookup" List="Lists/ShippingPointList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Point" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="TimeSlot2ShippingPointLookup" ID="{D8AE2368-2CC5-433B-9AA5-9980ADE3F145}"  Type="Lookup" List="Lists/ShippingPointList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Point" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="EntryTime" ID="{06F0C4D9-BDED-4A99-BF19-F6B1390E2A79}" Type="DateTime" Format="DateTime"  Group="CAS Smart Factory Shepherd" DisplayName="Actual Time">
         <Default>[today]</Default>
       </Field>

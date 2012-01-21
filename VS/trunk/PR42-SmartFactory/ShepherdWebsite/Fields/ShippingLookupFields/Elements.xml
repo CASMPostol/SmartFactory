@@ -171,8 +171,8 @@
     ReadOnly="False"
     />
   <Field
-    Name="TimeSlot2ShippingPointTitle"
-    ID="{A3FEA9BE-83A5-446C-A951-E1802F2D3485}"
+    Name="TimeSlot2ShippingPointLookup"
+    ID="{D8AE2368-2CC5-433B-9AA5-9980ADE3F145}"
     Type="Lookup"
     List="Lists/ShippingPointList"
     ShowField="Title"
