@@ -45,40 +45,40 @@
     </CHOICES>
   </Field>
   <Field
-    ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}"
     Name="StartTime"
-    Group="CAS Smart Factory Shepherd"
+    ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}"
     Type="DateTime"
     Format="TimeOnly"
+    Group="CAS Smart Factory Shepherd"
     DisplayName="Start Time">
     <Default>[today]</Default>
   </Field>
   <Field
-    DisplayName="Duration"
     Name="ShippingDuration"
+    DisplayName="Duration"
     Type="Number"
     ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Additional costs"
     Name="AdditionalCosts"
-    Type="Number"
     ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}"
+    Type="Number"
+    DisplayName="Additional costs"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Security Escort PO"
     Name="SecurityEscrotPO"
-    Type="Text"
     ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}"
+    Type="Text"
+    DisplayName="Security Escort PO"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Goods Handling PO"
     Name="GoodsHandlingPO"
-    Type="Text"
     ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}"
+    Type="Text"
+    DisplayName="Goods Handling PO"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
