@@ -1,17 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
-  <List Name="Warehouse"></List>
-  <List Name="JTI Partner" ></List>
+  <List Name="Carrier"></List>
+  <List Name="City"></List>
+  <List Name="Commodity"></List>
   <List Name="Country" ></List>
-  <List Name="Trailer"></List>
-  <List Name="Truck"></List>
+  <List Name="Currency" ></List>
+  <List Name="Destination Market" ></List>
   <List Name="Driver"></List>
+  <List Name="Freight Payer"></List>
+  <List Name="JTI Partner" ></List>
+  <List Name="Market" ></List>
+  <List Name="Pallet Types"></List>
+  <List Name="Route"></List>
+  <List Name="Route"></List>
+  <List Name="SAP Destination Plant"/>
+  <List Name="Schedule Template"></List>
+  <List Name="Security Escort Catalog"></List>
+  <List Name="Shipment Type"></List>
   <List Name="Shipping Point"></List>
-  <List Name="Shipping"></List>
-  <List Name="Alarms and events"></List>
-  <List Name="TimeSlot"></List>
-  <List Name="Drivers Team"></List>
-  <List Name="Load Description"></List>
+  <List Name="TimeSlot Templates"></List>
+  <List Name="Trailer"></List>
+  <List Name="Transport Unit Type"></List>
+  <List Name="Truck"></List>
+  <List Name="Warehouse"></List>
   <List Name="Event Log List"/>
+  <List Name="Security Seal Protocol"/>
+  <List Name="Alarms and events"></List>
+  <List Name="AlarmsSecurity Seal Protocol"></List>
+  <List Name="Load Description"></List>
+  <List Name="Security Escort PO Number"></List>
+  <List Name="Drivers Team"></List>
+  <List Name="Shipping"></List>
+  <List Name="TimeSlot"></List>
+  <List Name="Trailer Condition"></List>
   <ExcludeOtherLists/>
 </Web>
