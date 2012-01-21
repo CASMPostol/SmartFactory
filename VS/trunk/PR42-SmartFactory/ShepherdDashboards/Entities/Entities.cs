@@ -2587,6 +2587,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Warehouse> _warehouse;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<TimeSlot> _timeSlot;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -2598,6 +2600,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._warehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseSync);
 			this._warehouse.OnChanged += new System.EventHandler(this.OnWarehouseChanged);
 			this._warehouse.OnChanging += new System.EventHandler(this.OnWarehouseChanging);
+			this._timeSlot = new Microsoft.SharePoint.Linq.EntitySet<TimeSlot>();
+			this._timeSlot.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot>>(this.OnTimeSlotSync);
+			this._timeSlot.OnChanged += new System.EventHandler(this.OnTimeSlotChanged);
+			this._timeSlot.OnChanging += new System.EventHandler(this.OnTimeSlotChanging);
 			this.OnCreated();
 		}
 		
@@ -2642,6 +2648,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_timeSlot", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="TimeSlot")]
+		public Microsoft.SharePoint.Linq.EntitySet<TimeSlot> TimeSlot {
+			get {
+				return this._timeSlot;
+			}
+			set {
+				this._timeSlot.Assign(value);
+			}
+		}
+		
 		private void OnWarehouseChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Warehouse", this._warehouse.Clone());
 		}
@@ -2651,6 +2667,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
+		}
+		
+		private void OnTimeSlotChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TimeSlot", this._timeSlot.Clone());
+		}
+		
+		private void OnTimeSlotChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TimeSlot");
+		}
+		
+		private void OnTimeSlotSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ShippingPoint = this;
+			}
+			else {
+				e.Item.ShippingPoint = null;
+			}
 		}
 	}
 	
@@ -3073,7 +3106,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<ShippingOperationInbound> _shippingIndex;
 		
-		protected Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _shippingPoint;
+		private Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _shippingPoint;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -3236,8 +3269,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingPointTitle", Storage="_shippingPoint", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping Point")]
-		public virtual ShippingPoint ShippingPoint {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_shippingPoint", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping Point")]
+		public ShippingPoint ShippingPoint {
 			get {
 				return this._shippingPoint.GetEntity();
 			}
@@ -3272,6 +3305,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnShippingPointSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TimeSlot.Add(this);
+			}
+			else {
+				e.Item.TimeSlot.Remove(this);
+			}
 		}
 	}
 	
@@ -3558,6 +3597,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlot", Id="0x0102008B8977AFA9104B18B4B25D7C06A4A3AA", List="TimeSlot")]
 	public partial class TimeSlotTimeSlot : TimeSlot {
 		
+		private Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _shippingPoint0;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -3565,6 +3606,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		#endregion
 		
 		public TimeSlotTimeSlot() {
+			this._shippingPoint0 = new Microsoft.SharePoint.Linq.EntityRef<ShippingPoint>();
+			this._shippingPoint0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnShippingPoint0Sync);
+			this._shippingPoint0.OnChanged += new System.EventHandler(this.OnShippingPoint0Changed);
+			this._shippingPoint0.OnChanging += new System.EventHandler(this.OnShippingPoint0Changing);
 			this.OnCreated();
 		}
 		
@@ -3582,14 +3627,25 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingPointTitle", Storage="_shippingPoint", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping Point")]
-		public override ShippingPoint ShippingPoint {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingPointTitle", Storage="_shippingPoint0", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping Point")]
+		public ShippingPoint ShippingPoint0 {
 			get {
-				return this._shippingPoint.GetEntity();
+				return this._shippingPoint0.GetEntity();
 			}
 			set {
-				this._shippingPoint.SetEntity(value);
+				this._shippingPoint0.SetEntity(value);
 			}
+		}
+		
+		private void OnShippingPoint0Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ShippingPoint0", this._shippingPoint0.Clone());
+		}
+		
+		private void OnShippingPoint0Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ShippingPoint0");
+		}
+		
+		private void OnShippingPoint0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
 		}
 	}
 	
