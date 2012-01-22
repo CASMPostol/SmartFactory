@@ -5,7 +5,7 @@
       <ContentType ID="0x0100121b8b770545430a8b59b62d84c02c38" Name="Route" Group="CAS Smart Factory Shepherd" Description="Route" Overwrite="TRUE" Inherits="TRUE">
         <Folder TargetName="_cts/Route" />
         <FieldRefs>
-          <FieldRef ID="{816868C2-FBCF-46C3-91B4-D6CF0F057E83}" Name="CityTitle" />
+          <FieldRef ID="{BB08CEE0-9699-44AD-84ED-BB32ABB382D5}" Name="Route2CityTitle"/>
           <FieldRef ID="{A673B418-E331-448A-AC32-CD58D861015D}" Name="ShipmentTypeTitle" />
           <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerTitle" />
           <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />
@@ -29,7 +29,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="CityTitle" ID="{816868c2-fbcf-46c3-91b4-d6cf0f057e83}" Type="Lookup" List="Lists/CityList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="City Name" Group="CAS Smart Factory" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field ID="{BB08CEE0-9699-44AD-84ED-BB32ABB382D5}" Name="Route2CityTitle" Type="Lookup" List="Lists/CityList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="City Name" Group="CAS Smart Factory" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="ShipmentTypeTitle" ID="{a673b418-e331-448a-ac32-cd58d861015d}" Type="Lookup" List="Lists/ShipmentTypeList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipment Type" Group="CAS Smart Factory Shepherd" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="FreightPayerTitle" ID="{b5d7d15b-e7ba-4768-b746-ac71d70ef53f}" Type="Lookup" List="Lists/FreightPayerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Freight Payer" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="MaterialMaster" ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Type="Text" DisplayName="Material Master" Group="CAS Smart Factory Shepherd" />
@@ -71,7 +71,7 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{816868C2-FBCF-46C3-91B4-D6CF0F057E83}" Name="CityTitle" />
+          <FieldRef ID="{BB08CEE0-9699-44AD-84ED-BB32ABB382D5}" Name="Route2CityTitle" />
           <FieldRef ID="{A673B418-E331-448A-AC32-CD58D861015D}" Name="ShipmentTypeTitle" />
           <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerTitle" />
           <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />
