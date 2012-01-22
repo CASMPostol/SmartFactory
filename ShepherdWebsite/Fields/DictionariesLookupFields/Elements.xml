@@ -69,6 +69,23 @@
     ReadOnly="False"
     />
   <Field
+    ID="{BB08CEE0-9699-44AD-84ED-BB32ABB382D5}"
+    Name="Route2CityTitle"
+    Type="Lookup"
+    List="Lists/CityList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="City Name"
+    Group="CAS Smart Factory"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="ShipmentTypeTitle"
     ID="{A673B418-E331-448A-AC32-CD58D861015D}"
     Type="Lookup"
