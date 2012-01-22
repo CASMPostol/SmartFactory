@@ -11,9 +11,9 @@
   <List Name="Driver"></List>
   <List Name="Freight Payer"></List>
   <List Name="JTI Partner" ></List>
-  <!--<List Name="Market" ></List>-->
+  <List Name="Market" ></List>
   <List Name="Pallet Types"></List>
-  <!--<List Name="Route"></List>-->
+  <List Name="Route"></List>
   <List Name="SAP Destination Plant"/>
   <List Name="Schedule Template"></List>
   <List Name="Security Escort Catalog"></List>
