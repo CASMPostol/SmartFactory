@@ -73,7 +73,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           case GlobalDefinitions.Roles.Vendor:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.DockOn;
-            SelectDefaultWarehouse();
             break;
           case GlobalDefinitions.Roles.Guard:
             m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.DocumentOn | ButtonsSet.RouteOn | ButtonsSet.WarehouseOn | ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
@@ -106,6 +105,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       public string PartnerIndex = null;
+      public bool EstimateDeliveryTimeChanged = false;
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
@@ -132,12 +132,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_CancelButton.Click += new EventHandler(m_StateMachineEngine.m_CancelButton_Click);
       m_EditButton.Click += new EventHandler(m_StateMachineEngine.m_EditButton_Click);
       m_AbortButton.Click += new EventHandler(m_StateMachineEngine.m_AbortButton_Click);
-      m_EstimateDeliveryTime.DateChanged += new EventHandler(EnableSave);
-      m_RouteDropDownList.SelectedIndexChanged += new EventHandler(EnableSave);
-      m_SecurityDropDownList.SelectedIndexChanged += new EventHandler(EnableSave);
-      m_CommentsTextBox.TextChanged += new EventHandler(EnableSave);
+      m_EstimateDeliveryTime.DateChanged += new EventHandler(m_EstimateDeliveryTime_DateChanged);
+      m_RouteDropDownList.SelectedIndexChanged += new EventHandler(m_RouteDropDownList_SelectedIndexChanged);
+      m_SecurityDropDownList.SelectedIndexChanged += new EventHandler(m_SecurityDropDownList_SelectedIndexChanged);
+      m_CommentsTextBox.TextChanged += new EventHandler(m_CommentsTextBox_TextChanged);
       m_CityDropDownList.SelectedIndexChanged += new EventHandler(m_CityDropDownList_SelectedIndexChanged);
     }
+
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -369,10 +370,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void CreateShipping()
     {
-      using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
+      try
       {
-        Partner _prtnr = Partner.GetAtIndex(edc, m_ControlState.PartnerIndex);
-        TimeSlotTimeSlot _ts = TimeSlotTimeSlot.GetAtIndex(edc, m_TimeSlotHiddenField.Value, true);
+        Partner _prtnr = Partner.GetAtIndex(m_EDC, m_ControlState.PartnerIndex);
+        TimeSlotTimeSlot _ts = TimeSlotTimeSlot.GetAtIndex(m_EDC, m_TimeSlotHiddenField.Value, true);
         ShippingOperationInbound _sp = null;
         if (m_DashboardType == GlobalDefinitions.Roles.OutboundOwner)
           _sp = new ShippingOperationInbound
@@ -383,25 +384,54 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             _ts.StartTime
           );
         else
-          //TODO Escort and Route
-          _sp = new ShippingOperationOutbound
-          (
-            m_EstimateDeliveryTime.SelectedDate,
-            String.Format("{0}", m_DocumentTextBox.Text),
-            _prtnr,
-            Entities.State.Creation,
-            _ts.StartTime
-          );
-
+        {
+          ShippingOperationOutbound _spo = new ShippingOperationOutbound
+            (
+              m_EstimateDeliveryTime.SelectedDate,
+              String.Format("{0}", m_DocumentTextBox.Text),
+              _prtnr,
+              Entities.State.Creation,
+              _ts.StartTime
+            );
+          _sp = _spo;
+          if (!m_RouteDropDownList.SelectedValue.IsNullOrEmpty())
+            _spo.Route = (from _rx in m_EDC.Route
+                          where _rx.Identyfikator == m_RouteDropDownList.SelectedValue.String2Int()
+                          select _rx).First();
+          if (!m_SecurityDropDownList.SelectedValue.IsNullOrEmpty())
+            _spo.SecurityEscort = (from _sx in m_EDC.SecurityEscortCatalog
+                                   where _sx.Identyfikator == m_SecurityDropDownList.SelectedValue.String2Int()
+                                   select _sx).First();
+          if (m_ControlState.EstimateDeliveryTimeChanged)
+            _spo.EstimateDeliveryTime = m_EstimateDeliveryTime.SelectedDate;
+        }
+        //TODO _sp.CancelationReason = m_CommentsTextBox.Text; wait till: http://itrserver/Bugs/BugDetail.aspx?bid=3018
         _ts.MakeBooking(_sp);
         LoadDescription _ld = new LoadDescription()
         {
           Tytuł = m_DocumentTextBox.Text,
           ShippingIndex = _sp
         };
-        edc.Shipping.InsertOnSubmit(_sp);
-        edc.LoadDescription.InsertOnSubmit(_ld);
-        edc.SubmitChanges();
+        m_EDC.Shipping.InsertOnSubmit(_sp);
+        m_EDC.LoadDescription.InsertOnSubmit(_ld);
+        m_EDC.SubmitChanges();
+      }
+      catch (Exception ex)
+      {
+        ReportException("CreateShipping", ex);
+      }
+    }
+    private void AbortShipping()
+    {
+      try
+      {
+        ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(m_EDC, m_ShippingHiddenField.HiddenField2Int());
+        _si.State = State.Canceled;
+        ReportAlert();
+      }
+      catch (Exception ex)
+      {
+        ReportException("AbortShipping", ex);
       }
     }
     private void UpdateShipping()
@@ -421,13 +451,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         }
         catch (Exception ex)
         {
-          this.Controls.Add(new LiteralControl(ex.Message));
+          m_StateMachineEngine.ExceptionCatched(m_EDC, "UpdateShipping", ex.Message);
         }
       }
-    }
-    private void SelectDefaultWarehouse()
-    {
-      //TODO throw new NotImplementedException();
     }
     private void PopulateDropDownLists()
     {
@@ -486,35 +512,59 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         Entities.Anons _msg = new Anons("PopulateRouteAndSecurityDropDownLists", String.Format(_tmplt, ex.Message));
       }
     }
-    private void AbortShipping()
+    private void SelectEscort(SecurityEscortCatalog _securityEscortCatalog)
+    {
+       try
+      {
+        m_SecurityDropDownList.SelectedValue = _securityEscortCatalog.Tytuł;
+      }
+      catch (Exception ex)
+      {
+        m_SecurityDropDownList.SelectedValue = null;
+        ReportException("SelectEscort", ex);
+      }
+    }
+    private void SelecrRoute(Route route)
     {
       //TODO throw new NotImplementedException();
     }
-    private void SelectEscort(ShippingDriversTeam shippingDriversTeam)
+    private void ReportException(string _source, Exception ex)
     {
-      //TODO throw new NotImplementedException();
+      string _tmplt = "The current operation has been interrupted by error {0}.";
+      m_StateMachineEngine.ExceptionCatched(m_EDC, _source, String.Format(_tmplt, ex.Message));
     }
-    internal void SelectEscort(SecurityEscortCatalog securityEscortCatalog)
-    {
-      //TODO throw new NotImplementedException();
-    }
-
-    internal void SelecrRoute(Route route)
+    private void ReportAlert()
     {
       //TODO throw new NotImplementedException();
     }
     #endregion
 
     #region Eveny handlers
-    private void EnableSave(object sender, EventArgs e)
+
+    void m_CommentsTextBox_TextChanged(object sender, EventArgs e)
     {
-      m_SaveButton.Enabled = true;
+      throw new NotImplementedException();
+    }
+
+    private void m_SecurityDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      throw new NotImplementedException();
+    }
+
+    private void m_RouteDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      throw new NotImplementedException();
+    }
+    void m_EstimateDeliveryTime_DateChanged(object sender, EventArgs e)
+    {
+      m_ControlState.EstimateDeliveryTimeChanged = true; ;
     }
     private void m_CityDropDownList_SelectedIndexChanged(object sender, EventArgs e)
     {
       PopulateRouteAndSecurityDropDownLists();
     }
     #endregion
+
     #region variables
     private ButtonsSet m_VisibilityACL;
     private ButtonsSet m_EditbilityACL;

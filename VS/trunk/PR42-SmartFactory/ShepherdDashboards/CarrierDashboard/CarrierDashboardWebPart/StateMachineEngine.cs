@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           ClearUserInterface();
           break;
         case InterfaceState.EditState:
-          SetEnabled(ButtonsSet.CancelOn | ButtonsSet.CommentsOn | ButtonsSet.AbortOn | ButtonsSet.DocumentOn | ButtonsSet.EstimatedDeliveryTime );
+          SetEnabled(ButtonsSet.CancelOn | ButtonsSet.CommentsOn | ButtonsSet.AbortOn | ButtonsSet.DocumentOn | ButtonsSet.EstimatedDeliveryTime);
           break;
         case InterfaceState.NewState:
           ClearUserInterface();
@@ -200,8 +200,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
+    internal void ExceptionCatched(EntitiesDataContext _EDC, string _source, string _message)
+    {
+      Entities.Anons _entry = new Anons(_source, _message);
+      _EDC.EventLogList.InsertOnSubmit(_entry);
+      switch (m_ControlState)
+      {
+        case InterfaceState.ViewState:
+          break;
+        case InterfaceState.EditState:
+        case InterfaceState.NewState:
+          ClearUserInterface();
+          CurrentMachineState = InterfaceState.ViewState;
+          break;
+      }
+    }
     #endregion
-    private InterfaceState m_ControlState;
 
+    private InterfaceState m_ControlState;
   }
 }
