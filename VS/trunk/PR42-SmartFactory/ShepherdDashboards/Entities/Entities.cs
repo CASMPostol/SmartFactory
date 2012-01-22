@@ -217,9 +217,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		/// Security Escort Catalog List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Security Escort Catalog")]
-		public Microsoft.SharePoint.Linq.EntityList<SecurityEscortCatalog> SecurityEscortCatalog {
+		public Microsoft.SharePoint.Linq.EntityList<SecurityEscortCatalogSecurityEscortCatalog> SecurityEscortCatalog {
 			get {
-				return this.GetList<SecurityEscortCatalog>("Security Escort Catalog");
+				return this.GetList<SecurityEscortCatalogSecurityEscortCatalog>("Security Escort Catalog");
 			}
 		}
 		
@@ -923,6 +923,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<SecurityEscortCatalog> _securityEscortCatalog;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -938,6 +940,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
 			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
 			this._route.OnChanging += new System.EventHandler(this.OnRouteChanging);
+			this._securityEscortCatalog = new Microsoft.SharePoint.Linq.EntitySet<SecurityEscortCatalog>();
+			this._securityEscortCatalog.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog>>(this.OnSecurityEscortCatalogSync);
+			this._securityEscortCatalog.OnChanged += new System.EventHandler(this.OnSecurityEscortCatalogChanged);
+			this._securityEscortCatalog.OnChanging += new System.EventHandler(this.OnSecurityEscortCatalogChanging);
 			this.OnCreated();
 		}
 		
@@ -958,6 +964,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			set {
 				this._route.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalog2CityTitle", Storage="_securityEscortCatalog", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Security Escort Catalog")]
+		public Microsoft.SharePoint.Linq.EntitySet<SecurityEscortCatalog> SecurityEscortCatalog {
+			get {
+				return this._securityEscortCatalog;
+			}
+			set {
+				this._securityEscortCatalog.Assign(value);
 			}
 		}
 		
@@ -987,6 +1003,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CityName = this;
+			}
+			else {
+				e.Item.CityName = null;
+			}
+		}
+		
+		private void OnSecurityEscortCatalogChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SecurityEscortCatalog", this._securityEscortCatalog.Clone());
+		}
+		
+		private void OnSecurityEscortCatalogChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SecurityEscortCatalog");
+		}
+		
+		private void OnSecurityEscortCatalogSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.CityName = this;
 			}
@@ -2571,6 +2604,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	/// Utwórz nowy element listy.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SecurityEscortCatalog", Id="0x01004D883AD19A284D1F826EA7B4E70F0ACA")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SecurityEscortCatalogSecurityEscortCatalog))]
 	public partial class SecurityEscortCatalog : Element {
 		
 		private string _materialMaster;
@@ -2584,8 +2618,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Currency> _currency;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> _shippingOperationOutbound;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2610,10 +2642,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._currency.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency>>(this.OnCurrencySync);
 			this._currency.OnChanged += new System.EventHandler(this.OnCurrencyChanged);
 			this._currency.OnChanging += new System.EventHandler(this.OnCurrencyChanging);
-			this._shippingOperationOutbound = new Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound>();
-			this._shippingOperationOutbound.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound>>(this.OnShippingOperationOutboundSync);
-			this._shippingOperationOutbound.OnChanged += new System.EventHandler(this.OnShippingOperationOutboundChanged);
-			this._shippingOperationOutbound.OnChanging += new System.EventHandler(this.OnShippingOperationOutboundChanging);
 			this.OnCreated();
 		}
 		
@@ -2648,7 +2676,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CityTitle", Storage="_cityName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalog2CityTitle", Storage="_cityName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
 		public CityType CityName {
 			get {
 				return this._cityName.GetEntity();
@@ -2688,16 +2716,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_shippingOperationOutbound", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> ShippingOperationOutbound {
-			get {
-				return this._shippingOperationOutbound;
-			}
-			set {
-				this._shippingOperationOutbound.Assign(value);
-			}
-		}
-		
 		private void OnCityNameChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CityName", this._cityName.Clone());
 		}
@@ -2707,6 +2725,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnCityNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SecurityEscortCatalog.Add(this);
+			}
+			else {
+				e.Item.SecurityEscortCatalog.Remove(this);
+			}
 		}
 		
 		private void OnFreightPayerChanging(object sender, System.EventArgs e) {
@@ -2740,23 +2764,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnCurrencySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency> e) {
-		}
-		
-		private void OnShippingOperationOutboundChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShippingOperationOutbound", this._shippingOperationOutbound.Clone());
-		}
-		
-		private void OnShippingOperationOutboundChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShippingOperationOutbound");
-		}
-		
-		private void OnShippingOperationOutboundSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SecurityEscort = this;
-			}
-			else {
-				e.Item.SecurityEscort = null;
-			}
 		}
 	}
 	
@@ -4386,6 +4393,83 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	}
 	
 	/// <summary>
+	/// Security Escort Catalog
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SecurityEscortCatalog", Id="0x01004D883AD19A284D1F826EA7B4E70F0ACA", List="Security Escort Catalog")]
+	public partial class SecurityEscortCatalogSecurityEscortCatalog : SecurityEscortCatalog {
+		
+		private Microsoft.SharePoint.Linq.EntityRef<CityType> _cityName0;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> _shippingOperationOutbound;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SecurityEscortCatalogSecurityEscortCatalog() {
+			this._cityName0 = new Microsoft.SharePoint.Linq.EntityRef<CityType>();
+			this._cityName0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>(this.OnCityName0Sync);
+			this._cityName0.OnChanged += new System.EventHandler(this.OnCityName0Changed);
+			this._cityName0.OnChanging += new System.EventHandler(this.OnCityName0Changing);
+			this._shippingOperationOutbound = new Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound>();
+			this._shippingOperationOutbound.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound>>(this.OnShippingOperationOutboundSync);
+			this._shippingOperationOutbound.OnChanged += new System.EventHandler(this.OnShippingOperationOutboundChanged);
+			this._shippingOperationOutbound.OnChanging += new System.EventHandler(this.OnShippingOperationOutboundChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CityTitle", Storage="_cityName0", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
+		public CityType CityName0 {
+			get {
+				return this._cityName0.GetEntity();
+			}
+			set {
+				this._cityName0.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_shippingOperationOutbound", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> ShippingOperationOutbound {
+			get {
+				return this._shippingOperationOutbound;
+			}
+			set {
+				this._shippingOperationOutbound.Assign(value);
+			}
+		}
+		
+		private void OnCityName0Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CityName0", this._cityName0.Clone());
+		}
+		
+		private void OnCityName0Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CityName0");
+		}
+		
+		private void OnCityName0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e) {
+		}
+		
+		private void OnShippingOperationOutboundChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ShippingOperationOutbound", this._shippingOperationOutbound.Clone());
+		}
+		
+		private void OnShippingOperationOutboundChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ShippingOperationOutbound");
+		}
+		
+		private void OnShippingOperationOutboundSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SecurityEscort = this;
+			}
+			else {
+				e.Item.SecurityEscort = null;
+			}
+		}
+	}
+	
+	/// <summary>
 	/// Shipping Operation - Outbound
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ShippingOperationOutbound", Id="0x010047C1F2AB865840E598FE69DEC5D5B02100F3822278C9B04CA38278624C533B88DC")]
@@ -4403,7 +4487,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _securitySealProtocol;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog> _securityEscort;
+		private Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalogSecurityEscortCatalog> _securityEscort;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<RouteRoute> _route;
 		
@@ -4418,8 +4502,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._securitySealProtocol.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnSecuritySealProtocolSync);
 			this._securitySealProtocol.OnChanged += new System.EventHandler(this.OnSecuritySealProtocolChanged);
 			this._securitySealProtocol.OnChanging += new System.EventHandler(this.OnSecuritySealProtocolChanging);
-			this._securityEscort = new Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog>();
-			this._securityEscort.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog>>(this.OnSecurityEscortSync);
+			this._securityEscort = new Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalogSecurityEscortCatalog>();
+			this._securityEscort.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalogSecurityEscortCatalog>>(this.OnSecurityEscortSync);
 			this._securityEscort.OnChanged += new System.EventHandler(this.OnSecurityEscortChanged);
 			this._securityEscort.OnChanging += new System.EventHandler(this.OnSecurityEscortChanging);
 			this._route = new Microsoft.SharePoint.Linq.EntityRef<RouteRoute>();
@@ -4510,7 +4594,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_securityEscort", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Security Escort Catalog")]
-		public SecurityEscortCatalog SecurityEscort {
+		public SecurityEscortCatalogSecurityEscortCatalog SecurityEscort {
 			get {
 				return this._securityEscort.GetEntity();
 			}
@@ -4548,7 +4632,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this.OnPropertyChanged("SecurityEscort");
 		}
 		
-		private void OnSecurityEscortSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog> e) {
+		private void OnSecurityEscortSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalogSecurityEscortCatalog> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.ShippingOperationOutbound.Add(this);
 			}

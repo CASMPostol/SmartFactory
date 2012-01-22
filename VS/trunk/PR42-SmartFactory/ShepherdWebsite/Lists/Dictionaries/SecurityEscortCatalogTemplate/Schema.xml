@@ -5,7 +5,7 @@
       <ContentType ID="0x01004d883ad19a284d1f826ea7b4e70f0aca" Name="SecurityEscortCatalog" Group="CAS Smart Factory Shepherd" Description="Security Escort Catalog" Inherits="TRUE" Overwrite="TRUE">
         <Folder TargetName="_cts/SecurityEscortCatalog" />
         <FieldRefs>
-          <FieldRef ID="{816868C2-FBCF-46C3-91B4-D6CF0F057E83}" Name="CityTitle" />
+          <FieldRef ID="{7E59DF4C-5FEB-4D4B-8190-FEF920AA0A1C}" Name="SecurityEscortCatalog2CityTitle" />
           <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerTitle" />
           <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
@@ -15,7 +15,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="CityTitle" ID="{816868C2-FBCF-46C3-91B4-D6CF0F057E83}" Type="Lookup" List="Lists/CityList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="City Name" Group="CAS Smart Factory" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="SecurityEscortCatalog2CityTitle" ID="{7E59DF4C-5FEB-4D4B-8190-FEF920AA0A1C}" Type="Lookup" List="Lists/CityList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="City Name" Group="CAS Smart Factory" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="FreightPayerTitle" ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Type="Lookup" List="Lists/FreightPayerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Freight Payer" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="MaterialMaster" ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Type="Text" DisplayName="Material Master" Group="CAS Smart Factory Shepherd" />
       <Field Name="PartnerTitle" ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
@@ -52,7 +52,7 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{816868C2-FBCF-46C3-91B4-D6CF0F057E83}" Name="CityTitle" />
+          <FieldRef ID="{7E59DF4C-5FEB-4D4B-8190-FEF920AA0A1C}" Name="SecurityEscortCatalog2CityTitle" />
           <FieldRef ID="{A673B418-E331-448A-AC32-CD58D861015D}" Name="ShipmentTypeTitle" />
           <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerIndex" />
           <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />

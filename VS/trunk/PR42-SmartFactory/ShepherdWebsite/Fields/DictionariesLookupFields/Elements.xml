@@ -52,8 +52,8 @@
     ReadOnly="False"
     />
   <Field
-    Name="CityTitle"
-    ID="{816868C2-FBCF-46C3-91B4-D6CF0F057E83}"
+    Name="SecurityEscortCatalog2CityTitle"
+    ID="{7E59DF4C-5FEB-4D4B-8190-FEF920AA0A1C}"
     Type="Lookup"
     List="Lists/CityList"
     ShowField="Title"
