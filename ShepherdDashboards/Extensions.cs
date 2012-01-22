@@ -7,6 +7,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
   public static class Extensions
   {
     #region public
+
     public static string IntToString(this int? _val)
     {
       return _val.HasValue ? _val.Value.ToString() : String.Empty;
@@ -67,6 +68,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
         return _ret;
       }
       return null;
+    }
+    /// <summary>
+    ///  Indicates whether the specified System.String object is null or an System.String.Empty string.
+    /// </summary>
+    /// <param name="_val"> A System.String reference.</param>
+    /// <returns>
+    ///   true if the value parameter is null or an empty string (""); otherwise, false.</c>.
+    /// </returns>
+    public static bool IsNullOrEmpty(this string _val)
+    {
+      return String.IsNullOrEmpty(_val);
     }
     #endregion
 

@@ -56,6 +56,8 @@
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
+        <asp:Label ID="m_CityLabel" runat="server" Text="Destination" CssClass="Label" />
+        <asp:DropDownList ID="m_CityDropDownList" runat="server" AutoPostBack="true" />
         <asp:Label ID="m_RouteLabel" runat="server" Text="Route" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
         <asp:DropDownList ID="m_RouteDropDownList" runat="server" CssClass="DropDown">
