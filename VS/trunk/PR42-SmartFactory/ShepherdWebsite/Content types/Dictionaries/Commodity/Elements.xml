@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <ContentType ID="0x01003a76ab24637a7541b0d982b65d5916ce" 
-             Name="CommodityType"
+             Name="Commodity"
              Group="CAS Smart Factory"
              Description="Commodity content type" 
              Overwrite="TRUE"
              Inherits="TRUE" >
     <Folder TargetName="_cts/Commodity" />
     <FieldRefs>
+      <FieldRef  Name="Dummy" ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
