@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Entities\AlarmsAndEvents.cs" />
     <Compile Include="Entities\Anons.cs" />
+    <Compile Include="Entities\CityType.cs" />
     <Compile Include="Entities\Driver.cs" />
     <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />

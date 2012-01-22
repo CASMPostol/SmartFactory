@@ -126,7 +126,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected void Page_Load(object sender, EventArgs e)
     {
       if (!this.IsPostBack)
-        LoadRotes();
+        PopulateDropDownLists();
       m_SaveButton.Click += new EventHandler(m_StateMachineEngine.m_SaveButton_Click);
       m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.m_NewShippingButton_Click);
       m_CancelButton.Click += new EventHandler(m_StateMachineEngine.m_CancelButton_Click);
@@ -136,8 +136,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_RouteDropDownList.SelectedIndexChanged += new EventHandler(EnableSave);
       m_SecurityDropDownList.SelectedIndexChanged += new EventHandler(EnableSave);
       m_CommentsTextBox.TextChanged += new EventHandler(EnableSave);
+      m_CityDropDownList.SelectedIndexChanged += new EventHandler(m_CityDropDownList_SelectedIndexChanged);
     }
-
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -213,7 +213,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             {
               Parent.m_EstimateDeliveryTime.SelectedDate = _so.EstimateDeliveryTime.HasValue ? _so.EstimateDeliveryTime.Value : DateTime.Now;
               Parent.SelectEscort(_so.SecurityEscort);
-              //TODO Parent.SelecrRoute() must be implemented.
+              Parent.SelecrRoute(_so.Route);
             }
             Parent.m_EstimateDeliveryTime.SelectedDate = _shipping.EstimateDeliveryTime;
             TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _shipping.ID);
@@ -330,13 +330,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_DockNumberTextBox.Visible = (_set & ButtonsSet.DockOn) != 0;
       m_DocumentTextBox.Visible = (_set & ButtonsSet.DocumentOn) != 0;
       m_EditButton.Visible = (_set & ButtonsSet.EditOn) != 0;
-      m_EstimateDeliveryTime.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_NewShippingButton.Visible = (_set & ButtonsSet.NewOn) != 0;
-      m_RouteDropDownList.Visible = (_set & ButtonsSet.RouteOn) != 0;
       m_SaveButton.Visible = (_set & ButtonsSet.SaveOn) != 0;
       m_SecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
       m_TimeSlotTextBox.Visible = (_set & ButtonsSet.TimeSlotOn) != 0;
       m_WarehouseTextBox.Visible = (_set & ButtonsSet.WarehouseOn) != 0;
+      m_EstimateDeliveryTime.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
+      SetRouteVisible((_set & ButtonsSet.RouteOn) != 0);
+    }
+    private void SetRouteVisible(bool _on)
+    {
+      m_RouteDropDownList.Visible = _on;
+      m_RouteLabel.Visible = _on;
+      m_CityDropDownList.Visible = _on;
+      m_CityLabel.Visible = _on;
     }
     private void SetEnabled(StateMachineEngine.ButtonsSet _set)
     {
@@ -349,11 +356,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EditButton.Enabled = (_set & ButtonsSet.EditOn) != 0;
       m_EstimateDeliveryTime.Enabled = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
-      m_RouteDropDownList.Enabled = (_set & ButtonsSet.RouteOn) != 0;
       m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
       m_SecurityDropDownList.Enabled = (_set & ButtonsSet.SecurityEscortOn) != 0;
       m_TimeSlotTextBox.Enabled = false;
       m_WarehouseTextBox.Enabled = false;
+      SetRouteEnabled((_set & ButtonsSet.RouteOn) != 0);
+    }
+    private void SetRouteEnabled(bool _on)
+    {
+      m_RouteDropDownList.Enabled = _on;
+      m_CityDropDownList.Enabled = _on;
     }
     private void CreateShipping()
     {
@@ -380,6 +392,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             Entities.State.Creation,
             _ts.StartTime
           );
+
         _ts.MakeBooking(_sp);
         LoadDescription _ld = new LoadDescription()
         {
@@ -416,21 +429,79 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       //TODO throw new NotImplementedException();
     }
+    private void PopulateDropDownLists()
+    {
+      PopulateCityDropDownLists();
+      PopulateRouteAndSecurityDropDownLists();
+    }
+    private void PopulateCityDropDownLists()
+    {
+      if (!m_CityDropDownList.Visible)
+        return;
+      m_CityDropDownList.Items.Clear();
+      m_CityDropDownList.Items.Add(new ListItem(" --- Select Destination ---", String.Empty));
+      try
+      {
+        foreach (ListItem _item in from _idx in m_EDC.City select new ListItem(_idx.Tytuł, _idx.Identyfikator.IntToString()))
+          m_CityDropDownList.Items.Add(_item);
+      }
+      catch (Exception ex)
+      {
+        string _tmplt = "The list boxes fill up process has been interrupted by error {0}.";
+        Entities.Anons _msg = new Anons("PopulateDropDownLists", String.Format(_tmplt, ex.Message));
+      }
+    }
+    private void PopulateRouteAndSecurityDropDownLists()
+    {
+      if (!m_RouteDropDownList.Visible)
+        return;
+      CityType _city = null;
+      m_RouteDropDownList.Items.Clear();
+      m_SecurityDropDownList.Items.Clear();
+      m_RouteDropDownList.Items.Add(new ListItem(" --- Select forwarder ---", String.Empty));
+      m_SecurityDropDownList.Items.Add(new ListItem(" --- Select security escort ---", String.Empty));
+      try
+      {
+        if (!m_CityDropDownList.SelectedValue.IsNullOrEmpty())
+          _city = CityType.GetdAtIndex(m_EDC, m_CityDropDownList.SelectedValue.String2Int());
+        if (_city != null)
+        {
+          foreach (ListItem _li in from _rx in _city.Route select new ListItem(_rx.Tytuł, _rx.Identyfikator.Value.ToString()))
+            m_RouteDropDownList.Items.Add(_li);
+          foreach (ListItem _li in from _sx in _city.SecurityEscortCatalog orderby _sx.Tytuł descending select new ListItem(_sx.Tytuł, _sx.Identyfikator.Value.ToString()))
+            m_SecurityDropDownList.Items.Add(_li);
+        }
+        else
+        {
+          foreach (ListItem _li in from _idx in m_EDC.Route orderby _idx.Tytuł descending select new ListItem(_idx.Tytuł, _idx.Identyfikator.IntToString()))
+            m_RouteDropDownList.Items.Add(_li);
+          foreach (ListItem _li in from _idx in m_EDC.SecurityEscortCatalog orderby _idx.Tytuł descending select new ListItem(_idx.Tytuł, _idx.Identyfikator.IntToString()))
+            m_SecurityDropDownList.Items.Add(_li);
+        }
+
+      }
+      catch (Exception ex)
+      {
+        string _tmplt = "The list boxes fill up process has been interrupted by error {0}.";
+        Entities.Anons _msg = new Anons("PopulateRouteAndSecurityDropDownLists", String.Format(_tmplt, ex.Message));
+      }
+    }
     private void AbortShipping()
     {
-      throw new NotImplementedException();
+      //TODO throw new NotImplementedException();
     }
     private void SelectEscort(ShippingDriversTeam shippingDriversTeam)
     {
-      throw new NotImplementedException();
+      //TODO throw new NotImplementedException();
     }
     internal void SelectEscort(SecurityEscortCatalog securityEscortCatalog)
     {
-      throw new NotImplementedException();
+      //TODO throw new NotImplementedException();
     }
-    private void LoadRotes()
-    {
 
+    internal void SelecrRoute(Route route)
+    {
+      //TODO throw new NotImplementedException();
     }
     #endregion
 
@@ -439,8 +510,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       m_SaveButton.Enabled = true;
     }
-
-    #endregion    
+    private void m_CityDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      PopulateRouteAndSecurityDropDownLists();
+    }
+    #endregion
     #region variables
     private ButtonsSet m_VisibilityACL;
     private ButtonsSet m_EditbilityACL;
@@ -450,8 +524,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #endregion
-
-
 
   }
 }

@@ -157,6 +157,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_EstimateDeliveryTime;
         
         /// <summary>
+        /// m_CityLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_CityLabel;
+        
+        /// <summary>
+        /// m_CityDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList m_CityDropDownList;
+        
+        /// <summary>
         /// m_RouteLabel control.
         /// </summary>
         /// <remarks>
