@@ -204,9 +204,7 @@
     <Content Include="Images\ShepherdImages\DefaultBanner.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
-    <Content Include="DefaultPage\DefaultTemplate.aspx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="DefaultPage\DefaultTemplate.aspx" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDefault.css" />
     <Content Include="TimeSlotWebPart\Elements.xml">
       <SubType>Designer</SubType>

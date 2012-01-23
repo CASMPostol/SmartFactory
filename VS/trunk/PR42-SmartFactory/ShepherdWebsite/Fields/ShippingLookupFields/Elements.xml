@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="ShippingOperationOutband2TruckTitle"
+    ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}"
+    Type="Lookup"
+    List="Lists/TruckList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Security Escort Car : Registration Number"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="LoadDescription2Commodity"
     ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}"
     Type="Lookup"
