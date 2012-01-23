@@ -60,15 +60,13 @@
         <asp:DropDownList ID="m_CityDropDownList" runat="server" AutoPostBack="true" />
         <asp:Label ID="m_RouteLabel" runat="server" Text="Route" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <asp:DropDownList ID="m_RouteDropDownList" runat="server" CssClass="DropDown">
-        </asp:DropDownList>
+       <asp:Label ID="m_SelecedRouteLabel" runat="server" Text="" CssClass="Label"></asp:Label>
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
         <asp:Label ID="m_SecurityEscortLabel" runat="server" Text="Security Escort" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <asp:DropDownList ID="m_SecurityDropDownList" runat="server" CssClass="DropDown">
-        </asp:DropDownList>
+         <asp:Label ID="m_SelectedSecurityEscortLabel" runat="server" Text="" CssClass="Label"></asp:Label>
       </asp:TableCell></asp:TableRow>
   </asp:Table>
   <asp:Button ID="m_NewShippingButton" runat="server" Text="New Shipping" CssClass="Button" />
