@@ -19,7 +19,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       m_ControlState = _state;
     }
-    #endregion    
+    #endregion
 
     [Flags]
     internal enum ButtonsSet
@@ -170,6 +170,34 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
+    internal void NewDataEventHandler(object sender, RouteInterconnectionnData e)
+    {
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          ShowRoute(e);
+          break;
+        case InterfaceState.NewState:
+          break;
+        default:
+          break;
+      }
+    }
+    internal void NewDataEventHandler(object sender, SecurityEscortCatalogInterconnectionData e)
+    {
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          ShowSecurityEscortCatalog(e);
+          break;
+        case InterfaceState.NewState:
+          break;
+        default:
+          break;
+      }
+    }
     internal event InterconnectionDataTable<ShippingOperationInbound>.SetDataEventArg m_ShippintInterconnectionEvent;
     #endregion
 
@@ -180,6 +208,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected abstract void ClearUserInterface();
     protected abstract void SetEnabled(ButtonsSet _buttons);
     protected abstract void ShowTimeSlot(TimeSlotInterconnectionData e);
+    protected abstract void ShowRoute(RouteInterconnectionnData e);
+    protected abstract void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData e);
     protected abstract void SMError(InterfaceEvent interfaceEvent);
     protected abstract void UpdateShipping();
     protected abstract void CreateShipping();

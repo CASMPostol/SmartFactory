@@ -9,7 +9,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
   {
     internal enum ConnectionSelector
     {
-      TrailerInterconnection, TruckInterconnection, ShippingInterconnection, TimeSlotInterconnection, PartnerInterconnection, DriverInterconnection
+      TrailerInterconnection,
+      TruckInterconnection,
+      ShippingInterconnection,
+      TimeSlotInterconnection, 
+      PartnerInterconnection,
+      DriverInterconnection,
+      RouteInterconnection,
+      SecurityEscortCatalogInterconnection
     }
     internal string ID { get { return GetFieldValue(Element.IDColunmName); } }
     internal string Title { get { return GetFieldValue(Element.TitleColunmName); } }
@@ -65,7 +72,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
     { }
     internal DateTime EstimateDeliveryTime
     {
-      get { throw new NotImplementedException();}
+      get
+      {
+        string _edt = GetFieldValue("EstimateDeliveryTime");
+        return DateTime.Parse(_edt);
+      }
     }
   }
   internal class TimeSlotInterconnectionData : InterconnectionData<TimeSlotInterconnectionData>
@@ -75,9 +86,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
     { }
   }
   internal class PartnerInterconnectionData : InterconnectionData<PartnerInterconnectionData>
-  {
-
-  }
+  {}
+  internal class RouteInterconnectionnData : InterconnectionData<RouteInterconnectionnData>
+  {}
+  internal class SecurityEscortCatalogInterconnectionData : InterconnectionData<SecurityEscortCatalogInterconnectionData>
+  {}
   internal static class InterconnectionExtensions
   {
     public static int? GetIndex(this InboundInterconnectionData _id)
