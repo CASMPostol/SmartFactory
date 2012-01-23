@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
 
     #region Event Handlers
-    internal void m_NewShippingButton_Click(object sender, EventArgs e)
+    internal void NewShippingButton_Click(object sender, EventArgs e)
     {
       switch (CurrentMachineState)
       {
@@ -55,11 +55,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         case InterfaceState.NewState:
         default:
           SMError(InterfaceEvent.NewClick);
-
           break;
       }
     }
-    internal void m_SaveButton_Click(object sender, EventArgs e)
+    internal void SaveButton_Click(object sender, EventArgs e)
     {
       switch (CurrentMachineState)
       {
@@ -77,7 +76,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       };
     }
-    internal void m_CancelButton_Click(object sender, EventArgs e)
+    internal void CancelButton_Click(object sender, EventArgs e)
     {
       switch (CurrentMachineState)
       {
@@ -92,7 +91,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
-    internal void m_EditButton_Click(object sender, EventArgs e)
+    internal void EditButton_Click(object sender, EventArgs e)
     {
       switch (CurrentMachineState)
       {
@@ -106,7 +105,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
-    internal void m_AbortButton_Click(object sender, EventArgs e)
+    internal void AbortButton_Click(object sender, EventArgs e)
     {
       switch (CurrentMachineState)
       {
