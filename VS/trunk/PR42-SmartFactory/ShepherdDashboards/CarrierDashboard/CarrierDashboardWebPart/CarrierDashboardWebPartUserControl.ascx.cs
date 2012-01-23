@@ -131,11 +131,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     protected void Page_Load(object sender, EventArgs e)
     {
-      m_SaveButton.Click += new EventHandler(m_StateMachineEngine.m_SaveButton_Click);
-      m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.m_NewShippingButton_Click);
-      m_CancelButton.Click += new EventHandler(m_StateMachineEngine.m_CancelButton_Click);
-      m_EditButton.Click += new EventHandler(m_StateMachineEngine.m_EditButton_Click);
-      m_AbortButton.Click += new EventHandler(m_StateMachineEngine.m_AbortButton_Click);
+      m_SaveButton.Click += new EventHandler(m_StateMachineEngine.SaveButton_Click);
+      m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.NewShippingButton_Click);
+      m_CancelButton.Click += new EventHandler(m_StateMachineEngine.CancelButton_Click);
+      m_EditButton.Click += new EventHandler(m_StateMachineEngine.EditButton_Click);
+      m_AbortButton.Click += new EventHandler(m_StateMachineEngine.AbortButton_Click);
       m_EstimateDeliveryTime.DateChanged += new EventHandler(m_EstimateDeliveryTime_DateChanged);
       m_CommentsTextBox.TextChanged += new EventHandler(m_CommentsTextBox_TextChanged);
     }
@@ -411,6 +411,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(m_EDC, m_ShippingHiddenField.HiddenField2Int());
         _si.State = State.Canceled;
+        TimeSlot _ts = (from _tsx in _si.TimeSlot orderby _tsx.StartTime.Value descending select _tsx).First();
+        ((TimeSlotTimeSlot)_ts).ReleaseBooking();
         ReportAlert();
       }
       catch (Exception ex)
