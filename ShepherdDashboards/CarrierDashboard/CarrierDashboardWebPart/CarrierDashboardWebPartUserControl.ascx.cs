@@ -31,6 +31,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           case InboundInterconnectionData.ConnectionSelector.PartnerInterconnection:
             new PartnerInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
             break;
+          case InboundInterconnectionData.ConnectionSelector.RouteInterconnection:
+            new RouteInterconnectionnData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
+            break;
+          case InboundInterconnectionData.ConnectionSelector.SecurityEscortCatalogInterconnection:
+            new SecurityEscortCatalogInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
+            break;
           default:
             break;
         }
@@ -212,8 +218,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             ShippingOperationInbound _sppng = ShippingOperationInbound.GetAtIndex(edc, _shipping.ID.String2Int());
             ShippingOperationOutbound _so = _sppng as ShippingOperationOutbound;
             if (_so != null)
+            {
               Parent.m_EstimateDeliveryTime.SelectedDate = _so.EstimateDeliveryTime.HasValue ? _so.EstimateDeliveryTime.Value : DateTime.Now;
-            Parent.m_EstimateDeliveryTime.SelectedDate = _shipping.EstimateDeliveryTime;
+              Parent.m_RouteLabel.Text = _so.Route != null ? _so.Route.Tytuł : String.Empty;
+              Parent.m_SecurityEscortLabel.Text = _so.SecurityEscort != null ? _so.SecurityEscort.Tytuł : string.Empty;
+              Parent.m_EstimateDeliveryTime.SelectedDate = _shipping.EstimateDeliveryTime;
+            }
             TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _shipping.ID);
             List<LoadDescription> _ld = LoadDescription.GetForShipping(edc, _shipping.ID);
             Parent.ShowTimeSlot(_cts);
@@ -225,8 +235,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         }
         catch (Exception ex)
         {
-          Parent.m_TimeSlotTextBox.TextBoxTextProperty(ex.Message, true);
-          Parent.m_DocumentTextBox.TextBoxTextProperty(ex.Message, true);
+          Parent.m_StateMachineEngine.ExceptionCatched(Parent.m_EDC, "UpdateShowShipping", ex.Message);
         }
       }
       protected override void ClearUserInterface()
@@ -240,6 +249,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       protected override void ShowTimeSlot(TimeSlotInterconnectionData _data)
       {
         Parent.ShowTimeSlot(_data);
+      }
+      protected override void ShowRoute(RouteInterconnectionnData e)
+      {
+        Parent.m_RouteLabel.Text = e.Title;
+        Parent.m_ControlState.Route = e.ID;
+      }
+      protected override void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData e)
+      {
+        Parent.m_SelecedRouteLabel.Text = e.Title;
+        Parent.m_ControlState.Security = e.ID;
       }
       protected override void SMError(StateMachineEngine.InterfaceEvent _interfaceEvent)
       {
@@ -340,17 +359,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private void SetEnabled(StateMachineEngine.ButtonsSet _set)
     {
       _set &= m_EditbilityACL;
-      m_AbortButton.Enabled = (_set & ButtonsSet.AbortOn) != 0;
-      m_CancelButton.Enabled = (_set & ButtonsSet.CancelOn) != 0;
       m_CommentsTextBox.Enabled = (_set & ButtonsSet.CommentsOn) != 0;
       m_DocumentTextBox.Enabled = (_set & ButtonsSet.DocumentOn) != 0;
-      m_EditButton.Enabled = (_set & ButtonsSet.EditOn) != 0;
       m_EstimateDeliveryTime.Enabled = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
-      m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
-      m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
-      // TODO if  needed m_SecurityEscortLabel.Enabled = (_set & ButtonsSet.SecurityEscortOn) != 0;
       m_TimeSlotTextBox.Enabled = false;
       m_WarehouseTextBox.Enabled = false;
+      //Buttons
+      m_AbortButton.Enabled = (_set & ButtonsSet.AbortOn) != 0;
+      m_CancelButton.Enabled = (_set & ButtonsSet.CancelOn) != 0;
+      m_EditButton.Enabled = (_set & ButtonsSet.EditOn) != 0;
+      m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
+      m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
     }
     private void CreateShipping()
     {

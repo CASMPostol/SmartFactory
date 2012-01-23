@@ -51,6 +51,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     /// <summary>
     /// Sets the data.
     /// </summary>
+    /// <param name="sender">The sender.</param>
     /// <param name="_value">The _value to be set and sent to the .</param>
     public void SetData(object sender, InterconnectionEventArgs _value)
     {

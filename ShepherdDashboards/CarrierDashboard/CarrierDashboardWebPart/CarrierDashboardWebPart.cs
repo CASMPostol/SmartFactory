@@ -7,6 +7,9 @@ using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
+  /// <summary>
+  /// Carrier Dashboard Manager WebPart 
+  /// </summary>
   [ToolboxItemAttribute(false)]
   public class CarrierDashboardWebPart : WebPart
   {
@@ -15,12 +18,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard/CarrierDashboardWebPart/CarrierDashboardWebPartUserControl.ascx";
     private CarrierDashboardWebPartUserControl m_Control;
     private InterconnectionDataTable<ShippingOperationInbound> m_SelectedTimeSlot = null;
+    /// <summary>
+    /// Called by the ASP.NET page framework to notify server controls that use composition-based 
+    /// implementation to create any child controls they contain in preparation for posting back or rendering.
+    /// </summary>
     protected override void CreateChildControls()
     {
       m_Control = Page.LoadControl(_ascxPath) as CarrierDashboardWebPartUserControl;
       m_Control.Role = Role;
       Controls.Add(m_Control);
     }
+    /// <summary>
+    /// Raises the <see cref="E:System.Web.UI.Control.PreRender"/> event.
+    /// </summary>
+    /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
     protected override void OnPreRender(EventArgs e)
     {
       m_Control.SetInterconnectionData(m_ProvidesDictionary);
@@ -31,6 +42,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region public
+    #region Creator
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CarrierDashboardWebPart"/> class.
+    /// </summary>
+    public CarrierDashboardWebPart()
+    {
+      Role = GlobalDefinitions.Roles.None;
+    } 
+    #endregion
+
+    #region Personalization properties
+    /// <summary>
+    /// Gets or sets the role of the hosting dashboard.
+    /// </summary>
+    /// <value>
+    /// The role.
+    /// </value>
     [WebBrowsable(true)]
     [Personalizable(PersonalizationScope.Shared)]
     [WebDisplayName("The dashboard role")]
@@ -38,12 +66,27 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       " the functionality provided to the user.")]
     [Microsoft.SharePoint.WebPartPages.SPWebCategoryName("CAS Custom Properties")]
     public GlobalDefinitions.Roles Role { get; set; }
-    public CarrierDashboardWebPart()
-    {
-      Role = GlobalDefinitions.Roles.None;
-    }
+    #endregion
+
     #region Interconnections Providers
     /// <summary>
+    /// Sets the SecurityEscortCatalog provider.
+    /// </summary>
+    /// <param name="_provider">The provider interface.</param>
+    [ConnectionConsumer("Security Escort Catalog table interconnection", "SecurityEscortCatalogInterconnection", AllowsMultipleConnections = false)]
+    public void SetSecurityEscortCatalogProvider(IWebPartRow _provider)
+    {
+      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.SecurityEscortCatalogInterconnection, _provider);
+    }    /// <summary>
+    /// <summary>
+    /// Sets the Route provider.
+    /// </summary>
+    /// <param name="_provider">The provider interface.</param>
+    [ConnectionConsumer("Route table interconnection", "RouteInterconnection", AllowsMultipleConnections = false)]
+    public void SetRouteProvider(IWebPartRow _provider)
+    {
+      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.RouteInterconnection, _provider);
+    }    /// <summary>
     /// Sets the shipping provider.
     /// </summary>
     /// <param name="_provider">The provider interface.</param>
