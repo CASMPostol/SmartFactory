@@ -419,7 +419,9 @@
     <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml" />
+    <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Shipping\TimeSlot\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

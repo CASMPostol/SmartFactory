@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
   <List Name="Carrier">
-    <ContentType Name="Carrier">
+    <ContentType Name="CarrierType">
       <Column Name="Dummy"/>
     </ContentType>
   </List>
@@ -44,7 +44,7 @@
   <List Name="TimeSlot Templates"></List>
   <List Name="Trailer"></List>
   <List Name="Transport Unit Type">
-    <ContentType Name="TransportUnitType">
+    <ContentType Name="TranspotUnit">
       <Column Name="Dummy"/>
     </ContentType>
   </List>
