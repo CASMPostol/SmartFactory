@@ -30,14 +30,6 @@
           </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_DockNumberLabel" runat="server" Text="Dock No." CssClass="Label"></asp:Label>
-      </asp:TableCell>
-      <asp:TableCell>
-        <asp:TextBox ID="m_DockNumberTextBox" CssClass="TextBox" runat="server"></asp:TextBox>
-      </asp:TableCell>
-    </asp:TableRow>
-    <asp:TableRow>
-      <asp:TableCell>
         <asp:Label ID="m_PONumberLabel" runat="server" Text="PO Number" CssClass="Label" />
       </asp:TableCell><asp:TableCell>
         <asp:TextBox ID="m_DocumentTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
