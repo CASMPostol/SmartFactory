@@ -10,17 +10,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
   internal abstract class StateMachineEngine
   {
     #region ctor
-    public StateMachineEngine()
+    internal StateMachineEngine() { }
+    #endregion
+    internal void InitMahine(InterfaceState _ControlState)
+    {
+      m_ControlState = _ControlState;
+    }
+    internal void InitMahine()
     {
       m_ControlState = InterfaceState.ViewState;
       EnterState();
     }
-    public StateMachineEngine(InterfaceState _state)
-    {
-      m_ControlState = _state;
-    }
-    #endregion
-
     [Flags]
     internal enum ButtonsSet
     {
@@ -30,17 +30,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, EnterState, AbortClick };
     internal enum InterfaceState { ViewState, EditState, NewState }
-    internal InterfaceState CurrentMachineState
-    {
-      get { return m_ControlState; }
-      private set
-      {
-        if (m_ControlState == value)
-          return;
-        m_ControlState = value;
-        EnterState();
-      }
-    }
 
     #region Event Handlers
     internal void NewShippingButton_Click(object sender, EventArgs e)
@@ -217,6 +206,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected abstract void UpdateTimeSlot(TimeSlotInterconnectionData e);
     #endregion
 
+    private InterfaceState m_ControlState;
+    private InterfaceState CurrentMachineState
+    {
+      get { return m_ControlState; }
+      set
+      {
+        if (m_ControlState == value)
+          return;
+        m_ControlState = value;
+        EnterState();
+      }
+    }
     private void EnterState()
     {
       switch (CurrentMachineState)
@@ -250,7 +251,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       catch (Exception) { }
     }
-    private InterfaceState m_ControlState;
     #endregion
   }
 }

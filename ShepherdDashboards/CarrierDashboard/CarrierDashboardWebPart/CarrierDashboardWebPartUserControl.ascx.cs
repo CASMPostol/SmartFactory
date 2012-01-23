@@ -17,6 +17,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
   public partial class CarrierDashboardWebPartUserControl : UserControl
   {
     #region public
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CarrierDashboardWebPartUserControl"/> class.
+    /// </summary>
+    public CarrierDashboardWebPartUserControl()
+    {
+      m_StateMachineEngine = new LocalStateMachineEngine(this);
+    }
     internal void SetInterconnectionData(Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary)
     {
       foreach (var item in _ProvidesDictionary)
@@ -111,9 +118,26 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       public string PartnerIndex = null;
-      public bool EstimateDeliveryTimeChanged = false;
       public string Route = string.Empty;
       public string Security = string.Empty;
+      public bool HasChanges = false;
+      public bool CommentsTextBoxChanged = false;
+      public bool EstimateDeliveryTimeChanged = false;
+      public void MarkCommentsTextBoxChanged()
+      {
+       CommentsTextBoxChanged = true;
+       HasChanges = true;
+      }
+      public void MarkEstimateDeliveryTimeChanged()
+      {
+        EstimateDeliveryTimeChanged = true;
+        HasChanges = true;
+      }
+      public void ClearModifications()
+      {
+        CommentsTextBoxChanged = false;
+        EstimateDeliveryTimeChanged = false;
+      }
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
@@ -137,13 +161,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     protected void Page_Load(object sender, EventArgs e)
     {
+      m_EstimateDeliveryTime.DateChanged += new EventHandler(m_EstimateDeliveryTime_DateChanged);
+      m_CommentsTextBox.TextChanged += new EventHandler(m_CommentsTextBox_TextChanged);
       m_SaveButton.Click += new EventHandler(m_StateMachineEngine.SaveButton_Click);
       m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.NewShippingButton_Click);
       m_CancelButton.Click += new EventHandler(m_StateMachineEngine.CancelButton_Click);
       m_EditButton.Click += new EventHandler(m_StateMachineEngine.EditButton_Click);
       m_AbortButton.Click += new EventHandler(m_StateMachineEngine.AbortButton_Click);
-      m_EstimateDeliveryTime.DateChanged += new EventHandler(m_EstimateDeliveryTime_DateChanged);
-      m_CommentsTextBox.TextChanged += new EventHandler(m_CommentsTextBox_TextChanged);
     }
 
     /// <summary>
@@ -155,10 +179,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       if (state != null)
       {
         m_ControlState = (MyControlState)state;
-        m_StateMachineEngine = new LocalStateMachineEngine(this, m_ControlState.InterfaceState);
+        m_StateMachineEngine.InitMahine(m_ControlState.InterfaceState);
       }
       else
-        m_StateMachineEngine = new LocalStateMachineEngine(this);
+        m_StateMachineEngine.InitMahine();
     }
     /// <summary>
     /// Saves any server control state changes that have occurred since the time the page was posted back to the server.
@@ -195,11 +219,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private class LocalStateMachineEngine : StateMachineEngine
     {
       #region ctor
-      public LocalStateMachineEngine(CarrierDashboardWebPartUserControl _Parent, InterfaceState _state)
-        : base(_state)
-      {
-        Parent = _Parent;
-      }
       public LocalStateMachineEngine(CarrierDashboardWebPartUserControl _Parent)
         : base()
       {
@@ -474,7 +493,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region Eveny handlers
     void m_CommentsTextBox_TextChanged(object sender, EventArgs e)
     {
-      throw new NotImplementedException();
+      m_ControlState.CommentsTextBoxChanged = true;
     }
     void m_EstimateDeliveryTime_DateChanged(object sender, EventArgs e)
     {
