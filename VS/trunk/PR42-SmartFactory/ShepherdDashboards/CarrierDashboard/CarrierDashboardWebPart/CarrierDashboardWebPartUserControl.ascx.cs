@@ -451,13 +451,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region Eveny handlers
-
     void m_CommentsTextBox_TextChanged(object sender, EventArgs e)
     {
       throw new NotImplementedException();
     }
-
-
     void m_EstimateDeliveryTime_DateChanged(object sender, EventArgs e)
     {
       m_ControlState.EstimateDeliveryTimeChanged = true; ;
