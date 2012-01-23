@@ -24,7 +24,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       SaveOn = 0x01, EditOn = 0x02, CancelOn = 0x04, NewOn = 0x08,
       DocumentOn = 0x10, AbortOn = 0x20, CommentsOn = 0x40, EstimatedDeliveryTime = 0x80,
       RouteOn = 0x100, SecurityEscortOn = 0x200, WarehouseOn = 0x400, TimeSlotOn = 0x800,
-      DockOn = 0x1000
     }
     internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, EnterState, AbortClick };
     internal enum InterfaceState { ViewState, EditState, NewState }
@@ -101,22 +100,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         default:
           break;
       }
-    }
-    private void SendShippingData(string _ID)
-    {
-      if (m_ShippintInterconnectionEvent == null)
-        return;
-      int? _intID = _ID.String2Int();
-      if (!_intID.HasValue)
-        return;
-      try
-      {
-        using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
-          m_ShippintInterconnectionEvent
-            (this, new InterconnectionDataTable<ShippingOperationInbound>.InterconnectionEventArgs
-              ((from idx in edc.Shipping where idx.Identyfikator == _intID select idx).First()));
-      }
-      catch (Exception) { }
     }
     internal event InterconnectionDataTable<ShippingOperationInbound>.SetDataEventArg m_ShippintInterconnectionEvent;
     #endregion
@@ -217,6 +200,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     #endregion
 
+    private void SendShippingData(string _ID)
+    {
+      if (m_ShippintInterconnectionEvent == null)
+        return;
+      int? _intID = _ID.String2Int();
+      if (!_intID.HasValue)
+        return;
+      try
+      {
+        using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
+          m_ShippintInterconnectionEvent
+            (this, new InterconnectionDataTable<ShippingOperationInbound>.InterconnectionEventArgs
+              ((from idx in edc.Shipping where idx.Identyfikator == _intID select idx).First()));
+      }
+      catch (Exception) { }
+    }
     private InterfaceState m_ControlState;
   }
 }
