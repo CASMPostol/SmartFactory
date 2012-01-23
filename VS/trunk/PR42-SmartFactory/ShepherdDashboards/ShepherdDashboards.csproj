@@ -173,9 +173,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx" />
     <Content Include="CarrierDashboard\CarrierDashboardWebPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
