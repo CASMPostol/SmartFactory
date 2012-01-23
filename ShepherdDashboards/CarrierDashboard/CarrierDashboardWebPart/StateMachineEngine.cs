@@ -9,6 +9,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 {
   internal abstract class StateMachineEngine
   {
+    #region ctor
     public StateMachineEngine()
     {
       m_ControlState = InterfaceState.ViewState;
@@ -18,6 +19,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       m_ControlState = _state;
     }
+    #endregion    
+
     [Flags]
     internal enum ButtonsSet
     {
@@ -38,71 +41,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         EnterState();
       }
     }
-    private void EnterState()
-    {
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.ViewState:
-          SetEnabled(ButtonsSet.EditOn | ButtonsSet.NewOn);
-          ClearUserInterface();
-          break;
-        case InterfaceState.EditState:
-          SetEnabled(ButtonsSet.CancelOn | ButtonsSet.CommentsOn | ButtonsSet.AbortOn | ButtonsSet.DocumentOn | ButtonsSet.EstimatedDeliveryTime);
-          break;
-        case InterfaceState.NewState:
-          ClearUserInterface();
-          SetEnabled(ButtonsSet.CancelOn | ButtonsSet.SaveOn | ButtonsSet.DocumentOn | ButtonsSet.CommentsOn | ButtonsSet.EstimatedDeliveryTime);
-          break;
-      }
-    }
-
-    #region protected
-    protected abstract void UpdateShowShipping(ShippingInterconnectionData _shipping);
-    protected abstract void ClearUserInterface();
-    protected abstract void SetEnabled(ButtonsSet _buttons);
-    protected abstract void ShowTimeSlot(TimeSlotInterconnectionData e);
-    protected abstract void SMError(InterfaceEvent interfaceEvent);
-    protected abstract void UpdateShipping();
-    protected abstract void CreateShipping();
-    protected abstract void AbortShipping();
-    protected abstract void UpdateTimeSlot(TimeSlotInterconnectionData e);
-    #endregion
-
-    #region Connection call back
-    internal void NewDataEventHandler(object sender, TimeSlotInterconnectionData e)
-    {
-      UpdateTimeSlot(e);
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.ViewState:
-          break;
-        case InterfaceState.NewState:
-        case InterfaceState.EditState:
-          ShowTimeSlot(e);
-          break;
-        default:
-          break;
-      }
-    }
-    internal void NewDataEventHandler(object sender, ShippingInterconnectionData e)
-    {
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.ViewState:
-          SendShippingData(e.ID);
-          UpdateShowShipping(e);
-          break;
-        case InterfaceState.EditState:
-          SendShippingData(e.ID);
-          break;
-        case InterfaceState.NewState:
-          break;
-        default:
-          break;
-      }
-    }
-    internal event InterconnectionDataTable<ShippingOperationInbound>.SetDataEventArg m_ShippintInterconnectionEvent;
-    #endregion
 
     #region Event Handlers
     internal void m_NewShippingButton_Click(object sender, EventArgs e)
@@ -200,6 +138,73 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     #endregion
 
+    #region Connection call back
+    internal void NewDataEventHandler(object sender, TimeSlotInterconnectionData e)
+    {
+      UpdateTimeSlot(e);
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+          break;
+        case InterfaceState.NewState:
+        case InterfaceState.EditState:
+          ShowTimeSlot(e);
+          break;
+        default:
+          break;
+      }
+    }
+    internal void NewDataEventHandler(object sender, ShippingInterconnectionData e)
+    {
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+          SendShippingData(e.ID);
+          UpdateShowShipping(e);
+          break;
+        case InterfaceState.EditState:
+          SendShippingData(e.ID);
+          break;
+        case InterfaceState.NewState:
+          break;
+        default:
+          break;
+      }
+    }
+    internal event InterconnectionDataTable<ShippingOperationInbound>.SetDataEventArg m_ShippintInterconnectionEvent;
+    #endregion
+
+    #region private
+
+    #region protected
+    protected abstract void UpdateShowShipping(ShippingInterconnectionData _shipping);
+    protected abstract void ClearUserInterface();
+    protected abstract void SetEnabled(ButtonsSet _buttons);
+    protected abstract void ShowTimeSlot(TimeSlotInterconnectionData e);
+    protected abstract void SMError(InterfaceEvent interfaceEvent);
+    protected abstract void UpdateShipping();
+    protected abstract void CreateShipping();
+    protected abstract void AbortShipping();
+    protected abstract void UpdateTimeSlot(TimeSlotInterconnectionData e);
+    #endregion
+
+    private void EnterState()
+    {
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+          SetEnabled(ButtonsSet.EditOn | ButtonsSet.NewOn);
+          ClearUserInterface();
+          break;
+        case InterfaceState.EditState:
+          SetEnabled(ButtonsSet.CancelOn | ButtonsSet.CommentsOn | ButtonsSet.AbortOn | ButtonsSet.DocumentOn | ButtonsSet.EstimatedDeliveryTime);
+          break;
+        case InterfaceState.NewState:
+          ClearUserInterface();
+          SetEnabled(ButtonsSet.CancelOn | ButtonsSet.SaveOn | ButtonsSet.DocumentOn | ButtonsSet.CommentsOn | ButtonsSet.EstimatedDeliveryTime);
+          break;
+      }
+    }
     private void SendShippingData(string _ID)
     {
       if (m_ShippintInterconnectionEvent == null)
@@ -217,5 +222,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       catch (Exception) { }
     }
     private InterfaceState m_ControlState;
+    #endregion
   }
 }
