@@ -1,27 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
-  <List Name="Carrier"></List>
+  <List Name="Carrier">
+    <ContentType Name="Carrier">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
   <List Name="Country" >
-    <ContentType Name="CountryType" Class="CountryClass"/>
+    <ContentType Name="CountryType" Class="CountryClass">
+      <Column Name="Dummy"/>
+    </ContentType>  
   </List>
   <List Name="City"></List>
-  <List Name="Commodity"></List>
+  <List Name="Commodity">
+    <ContentType Name="Commodity">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
   <List Name="Currency" ></List>
   <List Name="Destination Market" ></List>
   <List Name="Driver"></List>
   <List Name="Freight Payer"></List>
   <List Name="JTI Partner" ></List>
-  <List Name="Market" ></List>
+  <List Name="Market" >
+    <ContentType Name="Market">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
   <List Name="Pallet Types"></List>
   <List Name="Route"></List>
-  <List Name="SAP Destination Plant"/>
+  <List Name="SAP Destination Plant">
+    <ContentType Name="SAPDestinationPlant">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
   <List Name="Schedule Template"></List>
   <List Name="Security Escort Catalog"></List>
-  <List Name="Shipment Type"></List>
+  <List Name="Shipment Type">
+    <ContentType Name="ShipmentType">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
   <List Name="Shipping Point"></List>
   <List Name="TimeSlot Templates"></List>
   <List Name="Trailer"></List>
-  <List Name="Transport Unit Type"></List>
+  <List Name="Transport Unit Type">
+    <ContentType Name="TransportUnitType">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
   <List Name="Truck"></List>
   <List Name="Warehouse"></List>
   <List Name="Event Log List"/>
