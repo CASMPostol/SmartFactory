@@ -3,7 +3,7 @@
   <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.ShippingOperationOutbound" Collapsed="true">
     <Position X="3" Y="3.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAEAAQAAEoAAIAKwUEAEBCAAKAAAAAACQEQCAAAlAE=</HashCode>
+      <HashCode>AAAEAAQAAEoAAoAqwUEBEBCAAOAAABAACQEQCAAAlAE=</HashCode>
       <FileName>Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -88,7 +88,7 @@
   <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.Truck" Collapsed="true">
     <Position X="25.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BQAEAEAAEEhAAAAAUAGAAAAAACAAAAAAACAEAACCIAA=</HashCode>
+      <HashCode>BQAEAEAAEEhAABAAUAGggAAAACAAAAAAACAEAACSIAA=</HashCode>
       <FileName>Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -123,7 +123,7 @@
   <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.Commodity" Collapsed="true">
     <Position X="29.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAAFAADAAAAQAEABAAACiAAAQAACAAAgAAQAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAQAEAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -137,14 +137,7 @@
   <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.Route" Collapsed="true">
     <Position X="34.5" Y="2" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>BYQCBgAIJSICgIACUAWwAAAQOCg2CAIAkIQJBICABAA=</HashCode>
-      <FileName>Entities\Entities.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.RouteRoute" Collapsed="true">
-    <Position X="34.25" Y="3.5" Width="3" />
-    <TypeIdentifier>
-      <HashCode>AgAAAIAAIAAAABAAUAEggAAABCAAAAACAAAAAACRAGA=</HashCode>
+      <HashCode>B4QCBgAIJSICgJACUAWwgAAQPCg2CAIAkIQJBICRBCA=</HashCode>
       <FileName>Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>

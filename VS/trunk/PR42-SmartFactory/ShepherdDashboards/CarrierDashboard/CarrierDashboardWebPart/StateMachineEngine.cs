@@ -12,15 +12,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region ctor
     internal StateMachineEngine() { }
     #endregion
-    internal void InitMahine(InterfaceState _ControlState)
-    {
-      m_ControlState = _ControlState;
-    }
-    internal void InitMahine()
-    {
-      m_ControlState = InterfaceState.ViewState;
-      EnterState();
-    }
+
+
     [Flags]
     internal enum ButtonsSet
     {
@@ -113,7 +106,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       Entities.Anons _entry = new Anons(_source, _message);
       _EDC.EventLogList.InsertOnSubmit(_entry);
-      switch (m_ControlState)
+      switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
           break;
@@ -204,21 +197,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected abstract void CreateShipping();
     protected abstract void AbortShipping();
     protected abstract void UpdateTimeSlot(TimeSlotInterconnectionData e);
+    protected abstract InterfaceState CurrentMachineState { get; set; }
     #endregion
 
-    private InterfaceState m_ControlState;
-    private InterfaceState CurrentMachineState
-    {
-      get { return m_ControlState; }
-      set
-      {
-        if (m_ControlState == value)
-          return;
-        m_ControlState = value;
-        EnterState();
-      }
-    }
-    private void EnterState()
+    protected void EnterState()
     {
       switch (CurrentMachineState)
       {
@@ -227,11 +209,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           ClearUserInterface();
           break;
         case InterfaceState.EditState:
-          SetEnabled(ButtonsSet.CancelOn | ButtonsSet.CommentsOn | ButtonsSet.AbortOn | ButtonsSet.DocumentOn | ButtonsSet.EstimatedDeliveryTime);
+          SetEnabled
+            (ButtonsSet.CancelOn | ButtonsSet.SaveOn | ButtonsSet.CommentsOn | ButtonsSet.EstimatedDeliveryTime | ButtonsSet.AbortOn);
           break;
         case InterfaceState.NewState:
+          SetEnabled
+            (ButtonsSet.CancelOn | ButtonsSet.SaveOn | ButtonsSet.CommentsOn | ButtonsSet.EstimatedDeliveryTime | ButtonsSet.DocumentOn);
           ClearUserInterface();
-          SetEnabled(ButtonsSet.CancelOn | ButtonsSet.SaveOn | ButtonsSet.DocumentOn | ButtonsSet.CommentsOn | ButtonsSet.EstimatedDeliveryTime);
           break;
       }
     }

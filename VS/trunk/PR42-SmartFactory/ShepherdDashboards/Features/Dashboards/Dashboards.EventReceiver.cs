@@ -31,8 +31,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         // create dropdown menu for custom site pages
         Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting"); 
         SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
-        SPNavigationNode _topMenu = _topNav[0].Children.AddAsLast(new SPNavigationNode(m_VendorMenyTitle, WebPartPages.ProjectElementManagement.CarrierDashboardURL));
-        _topMenu = _topNav[0].Children.AddAsLast(new SPNavigationNode(m_ForwarderTitle, WebPartPages.ProjectElementManagement.ForwarderDashboardURL));
+         _topNav[0].Children.AddAsLast(new SPNavigationNode(m_VendorMenyTitle, WebPartPages.ProjectElementManagement.CarrierDashboardURL));
+        _topNav[0].Children.AddAsLast(new SPNavigationNode(m_ForwarderTitle, WebPartPages.ProjectElementManagement.ForwarderDashboardURL));
         WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
         Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated finished");
       }
@@ -60,6 +60,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         SPNavigationNodeCollection topNav = _root.Navigation.TopNavigationBar;
         for (int i = topNav[0].Children.Count - 1; i >= 0; i--)
           if (topNav[0].Children[i].Title == m_VendorMenyTitle)
+            topNav[0].Children[i].Delete();
+          else if (topNav[0].Children[i].Title == m_ForwarderTitle)
             topNav[0].Children[i].Delete();
       }
       catch (Exception ex)
