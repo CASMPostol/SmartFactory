@@ -1006,6 +1006,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CountryClass))]
 	public partial class CountryType : Element {
 		
+		private string _group;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1014,6 +1016,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		public CountryType() {
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CountryGroup", Storage="_group", FieldType="Text")]
+		public string Group {
+			get {
+				return this._group;
+			}
+			set {
+				if ((value != this._group)) {
+					this.OnPropertyChanging("Group", this._group);
+					this._group = value;
+					this.OnPropertyChanged("Group");
+				}
+			}
 		}
 	}
 	

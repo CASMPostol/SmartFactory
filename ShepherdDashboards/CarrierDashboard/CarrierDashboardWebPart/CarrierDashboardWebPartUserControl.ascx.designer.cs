@@ -85,13 +85,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.TextBox m_TimeSlotTextBox;
         
         /// <summary>
-        /// m_PONumberLabel control.
+        /// m_DocumentLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_PONumberLabel;
+        protected global::System.Web.UI.WebControls.Label m_DocumentLabel;
         
         /// <summary>
         /// m_DocumentTextBox control.
@@ -139,6 +139,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_EstimateDeliveryTimeDateTimeControl;
         
         /// <summary>
+        /// m_RouteHeaderLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_RouteHeaderLabel;
+        
+        /// <summary>
         /// m_RouteLabel control.
         /// </summary>
         /// <remarks>
@@ -146,15 +155,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label m_RouteLabel;
-        
-        /// <summary>
-        /// m_SelecedRouteLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_SelecedRouteLabel;
         
         /// <summary>
         /// m_SecurityEscortLabel control.

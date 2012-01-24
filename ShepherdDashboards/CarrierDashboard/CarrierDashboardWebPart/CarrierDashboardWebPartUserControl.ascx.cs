@@ -219,7 +219,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region State machine
-    private StateMachineEngine m_StateMachineEngine;
+    private LocalStateMachineEngine m_StateMachineEngine;
     private class LocalStateMachineEngine : StateMachineEngine
     {
       #region ctor
@@ -280,7 +280,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       protected override void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData e)
       {
-        Parent.m_SelecedRouteLabel.Text = e.Title;
+        Parent.m_SelectedSecurityEscortLabel.Text = e.Title;
         Parent.m_ControlState.Security = e.ID;
       }
       protected override void SMError(StateMachineEngine.InterfaceEvent _interfaceEvent)
@@ -304,12 +304,35 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         Parent.m_TimeSlotHiddenField.Value = e.ID;
       }
+      protected override InterfaceState CurrentMachineState
+      {
+        get
+        {
+          return Parent.m_ControlState.InterfaceState;
+        }
+        set
+        {
+          if (Parent.m_ControlState.InterfaceState == value)
+            return;
+          Parent.m_ControlState.InterfaceState = value;
+          EnterState();
+        }
+      }
       #endregion
 
       #region private
       private CarrierDashboardWebPartUserControl Parent { get; set; }
+      internal void InitMahine(InterfaceState _ControlState)
+      {
+        Parent.m_ControlState.InterfaceState = _ControlState;
+      }
+      internal void InitMahine()
+      {
+        Parent.m_ControlState.InterfaceState = InterfaceState.ViewState;
+        EnterState();
+      }
       #endregion
-    }
+    }//LocalStateMachineEngine
     #endregion
 
     #region Interface actions
@@ -362,12 +385,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private void SetVisible(StateMachineEngine.ButtonsSet _set)
     {
       _set &= m_VisibilityACL;
-      m_CommentsTextBox.Visible = (_set & ButtonsSet.CommentsOn) != 0;
-      m_DocumentTextBox.Visible = (_set & ButtonsSet.DocumentOn) != 0;
-      m_EditButton.Visible = (_set & ButtonsSet.EditOn) != 0;
-      m_TimeSlotTextBox.Visible = (_set & ButtonsSet.TimeSlotOn) != 0;
+      m_CommentsTextBox.Visible = m_CommentsLabel.Visible = (_set & ButtonsSet.CommentsOn) != 0;
+      m_DocumentTextBox.Visible = m_DocumentLabel.Visible = (_set & ButtonsSet.DocumentOn) != 0;
+      m_TimeSlotTextBox.Visible = m_TimeSlotLabel.Visible = (_set & ButtonsSet.TimeSlotOn) != 0;
+      m_WarehouseTextBox.Visible = m_WarehouseLabel.Visible = (_set & ButtonsSet.WarehouseOn) != 0;
       //buttons
-      m_WarehouseTextBox.Visible = (_set & ButtonsSet.WarehouseOn) != 0;
+      m_EditButton.Visible = (_set & ButtonsSet.EditOn) != 0;
       m_AbortButton.Visible = (_set & ButtonsSet.AbortOn) != 0;
       m_CancelButton.Visible = (_set & ButtonsSet.CancelOn) != 0;
       m_NewShippingButton.Visible = (_set & ButtonsSet.NewOn) != 0;
@@ -375,8 +398,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       //outbound
       m_EstimateDeliveryTimeLabel.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_EstimateDeliveryTimeDateTimeControl.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
-      m_RouteLabel.Visible = (_set & ButtonsSet.RouteOn) != 0;
-      m_SelecedRouteLabel.Visible = (_set & ButtonsSet.RouteOn) != 0;
+      m_RouteLabel.Visible = m_RouteHeaderLabel.Visible = (_set & ButtonsSet.RouteOn) != 0;
       m_SecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
       m_SelectedSecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
     }

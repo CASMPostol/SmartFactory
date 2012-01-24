@@ -27,7 +27,7 @@
             <asp:TextBox ID="m_TimeSlotTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
           </asp:TableCell></asp:TableRow><asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_PONumberLabel" runat="server" Text="PO Number" CssClass="Label" />
+        <asp:Label ID="m_DocumentLabel" runat="server" Text="PO Number" CssClass="Label" />
       </asp:TableCell><asp:TableCell>
         <asp:TextBox ID="m_DocumentTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
       </asp:TableCell></asp:TableRow><asp:TableRow>
@@ -42,9 +42,9 @@
         <SharePoint:DateTimeControl ID="m_EstimateDeliveryTimeDateTimeControl" runat="server" Enabled="false" />
       </asp:TableCell></asp:TableRow><asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_RouteLabel" runat="server" Text="Route" CssClass="Label"></asp:Label>
+        <asp:Label ID="m_RouteHeaderLabel" runat="server" Text="Route" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <asp:Label ID="m_SelecedRouteLabel" runat="server" Text="" CssClass="Label"></asp:Label>
+        <asp:Label ID="m_RouteLabel" runat="server" Text="" CssClass="Label"></asp:Label>
       </asp:TableCell></asp:TableRow><asp:TableRow>
       <asp:TableCell>
         <asp:Label ID="m_SecurityEscortLabel" runat="server" Text="Security Escort" CssClass="Label"></asp:Label>
