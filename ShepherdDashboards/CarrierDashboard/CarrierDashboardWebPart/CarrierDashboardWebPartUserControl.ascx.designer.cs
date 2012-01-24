@@ -256,15 +256,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.HiddenField m_TimeSlotHiddenField;
         
         /// <summary>
-        /// m_ShippingHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField m_ShippingHiddenField;
-        
-        /// <summary>
         /// m_WarehouseHiddenField control.
         /// </summary>
         /// <remarks>
