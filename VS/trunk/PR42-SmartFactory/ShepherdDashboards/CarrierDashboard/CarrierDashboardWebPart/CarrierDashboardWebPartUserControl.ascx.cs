@@ -116,28 +116,40 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     [Serializable]
     private class MyControlState
     {
+      #region state fields
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       public string PartnerIndex = null;
       public string Route = string.Empty;
       public string Security = string.Empty;
+      public string ShippingID = String.Empty;
+      public bool Outbound = false;
       public bool HasChanges = false;
       public bool CommentsTextBoxChanged = false;
       public bool EstimateDeliveryTimeChanged = false;
-      public void MarkCommentsTextBoxChanged()
+      #endregion
+
+      #region public methods
+      internal void MarkCommentsTextBoxChanged()
       {
         CommentsTextBoxChanged = true;
         HasChanges = true;
       }
-      public void MarkEstimateDeliveryTimeChanged()
+      internal void MarkEstimateDeliveryTimeChanged()
       {
         EstimateDeliveryTimeChanged = true;
         HasChanges = true;
       }
-      public void ClearModifications()
+      internal void ClearModifications()
       {
         CommentsTextBoxChanged = false;
         EstimateDeliveryTimeChanged = false;
       }
+      internal void ClearShippingID()
+      {
+        ShippingID = String.Empty;
+        Outbound = false;
+      }
+      #endregion
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
@@ -233,28 +245,27 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       #region abstract implementation
       protected override void UpdateShowShipping(ShippingInterconnectionData _shipping)
       {
-        Parent.m_ShippingHiddenField.Value = _shipping.ID;
+        Parent.m_ControlState.ShippingID = _shipping.ID;
         try
         {
-          using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
+          ShippingOperationInbound _sppng = ShippingOperationInbound.GetAtIndex(Parent.m_EDC, _shipping.ID.String2Int());
+          ShippingOperationOutbound _so = _sppng as ShippingOperationOutbound;
+          if (_so != null)
           {
-            ShippingOperationInbound _sppng = ShippingOperationInbound.GetAtIndex(edc, _shipping.ID.String2Int());
-            ShippingOperationOutbound _so = _sppng as ShippingOperationOutbound;
-            if (_so != null)
-            {
-              Parent.m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _so.EstimateDeliveryTime.HasValue ? _so.EstimateDeliveryTime.Value : DateTime.Now;
-              Parent.m_RouteLabel.Text = _so.Route != null ? _so.Route.Tytuł : String.Empty;
-              Parent.m_SecurityEscortLabel.Text = _so.SecurityEscort != null ? _so.SecurityEscort.Tytuł : string.Empty;
-              Parent.m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _shipping.EstimateDeliveryTime;
-            }
-            TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _shipping.ID);
-            List<LoadDescription> _ld = LoadDescription.GetForShipping(edc, _shipping.ID);
-            Parent.ShowTimeSlot(_cts);
-            string _ldLabel = String.Empty;
-            foreach (var _item in _ld)
-              _ldLabel += _item.Tytuł + "; ";
-            Parent.m_DocumentTextBox.TextBoxTextProperty(_ldLabel, true);
+            Parent.m_ControlState.Outbound = true;
+            Parent.m_DocumentLabel.Text = Parent.m_DeliveryNoLabetText;
+            Parent.m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _so.EstimateDeliveryTime.HasValue ? _so.EstimateDeliveryTime.Value : DateTime.Now;
+            Parent.m_RouteLabel.Text = _so.Route != null ? _so.Route.Tytuł : String.Empty;
+            Parent.m_SecurityEscortLabel.Text = _so.SecurityEscort != null ? _so.SecurityEscort.Tytuł : string.Empty;
+            Parent.m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _shipping.EstimateDeliveryTime;
           }
+          TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(Parent.m_EDC, _shipping.ID);
+          List<LoadDescription> _ld = LoadDescription.GetForShipping(Parent.m_EDC, _shipping.ID);
+          Parent.ShowTimeSlot(_cts);
+          string _ldLabel = String.Empty;
+          foreach (var _item in _ld)
+            _ldLabel += _item.Tytuł + "; ";
+          Parent.m_DocumentTextBox.TextBoxTextProperty(_ldLabel, true);
         }
         catch (Exception ex)
         {
@@ -346,7 +357,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// </summary>
     private void ClearUserInterface()
     {
-      m_ShippingHiddenField.Value = String.Empty;
+      m_ControlState.ClearShippingID();
       m_TimeSlotTextBox.TextBoxTextProperty(String.Empty, true);
       m_TimeSlotHiddenField.Value = String.Empty;
       m_TruckRegistrationHiddenField.Value = String.Empty;
@@ -474,7 +485,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       try
       {
-        ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(m_EDC, m_ShippingHiddenField.HiddenField2Int());
+        ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(m_EDC, m_ControlState.ShippingID.String2Int());
         _si.State = State.Canceled;
         TimeSlot _ts = (from _tsx in _si.TimeSlot orderby _tsx.StartTime.Value descending select _tsx).First();
         ((TimeSlotTimeSlot)_ts).ReleaseBooking();
@@ -494,7 +505,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         try
         {
           TimeSlotTimeSlot _newts = TimeSlotTimeSlot.GetAtIndex(edc, m_TimeSlotHiddenField.Value, true);
-          ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(edc, m_ShippingHiddenField.HiddenField2Int());
+          ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(edc, m_ControlState.ShippingID.String2Int());
           TimeSlotTimeSlot _oldts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _si.Identyfikator);
           _newts.MakeBooking(_si);
           _oldts.ReleaseBooking();
@@ -529,6 +540,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region variables
+    private const string m_DeliveryNoLabetText = "Delivery No";
     private ButtonsSet m_VisibilityACL;
     private ButtonsSet m_EditbilityACL;
     private MyControlState m_ControlState = new MyControlState();

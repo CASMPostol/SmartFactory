@@ -60,6 +60,5 @@
   <asp:HiddenField ID="m_TruckRegistrationHiddenField" runat="server" />
   <asp:HiddenField ID="m_DriverHiddenField" runat="server" />
   <asp:HiddenField ID="m_TimeSlotHiddenField" runat="server" />
-  <asp:HiddenField ID="m_ShippingHiddenField" runat="server" />
   <asp:HiddenField ID="m_WarehouseHiddenField" runat="server" />
 </asp:Panel>
