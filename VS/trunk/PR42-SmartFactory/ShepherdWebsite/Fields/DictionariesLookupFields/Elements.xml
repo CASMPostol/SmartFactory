@@ -52,6 +52,19 @@
     ReadOnly="False"
     />
   <Field
+    Type="Lookup"
+    DisplayName="Group"
+    List="Lists/CountryList"
+    ShowField="CountryGroup"
+    FieldRef="c4cae2df-1de3-43a3-9500-02091bdada6e"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Shepherd"
+    ID="{B978ADBB-D6AC-465E-9604-7798FD06A4F1}"
+    Name="CountryGroupTitle"
+    Overwrite="TRUE"
+  />
+  <Field
     Name="SecurityEscortCatalog2CityTitle"
     ID="{7E59DF4C-5FEB-4D4B-8190-FEF920AA0A1C}"
     Type="Lookup"
