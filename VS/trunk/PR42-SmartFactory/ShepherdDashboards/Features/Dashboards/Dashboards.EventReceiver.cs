@@ -32,11 +32,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting"); 
         SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
         SPNavigationNode _topMenu = _topNav[0].Children.AddAsLast(new SPNavigationNode(m_VendorMenyTitle, WebPartPages.ProjectElementManagement.CarrierDashboardURL));
+        _topMenu = _topNav[0].Children.AddAsLast(new SPNavigationNode(m_ForwarderTitle, WebPartPages.ProjectElementManagement.ForwarderDashboardURL));
         WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
         Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated finished");
       }
     }
-
     // Uncomment the method below to handle the event raised before a feature is deactivated.
     public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
     {
@@ -68,6 +68,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
       }
     }
     private const string m_VendorMenyTitle = "Vendor";
+    private const string m_ForwarderTitle = "Forwarder";
     private static void DeleteWebParts(Entities.EntitiesDataContext _edc, SPWeb _root)
     {
       Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts strating");

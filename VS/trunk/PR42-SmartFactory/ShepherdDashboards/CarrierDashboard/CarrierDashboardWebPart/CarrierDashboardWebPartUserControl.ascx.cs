@@ -125,8 +125,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       public bool EstimateDeliveryTimeChanged = false;
       public void MarkCommentsTextBoxChanged()
       {
-       CommentsTextBoxChanged = true;
-       HasChanges = true;
+        CommentsTextBoxChanged = true;
+        HasChanges = true;
       }
       public void MarkEstimateDeliveryTimeChanged()
       {
@@ -161,7 +161,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     protected void Page_Load(object sender, EventArgs e)
     {
-      m_EstimateDeliveryTime.DateChanged += new EventHandler(m_EstimateDeliveryTime_DateChanged);
+      if (!IsPostBack)
+      {
+        SetVisible(m_AllButtons);
+        m_StateMachineEngine.InitMahine();
+      }
+      m_EstimateDeliveryTimeDateTimeControl.DateChanged += new EventHandler(m_EstimateDeliveryTime_DateChanged);
       m_CommentsTextBox.TextChanged += new EventHandler(m_CommentsTextBox_TextChanged);
       m_SaveButton.Click += new EventHandler(m_StateMachineEngine.SaveButton_Click);
       m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.NewShippingButton_Click);
@@ -169,7 +174,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EditButton.Click += new EventHandler(m_StateMachineEngine.EditButton_Click);
       m_AbortButton.Click += new EventHandler(m_StateMachineEngine.AbortButton_Click);
     }
-
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -238,10 +242,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             ShippingOperationOutbound _so = _sppng as ShippingOperationOutbound;
             if (_so != null)
             {
-              Parent.m_EstimateDeliveryTime.SelectedDate = _so.EstimateDeliveryTime.HasValue ? _so.EstimateDeliveryTime.Value : DateTime.Now;
+              Parent.m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _so.EstimateDeliveryTime.HasValue ? _so.EstimateDeliveryTime.Value : DateTime.Now;
               Parent.m_RouteLabel.Text = _so.Route != null ? _so.Route.Tytuł : String.Empty;
               Parent.m_SecurityEscortLabel.Text = _so.SecurityEscort != null ? _so.SecurityEscort.Tytuł : string.Empty;
-              Parent.m_EstimateDeliveryTime.SelectedDate = _shipping.EstimateDeliveryTime;
+              Parent.m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _shipping.EstimateDeliveryTime;
             }
             TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _shipping.ID);
             List<LoadDescription> _ld = LoadDescription.GetForShipping(edc, _shipping.ID);
@@ -326,7 +330,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_WarehouseTextBox.TextBoxTextProperty(String.Empty, true);
       m_WarehouseHiddenField.Value = String.Empty;
       m_DocumentTextBox.TextBoxTextProperty(String.Empty, true);
-      m_EstimateDeliveryTime.SelectedDate = DateTime.Now;
+      m_EstimateDeliveryTimeDateTimeControl.SelectedDate = DateTime.Now;
     }
     private void ShowTimeSlot(TimeSlotInterconnectionData _interconnectionData)
     {
@@ -369,7 +373,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_NewShippingButton.Visible = (_set & ButtonsSet.NewOn) != 0;
       m_SaveButton.Visible = (_set & ButtonsSet.SaveOn) != 0;
       //outbound
-      m_EstimateDeliveryTime.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
+      m_EstimateDeliveryTimeLabel.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
+      m_EstimateDeliveryTimeDateTimeControl.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_RouteLabel.Visible = (_set & ButtonsSet.RouteOn) != 0;
       m_SelecedRouteLabel.Visible = (_set & ButtonsSet.RouteOn) != 0;
       m_SecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
@@ -380,7 +385,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       _set &= m_EditbilityACL;
       m_CommentsTextBox.Enabled = (_set & ButtonsSet.CommentsOn) != 0;
       m_DocumentTextBox.Enabled = (_set & ButtonsSet.DocumentOn) != 0;
-      m_EstimateDeliveryTime.Enabled = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
+      m_EstimateDeliveryTimeDateTimeControl.Enabled = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_TimeSlotTextBox.Enabled = false;
       m_WarehouseTextBox.Enabled = false;
       //Buttons
@@ -409,7 +414,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           ShippingOperationOutbound _spo = new ShippingOperationOutbound
             (
-              m_EstimateDeliveryTime.SelectedDate,
+              m_EstimateDeliveryTimeDateTimeControl.SelectedDate,
               String.Format("{0}", m_DocumentTextBox.Text),
               _prtnr,
               Entities.State.Creation,
@@ -425,7 +430,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
                                    where _sx.Identyfikator == m_ControlState.Security.String2Int()
                                    select _sx).First();
           if (m_ControlState.EstimateDeliveryTimeChanged)
-            _spo.EstimateDeliveryTime = m_EstimateDeliveryTime.SelectedDate;
+            _spo.EstimateDeliveryTime = m_EstimateDeliveryTimeDateTimeControl.SelectedDate;
         }
         //TODO _sp.CancelationReason. = m_CommentsTextBox.Text; wait till: http://itrserver/Bugs/BugDetail.aspx?bid=3018
         _ts.MakeBooking(_sp);

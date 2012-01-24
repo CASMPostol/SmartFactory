@@ -15,51 +15,42 @@
     <asp:TableRow>
       <asp:TableCell>
         <asp:Literal ID="m_StateLiteral" runat="server" />
-      </asp:TableCell></asp:TableRow>
-    <asp:TableRow>
+      </asp:TableCell></asp:TableRow><asp:TableRow>
       <asp:TableCell>
         <asp:Label ID="m_WarehouseLabel" runat="server" Text="Warehouse" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
         <asp:TextBox ID="m_WarehouseTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
-      </asp:TableCell></asp:TableRow>
-    <asp:TableRow>
+      </asp:TableCell></asp:TableRow><asp:TableRow>
       <asp:TableCell>
         <asp:Label ID="m_TimeSlotLabel" runat="server" Text="Time Slot" AssociatedControlID="m_TimeSlotTextBox"
           CssClass="Label"></asp:Label></asp:TableCell><asp:TableCell>
             <asp:TextBox ID="m_TimeSlotTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
-          </asp:TableCell></asp:TableRow>
-    <asp:TableRow>
+          </asp:TableCell></asp:TableRow><asp:TableRow>
       <asp:TableCell>
         <asp:Label ID="m_PONumberLabel" runat="server" Text="PO Number" CssClass="Label" />
       </asp:TableCell><asp:TableCell>
         <asp:TextBox ID="m_DocumentTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
-      </asp:TableCell></asp:TableRow>
-    <asp:TableRow>
+      </asp:TableCell></asp:TableRow><asp:TableRow>
       <asp:TableCell>
         <asp:Label ID="m_CommentsLabel" runat="server" Text="Comments" CssClass="Label" />
       </asp:TableCell><asp:TableCell>
         <asp:TextBox ID="m_CommentsTextBox" runat="server" TextMode="Multiline" CssClass="TextBox"></asp:TextBox>
-      </asp:TableCell></asp:TableRow>
-    <asp:TableRow>
+      </asp:TableCell></asp:TableRow><asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_DeliveryTimeLabel" runat="server" Text="Delivery Time" CssClass="Label"></asp:Label>
+        <asp:Label ID="m_EstimateDeliveryTimeLabel" runat="server" Text="Delivery Time" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <SharePoint:DateTimeControl ID="m_EstimateDeliveryTime" runat="server" Enabled="false" />
-      </asp:TableCell></asp:TableRow>
-    <asp:TableRow>
+        <SharePoint:DateTimeControl ID="m_EstimateDeliveryTimeDateTimeControl" runat="server" Enabled="false" />
+      </asp:TableCell></asp:TableRow><asp:TableRow>
       <asp:TableCell>
         <asp:Label ID="m_RouteLabel" runat="server" Text="Route" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
         <asp:Label ID="m_SelecedRouteLabel" runat="server" Text="" CssClass="Label"></asp:Label>
-      </asp:TableCell></asp:TableRow>
-    <asp:TableRow>
+      </asp:TableCell></asp:TableRow><asp:TableRow>
       <asp:TableCell>
         <asp:Label ID="m_SecurityEscortLabel" runat="server" Text="Security Escort" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
         <asp:Label ID="m_SelectedSecurityEscortLabel" runat="server" Text="" CssClass="Label"></asp:Label>
-      </asp:TableCell></asp:TableRow>
-  </asp:Table>
-  <asp:Button ID="m_NewShippingButton" runat="server" Text="New Shipping" CssClass="Button" />
+      </asp:TableCell></asp:TableRow></asp:Table><asp:Button ID="m_NewShippingButton" runat="server" Text="New Shipping" CssClass="Button" />
   <asp:Button ID="m_EditButton" runat="server" Text="Edit" CssClass="Button" />
   <asp:Button ID="m_AbortButton" runat="server" Text="Abort" CssClass="Button" />
   <asp:Button ID="m_SaveButton" runat="server" Text="Save" CssClass="Button" />

@@ -121,22 +121,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.TextBox m_CommentsTextBox;
         
         /// <summary>
-        /// m_DeliveryTimeLabel control.
+        /// m_EstimateDeliveryTimeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_DeliveryTimeLabel;
+        protected global::System.Web.UI.WebControls.Label m_EstimateDeliveryTimeLabel;
         
         /// <summary>
-        /// m_EstimateDeliveryTime control.
+        /// m_EstimateDeliveryTimeDateTimeControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_EstimateDeliveryTime;
+        protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_EstimateDeliveryTimeDateTimeControl;
         
         /// <summary>
         /// m_RouteLabel control.
