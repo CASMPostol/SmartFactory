@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="Group"
+    Name="CountryGroup"
+    Type="Text"
+    ID="{B51E2BEC-D8D7-458E-A89E-45DCB4EB1D79}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Name="Dummy"
     ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}"
     Type="Number"
