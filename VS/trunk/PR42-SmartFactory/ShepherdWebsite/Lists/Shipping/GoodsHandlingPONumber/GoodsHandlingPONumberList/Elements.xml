@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Goods Handling PO Number"
-                OnQuickLaunch="TRUE"
-                TemplateType="10033"
-                Url="Lists/GoodsHandlingPONumberList"
-                Description="Goods Handling PO Number List Instance">
-  </ListInstance>
-</Elements>
