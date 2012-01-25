@@ -80,9 +80,6 @@
     <None Include="Content types\Dictionaries\ExchangeRate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f72057a0-fe6d-4c8c-a897-02b2a773b39d}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Dictionaries\ExternalWorker\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{666edfac-d7a7-4326-a14f-86bec362da61}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Dictionaries\FreightPayer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{7197bb40-a7d2-42e8-ac65-9b965800ccfd}</SharePointProjectItemId>
     </None>
@@ -125,23 +122,14 @@
     <None Include="Content types\Dictionaries\Truck\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8d6f7d6f-2212-44fe-8f93-c2714f27bdcc}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Dictionaries\Vehicle\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e7563cfe-4edc-4c1e-a8fb-68a5302d8c14}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Dictionaries\Warehouse\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{19e4133f-3075-48da-a910-c12b1acefa61}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Shipping\AlarmsAndEvents\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fb5db4c0-6c0f-4bc1-9f64-be2f02c7f1a0}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Shipping\GoodsHandlingPO\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{16046dc3-99fe-4c0e-b132-12e7a9ff5c1c}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Shipping\LoadDescription\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c0509c90-b44b-4167-b0e4-4069c85b1bf9}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Shipping\SecurityPO\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{b345b94a-5b77-4dca-ae72-08d0f9f661db}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Shipping\ShippingDriversTeam\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fcc0da24-3072-46fa-863f-adf611c20ef0}</SharePointProjectItemId>
@@ -321,23 +309,11 @@
     <None Include="Lists\Shipping\AlarmsAndEventsTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9b6d3b0e-9a65-42fa-8fbb-733c68a911d4}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Shipping\GoodsHandlingPONumber\GoodsHandlingPONumberList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{edadda73-7641-43d9-9848-1242ae0a928c}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Shipping\GoodsHandlingPONumber\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{5c051cae-e82d-4d19-9801-84aab10f7fce}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a8cb96f1-7e6f-428a-9232-c5b4d9f2321a}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\LoadDescriptionTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{851c1bf3-52dd-40b7-833c-9268ec4d0d20}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Shipping\SecurityEscortPONumber\SecurityEscortPONumberList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e0fbe166-32c8-45ea-b702-422d3f43cf38}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Shipping\SecurityEscortPONumber\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{330c6769-1245-4ec9-9e9e-5910d33be595}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\ShippingDriversTeamTemplate\ShippingDriversTeamList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{35200135-95d9-4f8a-a63f-df1955637b92}</SharePointProjectItemId>
@@ -382,7 +358,6 @@
     <Content Include="Content types\Dictionaries\DestinationMarket\Elements.xml" />
     <Content Include="Content types\Dictionaries\Driver\Elements.xml" />
     <Content Include="Content types\Dictionaries\ExchangeRate\Elements.xml" />
-    <Content Include="Content types\Dictionaries\ExternalWorker\Elements.xml" />
     <Content Include="Content types\Dictionaries\FreightPayer\Elements.xml" />
     <Content Include="Content types\Dictionaries\Market\Elements.xml" />
     <Content Include="Content types\Dictionaries\PalletTypes\Elements.xml" />
@@ -403,16 +378,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
-    <Content Include="Content types\Dictionaries\Vehicle\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
     <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml" />
-    <Content Include="Content types\Shipping\GoodsHandlingPO\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content types\Shipping\LoadDescription\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content types\Shipping\SecurityPO\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml">
@@ -537,19 +505,9 @@
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\Shipping\GoodsHandlingPONumber\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Lists\Shipping\GoodsHandlingPONumber\GoodsHandlingPONumberList\Elements.xml" />
-    <Content Include="Lists\Shipping\GoodsHandlingPONumber\Schema.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Schema.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Lists\Shipping\SecurityEscortPONumber\Elements.xml" />
-    <Content Include="Lists\Shipping\SecurityEscortPONumber\SecurityEscortPONumberList\Elements.xml" />
-    <Content Include="Lists\Shipping\SecurityEscortPONumber\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Shipping\ShippingDriversTeamTemplate\Elements.xml" />
