@@ -185,7 +185,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_CancelButton.Click += new EventHandler(m_StateMachineEngine.CancelButton_Click);
       m_EditButton.Click += new EventHandler(m_StateMachineEngine.EditButton_Click);
       m_AbortButton.Click += new EventHandler(m_StateMachineEngine.AbortButton_Click);
-      m_AcceptButton.Click += new EventHandler(m_AcceptButton_Click);
+      m_AcceptButton.Click += new EventHandler(m_StateMachineEngine.m_AcceptButton_Click);
     }
 
     /// <summary>
@@ -255,7 +255,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           if (_so != null)
           {
             Parent.m_ControlState.Outbound = true;
-            Parent.m_DocumentLabel.Text = Parent.m_DeliveryNoLabetText;
+            Parent.m_DocumentLabel.Text = CarrierDashboardWebPartUserControl.m_DeliveryNoLabetText;
             Parent.m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _so.EstimateDeliveryTime.HasValue ? _so.EstimateDeliveryTime.Value : DateTime.Now;
             Parent.m_RouteLabel.Text = _so.Route != null ? _so.Route.Tytuł : String.Empty;
             Parent.m_SecurityEscortLabel.Text = _so.SecurityEscort != null ? _so.SecurityEscort.Tytuł : string.Empty;
