@@ -19,6 +19,7 @@
       <FieldRef ID="{621CCC9E-E10F-4AE7-8471-D34C5AA59913}" Name="TransportUnitTypeTitle" />
       <FieldRef ID="{3D76E122-FD59-46A6-BA25-38AEBB4AF138}" Name="TransportCosts" />
       <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
+      <FieldRef ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}" Name="GoodsHandlingPO" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

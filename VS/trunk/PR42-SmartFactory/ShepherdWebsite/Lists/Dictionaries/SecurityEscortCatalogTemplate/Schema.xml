@@ -11,6 +11,7 @@
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{D73A3F7D-6892-4A46-90EE-39BEB668944A}" Name="SecurityCost" />
           <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
+          <FieldRef ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}" Name="SecurityEscrotPO" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
@@ -21,6 +22,7 @@
       <Field Name="PartnerTitle" ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="SecurityCost" ID="{D73A3F7D-6892-4A46-90EE-39BEB668944A}" Type="Number" DisplayName="Security Cost" Group="CAS Smart Factory Shepherd" Description="Security Cost" />
       <Field Name="CurrencyTitle" ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Type="Lookup" List="Lists/CurrencyList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Currency" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="SecurityEscrotPO" ID="{dbcfb052-fb4a-46c1-b72e-bb92f9825142}" Type="Text" DisplayName="Security Escort PO" Group="CAS Smart Factory Shepherd" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -53,16 +55,12 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{7E59DF4C-5FEB-4D4B-8190-FEF920AA0A1C}" Name="SecurityEscortCatalog2CityTitle" />
-          <FieldRef ID="{A673B418-E331-448A-AC32-CD58D861015D}" Name="ShipmentTypeTitle" />
-          <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerIndex" />
+          <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerTitle" />
           <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />
-          <FieldRef ID="{40088770-43E3-441B-9973-D3B093DC131C}" Name="RemarkMM" />
-          <FieldRef ID="{396E8164-1398-4378-8D2C-E78495BC12DA}" Name="SAPDestinationPlantTitle" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
-          <FieldRef ID="{3F47B50A-D2D1-4B7B-845D-2EC0E9461388}" Name="CarrierTitle" />
-          <FieldRef ID="{621CCC9E-E10F-4AE7-8471-D34C5AA59913}" Name="TransportUnitTypeTitle" />
-          <FieldRef ID="{3D76E122-FD59-46A6-BA25-38AEBB4AF138}" Name="TransportCosts" />
+          <FieldRef ID="{D73A3F7D-6892-4A46-90EE-39BEB668944A}" Name="SecurityCost" />
           <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
+          <FieldRef ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}" Name="SecurityEscrotPO" />
         </ViewFields>
         <Query>
           <OrderBy>

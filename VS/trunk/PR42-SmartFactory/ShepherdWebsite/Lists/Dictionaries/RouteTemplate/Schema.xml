@@ -16,6 +16,7 @@
           <FieldRef ID="{621CCC9E-E10F-4AE7-8471-D34C5AA59913}" Name="TransportUnitTypeTitle" />
           <FieldRef ID="{3D76E122-FD59-46A6-BA25-38AEBB4AF138}" Name="TransportCosts" />
           <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
+          <FieldRef ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}" Name="GoodsHandlingPO" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -40,6 +41,7 @@
       <Field Name="TransportUnitTypeTitle" ID="{621ccc9e-e10f-4ae7-8471-d34c5aa59913}" Type="Lookup" List="Lists/TransportUnitTypeList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Transport Unit Type" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="TransportCosts" ID="{3d76e122-fd59-46a6-ba25-38aebb4af138}" Type="Number" DisplayName="Transport Costs" Group="CAS Smart Factory Shepherd" />
       <Field Name="CurrencyTitle" ID="{e1c985aa-f1a4-4275-87d3-ee0df7b44223}" Type="Lookup" List="Lists/CurrencyList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Currency" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="GoodsHandlingPO" ID="{ef1921f3-fd4a-4dc0-bb8f-5f5b95bfac12}" Type="Text" DisplayName="Goods Handling PO" Group="CAS Smart Factory Shepherd" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -82,6 +84,7 @@
           <FieldRef ID="{621CCC9E-E10F-4AE7-8471-D34C5AA59913}" Name="TransportUnitTypeTitle" />
           <FieldRef ID="{3D76E122-FD59-46A6-BA25-38AEBB4AF138}" Name="TransportCosts" />
           <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
+          <FieldRef ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}" Name="GoodsHandlingPO" />
         </ViewFields>
         <Query>
           <OrderBy>
