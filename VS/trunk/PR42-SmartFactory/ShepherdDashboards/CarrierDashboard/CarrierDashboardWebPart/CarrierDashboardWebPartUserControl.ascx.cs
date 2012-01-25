@@ -8,7 +8,7 @@ using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
-  using ButtonsSet = StateMachineEngine.ButtonsSet;
+  using ButtonsSet = StateMachineEngine.ControlsSet;
   using InterfaceState = StateMachineEngine.InterfaceState;
   using System.Web.UI.WebControls;
   /// <summary>
@@ -185,7 +185,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_CancelButton.Click += new EventHandler(m_StateMachineEngine.CancelButton_Click);
       m_EditButton.Click += new EventHandler(m_StateMachineEngine.EditButton_Click);
       m_AbortButton.Click += new EventHandler(m_StateMachineEngine.AbortButton_Click);
+      m_AcceptButton.Click += new EventHandler(m_AcceptButton_Click);
     }
+
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -276,7 +278,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         Parent.ClearUserInterface();
       }
-      protected override void SetEnabled(ButtonsSet _buttons)
+      protected override void SetEnabled(ControlsSet _buttons)
       {
         Parent.SetEnabled(_buttons);
       }
@@ -299,6 +301,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         Parent.Controls.Add(new LiteralControl
           (String.Format("State machine error, in {0} the event {1} occured", Parent.m_ControlState.InterfaceState.ToString(), _interfaceEvent.ToString())));
       }
+      protected override void AcceptShipping()
+      {
+        Parent.ChangeShippingState(State.Confirmed);
+      }
       protected override void UpdateShipping()
       {
         Parent.UpdateShipping();
@@ -309,7 +315,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       protected override void AbortShipping()
       {
-        Parent.AbortShipping();
+        Parent.ChangeShippingState(State.Canceled);
       }
       protected override void UpdateTimeSlot(TimeSlotInterconnectionData e)
       {
@@ -393,7 +399,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       Warehouse _wrs = _cts.GetWarehouse();
       m_WarehouseTextBox.TextBoxTextProperty(_wrs.Tytuł, true);
     }
-    private void SetVisible(StateMachineEngine.ButtonsSet _set)
+    private void SetVisible(StateMachineEngine.ControlsSet _set)
     {
       _set &= m_VisibilityACL;
       m_CommentsTextBox.Visible = m_CommentsLabel.Visible = (_set & ButtonsSet.CommentsOn) != 0;
@@ -401,6 +407,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TimeSlotTextBox.Visible = m_TimeSlotLabel.Visible = (_set & ButtonsSet.TimeSlotOn) != 0;
       m_WarehouseTextBox.Visible = m_WarehouseLabel.Visible = (_set & ButtonsSet.WarehouseOn) != 0;
       //buttons
+      m_AcceptButton.Visible = (_set & ButtonsSet.AcceptOn) != 0;
       m_EditButton.Visible = (_set & ButtonsSet.EditOn) != 0;
       m_AbortButton.Visible = (_set & ButtonsSet.AbortOn) != 0;
       m_CancelButton.Visible = (_set & ButtonsSet.CancelOn) != 0;
@@ -413,7 +420,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_SecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
       m_SelectedSecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
     }
-    private void SetEnabled(StateMachineEngine.ButtonsSet _set)
+    private void SetEnabled(StateMachineEngine.ControlsSet _set)
     {
       _set &= m_EditbilityACL;
       m_CommentsTextBox.Enabled = (_set & ButtonsSet.CommentsOn) != 0;
@@ -422,6 +429,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TimeSlotTextBox.Enabled = false;
       m_WarehouseTextBox.Enabled = false;
       //Buttons
+      m_AcceptButton.Enabled = (_set & ButtonsSet.AcceptOn) != 0;
       m_AbortButton.Enabled = (_set & ButtonsSet.AbortOn) != 0;
       m_CancelButton.Enabled = (_set & ButtonsSet.CancelOn) != 0;
       m_EditButton.Enabled = (_set & ButtonsSet.EditOn) != 0;
@@ -481,15 +489,34 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         ReportException("CreateShipping", ex);
       }
     }
-    private void AbortShipping()
+    private void ChangeShippingState(State _newState)
     {
       try
       {
         ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(m_EDC, m_ControlState.ShippingID.String2Int());
-        _si.State = State.Canceled;
-        TimeSlot _ts = (from _tsx in _si.TimeSlot orderby _tsx.StartTime.Value descending select _tsx).First();
-        ((TimeSlotTimeSlot)_ts).ReleaseBooking();
-        ReportAlert();
+        _si.State = _newState;
+        switch (_newState)
+        {
+          case State.Canceled:
+            TimeSlot _ts = (from _tsx in _si.TimeSlot orderby _tsx.StartTime.Value descending select _tsx).First();
+            ((TimeSlotTimeSlot)_ts).ReleaseBooking();
+            ReportAlert();
+            break;
+          case State.Confirmed:
+            ReportAlert();
+            break;
+          case State.None:
+          case State.Invalid:
+          case State.Completed:
+          case State.Creation:
+          case State.Delayed:
+          case State.Waiting4ExternalApproval:
+          case State.Waiting4InternalApproval:
+          case State.Underway:
+            throw new ApplicationException("Wrong state");
+          default:
+            break;
+        }
       }
       catch (Exception ex)
       {
@@ -545,10 +572,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private ButtonsSet m_EditbilityACL;
     private MyControlState m_ControlState = new MyControlState();
     private GlobalDefinitions.Roles m_DashboardType = GlobalDefinitions.Roles.None;
-    private const StateMachineEngine.ButtonsSet m_AllButtons = (StateMachineEngine.ButtonsSet)int.MaxValue;
+    private const StateMachineEngine.ControlsSet m_AllButtons = (StateMachineEngine.ControlsSet)int.MaxValue;
     #endregion
 
     #endregion
-
   }
 }

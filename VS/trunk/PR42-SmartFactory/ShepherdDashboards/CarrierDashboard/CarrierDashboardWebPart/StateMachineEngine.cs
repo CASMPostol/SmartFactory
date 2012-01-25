@@ -15,11 +15,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 
 
     [Flags]
-    internal enum ButtonsSet
+    internal enum ControlsSet
     {
       SaveOn = 0x01, EditOn = 0x02, CancelOn = 0x04, NewOn = 0x08,
       DocumentOn = 0x10, AbortOn = 0x20, CommentsOn = 0x40, EstimatedDeliveryTime = 0x80,
       RouteOn = 0x100, SecurityEscortOn = 0x200, WarehouseOn = 0x400, TimeSlotOn = 0x800,
+      AcceptOn = 0x1000
     }
     internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, EnterState, AbortClick };
     internal enum InterfaceState { ViewState, EditState, NewState }
@@ -93,6 +94,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.EditState:
           AbortShipping();
+          CurrentMachineState = InterfaceState.ViewState;
+          break;
+        case InterfaceState.ViewState:
+        case InterfaceState.NewState:
+        default:
+          SMError(InterfaceEvent.AbortClick);
+          break;
+      }
+    }
+    internal void m_AcceptButton_Click(object sender, EventArgs e)
+    {
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.EditState:
+          AcceptShipping();
           CurrentMachineState = InterfaceState.ViewState;
           break;
         case InterfaceState.ViewState:
@@ -188,11 +204,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region protected
     protected abstract void UpdateShowShipping(ShippingInterconnectionData _shipping);
     protected abstract void ClearUserInterface();
-    protected abstract void SetEnabled(ButtonsSet _buttons);
+    protected abstract void SetEnabled(ControlsSet _buttons);
     protected abstract void ShowTimeSlot(TimeSlotInterconnectionData e);
     protected abstract void ShowRoute(RouteInterconnectionnData e);
     protected abstract void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData e);
     protected abstract void SMError(InterfaceEvent interfaceEvent);
+    protected abstract void AcceptShipping();
     protected abstract void UpdateShipping();
     protected abstract void CreateShipping();
     protected abstract void AbortShipping();
@@ -205,16 +222,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
-          SetEnabled(ButtonsSet.EditOn | ButtonsSet.NewOn);
+          SetEnabled(ControlsSet.EditOn | ControlsSet.NewOn);
           ClearUserInterface();
           break;
         case InterfaceState.EditState:
           SetEnabled
-            (ButtonsSet.CancelOn | ButtonsSet.SaveOn | ButtonsSet.CommentsOn | ButtonsSet.EstimatedDeliveryTime | ButtonsSet.AbortOn);
+            (ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.CommentsOn | ControlsSet.EstimatedDeliveryTime | ControlsSet.AbortOn | ControlsSet.AcceptOn);
           break;
         case InterfaceState.NewState:
           SetEnabled
-            (ButtonsSet.CancelOn | ButtonsSet.SaveOn | ButtonsSet.CommentsOn | ButtonsSet.EstimatedDeliveryTime | ButtonsSet.DocumentOn);
+            (ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.CommentsOn | ControlsSet.EstimatedDeliveryTime | ControlsSet.DocumentOn);
           ClearUserInterface();
           break;
       }
