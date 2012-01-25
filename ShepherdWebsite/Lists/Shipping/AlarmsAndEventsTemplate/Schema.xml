@@ -5,8 +5,8 @@
       <ContentType ID="0x010049aa7238fce34be18336f419ae924845" Name="AlarmsAndEvents" Group="CAS Smart Factory Shepherd" Description="Alarms and events" Overwrite="True" Inherits="True">
         <Folder TargetName="_cts/AlarmsAndEvents" />
         <FieldRefs>
-          <FieldRef ID="{FEDB4744-2DA3-47CE-8FCB-76A87CA93E20}" Name="AlarmasAndEvents2ShippingIndex" />
-          <FieldRef ID="{2B19EAA6-D7AE-4AC6-A7F2-8131FBD66394}" Name="AlarmasAndEvents2PartnerTitle" />
+          <FieldRef ID="{FEDB4744-2DA3-47CE-8FCB-76A87CA93E20}" Name="AlarmsAndEvents2ShippingIndex" />
+          <FieldRef ID="{2B19EAA6-D7AE-4AC6-A7F2-8131FBD66394}" Name="AlarmsAndEvents2ShippingIndex" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -20,8 +20,8 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="AlarmasAndEvents2PartnerTitle" ID="{2B19EAA6-D7AE-4AC6-A7F2-8131FBD66394}" Type="Lookup" List="Lists/PartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="AlarmasAndEvents2ShippingIndex" ID="{FEDB4744-2DA3-47CE-8FCB-76A87CA93E20}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="AlarmsAndEvents2ShippingIndex" ID="{2B19EAA6-D7AE-4AC6-A7F2-8131FBD66394}" Type="Lookup" List="Lists/PartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="AlarmsAndEvents2ShippingIndex" ID="{FEDB4744-2DA3-47CE-8FCB-76A87CA93E20}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -53,8 +53,8 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{FEDB4744-2DA3-47CE-8FCB-76A87CA93E20}" Name="AlarmasAndEvents2ShippingIndex" />
-          <FieldRef ID="{2B19EAA6-D7AE-4AC6-A7F2-8131FBD66394}" Name="AlarmasAndEvents2PartnerTitle" />
+          <FieldRef ID="{FEDB4744-2DA3-47CE-8FCB-76A87CA93E20}" Name="AlarmsAndEvents2ShippingIndex" />
+          <FieldRef ID="{2B19EAA6-D7AE-4AC6-A7F2-8131FBD66394}" Name="AlarmsAndEvents2ShippingIndex" />
         </ViewFields>
         <Query>
           <OrderBy>
