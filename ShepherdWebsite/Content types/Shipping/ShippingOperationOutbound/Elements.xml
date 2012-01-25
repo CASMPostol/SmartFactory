@@ -9,7 +9,6 @@
     <Folder TargetName="_cts/ShippingOperationOutbound" />
     <FieldRefs>
       <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
-      <FieldRef ID="{BE819A05-1E08-46BD-8E97-65A2C0D80708}" Name="SecuirtyEscortRequired" />
       <FieldRef ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Name="SecurityEscortCatalogTitle" />
       <FieldRef ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}" Name="ShippingOperationOutband2TruckTitle" />
       <FieldRef ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Name="EstimateDeliveryTime" />

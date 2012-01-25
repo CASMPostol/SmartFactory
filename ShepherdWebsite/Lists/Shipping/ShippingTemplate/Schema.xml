@@ -6,7 +6,6 @@
         <Folder TargetName="_cts/ShippingOperationOutbound" />
         <FieldRefs>
           <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
-          <FieldRef ID="{BE819A05-1E08-46BD-8E97-65A2C0D80708}" Name="SecuirtyEscortRequired" />
           <FieldRef ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Name="SecurityEscortCatalogTitle" />
           <FieldRef ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}" Name="ShippingOperationOutband2TruckTitle" />
           <FieldRef ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Name="EstimateDeliveryTime" />
@@ -48,7 +47,6 @@
     </ContentTypes>
     <Fields>
       <Field Name="SecuritySealProtocolIndex" ID="{2b8eaacf-37c5-42dc-ac55-b3dadd464ab5}" Type="Lookup" List="Lists/SecuritySealProtocolLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Security Seal Protocol" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="SecuirtyEscortRequired" ID="{BE819A05-1E08-46BD-8E97-65A2C0D80708}" Type="Boolean" DisplayName="Security Escort Required" Group="CAS Smart Factory Shepherd" />
       <Field Name="SecurityEscortCatalogTitle" ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Type="Lookup" List="Lists/SecurityEscortCatalogList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Security Escort" Group="CAS Smart Factory Shepherd"  Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="EstimateDeliveryTime" ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Type="DateTime" DisplayName="Estimate Delivery Time" Format="TimeOnly" Group="CAS Smart Factory Shepherd">
         <Default>[today]</Default>
@@ -118,7 +116,6 @@
           <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
           <FieldRef ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}" Name="CancelationReason" />
           <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
-          <FieldRef ID="{BE819A05-1E08-46BD-8E97-65A2C0D80708}" Name="SecuirtyEscortRequired" />
           <FieldRef ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Name="SecurityEscortCatalogTitle" />
           <FieldRef ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}" Name="ShippingOperationOutband2TruckTitle" />
           <FieldRef ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Name="EstimateDeliveryTime" />
