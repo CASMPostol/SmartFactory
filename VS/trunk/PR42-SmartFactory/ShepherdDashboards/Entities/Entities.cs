@@ -257,9 +257,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		/// TimeSLot List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="TimeSlot")]
-		public Microsoft.SharePoint.Linq.EntityList<TimeSlotTimeSlot> TimeSlot {
+		public Microsoft.SharePoint.Linq.EntityList<TimeSlot> TimeSlot {
 			get {
-				return this.GetList<TimeSlotTimeSlot>("TimeSlot");
+				return this.GetList<TimeSlot>("TimeSlot");
 			}
 		}
 		
@@ -604,7 +604,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private string _lokalizacja;
 		
-		protected System.Nullable<System.DateTime> _startTime;
+		private System.Nullable<System.DateTime> _startTime;
 		
 		private System.Nullable<System.DateTime> _endTime;
 		
@@ -643,7 +643,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="StartDate", Storage="_startTime", Required=true, FieldType="DateTime")]
-		public virtual System.Nullable<System.DateTime> StartTime {
+		public System.Nullable<System.DateTime> StartTime {
 			get {
 				return this._startTime;
 			}
@@ -3608,7 +3608,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	/// Time Slot
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlot", Id="0x0102008B8977AFA9104B18B4B25D7C06A4A3AA")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlotTimeSlot))]
 	public partial class TimeSlot : Wydarzenie {
 		
 		private System.Nullable<System.DateTime> _entryTime;
@@ -4518,37 +4517,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	}
 	
 	/// <summary>
-	/// Time Slot
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlot", Id="0x0102008B8977AFA9104B18B4B25D7C06A4A3AA", List="TimeSlot")]
-	public partial class TimeSlotTimeSlot : TimeSlot {
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public TimeSlotTimeSlot() {
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EventDate", Storage="_startTime", Required=true, FieldType="DateTime")]
-		public override System.Nullable<System.DateTime> StartTime {
-			get {
-				return this._startTime;
-			}
-			set {
-				if ((value != this._startTime)) {
-					this.OnPropertyChanging("StartTime", this._startTime);
-					this._startTime = value;
-					this.OnPropertyChanged("StartTime");
-				}
-			}
-		}
-	}
-	
-	/// <summary>
 	/// TimeSlotTemplates
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlotTemplates", Id="0x0102009071878DECFF4D77B9136AE225F306E9", List="TimeSlot Templates")]
@@ -4562,20 +4530,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		public TimeSlotTemplatesTimeSlotTemplates() {
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EventDate", Storage="_startTime", Required=true, FieldType="DateTime")]
-		public override System.Nullable<System.DateTime> StartTime {
-			get {
-				return this._startTime;
-			}
-			set {
-				if ((value != this._startTime)) {
-					this.OnPropertyChanging("StartTime", this._startTime);
-					this._startTime = value;
-					this.OnPropertyChanged("StartTime");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Description", Storage="_description", FieldType="Note")]

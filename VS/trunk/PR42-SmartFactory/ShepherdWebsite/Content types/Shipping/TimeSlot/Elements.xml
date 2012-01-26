@@ -10,7 +10,7 @@
     <FieldRefs>
       <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
       <FieldRef ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Name="Location" Hidden="TRUE" />
-      <FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="EventDate" DisplayName="Start Time" Required="TRUE" Format="DateTime" />
+      <FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="StartDate" DisplayName="Start Time" Required="TRUE" Format="DateTime" />
       <FieldRef ID="{2684f9f2-54be-429f-ba06-76754fc056bf}" Name="EndDate" DisplayName="End Time" Required="TRUE" Format="DateTime" />
       <FieldRef ID="{9da97a8a-1da5-4a77-98d3-4bc10456e700}" Name="Description"  Hidden="TRUE" />
       <FieldRef ID="{6df9bd52-550e-4a30-bc31-a4366832a87d}" Name="Category" Hidden="TRUE" />
