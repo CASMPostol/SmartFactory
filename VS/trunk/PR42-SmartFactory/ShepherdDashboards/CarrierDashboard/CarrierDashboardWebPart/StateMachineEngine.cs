@@ -102,7 +102,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
-    internal void m_AcceptButton_Click(object sender, EventArgs e)
+    internal void AcceptButton_Click(object sender, EventArgs e)
     {
       switch (CurrentMachineState)
       {
