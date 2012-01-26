@@ -6,12 +6,18 @@ using System;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 {
+  /// <summary>
+  /// TimeSlot WebPart
+  /// </summary>
   [ToolboxItemAttribute(false)]
   public class TimeSlotWebPart : WebPart
   {
     // Visual Studio might automatically update this path when you change the Visual Web Part project item.
     private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards/TimeSlotWebPart/TimeSlotWebPartUserControl.ascx";
 
+    /// <summary>
+    /// Called by the ASP.NET page framework to notify server controls that use composition-based implementation to create any child controls they contain in preparation for posting back or rendering.
+    /// </summary>
     protected override void CreateChildControls()
     {
       string _phase = "Befor Starting";
@@ -33,11 +39,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       }
     }
     TimeSlotWebPartUserControl m_control = null;
-    private InterconnectionDataTable<TimeSlotTimeSlot> m_SelectedTimeSlot = null;
+    private InterconnectionDataTable<TimeSlot> m_SelectedTimeSlot = null;
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TimeSlotWebPart"/> class.
+    /// </summary>
     public TimeSlotWebPart()
     {
       SimpleTimeSlotList = true;
     }
+    /// <summary>
+    /// Gets or sets a value indicating whether use simple reendering of the time slot list.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if simple reendering firm of the time slot list should be used; otherwise, <c>false</c>.
+    /// </value>
     [WebBrowsable(true)]
     [Personalizable(PersonalizationScope.Shared)]
     [WebDisplayName("Simple list of available slots")]
@@ -45,15 +60,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     [Microsoft.SharePoint.WebPartPages.SPWebCategoryName("CAS Custom Properties")]
     public bool SimpleTimeSlotList { get; set; }
     /// <summary>
-    /// Gets the connection interface allowing to get selected entry of <see cref="TimeSlotTimeSlot"/>.
+    /// Gets the connection interface allowing to get selected entry of <see cref="TimeSlot"/>.
     /// </summary>
-    /// <returns>Returns an instance of the <see cref="IWebPartRow"/> representing <see cref="TimeSlotTimeSlot"/>.</returns>
+    /// <returns>Returns an instance of the <see cref="IWebPartRow"/> representing <see cref="TimeSlot"/>.</returns>
     [ConnectionProvider("Selected TimeSlot entry", "SelectedTimeSlotProviderPoint", AllowsMultipleConnections = true)]
     [DefaultValue(false)]
     public IWebPartRow GetConnectionInterface()
     {
       if (m_control == null)
-        return new InterconnectionDataTable<TimeSlotTimeSlot>();
+        return new InterconnectionDataTable<TimeSlot>();
       if (m_SelectedTimeSlot == null)
         m_SelectedTimeSlot = m_control.GetSelectedTimeSlotInterconnectionData();
       return m_SelectedTimeSlot;

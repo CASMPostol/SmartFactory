@@ -66,7 +66,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       int? _intid = _id.String2Int();
       if (!_intid.HasValue)
         throw new ApplicationException("Wrong Time Slot index syntax");
-      return GetAtIndex(edc, _intid.Value, free).First<TimeSlotTimeSlot>();
+      return GetAtIndex(edc, _intid.Value, free).First<TimeSlot>();
     }
     internal Warehouse GetWarehouse()
     {
