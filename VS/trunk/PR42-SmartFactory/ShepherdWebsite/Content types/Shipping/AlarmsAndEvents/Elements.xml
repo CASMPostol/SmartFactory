@@ -8,8 +8,8 @@
                Inherits="True">
     <Folder TargetName="_cts/AlarmsAndEvents" />
     <FieldRefs>
-      <FieldRef ID="{FEDB4744-2DA3-47CE-8FCB-76A87CA93E20}" Name="AlarmsAndEvents2ShippingIndex" />
-      <FieldRef ID="{2B19EAA6-D7AE-4AC6-A7F2-8131FBD66394}" Name="AlarmsAndEvents2ShippingIndex" />
+      <FieldRef ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}" Name="AlarmsAndEventsList2ShippingIndex" />
+      <FieldRef ID="{7F341C2D-FEBA-48BD-9D59-4BF410959229}" Name="AlarmsAndEventsList2PartnerTitle" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10004"
                 Url="Lists/ShippingList"
-                Description="Shiping List Instance">
+                Description="Shipping List Instance">
   </ListInstance>
 </Elements>
