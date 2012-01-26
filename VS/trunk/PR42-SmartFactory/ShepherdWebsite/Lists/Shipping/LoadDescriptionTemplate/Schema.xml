@@ -119,7 +119,6 @@
           <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
           <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
-          <FieldRef ID="{9BD4A74E-9645-488C-99EB-16EDD9912775}" Name="CMRNumber"/>
         </ViewFields>
         <Query>
           <OrderBy>
