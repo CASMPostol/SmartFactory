@@ -88,7 +88,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
   internal class PartnerInterconnectionData : InterconnectionData<PartnerInterconnectionData>
   {}
   internal class RouteInterconnectionnData : InterconnectionData<RouteInterconnectionnData>
-  {}
+  {
+
+  }
   internal class SecurityEscortCatalogInterconnectionData : InterconnectionData<SecurityEscortCatalogInterconnectionData>
   {}
   internal static class InterconnectionExtensions
