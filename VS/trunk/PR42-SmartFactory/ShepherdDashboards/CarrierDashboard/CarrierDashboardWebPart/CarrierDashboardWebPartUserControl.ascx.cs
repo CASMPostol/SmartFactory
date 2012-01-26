@@ -117,11 +117,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private class MyControlState
     {
       #region state fields
-      public InterfaceState InterfaceState = InterfaceState.ViewState;
-      public string PartnerIndex = null;
+      public string PartnerIndex = string.Empty;
+      public bool PartnerIndexChanged = false;
       public string Route = string.Empty;
+      public bool RouteChanged = false;
       public string Security = string.Empty;
+      public bool SecurityChanged = false;
       public string ShippingID = String.Empty;
+      public InterfaceState InterfaceState = InterfaceState.ViewState;
       public bool Outbound = false;
       public bool HasChanges = false;
       public bool CommentsTextBoxChanged = false;
@@ -286,10 +289,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         Parent.ShowTimeSlot(_data);
       }
-      protected override void ShowRoute(RouteInterconnectionnData e)
+      protected override void ShowRoute(RouteInterconnectionnData _route)
       {
-        Parent.m_RouteLabel.Text = e.Title;
-        Parent.m_ControlState.Route = e.ID;
+        Parent.ShowRoute(_route);
       }
       protected override void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData e)
       {
@@ -399,6 +401,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       Warehouse _wrs = _cts.GetWarehouse();
       m_WarehouseTextBox.TextBoxTextProperty(_wrs.Tytuł, true);
     }
+    private void ShowRoute(RouteInterconnectionnData _route)
+    {
+      m_RouteLabel.Text = _route.Title;
+      m_ControlState.Route = _route.ID;
+      Route _rt = Entities.Element.GetAtIndex<Route>(m_EDC.Route, _route.ID);
+      m_ControlState.PartnerIndex = _rt.VendorName.Identyfikator.IntToString();
+    }
     private void SetVisible(StateMachineEngine.ControlsSet _set)
     {
       _set &= m_VisibilityACL;
@@ -500,10 +509,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           case State.Canceled:
             TimeSlot _ts = (from _tsx in _si.TimeSlot orderby _tsx.StartTime.Value descending select _tsx).First();
             ((TimeSlotTimeSlot)_ts).ReleaseBooking();
-            ReportAlert();
+            ReportAlert(_si, _si.VendorName, "The shipping has been canceled.");
             break;
           case State.Confirmed:
-            ReportAlert();
+            ReportAlert(_si, _si.VendorName, "The outbound has been confirmed.");
             break;
           case State.None:
           case State.Invalid:
@@ -532,7 +541,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         try
         {
           TimeSlotTimeSlot _newts = TimeSlotTimeSlot.GetAtIndex(edc, m_TimeSlotHiddenField.Value, true);
-          ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(edc, m_ControlState.ShippingID.String2Int());
+          ShippingOperationInbound _si = Element.GetAtIndex<ShippingOperationInbound>(edc.Shipping, m_ControlState.ShippingID);
           TimeSlotTimeSlot _oldts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _si.Identyfikator);
           _newts.MakeBooking(_si);
           _oldts.ReleaseBooking();
@@ -549,9 +558,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       string _tmplt = "The current operation has been interrupted by error {0}.";
       m_StateMachineEngine.ExceptionCatched(m_EDC, _source, String.Format(_tmplt, ex.Message));
     }
-    private void ReportAlert()
+    private void ReportAlert(ShippingOperationInbound _shipping, Partner _partner, string _msg)
     {
-      //TODO throw new NotImplementedException();
+      Entities.AlarmsAndEvents _ae = new Entities.AlarmsAndEvents()
+      {
+        ShippingIndex = _shipping,
+        VendorName = _partner,
+        Tytuł = _msg,
+      };
+      m_EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
     }
     #endregion
 
@@ -576,5 +591,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #endregion
+
   }
 }

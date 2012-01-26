@@ -13,7 +13,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     internal StateMachineEngine() { }
     #endregion
 
-
     [Flags]
     internal enum ControlsSet
     {

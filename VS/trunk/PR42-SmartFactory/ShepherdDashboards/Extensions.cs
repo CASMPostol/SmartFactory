@@ -67,7 +67,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       {
         return _ret;
       }
-      return null;
+      return new Nullable<int>();
     }
     /// <summary>
     ///  Indicates whether the specified System.String object is null or an System.String.Empty string.
