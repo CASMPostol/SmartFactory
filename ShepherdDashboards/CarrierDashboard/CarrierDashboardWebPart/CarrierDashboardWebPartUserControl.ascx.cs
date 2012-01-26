@@ -121,9 +121,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       public bool PartnerIndexChanged = false;
       public string Route = string.Empty;
       public bool RouteChanged = false;
-      public string Security = string.Empty;
+      public string SecurityCatalog = string.Empty;
+      public string SecurityPartner = string.Empty;
       public bool SecurityChanged = false;
       public string ShippingID = String.Empty;
+      public bool TimeSlotChanged = false;
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       public bool Outbound = false;
       public bool HasChanges = false;
@@ -153,6 +155,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         Outbound = false;
       }
       #endregion
+
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
@@ -293,10 +296,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         Parent.ShowRoute(_route);
       }
-      protected override void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData e)
+      protected override void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData _Escort)
       {
-        Parent.m_SelectedSecurityEscortLabel.Text = e.Title;
-        Parent.m_ControlState.Security = e.ID;
+        Parent.ShowSecurityEscortCatalog(_Escort);
       }
       protected override void SMError(StateMachineEngine.InterfaceEvent _interfaceEvent)
       {
@@ -408,6 +410,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       Route _rt = Entities.Element.GetAtIndex<Route>(m_EDC.Route, _route.ID);
       m_ControlState.PartnerIndex = _rt.VendorName.Identyfikator.IntToString();
     }
+    private void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData _Escort)
+    {
+      m_SelectedSecurityEscortLabel.Text = _Escort.Title;
+      m_ControlState.SecurityCatalog = _Escort.ID;
+      SecurityEscortCatalog _sec = Element.GetAtIndex<SecurityEscortCatalog>(m_EDC.SecurityEscortCatalog, _Escort.ID);
+      m_ControlState.SecurityPartner = _sec.Identyfikator.IntToString();
+    }
     private void SetVisible(StateMachineEngine.ControlsSet _set)
     {
       _set &= m_VisibilityACL;
@@ -472,17 +481,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             );
           _sp = _spo;
           if (!m_ControlState.Route.IsNullOrEmpty())
-            _spo.Route = (from _rx in m_EDC.Route
-                          where _rx.Identyfikator == m_ControlState.Route.String2Int()
-                          select _rx).First();
-          if (!m_ControlState.Security.IsNullOrEmpty())
-            _spo.SecurityEscort = (from _sx in m_EDC.SecurityEscortCatalog
-                                   where _sx.Identyfikator == m_ControlState.Security.String2Int()
-                                   select _sx).First();
+          {
+            _spo.Route = Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.Route);
+            _spo.VendorName = _spo.Route.VendorName;
+          }
+          if (!m_ControlState.SecurityCatalog.IsNullOrEmpty())
+          {
+            _spo.SecurityEscort = Element.GetAtIndex<SecurityEscortCatalog>(m_EDC.SecurityEscortCatalog, m_ControlState.SecurityCatalog);
+            _spo.VendorName = _spo.SecurityEscort.VendorName;
+          }
           if (m_ControlState.EstimateDeliveryTimeChanged)
             _spo.EstimateDeliveryTime = m_EstimateDeliveryTimeDateTimeControl.SelectedDate;
         }
-        //TODO _sp.CancelationReason. = m_CommentsTextBox.Text; wait till: http://itrserver/Bugs/BugDetail.aspx?bid=3018
+        _sp.CancelationReason = m_CommentsTextBox.Text;
         _ts.MakeBooking(_sp);
         LoadDescription _ld = new LoadDescription()
         {
@@ -536,21 +547,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (!m_TimeSlotHiddenField.Value.String2Int().HasValue)
         return;
-      using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
+      try
       {
-        try
+        ShippingOperationInbound _si = Element.GetAtIndex<ShippingOperationInbound>(m_EDC.Shipping, m_ControlState.ShippingID);
+        if (m_ControlState.TimeSlotChanged)
         {
-          TimeSlotTimeSlot _newts = TimeSlotTimeSlot.GetAtIndex(edc, m_TimeSlotHiddenField.Value, true);
-          ShippingOperationInbound _si = Element.GetAtIndex<ShippingOperationInbound>(edc.Shipping, m_ControlState.ShippingID);
-          TimeSlotTimeSlot _oldts = TimeSlotTimeSlot.GetShippingTimeSlot(edc, _si.Identyfikator);
+          TimeSlot _newts = (from _ts in _si.TimeSlot orderby _ts.StartTime descending select _ts).First();
+          TimeSlot _oldts = TimeSlot.GetShippingTimeSlot(m_EDC, _si.Identyfikator);
           _newts.MakeBooking(_si);
           _oldts.ReleaseBooking();
-          edc.SubmitChanges();
         }
-        catch (Exception ex)
-        {
-          m_StateMachineEngine.ExceptionCatched(m_EDC, "UpdateShipping", ex.Message);
-        }
+        if (m_ControlState.RouteChanged)
+        m_EDC.SubmitChanges();
+      }
+      catch (Exception ex)
+      {
+        m_StateMachineEngine.ExceptionCatched(m_EDC, "UpdateShipping", ex.Message);
       }
     }
     private void ReportException(string _source, Exception ex)
@@ -591,6 +603,5 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #endregion
-
   }
 }

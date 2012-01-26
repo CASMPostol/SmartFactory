@@ -3,21 +3,21 @@
   <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.ShippingOperationOutbound" Collapsed="true">
     <Position X="3" Y="3.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAEAAQAAEoAAoAqwUEBEBCAAOAAABAACQEQCAAAlAE=</HashCode>
+      <HashCode>AAAAAAQAAEgAAoAiwUEBEBCAAOAAABAACQEACAAAkAE=</HashCode>
       <FileName>Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.ShippingOperationInbound" Collapsed="true">
     <Position X="3" Y="2" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>RUgsQCAKIAgTgABC0NWICEJQIiIEIYAKAAAShRyQAFE=</HashCode>
+      <HashCode>RQgoQCAKIAgDAABC0NWICEJQIiIEIYAKAAAChRSQAEA=</HashCode>
       <FileName>Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.Element" Collapsed="true">
     <Position X="18.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIABAAACQAAAiA4AEAAAABhGRAACAAAAAgAAAAQAA=</HashCode>
+      <HashCode>AAAIABAAACwAAAiA4AEAAAABhGRAACAAAAAgAAAAQAA=</HashCode>
       <FileName>Entities\Element.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -46,8 +46,8 @@
   <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.AlarmsAndEvents" Collapsed="true">
     <Position X="11" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BRAAAAgAAAAAABAAUAGAAAEAACAAAAAAAAAAAACAgAA=</HashCode>
-      <FileName>Entities\Entities.cs</FileName>
+      <HashCode>BRAAAAgAAAAAABAAUAGAAAEAACAAAAIAAAAAAACAgAA=</HashCode>
+      <FileName>Entities\AlarmsAndEvents.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.ShippingDriversTeam" Collapsed="true">
@@ -102,21 +102,7 @@
   <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.TimeSlot" Collapsed="true">
     <Position X="8.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AFIAAAgIECQgALAAQQUAAEFAADAABAAQAAFBBAAAgAA=</HashCode>
-      <FileName>Entities\Entities.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.AlarmsAndEventsAlarmsAndEvents" Collapsed="true">
-    <Position X="10.5" Y="3.5" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>BBAAAAAAAAAAAAAAQAEAAAAAACAAAAIAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\AlarmsAndEvents.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.TimeSlotTimeSlot" Collapsed="true">
-    <Position X="8.25" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAhIgAAAAAwAEIQCAAICAAAAAAgAAAAAAAAAQ=</HashCode>
+      <HashCode>AAAAAAAAhIgAAAAAgAAIQCAAAAAAAAAAgAAAAAAAAAQ=</HashCode>
       <FileName>Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -137,7 +123,7 @@
   <Class Name="CAS.SmartFactory.Shepherd.Dashboards.Entities.Route" Collapsed="true">
     <Position X="34.5" Y="2" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>B4QCBgAIJSICgJACUAWwgAAQPCg2CAIAkIQJBICRBCA=</HashCode>
+      <HashCode>B4QCBgAIJSICgJQCUAWwgAAQPGg2CAIAkIQJBICRBCA=</HashCode>
       <FileName>Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>

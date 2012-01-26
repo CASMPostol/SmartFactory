@@ -3,13 +3,13 @@ using System.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
-  public partial class TimeSlotTimeSlot
+  public partial class TimeSlot
   {
     internal class DateTimeClass
     {
       public DateTime StartTime { get; set; }
     }
-    internal static IQueryable<TimeSlotTimeSlot> GetForSelectedDay(EntitiesDataContext _edc, DateTime _day, int _warehouseID)
+    internal static IQueryable<TimeSlot> GetForSelectedDay(EntitiesDataContext _edc, DateTime _day, int _warehouseID)
     {
       return from _idx in _edc.TimeSlot
              where IsExpected(_idx, _warehouseID) && (_idx.StartTime.Value.Date == _day.Date)
@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
              where IsExpected(_idx, _intWrhs) && (_idx.StartTime.Value.Year == _day.Year) && (_idx.StartTime.Value.Month == _day.Month)
              select _idx.StartTime.Value;
     }
-    internal static TimeSlotTimeSlot GetShippingTimeSlot(EntitiesDataContext edc, int? _id)
+    internal static TimeSlot GetShippingTimeSlot(EntitiesDataContext edc, int? _id)
     {
       try
       {
@@ -38,14 +38,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         throw new ApplicationException(m_TSNotFpundMessage);
       }
     }
-    internal static TimeSlotTimeSlot GetShippingTimeSlot(EntitiesDataContext _edc, string _id)
+    internal static TimeSlot GetShippingTimeSlot(EntitiesDataContext _edc, string _id)
     {
       int? _intId = _id.String2Int();
       if (!_intId.HasValue)
         throw new ApplicationException("Shipping is not selected.");
       return GetShippingTimeSlot(_edc, _intId.Value);
     }
-    internal static IQueryable<TimeSlotTimeSlot> GetAtIndex(EntitiesDataContext edc, int _id, bool free)
+    internal static IQueryable<TimeSlot> GetAtIndex(EntitiesDataContext edc, int _id, bool free)
     {
       try
       {
@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         throw new ApplicationException(m_TSNotFpundMessage);
       }
     }
-    internal static TimeSlotTimeSlot GetAtIndex(EntitiesDataContext edc, string _id, bool free)
+    internal static TimeSlot GetAtIndex(EntitiesDataContext edc, string _id, bool free)
     {
       if (string.IsNullOrEmpty(_id))
         throw new ApplicationException(m_TSNotFpundMessage);
@@ -88,7 +88,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       this.Occupied = false;
       this.ShippingIndex = null;
     }
-    private static bool IsExpected(TimeSlotTimeSlot _ts, int _warehouseID)
+    private static bool IsExpected(TimeSlot _ts, int _warehouseID)
     {
       if (_ts.Occupied.Value)
         return false;
