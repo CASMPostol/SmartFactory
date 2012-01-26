@@ -267,7 +267,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             Parent.m_SecurityEscortLabel.Text = _so.SecurityEscort != null ? _so.SecurityEscort.Tytuł : string.Empty;
             Parent.m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _shipping.EstimateDeliveryTime;
           }
-          TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(Parent.m_EDC, _shipping.ID);
+          TimeSlot _cts = TimeSlot.GetShippingTimeSlot(Parent.m_EDC, _shipping.ID);
           List<LoadDescription> _ld = LoadDescription.GetForShipping(Parent.m_EDC, _shipping.ID);
           Parent.ShowTimeSlot(_cts);
           string _ldLabel = String.Empty;
@@ -386,7 +386,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
-          TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetAtIndex(edc, _interconnectionData.ID, true);
+          TimeSlot _cts = TimeSlot.GetAtIndex(edc, _interconnectionData.ID, true);
           ShowTimeSlot(_cts);
           m_SaveButton.Enabled = true;
         }
@@ -396,7 +396,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_TimeSlotTextBox.TextBoxTextProperty(ex.Message, true);
       }
     }
-    private void ShowTimeSlot(TimeSlotTimeSlot _cts)
+    private void ShowTimeSlot(TimeSlot _cts)
     {
       m_TimeSlotHiddenField.Value = _cts.Identyfikator.ToString();
       m_TimeSlotTextBox.TextBoxTextProperty(String.Format("{0:R}", _cts.StartTime), true);
@@ -459,7 +459,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       try
       {
         Partner _prtnr = Partner.GetAtIndex(m_EDC, m_ControlState.PartnerIndex);
-        TimeSlotTimeSlot _ts = TimeSlotTimeSlot.GetAtIndex(m_EDC, m_TimeSlotHiddenField.Value, true);
+        TimeSlot _ts = TimeSlot.GetAtIndex(m_EDC, m_TimeSlotHiddenField.Value, true);
         ShippingOperationInbound _sp = null;
         if (m_DashboardType == GlobalDefinitions.Roles.OutboundOwner)
           _sp = new ShippingOperationInbound
@@ -480,16 +480,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
               _ts.StartTime
             );
           _sp = _spo;
-          if (!m_ControlState.Route.IsNullOrEmpty())
-          {
-            _spo.Route = Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.Route);
-            _spo.VendorName = _spo.Route.VendorName;
-          }
-          if (!m_ControlState.SecurityCatalog.IsNullOrEmpty())
-          {
-            _spo.SecurityEscort = Element.GetAtIndex<SecurityEscortCatalog>(m_EDC.SecurityEscortCatalog, m_ControlState.SecurityCatalog);
-            _spo.VendorName = _spo.SecurityEscort.VendorName;
-          }
+          AssignPartners2Shipping(_spo);
           if (m_ControlState.EstimateDeliveryTimeChanged)
             _spo.EstimateDeliveryTime = m_EstimateDeliveryTimeDateTimeControl.SelectedDate;
         }
@@ -519,7 +510,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           case State.Canceled:
             TimeSlot _ts = (from _tsx in _si.TimeSlot orderby _tsx.StartTime.Value descending select _tsx).First();
-            ((TimeSlotTimeSlot)_ts).ReleaseBooking();
+            _ts.ReleaseBooking();
             ReportAlert(_si, _si.VendorName, "The shipping has been canceled.");
             break;
           case State.Confirmed:
@@ -557,18 +548,43 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           _newts.MakeBooking(_si);
           _oldts.ReleaseBooking();
         }
-        if (m_ControlState.RouteChanged)
+        _si.CancelationReason = m_CommentsTextBox.Text;
+        ShippingOperationOutbound _so = _si as ShippingOperationOutbound;
+        AssignPartners2Shipping(_so);
         m_EDC.SubmitChanges();
+        ReportAlert(_si, "Shipping updated");
       }
       catch (Exception ex)
       {
         m_StateMachineEngine.ExceptionCatched(m_EDC, "UpdateShipping", ex.Message);
       }
     }
+    private void AssignPartners2Shipping(ShippingOperationOutbound _spo)
+    {
+      //TODO Next Column EscortName must be added and assigned.
+      if (m_ControlState.SecurityCatalog.IsNullOrEmpty())
+        _spo.SecurityEscort = null;
+      else
+        _spo.SecurityEscort = Element.GetAtIndex<SecurityEscortCatalog>(m_EDC.SecurityEscortCatalog, m_ControlState.SecurityCatalog);
+      if (m_ControlState.Route.IsNullOrEmpty())
+      {
+        _spo.Route = null;
+        _spo.VendorName = null;
+      }
+      else
+      {
+        _spo.Route = Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.Route);
+        _spo.VendorName = _spo.Route.VendorName;
+      }
+    }
     private void ReportException(string _source, Exception ex)
     {
       string _tmplt = "The current operation has been interrupted by error {0}.";
       m_StateMachineEngine.ExceptionCatched(m_EDC, _source, String.Format(_tmplt, ex.Message));
+    }
+    private void ReportAlert(ShippingOperationInbound _shipping, string _msg)
+    {
+      ReportAlert(_shipping, _shipping.VendorName, _msg);
     }
     private void ReportAlert(ShippingOperationInbound _shipping, Partner _partner, string _msg)
     {
