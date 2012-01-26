@@ -304,10 +304,10 @@
       <SharePointProjectItemId>{64b86b44-1e47-4b2e-ae13-e5a71f32e45c}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{72417b29-0966-48df-a875-b4340b3fac63}</SharePointProjectItemId>
+      <SharePointProjectItemId>{718dbe34-dd16-47f8-99c0-7f71b3db8090}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\AlarmsAndEventsTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{9b6d3b0e-9a65-42fa-8fbb-733c68a911d4}</SharePointProjectItemId>
+      <SharePointProjectItemId>{a11dbd49-ee9d-4918-9731-922ffbd1a116}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a8cb96f1-7e6f-428a-9232-c5b4d9f2321a}</SharePointProjectItemId>
@@ -502,9 +502,7 @@
     <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\Elements.xml" />
-    <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Schema.xml">
