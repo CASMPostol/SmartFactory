@@ -227,50 +227,5 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button m_AcceptButton;
-        
-        /// <summary>
-        /// m_HiddenPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel m_HiddenPanel;
-        
-        /// <summary>
-        /// m_TruckRegistrationHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField m_TruckRegistrationHiddenField;
-        
-        /// <summary>
-        /// m_DriverHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField m_DriverHiddenField;
-        
-        /// <summary>
-        /// m_TimeSlotHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField m_TimeSlotHiddenField;
-        
-        /// <summary>
-        /// m_WarehouseHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField m_WarehouseHiddenField;
     }
 }
