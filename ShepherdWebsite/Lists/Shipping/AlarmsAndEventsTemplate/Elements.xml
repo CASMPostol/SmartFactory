@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ListTemplate
+        Name="AlarmsAndEventsTemplate"
+        Type="10001"
+        BaseType="0"
+        OnQuickLaunch="TRUE"
+        SecurityBits="11"
+        Sequence="410"
+        DisplayName="Alarms And Events Template"
+        Description="Alarms And Events List Definition"
+        Image="/_layouts/images/itgen.png"/>
+</Elements>
