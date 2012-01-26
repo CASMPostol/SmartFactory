@@ -114,48 +114,37 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 
     #region UserControl override
     [Serializable]
-    private class MyControlState
+    private class ControlState
     {
       #region state fields
       public string PartnerIndex = string.Empty;
-      public bool PartnerIndexChanged = false;
       public string Route = string.Empty;
-      public bool RouteChanged = false;
       public string SecurityCatalog = string.Empty;
       public string SecurityPartner = string.Empty;
-      public bool SecurityChanged = false;
       public string ShippingID = String.Empty;
-      public bool TimeSlotChanged = false;
+      public string TimeSlot = string.Empty;
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       public bool Outbound = false;
-      public bool HasChanges = false;
-      public bool CommentsTextBoxChanged = false;
       public bool EstimateDeliveryTimeChanged = false;
+      public bool TimeSlotChanged = false;
       #endregion
 
       #region public methods
-      internal void MarkCommentsTextBoxChanged()
+      private void ClearState()
       {
-        CommentsTextBoxChanged = true;
-        HasChanges = true;
+        ShippingID = String.Empty;
+        Outbound = false;
+        TimeSlot = String.Empty;
       }
       internal void MarkEstimateDeliveryTimeChanged()
       {
         EstimateDeliveryTimeChanged = true;
-        HasChanges = true;
       }
       internal void ClearModifications()
       {
-        CommentsTextBoxChanged = false;
         EstimateDeliveryTimeChanged = false;
       }
-      internal void ClearShippingID()
-      {
-        ShippingID = String.Empty;
-        Outbound = false;
-      }
       #endregion
-
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
@@ -184,8 +173,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         SetVisible(m_AllButtons);
         m_StateMachineEngine.InitMahine();
       }
-      m_EstimateDeliveryTimeDateTimeControl.DateChanged += new EventHandler(m_EstimateDeliveryTime_DateChanged);
-      m_CommentsTextBox.TextChanged += new EventHandler(m_CommentsTextBox_TextChanged);
       m_SaveButton.Click += new EventHandler(m_StateMachineEngine.SaveButton_Click);
       m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.NewShippingButton_Click);
       m_CancelButton.Click += new EventHandler(m_StateMachineEngine.CancelButton_Click);
@@ -202,7 +189,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (state != null)
       {
-        m_ControlState = (MyControlState)state;
+        m_ControlState = (ControlState)state;
         m_StateMachineEngine.InitMahine(m_ControlState.InterfaceState);
       }
       else
@@ -323,7 +310,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       protected override void UpdateTimeSlot(TimeSlotInterconnectionData e)
       {
-        Parent.m_TimeSlotHiddenField.Value = e.ID;
+        Parent.m_ControlState.TimeSlot = e.ID;
       }
       protected override InterfaceState CurrentMachineState
       {
@@ -367,29 +354,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// </summary>
     private void ClearUserInterface()
     {
-      m_ControlState.ClearShippingID();
+      m_ControlState.ClearModifications();
       m_TimeSlotTextBox.TextBoxTextProperty(String.Empty, true);
-      m_TimeSlotHiddenField.Value = String.Empty;
-      m_TruckRegistrationHiddenField.Value = String.Empty;
       m_WarehouseTextBox.TextBoxTextProperty(String.Empty, true);
-      m_WarehouseHiddenField.Value = String.Empty;
       m_DocumentTextBox.TextBoxTextProperty(String.Empty, true);
       m_EstimateDeliveryTimeDateTimeControl.SelectedDate = DateTime.Now;
     }
     private void ShowTimeSlot(TimeSlotInterconnectionData _interconnectionData)
     {
-      bool _same = m_TimeSlotHiddenField.Value.Equals(_interconnectionData.ID);
-      if (_same)
-        return;
-      m_TimeSlotHiddenField.Value = _interconnectionData.ID;
+      m_ControlState.TimeSlot = _interconnectionData.ID;
       try
       {
-        using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
-        {
-          TimeSlot _cts = TimeSlot.GetAtIndex(edc, _interconnectionData.ID, true);
-          ShowTimeSlot(_cts);
-          m_SaveButton.Enabled = true;
-        }
+        TimeSlot _cts = TimeSlot.GetAtIndex(m_EDC, _interconnectionData.ID, true);
+        ShowTimeSlot(_cts);
       }
       catch (Exception ex)
       {
@@ -398,7 +375,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void ShowTimeSlot(TimeSlot _cts)
     {
-      m_TimeSlotHiddenField.Value = _cts.Identyfikator.ToString();
+      m_ControlState.TimeSlot = _cts.Identyfikator.ToString();
       m_TimeSlotTextBox.TextBoxTextProperty(String.Format("{0:R}", _cts.StartTime), true);
       Warehouse _wrs = _cts.GetWarehouse();
       m_WarehouseTextBox.TextBoxTextProperty(_wrs.Tytuł, true);
@@ -459,7 +436,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       try
       {
         Partner _prtnr = Partner.GetAtIndex(m_EDC, m_ControlState.PartnerIndex);
-        TimeSlot _ts = TimeSlot.GetAtIndex(m_EDC, m_TimeSlotHiddenField.Value, true);
+        TimeSlot _ts = TimeSlot.GetAtIndex(m_EDC, m_ControlState.TimeSlot, true);
         ShippingOperationInbound _sp = null;
         if (m_DashboardType == GlobalDefinitions.Roles.OutboundOwner)
           _sp = new ShippingOperationInbound
@@ -481,8 +458,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             );
           _sp = _spo;
           AssignPartners2Shipping(_spo);
-          if (m_ControlState.EstimateDeliveryTimeChanged)
-            _spo.EstimateDeliveryTime = m_EstimateDeliveryTimeDateTimeControl.SelectedDate;
+          _spo.EstimateDeliveryTime = m_EstimateDeliveryTimeDateTimeControl.SelectedDate;
         }
         _sp.CancelationReason = m_CommentsTextBox.Text;
         _ts.MakeBooking(_sp);
@@ -494,6 +470,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_EDC.Shipping.InsertOnSubmit(_sp);
         m_EDC.LoadDescription.InsertOnSubmit(_ld);
         m_EDC.SubmitChanges();
+        ReportAlert(_sp, "Created shipping");
       }
       catch (Exception ex)
       {
@@ -536,7 +513,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void UpdateShipping()
     {
-      if (!m_TimeSlotHiddenField.Value.String2Int().HasValue)
+      if (!m_ControlState.TimeSlot.String2Int().HasValue)
         return;
       try
       {
@@ -547,6 +524,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           TimeSlot _oldts = TimeSlot.GetShippingTimeSlot(m_EDC, _si.Identyfikator);
           _newts.MakeBooking(_si);
           _oldts.ReleaseBooking();
+          _si.StartTime = _newts.StartTime;
         }
         _si.CancelationReason = m_CommentsTextBox.Text;
         ShippingOperationOutbound _so = _si as ShippingOperationOutbound;
@@ -598,22 +576,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     #endregion
 
-    #region Eveny handlers
-    void m_CommentsTextBox_TextChanged(object sender, EventArgs e)
-    {
-      m_ControlState.CommentsTextBoxChanged = true;
-    }
-    void m_EstimateDeliveryTime_DateChanged(object sender, EventArgs e)
-    {
-      m_ControlState.EstimateDeliveryTimeChanged = true; ;
-    }
-    #endregion
-
     #region variables
     private const string m_DeliveryNoLabetText = "Delivery No";
     private ButtonsSet m_VisibilityACL;
     private ButtonsSet m_EditbilityACL;
-    private MyControlState m_ControlState = new MyControlState();
+    private ControlState m_ControlState = new ControlState();
     private GlobalDefinitions.Roles m_DashboardType = GlobalDefinitions.Roles.None;
     private const StateMachineEngine.ControlsSet m_AllButtons = (StateMachineEngine.ControlsSet)int.MaxValue;
     #endregion
