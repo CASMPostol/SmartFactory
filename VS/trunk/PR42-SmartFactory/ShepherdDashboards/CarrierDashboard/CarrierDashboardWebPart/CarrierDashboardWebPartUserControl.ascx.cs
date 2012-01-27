@@ -524,11 +524,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void AssignPartners2Shipping(ShippingOperationOutbound _spo)
     {
-      //TODO Next Column EscortName must be added and assigned.
       if (m_ControlState.SecurityCatalog.IsNullOrEmpty())
+      {
         _spo.SecurityEscort = null;
+        _spo.SecurityEscortProvider = null;
+      }
       else
+      {
         _spo.SecurityEscort = Element.GetAtIndex<SecurityEscortCatalog>(m_EDC.SecurityEscortCatalog, m_ControlState.SecurityCatalog);
+        _spo.SecurityEscortProvider = _spo.SecurityEscort.VendorName;
+        }
       if (m_ControlState.Route.IsNullOrEmpty())
       {
         _spo.Route = null;
