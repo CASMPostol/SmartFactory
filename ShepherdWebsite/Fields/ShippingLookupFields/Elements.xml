@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="ShippingOperationOutband2PartnerTitle"
+    ID="{2CEB1781-878F-46E5-9DF5-432463ABD971}"
+    Type="Lookup"
+    List="Lists/JTIPartnerList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Security Escort Provider"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="ShippingOperationOutband2TruckTitle"
     ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}"
     Type="Lookup"
