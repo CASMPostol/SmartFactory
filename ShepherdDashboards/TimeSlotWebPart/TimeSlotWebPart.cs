@@ -39,7 +39,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       }
     }
     TimeSlotWebPartUserControl m_control = null;
-    private InterconnectionDataTable<TimeSlot> m_SelectedTimeSlot = null;
+    private InterconnectionDataTable<TimeSlotTimeSlot> m_SelectedTimeSlot = null;
     /// <summary>
     /// Initializes a new instance of the <see cref="TimeSlotWebPart"/> class.
     /// </summary>

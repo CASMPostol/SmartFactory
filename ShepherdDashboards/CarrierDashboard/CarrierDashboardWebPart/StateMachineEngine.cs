@@ -156,7 +156,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.ViewState:
           SendShippingData(e.ID);
-          UpdateShowShipping(e);
+          ShowShipping(e);
           break;
         case InterfaceState.EditState:
           SendShippingData(e.ID);
@@ -201,7 +201,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region private
 
     #region protected
-    protected abstract void UpdateShowShipping(ShippingInterconnectionData _shipping);
+    protected abstract void ShowShipping(ShippingInterconnectionData _shipping);
     protected abstract void ClearUserInterface();
     protected abstract void SetEnabled(ControlsSet _buttons);
     protected abstract void ShowTimeSlot(TimeSlotInterconnectionData e);
