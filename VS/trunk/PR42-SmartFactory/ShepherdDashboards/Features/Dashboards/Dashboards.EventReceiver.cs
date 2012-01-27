@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Navigation;
 using System.Collections.Generic;
+using CAS.SmartFactory.Shepherd.Dashboards.WebPartPages;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
 {
@@ -29,10 +30,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         _root.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
         _root.Update();
         // create dropdown menu for custom site pages
-        Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting"); 
+        Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
         SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
-         _topNav[0].Children.AddAsLast(new SPNavigationNode(m_VendorMenyTitle, WebPartPages.ProjectElementManagement.CarrierDashboardURL));
-        _topNav[0].Children.AddAsLast(new SPNavigationNode(m_ForwarderTitle, WebPartPages.ProjectElementManagement.ForwarderDashboardURL));
+        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
+        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuForwarderTitle, ProjectElementManagement.URLForwarderDashboard));
+        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityEscortProviderTitle, ProjectElementManagement.URLSecurityEscortProviderDashboard));
+        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityGateTitle, ProjectElementManagement.URLGateDashboard));
+        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundOwnerTitle, ProjectElementManagement.URLOutboundOwner));
         WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
         Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated finished");
       }
@@ -59,9 +63,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
       {
         SPNavigationNodeCollection topNav = _root.Navigation.TopNavigationBar;
         for (int i = topNav[0].Children.Count - 1; i >= 0; i--)
-          if (topNav[0].Children[i].Title == m_VendorMenyTitle)
-            topNav[0].Children[i].Delete();
-          else if (topNav[0].Children[i].Title == m_ForwarderTitle)
+          if (
+            topNav[0].Children[i].Title == ProjectElementManagement.MenuVendorTitle ||
+            topNav[0].Children[i].Title == ProjectElementManagement.MenuForwarderTitle ||
+            topNav[0].Children[i].Title == ProjectElementManagement.MenuSecurityEscortProviderTitle ||
+            topNav[0].Children[i].Title == ProjectElementManagement.MenuSecurityGateTitle ||
+            topNav[0].Children[i].Title == ProjectElementManagement.MenuOutboundOwnerTitle
+           )
             topNav[0].Children[i].Delete();
       }
       catch (Exception ex)
@@ -69,8 +77,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         throw new ApplicationException("Cannot remove navigation entries: " + ex.Message);
       }
     }
-    private const string m_VendorMenyTitle = "Vendor";
-    private const string m_ForwarderTitle = "Forwarder";
     private static void DeleteWebParts(Entities.EntitiesDataContext _edc, SPWeb _root)
     {
       Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts strating");
