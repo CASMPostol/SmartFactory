@@ -343,8 +343,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void ShowTimeSlot(TimeSlotInterconnectionData _interconnectionData)
     {
-      if (m_ControlState.TimeSlot == _interconnectionData.ID)
-        return;
       m_ControlState.TimeSlot = _interconnectionData.ID;
       m_ControlState.TimeSlotChanged = true;
       try
@@ -415,14 +413,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
       m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
     }
+    #endregion
+
+    #region Shipping management
     private void CreateShipping()
     {
       try
       {
-        Partner _prtnr = Partner.GetAtIndex(m_EDC, m_ControlState.PartnerIndex);
-        TimeSlotTimeSlot _ts = TimeSlotTimeSlot.GetAtIndex(m_EDC, m_ControlState.TimeSlot, true);
+        Partner _prtnr = Element.GetAtIndex<Partner>(m_EDC.JTIPartner, m_ControlState.PartnerIndex);
+        TimeSlotTimeSlot _ts = Element.GetAtIndex<TimeSlotTimeSlot>(m_EDC.TimeSlot, m_ControlState.TimeSlot);
         ShippingOperationInbound _sp = null;
-        if (m_DashboardType == GlobalDefinitions.Roles.OutboundOwner)
+        if (m_DashboardType != GlobalDefinitions.Roles.OutboundOwner)
           _sp = new ShippingOperationInbound
           (
             String.Format("{0}", m_DocumentTextBox.Text),
@@ -489,6 +490,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           default:
             break;
         }
+        m_EDC.SubmitChanges();
       }
       catch (Exception ex)
       {
@@ -533,7 +535,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         _spo.SecurityEscort = Element.GetAtIndex<SecurityEscortCatalog>(m_EDC.SecurityEscortCatalog, m_ControlState.SecurityCatalog);
         _spo.SecurityEscortProvider = _spo.SecurityEscort.VendorName;
-        }
+      }
       if (m_ControlState.Route.IsNullOrEmpty())
       {
         _spo.Route = null;
@@ -545,6 +547,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _spo.VendorName = _spo.Route.VendorName;
       }
     }
+    #endregion
+
+    #region Reports
     private void ReportException(string _source, Exception ex)
     {
       string _tmplt = "The current operation has been interrupted by error {0}.";
@@ -563,6 +568,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         Tytuł = _msg,
       };
       m_EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
+      m_EDC.SubmitChanges();
     }
     #endregion
 

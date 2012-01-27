@@ -137,10 +137,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region Connection call back
     internal void NewDataEventHandler(object sender, TimeSlotInterconnectionData e)
     {
-      UpdateTimeSlot(e);
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
+          UpdateTimeSlot(e);
           break;
         case InterfaceState.NewState:
         case InterfaceState.EditState:
