@@ -220,7 +220,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       #endregion
 
       #region abstract implementation
-      protected override void UpdateShowShipping(ShippingInterconnectionData _shipping)
+      protected override void ShowShipping(ShippingInterconnectionData _shipping)
       {
         if (Parent.m_ControlState.ShippingID == _shipping.ID) return;
         Parent.m_ControlState.ShippingID = _shipping.ID;
@@ -236,7 +236,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             Parent.m_RouteLabel.Text = _so.Route != null ? _so.Route.Tytuł : String.Empty;
             Parent.m_SecurityEscortLabel.Text = _so.SecurityEscort != null ? _so.SecurityEscort.Tytuł : string.Empty;
           }
-          TimeSlot _cts = TimeSlot.GetShippingTimeSlot(Parent.m_EDC, _shipping.ID);
+          TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(Parent.m_EDC, _shipping.ID);
           List<LoadDescription> _ld = LoadDescription.GetForShipping(Parent.m_EDC, _shipping.ID);
           Parent.ShowTimeSlot(_cts);
           string _ldLabel = String.Empty;
@@ -349,7 +349,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ControlState.TimeSlotChanged = true;
       try
       {
-        TimeSlot _cts = TimeSlot.GetAtIndex(m_EDC, _interconnectionData.ID, true);
+        TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetAtIndex(m_EDC, _interconnectionData.ID, true);
         ShowTimeSlot(_cts);
       }
       catch (Exception ex)
@@ -357,7 +357,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_TimeSlotTextBox.TextBoxTextProperty(ex.Message, true);
       }
     }
-    private void ShowTimeSlot(TimeSlot _cts)
+    private void ShowTimeSlot(TimeSlotTimeSlot _cts)
     {
       m_ControlState.TimeSlot = _cts.Identyfikator.ToString();
       m_TimeSlotTextBox.TextBoxTextProperty(String.Format("{0:R}", _cts.StartTime), true);
@@ -420,7 +420,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       try
       {
         Partner _prtnr = Partner.GetAtIndex(m_EDC, m_ControlState.PartnerIndex);
-        TimeSlot _ts = TimeSlot.GetAtIndex(m_EDC, m_ControlState.TimeSlot, true);
+        TimeSlotTimeSlot _ts = TimeSlotTimeSlot.GetAtIndex(m_EDC, m_ControlState.TimeSlot, true);
         ShippingOperationInbound _sp = null;
         if (m_DashboardType == GlobalDefinitions.Roles.OutboundOwner)
           _sp = new ShippingOperationInbound
@@ -470,7 +470,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         switch (_newState)
         {
           case State.Canceled:
-            TimeSlot _ts = (from _tsx in _si.TimeSlot orderby _tsx.StartTime.Value descending select _tsx).First();
+            TimeSlotTimeSlot _ts = (TimeSlotTimeSlot)(from _tsx in _si.TimeSlot orderby _tsx.StartTime.Value descending select _tsx).First();
             _ts.ReleaseBooking();
             ReportAlert(_si, _si.VendorName, "The shipping has been canceled.");
             break;
@@ -504,8 +504,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         ShippingOperationInbound _si = Element.GetAtIndex<ShippingOperationInbound>(m_EDC.Shipping, m_ControlState.ShippingID);
         if (m_ControlState.TimeSlotChanged)
         {
-          TimeSlot _newts = (from _ts in _si.TimeSlot orderby _ts.StartTime descending select _ts).First();
-          TimeSlot _oldts = TimeSlot.GetShippingTimeSlot(m_EDC, _si.Identyfikator);
+          TimeSlotTimeSlot _newts = (TimeSlotTimeSlot)(from _ts in _si.TimeSlot orderby _ts.StartTime descending select _ts).First();
+          TimeSlotTimeSlot _oldts = TimeSlotTimeSlot.GetShippingTimeSlot(m_EDC, _si.Identyfikator);
           _newts.MakeBooking(_si);
           _oldts.ReleaseBooking();
           _si.StartTime = _newts.StartTime;

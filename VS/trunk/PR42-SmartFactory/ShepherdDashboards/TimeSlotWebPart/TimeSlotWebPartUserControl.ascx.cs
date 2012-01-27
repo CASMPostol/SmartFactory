@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     {
       SimpleTimeSlotList = true;
     }
-    internal InterconnectionDataTable<TimeSlot> GetSelectedTimeSlotInterconnectionData()
+    internal InterconnectionDataTable<TimeSlotTimeSlot> GetSelectedTimeSlotInterconnectionData()
     {
       string _tn = typeof(TimeSlot).GetType().Name;
       int _sts = -1;
@@ -24,11 +24,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       try
       {
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
-          return new InterconnectionDataTable<TimeSlot>(TimeSlot.GetAtIndex(edc, _sts, true), typeof(TimeSlot).Name);
+          return new InterconnectionDataTable<TimeSlotTimeSlot>(TimeSlotTimeSlot.GetAtIndex(edc, _sts, true), typeof(TimeSlot).Name);
       }
       catch (Exception)
       {
-        return new InterconnectionDataTable<TimeSlot>();
+        return new InterconnectionDataTable<TimeSlotTimeSlot>();
       }
     }
     #endregion
@@ -101,7 +101,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       string _wrhs = m_WarehouseDropDownList.SelectedValue;
       if ((_sd != null) && (!String.IsNullOrEmpty(_wrhs)))
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
-          foreach (var item in TimeSlot.GetFreeForSelectedMonth(edc, _sd, _wrhs))
+          foreach (var item in TimeSlotTimeSlot.GetFreeForSelectedMonth(edc, _sd, _wrhs))
           {
             if (!m_AvailableDays.ContainsKey(item.Date))
               m_AvailableDays.Add(item.Date, 1);
@@ -118,7 +118,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       if (!int.TryParse(_wrhs, out _intWhr) || _intWhr <= 0)
         return;
       bool _first = false;
-      foreach (var _cts in TimeSlot.GetForSelectedDay(edc, _sd, _intWhr))
+      foreach (var _cts in TimeSlotTimeSlot.GetForSelectedDay(edc, _sd, _intWhr))
       {
         ListItem _ni = new ListItem(String.Format("{0:HH:mm}", _cts.StartTime), _cts.Identyfikator.ToString(), true);
         if (_first)
@@ -136,7 +136,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         return;
       int _hr = 0;
       bool _first = false;
-      foreach (var _cts in TimeSlot.GetForSelectedDay(edc, _sd, _intWhr))
+      foreach (var _cts in TimeSlotTimeSlot.GetForSelectedDay(edc, _sd, _intWhr))
       {
         while (_hr++ < _cts.StartTime.Value.Hour)
           m_TimeSlotList.Items.Add(new ListItem(m_EmptyTimeSlot, "-1"));
