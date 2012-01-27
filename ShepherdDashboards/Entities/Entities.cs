@@ -257,9 +257,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		/// TimeSLot List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="TimeSlot")]
-		public Microsoft.SharePoint.Linq.EntityList<TimeSlot> TimeSlot {
+		public Microsoft.SharePoint.Linq.EntityList<TimeSlotTimeSlot> TimeSlot {
 			get {
-				return this.GetList<TimeSlot>("TimeSlot");
+				return this.GetList<TimeSlotTimeSlot>("TimeSlot");
 			}
 		}
 		
@@ -604,7 +604,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private string _lokalizacja;
 		
-		private System.Nullable<System.DateTime> _startTime;
+		protected System.Nullable<System.DateTime> _startTime;
 		
 		private System.Nullable<System.DateTime> _endTime;
 		
@@ -643,7 +643,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="StartDate", Storage="_startTime", Required=true, FieldType="DateTime")]
-		public System.Nullable<System.DateTime> StartTime {
+		public virtual System.Nullable<System.DateTime> StartTime {
 			get {
 				return this._startTime;
 			}
@@ -1447,6 +1447,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Warehouse> _warehouse;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> _shippingOperationOutbound;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1462,6 +1464,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._warehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseSync);
 			this._warehouse.OnChanged += new System.EventHandler(this.OnWarehouseChanged);
 			this._warehouse.OnChanging += new System.EventHandler(this.OnWarehouseChanging);
+			this._shippingOperationOutbound = new Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound>();
+			this._shippingOperationOutbound.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound>>(this.OnShippingOperationOutboundSync);
+			this._shippingOperationOutbound.OnChanged += new System.EventHandler(this.OnShippingOperationOutboundChanged);
+			this._shippingOperationOutbound.OnChanging += new System.EventHandler(this.OnShippingOperationOutboundChanging);
 			this.OnCreated();
 		}
 		
@@ -1586,6 +1592,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2PartnerTitle", Storage="_shippingOperationOutbound", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> ShippingOperationOutbound {
+			get {
+				return this._shippingOperationOutbound;
+			}
+			set {
+				this._shippingOperationOutbound.Assign(value);
+			}
+		}
+		
 		private void OnAlarmsAndEventsChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("AlarmsAndEvents", this._alarmsAndEvents.Clone());
 		}
@@ -1612,6 +1628,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
+		}
+		
+		private void OnShippingOperationOutboundChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ShippingOperationOutbound", this._shippingOperationOutbound.Clone());
+		}
+		
+		private void OnShippingOperationOutboundChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ShippingOperationOutbound");
+		}
+		
+		private void OnShippingOperationOutboundSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SecurityEscortProvider = this;
+			}
+			else {
+				e.Item.SecurityEscortProvider = null;
+			}
 		}
 	}
 	
@@ -3608,6 +3641,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	/// Time Slot
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlot", Id="0x0102008B8977AFA9104B18B4B25D7C06A4A3AA")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlotTimeSlot))]
 	public partial class TimeSlot : Wydarzenie {
 		
 		private System.Nullable<System.DateTime> _entryTime;
@@ -4285,6 +4319,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private System.Nullable<double> _additionalCosts;
 		
+		private Microsoft.SharePoint.Linq.EntityRef<Partner> _securityEscortProvider;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _securitySealProtocol;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog> _securityEscort;
@@ -4300,6 +4336,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		#endregion
 		
 		public ShippingOperationOutbound() {
+			this._securityEscortProvider = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
+			this._securityEscortProvider.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnSecurityEscortProviderSync);
+			this._securityEscortProvider.OnChanged += new System.EventHandler(this.OnSecurityEscortProviderChanged);
+			this._securityEscortProvider.OnChanging += new System.EventHandler(this.OnSecurityEscortProviderChanging);
 			this._securitySealProtocol = new Microsoft.SharePoint.Linq.EntityRef<Dokument>();
 			this._securitySealProtocol.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnSecuritySealProtocolSync);
 			this._securitySealProtocol.OnChanged += new System.EventHandler(this.OnSecuritySealProtocolChanged);
@@ -4347,6 +4387,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2PartnerTitle", Storage="_securityEscortProvider", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JTI Partner")]
+		public Partner SecurityEscortProvider {
+			get {
+				return this._securityEscortProvider.GetEntity();
+			}
+			set {
+				this._securityEscortProvider.SetEntity(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_securitySealProtocol", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Security Seal Protocol")]
 		public Dokument SecuritySealProtocol {
 			get {
@@ -4384,6 +4434,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			set {
 				this._route.SetEntity(value);
+			}
+		}
+		
+		private void OnSecurityEscortProviderChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SecurityEscortProvider", this._securityEscortProvider.Clone());
+		}
+		
+		private void OnSecurityEscortProviderChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SecurityEscortProvider");
+		}
+		
+		private void OnSecurityEscortProviderSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ShippingOperationOutbound.Add(this);
+			}
+			else {
+				e.Item.ShippingOperationOutbound.Remove(this);
 			}
 		}
 		
@@ -4517,6 +4584,37 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	}
 	
 	/// <summary>
+	/// Time Slot
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlot", Id="0x0102008B8977AFA9104B18B4B25D7C06A4A3AA", List="TimeSlot")]
+	public partial class TimeSlotTimeSlot : TimeSlot {
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public TimeSlotTimeSlot() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EventDate", Storage="_startTime", Required=true, FieldType="DateTime")]
+		public override System.Nullable<System.DateTime> StartTime {
+			get {
+				return this._startTime;
+			}
+			set {
+				if ((value != this._startTime)) {
+					this.OnPropertyChanging("StartTime", this._startTime);
+					this._startTime = value;
+					this.OnPropertyChanged("StartTime");
+				}
+			}
+		}
+	}
+	
+	/// <summary>
 	/// TimeSlotTemplates
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlotTemplates", Id="0x0102009071878DECFF4D77B9136AE225F306E9", List="TimeSlot Templates")]
@@ -4530,6 +4628,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		public TimeSlotTemplatesTimeSlotTemplates() {
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EventDate", Storage="_startTime", Required=true, FieldType="DateTime")]
+		public override System.Nullable<System.DateTime> StartTime {
+			get {
+				return this._startTime;
+			}
+			set {
+				if ((value != this._startTime)) {
+					this.OnPropertyChanging("StartTime", this._startTime);
+					this._startTime = value;
+					this.OnPropertyChanged("StartTime");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Description", Storage="_description", FieldType="Note")]
