@@ -8,6 +8,7 @@
                Inherits="True">
     <Folder TargetName="_cts/ShippingOperationOutbound" />
     <FieldRefs>
+      <FieldRef ID="{2CEB1781-878F-46E5-9DF5-432463ABD971}" Name="ShippingOperationOutband2PartnerTitle" />
       <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
       <FieldRef ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Name="SecurityEscortCatalogTitle" />
       <FieldRef ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}" Name="ShippingOperationOutband2TruckTitle" />
