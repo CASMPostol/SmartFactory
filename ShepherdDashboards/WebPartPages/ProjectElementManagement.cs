@@ -12,9 +12,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
 {
   internal class ProjectElementManagement
   {
+    //Menu entries
+    internal const string MenuVendorTitle = "Vendor";
+    internal const string MenuForwarderTitle = "Forwarder";
+    internal const string MenuSecurityEscortProviderTitle = "Escort";
+    internal const string MenuSecurityGateTitle = "Gate";
+    internal const string MenuOutboundOwnerTitle = "Outbound";
+
+    //Webpages
     internal const string WebPartPagesFolder = "WebPartPages";
-    internal const string CarrierDashboardURL = WebPartPagesFolder + "/VendorDashboard.aspx";
-    internal const string ForwarderDashboardURL = WebPartPagesFolder + "/ForwarderDashboard.aspx";
+    internal const string URLVendorDashboard = WebPartPagesFolder + "/VendorDashboard.aspx";
+    internal const string URLSecurityEscortProviderDashboard = WebPartPagesFolder + "/SecurityEscortProviderDashboard.aspx";
+    internal const string URLForwarderDashboard = WebPartPagesFolder + "/ForwarderDashboard.aspx";
+    internal const string URLGateDashboard = WebPartPagesFolder + "/GateDashboard.aspx";
+    internal const string URLOutboundOwner = WebPartPagesFolder + "/OutboundOwnerDashboard.aspx";
+
     internal const string IDCurrentUser = "CDCurrentUser";
     internal const string IDTimeSlots = "CDTimeSlots";
     internal const string IDCDShipping = "CDShipping";
@@ -24,7 +36,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
     internal const string IDAlarmsAndEevents = "CDAlarmsAndEevents";
     internal static void SetupConnections(EntitiesDataContext _edc, SPWeb _root)
     {
-      SPFile file = _root.GetFile(CarrierDashboardURL);
+      SPFile file = _root.GetFile(URLVendorDashboard);
       System.Collections.Generic.Dictionary<string, WebPart> _dict = new System.Collections.Generic.Dictionary<string, WebPart>();
       Anons.WriteEntry(_edc, m_SourceClass + m_SourceSetupConnections, "Setup connections starting");
       string _phase = "starting";
