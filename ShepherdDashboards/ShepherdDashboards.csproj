@@ -208,6 +208,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDefault.css" />
+    <Content Include="WebPartPages\GateDashboardTemplate.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="TimeSlotWebPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

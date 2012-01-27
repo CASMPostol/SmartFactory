@@ -194,5 +194,8 @@
 </webParts>]]>
       </AllUsersWebPart>
     </File>
-</Module>
+    <File Path="WebPartPages\GateDashboardTemplate.aspx" Url="WebPartPages/GateDashboard.aspx">
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" ID="GDAlarmsAndEvents" />
+    </File>
+  </Module>
 </Elements>
