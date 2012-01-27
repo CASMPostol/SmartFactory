@@ -196,6 +196,26 @@
     </File>
     <File Path="WebPartPages\GateDashboardTemplate.aspx" Url="WebPartPages/GateDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" ID="GDAlarmsAndEvents" />
+      <AllUsersWebPart WebPartZoneID="Main" WebPartOrder="0" ID="GDCurrentUser" >
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.CurrentUserWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Current User</property>
+        <property name="Description" type="string">Provides information about current user and his affiliation.</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="ID" type="string">CDCurrentUser</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+      <View List="Lists/ShippingList" BaseViewID="3" WebPartZoneID="Main" WebPartOrder="1" ID="GDShipping" />
     </File>
   </Module>
 </Elements>
