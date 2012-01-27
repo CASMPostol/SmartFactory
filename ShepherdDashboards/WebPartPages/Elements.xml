@@ -2,8 +2,8 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="WebPartPages" >
     <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url="WebPartPages/VendorDashboard.aspx">
-      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" ID="CDAlarmsAndEvents" />
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="CDCurrentUser" >
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" ID="VDAlarmsAndEvents" />
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="VDCurrentUser" >
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -22,9 +22,9 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/ShippingList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="CDShipping" />
-      <View List="Lists/LoadDescriptionList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="2" ID="CDLoadDescription" />
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="CDTimeSlots">
+      <View List="Lists/ShippingList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="VDShipping" />
+      <View List="Lists/LoadDescriptionList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="2" ID="VDLoadDescription" />
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="VDTimeSlots">
         <![CDATA[<webParts>
                   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >
                     <metaData>
@@ -41,7 +41,7 @@
                   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="CDCarrierDashboardWebPart">
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="VDCarrierDashboardWebPart">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -53,12 +53,13 @@
         <property name="Title" type="string">Carrier Dashboard Manager</property>
         <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
         <property name="ID" type="string">CarrierDashboardWebPart</property>
+        <property name="Role" >Vendor</property>
       </properties>
     </data>
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="2" ID="CDTransportResources" >
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="2" ID="VDTransportResources" >
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -111,6 +112,7 @@
         <property name="Title" type="string">Carrier Dashboard Manager</property>
         <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
         <property name="ID" type="string">CarrierDashboardWebPart</property>
+        <property name="Role">Forwarder</property>
       </properties>
     </data>
   </webPart>
@@ -168,6 +170,7 @@
         <property name="Title" type="string">Carrier Dashboard Manager</property>
         <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
         <property name="ID" type="string">CarrierDashboardWebPart</property>
+        <property name="Role">Escort</property>
       </properties>
     </data>
   </webPart>
