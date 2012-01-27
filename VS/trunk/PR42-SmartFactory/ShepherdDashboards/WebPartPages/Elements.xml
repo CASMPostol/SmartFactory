@@ -217,5 +217,7 @@
       </AllUsersWebPart>
       <View List="Lists/ShippingList" BaseViewID="3" WebPartZoneID="Main" WebPartOrder="1" ID="GDShipping" />
     </File>
+    <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url ="WebPartPages/OutboundOwnerDashboard.aspx">
+    </File>
   </Module>
 </Elements>
