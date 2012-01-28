@@ -193,6 +193,34 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
+    internal void NewDataEventHandler(object sender, PartnerInterconnectionData e)
+    {
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          ShowPartner(e);
+          break;
+        case InterfaceState.NewState:
+          break;
+        default:
+          break;
+      }
+    }
+    internal void NewDataEventHandler(object sender, MarketInterconnectionData e)
+    {
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          ShowMarket(e);
+          break;
+        case InterfaceState.NewState:
+          break;
+        default:
+          break;
+      }
+    }
     internal event InterconnectionDataTable<ShippingOperationInbound>.SetDataEventArg m_ShippintInterconnectionEvent;
     #endregion
 
@@ -205,6 +233,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected abstract void ShowTimeSlot(TimeSlotInterconnectionData e);
     protected abstract void ShowRoute(RouteInterconnectionnData e);
     protected abstract void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData e);
+    protected abstract void ShowPartner(PartnerInterconnectionData e);
+    protected abstract void ShowMarket(MarketInterconnectionData e);
     protected abstract void SMError(InterfaceEvent interfaceEvent);
     protected abstract void AcceptShipping();
     protected abstract void UpdateShipping();

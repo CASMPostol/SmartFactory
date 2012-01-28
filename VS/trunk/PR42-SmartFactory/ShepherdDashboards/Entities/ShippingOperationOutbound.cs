@@ -7,9 +7,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
   public partial class ShippingOperationOutbound
   {
-    public ShippingOperationOutbound(DateTime _deliveryTime, string _title, Partner _prtnr, Entities.State _state, DateTime? _startTime)
+    public ShippingOperationOutbound(Route _route, DateTime _deliveryTime, string _title, Partner _prtnr, Entities.State _state, DateTime? _startTime)
       : this()
     {
+      this.Route = _route;
       EstimateDeliveryTime = _deliveryTime;
       Tytuł = _title;
       VendorName = _prtnr;

@@ -114,6 +114,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.PartnerInterconnection, _provider);
     }
     /// <summary>
+    /// Sets the current user provider.
+    /// </summary>
+    /// <param name="_provider">The provider interface.</param>
+    [ConnectionConsumer("Primary market table interconnection", "MarketInterconnection", AllowsMultipleConnections = false)]
+    public void SetMarketProvider(IWebPartRow _provider)
+    {
+      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.PartnerInterconnection, _provider);
+    }    /// <summary>
     /// Gets the connection interface allowing to get selected entry of <see cref="ShippingOperationInbound"/>.
     /// </summary>
     /// <returns>Returns an instance of the <see cref="IWebPartRow"/> representing <see cref="ShippingOperationInbound"/>.</returns>
