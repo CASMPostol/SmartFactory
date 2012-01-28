@@ -77,16 +77,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     public void SetSecurityEscortCatalogProvider(IWebPartRow _provider)
     {
       m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.SecurityEscortCatalogInterconnection, _provider);
-    }    /// <summary>
+    }
     /// <summary>
-    /// Sets the Route provider.
+    /// "Route table interconnection.
     /// </summary>
-    /// <param name="_provider">The provider interface.</param>
+    /// <param name="_provider">The provider interface..</param>
     [ConnectionConsumer("Route table interconnection", "RouteInterconnection", AllowsMultipleConnections = false)]
     public void SetRouteProvider(IWebPartRow _provider)
     {
       m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.RouteInterconnection, _provider);
-    }    /// <summary>
+    }
+    /// <summary>
     /// Sets the shipping provider.
     /// </summary>
     /// <param name="_provider">The provider interface.</param>
@@ -114,7 +115,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.PartnerInterconnection, _provider);
     }
     /// <summary>
-    /// Sets the current user provider.
+    /// Primary market table interconnection.
     /// </summary>
     /// <param name="_provider">The provider interface.</param>
     [ConnectionConsumer("Primary market table interconnection", "MarketInterconnection", AllowsMultipleConnections = false)]
