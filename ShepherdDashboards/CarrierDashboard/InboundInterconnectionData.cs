@@ -14,6 +14,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
       ShippingInterconnection,
       TimeSlotInterconnection, 
       PartnerInterconnection,
+      MarketInterconnection,
       DriverInterconnection,
       RouteInterconnection,
       SecurityEscortCatalogInterconnection
@@ -87,10 +88,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
   }
   internal class PartnerInterconnectionData : InterconnectionData<PartnerInterconnectionData>
   {}
+  internal class MarketInterconnectionData : InterconnectionData<MarketInterconnectionData>
+  { }
   internal class RouteInterconnectionnData : InterconnectionData<RouteInterconnectionnData>
-  {
-
-  }
+  {}
   internal class SecurityEscortCatalogInterconnectionData : InterconnectionData<SecurityEscortCatalogInterconnectionData>
   {}
   internal static class InterconnectionExtensions
