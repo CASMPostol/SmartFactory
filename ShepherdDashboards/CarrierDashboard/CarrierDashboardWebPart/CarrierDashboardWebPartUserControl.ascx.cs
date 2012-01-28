@@ -11,6 +11,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
   using ButtonsSet = StateMachineEngine.ControlsSet;
   using InterfaceState = StateMachineEngine.InterfaceState;
   using System.Web.UI.WebControls;
+  using System.Drawing;
   /// <summary>
   /// Carrier Dashboard WebPart UserControl
   /// </summary>
@@ -88,7 +89,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn;
             break;
           case GlobalDefinitions.Roles.Guard:
-            m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.DocumentOn | ButtonsSet.RouteOn | ButtonsSet.WarehouseOn 
+            m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.DocumentOn | ButtonsSet.RouteOn | ButtonsSet.WarehouseOn
               | ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
             m_EditbilityACL = 0;
             break;
@@ -283,9 +284,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         Parent.UpdateShipping();
       }
-      protected override void CreateShipping()
+      protected override bool CreateShipping()
       {
-        Parent.CreateShipping();
+        return Parent.CreateShipping();
       }
       protected override void AbortShipping()
       {
@@ -340,6 +341,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TimeSlotTextBox.TextBoxTextProperty(String.Empty, true);
       m_WarehouseTextBox.TextBoxTextProperty(String.Empty, true);
       m_DocumentTextBox.TextBoxTextProperty(String.Empty, true);
+      m_CommentsTextBox.TextBoxTextProperty(String.Empty, false);
       m_EstimateDeliveryTimeDateTimeControl.SelectedDate = DateTime.Now;
     }
     private void ShowTimeSlot(TimeSlotInterconnectionData _interconnectionData)
@@ -417,10 +419,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region Shipping management
-    private void CreateShipping()
+    private bool CreateShipping()
     {
       try
       {
+        if (m_ControlState.TimeSlot.IsNullOrEmpty())
+          this.Controls.Add(
+            new Label()
+              {
+                ForeColor = Color.Red,
+                Text = String.Format("{0} must be selected", m_TimeSlotLabel.Text)
+              });
+        if (m_DocumentTextBox.Text.IsNullOrEmpty())
+          this.Controls.Add(
+            new Label()
+              {
+                ForeColor = Color.Red,
+                Text = String.Format( "{0} must be provided", m_DocumentLabel.Text)
+              });
         Partner _prtnr = Element.GetAtIndex<Partner>(m_EDC.JTIPartner, m_ControlState.PartnerIndex);
         TimeSlotTimeSlot _ts = Element.GetAtIndex<TimeSlotTimeSlot>(m_EDC.TimeSlot, m_ControlState.TimeSlot);
         ShippingOperationInbound _sp = null;
@@ -457,10 +473,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_EDC.LoadDescription.InsertOnSubmit(_ld);
         m_EDC.SubmitChanges();
         ReportAlert(_sp, "Created shipping");
+        return true;
       }
       catch (Exception ex)
       {
         ReportException("CreateShipping", ex);
+        return false;
       }
     }
     private void ChangeShippingState(State _newState)

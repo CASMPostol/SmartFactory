@@ -49,8 +49,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           CurrentMachineState = InterfaceState.ViewState;
           break;
         case InterfaceState.NewState:
-          this.CreateShipping();
-          CurrentMachineState = InterfaceState.ViewState;
+          if (this.CreateShipping())
+            CurrentMachineState = InterfaceState.ViewState;
           break;
         case InterfaceState.ViewState:
         default:
@@ -169,11 +169,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       switch (CurrentMachineState)
       {
-        case InterfaceState.ViewState:
+        case InterfaceState.NewState:
         case InterfaceState.EditState:
           ShowRoute(e);
           break;
-        case InterfaceState.NewState:
+        case InterfaceState.ViewState:
           break;
         default:
           break;
@@ -208,7 +208,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected abstract void SMError(InterfaceEvent interfaceEvent);
     protected abstract void AcceptShipping();
     protected abstract void UpdateShipping();
-    protected abstract void CreateShipping();
+    protected abstract bool CreateShipping();
     protected abstract void AbortShipping();
     protected abstract void UpdateTimeSlot(TimeSlotInterconnectionData e);
     protected abstract InterfaceState CurrentMachineState { get; set; }
@@ -220,7 +220,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.ViewState:
           SetEnabled(ControlsSet.EditOn | ControlsSet.NewOn);
-          ClearUserInterface();
           break;
         case InterfaceState.EditState:
           SetEnabled

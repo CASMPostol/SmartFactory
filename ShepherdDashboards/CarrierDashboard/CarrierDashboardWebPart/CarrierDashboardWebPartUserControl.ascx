@@ -18,7 +18,7 @@
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_WarehouseLabel" runat="server" Text="Warehouse" CssClass="Label"></asp:Label>
+        <asp:Label ID="m_WarehouseLabel" runat="server" Text="Warehouse"  CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
         <asp:TextBox ID="m_WarehouseTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
       </asp:TableCell></asp:TableRow>
@@ -26,7 +26,7 @@
       <asp:TableCell>
         <asp:Label ID="m_TimeSlotLabel" runat="server" Text="Time Slot" AssociatedControlID="m_TimeSlotTextBox"
           CssClass="Label"></asp:Label></asp:TableCell><asp:TableCell>
-            <asp:TextBox ID="m_TimeSlotTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
+            <asp:TextBox ID="m_TimeSlotTextBox" runat="server" ToolTip="Select a Time Slot from the calendar to schedule the shipping." CssClass="TextBox" Enabled="false"></asp:TextBox>
           </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
