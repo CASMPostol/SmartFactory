@@ -159,8 +159,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           ShowShipping(e);
           break;
         case InterfaceState.EditState:
-          SendShippingData(e.ID);
-          break;
         case InterfaceState.NewState:
           break;
         default:
