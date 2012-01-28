@@ -63,37 +63,38 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         switch (value)
         {
           case GlobalDefinitions.Roles.OutboundOwner:
-            m_VisibilityACL = m_AllButtons;
-            m_EditbilityACL = m_AllButtons;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn;
             break;
           case GlobalDefinitions.Roles.Coordinator:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn;
             m_EditbilityACL = m_AllButtons;
             break;
           case GlobalDefinitions.Roles.Supervisor:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.AcceptOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.AcceptOn;
             break;
           case GlobalDefinitions.Roles.InboundOwner:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn;
             break;
           case GlobalDefinitions.Roles.Operator:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AbortOn ^
-              ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.NewOn ^ ButtonsSet.RouteOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
+              ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.NewOn ^ ButtonsSet.RouteOn ^ ButtonsSet.AcceptOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn;
             break;
           case GlobalDefinitions.Roles.Vendor:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn;
             break;
           case GlobalDefinitions.Roles.Guard:
-            m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.DocumentOn | ButtonsSet.RouteOn | ButtonsSet.WarehouseOn | ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
+            m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.DocumentOn | ButtonsSet.RouteOn | ButtonsSet.WarehouseOn 
+              | ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
             m_EditbilityACL = 0;
             break;
           case GlobalDefinitions.Roles.Forwarder:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.NewOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.WarehouseOn ^ ButtonsSet.SecurityEscortOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.NewOn ^ ButtonsSet.AcceptOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.WarehouseOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn;
             break;
           case GlobalDefinitions.Roles.Escort:
             m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.RouteOn | ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
