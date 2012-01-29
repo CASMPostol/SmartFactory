@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
+using System.IO;
+using System.Diagnostics;
+using CAS.SmartFactory.Shepherd.ImportExport.XML;
 
 namespace CAS.SmartFactory.Shepherd.ImportExport
 {
@@ -41,17 +44,40 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       }
       base.Dispose(disposing);
     }
-    private void m_TimeSlotsCreateButton_Click(object sender, EventArgs e)
+    private Stopwatch m_Stopwatch = new Stopwatch();
+    private delegate void UpdateToolStripEvent(object obj, ProgressChangedEventArgs progres);
+    private void UpdateToolStrip(object obj, ProgressChangedEventArgs progres)
     {
-      //SPSecurity.RunWithElevatedPrivileges(delegate()
-      //  {
-      //  });
-      using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URLTextBox.Text.Trim()))
+      m_ToolStripStatusLabel.Text = (string)progres.UserState;
+      m_ToolStripProgressBar.Value += progres.ProgressPercentage;
+      if (m_Stopwatch.ElapsedMilliseconds >= 250)
+        this.Refresh();
+      if (m_ToolStripProgressBar.Value >= m_ToolStripProgressBar.Maximum)
       {
-        CityType.CreateCities(_EDC);
-        CreateCommodity(_EDC);
+        m_ToolStripProgressBar.Maximum *= 2;
+        this.Refresh();
       }
+      m_Stopwatch.Reset();
+      m_Stopwatch.Start();
     }
+    private void SetDone(string _label)
+    {
+      m_ToolStripStatusLabel.Text = _label;
+      m_ToolStripProgressBar.Value = m_ToolStripProgressBar.Minimum;
+    }
+    private Stream OpenFile()
+    {
+      UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Openning the file"));
+      if (m_FileManagementComonent.m_OpenFileDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+      {
+        SetDone("Aborted by user");
+        m_FileNameStatusLabel.Text = String.Empty;
+        return null;
+      }
+      m_FileNameStatusLabel.Text = m_FileManagementComonent.m_OpenFileDialog.FileName;
+      return m_FileManagementComonent.m_OpenFileDialog.OpenFile();
+    }
+    #region importing data
     private void CreateCities(EntitiesDataContext _EDC)
     {
       for (int i = 0; i < 10; i++)
@@ -85,10 +111,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         ShippingPoint _sp = new ShippingPoint() { Description = _wrs.Tytuł, Direction = _tx, Tytuł = String.Format("ShippingPoint {0}", _wrs.Tytuł), Warehouse = _wrs };
         _EDC.ShippingPoint.InsertOnSubmit(_sp);
         _EDC.SubmitChanges();
-        CreateTimeSlots(_EDC, _sp);
+        CreateTimeSlots(_EDC, _sp, UpdateToolStrip);
       }
     }
-    private void CreateTimeSlots(EntitiesDataContext _EDC, ShippingPoint _sp)
+    private void CreateTimeSlots(EntitiesDataContext _EDC, ShippingPoint _sp, UpdateToolStripEvent _update)
     {
       for (DateTime _dy = DateTime.Now; _dy < DateTime.Now + TimeSpan.FromDays(25); _dy.AddDays(1))
       {
@@ -96,9 +122,61 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
           continue;
         List<TimeSlotTimeSlot> _ts = null;
         for (DateTime _hr = _dy; _hr.Hour <= 16; _hr.AddHours(1))
+        {
           _ts.Add(new TimeSlotTimeSlot() { EntryTime = _hr, EndTime = _hr.AddHours(1), ExitTime = _hr.AddHours(1), Occupied = false, ShippingPoint = _sp, StartTime = _hr });
+          _update(this, new ProgressChangedEventArgs(1, _hr.ToShortDateString()));
+        }
         _EDC.TimeSlot.InsertAllOnSubmit(_ts);
         _EDC.SubmitChanges();
+      }
+    }
+    private void ImportData(PreliminaryData cnfg, string _URL, UpdateToolStripEvent _update)
+    {
+      using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URLTextBox.Text.Trim()))
+      {
+      }
+      SetDone("Done");
+    }
+    #endregion
+    private void m_TimeSlotsCreateButton_Click(object sender, EventArgs e)
+    {
+      //SPSecurity.RunWithElevatedPrivileges(delegate()
+      //  {
+      //  });
+      using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URLTextBox.Text.Trim()))
+      {
+        CityType.CreateCities(_EDC);
+        CreateCommodity(_EDC);
+      }
+    }
+    private void button1_Click(object sender, EventArgs e)
+    {
+      using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URLTextBox.Text.Trim()))
+      {
+        foreach (ShippingPoint _sp in from _ei in _EDC.ShippingPoint select _ei)
+          CreateTimeSlots(_EDC, _sp, UpdateToolStrip);
+      }
+      SetDone("Done");
+    }
+    private void m_ImportDictionaries_Click(object sender, EventArgs e)
+    {
+      Stream strm = OpenFile();
+      if (strm == null)
+        return;
+      try
+      {
+        using (strm)
+        {
+          UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Reading xml file"));
+          PreliminaryData cnfg = PreliminaryData.ImportDocument(strm);
+          UpdateToolStrip(this, new ProgressChangedEventArgs(10, "Importing Data"));
+          ImportData(cnfg, m_URLTextBox.Text.Trim(), UpdateToolStrip);
+          SetDone("Done");
+        }
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
     }
   }
