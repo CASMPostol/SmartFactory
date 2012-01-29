@@ -33,7 +33,8 @@
       // m_OpenFileDialog
       // 
       this.m_OpenFileDialog.DefaultExt = "xml";
-      this.m_OpenFileDialog.FileName = "openFileDialog1";
+      this.m_OpenFileDialog.FileName = "ShepherdData";
+      this.m_OpenFileDialog.Filter = "Xml files (*.xml)|*.xml|All files (*.*)|*.*";
       this.m_OpenFileDialog.SupportMultiDottedExtensions = true;
       this.m_OpenFileDialog.Title = "Preliminary Data File";
 
