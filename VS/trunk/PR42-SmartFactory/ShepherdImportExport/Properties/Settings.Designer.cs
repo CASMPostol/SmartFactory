@@ -25,13 +25,25 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://casmp/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://casmp/sites/SHR/")]
         public string URL {
             get {
                 return ((string)(this["URL"]));
             }
             set {
                 this["URL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Setting {
+            get {
+                return ((string)(this["Setting"]));
+            }
+            set {
+                this["Setting"] = value;
             }
         }
     }
