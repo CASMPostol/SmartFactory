@@ -215,7 +215,8 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/ShippingList" BaseViewID="3" WebPartZoneID="Main" WebPartOrder="1" ID="GDShipping" />
+      <View List="Lists/ShippingList" BaseViewID="4" WebPartZoneID="Main" WebPartOrder="1" ID="GDShippingInbound" />
+      <View List="Lists/ShippingList" BaseViewID="3" WebPartZoneID="Main" WebPartOrder="2" ID="GDShippingOutbound" />
     </File>
     <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url ="WebPartPages/OutboundOwnerDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
@@ -238,10 +239,8 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/RouteList" BaseViewID="1" WebPartZoneID="Main1" WebPartOrder="1" ID="OODRoute" />
-      <View List="Lists/SecurityEscortCatalogList" BaseViewID="1" WebPartZoneID="Main1" WebPartOrder="2" ID="OODSecurityEscortCatalog" />
-      <View List="Lists/ShippingList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="3" ID="OODShipping" />
-      <View List="Lists/LoadDescriptionList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="4" ID="OODLoadDescription" />
+      <View List="Lists/ShippingList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="OODShipping" />
+      <View List="Lists/LoadDescriptionList" BaseViewID="4" WebPartZoneID="Main1" WebPartOrder="2" ID="OODLoadDescription" />
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="OODimeSlots">
         <![CDATA[<webParts>
                   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >
@@ -272,23 +271,6 @@
         <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
         <property name="ID" type="string">CarrierDashboardWebPart</property>
         <property name="Role" >OutboundOwner</property>
-      </properties>
-    </data>
-  </webPart>
-</webParts>]]>
-      </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="2" ID="OODTransportResources" >
-        <![CDATA[<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResources.TransportResources, $SharePoint.Project.AssemblyFullName$" />
-      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="Title" type="string">Transport Resources Management</property>
-        <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
-        <property name="ID" type="string">WPTransportResources</property>
       </properties>
     </data>
   </webPart>
