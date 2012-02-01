@@ -133,17 +133,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       public bool TimeSlotChanged = false;
       #endregion
+
+      #region public
       public ControlState(ControlState _old)
       {
         if (_old == null)
           return;
         InterfaceState = _old.InterfaceState;
       }
-
-      internal void Market(string p)
+      internal bool IsEditable()
       {
-        throw new NotImplementedException();
+        return !ShippingID.IsNullOrEmpty();
       }
+      #endregion
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
@@ -362,6 +364,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             _marketsLabel += (_item.Market == null ? "not set" : _item.Market.Tytuł) + "; ";
           }
         m_DocumentTextBox.TextBoxTextProperty(_ldLabel, true);
+        m_CommentsTextBox.TextBoxTextProperty(_sppng.CancelationReason, false);
         if (m_RouteLabel.Text.IsNullOrEmpty())
         {
           m_RouteLabel.Text = _marketsLabel;
@@ -451,7 +454,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_AcceptButton.Enabled = (_set & ButtonsSet.AcceptOn) != 0;
       m_AbortButton.Enabled = (_set & ButtonsSet.AbortOn) != 0;
       m_CancelButton.Enabled = (_set & ButtonsSet.CancelOn) != 0;
-      m_EditButton.Enabled = false;
+      m_EditButton.Enabled = ((_set & ButtonsSet.EditOn) != 0) && m_ControlState.IsEditable();
       m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
       m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
     }

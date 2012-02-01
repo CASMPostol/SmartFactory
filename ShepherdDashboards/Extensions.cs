@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     {
       _control.Text = _val;
       if (String.IsNullOrEmpty(_val))
-        _control.BackColor = _required ? _warrningBackColor : Color.DimGray;
+        _control.BackColor = _required ? _warrningBackColor : Color.Azure;
       else
         _control.BackColor = Color.Empty;
     }
