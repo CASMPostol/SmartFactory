@@ -340,15 +340,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       try
       {
         ShippingOperationInbound _sppng = Element.GetAtIndex<ShippingOperationInbound>(m_EDC.Shipping, _shipping.ID);
-        ShippingOperationOutbound _so = _sppng as ShippingOperationOutbound;
-        if (_so == null)
+        ShippingOperationOutbound _sOutbound = _sppng as ShippingOperationOutbound;
+        if (_sOutbound == null)
           m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
         else
         {
           m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
-          m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _so.EstimateDeliveryTime.HasValue ? _so.EstimateDeliveryTime.Value : DateTime.Now;
-          m_RouteLabel.Text = _so.Route != null ? _so.Route.Tytuł : String.Empty;
-          m_SecurityEscortLabel.Text = _so.SecurityEscort != null ? _so.SecurityEscort.Tytuł : string.Empty;
+          m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _sOutbound.EstimateDeliveryTime.HasValue ? _sOutbound.EstimateDeliveryTime.Value : DateTime.Now;
+          m_RouteLabel.Text = _sOutbound.Route != null ? _sOutbound.Route.Tytuł : String.Empty;
+          m_SecurityEscortLabel.Text = _sOutbound.SecurityEscort != null ? _sOutbound.SecurityEscort.Tytuł : string.Empty;
         }
         TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(m_EDC, _shipping.ID);
         List<LoadDescription> _ld = LoadDescription.GetForShipping(m_EDC, _shipping.ID);
@@ -587,8 +587,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         ShippingOperationInbound _si = Element.GetAtIndex<ShippingOperationInbound>(m_EDC.Shipping, m_ControlState.ShippingID);
         if (m_ControlState.TimeSlotChanged)
         {
-          TimeSlotTimeSlot _newts = (TimeSlotTimeSlot)(from _ts in _si.TimeSlot orderby _ts.StartTime descending select _ts).First();
-          TimeSlotTimeSlot _oldts = TimeSlotTimeSlot.GetShippingTimeSlot(m_EDC, _si.Identyfikator);
+          TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(m_EDC.TimeSlot, m_ControlState.TimeSlotID);
+          TimeSlotTimeSlot _oldts = (TimeSlotTimeSlot)(from _ts in _si.TimeSlot orderby _si.StartTime descending select _ts).First();
           _newts.MakeBooking(_si);
           _oldts.ReleaseBooking();
           _si.StartTime = _newts.StartTime;
