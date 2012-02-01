@@ -143,7 +143,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         if (_dy.DayOfWeek == DayOfWeek.Sunday || _dy.DayOfWeek == DayOfWeek.Saturday)
           continue;
         List<TimeSlotTimeSlot> _ts = new List<TimeSlotTimeSlot>();
-        for (int _indx = 8; _indx <= 16; _indx++)
+        for (int _indx = 8; _indx <= 10; _indx++)
         {
           DateTime _bgn = _dy + TimeSpan.FromHours(_indx);
           DateTime _end = _bgn + TimeSpan.FromHours(1);
