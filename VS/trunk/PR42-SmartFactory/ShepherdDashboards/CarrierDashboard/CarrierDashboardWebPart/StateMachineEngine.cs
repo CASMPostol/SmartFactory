@@ -121,6 +121,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       Entities.Anons _entry = new Anons(_source, _message);
       _EDC.EventLogList.InsertOnSubmit(_entry);
+      _EDC.SubmitChanges();
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
@@ -183,11 +184,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       switch (CurrentMachineState)
       {
-        case InterfaceState.ViewState:
+        case InterfaceState.NewState:
         case InterfaceState.EditState:
           ShowSecurityEscortCatalog(e);
           break;
-        case InterfaceState.NewState:
+        case InterfaceState.ViewState:
           break;
         default:
           break;
@@ -197,11 +198,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       switch (CurrentMachineState)
       {
-        case InterfaceState.ViewState:
+        case InterfaceState.NewState:
         case InterfaceState.EditState:
           ShowPartner(e);
           break;
-        case InterfaceState.NewState:
+        case InterfaceState.ViewState:
           break;
         default:
           break;
@@ -211,11 +212,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       switch (CurrentMachineState)
       {
-        case InterfaceState.ViewState:
+        case InterfaceState.NewState:
         case InterfaceState.EditState:
           ShowMarket(e);
           break;
-        case InterfaceState.NewState:
+        case InterfaceState.ViewState:
           break;
         default:
           break;
