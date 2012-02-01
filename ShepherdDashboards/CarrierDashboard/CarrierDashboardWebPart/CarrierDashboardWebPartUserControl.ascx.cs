@@ -333,13 +333,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_CommentsTextBox.TextBoxTextProperty(String.Empty, false);
       m_EstimateDeliveryTimeDateTimeControl.SelectedDate = DateTime.Now;
     }
-    private void ShowShipping(ShippingInterconnectionData _shipping)
+    private void ShowShipping(ShippingInterconnectionData _interconnectionData)
     {
-      if (m_ControlState.ShippingID == _shipping.ID) return;
-      m_ControlState.ShippingID = _shipping.ID;
+      if (m_ControlState.ShippingID == _interconnectionData.ID) return;
+      m_ControlState.ShippingID = _interconnectionData.ID;
       try
       {
-        ShippingOperationInbound _sppng = Element.GetAtIndex<ShippingOperationInbound>(m_EDC.Shipping, _shipping.ID);
+        ShippingOperationInbound _sppng = Element.GetAtIndex<ShippingOperationInbound>(m_EDC.Shipping, _interconnectionData.ID);
         ShippingOperationOutbound _sOutbound = _sppng as ShippingOperationOutbound;
         if (_sOutbound == null)
           m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
@@ -350,22 +350,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           m_RouteLabel.Text = _sOutbound.Route != null ? _sOutbound.Route.Tytuł : String.Empty;
           m_SecurityEscortLabel.Text = _sOutbound.SecurityEscort != null ? _sOutbound.SecurityEscort.Tytuł : string.Empty;
         }
-        TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetShippingTimeSlot(m_EDC, _shipping.ID);
-        List<LoadDescription> _ld = LoadDescription.GetForShipping(m_EDC, _shipping.ID);
+        TimeSlotTimeSlot _cts = (TimeSlotTimeSlot)(from _ts in _sppng.TimeSlot orderby _ts.StartTime descending select _ts).First();
+        List<LoadDescription> _ld = _sppng.LoadDescription.ToList<LoadDescription>();
         ShowTimeSlot(_cts);
         string _ldLabel = String.Empty;
         string _marketsLabel = String.Empty;
-        foreach (var _item in _ld)
-        {
-          _ldLabel += _item.Tytuł + "; ";
-          _marketsLabel += _item.Market.Tytuł;
-        }
+        if (_ld != null)
+          foreach (var _item in _ld)
+          {
+            _ldLabel += _item.Tytuł + "; ";
+            _marketsLabel += (_item.Market == null ? "not set" : _item.Market.Tytuł) + "; ";
+          }
         m_DocumentTextBox.TextBoxTextProperty(_ldLabel, true);
         if (m_RouteLabel.Text.IsNullOrEmpty())
         {
           m_RouteLabel.Text = _marketsLabel;
           m_RouteHeaderLabel.Text = m_SelectedMarketsHeaderLabelText;
         }
+        EnableSaveButton();
       }
       catch (Exception ex)
       {
@@ -449,10 +451,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_AcceptButton.Enabled = (_set & ButtonsSet.AcceptOn) != 0;
       m_AbortButton.Enabled = (_set & ButtonsSet.AbortOn) != 0;
       m_CancelButton.Enabled = (_set & ButtonsSet.CancelOn) != 0;
-      m_EditButton.Enabled = (_set & ButtonsSet.EditOn) != 0;
+      m_EditButton.Enabled = false;
       m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
       m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
     }
+    private void EnableSaveButton()
+    {
+      m_EditButton.Enabled = (m_EditbilityACL & ButtonsSet.SaveOn) != 0;
+    }
+
     #endregion
 
     #region Shipping management
