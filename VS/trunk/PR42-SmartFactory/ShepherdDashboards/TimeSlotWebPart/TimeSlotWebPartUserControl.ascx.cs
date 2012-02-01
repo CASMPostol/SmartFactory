@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint;
+using System.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 {
@@ -44,9 +45,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           m_UpdateTimeSlotListMethod = UpdateTimeSlotListExtended;
       }
     }
+    EntitiesDataContext m_EDC = null;
     protected override void OnInit(EventArgs e)
     {
+      m_EDC = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false };
       base.OnInit(e);
+    }
+    protected override void OnUnload(EventArgs e)
+    {
+      m_EDC.Dispose();
+      base.OnUnload(e);
     }
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -54,14 +62,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       {
         m_Calendar.VisibleDate = DateTime.Today;
         m_Calendar.SelectedDate = DateTime.Today;
-        using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
-        {
-          m_WarehouseDropDownList.DataSource = Warehouse.GatAll(edc);
-          m_WarehouseDropDownList.DataBind();
-          m_WarehouseDropDownList.SelectedIndex = 0;
-          m_UpdateTimeSlotListMethod(edc, m_Calendar.SelectedDate, m_WarehouseDropDownList.SelectedValue);
-        }
+        m_WarehouseDropDownList.DataSource = from _idx in m_EDC.Warehouse
+                                             orderby _idx.Tytuł ascending
+                                             select _idx;
+        m_WarehouseDropDownList.DataBind();
+        m_WarehouseDropDownList.SelectedIndex = 0;
       }
+      m_UpdateTimeSlotListMethod(m_EDC, m_Calendar.SelectedDate.Date, m_WarehouseDropDownList.SelectedValue, Direction.Inbound);
       m_Calendar.DayRender += new DayRenderEventHandler(m_Calendar_DayRender);
       m_WarehouseDropDownList.SelectedIndexChanged += new EventHandler(m_SelectionChanged);
       m_Calendar.SelectionChanged += new EventHandler(m_SelectionChanged);
@@ -76,7 +83,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           return;
         m_TimeSlotList.Items.Clear();
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
-          m_UpdateTimeSlotListMethod(edc, _sd, _wrhs);
+          m_UpdateTimeSlotListMethod(edc, _sd, _wrhs, Direction.Inbound);
       }
       catch (Exception ex)
       {
@@ -90,7 +97,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       if (m_AvailableDays.ContainsKey(e.Day.Date))
       {
         e.Cell.BackColor = Color.SeaGreen;
-        e.Cell.Controls.Add(new Literal() { Text = m_AvailableDays[e.Day.Date].ToString() });
+        string _days = String.Format("<font size=\"1\" color=\"#ff0000\"> [{0}]</font>", m_AvailableDays[e.Day.Date].ToString());
+        e.Cell.Controls.Add(new LiteralControl() { Text = _days });
       }
       else
         e.Day.IsSelectable = false;
@@ -100,36 +108,42 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       DateTime _sd = m_Calendar.SelectedDate;
       string _wrhs = m_WarehouseDropDownList.SelectedValue;
       if ((_sd != null) && (!String.IsNullOrEmpty(_wrhs)))
-        using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
-          foreach (var item in TimeSlotTimeSlot.GetFreeForSelectedMonth(edc, _sd, _wrhs))
-          {
-            if (!m_AvailableDays.ContainsKey(item.Date))
-              m_AvailableDays.Add(item.Date, 1);
-            else
-              m_AvailableDays[item.Date] += 1;
-          }
+        foreach (var item in TimeSlotTimeSlot.GetFreeForSelectedMonth(m_EDC, _sd, _wrhs))
+        {
+          if (!m_AvailableDays.ContainsKey(item.Date))
+            m_AvailableDays.Add(item.Date, 1);
+          else
+            m_AvailableDays[item.Date] += 1;
+        }
       base.OnPreRender(e);
     }
-    private delegate void UpdateTimeSlotListEventHandler(EntitiesDataContext edc, DateTime _sd, string _wrhs);
+    private delegate void UpdateTimeSlotListEventHandler(EntitiesDataContext edc, DateTime _sd, string _wrhs, Direction _direction);
     private UpdateTimeSlotListEventHandler m_UpdateTimeSlotListMethod;
-    private void UpdateTimeSlotListSimple(EntitiesDataContext edc, DateTime _sd, string _wrhs)
+    private void UpdateTimeSlotListSimple(EntitiesDataContext edc, DateTime _sd, string _warehoise, Direction _direction)
     {
-      int _intWhr = -1;
-      if (!int.TryParse(_wrhs, out _intWhr) || _intWhr <= 0)
-        return;
-      bool _first = false;
-      foreach (var _cts in TimeSlotTimeSlot.GetForSelectedDay(edc, _sd, _intWhr))
+      m_TimeSlotList.Items.Clear();
+      Warehouse _warehouse = Element.GetAtIndex(edc.Warehouse, _warehoise);
+      foreach (var _spoint in (from _sp in edc.ShippingPoint 
+                               where _sp.Warehouse.Identyfikator == _warehouse.Identyfikator 
+                               select _sp).ToList<ShippingPoint>())
       {
-        ListItem _ni = new ListItem(String.Format("{0:HH:mm}", _cts.StartTime), _cts.Identyfikator.ToString(), true);
-        if (_first)
+        if (_spoint.Direction != _direction && _spoint.Direction != Direction.BothDirections)
+          continue;
+        DateTime _strt = new DateTime(_sd.Year, _sd.Month, 1);
+        DateTime _end = _strt.AddMonths(1);
+        foreach (var _ts in (from _tsidx in _spoint.TimeSlot
+                             where !_tsidx.Occupied.Value && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end 
+                             orderby _tsidx.StartTime ascending
+                             select _tsidx)) //.ToList<TimeSlot>().OrderBy( _ts => _ts.StartTime ))
         {
-          _ni.Selected = true;
-          _first = false;
+          if (_ts.StartTime.Value.Date != _sd.Date)
+            continue;
+          ListItem _ni = new ListItem(String.Format("{0:HH:mm}", _ts.StartTime), _ts.Identyfikator.Value.ToString(), true);
+          m_TimeSlotList.Items.Add(_ni);
         }
-        m_TimeSlotList.Items.Add(_ni);
       }
     }
-    private void UpdateTimeSlotListExtended(EntitiesDataContext edc, DateTime _sd, string _wrhs)
+    private void UpdateTimeSlotListExtended(EntitiesDataContext edc, DateTime _sd, string _wrhs, Direction _direction)
     {
       int _intWhr = -1;
       if (!int.TryParse(_wrhs, out _intWhr) || _intWhr <= 0)
