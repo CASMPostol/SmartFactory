@@ -236,6 +236,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         Parent.ShowShipping(_shipping);
       }
+      protected override void ShowShipping()
+      {
+        Parent.ShowShipping();
+      }
       protected override void ClearUserInterface()
       {
         Parent.ClearUserInterface();
@@ -335,13 +339,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_CommentsTextBox.TextBoxTextProperty(String.Empty, false);
       m_EstimateDeliveryTimeDateTimeControl.SelectedDate = DateTime.Now;
     }
+    internal void ShowShipping()
+    {
+      if (m_ControlState.ShippingID.IsNullOrEmpty())
+        ClearUserInterface();
+      else
+        ShowShipping(m_ControlState.ShippingID);
+    }
     private void ShowShipping(ShippingInterconnectionData _interconnectionData)
     {
       if (m_ControlState.ShippingID == _interconnectionData.ID) return;
       m_ControlState.ShippingID = _interconnectionData.ID;
+      ShowShipping(_interconnectionData.ID);
+    }
+    private void ShowShipping(string _shippingID)
+    {
       try
       {
-        ShippingOperationInbound _sppng = Element.GetAtIndex<ShippingOperationInbound>(m_EDC.Shipping, _interconnectionData.ID);
+        ShippingOperationInbound _sppng = Element.GetAtIndex<ShippingOperationInbound>(m_EDC.Shipping, _shippingID);
         ShippingOperationOutbound _sOutbound = _sppng as ShippingOperationOutbound;
         if (_sOutbound == null)
           m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
@@ -544,6 +559,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_EDC.Shipping.InsertOnSubmit(_sp);
         m_EDC.LoadDescription.InsertOnSubmit(_ld);
         m_EDC.SubmitChanges();
+        m_ControlState.ShippingID = _sp.Identyfikator.Value.ToString();
         ReportAlert(_sp, "Created shipping");
         return true;
       }
@@ -678,6 +694,5 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #endregion
-
   }
 }
