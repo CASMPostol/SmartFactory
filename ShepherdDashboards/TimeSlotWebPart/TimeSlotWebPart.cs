@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         _phase = "After Page.LoadControl";
         m_control = (TimeSlotWebPartUserControl)_ctrl;
         _phase = "After Casting";
-         m_control.SimpleTimeSlotList = SimpleTimeSlotList;
+         m_control.Role = SimpleTimeSlotList;
         _phase = "After selection SimpleTimeSlotList";
         Controls.Add(m_control);
         _phase = "After Controls.Add";
