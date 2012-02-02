@@ -1,6 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+   Type="Choice"
+   DisplayName="Loading Type"
+   ID="{F02EB339-6EEE-4F6C-96C9-133377B3D9DB}"
+   Format="Dropdown"
+   BaseType="Text"
+   Name="LoadingType"
+   Group="CAS Smart Factory Shepherd">
+    <Default>Forklift</Default>
+    <CHOICES>
+      <CHOICE>Forklift</CHOICE>
+      <CHOICE>Manual</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    DisplayName="Is Outbound"
+    Name="IsOutbound"
+    Type="Boolean"
+    ID="{DEBE4D8F-04DE-4A3B-AA59-320884A6E044}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     DisplayName="Is Double"
     Name="IsDouble"
     Type="Boolean"
