@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         throw new ApplicationException("Warehouse not found");
       return this.ShippingPoint.Warehouse;
     }
-    internal void MakeBooking(ShippingOperationInbound _si)
+    internal void MakeBooking(Shipping _si)
     {
       if (this.Occupied.Value)
         throw new ApplicationException("Time slot has been aleady reserved");
