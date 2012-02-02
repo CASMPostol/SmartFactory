@@ -325,10 +325,10 @@
       <SharePointProjectItemId>{aa699c61-301c-4609-a16a-90346870280d}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\ShippingTemplate\ShippingList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{2a7ea42c-6330-4758-a256-8fe4d5ec8970}</SharePointProjectItemId>
+      <SharePointProjectItemId>{cd89b84c-471a-44f9-9e6d-a4ad64b1a9a6}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\ShippingTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{4ddcbb71-d14a-44b8-aed8-f67e233069f3}</SharePointProjectItemId>
+      <SharePointProjectItemId>{03e61a25-6152-4b44-b04b-0f34cf24fcd8}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\TimeSlotTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{366e304a-165c-42c5-8058-824c780426aa}</SharePointProjectItemId>
@@ -520,12 +520,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Shipping\ShippingTemplate\Elements.xml" />
-    <Content Include="Lists\Shipping\ShippingTemplate\ShippingList\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Lists\Shipping\ShippingTemplate\Schema.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Lists\Shipping\ShippingTemplate\ShippingList\Elements.xml" />
+    <Content Include="Lists\Shipping\ShippingTemplate\Schema.xml" />
     <Content Include="Lists\Shipping\TimeSlotTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\TimeSlotTemplate\Schema.xml">
       <SubType>Designer</SubType>
