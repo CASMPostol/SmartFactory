@@ -11,7 +11,7 @@
           <FieldRef ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="Email" />
           <FieldRef ID="{fd630629-c165-4513-b43c-fdb16b86a14d}" Name="WorkPhone" />
           <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
-          <FieldRef ID="{9F4ACD7D-08DD-44CC-8FDD-AD18F67BD898}" Name="WarehouseTitle" />
+          <FieldRef ID="{074A69F8-5CE5-407F-81CD-6E691DFB7214}" Name="Partner2WarehouseTitle" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -41,6 +41,7 @@
       <Field ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="EMail" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EMail" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,E-Mail;" ReadOnly="FALSE" Type="Text" FromBaseType="TRUE" AllowDeletion="TRUE" />
       <Field ID="{9d1cacc8-f452-4bc1-a751-050595ad96e1}" Name="WorkFax" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkFax" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Fax_Number;" Type="Text" IMEMode="inactive" />
       <Field ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="CellPhone" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Mobile_Phone;" Type="Text" IMEMode="inactive" />
+      <Field Name="Partner2WarehouseTitle" ID="{074A69F8-5CE5-407F-81CD-6E691DFB7214}" Type="Lookup" List="Lists/WarehouseList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Warehouse" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -78,7 +79,7 @@
           <FieldRef ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="Email" />
           <FieldRef ID="{fd630629-c165-4513-b43c-fdb16b86a14d}" Name="WorkPhone" />
           <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
-          <FieldRef ID="{9F4ACD7D-08DD-44CC-8FDD-AD18F67BD898}" Name="WarehouseTitle" />
+          <FieldRef ID="{074A69F8-5CE5-407F-81CD-6E691DFB7214}" Name="Partner2WarehouseTitle" />
         </ViewFields>
         <Query>
           <OrderBy>

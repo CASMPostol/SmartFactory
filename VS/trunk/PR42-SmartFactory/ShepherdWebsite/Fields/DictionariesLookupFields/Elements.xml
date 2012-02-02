@@ -252,6 +252,23 @@
     ReadOnly="False"
     />
   <Field
+    Name="Partner2WarehouseTitle"
+    ID="{074A69F8-5CE5-407F-81CD-6E691DFB7214}"
+    Type="Lookup"
+    List="Lists/WarehouseList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Warehouse"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="ShippingPointLookupTitle"
     ID="{A0CC7498-1A74-4A7A-B88C-E9F1DAD514F2}"
     Type="Lookup"
