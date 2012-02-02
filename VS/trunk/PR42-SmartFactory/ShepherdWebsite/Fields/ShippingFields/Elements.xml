@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="Is Double"
+    Name="IsDouble"
+    Type="Boolean"
+    ID="{CC93BD06-3A21-440D-96FA-1916AE32F69F}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     DisplayName="CMR number"
     Name="CMRNumber"
     Type="Text"
