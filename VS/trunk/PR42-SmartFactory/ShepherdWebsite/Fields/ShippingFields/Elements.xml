@@ -48,7 +48,7 @@
     Name="StartTime"
     ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}"
     Type="DateTime"
-    Format="TimeOnly"
+    Format="DateTime"
     Group="CAS Smart Factory Shepherd"
     DisplayName="Start Time">
     <Default>[today]</Default>

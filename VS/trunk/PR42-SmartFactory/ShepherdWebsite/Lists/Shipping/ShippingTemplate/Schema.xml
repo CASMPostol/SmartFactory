@@ -69,7 +69,7 @@
           <CHOICE>Underway</CHOICE>
         </CHOICES>
       </Field>
-      <Field Name="StartTime" ID="{0c674e8b-70ed-4bcf-84c7-8942292e3954}" Type="DateTime" Format="TimeOnly" DisplayName="Start Time" Group="CAS Smart Factory Shepherd" >
+      <Field Name="StartTime" ID="{0c674e8b-70ed-4bcf-84c7-8942292e3954}" Type="DateTime" Format="DateTime" DisplayName="Start Time" Group="CAS Smart Factory Shepherd" >
         <Default>[today]</Default>
       </Field>
       <Field Name="ShippingDuration" ID="{a826b26e-82db-45d0-b078-f69cebb1ed05}" Type="Number" DisplayName="Duration" Group="CAS Smart Factory Shepherd" />
@@ -144,6 +144,7 @@
           <FieldRef Name="Title">
           </FieldRef>
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
+          <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -194,6 +195,27 @@
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
           <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundOwner.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Title">
+          </FieldRef>
+          <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
+          <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
         </ViewFields>
         <Query>
           <OrderBy>
