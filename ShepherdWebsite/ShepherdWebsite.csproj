@@ -134,12 +134,6 @@
     <None Include="Content types\Shipping\ShippingDriversTeam\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fcc0da24-3072-46fa-863f-adf611c20ef0}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Shipping\ShippingOperationInbound\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{abd67ee8-eba1-44e3-860e-cda5b9227325}</SharePointProjectItemId>
-    </None>
-    <None Include="Content types\Shipping\ShippingOperationOutbound\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{1f5d40e5-3526-4a0b-b705-91016f1a166e}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Shipping\Shipping\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{eee605db-4430-4518-ae53-cad6fbe90862}</SharePointProjectItemId>
     </None>
@@ -387,12 +381,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content types\Shipping\ShippingOperationInbound\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content types\Shipping\ShippingOperationOutbound\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Shipping\Shipping\Elements.xml" />
