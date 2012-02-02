@@ -20,7 +20,7 @@
     </asp:TableRow>
     <asp:TableRow>
     <asp:TableCell>
-      <asp:Calendar CssClass="DashboardCalendar" runat="server" ID="m_Calendar" DayNameFormat="FirstLetter" SelectionMode="Day" />
+      <asp:Calendar CssClass="DashboardCalendar" runat="server" ID="m_Calendar" DayNameFormat="FirstLetter" SelectionMode="Day"  />
     </asp:TableCell>
     <asp:TableCell runat="server" >
       <asp:ListBox CssClass="DashboardTimeSlotList" ID="m_TimeSlotList" runat="server" AutoPostBack="true" ToolTip="Available Time Slots" Rows=12 ></asp:ListBox>
@@ -28,8 +28,8 @@
   </asp:TableRow>
   <asp:TableRow>
     <asp:TableCell>
-       <asp:CheckBox ID="m_ShowDoubleTimeSlots" runat="server"  CssClass="CheckBox"/>
-       <asp:Label ID="Label1" runat="server" Text="Show double timeslots only" CssClass="Label"></asp:Label>
+       <asp:CheckBox ID="m_ShowDoubleTimeSlots" runat="server"  CssClass="CheckBox" AutoPostBack=true/>
+       <asp:Label ID="Label1" runat="server" Text="Show double timeslots only" CssClass="Label"   ></asp:Label>
     </asp:TableCell>
   </asp:TableRow>
 </asp:Table>

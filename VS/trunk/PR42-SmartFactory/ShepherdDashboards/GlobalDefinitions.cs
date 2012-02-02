@@ -20,5 +20,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       Guard, 
       None,
     }
+    internal const string NumberOfTimeSLotsFormat = "<font size=\"1\" color=\"#ff0000\"> [{0}]</font>";
   }
 }
