@@ -30,6 +30,7 @@
           <FieldRef ID="{1E155AF8-2CB2-43FC-9650-9C0BDD39CD88}" Name="TimeSpan" />
           <FieldRef ID="{89F5EF1F-D79D-42B6-BD14-780B9D90A86A}" Name="ExitTime" />
           <FieldRef ID="{4F4BDC32-689F-4664-9D1E-D78C21148178}" Name="Occupied" />
+          <FieldRef ID="{CC93BD06-3A21-440D-96FA-1916AE32F69F}" Name="IsDouble" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -123,6 +124,7 @@
         <Default>[today]</Default>
       </Field>
       <Field Name="Occupied" ID="{4f4bdc32-689f-4664-9d1e-d78c21148178}" Type="Boolean" DisplayName="Occupied" Group="CAS Smart Factory Shepherd" />
+      <Field DisplayName="Is Double" Name="IsDouble" Type="Boolean" ID="{CC93BD06-3A21-440D-96FA-1916AE32F69F}" Group="CAS Smart Factory Shepherd" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" RecurrenceRowset="TRUE" TabularView="FALSE" MobileView="TRUE">
