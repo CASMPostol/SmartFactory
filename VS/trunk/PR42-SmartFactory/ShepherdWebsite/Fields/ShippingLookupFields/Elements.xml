@@ -1,6 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="Shipping2TransportUnitType"
+    ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}"
+    Type="Lookup"
+    List="Lists/TransportUnitTypeList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Transport Unit"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Name="Shipping2City"
+    ID="{A55637EF-0C88-490E-BCAF-16215A28EA52}"
+    Type="Lookup"
+    List="Lists/CityList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="City"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="ShippingOperationOutband2PartnerTitle"
     ID="{2CEB1781-878F-46E5-9DF5-432463ABD971}"
     Type="Lookup"

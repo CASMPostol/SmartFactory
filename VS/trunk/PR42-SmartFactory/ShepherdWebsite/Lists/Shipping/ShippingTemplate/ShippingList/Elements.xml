@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Shipping"
-                OnQuickLaunch="TRUE"
-                TemplateType="10004"
-                Url="Lists/ShippingList"
-                Description="Shipping List Instance">
-  </ListInstance>
-</Elements>
