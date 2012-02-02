@@ -52,10 +52,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             break;
         }
     }
-    internal InterconnectionDataTable<ShippingOperationInbound> GetSelectedShippingOperationInboundInterconnectionData()
+    internal InterconnectionDataTable<Shipping> GetSelectedShippingOperationInboundInterconnectionData()
     {
-      string _tn = typeof(ShippingOperationInbound).Name;
-      InterconnectionDataTable<ShippingOperationInbound> _interface = new InterconnectionDataTable<ShippingOperationInbound>(_tn);
+      string _tn = typeof(Shipping).Name;
+      InterconnectionDataTable<Shipping> _interface = new InterconnectionDataTable<Shipping>(_tn);
       m_StateMachineEngine.m_ShippintInterconnectionEvent += _interface.SetData;
       return _interface;
     }
@@ -356,8 +356,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       try
       {
-        ShippingOperationInbound _sppng = Element.GetAtIndex<ShippingOperationInbound>(m_EDC.Shipping, _shippingID);
-        ShippingOperationOutbound _sOutbound = _sppng as ShippingOperationOutbound;
+        Shipping _sppng = Element.GetAtIndex<Shipping>(m_EDC.Shipping, _shippingID);
+        Shipping _sOutbound = _sppng as Shipping;
         if (_sOutbound == null)
           m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
         else
@@ -508,18 +508,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         }
         Partner _prtnr = Element.GetAtIndex<Partner>(m_EDC.JTIPartner, m_ControlState.PartnerID);
         TimeSlotTimeSlot _ts = Element.GetAtIndex<TimeSlotTimeSlot>(m_EDC.TimeSlot, m_ControlState.TimeSlotID);
-        ShippingOperationInbound _sp = null;
+        Shipping _sp = null;
         if (m_DashboardType != GlobalDefinitions.Roles.OutboundOwner)
         {
           if (!validated)
             return false;
-          _sp = new ShippingOperationInbound
+          _sp = new Shipping
           (
             String.Format("{0}", m_DocumentTextBox.Text),
             _prtnr,
             Entities.State.Creation,
             _ts.StartTime
-          );
+          ) { IsOutbound = false };
         }
         else
         {
@@ -535,7 +535,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           }
           if (!validated)
             return false;
-          ShippingOperationOutbound _spo = new ShippingOperationOutbound
+          Shipping _spo = new Shipping
           (
             m_ControlState.RouteID.IsNullOrEmpty() ? null : Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.RouteID),
             m_EstimateDeliveryTimeDateTimeControl.SelectedDate,
@@ -543,7 +543,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             _prtnr,
             Entities.State.Creation,
             _ts.StartTime
-          );
+          ) { IsOutbound = true };
           _sp = _spo;
           AssignPartners2Shipping(_spo);
           _spo.EstimateDeliveryTime = m_EstimateDeliveryTimeDateTimeControl.SelectedDate;
@@ -573,7 +573,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       try
       {
-        ShippingOperationInbound _si = ShippingOperationInbound.GetAtIndex(m_EDC, m_ControlState.ShippingID.String2Int());
+        Shipping _si = Shipping.GetAtIndex(m_EDC, m_ControlState.ShippingID.String2Int());
         _si.State = _newState;
         switch (_newState)
         {
@@ -610,7 +610,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return;
       try
       {
-        ShippingOperationInbound _si = Element.GetAtIndex<ShippingOperationInbound>(m_EDC.Shipping, m_ControlState.ShippingID);
+        Shipping _si = Element.GetAtIndex<Shipping>(m_EDC.Shipping, m_ControlState.ShippingID);
         if (m_ControlState.TimeSlotChanged)
         {
           TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(m_EDC.TimeSlot, m_ControlState.TimeSlotID);
@@ -620,8 +620,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           _si.StartTime = _newts.StartTime;
         }
         _si.CancelationReason = m_CommentsTextBox.Text;
-        ShippingOperationOutbound _so = _si as ShippingOperationOutbound;
-        AssignPartners2Shipping(_so);
+        AssignPartners2Shipping(_si);
         m_EDC.SubmitChanges();
         m_ControlState.TimeSlotChanged = false;
         ReportAlert(_si, "Shipping updated");
@@ -631,7 +630,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_StateMachineEngine.ExceptionCatched(m_EDC, "UpdateShipping", ex.Message);
       }
     }
-    private void AssignPartners2Shipping(ShippingOperationOutbound _spo)
+    private void AssignPartners2Shipping(Shipping _spo)
     {
       if (m_ControlState.SecurityCatalogID.IsNullOrEmpty())
       {
@@ -662,11 +661,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       string _tmplt = "The current operation has been interrupted by error {0}.";
       m_StateMachineEngine.ExceptionCatched(m_EDC, _source, String.Format(_tmplt, ex.Message));
     }
-    private void ReportAlert(ShippingOperationInbound _shipping, string _msg)
+    private void ReportAlert(Shipping _shipping, string _msg)
     {
       ReportAlert(_shipping, _shipping.VendorName, _msg);
     }
-    private void ReportAlert(ShippingOperationInbound _shipping, Partner _partner, string _msg)
+    private void ReportAlert(Shipping _shipping, Partner _partner, string _msg)
     {
       Entities.AlarmsAndEvents _ae = new Entities.AlarmsAndEvents()
       {

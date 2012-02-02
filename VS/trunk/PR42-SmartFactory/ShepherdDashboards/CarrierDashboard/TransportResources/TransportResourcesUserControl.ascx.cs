@@ -108,7 +108,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           }
           foreach (var item in _drivers)
             m_DriversListBox.Items.Add(new ListItem(item.Value.Tytuł, item.Key.ToString()));
-          ShippingOperationInbound _Shipping = ShippingOperationInbound.GetAtIndex(edc, m_ControlState.ShippingIdx);
+          Shipping _Shipping = Shipping.GetAtIndex(edc, m_ControlState.ShippingIdx);
           m_ShippingTextBox.Text = _Shipping.Tytuł;
           m_TruckDropDown.Items.Add(new ListItem());
           foreach (Truck item in Truck.GetAllForUser(edc, m_ControlState.PartnerIndex.Value))
@@ -188,7 +188,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           ShippingDriversTeam _cd = new ShippingDriversTeam()
             {
               Driver = Driver.GetAtIndex(edc, _sel.Value),
-              ShippingIndex = ShippingOperationInbound.GetAtIndex(edc, m_ControlState.ShippingIdx)
+              ShippingIndex = Element.GetAtIndex(edc.Shipping, m_ControlState.ShippingIdx.IntToString())
             };
           edc.DriversTeam.InsertOnSubmit(_cd);
           edc.SubmitChanges();
@@ -209,7 +209,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       {
         try
         {
-          ShippingOperationInbound _sh = ShippingOperationInbound.GetAtIndex(edc, m_ControlState.ShippingIdx.Value);
+          Shipping _sh = Shipping.GetAtIndex(edc, m_ControlState.ShippingIdx.Value);
           if (String.IsNullOrEmpty(_li.Value))
             _sh.TruckCarRegistrationNumber = null;
           else
@@ -231,7 +231,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       {
         try
         {
-          ShippingOperationInbound _sh = ShippingOperationInbound.GetAtIndex(edc, m_ControlState.ShippingIdx.Value);
+          Shipping _sh = Shipping.GetAtIndex(edc, m_ControlState.ShippingIdx.Value);
           if (String.IsNullOrEmpty(_li.Value))
             _sh.TrailerRegistrationNumber = null;
           else

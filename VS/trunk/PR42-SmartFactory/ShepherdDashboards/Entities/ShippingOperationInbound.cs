@@ -5,9 +5,9 @@ using System.Text;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
-  public partial class ShippingOperationInbound
+  public partial class Shipping
   {
-    internal ShippingOperationInbound(string _title, Partner _prtnr, Entities.State _state, DateTime? _startTime)
+    internal Shipping(string _title, Partner _prtnr, Entities.State _state, DateTime? _startTime)
       : this()
     {
       Tytuł = _title;
@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       State = _state;
       StartTime = _startTime; 
     }
-    internal static ShippingOperationInbound GetAtIndex(EntitiesDataContext edc, int? _index)
+    internal static Shipping GetAtIndex(EntitiesDataContext edc, int? _index)
     {
       if (!_index.HasValue)
         throw new ApplicationException("ShippingOperationInbound index is null");;

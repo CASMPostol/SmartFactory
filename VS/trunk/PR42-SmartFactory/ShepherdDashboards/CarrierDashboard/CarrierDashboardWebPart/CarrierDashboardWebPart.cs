@@ -17,7 +17,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     // Visual Studio might automatically update this path when you change the Visual Web Part project item.
     private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard/CarrierDashboardWebPart/CarrierDashboardWebPartUserControl.ascx";
     private CarrierDashboardWebPartUserControl m_Control;
-    private InterconnectionDataTable<ShippingOperationInbound> m_SelectedTimeSlot = null;
+    private InterconnectionDataTable<Shipping> m_SelectedTimeSlot = null;
     /// <summary>
     /// Called by the ASP.NET page framework to notify server controls that use composition-based 
     /// implementation to create any child controls they contain in preparation for posting back or rendering.
@@ -130,7 +130,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     public IWebPartRow GetConnectionInterface()
     {
       if (m_Control == null)
-        return new InterconnectionDataTable<ShippingOperationInbound>();
+        return new InterconnectionDataTable<Shipping>();
       if (m_SelectedTimeSlot == null)
         m_SelectedTimeSlot = m_Control.GetSelectedShippingOperationInboundInterconnectionData();
       return m_SelectedTimeSlot;

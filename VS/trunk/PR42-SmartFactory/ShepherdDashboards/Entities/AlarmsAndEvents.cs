@@ -17,7 +17,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     /// <param name="_title">The evrnt title.</param>
     /// <param name="_partner">The partner associated with the event.</param>
     /// <param name="_shippingIndex">Index of the shipping.</param>
-    public AlarmsAndEvents(string _title, Partner _partner, ShippingOperationInbound _shippingIndex)
+    public AlarmsAndEvents(string _title, Partner _partner, Shipping _shippingIndex)
     {
       Tytuł = _title;
       this.VendorName = _partner;
@@ -31,7 +31,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     /// <param name="_title">The evrnt title.</param>
     /// <param name="_partner">The partner associated with the event.</param>
     /// <param name="_shippingIndex">Index of the shipping.</param>
-    internal static void WriteEntry(EntitiesDataContext edc, string _title, Partner _partner, ShippingOperationInbound _shippingIndex)
+    internal static void WriteEntry(EntitiesDataContext edc, string _title, Partner _partner, Shipping _shippingIndex)
     {
       if (edc == null)
       {

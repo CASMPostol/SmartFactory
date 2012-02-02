@@ -221,7 +221,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
-    internal event InterconnectionDataTable<ShippingOperationInbound>.SetDataEventArg m_ShippintInterconnectionEvent;
+    internal event InterconnectionDataTable<Shipping>.SetDataEventArg m_ShippintInterconnectionEvent;
     #endregion
 
     #region private
@@ -274,7 +274,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
           m_ShippintInterconnectionEvent
-            (this, new InterconnectionDataTable<ShippingOperationInbound>.InterconnectionEventArgs
+            (this, new InterconnectionDataTable<Shipping>.InterconnectionEventArgs
               ((from idx in edc.Shipping where idx.Identyfikator == _intID select idx).First()));
       }
       catch (Exception) { }

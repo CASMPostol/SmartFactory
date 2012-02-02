@@ -72,8 +72,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         return;
       try
       {
+        TimeSlotTimeSlot _slctdTmslt = Element.GetAtIndex(m_EDC.TimeSlot, m_TimeSlotList.SelectedValue);
+        _slctdTmslt.IsDouble = m_ShowDoubleTimeSlots.Checked;
         m_InterconnectionDataTable_TimeSlotTimeSlot.SetData
-          (this, new InterconnectionDataTable<TimeSlotTimeSlot>.InterconnectionEventArgs(Element.GetAtIndex(m_EDC.TimeSlot, m_TimeSlotList.SelectedValue)));
+          (this, new InterconnectionDataTable<TimeSlotTimeSlot>.InterconnectionEventArgs(_slctdTmslt));
       }
       catch (Exception ex)
       {
