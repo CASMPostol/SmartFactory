@@ -136,14 +136,15 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
     private void CreateTimeSlots(EntitiesDataContext _EDC, ShippingPoint _sp, UpdateToolStripEvent _update)
     {
       _update(this, new ProgressChangedEventArgs(1, "CreateTimeSlots starting"));
-      for (int _i = 0; _i < 25; _i++)
+      for (int _i = 0; _i < Properties.Settings.Default.NumberOfDays; _i++)
       {
         DateTime _dy = DateTime.Now.Date + TimeSpan.FromDays(_i);
         _update(this, new ProgressChangedEventArgs(1, _dy.ToShortDateString()));
         if (_dy.DayOfWeek == DayOfWeek.Sunday || _dy.DayOfWeek == DayOfWeek.Saturday)
           continue;
         List<TimeSlotTimeSlot> _ts = new List<TimeSlotTimeSlot>();
-        for (int _indx = 8; _indx <= 10; _indx++)
+        short _strtTm = 8;
+        for (int _indx = _strtTm; _indx <= _strtTm + Properties.Settings.Default.TimeSlotsPerDay; _indx++)
         {
           DateTime _bgn = _dy + TimeSpan.FromHours(_indx);
           DateTime _end = _bgn + TimeSpan.FromHours(1);
@@ -232,8 +233,9 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         {
           UpdateToolStrip(this, new ProgressChangedEventArgs(1, "CreateCities Starting"));
           CreateCountries(_EDC, UpdateToolStrip);
-          UpdateToolStrip(this, new ProgressChangedEventArgs(1, "CreateCities CreateCommodity"));
+          UpdateToolStrip(this, new ProgressChangedEventArgs(1, "CreateCommodity Starting"));
           CreateCommodity(_EDC, UpdateToolStrip);
+          UpdateToolStrip(this, new ProgressChangedEventArgs(1, "CreatePartners Starting"));
           CreatePartners(_EDC, UpdateToolStrip);
         }
         SetDone("Done");

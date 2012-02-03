@@ -5,8 +5,11 @@
     <Setting Name="URL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://casmp/sites/SHR/</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="NumberOfDays" Type="System.Int16" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="TimeSlotsPerDay" Type="System.Int16" Scope="User">
+      <Value Profile="(Default)">7</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         _phase = "After Page.LoadControl";
         m_control = (TimeSlotWebPartUserControl)_ctrl;
         _phase = "After Casting";
-         m_control.Role = SimpleTimeSlotList;
+        m_control.Role = Role;
         _phase = "After selection SimpleTimeSlotList";
         Controls.Add(m_control);
         _phase = "After Controls.Add";
@@ -44,21 +44,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     /// Initializes a new instance of the <see cref="TimeSlotWebPart"/> class.
     /// </summary>
     public TimeSlotWebPart()
-    {
-      SimpleTimeSlotList = true;
-    }
+    {}
+    #region Personalization properties
     /// <summary>
-    /// Gets or sets a value indicating whether use simple reendering of the time slot list.
+    /// Gets or sets the role of the hosting dashboard.
     /// </summary>
     /// <value>
-    ///   <c>true</c> if simple reendering firm of the time slot list should be used; otherwise, <c>false</c>.
+    /// The role.
     /// </value>
     [WebBrowsable(true)]
     [Personalizable(PersonalizationScope.Shared)]
-    [WebDisplayName("Simple list of available slots")]
-    [WebDescription("Just a list instead of full day calendar page with rows")]
+    [WebDisplayName("The dashboard role")]
+    [WebDescription("The role of the dashboard this web part is located on. Depending on the role the dashboard customizes" +
+      " the functionality provided to the user.")]
     [Microsoft.SharePoint.WebPartPages.SPWebCategoryName("CAS Custom Properties")]
-    public bool SimpleTimeSlotList { get; set; }
+    public GlobalDefinitions.Roles Role { get; set; }
+    #endregion
+
+    #region interconnection
     /// <summary>
     /// Gets the connection interface allowing to get selected entry of <see cref="TimeSlot"/>.
     /// </summary>
@@ -73,5 +76,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         m_SelectedTimeSlot = m_control.GetSelectedTimeSlotInterconnectionData();
       return m_SelectedTimeSlot;
     }
+    #endregion
   }
 }

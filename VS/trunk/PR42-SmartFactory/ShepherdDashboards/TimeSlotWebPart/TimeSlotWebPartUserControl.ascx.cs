@@ -12,18 +12,32 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
   public partial class TimeSlotWebPartUserControl : UserControl
   {
     #region public
-    public TimeSlotWebPartUserControl()
-    {
-      Role = true;
-    }
+    public TimeSlotWebPartUserControl() { }
     internal InterconnectionDataTable<TimeSlotTimeSlot> GetSelectedTimeSlotInterconnectionData()
     {
       return m_InterconnectionDataTable_TimeSlotTimeSlot;
     }
-    internal bool Role
+    internal GlobalDefinitions.Roles Role
     {
       set
       {
+        switch (value)
+        {
+          case GlobalDefinitions.Roles.InboundOwner:
+          case GlobalDefinitions.Roles.Vendor:
+          case GlobalDefinitions.Roles.Operator:
+          case GlobalDefinitions.Roles.Escort:
+          case GlobalDefinitions.Roles.Guard:
+          case GlobalDefinitions.Roles.Forwarder:
+            m_DoubleTimeSlotsPanel.Visible = false;
+            break;
+          case GlobalDefinitions.Roles.OutboundOwner:
+          case GlobalDefinitions.Roles.Coordinator:
+          case GlobalDefinitions.Roles.Supervisor:
+          case GlobalDefinitions.Roles.None:
+            m_DoubleTimeSlotsPanel.Visible = true;
+            break;
+        }
       }
     }
     #endregion
@@ -104,21 +118,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     {
       try
       {
+        m_TimeSlotList.Items.Clear();
         DateTime _sd = m_Calendar.SelectedDate.Date;
+        DateTime _strt = new DateTime(m_Calendar.VisibleDate.Year, m_Calendar.VisibleDate.Month, 1);
+        DateTime _end = _strt.AddMonths(1);
         Warehouse _warehouse = Element.GetAtIndex(m_EDC.Warehouse, m_WarehouseDropDownList.SelectedValue);
-        foreach (var _spoint in (from _sp in m_EDC.ShippingPoint
-                                 where _sp.Warehouse.Identyfikator == _warehouse.Identyfikator
-                                 select _sp).ToList<ShippingPoint>())
+        foreach (var _spoint in (from _sp in _warehouse.ShippingPoint
+                                 select _sp))
         {
           List<TimeSlot> _avlblTmslts = new List<TimeSlot>();
           if (_spoint.Direction != _direction && _spoint.Direction != Direction.BothDirections)
             continue;
-          DateTime _strt = new DateTime(_sd.Year, _sd.Month, 1);
-          DateTime _end = _strt.AddMonths(1);
           foreach (var _ts in (from _tsidx in _spoint.TimeSlot
                                where !_tsidx.Occupied.Value && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
                                orderby _tsidx.StartTime ascending
-                               select _tsidx)) //.ToList<TimeSlot>().OrderBy( _ts => _ts.StartTime ))
+                               select _tsidx))
           {
             if (!m_AvailableDays.ContainsKey(_ts.StartTime.Value.Date))
               m_AvailableDays.Add(_ts.StartTime.Value.Date, 1);
@@ -141,7 +155,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       if (m_TimeSlotSelection)
         return;
       string _dtFormat = "{0:HH:mm}";
-      m_TimeSlotList.Items.Clear();
       if (m_ShowDoubleTimeSlots.Checked)
       {
         TimeSpan _spn15min = new TimeSpan(0, 15, 0);
