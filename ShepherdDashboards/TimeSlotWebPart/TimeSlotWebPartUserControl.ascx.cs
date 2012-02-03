@@ -118,60 +118,72 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     {
       try
       {
-        m_TimeSlotList.Items.Clear();
         DateTime _sd = m_Calendar.SelectedDate.Date;
         DateTime _strt = new DateTime(m_Calendar.VisibleDate.Year, m_Calendar.VisibleDate.Month, 1);
         DateTime _end = _strt.AddMonths(1);
         Warehouse _warehouse = Element.GetAtIndex(m_EDC.Warehouse, m_WarehouseDropDownList.SelectedValue);
-        foreach (var _spoint in (from _sp in _warehouse.ShippingPoint
-                                 select _sp))
+        List<TimeSlot> _2Expose = new List<TimeSlot>();
+        foreach (var _spoint in (from _sp in _warehouse.ShippingPoint select _sp))
         {
-          List<TimeSlot> _avlblTmslts = new List<TimeSlot>();
           if (_spoint.Direction != _direction && _spoint.Direction != Direction.BothDirections)
             continue;
-          foreach (var _ts in (from _tsidx in _spoint.TimeSlot
-                               where !_tsidx.Occupied.Value && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
-                               orderby _tsidx.StartTime ascending
-                               select _tsidx))
+          List<TimeSlot> _avlblTmslts = (from _tsidx in _spoint.TimeSlot
+                                         where !_tsidx.Occupied.Value && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
+                                         orderby _tsidx.StartTime ascending
+                                         select _tsidx).ToList<TimeSlot>();
+          if (m_ShowDoubleTimeSlots.Checked)
           {
-            if (!m_AvailableDays.ContainsKey(_ts.StartTime.Value.Date))
-              m_AvailableDays.Add(_ts.StartTime.Value.Date, 1);
-            else
-              m_AvailableDays[_ts.StartTime.Value.Date] += 1;
-            if (_ts.StartTime.Value.Date != _sd)
-              continue;
-            _avlblTmslts.Add(_ts);
+            TimeSpan _spn15min = new TimeSpan(0, 15, 0);
+            for (int _i = 0; _i < _avlblTmslts.Count - 1; _i++)
+            {
+              TimeSlot _cts = _avlblTmslts[_i];
+              if ((_avlblTmslts[_i + 1].StartTime.Value - _cts.EndTime.Value).Duration() > _spn15min)
+                continue;
+              AddToAvailable(_cts);
+              if (_cts.StartTime.Value.Date != _sd)
+                continue;
+              _2Expose.Add(_cts);
+            }
           }
-          DisplayTimeSlots(_avlblTmslts);
+          else
+            foreach (TimeSlot _cts in _avlblTmslts)
+            {
+              AddToAvailable(_cts);
+              if (_cts.StartTime.Value.Date != _sd)
+                continue;
+              _2Expose.Add(_cts);
+            }
         }
+        ExposeTimeSlots(_2Expose);
       }
       catch (Exception ex)
       {
         this.Controls.Add(new LiteralControl("Cannot display time slots because; " + ex.Message));
       }
     }
-    private void DisplayTimeSlots(List<TimeSlot> _avlblTmslts)
+    private void AddToAvailable(TimeSlot _cts)
+    {
+      if (!m_AvailableDays.ContainsKey(_cts.StartTime.Value.Date))
+        m_AvailableDays.Add(_cts.StartTime.Value.Date, 1);
+      else
+        m_AvailableDays[_cts.StartTime.Value.Date] += 1;
+    }
+    private void ExposeTimeSlots(List<TimeSlot> _avlblTmslts)
     {
       if (m_TimeSlotSelection)
         return;
+      m_TimeSlotList.Items.Clear();
       string _dtFormat = "{0:HH:mm}";
-      if (m_ShowDoubleTimeSlots.Checked)
+      HashSet<string> _labels2Display = new HashSet<string>();
+      foreach (TimeSlot _item in _avlblTmslts)
       {
-        TimeSpan _spn15min = new TimeSpan(0, 15, 0);
-        for (int _i = 0; _i < _avlblTmslts.Count - 1; _i++)
-        {
-          if ((_avlblTmslts[_i + 1].StartTime.Value - _avlblTmslts[_i].EndTime.Value).Duration() > _spn15min)
-            continue;
-          ListItem _ni = new ListItem(String.Format(_dtFormat, _avlblTmslts[_i].StartTime.Value), _avlblTmslts[_i].Identyfikator.Value.ToString(), true);
-          m_TimeSlotList.Items.Add(_ni);
-        }
+        string _label = String.Format(_dtFormat, _item.StartTime.Value);
+        if (_labels2Display.Contains(_label))
+          continue;
+        _labels2Display.Add(_label);
+        ListItem _ni = new ListItem(_label, _item.Identyfikator.Value.ToString(), true);
+        m_TimeSlotList.Items.Add(_ni);
       }
-      else
-        foreach (TimeSlot _item in _avlblTmslts)
-        {
-          ListItem _ni = new ListItem(String.Format(_dtFormat, _item.StartTime.Value), _item.Identyfikator.Value.ToString(), true);
-          m_TimeSlotList.Items.Add(_ni);
-        }
     }
     private bool m_TimeSlotSelection = false;
     private EntitiesDataContext m_EDC = null;
