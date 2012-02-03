@@ -58,6 +58,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart {
         protected global::System.Web.UI.WebControls.ListBox m_TimeSlotList;
         
         /// <summary>
+        /// m_DoubleTimeSlotsPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel m_DoubleTimeSlotsPanel;
+        
+        /// <summary>
         /// m_ShowDoubleTimeSlots control.
         /// </summary>
         /// <remarks>

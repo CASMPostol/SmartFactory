@@ -37,13 +37,25 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public short NumberOfDays {
             get {
-                return ((string)(this["Setting"]));
+                return ((short)(this["NumberOfDays"]));
             }
             set {
-                this["Setting"] = value;
+                this["NumberOfDays"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public short TimeSlotsPerDay {
+            get {
+                return ((short)(this["TimeSlotsPerDay"]));
+            }
+            set {
+                this["TimeSlotsPerDay"] = value;
             }
         }
     }

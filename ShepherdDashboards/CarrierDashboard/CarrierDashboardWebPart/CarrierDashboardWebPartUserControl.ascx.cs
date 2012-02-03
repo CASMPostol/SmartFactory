@@ -339,7 +339,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_CommentsTextBox.TextBoxTextProperty(String.Empty, false);
       m_EstimateDeliveryTimeDateTimeControl.SelectedDate = DateTime.Now;
     }
-    internal void ShowShipping()
+    private void ShowShipping()
     {
       if (m_ControlState.ShippingID.IsNullOrEmpty())
         ClearUserInterface();
@@ -422,7 +422,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       Route _rt = Entities.Element.GetAtIndex<Route>(m_EDC.Route, _route.ID);
       m_ControlState.PartnerID = _rt.VendorName.Identyfikator.IntToString();
     }
-    internal void ShowMarket(MarketInterconnectionData _market)
+    private void ShowMarket(MarketInterconnectionData _market)
     {
       m_ControlState.MarketID = _market.ID;
       m_ControlState.RouteID = String.Empty;
