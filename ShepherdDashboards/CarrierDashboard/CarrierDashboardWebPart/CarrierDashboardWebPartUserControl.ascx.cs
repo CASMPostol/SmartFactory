@@ -514,12 +514,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           if (!validated)
             return false;
           _sp = new Shipping
-          (
-            String.Format("{0}", m_DocumentTextBox.Text),
-            _prtnr,
-            Entities.State.Creation,
-            _ts.StartTime
-          ) { IsOutbound = false };
+             (false, String.Format("{0}", m_DocumentTextBox.Text), _prtnr, Entities.State.Creation, _ts.StartTime);
         }
         else
         {
@@ -535,24 +530,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           }
           if (!validated)
             return false;
-          Shipping _spo = new Shipping
-          (
-            m_ControlState.RouteID.IsNullOrEmpty() ? null : Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.RouteID),
-            m_EstimateDeliveryTimeDateTimeControl.SelectedDate,
-            String.Format("{0}", m_DocumentTextBox.Text),
-            _prtnr,
-            Entities.State.Creation,
-            _ts.StartTime
-          ) { IsOutbound = true };
-          _sp = _spo;
-          AssignPartners2Shipping(_spo);
-          _spo.EstimateDeliveryTime = m_EstimateDeliveryTimeDateTimeControl.SelectedDate;
+          _sp = new Shipping
+             (true, 
+             String.Format("{0}", m_DocumentTextBox.Text), 
+             _prtnr, 
+             Entities.State.Creation, 
+             m_ControlState.RouteID.IsNullOrEmpty() ? null : Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.RouteID), 
+             m_EstimateDeliveryTimeDateTimeControl.SelectedDate, 
+             _ts.StartTime);
+          AssignPartners2Shipping(_sp);
         }
         _sp.CancelationReason = m_CommentsTextBox.Text;
         _ts.MakeBooking(_sp);
         LoadDescription _ld = new LoadDescription()
         {
-          Tytuł = m_DocumentTextBox.Text,
+          Tytuł = m_DocumentTextBox.Text, 
           ShippingIndex = _sp,
           Market = m_ControlState.MarketID.IsNullOrEmpty() ? null : Element.GetAtIndex<MarketMarket>(m_EDC.Market, m_ControlState.MarketID)
         };
@@ -573,7 +565,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       try
       {
-        Shipping _si = Shipping.GetAtIndex(m_EDC, m_ControlState.ShippingID.String2Int());
+        Shipping _si = Element.GetAtIndex(m_EDC.Shipping, m_ControlState.ShippingID);
         _si.State = _newState;
         switch (_newState)
         {
