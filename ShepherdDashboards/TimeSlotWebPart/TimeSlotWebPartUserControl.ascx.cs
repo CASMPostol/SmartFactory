@@ -30,12 +30,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           case GlobalDefinitions.Roles.Guard:
           case GlobalDefinitions.Roles.Forwarder:
             m_DoubleTimeSlotsPanel.Visible = false;
+            m_RoleDirection = Direction.Inbound;
             break;
           case GlobalDefinitions.Roles.OutboundOwner:
           case GlobalDefinitions.Roles.Coordinator:
           case GlobalDefinitions.Roles.Supervisor:
           case GlobalDefinitions.Roles.None:
             m_DoubleTimeSlotsPanel.Visible = true;
+            m_RoleDirection = Direction.Outbound;
             break;
         }
       }
@@ -73,7 +75,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     }
     protected override void OnPreRender(EventArgs e)
     {
-      PreapareCalendar(Direction.Inbound);
+      PreapareCalendar(m_RoleDirection);
       base.OnPreRender(e);
     }
     #endregion
@@ -189,6 +191,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     private EntitiesDataContext m_EDC = null;
     private SortedDictionary<DateTime, int> m_AvailableDays = new SortedDictionary<DateTime, int>();
     private InterconnectionDataTable<TimeSlotTimeSlot> m_InterconnectionDataTable_TimeSlotTimeSlot;
+    private Direction m_RoleDirection = Direction.Inbound;
     #endregion
   }
 }
