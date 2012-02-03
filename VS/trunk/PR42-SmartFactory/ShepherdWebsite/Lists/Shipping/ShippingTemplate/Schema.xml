@@ -214,12 +214,14 @@
       <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundOwner.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">10</RowLimit>
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
+          <FieldRef ID="{A55637EF-0C88-490E-BCAF-16215A28EA52}" Name="Shipping2City" />
+          <FieldRef ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}" Name="Shipping2TransportUnitType" />
         </ViewFields>
         <Query>
           <OrderBy>
