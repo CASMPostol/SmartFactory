@@ -531,12 +531,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           if (!validated)
             return false;
           _sp = new Shipping
-             (true, 
-             String.Format("{0}", m_DocumentTextBox.Text), 
-             _prtnr, 
-             Entities.State.Creation, 
-             m_ControlState.RouteID.IsNullOrEmpty() ? null : Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.RouteID), 
-             m_EstimateDeliveryTimeDateTimeControl.SelectedDate, 
+             (true,
+             String.Format("{0}", m_DocumentTextBox.Text),
+             _prtnr,
+             Entities.State.Creation,
+             m_ControlState.RouteID.IsNullOrEmpty() ? null : Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.RouteID),
+             m_EstimateDeliveryTimeDateTimeControl.SelectedDate,
              _ts.StartTime);
           AssignPartners2Shipping(_sp);
         }
@@ -544,7 +544,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _ts.MakeBooking(_sp);
         LoadDescription _ld = new LoadDescription()
         {
-          Tytuł = m_DocumentTextBox.Text, 
+          Tytuł = m_DocumentTextBox.Text, //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3057
+          DeliveryNumber = m_DocumentTextBox.Text,
           ShippingIndex = _sp,
           Market = m_ControlState.MarketID.IsNullOrEmpty() ? null : Element.GetAtIndex<MarketMarket>(m_EDC.Market, m_ControlState.MarketID)
         };
