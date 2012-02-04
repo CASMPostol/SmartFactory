@@ -39,8 +39,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           case InboundInterconnectionData.ConnectionSelector.PartnerInterconnection:
             new PartnerInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
             break;
-          case InboundInterconnectionData.ConnectionSelector.MarketInterconnection:
-            new MarketInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
+          case InboundInterconnectionData.ConnectionSelector.CityInterconnection:
+            new CityInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
             break;
           case InboundInterconnectionData.ConnectionSelector.RouteInterconnection:
             new RouteInterconnectionnData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
@@ -175,11 +175,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           m_TransportUnitTypeDropDownList.DataSource = from _idx in m_EDC.TransportUnitType
                                                        orderby _idx.Tytuł ascending
                                                        select _idx;
-          m_TransportUnitTypeDropDownList.DataTextField = "Tytuł";
-          m_TransportUnitTypeDropDownList.DataValueField = "Identyfikator";
+          m_TransportUnitTypeDropDownList.DataTextField = Element.TitlePropertyName;
+          m_TransportUnitTypeDropDownList.DataValueField = Element.IDPropertyName;
           m_TransportUnitTypeDropDownList.DataBind();
           m_TransportUnitTypeDropDownList.SelectedIndex = 0;
-
         }
       }
       m_SaveButton.Click += new EventHandler(m_StateMachineEngine.SaveButton_Click);
@@ -274,9 +273,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         Parent.m_ControlState.PartnerID = _partner.ID;
         Parent.m_SelectedSecurityEscortLabel.Text = _partner.Title;
       }
-      protected override void ShowMarket(MarketInterconnectionData _market)
+      protected override void ShowCity(CityInterconnectionData _city)
       {
-        Parent.ShowMarket(_market);
+        Parent.ShowCity(_city);
       }
       protected override void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData _Escort)
       {
@@ -370,33 +369,28 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       try
       {
         Shipping _sppng = Element.GetAtIndex<Shipping>(m_EDC.Shipping, _shippingID);
-        Shipping _sOutbound = _sppng as Shipping;
-        if (_sOutbound == null)
-          m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
-        else
+        if (_sppng.IsOutbound.Value)
         {
           m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
-          m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _sOutbound.EstimateDeliveryTime.HasValue ? _sOutbound.EstimateDeliveryTime.Value : DateTime.Now;
-          m_RouteLabel.Text = _sOutbound.Route != null ? _sOutbound.Route.Tytuł : String.Empty;
-          m_SecurityEscortLabel.Text = _sOutbound.SecurityEscort != null ? _sOutbound.SecurityEscort.Tytuł : string.Empty;
+          m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _sppng.EstimateDeliveryTime.HasValue ? _sppng.EstimateDeliveryTime.Value : DateTime.Now;
+          m_RouteLabel.Text = _sppng.Route != null ? _sppng.Route.Tytuł : String.Empty;
+          m_SecurityEscortLabel.Text = _sppng.SecurityEscort != null ? _sppng.SecurityEscort.Tytuł : string.Empty;
         }
-        TimeSlotTimeSlot _cts = (TimeSlotTimeSlot)(from _ts in _sppng.TimeSlot orderby _ts.StartTime descending select _ts).First();
+        else
+          m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
+        TimeSlot _cts = (from _ts in _sppng.TimeSlot where _ts.Occupied.Value orderby _ts.StartTime ascending select _ts).First();
         List<LoadDescription> _ld = _sppng.LoadDescription.ToList<LoadDescription>();
-        ShowTimeSlot(_cts);
+        ShowTimeSlot((TimeSlotTimeSlot)_cts);
         string _ldLabel = String.Empty;
-        string _marketsLabel = String.Empty;
         if (_ld != null)
           foreach (var _item in _ld)
-          {
             _ldLabel += _item.Tytuł + "; ";
-            _marketsLabel += (_item.Market == null ? "not set" : _item.Market.Tytuł) + "; ";
-          }
         m_DocumentTextBox.TextBoxTextProperty(_ldLabel, true);
         m_CommentsTextBox.TextBoxTextProperty(_sppng.CancelationReason, false);
         if (m_RouteLabel.Text.IsNullOrEmpty())
         {
-          m_RouteLabel.Text = _marketsLabel;
-          m_RouteHeaderLabel.Text = m_SelectedMarketsHeaderLabelText;
+          m_RouteLabel.Text = _sppng.City.Tytuł;
+          m_RouteHeaderLabel.Text = m_CityHeaderLabelText;
         }
         EnableSaveButton();
       }
@@ -435,12 +429,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       Route _rt = Entities.Element.GetAtIndex<Route>(m_EDC.Route, _route.ID);
       m_ControlState.PartnerID = _rt.VendorName.Identyfikator.IntToString();
     }
-    private void ShowMarket(MarketInterconnectionData _market)
+    private void ShowCity(CityInterconnectionData _city)
     {
-      m_ControlState.CityID = _market.ID;
+      m_ControlState.CityID = _city.ID;
       m_ControlState.RouteID = String.Empty;
-      m_RouteLabel.Text = _market.Title;
-      m_RouteHeaderLabel.Text = m_MarketHeaderLabelText;
+      m_RouteLabel.Text = _city.Title;
+      m_RouteHeaderLabel.Text = m_CityHeaderLabelText;
     }
     private void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData _Escort)
     {
@@ -573,7 +567,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           Tytuł = m_DocumentTextBox.Text, //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3057
           DeliveryNumber = m_DocumentTextBox.Text,
           ShippingIndex = _sp,
-          Market = m_ControlState.CityID.IsNullOrEmpty() ? null : Element.GetAtIndex<MarketMarket>(m_EDC.Market, m_ControlState.CityID)
         };
         m_EDC.Shipping.InsertOnSubmit(_sp);
         m_EDC.LoadDescription.InsertOnSubmit(_ld);
@@ -699,8 +692,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private EntitiesDataContext m_EDC = null;
     private const string m_DeliveryNoHeaderLabetText = "Delivery No";
     private const string m_PartnerHeaderLabelText = "Vendor";
-    private const string m_MarketHeaderLabelText = "Primery market";
-    private const string m_SelectedMarketsHeaderLabelText = "Selected markets";
+    private const string m_CityHeaderLabelText = "Destination";
     private const string m_RouteHeaderLabelText = "Route";
     private ButtonsSet m_VisibilityACL;
     private ButtonsSet m_EditbilityACL;

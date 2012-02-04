@@ -9,6 +9,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
   {
     internal const string IDColunmName = "ID";
     internal const string TitleColunmName = "Title";
+    internal const string IDPropertyName = "Identyfikator";
+    internal const string TitlePropertyName = "Tytuł";
     internal static t GetAtIndex<t>(EntityList<t> _list, string _ID)
       where t: Element
     {

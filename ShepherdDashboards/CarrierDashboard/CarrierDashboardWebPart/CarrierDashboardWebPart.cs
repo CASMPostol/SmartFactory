@@ -115,13 +115,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.PartnerInterconnection, _provider);
     }
     /// <summary>
-    /// Primary market table interconnection.
+    /// City table interconnection.
     /// </summary>
     /// <param name="_provider">The provider interface.</param>
-    [ConnectionConsumer("Primary market table interconnection", "MarketInterconnection", AllowsMultipleConnections = false)]
-    public void SetMarketProvider(IWebPartRow _provider)
+    [ConnectionConsumer("City table interconnection", "CityInterconnection", AllowsMultipleConnections = false)]
+    public void SetCityProvider(IWebPartRow _provider)
     {
-      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.PartnerInterconnection, _provider);
+      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.CityInterconnection, _provider);
     }    /// <summary>
     /// Gets the connection interface allowing to get selected entry of <see cref="ShippingOperationInbound"/>.
     /// </summary>
