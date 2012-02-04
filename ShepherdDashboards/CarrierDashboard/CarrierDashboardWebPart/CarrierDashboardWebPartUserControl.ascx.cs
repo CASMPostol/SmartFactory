@@ -64,34 +64,34 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       set
       {
         m_DashboardType = value;
+        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
         switch (value)
         {
           case GlobalDefinitions.Roles.OutboundOwner:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.SecurityEscortOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.SecurityEscortOn;
-            m_RouteLabel.Text = m_CityHeaderLabelText;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.RouteOn;
+            m_EditbilityACL = m_AllButtons;
+            m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
             break;
           case GlobalDefinitions.Roles.Coordinator:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn;
             m_EditbilityACL = m_AllButtons;
             break;
           case GlobalDefinitions.Roles.Supervisor:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.TransportUnitOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn;
-           break;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn;
+            break;
           case GlobalDefinitions.Roles.InboundOwner:
             m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.SecurityEscortOn;
+            m_VisibilityACL = _inbound;
+            m_EditbilityACL = _inbound;
             break;
           case GlobalDefinitions.Roles.Operator:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AbortOn ^
-              ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.NewOn ^ ButtonsSet.RouteOn ^ ButtonsSet.AcceptOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn;
+            m_VisibilityACL = _inbound ^ ButtonsSet.AbortOn ^ ButtonsSet.NewOn;
+            m_EditbilityACL = _inbound;
             break;
           case GlobalDefinitions.Roles.Vendor:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn;
+            m_VisibilityACL = _inbound;
+            m_EditbilityACL = _inbound;
             break;
           case GlobalDefinitions.Roles.Guard:
             m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.DocumentOn | ButtonsSet.RouteOn | ButtonsSet.WarehouseOn
@@ -100,11 +100,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             break;
           case GlobalDefinitions.Roles.Forwarder:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.NewOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.WarehouseOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn;
+            m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
             break;
           case GlobalDefinitions.Roles.Escort:
-            m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.RouteOn | ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.WarehouseOn ^ ButtonsSet.SecurityEscortOn;
+            m_VisibilityACL = ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.SecurityEscortOn;
+            m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
             break;
           case GlobalDefinitions.Roles.None:
             m_VisibilityACL = m_AllButtons;
@@ -131,7 +133,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       public string SecurityPartnerID = String.Empty;
       public string ShippingID = String.Empty;
       public string TimeSlotID = String.Empty;
-      public string TransportUnitTypeID = String.Empty;
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       public bool TimeSlotChanged = false;
       #endregion
@@ -272,7 +273,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       protected override void ShowPartner(PartnerInterconnectionData _partner)
       {
         Parent.m_ControlState.PartnerID = _partner.ID;
-        Parent.m_SelectedSecurityEscortLabel.Text = _partner.Title;
+        Parent.m_SecurityEscortLabel.Text = _partner.Title;
       }
       protected override void ShowCity(CityInterconnectionData _city)
       {
@@ -370,28 +371,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       try
       {
         Shipping _sppng = Element.GetAtIndex<Shipping>(m_EDC.Shipping, _shippingID);
+        TimeSlot _cts = (from _ts in _sppng.TimeSlot where _ts.Occupied.Value orderby _ts.StartTime ascending select _ts).First();
+        ShowTimeSlot((TimeSlotTimeSlot)_cts);
+        ShowLoadDescription(_sppng);
+        m_CommentsTextBox.TextBoxTextProperty(_sppng.CancelationReason, false);
         if (_sppng.IsOutbound.Value)
         {
           m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
           m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _sppng.EstimateDeliveryTime.HasValue ? _sppng.EstimateDeliveryTime.Value : DateTime.Now;
           m_RouteLabel.Text = _sppng.Route != null ? _sppng.Route.Tytuł : String.Empty;
           m_SecurityEscortLabel.Text = _sppng.SecurityEscort != null ? _sppng.SecurityEscort.Tytuł : string.Empty;
+          ShowTransportUnitType(_sppng.TransportUnit);
+          m_CityLabel.Text = _sppng.City.Tytuł;
+          m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
         }
         else
-          m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
-        TimeSlot _cts = (from _ts in _sppng.TimeSlot where _ts.Occupied.Value orderby _ts.StartTime ascending select _ts).First();
-        List<LoadDescription> _ld = _sppng.LoadDescription.ToList<LoadDescription>();
-        ShowTimeSlot((TimeSlotTimeSlot)_cts);
-        string _ldLabel = String.Empty;
-        if (_ld != null)
-          foreach (var _item in _ld)
-            _ldLabel += _item.Tytuł + "; ";
-        m_DocumentTextBox.TextBoxTextProperty(_ldLabel, true);
-        m_CommentsTextBox.TextBoxTextProperty(_sppng.CancelationReason, false);
-        if (m_RouteLabel.Text.IsNullOrEmpty())
         {
-          m_RouteLabel.Text = _sppng.City.Tytuł;
-          m_RouteHeaderLabel.Text = m_CityHeaderLabelText;
+          m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
+          m_DocumentLabel.Text = m_PONoumberHeaderLabetText;
         }
         EnableSaveButton();
       }
@@ -399,6 +396,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         m_StateMachineEngine.ExceptionCatched(m_EDC, "UpdateShowShipping", ex.Message);
       }
+    }
+    private void ShowLoadDescription(Shipping _sppng)
+    {
+      if (_sppng.LoadDescription == null || _sppng.LoadDescription.Count == 0)
+        return;
+      List<LoadDescription> _ld = _sppng.LoadDescription.ToList<LoadDescription>();
+      string _ldLabel = String.Empty;
+      foreach (var _item in _sppng.LoadDescription)
+        _ldLabel += _item.Tytuł + "; ";
+      m_DocumentTextBox.TextBoxTextProperty(_ldLabel, true);
+    }
+    private void ShowTransportUnitType(TransportUnitTypeTranspotUnit _unit)
+    {
+      if (_unit == null)
+        return;
+      foreach (ListItem _item in m_TransportUnitTypeDropDownList.Items)
+        if (_item.Value.String2Int() == _unit.Identyfikator)
+          _item.Selected = true;
     }
     private void ShowTimeSlot(TimeSlotInterconnectionData _interconnectionData)
     {
@@ -424,22 +439,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private void ShowRoute(RouteInterconnectionnData _route)
     {
       m_ControlState.RouteID = _route.ID;
-      m_ControlState.CityID = String.Empty;
       m_RouteLabel.Text = _route.Title;
-      m_RouteHeaderLabel.Text = m_RouteHeaderLabelText;
       Route _rt = Entities.Element.GetAtIndex<Route>(m_EDC.Route, _route.ID);
       m_ControlState.PartnerID = _rt.VendorName.Identyfikator.IntToString();
     }
     private void ShowCity(CityInterconnectionData _city)
     {
       m_ControlState.CityID = _city.ID;
+      m_CityLabel.Text = _city.Title;
       m_ControlState.RouteID = String.Empty;
-      m_RouteLabel.Text = _city.Title;
-      m_RouteHeaderLabel.Text = m_CityHeaderLabelText;
     }
     private void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData _Escort)
     {
-      m_SelectedSecurityEscortLabel.Text = _Escort.Title;
+      m_SecurityEscortLabel.Text = _Escort.Title;
       m_ControlState.SecurityCatalogID = _Escort.ID;
       SecurityEscortCatalog _sec = Element.GetAtIndex<SecurityEscortCatalog>(m_EDC.SecurityEscortCatalog, _Escort.ID);
       m_ControlState.SecurityPartnerID = _sec.Identyfikator.IntToString();
@@ -459,13 +471,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_NewShippingButton.Visible = (_set & ButtonsSet.NewOn) != 0;
       m_SaveButton.Visible = (_set & ButtonsSet.SaveOn) != 0;
       //outbound
+      m_CityHeaderLabel.Visible = (_set & ButtonsSet.CityOn) != 0;
+      m_CityLabel.Visible = (_set & ButtonsSet.CityOn) != 0;
       m_TransportUnitTypeDropDownList.Visible = (_set & ButtonsSet.TransportUnitOn) != 0;
       m_TransportUnitTypeLabel.Visible = (_set & ButtonsSet.TransportUnitOn) != 0;
       m_EstimateDeliveryTimeLabel.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_EstimateDeliveryTimeDateTimeControl.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_RouteLabel.Visible = m_RouteHeaderLabel.Visible = (_set & ButtonsSet.RouteOn) != 0;
       m_SecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
-      m_SelectedSecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
+      m_SecurityEscortHeaderLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
     }
     private void SetEnabled(StateMachineEngine.ControlsSet _set)
     {
@@ -498,16 +512,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       bool validated = true;
       try
       {
-        if (m_ControlState.TimeSlotID.IsNullOrEmpty())
-        {
-          this.Controls.Add(
-            new Label()
-              {
-                ForeColor = Color.Red,
-                Text = String.Format("{0} must be selected", m_TimeSlotLabel.Text)
-              });
-          validated = false;
-        }
         if (m_DocumentTextBox.Text.IsNullOrEmpty())
         {
           this.Controls.Add(
@@ -518,8 +522,32 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
               });
           validated = false;
         }
-        Partner _prtnr = Element.GetAtIndex<Partner>(m_EDC.JTIPartner, m_ControlState.PartnerID);
-        TimeSlotTimeSlot _ts = Element.GetAtIndex<TimeSlotTimeSlot>(m_EDC.TimeSlot, m_ControlState.TimeSlotID);
+        Partner _prtnr = null;
+        if (m_ControlState.PartnerID.IsNullOrEmpty())
+        {
+          this.Controls.Add(
+            new Label()
+            {
+              ForeColor = Color.Red,
+              Text = "Partner must be selected"
+            });
+          validated = false;
+        }
+        else
+          _prtnr = Element.GetAtIndex<Partner>(m_EDC.JTIPartner, m_ControlState.PartnerID);
+        TimeSlotTimeSlot _ts = null;
+        if (m_ControlState.TimeSlotID.IsNullOrEmpty())
+        {
+          this.Controls.Add(
+            new Label()
+              {
+                ForeColor = Color.Red,
+                Text = String.Format("{0} must be selected", m_TimeSlotLabel.Text)
+              });
+          validated = false;
+        }
+        else
+          _ts = Element.GetAtIndex<TimeSlotTimeSlot>(m_EDC.TimeSlot, m_ControlState.TimeSlotID);
         Shipping _sp = null;
         if (m_DashboardType != GlobalDefinitions.Roles.OutboundOwner)
         {
@@ -536,11 +564,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
               (new Label()
                 {
                   ForeColor = Color.Red,
-                  Text = String.Format("{0} must be provided", m_RouteHeaderLabel.Text)
+                  Text = String.Format("{0} must be provided", m_CityLabel.Text)
                 });
             validated = false;
           }
-          if (m_ControlState.TransportUnitTypeID.IsNullOrEmpty())
+          if (m_TransportUnitTypeDropDownList.SelectedValue.IsNullOrEmpty())
           {
             this.Controls.Add
               (new Label()
@@ -695,10 +723,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 
     #region variables
     private EntitiesDataContext m_EDC = null;
+    private const string m_PONoumberHeaderLabetText = "Purchase Order";
     private const string m_DeliveryNoHeaderLabetText = "Delivery No";
     private const string m_PartnerHeaderLabelText = "Vendor";
-    private const string m_CityHeaderLabelText = "Destination";
-    private const string m_RouteHeaderLabelText = "Route";
     private ButtonsSet m_VisibilityACL;
     private ButtonsSet m_EditbilityACL;
     private ControlState m_ControlState = new ControlState(null);
