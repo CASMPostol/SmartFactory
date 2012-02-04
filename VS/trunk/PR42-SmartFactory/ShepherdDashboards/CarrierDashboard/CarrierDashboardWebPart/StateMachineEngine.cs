@@ -207,13 +207,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
-    internal void NewDataEventHandler(object sender, MarketInterconnectionData e)
+    internal void NewDataEventHandler(object sender, CityInterconnectionData e)
     {
       switch (CurrentMachineState)
       {
         case InterfaceState.NewState:
         case InterfaceState.EditState:
-          ShowMarket(e);
+          ShowCity(e);
           break;
         case InterfaceState.ViewState:
           break;
@@ -235,7 +235,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected abstract void ShowRoute(RouteInterconnectionnData e);
     protected abstract void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData e);
     protected abstract void ShowPartner(PartnerInterconnectionData e);
-    protected abstract void ShowMarket(MarketInterconnectionData e);
+    protected abstract void ShowCity(CityInterconnectionData e);
     protected abstract void SMError(InterfaceEvent interfaceEvent);
     protected abstract void AcceptShipping();
     protected abstract void UpdateShipping();

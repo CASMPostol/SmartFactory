@@ -62,8 +62,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         m_WarehouseDropDownList.DataSource = from _idx in m_EDC.Warehouse
                                              orderby _idx.Tytuł ascending
                                              select _idx;
-        m_WarehouseDropDownList.DataTextField = "Tytuł";
-        m_WarehouseDropDownList.DataValueField = "Identyfikator";
+        m_WarehouseDropDownList.DataTextField = Element.TitlePropertyName;
+        m_WarehouseDropDownList.DataValueField = Element.IDPropertyName;
         m_WarehouseDropDownList.DataBind();
         m_WarehouseDropDownList.SelectedIndex = 0;
         m_Calendar.VisibleDate = DateTime.Today;
