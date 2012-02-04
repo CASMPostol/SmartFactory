@@ -175,6 +175,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.Label m_SelectedSecurityEscortLabel;
         
         /// <summary>
+        /// m_TransportUnitTypeLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_TransportUnitTypeLabel;
+        
+        /// <summary>
+        /// m_TransportUnitTypeDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList m_TransportUnitTypeDropDownList;
+        
+        /// <summary>
         /// m_NewShippingButton control.
         /// </summary>
         /// <remarks>

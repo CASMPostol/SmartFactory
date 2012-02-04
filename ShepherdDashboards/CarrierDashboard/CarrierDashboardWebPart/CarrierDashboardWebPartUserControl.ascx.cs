@@ -125,11 +125,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       #region state fields
       public string PartnerID = String.Empty;
       public string RouteID = String.Empty;
-      public string MarketID = String.Empty;
+      public string CityID = String.Empty;
       public string SecurityCatalogID = String.Empty;
       public string SecurityPartnerID = String.Empty;
       public string ShippingID = String.Empty;
       public string TimeSlotID = String.Empty;
+      public string TransportUnitTypeID = String.Empty;
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       public bool TimeSlotChanged = false;
       #endregion
@@ -146,6 +147,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return !ShippingID.IsNullOrEmpty();
       }
       #endregion
+
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
@@ -168,6 +170,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         SetVisible(m_AllButtons);
         m_StateMachineEngine.InitMahine();
+        if (m_TransportUnitTypeDropDownList.Visible)
+        {
+          m_TransportUnitTypeDropDownList.DataSource = from _idx in m_EDC.TransportUnitType
+                                                       orderby _idx.Tytuł ascending
+                                                       select _idx;
+          m_TransportUnitTypeDropDownList.DataTextField = "Tytuł";
+          m_TransportUnitTypeDropDownList.DataValueField = "Identyfikator";
+          m_TransportUnitTypeDropDownList.DataBind();
+          m_TransportUnitTypeDropDownList.SelectedIndex = 0;
+
+        }
       }
       m_SaveButton.Click += new EventHandler(m_StateMachineEngine.SaveButton_Click);
       m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.NewShippingButton_Click);
@@ -416,7 +429,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private void ShowRoute(RouteInterconnectionnData _route)
     {
       m_ControlState.RouteID = _route.ID;
-      m_ControlState.MarketID = String.Empty;
+      m_ControlState.CityID = String.Empty;
       m_RouteLabel.Text = _route.Title;
       m_RouteHeaderLabel.Text = m_RouteHeaderLabelText;
       Route _rt = Entities.Element.GetAtIndex<Route>(m_EDC.Route, _route.ID);
@@ -424,7 +437,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void ShowMarket(MarketInterconnectionData _market)
     {
-      m_ControlState.MarketID = _market.ID;
+      m_ControlState.CityID = _market.ID;
       m_ControlState.RouteID = String.Empty;
       m_RouteLabel.Text = _market.Title;
       m_RouteHeaderLabel.Text = m_MarketHeaderLabelText;
@@ -518,7 +531,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         }
         else
         {
-          if (m_ControlState.MarketID.IsNullOrEmpty() && m_ControlState.RouteID.IsNullOrEmpty())
+          if (m_ControlState.CityID.IsNullOrEmpty())
           {
             this.Controls.Add
               (new Label()
@@ -528,16 +541,29 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
                 });
             validated = false;
           }
+          if (m_ControlState.TransportUnitTypeID.IsNullOrEmpty())
+          {
+            this.Controls.Add
+              (new Label()
+                {
+                  ForeColor = Color.Red,
+                  Text = String.Format("{0} must be provided", m_TransportUnitTypeLabel.Text)
+                });
+            validated = false;
+          }
           if (!validated)
             return false;
-          _sp = new Shipping
-             (true,
-             String.Format("{0}", m_DocumentTextBox.Text),
-             _prtnr,
-             Entities.State.Creation,
-             m_ControlState.RouteID.IsNullOrEmpty() ? null : Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.RouteID),
-             m_EstimateDeliveryTimeDateTimeControl.SelectedDate,
-             _ts.StartTime);
+          _sp = new Shipping(
+                               true,
+                               String.Format("{0}", m_DocumentTextBox.Text),
+                               _prtnr,
+                               Entities.State.Creation,
+                               m_ControlState.RouteID.IsNullOrEmpty() ? null : Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.RouteID),
+                               m_EstimateDeliveryTimeDateTimeControl.SelectedDate,
+                               _ts.StartTime,
+                               Element.GetAtIndex(m_EDC.City, m_ControlState.CityID),
+                               Element.GetAtIndex(m_EDC.TransportUnitType, m_TransportUnitTypeDropDownList.SelectedValue)
+                             );
           AssignPartners2Shipping(_sp);
         }
         _sp.CancelationReason = m_CommentsTextBox.Text;
@@ -547,7 +573,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           Tytuł = m_DocumentTextBox.Text, //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3057
           DeliveryNumber = m_DocumentTextBox.Text,
           ShippingIndex = _sp,
-          Market = m_ControlState.MarketID.IsNullOrEmpty() ? null : Element.GetAtIndex<MarketMarket>(m_EDC.Market, m_ControlState.MarketID)
+          Market = m_ControlState.CityID.IsNullOrEmpty() ? null : Element.GetAtIndex<MarketMarket>(m_EDC.Market, m_ControlState.CityID)
         };
         m_EDC.Shipping.InsertOnSubmit(_sp);
         m_EDC.LoadDescription.InsertOnSubmit(_ld);
