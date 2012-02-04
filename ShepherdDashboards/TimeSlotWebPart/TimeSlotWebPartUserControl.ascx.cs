@@ -139,7 +139,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
             for (int _i = 0; _i < _avlblTmslts.Count - 1; _i++)
             {
               TimeSlot _cts = _avlblTmslts[_i];
-              if ((_avlblTmslts[_i + 1].StartTime.Value - _cts.EndTime.Value).Duration() > _spn15min)
+              if ((_avlblTmslts[_i + 1].StartTime.Value - _cts.EndTime.Value).Duration() > TimeSlotTimeSlot.Span15min)
                 continue;
               AddToAvailable(_cts);
               if (_cts.StartTime.Value.Date != _sd)
