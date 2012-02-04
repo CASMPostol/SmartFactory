@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         throw new ApplicationException("Time slot has been aleady reserved");
       this.Occupied = true;
       this.ShippingIndex = _si;
-      if (!this.IsDouble.Value)
+      if (!this.IsDouble.HasValue || !this.IsDouble.Value)
         return;
       EntitySet<TimeSlot> _tslots = this.ShippingPoint.TimeSlot;
       DateTime _tdy = this.StartTime.Value.Date;
