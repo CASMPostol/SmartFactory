@@ -398,7 +398,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ControlState.TimeSlotChanged = true;
       try
       {
-        TimeSlotTimeSlot _cts = TimeSlotTimeSlot.GetAtIndex(m_EDC, _interconnectionData.ID, true);
+        TimeSlotTimeSlot _cts = Element.GetAtIndex(m_EDC.TimeSlot, _interconnectionData.ID);
         ShowTimeSlot(_cts);
       }
       catch (Exception ex)
@@ -571,8 +571,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         switch (_newState)
         {
           case State.Canceled:
-            TimeSlotTimeSlot _ts = (TimeSlotTimeSlot)(from _tsx in _si.TimeSlot orderby _tsx.StartTime.Value descending select _tsx).First();
-            _ts.ReleaseBooking();
+            TimeSlotTimeSlot.ReleaseBooking(_si.TimeSlot);
             ReportAlert(_si, _si.VendorName, "The shipping has been canceled.");
             break;
           case State.Confirmed:
@@ -606,10 +605,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         Shipping _si = Element.GetAtIndex<Shipping>(m_EDC.Shipping, m_ControlState.ShippingID);
         if (m_ControlState.TimeSlotChanged)
         {
+          TimeSlotTimeSlot.ReleaseBooking(_si.TimeSlot);
           TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(m_EDC.TimeSlot, m_ControlState.TimeSlotID);
-          TimeSlotTimeSlot _oldts = (TimeSlotTimeSlot)(from _ts in _si.TimeSlot orderby _si.StartTime descending select _ts).First();
           _newts.MakeBooking(_si);
-          _oldts.ReleaseBooking();
           _si.StartTime = _newts.StartTime;
         }
         _si.CancelationReason = m_CommentsTextBox.Text;
