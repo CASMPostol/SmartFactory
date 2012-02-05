@@ -673,27 +673,34 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_StateMachineEngine.ExceptionCatched(m_EDC, "UpdateShipping", ex.Message);
       }
     }
-    private void AssignPartners2Shipping(Shipping _spo)
+    private void AssignPartners2Shipping(Shipping _sipping)
     {
       if (m_ControlState.SecurityCatalogID.IsNullOrEmpty())
       {
-        _spo.SecurityEscort = null;
-        _spo.SecurityEscortProvider = null;
+        _sipping.SecurityEscort = null;
+        _sipping.SecurityEscortProvider = null;
       }
       else
       {
-        _spo.SecurityEscort = Element.GetAtIndex<SecurityEscortCatalog>(m_EDC.SecurityEscortCatalog, m_ControlState.SecurityCatalogID);
-        _spo.SecurityEscortProvider = _spo.SecurityEscort.VendorName;
+        _sipping.SecurityEscort = Element.GetAtIndex<SecurityEscortCatalog>(m_EDC.SecurityEscortCatalog, m_ControlState.SecurityCatalogID);
+        _sipping.SecurityEscortProvider = _sipping.SecurityEscort.VendorName;
       }
-      if (m_ControlState.RouteID.IsNullOrEmpty())
-      {
-        _spo.Route = null;
-        _spo.VendorName = null;
-      }
+      if (_sipping.IsOutbound.Value)
+        if (m_ControlState.RouteID.IsNullOrEmpty())
+        {
+          _sipping.Route = null;
+          _sipping.VendorName = null;
+        }
+        else
+        {
+          _sipping.Route = Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.RouteID);
+          _sipping.VendorName = _sipping.Route.VendorName;
+        }
       else
       {
-        _spo.Route = Element.GetAtIndex<Route>(m_EDC.Route, m_ControlState.RouteID);
-        _spo.VendorName = _spo.Route.VendorName;
+        if (m_ControlState.PartnerID.IsNullOrEmpty() || m_ControlState.PartnerID.String2Int() == _sipping.VendorName.Identyfikator)
+          return;
+        _sipping.VendorName = Element.GetAtIndex(m_EDC.JTIPartner, m_ControlState.PartnerID);
       }
     }
     #endregion
