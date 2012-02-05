@@ -347,8 +347,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// </summary>
     private void ClearUserInterface()
     {
-      m_TimeSlotTextBox.TextBoxTextProperty(String.Empty, true);
-      m_WarehouseTextBox.TextBoxTextProperty(String.Empty, true);
+      m_TimeSlotTextBox.Text = String.Empty;
+      m_WarehouseLabel.Text = String.Empty;
       m_DocumentTextBox.TextBoxTextProperty(String.Empty, true);
       m_CommentsTextBox.TextBoxTextProperty(String.Empty, false);
       m_EstimateDeliveryTimeDateTimeControl.SelectedDate = DateTime.Now;
@@ -371,8 +371,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       try
       {
         Shipping _sppng = Element.GetAtIndex<Shipping>(m_EDC.Shipping, _shippingID);
-        TimeSlot _cts = (from _ts in _sppng.TimeSlot where _ts.Occupied.Value orderby _ts.StartTime ascending select _ts).First();
-        ShowTimeSlot((TimeSlotTimeSlot)_cts);
+        if (_sppng.State.Value == State.Canceled)
+        {
+          m_TimeSlotTextBox.Text = "Shipping canceled";
+          m_WarehouseLabel.Text = String.Empty;
+        }
+        else
+        {
+          TimeSlot _cts = (from _ts in _sppng.TimeSlot where _ts.Occupied.Value orderby _ts.StartTime ascending select _ts).First();
+          ShowTimeSlot((TimeSlotTimeSlot)_cts);
+        }
         ShowLoadDescription(_sppng);
         m_CommentsTextBox.TextBoxTextProperty(_sppng.CancelationReason, false);
         if (_sppng.IsOutbound.Value)
@@ -426,15 +434,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       catch (Exception ex)
       {
-        m_TimeSlotTextBox.TextBoxTextProperty(ex.Message, true);
+        m_TimeSlotTextBox.Text = ex.Message;
       }
     }
     private void ShowTimeSlot(TimeSlotTimeSlot _cts)
     {
       m_ControlState.TimeSlotID = _cts.Identyfikator.ToString();
-      m_TimeSlotTextBox.TextBoxTextProperty(String.Format("{0:R}", _cts.StartTime), true);
+      m_TimeSlotTextBox.Text = String.Format("{0:R}", _cts.StartTime);
       Warehouse _wrs = _cts.GetWarehouse();
-      m_WarehouseTextBox.TextBoxTextProperty(_wrs.Tytuł, true);
+      m_WarehouseLabel.Text = _wrs.Tytuł;
     }
     private void ShowRoute(RouteInterconnectionnData _route)
     {
@@ -462,7 +470,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_CommentsTextBox.Visible = m_CommentsLabel.Visible = (_set & ButtonsSet.CommentsOn) != 0;
       m_DocumentTextBox.Visible = m_DocumentLabel.Visible = (_set & ButtonsSet.DocumentOn) != 0;
       m_TimeSlotTextBox.Visible = m_TimeSlotLabel.Visible = (_set & ButtonsSet.TimeSlotOn) != 0;
-      m_WarehouseTextBox.Visible = m_WarehouseLabel.Visible = (_set & ButtonsSet.WarehouseOn) != 0;
+      m_WarehouseLabel.Visible = m_WarehousehHeaderLabel.Visible = (_set & ButtonsSet.WarehouseOn) != 0;
       //buttons
       m_AcceptButton.Visible = (_set & ButtonsSet.AcceptOn) != 0;
       m_EditButton.Visible = (_set & ButtonsSet.EditOn) != 0;
@@ -488,7 +496,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_DocumentTextBox.Enabled = (_set & ButtonsSet.DocumentOn) != 0;
       m_EstimateDeliveryTimeDateTimeControl.Enabled = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_TimeSlotTextBox.Enabled = false;
-      m_WarehouseTextBox.Enabled = false;
+      m_WarehouseLabel.Enabled = false;
       m_TransportUnitTypeDropDownList.Enabled = (_set & ButtonsSet.TransportUnitOn) != 0;
       m_TransportUnitTypeLabel.Enabled = (_set & ButtonsSet.TransportUnitOn) != 0;
       //Buttons
