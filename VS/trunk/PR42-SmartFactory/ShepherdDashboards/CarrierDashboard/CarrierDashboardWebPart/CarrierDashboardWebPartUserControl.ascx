@@ -18,20 +18,19 @@
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_WarehouseLabel" runat="server" Text="Warehouse" CssClass="Label"
+        <asp:Label ID="m_WarehousehHeaderLabel" runat="server" Text="Warehouse" CssClass="Label"
           ToolTip="Select a Warehouse and next a Time Slot from the calendar to schedule the shipping.">
         </asp:Label>
       </asp:TableCell><asp:TableCell>
-        <asp:TextBox ID="m_WarehouseTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
+        <asp:Label ID="m_WarehouseLabel" runat="server" CssClass="TextBox" ></asp:Label>
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_TimeSlotLabel" runat="server" Text="Time Slot" AssociatedControlID="m_TimeSlotTextBox"
-          CssClass="Label"></asp:Label>
+        <asp:Label ID="m_TimeSlotLabel" runat="server" Text="Time Slot" CssClass="Label"></asp:Label>
       </asp:TableCell>
       <asp:TableCell>
-        <asp:TextBox ID="m_TimeSlotTextBox" runat="server" ToolTip="Select a Time Slot from the calendar to schedule the shipping."
-          CssClass="TextBox" Enabled="false"></asp:TextBox>
+        <asp:Label ID="m_TimeSlotTextBox" runat="server" ToolTip="Select a Time Slot from the calendar to schedule the shipping."
+          CssClass="TextBox" Enabled="false"></asp:Label>
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
