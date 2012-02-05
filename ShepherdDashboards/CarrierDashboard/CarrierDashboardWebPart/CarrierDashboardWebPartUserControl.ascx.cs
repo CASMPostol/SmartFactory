@@ -82,7 +82,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             break;
           case GlobalDefinitions.Roles.InboundOwner:
             m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
-            m_VisibilityACL = _inbound;
+            m_VisibilityACL = _inbound ^ ButtonsSet.AcceptOn;
             m_EditbilityACL = _inbound;
             break;
           case GlobalDefinitions.Roles.Operator:
