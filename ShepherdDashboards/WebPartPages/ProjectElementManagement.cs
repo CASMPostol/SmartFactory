@@ -13,11 +13,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
   internal class ProjectElementManagement
   {
     //Menu entries
+    internal const string MenuOutboundOwnerTitle = "Outbound";
+    internal const string MenuInboundOwnerTitle = "Inbound";
     internal const string MenuVendorTitle = "Vendor";
     internal const string MenuForwarderTitle = "Forwarder";
     internal const string MenuSecurityEscortProviderTitle = "Escort";
     internal const string MenuSecurityGateTitle = "Gate";
-    internal const string MenuOutboundOwnerTitle = "Outbound";
 
     //Webpages
     internal const string WebPartPagesFolder = "WebPartPages";
@@ -26,6 +27,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
     internal const string URLForwarderDashboard = WebPartPagesFolder + "/ForwarderDashboard.aspx";
     internal const string URLGateDashboard = WebPartPagesFolder + "/GateDashboard.aspx";
     internal const string URLOutboundOwner = WebPartPagesFolder + "/OutboundOwnerDashboard.aspx";
+    internal const string URLInboundOwner = WebPartPagesFolder + "/InboundOwnerDashboard.aspx";
 
     internal const string IDCurrentUser = "CDCurrentUser";
     internal const string IDTimeSlots = "CDTimeSlots";
