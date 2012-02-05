@@ -126,12 +126,14 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       string _frmt = "ShippingPoint {0}";
       ShippingPoint _sp = new ShippingPoint() { Description = _wrs.Tytuł + " Inbound", Direction = Direction.Inbound, Tytuł = String.Format(_frmt, _wrs.Tytuł), Warehouse = _wrs };
       _EDC.ShippingPoint.InsertOnSubmit(_sp);
+      CreateTimeSlots(_EDC, _sp, _update);
       _sp = new ShippingPoint() { Description = _wrs.Tytuł + " Outbound", Direction = Direction.Outbound, Tytuł = String.Format(_frmt, _wrs.Tytuł), Warehouse = _wrs };
       _EDC.ShippingPoint.InsertOnSubmit(_sp);
+      CreateTimeSlots(_EDC, _sp, _update);
       _sp = new ShippingPoint() { Description = _wrs.Tytuł + " BothDirections", Direction = Direction.BothDirections, Tytuł = String.Format(_frmt, _wrs.Tytuł), Warehouse = _wrs };
       _EDC.ShippingPoint.InsertOnSubmit(_sp);
       _EDC.SubmitChanges();
-      CreateTimeSlots(_EDC, _sp, UpdateToolStrip);
+      CreateTimeSlots(_EDC, _sp, _update);
     }
     private void CreateTimeSlots(EntitiesDataContext _EDC, ShippingPoint _sp, UpdateToolStripEvent _update)
     {
