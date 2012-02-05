@@ -47,10 +47,9 @@
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_EstimateDeliveryTimeLabel" runat="server" Text="Delivery Time" CssClass="Label"></asp:Label>
+        <asp:Label ID="m_EstimateDeliveryTimeLabel" runat="server" Text="ETA" CssClass="Label" ToolTip="Estimated Time of Arrival"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <SharePoint:DateTimeControl ID="m_EstimateDeliveryTimeDateTimeControl" runat="server"
-          Enabled="false" />
+        <SharePoint:DateTimeControl ID="m_EstimateDeliveryTimeDateTimeControl" runat="server" ToolTip="The estimated time of arrival or ETA is a measure of when a ship, vehicle, aircraft, cargo or emergency service is expected to arrive at a certain place. ETA Usually means - estimated/expected time of arrival/to achieve/remaining." />
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
