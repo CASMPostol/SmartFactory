@@ -66,9 +66,9 @@
     </asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_SecurityEscortLabel" runat="server" Text="Security Escort" CssClass="Label"></asp:Label>
+        <asp:Label ID="m_SecurityEscortHeaderLabel" runat="server" Text="Security Escort" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <asp:Label ID="m_SecurityEscortHeaderLabel" runat="server" Text="" CssClass="Label"></asp:Label>
+        <asp:Label ID="m_SecurityEscortLabel" runat="server" Text="" CssClass="Label"></asp:Label>
       </asp:TableCell>
       </asp:TableRow>
     <asp:TableRow>
