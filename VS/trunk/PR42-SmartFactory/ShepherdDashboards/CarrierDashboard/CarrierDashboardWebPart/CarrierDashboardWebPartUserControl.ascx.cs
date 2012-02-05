@@ -81,8 +81,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn;
             break;
           case GlobalDefinitions.Roles.InboundOwner:
-            m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
-            m_VisibilityACL = _inbound ^ ButtonsSet.AcceptOn;
+            m_VisibilityACL = _inbound ^ ButtonsSet.AcceptOn | ButtonsSet.SecurityEscortOn;
+            m_SecurityEscortHeaderLabel.Text = m_PartnerHeaderLabelText;
             m_EditbilityACL = _inbound;
             break;
           case GlobalDefinitions.Roles.Operator:
@@ -388,6 +388,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
           m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _sppng.EstimateDeliveryTime.HasValue ? _sppng.EstimateDeliveryTime.Value : DateTime.Now;
           m_RouteLabel.Text = _sppng.Route != null ? _sppng.Route.Tytuł : String.Empty;
+          m_SecurityEscortHeaderLabel.Text = m_SecurityEscortHeaderLabelText;
           m_SecurityEscortLabel.Text = _sppng.SecurityEscort != null ? _sppng.SecurityEscort.Tytuł : string.Empty;
           ShowTransportUnitType(_sppng.TransportUnit);
           m_CityLabel.Text = _sppng.City.Tytuł;
@@ -395,7 +396,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         }
         else
         {
-          m_SecurityEscortLabel.Text = m_PartnerHeaderLabelText;
+          m_SecurityEscortHeaderLabel.Text = m_PartnerHeaderLabelText;
           m_DocumentLabel.Text = m_PONoumberHeaderLabetText;
         }
         EnableSaveButton();
@@ -741,6 +742,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private const string m_PONoumberHeaderLabetText = "Purchase Order";
     private const string m_DeliveryNoHeaderLabetText = "Delivery No";
     private const string m_PartnerHeaderLabelText = "Vendor";
+    private const string m_SecurityEscortHeaderLabelText = "Security Escort";
     private ButtonsSet m_VisibilityACL;
     private ButtonsSet m_EditbilityACL;
     private ControlState m_ControlState = new ControlState(null);
