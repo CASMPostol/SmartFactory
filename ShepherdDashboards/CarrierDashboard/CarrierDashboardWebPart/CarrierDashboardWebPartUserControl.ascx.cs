@@ -397,6 +397,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         else
         {
           m_SecurityEscortHeaderLabel.Text = m_PartnerHeaderLabelText;
+          m_SecurityEscortLabel.Text = _sppng.VendorName.Tytuł;
           m_DocumentLabel.Text = m_PONoumberHeaderLabetText;
         }
         EnableSaveButton();
