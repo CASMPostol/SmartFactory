@@ -301,7 +301,7 @@
             </webParts>]]>
       </AllUsersWebPart>
       <View List="Lists/ShippingList" BaseViewID="6" WebPartZoneID="Main1" WebPartOrder="1" ID="IODShipping" />
-      <View List="Lists/LoadDescriptionList" BaseViewID="5" WebPartZoneID="Main1" WebPartOrder="2" ID="IODLoadDescription" />
+      <View List="Lists/LoadDescriptionList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="2" ID="IODLoadDescription" />
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="IODTimeSlots">
         <![CDATA[<webParts>
                   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >
