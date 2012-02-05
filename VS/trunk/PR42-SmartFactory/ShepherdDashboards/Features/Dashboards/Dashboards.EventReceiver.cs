@@ -32,6 +32,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         // create dropdown menu for custom site pages
         Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
         SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
+        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuInboundOwnerTitle, ProjectElementManagement.URLInboundOwner));
         _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
         _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuForwarderTitle, ProjectElementManagement.URLForwarderDashboard));
         _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityEscortProviderTitle, ProjectElementManagement.URLSecurityEscortProviderDashboard));
@@ -64,6 +65,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         SPNavigationNodeCollection topNav = _root.Navigation.TopNavigationBar;
         for (int i = topNav[0].Children.Count - 1; i >= 0; i--)
           if (
+            topNav[0].Children[i].Title == ProjectElementManagement.MenuInboundOwnerTitle ||
             topNav[0].Children[i].Title == ProjectElementManagement.MenuVendorTitle ||
             topNav[0].Children[i].Title == ProjectElementManagement.MenuForwarderTitle ||
             topNav[0].Children[i].Title == ProjectElementManagement.MenuSecurityEscortProviderTitle ||
