@@ -453,5 +453,10 @@
 </webParts>]]>
       </AllUsersWebPart>
     </File>
+    <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url="WebPartPages/CoordinatorDashboard.aspx">
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
+      <View List="Lists/TimeSlotList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="CoordinatorInbound" DisplayName="Inbound" />
+      <View List="Lists/TimeSlotList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="1" ID="CoordinatorOutbound" DisplayName="Outbound" />
+    </File>
 </Module>
 </Elements>
