@@ -850,6 +850,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CountryClass> _countryName;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<DestinationMarket> _destinationMarket;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<SecurityEscortCatalog> _securityEscortCatalog;
@@ -867,6 +869,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._countryName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CountryClass>>(this.OnCountryNameSync);
 			this._countryName.OnChanged += new System.EventHandler(this.OnCountryNameChanged);
 			this._countryName.OnChanging += new System.EventHandler(this.OnCountryNameChanging);
+			this._destinationMarket = new Microsoft.SharePoint.Linq.EntitySet<DestinationMarket>();
+			this._destinationMarket.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket>>(this.OnDestinationMarketSync);
+			this._destinationMarket.OnChanged += new System.EventHandler(this.OnDestinationMarketChanged);
+			this._destinationMarket.OnChanging += new System.EventHandler(this.OnDestinationMarketChanging);
 			this._route = new Microsoft.SharePoint.Linq.EntitySet<Route>();
 			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
 			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
@@ -889,6 +895,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			set {
 				this._countryName.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="DestinationMarket2CityTitle", Storage="_destinationMarket", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Destination Market")]
+		public Microsoft.SharePoint.Linq.EntitySet<DestinationMarket> DestinationMarket {
+			get {
+				return this._destinationMarket;
+			}
+			set {
+				this._destinationMarket.Assign(value);
 			}
 		}
 		
@@ -936,6 +952,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			else {
 				e.Item.CityType.Remove(this);
+			}
+		}
+		
+		private void OnDestinationMarketChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("DestinationMarket", this._destinationMarket.Clone());
+		}
+		
+		private void OnDestinationMarketChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("DestinationMarket");
+		}
+		
+		private void OnDestinationMarketSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CityName = this;
+			}
+			else {
+				e.Item.CityName = null;
 			}
 		}
 		
@@ -1085,7 +1118,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DestinationMarket", Id="0x01002CD380C2A0BC484CAF14A0A71DADEF4E")]
 	public partial class DestinationMarket : Element {
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Route> _route;
+		private Microsoft.SharePoint.Linq.EntityRef<CityType> _cityName;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<MarketMarket> _market;
 		
@@ -1096,10 +1129,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		#endregion
 		
 		public DestinationMarket() {
-			this._route = new Microsoft.SharePoint.Linq.EntityRef<Route>();
-			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
-			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
-			this._route.OnChanging += new System.EventHandler(this.OnRouteChanging);
+			this._cityName = new Microsoft.SharePoint.Linq.EntityRef<CityType>();
+			this._cityName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>(this.OnCityNameSync);
+			this._cityName.OnChanged += new System.EventHandler(this.OnCityNameChanged);
+			this._cityName.OnChanging += new System.EventHandler(this.OnCityNameChanging);
 			this._market = new Microsoft.SharePoint.Linq.EntityRef<MarketMarket>();
 			this._market.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<MarketMarket>>(this.OnMarketSync);
 			this._market.OnChanged += new System.EventHandler(this.OnMarketChanged);
@@ -1107,13 +1140,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="RouteTitle", Storage="_route", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Route")]
-		public Route Route {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="DestinationMarket2CityTitle", Storage="_cityName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
+		public CityType CityName {
 			get {
-				return this._route.GetEntity();
+				return this._cityName.GetEntity();
 			}
 			set {
-				this._route.SetEntity(value);
+				this._cityName.SetEntity(value);
 			}
 		}
 		
@@ -1127,15 +1160,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		private void OnRouteChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Route", this._route.Clone());
+		private void OnCityNameChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CityName", this._cityName.Clone());
 		}
 		
-		private void OnRouteChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Route");
+		private void OnCityNameChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CityName");
 		}
 		
-		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
+		private void OnCityNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.DestinationMarket.Add(this);
 			}
@@ -2008,8 +2041,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private string _freightPO;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<DestinationMarket> _destinationMarket;
-		
 		private Microsoft.SharePoint.Linq.EntityRef<CityType> _cityName;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<ShipmentTypeShipmentType> _shipmentType;
@@ -2035,10 +2066,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		#endregion
 		
 		public Route() {
-			this._destinationMarket = new Microsoft.SharePoint.Linq.EntitySet<DestinationMarket>();
-			this._destinationMarket.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket>>(this.OnDestinationMarketSync);
-			this._destinationMarket.OnChanged += new System.EventHandler(this.OnDestinationMarketChanged);
-			this._destinationMarket.OnChanging += new System.EventHandler(this.OnDestinationMarketChanging);
 			this._cityName = new Microsoft.SharePoint.Linq.EntityRef<CityType>();
 			this._cityName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>(this.OnCityNameSync);
 			this._cityName.OnChanged += new System.EventHandler(this.OnCityNameChanged);
@@ -2134,16 +2161,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="RouteTitle", Storage="_destinationMarket", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Destination Market")]
-		public Microsoft.SharePoint.Linq.EntitySet<DestinationMarket> DestinationMarket {
-			get {
-				return this._destinationMarket;
-			}
-			set {
-				this._destinationMarket.Assign(value);
-			}
-		}
-		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2CityTitle", Storage="_cityName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
 		public CityType CityName {
 			get {
@@ -2231,23 +2248,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			set {
 				this._shipping.Assign(value);
-			}
-		}
-		
-		private void OnDestinationMarketChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("DestinationMarket", this._destinationMarket.Clone());
-		}
-		
-		private void OnDestinationMarketChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("DestinationMarket");
-		}
-		
-		private void OnDestinationMarketSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Route = this;
-			}
-			else {
-				e.Item.Route = null;
 			}
 		}
 		
