@@ -509,7 +509,9 @@
     </Content>
     <Content Include="Lists\Shipping\ShippingTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\ShippingTemplate\ShippingList\Elements.xml" />
-    <Content Include="Lists\Shipping\ShippingTemplate\Schema.xml" />
+    <Content Include="Lists\Shipping\ShippingTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Shipping\TimeSlotTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\TimeSlotTemplate\Schema.xml">
       <SubType>Designer</SubType>
