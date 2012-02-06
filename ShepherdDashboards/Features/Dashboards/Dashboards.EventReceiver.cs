@@ -32,12 +32,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         // create dropdown menu for custom site pages
         Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
         SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
-        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuInboundOwnerTitle, ProjectElementManagement.URLInboundOwner));
-        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
-        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuForwarderTitle, ProjectElementManagement.URLForwarderDashboard));
-        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityEscortProviderTitle, ProjectElementManagement.URLSecurityEscortProviderDashboard));
-        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityGateTitle, ProjectElementManagement.URLGateDashboard));
-        _topNav[0].Children.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundOwnerTitle, ProjectElementManagement.URLOutboundOwner));
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuInboundOwnerTitle, ProjectElementManagement.URLInboundOwner));
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuForwarderTitle, ProjectElementManagement.URLForwarderDashboard));
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityEscortProviderTitle, ProjectElementManagement.URLSecurityEscortProviderDashboard));
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityGateTitle, ProjectElementManagement.URLGateDashboard));
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundOwnerTitle, ProjectElementManagement.URLOutboundOwner));
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundCoordinatorTitle, ProjectElementManagement.URLOutboundCoordinator));
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCoordinatorTitle, ProjectElementManagement.URLCoordinator));
+        foreach (SPNavigationNode item in _topNav)
+          item.Update();
         WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
         Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated finished");
       }
@@ -63,16 +67,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
       try
       {
         SPNavigationNodeCollection topNav = _root.Navigation.TopNavigationBar;
-        for (int i = topNav[0].Children.Count - 1; i >= 0; i--)
-          if (
-            topNav[0].Children[i].Title == ProjectElementManagement.MenuInboundOwnerTitle ||
-            topNav[0].Children[i].Title == ProjectElementManagement.MenuVendorTitle ||
-            topNav[0].Children[i].Title == ProjectElementManagement.MenuForwarderTitle ||
-            topNav[0].Children[i].Title == ProjectElementManagement.MenuSecurityEscortProviderTitle ||
-            topNav[0].Children[i].Title == ProjectElementManagement.MenuSecurityGateTitle ||
-            topNav[0].Children[i].Title == ProjectElementManagement.MenuOutboundOwnerTitle
-           )
-            topNav[0].Children[i].Delete();
+        for (int i = topNav.Count - 1; i >= 0; i--)
+          topNav[i].Delete();
       }
       catch (Exception ex)
       {
