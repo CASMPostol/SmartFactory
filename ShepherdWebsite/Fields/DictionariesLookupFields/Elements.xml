@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="DestinationMarket2CityTitle"
+    ID="{6C009623-7E1E-4836-91DA-FC0B60961D48}"
+    Type="Lookup"
+    List="Lists/CityList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="City Name"
+    Group="CAS Smart Factory"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="SecurityEscortCatalogTitle"
     ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}"
     Type="Lookup"

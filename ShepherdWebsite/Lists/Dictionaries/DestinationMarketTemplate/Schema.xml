@@ -5,7 +5,7 @@
       <ContentType ID="0x01002cd380c2a0bc484caf14a0a71dadef4e" Name="DestinationMarket" Group="CAS Smart Factory Shepherd" Description="Destination Market - Markets associated with routs" Overwrite="TRUE" Inherits="TRUE">
         <Folder TargetName="_cts/DestinationMarket" />
         <FieldRefs>
-          <FieldRef ID="{E94BF458-8886-4E27-BA2A-32CDCA4B2DB2}" Name="RouteTitle" />
+          <FieldRef ID="{6C009623-7E1E-4836-91DA-FC0B60961D48}" Name="DestinationMarket2CityTitle" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
         </FieldRefs>
         <XmlDocuments>
@@ -21,7 +21,7 @@
     </ContentTypes>
     <Fields>
       <Field Name="MarketTitle" ID="{44f4b458-2ea8-4b75-9546-80a495738f59}" Type="Lookup" List="Lists/MarketList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Market" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="RouteTitle" ID="{e94bf458-8886-4e27-ba2a-32cdca4b2db2}" Type="Lookup" List="Lists/RouteList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Route" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="DestinationMarket2CityTitle" ID="{6C009623-7E1E-4836-91DA-FC0B60961D48}" Type="Lookup" List="Lists/CityList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="City Name" Group="CAS Smart Factory" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -53,7 +53,7 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{E94BF458-8886-4E27-BA2A-32CDCA4B2DB2}" Name="RouteTitle" />
+          <FieldRef ID="{6C009623-7E1E-4836-91DA-FC0B60961D48}" Name="DestinationMarket2CityTitle" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
         </ViewFields>
         <Query>
