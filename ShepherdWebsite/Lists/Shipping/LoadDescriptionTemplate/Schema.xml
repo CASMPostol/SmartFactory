@@ -114,6 +114,8 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
           <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
           <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
@@ -134,6 +136,8 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
           <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
@@ -155,6 +159,8 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
           <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
