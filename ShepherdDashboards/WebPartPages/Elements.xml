@@ -455,8 +455,8 @@
     </File>
     <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url="WebPartPages/CoordinatorDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
-      <View List="Lists/TimeSlotList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="CoordinatorInbound" DisplayName="Inbound" />
-      <View List="Lists/TimeSlotList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="1" ID="CoordinatorOutbound" DisplayName="Outbound" />
+      <View List="Lists/TimeSlotList" BaseViewID="4" WebPartZoneID="Main1" WebPartOrder="1" ID="CoordinatorInbound" Type="CALENDAR" DisplayName="Inbound" />
+      <View List="Lists/TimeSlotList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="1" ID="CoordinatorOutbound" Type="CALENDAR" DisplayName="Outbound" />
     </File>
 </Module>
 </Elements>
