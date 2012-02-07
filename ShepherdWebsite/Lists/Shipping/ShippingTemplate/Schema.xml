@@ -177,6 +177,12 @@
           <FieldRef ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}" Name="ShippingOperationOutband2TruckTitle" />
         </ViewFields>
         <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="IsOutbound" />
+              <Value Type="Boolean">Yes</Value>
+            </Eq>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
@@ -201,6 +207,12 @@
           <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
         </ViewFields>
         <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="IsOutbound" />
+              <Value Type="Boolean">No</Value>
+            </Eq>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
@@ -224,6 +236,12 @@
           <FieldRef ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}" Name="Shipping2TransportUnitType" />
         </ViewFields>
         <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="IsOutbound" />
+              <Value Type="Boolean">Yes</Value>
+            </Eq>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
@@ -246,6 +264,12 @@
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
         </ViewFields>
         <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="IsOutbound" />
+              <Value Type="Boolean">No</Value>
+            </Eq>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
