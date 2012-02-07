@@ -140,7 +140,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Vendor" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Vendor.aspx">
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Vendor" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Vendor.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
@@ -151,6 +151,12 @@
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
         </ViewFields>
         <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="IsOutbound" />
+              <Value Type="Boolean">No</Value>
+            </Eq>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
@@ -161,7 +167,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Gate - Outbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateOutbound.aspx">
+      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Gate - Outbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateOutbound.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
@@ -193,7 +199,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="Gate - Inbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateInbound.aspx">
+      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="Gate - Inbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateInbound.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
@@ -223,7 +229,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundOwner.aspx">
+      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundOwner.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">10</RowLimit>
@@ -252,7 +258,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="6" Type="HTML" WebPartZoneID="Main" DisplayName="Inbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="InboundOwner.aspx">
+      <View BaseViewID="6" Type="HTML" WebPartZoneID="Main" DisplayName="Inbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="InboundOwner.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">10</RowLimit>
@@ -280,7 +286,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="7" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Coordinator" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundCoordinator.aspx">
+      <View BaseViewID="7" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Coordinator" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundCoordinator.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">10</RowLimit>
@@ -293,6 +299,39 @@
           <FieldRef ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}" Name="Shipping2TransportUnitType" />       
         </ViewFields>
         <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="IsOutbound" />
+              <Value Type="Boolean">Yes</Value>
+            </Eq>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="8" Type="HTML" WebPartZoneID="Main" DisplayName="Forwarder" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Forwarder.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Title">
+          </FieldRef>
+          <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
+          <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="IsOutbound" />
+              <Value Type="Boolean">No</Value>
+            </Eq>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>

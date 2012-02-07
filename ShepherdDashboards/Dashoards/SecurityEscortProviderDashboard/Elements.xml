@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="SecurityEscortProviderDashboard">
+    <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url="WebPartPages/SecurityEscortProviderDashboard.aspx">
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="SEPDCurrentUser" >
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.CurrentUserWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Current User</property>
+        <property name="Description" type="string">Provides information about current user and his affiliation.</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="ID" type="string">CDCurrentUser</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+      <View List="Lists/ShippingList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="SEPDShipping" />
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="SEPDCarrierDashboardWebPart" >
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Carrier Dashboard Manager</property>
+        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
+        <property name="ID" type="string">CarrierDashboardWebPart</property>
+        <property name="Role">Escort</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="SEPDTransportResources" >
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResources.TransportResources, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Transport Resources Management</property>
+        <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
+        <property name="ID" type="string">WPTransportResources</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+    </File>
+  </Module>
+</Elements>
