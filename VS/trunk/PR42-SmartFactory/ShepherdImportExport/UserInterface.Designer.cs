@@ -140,8 +140,9 @@
       // 
       this.m_ToolStripStatusLabel.AutoSize = false;
       this.m_ToolStripStatusLabel.Name = "m_ToolStripStatusLabel";
-      this.m_ToolStripStatusLabel.Size = new System.Drawing.Size(200, 17);
+      this.m_ToolStripStatusLabel.Size = new System.Drawing.Size(400, 17);
       this.m_ToolStripStatusLabel.Text = "----";
+      this.m_ToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // m_FileNameStatusLabel
       // 

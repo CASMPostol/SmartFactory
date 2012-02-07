@@ -46,14 +46,16 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       m_ToolStripStatusLabel.Text = (string)progres.UserState;
       m_ToolStripProgressBar.Value += progres.ProgressPercentage;
       if (m_Stopwatch.ElapsedMilliseconds >= 250)
+      {
         this.Refresh();
+        m_Stopwatch.Reset();
+        m_Stopwatch.Start();
+      }
       if (m_ToolStripProgressBar.Value >= m_ToolStripProgressBar.Maximum)
       {
         m_ToolStripProgressBar.Maximum *= 2;
         this.Refresh();
       }
-      m_Stopwatch.Reset();
-      m_Stopwatch.Start();
     }
     private void SetDone(string _label)
     {
@@ -74,9 +76,34 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       return m_FileManagementComonent.m_OpenFileDialog.OpenFile();
     }
     #region importing data
+    private void CreateTransportUnts(EntitiesDataContext _EDC, UpdateToolStripEvent _update)
+    {
+      _update(this, new ProgressChangedEventArgs(1, "CreateTransportUnts starting"));
+      for (int i = 0; i < 4; i++)
+      {
+        string _cn = String.Format("Unit Type {0}", i);
+        TransportUnitTypeTranspotUnit _cuntr = new TransportUnitTypeTranspotUnit() { Tytuł = _cn };
+        _update(this, new ProgressChangedEventArgs(1, String.Format("Insert {0}", _cn)));
+        _EDC.TransportUnitType.InsertOnSubmit(_cuntr);
+      }
+      _EDC.SubmitChanges();
+    }
+    private void CreateShippmentTypes(EntitiesDataContext _EDC, UpdateToolStripEvent _update)
+    {
+      _update(this, new ProgressChangedEventArgs(1, "CreateShippmentTypes starting"));
+      for (int i = 0; i < 4; i++)
+      {
+        string _cn = String.Format("Shippment Type {0}", i);
+        Entities.ShipmentTypeShipmentType _cuntr = new Entities.ShipmentTypeShipmentType() { Tytuł = _cn };
+        _update(this, new ProgressChangedEventArgs(1, String.Format("Insert {0}", _cn)));
+        _EDC.ShipmentType.InsertOnSubmit(_cuntr);
+      }
+      _EDC.SubmitChanges();
+    }
     private void CreateCountries(EntitiesDataContext _EDC, UpdateToolStripEvent _update)
     {
       _update(this, new ProgressChangedEventArgs(1, "CreateCountries starting"));
+      short _ctidx = 0;
       for (int i = 0; i < 10; i++)
       {
         string _cn = String.Format("Country {0}", i);
@@ -84,15 +111,15 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         _EDC.Country.InsertOnSubmit(_cuntr);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _cn)));
         _EDC.SubmitChanges();
-        CreateCities(_EDC, _cuntr, _update);
+        CreateCities(_EDC, _cuntr, _update, ref _ctidx);
       }
     }
-    private void CreateCities(EntitiesDataContext _EDC, CountryClass _cuntr, UpdateToolStripEvent _update)
+    private void CreateCities(EntitiesDataContext _EDC, CountryClass _cuntr, UpdateToolStripEvent _update, ref short _ctidx)
     {
       _update(this, new ProgressChangedEventArgs(1, "CreateCities starting"));
       for (int i = 0; i < 10; i++)
       {
-        string _cn = String.Format("City {0}", i);
+        string _cn = String.Format("City {0}", _ctidx++);
         CityType _cmm = new CityType() { Tytuł = _cn, CountryName = _cuntr };
         _EDC.City.InsertOnSubmit(_cmm);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _cn)));
@@ -168,11 +195,11 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
     private void CreatePartners(EntitiesDataContext _EDC, UpdateToolStripEvent _update)
     {
       _update(this, new ProgressChangedEventArgs(1, "CreatePartners starting"));
-      ServiceType[] _stt = new ServiceType[] { ServiceType.Forwarder, ServiceType.SecurityEscortProvider, ServiceType.VendorAndForwarder };
-      string[] _pn = new string[] { "forwarder", "escort", "vendor" };
-      for (int i = 0; i <= 2; i++)
+      ServiceType[] _stt = new ServiceType[] { ServiceType.Forwarder, ServiceType.SecurityEscortProvider, ServiceType.Vendor, ServiceType.VendorAndForwarder, };
+      string[] _pn = new string[] { "forwarder", "escort", "vendor", "VendorAndForwarder" };
+      for (int i = 0; i <= 3; i++)
       {
-        string _nm = String.Format("Partner {0}", i);
+        string _nm = String.Format("Partner {0}", _pn[i]);
         Partner _prt = new Partner() { Tytuł = _nm, ServiceType = _stt[i], ShepherdUserTitle = _pn[i] };
         _EDC.JTIPartner.InsertOnSubmit(_prt);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _nm)));
@@ -181,6 +208,52 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         CraeteDrivers(_EDC, _prt, _update);
         if (_prt.ServiceType.Value != ServiceType.SecurityEscortProvider)
           CraeteTrailer(_EDC, _prt, _update);
+        if (_prt.ServiceType.Value == ServiceType.Forwarder)
+          CreateRouts(_EDC, _prt, _update);
+      }
+    }
+    private void CreateRouts(EntitiesDataContext _EDC, Partner _prt, UpdateToolStripEvent _update)
+    {
+      _update(this, new ProgressChangedEventArgs(1, "CreateRouts starting"));
+      List<CityType> _ctList = (from _ct in _EDC.City select _ct).ToList<CityType>();
+      Random _rdm = new Random(_ctList.Count);
+      foreach (CityType _ctItem in _ctList)
+        foreach (TransportUnitTypeTranspotUnit _utItem in from _ut in _EDC.TransportUnitType select _ut)
+          foreach (ShipmentTypeShipmentType _stItem in from _st in _EDC.ShipmentType select _st)
+          {
+            Route _rt = new Route()
+            {
+              Tytuł = String.Format("Forwarder {0} to {1} destination city", _prt.Tytuł, _ctItem.Tytuł),
+              CityName = _ctItem,
+              TransportUnitType = _utItem,
+              ShipmentType = _stItem,
+              VendorName = _prt
+            };
+            _EDC.Route.InsertOnSubmit(_rt);
+            _update(this, new ProgressChangedEventArgs(1, String.Format("Added {0}", _rt.Tytuł)));
+          }
+      _update(this, new ProgressChangedEventArgs(1, "CreateRouts SubmitChanges"));
+      _EDC.SubmitChanges();
+      _update(this, new ProgressChangedEventArgs(1, "DestinationMarket and MarketMarket starting"));
+      for (int _mi = 0; _mi < 3; _mi++)
+      {
+        string _tm = String.Format("Market {0}", _mi);
+        MarketMarket _mrkt = new MarketMarket() { Tytuł = _tm };
+        _EDC.Market.InsertOnSubmit(_mrkt);
+        _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _mrkt.Tytuł)));
+        _EDC.SubmitChanges();
+        for (int _dmi = 0; _dmi < 3; _dmi++)
+        {
+          DestinationMarket _dm = new DestinationMarket()
+          {
+            Market = _mrkt,
+            CityName = _ctList[_rdm.Next(0, _ctList.Count - 1)],
+          };
+          _dm.Tytuł = String.Format("The {0} market available from the {1} city", _mrkt.Tytuł, _dm.Tytuł);
+          _EDC.DestinationMarket.InsertOnSubmit(_dm);
+        }
+        _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _mrkt.Tytuł)));
+        _EDC.SubmitChanges();
       }
     }
     private void CraeteTrucks(EntitiesDataContext _EDC, Partner _prt, UpdateToolStripEvent _update)
@@ -233,17 +306,17 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         m_Stopwatch.Start();
         using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URLTextBox.Text.Trim()))
         {
-          UpdateToolStrip(this, new ProgressChangedEventArgs(1, "CreateCities Starting"));
+          CreateShippmentTypes(_EDC, UpdateToolStrip);
+          CreateTransportUnts(_EDC, UpdateToolStrip);
           CreateCountries(_EDC, UpdateToolStrip);
-          UpdateToolStrip(this, new ProgressChangedEventArgs(1, "CreateCommodity Starting"));
           CreateCommodity(_EDC, UpdateToolStrip);
-          UpdateToolStrip(this, new ProgressChangedEventArgs(1, "CreatePartners Starting"));
           CreatePartners(_EDC, UpdateToolStrip);
         }
         SetDone("Done");
       }
       catch (Exception ex)
       {
+        MessageBox.Show(ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
         SetDone(ex.Message);
       }
     }
@@ -289,5 +362,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       }
     }
     #endregion
+
+    public int _mrkti { get; set; }
   }
 }
