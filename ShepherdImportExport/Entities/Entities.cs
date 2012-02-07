@@ -234,12 +234,12 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		}
 		
 		/// <summary>
-		/// Shipping List Instance
+		/// Shipping List List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Shipping")]
-		public Microsoft.SharePoint.Linq.EntityList<ShippingOperationInbound> Shipping {
+		public Microsoft.SharePoint.Linq.EntityList<Shipping> Shipping {
 			get {
-				return this.GetList<ShippingOperationInbound>("Shipping");
+				return this.GetList<Shipping>("Shipping");
 			}
 		}
 		
@@ -349,7 +349,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SecurityEscortCatalog))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Dokument))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShipmentType))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingOperationInbound))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Shipping))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingPoint))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Wydarzenie))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Trailer))]
@@ -747,7 +747,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="AlarmsAndEvents", Id="0x010049AA7238FCE34BE18336F419AE924845")]
 	public partial class AlarmsAndEvents : Element {
 		
-		private Microsoft.SharePoint.Linq.EntityRef<ShippingOperationInbound> _shippingIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shippingIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
 		
@@ -758,8 +758,8 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		#endregion
 		
 		public AlarmsAndEvents() {
-			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<ShippingOperationInbound>();
-			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound>>(this.OnShippingIndexSync);
+			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
+			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
 			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
 			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
 			this._vendorName = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
@@ -770,7 +770,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public ShippingOperationInbound ShippingIndex {
+		public Shipping ShippingIndex {
 			get {
 				return this._shippingIndex.GetEntity();
 			}
@@ -797,7 +797,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this.OnPropertyChanged("ShippingIndex");
 		}
 		
-		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound> e) {
+		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.AlarmsAndEvents.Add(this);
 			}
@@ -850,9 +850,13 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CountryClass> _countryName;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<DestinationMarket> _destinationMarket;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<SecurityEscortCatalog> _securityEscortCatalog;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -865,6 +869,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this._countryName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CountryClass>>(this.OnCountryNameSync);
 			this._countryName.OnChanged += new System.EventHandler(this.OnCountryNameChanged);
 			this._countryName.OnChanging += new System.EventHandler(this.OnCountryNameChanging);
+			this._destinationMarket = new Microsoft.SharePoint.Linq.EntitySet<DestinationMarket>();
+			this._destinationMarket.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket>>(this.OnDestinationMarketSync);
+			this._destinationMarket.OnChanged += new System.EventHandler(this.OnDestinationMarketChanged);
+			this._destinationMarket.OnChanging += new System.EventHandler(this.OnDestinationMarketChanging);
 			this._route = new Microsoft.SharePoint.Linq.EntitySet<Route>();
 			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
 			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
@@ -873,6 +881,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this._securityEscortCatalog.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog>>(this.OnSecurityEscortCatalogSync);
 			this._securityEscortCatalog.OnChanged += new System.EventHandler(this.OnSecurityEscortCatalogChanged);
 			this._securityEscortCatalog.OnChanging += new System.EventHandler(this.OnSecurityEscortCatalogChanging);
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this.OnCreated();
 		}
 		
@@ -883,6 +895,16 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 			set {
 				this._countryName.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="DestinationMarket2CityTitle", Storage="_destinationMarket", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Destination Market")]
+		public Microsoft.SharePoint.Linq.EntitySet<DestinationMarket> DestinationMarket {
+			get {
+				return this._destinationMarket;
+			}
+			set {
+				this._destinationMarket.Assign(value);
 			}
 		}
 		
@@ -906,6 +928,16 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2City", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+			get {
+				return this._shipping;
+			}
+			set {
+				this._shipping.Assign(value);
+			}
+		}
+		
 		private void OnCountryNameChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CountryName", this._countryName.Clone());
 		}
@@ -920,6 +952,23 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 			else {
 				e.Item.CityType.Remove(this);
+			}
+		}
+		
+		private void OnDestinationMarketChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("DestinationMarket", this._destinationMarket.Clone());
+		}
+		
+		private void OnDestinationMarketChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("DestinationMarket");
+		}
+		
+		private void OnDestinationMarketSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CityName = this;
+			}
+			else {
+				e.Item.CityName = null;
 			}
 		}
 		
@@ -954,6 +1003,23 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 			else {
 				e.Item.CityName = null;
+			}
+		}
+		
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
+		}
+		
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
+		}
+		
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.City = this;
+			}
+			else {
+				e.Item.City = null;
 			}
 		}
 	}
@@ -1052,7 +1118,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DestinationMarket", Id="0x01002CD380C2A0BC484CAF14A0A71DADEF4E")]
 	public partial class DestinationMarket : Element {
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Route> _route;
+		private Microsoft.SharePoint.Linq.EntityRef<CityType> _cityName;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<MarketMarket> _market;
 		
@@ -1063,10 +1129,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		#endregion
 		
 		public DestinationMarket() {
-			this._route = new Microsoft.SharePoint.Linq.EntityRef<Route>();
-			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
-			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
-			this._route.OnChanging += new System.EventHandler(this.OnRouteChanging);
+			this._cityName = new Microsoft.SharePoint.Linq.EntityRef<CityType>();
+			this._cityName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>(this.OnCityNameSync);
+			this._cityName.OnChanged += new System.EventHandler(this.OnCityNameChanged);
+			this._cityName.OnChanging += new System.EventHandler(this.OnCityNameChanging);
 			this._market = new Microsoft.SharePoint.Linq.EntityRef<MarketMarket>();
 			this._market.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<MarketMarket>>(this.OnMarketSync);
 			this._market.OnChanged += new System.EventHandler(this.OnMarketChanged);
@@ -1074,13 +1140,13 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="RouteTitle", Storage="_route", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Route")]
-		public Route Route {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="DestinationMarket2CityTitle", Storage="_cityName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
+		public CityType CityName {
 			get {
-				return this._route.GetEntity();
+				return this._cityName.GetEntity();
 			}
 			set {
-				this._route.SetEntity(value);
+				this._cityName.SetEntity(value);
 			}
 		}
 		
@@ -1094,15 +1160,15 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
-		private void OnRouteChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Route", this._route.Clone());
+		private void OnCityNameChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CityName", this._cityName.Clone());
 		}
 		
-		private void OnRouteChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Route");
+		private void OnCityNameChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CityName");
 		}
 		
-		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
+		private void OnCityNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.DestinationMarket.Add(this);
 			}
@@ -1240,7 +1306,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Driver> _driver;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<ShippingOperationInbound> _shippingIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shippingIndex;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -1253,8 +1319,8 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this._driver.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Driver>>(this.OnDriverSync);
 			this._driver.OnChanged += new System.EventHandler(this.OnDriverChanged);
 			this._driver.OnChanging += new System.EventHandler(this.OnDriverChanging);
-			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<ShippingOperationInbound>();
-			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound>>(this.OnShippingIndexSync);
+			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
+			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
 			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
 			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
 			this.OnCreated();
@@ -1282,7 +1348,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public ShippingOperationInbound ShippingIndex {
+		public Shipping ShippingIndex {
 			get {
 				return this._shippingIndex.GetEntity();
 			}
@@ -1316,7 +1382,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this.OnPropertyChanged("ShippingIndex");
 		}
 		
-		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound> e) {
+		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.ShippingDriversTeam.Add(this);
 			}
@@ -1447,7 +1513,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Warehouse> _warehouse;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> _shippingOperationOutbound;
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -1464,10 +1530,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this._warehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseSync);
 			this._warehouse.OnChanged += new System.EventHandler(this.OnWarehouseChanged);
 			this._warehouse.OnChanging += new System.EventHandler(this.OnWarehouseChanging);
-			this._shippingOperationOutbound = new Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound>();
-			this._shippingOperationOutbound.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound>>(this.OnShippingOperationOutboundSync);
-			this._shippingOperationOutbound.OnChanged += new System.EventHandler(this.OnShippingOperationOutboundChanged);
-			this._shippingOperationOutbound.OnChanging += new System.EventHandler(this.OnShippingOperationOutboundChanging);
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this.OnCreated();
 		}
 		
@@ -1582,7 +1648,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="WarehouseTitle", Storage="_warehouse", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Warehouse")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Partner2WarehouseTitle", Storage="_warehouse", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Warehouse")]
 		public Warehouse Warehouse {
 			get {
 				return this._warehouse.GetEntity();
@@ -1592,13 +1658,13 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2PartnerTitle", Storage="_shippingOperationOutbound", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> ShippingOperationOutbound {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2PartnerTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
 			get {
-				return this._shippingOperationOutbound;
+				return this._shipping;
 			}
 			set {
-				this._shippingOperationOutbound.Assign(value);
+				this._shipping.Assign(value);
 			}
 		}
 		
@@ -1628,17 +1694,23 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		}
 		
 		private void OnWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Partner.Add(this);
+			}
+			else {
+				e.Item.Partner.Remove(this);
+			}
 		}
 		
-		private void OnShippingOperationOutboundChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShippingOperationOutbound", this._shippingOperationOutbound.Clone());
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
 		}
 		
-		private void OnShippingOperationOutboundChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShippingOperationOutbound");
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
 		}
 		
-		private void OnShippingOperationOutboundSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound> e) {
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.SecurityEscortProvider = this;
 			}
@@ -1664,7 +1736,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private string _invoiceNumber;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<ShippingOperationInbound> _shippingIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shippingIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<MarketMarket> _market;
 		
@@ -1679,8 +1751,8 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		#endregion
 		
 		public LoadDescription() {
-			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<ShippingOperationInbound>();
-			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound>>(this.OnShippingIndexSync);
+			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
+			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
 			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
 			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
 			this._market = new Microsoft.SharePoint.Linq.EntityRef<MarketMarket>();
@@ -1769,7 +1841,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public ShippingOperationInbound ShippingIndex {
+		public Shipping ShippingIndex {
 			get {
 				return this._shippingIndex.GetEntity();
 			}
@@ -1816,7 +1888,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this.OnPropertyChanged("ShippingIndex");
 		}
 		
-		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound> e) {
+		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.LoadDescription.Add(this);
 			}
@@ -1969,8 +2041,6 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private string _freightPO;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<DestinationMarket> _destinationMarket;
-		
 		private Microsoft.SharePoint.Linq.EntityRef<CityType> _cityName;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<ShipmentTypeShipmentType> _shipmentType;
@@ -1987,7 +2057,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Currency> _currency;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> _shippingOperationOutbound;
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -1996,10 +2066,6 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		#endregion
 		
 		public Route() {
-			this._destinationMarket = new Microsoft.SharePoint.Linq.EntitySet<DestinationMarket>();
-			this._destinationMarket.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket>>(this.OnDestinationMarketSync);
-			this._destinationMarket.OnChanged += new System.EventHandler(this.OnDestinationMarketChanged);
-			this._destinationMarket.OnChanging += new System.EventHandler(this.OnDestinationMarketChanging);
 			this._cityName = new Microsoft.SharePoint.Linq.EntityRef<CityType>();
 			this._cityName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>(this.OnCityNameSync);
 			this._cityName.OnChanged += new System.EventHandler(this.OnCityNameChanged);
@@ -2032,10 +2098,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this._currency.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency>>(this.OnCurrencySync);
 			this._currency.OnChanged += new System.EventHandler(this.OnCurrencyChanged);
 			this._currency.OnChanging += new System.EventHandler(this.OnCurrencyChanging);
-			this._shippingOperationOutbound = new Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound>();
-			this._shippingOperationOutbound.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound>>(this.OnShippingOperationOutboundSync);
-			this._shippingOperationOutbound.OnChanged += new System.EventHandler(this.OnShippingOperationOutboundChanged);
-			this._shippingOperationOutbound.OnChanging += new System.EventHandler(this.OnShippingOperationOutboundChanging);
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this.OnCreated();
 		}
 		
@@ -2092,16 +2158,6 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 					this._freightPO = value;
 					this.OnPropertyChanged("FreightPO");
 				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="RouteTitle", Storage="_destinationMarket", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Destination Market")]
-		public Microsoft.SharePoint.Linq.EntitySet<DestinationMarket> DestinationMarket {
-			get {
-				return this._destinationMarket;
-			}
-			set {
-				this._destinationMarket.Assign(value);
 			}
 		}
 		
@@ -2185,30 +2241,13 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2RouteTitle", Storage="_shippingOperationOutbound", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> ShippingOperationOutbound {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2RouteTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
 			get {
-				return this._shippingOperationOutbound;
+				return this._shipping;
 			}
 			set {
-				this._shippingOperationOutbound.Assign(value);
-			}
-		}
-		
-		private void OnDestinationMarketChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("DestinationMarket", this._destinationMarket.Clone());
-		}
-		
-		private void OnDestinationMarketChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("DestinationMarket");
-		}
-		
-		private void OnDestinationMarketSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Route = this;
-			}
-			else {
-				e.Item.Route = null;
+				this._shipping.Assign(value);
 			}
 		}
 		
@@ -2330,15 +2369,15 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		private void OnCurrencySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency> e) {
 		}
 		
-		private void OnShippingOperationOutboundChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShippingOperationOutbound", this._shippingOperationOutbound.Clone());
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
 		}
 		
-		private void OnShippingOperationOutboundChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShippingOperationOutbound");
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
 		}
 		
-		private void OnShippingOperationOutboundSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound> e) {
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Route = this;
 			}
@@ -2469,7 +2508,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Currency> _currency;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> _shippingOperationOutbound;
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2494,10 +2533,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this._currency.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency>>(this.OnCurrencySync);
 			this._currency.OnChanged += new System.EventHandler(this.OnCurrencyChanged);
 			this._currency.OnChanging += new System.EventHandler(this.OnCurrencyChanging);
-			this._shippingOperationOutbound = new Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound>();
-			this._shippingOperationOutbound.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound>>(this.OnShippingOperationOutboundSync);
-			this._shippingOperationOutbound.OnChanged += new System.EventHandler(this.OnShippingOperationOutboundChanged);
-			this._shippingOperationOutbound.OnChanging += new System.EventHandler(this.OnShippingOperationOutboundChanging);
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this.OnCreated();
 		}
 		
@@ -2586,13 +2625,13 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_shippingOperationOutbound", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> ShippingOperationOutbound {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
 			get {
-				return this._shippingOperationOutbound;
+				return this._shipping;
 			}
 			set {
-				this._shippingOperationOutbound.Assign(value);
+				this._shipping.Assign(value);
 			}
 		}
 		
@@ -2646,15 +2685,15 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		private void OnCurrencySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency> e) {
 		}
 		
-		private void OnShippingOperationOutboundChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShippingOperationOutbound", this._shippingOperationOutbound.Clone());
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
 		}
 		
-		private void OnShippingOperationOutboundChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShippingOperationOutbound");
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
 		}
 		
-		private void OnShippingOperationOutboundSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound> e) {
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.SecurityEscort = this;
 			}
@@ -2685,9 +2724,8 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 	/// <summary>
 	/// Utwórz nowy element listy.
 	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ShippingOperationInbound", Id="0x010047C1F2AB865840E598FE69DEC5D5B021")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingOperationOutbound))]
-	public partial class ShippingOperationInbound : Element {
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Shipping", Id="0x0100BBD0D4AB58624F5B900FECE61EEC2988")]
+	public partial class Shipping : Element {
 		
 		private System.Nullable<double> _dockNumber;
 		
@@ -2697,7 +2735,15 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private string _cancelationReason;
 		
+		private System.Nullable<System.DateTime> _estimateDeliveryTime;
+		
+		private System.Nullable<double> _additionalCosts;
+		
+		private System.Nullable<bool> _isOutbound;
+		
 		private System.Nullable<State> _state;
+		
+		private System.Nullable<LoadingType> _loadingType;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents;
 		
@@ -2711,6 +2757,20 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Trailer> _trailerRegistrationNumber;
 		
+		private Microsoft.SharePoint.Linq.EntityRef<Partner> _securityEscortProvider;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _securitySealProtocol;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog> _securityEscort;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Truck> _securityEscortCarRegistrationNumber;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Route> _route;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<CityType> _city;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<TransportUnitTypeTranspotUnit> _transportUnit;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<TrailerCondition> _trailerCondition;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<TimeSlot> _timeSlot;
@@ -2721,7 +2781,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		partial void OnCreated();
 		#endregion
 		
-		public ShippingOperationInbound() {
+		public Shipping() {
 			this._alarmsAndEvents = new Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents>();
 			this._alarmsAndEvents.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents>>(this.OnAlarmsAndEventsSync);
 			this._alarmsAndEvents.OnChanged += new System.EventHandler(this.OnAlarmsAndEventsChanged);
@@ -2746,6 +2806,34 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this._trailerRegistrationNumber.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer>>(this.OnTrailerRegistrationNumberSync);
 			this._trailerRegistrationNumber.OnChanged += new System.EventHandler(this.OnTrailerRegistrationNumberChanged);
 			this._trailerRegistrationNumber.OnChanging += new System.EventHandler(this.OnTrailerRegistrationNumberChanging);
+			this._securityEscortProvider = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
+			this._securityEscortProvider.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnSecurityEscortProviderSync);
+			this._securityEscortProvider.OnChanged += new System.EventHandler(this.OnSecurityEscortProviderChanged);
+			this._securityEscortProvider.OnChanging += new System.EventHandler(this.OnSecurityEscortProviderChanging);
+			this._securitySealProtocol = new Microsoft.SharePoint.Linq.EntityRef<Dokument>();
+			this._securitySealProtocol.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnSecuritySealProtocolSync);
+			this._securitySealProtocol.OnChanged += new System.EventHandler(this.OnSecuritySealProtocolChanged);
+			this._securitySealProtocol.OnChanging += new System.EventHandler(this.OnSecuritySealProtocolChanging);
+			this._securityEscort = new Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog>();
+			this._securityEscort.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog>>(this.OnSecurityEscortSync);
+			this._securityEscort.OnChanged += new System.EventHandler(this.OnSecurityEscortChanged);
+			this._securityEscort.OnChanging += new System.EventHandler(this.OnSecurityEscortChanging);
+			this._securityEscortCarRegistrationNumber = new Microsoft.SharePoint.Linq.EntityRef<Truck>();
+			this._securityEscortCarRegistrationNumber.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck>>(this.OnSecurityEscortCarRegistrationNumberSync);
+			this._securityEscortCarRegistrationNumber.OnChanged += new System.EventHandler(this.OnSecurityEscortCarRegistrationNumberChanged);
+			this._securityEscortCarRegistrationNumber.OnChanging += new System.EventHandler(this.OnSecurityEscortCarRegistrationNumberChanging);
+			this._route = new Microsoft.SharePoint.Linq.EntityRef<Route>();
+			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
+			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
+			this._route.OnChanging += new System.EventHandler(this.OnRouteChanging);
+			this._city = new Microsoft.SharePoint.Linq.EntityRef<CityType>();
+			this._city.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>(this.OnCitySync);
+			this._city.OnChanged += new System.EventHandler(this.OnCityChanged);
+			this._city.OnChanging += new System.EventHandler(this.OnCityChanging);
+			this._transportUnit = new Microsoft.SharePoint.Linq.EntityRef<TransportUnitTypeTranspotUnit>();
+			this._transportUnit.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TransportUnitTypeTranspotUnit>>(this.OnTransportUnitSync);
+			this._transportUnit.OnChanged += new System.EventHandler(this.OnTransportUnitChanged);
+			this._transportUnit.OnChanging += new System.EventHandler(this.OnTransportUnitChanging);
 			this._trailerCondition = new Microsoft.SharePoint.Linq.EntitySet<TrailerCondition>();
 			this._trailerCondition.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TrailerCondition>>(this.OnTrailerConditionSync);
 			this._trailerCondition.OnChanged += new System.EventHandler(this.OnTrailerConditionChanged);
@@ -2813,6 +2901,48 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EstimateDeliveryTime", Storage="_estimateDeliveryTime", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> EstimateDeliveryTime {
+			get {
+				return this._estimateDeliveryTime;
+			}
+			set {
+				if ((value != this._estimateDeliveryTime)) {
+					this.OnPropertyChanging("EstimateDeliveryTime", this._estimateDeliveryTime);
+					this._estimateDeliveryTime = value;
+					this.OnPropertyChanged("EstimateDeliveryTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AdditionalCosts", Storage="_additionalCosts", FieldType="Number")]
+		public System.Nullable<double> AdditionalCosts {
+			get {
+				return this._additionalCosts;
+			}
+			set {
+				if ((value != this._additionalCosts)) {
+					this.OnPropertyChanging("AdditionalCosts", this._additionalCosts);
+					this._additionalCosts = value;
+					this.OnPropertyChanged("AdditionalCosts");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IsOutbound", Storage="_isOutbound", FieldType="Boolean")]
+		public System.Nullable<bool> IsOutbound {
+			get {
+				return this._isOutbound;
+			}
+			set {
+				if ((value != this._isOutbound)) {
+					this.OnPropertyChanging("IsOutbound", this._isOutbound);
+					this._isOutbound = value;
+					this.OnPropertyChanged("IsOutbound");
+				}
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingState", Storage="_state", FieldType="Choice")]
 		public System.Nullable<State> State {
 			get {
@@ -2823,6 +2953,23 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 					this.OnPropertyChanging("State", this._state);
 					this._state = value;
 					this.OnPropertyChanged("State");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Loading Type
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="LoadingType", Storage="_loadingType", FieldType="Choice")]
+		public System.Nullable<LoadingType> LoadingType {
+			get {
+				return this._loadingType;
+			}
+			set {
+				if ((value != this._loadingType)) {
+					this.OnPropertyChanging("LoadingType", this._loadingType);
+					this._loadingType = value;
+					this.OnPropertyChanged("LoadingType");
 				}
 			}
 		}
@@ -2884,6 +3031,76 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 			set {
 				this._trailerRegistrationNumber.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2PartnerTitle", Storage="_securityEscortProvider", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JTI Partner")]
+		public Partner SecurityEscortProvider {
+			get {
+				return this._securityEscortProvider.GetEntity();
+			}
+			set {
+				this._securityEscortProvider.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_securitySealProtocol", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Security Seal Protocol")]
+		public Dokument SecuritySealProtocol {
+			get {
+				return this._securitySealProtocol.GetEntity();
+			}
+			set {
+				this._securitySealProtocol.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_securityEscort", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Security Escort Catalog")]
+		public SecurityEscortCatalog SecurityEscort {
+			get {
+				return this._securityEscort.GetEntity();
+			}
+			set {
+				this._securityEscort.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2TruckTitle", Storage="_securityEscortCarRegistrationNumber", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Truck")]
+		public Truck SecurityEscortCarRegistrationNumber {
+			get {
+				return this._securityEscortCarRegistrationNumber.GetEntity();
+			}
+			set {
+				this._securityEscortCarRegistrationNumber.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2RouteTitle", Storage="_route", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Route")]
+		public Route Route {
+			get {
+				return this._route.GetEntity();
+			}
+			set {
+				this._route.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2City", Storage="_city", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
+		public CityType City {
+			get {
+				return this._city.GetEntity();
+			}
+			set {
+				this._city.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2TransportUnitType", Storage="_transportUnit", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Transport Unit Type")]
+		public TransportUnitTypeTranspotUnit TransportUnit {
+			get {
+				return this._transportUnit.GetEntity();
+			}
+			set {
+				this._transportUnit.SetEntity(value);
 			}
 		}
 		
@@ -2979,10 +3196,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private void OnTruckCarRegistrationNumberSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingOperationInbound.Add(this);
+				e.Item.Shipping.Add(this);
 			}
 			else {
-				e.Item.ShippingOperationInbound.Remove(this);
+				e.Item.Shipping.Remove(this);
 			}
 		}
 		
@@ -2996,10 +3213,123 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private void OnTrailerRegistrationNumberSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingOperationInbound.Add(this);
+				e.Item.Shipping.Add(this);
 			}
 			else {
-				e.Item.ShippingOperationInbound.Remove(this);
+				e.Item.Shipping.Remove(this);
+			}
+		}
+		
+		private void OnSecurityEscortProviderChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SecurityEscortProvider", this._securityEscortProvider.Clone());
+		}
+		
+		private void OnSecurityEscortProviderChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SecurityEscortProvider");
+		}
+		
+		private void OnSecurityEscortProviderSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping.Add(this);
+			}
+			else {
+				e.Item.Shipping.Remove(this);
+			}
+		}
+		
+		private void OnSecuritySealProtocolChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SecuritySealProtocol", this._securitySealProtocol.Clone());
+		}
+		
+		private void OnSecuritySealProtocolChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SecuritySealProtocol");
+		}
+		
+		private void OnSecuritySealProtocolSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
+		}
+		
+		private void OnSecurityEscortChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SecurityEscort", this._securityEscort.Clone());
+		}
+		
+		private void OnSecurityEscortChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SecurityEscort");
+		}
+		
+		private void OnSecurityEscortSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping.Add(this);
+			}
+			else {
+				e.Item.Shipping.Remove(this);
+			}
+		}
+		
+		private void OnSecurityEscortCarRegistrationNumberChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SecurityEscortCarRegistrationNumber", this._securityEscortCarRegistrationNumber.Clone());
+		}
+		
+		private void OnSecurityEscortCarRegistrationNumberChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SecurityEscortCarRegistrationNumber");
+		}
+		
+		private void OnSecurityEscortCarRegistrationNumberSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping0.Add(this);
+			}
+			else {
+				e.Item.Shipping0.Remove(this);
+			}
+		}
+		
+		private void OnRouteChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Route", this._route.Clone());
+		}
+		
+		private void OnRouteChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Route");
+		}
+		
+		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping.Add(this);
+			}
+			else {
+				e.Item.Shipping.Remove(this);
+			}
+		}
+		
+		private void OnCityChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("City", this._city.Clone());
+		}
+		
+		private void OnCityChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("City");
+		}
+		
+		private void OnCitySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping.Add(this);
+			}
+			else {
+				e.Item.Shipping.Remove(this);
+			}
+		}
+		
+		private void OnTransportUnitChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TransportUnit", this._transportUnit.Clone());
+		}
+		
+		private void OnTransportUnitChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TransportUnit");
+		}
+		
+		private void OnTransportUnitSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TransportUnitTypeTranspotUnit> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping.Add(this);
+			}
+			else {
+				e.Item.Shipping.Remove(this);
 			}
 		}
 		
@@ -3163,6 +3493,12 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		}
 		
 		private void OnWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ShippingPoint.Add(this);
+			}
+			else {
+				e.Item.ShippingPoint.Remove(this);
+			}
 		}
 		
 		private void OnTimeSlotChanging(object sender, System.EventArgs e) {
@@ -3191,7 +3527,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private string _comments;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<ShippingOperationInbound> _shippingOperationInbound;
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
 		
@@ -3204,10 +3540,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		#endregion
 		
 		public Trailer() {
-			this._shippingOperationInbound = new Microsoft.SharePoint.Linq.EntitySet<ShippingOperationInbound>();
-			this._shippingOperationInbound.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound>>(this.OnShippingOperationInboundSync);
-			this._shippingOperationInbound.OnChanged += new System.EventHandler(this.OnShippingOperationInboundChanged);
-			this._shippingOperationInbound.OnChanging += new System.EventHandler(this.OnShippingOperationInboundChanging);
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this._vendorName = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
 			this._vendorName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnVendorNameSync);
 			this._vendorName.OnChanged += new System.EventHandler(this.OnVendorNameChanged);
@@ -3233,13 +3569,13 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerTitle", Storage="_shippingOperationInbound", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<ShippingOperationInbound> ShippingOperationInbound {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
 			get {
-				return this._shippingOperationInbound;
+				return this._shipping;
 			}
 			set {
-				this._shippingOperationInbound.Assign(value);
+				this._shipping.Assign(value);
 			}
 		}
 		
@@ -3263,15 +3599,15 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
-		private void OnShippingOperationInboundChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShippingOperationInbound", this._shippingOperationInbound.Clone());
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
 		}
 		
-		private void OnShippingOperationInboundChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShippingOperationInbound");
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
 		}
 		
-		private void OnShippingOperationInboundSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound> e) {
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.TrailerRegistrationNumber = this;
 			}
@@ -3319,7 +3655,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private System.Nullable<TrailerCondition0> _trailerCondition0;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<ShippingOperationInbound> _shippingIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shippingIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Trailer> _trailerRegistrationNumber;
 		
@@ -3330,8 +3666,8 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		#endregion
 		
 		public TrailerCondition() {
-			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<ShippingOperationInbound>();
-			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound>>(this.OnShippingIndexSync);
+			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
+			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
 			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
 			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
 			this._trailerRegistrationNumber = new Microsoft.SharePoint.Linq.EntityRef<Trailer>();
@@ -3373,7 +3709,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerCondition2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public ShippingOperationInbound ShippingIndex {
+		public Shipping ShippingIndex {
 			get {
 				return this._shippingIndex.GetEntity();
 			}
@@ -3400,7 +3736,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this.OnPropertyChanged("ShippingIndex");
 		}
 		
-		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound> e) {
+		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.TrailerCondition.Add(this);
 			}
@@ -3455,11 +3791,11 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private System.Nullable<VehicleType> _vehicleType;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<ShippingOperationInbound> _shippingOperationInbound;
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping0;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> _shippingOperationOutbound;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -3468,18 +3804,18 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		#endregion
 		
 		public Truck() {
-			this._shippingOperationInbound = new Microsoft.SharePoint.Linq.EntitySet<ShippingOperationInbound>();
-			this._shippingOperationInbound.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound>>(this.OnShippingOperationInboundSync);
-			this._shippingOperationInbound.OnChanged += new System.EventHandler(this.OnShippingOperationInboundChanged);
-			this._shippingOperationInbound.OnChanging += new System.EventHandler(this.OnShippingOperationInboundChanging);
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
+			this._shipping0 = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShipping0Sync);
+			this._shipping0.OnChanged += new System.EventHandler(this.OnShipping0Changed);
+			this._shipping0.OnChanging += new System.EventHandler(this.OnShipping0Changing);
 			this._vendorName = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
 			this._vendorName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnVendorNameSync);
 			this._vendorName.OnChanged += new System.EventHandler(this.OnVendorNameChanged);
 			this._vendorName.OnChanging += new System.EventHandler(this.OnVendorNameChanging);
-			this._shippingOperationOutbound = new Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound>();
-			this._shippingOperationOutbound.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound>>(this.OnShippingOperationOutboundSync);
-			this._shippingOperationOutbound.OnChanged += new System.EventHandler(this.OnShippingOperationOutboundChanged);
-			this._shippingOperationOutbound.OnChanging += new System.EventHandler(this.OnShippingOperationOutboundChanging);
 			this.OnCreated();
 		}
 		
@@ -3511,13 +3847,23 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TruckTitle", Storage="_shippingOperationInbound", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<ShippingOperationInbound> ShippingOperationInbound {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TruckTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
 			get {
-				return this._shippingOperationInbound;
+				return this._shipping;
 			}
 			set {
-				this._shippingOperationInbound.Assign(value);
+				this._shipping.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2TruckTitle", Storage="_shipping0", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping0 {
+			get {
+				return this._shipping0;
+			}
+			set {
+				this._shipping0.Assign(value);
 			}
 		}
 		
@@ -3531,30 +3877,37 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2TruckTitle", Storage="_shippingOperationOutbound", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<ShippingOperationOutbound> ShippingOperationOutbound {
-			get {
-				return this._shippingOperationOutbound;
-			}
-			set {
-				this._shippingOperationOutbound.Assign(value);
-			}
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
 		}
 		
-		private void OnShippingOperationInboundChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShippingOperationInbound", this._shippingOperationInbound.Clone());
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
 		}
 		
-		private void OnShippingOperationInboundChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShippingOperationInbound");
-		}
-		
-		private void OnShippingOperationInboundSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound> e) {
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.TruckCarRegistrationNumber = this;
 			}
 			else {
 				e.Item.TruckCarRegistrationNumber = null;
+			}
+		}
+		
+		private void OnShipping0Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping0", this._shipping0.Clone());
+		}
+		
+		private void OnShipping0Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping0");
+		}
+		
+		private void OnShipping0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SecurityEscortCarRegistrationNumber = this;
+			}
+			else {
+				e.Item.SecurityEscortCarRegistrationNumber = null;
 			}
 		}
 		
@@ -3568,23 +3921,6 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private void OnVendorNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
 		}
-		
-		private void OnShippingOperationOutboundChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShippingOperationOutbound", this._shippingOperationOutbound.Clone());
-		}
-		
-		private void OnShippingOperationOutboundChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShippingOperationOutbound");
-		}
-		
-		private void OnShippingOperationOutboundSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationOutbound> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SecurityEscortCarRegistrationNumber = this;
-			}
-			else {
-				e.Item.SecurityEscortCarRegistrationNumber = null;
-			}
-		}
 	}
 	
 	/// <summary>
@@ -3592,6 +3928,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Warehouse", Id="0x01001E57547208B49B46B4AA7CB4536B1A55")]
 	public partial class Warehouse : Element {
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Partner> _partner;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<ShippingPoint> _shippingPoint;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity> _commodity;
 		
@@ -3602,11 +3942,39 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		#endregion
 		
 		public Warehouse() {
+			this._partner = new Microsoft.SharePoint.Linq.EntitySet<Partner>();
+			this._partner.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnPartnerSync);
+			this._partner.OnChanged += new System.EventHandler(this.OnPartnerChanged);
+			this._partner.OnChanging += new System.EventHandler(this.OnPartnerChanging);
+			this._shippingPoint = new Microsoft.SharePoint.Linq.EntitySet<ShippingPoint>();
+			this._shippingPoint.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnShippingPointSync);
+			this._shippingPoint.OnChanged += new System.EventHandler(this.OnShippingPointChanged);
+			this._shippingPoint.OnChanging += new System.EventHandler(this.OnShippingPointChanging);
 			this._commodity = new Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity>();
 			this._commodity.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity>>(this.OnCommoditySync);
 			this._commodity.OnChanged += new System.EventHandler(this.OnCommodityChanged);
 			this._commodity.OnChanging += new System.EventHandler(this.OnCommodityChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Partner2WarehouseTitle", Storage="_partner", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="JTI Partner")]
+		public Microsoft.SharePoint.Linq.EntitySet<Partner> Partner {
+			get {
+				return this._partner;
+			}
+			set {
+				this._partner.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="WarehouseTitle", Storage="_shippingPoint", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping Point")]
+		public Microsoft.SharePoint.Linq.EntitySet<ShippingPoint> ShippingPoint {
+			get {
+				return this._shippingPoint;
+			}
+			set {
+				this._shippingPoint.Assign(value);
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CommodityTitle", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
@@ -3616,6 +3984,40 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 			set {
 				this._commodity.SetEntity(value);
+			}
+		}
+		
+		private void OnPartnerChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Partner", this._partner.Clone());
+		}
+		
+		private void OnPartnerChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Partner");
+		}
+		
+		private void OnPartnerSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Warehouse = this;
+			}
+			else {
+				e.Item.Warehouse = null;
+			}
+		}
+		
+		private void OnShippingPointChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ShippingPoint", this._shippingPoint.Clone());
+		}
+		
+		private void OnShippingPointChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ShippingPoint");
+		}
+		
+		private void OnShippingPointSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Warehouse = this;
+			}
+			else {
+				e.Item.Warehouse = null;
 			}
 		}
 		
@@ -3652,7 +4054,9 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		private System.Nullable<bool> _occupied;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<ShippingOperationInbound> _shippingIndex;
+		private System.Nullable<bool> _isDouble;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shippingIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _shippingPoint;
 		
@@ -3663,8 +4067,8 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		#endregion
 		
 		public TimeSlot() {
-			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<ShippingOperationInbound>();
-			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound>>(this.OnShippingIndexSync);
+			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
+			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
 			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
 			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
 			this._shippingPoint = new Microsoft.SharePoint.Linq.EntityRef<ShippingPoint>();
@@ -3726,6 +4130,20 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 					this.OnPropertyChanging("Occupied", this._occupied);
 					this._occupied = value;
 					this.OnPropertyChanged("Occupied");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IsDouble", Storage="_isDouble", FieldType="Boolean")]
+		public System.Nullable<bool> IsDouble {
+			get {
+				return this._isDouble;
+			}
+			set {
+				if ((value != this._isDouble)) {
+					this.OnPropertyChanging("IsDouble", this._isDouble);
+					this._isDouble = value;
+					this.OnPropertyChanged("IsDouble");
 				}
 			}
 		}
@@ -3808,7 +4226,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public ShippingOperationInbound ShippingIndex {
+		public Shipping ShippingIndex {
 			get {
 				return this._shippingIndex.GetEntity();
 			}
@@ -3835,7 +4253,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this.OnPropertyChanged("ShippingIndex");
 		}
 		
-		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingOperationInbound> e) {
+		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.TimeSlot.Add(this);
 			}
@@ -4310,214 +4728,6 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 	}
 	
 	/// <summary>
-	/// Shipping Operation - Outbound
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ShippingOperationOutbound", Id="0x010047C1F2AB865840E598FE69DEC5D5B02100F3822278C9B04CA38278624C533B88DC")]
-	public partial class ShippingOperationOutbound : ShippingOperationInbound {
-		
-		private System.Nullable<System.DateTime> _estimateDeliveryTime;
-		
-		private System.Nullable<double> _additionalCosts;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Partner> _securityEscortProvider;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _securitySealProtocol;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog> _securityEscort;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Truck> _securityEscortCarRegistrationNumber;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Route> _route;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public ShippingOperationOutbound() {
-			this._securityEscortProvider = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-			this._securityEscortProvider.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnSecurityEscortProviderSync);
-			this._securityEscortProvider.OnChanged += new System.EventHandler(this.OnSecurityEscortProviderChanged);
-			this._securityEscortProvider.OnChanging += new System.EventHandler(this.OnSecurityEscortProviderChanging);
-			this._securitySealProtocol = new Microsoft.SharePoint.Linq.EntityRef<Dokument>();
-			this._securitySealProtocol.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnSecuritySealProtocolSync);
-			this._securitySealProtocol.OnChanged += new System.EventHandler(this.OnSecuritySealProtocolChanged);
-			this._securitySealProtocol.OnChanging += new System.EventHandler(this.OnSecuritySealProtocolChanging);
-			this._securityEscort = new Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog>();
-			this._securityEscort.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog>>(this.OnSecurityEscortSync);
-			this._securityEscort.OnChanged += new System.EventHandler(this.OnSecurityEscortChanged);
-			this._securityEscort.OnChanging += new System.EventHandler(this.OnSecurityEscortChanging);
-			this._securityEscortCarRegistrationNumber = new Microsoft.SharePoint.Linq.EntityRef<Truck>();
-			this._securityEscortCarRegistrationNumber.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck>>(this.OnSecurityEscortCarRegistrationNumberSync);
-			this._securityEscortCarRegistrationNumber.OnChanged += new System.EventHandler(this.OnSecurityEscortCarRegistrationNumberChanged);
-			this._securityEscortCarRegistrationNumber.OnChanging += new System.EventHandler(this.OnSecurityEscortCarRegistrationNumberChanging);
-			this._route = new Microsoft.SharePoint.Linq.EntityRef<Route>();
-			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
-			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
-			this._route.OnChanging += new System.EventHandler(this.OnRouteChanging);
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EstimateDeliveryTime", Storage="_estimateDeliveryTime", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> EstimateDeliveryTime {
-			get {
-				return this._estimateDeliveryTime;
-			}
-			set {
-				if ((value != this._estimateDeliveryTime)) {
-					this.OnPropertyChanging("EstimateDeliveryTime", this._estimateDeliveryTime);
-					this._estimateDeliveryTime = value;
-					this.OnPropertyChanged("EstimateDeliveryTime");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AdditionalCosts", Storage="_additionalCosts", FieldType="Number")]
-		public System.Nullable<double> AdditionalCosts {
-			get {
-				return this._additionalCosts;
-			}
-			set {
-				if ((value != this._additionalCosts)) {
-					this.OnPropertyChanging("AdditionalCosts", this._additionalCosts);
-					this._additionalCosts = value;
-					this.OnPropertyChanged("AdditionalCosts");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2PartnerTitle", Storage="_securityEscortProvider", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JTI Partner")]
-		public Partner SecurityEscortProvider {
-			get {
-				return this._securityEscortProvider.GetEntity();
-			}
-			set {
-				this._securityEscortProvider.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_securitySealProtocol", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Security Seal Protocol")]
-		public Dokument SecuritySealProtocol {
-			get {
-				return this._securitySealProtocol.GetEntity();
-			}
-			set {
-				this._securitySealProtocol.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_securityEscort", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Security Escort Catalog")]
-		public SecurityEscortCatalog SecurityEscort {
-			get {
-				return this._securityEscort.GetEntity();
-			}
-			set {
-				this._securityEscort.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2TruckTitle", Storage="_securityEscortCarRegistrationNumber", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Truck")]
-		public Truck SecurityEscortCarRegistrationNumber {
-			get {
-				return this._securityEscortCarRegistrationNumber.GetEntity();
-			}
-			set {
-				this._securityEscortCarRegistrationNumber.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2RouteTitle", Storage="_route", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Route")]
-		public Route Route {
-			get {
-				return this._route.GetEntity();
-			}
-			set {
-				this._route.SetEntity(value);
-			}
-		}
-		
-		private void OnSecurityEscortProviderChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SecurityEscortProvider", this._securityEscortProvider.Clone());
-		}
-		
-		private void OnSecurityEscortProviderChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SecurityEscortProvider");
-		}
-		
-		private void OnSecurityEscortProviderSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingOperationOutbound.Add(this);
-			}
-			else {
-				e.Item.ShippingOperationOutbound.Remove(this);
-			}
-		}
-		
-		private void OnSecuritySealProtocolChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SecuritySealProtocol", this._securitySealProtocol.Clone());
-		}
-		
-		private void OnSecuritySealProtocolChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SecuritySealProtocol");
-		}
-		
-		private void OnSecuritySealProtocolSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
-		}
-		
-		private void OnSecurityEscortChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SecurityEscort", this._securityEscort.Clone());
-		}
-		
-		private void OnSecurityEscortChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SecurityEscort");
-		}
-		
-		private void OnSecurityEscortSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingOperationOutbound.Add(this);
-			}
-			else {
-				e.Item.ShippingOperationOutbound.Remove(this);
-			}
-		}
-		
-		private void OnSecurityEscortCarRegistrationNumberChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SecurityEscortCarRegistrationNumber", this._securityEscortCarRegistrationNumber.Clone());
-		}
-		
-		private void OnSecurityEscortCarRegistrationNumberChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SecurityEscortCarRegistrationNumber");
-		}
-		
-		private void OnSecurityEscortCarRegistrationNumberSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingOperationOutbound.Add(this);
-			}
-			else {
-				e.Item.ShippingOperationOutbound.Remove(this);
-			}
-		}
-		
-		private void OnRouteChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Route", this._route.Clone());
-		}
-		
-		private void OnRouteChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Route");
-		}
-		
-		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingOperationOutbound.Add(this);
-			}
-			else {
-				e.Item.ShippingOperationOutbound.Remove(this);
-			}
-		}
-	}
-	
-	/// <summary>
 	/// Transpot Unit
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TranspotUnit", Id="0x0100017ECA95BFABB941B9E7FE63643FCD7C", List="Transport Unit Type")]
@@ -4526,6 +4736,8 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		private System.Nullable<double> _dummy;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -4538,6 +4750,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
 			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
 			this._route.OnChanging += new System.EventHandler(this.OnRouteChanging);
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this.OnCreated();
 		}
 		
@@ -4565,6 +4781,16 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2TransportUnitType", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+			get {
+				return this._shipping;
+			}
+			set {
+				this._shipping.Assign(value);
+			}
+		}
+		
 		private void OnRouteChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Route", this._route.Clone());
 		}
@@ -4579,6 +4805,23 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 			}
 			else {
 				e.Item.TransportUnitType = null;
+			}
+		}
+		
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
+		}
+		
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
+		}
+		
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TransportUnit = this;
+			}
+			else {
+				e.Item.TransportUnit = null;
 			}
 		}
 	}
@@ -4723,6 +4966,19 @@ namespace CAS.SmartFactory.Shepherd.ImportExport.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Underway")]
 		Underway = 256,
+	}
+	
+	public enum LoadingType : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Manual")]
+		Manual = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Pallet")]
+		Pallet = 4,
 	}
 	
 	public enum Direction : int {
