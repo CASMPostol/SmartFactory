@@ -136,6 +136,30 @@
       <SharePointProjectItemId>{2614e454-2e2d-48e2-a02c-9f72cdb22425}</SharePointProjectItemId>
       <SubType>Designer</SubType>
     </None>
+    <None Include="Dashoards\CoordinatorDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{318219f0-97ee-46c0-867d-7deabd83ccb2}</SharePointProjectItemId>
+    </None>
+    <None Include="Dashoards\ForwarderDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{37374c9d-630e-4364-b417-95f0822d073c}</SharePointProjectItemId>
+    </None>
+    <None Include="Dashoards\GateDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ecd1cee5-51af-4920-a557-d52de66206b1}</SharePointProjectItemId>
+    </None>
+    <None Include="Dashoards\InboundOwnerDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bcbd1896-721b-4ff8-8267-db465d242d38}</SharePointProjectItemId>
+    </None>
+    <None Include="Dashoards\OutboundCoordinatorDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bb682025-ba3f-42af-ad44-e537aa6125cf}</SharePointProjectItemId>
+    </None>
+    <None Include="Dashoards\OutboundOwnerDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{90e819e7-918c-4345-884a-ef9df1fb86ed}</SharePointProjectItemId>
+    </None>
+    <None Include="Dashoards\SecurityEscortProviderDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2ac942d0-1ccc-48cc-80c7-75a85f6a189d}</SharePointProjectItemId>
+    </None>
+    <None Include="Dashoards\VendorDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c64c100a-ec3d-4546-9241-b1c42b40ccac}</SharePointProjectItemId>
+    </None>
     <None Include="DefaultPage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{707849e5-4a82-4f9b-b735-62f93ff92970}</SharePointProjectItemId>
     </None>
@@ -186,6 +210,14 @@
     <Content Include="CurrentUserWebPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Dashoards\CoordinatorDashboard\Elements.xml" />
+    <Content Include="Dashoards\ForwarderDashboard\Elements.xml" />
+    <Content Include="Dashoards\GateDashboard\Elements.xml" />
+    <Content Include="Dashoards\InboundOwnerDashboard\Elements.xml" />
+    <Content Include="Dashoards\OutboundCoordinatorDashboard\Elements.xml" />
+    <Content Include="Dashoards\OutboundOwnerDashboard\Elements.xml" />
+    <Content Include="Dashoards\SecurityEscortProviderDashboard\Elements.xml" />
+    <Content Include="Dashoards\VendorDashboard\Elements.xml" />
     <Content Include="DefaultPage\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

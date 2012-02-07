@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="OutboundOwnerDashboard">
+    <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url ="WebPartPages/OutboundOwnerDashboard.aspx">
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="OODCurrentUser" >
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.CurrentUserWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Current User</property>
+        <property name="Description" type="string">Provides information about current user and his affiliation.</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="ID" type="string">CDCurrentUser</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+      <View List="Lists/CityList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="OODCity" />
+      <View List="Lists/ShippingList" BaseViewID="5" WebPartZoneID="Main1" WebPartOrder="2" ID="OODShipping" />
+      <View List="Lists/LoadDescriptionList" BaseViewID="4" WebPartZoneID="Main1" WebPartOrder="3" ID="OODLoadDescription" />
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="OODimeSlots">
+        <![CDATA[<webParts>
+                  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >
+                    <metaData>
+                      <type name="CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart.TimeSlotWebPart, $SharePoint.Project.AssemblyFullName$" />
+                      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+                    </metaData>
+                    <data>
+                      <properties>
+                        <property name="Title" type="string">Time Slots</property>
+                        <property name="Description" type="string">Allows to select Time Slot for planed shipping.</property>
+                        <property name="SimpleTimeSlotList" type="bool">true</property>
+                         <property name="Role" >OutboundOwner</property>
+                      </properties>
+                    </data>
+                  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="OODCarrierDashboardWebPart">
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Carrier Dashboard Manager</property>
+        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
+        <property name="ID" type="string">CarrierDashboardWebPart</property>
+        <property name="Role" >OutboundOwner</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+    </File>
+  </Module>
+</Elements>
