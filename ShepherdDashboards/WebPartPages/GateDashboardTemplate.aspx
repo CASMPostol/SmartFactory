@@ -25,13 +25,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td valign="top">
                         <WebPartPages:WebPartZone
                         ID="Main1" runat="server"
                         Title="Shipping List Web Part Zone"
                         FrameType="TitleBarOnly" />
                     </td>
-                    <td>
+                    <td valign="top">
                         <WebPartPages:WebPartZone
                         ID="Main2" runat="server"
                         Title="Main2 Web Part Zone"

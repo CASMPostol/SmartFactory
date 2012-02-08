@@ -9,6 +9,7 @@
     <Folder TargetName="_cts/Shipping" />
     <FieldRefs>
       <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+      <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
       <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
       <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
       <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
