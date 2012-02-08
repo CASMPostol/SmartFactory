@@ -21,10 +21,44 @@
             FrameType="TitleBarOnly" />
         </td>
         <td style="Width:70%;vertical-align:top">
-            <WebPartPages:WebpartZone
-            ID="Main" runat="server"
-            Title="Main Web Part Zone"
-            FrameType="TitleBarOnly" />
+            <table style="Width:100%" >
+                <tr>
+                    <td colspan="2">
+                        <WebPartPages:WebPartZone
+                        ID="SelectedShippingZone" runat="server"
+                        Title="Selected Shipping Web Part Zone"
+                        FrameType="TitleBarOnly" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <WebPartPages:WebPartZone
+                        ID="DriversTeam" runat="server"
+                        Title="Drivers Team Web Part Zone"
+                        FrameType="TitleBarOnly" />
+                    </td>
+                    <td>
+                        <WebPartPages:WebPartZone
+                        ID="GateWebPart" runat="server"
+                        Title="Gate Web Part Zone"
+                        FrameType="TitleBarOnly" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <WebPartPages:WebPartZone
+                        ID="InboundZone" runat="server"
+                        Title="Inbound Web Part Zone"
+                        FrameType="TitleBarOnly" />
+                    </td>
+                    <td>
+                        <WebPartPages:WebPartZone
+                        ID="OutboundZone" runat="server"
+                        Title="Outbound Web Part Zone"
+                        FrameType="TitleBarOnly" />
+                    </td>
+                </tr>
+            </table>
         </td>
       </tr>
     </table>
