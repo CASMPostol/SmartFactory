@@ -14,13 +14,7 @@
   <div id="Body" >
     <table style="Width:100%" >
       <tr>
-        <td style="Width:30%;vertical-align:top" >
-          <WebPartPages:WebPartZone 
-            ID="Left" runat="server" 
-            Title="Left Web Part Zone"
-            FrameType="TitleBarOnly" />
-        </td>
-        <td style="Width:70%;vertical-align:top">
+        <td style="Width:100%;vertical-align:top">
             <table style="Width:100%" >
                 <tr>
                     <td colspan="2">
@@ -33,28 +27,14 @@
                 <tr>
                     <td>
                         <WebPartPages:WebPartZone
-                        ID="DriversTeam" runat="server"
-                        Title="Drivers Team Web Part Zone"
+                        ID="Main1" runat="server"
+                        Title="Shipping List Web Part Zone"
                         FrameType="TitleBarOnly" />
                     </td>
                     <td>
                         <WebPartPages:WebPartZone
-                        ID="GateWebPart" runat="server"
-                        Title="Gate Web Part Zone"
-                        FrameType="TitleBarOnly" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <WebPartPages:WebPartZone
-                        ID="InboundZone" runat="server"
-                        Title="Inbound Web Part Zone"
-                        FrameType="TitleBarOnly" />
-                    </td>
-                    <td>
-                        <WebPartPages:WebPartZone
-                        ID="OutboundZone" runat="server"
-                        Title="Outbound Web Part Zone"
+                        ID="Main2" runat="server"
+                        Title="Main2 Web Part Zone"
                         FrameType="TitleBarOnly" />
                     </td>
                 </tr>
