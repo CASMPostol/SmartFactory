@@ -109,29 +109,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Forwarder" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Forwarder.aspx">
-        <Toolbar Type="None" />
-        <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
-        <ViewFields>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
-          <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
-          <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
-          <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
-        </ViewFields>
-        <Query>
-          <OrderBy>
-            <FieldRef Name="ID">
-            </FieldRef>
-          </OrderBy>
-        </Query>
-        <ParameterBindings>
-          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
-          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
-        </ParameterBindings>
-      </View>
-      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="OutboundOwner" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundOwner.aspx">
+      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="OutboundOwner" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundOwner.aspx">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
@@ -154,14 +132,13 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="InboundOwner" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="InboundOwner.aspx">
+      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="InboundOwner" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="InboundOwner.aspx">
         <Toolbar Type="Standard" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
           <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
           <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
