@@ -148,6 +148,9 @@
     <None Include="Dashoards\InboundOwnerDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bcbd1896-721b-4ff8-8267-db465d242d38}</SharePointProjectItemId>
     </None>
+    <None Include="Dashoards\OperatorDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2374663f-bd66-4211-8c37-bc6441c2cc2a}</SharePointProjectItemId>
+    </None>
     <None Include="Dashoards\OutboundCoordinatorDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bb682025-ba3f-42af-ad44-e537aa6125cf}</SharePointProjectItemId>
     </None>
@@ -214,6 +217,7 @@
     <Content Include="Dashoards\ForwarderDashboard\Elements.xml" />
     <Content Include="Dashoards\GateDashboard\Elements.xml" />
     <Content Include="Dashoards\InboundOwnerDashboard\Elements.xml" />
+    <Content Include="Dashoards\OperatorDashboard\Elements.xml" />
     <Content Include="Dashoards\OutboundCoordinatorDashboard\Elements.xml" />
     <Content Include="Dashoards\OutboundOwnerDashboard\Elements.xml" />
     <Content Include="Dashoards\SecurityEscortProviderDashboard\Elements.xml" />

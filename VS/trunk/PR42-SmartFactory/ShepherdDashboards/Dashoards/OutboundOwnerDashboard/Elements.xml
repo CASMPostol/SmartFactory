@@ -24,7 +24,7 @@
       </AllUsersWebPart>
       <View List="Lists/CityList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="OODCity" />
       <View List="Lists/ShippingList" BaseViewID="5" WebPartZoneID="Main1" WebPartOrder="2" ID="OODShipping" />
-      <View List="Lists/LoadDescriptionList" BaseViewID="4" WebPartZoneID="Main1" WebPartOrder="3" ID="OODLoadDescription" />
+      <View List="Lists/LoadDescriptionList" BaseViewID="3" WebPartZoneID="Main1" WebPartOrder="3" ID="OODLoadDescription" />
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="OODimeSlots">
         <![CDATA[<webParts>
                   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >
