@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="Warehouse"
+    Name="Warehouse"
+    Type="Text"
+    ID="{22C147E5-6F83-416A-A6BB-49342F642952}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     DisplayName="Is Outbound"
     Name="IsOutbound"
     Type="Boolean"
