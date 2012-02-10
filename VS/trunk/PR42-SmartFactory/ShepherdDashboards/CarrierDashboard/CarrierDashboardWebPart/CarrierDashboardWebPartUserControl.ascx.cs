@@ -421,9 +421,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (_unit == null)
         return;
+      m_TransportUnitTypeDropDownList.SelectedIndex = -1;
       foreach (ListItem _item in m_TransportUnitTypeDropDownList.Items)
         if (_item.Value.String2Int() == _unit.Identyfikator)
+        {
           _item.Selected = true;
+          break;
+        }
     }
     private void ShowTimeSlot(TimeSlotInterconnectionData _interconnectionData)
     {
