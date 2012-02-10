@@ -86,7 +86,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Entities.cs" />
     <Compile Include="FileDialog.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -162,6 +161,12 @@
     <Content Include="Entities\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShepherdDashboards\ShepherdDashboards.csproj">
+      <Project>{9298A609-7978-4256-8151-C5EBDC2E496E}</Project>
+      <Name>ShepherdDashboards</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
