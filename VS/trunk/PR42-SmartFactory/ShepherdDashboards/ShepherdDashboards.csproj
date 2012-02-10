@@ -106,6 +106,14 @@
       <DependentUpon>Dashboards.feature</DependentUpon>
     </Compile>
     <Compile Include="GlobalDefinitions.cs" />
+    <Compile Include="LoadDescriptionWebPart\LoadDescriptionWebPart.cs" />
+    <Compile Include="LoadDescriptionWebPart\LoadDescriptionWebPartUserControl.ascx.cs">
+      <DependentUpon>LoadDescriptionWebPartUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoadDescriptionWebPart\LoadDescriptionWebPartUserControl.ascx.designer.cs">
+      <DependentUpon>LoadDescriptionWebPartUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeSlotWebPart\TimeSlotWebPart.cs" />
     <Compile Include="TimeSlotWebPart\TimeSlotWebPartUserControl.ascx.cs">
@@ -178,6 +186,10 @@
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ddc2d1ed-9fa7-4c38-81c5-fdc652827078}</SharePointProjectItemId>
     </None>
+    <None Include="LoadDescriptionWebPart\LoadDescriptionWebPart.webpart" />
+    <None Include="LoadDescriptionWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6d76c6af-a40b-4323-8c68-0615939a0029}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{212689f5-f797-4a55-8d76-26e83b3a6e30}</PackageId>
     </None>
@@ -215,9 +227,13 @@
     </Content>
     <Content Include="Dashoards\CoordinatorDashboard\Elements.xml" />
     <Content Include="Dashoards\ForwarderDashboard\Elements.xml" />
-    <Content Include="Dashoards\GateDashboard\Elements.xml" />
+    <Content Include="Dashoards\GateDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashoards\InboundOwnerDashboard\Elements.xml" />
-    <Content Include="Dashoards\OperatorDashboard\Elements.xml" />
+    <Content Include="Dashoards\OperatorDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashoards\OutboundCoordinatorDashboard\Elements.xml" />
     <Content Include="Dashoards\OutboundOwnerDashboard\Elements.xml" />
     <Content Include="Dashoards\SecurityEscortProviderDashboard\Elements.xml" />
@@ -243,9 +259,11 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDefault.css" />
-    <Content Include="WebPartPages\GateDashboardTemplate.aspx">
+    <Content Include="LoadDescriptionWebPart\Elements.xml" />
+    <Content Include="LoadDescriptionWebPart\LoadDescriptionWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="WebPartPages\GateDashboardTemplate.aspx" />
     <Content Include="TimeSlotWebPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

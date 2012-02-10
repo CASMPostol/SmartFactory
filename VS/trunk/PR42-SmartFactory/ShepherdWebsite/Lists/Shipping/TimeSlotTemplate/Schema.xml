@@ -344,18 +344,18 @@
         </ViewData>
         <Query>
           <Where>
-            <DateRangesOverlap>
-              <FieldRef Name="EventDate">
-              </FieldRef>
-              <FieldRef Name="EndDate">
-              </FieldRef>
-              <FieldRef Name="RecurrenceID">
-              </FieldRef>
-              <Value Type="DateTime">
-                <Month>
-                </Month>
-              </Value>
-            </DateRangesOverlap>
+              <DateRangesOverlap>
+                <FieldRef Name="EventDate">
+                </FieldRef>
+                <FieldRef Name="EndDate">
+                </FieldRef>
+                <FieldRef Name="RecurrenceID">
+                </FieldRef>
+                <Value Type="DateTime">
+                  <Month>
+                  </Month>
+                </Value>
+              </DateRangesOverlap>
           </Where>
         </Query>
       </View>
