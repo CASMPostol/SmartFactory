@@ -186,7 +186,9 @@
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ddc2d1ed-9fa7-4c38-81c5-fdc652827078}</SharePointProjectItemId>
     </None>
-    <None Include="LoadDescriptionWebPart\LoadDescriptionWebPart.webpart" />
+    <None Include="LoadDescriptionWebPart\LoadDescriptionWebPart.webpart">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="LoadDescriptionWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6d76c6af-a40b-4323-8c68-0615939a0029}</SharePointProjectItemId>
     </None>
@@ -230,7 +232,9 @@
     <Content Include="Dashoards\GateDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Dashoards\InboundOwnerDashboard\Elements.xml" />
+    <Content Include="Dashoards\InboundOwnerDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashoards\OperatorDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -254,6 +258,9 @@
     <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
     <Content Include="Images\ShepherdImages\DefaultBanner.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />
+    <Content Include="WebPartPages\CarrierDashboardAlternativeTemplate.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
     <Content Include="DefaultPage\DefaultTemplate.aspx">
       <SubType>ASPXCodeBehind</SubType>

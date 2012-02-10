@@ -4,5 +4,6 @@
     <ProjectItemFile Source="Elements.xml" Target="WebPartPages\" Type="ElementManifest" />
     <ProjectItemFile Source="CarrierDashboardTemplate.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="..\WebPartPages\GateDashboardTemplate.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="..\WebPartPages\CarrierDashboardAlternativeTemplate.aspx" Target="WebPartPages\" Type="ElementFile" />
   </Files>
 </ProjectItem>
