@@ -6,10 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using CAS.SmartFactory.Shepherd.ImportExport.XML;
-using CAS.SmartFactory.Shepherd.ImportExport.Entities;
+using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 
 namespace CAS.SmartFactory.Shepherd.ImportExport
 {
+  using UpdateToolStripEvent = CAS.SmartFactory.Shepherd.Dashboards.GlobalDefinitions.UpdateToolStripEvent;
   public partial class UserInterface : Form
   {
     public UserInterface()
@@ -40,7 +41,6 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       base.Dispose(disposing);
     }
     private Stopwatch m_Stopwatch = new Stopwatch();
-    private delegate void UpdateToolStripEvent(object obj, ProgressChangedEventArgs progres);
     private void UpdateToolStrip(object obj, ProgressChangedEventArgs progres)
     {
       m_ToolStripStatusLabel.Text = (string)progres.UserState;
@@ -94,7 +94,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       for (int i = 0; i < 4; i++)
       {
         string _cn = String.Format("Shippment Type {0}", i);
-        Entities.ShipmentTypeShipmentType _cuntr = new Entities.ShipmentTypeShipmentType() { Tytuł = _cn };
+        ShipmentTypeShipmentType _cuntr = new ShipmentTypeShipmentType() { Tytuł = _cn };
         _update(this, new ProgressChangedEventArgs(1, String.Format("Insert {0}", _cn)));
         _EDC.ShipmentType.InsertOnSubmit(_cuntr);
       }
@@ -213,11 +213,10 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         if (_prt.ServiceType.Value != ServiceType.SecurityEscortProvider)
           CraeteTrailer(_EDC, _prt, ref _trailerId, _update);
         if (_prt.ServiceType.Value == ServiceType.Forwarder)
-          CreateRouts(_EDC, _prt, _update);
+          CreateRouts(_EDC, _update, _prt);
       }
     }
-
-    private void CreateRouts(EntitiesDataContext _EDC, Partner _prt, UpdateToolStripEvent _update)
+    private void CreateRouts(EntitiesDataContext _EDC, UpdateToolStripEvent _update, Partner _prt)
     {
       _update(this, new ProgressChangedEventArgs(1, "CreateRouts starting"));
       List<CityType> _ctList = (from _ct in _EDC.City select _ct).ToList<CityType>();
