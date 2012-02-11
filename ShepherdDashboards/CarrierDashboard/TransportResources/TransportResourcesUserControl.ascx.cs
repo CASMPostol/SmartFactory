@@ -81,7 +81,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     private void UpdateUserInterface()
     {
       ClearUserInterface();
-      if (!m_ControlState.ShippingIdx.IsNullOrEmpty())
+      if (m_ControlState.ShippingIdx.IsNullOrEmpty())
         return;
       try
       {
