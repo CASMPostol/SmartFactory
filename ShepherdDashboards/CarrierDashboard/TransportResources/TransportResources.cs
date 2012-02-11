@@ -19,6 +19,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     protected override void CreateChildControls()
     {
       m_AssociatedUserControl = (TransportResourcesUserControl)Page.LoadControl(_ascxPath);
+      m_AssociatedUserControl.Role = Role;
       Controls.Add(m_AssociatedUserControl);
     }
     private TransportResourcesUserControl m_AssociatedUserControl;
@@ -31,15 +32,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     #endregion
 
     #region public
+    public enum RolesSet { Carrier, SecurityEscort }
+
+    #region Personalization properties
     /// <summary>
-    /// Sets the current user provider.
+    /// Gets or sets the role of the hosting dashboard.
     /// </summary>
-    /// <param name="_provider">The provider interface.</param>
-    [ConnectionConsumer("Current user table interconnection", "PartnerInterconnection", AllowsMultipleConnections = false)]
-    public void SetCurrentUserProvider(IWebPartRow _provider)
-    {
-      m_ProvidesDictionary.Add(InboundInterconnectionData.ConnectionSelector.PartnerInterconnection, _provider);
-    }
+    /// <value>
+    /// The role.
+    /// </value>
+    [WebBrowsable(true)]
+    [Personalizable(PersonalizationScope.Shared)]
+    [WebDisplayName("The webpart role")]
+    [WebDescription("The role of this webpart. Depending on the role the dashboard customizes" +
+      " the functionality provided to the user.")]
+    [Microsoft.SharePoint.WebPartPages.SPWebCategoryName("CAS Custom Properties")]
+    public RolesSet Role { get; set; }
+    #endregion
+
     /// <summary>
     /// Sets the shipping provider.
     /// </summary>

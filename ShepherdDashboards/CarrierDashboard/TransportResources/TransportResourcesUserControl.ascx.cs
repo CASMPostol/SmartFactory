@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint;
-using System.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResources
 {
@@ -21,13 +20,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           case InboundInterconnectionData.ConnectionSelector.ShippingInterconnection:
             new ShippingInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
             break;
-          case InboundInterconnectionData.ConnectionSelector.PartnerInterconnection:
-            new PartnerInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], NewDataEventHandler);
-            break;
           default:
             break;
         }
     }
+    internal TransportResources.RolesSet Role { get; set; }
     #endregion
 
     #region private
@@ -36,8 +33,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     [Serializable]
     private class MyControlState
     {
-      public int? PartnerIndex = null;
-      public int? ShippingIdx = null;
+      public string ShippingIdx = String.Empty;
     }
     private MyControlState m_ControlState = new MyControlState();
     protected override void OnInit(EventArgs e)
@@ -66,19 +62,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     #region Connectivity
     private void NewDataEventHandler(object sender, ShippingInterconnectionData e)
     {
-      int? _ci = e.GetIndex();
-      if (_ci == m_ControlState.ShippingIdx)
+      if (e.ID == m_ControlState.ShippingIdx)
         return;
-      m_ControlState.ShippingIdx = _ci;
-      UpdateUserInterface();
-    }
-    private void NewDataEventHandler(object sender, PartnerInterconnectionData e)
-    {
-      int? _ci = e.GetIndex();
-      if (_ci == m_ControlState.PartnerIndex)
-        return;
-      m_ControlState.ShippingIdx = null;
-      m_ControlState.PartnerIndex = _ci;
+      m_ControlState.ShippingIdx = e.ID;
       UpdateUserInterface();
     }
     #endregion
@@ -90,17 +76,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     private void UpdateUserInterface()
     {
       ClearUserInterface();
-      if (!m_ControlState.PartnerIndex.HasValue || !m_ControlState.ShippingIdx.HasValue)
+      if (!m_ControlState.ShippingIdx.IsNullOrEmpty())
         return;
       try
       {
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
-          Dictionary<int, Driver> _drivers = Driver.GetAllForUser(edc, m_ControlState.PartnerIndex.Value).
-            ToDictionary(p => p.Identyfikator.Value);
-          foreach (ShippingDriversTeam item in from idx in edc.DriversTeam
-                                               where idx.ShippingIndex.Identyfikator == m_ControlState.ShippingIdx.Value
-                                               select idx)
+          Shipping _Shipping = Element.GetAtIndex<Shipping>(edc.Shipping, m_ControlState.ShippingIdx);
+          Partner _prtn = Role == TransportResources.RolesSet.Carrier ? _Shipping.VendorName : _Shipping.SecurityEscortProvider;
+          if (_prtn == null)
+            return; ;
+          Dictionary<int, Driver> _drivers = Driver.GetAllForUser(edc, _prtn.Identyfikator.Value).ToDictionary(x => x.Identyfikator.Value);
+          foreach (ShippingDriversTeam item in from idx in _Shipping.ShippingDriversTeam select idx)
           {
             Driver _driver = item.Driver;
             m_DriversTeamListBox.Items.Add(new ListItem(_driver.Tytuł, item.Identyfikator.Value.ToString()));
@@ -108,10 +95,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           }
           foreach (var item in _drivers)
             m_DriversListBox.Items.Add(new ListItem(item.Value.Tytuł, item.Key.ToString()));
-          Shipping _Shipping = Shipping.GetAtIndex(edc, m_ControlState.ShippingIdx);
           m_ShippingTextBox.Text = _Shipping.Tytuł;
           m_TruckDropDown.Items.Add(new ListItem());
-          foreach (Truck item in Truck.GetAllForUser(edc, m_ControlState.PartnerIndex.Value))
+          foreach (Truck item in Truck.GetAllForUser(edc, _prtn.Identyfikator.Value))
           {
             ListItem _li = new ListItem(item.Tytuł, item.Identyfikator.Value.ToString());
             m_TruckDropDown.Items.Add(_li);
@@ -119,7 +105,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
               _li.Selected = true;
           }
           m_TrailerDropDown.Items.Add(new ListItem());
-          foreach (Trailer item in Trailer.GetAllForUser(edc, m_ControlState.PartnerIndex.Value))
+          foreach (Trailer item in Trailer.GetAllForUser(edc, _prtn.Identyfikator.Value))
           {
             ListItem _li = new ListItem(item.Tytuł, item.Identyfikator.Value.ToString());
             m_TrailerDropDown.Items.Add(_li);
@@ -131,8 +117,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       }
       catch (Exception ex)
       {
-        string _frmt = "User interface update error for user: {0}/shipping{1} with message: {2}";
-        this.Controls.Add(new LiteralControl(String.Format(_frmt, m_ControlState.PartnerIndex, m_ControlState.ShippingIdx, ex.Message)));
+        string _frmt = "User interface update error for shipping {0} with message: {1}";
+        this.Controls.Add(new LiteralControl(String.Format(_frmt, m_ControlState.ShippingIdx, ex.Message)));
       }
     }
     private void ClearUserInterface()
@@ -188,7 +174,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           ShippingDriversTeam _cd = new ShippingDriversTeam()
             {
               Driver = Driver.GetAtIndex(edc, _sel.Value),
-              ShippingIndex = Element.GetAtIndex(edc.Shipping, m_ControlState.ShippingIdx.IntToString())
+              ShippingIndex = Element.GetAtIndex(edc.Shipping, m_ControlState.ShippingIdx)
             };
           edc.DriversTeam.InsertOnSubmit(_cd);
           edc.SubmitChanges();
@@ -209,7 +195,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       {
         try
         {
-          Shipping _sh = Shipping.GetAtIndex(edc, m_ControlState.ShippingIdx.Value);
+          Shipping _sh = Element.GetAtIndex<Shipping>(edc.Shipping, m_ControlState.ShippingIdx);
           if (String.IsNullOrEmpty(_li.Value))
             _sh.TruckCarRegistrationNumber = null;
           else
@@ -231,7 +217,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       {
         try
         {
-          Shipping _sh = Shipping.GetAtIndex(edc, m_ControlState.ShippingIdx.Value);
+          Shipping _sh = Element.GetAtIndex<Shipping>(edc.Shipping, m_ControlState.ShippingIdx);
           if (String.IsNullOrEmpty(_li.Value))
             _sh.TrailerRegistrationNumber = null;
           else
