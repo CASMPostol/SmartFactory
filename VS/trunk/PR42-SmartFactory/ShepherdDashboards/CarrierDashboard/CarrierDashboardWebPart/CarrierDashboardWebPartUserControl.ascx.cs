@@ -537,17 +537,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           validated = false;
         }
         Partner _prtnr = null;
-        if (m_ControlState.PartnerID.IsNullOrEmpty())
-        {
-          this.Controls.Add(
-            new Label()
-            {
-              ForeColor = Color.Red,
-              Text = "Partner must be selected"
-            });
-          validated = false;
-        }
-        else
+        if (!m_ControlState.PartnerID.IsNullOrEmpty())
           _prtnr = Element.GetAtIndex<Partner>(m_EDC.JTIPartner, m_ControlState.PartnerID);
         TimeSlotTimeSlot _ts = null;
         if (m_ControlState.TimeSlotID.IsNullOrEmpty())
@@ -565,6 +555,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         Shipping _sp = null;
         if (m_DashboardType != GlobalDefinitions.Roles.OutboundOwner)
         {
+          if (_prtnr == null)
+          {
+            this.Controls.Add(new Label() { ForeColor = Color.Red, Text = "Partner must be selected" });
+            validated = false;
+          }
           if (!validated)
             return false;
           _sp = new Shipping
