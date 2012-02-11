@@ -2727,6 +2727,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Shipping", Id="0x0100BBD0D4AB58624F5B900FECE61EEC2988")]
 	public partial class Shipping : Element {
 		
+		private string _warehouse;
+		
 		private System.Nullable<double> _dockNumber;
 		
 		private System.Nullable<System.DateTime> _startTime;
@@ -2843,6 +2845,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._timeSlot.OnChanged += new System.EventHandler(this.OnTimeSlotChanged);
 			this._timeSlot.OnChanging += new System.EventHandler(this.OnTimeSlotChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Warehouse", Storage="_warehouse", FieldType="Text")]
+		public string Warehouse {
+			get {
+				return this._warehouse;
+			}
+			set {
+				if ((value != this._warehouse)) {
+					this.OnPropertyChanging("Warehouse", this._warehouse);
+					this._warehouse = value;
+					this.OnPropertyChanged("Warehouse");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DockNumber", Storage="_dockNumber", FieldType="Number")]
