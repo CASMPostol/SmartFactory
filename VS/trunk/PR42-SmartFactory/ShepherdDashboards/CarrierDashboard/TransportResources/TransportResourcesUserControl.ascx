@@ -58,7 +58,7 @@
             <asp:Table ID="Row4" runat="server" CssClass="TableInside">
                 <asp:TableRow>
                     <asp:TableCell>
-                <asp:Label ID="Label3" runat="server" Text="Trailer" CssClass="Label"></asp:Label>
+                <asp:Label ID="m_TrailerHeaderLabel" runat="server" Text="Trailer" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack="true">
