@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
   public partial class TransportResourcesUserControl : UserControl
   {
     #region public
-    internal void GetData(System.Collections.Generic.Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary)
+    internal void GetData(Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary)
     {
       foreach (var item in _ProvidesDictionary)
         switch (item.Key)
@@ -43,6 +43,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+      if (Role == TransportResources.RolesSet.SecurityEscort)
+      {
+        m_TrailerDropDown.Visible = false;
+        m_TrailerHeaderLabel.Visible = false;
+      }
       m_AddDriverButton.Click += new EventHandler(m_AddDriverButton_Click);
       m_RemoveDriverButton.Click += new EventHandler(m_RemoveDriverButton_Click);
       m_TrailerDropDown.SelectedIndexChanged += new EventHandler(m_TrailerDropDown_SelectedIndexChanged);
