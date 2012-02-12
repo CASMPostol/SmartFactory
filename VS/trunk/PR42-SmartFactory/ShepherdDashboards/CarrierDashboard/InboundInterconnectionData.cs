@@ -94,12 +94,4 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
   {}
   internal class SecurityEscortCatalogInterconnectionData : InterconnectionData<SecurityEscortCatalogInterconnectionData>
   {}
-  internal static class InterconnectionExtensions
-  {
-    public static int? GetIndex(this InboundInterconnectionData _id)
-    {
-      if (_id == null) return null;
-      return _id.ID.String2Int();
-    }
-  }
-}
+ }

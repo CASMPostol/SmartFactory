@@ -193,6 +193,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart {
         protected global::System.Web.UI.WebControls.TextBox m_InvoiceTextBox;
         
         /// <summary>
+        /// m_OutboundControlsPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel m_OutboundControlsPanel;
+        
+        /// <summary>
+        /// m_OutboundControlsTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table m_OutboundControlsTable;
+        
+        /// <summary>
         /// LoadDescriptionList control.
         /// </summary>
         /// <remarks>
