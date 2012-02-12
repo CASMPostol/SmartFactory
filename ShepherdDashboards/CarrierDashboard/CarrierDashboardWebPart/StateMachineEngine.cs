@@ -9,6 +9,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 {
   internal abstract class StateMachineEngine
   {
+    #region public
     #region ctor
     internal StateMachineEngine() { }
     #endregion
@@ -21,7 +22,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       RouteOn = 0x100, SecurityEscortOn = 0x200, WarehouseOn = 0x400, TimeSlotOn = 0x800,
       AcceptOn = 0x1000, TransportUnitOn = 0x2000, CityOn = 0x4000
     }
-    internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, EnterState, AbortClick };
+    internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, EnterState, AbortClick }
     internal enum InterfaceState { ViewState, EditState, NewState }
 
     #region Event Handlers
@@ -222,6 +223,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
     }
     internal event InterconnectionDataTable<Shipping>.SetDataEventArg m_ShippintInterconnectionEvent;
+    #endregion 
     #endregion
 
     #region private
@@ -243,8 +245,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected abstract void AbortShipping();
     protected abstract void UpdateTimeSlot(TimeSlotInterconnectionData e);
     protected abstract InterfaceState CurrentMachineState { get; set; }
-    #endregion
-
     protected void EnterState()
     {
       switch (CurrentMachineState)
@@ -255,20 +255,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         case InterfaceState.EditState:
           SetEnabled
             (
-              ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.CommentsOn | ControlsSet.EstimatedDeliveryTime | 
+              ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.CommentsOn | ControlsSet.EstimatedDeliveryTime |
               ControlsSet.AbortOn | ControlsSet.AcceptOn | ControlsSet.TransportUnitOn
             );
           break;
         case InterfaceState.NewState:
           SetEnabled
             (
-              ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.CommentsOn | ControlsSet.EstimatedDeliveryTime | 
+              ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.CommentsOn | ControlsSet.EstimatedDeliveryTime |
               ControlsSet.DocumentOn | ControlsSet.TransportUnitOn
             );
           ClearUserInterface();
           break;
       }
     }
+    #endregion
+
     private void SendShippingData(string _ID)
     {
       if (m_ShippintInterconnectionEvent == null)
