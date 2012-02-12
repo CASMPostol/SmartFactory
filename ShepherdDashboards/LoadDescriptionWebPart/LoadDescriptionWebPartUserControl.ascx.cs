@@ -20,8 +20,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     }
     internal void SetInterconnectionData(Dictionary<CarrierDashboard.InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary)
     {
-      new ShippingInterconnectionData().SetRowData
-        (_ProvidesDictionary[InboundInterconnectionData.ConnectionSelector.ShippingInterconnection], m_StateMachineEngine.NewDataEventHandler);
+      if (_ProvidesDictionary.Keys.Contains(InboundInterconnectionData.ConnectionSelector.ShippingInterconnection))
+        new ShippingInterconnectionData().SetRowData
+          (_ProvidesDictionary[InboundInterconnectionData.ConnectionSelector.ShippingInterconnection], m_StateMachineEngine.NewDataEventHandler);
     }
     internal GlobalDefinitions.Roles Role
     {
@@ -102,10 +103,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         if (m_PalletTypesDropDown.Visible)
         {
           m_PalletTypesDropDown.DataSource = from _idx in m_EDC.PalletTypes
-                                                       orderby _idx.Tytuł ascending
-                                                       select _idx;
-          m_PalletTypesDropDown.DataTextField = Element.TitlePropertyName;
-          m_PalletTypesDropDown.DataValueField = Element.IDPropertyName;
+                                             orderby _idx.Tytuł ascending
+                                             select new { Label = _idx.Tytuł, Index = _idx.Identyfikator };
+          m_PalletTypesDropDown.DataTextField = "Label";
+          m_PalletTypesDropDown.DataValueField = "Index";
           m_PalletTypesDropDown.DataBind();
           m_PalletTypesDropDown.SelectedIndex = 0;
         }
@@ -122,8 +123,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         if (m_CommodityDropDown.Visible)
         {
           m_MarketDropDown.DataSource = from _idx in m_EDC.Market
-                                           orderby _idx.Tytuł ascending
-                                           select new { Label = _idx.Tytuł, Index = _idx.Identyfikator };
+                                        orderby _idx.Tytuł ascending
+                                        select new { Label = _idx.Tytuł, Index = _idx.Identyfikator };
           m_MarketDropDown.DataTextField = "Label";
           m_MarketDropDown.DataValueField = "Index";
           m_MarketDropDown.DataBind();
@@ -235,10 +236,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           EnterState();
         }
       }
-      private void EnterState()
-      {
-        throw new NotImplementedException();
-      }
       #endregion
 
       #region private
@@ -259,12 +256,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     #region Variables
     private ControlState m_ControlState = new ControlState(null);
     private LocalStateMachineEngine m_StateMachineEngine = null;
-    private EntitiesDataContext m_EDC = null; 
+    private EntitiesDataContext m_EDC = null;
     #endregion
 
     internal void ShowShipping(ShippingInterconnectionData _shipping)
     {
-      throw new NotImplementedException();
+      //TODO throw new NotImplementedException();
     }
 
     internal void ShowShipping()
@@ -274,22 +271,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
 
     internal void ClearUserInterface()
     {
-      throw new NotImplementedException();
+      //TODO throw new NotImplementedException();
     }
 
     internal void SetEnabled(StateMachineEngine.ControlsSet _buttons)
     {
-      throw new NotImplementedException();
+      //TODO throw new NotImplementedException();
     }
 
     internal void UpdateLoading()
     {
-      throw new NotImplementedException();
+      //TODO throw new NotImplementedException();
     }
 
     internal bool Createloading()
     {
-      throw new NotImplementedException();
+      //TODO throw new NotImplementedException();
+      return true;
     }
   }
 }

@@ -19,7 +19,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     }
     internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, EnterState, AbortClick };
     internal enum InterfaceState { ViewState, EditState, NewState }
-    #endregion
 
     #region Connection call back
     internal void NewDataEventHandler(object sender, ShippingInterconnectionData e)
@@ -36,6 +35,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           break;
       }
     }
+    #endregion
+
     #endregion
 
     #region private
@@ -129,9 +130,29 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     protected abstract void SetEnabled(ControlsSet _buttons);
     protected abstract void SMError(InterfaceEvent interfaceEvent);
     protected abstract InterfaceState CurrentMachineState { get; set; }
+    protected void EnterState()
+    {
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+          SetEnabled(ControlsSet.EditOn | ControlsSet.NewOn);
+          break;
+        case InterfaceState.EditState:
+          SetEnabled
+            (
+              ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.AbortOn
+            );
+          break;
+        case InterfaceState.NewState:
+          SetEnabled
+            (
+              ControlsSet.CancelOn | ControlsSet.SaveOn
+            );
+          ClearUserInterface();
+          break;
+      }
+    }
     #endregion
-
-    private LoadDescriptionWebPartUserControl m_Parent;
 
     #endregion
   }
