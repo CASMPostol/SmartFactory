@@ -32,7 +32,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Carrier Dashboard Manager</property>
+        <property name="Title" type="string">Shipping Manager</property>
         <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
         <property name="ID" type="string">CarrierDashboardWebPart</property>
         <property name="Role">Escort</property>
@@ -50,9 +50,10 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Transport Resources Management</property>
+        <property name="Title" type="string">Escort Resources Management</property>
         <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
         <property name="ID" type="string">WPTransportResources</property>
+        <property name="Role">SecurityEscort</property>
       </properties>
     </data>
   </webPart>
