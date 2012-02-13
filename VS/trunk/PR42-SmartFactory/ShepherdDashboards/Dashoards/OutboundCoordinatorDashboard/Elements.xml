@@ -3,28 +3,23 @@
   <Module Name="OutboundCoordinatorDashboard">
     <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url="WebPartPages/OutboundCoordinatorDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="OCDCurrentUser" >
+      <View List="Lists/ShippingList" BaseViewID="7" WebPartZoneID="Main1" WebPartOrder="0" ID="OCDShipping" />
+      <View List="Lists/RouteList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="OCDRoute" />
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="2" ID="OCDLoadDescription">
         <![CDATA[<webParts>
-              <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-                <metaData>
-                  <type name="CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.CurrentUserWebPart, $SharePoint.Project.AssemblyFullName$" />
-                  <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-                </metaData>
-                <data>
-                  <properties>
-                    <property name="Title" type="string">Current User</property>
-                    <property name="Description" type="string">Provides information about current user and his affiliation.</property>
-                    <property name="AllowZoneChange" type="bool">True</property>
-                    <property name="AllowConnect" type="bool">True</property>
-                    <property name="ID" type="string">CDCurrentUser</property>
-                  </properties>
-                </data>
-              </webPart>
-            </webParts>]]>
-      </AllUsersWebPart>
-      <View List="Lists/ShippingList" BaseViewID="7" WebPartZoneID="Main1" WebPartOrder="1" ID="OCDShipping" />
-      <View List="Lists/RouteList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="2" ID="OCDRoute" />
-      <View List="Lists/LoadDescriptionList" BaseViewID="4" WebPartZoneID="Main1" WebPartOrder="3" ID="OCDLoadDescription" />
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart.LoadDescriptionWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Load Description</property>
+        <property name="Description" type="string">My Visual WebPart</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="OCDimeSlots">
         <![CDATA[<webParts>
                   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >

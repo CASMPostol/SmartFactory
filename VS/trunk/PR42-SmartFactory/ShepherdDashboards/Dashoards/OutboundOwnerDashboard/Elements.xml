@@ -3,28 +3,24 @@
   <Module Name="OutboundOwnerDashboard">
     <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url ="WebPartPages/OutboundOwnerDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="OODCurrentUser" >
+      <View List="Lists/CityList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="0" ID="OODCity" />
+      <View List="Lists/ShippingList" BaseViewID="5" WebPartZoneID="Main1" WebPartOrder="1" ID="OODShipping" />
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="2" ID="OODLoadDescription">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.CurrentUserWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart.LoadDescriptionWebPart, $SharePoint.Project.AssemblyFullName$" />
       <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Current User</property>
-        <property name="Description" type="string">Provides information about current user and his affiliation.</property>
-        <property name="AllowZoneChange" type="bool">True</property>
-        <property name="AllowConnect" type="bool">True</property>
-        <property name="ID" type="string">CDCurrentUser</property>
+        <property name="Title" type="string">Load Description</property>
+        <property name="Description" type="string">My Visual WebPart</property>
       </properties>
     </data>
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/CityList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="OODCity" />
-      <View List="Lists/ShippingList" BaseViewID="5" WebPartZoneID="Main1" WebPartOrder="2" ID="OODShipping" />
-      <View List="Lists/LoadDescriptionList" BaseViewID="3" WebPartZoneID="Main1" WebPartOrder="3" ID="OODLoadDescription" />
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="OODimeSlots">
         <![CDATA[<webParts>
                   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >
