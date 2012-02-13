@@ -1,6 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+   Type="Choice"
+   DisplayName="Occupied"
+   ID="{1A17B25C-CEEC-42BB-A17C-25B4CBD79FA2}"
+   Format="Dropdown"
+   BaseType="Text"
+   Description="Occupied"
+   Name="Occupied"
+   Group="CAS Smart Factory Shepherd">
+      <Default>Free</Default>
+      <CHOICES>
+        <CHOICE>Free</CHOICE>
+        <CHOICE>Occupied</CHOICE>
+        <CHOICE>Delayed</CHOICE>
+      </CHOICES>
+  </Field>
+  <Field
     DisplayName="Warehouse"
     Name="Warehouse"
     Type="Text"
@@ -166,13 +182,6 @@
     DisplayName="Exit Time">
     <Default>[today]</Default>
   </Field>
-  <Field
-    DisplayName="Occupied"
-    Name="Occupied"
-    Type="Boolean"
-    ID="{4F4BDC32-689F-4664-9D1E-D78C21148178}"
-    Group="CAS Smart Factory Shepherd"
-    />
   <Field
     DisplayName="Estimate Delivery Time"
     Name="EstimateDeliveryTime"
