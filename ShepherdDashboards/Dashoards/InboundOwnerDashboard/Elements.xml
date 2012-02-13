@@ -3,28 +3,24 @@
   <Module Name="InboundOwnerDashboard">
     <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url ="WebPartPages/InboundOwnerDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="IODCurrentUser" >
+      <View List="Lists/JTIPartnerList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="0" ID="IODVendor" />
+      <View List="Lists/ShippingList" BaseViewID="6" WebPartZoneID="Main1" WebPartOrder="1" ID="IODShipping" />
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="2" ID="IODLoadDescription">
         <![CDATA[<webParts>
-              <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-                <metaData>
-                  <type name="CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.CurrentUserWebPart, $SharePoint.Project.AssemblyFullName$" />
-                  <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-                </metaData>
-                <data>
-                  <properties>
-                    <property name="Title" type="string">Current User</property>
-                    <property name="Description" type="string">Provides information about current user and his affiliation.</property>
-                    <property name="AllowZoneChange" type="bool">True</property>
-                    <property name="AllowConnect" type="bool">True</property>
-                    <property name="ID" type="string">CDCurrentUser</property>
-                  </properties>
-                </data>
-              </webPart>
-            </webParts>]]>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart.LoadDescriptionWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Load Description</property>
+        <property name="Description" type="string">My Visual WebPart</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/JTIPartnerList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="IODVendor" />
-      <View List="Lists/ShippingList" BaseViewID="6" WebPartZoneID="Main1" WebPartOrder="2" ID="IODShipping" />
-      <View List="Lists/LoadDescriptionList" BaseViewID="4" WebPartZoneID="Main1" WebPartOrder="3" ID="IODLoadDescription" />
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="IODTimeSlots">
         <![CDATA[<webParts>
                   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >
