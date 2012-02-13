@@ -22,7 +22,7 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/ShippingList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="FDShipping" />
+      <View List="Lists/ShippingList" BaseViewID="8" WebPartZoneID="Main1" WebPartOrder="1" ID="FDShipping" />
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="FDCarrierDashboardWebPart" >
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
