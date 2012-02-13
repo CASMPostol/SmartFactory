@@ -8,7 +8,7 @@
                Inherits="TRUE">
     <Folder TargetName="_cts/Truck" />
     <FieldRefs>
-      <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+      <FieldRef ID="{E842EBA6-B4B3-48D1-BE6D-A6797F1F6C68}" Name="Truck2PartnerTitle" />
       <FieldRef ID="{4521F780-1838-4A0A-B3B7-04997B3DEA37}" Name="VehicleType" />
       <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
     </FieldRefs>

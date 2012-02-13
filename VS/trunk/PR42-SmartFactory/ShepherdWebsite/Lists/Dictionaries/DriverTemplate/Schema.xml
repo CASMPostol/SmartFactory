@@ -5,7 +5,7 @@
       <ContentType ID="0x0100b0982f01816047b1abff933b9f49b5db" Name="Driver" Group="CAS Smart Factory Shepherd" Description="Driver" Overwrite="TRUE" Inherits="TRUE">
         <Folder TargetName="_cts/Driver" />
         <FieldRefs>
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{491CA972-C42C-4936-B8CD-D856E45B05EF}" Name="Driver2PartnerTitle" />
           <FieldRef ID="{9889C906-2676-4309-A8C3-CE3F91D8A640}" Name="IdentityDocumentNumber" />
           <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
         </FieldRefs>
@@ -22,7 +22,7 @@
     </ContentTypes>
     <Fields>
       <Field DisplayName="Identity document number" Name="IdentityDocumentNumber" Type="Text" ID="{9889c906-2676-4309-a8c3-ce3f91d8a640}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="PartnerTitle" ID="{c7ca4aa6-8399-4714-a4a4-42145faba936}" Type="Lookup" List="Lists/PartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="Driver2PartnerTitle" ID="{491CA972-C42C-4936-B8CD-D856E45B05EF}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="CellPhone" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Mobile_Phone;" Type="Text" IMEMode="inactive" />
     </Fields>
     <Views>
@@ -55,7 +55,7 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{491CA972-C42C-4936-B8CD-D856E45B05EF}" Name="Driver2PartnerTitle" />
           <FieldRef ID="{9889C906-2676-4309-A8C3-CE3F91D8A640}" Name="IdentityDocumentNumber" />
           <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
         </ViewFields>

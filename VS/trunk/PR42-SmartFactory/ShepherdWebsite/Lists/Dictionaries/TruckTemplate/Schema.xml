@@ -5,7 +5,7 @@
       <ContentType ID="0x01003e7761aef97a4c619f44d01b53a56568" Name="Truck" Group="CAS Smart Factory Shepherd" Description="Truck" Overwrite="TRUE" Inherits="TRUE">
         <Folder TargetName="_cts/Truck" />
         <FieldRefs>
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{E842EBA6-B4B3-48D1-BE6D-A6797F1F6C68}" Name="Truck2PartnerTitle" />
           <FieldRef ID="{4521F780-1838-4A0A-B3B7-04997B3DEA37}" Name="VehicleType" />
           <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
         </FieldRefs>
@@ -30,7 +30,7 @@
     </CHOICES>
   </Field>
       <Field DisplayName="Comments" Name="AdditionalComments" Type="Text" ID="{cb92513d-35a8-4352-97f4-59d816c74c5a}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="PartnerTitle" ID="{c7ca4aa6-8399-4714-a4a4-42145faba936}" Type="Lookup" List="Lists/PartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="Truck2PartnerTitle" ID="{E842EBA6-B4B3-48D1-BE6D-A6797F1F6C68}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -62,7 +62,7 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{E842EBA6-B4B3-48D1-BE6D-A6797F1F6C68}" Name="Truck2PartnerTitle" />
           <FieldRef ID="{4521F780-1838-4A0A-B3B7-04997B3DEA37}" Name="VehicleType" />
           <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
         </ViewFields>

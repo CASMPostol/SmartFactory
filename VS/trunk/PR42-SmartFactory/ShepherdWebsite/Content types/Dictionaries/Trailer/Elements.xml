@@ -8,7 +8,7 @@
                Inherits="TRUE">
     <Folder TargetName="_cts/Trailer" />
     <FieldRefs>
-      <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+      <FieldRef ID="{C02DF427-580B-433C-8D42-E2CC4484E6F0}" Name="Trailer2PartnerTitle" />
       <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
     </FieldRefs>
     <XmlDocuments>
