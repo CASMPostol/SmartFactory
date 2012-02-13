@@ -58,10 +58,10 @@
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_CityHeaderLabel" runat="server" Text="Destination"></asp:Label>
+        <asp:Label ID="m_CityHeaderLabel" runat="server" Text="Destination" CssClass="Label"></asp:Label>
       </asp:TableCell>
       <asp:TableCell>
-        <asp:Label ID="m_CityLabel" runat="server" Text=" --  Select a city from city table -- "></asp:Label>
+        <asp:Label ID="m_CityLabel" runat="server" Text=" --  Select a city from city table -- " CssClass="Label"></asp:Label>
       </asp:TableCell>
     </asp:TableRow>
     <asp:TableRow>
@@ -73,9 +73,9 @@
       </asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_TransportUnitTypeLabel" runat="server" Text="Transport Unit Type" />
+        <asp:Label ID="m_TransportUnitTypeLabel" runat="server" Text="Transport Unit" CssClass="Label" />
       </asp:TableCell><asp:TableCell>
-        <asp:DropDownList ID="m_TransportUnitTypeDropDownList" runat="server" />
+        <asp:DropDownList ID="m_TransportUnitTypeDropDownList" runat="server" CssClass="DropDown" />
       </asp:TableCell>
       </asp:TableRow>
   </asp:Table>
