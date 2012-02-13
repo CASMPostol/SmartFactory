@@ -20,6 +20,7 @@
     </data>
   </webPart>
 </webParts>]]>
+      </AllUsersWebPart>
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="OCDimeSlots">
         <![CDATA[<webParts>
                   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >
