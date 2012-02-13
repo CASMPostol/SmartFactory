@@ -5,7 +5,7 @@
       <ContentType ID="0x01009ef7d9cee9664a48928ad8c8857ada95" Name="Trailer" Group="CAS Smart Factory Shepherd" Description="Trailer" Overwrite="TRUE" Inherits="TRUE">
         <Folder TargetName="_cts/Trailer" />
         <FieldRefs>
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{C02DF427-580B-433C-8D42-E2CC4484E6F0}" Name="Trailer2PartnerTitle" />
           <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
         </FieldRefs>
         <XmlDocuments>
@@ -21,7 +21,7 @@
     </ContentTypes>
     <Fields>
       <Field DisplayName="Comments" Name="AdditionalComments" Type="Text" ID="{cb92513d-35a8-4352-97f4-59d816c74c5a}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="PartnerTitle" ID="{c7ca4aa6-8399-4714-a4a4-42145faba936}" Type="Lookup" List="Lists/PartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="Trailer2PartnerTitle" ID="{C02DF427-580B-433C-8D42-E2CC4484E6F0}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -53,7 +53,7 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{C02DF427-580B-433C-8D42-E2CC4484E6F0}" Name="Trailer2PartnerTitle" />
           <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
         </ViewFields>
         <Query>
