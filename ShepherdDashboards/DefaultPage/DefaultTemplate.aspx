@@ -40,7 +40,7 @@
     <!--do usunięcia-START-->
     <h3>Alternative dashboards:</h3>
     <ul>
-    <li><a href="/sites/shepherd/WebPartPages/InboundOwnerDashboard_Alt1.aspx">Inbound Owner alternative dashboard No 1</a></li>
+    <li><a href="/sites/sh/WebPartPages/InboundOwnerDashboard_Alt1.aspx">Inbound Owner alternative dashboard No 1</a></li>
     </ul>
     <!--do usunięcia-END-->
     <table style="Width:940px">

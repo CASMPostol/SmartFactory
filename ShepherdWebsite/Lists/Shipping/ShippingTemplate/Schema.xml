@@ -157,7 +157,7 @@
           <Where>
             <Eq>
               <FieldRef Name="IsOutbound" />
-              <Value Type="Boolean">No</Value>
+              <Value Type="Boolean">Yes</Value>
             </Eq>
           </Where>
           <OrderBy>
