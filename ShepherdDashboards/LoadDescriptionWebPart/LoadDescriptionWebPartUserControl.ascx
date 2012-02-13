@@ -105,6 +105,7 @@
   </asp:Table>
   <asp:Button ID="m_NewLoadDescriptionButton" runat="server" Text="Add new" CssClass="Button" />
   <asp:Button ID="m_EditLoadDescriptionButton" runat="server" Text="Edit" CssClass="Button" />
+  <asp:Button ID="m_SaveLoadDescriptionButton" runat="server" Text="Save" CssClass="Button" />
   <asp:Button ID="m_DeleteLoadDescriptionButton" runat="server" Text="Delete" CssClass="Button" />
   <asp:Button ID="m_CancelLoadDescriptionButton" runat="server" Text="Cancel" CssClass="Button" />
 </asp:Panel>

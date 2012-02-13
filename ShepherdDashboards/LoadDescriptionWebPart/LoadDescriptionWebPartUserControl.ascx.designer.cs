@@ -247,6 +247,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart {
         protected global::System.Web.UI.WebControls.Button m_EditLoadDescriptionButton;
         
         /// <summary>
+        /// m_SaveLoadDescriptionButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button m_SaveLoadDescriptionButton;
+        
+        /// <summary>
         /// m_DeleteLoadDescriptionButton control.
         /// </summary>
         /// <remarks>
