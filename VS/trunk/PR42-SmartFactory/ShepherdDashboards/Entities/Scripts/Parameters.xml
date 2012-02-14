@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
   <List Name="Business Description">
-    <ContentType Name="BusinessDescription">
+    <ContentType Name="BusinessDescription" Class="BusinessDescriptionClass" >
       <Column Name="Dummy"/>
     </ContentType>
   </List>

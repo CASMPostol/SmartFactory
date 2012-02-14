@@ -8,6 +8,7 @@
              Inherits="TRUE">
     <Folder TargetName="_cts/BusinessDescription" />
     <FieldRefs>
+      <FieldRef ID="{C4CAE2DF-1DE3-43A3-9500-02091BDADA6E}" Name="CountryTitle" />
       <FieldRef  Name="Dummy" ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}" Hidden="TRUE" />
     </FieldRefs>
     <XmlDocuments>

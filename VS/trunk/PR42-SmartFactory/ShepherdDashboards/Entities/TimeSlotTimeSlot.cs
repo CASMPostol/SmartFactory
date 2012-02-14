@@ -18,9 +18,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     internal void MakeBooking(Shipping _si)
     {
-      if (this.Occupied.Value)
+      if (this.Occupied.Value == Entities.Occupied.Occupied0)
         throw new ApplicationException("Time slot has been aleady reserved");
-      this.Occupied = true;
+      this.Occupied = Entities.Occupied.Occupied0;
       this.ShippingIndex = _si;
       if (!this.IsDouble.HasValue || !this.IsDouble.Value)
         return;
@@ -28,11 +28,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       DateTime _tdy = this.StartTime.Value.Date;
       List<TimeSlot> _avlblTmslts = (from _tsidx in _tslots
                                      let _idx = _tsidx.StartTime.Value.Date
-                                     where !_tsidx.Occupied.Value && _idx >= _tdy && _idx <= _tdy.AddDays(1)
+                                     where _tsidx.Occupied.Value == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays(1)
                                      orderby _tsidx.StartTime ascending
                                      select _tsidx).ToList<TimeSlot>();
       TimeSlot _next = FindAdjacent(_avlblTmslts);
-      _next.Occupied = true;
+      _next.Occupied = Entities.Occupied.Occupied0;
       _next.ShippingIndex = _si;
       _next.IsDouble = true;
     }
@@ -49,7 +49,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       foreach (var item in _tsl)
       {
-        item.Occupied = false;
+        item.Occupied = Entities.Occupied.Free;
         item.ShippingIndex = null;
         item.IsDouble = false;
       }
