@@ -146,7 +146,7 @@
       <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Vendor" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Vendor.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">10</RowLimit>
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
@@ -157,7 +157,7 @@
           <Where>
             <Eq>
               <FieldRef Name="IsOutbound" />
-              <Value Type="Boolean">Yes</Value>
+              <Value Type="Boolean">No</Value>
             </Eq>
           </Where>
           <OrderBy>
@@ -173,7 +173,7 @@
       <View BaseViewID="3" Type="HTML" WebPartZoneID="Main"  DisplayName="Gate - Outbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateOutbound.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">10</RowLimit>
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
@@ -201,7 +201,7 @@
       <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="Gate - Inbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateInbound.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">10</RowLimit>
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
@@ -315,7 +315,7 @@
       <View BaseViewID="8" Type="HTML" WebPartZoneID="Main" DisplayName="Forwarder" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Forwarder.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">10</RowLimit>
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
@@ -326,7 +326,7 @@
           <Where>
             <Eq>
               <FieldRef Name="IsOutbound" />
-              <Value Type="Boolean">No</Value>
+              <Value Type="Boolean">Yes</Value>
             </Eq>
           </Where>
           <OrderBy>
@@ -339,10 +339,10 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="9" Type="HTML" WebPartZoneID="Main" DisplayName="Gate - Shipping details" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateShippingDetails.aspx">
+      <View BaseViewID="9" Type="HTML" WebPartZoneID="Main" DisplayName="Gate - Shipping details" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateShippingDetails.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">5</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
