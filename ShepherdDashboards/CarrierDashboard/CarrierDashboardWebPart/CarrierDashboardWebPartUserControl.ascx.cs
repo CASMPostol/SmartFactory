@@ -379,7 +379,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         }
         else
         {
-          TimeSlot _cts = (from _ts in _sppng.TimeSlot where _ts.Occupied.Value orderby _ts.StartTime ascending select _ts).First();
+          TimeSlot _cts = (from _ts in _sppng.TimeSlot where _ts.Occupied.Value == Occupied.Occupied0 orderby _ts.StartTime ascending select _ts).First();
           ShowTimeSlot((TimeSlotTimeSlot)_cts);
         }
         ShowLoadDescription(_sppng);

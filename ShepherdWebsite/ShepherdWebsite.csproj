@@ -417,8 +417,12 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\BusinessDescriptionList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\BusinessDescriptionList\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\CarrierTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CarrierTemplate\CarrierList\Elements.xml" />
     <Content Include="Lists\Dictionaries\CarrierTemplate\Schema.xml" />

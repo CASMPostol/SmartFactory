@@ -132,7 +132,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           if (_spoint.Direction != _direction && _spoint.Direction != Direction.BothDirections)
             continue;
           List<TimeSlot> _avlblTmslts = (from _tsidx in _spoint.TimeSlot
-                                         where !_tsidx.Occupied.Value && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
+                                         where _tsidx.Occupied.Value == Entities.Occupied.Free && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
                                          orderby _tsidx.StartTime ascending
                                          select _tsidx).ToList<TimeSlot>();
           if (m_ShowDoubleTimeSlots.Checked)
@@ -179,7 +179,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       m_TimeSlotList.Items.Clear();
       string _dtFormat = "{0:HH:mm}";
       HashSet<string> _labels2Display = new HashSet<string>();
-      foreach (TimeSlot _item in _avlblTmslts)
+      foreach (TimeSlot _item in _avlblTmslts.OrderBy<TimeSlot, DateTime>(x => x.StartTime.Value))
       {
         string _label = String.Format(_dtFormat, _item.StartTime.Value);
         if (_labels2Display.Contains(_label))
