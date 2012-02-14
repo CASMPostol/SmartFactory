@@ -8,7 +8,7 @@
                Overwrite="TRUE">
     <Folder TargetName="_cts/SecurityEscortCatalog" />
     <FieldRefs>
-      <FieldRef ID="{7E59DF4C-5FEB-4D4B-8190-FEF920AA0A1C}" Name="SecurityEscortCatalog2CityTitle" />
+      <FieldRef ID="{40070CB4-6ED0-4024-9269-70DAC8932C42}" Name="SecurityEscortCatalog2BusinessDescriptionTitle" />
       <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerIndex" />
       <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />
       <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />

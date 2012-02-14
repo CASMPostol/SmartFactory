@@ -9,6 +9,7 @@
     <Folder TargetName="_cts/Route" />
     <FieldRefs>
       <FieldRef ID="{BB08CEE0-9699-44AD-84ED-BB32ABB382D5}" Name="Route2CityTitle" />
+      <FieldRef ID="{90F7C0EF-1035-4E4E-9CB5-F1CC5293605D}" Name="Route2BusinessDescriptionTitle" />
       <FieldRef ID="{A673B418-E331-448A-AC32-CD58D861015D}" Name="ShipmentTypeTitle" />
       <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerIndex" />
       <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />

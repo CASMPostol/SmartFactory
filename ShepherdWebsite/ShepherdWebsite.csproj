@@ -56,6 +56,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content types\Dictionaries\BusienssDescription\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bbbe2c6e-a679-4437-a58a-800d3d56aa14}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\Carrier\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{93848680-4aee-44d1-81f4-234408fe33b1}</SharePointProjectItemId>
     </None>
@@ -162,6 +165,12 @@
       <SharePointProjectItemId>{4c6353ca-6c58-4663-bccb-db9a06d80fcb}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
+    <None Include="Lists\Dictionaries\BusinessDescriptionTemplate\BusinessDescriptionList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{dc9a28d4-3240-427b-bc10-5f1fffd6e3bb}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\BusinessDescriptionTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9c6f6eb2-8ce3-4ba0-8bab-92f9df982658}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\CarrierTemplate\CarrierList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1f2a1bd2-f182-433f-8ccb-99467ad90949}</SharePointProjectItemId>
     </None>
@@ -345,6 +354,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Content types\Dictionaries\BusienssDescription\Elements.xml" />
     <Content Include="Content types\Dictionaries\Carrier\Elements.xml" />
     <Content Include="Content types\Dictionaries\City\Elements.xml">
       <SubType>Designer</SubType>
@@ -406,6 +416,9 @@
     <Content Include="Fields\ShippingLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\BusinessDescriptionList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\BusinessDescriptionTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\CarrierTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CarrierTemplate\CarrierList\Elements.xml" />
     <Content Include="Lists\Dictionaries\CarrierTemplate\Schema.xml" />
