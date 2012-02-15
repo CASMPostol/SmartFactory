@@ -24,7 +24,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         new ShippingInterconnectionData().SetRowData
           (_ProvidesDictionary[InboundInterconnectionData.ConnectionSelector.ShippingInterconnection], m_StateMachineEngine.NewDataEventHandler);
     }
-    internal GlobalDefinitions.Roles Role
+    internal GlobalDefinitions.Roles Role //TODO
     {
       set
       {
@@ -130,7 +130,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           m_MarketDropDown.DataBind();
           m_MarketDropDown.SelectedIndex = 0;
         }
-
       }
       //m_SaveButton.Click += new EventHandler(m_StateMachineEngine.SaveButton_Click);
       //m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.NewShippingButton_Click);
