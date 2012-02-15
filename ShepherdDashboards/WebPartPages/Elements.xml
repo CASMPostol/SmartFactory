@@ -2,5 +2,6 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="WebPartPages" >
 <File Path="WebPartPages\CarrierDashboardAlternativeTemplate.aspx" Url="WebPartPages/CarrierDashboardAlternativeTemplate.aspx" />
+<File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url="WebPartPages/WebPageTemplate_3columns_40_40_20.aspx" />
 </Module>
 </Elements>

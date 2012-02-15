@@ -1,10 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="OutboundCoordinatorDashboard">
-    <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url="WebPartPages/OutboundCoordinatorDashboard.aspx">
-      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
-      <View List="Lists/ShippingList" BaseViewID="7" WebPartZoneID="Main1" WebPartOrder="0" ID="OCDShipping" />
-      <View List="Lists/RouteList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="OCDRoute" />
+    <File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url="WebPartPages/OutboundCoordinatorDashboard.aspx">
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="OCDCarrierDashboardWebPart">
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Shipping Manager</property>
+        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
+        <property name="ID" type="string">CarrierDashboardWebPart</property>
+        <property name="Role" >Coordinator</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+      <View List="Lists/ShippingList" BaseViewID="7" WebPartZoneID="Main1" WebPartOrder="1" ID="OCDShipping" />
       <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="2" ID="OCDLoadDescription">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -39,25 +55,9 @@
                   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="OCDCarrierDashboardWebPart">
-        <![CDATA[<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
-      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="Title" type="string">Shipping Manager</property>
-        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
-        <property name="ID" type="string">CarrierDashboardWebPart</property>
-        <property name="Role" >Coordinator</property>
-      </properties>
-    </data>
-  </webPart>
-</webParts>]]>
-      </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="2" ID="OCDForwarderTransportResources" >
+      <View List="Lists/RouteList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="1" ID="OCDRoute" />
+      <View List="Lists/SecurityEscortCatalogList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="2" ID="OCDSecurityEscortCatalog" />
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="3" ID="OCDForwarderTransportResources" >
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -74,7 +74,7 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="3" ID="OCDEscortTransportResources" >
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="4" ID="OCDEscortTransportResources" >
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -92,6 +92,7 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0" />
     </File>
   </Module>
 </Elements>

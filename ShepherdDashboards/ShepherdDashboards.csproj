@@ -263,6 +263,9 @@
     <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
     <Content Include="Images\ShepherdImages\DefaultBanner.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />
+    <Content Include="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="WebPartPages\CarrierDashboardAlternativeTemplate.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
