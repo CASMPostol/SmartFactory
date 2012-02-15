@@ -38,5 +38,27 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         throw new ApplicationException(String.Format("ShippingOperationInbound cannot be found at specified index{0}", _index.Value));
       }
     }
+    internal bool IsEditable()
+    {
+      switch (this.State.Value)
+      {
+          
+        case Entities.State.Canceled:
+        case Entities.State.Completed:
+          return false;
+        case Entities.State.Confirmed:
+        case Entities.State.Creation:
+        case Entities.State.Delayed:
+        case Entities.State.Waiting4ExternalApproval:
+        case Entities.State.Waiting4InternalApproval:
+        case Entities.State.Underway:
+          return true;
+        case Entities.State.Invalid:
+        case Entities.State.None:
+        default:
+          throw new ApplicationException("Wrong Shipping state");
+      }
+    }
+
   }
 }

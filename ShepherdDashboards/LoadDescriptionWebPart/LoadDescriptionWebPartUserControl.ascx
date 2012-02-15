@@ -17,6 +17,10 @@
         <asp:Table ID="LoadDescriptionManager" CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
+              <asp:Label ID="m_Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label></asp:TableCell>
+            <asp:TableCell>
+              <asp:Label ID="m_ShippingLabel" runat="server" CssClass="TextBox"></asp:Label></asp:TableCell>
+            <asp:TableCell>
               <asp:Label ID="m_LoadDescriptionNumberLabel" runat="server" Text="No." CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
@@ -96,7 +100,8 @@
         <asp:Table ID="LoadDescriptionList" CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
-              <asp:ListBox ID="m_LoadDescriptionListBox" runat="server" CssClass="ListBox"></asp:ListBox>
+              <asp:GridView ID="m_LoadDescriptionGridView" runat="server" Enabled=true AutoGenerateSelectButton=true>
+              </asp:GridView>
             </asp:TableCell>
           </asp:TableRow>
         </asp:Table>

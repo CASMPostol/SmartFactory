@@ -11,6 +11,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     internal const string TitleColunmName = "Title";
     internal const string IDPropertyName = "Identyfikator";
     internal const string TitlePropertyName = "Tytuł";
+    /// <summary>
+    /// Gets at index.
+    /// </summary>
+    /// <typeparam name="t"></typeparam>
+    /// <param name="_list">The _list.</param>
+    /// <param name="_ID">The _ ID.</param>
+    /// <exception cref="ApplicationException">_ID is nuul or element cannot be found.</exception>
+    /// <returns>An instance of the <see cref="t"/> for the selected index.</returns>
     internal static t GetAtIndex<t>(EntityList<t> _list, string _ID)
       where t: Element
     {
@@ -27,6 +35,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       catch (Exception)
       {
         throw new ApplicationException(String.Format("{0} cannot be found at specified index{1}", typeof(t).Name, _index.Value));
+      }
+    }
+    internal static t FindAtIndex<t>(EntityList<t> _list, string _ID)
+      where t : Element
+    {
+      int? _index = _ID.String2Int();
+      if (!_index.HasValue)
+        return null;
+      try
+      {
+        return (
+              from idx in _list
+              where idx.Identyfikator == _index.Value
+              select idx).First();
+      }
+      catch (Exception)
+      {
+        return null;
       }
     }
   }
