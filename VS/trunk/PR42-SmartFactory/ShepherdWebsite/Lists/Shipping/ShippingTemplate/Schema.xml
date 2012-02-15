@@ -303,7 +303,7 @@
             </Eq>
           </Where>
           <OrderBy>
-            <FieldRef Name="ID">
+            <FieldRef Name="StartTime">
             </FieldRef>
           </OrderBy>
         </Query>
@@ -390,7 +390,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="11" Type="HTML" WebPartZoneID="Main" DisplayName="Operator" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Operator.aspx">
+      <View BaseViewID="11" Type="HTML" WebPartZoneID="Main" DisplayName="Operator" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Operator.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
