@@ -1,9 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="OutboundOwnerDashboard">
-    <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url ="WebPartPages/OutboundOwnerDashboard.aspx">
-      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
-      <View List="Lists/CityList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="0" ID="OODCity" />
+    <File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url ="WebPartPages/OutboundOwnerDashboard.aspx">
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0" />
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="OODCarrierDashboardWebPart">
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Shipping Manager</property>
+        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
+        <property name="ID" type="string">CarrierDashboardWebPart</property>
+        <property name="Role" >OutboundOwner</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
       <View List="Lists/ShippingList" BaseViewID="5" WebPartZoneID="Main1" WebPartOrder="1" ID="OODShipping" />
       <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="2" ID="OODLoadDescription">
         <![CDATA[<webParts>
@@ -39,24 +56,7 @@
                   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="OODCarrierDashboardWebPart">
-        <![CDATA[<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
-      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="Title" type="string">Shipping Manager</property>
-        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
-        <property name="ID" type="string">CarrierDashboardWebPart</property>
-        <property name="Role" >OutboundOwner</property>
-      </properties>
-    </data>
-  </webPart>
-</webParts>]]>
-      </AllUsersWebPart>
+      <View List="Lists/CityList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="1" ID="OODCity" />
     </File>
   </Module>
 </Elements>

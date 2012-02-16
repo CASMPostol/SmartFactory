@@ -1,29 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="SecurityEscortProviderDashboard">
-    <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url="WebPartPages/SecurityEscortProviderDashboard.aspx">
-      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="SEPDCurrentUser" >
-        <![CDATA[<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.CurrentUserWebPart, $SharePoint.Project.AssemblyFullName$" />
-      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="Title" type="string">Current User</property>
-        <property name="Description" type="string">Provides information about current user and his affiliation.</property>
-        <property name="AllowZoneChange" type="bool">True</property>
-        <property name="AllowConnect" type="bool">True</property>
-        <property name="ID" type="string">CDCurrentUser</property>
-      </properties>
-    </data>
-  </webPart>
-</webParts>]]>
-      </AllUsersWebPart>
-      <View List="Lists/ShippingList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="SEPDShipping" />
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="SEPDCarrierDashboardWebPart" >
+    <File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url="WebPartPages/SecurityEscortProviderDashboard.aspx">
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0" />
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="SEPDCarrierDashboardWebPart" >
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -41,7 +21,8 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="SEPDTransportResources" >
+      <View List="Lists/ShippingList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1" ID="SEPDShipping" />
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="SEPDTransportResources" >
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -54,6 +35,27 @@
         <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
         <property name="ID" type="string">WPTransportResources</property>
         <property name="Role">SecurityEscort</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="SEPDCurrentUser" >
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.CurrentUserWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Current User</property>
+        <property name="Description" type="string">Provides information about current user and his affiliation.</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="ID" type="string">CDCurrentUser</property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="Hidden" type="bool">True</property>
       </properties>
     </data>
   </webPart>
