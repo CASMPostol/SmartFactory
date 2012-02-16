@@ -152,9 +152,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
-        case InterfaceState.EditState:
-          GridView _gw = (GridView)sender;
-          ActionResult _dr = Delete(_gw.SelectedDataKey);
+          ActionResult _dr = Delete();
           switch (_dr.LastActionResult)
           {
             case ActionResult.Result.Success:
@@ -162,9 +160,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
             case ActionResult.Result.NotValidated:
               break;
             case ActionResult.Result.Exception:
+              ExceptionCatched("Create action", _dr.ActionException.Message);
               break;
           }
           break;
+        case InterfaceState.EditState:
         case InterfaceState.NewState:
         default:
           SMError(InterfaceEvent.EditClick);
@@ -198,7 +198,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     protected abstract ActionResult ShowLoadDescription(DataKey dataKey);
     protected abstract ActionResult Update();
     protected abstract ActionResult Create();
-    protected abstract ActionResult Delete(DataKey dataKey);
+    protected abstract ActionResult Delete();
     protected abstract void ClearUserInterface();
     protected abstract void SetEnabled(ControlsSet _buttons);
     protected abstract void SMError(InterfaceEvent interfaceEvent);

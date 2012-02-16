@@ -232,9 +232,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       {
         return Parent.Create();
       }
-      protected override StateMachineEngine.ActionResult Delete(DataKey _dataKey)
+      protected override StateMachineEngine.ActionResult Delete()
       {
-        return Parent.Delete(_dataKey);
+        return Parent.Delete();
       }
       protected override void ClearUserInterface()
       {
@@ -369,7 +369,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         return new StateMachineEngine.ActionResult(ex);
       }
     }
-    private StateMachineEngine.ActionResult Delete(DataKey _dataKey)
+    private StateMachineEngine.ActionResult Delete()
     {
       if (m_ControlState.LoadDescriptionID.IsNullOrEmpty())
         return StateMachineEngine.ActionResult.Success;
