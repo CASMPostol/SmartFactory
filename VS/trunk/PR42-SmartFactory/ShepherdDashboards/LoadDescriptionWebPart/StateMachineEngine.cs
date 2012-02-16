@@ -16,7 +16,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     internal enum ControlsSet
     {
       SaveOn = 0x01, EditOn = 0x02, CancelOn = 0x04, NewOn = 0x08,
-      DeleteOn = 0x10
+      DeleteOn = 0x10, EditModeOn = 0x20
     }
     internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, NewData };
     internal enum InterfaceState { ViewState, EditState, NewState }
@@ -214,10 +214,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           SetEnabled(ControlsSet.EditOn | ControlsSet.NewOn | ControlsSet.DeleteOn);
           break;
         case InterfaceState.EditState:
-          SetEnabled(ControlsSet.CancelOn | ControlsSet.SaveOn);
+          SetEnabled(ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.EditModeOn);
           break;
         case InterfaceState.NewState:
-          SetEnabled(ControlsSet.CancelOn | ControlsSet.SaveOn);
+          SetEnabled(ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.EditModeOn);
           ClearUserInterface();
           break;
       }
