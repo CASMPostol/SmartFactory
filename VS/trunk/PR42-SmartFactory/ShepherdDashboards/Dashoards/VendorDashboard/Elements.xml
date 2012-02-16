@@ -1,22 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="VendorDashboard">
-    <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url="WebPartPages/VendorDashboard.aspx">
-      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" ID="VDAlarmsAndEvents" />
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="VDCurrentUser" >
+    <File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url="WebPartPages/VendorDashboard.aspx">
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0" ID="VDAlarmsAndEvents" />
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="VDCarrierDashboardWebPart">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.CurrentUserWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
       <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Current User</property>
-        <property name="Description" type="string">Provides information about current user and his affiliation.</property>
-        <property name="AllowZoneChange" type="bool">True</property>
-        <property name="AllowConnect" type="bool">True</property>
-        <property name="ID" type="string">CDCurrentUser</property>
+        <property name="Title" type="string">Shipping Manager</property>
+        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
+        <property name="ID" type="string">CarrierDashboardWebPart</property>
+        <property name="Role" >Vendor</property>
       </properties>
     </data>
   </webPart>
@@ -57,25 +56,7 @@
                   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="VDCarrierDashboardWebPart">
-        <![CDATA[<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
-      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="Title" type="string">Shipping Manager</property>
-        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
-        <property name="ID" type="string">CarrierDashboardWebPart</property>
-        <property name="Role" >Vendor</property>
-      </properties>
-    </data>
-  </webPart>
-</webParts>]]>
-      </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="2" ID="VDTransportResources" >
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="VDTransportResources" >
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -92,6 +73,27 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
+      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="VDCurrentUser" >
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart.CurrentUserWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Current User</property>
+        <property name="Description" type="string">Provides information about current user and his affiliation.</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="ID" type="string">CDCurrentUser</property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="Hidden" type="bool">True</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>   
     </File>
   </Module>
 </Elements>
