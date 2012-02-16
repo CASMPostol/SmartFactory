@@ -18,8 +18,30 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       SaveOn = 0x01, EditOn = 0x02, CancelOn = 0x04, NewOn = 0x08,
       DeleteOn = 0x10
     }
-    internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, EnterState, AbortClick };
+    internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, NewData };
     internal enum InterfaceState { ViewState, EditState, NewState }
+    internal class ActionResult
+    {
+      #region public
+      internal ActionResult(Exception _excptn)
+      {
+        ActionException = _excptn;
+        LastActionResult = Result.Exception;
+      }
+      internal enum Result { Success, NotValidated, Exception }
+      internal Result LastActionResult { get; private set; }
+      internal Exception ActionException { get; private set; }
+      internal static ActionResult Success { get { return new ActionResult(Result.Success); } }
+      internal static ActionResult NotValidated { get { return new ActionResult(Result.NotValidated); } }
+      #endregion
+
+      #region private
+      private ActionResult(Result _rslt)
+      {
+        LastActionResult = _rslt;
+      }
+      #endregion
+    }
 
     #region Connection call back
     internal void NewDataEventHandler(object sender, ShippingInterconnectionData _InterconnectionData)
@@ -27,20 +49,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
-          Show(_InterconnectionData);
+          ShowShipping(_InterconnectionData);
           break;
         case InterfaceState.EditState:
         case InterfaceState.NewState:
           break;
         default:
+          SMError(InterfaceEvent.NewData);
           break;
       }
     }
     #endregion
-
-    #endregion
-
-    #region private
 
     #region Event Handlers
     internal void NewButton_Click(object sender, EventArgs e)
@@ -59,15 +78,39 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     }
     internal void SaveButton_Click(object sender, EventArgs e)
     {
+      ActionResult _ur = Update();
       switch (CurrentMachineState)
       {
         case InterfaceState.EditState:
-          Update();
-          CurrentMachineState = InterfaceState.ViewState;
+          switch (_ur.LastActionResult)
+          {
+            case ActionResult.Result.Success:
+              CurrentMachineState = InterfaceState.ViewState;
+              break;
+            case ActionResult.Result.NotValidated:
+              break;
+            case ActionResult.Result.Exception:
+              ExceptionCatched("Update action", _ur.ActionException.Message);
+              break;
+          }
           break;
         case InterfaceState.NewState:
-          if (this.Create())
-            CurrentMachineState = InterfaceState.ViewState;
+          ActionResult _cr = this.Create();
+          switch (_cr.LastActionResult)
+          {
+            case ActionResult.Result.Success:
+              CurrentMachineState = InterfaceState.ViewState;
+              break;
+            case ActionResult.Result.NotValidated:
+              break;
+            case ActionResult.Result.Exception:
+              ClearUserInterface();
+              CurrentMachineState = InterfaceState.ViewState;
+              ExceptionCatched("Create action", _ur.ActionException.Message);
+              break;
+            default:
+              break;
+          }
           break;
         case InterfaceState.ViewState:
         default:
@@ -81,7 +124,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       {
         case InterfaceState.NewState:
         case InterfaceState.EditState:
-          Show();
+          ShowShipping();
           CurrentMachineState = InterfaceState.ViewState;
           break;
         case InterfaceState.ViewState:
@@ -106,15 +149,35 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     }
     internal void DeleteButton_Click(object sender, EventArgs e)
     {
-      //TODO zaimplementować
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          GridView _gw = (GridView)sender;
+          ActionResult _dr = Delete(_gw.SelectedDataKey);
+          switch (_dr.LastActionResult)
+          {
+            case ActionResult.Result.Success:
+              break;
+            case ActionResult.Result.NotValidated:
+              break;
+            case ActionResult.Result.Exception:
+              break;
+          }
+          break;
+        case InterfaceState.NewState:
+        default:
+          SMError(InterfaceEvent.EditClick);
+          break;
+      }
     }
-    internal void m_LoadDescriptionGridView_SelectedIndexChanged(object sender, EventArgs e)
+    internal void LoadDescriptionGridView_SelectedIndexChanged(object sender, EventArgs e)
     {
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
           GridView _gw = (GridView)sender;
-          Show(_gw.SelectedDataKey);
+          ShowLoadDescription(_gw.SelectedDataKey);
           break;
         case InterfaceState.EditState:
         case InterfaceState.NewState:
@@ -123,59 +186,42 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           break;
       }
     }
-
-
-    internal void ExceptionCatched(EntitiesDataContext _EDC, string _source, string _message)
-    {
-      Entities.Anons _entry = new Anons(_source, _message);
-      _EDC.EventLogList.InsertOnSubmit(_entry);
-      _EDC.SubmitChanges();
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.ViewState:
-          break;
-        case InterfaceState.EditState:
-        case InterfaceState.NewState:
-          Show();
-          CurrentMachineState = InterfaceState.ViewState;
-          break;
-      }
-    }
     #endregion
 
-    #region protected
-    protected abstract void Show(ShippingInterconnectionData _shipping);
-    protected abstract void Show();
-    protected abstract void Update();
-    protected abstract bool Create();
+    #endregion
+
+    #region private
+
+    #region Actions
+    protected abstract ActionResult ShowShipping(ShippingInterconnectionData _shipping);
+    protected abstract ActionResult ShowShipping();
+    protected abstract ActionResult ShowLoadDescription(DataKey dataKey);
+    protected abstract ActionResult Update();
+    protected abstract ActionResult Create();
+    protected abstract ActionResult Delete(DataKey dataKey);
     protected abstract void ClearUserInterface();
     protected abstract void SetEnabled(ControlsSet _buttons);
     protected abstract void SMError(InterfaceEvent interfaceEvent);
+    protected abstract void ExceptionCatched(string _source, string _message);
+    #endregion
+
     protected abstract InterfaceState CurrentMachineState { get; set; }
-    protected abstract void Show(DataKey dataKey);
     protected void EnterState()
     {
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
-          SetEnabled(ControlsSet.EditOn | ControlsSet.NewOn);
+          SetEnabled(ControlsSet.EditOn | ControlsSet.NewOn | ControlsSet.DeleteOn);
           break;
         case InterfaceState.EditState:
-          SetEnabled
-            (
-              ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.DeleteOn
-            );
+          SetEnabled(ControlsSet.CancelOn | ControlsSet.SaveOn);
           break;
         case InterfaceState.NewState:
-          SetEnabled
-            (
-              ControlsSet.CancelOn | ControlsSet.SaveOn
-            );
+          SetEnabled(ControlsSet.CancelOn | ControlsSet.SaveOn);
           ClearUserInterface();
           break;
       }
     }
-    #endregion
 
     #endregion
   }
