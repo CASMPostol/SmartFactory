@@ -14,12 +14,15 @@
   <asp:Table ID="Outside" CssClass="Table" runat="server">
     <asp:TableRow>
       <asp:TableCell VerticalAlign="Top">
-        <asp:Table ID="LoadDescriptionManager" CssClass="TableInside" runat="server">
+        <asp:Table ID="LoadDescriptionManager_CommonPart" CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
               <asp:Label ID="m_Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label></asp:TableCell>
             <asp:TableCell>
-              <asp:Label ID="m_ShippingLabel" runat="server" CssClass="TextBox"></asp:Label></asp:TableCell>
+              <asp:Label ID="m_ShippingLabel" runat="server" CssClass="Label"></asp:Label>
+            </asp:TableCell>
+          </asp:TableRow>
+          <asp:TableRow>
             <asp:TableCell>
               <asp:Label ID="m_LoadDescriptionNumberLabel" runat="server" Text="No." CssClass="Label"></asp:Label>
             </asp:TableCell>
@@ -53,6 +56,9 @@
               </asp:DropDownList>
             </asp:TableCell>
           </asp:TableRow>
+        </asp:Table>
+        <asp:Panel ID="m_OutboundControlsPanel" runat="server">
+          <asp:Table ID="m_OutboundControlsTable"  CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
               <asp:Label ID="m_MarketLabel" runat="server" Text="Market" CssClass="Label"></asp:Label>
@@ -86,21 +92,14 @@
               <asp:TextBox ID="m_InvoiceTextBox" runat="server" CssClass="TextBoxLD"></asp:TextBox>
             </asp:TableCell>
           </asp:TableRow>
-        </asp:Table>
-        <asp:Panel ID="m_OutboundControlsPanel" runat="server">
-          <asp:Table ID="m_OutboundControlsTable" runat="server">
-            <asp:TableRow>
-              <asp:TableCell>
-              </asp:TableCell>
-            </asp:TableRow>
-          </asp:Table>
-        </asp:Panel>
-      </asp:TableCell>
-      <asp:TableCell VerticalAlign="Top">
+       </asp:Table>
+       </asp:Panel>
+    </asp:TableCell>
+    <asp:TableCell VerticalAlign="Top">
         <asp:Table ID="LoadDescriptionList" CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
-              <asp:GridView ID="m_LoadDescriptionGridView" runat="server" Enabled=true AutoGenerateSelectButton=true>
+              <asp:GridView ID="m_LoadDescriptionGridView" runat="server" Enabled="true" AutoGenerateSelectButton="true">
               </asp:GridView>
             </asp:TableCell>
           </asp:TableRow>
