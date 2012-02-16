@@ -141,8 +141,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_CancelLoadDescriptionButton.Click += new EventHandler(m_StateMachineEngine.CancelButton_Click);
       m_EditLoadDescriptionButton.Click += new EventHandler(m_StateMachineEngine.EditButton_Click);
       m_DeleteLoadDescriptionButton.Click += new EventHandler(m_StateMachineEngine.DeleteButton_Click);
-      m_LoadDescriptionGridView.SelectedIndexChanged += new EventHandler(m_StateMachineEngine.m_LoadDescriptionGridView_SelectedIndexChanged);
+      m_LoadDescriptionGridView.SelectedIndexChanged += new EventHandler(m_StateMachineEngine.LoadDescriptionGridView_SelectedIndexChanged);
     }
+
 
     /// <summary>
     /// Loads the state of the control.
@@ -186,6 +187,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       base.OnUnload(e);
     }
     #endregion
+
     #region State machine
     private class LocalStateMachineEngine : StateMachineEngine
     {
@@ -198,25 +200,37 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       #endregion
 
       #region abstract implementation
-      protected override void Show(ShippingInterconnectionData _shipping)
+      protected override StateMachineEngine.ActionResult ShowShipping(ShippingInterconnectionData _shipping)
       {
-        Parent.Show(_shipping);
+        return Parent.ShowShipping(_shipping);
       }
-      protected override void Show()
+      protected override StateMachineEngine.ActionResult ShowShipping()
       {
-        Parent.Show();
+        return Parent.ShowShipping();
       }
-      protected override void Show(DataKey dataKey)
+      protected override StateMachineEngine.ActionResult ShowLoadDescription(DataKey dataKey)
       {
-        Parent.Show(dataKey);
+        try
+        {
+          Parent.ShowLoadDescription(dataKey);
+          return StateMachineEngine.ActionResult.Success;
+        }
+        catch (Exception ex)
+        {
+          return new ActionResult(ex);
+        }
       }
-      protected override void Update()
+      protected override ActionResult Update()
       {
-        Parent.Update();
+        return Parent.Update();
       }
-      protected override bool Create()
+      protected override ActionResult Create()
       {
         return Parent.Create();
+      }
+      protected override StateMachineEngine.ActionResult Delete(DataKey _dataKey)
+      {
+        return Parent.Delete(_dataKey);
       }
       protected override void ClearUserInterface()
       {
@@ -230,6 +244,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       {
         Parent.Controls.Add(new LiteralControl
           (String.Format("State machine error, in {0} the event {1} occured", Parent.m_ControlState.InterfaceState.ToString(), _interfaceEvent.ToString())));
+      }
+      protected override void ExceptionCatched(string _source, string _message)
+      {
+        Entities.Anons _entry = new Anons(_source, _message);
+        Parent.m_EDC.EventLogList.InsertOnSubmit(_entry);
+        Parent.m_EDC.SubmitChanges();
       }
       protected override InterfaceState CurrentMachineState
       {
@@ -245,10 +265,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           EnterState();
         }
       }
+      private LoadDescriptionWebPartUserControl Parent { get; set; }
       #endregion
 
       #region private
-      private LoadDescriptionWebPartUserControl Parent { get; set; }
       internal void InitMahine(InterfaceState _ControlState)
       {
         Parent.m_ControlState.InterfaceState = _ControlState;
@@ -282,21 +302,25 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       }
     }
     #endregion
-    private void Show()
+
+    private StateMachineEngine.ActionResult ShowShipping()
     {
       if (m_ControlState.ShippingID.IsNullOrEmpty())
+      {
         ClearUserInterface();
-      else
-        ShowShipping(CurrentShipping);
+        return StateMachineEngine.ActionResult.Success;
+      }
+      return ShowShipping(CurrentShipping);
     }
-    private void Show(ShippingInterconnectionData _interconnectionData)
+    private StateMachineEngine.ActionResult ShowShipping(ShippingInterconnectionData _interconnectionData)
     {
-      if (m_ControlState.ShippingID == _interconnectionData.ID) return;
+      if (m_ControlState.ShippingID == _interconnectionData.ID)
+        return StateMachineEngine.ActionResult.Success;
       m_ControlState.ShippingID = _interconnectionData.ID;
       m_Shipping = null;
-      ShowShipping(CurrentShipping);
+      return ShowShipping(CurrentShipping);
     }
-    private void ShowShipping(Shipping _sppng)
+    private StateMachineEngine.ActionResult ShowShipping(Shipping _sppng)
     {
       try
       {
@@ -314,11 +338,90 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           m_MarketDropDown.SelectedIndex = -1;
         }
         InitLoadDescriptionGridView(_sppng);
+        return StateMachineEngine.ActionResult.Success;
       }
       catch (Exception ex)
       {
-        m_StateMachineEngine.ExceptionCatched(m_EDC, "UpdateShowShipping", ex.Message);
+        return new StateMachineEngine.ActionResult(ex);
       }
+    }
+    private StateMachineEngine.ActionResult Create()
+    {
+      try
+      {
+        LoadDescription _ld = new LoadDescription();
+        _ld.ShippingIndex = CurrentShipping;
+        Update(_ld);
+        ReportAlert("LoadDescription created");
+        m_EDC.LoadDescription.InsertOnSubmit(_ld);
+        m_EDC.SubmitChanges();
+        m_ControlState.LoadDescriptionID = _ld.Identyfikator.Value.ToString();
+        return StateMachineEngine.ActionResult.Success;
+      }
+      catch (Exception ex)
+      {
+        return new StateMachineEngine.ActionResult(ex);
+      }
+    }
+    private StateMachineEngine.ActionResult Delete(DataKey _dataKey)
+    {
+      if (m_ControlState.LoadDescriptionID.IsNullOrEmpty())
+        return StateMachineEngine.ActionResult.Success;
+      try
+      {
+        LoadDescription _ld = Element.GetAtIndex<LoadDescription>(m_EDC.LoadDescription, m_ControlState.LoadDescriptionID);
+        string _msg = String.Format("The {0} load description deleted.", _ld.Tytuł);
+        m_EDC.LoadDescription.RecycleOnSubmit(_ld);
+        ReportAlert(_msg);
+        m_EDC.SubmitChanges();
+        return StateMachineEngine.ActionResult.Success;
+      }
+      catch (Exception ex)
+      {
+        return new StateMachineEngine.ActionResult(ex);
+      }
+    }
+    private StateMachineEngine.ActionResult Update()
+    {
+      if (m_ControlState.LoadDescriptionID.IsNullOrEmpty())
+        return StateMachineEngine.ActionResult.Success;
+      try
+      {
+        LoadDescription _ld = Element.GetAtIndex<LoadDescription>(m_EDC.LoadDescription, m_ControlState.LoadDescriptionID);
+        Update(_ld);
+        ReportAlert("LoadDescription updated");
+        m_EDC.SubmitChanges();
+        return StateMachineEngine.ActionResult.Success;
+      }
+      catch (Exception ex)
+      {
+        return new StateMachineEngine.ActionResult(ex);
+      }
+    }
+    private void ShowLoadDescription(DataKey _dataKey)
+    {
+      m_ControlState.LoadDescriptionID = _dataKey.Value.ToString();
+      LoadDescription _ld = Element.GetAtIndex<LoadDescription>(m_EDC.LoadDescription, m_ControlState.LoadDescriptionID);
+      m_CMRTextBox.Text = _ld.CMRNumber;
+      Select(m_CommodityDropDown, _ld.Commodity);
+      m_LoadDescriptionNumberTextBox.Text = _ld.DeliveryNumber;
+      m_GoodsQuantityTextBox.Text = _ld.GoodsQuantity.HasValue ? _ld.GoodsQuantity.ToString() : String.Empty;
+      m_InvoiceTextBox.Text = _ld.InvoiceNumber;
+      Select(m_MarketDropDown, _ld.Market);
+      m_NumberOfPalletsTextBox.Text = _ld.NumberOfPallets.HasValue ? _ld.NumberOfPallets.Value.ToString() : String.Empty;
+      Select(m_PalletTypesDropDown, _ld.PalletTypes);
+    }
+    private void Update(LoadDescription _ld)
+    {
+      _ld.CMRNumber = m_CMRTextBox.Text;
+      _ld.Commodity = Element.FindAtIndex<CommodityCommodity>(m_EDC.Commodity, m_CommodityDropDown.SelectedValue);
+      _ld.DeliveryNumber = m_LoadDescriptionNumberTextBox.Text;
+      _ld.GoodsQuantity = Double.Parse(m_GoodsQuantityTextBox.Text.Trim());
+      _ld.InvoiceNumber = m_InvoiceTextBox.Text;
+      _ld.Market = Element.FindAtIndex<MarketMarket>(m_EDC.Market, m_MarketDropDown.SelectedValue);
+      _ld.NumberOfPallets = Double.Parse(m_NumberOfPalletsTextBox.Text.Trim());
+      _ld.PalletTypes = Element.FindAtIndex<PalletTypes>(m_EDC.PalletTypes, m_PalletTypesDropDown.SelectedValue);
+      _ld.Tytuł = _ld.DeliveryNumber;
     }
     private void InitLoadDescriptionGridView(Shipping _sppng)
     {
@@ -330,14 +433,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     }
     private void ClearUserInterface()
     {
+      m_ControlState.LoadDescriptionID = String.Empty;
+      m_LoadDescriptionNumberTextBox.Text = String.Empty;
       m_CMRTextBox.Text = string.Empty;
       m_GoodsQuantityTextBox.Text = string.Empty;
       m_InvoiceTextBox.Text = String.Empty;
-      m_LoadDescriptionGridView.DataSource = null;
-      m_LoadDescriptionGridView.DataBind();
-      m_MarketDropDown.DataSource = null;
-      m_MarketDropDown.DataBind();
       m_NumberOfPalletsTextBox.Text = String.Empty;
+      m_MarketDropDown.SelectedIndex = -1;
+      m_PalletTypesDropDown.SelectedIndex = -1;
+      m_CommodityDropDown.SelectedIndex = -1;
     }
     private void SetEnabled(StateMachineEngine.ControlsSet _set)
     {
@@ -348,64 +452,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_CancelLoadDescriptionButton.Enabled = (_set & StateMachineEngine.ControlsSet.CancelOn) != 0;
       m_EditLoadDescriptionButton.Enabled = ((_set & StateMachineEngine.ControlsSet.EditOn) != 0) && m_ControlState.IsEditable;
       m_NewLoadDescriptionButton.Enabled = (_set & StateMachineEngine.ControlsSet.NewOn) != 0;
-    }
-    internal bool Create()
-    {
-      try
-      {
-        LoadDescription _ld = new LoadDescription();
-        _ld.ShippingIndex = CurrentShipping;
-        Update(_ld);
-        ReportAlert("LoadDescription created");
-        m_EDC.LoadDescription.InsertOnSubmit(_ld);
-        m_EDC.SubmitChanges();
-      }
-      catch (Exception ex)
-      {
-        m_StateMachineEngine.ExceptionCatched(m_EDC, "Create load description", ex.Message);
-      }
-      return true;
-    }
-    private void Update()
-    {
-      if (m_ControlState.LoadDescriptionID.IsNullOrEmpty())
-        return;
-      try
-      {
-        LoadDescription _ld = Element.GetAtIndex<LoadDescription>(m_EDC.LoadDescription, m_ControlState.LoadDescriptionID);
-        Update(_ld);
-        ReportAlert("LoadDescription updated");
-        m_EDC.SubmitChanges();
-      }
-      catch (Exception ex)
-      {
-        m_StateMachineEngine.ExceptionCatched(m_EDC, "Update load description", ex.Message);
-      }
-    }
-    private void Update(LoadDescription _ld)
-    {
-      _ld.CMRNumber = m_CMRLabel.Text;
-      _ld.Commodity = Element.FindAtIndex<CommodityCommodity>(m_EDC.Commodity, m_CommodityDropDown.SelectedValue);
-      _ld.DeliveryNumber = m_LoadDescriptionNumberTextBox.Text;
-      _ld.GoodsQuantity = Double.Parse(m_GoodsQuantityTextBox.Text.Trim());
-      _ld.InvoiceNumber = m_InvoiceTextBox.Text;
-      _ld.Market = Element.FindAtIndex<MarketMarket>(m_EDC.Market, m_MarketDropDown.SelectedValue);
-      _ld.NumberOfPallets = Double.Parse(m_NumberOfPalletsTextBox.Text.Trim());
-      _ld.PalletTypes = Element.FindAtIndex<PalletTypes>(m_EDC.PalletTypes, m_PalletTypesDropDown.SelectedValue);
-      _ld.Tytuł = _ld.DeliveryNumber;
-    }
-    internal void Show(DataKey _dataKey)
-    {
-      m_ControlState.LoadDescriptionID = _dataKey.Value.ToString();
-      LoadDescription _ld = Element.GetAtIndex<LoadDescription>(m_EDC.LoadDescription, m_ControlState.LoadDescriptionID);
-      m_CMRLabel.Text = _ld.CMRNumber;
-      Select(m_CommodityDropDown, _ld.Commodity);
-      m_LoadDescriptionNumberTextBox.Text = _ld.DeliveryNumber;
-      m_GoodsQuantityTextBox.Text = _ld.GoodsQuantity.HasValue ? _ld.GoodsQuantity.ToString() : String.Empty;
-      m_InvoiceLabel.Text = _ld.InvoiceNumber;
-      Select(m_MarketDropDown, _ld.Market);
-      m_NumberOfPalletsTextBox.Text = _ld.NumberOfPallets.HasValue ? _ld.NumberOfPallets.Value.ToString() : String.Empty;
-      Select(m_PalletTypesDropDown, _ld.PalletTypes);
     }
     private void ReportAlert(string _msg)
     {
