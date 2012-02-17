@@ -51,7 +51,7 @@
           </asp:TableRow>
           <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_NumberOfPalletsLabel" runat="server" Text="Number of pallets" CssClass="Label"></asp:Label>
+              <asp:Label ID="m_NumberOfPalletsLabel" runat="server" Text="Pallets Qty." CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
               <asp:TextBox ID="m_NumberOfPalletsTextBox" runat="server" CssClass="TextBoxLD"></asp:TextBox>
@@ -73,19 +73,19 @@
           <asp:Table ID="m_OutboundControlsTable"  CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
+              <asp:Label ID="m_GoodsQuantityLabel" runat="server" Text="Goods Qty." CssClass="Label"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+              <asp:TextBox ID="m_GoodsQuantityTextBox" runat="server" CssClass="TextBoxLD"></asp:TextBox>
+            </asp:TableCell>
+          </asp:TableRow>
+          <asp:TableRow>
+            <asp:TableCell>
               <asp:Label ID="m_MarketLabel" runat="server" Text="Market" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
               <asp:DropDownList ID="m_MarketDropDown" runat="server" CssClass="DropDownLD">
               </asp:DropDownList>
-            </asp:TableCell>
-          </asp:TableRow>
-          <asp:TableRow>
-            <asp:TableCell>
-              <asp:Label ID="m_GoodsQuantityLabel" runat="server" Text="Goods Quantity" CssClass="Label"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-              <asp:TextBox ID="m_GoodsQuantityTextBox" runat="server" CssClass="TextBoxLD"></asp:TextBox>
             </asp:TableCell>
           </asp:TableRow>
           <asp:TableRow>

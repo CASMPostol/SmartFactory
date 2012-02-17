@@ -175,24 +175,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart {
         protected global::System.Web.UI.WebControls.Table m_OutboundControlsTable;
         
         /// <summary>
-        /// m_MarketLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_MarketLabel;
-        
-        /// <summary>
-        /// m_MarketDropDown control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList m_MarketDropDown;
-        
-        /// <summary>
         /// m_GoodsQuantityLabel control.
         /// </summary>
         /// <remarks>
@@ -209,6 +191,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox m_GoodsQuantityTextBox;
+        
+        /// <summary>
+        /// m_MarketLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_MarketLabel;
+        
+        /// <summary>
+        /// m_MarketDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList m_MarketDropDown;
         
         /// <summary>
         /// m_CMRLabel control.
