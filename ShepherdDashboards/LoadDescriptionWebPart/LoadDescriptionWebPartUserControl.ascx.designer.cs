@@ -31,22 +31,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart {
         protected global::System.Web.UI.WebControls.Panel m_LoadDescriptionPanel;
         
         /// <summary>
-        /// Outside control.
+        /// LoadDescriptionList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Outside;
+        protected global::System.Web.UI.WebControls.Table LoadDescriptionList;
         
         /// <summary>
-        /// LoadDescriptionManager_CommonPart control.
+        /// m_LoadDescriptionGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table LoadDescriptionManager_CommonPart;
+        protected global::System.Web.UI.WebControls.GridView m_LoadDescriptionGridView;
         
         /// <summary>
         /// m_Label4 control.
@@ -65,6 +65,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label m_ShippingLabel;
+        
+        /// <summary>
+        /// Outside control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table Outside;
+        
+        /// <summary>
+        /// LoadDescriptionManager_CommonPart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table LoadDescriptionManager_CommonPart;
         
         /// <summary>
         /// m_LoadDescriptionNumberLabel control.
@@ -227,24 +245,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox m_InvoiceTextBox;
-        
-        /// <summary>
-        /// LoadDescriptionList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table LoadDescriptionList;
-        
-        /// <summary>
-        /// m_LoadDescriptionGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView m_LoadDescriptionGridView;
         
         /// <summary>
         /// m_NewLoadDescriptionButton control.
