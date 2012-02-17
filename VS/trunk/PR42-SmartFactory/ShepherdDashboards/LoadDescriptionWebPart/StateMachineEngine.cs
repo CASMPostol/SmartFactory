@@ -31,6 +31,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       internal enum Result { Success, NotValidated, Exception }
       internal Result LastActionResult { get; private set; }
       internal Exception ActionException { get; private set; }
+      internal bool ActionSucceeded { get { return LastActionResult == Result.Success; } }
       internal static ActionResult Success { get { return new ActionResult(Result.Success); } }
       internal static ActionResult NotValidated { get { return new ActionResult(Result.NotValidated); } }
       #endregion
