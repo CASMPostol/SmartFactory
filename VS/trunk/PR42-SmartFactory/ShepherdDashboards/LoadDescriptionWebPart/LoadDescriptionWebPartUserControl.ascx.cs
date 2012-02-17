@@ -356,13 +356,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       {
         LoadDescription _ld = new LoadDescription();
         _ld.ShippingIndex = CurrentShipping;
-        Update(_ld);
+        List<string> _ve = new List<string>();
+        Update(_ld, _ve);
         ReportAlert("LoadDescription created");
         m_EDC.LoadDescription.InsertOnSubmit(_ld);
         m_EDC.SubmitChanges();
         m_ControlState.LoadDescriptionID = _ld.Identyfikator.Value.ToString();
         InitLoadDescriptionGridView(CurrentShipping);
-        return StateMachineEngine.ActionResult.Success;
+        return AddValidationMessages(_ve);
       }
       catch (Exception ex)
       {
@@ -394,11 +395,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       try
       {
         LoadDescription _ld = Element.GetAtIndex<LoadDescription>(m_EDC.LoadDescription, m_ControlState.LoadDescriptionID);
-        Update(_ld);
+        List<string> _ve = new List<string>();
+        Update(_ld, _ve);
         ReportAlert("LoadDescription updated");
         m_EDC.SubmitChanges();
         InitLoadDescriptionGridView(CurrentShipping);
-        return StateMachineEngine.ActionResult.Success;
+        return AddValidationMessages(_ve);
       }
       catch (Exception ex)
       {
@@ -418,17 +420,26 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_NumberOfPalletsTextBox.Text = _ld.NumberOfPallets.HasValue ? _ld.NumberOfPallets.Value.ToString() : String.Empty;
       Select(m_PalletTypesDropDown, _ld.PalletTypes);
     }
-    private void Update(LoadDescription _ld)
+    private void Update(LoadDescription _ld, List<string> _ve)
     {
-      _ld.CMRNumber = m_CMRTextBox.Text;
-      _ld.Commodity = Element.FindAtIndex<CommodityCommodity>(m_EDC.Commodity, m_CommodityDropDown.SelectedValue);
-      _ld.DeliveryNumber = m_LoadDescriptionNumberTextBox.Text;
-      _ld.GoodsQuantity = Double.Parse(m_GoodsQuantityTextBox.Text.Trim());
-      _ld.InvoiceNumber = m_InvoiceTextBox.Text;
-      _ld.Market = Element.FindAtIndex<MarketMarket>(m_EDC.Market, m_MarketDropDown.SelectedValue);
-      _ld.NumberOfPallets = Double.Parse(m_NumberOfPalletsTextBox.Text.Trim());
-      _ld.PalletTypes = Element.FindAtIndex<PalletTypes>(m_EDC.PalletTypes, m_PalletTypesDropDown.SelectedValue);
-      _ld.Tytuł = _ld.DeliveryNumber;
+      try
+      {
+        _ld.CMRNumber = m_CMRTextBox.Text;
+        _ld.Commodity = Element.FindAtIndex<CommodityCommodity>(m_EDC.Commodity, m_CommodityDropDown.SelectedValue);
+        _ld.DeliveryNumber = m_LoadDescriptionNumberTextBox.Text;
+        _ld.GoodsQuantity = m_GoodsQuantityTextBox.TextBox2Double(_ve);
+        _ld.InvoiceNumber = m_InvoiceTextBox.Text;
+        _ld.Market = Element.FindAtIndex<MarketMarket>(m_EDC.Market, m_MarketDropDown.SelectedValue);
+        _ld.NumberOfPallets = m_NumberOfPalletsTextBox.TextBox2Double(_ve);
+        _ld.PalletTypes = Element.FindAtIndex<PalletTypes>(m_EDC.PalletTypes, m_PalletTypesDropDown.SelectedValue);
+        _ld.Tytuł = _ld.DeliveryNumber;
+
+      }
+      catch (Exception ex)
+      {
+        string _fm = "Cannot update the loading because of error: {0}";
+        _ve.Add(String.Format(_fm, ex.Message));
+      }
     }
     private void InitLoadDescriptionGridView(Shipping _sppng)
     {
@@ -497,6 +508,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       if (_li == null)
         return;
       _li.Selected = true;
+    }
+    private StateMachineEngine.ActionResult AddValidationMessages(List<string> _ve)
+    {
+      if (_ve.Count == 0)
+        return StateMachineEngine.ActionResult.Success;
+      foreach (string item in _ve)
+        this.Controls.Add(new LiteralControl(item));
+      return StateMachineEngine.ActionResult.NotValidated;
     }
   }
 }
