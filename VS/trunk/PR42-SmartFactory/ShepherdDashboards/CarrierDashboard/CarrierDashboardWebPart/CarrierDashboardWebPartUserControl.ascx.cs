@@ -135,6 +135,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       public string ShippingID = String.Empty;
       public string TimeSlotID = String.Empty;
       public InterfaceState InterfaceState = InterfaceState.ViewState;
+      internal StateMachineEngine.ControlsSet SetEnabled = 0;
       public bool TimeSlotChanged = false;
       #endregion
 
@@ -222,6 +223,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected override void OnPreRender(EventArgs e)
     {
       m_StateLiteral.Text = m_ControlState.InterfaceState.ToString();
+      SetEnabled(m_ControlState.SetEnabled);
+      if (m_ControlState.ShippingID.IsNullOrEmpty())
+      {
+        m_EditButton.Enabled = false;
+        m_AbortButton.Enabled = false;
+        m_AcceptButton.Enabled = false;
+      }
+      else if (!CurrentShipping.IsEditable())
+        m_EditButton.Enabled = false;
       base.OnPreRender(e);
     }
     /// <summary>
@@ -261,7 +271,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       protected override void SetEnabled(ControlsSet _buttons)
       {
-        Parent.SetEnabled(_buttons);
+        Parent.m_ControlState.SetEnabled = _buttons;
       }
       protected override void ShowTimeSlot(TimeSlotInterconnectionData _data)
       {
@@ -455,6 +465,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       m_ControlState.RouteID = _route.ID;
       m_RouteLabel.Text = _route.Title;
+      if (_route.ID.IsNullOrEmpty())
+      {
+        m_ControlState.PartnerID = String.Empty;
+        return;
+      }
       Route _rt = Entities.Element.GetAtIndex<Route>(m_EDC.Route, _route.ID);
       m_ControlState.PartnerID = _rt.VendorName.Identyfikator.IntToString();
     }
@@ -463,13 +478,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ControlState.CityID = _city.ID;
       m_CityLabel.Text = _city.Title;
       m_ControlState.RouteID = String.Empty;
+      m_ControlState.SecurityCatalogID = String.Empty;
     }
     private void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData _Escort)
     {
       m_SecurityEscortLabel.Text = _Escort.Title;
       m_ControlState.SecurityCatalogID = _Escort.ID;
-      SecurityEscortCatalog _sec = Element.GetAtIndex<SecurityEscortCatalog>(m_EDC.SecurityEscortCatalog, _Escort.ID);
-      m_ControlState.SecurityPartnerID = _sec.Identyfikator.IntToString();
     }
     private void SetVisible(StateMachineEngine.ControlsSet _set)
     {
@@ -755,6 +769,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private ControlState m_ControlState = new ControlState(null);
     private GlobalDefinitions.Roles m_DashboardType = GlobalDefinitions.Roles.None;
     private const StateMachineEngine.ControlsSet m_AllButtons = (StateMachineEngine.ControlsSet)int.MaxValue;
+    private Shipping m_Shipping;
+    private Shipping CurrentShipping
+    {
+      get
+      {
+        if (m_Shipping != null)
+          return m_Shipping;
+        if (m_ControlState.ShippingID.IsNullOrEmpty())
+          return null;
+        m_Shipping = Element.GetAtIndex<Shipping>(m_EDC.Shipping, m_ControlState.ShippingID);
+        return m_Shipping;
+      }
+    }
+
     #endregion
 
     #endregion

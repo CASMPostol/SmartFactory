@@ -60,6 +60,5 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
           throw new ApplicationException("Wrong Shipping state");
       }
     }
-
   }
 }
