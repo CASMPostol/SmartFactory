@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="Pages">
+    <File Path="Pages\Pages.aspx" Url="default.aspx" />
+    <File Path="Pages\Pages.aspx" Url="WebPartPages/CoordinatorDashboard.aspx" />
+    <File Path="Pages\Pages.aspx" Url="WebPartPages/ForwarderDashboard.aspx" />
+    <File Path="Pages\Pages.aspx" Url="WebPartPages/GateDashboard.aspx" />
+    <File Path="Pages\Pages.aspx" Url="WebPartPages/InboundOwnerDashboard.aspx" />
+    <File Path="Pages\Pages.aspx" Url="WebPartPages/OperatorDashboard.aspx" />
+    <File Path="Pages\Pages.aspx" Url="WebPartPages/OutboundCoordinatorDashboard.aspx" />
+    <File Path="Pages\Pages.aspx" Url="WebPartPages/OutboundOwnerDashboard.aspx" />
+    <File Path="Pages\Pages.aspx" Url="WebPartPages/SecurityEscortProviderDashboard.aspx" />
+    <File Path="Pages\Pages.aspx" Url="WebPartPages/VendorDashboard.aspx" />
+  </Module>
+</Elements>
