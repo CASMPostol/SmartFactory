@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Web.UI.WebControls;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
@@ -58,6 +59,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       {
         return _ret;
       }
+      return null;
+    }
+    public static double? TextBox2Double(this TextBox _value, List<string> _errors)
+    {
+      double _dv;
+      if (Double.TryParse(_value.Text.Trim(), out _dv))
+        return _dv;
+      _errors.Add(String.Format("Wrong value of {0} for {1}.", _value.Text, _value.ID));
       return null;
     }
     public static int? String2Int(this string _val)
