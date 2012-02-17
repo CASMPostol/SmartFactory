@@ -2709,6 +2709,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SecurityEscortCatalog", Id="0x01004D883AD19A284D1F826EA7B4E70F0ACA")]
 	public partial class SecurityEscortCatalog : Element {
 		
+		private string _escortDestination;
+		
+		private string _remarkMM;
+		
 		private string _materialMaster;
 		
 		private System.Nullable<double> _securityCost;
@@ -2753,6 +2757,34 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
 			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EscortDestination", Storage="_escortDestination", FieldType="Text")]
+		public string EscortDestination {
+			get {
+				return this._escortDestination;
+			}
+			set {
+				if ((value != this._escortDestination)) {
+					this.OnPropertyChanging("EscortDestination", this._escortDestination);
+					this._escortDestination = value;
+					this.OnPropertyChanged("EscortDestination");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="RemarkMM", Storage="_remarkMM", FieldType="Text")]
+		public string RemarkMM {
+			get {
+				return this._remarkMM;
+			}
+			set {
+				if ((value != this._remarkMM)) {
+					this.OnPropertyChanging("RemarkMM", this._remarkMM);
+					this._remarkMM = value;
+					this.OnPropertyChanged("RemarkMM");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="MaterialMaster", Storage="_materialMaster", FieldType="Text")]
