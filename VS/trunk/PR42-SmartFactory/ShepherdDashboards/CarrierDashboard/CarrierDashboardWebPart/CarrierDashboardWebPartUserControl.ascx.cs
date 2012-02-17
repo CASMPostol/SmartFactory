@@ -541,6 +541,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         if (!m_ControlState.PartnerID.IsNullOrEmpty())
           _prtnr = Element.GetAtIndex<Partner>(m_EDC.JTIPartner, m_ControlState.PartnerID);
         TimeSlotTimeSlot _ts = null;
+        Warehouse _wrs = null;
         if (m_ControlState.TimeSlotID.IsNullOrEmpty())
         {
           this.Controls.Add(
@@ -552,7 +553,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           validated = false;
         }
         else
+        {
           _ts = Element.GetAtIndex<TimeSlotTimeSlot>(m_EDC.TimeSlot, m_ControlState.TimeSlotID);
+          _wrs = _ts.GetWarehouse();
+        }
         Shipping _sp = null;
         if (m_DashboardType != GlobalDefinitions.Roles.OutboundOwner)
         {
@@ -599,7 +603,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
                                m_EstimateDeliveryTimeDateTimeControl.SelectedDate,
                                _ts.StartTime,
                                Element.GetAtIndex(m_EDC.City, m_ControlState.CityID),
-                               Element.GetAtIndex(m_EDC.TransportUnitType, m_TransportUnitTypeDropDownList.SelectedValue)
+                               Element.GetAtIndex(m_EDC.TransportUnitType, m_TransportUnitTypeDropDownList.SelectedValue),
+                               _wrs
                              );
           AssignPartners2Shipping(_sp);
         }
@@ -671,6 +676,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(m_EDC.TimeSlot, m_ControlState.TimeSlotID);
           _newts.MakeBooking(_si);
           _si.StartTime = _newts.StartTime;
+          _si.Warehouse = _newts.GetWarehouse().Tytuł;
         }
         _si.CancelationReason = m_CommentsTextBox.Text;
         AssignPartners2Shipping(_si);
