@@ -25,6 +25,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     internal void ChangeRout(Route _nr)
     {
+      this.Route = _nr;
       if (this.Route == null)
       {
         this.BusinessDescription = String.Empty;
