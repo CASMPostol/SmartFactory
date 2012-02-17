@@ -5,10 +5,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
   public partial class Shipping
   {
-    public Shipping(bool _isOutbound, string _title, Partner _prtnr, Entities.State _state, Route _route, DateTime _deliveryTime, DateTime? _startTime, CityType _city, TransportUnitTypeTranspotUnit _tut, Warehouse _wrs )
+    public Shipping(bool _isOutbound, string _title, Partner _prtnr, Entities.State _state, Route _route, DateTime _deliveryTime, DateTime? _startTime, CityType _city, TransportUnitTypeTranspotUnit _tut, Warehouse _wrs)
       : this(_isOutbound, _title, _prtnr, _state, _startTime, _wrs)
     {
-      this.Route = _route;
+      ChangeRout(_route);
       this.EstimateDeliveryTime = _deliveryTime;
       this.City = _city;
       this.TransportUnit = _tut;
@@ -22,6 +22,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       State = _state;
       StartTime = _startTime;
       this.Warehouse = _wrs.Tytuł;
+    }
+    internal void ChangeRout(Route _nr)
+    {
+      if (this.Route == null)
+      {
+        this.BusinessDescription = String.Empty;
+        this.VendorName = null;
+        return;
+      }
+      this.BusinessDescription = Route.BusinessDescription == null ? String.Empty : Route.BusinessDescription.Tytuł;
+      this.VendorName = Route.VendorName;
     }
     internal static Shipping GetAtIndex(EntitiesDataContext edc, int? _index)
     {
@@ -43,7 +54,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       switch (this.State.Value)
       {
-          
+
         case Entities.State.Canceled:
         case Entities.State.Completed:
           return false;
