@@ -17,6 +17,7 @@
       <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
       <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
       <FieldRef ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}" Name="CancelationReason" />
+      <FieldRef ID="{17041C4C-ED3C-4DEE-8609-FE769EAFD8F0}" Name="BusinessDescription" />
       <FieldRef ID="{2CEB1781-878F-46E5-9DF5-432463ABD971}" Name="ShippingOperationOutband2PartnerTitle" />
       <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
       <FieldRef ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Name="SecurityEscortCatalogTitle" />
