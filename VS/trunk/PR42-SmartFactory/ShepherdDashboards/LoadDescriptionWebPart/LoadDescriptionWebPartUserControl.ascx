@@ -10,18 +10,28 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LoadDescriptionWebPartUserControl.ascx.cs"
   Inherits="CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart.LoadDescriptionWebPartUserControl" %>
 <SharePoint:CssRegistration runat="server" ID="cssreg" Name="/_layouts/ShepherdDashboards/CAS_ShepherdDashboards.css" />
-<asp:Panel ID="m_LoadDescriptionPanel" runat="server">
-  <asp:Table ID="Outside" CssClass="Table" runat="server">
-    <asp:TableRow>
-      <asp:TableCell VerticalAlign="Top">
-        <asp:Table ID="LoadDescriptionManager_CommonPart" CssClass="TableInside" runat="server">
+<asp:Panel ID="m_LoadDescriptionPanel" runat="server"> 
+        <asp:Table ID="LoadDescriptionList" CssClass="TableInside" runat="server">
           <asp:TableRow>
+            <asp:TableCell>
+              <asp:GridView ID="m_LoadDescriptionGridView" runat="server" Enabled="true" AutoGenerateSelectButton="true">
+              </asp:GridView>
+            </asp:TableCell>
+          </asp:TableRow>
+        </asp:Table>
+    <asp:Table CssClass="TableInside" runat="server">
+    <asp:TableRow>
             <asp:TableCell>
               <asp:Label ID="m_Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label></asp:TableCell>
             <asp:TableCell>
               <asp:Label ID="m_ShippingLabel" runat="server" CssClass="Label"></asp:Label>
             </asp:TableCell>
           </asp:TableRow>
+    </asp:Table>
+  <asp:Table ID="Outside" CssClass="TableInside" runat="server">
+    <asp:TableRow>
+      <asp:TableCell VerticalAlign="Top">
+        <asp:Table ID="LoadDescriptionManager_CommonPart" CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
               <asp:Label ID="m_LoadDescriptionNumberLabel" runat="server" Text="No." CssClass="Label"></asp:Label>
@@ -57,6 +67,8 @@
             </asp:TableCell>
           </asp:TableRow>
         </asp:Table>
+    </asp:TableCell>
+    <asp:TableCell VerticalAlign="Top">
         <asp:Panel ID="m_OutboundControlsPanel" runat="server">
           <asp:Table ID="m_OutboundControlsTable"  CssClass="TableInside" runat="server">
           <asp:TableRow>
@@ -94,16 +106,6 @@
           </asp:TableRow>
        </asp:Table>
        </asp:Panel>
-    </asp:TableCell>
-    <asp:TableCell VerticalAlign="Top">
-        <asp:Table ID="LoadDescriptionList" CssClass="TableInside" runat="server">
-          <asp:TableRow>
-            <asp:TableCell>
-              <asp:GridView ID="m_LoadDescriptionGridView" runat="server" Enabled="true" AutoGenerateSelectButton="true">
-              </asp:GridView>
-            </asp:TableCell>
-          </asp:TableRow>
-        </asp:Table>
       </asp:TableCell>
     </asp:TableRow>
   </asp:Table>
