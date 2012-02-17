@@ -63,8 +63,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     }
     public static double? TextBox2Double(this TextBox _value, List<string> _errors)
     {
+      string _trimed = _value.Text.Trim();
+      if (_trimed.IsNullOrEmpty())
+        return null;
       double _dv;
-      if (Double.TryParse(_value.Text.Trim(), out _dv))
+      if (Double.TryParse(_trimed, out _dv))
         return _dv;
       _errors.Add(String.Format("Wrong value of {0} for {1}.", _value.Text, _value.ID));
       return null;
