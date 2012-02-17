@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="EscortDestination"
+    ID="{4E19EC40-3A94-453E-ABEA-4DCBE1BF8ECD}"
+    Type="Text"
+    DisplayName="Escort Destination"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Name="BusinessDescription"
     ID="{17041C4C-ED3C-4DEE-8609-FE769EAFD8F0}"
     Type="Text"
