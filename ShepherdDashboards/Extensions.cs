@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       double _dv;
       if (Double.TryParse(_trimed, out _dv))
         return _dv;
-      _errors.Add(String.Format("Wrong value of {0} for {1}.", _value.Text, _value.ID));
+      _errors.Add(String.Format("Wrong value of {0}.", _value.Text));
       return null;
     }
     public static int? String2Int(this string _val)

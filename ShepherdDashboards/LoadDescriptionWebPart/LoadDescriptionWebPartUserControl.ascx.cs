@@ -384,6 +384,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         m_EDC.LoadDescription.RecycleOnSubmit(_ld);
         ReportAlert(_msg);
         m_EDC.SubmitChanges();
+        InitLoadDescriptionGridView(CurrentShipping);
         return StateMachineEngine.ActionResult.Success;
       }
       catch (Exception ex)
@@ -520,7 +521,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       if (_ve.Count == 0)
         return StateMachineEngine.ActionResult.Success;
       foreach (string item in _ve)
-        this.Controls.Add(new LiteralControl(item));
+        this.Controls.Add(new LiteralControl(String.Format(GlobalDefinitions.ErrorMessageFormat, item)));
       return StateMachineEngine.ActionResult.NotValidated;
     }
   }
