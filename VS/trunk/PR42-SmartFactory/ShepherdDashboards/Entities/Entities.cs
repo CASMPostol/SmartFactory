@@ -841,7 +841,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BusienssDescription", Id="0x01004370601701A847C99F7609B048824AA9")]
 	public partial class BusienssDescription : Element {
 		
-		private Microsoft.SharePoint.Linq.EntityRef<CountryClass> _countryName;
+		private string _comments;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
 		
@@ -854,10 +854,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		#endregion
 		
 		public BusienssDescription() {
-			this._countryName = new Microsoft.SharePoint.Linq.EntityRef<CountryClass>();
-			this._countryName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CountryClass>>(this.OnCountryNameSync);
-			this._countryName.OnChanged += new System.EventHandler(this.OnCountryNameChanged);
-			this._countryName.OnChanging += new System.EventHandler(this.OnCountryNameChanging);
 			this._route = new Microsoft.SharePoint.Linq.EntitySet<Route>();
 			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
 			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
@@ -869,13 +865,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CountryTitle", Storage="_countryName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Country")]
-		public CountryClass CountryName {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AdditionalComments", Storage="_comments", FieldType="Text")]
+		public string Comments {
 			get {
-				return this._countryName.GetEntity();
+				return this._comments;
 			}
 			set {
-				this._countryName.SetEntity(value);
+				if ((value != this._comments)) {
+					this.OnPropertyChanging("Comments", this._comments);
+					this._comments = value;
+					this.OnPropertyChanged("Comments");
+				}
 			}
 		}
 		
@@ -897,17 +897,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			set {
 				this._securityEscortCatalog.Assign(value);
 			}
-		}
-		
-		private void OnCountryNameChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("CountryName", this._countryName.Clone());
-		}
-		
-		private void OnCountryNameChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("CountryName");
-		}
-		
-		private void OnCountryNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CountryClass> e) {
 		}
 		
 		private void OnRouteChanging(object sender, System.EventArgs e) {
@@ -1052,6 +1041,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnCountryNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CountryClass> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CityType.Add(this);
+			}
+			else {
+				e.Item.CityType.Remove(this);
+			}
 		}
 		
 		private void OnDestinationMarketChanging(object sender, System.EventArgs e) {
@@ -2957,6 +2952,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private string _cancelationReason;
 		
+		private string _businessDescription;
+		
 		private System.Nullable<System.DateTime> _estimateDeliveryTime;
 		
 		private System.Nullable<double> _additionalCosts;
@@ -3133,6 +3130,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this.OnPropertyChanging("CancelationReason", this._cancelationReason);
 					this._cancelationReason = value;
 					this.OnPropertyChanged("CancelationReason");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BusinessDescription", Storage="_businessDescription", FieldType="Text")]
+		public string BusinessDescription {
+			get {
+				return this._businessDescription;
+			}
+			set {
+				if ((value != this._businessDescription)) {
+					this.OnPropertyChanging("BusinessDescription", this._businessDescription);
+					this._businessDescription = value;
+					this.OnPropertyChanged("BusinessDescription");
 				}
 			}
 		}
@@ -4755,6 +4766,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private System.Nullable<double> _dummy;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<CityType> _cityType;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -4762,6 +4775,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		#endregion
 		
 		public CountryClass() {
+			this._cityType = new Microsoft.SharePoint.Linq.EntitySet<CityType>();
+			this._cityType.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>(this.OnCityTypeSync);
+			this._cityType.OnChanged += new System.EventHandler(this.OnCityTypeChanged);
+			this._cityType.OnChanging += new System.EventHandler(this.OnCityTypeChanging);
 			this.OnCreated();
 		}
 		
@@ -4776,6 +4793,33 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this._dummy = value;
 					this.OnPropertyChanged("Dummy");
 				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CountryTitle", Storage="_cityType", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="City")]
+		public Microsoft.SharePoint.Linq.EntitySet<CityType> CityType {
+			get {
+				return this._cityType;
+			}
+			set {
+				this._cityType.Assign(value);
+			}
+		}
+		
+		private void OnCityTypeChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CityType", this._cityType.Clone());
+		}
+		
+		private void OnCityTypeChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CityType");
+		}
+		
+		private void OnCityTypeSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CountryName = this;
+			}
+			else {
+				e.Item.CountryName = null;
 			}
 		}
 	}
