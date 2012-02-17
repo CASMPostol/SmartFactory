@@ -3,7 +3,7 @@
   <Module Name="OperatorDashboard">
     <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url="WebPartPages/OperatorDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0" />
-      <View List="Lists/ShippingList" BaseViewID="11" WebPartZoneID="Main1" WebPartOrder="1" ID="ODShipping" />
+      <View List="Lists/ShippingList" BaseViewID="11" WebPartZoneID="Main1" WebPartOrder="1" />
       <AllUsersWebPart WebPartOrder="2" WebPartZoneID="Main1">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">

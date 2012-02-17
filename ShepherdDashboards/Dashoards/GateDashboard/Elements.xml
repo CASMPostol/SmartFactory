@@ -2,9 +2,9 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="GateDashboard">
     <File Path="WebPartPages\GateDashboardTemplate.aspx" Url="WebPartPages/GateDashboard.aspx">
-      <View List="Lists/ShippingList" BaseViewID="9" WebPartZoneID="SelectedShippingZone" WebPartOrder="0" ID="GDSelectedShipping" />
+      <View List="Lists/ShippingList" BaseViewID="9" WebPartZoneID="SelectedShippingZone" WebPartOrder="0" />
       <View List="Lists/ShippingDriversTeamList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="0" ID="GDDriversTeam" />
-      <View List="Lists/ShippingList" BaseViewID="10" WebPartZoneID="Main1" WebPartOrder="0" ID="GDShippingList" />
+      <View List="Lists/ShippingList" BaseViewID="10" WebPartZoneID="Main1" WebPartOrder="0"  />
     </File>
   </Module>
 </Elements>

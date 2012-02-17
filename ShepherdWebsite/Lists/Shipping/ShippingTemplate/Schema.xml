@@ -157,7 +157,7 @@
           <Where>
             <Eq>
               <FieldRef Name="IsOutbound" />
-              <Value Type="Boolean">No</Value>
+              <Value Type="Boolean">NO</Value>
             </Eq>
           </Where>
           <OrderBy>
@@ -183,10 +183,10 @@
         </ViewFields>
         <Query>
           <Where>
-            <Eq>
+            <Neq>
               <FieldRef Name="IsOutbound" />
-              <Value Type="Boolean">Yes</Value>
-            </Eq>
+              <Value Type="Boolean">No</Value>
+            </Neq>
           </Where>
           <OrderBy>
             <FieldRef Name="StartTime">
@@ -213,7 +213,7 @@
           <Where>
             <Eq>
               <FieldRef Name="IsOutbound" />
-              <Value Type="Boolean">No</Value>
+              <Value Type="Boolean">NO</Value>
             </Eq>
           </Where>
           <OrderBy>
@@ -240,10 +240,10 @@
         </ViewFields>
         <Query>
           <Where>
-            <Eq>
+            <Neq>
               <FieldRef Name="IsOutbound" />
-              <Value Type="Boolean">Yes</Value>
-            </Eq>
+              <Value Type="Boolean">No</Value>
+            </Neq>
           </Where>
           <OrderBy>
             <FieldRef Name="ID">
@@ -270,7 +270,7 @@
           <Where>
             <Eq>
               <FieldRef Name="IsOutbound" />
-              <Value Type="Boolean">No</Value>
+              <Value Type="Boolean">NO</Value>
             </Eq>
           </Where>
           <OrderBy>
@@ -297,10 +297,10 @@
         </ViewFields>
         <Query>
           <Where>
-            <Eq>
+            <Neq>
               <FieldRef Name="IsOutbound" />
-              <Value Type="Boolean">Yes</Value>
-            </Eq>
+              <Value Type="Boolean">No</Value>
+            </Neq>
           </Where>
           <OrderBy>
             <FieldRef Name="StartTime">
@@ -324,10 +324,10 @@
         </ViewFields>
         <Query>
           <Where>
-            <Eq>
+            <Neq>
               <FieldRef Name="IsOutbound" />
-              <Value Type="Boolean">Yes</Value>
-            </Eq>
+              <Value Type="Boolean">No</Value>
+            </Neq>
           </Where>
           <OrderBy>
             <FieldRef Name="ID">
@@ -406,6 +406,33 @@
           <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
         </ViewFields>
         <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="12" Type="HTML" WebPartZoneID="Main" DisplayName="Escort" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Escort.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">10</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Title">
+          </FieldRef>
+          <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
+          <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <Neq>
+              <FieldRef Name="IsOutbound" />
+              <Value Type="Boolean">No</Value>
+            </Neq>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
