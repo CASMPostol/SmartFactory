@@ -5,13 +5,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
   public partial class Shipping
   {
-    public Shipping(bool _isOutbound, string _title, Partner _prtnr, Entities.State _state, Route _route, DateTime _deliveryTime, DateTime? _startTime, CityType _city, TransportUnitTypeTranspotUnit _tut )
+    public Shipping(bool _isOutbound, string _title, Partner _prtnr, Entities.State _state, Route _route, DateTime _deliveryTime, DateTime? _startTime, CityType _city, TransportUnitTypeTranspotUnit _tut, Warehouse _wrs )
       : this(_isOutbound, _title, _prtnr, _state, _startTime)
     {
       this.Route = _route;
       this.EstimateDeliveryTime = _deliveryTime;
       this.City = _city;
       this.TransportUnit = _tut;
+      this.Warehouse = _wrs.Tytuł;
     }
     public Shipping(bool _isOutbound, string _title, Partner _prtnr, Entities.State _state, DateTime? _startTime)
       : this()
