@@ -582,7 +582,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           if (!validated)
             return false;
           _sp = new Shipping
-             (false, String.Format("{0}", m_DocumentTextBox.Text), _prtnr, Entities.State.Creation, _ts.StartTime);
+             (false, String.Format("{0}", m_DocumentTextBox.Text), _prtnr, Entities.State.Creation, _ts.StartTime, _wrs);
         }
         else
         {
