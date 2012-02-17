@@ -65,7 +65,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       set
       {
         m_DashboardType = value;
-        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn;
+        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn;
         switch (value)
         {
           case GlobalDefinitions.Roles.OutboundOwner:
@@ -82,7 +82,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn;
             break;
           case GlobalDefinitions.Roles.InboundOwner:
-            m_VisibilityACL = _inbound ^ ButtonsSet.AcceptOn | ButtonsSet.SecurityEscortOn;
+            m_VisibilityACL = _inbound ;
             m_SecurityEscortHeaderLabel.Text = m_PartnerHeaderLabelText;
             m_EditbilityACL = _inbound;
             break;
