@@ -104,9 +104,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         m_LoadDescriptionGridView.AutoGenerateColumns = false;
         m_LoadDescriptionGridView.Caption = "Loads";
         //m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "Title", Visible = true, HeaderText = "Title" });
-        m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "DeliveryNumber", Visible = true, HeaderText = "Delivery No" });
-        m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "PalletTypes", Visible = true, HeaderText = "Pallete" });
-        m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "NumberOfPallets", Visible = true, HeaderText = "Palletes Qty" });
+        m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "DeliveryNumber", Visible = true, HeaderText = "Delivery No." });
+        m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "PalletTypes", Visible = true, HeaderText = "Pallet type" });
+        m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "NumberOfPallets", Visible = true, HeaderText = "Pallets Qty." });
         m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "Commodity", Visible = true, HeaderText = "Commodity" });
         m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "ID", Visible = false, HeaderText = "ID" });
         m_LoadDescriptionGridView.DataKeyNames = new String[] { "ID" };
