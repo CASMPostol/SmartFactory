@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="BusinessDescription"
+    ID="{17041C4C-ED3C-4DEE-8609-FE769EAFD8F0}"
+    Type="Text"
+    DisplayName="Business Description"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Name="SecurityEscrotPO"
     ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}"
     Type="Text"
