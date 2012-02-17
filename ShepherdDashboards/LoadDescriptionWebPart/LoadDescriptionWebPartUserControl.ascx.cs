@@ -140,7 +140,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_DeleteLoadDescriptionButton.Click += new EventHandler(m_StateMachineEngine.DeleteButton_Click);
       m_LoadDescriptionGridView.SelectedIndexChanged += new EventHandler(m_StateMachineEngine.LoadDescriptionGridView_SelectedIndexChanged);
     }
-
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
