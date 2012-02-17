@@ -15,7 +15,7 @@
         <property name="Title" type="string">Shipping Manager</property>
         <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
         <property name="ID" type="string">CarrierDashboardWebPart</property>
-        <property name="Role" >OutboundOwner</property>
+        <property name="Role">OutboundOwner</property>
       </properties>
     </data>
   </webPart>
@@ -31,8 +31,9 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Load Description</property>
+        <property name="Title" type="string">Load Manager</property>
         <property name="Description" type="string">My Visual WebPart</property>
+        <property name="Role">OutboundOwner</property>
       </properties>
     </data>
   </webPart>
