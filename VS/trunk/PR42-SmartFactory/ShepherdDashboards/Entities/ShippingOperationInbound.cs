@@ -37,7 +37,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       switch (this.State.Value)
       {
-
         case Entities.State.Canceled:
         case Entities.State.Completed:
           return false;
