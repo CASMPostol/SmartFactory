@@ -5,24 +5,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
   public partial class Shipping
   {
-    public Shipping(bool _isOutbound, string _title, Partner _prtnr, Entities.State _state, Route _route, DateTime _deliveryTime, DateTime? _startTime, CityType _city, TransportUnitTypeTranspotUnit _tut, Warehouse _wrs)
-      : this(_isOutbound, _title, _prtnr, _state, _startTime, _wrs)
-    {
-      ChangeRout(_route);
-      this.EstimateDeliveryTime = _deliveryTime;
-      this.City = _city;
-      this.TransportUnit = _tut;
-    }
-    public Shipping(bool _isOutbound, string _title, Partner _prtnr, Entities.State _state, DateTime? _startTime, Warehouse _wrs)
-      : this()
-    {
-      IsOutbound = _isOutbound;
-      Tytuł = _title;
-      VendorName = _prtnr;
-      State = _state;
-      StartTime = _startTime;
-      this.Warehouse = _wrs.Tytuł;
-    }
     internal void ChangeRout(Route _nr)
     {
       this.Route = _nr;
@@ -70,6 +52,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         case Entities.State.None:
         default:
           throw new ApplicationException("Wrong Shipping state");
+      }
+    }
+    internal void ReleaseBooking()
+    {
+      if (this.TimeSlot == null || this.TimeSlot.Count == 0)
+        return;
+      foreach (var item in this.TimeSlot)
+      {
+        if (item.Occupied != Entities.Occupied.Occupied0)
+          continue;
+        item.Occupied = Entities.Occupied.Free;
+        item.ShippingIndex = null;
+        item.IsDouble = false;
       }
     }
   }

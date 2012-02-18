@@ -45,15 +45,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       }
       throw new ApplicationException("Cannot find the time slot to make the couple.");
     }
-    internal static void ReleaseBooking(EntitySet<TimeSlot> _tsl)
-    {
-      foreach (var item in _tsl)
-      {
-        item.Occupied = Entities.Occupied.Free;
-        item.ShippingIndex = null;
-        item.IsDouble = false;
-      }
-    }
     private const string m_ShippingNotFpundMessage = "Shipping slot is not selected";
   }
 }

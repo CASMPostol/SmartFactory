@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
-using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
   internal abstract class StateMachineEngine
   {
     #region public
-    #region ctor
-    internal StateMachineEngine() { }
-    #endregion
 
     [Flags]
     internal enum ControlsSet
@@ -45,13 +37,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       switch (CurrentMachineState)
       {
         case InterfaceState.EditState:
-          UpdateShipping();
-          CurrentMachineState = InterfaceState.ViewState;
-          break;
+          {
+            ActionResult _rslt = UpdateShipping();
+            if (_rslt.Valid)
+              CurrentMachineState = InterfaceState.ViewState;
+            else
+              ShowActionResult(_rslt);
+            break;
+          }
         case InterfaceState.NewState:
-          if (this.CreateShipping())
-            CurrentMachineState = InterfaceState.ViewState;
-          break;
+          {
+            ActionResult _rslt = this.CreateShipping();
+            if (_rslt.Valid)
+              CurrentMachineState = InterfaceState.ViewState;
+            else
+              ShowActionResult(_rslt);
+            break;
+          }
         case InterfaceState.ViewState:
         default:
           SMError(InterfaceEvent.SaveClick);
@@ -64,7 +66,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.NewState:
         case InterfaceState.EditState:
-          ShowShipping();
+          ActionResult _rslt = ShowShipping();
+          if (!_rslt.Valid)
+            ShowActionResult(_rslt);
           CurrentMachineState = InterfaceState.ViewState;
           break;
         case InterfaceState.ViewState:
@@ -117,22 +121,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
-    internal void ExceptionCatched(EntitiesDataContext _EDC, string _source, string _message)
-    {
-      Entities.Anons _entry = new Anons(_source, _message);
-      _EDC.EventLogList.InsertOnSubmit(_entry);
-      _EDC.SubmitChanges();
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.ViewState:
-          break;
-        case InterfaceState.EditState:
-        case InterfaceState.NewState:
-          ShowShipping();
-          CurrentMachineState = InterfaceState.ViewState;
-          break;
-      }
-    }
     #endregion
 
     #region Connection call back
@@ -141,11 +129,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
-          UpdateTimeSlot(e);
           break;
         case InterfaceState.NewState:
         case InterfaceState.EditState:
-          ShowTimeSlot(e);
+          SetInterconnectionData(e);
           break;
         default:
           break;
@@ -156,8 +143,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
-          SendShippingData(e.ID);
-          ShowShipping(e);
+          SetInterconnectionData(e);
           break;
         case InterfaceState.EditState:
         case InterfaceState.NewState:
@@ -170,10 +156,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       switch (CurrentMachineState)
       {
-        case InterfaceState.NewState:
         case InterfaceState.EditState:
-          ShowRoute(e);
+          SetInterconnectionData(e);
           break;
+        case InterfaceState.NewState:
         case InterfaceState.ViewState:
           break;
         default:
@@ -184,10 +170,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       switch (CurrentMachineState)
       {
-        case InterfaceState.NewState:
         case InterfaceState.EditState:
-          ShowSecurityEscortCatalog(e);
+          SetInterconnectionData(e);
           break;
+        case InterfaceState.NewState:
         case InterfaceState.ViewState:
           break;
         default:
@@ -200,7 +186,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.NewState:
         case InterfaceState.EditState:
-          ShowPartner(e);
+          SetInterconnectionData(e);
           break;
         case InterfaceState.ViewState:
           break;
@@ -213,38 +199,42 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       switch (CurrentMachineState)
       {
         case InterfaceState.NewState:
-        case InterfaceState.EditState:
-          ShowCity(e);
+          SetInterconnectionData(e);
           break;
+        case InterfaceState.EditState:
         case InterfaceState.ViewState:
           break;
         default:
           break;
       }
     }
-    internal event InterconnectionDataTable<Shipping>.SetDataEventArg m_ShippintInterconnectionEvent;
-    #endregion 
     #endregion
 
-    #region private
+    #endregion
+
+    #region protected abstract InterconnectionData
+    protected abstract void SetInterconnectionData(ShippingInterconnectionData _shipping);
+    protected abstract void SetInterconnectionData(TimeSlotInterconnectionData e);
+    protected abstract void SetInterconnectionData(RouteInterconnectionnData e);
+    protected abstract void SetInterconnectionData(SecurityEscortCatalogInterconnectionData e);
+    protected abstract void SetInterconnectionData(PartnerInterconnectionData e);
+    protected abstract void SetInterconnectionData(CityInterconnectionData e);
+    #endregion
+
+    #region protected abstract
+    protected abstract ActionResult ShowShipping();
+    protected abstract void ClearUserInterface();
+    protected abstract ActionResult UpdateShipping();
+    protected abstract ActionResult CreateShipping();
+    protected abstract void AcceptShipping();
+    protected abstract void AbortShipping();
+    protected abstract void SetEnabled(ControlsSet _buttons);
+    protected abstract void SMError(InterfaceEvent interfaceEvent);
+    protected abstract void ShowActionResult(ActionResult _rslt);
+    protected abstract InterfaceState CurrentMachineState { get; set; }
+    #endregion
 
     #region protected
-    protected abstract void ShowShipping(ShippingInterconnectionData _shipping);
-    protected abstract void ShowShipping();
-    protected abstract void ClearUserInterface();
-    protected abstract void SetEnabled(ControlsSet _buttons);
-    protected abstract void ShowTimeSlot(TimeSlotInterconnectionData e);
-    protected abstract void ShowRoute(RouteInterconnectionnData e);
-    protected abstract void ShowSecurityEscortCatalog(SecurityEscortCatalogInterconnectionData e);
-    protected abstract void ShowPartner(PartnerInterconnectionData e);
-    protected abstract void ShowCity(CityInterconnectionData e);
-    protected abstract void SMError(InterfaceEvent interfaceEvent);
-    protected abstract void AcceptShipping();
-    protected abstract void UpdateShipping();
-    protected abstract bool CreateShipping();
-    protected abstract void AbortShipping();
-    protected abstract void UpdateTimeSlot(TimeSlotInterconnectionData e);
-    protected abstract InterfaceState CurrentMachineState { get; set; }
     protected void EnterState()
     {
       switch (CurrentMachineState)
@@ -271,22 +261,5 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     #endregion
 
-    private void SendShippingData(string _ID)
-    {
-      if (m_ShippintInterconnectionEvent == null)
-        return;
-      int? _intID = _ID.String2Int();
-      if (!_intID.HasValue)
-        return;
-      try
-      {
-        using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
-          m_ShippintInterconnectionEvent
-            (this, new InterconnectionDataTable<Shipping>.InterconnectionEventArgs
-              ((from idx in edc.Shipping where idx.Identyfikator == _intID select idx).First()));
-      }
-      catch (Exception) { }
-    }
-    #endregion
   }
 }
