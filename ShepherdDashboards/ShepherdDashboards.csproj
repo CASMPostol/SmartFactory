@@ -95,7 +95,6 @@
     <Compile Include="Entities\EntitiesDataContext.cs" />
     <Compile Include="Entities\EntitiesDataDictionary.cs" />
     <Compile Include="Entities\Partner.cs" />
-    <Compile Include="Entities\Route.cs" />
     <Compile Include="Entities\ShippingOperationInbound.cs" />
     <Compile Include="Entities\TimeSlotTimeSlot.cs" />
     <Compile Include="Extensions.cs" />
