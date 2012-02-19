@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
@@ -53,18 +55,60 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
           throw new ApplicationException("Wrong Shipping state");
       }
     }
-    internal void ReleaseBooking()
+    internal bool ReleaseBooking(int? _newTimeSlot)
     {
       if (this.TimeSlot == null || this.TimeSlot.Count == 0)
-        return;
+        return true;
+      List<TimeSlot> _2release = new List<TimeSlot>();
       foreach (var item in this.TimeSlot)
       {
         if (item.Occupied != Entities.Occupied.Occupied0)
+        {
+          if (_newTimeSlot == item.Identyfikator.Value) //consistency check 
+          {
+            string _frmt = "ReleaseBooking tries to release the Time Slot ID = {0}, which has a wrong value of the field Occupied.";
+            throw new ApplicationException(String.Format(_frmt, item.Identyfikator.Value));
+          }
           continue;
+        }
+        if (item.Identyfikator == _newTimeSlot)
+          return false; //we are tring to allocate the same time slot. 
+        _2release.Add(item);
+      }
+      foreach (var item in _2release)
+      {
         item.Occupied = Entities.Occupied.Free;
         item.ShippingIndex = null;
         item.IsDouble = false;
       }
+      return true;
+    }
+    internal void MakeBooking(TimeSlotTimeSlot _ts)
+    {
+      if (_ts.Occupied.Value == Entities.Occupied.Occupied0)
+        throw new ApplicationException("Time slot has been aleady reserved");
+      _ts.Occupied = Entities.Occupied.Occupied0;
+      _ts.ShippingIndex = this;
+      this.StartTime = _ts.StartTime;
+      this.Warehouse = _ts.GetWarehouse().Tytuł;
+      if (!_ts.IsDouble.HasValue || !_ts.IsDouble.Value)
+        return;
+      EntitySet<TimeSlot> _tslots = _ts.ShippingPoint.TimeSlot;
+      DateTime _tdy = _ts.StartTime.Value.Date;
+      List<TimeSlot> _avlblTmslts = (from _tsidx in _tslots
+                                     let _idx = _tsidx.StartTime.Value.Date
+                                     where _tsidx.Occupied.Value == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays(1)
+                                     orderby _tsidx.StartTime ascending
+                                     select _tsidx).ToList<TimeSlot>();
+      TimeSlot _next = _ts.FindAdjacent(_avlblTmslts);
+      _next.Occupied = Entities.Occupied.Occupied0;
+      _next.ShippingIndex = this;
+      _next.IsDouble = true;
+    }
+    internal void UpdateTitle()
+    {
+      string _tf = "{0}{1:D6}";
+      Tytuł = String.Format(_tf, IsOutbound.Value ? "O" : "I", Identyfikator.Value);
     }
   }
 }

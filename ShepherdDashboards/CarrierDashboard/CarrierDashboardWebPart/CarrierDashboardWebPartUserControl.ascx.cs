@@ -13,6 +13,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 {
   using ButtonsSet = StateMachineEngine.ControlsSet;
   using InterfaceState = StateMachineEngine.InterfaceState;
+  using System.Diagnostics;
 
   /// <summary>
   /// Carrier Dashboard WebPart UserControl
@@ -385,16 +386,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void SetInterconnectionData(TimeSlotInterconnectionData _interconnectionData)
     {
-      m_ControlState.TimeSlotID = _interconnectionData.ID;
-      m_ControlState.TimeSlotChanged = true;
+      if (m_ControlState.TimeSlotID == _interconnectionData.ID)
+        return;
       try
       {
         TimeSlotTimeSlot _cts = Element.GetAtIndex(EDC.TimeSlot, _interconnectionData.ID);
+        Debug.Assert(_cts.Occupied.Value == Occupied.Free, "Time slot is in use but it is selected as free.");
+        m_ControlState.TimeSlotID = _interconnectionData.ID;
+        m_ControlState.TimeSlotChanged = true;
         Show(_cts, true);
       }
       catch (Exception ex)
       {
-        m_TimeSlotTextBox.Text = ex.Message;
+        ReportException("SetInterconnectionData-TimeSlotInterconnectionData", ex);
       }
     }
     private void SetInterconnectionData(CityInterconnectionData _city)
@@ -470,6 +474,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         try
         {
           _timeSlot = (TimeSlotTimeSlot)(from _ts in _sppng.TimeSlot orderby _ts.StartTime ascending select _ts).First();
+          m_ControlState.TimeSlotID = _timeSlot.Identyfikator.IntToString();
+          m_ControlState.TimeSlotChanged = false;
         }
         catch (Exception) { }
         Show(_timeSlot, _sppng.IsEditable());
@@ -492,7 +498,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       catch (Exception ex)
       {
-        ReportException("UpdateShowShipping", ex);
+        ReportException("ShowShipping", ex);
         _rsult.AddException(ex);
       }
       return _rsult;
@@ -501,9 +507,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (_cts == null)
       {
-        m_TimeSlotTextBox.Text = "Select Time Slot";
+        m_TimeSlotTextBox.Text = _isEditable ? "-- Select Time Slot --" : "-- Shipping locked --";
+        return;
       }
-      m_ControlState.TimeSlotID = _cts.Identyfikator.IntToString();
       m_TimeSlotTextBox.Text = String.Format("{0:R}{1}", _cts.StartTime, _isEditable ? "" : "!");
       Warehouse _wrs = _cts.GetWarehouse();
       m_WarehouseLabel.Text = _wrs.Tytuł;
@@ -583,6 +589,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         EDC.SubmitChanges();
         m_ControlState.ShippingID = _sppng.Identyfikator.Value.ToString();
         m_ControlState.Editable = _sppng.IsEditable();
+        _sppng.UpdateTitle();
         LoadDescription _ld = new LoadDescription()
         {
           Tytuł = m_DocumentTextBox.Text, //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3057
@@ -590,7 +597,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           ShippingIndex = _sppng,
         };
         EDC.LoadDescription.InsertOnSubmit(_ld);
-        MakeBooking(_sppng);
+        MakeBooking(_sppng, m_ControlState.TimeSlotID);
         EDC.SubmitChanges();
         ReportAlert(_sppng, "Shipping Created");
         SendShippingData(_sppng);
@@ -676,15 +683,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _rslt.Add(m_TimeSlotLabel.Text);
         return;
       }
-      _shipping.ReleaseBooking();
-      MakeBooking(_shipping);
+      if (_shipping.ReleaseBooking(m_ControlState.TimeSlotID.String2Int()))
+        MakeBooking(_shipping, m_ControlState.TimeSlotID);
     }
-    private void MakeBooking(Shipping _shipping)
+    private void MakeBooking(Shipping _shipping, string _newTimeSlot)
     {
-      TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(EDC.TimeSlot, m_ControlState.TimeSlotID);
-      _newts.MakeBooking(_shipping);
-      _shipping.StartTime = _newts.StartTime;
-      _shipping.Warehouse = m_WarehouseLabel.Text;
+      TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(EDC.TimeSlot, _newTimeSlot);
+      _shipping.MakeBooking(_newts);
     }
     private void UpdateSecurityEscort(Shipping _sipping)
     {
@@ -725,7 +730,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         switch (_newState)
         {
           case State.Canceled:
-            CurrentShipping.ReleaseBooking();
+            CurrentShipping.ReleaseBooking(null);
             ReportAlert(CurrentShipping, "The shipping has been canceled.");
             break;
           case State.Confirmed:
@@ -747,7 +752,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       catch (Exception ex)
       {
-        ReportException("AbortShipping", ex);
+        ReportException("ChangeShippingState", ex);
       }
     }
     private void SendShippingData(Shipping _sppng)
