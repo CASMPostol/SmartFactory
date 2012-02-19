@@ -156,7 +156,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           return;
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
-          ShippingDriversTeam _cd = ShippingDriversTeam.GetAtIndex(edc, _sel.Value);
+          ShippingDriversTeam _cd = Element.GetAtIndex<ShippingDriversTeam>(edc.DriversTeam, _sel.Value);
           edc.DriversTeam.DeleteOnSubmit(_cd);
           edc.SubmitChanges();
         }
