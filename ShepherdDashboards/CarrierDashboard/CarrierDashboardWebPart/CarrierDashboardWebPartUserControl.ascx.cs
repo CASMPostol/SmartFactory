@@ -137,6 +137,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       public string SecurityCatalogID = String.Empty;
       public string ShippingID = String.Empty;
       public string TimeSlotID = String.Empty;
+      public bool TimeSlotIsDouble = false;
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       internal StateMachineEngine.ControlsSet SetEnabled = 0;
       public bool TimeSlotChanged = false;
@@ -393,8 +394,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         TimeSlotTimeSlot _cts = Element.GetAtIndex(EDC.TimeSlot, _interconnectionData.ID);
         Debug.Assert(_cts.Occupied.Value == Occupied.Free, "Time slot is in use but it is selected as free.");
         m_ControlState.TimeSlotID = _interconnectionData.ID;
+        m_ControlState.TimeSlotIsDouble = _interconnectionData.IsDouble;
         m_ControlState.TimeSlotChanged = true;
-        Show(_cts, true);
+        Show(_cts, true, _interconnectionData.IsDouble);
       }
       catch (Exception ex)
       {
@@ -478,7 +480,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           m_ControlState.TimeSlotChanged = false;
         }
         catch (Exception) { }
-        Show(_timeSlot, _sppng.IsEditable());
+        Show(_timeSlot, _sppng.IsEditable(), _timeSlot.IsDouble.GetValueOrDefault(false));
         Show(_sppng.LoadDescription);
         m_CommentsTextBox.TextBoxTextProperty(_sppng.CancelationReason, false);
         if (_sppng.IsOutbound.Value)
@@ -503,14 +505,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       return _rsult;
     }
-    private void Show(TimeSlotTimeSlot _cts, bool _isEditable)
+    private void Show(TimeSlotTimeSlot _cts, bool _isEditable, bool _isDouble)
     {
       if (_cts == null)
       {
         m_TimeSlotTextBox.Text = _isEditable ? "-- Select Time Slot --" : "-- Shipping locked --";
         return;
       }
-      m_TimeSlotTextBox.Text = String.Format("{0:R}{1}", _cts.StartTime, _isEditable ? "" : "!");
+      m_TimeSlotTextBox.Text = String.Format("{0:g}{1}{2}", _cts.StartTime, _isEditable ? "" : "!", _isDouble ? "x2" : "");
       Warehouse _wrs = _cts.GetWarehouse();
       m_WarehouseLabel.Text = _wrs.Tytuł;
     }
@@ -597,7 +599,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           ShippingIndex = _sppng,
         };
         EDC.LoadDescription.InsertOnSubmit(_ld);
-        MakeBooking(_sppng, m_ControlState.TimeSlotID);
+        MakeBooking(_sppng, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble);
         EDC.SubmitChanges();
         ReportAlert(_sppng, "Shipping Created");
         SendShippingData(_sppng);
@@ -684,12 +686,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return;
       }
       if (_shipping.ReleaseBooking(m_ControlState.TimeSlotID.String2Int()))
-        MakeBooking(_shipping, m_ControlState.TimeSlotID);
+        MakeBooking(_shipping, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble);
     }
-    private void MakeBooking(Shipping _shipping, string _newTimeSlot)
+    private void MakeBooking(Shipping _shipping, string _newTimeSlot, bool _isDouble)
     {
       TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(EDC.TimeSlot, _newTimeSlot);
-      _shipping.MakeBooking(_newts);
+      _shipping.MakeBooking(_newts, _isDouble);
     }
     private void UpdateSecurityEscort(Shipping _sipping)
     {

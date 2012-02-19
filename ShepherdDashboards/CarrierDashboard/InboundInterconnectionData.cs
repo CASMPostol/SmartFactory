@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
       TrailerInterconnection,
       TruckInterconnection,
       ShippingInterconnection,
-      TimeSlotInterconnection, 
+      TimeSlotInterconnection,
       PartnerInterconnection,
       CityInterconnection,
       DriverInterconnection,
@@ -85,13 +85,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
     public TimeSlotInterconnectionData()
       : base()
     { }
+    internal bool IsDouble { get { return Boolean.Parse(GetFieldValue(TimeSlotTimeSlot.NameOfIsDouble)); } }
   }
   internal class PartnerInterconnectionData : InterconnectionData<PartnerInterconnectionData>
-  {}
+  { }
   internal class CityInterconnectionData : InterconnectionData<CityInterconnectionData>
   { }
   internal class RouteInterconnectionnData : InterconnectionData<RouteInterconnectionnData>
-  {}
+  { }
   internal class SecurityEscortCatalogInterconnectionData : InterconnectionData<SecurityEscortCatalogInterconnectionData>
-  {}
- }
+  { }
+}
