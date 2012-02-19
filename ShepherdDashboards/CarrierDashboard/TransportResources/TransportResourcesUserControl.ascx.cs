@@ -102,7 +102,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
             m_DriversListBox.Items.Add(new ListItem(item.Value.Tytuł, item.Key.ToString()));
           m_ShippingTextBox.Text = _Shipping.Tytuł;
           m_TruckDropDown.Items.Add(new ListItem());
-          foreach (Truck item in Truck.GetAllForUser(edc, _prtn.Identyfikator.Value))
+          foreach (Truck item in _prtn.Truck )
           {
             ListItem _li = new ListItem(item.Tytuł, item.Identyfikator.Value.ToString());
             m_TruckDropDown.Items.Add(_li);
@@ -204,7 +204,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           if (String.IsNullOrEmpty(_li.Value))
             _sh.TruckCarRegistrationNumber = null;
           else
-            _sh.TruckCarRegistrationNumber = Truck.GetAtIndex(edc, _li.Value);
+            _sh.TruckCarRegistrationNumber = Element.GetAtIndex<Truck>(edc.Truck, _li.Value);
           edc.SubmitChanges();
         }
         catch (Exception _ex)
