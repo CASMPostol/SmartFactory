@@ -22,22 +22,5 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         return null;
       }
     }
-    internal static Partner GetAtIndex(EntitiesDataContext edc, string _index)
-    {
-      if (String.IsNullOrEmpty(_index))
-        throw new ApplicationException("Partner not found because the index is null");
-      int _intIndex = int.Parse(_index);
-      try
-      {
-        return (
-              from idx in edc.JTIPartner
-              where idx.Identyfikator == _intIndex
-              select idx).First();
-      }
-      catch (Exception)
-      {
-        throw new ApplicationException("Partner not found");
-      }
-    }
   }
 }
