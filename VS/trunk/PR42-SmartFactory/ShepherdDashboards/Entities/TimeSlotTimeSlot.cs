@@ -7,6 +7,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
   public partial class TimeSlotTimeSlot
   {
+    internal const string NameOfIsDouble = "IsDouble";
     internal static TimeSpan Span15min = new TimeSpan(0, 15, 0);
     internal Warehouse GetWarehouse()
     {

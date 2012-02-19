@@ -77,21 +77,26 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       }
       foreach (var item in _2release)
       {
+        //item.Tytuł = "-- not assigned --";
         item.Occupied = Entities.Occupied.Free;
         item.ShippingIndex = null;
         item.IsDouble = false;
       }
       return true;
     }
-    internal void MakeBooking(TimeSlotTimeSlot _ts)
+    internal void MakeBooking(TimeSlotTimeSlot _ts, bool _isDouble)
     {
       if (_ts.Occupied.Value == Entities.Occupied.Occupied0)
         throw new ApplicationException("Time slot has been aleady reserved");
       _ts.Occupied = Entities.Occupied.Occupied0;
       _ts.ShippingIndex = this;
+      //if (IsOutbound.Value)
+      //  _ts.Tytuł = String.Format("Outbound No. {0} to {1}", this.Tytuł, this.City == null ? "--not assigned--" : City.Tytuł);
+      //else
+      //  _ts.Tytuł = String.Format("Inbound No. {0} by {1}", this.Tytuł, this.VendorName == null ? "--not assigned--" : VendorName.Tytuł);
       this.StartTime = _ts.StartTime;
       this.Warehouse = _ts.GetWarehouse().Tytuł;
-      if (!_ts.IsDouble.HasValue || !_ts.IsDouble.Value)
+      if (! _isDouble)
         return;
       EntitySet<TimeSlot> _tslots = _ts.ShippingPoint.TimeSlot;
       DateTime _tdy = _ts.StartTime.Value.Date;
