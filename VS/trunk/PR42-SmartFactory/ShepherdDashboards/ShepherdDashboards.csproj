@@ -102,7 +102,6 @@
     <Compile Include="Entities\ShippingOperationInbound.cs" />
     <Compile Include="Entities\TimeSlotTimeSlot.cs" />
     <Compile Include="Entities\Trailer.cs" />
-    <Compile Include="Entities\Truck.cs" />
     <Compile Include="Entities\Warehouse.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Features\Dashboards\Dashboards.EventReceiver.cs">
