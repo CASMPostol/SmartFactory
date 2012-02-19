@@ -91,7 +91,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           Partner _prtn = Role == TransportResources.RolesSet.Carrier ? _Shipping.VendorName : _Shipping.SecurityEscortProvider;
           if (_prtn == null)
             return; ;
-          Dictionary<int, Driver> _drivers = Driver.GetAllForUser(edc, _prtn.Identyfikator.Value).ToDictionary(x => x.Identyfikator.Value);
+          Dictionary<int, Driver> _drivers = _prtn.Driver.ToDictionary(x => x.Identyfikator.Value);
           foreach (ShippingDriversTeam item in from idx in _Shipping.ShippingDriversTeam select idx)
           {
             Driver _driver = item.Driver;
@@ -178,7 +178,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         {
           ShippingDriversTeam _cd = new ShippingDriversTeam()
             {
-              Driver = Driver.GetAtIndex(edc, _sel.Value),
+              Driver = Element.GetAtIndex< Driver>(edc.Driver, _sel.Value),
               ShippingIndex = Element.GetAtIndex(edc.Shipping, m_ControlState.ShippingIdx)
             };
           edc.DriversTeam.InsertOnSubmit(_cd);
