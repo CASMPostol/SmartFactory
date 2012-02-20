@@ -3,14 +3,6 @@
   <Module Name="OutboundOwnerDashboard">
     <File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url ="WebPartPages/OutboundOwnerDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0">
-        <![CDATA[
- <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>Alarms and events</Title>
- </WebPart>
- ]]>
       </View>
       <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="OODCarrierDashboardWebPart">
         <![CDATA[<webParts>
@@ -31,14 +23,6 @@
 </webParts>]]>
       </AllUsersWebPart>
       <View List="Lists/ShippingList" BaseViewID="5" WebPartZoneID="Main1" WebPartOrder="1">
-        <![CDATA[
- <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>Shippings</Title>
- </WebPart>
- ]]>
       </View>
       <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="2" ID="OODLoadDescription">
         <![CDATA[<webParts>
@@ -76,14 +60,6 @@
 </webParts>]]>
       </AllUsersWebPart>
       <View List="Lists/CityList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="1" ID="OODCity">
-        <![CDATA[
- <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>Available cities</Title>
- </WebPart>
- ]]>
       </View>
     </File>
   </Module>
