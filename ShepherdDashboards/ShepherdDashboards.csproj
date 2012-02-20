@@ -235,7 +235,9 @@
     <Content Include="Dashoards\OperatorDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Dashoards\OutboundCoordinatorDashboard\Elements.xml" />
+    <Content Include="Dashoards\OutboundCoordinatorDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashoards\OutboundOwnerDashboard\Elements.xml" />
     <Content Include="Dashoards\SecurityEscortProviderDashboard\Elements.xml">
       <SubType>Designer</SubType>
