@@ -121,6 +121,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
+    internal abstract InterfaceState CurrentMachineState { get; set; }
     #endregion
 
     #region Connection call back
@@ -231,7 +232,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected abstract void SetEnabled(ControlsSet _buttons);
     protected abstract void SMError(InterfaceEvent interfaceEvent);
     protected abstract void ShowActionResult(ActionResult _rslt);
-    protected abstract InterfaceState CurrentMachineState { get; set; }
     #endregion
 
     #region protected
