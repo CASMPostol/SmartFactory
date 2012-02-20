@@ -351,6 +351,7 @@
         </ViewData>
         <Query>
           <Where>
+            <And>
               <DateRangesOverlap>
                 <FieldRef Name="EventDate">
                 </FieldRef>
@@ -363,6 +364,11 @@
                   </Month>
                 </Value>
               </DateRangesOverlap>
+              <Neq>
+                <FieldRef Name="Occupied" />
+                <Value Type="Choise">Free</Value>
+              </Neq>
+            </And>
           </Where>
         </Query>
       </View>
@@ -408,6 +414,7 @@
         </ViewData>
         <Query>
           <Where>
+            <And>
             <DateRangesOverlap>
               <FieldRef Name="EventDate">
               </FieldRef>
@@ -420,6 +427,11 @@
                 </Month>
               </Value>
             </DateRangesOverlap>
+            <Neq>
+              <FieldRef Name="Occupied" />
+              <Value Type="Choise">Free</Value>
+            </Neq>
+            </And>
           </Where>
         </Query>
       </View>
