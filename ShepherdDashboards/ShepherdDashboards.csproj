@@ -112,6 +112,9 @@
     </Compile>
     <Compile Include="LoadDescriptionWebPart\StateMachineEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schemas\PreliminaryDataRoute.cs">
+      <DependentUpon>PreliminaryDataRoute.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TimeSlotWebPart\TimeSlotWebPart.cs" />
     <Compile Include="TimeSlotWebPart\TimeSlotWebPartUserControl.ascx.cs">
       <DependentUpon>TimeSlotWebPartUserControl.ascx</DependentUpon>
@@ -195,9 +198,11 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <Compile Include="Schemas\PreliminaryDataRoute.partial.cs" />
     <None Include="Schemas\PreliminaryDataRoute.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Schemas\Scripts\CreateCS.ps1" />
     <None Include="Schemas\SPMetalParameters.xsd">
       <SubType>Designer</SubType>
     </None>

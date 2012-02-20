@@ -15,7 +15,7 @@
               <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="Route" form="unqualified">
                 <xsd:complexType>
                   <xsd:sequence minOccurs="0">
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Material_Master__Reference" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Material_Master__Reference" form="unqualified"/>
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Material_Master_Short_Text" form="unqualified"/>
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Business_description" form="unqualified"/>
                     <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Freight_Payer__I_C__MainLeg" form="unqualified"/>
