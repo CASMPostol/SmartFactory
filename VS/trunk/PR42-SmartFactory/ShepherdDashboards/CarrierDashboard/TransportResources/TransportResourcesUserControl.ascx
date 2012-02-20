@@ -43,7 +43,7 @@
             <asp:Table ID="Row3" runat="server" CssClass="TableInside">
                 <asp:TableRow>
                     <asp:TableCell>
-                <asp:Label ID="Label2" runat="server" Text="Truck" CssClass="Label"></asp:Label>
+                <asp:Label ID="m_TruckHeaderLabel" runat="server" Text="Truck" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:DropDownList ID="m_TruckDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack="true">
