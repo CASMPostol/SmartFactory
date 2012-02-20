@@ -73,49 +73,66 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           case GlobalDefinitions.Roles.OutboundOwner:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.RouteOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime;
-            m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
+            m_DocumentLabel.Text = m_LabetTextLike_DeliveryNo;
+            m_ShowDocumentLabel = ShowDocumentLabelOutbound;
+            m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Coordinator:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn;
             m_EditbilityACL = m_AllButtons;
+            m_ShowDocumentLabel = ShowDocumentLabelDefault;
+            m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Supervisor:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn;
+            m_ShowDocumentLabel = ShowDocumentLabelDefault;
+            m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.InboundOwner:
-            m_SecurityEscortHeaderLabel.Text = m_VendorHeaderLabelText;
+            m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_Vendor;
             m_VisibilityACL = _inbound | ButtonsSet.SecurityEscortOn;
             m_EditbilityACL = _inbound;
+            m_ShowDocumentLabel = ShowDocumentLabelInboundVendor;
+            m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Operator:
             m_VisibilityACL = _inbound ^ ButtonsSet.AbortOn ^ ButtonsSet.NewOn;
             m_EditbilityACL = _inbound;
+            m_ShowDocumentLabel = ShowDocumentLabelDefault;
+            m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Vendor:
-            m_SecurityEscortHeaderLabel.Text = m_VendorHeaderLabelText;
+            m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_Vendor;
             m_VisibilityACL = _inbound;
             m_EditbilityACL = _inbound;
+            m_ShowDocumentLabel = ShowDocumentLabelInboundVendor;
+            m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Guard:
             m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.DocumentOn | ButtonsSet.RouteOn | ButtonsSet.WarehouseOn
               | ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
             m_EditbilityACL = 0;
+            m_ShowDocumentLabel = ShowDocumentLabelDefault;
+            m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Forwarder:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.NewOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn;
-            m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
+            m_ShowDocumentLabel = ShowDocumentLabelForwarder;
+            m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Escort:
-            m_VisibilityACL = ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
+            m_VisibilityACL = ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn | ButtonsSet.DocumentOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.SecurityEscortOn;
-            m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
-            m_SecurityEscortHeaderLabel.Text = m_SecurityEscortHeaderLabelText;
+            m_ShowDocumentLabel = ShowDocumentLabelEscort;
+            m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.None:
             m_VisibilityACL = m_AllButtons;
             m_EditbilityACL = 0;
+            m_ShowDocumentLabel = ShowDocumentLabelDefault;
+            m_ShowDocumentLabel(null);
             break;
           default:
             break;
@@ -276,6 +293,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       #endregion
 
+      #region public
+      internal override InterfaceState CurrentMachineState
+      {
+        get
+        {
+          return Parent.m_ControlState.InterfaceState;
+        }
+        set
+        {
+          if (Parent.m_ControlState.InterfaceState == value)
+            return;
+          Parent.m_ControlState.InterfaceState = value;
+          EnterState();
+        }
+      }
+
+      #endregion
       #region abstract implementation
 
       #region SetInterconnectionData
@@ -333,6 +367,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       protected override void SetEnabled(ControlsSet _buttons)
       {
         Parent.m_ControlState.SetEnabled = _buttons;
+        Parent.m_ShowDocumentLabel(null);
       }
       protected override void SMError(StateMachineEngine.InterfaceEvent _interfaceEvent)
       {
@@ -343,20 +378,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         foreach (var item in _rslt)
           Parent.Controls.Add(new LiteralControl(item));
-      }
-      protected override InterfaceState CurrentMachineState
-      {
-        get
-        {
-          return Parent.m_ControlState.InterfaceState;
-        }
-        set
-        {
-          if (Parent.m_ControlState.InterfaceState == value)
-            return;
-          Parent.m_ControlState.InterfaceState = value;
-          EnterState();
-        }
       }
       #endregion
 
@@ -481,11 +502,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         }
         catch (Exception) { }
         Show(_timeSlot, _sppng.IsEditable(), _timeSlot.IsDouble.GetValueOrDefault(false));
-        Show(_sppng.LoadDescription);
         m_CommentsTextBox.TextBoxTextProperty(_sppng.CancelationReason, false);
+        m_ShowDocumentLabel(_sppng);
         if (_sppng.IsOutbound.Value)
         {
-          m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
           m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _sppng.EstimateDeliveryTime.HasValue ? _sppng.EstimateDeliveryTime.Value : DateTime.Now;
           Show(_sppng.Route);
           Show(_sppng.SecurityEscort);
@@ -494,7 +514,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         }
         else
         {
-          m_DocumentLabel.Text = m_PONoumberHeaderLabetText;
           Show(_sppng.VendorName);
         }
       }
@@ -532,7 +551,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void Show(Partner _partner)
     {
-      m_SecurityEscortHeaderLabel.Text = m_VendorHeaderLabelText;
+      m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_Vendor;
       if (_partner == null)
         return;
       m_SecurityEscortLabel.Text = _partner.Tytuł;
@@ -540,20 +559,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void Show(SecurityEscortCatalog _security)
     {
-      m_SecurityEscortHeaderLabel.Text = m_SecurityEscortHeaderLabelText;
+      m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_SecurityEscort;
       if (_security == null)
         return;
       m_SecurityEscortLabel.Text = _security.Tytuł;
       m_ControlState.SecurityCatalogID = _security.Identyfikator.IntToString();
-    }
-    private void Show(EntitySet<LoadDescription> _loadDescription)
-    {
-      if (_loadDescription == null || _loadDescription.Count == 0)
-        return;
-      string _ldLabel = String.Empty;
-      foreach (var _item in _loadDescription)
-        _ldLabel += _item.Tytuł + "; ";
-      m_DocumentTextBox.TextBoxTextProperty(_ldLabel, true);
     }
     private void Show(TransportUnitTypeTranspotUnit _unitType)
     {
@@ -840,11 +850,148 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     #endregion
 
+    #region DocumentLabel
+    private delegate void ShowDocumentLabel(Shipping _shppng);
+    private ShowDocumentLabel m_ShowDocumentLabel;
+    private void ShowDocumentLabelInboundVendor(Shipping _shppng)
+    {
+      switch (m_StateMachineEngine.CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          m_DocumentLabel.Text = m_LabetTextLike_ShippingNo;
+          break;
+        case InterfaceState.NewState:
+          m_DocumentLabel.Text = m_LabetTextLike_PurchaseOrder;
+          break;
+        default:
+          break;
+      }
+      if (_shppng == null)
+        return;
+      switch (m_StateMachineEngine.CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          m_DocumentTextBox.Text = _shppng.Tytuł;
+          break;
+        case InterfaceState.NewState:
+        default:
+          break;
+      }
+    }
+    private void ShowDocumentLabelOutbound(Shipping _shppng)
+    {
+      switch (m_StateMachineEngine.CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          m_DocumentLabel.Text = m_LabetTextLike_ShippingNo;
+          break;
+        case InterfaceState.NewState:
+          m_DocumentLabel.Text = m_LabetTextLike_DeliveryNo;
+          break;
+        default:
+          break;
+      }
+      if (_shppng == null)
+        return;
+      switch (m_StateMachineEngine.CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          m_DocumentTextBox.Text = _shppng.Tytuł;
+          break;
+        case InterfaceState.NewState:
+        default:
+          break;
+      }
+    }
+    private void ShowDocumentLabelForwarder(Shipping _shppng)
+    {
+      switch (m_StateMachineEngine.CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          m_DocumentLabel.Text = m_LabetTextLike_PurchaseOrder;
+          break;
+        case InterfaceState.NewState:
+        default:
+          m_DocumentLabel.Text = m_LabetTextLike_ShippingNo;
+          break;
+      }
+      if (_shppng == null)
+        return;
+      switch (m_StateMachineEngine.CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          m_DocumentTextBox.Text = _shppng.Route != null ? _Shipping.Route.FreightPO : "";
+          break;
+        case InterfaceState.NewState:
+        default:
+          m_DocumentTextBox.Text = _shppng.Tytuł;
+          break;
+      }
+    }
+    private void ShowDocumentLabelEscort(Shipping _shppng)
+    {
+      switch (m_StateMachineEngine.CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          m_DocumentLabel.Text = m_LabetTextLike_PurchaseOrder;
+          break;
+        case InterfaceState.NewState:
+        default:
+          m_DocumentLabel.Text = m_LabetTextLike_ShippingNo;
+          break;
+      }
+      if (_shppng == null)
+        return;
+      switch (m_StateMachineEngine.CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+          m_DocumentTextBox.Text = _shppng.SecurityEscort != null ? _Shipping.SecurityEscort.SecurityEscortPO : "";
+          break;
+        case InterfaceState.NewState:
+        default:
+          m_DocumentTextBox.Text = _shppng.Tytuł;
+          break;
+      }
+    }
+    private void ShowDocumentLabelDefault(Shipping _shppng)
+    {
+      switch (m_StateMachineEngine.CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+        case InterfaceState.NewState:
+        default:
+          m_DocumentLabel.Text = m_LabetTextLike_ShippingNo;
+          break;
+      }
+      if (_shppng == null)
+        return;
+      switch (m_StateMachineEngine.CurrentMachineState)
+      {
+        case InterfaceState.ViewState:
+        case InterfaceState.EditState:
+        case InterfaceState.NewState:
+        default:
+          m_DocumentTextBox.Text = _shppng.Tytuł;
+          break;
+      }
+    }
+    #endregion
+
     #region variables
-    private const string m_PONoumberHeaderLabetText = "Purchase Order";
-    private const string m_DeliveryNoHeaderLabetText = "Delivery No";
-    private const string m_VendorHeaderLabelText = "Vendor";
-    private const string m_SecurityEscortHeaderLabelText = "Security Escort";
+    private const string m_LabetTextLike_PurchaseOrder = "Purchase Order";
+    private const string m_LabetTextLike_DeliveryNo = "Delivery No";
+    private const string m_LabetTextLike_Vendor = "Vendor";
+    private const string m_LabetTextLike_SecurityEscort = "Security Escort";
+    private const string m_LabetTextLike_ShippingNo = "Shipping No";
     private ButtonsSet m_VisibilityACL;
     private ButtonsSet m_EditbilityACL;
     private ControlState m_ControlState = new ControlState(null);
