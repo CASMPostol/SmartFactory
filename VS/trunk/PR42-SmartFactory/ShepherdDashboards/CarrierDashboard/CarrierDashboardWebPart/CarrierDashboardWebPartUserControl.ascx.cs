@@ -438,8 +438,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void SetInterconnectionData(SecurityEscortCatalogInterconnectionData _Escort)
     {
-      m_SecurityEscortLabel.Text = _Escort.Title;
       m_ControlState.SecurityCatalogID = _Escort.ID;
+      m_SecurityEscortLabel.Text = _Escort.Title;
     }
     #endregion
 

@@ -90,6 +90,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         throw new ApplicationException("Time slot has been aleady reserved");
       _ts.Occupied = Entities.Occupied.Occupied0;
       _ts.ShippingIndex = this;
+      _ts.IsDouble = _isDouble;
       //if (IsOutbound.Value)
       //  _ts.Tytuł = String.Format("Outbound No. {0} to {1}", this.Tytuł, this.City == null ? "--not assigned--" : City.Tytuł);
       //else
