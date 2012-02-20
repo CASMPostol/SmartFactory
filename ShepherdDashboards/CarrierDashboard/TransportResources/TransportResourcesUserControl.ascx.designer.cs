@@ -121,13 +121,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         protected global::System.Web.UI.WebControls.Table Row3;
         
         /// <summary>
-        /// Label2 control.
+        /// m_TruckHeaderLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label m_TruckHeaderLabel;
         
         /// <summary>
         /// m_TruckDropDown control.
