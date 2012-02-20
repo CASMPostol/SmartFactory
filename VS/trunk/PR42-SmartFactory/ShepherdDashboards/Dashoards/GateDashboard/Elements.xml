@@ -2,9 +2,36 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="GateDashboard">
     <File Path="WebPartPages\GateDashboardTemplate.aspx" Url="WebPartPages/GateDashboard.aspx">
-      <View List="Lists/ShippingList" BaseViewID="9" WebPartZoneID="SelectedShippingZone" WebPartOrder="0" />
-      <View List="Lists/ShippingDriversTeamList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="0" ID="GDDriversTeam" />
-      <View List="Lists/ShippingList" BaseViewID="10" WebPartZoneID="Main1" WebPartOrder="0"  />
+      <View List="Lists/ShippingList" BaseViewID="9" WebPartZoneID="SelectedShippingZone" WebPartOrder="0">
+        <![CDATA[
+ <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+ <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
+ PublicKeyToken=71e9bce111e9429c</Assembly>
+ <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
+ <Title>Shipping details</Title>
+ </WebPart>
+ ]]>
+      </View>
+      <View List="Lists/ShippingDriversTeamList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="0" ID="GDDriversTeam">
+        <![CDATA[
+ <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+ <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
+ PublicKeyToken=71e9bce111e9429c</Assembly>
+ <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
+ <Title>Drivers and escort data</Title>
+ </WebPart>
+ ]]>
+      </View>
+      <View List="Lists/ShippingList" BaseViewID="10" WebPartZoneID="Main1" WebPartOrder="0">
+        <![CDATA[
+ <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+ <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
+ PublicKeyToken=71e9bce111e9429c</Assembly>
+ <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
+ <Title>Shippings</Title>
+ </WebPart>
+ ]]>
+      </View>
     </File>
   </Module>
 </Elements>

@@ -374,7 +374,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\ScheduleTemplate\Elements.xml" />
-    <Content Include="Content types\Dictionaries\SecurityEscortCatalog\Elements.xml" />
+    <Content Include="Content types\Dictionaries\SecurityEscortCatalog\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\ShipmentType\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

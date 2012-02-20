@@ -2,7 +2,16 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="InboundOwnerDashboard">
     <File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url ="WebPartPages/InboundOwnerDashboard.aspx">
-      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0" />
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0">
+        <![CDATA[
+ <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+ <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
+ PublicKeyToken=71e9bce111e9429c</Assembly>
+ <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
+ <Title>Alarms and events</Title>
+ </WebPart>
+ ]]>
+      </View>
       <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="IODCarrierDashboardWebPart">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -21,7 +30,16 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/ShippingList" BaseViewID="6" WebPartZoneID="Main1" WebPartOrder="1" />
+      <View List="Lists/ShippingList" BaseViewID="6" WebPartZoneID="Main1" WebPartOrder="1">
+        <![CDATA[
+ <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+ <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
+ PublicKeyToken=71e9bce111e9429c</Assembly>
+ <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
+ <Title>Shippings</Title>
+ </WebPart>
+ ]]>
+      </View>
       <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="2" ID="IODLoadDescription">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -57,7 +75,16 @@
                   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/JTIPartnerList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="1" ID="IODVendor" />
+      <View List="Lists/JTIPartnerList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="1" ID="IODVendor">
+        <![CDATA[
+ <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+ <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
+ PublicKeyToken=71e9bce111e9429c</Assembly>
+ <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
+ <Title>Vendors</Title>
+ </WebPart>
+ ]]>
+      </View>
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="2" ID="IODTransportResources" >
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -67,7 +94,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Transport Resources Management</property>
+        <property name="Title" type="string">Transport Resources Manager</property>
         <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
         <property name="ID" type="string">WPTransportResources</property>
       </properties>
