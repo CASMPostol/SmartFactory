@@ -25,31 +25,25 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         new ShippingInterconnectionData().SetRowData
           (_ProvidesDictionary[InboundInterconnectionData.ConnectionSelector.ShippingInterconnection], m_StateMachineEngine.NewDataEventHandler);
     }
-    internal GlobalDefinitions.Roles Role //TODO zaimplementować
+    internal GlobalDefinitions.Roles Role
     {
       set
       {
         switch (value)
         {
           case GlobalDefinitions.Roles.InboundOwner:
+          case GlobalDefinitions.Roles.Vendor:
+          case GlobalDefinitions.Roles.Forwarder:
+          case GlobalDefinitions.Roles.Escort:
+            m_OutboundControlsPanel.Visible = false;
             break;
           case GlobalDefinitions.Roles.OutboundOwner:
-            break;
           case GlobalDefinitions.Roles.Coordinator:
-            break;
           case GlobalDefinitions.Roles.Supervisor:
-            break;
           case GlobalDefinitions.Roles.Operator:
-            break;
-          case GlobalDefinitions.Roles.Vendor:
-            break;
-          case GlobalDefinitions.Roles.Forwarder:
-            break;
-          case GlobalDefinitions.Roles.Escort:
-            break;
           case GlobalDefinitions.Roles.Guard:
-            break;
           case GlobalDefinitions.Roles.None:
+            m_OutboundControlsPanel.Visible = true;
             break;
           default:
             break;
