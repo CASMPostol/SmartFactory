@@ -3,14 +3,6 @@
   <Module Name="SecurityEscortProviderDashboard">
     <File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url="WebPartPages/SecurityEscortProviderDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0">
-        <![CDATA[
- <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>Alarms and events</Title>
- </WebPart>
- ]]>
       </View>
       <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="SEPDCarrierDashboardWebPart" >
         <![CDATA[<webParts>
@@ -31,14 +23,6 @@
 </webParts>]]>
       </AllUsersWebPart>
       <View List="Lists/ShippingList" BaseViewID="12" WebPartZoneID="Main1" WebPartOrder="1">
-        <![CDATA[
- <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>My shippings</Title>
- </WebPart>
- ]]>
       </View>
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="SEPDTransportResources" >
         <![CDATA[<webParts>

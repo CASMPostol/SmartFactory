@@ -21,14 +21,6 @@
 </webParts>]]>
       </AllUsersWebPart>
       <View List="Lists/ShippingList" BaseViewID="7" WebPartZoneID="Main1" WebPartOrder="1">
-        <![CDATA[
- <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>Shippings</Title>
- </WebPart>
- ]]>
       </View>
       <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="2" ID="OCDLoadDescription">
         <![CDATA[<webParts>
@@ -66,24 +58,8 @@
 </webParts>]]>
       </AllUsersWebPart>
       <View List="Lists/RouteList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="1" ID="OCDRoute">
-        <![CDATA[
-<WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>Available routes</Title>
- </WebPart>
- ]]>
       </View>
       <View List="Lists/SecurityEscortCatalogList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="2" ID="OCDSecurityEscortCatalog">
-        <![CDATA[
-<WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>Available security escort</Title>
- </WebPart>
- ]]>
       </View>
       <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="3" ID="OCDForwarderTransportResources" >
         <![CDATA[<webParts>
@@ -121,14 +97,6 @@
 </webParts>]]>
       </AllUsersWebPart>
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0">
-        <![CDATA[
-<WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>Alarms and events</Title>
- </WebPart>
- ]]>
       </View>
     </File>
   </Module>

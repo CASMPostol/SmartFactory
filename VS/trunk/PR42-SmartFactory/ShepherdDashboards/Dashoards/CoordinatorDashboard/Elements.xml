@@ -3,34 +3,10 @@
   <Module Name="CoordinatorDashboard">
     <File Path="WebPartPages\CarrierDashboardTemplate.aspx" Url="WebPartPages/CoordinatorDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Left" WebPartOrder="0">
-        <![CDATA[
- <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>Alarms and events</Title>
- </WebPart>
- ]]>
       </View>
       <View List="Lists/TimeSlotList" BaseViewID="4" WebPartZoneID="Main1" WebPartOrder="1" ID="CoordinatorInbound" Type="CALENDAR" DisplayName="Inbound">
-        <![CDATA[
- <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>Shippings - Inbound</Title>
- </WebPart>
- ]]>
       </View>
       <View List="Lists/TimeSlotList" BaseViewID="5" WebPartZoneID="Main2" WebPartOrder="1" ID="CoordinatorOutbound" Type="CALENDAR" DisplayName="Outbound">
-        <![CDATA[
- <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
- <Assembly>Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral,
- PublicKeyToken=71e9bce111e9429c</Assembly>
- <TypeName>Microsoft.SharePoint.WebPartPages.ListViewWebPart</TypeName>
- <Title>Shippings - Outbound</Title>
- </WebPart>
- ]]>
       </View>
     </File>
   </Module>

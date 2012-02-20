@@ -397,7 +397,7 @@
       <View BaseViewID="11" Type="HTML" WebPartZoneID="Main" DisplayName="Operator" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Operator.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">20</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
