@@ -123,7 +123,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Escort:
-            m_VisibilityACL = ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn | ButtonsSet.DocumentOn;
+            m_VisibilityACL = ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn | ButtonsSet.DocumentOn | ButtonsSet.RouteOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.SecurityEscortOn;
             m_ShowDocumentLabel = ShowDocumentLabelEscort;
             m_ShowDocumentLabel(null);
