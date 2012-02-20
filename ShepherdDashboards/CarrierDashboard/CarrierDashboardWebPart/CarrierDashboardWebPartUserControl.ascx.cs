@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           case GlobalDefinitions.Roles.OutboundOwner:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.RouteOn;
-            m_EditbilityACL = m_AllButtons;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime;
             m_DocumentLabel.Text = m_DeliveryNoHeaderLabetText;
             break;
           case GlobalDefinitions.Roles.Coordinator:
