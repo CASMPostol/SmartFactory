@@ -195,6 +195,9 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="Schemas\PreliminaryDataRoute.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Schemas\SPMetalParameters.xsd">
       <SubType>Designer</SubType>
     </None>

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema id="PreliminaryDataRoute"
+    targetNamespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd"
+    xmlns:mstns="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+  <xsd:element name="PreliminaryData">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element nillable="true" name="GlobalPricelist">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="Route" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Material_Master__Reference" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Material_Master_Short_Text" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Business_description" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Freight_Payer__I_C__MainLeg" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Remarks" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Commodity" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="SAP_Dept_Plant" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="SAP_Dest_Plant" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Dept_Country" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Dest_Country" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Dept_City" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Port_of_Dept" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Port_of_Dest" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Dest_City" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Escort_key" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="PO_NUMBER" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Buying_Incoterm" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Selling_Incoterm" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Vendor" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Vendor_number" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Carrier" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Transport_Quantity" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Equipment_Type__UoM" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Total_Cost_per_UoM" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Currency" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Pre_Carriage" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="THC_Dept" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ISPS_Dept" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Other_cost_Dept" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Ocean_Freight" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="CAF" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="BAF" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="THC_Dest" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ISPS_Dest" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Other_cost_Dest" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="On_Carriage" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Freight_ID_pre_Africa_Leaf" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Freight_ID_pre" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Freight_ID_main_leg" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Freight_ID_onc" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Transit_Time_pre_africa_leaf" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Transit_Time_pre" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Transit_Time_main" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Transit_Time_onc" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Transit_Time_total" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Plant_for_PR_creation" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Company_Code" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Purch_Group" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Purch_Org" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Cost_Center" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="GL_Account" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Business_type" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Leaf_Origin_Region" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__Africa_Pre_delivery_description" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__Africa_Pre_delivery_freight_in_USD" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__Africa_Pre_delivery_Containerizing_in_USD" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Booking_Reference" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__TL_Carrier_Remarks" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__Sailing_Frequency" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__Free_Time_Demurrage_at_dept" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__Free_Time_Demurrage_at_dept_requested" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__Free_Time_Detention_at_dest" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__Free_Time_Detention_at_dest_requested" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__Transshipment_Port_1" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__Transshipment_Port_2" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="LEAF__Transshipment_Port_3" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Logistics_Procedure_ID" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:date" name="Valid_from" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:date" name="Valid_to" form="unqualified"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:date" name="added__changed" form="unqualified"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element nillable="true" name="MarketTable">
+    <xsd:complexType>
+      <xsd:sequence minOccurs="0">
+        <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="Market" form="unqualified">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Market" form="unqualified"/>
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Area" form="unqualified"/>
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="DestinationCountry" form="unqualified"/>
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="DestinationCity" form="unqualified"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element nillable="true" name="ShipmentTypeTable">
+    <xsd:complexType>
+      <xsd:sequence minOccurs="0">
+        <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="ShipmentType" form="unqualified">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" form="unqualified"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
