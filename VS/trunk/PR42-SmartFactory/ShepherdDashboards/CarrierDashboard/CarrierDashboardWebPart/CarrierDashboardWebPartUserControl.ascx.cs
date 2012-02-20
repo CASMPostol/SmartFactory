@@ -434,7 +434,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       m_ControlState.RouteID = _route.ID;
       m_RouteLabel.Text = _route.Title;
-      ClearSecurityEscor();
     }
     private void SetInterconnectionData(SecurityEscortCatalogInterconnectionData _Escort)
     {
