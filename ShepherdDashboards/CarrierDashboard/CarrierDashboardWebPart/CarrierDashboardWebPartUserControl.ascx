@@ -79,8 +79,8 @@
       </asp:TableCell>
       </asp:TableRow>
   </asp:Table>
-  <asp:Button ID="m_NewShippingButton" runat="server" Text="New Shipping" CssClass="Button" />
-  <asp:Button ID="m_EditButton" runat="server" Text="Change" CssClass="Button" />
+  <asp:Button ID="m_NewShippingButton" runat="server" Text="Add new" CssClass="Button" />
+  <asp:Button ID="m_EditButton" runat="server" Text="Edit" CssClass="Button" />
   <asp:Button ID="m_AbortButton" runat="server" Text="Abort" CssClass="Button" />
   <asp:Button ID="m_SaveButton" runat="server" Text="Save" CssClass="Button" />
   <asp:Button ID="m_CancelButton" runat="server" Text="Cancel" CssClass="Button" />

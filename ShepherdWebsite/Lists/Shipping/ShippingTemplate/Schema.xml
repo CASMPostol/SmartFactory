@@ -346,7 +346,7 @@
       <View BaseViewID="9" Type="HTML" WebPartZoneID="Main" DisplayName="Gate - Shipping details" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateShippingDetails.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">5</RowLimit>
+        <RowLimit Paged="TRUE">1</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>

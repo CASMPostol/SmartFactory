@@ -3,6 +3,23 @@
   <Module Name="OutboundOwnerDashboard">
     <File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url ="WebPartPages/OutboundOwnerDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0">
+        <![CDATA[
+ <webParts>
+ <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+ <metaData>
+ <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+ <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+ </metaData>
+ <data>
+ <properties>
+ <property name="Title" type="string">Alarms and events</property>
+ <property name="TitleUrl" type="string">OutboundOwnerDashboard.aspx</property>
+ <property name="AllowConnect" type="bool">True</property>
+ </properties>
+ </data>
+ </webPart>
+ </webParts>
+ ]]>
       </View>
       <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="OODCarrierDashboardWebPart">
         <![CDATA[<webParts>
@@ -23,6 +40,23 @@
 </webParts>]]>
       </AllUsersWebPart>
       <View List="Lists/ShippingList" BaseViewID="5" WebPartZoneID="Main1" WebPartOrder="1">
+        <![CDATA[
+ <webParts>
+ <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+ <metaData>
+ <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+ <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+ </metaData>
+ <data>
+ <properties>
+ <property name="Title" type="string">Shippings</property>
+ <property name="TitleUrl" type="string">OutboundOwnerDashboard.aspx</property>
+ <property name="AllowConnect" type="bool">True</property>
+ </properties>
+ </data>
+ </webPart>
+ </webParts>
+ ]]>
       </View>
       <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="2" ID="OODLoadDescription">
         <![CDATA[<webParts>
@@ -60,6 +94,23 @@
 </webParts>]]>
       </AllUsersWebPart>
       <View List="Lists/CityList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="1" ID="OODCity">
+        <![CDATA[
+ <webParts>
+ <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+ <metaData>
+ <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+ <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+ </metaData>
+ <data>
+ <properties>
+ <property name="Title" type="string">Destination city</property>
+ <property name="TitleUrl" type="string">OutboundOwnerDashboard.aspx</property>
+ <property name="AllowConnect" type="bool">True</property>
+ </properties>
+ </data>
+ </webPart>
+ </webParts>
+ ]]>
       </View>
     </File>
   </Module>

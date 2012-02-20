@@ -95,7 +95,7 @@
       <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="InboundOwner" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="InboundOwner.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">10</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
@@ -103,6 +103,18 @@
           <FieldRef ID="{074A69F8-5CE5-407F-81CD-6E691DFB7214}" Name="Partner2WarehouseTitle" />
         </ViewFields>
         <Query>
+          <Where>
+            <Or>
+              <Eq>
+                <FieldRef Name="ServiceType" />
+                <Value Type="Choice">Vendor</Value>
+              </Eq>
+              <Eq>
+                <FieldRef Name="ServiceType" />
+                <Value Type="Choice">Vendor and Forwarder</Value>
+              </Eq>
+            </Or>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
