@@ -1,7 +1,7 @@
 ﻿.ms-WPTitle
 {
     font-family:Verdana;
-    color:#079e66;
+    color:#0072bc;
     font-size:12pt;
 }
 .TextBox 
@@ -25,7 +25,7 @@
 .Button
 {
     border-width:1px 1px 1px 12px;
-    border-color:#079e66;
+    border-color:#0072bc;
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
@@ -101,7 +101,7 @@
 }
 .DashboardCalendarSelected
 {
-    background-color:#079e66;
+    background-color:#0072bc;
 }    
 .DashboardTimeSlotList
 {

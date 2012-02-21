@@ -108,7 +108,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         e.Cell.BackColor = Color.LightGray; ;
       if (m_AvailableDays.ContainsKey(e.Day.Date))
       {
-        e.Cell.BackColor = Color.SeaGreen;
+        e.Cell.BackColor = Color.LightBlue;
         string _days = String.Format(GlobalDefinitions.NumberOfTimeSLotsFormat, m_AvailableDays[e.Day.Date].ToString());
         e.Cell.Controls.Add(new LiteralControl() { Text = _days });
       }
