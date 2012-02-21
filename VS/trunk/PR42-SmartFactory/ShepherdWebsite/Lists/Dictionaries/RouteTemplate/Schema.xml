@@ -122,6 +122,28 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
+      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Forwarder - route details" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="ForwarderDashboard.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">1</RowLimit>
+        <ViewFields>
+          <FieldRef ID="{90F7C0EF-1035-4E4E-9CB5-F1CC5293605D}" Name="Route2BusinessDescriptionTitle" />
+          <FieldRef ID="{BB08CEE0-9699-44AD-84ED-BB32ABB382D5}" Name="Route2CityTitle" />
+          <FieldRef ID="{621CCC9E-E10F-4AE7-8471-D34C5AA59913}" Name="TransportUnitTypeTitle" />
+          <FieldRef ID="{3F47B50A-D2D1-4B7B-845D-2EC0E9461388}" Name="CarrierTitle" />
+          <FieldRef ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}" Name="GoodsHandlingPO" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
     </Views>
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
