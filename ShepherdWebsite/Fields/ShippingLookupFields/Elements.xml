@@ -255,4 +255,47 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="Shipping2RouteTitle"
+    ID="{5347194E-CED0-405F-8132-A0CA93DE3995}"
+    Type="Lookup"
+    List="Lists/RouteList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Route"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Type="Lookup"
+    DisplayName="RouteID"
+    List="Lists/RouteList"
+    ShowField="ID"
+    FieldRef="5347194E-CED0-405F-8132-A0CA93DE3995"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Shepherd"
+    ID="{A1A55CF7-B4D2-4484-AC20-43CCA444E813}"
+    Name="Shipping2RouteID"
+    Overwrite="TRUE"
+  />
+  <Field
+    Type="Lookup"
+    DisplayName="EscortID"
+    List="Lists/SecurityEscortCatalogList"
+    ShowField="ID"
+    FieldRef="5D320C1B-8D60-4540-842A-E1B8B20168B8"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Shepherd"
+    ID="{AFE465EA-1E7C-48BA-A0FA-32F7932819B3}"
+    Name="Shipping2EscortID"
+    Overwrite="TRUE"
+  />
 </Elements>

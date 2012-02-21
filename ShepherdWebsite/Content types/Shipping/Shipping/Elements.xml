@@ -21,9 +21,11 @@
       <FieldRef ID="{2CEB1781-878F-46E5-9DF5-432463ABD971}" Name="ShippingOperationOutband2PartnerTitle" />
       <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
       <FieldRef ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Name="SecurityEscortCatalogTitle" />
+      <FieldRef ID="{AFE465EA-1E7C-48BA-A0FA-32F7932819B3}" Name="Shipping2EscortID" />
       <FieldRef ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}" Name="ShippingOperationOutband2TruckTitle" />
       <FieldRef ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Name="EstimateDeliveryTime" />
       <FieldRef ID="{5347194E-CED0-405F-8132-A0CA93DE3995}" Name="Shipping2RouteTitle" />
+      <FieldRef ID="{A1A55CF7-B4D2-4484-AC20-43CCA444E813}" Name="Shipping2RouteID" />
       <FieldRef ID="{A55637EF-0C88-490E-BCAF-16215A28EA52}" Name="Shipping2City" />
       <FieldRef ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}" Name="Shipping2TransportUnitType" />
       <FieldRef ID="{E6381646-DB08-4C85-9A2F-59B931D98DBB}" Name="LoadingType"/>
