@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas
 {
-	class PreliminaryDataRoute
+	public partial class PreliminaryDataRoute
 	{
 	}
 }
