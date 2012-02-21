@@ -102,6 +102,26 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
+      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="SecurityEscort" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="SecurityEscort.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">1</RowLimit>
+        <ViewFields>
+          <FieldRef ID="{40070CB4-6ED0-4024-9269-70DAC8932C42}" Name="SecurityEscortCatalog2BusinessDescriptionTitle" />
+          <FieldRef ID="{4E19EC40-3A94-453E-ABEA-4DCBE1BF8ECD}" Name="EscortDestination" />
+          <FieldRef ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}" Name="SecurityEscrotPO" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
     </Views>
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
