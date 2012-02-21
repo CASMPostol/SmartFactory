@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="SecurityEscortProviderDashboard">
-    <File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url="WebPartPages/SecurityEscortProviderDashboard.aspx">
+    <File Path="WebPartPages\WebPageTemplate_2.aspx" Url="WebPartPages/SecurityEscortProviderDashboard.aspx">
       <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0">
         <![CDATA[
  <webParts>
@@ -39,7 +39,44 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/ShippingList" BaseViewID="12" WebPartZoneID="Main1" WebPartOrder="1">
+        <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="SEPDTransportResources" >
+          <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResources.TransportResources, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Escort Resources Manager</property>
+        <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
+        <property name="ID" type="string">WPTransportResources</property>
+        <property name="Role">SecurityEscort</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+        </AllUsersWebPart>
+      <View List="Lists/SecurityEscortCatalogList" BaseViewID="3" WebPartZoneID="Main3" WebPartOrder="0">
+        <![CDATA[
+ <webParts>
+ <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+ <metaData>
+ <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+ <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+ </metaData>
+ <data>
+ <properties>
+ <property name="Title" type="string">Escort details</property>
+ <property name="TitleUrl" type="string">SecurityEscortProviderDashboard.aspx</property>
+ <property name="AllowConnect" type="bool">True</property>
+ </properties>
+ </data>
+ </webPart>
+ </webParts>
+ ]]>
+      </View>
+      <View List="Lists/ShippingList" BaseViewID="12" WebPartZoneID="Main4" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -58,25 +95,7 @@
  </webParts>
  ]]>
       </View>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="SEPDTransportResources" >
-        <![CDATA[<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResources.TransportResources, $SharePoint.Project.AssemblyFullName$" />
-      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="Title" type="string">Escort Resources Manager</property>
-        <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
-        <property name="ID" type="string">WPTransportResources</property>
-        <property name="Role">SecurityEscort</property>
-      </properties>
-    </data>
-  </webPart>
-</webParts>]]>
-      </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="SEPDCurrentUser" >
+      <AllUsersWebPart WebPartZoneID="Main4" WebPartOrder="0" ID="SEPDCurrentUser" >
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
