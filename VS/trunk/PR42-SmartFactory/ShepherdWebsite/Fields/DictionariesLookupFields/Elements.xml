@@ -490,23 +490,6 @@
     ReadOnly="False"
     />
   <Field
-    Name="Shipping2RouteTitle"
-    ID="{5347194E-CED0-405F-8132-A0CA93DE3995}"
-    Type="Lookup"
-    List="Lists/RouteList"
-    ShowField="Title"
-    UnlimitedLengthInDocumentLibrary="False"
-    Indexed="True"
-    RelationshipDeleteBehavior="None"
-    DisplayName="Route"
-    Group="CAS Smart Factory Shepherd"
-    Required="False"
-    Hidden="False"
-    DisplaceOnUpgrade="True"
-    EnforceUniqueValues="False"
-    ReadOnly="False"
-    />
-  <Field
     Name="PalletTypesTitle"
     ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}"
     Type="Lookup"
