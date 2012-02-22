@@ -262,6 +262,7 @@
     <Content Include="Features\Dashboards\Dashboards.Template.xml">
       <DependentUpon>Dashboards.feature</DependentUpon>
     </Content>
+    <Content Include="Images\ShepherdDashboards\button_background.jpg" />
     <Content Include="Images\ShepherdDashboards\FeatureLogo32x32.gif" />
     <Content Include="Images\ShepherdDashboards\Shepherd_16x16.png" />
     <Content Include="Images\ShepherdDashboards\Shepherd_32x32.png" />
