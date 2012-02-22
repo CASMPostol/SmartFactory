@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="DeparturePort"
+    ID="{1FAB0F15-07FF-4936-BFC8-4B66A325B7AA}"
+    Type="Text"
+    DisplayName="Port of departure"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    Name="DepartureCity"
+    ID="{4A6E4695-21D5-4060-941D-66709C5EB0D8}"
+    Type="Text"
+    DisplayName="City of departure"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Name="SendInvoiceTo"
     ID="{6CE9A06C-1964-4176-926D-A5114048A95D}"
     Type="Note"
