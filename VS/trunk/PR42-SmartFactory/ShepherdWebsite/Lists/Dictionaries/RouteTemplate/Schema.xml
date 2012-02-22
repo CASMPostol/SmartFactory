@@ -13,6 +13,8 @@
           <FieldRef ID="{40088770-43E3-441B-9973-D3B093DC131C}" Name="RemarkMM" />
           <FieldRef ID="{396E8164-1398-4378-8D2C-E78495BC12DA}" Name="SAPDestinationPlantTitle" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{1FAB0F15-07FF-4936-BFC8-4B66A325B7AA}" Name="DeparturePort"/>
+          <FieldRef ID="{4A6E4695-21D5-4060-941D-66709C5EB0D8}" Name="DepartureCity" />
           <FieldRef ID="{3F47B50A-D2D1-4B7B-845D-2EC0E9461388}" Name="CarrierTitle" />
           <FieldRef ID="{621CCC9E-E10F-4AE7-8471-D34C5AA59913}" Name="TransportUnitTypeTitle" />
           <FieldRef ID="{3D76E122-FD59-46A6-BA25-38AEBB4AF138}" Name="TransportCosts" />
@@ -44,6 +46,8 @@
       <Field Name="TransportCosts" ID="{3d76e122-fd59-46a6-ba25-38aebb4af138}" Type="Number" DisplayName="Transport Costs" Group="CAS Smart Factory Shepherd" />
       <Field Name="CurrencyTitle" ID="{e1c985aa-f1a4-4275-87d3-ee0df7b44223}" Type="Lookup" List="Lists/CurrencyList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Currency" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="GoodsHandlingPO" ID="{ef1921f3-fd4a-4dc0-bb8f-5f5b95bfac12}" Type="Text" DisplayName="Goods Handling PO" Group="CAS Smart Factory Shepherd" />
+      <Field Name="DeparturePort" ID="{1FAB0F15-07FF-4936-BFC8-4B66A325B7AA}" Type="Text" DisplayName="Port of departure" Group="CAS Smart Factory Shepherd" />
+      <Field Name="DepartureCity" ID="{4A6E4695-21D5-4060-941D-66709C5EB0D8}" Type="Text" DisplayName="City of departure" Group="CAS Smart Factory Shepherd" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -83,6 +87,8 @@
           <FieldRef ID="{40088770-43E3-441B-9973-D3B093DC131C}" Name="RemarkMM" />
           <FieldRef ID="{396E8164-1398-4378-8D2C-E78495BC12DA}" Name="SAPDestinationPlantTitle" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{1FAB0F15-07FF-4936-BFC8-4B66A325B7AA}" Name="DeparturePort"/>
+          <FieldRef ID="{4A6E4695-21D5-4060-941D-66709C5EB0D8}" Name="DepartureCity" />
           <FieldRef ID="{3F47B50A-D2D1-4B7B-845D-2EC0E9461388}" Name="CarrierTitle" />
           <FieldRef ID="{621CCC9E-E10F-4AE7-8471-D34C5AA59913}" Name="TransportUnitTypeTitle" />
           <FieldRef ID="{3D76E122-FD59-46A6-BA25-38AEBB4AF138}" Name="TransportCosts" />
@@ -107,8 +113,10 @@
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{A673B418-E331-448A-AC32-CD58D861015D}" Name="ShipmentTypeTitle" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{1FAB0F15-07FF-4936-BFC8-4B66A325B7AA}" Name="DeparturePort"/>
+          <FieldRef ID="{A673B418-E331-448A-AC32-CD58D861015D}" Name="ShipmentTypeTitle" />
+          <FieldRef ID="{621CCC9E-E10F-4AE7-8471-D34C5AA59913}" Name="TransportUnitTypeTitle" />
           <FieldRef ID="{3F47B50A-D2D1-4B7B-845D-2EC0E9461388}" Name="CarrierTitle" />
         </ViewFields>
         <Query>
@@ -129,6 +137,8 @@
         <ViewFields>
           <FieldRef ID="{90F7C0EF-1035-4E4E-9CB5-F1CC5293605D}" Name="Route2BusinessDescriptionTitle" />
           <FieldRef ID="{BB08CEE0-9699-44AD-84ED-BB32ABB382D5}" Name="Route2CityTitle" />
+          <FieldRef ID="{1FAB0F15-07FF-4936-BFC8-4B66A325B7AA}" Name="DeparturePort"/>
+          <FieldRef ID="{4A6E4695-21D5-4060-941D-66709C5EB0D8}" Name="DepartureCity" />
           <FieldRef ID="{621CCC9E-E10F-4AE7-8471-D34C5AA59913}" Name="TransportUnitTypeTitle" />
           <FieldRef ID="{3F47B50A-D2D1-4B7B-845D-2EC0E9461388}" Name="CarrierTitle" />
           <FieldRef ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}" Name="GoodsHandlingPO" />
