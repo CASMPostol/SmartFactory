@@ -154,6 +154,26 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
+      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="Escort - route details" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="EscortDashboard.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">1</RowLimit>
+        <ViewFields>
+          <FieldRef ID="{BB08CEE0-9699-44AD-84ED-BB32ABB382D5}" Name="Route2CityTitle" />
+          <FieldRef ID="{1FAB0F15-07FF-4936-BFC8-4B66A325B7AA}" Name="DeparturePort"/>
+          <FieldRef ID="{4A6E4695-21D5-4060-941D-66709C5EB0D8}" Name="DepartureCity" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
     </Views>
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
