@@ -1,13 +1,7 @@
-﻿.ms-WPTitle
-{
-    font-family:Verdana;
-    color:#0072bc;
-    font-size:12pt;
-}
-.TextBox 
+﻿.TextBox 
 {
     border-width:1px 1px 1px 1px;
-    border-color:#DDDDDD;
+    border-color:#91cdf2;
     border-style:solid;
     font-family:Verdana;
     font-size:10pt;
@@ -16,7 +10,7 @@
 .TextBoxLD 
 {
     border-width:1px 1px 1px 1px;
-    border-color:#DDDDDD;
+    border-color:#91cdf2;
     border-style:solid;
     font-family:Verdana;
     font-size:10pt;
@@ -25,8 +19,12 @@
 .Button
 {
     border-width:1px 1px 1px 12px;
-    border-color:#0072bc;
+    border-top-color:#addbf7;
+    border-bottom-color:#addbf7;
+    border-left-color:#91cdf2;
+    border-right-color:#91cdf2;
     border-style:solid;
+    background-image:url(/_layouts/images/ShepherdDashboards/button_background.jpg);
     background-color:#FFFFFF;
     font-family:Verdana;
     font-size:10pt; 
@@ -52,7 +50,7 @@
 .DropDown
 {
     border-width:1px 1px 1px 1px;
-    border-color:#DDDDDD;
+    border-color:#91cdf2;
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
@@ -62,7 +60,7 @@
 .DropDownLD
 {
     border-width:1px 1px 1px 1px;
-    border-color:#DDDDDD;
+    border-color:#91cdf2;
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
@@ -72,7 +70,7 @@
 .ListBox
 {
     border-width:1px 1px 1px 1px;
-    border-color:#DDDDDD;
+    border-color:#91cdf2;
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
@@ -81,7 +79,7 @@
 .ListBoxInside
 {
     border-width:1px 1px 1px 1px;
-    border-color:#DDDDDD;
+    border-color:#91cdf2;
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
@@ -108,6 +106,6 @@
     width:100px;
     height:auto;
     border-width:1px 1px 1px 1px;
-    border-color:#DDDDDD;
+    border-color:#91cdf2;
     border-style:solid;
 }
