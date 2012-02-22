@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="SendInvoiceTo"
+    ID="{6CE9A06C-1964-4176-926D-A5114048A95D}"
+    Type="Note"
+    DisplayName="Send invoice to"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    Name="PayerName"
+    ID="{654389E7-36DA-4528-AEC7-E6BB99634022}"
+    Type="Text"
+    DisplayName="Company"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Name="EscortDestination"
     ID="{4E19EC40-3A94-453E-ABEA-4DCBE1BF8ECD}"
     Type="Text"

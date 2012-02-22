@@ -8,11 +8,13 @@
                Inherits="TRUE">
     <Folder TargetName="_cts/FreightPayer" />
     <FieldRefs>
+      <FieldRef ID="{654389E7-36DA-4528-AEC7-E6BB99634022}" Name="PayerName" />
       <FieldRef ID="{E0BCC826-1F93-4156-8FC1-7F4506234DFA}" Name="CompanyAddress" />
       <FieldRef ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Name="WorkZip" />
       <FieldRef ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Name="WorkCity" />
       <FieldRef ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Name="WorkCountry" />
       <FieldRef ID="{DC0E5632-A487-412B-AA3E-4CC025116C28}" Name="NIP" />
+      <FieldRef ID="{6CE9A06C-1964-4176-926D-A5114048A95D}" Name="SendInvoiceTo" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
