@@ -8,6 +8,7 @@
           <FieldRef ID="{CD4FAD7E-C696-458E-B857-5AED9C9F76A1}" Name="TrailerCondition2ShippingIndex" />
           <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
           <FieldRef ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}" Name="TrailerConditionComments" />
+          <FieldRef ID="{98640D96-7AA9-42C3-9A0B-4B20B7AB6B15}" Name="TrailerCondition2TruckTitle" />
           <FieldRef ID="{9CD1AB8A-DCDA-482E-BC11-F81E3EBE9D77}" Name="TrailerCondition2TrailerTitle" />
         </FieldRefs>
         <XmlDocuments>
@@ -35,6 +36,7 @@
   </Field>
       <Field DisplayName="Comments" Name="TrailerConditionComments" Type="Note" ID="{d28631e5-d7a6-46d4-b2c2-73140ce72704}" Group="CAS Smart Factory Shepherd" />
       <Field Name="TrailerCondition2ShippingIndex" ID="{CD4FAD7E-C696-458E-B857-5AED9C9F76A1}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="TrailerCondition2TruckTitle" ID="{98640D96-7AA9-42C3-9A0B-4B20B7AB6B15}" Type="Lookup" List="Lists/TruckList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Truck : Registration Number" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -69,6 +71,7 @@
           <FieldRef ID="{CD4FAD7E-C696-458E-B857-5AED9C9F76A1}" Name="TrailerCondition2ShippingIndex" />
           <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
           <FieldRef ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}" Name="TrailerConditionComments" />
+          <FieldRef ID="{98640D96-7AA9-42C3-9A0B-4B20B7AB6B15}" Name="TrailerCondition2TruckTitle" />
           <FieldRef ID="{9CD1AB8A-DCDA-482E-BC11-F81E3EBE9D77}" Name="TrailerCondition2TrailerTitle" />
         </ViewFields>
         <Query>
