@@ -19,6 +19,8 @@
 .Button
 {
     border-width:1px 1px 1px 12px;
+    width:90px;
+    height:20px;
     border-top-color:#addbf7;
     border-bottom-color:#addbf7;
     border-left-color:#91cdf2;
