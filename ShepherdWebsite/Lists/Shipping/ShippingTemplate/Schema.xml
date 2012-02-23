@@ -451,6 +451,128 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
+      <View BaseViewID="13" Type="CALENDAR" WebPartZoneID="Main" DisplayName="Outbound" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="Outbound.aspx" RecurrenceRowset="TRUE" DefaultView="FALSE" MobileUrl="_layouts/mobile/viewdaily.aspx">
+        <Toolbar Type="Standard" />
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <ViewFields>
+          <FieldRef Name="StartTime">
+          </FieldRef>
+          <FieldRef Name="fRecurrence" />
+          <FieldRef Name="EventType" />
+          <FieldRef Name="Attachments">
+          </FieldRef>
+          <FieldRef Name="WorkspaceLink" />
+          <FieldRef Name="Title">
+          </FieldRef>
+          <FieldRef Name="Location">
+          </FieldRef>
+          <FieldRef Name="Description" />
+          <FieldRef Name="Workspace">
+          </FieldRef>
+          <FieldRef Name="MasterSeriesItemID">
+          </FieldRef>
+          <FieldRef Name="fAllDayEvent">
+          </FieldRef>
+        </ViewFields>
+        <ViewData>
+          <FieldRef Name="Title" Type="CalendarMonthTitle">
+          </FieldRef>
+          <FieldRef Name="Title" Type="CalendarWeekTitle">
+          </FieldRef>
+          <FieldRef Name="Location" Type="CalendarWeekLocation">
+          </FieldRef>
+          <FieldRef Name="Title" Type="CalendarDayTitle">
+          </FieldRef>
+          <FieldRef Name="Location" Type="CalendarDayLocation">
+          </FieldRef>
+        </ViewData>
+        <Query>
+          <Where>
+            <And>
+              <DateRangesOverlap>
+                <FieldRef Name="StartTime">
+                </FieldRef>
+                <FieldRef Name="StartTime">
+                </FieldRef>
+                <FieldRef Name="RecurrenceID">
+                </FieldRef>
+                <Value Type="DateTime">
+                  <Month>
+                  </Month>
+                </Value>
+              </DateRangesOverlap>
+              <Neq>
+                <FieldRef Name="IsOutbound" />
+                <Value Type="Boolean">No</Value>
+              </Neq>
+            </And>
+          </Where>
+        </Query>
+      </View>
+      <View BaseViewID="14" Type="CALENDAR" WebPartZoneID="Main" DisplayName="Inbound" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="Inbound.aspx" RecurrenceRowset="TRUE" DefaultView="FALSE" MobileUrl="_layouts/mobile/viewdaily.aspx">
+        <Toolbar Type="Standard" />
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+        <ViewFields>
+          <FieldRef Name="StartTime">
+          </FieldRef>
+          <FieldRef Name="fRecurrence" />
+          <FieldRef Name="EventType" />
+          <FieldRef Name="Attachments">
+          </FieldRef>
+          <FieldRef Name="WorkspaceLink" />
+          <FieldRef Name="Title">
+          </FieldRef>
+          <FieldRef Name="Location">
+          </FieldRef>
+          <FieldRef Name="Description" />
+          <FieldRef Name="Workspace">
+          </FieldRef>
+          <FieldRef Name="MasterSeriesItemID">
+          </FieldRef>
+          <FieldRef Name="fAllDayEvent">
+          </FieldRef>
+        </ViewFields>
+        <ViewData>
+          <FieldRef Name="Title" Type="CalendarMonthTitle">
+          </FieldRef>
+          <FieldRef Name="Title" Type="CalendarWeekTitle">
+          </FieldRef>
+          <FieldRef Name="Location" Type="CalendarWeekLocation">
+          </FieldRef>
+          <FieldRef Name="Title" Type="CalendarDayTitle">
+          </FieldRef>
+          <FieldRef Name="Location" Type="CalendarDayLocation">
+          </FieldRef>
+        </ViewData>
+        <Query>
+          <Where>
+            <And>
+              <DateRangesOverlap>
+                <FieldRef Name="StartTime">
+                </FieldRef>
+                <FieldRef Name="StartTime">
+                </FieldRef>
+                <FieldRef Name="RecurrenceID">
+                </FieldRef>
+                <Value Type="DateTime">
+                  <Month>
+                  </Month>
+                </Value>
+              </DateRangesOverlap>
+              <Eq>
+                <FieldRef Name="IsOutbound" />
+                <Value Type="Boolean">No</Value>
+              </Eq>
+            </And>
+          </Where>
+        </Query>
+      </View>
     </Views>
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />

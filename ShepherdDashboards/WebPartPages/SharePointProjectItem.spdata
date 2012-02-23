@@ -7,5 +7,6 @@
     <ProjectItemFile Source="..\WebPartPages\CarrierDashboardAlternativeTemplate.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="..\WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="..\WebPartPages\WebPageTemplate_2.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="..\WebPartPages\WebPageTemplate_1.aspx" Target="WebPartPages\" Type="ElementFile" />
   </Files>
 </ProjectItem>
