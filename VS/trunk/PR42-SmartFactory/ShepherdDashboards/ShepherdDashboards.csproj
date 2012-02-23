@@ -282,6 +282,9 @@
     <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
     <Content Include="Images\ShepherdImages\DefaultBanner.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />
+    <Content Include="WebPartPages\WebPageTemplate_1.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="OperatorWebPart\Elements.xml" />
     <Content Include="OperatorWebPart\OperatorWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
