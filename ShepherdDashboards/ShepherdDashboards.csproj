@@ -111,6 +111,14 @@
       <DependentUpon>LoadDescriptionWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadDescriptionWebPart\StateMachineEngine.cs" />
+    <Compile Include="OperatorWebPart\OperatorWebPart.cs" />
+    <Compile Include="OperatorWebPart\OperatorWebPartUserControl.ascx.cs">
+      <DependentUpon>OperatorWebPartUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OperatorWebPart\OperatorWebPartUserControl.ascx.designer.cs">
+      <DependentUpon>OperatorWebPartUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schemas\PreliminaryDataRoute.cs">
       <DependentUpon>PreliminaryDataRoute.xsd</DependentUpon>
@@ -192,6 +200,10 @@
     <None Include="LoadDescriptionWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6d76c6af-a40b-4323-8c68-0615939a0029}</SharePointProjectItemId>
     </None>
+    <None Include="OperatorWebPart\OperatorWebPart.webpart" />
+    <None Include="OperatorWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e726136b-a4a6-463c-9b40-913baf883f05}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{212689f5-f797-4a55-8d76-26e83b3a6e30}</PackageId>
     </None>
@@ -270,6 +282,10 @@
     <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
     <Content Include="Images\ShepherdImages\DefaultBanner.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />
+    <Content Include="OperatorWebPart\Elements.xml" />
+    <Content Include="OperatorWebPart\OperatorWebPartUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="WebPartPages\WebPageTemplate_2.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
