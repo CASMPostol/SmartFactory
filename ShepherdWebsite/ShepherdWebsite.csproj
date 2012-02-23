@@ -369,7 +369,9 @@
     <Content Include="Content types\Dictionaries\Market\Elements.xml" />
     <Content Include="Content types\Dictionaries\PalletTypes\Elements.xml" />
     <Content Include="Content types\Dictionaries\Partner\Elements.xml" />
-    <Content Include="Content types\Dictionaries\Route\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Route\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\SAPDestinationPlant\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -395,7 +397,9 @@
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Shipping\Shipping\Elements.xml" />
+    <Content Include="Content types\Shipping\Shipping\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Shipping\TimeSlot\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

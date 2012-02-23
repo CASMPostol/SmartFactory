@@ -205,6 +205,23 @@
     ReadOnly="False"
     />
   <Field
+    Name="TrailerCondition2TruckTitle"
+    ID="{98640D96-7AA9-42C3-9A0B-4B20B7AB6B15}"
+    Type="Lookup"
+    List="Lists/TruckList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Truck : Registration Number"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="TimeSlot2ShippingPointLookup"
     ID="{D8AE2368-2CC5-433B-9AA5-9980ADE3F145}"
     Type="Lookup"
