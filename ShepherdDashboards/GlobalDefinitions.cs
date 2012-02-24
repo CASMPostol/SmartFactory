@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       Guard, 
       None,
     }
-    internal const string NumberOfTimeSLotsFormat = "<font size=\"1\" color=\"#0072bc\"> [{0}]</font>";
+    internal const string NumberOfTimeSLotsFormat = "<b><font size=\"1\" color=\"#0072bc\"> [{0}]</font></b>";
     internal const string ErrorMessageFormat = "<font color=red>{0}</font><br/>";
     public delegate void UpdateToolStripEvent(object obj, ProgressChangedEventArgs progres);
   }
