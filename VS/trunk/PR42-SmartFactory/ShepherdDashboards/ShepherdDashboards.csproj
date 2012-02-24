@@ -245,7 +245,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Dashoards\CoordinatorDashboard\Elements.xml" />
-    <Content Include="Dashoards\ForwarderDashboard\Elements.xml" />
+    <Content Include="Dashoards\ForwarderDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashoards\GateDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -22,7 +22,7 @@
           ToolTip="Select a Warehouse and next a Time Slot from the calendar to schedule the shipping.">
         </asp:Label>
       </asp:TableCell><asp:TableCell>
-        <asp:Label ID="m_WarehouseLabel" runat="server" CssClass="TextBox" ></asp:Label>
+        <asp:Label ID="m_WarehouseLabel" runat="server" CssClass="Label" ></asp:Label>
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
@@ -30,7 +30,7 @@
       </asp:TableCell>
       <asp:TableCell>
         <asp:Label ID="m_TimeSlotTextBox" runat="server" ToolTip="Select a Time Slot from the calendar to schedule the shipping."
-          CssClass="TextBox" Enabled="false"></asp:Label>
+          CssClass="Label" Enabled="false"></asp:Label>
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>

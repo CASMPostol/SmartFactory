@@ -32,14 +32,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         // create dropdown menu for custom site pages
         Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
         SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCoordinatorTitle, ProjectElementManagement.URLCoordinator));
         _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuInboundOwnerTitle, ProjectElementManagement.URLInboundOwner));
         _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuForwarderTitle, ProjectElementManagement.URLForwarderDashboard));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityEscortProviderTitle, ProjectElementManagement.URLSecurityEscortProviderDashboard));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityGateTitle, ProjectElementManagement.URLGateDashboard));
         _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundOwnerTitle, ProjectElementManagement.URLOutboundOwner));
         _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundCoordinatorTitle, ProjectElementManagement.URLOutboundCoordinator));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCoordinatorTitle, ProjectElementManagement.URLCoordinator));
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuForwarderTitle, ProjectElementManagement.URLForwarderDashboard));
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityEscortProviderTitle, ProjectElementManagement.URLSecurityEscortProviderDashboard));
+        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityGateTitle, ProjectElementManagement.URLGateDashboard));   
         foreach (SPNavigationNode item in _topNav)
           item.Update();
         WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
