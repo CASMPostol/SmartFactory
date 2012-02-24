@@ -17,6 +17,7 @@
       <FieldRef ID="{D73A3F7D-6892-4A46-90EE-39BEB668944A}" Name="SecurityCost" />
       <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
       <FieldRef ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}" Name="SecurityEscrotPO" />
+      <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerIndex" />
     </FieldRefs>
   </ContentType>
 </Elements>
