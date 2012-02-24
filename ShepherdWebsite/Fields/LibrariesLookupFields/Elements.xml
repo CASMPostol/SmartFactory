@@ -34,4 +34,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="Shipping2SecurityEscortPOTitle"
+    ID="{C47A8F82-5D30-45F5-AA04-C466B03C9EE3}"
+    Type="Lookup"
+    List="Lists/SecurityEscortPOLibrary"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Freight PO"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
