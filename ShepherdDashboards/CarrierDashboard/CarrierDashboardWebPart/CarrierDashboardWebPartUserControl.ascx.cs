@@ -711,7 +711,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       else
       {
-        _sipping.SecurityEscort = Element.GetAtIndex<SecurityEscortCatalog>(EDC.SecurityEscortCatalog, m_ControlState.SecurityCatalogID);
+        _sipping.SecurityEscort = Element.GetAtIndex<SecurityEscortCatalog>(EDC.SecurityEscortRoute, m_ControlState.SecurityCatalogID);
         _sipping.SecurityEscortProvider = _sipping.SecurityEscort.VendorName;
       }
     }
@@ -731,7 +731,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       if ((_sipping.VendorName != null) && (m_ControlState.PartnerID.String2Int() == _sipping.VendorName.Identyfikator.Value))
         return;
-      _sipping.VendorName = Element.GetAtIndex(EDC.JTIPartner, m_ControlState.PartnerID);
+      _sipping.VendorName = Element.GetAtIndex(EDC.Partner, m_ControlState.PartnerID);
     }
     private void ChangeShippingState(State _newState)
     {
@@ -925,7 +925,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.ViewState:
         case InterfaceState.EditState:
-          m_DocumentTextBox.Text = _shppng.Route != null ? _Shipping.Route.FreightPO : "";
+          m_DocumentTextBox.Text = _shppng.Route != null ? _shppng.Route.FreightPO : "";
           break;
         case InterfaceState.NewState:
         default:
@@ -952,7 +952,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.ViewState:
         case InterfaceState.EditState:
-          m_DocumentTextBox.Text = _shppng.SecurityEscort != null ? _Shipping.SecurityEscort.SecurityEscortPO : "";
+          m_DocumentTextBox.Text = _shppng.SecurityEscort != null ? _shppng.SecurityEscort.SecurityEscortPO : "";
           break;
         case InterfaceState.NewState:
         default:
@@ -1007,21 +1007,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return _EDC;
       }
     }
-    private Shipping _Shipping;
+    private Shipping m_CurrentShipping_Shipping;
     private Shipping CurrentShipping
     {
       get
       {
-        if (_Shipping != null)
-          return _Shipping;
+        if (m_CurrentShipping_Shipping != null)
+          return m_CurrentShipping_Shipping;
         if (m_ControlState.ShippingID.IsNullOrEmpty())
         {
           m_ControlState.Editable = false;
           return null;
         }
-        _Shipping = Element.GetAtIndex<Shipping>(EDC.Shipping, m_ControlState.ShippingID);
-        m_ControlState.Editable = _Shipping.IsEditable();
-        return _Shipping;
+        m_CurrentShipping_Shipping = Element.GetAtIndex<Shipping>(EDC.Shipping, m_ControlState.ShippingID);
+        m_ControlState.Editable = m_CurrentShipping_Shipping.IsEditable();
+        return m_CurrentShipping_Shipping;
       }
     }
     internal event InterconnectionDataTable<Shipping>.SetDataEventArg m_ShippintInterconnectionEvent;

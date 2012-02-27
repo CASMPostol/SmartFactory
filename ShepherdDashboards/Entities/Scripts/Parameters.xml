@@ -25,7 +25,7 @@
   <List Name="Destination Market" ></List>
   <List Name="Driver"></List>
   <List Name="Freight Payer"></List>
-  <List Name="JTI Partner" ></List>
+  <List Name="Partner" ></List>
   <List Name="Market" >
     <ContentType Name="Market">
       <Column Name="Dummy"/>
@@ -39,7 +39,7 @@
     </ContentType>
   </List>
   <List Name="Schedule Template"></List>
-  <List Name="Security Escort Catalog"></List>
+  <List Name="Security Escort Route"></List>
   <List Name="Shipment Type">
     <ContentType Name="ShipmentType">
       <Column Name="Dummy"/>
