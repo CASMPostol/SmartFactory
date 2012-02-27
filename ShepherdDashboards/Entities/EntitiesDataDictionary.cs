@@ -158,7 +158,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       }
     }
     private EntitiesDataContext m_EDC;
-    //private static string EmptyKey
+    private short m_EmptyKeyIdx = 0;
+    private string EmptyKey { get {return String.Format("EmptyKey{0}", m_EmptyKeyIdx++);}}
     #endregion
 
     #region Dictionaries
