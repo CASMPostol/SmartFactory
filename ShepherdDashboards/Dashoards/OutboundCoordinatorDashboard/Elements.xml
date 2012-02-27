@@ -93,7 +93,7 @@
  </webParts>
  ]]>
       </View>
-      <View List="Lists/SecurityEscortCatalogList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="2" ID="OCDSecurityEscortCatalog">
+      <View List="Lists/SecurityEscortRouteList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="2" ID="OCDSecurityEscortRoute">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
