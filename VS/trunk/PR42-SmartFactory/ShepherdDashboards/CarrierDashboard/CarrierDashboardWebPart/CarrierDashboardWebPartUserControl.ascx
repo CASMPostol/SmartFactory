@@ -69,7 +69,7 @@
         <asp:Label ID="m_SecurityRequiredLabel" runat="server" Text="Security Required" CssClass="Label"></asp:Label>
       </asp:TableCell>
       <asp:TableCell>
-        <asp:CheckBox ID="m_SecurityRequiredChecbox" runat="server">
+        <asp:CheckBox ID="m_SecurityRequiredChecbox" AutoPostBack=true runat="server" Checked=false>
         </asp:CheckBox>
       </asp:TableCell>
     </asp:TableRow>

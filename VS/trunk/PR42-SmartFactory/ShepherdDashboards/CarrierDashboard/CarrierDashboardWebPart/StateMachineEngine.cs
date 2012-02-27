@@ -121,6 +121,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
+    internal void m_SecurityRequiredChecbox_CheckedChanged(object sender, EventArgs e)
+    {
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.EditState:
+          UpdateEscxort();
+          break;
+        case InterfaceState.ViewState:
+        case InterfaceState.NewState:
+        default:
+          SMError(InterfaceEvent.AbortClick);
+          break;
+      }
+    }
     internal abstract InterfaceState CurrentMachineState { get; set; }
     #endregion
 
@@ -232,6 +246,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected abstract void SetEnabled(ControlsSet _buttons);
     protected abstract void SMError(InterfaceEvent interfaceEvent);
     protected abstract void ShowActionResult(ActionResult _rslt);
+    protected abstract void UpdateEscxort();
     #endregion
 
     #region protected
