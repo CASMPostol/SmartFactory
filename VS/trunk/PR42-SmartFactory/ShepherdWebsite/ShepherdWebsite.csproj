@@ -255,6 +255,12 @@
     <None Include="Lists\Dictionaries\ScheduleTemplateTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0d1d5580-2907-4c0f-8ffd-e881b9e50f52}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Dictionaries\SecurityEscortRouteTemplate\SecurityEscortRouteList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7f535547-584d-4c14-a50c-52cb26146c2b}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\SecurityEscortRouteTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{197ab802-5d41-4bf7-bf8a-1b5e8719b7f5}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{54f62c7f-7014-461d-81c5-5d84080bcb45}</SharePointProjectItemId>
     </None>
@@ -479,6 +485,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Dictionaries\ScheduleTemplateTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\SecurityEscortRouteTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\SecurityEscortRouteTemplate\SecurityEscortRouteList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\SecurityEscortRouteTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Schema.xml" />

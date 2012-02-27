@@ -57,7 +57,7 @@
   </webPart>
 </webParts>]]>
         </AllUsersWebPart>
-      <View List="Lists/SecurityEscortCatalogList" BaseViewID="3" WebPartZoneID="Main3" WebPartOrder="0">
+      <View List="Lists/SecurityEscortRouteList" BaseViewID="3" WebPartZoneID="Main3" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
