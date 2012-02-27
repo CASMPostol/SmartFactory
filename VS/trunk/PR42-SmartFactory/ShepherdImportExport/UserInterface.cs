@@ -11,6 +11,7 @@ using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 namespace CAS.SmartFactory.Shepherd.ImportExport
 {
   using UpdateToolStripEvent = CAS.SmartFactory.Shepherd.Dashboards.GlobalDefinitions.UpdateToolStripEvent;
+  using CAS.SmartFactory.Shepherd.Dashboards.Schemas;
   public partial class UserInterface : Form
   {
     public UserInterface()
@@ -75,6 +76,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       m_FileNameStatusLabel.Text = m_FileManagementComonent.m_OpenFileDialog.FileName;
       return m_FileManagementComonent.m_OpenFileDialog.OpenFile();
     }
+
     #region importing data
     private void CreateTransportUnts(EntitiesDataContext _EDC, UpdateToolStripEvent _update)
     {
@@ -185,14 +187,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         _EDC.SubmitChanges();
       }
     }
-    private void ImportData(PreliminaryData cnfg, string _URL, UpdateToolStripEvent _update)
-    {
-      _update(this, new ProgressChangedEventArgs(1, "ImportData starting"));
-      using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URLTextBox.Text.Trim()))
-      {
-      }
-      SetDone("Done");
-    }
+
     private void CreatePartners(EntitiesDataContext _EDC, UpdateToolStripEvent _update)
     {
       _update(this, new ProgressChangedEventArgs(1, "CreatePartners starting"));
@@ -205,7 +200,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       {
         string _nm = String.Format("Partner {0}", _pn[i]);
         Partner _prt = new Partner() { Tytuł = _nm, ServiceType = _stt[i], ShepherdUserTitle = _pn[i] };
-        _EDC.JTIPartner.InsertOnSubmit(_prt);
+        _EDC.Partner.InsertOnSubmit(_prt);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _nm)));
         _EDC.SubmitChanges();
         CraeteTrucks(_EDC, _prt, ref _truckId, _update);
@@ -302,6 +297,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       }
     }
     #endregion
+
     #region EventHandlers
     private void TimeSlotsCreateButton_Click(object sender, EventArgs e)
     {
@@ -353,9 +349,9 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         using (strm)
         {
           UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Reading xml file"));
-          PreliminaryData cnfg = PreliminaryData.ImportDocument(strm);
-          UpdateToolStrip(this, new ProgressChangedEventArgs(10, "Importing Data"));
-          ImportData(cnfg, m_URLTextBox.Text.Trim(), UpdateToolStrip);
+          PreliminaryDataRoute _cnfg = PreliminaryDataRoute.ImportDocument(strm);
+          UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Importing Data"));
+          _cnfg.ImportData(_cnfg, m_URLTextBox.Text.Trim(), UpdateToolStrip);
           SetDone("Done");
         }
       }
@@ -366,7 +362,5 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       }
     }
     #endregion
-
-    public int _mrkti { get; set; }
   }
 }

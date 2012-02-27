@@ -22,19 +22,47 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd", IsNullable=false)]
-    public partial class PreliminaryData {
+    public partial class PreliminaryDataRoute {
         
-        private PreliminaryDataRoute[] globalPricelistField;
+        private PreliminaryDataRouteRoute[] globalPricelistField;
+        
+        private PreliminaryDataRouteMarket[] marketTableField;
+        
+        private PreliminaryDataRouteShipmentType[] shipmentTypeTableField;
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Route", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PreliminaryDataRoute[] GlobalPricelist {
+        [System.Xml.Serialization.XmlArrayItemAttribute("Route")]
+        public PreliminaryDataRouteRoute[] GlobalPricelist {
             get {
                 return this.globalPricelistField;
             }
             set {
                 this.globalPricelistField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Market")]
+        public PreliminaryDataRouteMarket[] MarketTable {
+            get {
+                return this.marketTableField;
+            }
+            set {
+                this.marketTableField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("ShipmentType")]
+        public PreliminaryDataRouteShipmentType[] ShipmentTypeTable {
+            get {
+                return this.shipmentTypeTableField;
+            }
+            set {
+                this.shipmentTypeTableField = value;
             }
         }
     }
@@ -45,7 +73,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
-    public partial class PreliminaryDataRoute {
+    public partial class PreliminaryDataRouteRoute {
         
         private string material_Master__ReferenceField;
         
@@ -194,7 +222,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         private bool added__changedFieldSpecified;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Material_Master__Reference {
             get {
                 return this.material_Master__ReferenceField;
@@ -205,7 +233,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Material_Master_Short_Text {
             get {
                 return this.material_Master_Short_TextField;
@@ -216,7 +244,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Business_description {
             get {
                 return this.business_descriptionField;
@@ -227,7 +255,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Freight_Payer__I_C__MainLeg {
             get {
                 return this.freight_Payer__I_C__MainLegField;
@@ -238,7 +266,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Remarks {
             get {
                 return this.remarksField;
@@ -249,7 +277,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Commodity {
             get {
                 return this.commodityField;
@@ -260,7 +288,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string SAP_Dept_Plant {
             get {
                 return this.sAP_Dept_PlantField;
@@ -271,7 +299,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string SAP_Dest_Plant {
             get {
                 return this.sAP_Dest_PlantField;
@@ -282,7 +310,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Dept_Country {
             get {
                 return this.dept_CountryField;
@@ -293,7 +321,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Dest_Country {
             get {
                 return this.dest_CountryField;
@@ -304,7 +332,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Dept_City {
             get {
                 return this.dept_CityField;
@@ -315,7 +343,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Port_of_Dept {
             get {
                 return this.port_of_DeptField;
@@ -326,7 +354,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Port_of_Dest {
             get {
                 return this.port_of_DestField;
@@ -337,7 +365,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Dest_City {
             get {
                 return this.dest_CityField;
@@ -348,7 +376,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Escort_key {
             get {
                 return this.escort_keyField;
@@ -359,7 +387,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string PO_NUMBER {
             get {
                 return this.pO_NUMBERField;
@@ -370,7 +398,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Buying_Incoterm {
             get {
                 return this.buying_IncotermField;
@@ -381,7 +409,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Selling_Incoterm {
             get {
                 return this.selling_IncotermField;
@@ -392,7 +420,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Vendor {
             get {
                 return this.vendorField;
@@ -403,7 +431,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Vendor_number {
             get {
                 return this.vendor_numberField;
@@ -414,7 +442,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Carrier {
             get {
                 return this.carrierField;
@@ -425,7 +453,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Transport_Quantity {
             get {
                 return this.transport_QuantityField;
@@ -436,7 +464,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Equipment_Type__UoM {
             get {
                 return this.equipment_Type__UoMField;
@@ -447,7 +475,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Total_Cost_per_UoM {
             get {
                 return this.total_Cost_per_UoMField;
@@ -458,7 +486,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Currency {
             get {
                 return this.currencyField;
@@ -469,7 +497,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Pre_Carriage {
             get {
                 return this.pre_CarriageField;
@@ -480,7 +508,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string THC_Dept {
             get {
                 return this.tHC_DeptField;
@@ -491,7 +519,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string ISPS_Dept {
             get {
                 return this.iSPS_DeptField;
@@ -502,7 +530,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Other_cost_Dept {
             get {
                 return this.other_cost_DeptField;
@@ -513,7 +541,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Ocean_Freight {
             get {
                 return this.ocean_FreightField;
@@ -524,7 +552,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string CAF {
             get {
                 return this.cAFField;
@@ -535,7 +563,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string BAF {
             get {
                 return this.bAFField;
@@ -546,7 +574,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string THC_Dest {
             get {
                 return this.tHC_DestField;
@@ -557,7 +585,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string ISPS_Dest {
             get {
                 return this.iSPS_DestField;
@@ -568,7 +596,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Other_cost_Dest {
             get {
                 return this.other_cost_DestField;
@@ -579,7 +607,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string On_Carriage {
             get {
                 return this.on_CarriageField;
@@ -590,7 +618,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Freight_ID_pre_Africa_Leaf {
             get {
                 return this.freight_ID_pre_Africa_LeafField;
@@ -601,7 +629,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Freight_ID_pre {
             get {
                 return this.freight_ID_preField;
@@ -612,7 +640,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Freight_ID_main_leg {
             get {
                 return this.freight_ID_main_legField;
@@ -623,7 +651,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Freight_ID_onc {
             get {
                 return this.freight_ID_oncField;
@@ -634,7 +662,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Transit_Time_pre_africa_leaf {
             get {
                 return this.transit_Time_pre_africa_leafField;
@@ -645,7 +673,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Transit_Time_pre {
             get {
                 return this.transit_Time_preField;
@@ -656,7 +684,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Transit_Time_main {
             get {
                 return this.transit_Time_mainField;
@@ -667,7 +695,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Transit_Time_onc {
             get {
                 return this.transit_Time_oncField;
@@ -678,7 +706,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Transit_Time_total {
             get {
                 return this.transit_Time_totalField;
@@ -689,7 +717,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Plant_for_PR_creation {
             get {
                 return this.plant_for_PR_creationField;
@@ -700,7 +728,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Company_Code {
             get {
                 return this.company_CodeField;
@@ -711,7 +739,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Purch_Group {
             get {
                 return this.purch_GroupField;
@@ -722,7 +750,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Purch_Org {
             get {
                 return this.purch_OrgField;
@@ -733,7 +761,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Cost_Center {
             get {
                 return this.cost_CenterField;
@@ -744,7 +772,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string GL_Account {
             get {
                 return this.gL_AccountField;
@@ -755,7 +783,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Business_type {
             get {
                 return this.business_typeField;
@@ -766,7 +794,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Leaf_Origin_Region {
             get {
                 return this.leaf_Origin_RegionField;
@@ -777,7 +805,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__Africa_Pre_delivery_description {
             get {
                 return this.lEAF__Africa_Pre_delivery_descriptionField;
@@ -788,7 +816,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__Africa_Pre_delivery_freight_in_USD {
             get {
                 return this.lEAF__Africa_Pre_delivery_freight_in_USDField;
@@ -799,7 +827,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__Africa_Pre_delivery_Containerizing_in_USD {
             get {
                 return this.lEAF__Africa_Pre_delivery_Containerizing_in_USDField;
@@ -810,7 +838,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Booking_Reference {
             get {
                 return this.booking_ReferenceField;
@@ -821,7 +849,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__TL_Carrier_Remarks {
             get {
                 return this.lEAF__TL_Carrier_RemarksField;
@@ -832,7 +860,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__Sailing_Frequency {
             get {
                 return this.lEAF__Sailing_FrequencyField;
@@ -843,7 +871,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__Free_Time_Demurrage_at_dept {
             get {
                 return this.lEAF__Free_Time_Demurrage_at_deptField;
@@ -854,7 +882,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__Free_Time_Demurrage_at_dept_requested {
             get {
                 return this.lEAF__Free_Time_Demurrage_at_dept_requestedField;
@@ -865,7 +893,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__Free_Time_Detention_at_dest {
             get {
                 return this.lEAF__Free_Time_Detention_at_destField;
@@ -876,7 +904,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__Free_Time_Detention_at_dest_requested {
             get {
                 return this.lEAF__Free_Time_Detention_at_dest_requestedField;
@@ -887,7 +915,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__Transshipment_Port_1 {
             get {
                 return this.lEAF__Transshipment_Port_1Field;
@@ -898,7 +926,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__Transshipment_Port_2 {
             get {
                 return this.lEAF__Transshipment_Port_2Field;
@@ -909,7 +937,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LEAF__Transshipment_Port_3 {
             get {
                 return this.lEAF__Transshipment_Port_3Field;
@@ -920,7 +948,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="integer", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
         public string Logistics_Procedure_ID {
             get {
                 return this.logistics_Procedure_IDField;
@@ -931,7 +959,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="date", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true)]
         public System.Nullable<System.DateTime> Valid_from {
             get {
                 return this.valid_fromField;
@@ -953,7 +981,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="date", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true)]
         public System.Nullable<System.DateTime> Valid_to {
             get {
                 return this.valid_toField;
@@ -975,7 +1003,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="date", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date", IsNullable=true)]
         public System.Nullable<System.DateTime> added__changed {
             get {
                 return this.added__changedField;
@@ -1003,30 +1031,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd", IsNullable=true)]
-    public partial class MarketTable {
-        
-        private MarketTableMarket[] marketField;
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute("Market", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public MarketTableMarket[] Market {
-            get {
-                return this.marketField;
-            }
-            set {
-                this.marketField = value;
-            }
-        }
-    }
-    
-    /// <uwagi/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
-    public partial class MarketTableMarket {
+    public partial class PreliminaryDataRouteMarket {
         
         private string marketField;
         
@@ -1037,7 +1042,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         private string destinationCityField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Market {
             get {
                 return this.marketField;
@@ -1048,7 +1053,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Area {
             get {
                 return this.areaField;
@@ -1059,7 +1064,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string DestinationCountry {
             get {
                 return this.destinationCountryField;
@@ -1070,7 +1075,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string DestinationCity {
             get {
                 return this.destinationCityField;
@@ -1087,35 +1092,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd", IsNullable=true)]
-    public partial class ShipmentTypeTable {
-        
-        private ShipmentTypeTableShipmentType[] shipmentTypeField;
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute("ShipmentType", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public ShipmentTypeTableShipmentType[] ShipmentType {
-            get {
-                return this.shipmentTypeField;
-            }
-            set {
-                this.shipmentTypeField = value;
-            }
-        }
-    }
-    
-    /// <uwagi/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
-    public partial class ShipmentTypeTableShipmentType {
+    public partial class PreliminaryDataRouteShipmentType {
         
         private string titleField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Title {
             get {
                 return this.titleField;
