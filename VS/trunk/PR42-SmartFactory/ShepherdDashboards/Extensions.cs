@@ -81,6 +81,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       }
       return new Nullable<int>();
     }
+    public static double? String2Double(this string _val)
+    {
+      double _res = 0;
+      if (double.TryParse(_val, out _res))
+        return _res;
+      else
+        return null;
+    }
     /// <summary>
     ///  Indicates whether the specified System.String object is null or an System.String.Empty string.
     /// </summary>

@@ -144,16 +144,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		/// <summary>
-		/// JTI Partner List Instance
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="JTI Partner")]
-		public Microsoft.SharePoint.Linq.EntityList<Partner> JTIPartner {
-			get {
-				return this.GetList<Partner>("JTI Partner");
-			}
-		}
-		
-		/// <summary>
 		/// Load Description List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Load Description")]
@@ -180,6 +170,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		public Microsoft.SharePoint.Linq.EntityList<PalletTypes> PalletTypes {
 			get {
 				return this.GetList<PalletTypes>("Pallet Types");
+			}
+		}
+		
+		/// <summary>
+		/// Partner List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Partner")]
+		public Microsoft.SharePoint.Linq.EntityList<Partner> Partner {
+			get {
+				return this.GetList<Partner>("Partner");
 			}
 		}
 		
@@ -214,12 +214,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		/// <summary>
-		/// Security Escort Catalog List Instance
+		/// Security Escort Route List Instance
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="Security Escort Catalog")]
-		public Microsoft.SharePoint.Linq.EntityList<SecurityEscortCatalog> SecurityEscortCatalog {
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Security Escort Route")]
+		public Microsoft.SharePoint.Linq.EntityList<SecurityEscortCatalog> SecurityEscortRoute {
 			get {
-				return this.GetList<SecurityEscortCatalog>("Security Escort Catalog");
+				return this.GetList<SecurityEscortCatalog>("Security Escort Route");
 			}
 		}
 		
@@ -350,10 +350,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingDriversTeam))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Anons))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(FreightPayer))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Partner))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(LoadDescription))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Market))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(PalletTypes))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Partner))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Route))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SAPDestinationPlant))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ScheduleTemplate))]
@@ -790,7 +790,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JTI Partner")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
 		public Partner VendorName {
 			get {
 				return this._vendorName.GetEntity();
@@ -889,7 +889,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalog2BusinessDescriptionTitle", Storage="_securityEscortCatalog", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Security Escort Catalog")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalog2BusinessDescriptionTitle", Storage="_securityEscortCatalog", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Security Escort Route")]
 		public Microsoft.SharePoint.Linq.EntitySet<SecurityEscortCatalog> SecurityEscortCatalog {
 			get {
 				return this._securityEscortCatalog;
@@ -1326,7 +1326,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Driver2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JTI Partner")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Driver2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
 		public Partner VendorName {
 			get {
 				return this._vendorName.GetEntity();
@@ -1481,6 +1481,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="FreightPayer", Id="0x01002BD66F0631854603A0815888852526D0")]
 	public partial class FreightPayer : Element {
 		
+		private string _company;
+		
 		private string _address;
 		
 		private string _kodPocztowy;
@@ -1491,6 +1493,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private string _nIPVATNo;
 		
+		private string _sendInvoiceTo;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1499,6 +1503,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		public FreightPayer() {
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PayerName", Storage="_company", FieldType="Text")]
+		public string Company {
+			get {
+				return this._company;
+			}
+			set {
+				if ((value != this._company)) {
+					this.OnPropertyChanging("Company", this._company);
+					this._company = value;
+					this.OnPropertyChanged("Company");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CompanyAddress", Storage="_address", FieldType="Text")]
@@ -1568,6 +1586,327 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this._nIPVATNo = value;
 					this.OnPropertyChanged("NIPVATNo");
 				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SendInvoiceTo", Storage="_sendInvoiceTo", FieldType="Note")]
+		public string SendInvoiceTo {
+			get {
+				return this._sendInvoiceTo;
+			}
+			set {
+				if ((value != this._sendInvoiceTo)) {
+					this.OnPropertyChanging("SendInvoiceTo", this._sendInvoiceTo);
+					this._sendInvoiceTo = value;
+					this.OnPropertyChanged("SendInvoiceTo");
+				}
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="LoadDescription", Id="0x0100F5C0C5AAA44E47B1A7CCFECEE1E8E94E")]
+	public partial class LoadDescription : Element {
+		
+		private string _deliveryNumber;
+		
+		private System.Nullable<double> _goodsQuantity;
+		
+		private System.Nullable<double> _numberOfPallets;
+		
+		private string _cMRNumber;
+		
+		private string _invoiceNumber;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shippingIndex;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<MarketMarket> _market;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<PalletTypes> _palletTypes;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity> _commodity;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public LoadDescription() {
+			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
+			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
+			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
+			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
+			this._market = new Microsoft.SharePoint.Linq.EntityRef<MarketMarket>();
+			this._market.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<MarketMarket>>(this.OnMarketSync);
+			this._market.OnChanged += new System.EventHandler(this.OnMarketChanged);
+			this._market.OnChanging += new System.EventHandler(this.OnMarketChanging);
+			this._palletTypes = new Microsoft.SharePoint.Linq.EntityRef<PalletTypes>();
+			this._palletTypes.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PalletTypes>>(this.OnPalletTypesSync);
+			this._palletTypes.OnChanged += new System.EventHandler(this.OnPalletTypesChanged);
+			this._palletTypes.OnChanging += new System.EventHandler(this.OnPalletTypesChanging);
+			this._commodity = new Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity>();
+			this._commodity.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity>>(this.OnCommoditySync);
+			this._commodity.OnChanged += new System.EventHandler(this.OnCommodityChanged);
+			this._commodity.OnChanging += new System.EventHandler(this.OnCommodityChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DeliveryNumber", Storage="_deliveryNumber", FieldType="Text")]
+		public string DeliveryNumber {
+			get {
+				return this._deliveryNumber;
+			}
+			set {
+				if ((value != this._deliveryNumber)) {
+					this.OnPropertyChanging("DeliveryNumber", this._deliveryNumber);
+					this._deliveryNumber = value;
+					this.OnPropertyChanged("DeliveryNumber");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GoodsQuantity", Storage="_goodsQuantity", FieldType="Number")]
+		public System.Nullable<double> GoodsQuantity {
+			get {
+				return this._goodsQuantity;
+			}
+			set {
+				if ((value != this._goodsQuantity)) {
+					this.OnPropertyChanging("GoodsQuantity", this._goodsQuantity);
+					this._goodsQuantity = value;
+					this.OnPropertyChanged("GoodsQuantity");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NumberOfPallets", Storage="_numberOfPallets", FieldType="Number")]
+		public System.Nullable<double> NumberOfPallets {
+			get {
+				return this._numberOfPallets;
+			}
+			set {
+				if ((value != this._numberOfPallets)) {
+					this.OnPropertyChanging("NumberOfPallets", this._numberOfPallets);
+					this._numberOfPallets = value;
+					this.OnPropertyChanged("NumberOfPallets");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CMRNumber", Storage="_cMRNumber", FieldType="Text")]
+		public string CMRNumber {
+			get {
+				return this._cMRNumber;
+			}
+			set {
+				if ((value != this._cMRNumber)) {
+					this.OnPropertyChanging("CMRNumber", this._cMRNumber);
+					this._cMRNumber = value;
+					this.OnPropertyChanged("CMRNumber");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="InvoiceNumber", Storage="_invoiceNumber", FieldType="Text")]
+		public string InvoiceNumber {
+			get {
+				return this._invoiceNumber;
+			}
+			set {
+				if ((value != this._invoiceNumber)) {
+					this.OnPropertyChanging("InvoiceNumber", this._invoiceNumber);
+					this._invoiceNumber = value;
+					this.OnPropertyChanged("InvoiceNumber");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
+		public Shipping ShippingIndex {
+			get {
+				return this._shippingIndex.GetEntity();
+			}
+			set {
+				this._shippingIndex.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="MarketTitle", Storage="_market", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Market")]
+		public MarketMarket Market {
+			get {
+				return this._market.GetEntity();
+			}
+			set {
+				this._market.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PalletTypesTitle", Storage="_palletTypes", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Pallet Types")]
+		public PalletTypes PalletTypes {
+			get {
+				return this._palletTypes.GetEntity();
+			}
+			set {
+				this._palletTypes.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2Commodity", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
+		public CommodityCommodity Commodity {
+			get {
+				return this._commodity.GetEntity();
+			}
+			set {
+				this._commodity.SetEntity(value);
+			}
+		}
+		
+		private void OnShippingIndexChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ShippingIndex", this._shippingIndex.Clone());
+		}
+		
+		private void OnShippingIndexChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ShippingIndex");
+		}
+		
+		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.LoadDescription.Add(this);
+			}
+			else {
+				e.Item.LoadDescription.Remove(this);
+			}
+		}
+		
+		private void OnMarketChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Market", this._market.Clone());
+		}
+		
+		private void OnMarketChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Market");
+		}
+		
+		private void OnMarketSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<MarketMarket> e) {
+		}
+		
+		private void OnPalletTypesChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("PalletTypes", this._palletTypes.Clone());
+		}
+		
+		private void OnPalletTypesChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("PalletTypes");
+		}
+		
+		private void OnPalletTypesSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PalletTypes> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.LoadDescription.Add(this);
+			}
+			else {
+				e.Item.LoadDescription.Remove(this);
+			}
+		}
+		
+		private void OnCommodityChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Commodity", this._commodity.Clone());
+		}
+		
+		private void OnCommodityChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Commodity");
+		}
+		
+		private void OnCommoditySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.LoadDescription.Add(this);
+			}
+			else {
+				e.Item.LoadDescription.Remove(this);
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Market", Id="0x010002DF2DC592811A4DA07999F3867CDC82")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(MarketMarket))]
+	public partial class Market : Element {
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public Market() {
+			this.OnCreated();
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="PalletTypes", Id="0x0100B7016EC0D33BE948969FE6FB90839B78")]
+	public partial class PalletTypes : Element {
+		
+		private string _palletSize;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public PalletTypes() {
+			this._loadDescription = new Microsoft.SharePoint.Linq.EntitySet<LoadDescription>();
+			this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>(this.OnLoadDescriptionSync);
+			this._loadDescription.OnChanged += new System.EventHandler(this.OnLoadDescriptionChanged);
+			this._loadDescription.OnChanging += new System.EventHandler(this.OnLoadDescriptionChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PalletSize", Storage="_palletSize", FieldType="Text")]
+		public string PalletSize {
+			get {
+				return this._palletSize;
+			}
+			set {
+				if ((value != this._palletSize)) {
+					this.OnPropertyChanging("PalletSize", this._palletSize);
+					this._palletSize = value;
+					this.OnPropertyChanged("PalletSize");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PalletTypesTitle", Storage="_loadDescription", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Load Description")]
+		public Microsoft.SharePoint.Linq.EntitySet<LoadDescription> LoadDescription {
+			get {
+				return this._loadDescription;
+			}
+			set {
+				this._loadDescription.Assign(value);
+			}
+		}
+		
+		private void OnLoadDescriptionChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("LoadDescription", this._loadDescription.Clone());
+		}
+		
+		private void OnLoadDescriptionChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("LoadDescription");
+		}
+		
+		private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.PalletTypes = this;
+			}
+			else {
+				e.Item.PalletTypes = null;
 			}
 		}
 	}
@@ -1905,319 +2244,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	/// <summary>
 	/// Utwórz nowy element listy.
 	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="LoadDescription", Id="0x0100F5C0C5AAA44E47B1A7CCFECEE1E8E94E")]
-	public partial class LoadDescription : Element {
-		
-		private string _deliveryNumber;
-		
-		private System.Nullable<double> _goodsQuantity;
-		
-		private System.Nullable<double> _numberOfPallets;
-		
-		private string _cMRNumber;
-		
-		private string _invoiceNumber;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shippingIndex;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<MarketMarket> _market;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<PalletTypes> _palletTypes;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity> _commodity;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public LoadDescription() {
-			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
-			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
-			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
-			this._market = new Microsoft.SharePoint.Linq.EntityRef<MarketMarket>();
-			this._market.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<MarketMarket>>(this.OnMarketSync);
-			this._market.OnChanged += new System.EventHandler(this.OnMarketChanged);
-			this._market.OnChanging += new System.EventHandler(this.OnMarketChanging);
-			this._palletTypes = new Microsoft.SharePoint.Linq.EntityRef<PalletTypes>();
-			this._palletTypes.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PalletTypes>>(this.OnPalletTypesSync);
-			this._palletTypes.OnChanged += new System.EventHandler(this.OnPalletTypesChanged);
-			this._palletTypes.OnChanging += new System.EventHandler(this.OnPalletTypesChanging);
-			this._commodity = new Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity>();
-			this._commodity.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity>>(this.OnCommoditySync);
-			this._commodity.OnChanged += new System.EventHandler(this.OnCommodityChanged);
-			this._commodity.OnChanging += new System.EventHandler(this.OnCommodityChanging);
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DeliveryNumber", Storage="_deliveryNumber", FieldType="Text")]
-		public string DeliveryNumber {
-			get {
-				return this._deliveryNumber;
-			}
-			set {
-				if ((value != this._deliveryNumber)) {
-					this.OnPropertyChanging("DeliveryNumber", this._deliveryNumber);
-					this._deliveryNumber = value;
-					this.OnPropertyChanged("DeliveryNumber");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GoodsQuantity", Storage="_goodsQuantity", FieldType="Number")]
-		public System.Nullable<double> GoodsQuantity {
-			get {
-				return this._goodsQuantity;
-			}
-			set {
-				if ((value != this._goodsQuantity)) {
-					this.OnPropertyChanging("GoodsQuantity", this._goodsQuantity);
-					this._goodsQuantity = value;
-					this.OnPropertyChanged("GoodsQuantity");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NumberOfPallets", Storage="_numberOfPallets", FieldType="Number")]
-		public System.Nullable<double> NumberOfPallets {
-			get {
-				return this._numberOfPallets;
-			}
-			set {
-				if ((value != this._numberOfPallets)) {
-					this.OnPropertyChanging("NumberOfPallets", this._numberOfPallets);
-					this._numberOfPallets = value;
-					this.OnPropertyChanged("NumberOfPallets");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CMRNumber", Storage="_cMRNumber", FieldType="Text")]
-		public string CMRNumber {
-			get {
-				return this._cMRNumber;
-			}
-			set {
-				if ((value != this._cMRNumber)) {
-					this.OnPropertyChanging("CMRNumber", this._cMRNumber);
-					this._cMRNumber = value;
-					this.OnPropertyChanged("CMRNumber");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="InvoiceNumber", Storage="_invoiceNumber", FieldType="Text")]
-		public string InvoiceNumber {
-			get {
-				return this._invoiceNumber;
-			}
-			set {
-				if ((value != this._invoiceNumber)) {
-					this.OnPropertyChanging("InvoiceNumber", this._invoiceNumber);
-					this._invoiceNumber = value;
-					this.OnPropertyChanged("InvoiceNumber");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public Shipping ShippingIndex {
-			get {
-				return this._shippingIndex.GetEntity();
-			}
-			set {
-				this._shippingIndex.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="MarketTitle", Storage="_market", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Market")]
-		public MarketMarket Market {
-			get {
-				return this._market.GetEntity();
-			}
-			set {
-				this._market.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PalletTypesTitle", Storage="_palletTypes", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Pallet Types")]
-		public PalletTypes PalletTypes {
-			get {
-				return this._palletTypes.GetEntity();
-			}
-			set {
-				this._palletTypes.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2Commodity", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
-		public CommodityCommodity Commodity {
-			get {
-				return this._commodity.GetEntity();
-			}
-			set {
-				this._commodity.SetEntity(value);
-			}
-		}
-		
-		private void OnShippingIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShippingIndex", this._shippingIndex.Clone());
-		}
-		
-		private void OnShippingIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShippingIndex");
-		}
-		
-		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.LoadDescription.Add(this);
-			}
-			else {
-				e.Item.LoadDescription.Remove(this);
-			}
-		}
-		
-		private void OnMarketChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Market", this._market.Clone());
-		}
-		
-		private void OnMarketChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Market");
-		}
-		
-		private void OnMarketSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<MarketMarket> e) {
-		}
-		
-		private void OnPalletTypesChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("PalletTypes", this._palletTypes.Clone());
-		}
-		
-		private void OnPalletTypesChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("PalletTypes");
-		}
-		
-		private void OnPalletTypesSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PalletTypes> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.LoadDescription.Add(this);
-			}
-			else {
-				e.Item.LoadDescription.Remove(this);
-			}
-		}
-		
-		private void OnCommodityChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Commodity", this._commodity.Clone());
-		}
-		
-		private void OnCommodityChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Commodity");
-		}
-		
-		private void OnCommoditySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.LoadDescription.Add(this);
-			}
-			else {
-				e.Item.LoadDescription.Remove(this);
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Utwórz nowy element listy.
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Market", Id="0x010002DF2DC592811A4DA07999F3867CDC82")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(MarketMarket))]
-	public partial class Market : Element {
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public Market() {
-			this.OnCreated();
-		}
-	}
-	
-	/// <summary>
-	/// Utwórz nowy element listy.
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="PalletTypes", Id="0x0100B7016EC0D33BE948969FE6FB90839B78")]
-	public partial class PalletTypes : Element {
-		
-		private string _palletSize;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public PalletTypes() {
-			this._loadDescription = new Microsoft.SharePoint.Linq.EntitySet<LoadDescription>();
-			this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>(this.OnLoadDescriptionSync);
-			this._loadDescription.OnChanged += new System.EventHandler(this.OnLoadDescriptionChanged);
-			this._loadDescription.OnChanging += new System.EventHandler(this.OnLoadDescriptionChanging);
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PalletSize", Storage="_palletSize", FieldType="Text")]
-		public string PalletSize {
-			get {
-				return this._palletSize;
-			}
-			set {
-				if ((value != this._palletSize)) {
-					this.OnPropertyChanging("PalletSize", this._palletSize);
-					this._palletSize = value;
-					this.OnPropertyChanged("PalletSize");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PalletTypesTitle", Storage="_loadDescription", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Load Description")]
-		public Microsoft.SharePoint.Linq.EntitySet<LoadDescription> LoadDescription {
-			get {
-				return this._loadDescription;
-			}
-			set {
-				this._loadDescription.Assign(value);
-			}
-		}
-		
-		private void OnLoadDescriptionChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("LoadDescription", this._loadDescription.Clone());
-		}
-		
-		private void OnLoadDescriptionChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("LoadDescription");
-		}
-		
-		private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.PalletTypes = this;
-			}
-			else {
-				e.Item.PalletTypes = null;
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Utwórz nowy element listy.
-	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Route", Id="0x0100121B8B770545430A8B59B62D84C02C38")]
 	public partial class Route : Element {
 		
 		private string _materialMaster;
 		
 		private string _remarkMM;
+		
+		private string _portOfDeparture;
+		
+		private string _cityOfDeparture;
 		
 		private System.Nullable<double> _transportCosts;
 		
@@ -2321,6 +2357,34 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DeparturePort", Storage="_portOfDeparture", FieldType="Text")]
+		public string PortOfDeparture {
+			get {
+				return this._portOfDeparture;
+			}
+			set {
+				if ((value != this._portOfDeparture)) {
+					this.OnPropertyChanging("PortOfDeparture", this._portOfDeparture);
+					this._portOfDeparture = value;
+					this.OnPropertyChanged("PortOfDeparture");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DepartureCity", Storage="_cityOfDeparture", FieldType="Text")]
+		public string CityOfDeparture {
+			get {
+				return this._cityOfDeparture;
+			}
+			set {
+				if ((value != this._cityOfDeparture)) {
+					this.OnPropertyChanging("CityOfDeparture", this._cityOfDeparture);
+					this._cityOfDeparture = value;
+					this.OnPropertyChanged("CityOfDeparture");
+				}
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TransportCosts", Storage="_transportCosts", FieldType="Number")]
 		public System.Nullable<double> TransportCosts {
 			get {
@@ -2399,7 +2463,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JTI Partner")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
 		public Partner VendorName {
 			get {
 				return this._vendorName.GetEntity();
@@ -2852,7 +2916,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JTI Partner")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
 		public Partner VendorName {
 			get {
 				return this._vendorName.GetEntity();
@@ -3283,7 +3347,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JTI Partner")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
 		public Partner VendorName {
 			get {
 				return this._vendorName.GetEntity();
@@ -3313,7 +3377,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2PartnerTitle", Storage="_securityEscortProvider", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JTI Partner")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2PartnerTitle", Storage="_securityEscortProvider", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
 		public Partner SecurityEscortProvider {
 			get {
 				return this._securityEscortProvider.GetEntity();
@@ -3333,7 +3397,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_securityEscort", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Security Escort Catalog")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_securityEscort", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Security Escort Route")]
 		public SecurityEscortCatalog SecurityEscort {
 			get {
 				return this._securityEscort.GetEntity();
@@ -3858,7 +3922,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Trailer2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JTI Partner")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Trailer2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
 		public Partner VendorName {
 			get {
 				return this._vendorName.GetEntity();
@@ -3942,6 +4006,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shippingIndex;
 		
+		private Microsoft.SharePoint.Linq.EntityRef<Truck> _truckRegistrationNumber;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<Trailer> _trailerRegistrationNumber;
 		
 		#region Extensibility Method Definitions
@@ -3955,6 +4021,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
 			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
 			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
+			this._truckRegistrationNumber = new Microsoft.SharePoint.Linq.EntityRef<Truck>();
+			this._truckRegistrationNumber.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck>>(this.OnTruckRegistrationNumberSync);
+			this._truckRegistrationNumber.OnChanged += new System.EventHandler(this.OnTruckRegistrationNumberChanged);
+			this._truckRegistrationNumber.OnChanging += new System.EventHandler(this.OnTruckRegistrationNumberChanging);
 			this._trailerRegistrationNumber = new Microsoft.SharePoint.Linq.EntityRef<Trailer>();
 			this._trailerRegistrationNumber.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer>>(this.OnTrailerRegistrationNumberSync);
 			this._trailerRegistrationNumber.OnChanged += new System.EventHandler(this.OnTrailerRegistrationNumberChanged);
@@ -4003,6 +4073,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerCondition2TruckTitle", Storage="_truckRegistrationNumber", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Truck")]
+		public Truck TruckRegistrationNumber {
+			get {
+				return this._truckRegistrationNumber.GetEntity();
+			}
+			set {
+				this._truckRegistrationNumber.SetEntity(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerCondition2TrailerTitle", Storage="_trailerRegistrationNumber", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Trailer")]
 		public Trailer TrailerRegistrationNumber {
 			get {
@@ -4022,6 +4102,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TrailerCondition.Add(this);
+			}
+			else {
+				e.Item.TrailerCondition.Remove(this);
+			}
+		}
+		
+		private void OnTruckRegistrationNumberChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TruckRegistrationNumber", this._truckRegistrationNumber.Clone());
+		}
+		
+		private void OnTruckRegistrationNumberChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TruckRegistrationNumber");
+		}
+		
+		private void OnTruckRegistrationNumberSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.TrailerCondition.Add(this);
 			}
@@ -4080,6 +4177,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping0;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<TrailerCondition> _trailerCondition;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
 		
 		#region Extensibility Method Definitions
@@ -4097,6 +4196,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._shipping0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShipping0Sync);
 			this._shipping0.OnChanged += new System.EventHandler(this.OnShipping0Changed);
 			this._shipping0.OnChanging += new System.EventHandler(this.OnShipping0Changing);
+			this._trailerCondition = new Microsoft.SharePoint.Linq.EntitySet<TrailerCondition>();
+			this._trailerCondition.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TrailerCondition>>(this.OnTrailerConditionSync);
+			this._trailerCondition.OnChanged += new System.EventHandler(this.OnTrailerConditionChanged);
+			this._trailerCondition.OnChanging += new System.EventHandler(this.OnTrailerConditionChanging);
 			this._vendorName = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
 			this._vendorName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnVendorNameSync);
 			this._vendorName.OnChanged += new System.EventHandler(this.OnVendorNameChanged);
@@ -4152,7 +4255,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Truck2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JTI Partner")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerCondition2TruckTitle", Storage="_trailerCondition", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Trailer Condition")]
+		public Microsoft.SharePoint.Linq.EntitySet<TrailerCondition> TrailerCondition {
+			get {
+				return this._trailerCondition;
+			}
+			set {
+				this._trailerCondition.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Truck2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
 		public Partner VendorName {
 			get {
 				return this._vendorName.GetEntity();
@@ -4193,6 +4306,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			else {
 				e.Item.SecurityEscortCarRegistrationNumber = null;
+			}
+		}
+		
+		private void OnTrailerConditionChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TrailerCondition", this._trailerCondition.Clone());
+		}
+		
+		private void OnTrailerConditionChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TrailerCondition");
+		}
+		
+		private void OnTrailerConditionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TrailerCondition> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TruckRegistrationNumber = this;
+			}
+			else {
+				e.Item.TruckRegistrationNumber = null;
 			}
 		}
 		
@@ -4248,7 +4378,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Partner2WarehouseTitle", Storage="_partner", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="JTI Partner")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Partner2WarehouseTitle", Storage="_partner", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Partner")]
 		public Microsoft.SharePoint.Linq.EntitySet<Partner> Partner {
 			get {
 				return this._partner;

@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       try
       {
         return (
-              from idx in edc.JTIPartner
+              from idx in edc.Partner
               where idx.ShepherdUserTitle.Contains(_user.Name)
               select idx).First();
       }
