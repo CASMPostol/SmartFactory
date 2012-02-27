@@ -218,7 +218,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EditButton.Click += new EventHandler(m_StateMachineEngine.EditButton_Click);
       m_AbortButton.Click += new EventHandler(m_StateMachineEngine.AbortButton_Click);
       m_AcceptButton.Click += new EventHandler(m_StateMachineEngine.AcceptButton_Click);
+      m_SecurityRequiredChecbox.CheckedChanged += new EventHandler(m_SecurityRequiredChecbox_CheckedChanged);
     }
+
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -379,6 +381,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         foreach (var item in _rslt)
           Parent.Controls.Add(new LiteralControl(item));
       }
+      protected override void UpdateEscxort()
+      {
+        Parent.UpdateEscxort();
+      }
       #endregion
 
       #region private
@@ -437,6 +443,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void SetInterconnectionData(SecurityEscortCatalogInterconnectionData _Escort)
     {
+      if (!m_SecurityRequiredChecbox.Checked)
+        return;
       m_ControlState.SecurityCatalogID = _Escort.ID;
       m_SecurityEscortLabel.Text = _Escort.Title;
     }
@@ -479,6 +487,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region Show
+    internal void UpdateEscxort()
+    {
+      if (m_SecurityRequiredChecbox.Checked)
+        Show(CurrentShipping.SecurityEscort);
+      else
+        ClearSecurityEscor();
+    }
     private ActionResult ShowShipping()
     {
       ClearUserInterface();
@@ -704,7 +719,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void UpdateSecurityEscort(Shipping _sipping)
     {
-      if (m_ControlState.SecurityCatalogID.IsNullOrEmpty())
+      if (!m_SecurityRequiredChecbox.Checked || m_ControlState.SecurityCatalogID.IsNullOrEmpty())
       {
         _sipping.SecurityEscort = null;
         _sipping.SecurityEscortProvider = null;
@@ -825,6 +840,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EditButton.Enabled = (_set & ButtonsSet.EditOn) != 0;
       m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
       m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
+      m_SecurityRequiredChecbox.Enabled = (_set & ButtonsSet.SaveOn) != 0;
     }
     #endregion
 
@@ -1028,5 +1044,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #endregion
+
   }
 }
