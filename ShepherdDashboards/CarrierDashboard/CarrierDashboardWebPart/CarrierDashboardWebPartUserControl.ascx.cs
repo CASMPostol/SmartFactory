@@ -822,7 +822,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_RouteLabel.Visible = m_RouteHeaderLabel.Visible = (_set & ButtonsSet.RouteOn) != 0;
       m_SecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
       m_SecurityEscortHeaderLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
-      m_SecurityRequiredChecbox.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
+      m_SecurityRequiredChecbox.Visible = (_set & ButtonsSet.RouteOn) != 0;
+      m_SecurityRequiredLabel.Visible = (_set & ButtonsSet.RouteOn) != 0;
     }
     private void SetEnabled(StateMachineEngine.ControlsSet _set)
     {

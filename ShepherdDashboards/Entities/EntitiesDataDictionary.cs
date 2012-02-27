@@ -118,7 +118,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         return ServiceType.Forwarder;
     }
     #endregion
-
     #region data management
     private static type Create<type>(EntityList<type> _EDC, Dictionary<string, type> _dictionary, string _key) where type : Element, new()
     {
@@ -159,8 +158,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       }
     }
     private EntitiesDataContext m_EDC;
-
+    private static string EmptyKey
     #endregion
+
     #region Dictionaries
     private Dictionary<string, Partner> m_Partner = new Dictionary<string, Partner>();
     private Dictionary<string, FreightPayer> m_FreightPayer = new Dictionary<string, FreightPayer>();
