@@ -48,7 +48,7 @@
       <CHOICE>Pallet</CHOICE>
     </CHOICES>
   </Field>
-      <Field Name="SecurityEscortCatalogTitle" ID="{5d320c1b-8d60-4540-842a-e1b8b20168b8}" Type="Lookup" List="Lists/SecurityEscortCatalogList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Security Escort" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="SecurityEscortCatalogTitle" ID="{5d320c1b-8d60-4540-842a-e1b8b20168b8}" Type="Lookup" List="Lists/SecurityEscortRouteList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Security Escort" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field DisplayName="Warehouse" Name="Warehouse" Type="Text" ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Group="CAS Smart Factory Shepherd" />
       <Field Name="PartnerTitle" ID="{c7ca4aa6-8399-4714-a4a4-42145faba936}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="TruckTitle" ID="{c50e99df-7169-4cf1-a771-47b371f6d3fe}" Type="Lookup" List="Lists/TruckList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Truck / Car: Registration Number" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
@@ -85,7 +85,7 @@
       <Field Name="ShippingOperationOutband2TruckTitle" ID="{f9223c12-0af1-48f7-9edc-eabad2ead7c2}" Type="Lookup" List="Lists/TruckList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Security Escort Car : Registration Number" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="BusinessDescription" ID="{17041C4C-ED3C-4DEE-8609-FE769EAFD8F0}" Type="Text" DisplayName="Business Description" Group="CAS Smart Factory Shepherd" />
       <Field Type="Lookup" DisplayName="RouteID" List="Lists/RouteList" ShowField="ID" FieldRef="5347194E-CED0-405F-8132-A0CA93DE3995" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{A1A55CF7-B4D2-4484-AC20-43CCA444E813}" Name="Shipping2RouteID" Overwrite="TRUE" />
-      <Field Type="Lookup" DisplayName="EscortID" List="Lists/SecurityEscortCatalogList" ShowField="ID" FieldRef="5D320C1B-8D60-4540-842A-E1B8B20168B8" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{AFE465EA-1E7C-48BA-A0FA-32F7932819B3}" Name="Shipping2EscortID" Overwrite="TRUE" />
+      <Field Type="Lookup" DisplayName="EscortID" List="Lists/SecurityEscortRouteList" ShowField="ID" FieldRef="5D320C1B-8D60-4540-842A-E1B8B20168B8" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{AFE465EA-1E7C-48BA-A0FA-32F7932819B3}" Name="Shipping2EscortID" Overwrite="TRUE" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

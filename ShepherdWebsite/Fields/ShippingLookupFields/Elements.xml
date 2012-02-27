@@ -305,7 +305,7 @@
   <Field
     Type="Lookup"
     DisplayName="EscortID"
-    List="Lists/SecurityEscortCatalogList"
+    List="Lists/SecurityEscortRouteList"
     ShowField="ID"
     FieldRef="5D320C1B-8D60-4540-842A-E1B8B20168B8"
     ReadOnly="TRUE"
