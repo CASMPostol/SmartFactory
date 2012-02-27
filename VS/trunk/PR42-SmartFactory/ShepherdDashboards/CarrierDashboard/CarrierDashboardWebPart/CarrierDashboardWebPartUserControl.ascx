@@ -66,6 +66,15 @@
     </asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
+        <asp:Label ID="m_SecurityRequiredLabel" runat="server" Text="Security Required" CssClass="Label"></asp:Label>
+      </asp:TableCell>
+      <asp:TableCell>
+        <asp:CheckBox ID="m_SecurityRequiredChecbox" runat="server">
+        </asp:CheckBox>
+      </asp:TableCell>
+    </asp:TableRow>
+    <asp:TableRow>
+      <asp:TableCell>
         <asp:Label ID="m_SecurityEscortHeaderLabel" runat="server" Text="Security Escort" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
         <asp:Label ID="m_SecurityEscortLabel" runat="server" Text="" CssClass="Label"></asp:Label>
