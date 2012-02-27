@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Security Escort Catalog"
-                OnQuickLaunch="TRUE"
-                TemplateType="10037"
-                Url="Lists/SecurityEscortCatalogList"
-                Description="Security Escort Catalog List Instance">
-  </ListInstance>
-</Elements>

@@ -261,12 +261,6 @@
     <None Include="Lists\Dictionaries\ScheduleTemplateTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0d1d5580-2907-4c0f-8ffd-e881b9e50f52}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\SecurityEscortCatalogList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{3ea03cde-f62e-462d-9ecd-b1427b96b994}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{417198cd-2b38-4203-bb8d-3b43c6793875}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{54f62c7f-7014-461d-81c5-5d84080bcb45}</SharePointProjectItemId>
     </None>
@@ -313,16 +307,16 @@
       <SharePointProjectItemId>{a54ceb9e-c4f7-4d56-b721-41ced1f44bb4}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Libraries\FreightPOTemplate\FreightPOLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{7b2ac6b3-f42d-47f2-bfd4-697d9b8f9a34}</SharePointProjectItemId>
+      <SharePointProjectItemId>{681c4581-710c-4cc7-924f-28104580b1e7}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Libraries\FreightPOTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{54932ebf-db95-44d9-8ad7-ad0f221590d2}</SharePointProjectItemId>
+      <SharePointProjectItemId>{66745632-9121-4c5d-a8a5-b8e2ee181c48}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Libraries\SecurityEscortPO\SecurityEscortPOLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0e02e717-ac37-4932-88b6-cdacf5cecf65}</SharePointProjectItemId>
+    <None Include="Lists\Libraries\SecurityEscortPOTemplate\SecurityEscortPOLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8fdc5cee-26b0-4c7f-87c8-26dde4fbddfc}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Libraries\SecurityEscortPO\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{c8a1febb-541a-463f-9dd6-58a9899ab2dc}</SharePointProjectItemId>
+    <None Include="Lists\Libraries\SecurityEscortPOTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{29f0e864-a905-4156-85a3-1f75bcd45aef}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Libraries\SecuritySealProtocolLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{64b86b44-1e47-4b2e-ae13-e5a71f32e45c}</SharePointProjectItemId>
@@ -505,11 +499,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Dictionaries\ScheduleTemplateTemplate\Schema.xml" />
-    <Content Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\SecurityEscortCatalogList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\SecurityEscortCatalogTemplate\Schema.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Schema.xml" />
@@ -543,13 +532,13 @@
     <Content Include="Lists\Libraries\FreightPOTemplate\Repair.aspx" />
     <Content Include="Lists\Libraries\FreightPOTemplate\Schema.xml" />
     <Content Include="Lists\Libraries\FreightPOTemplate\Upload.aspx" />
-    <Content Include="Lists\Libraries\SecurityEscortPO\EditDlg.htm" />
-    <Content Include="Lists\Libraries\SecurityEscortPO\Elements.xml" />
-    <Content Include="Lists\Libraries\SecurityEscortPO\FileDlg.htm" />
-    <Content Include="Lists\Libraries\SecurityEscortPO\SecurityEscortPOLibrary\Elements.xml" />
-    <Content Include="Lists\Libraries\SecurityEscortPO\Repair.aspx" />
-    <Content Include="Lists\Libraries\SecurityEscortPO\Schema.xml" />
-    <Content Include="Lists\Libraries\SecurityEscortPO\Upload.aspx" />
+    <Content Include="Lists\Libraries\SecurityEscortPOTemplate\EditDlg.htm" />
+    <Content Include="Lists\Libraries\SecurityEscortPOTemplate\Elements.xml" />
+    <Content Include="Lists\Libraries\SecurityEscortPOTemplate\FileDlg.htm" />
+    <Content Include="Lists\Libraries\SecurityEscortPOTemplate\Repair.aspx" />
+    <Content Include="Lists\Libraries\SecurityEscortPOTemplate\Schema.xml" />
+    <Content Include="Lists\Libraries\SecurityEscortPOTemplate\SecurityEscortPOLibrary\Elements.xml" />
+    <Content Include="Lists\Libraries\SecurityEscortPOTemplate\Upload.aspx" />
     <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\Elements.xml" />

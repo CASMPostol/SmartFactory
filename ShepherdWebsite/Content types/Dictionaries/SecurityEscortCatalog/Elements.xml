@@ -11,13 +11,12 @@
       <FieldRef ID="{40070CB4-6ED0-4024-9269-70DAC8932C42}" Name="SecurityEscortCatalog2BusinessDescriptionTitle" />
       <FieldRef ID="{4E19EC40-3A94-453E-ABEA-4DCBE1BF8ECD}" Name="EscortDestination" />
       <FieldRef ID="{40088770-43E3-441B-9973-D3B093DC131C}" Name="RemarkMM" />
-      <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerIndex" />
+      <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerTitle" />
       <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />
       <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
       <FieldRef ID="{D73A3F7D-6892-4A46-90EE-39BEB668944A}" Name="SecurityCost" />
       <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
       <FieldRef ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}" Name="SecurityEscrotPO" />
-      <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerIndex" />
     </FieldRefs>
   </ContentType>
 </Elements>
