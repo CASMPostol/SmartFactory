@@ -218,7 +218,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EditButton.Click += new EventHandler(m_StateMachineEngine.EditButton_Click);
       m_AbortButton.Click += new EventHandler(m_StateMachineEngine.AbortButton_Click);
       m_AcceptButton.Click += new EventHandler(m_StateMachineEngine.AcceptButton_Click);
-      m_SecurityRequiredChecbox.CheckedChanged += new EventHandler(m_SecurityRequiredChecbox_CheckedChanged);
+      m_SecurityRequiredChecbox.CheckedChanged += new EventHandler(m_StateMachineEngine.m_SecurityRequiredChecbox_CheckedChanged);
     }
 
     /// <summary>
