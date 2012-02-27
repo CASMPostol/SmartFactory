@@ -158,7 +158,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       }
     }
     private EntitiesDataContext m_EDC;
-    private static string EmptyKey
+    //private static string EmptyKey
     #endregion
 
     #region Dictionaries
