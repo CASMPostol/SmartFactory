@@ -18,5 +18,14 @@
       <FieldRef ID="{E1C985AA-F1A4-4275-87D3-EE0DF7B44223}" Name="CurrencyTitle" />
       <FieldRef ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}" Name="SecurityEscrotPO" />
     </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
   </ContentType>
 </Elements>
