@@ -284,6 +284,8 @@
     <Content Include="Images\ShepherdDashboards\SiteLogo49x48.gif" />
     <Content Include="Images\ShepherdImages\DefaultBanner.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />
+    <Content Include="Images\ShepherdImages\DefaultBanner2_truck.jpg" />
+    <Content Include="Images\ShepherdImages\DefaultBanner_truck.jpg" />
     <Content Include="WebPartPages\WebPageTemplate_1.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
