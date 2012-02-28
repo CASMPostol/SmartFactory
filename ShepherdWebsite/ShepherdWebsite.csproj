@@ -131,6 +131,9 @@
     <None Include="Content types\Shipping\AlarmsAndEvents\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fb5db4c0-6c0f-4bc1-9f64-be2f02c7f1a0}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\FreightPO\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7fcf5b24-a11f-4a5d-b405-eab1c443d6f2}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Shipping\LoadDescription\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c0509c90-b44b-4167-b0e4-4069c85b1bf9}</SharePointProjectItemId>
     </None>
@@ -306,6 +309,12 @@
     <None Include="Lists\EventLog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a54ceb9e-c4f7-4d56-b721-41ced1f44bb4}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Libraries\FreightPOLibraryTemplate\FreightPOLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e57b4642-0679-4703-b631-164f9edda75b}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Libraries\FreightPOLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5eea8533-fe43-428d-910a-ce99cc1a7f27}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Libraries\SecuritySealProtocolLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{64b86b44-1e47-4b2e-ae13-e5a71f32e45c}</SharePointProjectItemId>
     </None>
@@ -391,6 +400,7 @@
     <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
     <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml" />
+    <Content Include="Content types\Shipping\FreightPO\Elements.xml" />
     <Content Include="Content types\Shipping\LoadDescription\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -516,6 +526,13 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\EventLog\Elements.xml" />
+    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\FreightPOLibrary\Elements.xml" />
+    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\Elements.xml" />
