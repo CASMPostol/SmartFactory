@@ -487,7 +487,9 @@
     <Content Include="Lists\Dictionaries\ScheduleTemplateTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\SecurityEscortRouteTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\SecurityEscortRouteTemplate\SecurityEscortRouteList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\SecurityEscortRouteTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\SecurityEscortRouteTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\ShipmentTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\ShipmentTypeTemplate\Schema.xml" />
