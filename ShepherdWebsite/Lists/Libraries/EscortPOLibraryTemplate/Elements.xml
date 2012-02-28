@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ListTemplate
+        Name="EscortPOLibraryTemplate"
+        Type="10053"
+        BaseType="1"
+        OnQuickLaunch="TRUE"
+        SecurityBits="11"
+        Sequence="110"
+        DisplayName="Escort PO Library Template"
+        Description="Escort PO Library Template"
+        Image="/_layouts/images/itdl.png"
+        DocumentTemplate="121"/>
+</Elements>
