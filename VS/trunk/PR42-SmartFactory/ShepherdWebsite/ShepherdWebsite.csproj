@@ -131,6 +131,9 @@
     <None Include="Content types\Shipping\AlarmsAndEvents\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fb5db4c0-6c0f-4bc1-9f64-be2f02c7f1a0}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\EscortPO\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{314c2b32-2076-4ad8-b5b7-d10f50be9d69}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Shipping\FreightPO\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{7fcf5b24-a11f-4a5d-b405-eab1c443d6f2}</SharePointProjectItemId>
     </None>
@@ -309,6 +312,12 @@
     <None Include="Lists\EventLog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a54ceb9e-c4f7-4d56-b721-41ced1f44bb4}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Libraries\EscortPOLibraryTemplate\EscortPOLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{137d6191-5a44-4d91-be21-46bae0aba017}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Libraries\EscortPOLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{dd3f14c6-6c7f-41d2-82d4-3a2c09524000}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Libraries\FreightPOLibraryTemplate\FreightPOLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e57b4642-0679-4703-b631-164f9edda75b}</SharePointProjectItemId>
     </None>
@@ -400,6 +409,7 @@
     <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
     <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml" />
+    <Content Include="Content types\Shipping\EscortPO\Elements.xml" />
     <Content Include="Content types\Shipping\FreightPO\Elements.xml" />
     <Content Include="Content types\Shipping\LoadDescription\Elements.xml">
       <SubType>Designer</SubType>
@@ -526,6 +536,13 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\EventLog\Elements.xml" />
+    <Content Include="Lists\Libraries\EscortPOLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\Libraries\EscortPOLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\Libraries\EscortPOLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\Libraries\EscortPOLibraryTemplate\EscortPOLibrary\Elements.xml" />
+    <Content Include="Lists\Libraries\EscortPOLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\Libraries\EscortPOLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Libraries\EscortPOLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Elements.xml" />
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\FileDlg.htm" />
