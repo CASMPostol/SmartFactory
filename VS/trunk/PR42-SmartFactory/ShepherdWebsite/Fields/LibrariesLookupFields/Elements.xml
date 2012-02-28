@@ -17,4 +17,38 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+   Name="Shipping2FreightPOIndex"
+   ID="{FF299D34-A04A-4507-82E7-EF325CC6797E}"
+   Type="Lookup"
+   List="Lists/FreightPOLibrary"
+   ShowField="ID"
+   UnlimitedLengthInDocumentLibrary="False"
+   Indexed="True"
+   RelationshipDeleteBehavior="None"
+   DisplayName="Freight PO"
+   Group="CAS Smart Factory Shepherd"
+   Required="False"
+   Hidden="False"
+   DisplaceOnUpgrade="True"
+   EnforceUniqueValues="False"
+   ReadOnly="False"
+    />
+  <Field
+   Name="Shipping2EscortPOIndex"
+   ID="{045419D2-8EDB-4989-A2B8-650A8EF7C16C}"
+   Type="Lookup"
+   List="Lists/EscortPOLibrary"
+   ShowField="ID"
+   UnlimitedLengthInDocumentLibrary="False"
+   Indexed="True"
+   RelationshipDeleteBehavior="None"
+   DisplayName="Escort PO"
+   Group="CAS Smart Factory Shepherd"
+   Required="False"
+   Hidden="False"
+   DisplaceOnUpgrade="True"
+   EnforceUniqueValues="False"
+   ReadOnly="False"
+    />
 </Elements>
