@@ -32,6 +32,7 @@
       this.m_FileManagementComonent = new CAS.SmartFactory.Shepherd.ImportExport.FileDialog(this.components);
       this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
       this.m_ToolTip = new System.Windows.Forms.ToolTip(this.components);
+      this.m_TestDataCheckBox = new System.Windows.Forms.CheckBox();
       m_tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       m_CollectionURLlabel1 = new System.Windows.Forms.Label();
       m_StatusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -52,6 +53,7 @@
       m_tableLayoutPanel1.Controls.Add(this.m_URLTextBox, 1, 0);
       m_tableLayoutPanel1.Controls.Add(this.m_AddTimeSlotsButton, 0, 2);
       m_tableLayoutPanel1.Controls.Add(this.m_ImportDictionaries, 0, 3);
+      m_tableLayoutPanel1.Controls.Add(this.m_TestDataCheckBox, 1, 3);
       m_tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       m_tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       m_tableLayoutPanel1.Name = "m_tableLayoutPanel1";
@@ -169,6 +171,18 @@
       this.toolStripContainer1.TabIndex = 1;
       this.toolStripContainer1.Text = "toolStripContainer1";
       // 
+      // m_TestDataCheckBox
+      // 
+      this.m_TestDataCheckBox.AutoSize = true;
+      this.m_TestDataCheckBox.Checked = true;
+      this.m_TestDataCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.m_TestDataCheckBox.Location = new System.Drawing.Point(125, 87);
+      this.m_TestDataCheckBox.Name = "m_TestDataCheckBox";
+      this.m_TestDataCheckBox.Size = new System.Drawing.Size(71, 17);
+      this.m_TestDataCheckBox.TabIndex = 5;
+      this.m_TestDataCheckBox.Text = "Test data";
+      this.m_TestDataCheckBox.UseVisualStyleBackColor = true;
+      // 
       // UserInterface
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,6 +218,7 @@
     private System.Windows.Forms.Button m_ImportDictionaries;
     private System.Windows.Forms.ToolTip m_ToolTip;
     private System.Windows.Forms.ToolStripStatusLabel m_FileNameStatusLabel;
+    private System.Windows.Forms.CheckBox m_TestDataCheckBox;
   }
 }
 
