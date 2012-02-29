@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         ServiceType _service = GetService(_route, _update);
         Partner _prtnr = GetOrAddJTIPartner(_update, _service, _route.Vendor.Trim());
         FreightPayer _freightPayer = GetOrAdd<FreightPayer>(m_EDC.FreightPayer, _update, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg);
-        CityType _CityType = GetOrAddCity(_update, _route.Dest_City, _route.Dest_Country);
+        CityType _CityType = GetOrAddCity(_update, _route.Dest_City, _route.Dest_Country, null);
         Currency _Currency = GetOrAdd<Currency>(m_EDC.Currency, _update, m_Currency, _route.Currency);
         ShipmentTypeShipmentType _ShipmentType = GetOrAdd<ShipmentTypeShipmentType>(m_EDC.ShipmentType, _update, m_ShipmentType, ShipmentTypeParse(_route.Material_Master_Short_Text));
         CarrierCarrierType _CarrierCarrierType = GetOrAdd<CarrierCarrierType>(m_EDC.Carrier, _update, m_CarrierCarrierType, _route.Carrier);
@@ -95,8 +95,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       try
       {
-        MarketMarket _mrkt = GetOrAdd<MarketMarket>(m_EDC.Market, _update, m_MarketMarket, "");
-        CityType _CityType = GetOrAddCity(_update, _market.DestinationCity, _market.DestinationCountry);
+        MarketMarket _mrkt = GetOrAdd<MarketMarket>(m_EDC.Market, _update, m_MarketMarket, _market.Market);
+        CityType _CityType = GetOrAddCity(_update, _market.DestinationCity, _market.DestinationCountry, _market.Area);
         string _dstName = String.Format("{0} in {1}", _CityType.Tytuł, _mrkt.Tytuł);
         DestinationMarket _DestinationMarket = new DestinationMarket()
           {
@@ -178,17 +178,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         return _prtnr;
       }
     }
-    private CityType GetOrAddCity(UpdateToolStripEvent _update, string _city, string _country)
+    private CityType GetOrAddCity(UpdateToolStripEvent _update, string _city, string _country, string _area)
     {
+      CountryClass _countryClass = GetOrAdd(m_EDC.Country, _update, m_CountryClass, _country);
+      if (_countryClass.Group.IsNullOrEmpty() && !_area.IsNullOrEmpty())
+        _countryClass.Group = _area;
       if (m_CityType.ContainsKey(_city))
         return m_CityType[_city];
-      else
-      {
-        CountryClass _countryClass = GetOrAdd(m_EDC.Country, _update, m_CountryClass, _country);
-        CityType _prtnr = Create<CityType>(m_EDC.City, m_CityType, _city);
-        _prtnr.CountryName = _countryClass;
-        return _prtnr;
-      }
+      CityType _prtnr = Create<CityType>(m_EDC.City, m_CityType, _city);
+      _prtnr.CountryName = _countryClass;
+      return _prtnr;
     }
     private EntitiesDataContext m_EDC;
     private short m_EmptyKeyIdx = 0;
