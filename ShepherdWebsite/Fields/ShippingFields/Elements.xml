@@ -91,6 +91,15 @@
     <Default>[today]</Default>
   </Field>
   <Field
+    Name="EndTime"
+    ID="{523F36F2-91DD-4323-AC00-F00B6C063B6A}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="End Time">
+    <Default>[today]</Default>
+  </Field>
+  <Field
     Name="ShippingDuration"
     DisplayName="Duration"
     Type="Number"

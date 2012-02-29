@@ -13,6 +13,7 @@
       <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
       <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
       <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
+      <FieldRef ID="{523F36F2-91DD-4323-AC00-F00B6C063B6A}" Name="EndTime" />
       <FieldRef ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}" Name="ShippingDuration" />
       <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
       <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
