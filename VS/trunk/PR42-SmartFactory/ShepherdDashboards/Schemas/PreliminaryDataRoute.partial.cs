@@ -23,22 +23,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas
       {
         foreach (PreliminaryDataRoutePalletTypeRow _palletType in this.PalletTypeTable)
         {
-          _dictionary.AddPalletType(_update, _palletType, _testData);
+          _dictionary.AddPalletType(_update, _palletType);
           _update(this, new ProgressChangedEventArgs(1, "AddCommodity " + _palletType.Title));
         }
         foreach (PreliminaryDataRouteCommodityRow _Commodity in this.CommodityTable)
         {
-          _dictionary.AddCommodity(_update, _Commodity, _testData);
+          _dictionary.AddCommodity(_update, _Commodity);
           _update(this, new ProgressChangedEventArgs(1, "AddCommodity " + _Commodity.Title));
         }
         foreach (PreliminaryDataRouteWarehouseRow _warehouse in this.WarehouseTable)
         {
-          _dictionary.AddWarehouse(_update, _warehouse, _testData);
+          _dictionary.AddWarehouse(_update, _warehouse);
           _update(this, new ProgressChangedEventArgs(1, "AddWarehouse " + _warehouse.Title));
         }
         foreach (PreliminaryDataRouteShippingPointRow _shippingPoint in this.ShippingPointTable)
         {
-          _dictionary.AddShippingPoint(_update, _shippingPoint, _testData);
+          _dictionary.AddShippingPoint(_update, _shippingPoint);
           _update(this, new ProgressChangedEventArgs(1, "AddShippingPoint " + _shippingPoint.Title));
         }
         foreach (PreliminaryDataRoutePartnersRow _partner in this.PartnersTable)
