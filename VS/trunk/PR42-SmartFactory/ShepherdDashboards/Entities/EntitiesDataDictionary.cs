@@ -19,73 +19,100 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       m_EDC.SubmitChanges();
       m_EDC.Dispose(); ;
     }
-    public void AddRoute(UpdateToolStripEvent _update, Schemas.PreliminaryDataRouteRoute _route)
+    public void AddRoute(UpdateToolStripEvent _update, Schemas.PreliminaryDataRouteRoute _route, bool _testData)
     {
-      ServiceType _service = GetService(_route, _update);
-      Partner _prtnr = GetOrAddJTIPartner(_update, _service, _route.Vendor.Trim());
-      FreightPayer _freightPayer = GetOrAdd<FreightPayer>(m_EDC.FreightPayer, _update, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg);
-      CityType _CityType = GetOrAddCity(_update, _route.Dest_City, _route.Dest_Country);
-      Currency _Currency = GetOrAdd<Currency>(m_EDC.Currency, _update, m_Currency, _route.Currency);
-      ShipmentTypeShipmentType _ShipmentType = GetOrAdd<ShipmentTypeShipmentType>(m_EDC.ShipmentType, _update, m_ShipmentType, ShipmentTypeParse(_route.Material_Master_Short_Text)); //TODO
-      CarrierCarrierType _CarrierCarrierType = GetOrAdd<CarrierCarrierType>(m_EDC.Carrier, _update, m_CarrierCarrierType, _route.Carrier);
-      TransportUnitTypeTranspotUnit _TransportUnitTypeTranspotUnit = GetOrAdd<TransportUnitTypeTranspotUnit>(m_EDC.TransportUnitType, _update, m_TransportUnitTypeTranspotUnit, _route.Equipment_Type__UoM);
-      SAPDestinationPlantSAPDestinationPlant _SAPDestinationPlant = GetOrAdd<SAPDestinationPlantSAPDestinationPlant>(m_EDC.SAPDestinationPlant, _update, m_SAPDestinationPlant, _route.SAP_Dest_Plant);
-      BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>(m_EDC.BusinessDescription, _update, m_BusinessDescription, _route.Business_description);
-      string _sku = _route.Material_Master_Short_Text;
-      string __title = String.Format("To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity);
-      switch (_service)
+
+      try
       {
-        case ServiceType.Forwarder:
-          Route _rt = new Route()
-          {
-            Carrier = _CarrierCarrierType,
-            BusinessDescription = _busnessDscrptn,
-            CityName = _CityType,
-            Currency = _Currency,
-            FreightPayer = _freightPayer,
-            FreightPO = _route.PO_NUMBER,
-            MaterialMaster = _sku,
-            RemarkMM = _route.Remarks,
-            SAPDestinationPlant = _SAPDestinationPlant,
-            ShipmentType = _ShipmentType,
-            TransportUnitType = _TransportUnitTypeTranspotUnit,
-            VendorName = _prtnr
-          };
-          m_EDC.Route.InsertOnSubmit(_rt);
-          break;
-        case ServiceType.SecurityEscortProvider:
-          SecurityEscortCatalog _sec = new SecurityEscortCatalog()
-          {
-            BusinessDescription = _busnessDscrptn,
-            Currency = _Currency,
-            EscortDestination = _route.Dest_City,
-            FreightPayer = _freightPayer,
-            MaterialMaster = _sku,
-            RemarkMM = _route.Remarks,
-            SecurityCost = _route.Total_Cost_per_UoM.String2Double(),
-            SecurityEscortPO = _route.PO_NUMBER,
-            Tytuł = __title,
-            VendorName = _prtnr
-          };
-          m_EDC.SecurityEscortRoute.InsertOnSubmit(_sec);
-          break;
-        case ServiceType.VendorAndForwarder:
-        case ServiceType.None:
-        case ServiceType.Invalid:
-        case ServiceType.Vendor:
-        default:
-          break;
+        ServiceType _service = GetService(_route, _update);
+        Partner _prtnr = GetOrAddJTIPartner(_update, _service, _route.Vendor.Trim());
+        FreightPayer _freightPayer = GetOrAdd<FreightPayer>(m_EDC.FreightPayer, _update, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg);
+        CityType _CityType = GetOrAddCity(_update, _route.Dest_City, _route.Dest_Country);
+        Currency _Currency = GetOrAdd<Currency>(m_EDC.Currency, _update, m_Currency, _route.Currency);
+        ShipmentTypeShipmentType _ShipmentType = GetOrAdd<ShipmentTypeShipmentType>(m_EDC.ShipmentType, _update, m_ShipmentType, ShipmentTypeParse(_route.Material_Master_Short_Text));
+        CarrierCarrierType _CarrierCarrierType = GetOrAdd<CarrierCarrierType>(m_EDC.Carrier, _update, m_CarrierCarrierType, _route.Carrier);
+        TransportUnitTypeTranspotUnit _TransportUnitTypeTranspotUnit = GetOrAdd<TransportUnitTypeTranspotUnit>(m_EDC.TransportUnitType, _update, m_TransportUnitTypeTranspotUnit, _route.Equipment_Type__UoM);
+        SAPDestinationPlantSAPDestinationPlant _SAPDestinationPlant = GetOrAdd<SAPDestinationPlantSAPDestinationPlant>(m_EDC.SAPDestinationPlant, _update, m_SAPDestinationPlant, _route.SAP_Dest_Plant);
+        BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>(m_EDC.BusinessDescription, _update, m_BusinessDescription, _route.Business_description);
+        string _sku = _route.Material_Master_Short_Text;
+        string __title = String.Format("To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity);
+        switch (_service)
+        {
+          case ServiceType.Forwarder:
+            Route _rt = new Route()
+            {
+              BusinessDescription = _busnessDscrptn,
+              Carrier = _CarrierCarrierType,
+              CityName = _CityType,
+              CityOfDeparture = _route.Dept_City,
+              Currency = _Currency,
+              FreightPayer = _freightPayer,
+              FreightPO = _route.PO_NUMBER,
+              MaterialMaster = _sku,
+              PortOfDeparture = _route.Port_of_Dept,
+              RemarkMM = _route.Remarks,
+              SAPDestinationPlant = _SAPDestinationPlant,
+              ShipmentType = _ShipmentType,
+              TransportCosts = _testData ? 4567.8 : _route.Total_Cost_per_UoM.String2Double(),
+              TransportUnitType = _TransportUnitTypeTranspotUnit,
+              VendorName = _prtnr
+            };
+            m_EDC.Route.InsertOnSubmit(_rt);
+            break;
+          case ServiceType.SecurityEscortProvider:
+            SecurityEscortCatalog _sec = new SecurityEscortCatalog()
+            {
+              BusinessDescription = _busnessDscrptn,
+              Currency = _Currency,
+              EscortDestination = _route.Dest_City,
+              FreightPayer = _freightPayer,
+              MaterialMaster = _sku,
+              RemarkMM = _route.Remarks,
+              SecurityCost = _testData ? 345.6 : _route.Total_Cost_per_UoM.String2Double(),
+              SecurityEscortPO = _route.PO_NUMBER,
+              Tytuł = __title,
+              VendorName = _prtnr
+            };
+            m_EDC.SecurityEscortRoute.InsertOnSubmit(_sec);
+            break;
+          case ServiceType.VendorAndForwarder:
+          case ServiceType.None:
+          case ServiceType.Invalid:
+          case ServiceType.Vendor:
+          default:
+            break;
+        }
+        m_EDC.SubmitChanges();
+
       }
-      m_EDC.SubmitChanges();
+      catch (Exception ex)
+      {
+        string _format = "Cannot add route data SKU={0} Description={1} because of import Error= {2}";
+        Entities.Anons.WriteEntry(m_EDC, "AddRoute", String.Format(_format, _route.Material_Master_Short_Text, _route.Business_description, ex.Message));
+      }
     }
-    public void AddMarket(UpdateToolStripEvent _update)
+    internal void AddMarket(UpdateToolStripEvent _update, Schemas.PreliminaryDataRouteMarket _market)
     {
-      MarketMarket _mrkt = GetOrAdd<MarketMarket>(m_EDC.Market, _update, m_MarketMarket, "");
-      CityType _CityType = GetOrAddCity(_update, "", "");
-      string _dstName = String.Format("{0} in {1}", _CityType.Tytuł, _mrkt.Tytuł);
-      DestinationMarket _DestinationMarket = Create<DestinationMarket>(m_EDC.DestinationMarket, m_DestinationMarket, _dstName);
-      _DestinationMarket.CityName = _CityType;
-      _DestinationMarket.Market = _mrkt;
+      try
+      {
+        MarketMarket _mrkt = GetOrAdd<MarketMarket>(m_EDC.Market, _update, m_MarketMarket, "");
+        CityType _CityType = GetOrAddCity(_update, _market.DestinationCity, _market.DestinationCountry);
+        string _dstName = String.Format("{0} in {1}", _CityType.Tytuł, _mrkt.Tytuł);
+        DestinationMarket _DestinationMarket = new DestinationMarket()
+          {
+            Tytuł = _dstName,
+            CityName = _CityType,
+            Market = _mrkt
+          };
+        m_EDC.DestinationMarket.InsertOnSubmit(_DestinationMarket);
+        m_EDC.SubmitChanges();
+
+      }
+      catch (Exception ex)
+      {
+        string _format = "Cannot add market data DestinationCity={0} Market={1} because of import Error= {2}";
+        Entities.Anons.WriteEntry(m_EDC, "AddRoute", String.Format(_format, _market.DestinationCity, _market.Market, ex.Message));
+      }
     }
     public void AddWarehouse(UpdateToolStripEvent _update)
     {
@@ -105,9 +132,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     #region helpers
     private string ShipmentTypeParse(string _sku)
     {
-      foreach (var item in m_ShipmentTypeLabelsCollection)
-        if (_sku.ToUpper().Trim().Contains(item.Key))
-          return item.Value;
+      if (!_sku.IsNullOrEmpty())
+      {
+        string _skuTrmed = _sku.ToUpper().Trim();
+        foreach (var item in m_ShipmentTypeLabelsCollection)
+          if (_skuTrmed.Contains(item.Key))
+            return item.Value;
+      }
       return "VARI";
     }
     private ServiceType GetService(Schemas.PreliminaryDataRouteRoute _route, UpdateToolStripEvent _update)
@@ -129,6 +160,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     private type GetOrAdd<type>(EntityList<type> _EDC, UpdateToolStripEvent _update, Dictionary<string, type> _dictionary, string _key)
       where type : Element, new()
     {
+      if (_key.IsNullOrEmpty())
+        _key = EmptyKey;
       if (_dictionary.ContainsKey(_key))
         return _dictionary[_key];
       else
@@ -159,7 +192,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     private EntitiesDataContext m_EDC;
     private short m_EmptyKeyIdx = 0;
-    private string EmptyKey { get {return String.Format("EmptyKey{0}", m_EmptyKeyIdx++);}}
+    private string EmptyKey { get { return String.Format("EmptyKey{0}", m_EmptyKeyIdx++); } }
     #endregion
 
     #region Dictionaries
@@ -173,12 +206,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     private Dictionary<string, TransportUnitTypeTranspotUnit> m_TransportUnitTypeTranspotUnit = new Dictionary<string, TransportUnitTypeTranspotUnit>();
     private Dictionary<string, SAPDestinationPlantSAPDestinationPlant> m_SAPDestinationPlant = new Dictionary<string, SAPDestinationPlantSAPDestinationPlant>();
     private Dictionary<string, MarketMarket> m_MarketMarket = new Dictionary<string, MarketMarket>();
-    private Dictionary<string, DestinationMarket> m_DestinationMarket = new Dictionary<string, DestinationMarket>();
     private Dictionary<string, Warehouse> m_Warehouse = new Dictionary<string, Warehouse>();
     private Dictionary<string, CommodityCommodity> m_CommodityCommodity = new Dictionary<string, CommodityCommodity>();
     private Dictionary<string, ShippingPoint> m_ShippingPoint = new Dictionary<string, ShippingPoint>();
     private Dictionary<string, BusienssDescription> m_BusinessDescription = new Dictionary<string, BusienssDescription>();
-    private Dictionary<string, string> m_ShipmentTypeLabelsCollection = new Dictionary<string, string>() { { "SHIP", "SHIP" }, { "ROAD", "ROAD" }, { "FOBD", "FOBD" }, { "MMOD", "MMOD" } };
+    private Dictionary<string, string> m_ShipmentTypeLabelsCollection = new Dictionary<string, string>() { { "SHIP", "OCEAN Freight" }, { "ROAD", "LAND Freight" }, { "FOBD", "FOBD" }, { "MMOD", "MMOD" } };
     #endregion
 
     #endregion

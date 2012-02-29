@@ -351,7 +351,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
           UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Reading xml file"));
           PreliminaryDataRoute _cnfg = PreliminaryDataRoute.ImportDocument(strm);
           UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Importing Data"));
-          _cnfg.ImportData(_cnfg, m_URLTextBox.Text.Trim(), UpdateToolStrip);
+          _cnfg.ImportData(_cnfg, m_URLTextBox.Text.Trim(), UpdateToolStrip, m_TestDataCheckBox.Checked);
           SetDone("Done");
         }
       }
