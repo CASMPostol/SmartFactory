@@ -21,10 +21,40 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas
       _update(this, new ProgressChangedEventArgs(1, "ImportData starting"));
       using (EntitiesDataDictionary _dictionary = new EntitiesDataDictionary(_URL.Trim()))
       {
+        foreach (PreliminaryDataRoutePalletTypeRow _palletType in this.PalletTypeTable)
+        {
+          _dictionary.AddPalletType(_update, _palletType, _testData);
+          _update(this, new ProgressChangedEventArgs(1, "AddCommodity " + _palletType.Title));
+        }
+        foreach (PreliminaryDataRouteCommodityRow _Commodity in this.CommodityTable)
+        {
+          _dictionary.AddCommodity(_update, _Commodity, _testData);
+          _update(this, new ProgressChangedEventArgs(1, "AddCommodity " + _Commodity.Title));
+        }
+        foreach (PreliminaryDataRouteWarehouseRow _warehouse in this.WarehouseTable)
+        {
+          _dictionary.AddWarehouse(_update, _warehouse, _testData);
+          _update(this, new ProgressChangedEventArgs(1, "AddWarehouse " + _warehouse.Title));
+        }
+        foreach (PreliminaryDataRouteShippingPointRow _shippingPoint in this.ShippingPointTable)
+        {
+          _dictionary.AddShippingPoint(_update, _shippingPoint, _testData);
+          _update(this, new ProgressChangedEventArgs(1, "AddShippingPoint " + _shippingPoint.Title));
+        }
+        foreach (PreliminaryDataRoutePartnersRow _partner in this.PartnersTable)
+        {
+          _dictionary.AddPartner(_update, _partner, _testData);
+          _update(this, new ProgressChangedEventArgs(1, "AddPartner " + _partner.Name));
+        }
+        foreach (PreliminaryDataRoutePayersRow _payer in this.PayersTable)
+        {
+          _dictionary.AddFreightPayer(_update, _payer, _testData);
+          _update(this, new ProgressChangedEventArgs(1, "AddPartner " + _payer.Name));
+        }
         foreach (PreliminaryDataRouteRoute _rt in this.GlobalPricelist)
         {
           _dictionary.AddRoute(_update, _rt, _testData);
-          _update(this, new ProgressChangedEventArgs(1, "AddRoute " +_rt.Material_Master__Reference));
+          _update(this, new ProgressChangedEventArgs(1, "AddRoute " + _rt.Material_Master__Reference));
         }
         foreach (PreliminaryDataRouteMarket _market in this.MarketTable)
         {
