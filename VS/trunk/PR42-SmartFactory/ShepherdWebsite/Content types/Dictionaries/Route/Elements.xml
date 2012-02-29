@@ -14,6 +14,8 @@
       <FieldRef ID="{B5D7D15B-E7BA-4768-B746-AC71D70EF53F}" Name="FreightPayerTitle" />
       <FieldRef ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}" Name="MaterialMaster" />
       <FieldRef ID="{40088770-43E3-441B-9973-D3B093DC131C}" Name="RemarkMM" />
+      <FieldRef ID="{C03A04A9-ED5E-481F-98AB-0474CE8B8C9F}" Name="Route2Commodity" />
+      <FieldRef ID="{0D2CDADE-3D21-4C8C-97D9-0D162026EB3F}" Name="Incoterm" />
       <FieldRef ID="{396E8164-1398-4378-8D2C-E78495BC12DA}" Name="SAPDestinationPlantTitle" />
       <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
       <FieldRef ID="{1FAB0F15-07FF-4936-BFC8-4B66A325B7AA}" Name="DeparturePort"/>

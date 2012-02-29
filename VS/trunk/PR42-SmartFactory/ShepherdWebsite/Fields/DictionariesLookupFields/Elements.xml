@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="Route2Commodity"
+    ID="{C03A04A9-ED5E-481F-98AB-0474CE8B8C9F}"
+    Type="Lookup"
+    List="Lists/CommodityList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Commodity"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="SecurityEscortCatalog2BusinessDescriptionTitle"
     ID="{40070CB4-6ED0-4024-9269-70DAC8932C42}"
     Type="Lookup"
