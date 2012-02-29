@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="Incoterm"
+    ID="{0D2CDADE-3D21-4C8C-97D9-0D162026EB3F}"
+    Type="Text"
+    DisplayName="Incoterm"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Name="DeparturePort"
     ID="{1FAB0F15-07FF-4936-BFC8-4B66A325B7AA}"
     Type="Text"
