@@ -24,11 +24,71 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd", IsNullable=false)]
     public partial class PreliminaryDataRoute {
         
+        private PreliminaryDataRoutePalletTypeRow[] palletTypeTableField;
+        
+        private PreliminaryDataRouteCommodityRow[] commodityTableField;
+        
+        private PreliminaryDataRouteWarehouseRow[] warehouseTableField;
+        
+        private PreliminaryDataRouteShippingPointRow[] shippingPointTableField;
+        
         private PreliminaryDataRouteRoute[] globalPricelistField;
         
         private PreliminaryDataRouteMarket[] marketTableField;
         
         private PreliminaryDataRouteShipmentType[] shipmentTypeTableField;
+        
+        private PreliminaryDataRoutePayersRow[] payersTableField;
+        
+        private PreliminaryDataRoutePartnersRow[] partnersTableField;
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("PalletTypeRow")]
+        public PreliminaryDataRoutePalletTypeRow[] PalletTypeTable {
+            get {
+                return this.palletTypeTableField;
+            }
+            set {
+                this.palletTypeTableField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("CommodityRow")]
+        public PreliminaryDataRouteCommodityRow[] CommodityTable {
+            get {
+                return this.commodityTableField;
+            }
+            set {
+                this.commodityTableField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("WarehouseRow")]
+        public PreliminaryDataRouteWarehouseRow[] WarehouseTable {
+            get {
+                return this.warehouseTableField;
+            }
+            set {
+                this.warehouseTableField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("ShippingPointRow")]
+        public PreliminaryDataRouteShippingPointRow[] ShippingPointTable {
+            get {
+                return this.shippingPointTableField;
+            }
+            set {
+                this.shippingPointTableField = value;
+            }
+        }
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
@@ -63,6 +123,183 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
             }
             set {
                 this.shipmentTypeTableField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("PayersRow")]
+        public PreliminaryDataRoutePayersRow[] PayersTable {
+            get {
+                return this.payersTableField;
+            }
+            set {
+                this.payersTableField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("PartnersRow")]
+        public PreliminaryDataRoutePartnersRow[] PartnersTable {
+            get {
+                return this.partnersTableField;
+            }
+            set {
+                this.partnersTableField = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
+    public partial class PreliminaryDataRoutePalletTypeRow {
+        
+        private string titleField;
+        
+        private string palletSizeField;
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string PalletSize {
+            get {
+                return this.palletSizeField;
+            }
+            set {
+                this.palletSizeField = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
+    public partial class PreliminaryDataRouteCommodityRow {
+        
+        private string titleField;
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
+    public partial class PreliminaryDataRouteWarehouseRow {
+        
+        private string titleField;
+        
+        private string commodityField;
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Commodity {
+            get {
+                return this.commodityField;
+            }
+            set {
+                this.commodityField = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
+    public partial class PreliminaryDataRouteShippingPointRow {
+        
+        private string titleField;
+        
+        private string directionField;
+        
+        private string warehouseField;
+        
+        private string descriptionField;
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Direction {
+            get {
+                return this.directionField;
+            }
+            set {
+                this.directionField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Warehouse {
+            get {
+                return this.warehouseField;
+            }
+            set {
+                this.warehouseField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
             }
         }
     }
@@ -1104,6 +1341,336 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
             }
             set {
                 this.titleField = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
+    public partial class PreliminaryDataRoutePayersRow {
+        
+        private string freight_Payer__I_C__MainLegField;
+        
+        private string nameField;
+        
+        private string addressField;
+        
+        private string zIP_Postal_CodeField;
+        
+        private string cityField;
+        
+        private string country_RegionField;
+        
+        private string nIP___VAT_NoField;
+        
+        private string name2Field;
+        
+        private string address3Field;
+        
+        private string zIP_Postal_Code4Field;
+        
+        private string city5Field;
+        
+        private string country_Region6Field;
+        
+        private string kolumna6Field;
+        
+        private string kolumna7Field;
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
+        public string Freight_Payer__I_C__MainLeg {
+            get {
+                return this.freight_Payer__I_C__MainLegField;
+            }
+            set {
+                this.freight_Payer__I_C__MainLegField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Address {
+            get {
+                return this.addressField;
+            }
+            set {
+                this.addressField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ZIP_Postal_Code {
+            get {
+                return this.zIP_Postal_CodeField;
+            }
+            set {
+                this.zIP_Postal_CodeField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string City {
+            get {
+                return this.cityField;
+            }
+            set {
+                this.cityField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Country_Region {
+            get {
+                return this.country_RegionField;
+            }
+            set {
+                this.country_RegionField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string NIP___VAT_No {
+            get {
+                return this.nIP___VAT_NoField;
+            }
+            set {
+                this.nIP___VAT_NoField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Name2 {
+            get {
+                return this.name2Field;
+            }
+            set {
+                this.name2Field = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Address3 {
+            get {
+                return this.address3Field;
+            }
+            set {
+                this.address3Field = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ZIP_Postal_Code4 {
+            get {
+                return this.zIP_Postal_Code4Field;
+            }
+            set {
+                this.zIP_Postal_Code4Field = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string City5 {
+            get {
+                return this.city5Field;
+            }
+            set {
+                this.city5Field = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Country_Region6 {
+            get {
+                return this.country_Region6Field;
+            }
+            set {
+                this.country_Region6Field = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Kolumna6 {
+            get {
+                return this.kolumna6Field;
+            }
+            set {
+                this.kolumna6Field = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Kolumna7 {
+            get {
+                return this.kolumna7Field;
+            }
+            set {
+                this.kolumna7Field = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
+    public partial class PreliminaryDataRoutePartnersRow {
+        
+        private string nameField;
+        
+        private string numberFromSAPField;
+        
+        private string serviceTypeField;
+        
+        private string shepherdUserField;
+        
+        private string e_MailField;
+        
+        private string businessPhoneField;
+        
+        private string faxNumberField;
+        
+        private string mobileField;
+        
+        private string warehouseField;
+        
+        private string kolumna1Field;
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
+        public string NumberFromSAP {
+            get {
+                return this.numberFromSAPField;
+            }
+            set {
+                this.numberFromSAPField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ServiceType {
+            get {
+                return this.serviceTypeField;
+            }
+            set {
+                this.serviceTypeField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ShepherdUser {
+            get {
+                return this.shepherdUserField;
+            }
+            set {
+                this.shepherdUserField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string E_Mail {
+            get {
+                return this.e_MailField;
+            }
+            set {
+                this.e_MailField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string BusinessPhone {
+            get {
+                return this.businessPhoneField;
+            }
+            set {
+                this.businessPhoneField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string FaxNumber {
+            get {
+                return this.faxNumberField;
+            }
+            set {
+                this.faxNumberField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Mobile {
+            get {
+                return this.mobileField;
+            }
+            set {
+                this.mobileField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Warehouse {
+            get {
+                return this.warehouseField;
+            }
+            set {
+                this.warehouseField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Kolumna1 {
+            get {
+                return this.kolumna1Field;
+            }
+            set {
+                this.kolumna1Field = value;
             }
         }
     }
