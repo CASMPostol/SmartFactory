@@ -19,25 +19,25 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       m_EDC.SubmitChanges();
       m_EDC.Dispose(); ;
     }
-    internal void AddPalletType(UpdateToolStripEvent _update, Schemas.PreliminaryDataRoutePalletTypeRow _palletTypeRow, bool _testData)
+    internal void AddPalletType(UpdateToolStripEvent _update, Schemas.PreliminaryDataRoutePalletTypeRow _palletTypeRow)
     {
-      PalletTypes _pl = Create<PalletTypes>(m_EDC.PalletTypes, m_PalletTypeDictionary, _palletTypeRow.Title);
+      PalletTypes _pl = Create<PalletTypes>(m_EDC.PalletTypes, m_PalletTypeDictionary, _palletTypeRow.Title, false);
       _pl.PalletSize = _palletTypeRow.PalletSize;
     }
-    internal void AddCommodity(UpdateToolStripEvent _update, Schemas.PreliminaryDataRouteCommodityRow _CommodityRow, bool _testData)
+    internal void AddCommodity(UpdateToolStripEvent _update, Schemas.PreliminaryDataRouteCommodityRow _CommodityRow)
     {
-      Commodity _c = Create<CommodityCommodity>(m_EDC.Commodity, m_CommodityCommodity, _CommodityRow.Title);
+      Commodity _c = Create<CommodityCommodity>(m_EDC.Commodity, m_CommodityCommodity, _CommodityRow.Title, false);
     }
-    internal void AddWarehouse(UpdateToolStripEvent _update, Schemas.PreliminaryDataRouteWarehouseRow _warehouse, bool _testData)
+    internal void AddWarehouse(UpdateToolStripEvent _update, Schemas.PreliminaryDataRouteWarehouseRow _warehouse)
     {
-      CommodityCommodity _commodity = GetOrAdd<CommodityCommodity>(m_EDC.Commodity, _update, m_CommodityCommodity, _warehouse.Commodity);
-      Warehouse _wh = Create<Warehouse>(m_EDC.Warehouse, m_Warehouse, _warehouse.Title);
+      CommodityCommodity _commodity = GetOrAdd<CommodityCommodity>(m_EDC.Commodity, _update, m_CommodityCommodity, _warehouse.Commodity, false);
+      Warehouse _wh = Create<Warehouse>(m_EDC.Warehouse, m_Warehouse, _warehouse.Title, false);
       _wh.Commodity = _commodity;
     }
-    internal void AddShippingPoint(UpdateToolStripEvent _update, Schemas.PreliminaryDataRouteShippingPointRow _shippingPoint, bool _testData)
+    internal void AddShippingPoint(UpdateToolStripEvent _update, Schemas.PreliminaryDataRouteShippingPointRow _shippingPoint)
     {
-      Warehouse _wh = GetOrAdd<Warehouse>(m_EDC.Warehouse, _update, m_Warehouse, _shippingPoint.Warehouse);
-      ShippingPoint _sp = Create<ShippingPoint>(m_EDC.ShippingPoint, m_ShippingPoint, _shippingPoint.Title);
+      Warehouse _wh = GetOrAdd<Warehouse>(m_EDC.Warehouse, _update, m_Warehouse, _shippingPoint.Warehouse, false);
+      ShippingPoint _sp = Create<ShippingPoint>(m_EDC.ShippingPoint, m_ShippingPoint, _shippingPoint.Title, false);
       _sp.Description = _shippingPoint.Description;
       _sp.Direction = ParseDirection(_shippingPoint.Direction);
       _sp.Warehouse = _wh;
@@ -55,25 +55,26 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     internal void AddPartner(UpdateToolStripEvent _update, Schemas.PreliminaryDataRoutePartnersRow _partner, bool _testData)
     {
-      Partner _prtnr = Create<Partner>(m_EDC.Partner, m_Partner, _partner.Name);
-      _prtnr.AdresEMail = _partner.E_Mail;
-      _prtnr.NumerTelefonuKomórkowego = _partner.Mobile;
+      Partner _prtnr = Create<Partner>(m_EDC.Partner, m_Partner, _partner.Name, _testData);
+      _prtnr.AdresEMail = DummyName( _partner.E_Mail, "AdresEMail", _testData);
+      _prtnr.NumerTelefonuKomórkowego = DummyName(_partner.Mobile, "Mobile", _testData); ;
       _prtnr.ServiceType = ParseServiceType(_partner.ServiceType);
-      _prtnr.TelefonSłużbowy = _partner.BusinessPhone;
-      _prtnr.VendorNumberFromSAP = _partner.NumberFromSAP;
-      _prtnr.Warehouse = GetOrAdd<Warehouse>(m_EDC.Warehouse, _update, m_Warehouse, _partner.Warehouse);
+      _prtnr.TelefonSłużbowy = DummyName(_partner.BusinessPhone, "BusinessPhone", _testData); ;
+      _prtnr.VendorNumberFromSAP = DummyName(_partner.NumberFromSAP, "NumberFromSAP", _testData); ;
+      _prtnr.Warehouse = GetOrAdd<Warehouse>(m_EDC.Warehouse, _update, m_Warehouse, _partner.Warehouse, false);
     }
+
     internal void AddFreightPayer(UpdateToolStripEvent _update, Schemas.PreliminaryDataRoutePayersRow item, bool _testData)
     {
-      FreightPayer _fp = Create<FreightPayer>(m_EDC.FreightPayer, m_FreightPayer, item.Freight_Payer__I_C__MainLeg);
-      _fp.Address = item.Address;
-      _fp.Company = item.Name;
+      FreightPayer _fp = Create<FreightPayer>(m_EDC.FreightPayer, m_FreightPayer, item.Freight_Payer__I_C__MainLeg, _testData);
+      _fp.Address = DummyName(item.Address, "Address", _testData);
+      _fp.Company = DummyName(item.Name, "Company", _testData);
       _fp.KodPocztowy = item.ZIP_Postal_Code;
       _fp.KrajRegion = item.Country_Region;
       _fp.Miasto = item.City;
-      _fp.NIPVATNo = item.NIP___VAT_No;
+      _fp.NIPVATNo = DummyName( item.NIP___VAT_No, "NIPVATNo", _testData);
       string _sitf = "{0}\n{1}\n{2} {3}\n{4}";
-      _fp.SendInvoiceTo = String.Format(_sitf, item.Name2, item.Country_Region6, item.ZIP_Postal_Code4, item.City5, item.Address3);
+      _fp.SendInvoiceTo = DummyName( String.Format(_sitf, item.Name2, item.Country_Region6, item.ZIP_Postal_Code4, item.City5, item.Address3), "SendInvoiceTo", _testData);
     }
     public void AddRoute(UpdateToolStripEvent _update, Schemas.PreliminaryDataRouteRoute _route, bool _testData)
     {
@@ -81,15 +82,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       try
       {
         ServiceType _service = GetService(_route, _update);
-        Partner _prtnr = GetOrAddJTIPartner(_update, _service, _route.Vendor.Trim());
-        FreightPayer _freightPayer = GetOrAdd<FreightPayer>(m_EDC.FreightPayer, _update, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg);
+        Partner _prtnr = GetOrAddJTIPartner(_update, _service, _route.Vendor.Trim(), _testData);
+        FreightPayer _freightPayer = GetOrAdd<FreightPayer>(m_EDC.FreightPayer, _update, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg, _testData);
         CityType _CityType = GetOrAddCity(_update, _route.Dest_City, _route.Dest_Country, null);
-        Currency _Currency = GetOrAdd<Currency>(m_EDC.Currency, _update, m_Currency, _route.Currency);
-        ShipmentTypeShipmentType _ShipmentType = GetOrAdd<ShipmentTypeShipmentType>(m_EDC.ShipmentType, _update, m_ShipmentType, ShipmentTypeParse(_route.Material_Master_Short_Text));
-        CarrierCarrierType _CarrierCarrierType = GetOrAdd<CarrierCarrierType>(m_EDC.Carrier, _update, m_CarrierCarrierType, _route.Carrier);
-        TransportUnitTypeTranspotUnit _TransportUnitTypeTranspotUnit = GetOrAdd<TransportUnitTypeTranspotUnit>(m_EDC.TransportUnitType, _update, m_TransportUnitTypeTranspotUnit, _route.Equipment_Type__UoM);
-        SAPDestinationPlantSAPDestinationPlant _SAPDestinationPlant = GetOrAdd<SAPDestinationPlantSAPDestinationPlant>(m_EDC.SAPDestinationPlant, _update, m_SAPDestinationPlant, _route.SAP_Dest_Plant);
-        BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>(m_EDC.BusinessDescription, _update, m_BusinessDescription, _route.Business_description);
+        Currency _Currency = GetOrAdd<Currency>(m_EDC.Currency, _update, m_Currency, _route.Currency, false);
+        ShipmentTypeShipmentType _ShipmentType = GetOrAdd<ShipmentTypeShipmentType>(m_EDC.ShipmentType, _update, m_ShipmentType, ShipmentTypeParse(_route.Material_Master_Short_Text), false);
+        CarrierCarrierType _CarrierCarrierType = GetOrAdd<CarrierCarrierType>(m_EDC.Carrier, _update, m_CarrierCarrierType, _route.Carrier, false);
+        TransportUnitTypeTranspotUnit _TransportUnitTypeTranspotUnit = GetOrAdd<TransportUnitTypeTranspotUnit>(m_EDC.TransportUnitType, _update, m_TransportUnitTypeTranspotUnit, _route.Equipment_Type__UoM, false);
+        SAPDestinationPlantSAPDestinationPlant _SAPDestinationPlant = GetOrAdd<SAPDestinationPlantSAPDestinationPlant>(m_EDC.SAPDestinationPlant, _update, m_SAPDestinationPlant, _route.SAP_Dest_Plant, false);
+        BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>(m_EDC.BusinessDescription, _update, m_BusinessDescription, _route.Business_description, false);
         string _sku = _route.Material_Master_Short_Text;
         string __title = String.Format("To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity);
         switch (_service)
@@ -151,7 +152,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       try
       {
-        MarketMarket _mrkt = GetOrAdd<MarketMarket>(m_EDC.Market, _update, m_MarketMarket, _market.Market);
+        MarketMarket _mrkt = GetOrAdd<MarketMarket>(m_EDC.Market, _update, m_MarketMarket, _market.Market, false);
         CityType _CityType = GetOrAddCity(_update, _market.DestinationCity, _market.DestinationCountry, _market.Area);
         string _dstName = String.Format("{0} in {1}", _CityType.Tytuł, _mrkt.Tytuł);
         DestinationMarket _DestinationMarket = new DestinationMarket()
@@ -170,19 +171,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         Entities.Anons.WriteEntry(m_EDC, "AddRoute", String.Format(_format, _market.DestinationCity, _market.Market, ex.Message));
       }
     }
-    public void AddWarehouse(UpdateToolStripEvent _update)
-    {
-      CommodityCommodity _cmmdty = GetOrAdd<CommodityCommodity>(m_EDC.Commodity, _update, m_CommodityCommodity, "");
-      Warehouse _wrse = Create<Warehouse>(m_EDC.Warehouse, m_Warehouse, ""); //TODO
-      _wrse.Commodity = _cmmdty;
-    }
-    public void AddShippingPoint(UpdateToolStripEvent _update, Direction _direction)
-    {
-      Warehouse _wrse = GetOrAdd<Warehouse>(m_EDC.Warehouse, _update, m_Warehouse, "");
-      ShippingPoint _shippingPoint = Create<ShippingPoint>(m_EDC.ShippingPoint, m_ShippingPoint, "");
-      _shippingPoint.Warehouse = _wrse;
-      _shippingPoint.Direction = _direction;
-    }
     #region private
 
     #region helpers
@@ -199,10 +187,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     private ServiceType? ParseServiceType(string p)
     {
-      p=p.ToUpper();
+      p = p.ToUpper();
       string _vs = "VENDOR";
       string _fs = "FORWARDER";
-      string _es ="ESCORT";
+      string _es = "ESCORT";
       if (p.Contains(_vs))
         if (p.Contains(_fs))
           return ServiceType.VendorAndForwarder;
@@ -223,16 +211,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     #endregion
     #region data management
-    private type Create<type>(EntityList<type> _EDC, Dictionary<string, type> _dictionary, string _key) where type : Element, new()
+    private type Create<type>(EntityList<type> _EDC, Dictionary<string, type> _dictionary, string _key, bool _testData)
+      where type : Element, new()
     {
-      type _elmnt = new type() { Tytuł = _key };
+      type _elmnt = new type() { Tytuł = _testData ? EmptyKey : _key };
       if (_dictionary.Keys.Contains(_key))
         _key = String.Format("Duplicated name: {0} [{1}]", _key, EmptyKey);
       _dictionary.Add(_key, _elmnt);
       _EDC.InsertOnSubmit(_elmnt);
       return _elmnt;
     }
-    private type GetOrAdd<type>(EntityList<type> _EDC, UpdateToolStripEvent _update, Dictionary<string, type> _dictionary, string _key)
+    private type GetOrAdd<type>(EntityList<type> _EDC, UpdateToolStripEvent _update, Dictionary<string, type> _dictionary, string _key, bool _testData)
       where type : Element, new()
     {
       if (_key.IsNullOrEmpty())
@@ -240,33 +229,37 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       if (_dictionary.ContainsKey(_key))
         return _dictionary[_key];
       else
-        return Create<type>(_EDC, _dictionary, _key);
+        return Create<type>(_EDC, _dictionary, _key, _testData);
     }
-    private Partner GetOrAddJTIPartner(UpdateToolStripEvent _update, ServiceType _st, string _partner)
+    private Partner GetOrAddJTIPartner(UpdateToolStripEvent _update, ServiceType _st, string _partner, bool _testData)
     {
       if (m_Partner.ContainsKey(_partner))
         return m_Partner[_partner];
       else
       {
-        Partner _prtnr = Create<Partner>(m_EDC.Partner, m_Partner, _partner);
+        Partner _prtnr = Create<Partner>(m_EDC.Partner, m_Partner, _partner, _testData);
         _prtnr.ServiceType = _st;
         return _prtnr;
       }
     }
     private CityType GetOrAddCity(UpdateToolStripEvent _update, string _city, string _country, string _area)
     {
-      CountryClass _countryClass = GetOrAdd(m_EDC.Country, _update, m_CountryClass, _country);
+      CountryClass _countryClass = GetOrAdd(m_EDC.Country, _update, m_CountryClass, _country, false);
       if (_countryClass.Group.IsNullOrEmpty() && !_area.IsNullOrEmpty())
         _countryClass.Group = _area;
       if (m_CityType.ContainsKey(_city))
         return m_CityType[_city];
-      CityType _prtnr = Create<CityType>(m_EDC.City, m_CityType, _city);
+      CityType _prtnr = Create<CityType>(m_EDC.City, m_CityType, _city, false);
       _prtnr.CountryName = _countryClass;
       return _prtnr;
     }
     private EntitiesDataContext m_EDC;
     private short m_EmptyKeyIdx = 0;
     private string EmptyKey { get { return String.Format("EmptyKey{0}", m_EmptyKeyIdx++); } }
+    private string DummyName(string _text, string _replacement, bool _testData)
+    {
+      return _testData ? String.Format("{0} {1}", _replacement, m_EmptyKeyIdx++) : _text;
+    }
     #endregion
 
     #region Dictionaries
