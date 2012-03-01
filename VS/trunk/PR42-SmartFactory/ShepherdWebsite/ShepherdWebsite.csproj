@@ -312,6 +312,9 @@
     <None Include="Lists\EventLog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a54ceb9e-c4f7-4d56-b721-41ced1f44bb4}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Libraries\DataImportLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ebe91a0d-8818-4acf-bef8-384c1b3fe565}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Libraries\EscortPOLibraryTemplate\EscortPOLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{137d6191-5a44-4d91-be21-46bae0aba017}</SharePointProjectItemId>
     </None>
@@ -536,6 +539,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\EventLog\Elements.xml" />
+    <Content Include="Lists\Libraries\DataImportLibrary\Elements.xml" />
     <Content Include="Lists\Libraries\EscortPOLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\Libraries\EscortPOLibraryTemplate\Elements.xml" />
     <Content Include="Lists\Libraries\EscortPOLibraryTemplate\FileDlg.htm" />
