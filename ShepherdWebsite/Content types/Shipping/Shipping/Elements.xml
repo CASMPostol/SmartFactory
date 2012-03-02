@@ -34,6 +34,8 @@
       <FieldRef ID="{DEBE4D8F-04DE-4A3B-AA59-320884A6E044}" Name="IsOutbound" />
       <FieldRef ID="{FF299D34-A04A-4507-82E7-EF325CC6797E}" Name="Shipping2FreightPOIndex" />
       <FieldRef ID="{045419D2-8EDB-4989-A2B8-650A8EF7C16C}" Name="Shipping2EscortPOIndex" />
+      <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
+      <FieldRef ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}" Name="TrailerConditionComments" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

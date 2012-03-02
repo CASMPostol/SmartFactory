@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="693191fd-6a7a-4db6-ac8e-a3f747ddf439" description="Contains information model for Shepherd web application." featureId="693191fd-6a7a-4db6-ac8e-a3f747ddf439" imageUrl="" scope="Site" solutionId="00000000-0000-0000-0000-000000000000" title="Shepherd Website Feature" version="" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
   <projectItems>
-    <projectItemReference itemId="6af42c8b-51b3-4714-b667-6495ba41f4f4" />
-    <projectItemReference itemId="931662e9-1ca7-4bf2-ac50-e4dbe2dfaa63" />
     <projectItemReference itemId="94ded09f-99f8-4b6a-9e24-4a6186f52a13" />
     <projectItemReference itemId="366e304a-165c-42c5-8058-824c780426aa" />
     <projectItemReference itemId="35200135-95d9-4f8a-a63f-df1955637b92" />
@@ -57,7 +55,6 @@
     <projectItemReference itemId="206dc054-3529-4baa-b94b-b95a57182dda" />
     <projectItemReference itemId="636e1086-3bb9-4920-91fb-e2d31f4e157a" />
     <projectItemReference itemId="0b882851-1713-4a21-8f5f-fbf6211edec5" />
-    <projectItemReference itemId="dc3be53a-9498-4462-a18d-4fe314c6ac70" />
     <projectItemReference itemId="1e873fc0-7de0-4176-87df-13ac359c1dd5" />
     <projectItemReference itemId="fcc0da24-3072-46fa-863f-adf611c20ef0" />
     <projectItemReference itemId="c0509c90-b44b-4167-b0e4-4069c85b1bf9" />

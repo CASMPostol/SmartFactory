@@ -149,9 +149,6 @@
     <None Include="Content types\Shipping\TimeSlot\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1e873fc0-7de0-4176-87df-13ac359c1dd5}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Shipping\TrailerCondition\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{dc3be53a-9498-4462-a18d-4fe314c6ac70}</SharePointProjectItemId>
-    </None>
     <None Include="Features\ShepherdWebsite\ShepherdWebsite.feature">
       <FeatureId>{4cb45461-1db0-4082-a052-d91586eac38e}</FeatureId>
     </None>
@@ -360,12 +357,6 @@
     <None Include="Lists\Shipping\TimeSlotTemplate\TimeSlotList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{94ded09f-99f8-4b6a-9e24-4a6186f52a13}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Shipping\TrailerConditionTemplate\TrailerConditionList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{6af42c8b-51b3-4714-b667-6495ba41f4f4}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Shipping\TrailerConditionTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{931662e9-1ca7-4bf2-ac50-e4dbe2dfaa63}</SharePointProjectItemId>
-    </None>
     <None Include="Package\Package.package">
       <PackageId>{d5b7af74-65b4-4968-a81a-70ba671f405d}</PackageId>
     </None>
@@ -424,9 +415,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Shipping\TimeSlot\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content types\Shipping\TrailerCondition\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\ShepherdWebsite\ShepherdWebsite.Template.xml">
@@ -580,9 +568,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Shipping\TimeSlotTemplate\TimeSlotList\Elements.xml" />
-    <Content Include="Lists\Shipping\TrailerConditionTemplate\Elements.xml" />
-    <Content Include="Lists\Shipping\TrailerConditionTemplate\TrailerConditionList\Elements.xml" />
-    <Content Include="Lists\Shipping\TrailerConditionTemplate\Schema.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
