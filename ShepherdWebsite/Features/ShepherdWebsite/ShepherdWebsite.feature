@@ -99,5 +99,6 @@
     <projectItemReference itemId="314c2b32-2076-4ad8-b5b7-d10f50be9d69" />
     <projectItemReference itemId="137d6191-5a44-4d91-be21-46bae0aba017" />
     <projectItemReference itemId="dd3f14c6-6c7f-41d2-82d4-3a2c09524000" />
+    <projectItemReference itemId="7f36bcd3-e49d-4586-92f6-d3c58806b502" />
   </projectItems>
 </feature>

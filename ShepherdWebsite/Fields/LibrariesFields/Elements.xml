@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    Name="FPOLoadingDate"
+    ID="{D2885FE7-F842-4176-B5CC-847CE977F17F}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Loading Date">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Name="FPODispatchDate"
+    ID="{BD1D69A0-E992-4F73-B2F9-B0A878AF1A3C}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Dispatch Date">
+    <Default>[today]</Default>
+  </Field>
+</Elements>
