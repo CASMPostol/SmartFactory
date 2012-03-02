@@ -87,6 +87,30 @@
         <asp:DropDownList ID="m_TransportUnitTypeDropDownList" runat="server" CssClass="DropDown" />
       </asp:TableCell>
       </asp:TableRow>
+      <asp:TableRow>
+            <asp:TableCell>
+                <asp:Label Text="Dock number" ID="DocNumber" runat="server" CssClass="Label"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:TextBox ID="m_DockNumberTextBox" CssClass="TextBox" runat="server"></asp:TextBox>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell>
+                <asp:Label Text="Trailer condition" ID="TrailerCondition" runat="server" CssClass="Label"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:DropDownList ID="m_TrailerConditionDropdown" runat="server" CssClass="DropDown"></asp:DropDownList>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell>
+                <asp:Label Text="Comments" ID="Comments" runat="server" CssClass="Label"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:TextBox ID="m_ConditionComments" TextMode="Multiline" CssClass="TextBox" runat="server"></asp:TextBox>
+            </asp:TableCell>
+        </asp:TableRow>
   </asp:Table>
   <asp:Button ID="m_NewShippingButton" runat="server" Text="Add new" CssClass="Button" />
   <asp:Button ID="m_EditButton" runat="server" Text="Edit" CssClass="Button" />

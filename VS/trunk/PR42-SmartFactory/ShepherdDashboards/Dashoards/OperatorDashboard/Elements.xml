@@ -59,22 +59,6 @@
  </webParts>
  ]]>
       </View>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0">
-        <![CDATA[<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.OperatorWebPart.OperatorWebPart, $SharePoint.Project.AssemblyFullName$" />
-      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="Title" type="string">Operator Manager</property>
-        <property name="Description" type="string">My Visual WebPart</property>
-      </properties>
-    </data>
-  </webPart>
-</webParts>]]>
-      </AllUsersWebPart>
       <AllUsersWebPart WebPartOrder="1" WebPartZoneID="Main2">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">

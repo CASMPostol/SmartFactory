@@ -290,9 +290,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="OperatorWebPart\Elements.xml" />
-    <Content Include="OperatorWebPart\OperatorWebPartUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="OperatorWebPart\OperatorWebPartUserControl.ascx" />
     <Content Include="WebPartPages\WebPageTemplate_2.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
