@@ -8,7 +8,21 @@
                Inherits="TRUE">
     <Folder TargetName="_cts/FreightPO" />
     <FieldRefs>
-      <FieldRef  Name="Dummy" ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}" Hidden="TRUE" />
+      <FieldRef ID="{C9DB7622-0DFF-44D5-B61E-17AD2BC8BD7D}" Name="FPO2RouteGoodsHandlingPO" />
+      <FieldRef ID="{B59FB65D-82EF-4FA5-8C65-608992D100C5}" Name="FPO2FreightPayerPayerName" />
+      <FieldRef ID="{A469C246-943C-4632-BBE4-0F6890394EC2}" Name="FPO2FreightPayerCompanyAddress" />
+      <FieldRef ID="{1334BB77-FBB2-4D64-AFBA-8795218ABF09}" Name="FPO2FreightPayerWorkZip" />
+      <FieldRef ID="{32A2002B-81B5-486F-927D-F0B9AED6F4D7}" Name="FPO2FreightPayerWorkCity" />
+      <FieldRef ID="{CE55F039-69A0-45F5-A933-07DD0873653E}" Name="FPO2FreightPayerNIP" />
+      <FieldRef ID="{D2885FE7-F842-4176-B5CC-847CE977F17F}" Name="FPOLoadingDate" />
+      <FieldRef ID="{BD1D69A0-E992-4F73-B2F9-B0A878AF1A3C}" Name="FPODispatchDate" />
+      <FieldRef ID="{F41BC139-6CA5-44D9-A718-F5F1CEB00ABC}" Name="FPO2TransportUnitTypeTitle" />
+      <FieldRef ID="{EC790D2D-D5F9-4C39-9A34-770AF9557692}" Name="FPO2RouteTransportCosts" />
+      <FieldRef ID="{AE3A3310-B9D6-488A-86D4-DE97C89F4866}" Name="FPO2PartnerCarrier" />
+      <FieldRef ID="{4336B234-59FB-4EF7-B391-C2A4B2B1C76B}" Name="FPO2CityTitle" />
+      <FieldRef ID="{4702D9EC-7F41-4780-8B38-22F3249D5FC3}" Name="FPO2CountryTitle" />
+      <FieldRef ID="{65BBD083-7C7F-427B-B061-59F9B15E2263}" Name="FPO2CommodityTitle" />
+      <FieldRef ID="{C8D32FDE-1CAA-4CE9-8AAD-32C1EF8062D4}" Name="FPO2FreightPayerSendInvoiceTo" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

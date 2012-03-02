@@ -158,6 +158,9 @@
     <None Include="Fields\DictionariesLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{636e1086-3bb9-4920-91fb-e2d31f4e157a}</SharePointProjectItemId>
     </None>
+    <None Include="Fields\LibrariesFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7f36bcd3-e49d-4586-92f6-d3c58806b502}</SharePointProjectItemId>
+    </None>
     <None Include="Fields\LibrariesLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{206dc054-3529-4baa-b94b-b95a57182dda}</SharePointProjectItemId>
     </None>
@@ -426,6 +429,7 @@
     <Content Include="Fields\DictionariesLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Fields\LibrariesFields\Elements.xml" />
     <Content Include="Fields\LibrariesLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
