@@ -18,6 +18,7 @@
       <FieldRef ID="{BD1D69A0-E992-4F73-B2F9-B0A878AF1A3C}" Name="FPODispatchDate" />
       <FieldRef ID="{F41BC139-6CA5-44D9-A718-F5F1CEB00ABC}" Name="FPO2TransportUnitTypeTitle" />
       <FieldRef ID="{EC790D2D-D5F9-4C39-9A34-770AF9557692}" Name="FPO2RouteTransportCosts" />
+      <FieldRef ID="{79F18774-01B8-41CA-941C-AE6D5E7F758B}" Name="FPO2CurrencyTitle" />
       <FieldRef ID="{AE3A3310-B9D6-488A-86D4-DE97C89F4866}" Name="FPO2PartnerCarrier" />
       <FieldRef ID="{4336B234-59FB-4EF7-B391-C2A4B2B1C76B}" Name="FPO2CityTitle" />
       <FieldRef ID="{4702D9EC-7F41-4780-8B38-22F3249D5FC3}" Name="FPO2CountryTitle" />
