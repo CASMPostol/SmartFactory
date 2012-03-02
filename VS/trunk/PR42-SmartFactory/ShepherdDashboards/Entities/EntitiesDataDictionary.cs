@@ -91,8 +91,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         TransportUnitTypeTranspotUnit _TransportUnitTypeTranspotUnit = GetOrAdd<TransportUnitTypeTranspotUnit>(m_EDC.TransportUnitType, _update, m_TransportUnitTypeTranspotUnit, _route.Equipment_Type__UoM, false);
         SAPDestinationPlantSAPDestinationPlant _SAPDestinationPlant = GetOrAdd<SAPDestinationPlantSAPDestinationPlant>(m_EDC.SAPDestinationPlant, _update, m_SAPDestinationPlant, _route.SAP_Dest_Plant, false);
         BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>(m_EDC.BusinessDescription, _update, m_BusinessDescription, _route.Business_description, false);
-        string _sku = _route.Material_Master_Short_Text;
-        string __title = String.Format("To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity);
+        string _sku = _route.Material_Master__Reference;
+        string _title = String.Format("To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity);
         switch (_service)
         {
           case ServiceType.Forwarder:
@@ -110,6 +110,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
               RemarkMM = _route.Remarks,
               SAPDestinationPlant = _SAPDestinationPlant,
               ShipmentType = _ShipmentType,
+              Tytuł = _title,
               TransportCosts = _testData ? 4567.8 : _route.Total_Cost_per_UoM.String2Double(),
               TransportUnitType = _TransportUnitTypeTranspotUnit,
               VendorName = _prtnr
@@ -127,7 +128,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
               RemarkMM = _route.Remarks,
               SecurityCost = _testData ? 345.6 : _route.Total_Cost_per_UoM.String2Double(),
               SecurityEscortPO = _route.PO_NUMBER,
-              Tytuł = __title,
+              Tytuł = _title,
               VendorName = _prtnr
             };
             m_EDC.SecurityEscortRoute.InsertOnSubmit(_sec);
