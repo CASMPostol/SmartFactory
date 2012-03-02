@@ -619,7 +619,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _sppng.UpdateTitle();
         LoadDescription _ld = new LoadDescription()
         {
-          Tytuł = m_DocumentTextBox.Text, //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3057
+          Tytuł = m_DocumentTextBox.Text,
           DeliveryNumber = m_DocumentTextBox.Text,
           ShippingIndex = _sppng,
         };

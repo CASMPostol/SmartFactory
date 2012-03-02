@@ -97,8 +97,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       //  _ts.Tytuł = String.Format("Inbound No. {0} by {1}", this.Tytuł, this.VendorName == null ? "--not assigned--" : VendorName.Tytuł);
       this.StartTime = _ts.StartTime;
       this.Warehouse = _ts.GetWarehouse().Tytuł;
-      if (! _isDouble)
+      if (!_isDouble)
+      {
+        this.LoadingType = Entities.LoadingType.Pallet;
         return;
+      }
+      this.LoadingType = Entities.LoadingType.Manual;
       EntitySet<TimeSlot> _tslots = _ts.ShippingPoint.TimeSlot;
       DateTime _tdy = _ts.StartTime.Value.Date;
       List<TimeSlot> _avlblTmslts = (from _tsidx in _tslots
