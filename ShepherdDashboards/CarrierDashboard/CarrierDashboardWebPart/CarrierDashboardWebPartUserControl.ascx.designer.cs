@@ -247,13 +247,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.TextBox m_DockNumberTextBox;
         
         /// <summary>
-        /// m_TrailerCondition control.
+        /// m_TrailerConditionDropdownLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_TrailerCondition;
+        protected global::System.Web.UI.WebControls.Label m_TrailerConditionDropdownLabel;
         
         /// <summary>
         /// m_TrailerConditionDropdown control.
