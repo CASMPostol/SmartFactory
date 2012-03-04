@@ -89,7 +89,7 @@
       </asp:TableRow>
       <asp:TableRow>
             <asp:TableCell>
-                <asp:Label Text="Dock number" ID="DocNumber" runat="server" CssClass="Label"></asp:Label>
+                <asp:Label Text="Dock number" ID="m_DocNumber" runat="server" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:TextBox ID="m_DockNumberTextBox" CssClass="TextBox" runat="server"></asp:TextBox>
@@ -97,7 +97,7 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Label Text="Trailer condition" ID="TrailerCondition" runat="server" CssClass="Label"></asp:Label>
+                <asp:Label Text="Trailer condition" ID="m_TrailerCondition" runat="server" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:DropDownList ID="m_TrailerConditionDropdown" runat="server" CssClass="DropDown"></asp:DropDownList>
@@ -105,10 +105,10 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Label Text="Comments" ID="Comments" runat="server" CssClass="Label"></asp:Label>
+                <asp:Label Text="Comments" ID="m_TrailerConditionCommentsLabel" runat="server" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="m_ConditionComments" TextMode="Multiline" CssClass="TextBox" runat="server"></asp:TextBox>
+                <asp:TextBox ID="m_TrailerConditionCommentsTextBox" TextMode="Multiline" CssClass="TextBox" runat="server"></asp:TextBox>
             </asp:TableCell>
         </asp:TableRow>
   </asp:Table>

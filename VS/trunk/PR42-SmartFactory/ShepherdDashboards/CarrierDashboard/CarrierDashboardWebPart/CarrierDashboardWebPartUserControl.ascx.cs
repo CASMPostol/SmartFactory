@@ -67,7 +67,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       set
       {
         m_DashboardType = value;
-        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTime ^ 
+        ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTime ^
           ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.EscortRequiredOn;
         switch (value)
         {
@@ -98,8 +98,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Operator:
-            m_VisibilityACL = _inbound ^ ButtonsSet.AbortOn ^ ButtonsSet.NewOn;
-            m_EditbilityACL = _inbound;
+            m_VisibilityACL = _inbound ^ ButtonsSet.AbortOn ^ ButtonsSet.NewOn | ButtonsSet.OperatorControlsOn;
+            m_EditbilityACL = _inbound | ButtonsSet.OperatorControlsOn;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel(null);
             break;
@@ -202,6 +202,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         SetVisible(m_AllButtons);
         m_StateMachineEngine.InitMahine();
+        if (m_TrailerConditionDropdown.Visible)
+        {
+          m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Unexceptable", ((int)Entities.TrailerCondition._1Unexceptable).ToString()));
+          m_TrailerConditionDropdown.Items.Add(new ListItem("2 - Bad", ((int)Entities.TrailerCondition._2).ToString()));
+          m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Poor", ((int)Entities.TrailerCondition._3).ToString()));
+          m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Good", ((int)Entities.TrailerCondition._4).ToString()));
+          m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Very good", ((int)Entities.TrailerCondition._5Excellent).ToString()) { Selected = true });
+        }
         if (m_TransportUnitTypeDropDownList.Visible)
         {
           m_TransportUnitTypeDropDownList.DataSource = from _idx in EDC.TransportUnitType
@@ -663,6 +671,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       _sppng.CancelationReason = m_CommentsTextBox.Text;
       UpdateTransportUnitType(_sppng);
+      UpdateOperatorPanel(_sppng);
       if (_sppng.IsOutbound.Value)
       {
         UpdateEstimateDeliveryTime(_sppng);
@@ -673,6 +682,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       else
         UpdateVendor(_sppng, _rsult);
       return;
+    }
+    private void UpdateOperatorPanel(Shipping _sppng)
+    {
+      if (m_TrailerConditionCommentsTextBox.Enabled)
+        //_sppng.Trai  = m_TrailerConditionC;
+        ;
     }
     private void UpdateEstimateDeliveryTime(Shipping _sppng)
     {
@@ -825,6 +840,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_SecurityEscortHeaderLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
       m_SecurityRequiredChecbox.Visible = (_set & ButtonsSet.EscortRequiredOn) != 0;
       m_SecurityRequiredLabel.Visible = (_set & ButtonsSet.EscortRequiredOn) != 0;
+      //Operator
+      m_DockNumberTextBox.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_DocNumber.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_TrailerConditionDropdown.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_TrailerCondition.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_TrailerConditionCommentsLabel.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_TrailerConditionCommentsTextBox.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
     }
     private void SetEnabled(StateMachineEngine.ControlsSet _set)
     {
@@ -844,6 +866,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
       m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
       m_SecurityRequiredChecbox.Enabled = (_set & ButtonsSet.SaveOn) != 0;
+      //Operator
+      m_DockNumberTextBox.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_DocNumber.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_TrailerConditionDropdown.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_TrailerCondition.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_TrailerConditionCommentsLabel.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_TrailerConditionCommentsTextBox.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
     }
     #endregion
 
