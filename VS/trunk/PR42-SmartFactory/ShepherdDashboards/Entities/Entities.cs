@@ -294,16 +294,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		/// <summary>
-		/// Trailer Condition List Instance
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="Trailer Condition")]
-		public Microsoft.SharePoint.Linq.EntityList<TrailerCondition> TrailerCondition {
-			get {
-				return this.GetList<TrailerCondition>("Trailer Condition");
-			}
-		}
-		
-		/// <summary>
 		/// Transport Unit Type List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Transport Unit Type")]
@@ -364,7 +354,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingPoint))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Wydarzenie))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Trailer))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TrailerCondition))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TranspotUnit))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Truck))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Warehouse))]
@@ -2251,6 +2240,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private string _remarkMM;
 		
+		private string _incoterm;
+		
 		private string _portOfDeparture;
 		
 		private string _cityOfDeparture;
@@ -2266,6 +2257,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		private Microsoft.SharePoint.Linq.EntityRef<ShipmentTypeShipmentType> _shipmentType;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<FreightPayer> _freightPayer;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity> _commodity;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SAPDestinationPlantSAPDestinationPlant> _sAPDestinationPlant;
 		
@@ -2302,6 +2295,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._freightPayer.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer>>(this.OnFreightPayerSync);
 			this._freightPayer.OnChanged += new System.EventHandler(this.OnFreightPayerChanged);
 			this._freightPayer.OnChanging += new System.EventHandler(this.OnFreightPayerChanging);
+			this._commodity = new Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity>();
+			this._commodity.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity>>(this.OnCommoditySync);
+			this._commodity.OnChanged += new System.EventHandler(this.OnCommodityChanged);
+			this._commodity.OnChanging += new System.EventHandler(this.OnCommodityChanging);
 			this._sAPDestinationPlant = new Microsoft.SharePoint.Linq.EntityRef<SAPDestinationPlantSAPDestinationPlant>();
 			this._sAPDestinationPlant.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SAPDestinationPlantSAPDestinationPlant>>(this.OnSAPDestinationPlantSync);
 			this._sAPDestinationPlant.OnChanged += new System.EventHandler(this.OnSAPDestinationPlantChanged);
@@ -2353,6 +2350,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this.OnPropertyChanging("RemarkMM", this._remarkMM);
 					this._remarkMM = value;
 					this.OnPropertyChanged("RemarkMM");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Incoterm", Storage="_incoterm", FieldType="Text")]
+		public string Incoterm {
+			get {
+				return this._incoterm;
+			}
+			set {
+				if ((value != this._incoterm)) {
+					this.OnPropertyChanging("Incoterm", this._incoterm);
+					this._incoterm = value;
+					this.OnPropertyChanged("Incoterm");
 				}
 			}
 		}
@@ -2450,6 +2461,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			set {
 				this._freightPayer.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2Commodity", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
+		public CommodityCommodity Commodity {
+			get {
+				return this._commodity.GetEntity();
+			}
+			set {
+				this._commodity.SetEntity(value);
 			}
 		}
 		
@@ -2573,6 +2594,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnFreightPayerSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer> e) {
+		}
+		
+		private void OnCommodityChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Commodity", this._commodity.Clone());
+		}
+		
+		private void OnCommodityChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Commodity");
+		}
+		
+		private void OnCommoditySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Route.Add(this);
+			}
+			else {
+				e.Item.Route.Remove(this);
+			}
 		}
 		
 		private void OnSAPDestinationPlantChanging(object sender, System.EventArgs e) {
@@ -3044,6 +3082,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private System.Nullable<System.DateTime> _startTime;
 		
+		private System.Nullable<System.DateTime> _endTime;
+		
 		private System.Nullable<double> _duration;
 		
 		private string _cancelationReason;
@@ -3056,9 +3096,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private System.Nullable<bool> _isOutbound;
 		
+		private string _comments;
+		
 		private System.Nullable<State> _state;
 		
 		private System.Nullable<LoadingType> _loadingType;
+		
+		private System.Nullable<TrailerCondition> _trailerCondition;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents;
 		
@@ -3086,7 +3130,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<TransportUnitTypeTranspotUnit> _transportUnit;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<TrailerCondition> _trailerCondition;
+		private System.Nullable<int> _freightPOIdentyfikator;
+		
+		private System.Nullable<int> _escortPOIdentyfikator;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<TimeSlot> _timeSlot;
 		
@@ -3149,10 +3195,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._transportUnit.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TransportUnitTypeTranspotUnit>>(this.OnTransportUnitSync);
 			this._transportUnit.OnChanged += new System.EventHandler(this.OnTransportUnitChanged);
 			this._transportUnit.OnChanging += new System.EventHandler(this.OnTransportUnitChanging);
-			this._trailerCondition = new Microsoft.SharePoint.Linq.EntitySet<TrailerCondition>();
-			this._trailerCondition.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TrailerCondition>>(this.OnTrailerConditionSync);
-			this._trailerCondition.OnChanged += new System.EventHandler(this.OnTrailerConditionChanged);
-			this._trailerCondition.OnChanging += new System.EventHandler(this.OnTrailerConditionChanging);
 			this._timeSlot = new Microsoft.SharePoint.Linq.EntitySet<TimeSlot>();
 			this._timeSlot.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot>>(this.OnTimeSlotSync);
 			this._timeSlot.OnChanged += new System.EventHandler(this.OnTimeSlotChanged);
@@ -3198,6 +3240,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this.OnPropertyChanging("StartTime", this._startTime);
 					this._startTime = value;
 					this.OnPropertyChanged("StartTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EndTime", Storage="_endTime", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> EndTime {
+			get {
+				return this._endTime;
+			}
+			set {
+				if ((value != this._endTime)) {
+					this.OnPropertyChanging("EndTime", this._endTime);
+					this._endTime = value;
+					this.OnPropertyChanged("EndTime");
 				}
 			}
 		}
@@ -3286,6 +3342,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TrailerConditionComments", Storage="_comments", FieldType="Note")]
+		public string Comments {
+			get {
+				return this._comments;
+			}
+			set {
+				if ((value != this._comments)) {
+					this.OnPropertyChanging("Comments", this._comments);
+					this._comments = value;
+					this.OnPropertyChanged("Comments");
+				}
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingState", Storage="_state", FieldType="Choice")]
 		public System.Nullable<State> State {
 			get {
@@ -3313,6 +3383,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this.OnPropertyChanging("LoadingType", this._loadingType);
 					this._loadingType = value;
 					this.OnPropertyChanged("LoadingType");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Trailer Condition
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TrailerCondition", Storage="_trailerCondition", FieldType="Choice")]
+		public System.Nullable<TrailerCondition> TrailerCondition {
+			get {
+				return this._trailerCondition;
+			}
+			set {
+				if ((value != this._trailerCondition)) {
+					this.OnPropertyChanging("TrailerCondition", this._trailerCondition);
+					this._trailerCondition = value;
+					this.OnPropertyChanged("TrailerCondition");
 				}
 			}
 		}
@@ -3447,13 +3534,31 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerCondition2ShippingIndex", Storage="_trailerCondition", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Trailer Condition")]
-		public Microsoft.SharePoint.Linq.EntitySet<TrailerCondition> TrailerCondition {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Shipping2FreightPOIndex", Storage="_freightPOIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> FreightPOIdentyfikator {
 			get {
-				return this._trailerCondition;
+				return this._freightPOIdentyfikator;
 			}
 			set {
-				this._trailerCondition.Assign(value);
+				if ((value != this._freightPOIdentyfikator)) {
+					this.OnPropertyChanging("FreightPOIdentyfikator", this._freightPOIdentyfikator);
+					this._freightPOIdentyfikator = value;
+					this.OnPropertyChanged("FreightPOIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Shipping2EscortPOIndex", Storage="_escortPOIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> EscortPOIdentyfikator {
+			get {
+				return this._escortPOIdentyfikator;
+			}
+			set {
+				if ((value != this._escortPOIdentyfikator)) {
+					this.OnPropertyChanging("EscortPOIdentyfikator", this._escortPOIdentyfikator);
+					this._escortPOIdentyfikator = value;
+					this.OnPropertyChanged("EscortPOIdentyfikator");
+				}
 			}
 		}
 		
@@ -3676,23 +3781,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		private void OnTrailerConditionChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("TrailerCondition", this._trailerCondition.Clone());
-		}
-		
-		private void OnTrailerConditionChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("TrailerCondition");
-		}
-		
-		private void OnTrailerConditionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TrailerCondition> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingIndex = this;
-			}
-			else {
-				e.Item.ShippingIndex = null;
-			}
-		}
-		
 		private void OnTimeSlotChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("TimeSlot", this._timeSlot.Clone());
 		}
@@ -3874,8 +3962,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<TrailerCondition> _trailerCondition;
-		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -3891,10 +3977,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._vendorName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnVendorNameSync);
 			this._vendorName.OnChanged += new System.EventHandler(this.OnVendorNameChanged);
 			this._vendorName.OnChanging += new System.EventHandler(this.OnVendorNameChanging);
-			this._trailerCondition = new Microsoft.SharePoint.Linq.EntitySet<TrailerCondition>();
-			this._trailerCondition.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TrailerCondition>>(this.OnTrailerConditionSync);
-			this._trailerCondition.OnChanged += new System.EventHandler(this.OnTrailerConditionChanged);
-			this._trailerCondition.OnChanging += new System.EventHandler(this.OnTrailerConditionChanging);
 			this.OnCreated();
 		}
 		
@@ -3932,16 +4014,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerCondition2TrailerTitle", Storage="_trailerCondition", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Trailer Condition")]
-		public Microsoft.SharePoint.Linq.EntitySet<TrailerCondition> TrailerCondition {
-			get {
-				return this._trailerCondition;
-			}
-			set {
-				this._trailerCondition.Assign(value);
-			}
-		}
-		
 		private void OnShippingChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Shipping", this._shipping.Clone());
 		}
@@ -3973,174 +4045,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			else {
 				e.Item.Trailer.Remove(this);
-			}
-		}
-		
-		private void OnTrailerConditionChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("TrailerCondition", this._trailerCondition.Clone());
-		}
-		
-		private void OnTrailerConditionChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("TrailerCondition");
-		}
-		
-		private void OnTrailerConditionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TrailerCondition> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TrailerRegistrationNumber = this;
-			}
-			else {
-				e.Item.TrailerRegistrationNumber = null;
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Utwórz nowy element listy.
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TrailerCondition", Id="0x0100FED3FD4862D5419CA251655768F4749F")]
-	public partial class TrailerCondition : Element {
-		
-		private string _comments;
-		
-		private System.Nullable<TrailerCondition0> _trailerCondition0;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shippingIndex;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Truck> _truckRegistrationNumber;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Trailer> _trailerRegistrationNumber;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public TrailerCondition() {
-			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
-			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
-			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
-			this._truckRegistrationNumber = new Microsoft.SharePoint.Linq.EntityRef<Truck>();
-			this._truckRegistrationNumber.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck>>(this.OnTruckRegistrationNumberSync);
-			this._truckRegistrationNumber.OnChanged += new System.EventHandler(this.OnTruckRegistrationNumberChanged);
-			this._truckRegistrationNumber.OnChanging += new System.EventHandler(this.OnTruckRegistrationNumberChanging);
-			this._trailerRegistrationNumber = new Microsoft.SharePoint.Linq.EntityRef<Trailer>();
-			this._trailerRegistrationNumber.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer>>(this.OnTrailerRegistrationNumberSync);
-			this._trailerRegistrationNumber.OnChanged += new System.EventHandler(this.OnTrailerRegistrationNumberChanged);
-			this._trailerRegistrationNumber.OnChanging += new System.EventHandler(this.OnTrailerRegistrationNumberChanging);
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TrailerConditionComments", Storage="_comments", FieldType="Note")]
-		public string Comments {
-			get {
-				return this._comments;
-			}
-			set {
-				if ((value != this._comments)) {
-					this.OnPropertyChanging("Comments", this._comments);
-					this._comments = value;
-					this.OnPropertyChanged("Comments");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Trailer Condition
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TrailerCondition", Storage="_trailerCondition0", FieldType="Choice")]
-		public System.Nullable<TrailerCondition0> TrailerCondition0 {
-			get {
-				return this._trailerCondition0;
-			}
-			set {
-				if ((value != this._trailerCondition0)) {
-					this.OnPropertyChanging("TrailerCondition0", this._trailerCondition0);
-					this._trailerCondition0 = value;
-					this.OnPropertyChanged("TrailerCondition0");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerCondition2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public Shipping ShippingIndex {
-			get {
-				return this._shippingIndex.GetEntity();
-			}
-			set {
-				this._shippingIndex.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerCondition2TruckTitle", Storage="_truckRegistrationNumber", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Truck")]
-		public Truck TruckRegistrationNumber {
-			get {
-				return this._truckRegistrationNumber.GetEntity();
-			}
-			set {
-				this._truckRegistrationNumber.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerCondition2TrailerTitle", Storage="_trailerRegistrationNumber", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Trailer")]
-		public Trailer TrailerRegistrationNumber {
-			get {
-				return this._trailerRegistrationNumber.GetEntity();
-			}
-			set {
-				this._trailerRegistrationNumber.SetEntity(value);
-			}
-		}
-		
-		private void OnShippingIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShippingIndex", this._shippingIndex.Clone());
-		}
-		
-		private void OnShippingIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShippingIndex");
-		}
-		
-		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TrailerCondition.Add(this);
-			}
-			else {
-				e.Item.TrailerCondition.Remove(this);
-			}
-		}
-		
-		private void OnTruckRegistrationNumberChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("TruckRegistrationNumber", this._truckRegistrationNumber.Clone());
-		}
-		
-		private void OnTruckRegistrationNumberChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("TruckRegistrationNumber");
-		}
-		
-		private void OnTruckRegistrationNumberSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TrailerCondition.Add(this);
-			}
-			else {
-				e.Item.TrailerCondition.Remove(this);
-			}
-		}
-		
-		private void OnTrailerRegistrationNumberChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("TrailerRegistrationNumber", this._trailerRegistrationNumber.Clone());
-		}
-		
-		private void OnTrailerRegistrationNumberChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("TrailerRegistrationNumber");
-		}
-		
-		private void OnTrailerRegistrationNumberSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TrailerCondition.Add(this);
-			}
-			else {
-				e.Item.TrailerCondition.Remove(this);
 			}
 		}
 	}
@@ -4177,8 +4081,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping0;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<TrailerCondition> _trailerCondition;
-		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
 		
 		#region Extensibility Method Definitions
@@ -4196,10 +4098,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._shipping0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShipping0Sync);
 			this._shipping0.OnChanged += new System.EventHandler(this.OnShipping0Changed);
 			this._shipping0.OnChanging += new System.EventHandler(this.OnShipping0Changing);
-			this._trailerCondition = new Microsoft.SharePoint.Linq.EntitySet<TrailerCondition>();
-			this._trailerCondition.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TrailerCondition>>(this.OnTrailerConditionSync);
-			this._trailerCondition.OnChanged += new System.EventHandler(this.OnTrailerConditionChanged);
-			this._trailerCondition.OnChanging += new System.EventHandler(this.OnTrailerConditionChanging);
 			this._vendorName = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
 			this._vendorName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnVendorNameSync);
 			this._vendorName.OnChanged += new System.EventHandler(this.OnVendorNameChanged);
@@ -4255,16 +4153,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerCondition2TruckTitle", Storage="_trailerCondition", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Trailer Condition")]
-		public Microsoft.SharePoint.Linq.EntitySet<TrailerCondition> TrailerCondition {
-			get {
-				return this._trailerCondition;
-			}
-			set {
-				this._trailerCondition.Assign(value);
-			}
-		}
-		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Truck2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
 		public Partner VendorName {
 			get {
@@ -4306,23 +4194,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			else {
 				e.Item.SecurityEscortCarRegistrationNumber = null;
-			}
-		}
-		
-		private void OnTrailerConditionChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("TrailerCondition", this._trailerCondition.Clone());
-		}
-		
-		private void OnTrailerConditionChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("TrailerCondition");
-		}
-		
-		private void OnTrailerConditionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TrailerCondition> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TruckRegistrationNumber = this;
-			}
-			else {
-				e.Item.TruckRegistrationNumber = null;
 			}
 		}
 		
@@ -4831,6 +4702,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<Warehouse> _warehouse;
 		
 		#region Extensibility Method Definitions
@@ -4844,6 +4717,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>(this.OnLoadDescriptionSync);
 			this._loadDescription.OnChanged += new System.EventHandler(this.OnLoadDescriptionChanged);
 			this._loadDescription.OnChanging += new System.EventHandler(this.OnLoadDescriptionChanging);
+			this._route = new Microsoft.SharePoint.Linq.EntitySet<Route>();
+			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
+			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
+			this._route.OnChanging += new System.EventHandler(this.OnRouteChanging);
 			this._warehouse = new Microsoft.SharePoint.Linq.EntitySet<Warehouse>();
 			this._warehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseSync);
 			this._warehouse.OnChanged += new System.EventHandler(this.OnWarehouseChanged);
@@ -4875,6 +4752,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2Commodity", Storage="_route", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Route")]
+		public Microsoft.SharePoint.Linq.EntitySet<Route> Route {
+			get {
+				return this._route;
+			}
+			set {
+				this._route.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CommodityTitle", Storage="_warehouse", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Warehouse")]
 		public Microsoft.SharePoint.Linq.EntitySet<Warehouse> Warehouse {
 			get {
@@ -4894,6 +4781,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Commodity = this;
+			}
+			else {
+				e.Item.Commodity = null;
+			}
+		}
+		
+		private void OnRouteChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Route", this._route.Clone());
+		}
+		
+		private void OnRouteChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Route");
+		}
+		
+		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Commodity = this;
 			}
@@ -5405,23 +5309,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		Pallet = 4,
 	}
 	
-	public enum Direction : int {
-		
-		None = 0,
-		
-		Invalid = 1,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Inbound")]
-		Inbound = 2,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Outbound")]
-		Outbound = 4,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Both directions")]
-		BothDirections = 8,
-	}
-	
-	public enum TrailerCondition0 : int {
+	public enum TrailerCondition : int {
 		
 		None = 0,
 		
@@ -5441,6 +5329,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="1 - unexceptable")]
 		_1Unexceptable = 32,
+	}
+	
+	public enum Direction : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Inbound")]
+		Inbound = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Outbound")]
+		Outbound = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Both directions")]
+		BothDirections = 8,
 	}
 	
 	public enum VehicleType : int {
