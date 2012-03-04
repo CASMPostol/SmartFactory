@@ -229,13 +229,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.DropDownList m_TransportUnitTypeDropDownList;
         
         /// <summary>
-        /// DocNumber control.
+        /// m_DocNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DocNumber;
+        protected global::System.Web.UI.WebControls.Label m_DocNumber;
         
         /// <summary>
         /// m_DockNumberTextBox control.
@@ -247,13 +247,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.TextBox m_DockNumberTextBox;
         
         /// <summary>
-        /// TrailerCondition control.
+        /// m_TrailerCondition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TrailerCondition;
+        protected global::System.Web.UI.WebControls.Label m_TrailerCondition;
         
         /// <summary>
         /// m_TrailerConditionDropdown control.
@@ -265,22 +265,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.DropDownList m_TrailerConditionDropdown;
         
         /// <summary>
-        /// Comments control.
+        /// m_TrailerConditionCommentsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Comments;
+        protected global::System.Web.UI.WebControls.Label m_TrailerConditionCommentsLabel;
         
         /// <summary>
-        /// m_ConditionComments control.
+        /// m_TrailerConditionCommentsTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox m_ConditionComments;
+        protected global::System.Web.UI.WebControls.TextBox m_TrailerConditionCommentsTextBox;
         
         /// <summary>
         /// m_NewShippingButton control.
