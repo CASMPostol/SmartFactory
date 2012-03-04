@@ -97,7 +97,7 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Label Text="Trailer condition" ID="m_TrailerCondition" runat="server" CssClass="Label"></asp:Label>
+                <asp:Label Text="Trailer condition" ID="m_TrailerConditionDropdownLabel" runat="server" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:DropDownList ID="m_TrailerConditionDropdown" runat="server" CssClass="DropDown"></asp:DropDownList>

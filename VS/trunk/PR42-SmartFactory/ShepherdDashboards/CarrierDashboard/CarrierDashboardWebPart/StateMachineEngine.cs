@@ -262,7 +262,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           SetEnabled
             (
               ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.CommentsOn | ControlsSet.EstimatedDeliveryTime |
-              ControlsSet.AbortOn | ControlsSet.AcceptOn | ControlsSet.TransportUnitOn | ControlsSet.SecurityEscortOn
+              ControlsSet.AbortOn | ControlsSet.AcceptOn | ControlsSet.TransportUnitOn | ControlsSet.SecurityEscortOn | 
+              ControlsSet.OperatorControlsOn
             );
           break;
         case InterfaceState.NewState:
