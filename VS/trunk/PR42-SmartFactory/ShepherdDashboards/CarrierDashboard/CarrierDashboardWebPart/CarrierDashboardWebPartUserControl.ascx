@@ -89,7 +89,7 @@
       </asp:TableRow>
       <asp:TableRow>
             <asp:TableCell>
-                <asp:Label Text="Dock number" ID="m_DocNumber" runat="server" CssClass="Label"></asp:Label>
+                <asp:Label Text="Dock number" ID="m_DocNumberLabel" runat="server" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:TextBox ID="m_DockNumberTextBox" CssClass="TextBox" runat="server"></asp:TextBox>

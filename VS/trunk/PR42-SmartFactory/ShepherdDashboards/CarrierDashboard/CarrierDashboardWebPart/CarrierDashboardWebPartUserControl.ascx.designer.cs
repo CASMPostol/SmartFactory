@@ -229,13 +229,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.DropDownList m_TransportUnitTypeDropDownList;
         
         /// <summary>
-        /// m_DocNumber control.
+        /// m_DocNumberLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_DocNumber;
+        protected global::System.Web.UI.WebControls.Label m_DocNumberLabel;
         
         /// <summary>
         /// m_DockNumberTextBox control.
