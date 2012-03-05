@@ -40,6 +40,24 @@
  </webParts>
  ]]>
       </View>
+      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" >
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart.GuardWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Guard Manager</property>
+        <property name="Description" type="string">My Visual WebPart</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
+]]>
+      </AllUsersWebPart>
       <View List="Lists/ShippingList" BaseViewID="10" WebPartZoneID="Main1" WebPartOrder="0">
         <![CDATA[
  <webParts>
