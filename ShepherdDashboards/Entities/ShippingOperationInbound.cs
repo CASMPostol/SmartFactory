@@ -96,6 +96,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       //else
       //  _ts.Tytuł = String.Format("Inbound No. {0} by {1}", this.Tytuł, this.VendorName == null ? "--not assigned--" : VendorName.Tytuł);
       this.StartTime = _ts.StartTime;
+      this.EndTime = _ts.EndTime;
       this.Warehouse = _ts.GetWarehouse().Tytuł;
       if (!_isDouble)
       {
