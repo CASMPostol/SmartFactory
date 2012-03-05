@@ -73,7 +73,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           case GlobalDefinitions.Roles.OutboundOwner:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.RouteOn ^ ButtonsSet.EscortRequiredOn ^ ButtonsSet.OperatorControlsOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.EscortRequiredOn ^ ButtonsSet.OperatorControlsOn;
+            m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.EstimatedDeliveryTime;
             m_DocumentLabel.Text = m_LabetTextLike_DeliveryNo;
             m_ShowDocumentLabel = ShowDocumentLabelOutbound;
             m_ShowDocumentLabel(null);
@@ -85,9 +85,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Supervisor:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ 
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
               ButtonsSet.SecurityEscortOn ^ ButtonsSet.EscortRequiredOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ 
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
               ButtonsSet.SecurityEscortOn ^ ButtonsSet.EscortRequiredOn;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel(null);
@@ -701,8 +701,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (m_TrailerConditionCommentsTextBox.Enabled)
         _sppng.Comments = m_TrailerConditionCommentsTextBox.Text;
-      if (m_TransportUnitTypeDropDownList.Enabled)
+      if (m_TrailerConditionDropdown.Enabled && m_TrailerConditionDropdown.SelectedIndex >= 0)
         _sppng.TrailerCondition = (TrailerCondition)m_TrailerConditionDropdown.SelectedValue.String2Int().Value;
+      else
+        _sppng.TrailerCondition = null;
     }
     private void UpdateEstimateDeliveryTime(Shipping _sppng)
     {
@@ -857,7 +859,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_SecurityRequiredLabel.Visible = (_set & ButtonsSet.EscortRequiredOn) != 0;
       //Operator
       m_DockNumberTextBox.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
-      m_DocNumber.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_DocNumberLabel.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionDropdownLabel.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionDropdown.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionCommentsLabel.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
@@ -883,7 +885,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_SecurityRequiredChecbox.Enabled = (_set & ButtonsSet.SaveOn) != 0;
       //Operator
       m_DockNumberTextBox.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
-      //m_DocNumber.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      //m_DocNumberLabel.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
       //m_TrailerConditionCommentsLabel.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionCommentsTextBox.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionDropdown.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
