@@ -52,12 +52,9 @@
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    Type="Number"
+    Type="Text"
     DisplayName="Dock number"
-    Name="DockNumber"
-    Min="0"
-    Max="1000"
-    Decimals="0" 
+    Name="DockNumber" 
     ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}"
     Group="CAS Smart Factory Shepherd"
     />
