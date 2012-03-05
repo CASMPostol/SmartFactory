@@ -76,6 +76,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart {
         protected global::System.Web.UI.WebControls.Button m_Left;
         
         /// <summary>
+        /// m_Reject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button m_Reject;
+        
+        /// <summary>
         /// m_UnDo control.
         /// </summary>
         /// <remarks>
