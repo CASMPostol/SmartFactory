@@ -91,6 +91,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         TransportUnitTypeTranspotUnit _TransportUnitTypeTranspotUnit = GetOrAdd<TransportUnitTypeTranspotUnit>(m_EDC.TransportUnitType, _update, m_TransportUnitTypeTranspotUnit, _route.Equipment_Type__UoM, false);
         SAPDestinationPlantSAPDestinationPlant _SAPDestinationPlant = GetOrAdd<SAPDestinationPlantSAPDestinationPlant>(m_EDC.SAPDestinationPlant, _update, m_SAPDestinationPlant, _route.SAP_Dest_Plant, false);
         BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>(m_EDC.BusinessDescription, _update, m_BusinessDescription, _route.Business_description, false);
+        CommodityCommodity _cmdty = GetOrAdd<CommodityCommodity>(m_EDC.Commodity, _update, m_CommodityCommodity, _route.Commodity, false);
         string _sku = _route.Material_Master__Reference;
         string _title = String.Format("To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity);
         switch (_service)
@@ -113,7 +114,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
               Tytuł = _title,
               TransportCosts = _testData ? 4567.8 : _route.Total_Cost_per_UoM.String2Double(),
               TransportUnitType = _TransportUnitTypeTranspotUnit,
-              VendorName = _prtnr
+              VendorName = _prtnr, 
+              Commodity = _cmdty, 
+              Incoterm = _route.Selling_Incoterm
             };
             m_EDC.Route.InsertOnSubmit(_rt);
             break;
