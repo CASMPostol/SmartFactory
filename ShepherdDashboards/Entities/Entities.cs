@@ -3078,7 +3078,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private string _warehouse;
 		
-		private System.Nullable<double> _dockNumber;
+		private string _dockNumber;
 		
 		private System.Nullable<System.DateTime> _startTime;
 		
@@ -3216,8 +3216,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DockNumber", Storage="_dockNumber", FieldType="Number")]
-		public System.Nullable<double> DockNumber {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DockNumber", Storage="_dockNumber", FieldType="Text")]
+		public string DockNumber {
 			get {
 				return this._dockNumber;
 			}
