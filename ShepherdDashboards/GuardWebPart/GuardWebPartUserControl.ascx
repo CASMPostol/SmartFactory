@@ -14,7 +14,8 @@
 <asp:Table ID="m_GuardTable" runat="server" CssClass="Table">
     <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label></asp:TableCell>
+              <asp:Label ID="m_Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label>
+            </asp:TableCell>
             <asp:TableCell>
               <asp:Label ID="m_ShippingLabel" runat="server" CssClass="Label"></asp:Label>
             </asp:TableCell>
