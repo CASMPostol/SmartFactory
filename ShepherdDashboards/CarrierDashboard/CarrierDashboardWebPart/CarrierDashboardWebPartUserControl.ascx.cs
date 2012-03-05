@@ -31,28 +31,37 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     internal void SetInterconnectionData(Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary)
     {
       foreach (var item in _ProvidesDictionary)
-        switch (item.Key)
+
+        try
         {
-          case InboundInterconnectionData.ConnectionSelector.ShippingInterconnection:
-            new ShippingInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
-            break;
-          case InboundInterconnectionData.ConnectionSelector.TimeSlotInterconnection:
-            new TimeSlotInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
-            break;
-          case InboundInterconnectionData.ConnectionSelector.PartnerInterconnection:
-            new PartnerInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
-            break;
-          case InboundInterconnectionData.ConnectionSelector.CityInterconnection:
-            new CityInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
-            break;
-          case InboundInterconnectionData.ConnectionSelector.RouteInterconnection:
-            new RouteInterconnectionnData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
-            break;
-          case InboundInterconnectionData.ConnectionSelector.SecurityEscortCatalogInterconnection:
-            new SecurityEscortCatalogInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
-            break;
-          default:
-            break;
+          switch (item.Key)
+          {
+            case InboundInterconnectionData.ConnectionSelector.ShippingInterconnection:
+              new ShippingInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
+              break;
+            case InboundInterconnectionData.ConnectionSelector.TimeSlotInterconnection:
+              new TimeSlotInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
+              break;
+            case InboundInterconnectionData.ConnectionSelector.PartnerInterconnection:
+              new PartnerInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
+              break;
+            case InboundInterconnectionData.ConnectionSelector.CityInterconnection:
+              new CityInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
+              break;
+            case InboundInterconnectionData.ConnectionSelector.RouteInterconnection:
+              new RouteInterconnectionnData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
+              break;
+            case InboundInterconnectionData.ConnectionSelector.SecurityEscortCatalogInterconnection:
+              new SecurityEscortCatalogInterconnectionData().SetRowData(_ProvidesDictionary[item.Key], m_StateMachineEngine.NewDataEventHandler);
+              break;
+            default:
+              break;
+          }
+        }
+        catch (Exception ex)
+        {
+          ReportException("SetInterconnectionData at: " + item.Key.ToString(), ex);
+          throw;
         }
     }
     internal InterconnectionDataTable<Shipping> GetSelectedShippingOperationInboundInterconnectionData()
@@ -208,11 +217,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_StateMachineEngine.InitMahine();
         if (m_TrailerConditionDropdown.Visible)
         {
-          m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Unexceptable", ((int)Entities.TrailerCondition._1Unexceptable).ToString()));
+          m_TrailerConditionDropdown.Items.Add(new ListItem(" -- Select trailer condition  --", "-1") { Selected = true });
+          m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Unacceptable", ((int)Entities.TrailerCondition._1Unexceptable).ToString()));
           m_TrailerConditionDropdown.Items.Add(new ListItem("2 - Bad", ((int)Entities.TrailerCondition._2).ToString()));
-          m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Poor", ((int)Entities.TrailerCondition._3).ToString()));
-          m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Good", ((int)Entities.TrailerCondition._4).ToString()));
-          m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Very good", ((int)Entities.TrailerCondition._5Excellent).ToString()) { Selected = true });
+          m_TrailerConditionDropdown.Items.Add(new ListItem("3 - Poor", ((int)Entities.TrailerCondition._3).ToString()));
+          m_TrailerConditionDropdown.Items.Add(new ListItem("4 - Good", ((int)Entities.TrailerCondition._4).ToString()));
+          m_TrailerConditionDropdown.Items.Add(new ListItem("5 - Excellent", ((int)Entities.TrailerCondition._5Excellent).ToString()));
         }
         if (m_TransportUnitTypeDropDownList.Visible)
         {
@@ -233,7 +243,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_AcceptButton.Click += new EventHandler(m_StateMachineEngine.AcceptButton_Click);
       m_SecurityRequiredChecbox.CheckedChanged += new EventHandler(m_StateMachineEngine.m_SecurityRequiredChecbox_CheckedChanged);
     }
-
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -496,8 +505,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_CommentsTextBox.TextBoxTextProperty(String.Empty, false);
       m_EstimateDeliveryTimeDateTimeControl.SelectedDate = DateTime.Now;
       m_TransportUnitTypeDropDownList.SelectedIndex = -1;
+      m_DockNumberTextBox.Text = String.Empty;
       m_TrailerConditionCommentsTextBox.Text = String.Empty;
-      m_TrailerConditionDropdown.SelectedIndex = -1;
+      m_TrailerConditionDropdown.SelectedIndex = 0;
     }
     #endregion
 
@@ -556,8 +566,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void ShowOperatorStuff(Shipping _sppng)
     {
-      if (m_TransportUnitTypeDropDownList.Enabled)
-        SelectDropdown(m_TrailerConditionDropdown, (int)_sppng.TrailerCondition.Value);
+      if (m_TrailerConditionDropdown.Visible && _sppng.TrailerCondition.HasValue)
+        SelectDropdown(m_TrailerConditionDropdown, (int)_sppng.TrailerCondition.Value, 0);
+      if (m_DockNumberTextBox.Visible)
+        m_DockNumberTextBox.Text = _sppng.DockNumber.Value.ToString();
+      if (m_TrailerConditionCommentsTextBox.Visible)
+        m_TrailerConditionCommentsTextBox.Text = _sppng.Comments;
     }
     private void Show(TimeSlotTimeSlot _cts, bool _isEditable, bool _isDouble)
     {
@@ -604,17 +618,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (_unitType == null)
         return;
-      SelectDropdown(m_TransportUnitTypeDropDownList, _unitType.Identyfikator.Value);
+      SelectDropdown(m_TransportUnitTypeDropDownList, _unitType.Identyfikator.Value, -1);
     }
-    private void SelectDropdown(DropDownList _list, int _value)
+    private void SelectDropdown(DropDownList _list, int _value, int _default)
     {
       _list.SelectedIndex = -1;
       foreach (ListItem _item in _list.Items)
         if (_item.Value.String2Int() == _value)
         {
           _item.Selected = true;
-          break;
+          return;
         }
+      if (_default >= 0 && _default < _list.Items.Count)
+      _list.SelectedIndex = _default;
     }
     #endregion
 
@@ -703,10 +719,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (m_TrailerConditionCommentsTextBox.Enabled)
         _sppng.Comments = m_TrailerConditionCommentsTextBox.Text;
-      if (m_TrailerConditionDropdown.Enabled && m_TrailerConditionDropdown.SelectedIndex >= 0)
+      if (m_TrailerConditionDropdown.Enabled && m_TrailerConditionDropdown.SelectedIndex > 0)
         _sppng.TrailerCondition = (TrailerCondition)m_TrailerConditionDropdown.SelectedValue.String2Int().Value;
       else
         _sppng.TrailerCondition = null;
+      if (m_DockNumberTextBox.Enabled)
+        _sppng.DockNumber = m_DockNumberTextBox.Text.String2Double();
     }
     private void UpdateEstimateDeliveryTime(Shipping _sppng)
     {
