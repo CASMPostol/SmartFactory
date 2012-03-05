@@ -407,7 +407,9 @@
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
     <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml" />
     <Content Include="Content types\Shipping\EscortPO\Elements.xml" />
-    <Content Include="Content types\Shipping\FreightPO\Elements.xml" />
+    <Content Include="Content types\Shipping\FreightPO\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Shipping\LoadDescription\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -544,7 +546,9 @@
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\FreightPOLibrary\Elements.xml" />
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Repair.aspx" />
-    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />
