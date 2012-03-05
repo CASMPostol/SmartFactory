@@ -102,6 +102,14 @@
       <DependentUpon>Dashboards.feature</DependentUpon>
     </Compile>
     <Compile Include="GlobalDefinitions.cs" />
+    <Compile Include="GuardWebPart\GuardWebPart.cs" />
+    <Compile Include="GuardWebPart\GuardWebPartUserControl.ascx.cs">
+      <DependentUpon>GuardWebPartUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GuardWebPart\GuardWebPartUserControl.ascx.designer.cs">
+      <DependentUpon>GuardWebPartUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadDescriptionWebPart\LoadDescriptionWebPart.cs" />
     <Compile Include="LoadDescriptionWebPart\LoadDescriptionWebPartUserControl.ascx.cs">
       <DependentUpon>LoadDescriptionWebPartUserControl.ascx</DependentUpon>
@@ -178,6 +186,10 @@
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Features\Dashboards\Dashboards.feature">
       <FeatureId>{cf7dc489-0019-4684-9bb2-fde5b31efe5f}</FeatureId>
+    </None>
+    <None Include="GuardWebPart\GuardWebPart.webpart" />
+    <None Include="GuardWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5bc560d4-71c4-4992-b6e1-31ef226bdc42}</SharePointProjectItemId>
     </None>
     <None Include="Images\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{82c5ef5a-5487-4ce2-87c9-f9b327dab264}</SharePointProjectItemId>
@@ -263,6 +275,10 @@
     </Content>
     <Content Include="Features\Dashboards\Dashboards.Template.xml">
       <DependentUpon>Dashboards.feature</DependentUpon>
+    </Content>
+    <Content Include="GuardWebPart\Elements.xml" />
+    <Content Include="GuardWebPart\GuardWebPartUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Images\ShepherdDashboards\button_background.jpg" />
     <Content Include="Images\ShepherdDashboards\FeatureLogo32x32.gif" />
