@@ -496,6 +496,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_CommentsTextBox.TextBoxTextProperty(String.Empty, false);
       m_EstimateDeliveryTimeDateTimeControl.SelectedDate = DateTime.Now;
       m_TransportUnitTypeDropDownList.SelectedIndex = -1;
+      m_TrailerConditionCommentsTextBox.Text = String.Empty;
+      m_TrailerConditionDropdown.SelectedIndex = -1;
     }
     #endregion
 
