@@ -569,7 +569,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       if (m_TrailerConditionDropdown.Visible && _sppng.TrailerCondition.HasValue)
         SelectDropdown(m_TrailerConditionDropdown, (int)_sppng.TrailerCondition.Value, 0);
       if (m_DockNumberTextBox.Visible)
-        m_DockNumberTextBox.Text = _sppng.DockNumber.Value.ToString();
+        m_DockNumberTextBox.Text = _sppng.DockNumber;
       if (m_TrailerConditionCommentsTextBox.Visible)
         m_TrailerConditionCommentsTextBox.Text = _sppng.Comments;
     }
@@ -724,7 +724,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       else
         _sppng.TrailerCondition = null;
       if (m_DockNumberTextBox.Enabled)
-        _sppng.DockNumber = m_DockNumberTextBox.Text.String2Double();
+        _sppng.DockNumber = m_DockNumberTextBox.Text;
     }
     private void UpdateEstimateDeliveryTime(Shipping _sppng)
     {
