@@ -22,5 +22,6 @@
 </asp:Table>
 <asp:Button ID="m_Entered" runat="server" Text="Enters" CssClass="Button" />
 <asp:Button ID="m_Left" runat="server" Text="Leaves" CssClass="Button" />
+<asp:Button ID="m_Reject" runat="server" Text="Reject" CssClass="Button" />
 <asp:Button ID="m_UnDo" runat="server" Text="Undo" CssClass="Button" />
 </asp:Panel>
