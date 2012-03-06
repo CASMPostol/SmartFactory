@@ -31,7 +31,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     internal void SetInterconnectionData(Dictionary<InboundInterconnectionData.ConnectionSelector, IWebPartRow> _ProvidesDictionary)
     {
       foreach (var item in _ProvidesDictionary)
-
         try
         {
           switch (item.Key)
@@ -507,7 +506,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TransportUnitTypeDropDownList.SelectedIndex = -1;
       m_DockNumberTextBox.Text = String.Empty;
       m_TrailerConditionCommentsTextBox.Text = String.Empty;
-      m_TrailerConditionDropdown.SelectedIndex = 0;
+      if (m_TrailerConditionDropdown.Visible && m_TrailerConditionDropdown.Items.Count > 0)
+        m_TrailerConditionDropdown.SelectedIndex = 0;
     }
     #endregion
 
@@ -630,7 +630,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           return;
         }
       if (_default >= 0 && _default < _list.Items.Count)
-      _list.SelectedIndex = _default;
+        _list.SelectedIndex = _default;
     }
     #endregion
 
@@ -1109,7 +1109,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return m_CurrentShipping_Shipping;
       }
     }
-    internal event InterconnectionDataTable<Shipping>.SetDataEventArg m_ShippintInterconnectionEvent;
+    private event InterconnectionDataTable<Shipping>.SetDataEventArg m_ShippintInterconnectionEvent;
     #endregion
 
     #endregion
