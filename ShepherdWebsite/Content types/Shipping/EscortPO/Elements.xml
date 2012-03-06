@@ -22,8 +22,6 @@
       <FieldRef ID="{53E9C6E5-37FD-493E-A4AD-F22E93A0217B}" Name="SPO2CountryTitle" />
       <FieldRef ID="{A73E99F9-FFF4-45CA-B88F-0CC7395E1D8D}" Name="SPO2CommodityTitle" />
       <FieldRef ID="{827B7731-7308-4A9F-8EC4-276499E50F18}" Name="SPO2FreightPayerSendInvoiceTo" />
-      <FieldRef/>
-      <FieldRef />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
