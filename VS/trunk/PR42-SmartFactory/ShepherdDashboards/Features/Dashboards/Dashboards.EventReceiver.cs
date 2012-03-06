@@ -23,6 +23,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
       SPWeb _root = site.RootWeb;
       if (site == null)
         throw new ApplicationException("FeatureActivated cannot get access to the Web");
+      AddDocumentTemplates(_root);
       using (Entities.EntitiesDataContext _edc = new Entities.EntitiesDataContext(_root.Url))
       {
         Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated strating");
@@ -44,8 +45,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         foreach (SPNavigationNode item in _topNav)
           item.Update();
         WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
+        //SPWeb site = (SPWeb)properties.Feature.Parent;
         Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated finished");
       }
+    }
+    private static void AddDocumentTemplates(SPWeb _root)
+    {
+      SPDocumentLibrary libProposals;
+      libProposals = (SPDocumentLibrary)_root.Lists["Freight PO Library"];
+      string templateUrl = @"Lists/FreightPOLibrary/Forms/FreightPurchaseOrderTemplate.dotx";
+      libProposals.DocumentTemplateUrl = templateUrl;
+      libProposals.Update();
     }
     // Uncomment the method below to handle the event raised before a feature is deactivated.
     public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
