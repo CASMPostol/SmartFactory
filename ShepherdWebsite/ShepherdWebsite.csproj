@@ -327,8 +327,11 @@
     <None Include="Lists\Libraries\FreightPOLibraryTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5eea8533-fe43-428d-910a-ce99cc1a7f27}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Libraries\SecuritySealProtocolLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{64b86b44-1e47-4b2e-ae13-e5a71f32e45c}</SharePointProjectItemId>
+    <None Include="Lists\Libraries\SealProtocolLibraryTemplate\SealProtocolLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1ab23efd-43de-419d-b9dc-415d8a2e2180}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Libraries\SealProtocolLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0167cb22-bb82-424a-997f-d50141339baf}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{718dbe34-dd16-47f8-99c0-7f71b3db8090}</SharePointProjectItemId>
@@ -554,7 +557,13 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Upload.aspx" />
-    <Content Include="Lists\Libraries\SecuritySealProtocolLibrary\Elements.xml" />
+    <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\SealProtocolLibrary\Elements.xml" />
+    <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\AlarmsAndEventsList\Elements.xml" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml">
