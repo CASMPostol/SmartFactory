@@ -140,6 +140,9 @@
     <None Include="Content types\Shipping\LoadDescription\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c0509c90-b44b-4167-b0e4-4069c85b1bf9}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\SealProtocol\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{08eceb7a-7567-4f35-a13d-73c48a8c3eaf}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Shipping\ShippingDriversTeam\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fcc0da24-3072-46fa-863f-adf611c20ef0}</SharePointProjectItemId>
     </None>
@@ -418,6 +421,7 @@
     <Content Include="Content types\Shipping\LoadDescription\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\Shipping\SealProtocol\Elements.xml" />
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
