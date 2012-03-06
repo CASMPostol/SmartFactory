@@ -1,6 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="SealProtocol2ndContainerNo"
+    ID="{731BD3CE-B65A-481A-967E-355306A6524A}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="2nd Container No." />
+  <Field
+    Name="SealProtocol1stContainerNo"
+    ID="{DD04BBA8-9D56-4B45-8807-D61CEB15BF9D}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="1st Container No." />
+  <Field
+    Name="SealProtocolDispatchDateActual"
+    ID="{CA920A00-3978-4CA8-8329-D461CF5BB787}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Actual Dispatch Date">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Name="SealProtocolDispatchDate"
+    ID="{69CCC219-D59C-4D53-8713-D1EE23A03C01}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Dispatch Date">
+    <Default>[today]</Default>
+  </Field>
+  <Field
     Name="FPOLoadingDate"
     ID="{D2885FE7-F842-4176-B5CC-847CE977F17F}"
     Type="DateTime"
