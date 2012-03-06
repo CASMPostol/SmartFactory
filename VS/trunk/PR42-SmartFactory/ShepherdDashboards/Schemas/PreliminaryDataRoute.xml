@@ -6537,7 +6537,7 @@ OC cost based on total gross weight less than 12 tons; if more than 12 tons OC c
 			<ns1:DestinationCity>Londerzeel</ns1:DestinationCity>
 		</ns1:Market>
 		<ns1:Market>
-			<ns1:Market>Belgium Domestic</ns1:Market>
+			<ns1:Market>Luxemburg Domestic</ns1:Market>
 			<ns1:Area>Europe</ns1:Area>
 			<ns1:DestinationCountry>Belgium</ns1:DestinationCountry>
 			<ns1:DestinationCity>Londerzeel</ns1:DestinationCity>
@@ -7363,7 +7363,7 @@ OC cost based on total gross weight less than 12 tons; if more than 12 tons OC c
 			<ns1:Kolumna7>Fax: +44 (0)161 869 0700</ns1:Kolumna7>
 		</ns1:PayersRow>
 		<ns1:PayersRow>
-			<ns1:Freight_Payer__I_C__MainLeg>1175</ns1:Freight_Payer__I_C__MainLeg>
+			<ns1:Freight_Payer__I_C__MainLeg>1799</ns1:Freight_Payer__I_C__MainLeg>
 			<ns1:Name>JT INTERNATIONAL SA</ns1:Name>
 			<ns1:Address>Rue de la Gabelle 1</ns1:Address>
 			<ns1:ZIP_Postal_Code>1211</ns1:ZIP_Postal_Code>
