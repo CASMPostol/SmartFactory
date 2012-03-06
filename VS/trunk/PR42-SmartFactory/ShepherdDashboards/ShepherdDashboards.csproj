@@ -176,6 +176,9 @@
     <None Include="Dashoards\SecurityEscortProviderDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2ac942d0-1ccc-48cc-80c7-75a85f6a189d}</SharePointProjectItemId>
     </None>
+    <None Include="Dashoards\SupervisorDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b67e7822-2efb-464a-9592-19e19c95278a}</SharePointProjectItemId>
+    </None>
     <None Include="Dashoards\VendorDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c64c100a-ec3d-4546-9241-b1c42b40ccac}</SharePointProjectItemId>
     </None>
@@ -268,6 +271,7 @@
     <Content Include="Dashoards\SecurityEscortProviderDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Dashoards\SupervisorDashboard\Elements.xml" />
     <Content Include="Dashoards\VendorDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -31,7 +31,7 @@
  <data>
  <properties>
  <property name="Title" type="string">Shippings</property>
- <property name="TitleUrl" type="string">OutboundCoordinatorDashboard.aspx</property>
+ <property name="TitleUrl" type="string">SupervisorDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
  </data>
@@ -85,7 +85,7 @@
  <data>
  <properties>
  <property name="Title" type="string">Available routes</property>
- <property name="TitleUrl" type="string">OutboundCoordinatorDashboard.aspx</property>
+ <property name="TitleUrl" type="string">SupervisorDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
  </data>
@@ -104,7 +104,7 @@
  <data>
  <properties>
  <property name="Title" type="string">Available escort</property>
- <property name="TitleUrl" type="string">OutboundCoordinatorDashboard.aspx</property>
+ <property name="TitleUrl" type="string">SupervisorDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
  </data>
@@ -158,7 +158,7 @@
  <data>
  <properties>
  <property name="Title" type="string">Alarms and events</property>
- <property name="TitleUrl" type="string">OutboundCoordinatorDashboard.aspx</property>
+ <property name="TitleUrl" type="string">SupervisorDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
  </data>
