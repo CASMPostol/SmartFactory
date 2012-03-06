@@ -18,4 +18,13 @@
     DisplayName="Dispatch Date">
     <Default>[today]</Default>
   </Field>
+  <Field
+    Name="SPODispatchDate"
+    ID="{267D71D1-1A20-4CAD-A5FB-B7EC26FC3C13}"
+    Type="DateTime"
+    Format="DateTime"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Dispatch Date">
+    <Default>[today]</Default>
+  </Field>
 </Elements>
