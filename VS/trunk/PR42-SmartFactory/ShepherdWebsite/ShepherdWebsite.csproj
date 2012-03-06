@@ -406,7 +406,9 @@
     <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
     <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml" />
-    <Content Include="Content types\Shipping\EscortPO\Elements.xml" />
+    <Content Include="Content types\Shipping\EscortPO\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Shipping\FreightPO\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -539,7 +541,9 @@
     <Content Include="Lists\Libraries\EscortPOLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\Libraries\EscortPOLibraryTemplate\EscortPOLibrary\Elements.xml" />
     <Content Include="Lists\Libraries\EscortPOLibraryTemplate\Repair.aspx" />
-    <Content Include="Lists\Libraries\EscortPOLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Libraries\EscortPOLibraryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Libraries\EscortPOLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Elements.xml" />
