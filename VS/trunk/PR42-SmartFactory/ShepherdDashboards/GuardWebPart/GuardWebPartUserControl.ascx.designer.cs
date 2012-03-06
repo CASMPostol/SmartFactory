@@ -58,39 +58,39 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart {
         protected global::System.Web.UI.WebControls.Label m_ShippingLabel;
         
         /// <summary>
-        /// m_Entered control.
+        /// m_EnteredButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_Entered;
+        protected global::System.Web.UI.WebControls.Button m_EnteredButton;
         
         /// <summary>
-        /// m_Left control.
+        /// m_LeftButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_Left;
+        protected global::System.Web.UI.WebControls.Button m_LeftButton;
         
         /// <summary>
-        /// m_Reject control.
+        /// m_RejectButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_Reject;
+        protected global::System.Web.UI.WebControls.Button m_RejectButton;
         
         /// <summary>
-        /// m_UnDo control.
+        /// m_UnDoButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_UnDo;
+        protected global::System.Web.UI.WebControls.Button m_UnDoButton;
     }
 }
