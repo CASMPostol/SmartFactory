@@ -3,9 +3,12 @@
   <MetaData>
     <ContentTypes>
       <ContentType ID="0x0101000276600256fa44439b3aa6a5221f14c4" Name="EscortPO" Group="CAS Smart Factory Shepherd" Description="Escort PO Library" Overwrite="TRUE" Inherits="TRUE">
-        <Folder TargetName="_cts/EscortPO" />
+        <Folder TargetName="EscortPO" />
         <FieldRefs>
-          <FieldRef Name="Dummy" ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}" Hidden="TRUE" />
+          <FieldRef ID="{24F34C2E-0025-4FD9-A7A0-CADEEF202D77}" Name="SPO2SecurityEscortRouteSecurityEscrotPO" />
+          <FieldRef ID="{6948E3B5-8714-4298-A44A-1EF7CB091C40}" Name="SPO2FreightPayerPayerName" />
+          <FieldRef ID="{F854AD5E-B3F0-4F3B-8057-AA52D30E7A64}" Name="SPO2FreightPayerCompanyAddress" />
+          <FieldRef ID="{8834E2C8-8443-4996-82E2-ED2A503ECE29}" Name="SPO2FreightPayerWorkZip" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -124,6 +127,10 @@
           </FieldRef>
           <FieldRef Name="Editor">
           </FieldRef>
+          <FieldRef ID="{24F34C2E-0025-4FD9-A7A0-CADEEF202D77}" Name="SPO2SecurityEscortRouteSecurityEscrotPO" />
+          <FieldRef ID="{6948E3B5-8714-4298-A44A-1EF7CB091C40}" Name="SPO2FreightPayerPayerName" />
+          <FieldRef ID="{F854AD5E-B3F0-4F3B-8057-AA52D30E7A64}" Name="SPO2FreightPayerCompanyAddress" />
+          <FieldRef ID="{8834E2C8-8443-4996-82E2-ED2A503ECE29}" Name="SPO2FreightPayerWorkZip" />
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
