@@ -182,6 +182,10 @@
     <None Include="DefaultPage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{707849e5-4a82-4f9b-b735-62f93ff92970}</SharePointProjectItemId>
     </None>
+    <None Include="DocumentTemplates\ModuleFreightPurchaseOrderTemplate\FreightPurchaseOrderTemplate.dotx" />
+    <None Include="DocumentTemplates\ModuleFreightPurchaseOrderTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{56f6a063-45cd-45c9-b270-efd01fcd5fb1}</SharePointProjectItemId>
+    </None>
     <None Include="Entities\Entities.cd" />
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Features\Dashboards\Dashboards.feature">
@@ -270,6 +274,8 @@
     <Content Include="DefaultPage\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DocumentTemplates\ModuleFreightPurchaseOrderTemplate\Elements.xml" />
+    <Content Include="DocumentTemplates\ModuleFreightPurchaseOrderTemplate\Sample.txt" />
     <Content Include="Entities\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
