@@ -3,7 +3,7 @@
   <MetaData>
     <ContentTypes>
       <ContentType ID="0x0101003147ba6cbb014b599bbdd72087081913" Name="FreightPO" Group="CAS Smart Factory Shepherd" Description="Freight PO Library" Overwrite="TRUE" Inherits="TRUE">
-        <Folder TargetName="_cts/FreightPO" />
+        <Folder TargetName="FreightPO" />
         <FieldRefs>
           <FieldRef ID="{C9DB7622-0DFF-44D5-B61E-17AD2BC8BD7D}" Name="FPO2RouteGoodsHandlingPO" />
           <FieldRef ID="{B59FB65D-82EF-4FA5-8C65-608992D100C5}" Name="FPO2FreightPayerPayerName" />

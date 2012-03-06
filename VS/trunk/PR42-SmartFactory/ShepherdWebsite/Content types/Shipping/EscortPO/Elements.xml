@@ -6,9 +6,18 @@
                Description="Escort PO Library"
                Overwrite="TRUE"
                Inherits="TRUE">
-    <Folder TargetName="_cts/EscortPO" />
+    <Folder TargetName="EscortPO" />
     <FieldRefs>
-      <FieldRef  Name="Dummy" ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}" Hidden="TRUE" />
+      <FieldRef ID="{24F34C2E-0025-4FD9-A7A0-CADEEF202D77}" Name="SPO2SecurityEscortRouteSecurityEscrotPO" />
+      <FieldRef ID="{6948E3B5-8714-4298-A44A-1EF7CB091C40}" Name="SPO2FreightPayerPayerName" />
+      <FieldRef ID="{F854AD5E-B3F0-4F3B-8057-AA52D30E7A64}" Name="SPO2FreightPayerCompanyAddress" />
+      <FieldRef ID="{8834E2C8-8443-4996-82E2-ED2A503ECE29}" Name="SPO2FreightPayerWorkZip" />
+      <FieldRef ID="{E68DEEA4-A399-4B0F-A82F-D5DB60368F47}" Name="SPO2FreightPayerWorkCity" />
+      <FieldRef ID="{5BEA3168-EB1D-442F-9423-D08C55278E30}" Name="SPO2FreightPayerNIP" />
+      <FieldRef ID="{267D71D1-1A20-4CAD-A5FB-B7EC26FC3C13}" Name="SPODispatchDate" />
+      <FieldRef ID="{31446166-E340-4E11-8C37-68E030A59DC6}" Name="SPO2SecurityEscortRouteSecurityCost" />
+      <FieldRef ID="{2CF4D469-7F0A-4C06-9AAA-5CC0AA6289E5}" Name="SPO2CurrencyTitle" />
+      <FieldRef ID="{5E79F9E7-C41A-4AE7-B115-EEF642A0F076}" Name="SPO2PartnerTitle" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
