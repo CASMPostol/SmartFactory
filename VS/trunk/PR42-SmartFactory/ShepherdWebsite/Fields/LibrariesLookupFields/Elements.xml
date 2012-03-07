@@ -718,7 +718,7 @@
     Name="SecuritySealProtocolIndex"
     ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}"
     Type="Lookup"
-    List="Lists/SecuritySealProtocolLibrary"
+    List="Lists/SealProtocolLibrary"
     ShowField="ID"
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
