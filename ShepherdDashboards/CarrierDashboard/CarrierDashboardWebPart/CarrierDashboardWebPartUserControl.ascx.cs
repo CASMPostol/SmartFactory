@@ -60,7 +60,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         catch (Exception ex)
         {
           ReportException("SetInterconnectionData at: " + item.Key.ToString(), ex);
-          throw;
         }
     }
     internal InterconnectionDataTable<Shipping> GetSelectedShippingOperationInboundInterconnectionData()
