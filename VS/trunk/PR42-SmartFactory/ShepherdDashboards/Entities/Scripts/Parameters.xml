@@ -65,6 +65,7 @@
   <List Name="Shipping"></List>
   <List Name="TimeSlot"></List>
   <List Name="Trailer Condition"></List>
+  <List Name="Freight PO Library"/>
   <ExcludeOtherLists/>
   <!--<ContentType Name="CommodityType" Class="Commodity"/>-->
   <!--<ContentType Name="CityType" Class="CityClass">

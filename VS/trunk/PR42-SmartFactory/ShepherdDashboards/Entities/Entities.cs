@@ -144,6 +144,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		/// <summary>
+		/// Freight PO Library Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntityList<FreightPO> FreightPOLibrary {
+			get {
+				return this.GetList<FreightPO>("Freight PO Library");
+			}
+		}
+		
+		/// <summary>
 		/// Load Description List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Load Description")]
@@ -220,16 +230,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		public Microsoft.SharePoint.Linq.EntityList<SecurityEscortCatalog> SecurityEscortRoute {
 			get {
 				return this.GetList<SecurityEscortCatalog>("Security Escort Route");
-			}
-		}
-		
-		/// <summary>
-		/// Security Seal Protocol files collection
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="Security Seal Protocol")]
-		public Microsoft.SharePoint.Linq.EntityList<Dokument> SecuritySealProtocol {
-			get {
-				return this.GetList<Dokument>("Security Seal Protocol");
 			}
 		}
 		
@@ -340,6 +340,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingDriversTeam))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Anons))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(FreightPayer))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Dokument))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(LoadDescription))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Market))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(PalletTypes))]
@@ -348,7 +349,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SAPDestinationPlant))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ScheduleTemplate))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SecurityEscortCatalog))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Dokument))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShipmentType))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Shipping))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingPoint))]
@@ -533,6 +533,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	/// Utwórz nowy dokument.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Dokument", Id="0x0101")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(FreightPO))]
 	public partial class Dokument : Element {
 		
 		private string _nazwa;
@@ -955,6 +956,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -978,6 +981,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
 			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
 			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
+			this._freightPO = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPOSync);
+			this._freightPO.OnChanged += new System.EventHandler(this.OnFreightPOChanged);
+			this._freightPO.OnChanging += new System.EventHandler(this.OnFreightPOChanging);
 			this.OnCreated();
 		}
 		
@@ -1018,6 +1025,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			set {
 				this._shipping.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2CityTitle", Storage="_freightPO", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO {
+			get {
+				return this._freightPO;
+			}
+			set {
+				this._freightPO.Assign(value);
 			}
 		}
 		
@@ -1088,6 +1105,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 				e.Item.City = null;
 			}
 		}
+		
+		private void OnFreightPOChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO", this._freightPO.Clone());
+		}
+		
+		private void OnFreightPOChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO");
+		}
+		
+		private void OnFreightPOSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.City = this;
+			}
+			else {
+				e.Item.City = null;
+			}
+		}
 	}
 	
 	/// <summary>
@@ -1150,6 +1184,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private System.Nullable<double> _exchangeRate;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1157,6 +1193,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		#endregion
 		
 		public Currency() {
+			this._freightPO = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPOSync);
+			this._freightPO.OnChanged += new System.EventHandler(this.OnFreightPOChanged);
+			this._freightPO.OnChanging += new System.EventHandler(this.OnFreightPOChanging);
 			this.OnCreated();
 		}
 		
@@ -1174,6 +1214,33 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this._exchangeRate = value;
 					this.OnPropertyChanged("ExchangeRate");
 				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2CurrencyTitle", Storage="_freightPO", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO {
+			get {
+				return this._freightPO;
+			}
+			set {
+				this._freightPO.Assign(value);
+			}
+		}
+		
+		private void OnFreightPOChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO", this._freightPO.Clone());
+		}
+		
+		private void OnFreightPOChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO");
+		}
+		
+		private void OnFreightPOSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Currency = this;
+			}
+			else {
+				e.Item.Currency = null;
 			}
 		}
 	}
@@ -1484,6 +1551,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private string _sendInvoiceTo;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO0;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO1;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO2;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO3;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1491,6 +1568,26 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		#endregion
 		
 		public FreightPayer() {
+			this._freightPO = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPOSync);
+			this._freightPO.OnChanged += new System.EventHandler(this.OnFreightPOChanged);
+			this._freightPO.OnChanging += new System.EventHandler(this.OnFreightPOChanging);
+			this._freightPO0 = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPO0Sync);
+			this._freightPO0.OnChanged += new System.EventHandler(this.OnFreightPO0Changed);
+			this._freightPO0.OnChanging += new System.EventHandler(this.OnFreightPO0Changing);
+			this._freightPO1 = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO1.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPO1Sync);
+			this._freightPO1.OnChanged += new System.EventHandler(this.OnFreightPO1Changed);
+			this._freightPO1.OnChanging += new System.EventHandler(this.OnFreightPO1Changing);
+			this._freightPO2 = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO2.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPO2Sync);
+			this._freightPO2.OnChanged += new System.EventHandler(this.OnFreightPO2Changed);
+			this._freightPO2.OnChanging += new System.EventHandler(this.OnFreightPO2Changing);
+			this._freightPO3 = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO3.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPO3Sync);
+			this._freightPO3.OnChanged += new System.EventHandler(this.OnFreightPO3Changed);
+			this._freightPO3.OnChanging += new System.EventHandler(this.OnFreightPO3Changing);
 			this.OnCreated();
 		}
 		
@@ -1589,6 +1686,141 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this._sendInvoiceTo = value;
 					this.OnPropertyChanged("SendInvoiceTo");
 				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerPayerName", Storage="_freightPO", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO {
+			get {
+				return this._freightPO;
+			}
+			set {
+				this._freightPO.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerCompanyAddress", Storage="_freightPO0", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO0 {
+			get {
+				return this._freightPO0;
+			}
+			set {
+				this._freightPO0.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerWorkZip", Storage="_freightPO1", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO1 {
+			get {
+				return this._freightPO1;
+			}
+			set {
+				this._freightPO1.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerWorkCity", Storage="_freightPO2", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO2 {
+			get {
+				return this._freightPO2;
+			}
+			set {
+				this._freightPO2.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerNIP", Storage="_freightPO3", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO3 {
+			get {
+				return this._freightPO3;
+			}
+			set {
+				this._freightPO3.Assign(value);
+			}
+		}
+		
+		private void OnFreightPOChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO", this._freightPO.Clone());
+		}
+		
+		private void OnFreightPOChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO");
+		}
+		
+		private void OnFreightPOSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.PayerName = this;
+			}
+			else {
+				e.Item.PayerName = null;
+			}
+		}
+		
+		private void OnFreightPO0Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO0", this._freightPO0.Clone());
+		}
+		
+		private void OnFreightPO0Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO0");
+		}
+		
+		private void OnFreightPO0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CompanyAddress = this;
+			}
+			else {
+				e.Item.CompanyAddress = null;
+			}
+		}
+		
+		private void OnFreightPO1Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO1", this._freightPO1.Clone());
+		}
+		
+		private void OnFreightPO1Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO1");
+		}
+		
+		private void OnFreightPO1Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.WorkZip = this;
+			}
+			else {
+				e.Item.WorkZip = null;
+			}
+		}
+		
+		private void OnFreightPO2Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO2", this._freightPO2.Clone());
+		}
+		
+		private void OnFreightPO2Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO2");
+		}
+		
+		private void OnFreightPO2Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.WorkCity = this;
+			}
+			else {
+				e.Item.WorkCity = null;
+			}
+		}
+		
+		private void OnFreightPO3Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO3", this._freightPO3.Clone());
+		}
+		
+		private void OnFreightPO3Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO3");
+		}
+		
+		private void OnFreightPO3Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.NIP = this;
+			}
+			else {
+				e.Item.NIP = null;
 			}
 		}
 	}
@@ -1932,6 +2164,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Truck> _truck;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1963,6 +2197,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._truck.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck>>(this.OnTruckSync);
 			this._truck.OnChanged += new System.EventHandler(this.OnTruckChanged);
 			this._truck.OnChanging += new System.EventHandler(this.OnTruckChanging);
+			this._freightPO = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPOSync);
+			this._freightPO.OnChanged += new System.EventHandler(this.OnFreightPOChanged);
+			this._freightPO.OnChanging += new System.EventHandler(this.OnFreightPOChanging);
 			this.OnCreated();
 		}
 		
@@ -2127,6 +2365,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2PartnerCarrier", Storage="_freightPO", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO {
+			get {
+				return this._freightPO;
+			}
+			set {
+				this._freightPO.Assign(value);
+			}
+		}
+		
 		private void OnAlarmsAndEventsChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("AlarmsAndEvents", this._alarmsAndEvents.Clone());
 		}
@@ -2228,6 +2476,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 				e.Item.VendorName = null;
 			}
 		}
+		
+		private void OnFreightPOChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO", this._freightPO.Clone());
+		}
+		
+		private void OnFreightPOChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO");
+		}
+		
+		private void OnFreightPOSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Carrier = this;
+			}
+			else {
+				e.Item.Carrier = null;
+			}
+		}
 	}
 	
 	/// <summary>
@@ -2271,6 +2536,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		private Microsoft.SharePoint.Linq.EntityRef<Currency> _currency;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO0;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO1;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2323,6 +2592,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
 			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
 			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
+			this._freightPO0 = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPO0Sync);
+			this._freightPO0.OnChanged += new System.EventHandler(this.OnFreightPO0Changed);
+			this._freightPO0.OnChanging += new System.EventHandler(this.OnFreightPO0Changing);
+			this._freightPO1 = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO1.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPO1Sync);
+			this._freightPO1.OnChanged += new System.EventHandler(this.OnFreightPO1Changed);
+			this._freightPO1.OnChanging += new System.EventHandler(this.OnFreightPO1Changing);
 			this.OnCreated();
 		}
 		
@@ -2534,6 +2811,26 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2RouteGoodsHandlingPO", Storage="_freightPO0", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO0 {
+			get {
+				return this._freightPO0;
+			}
+			set {
+				this._freightPO0.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2RouteTransportCosts", Storage="_freightPO1", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO1 {
+			get {
+				return this._freightPO1;
+			}
+			set {
+				this._freightPO1.Assign(value);
+			}
+		}
+		
 		private void OnCityNameChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CityName", this._cityName.Clone());
 		}
@@ -2700,6 +2997,40 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			else {
 				e.Item.Route = null;
+			}
+		}
+		
+		private void OnFreightPO0Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO0", this._freightPO0.Clone());
+		}
+		
+		private void OnFreightPO0Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO0");
+		}
+		
+		private void OnFreightPO0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO0 = this;
+			}
+			else {
+				e.Item.FreightPO0 = null;
+			}
+		}
+		
+		private void OnFreightPO1Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO1", this._freightPO1.Clone());
+		}
+		
+		private void OnFreightPO1Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO1");
+		}
+		
+		private void OnFreightPO1Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TransportCosts = this;
+			}
+			else {
+				e.Item.TransportCosts = null;
 			}
 		}
 	}
@@ -3118,7 +3449,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _securityEscortProvider;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _securitySealProtocol;
+		private System.Nullable<int> _securitySealProtocolIdentyfikator;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog> _securityEscort;
 		
@@ -3130,7 +3461,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<TransportUnitTypeTranspotUnit> _transportUnit;
 		
-		private System.Nullable<int> _freightPOIdentyfikator;
+		private Microsoft.SharePoint.Linq.EntityRef<FreightPO> _freightPO;
 		
 		private System.Nullable<int> _escortPOIdentyfikator;
 		
@@ -3171,10 +3502,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._securityEscortProvider.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnSecurityEscortProviderSync);
 			this._securityEscortProvider.OnChanged += new System.EventHandler(this.OnSecurityEscortProviderChanged);
 			this._securityEscortProvider.OnChanging += new System.EventHandler(this.OnSecurityEscortProviderChanging);
-			this._securitySealProtocol = new Microsoft.SharePoint.Linq.EntityRef<Dokument>();
-			this._securitySealProtocol.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnSecuritySealProtocolSync);
-			this._securitySealProtocol.OnChanged += new System.EventHandler(this.OnSecuritySealProtocolChanged);
-			this._securitySealProtocol.OnChanging += new System.EventHandler(this.OnSecuritySealProtocolChanging);
 			this._securityEscort = new Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog>();
 			this._securityEscort.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog>>(this.OnSecurityEscortSync);
 			this._securityEscort.OnChanged += new System.EventHandler(this.OnSecurityEscortChanged);
@@ -3195,6 +3522,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._transportUnit.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TransportUnitTypeTranspotUnit>>(this.OnTransportUnitSync);
 			this._transportUnit.OnChanged += new System.EventHandler(this.OnTransportUnitChanged);
 			this._transportUnit.OnChanging += new System.EventHandler(this.OnTransportUnitChanging);
+			this._freightPO = new Microsoft.SharePoint.Linq.EntityRef<FreightPO>();
+			this._freightPO.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPOSync);
+			this._freightPO.OnChanged += new System.EventHandler(this.OnFreightPOChanged);
+			this._freightPO.OnChanging += new System.EventHandler(this.OnFreightPOChanging);
 			this._timeSlot = new Microsoft.SharePoint.Linq.EntitySet<TimeSlot>();
 			this._timeSlot.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot>>(this.OnTimeSlotSync);
 			this._timeSlot.OnChanged += new System.EventHandler(this.OnTimeSlotChanged);
@@ -3474,13 +3805,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_securitySealProtocol", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Security Seal Protocol")]
-		public Dokument SecuritySealProtocol {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecuritySealProtocolIndex", Storage="_securitySealProtocolIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> SecuritySealProtocolIdentyfikator {
 			get {
-				return this._securitySealProtocol.GetEntity();
+				return this._securitySealProtocolIdentyfikator;
 			}
 			set {
-				this._securitySealProtocol.SetEntity(value);
+				if ((value != this._securitySealProtocolIdentyfikator)) {
+					this.OnPropertyChanging("SecuritySealProtocolIdentyfikator", this._securitySealProtocolIdentyfikator);
+					this._securitySealProtocolIdentyfikator = value;
+					this.OnPropertyChanged("SecuritySealProtocolIdentyfikator");
+				}
 			}
 		}
 		
@@ -3534,17 +3869,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Shipping2FreightPOIndex", Storage="_freightPOIdentyfikator", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> FreightPOIdentyfikator {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2FreightPOIndex", Storage="_freightPO", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Freight PO Library")]
+		public FreightPO FreightPO {
 			get {
-				return this._freightPOIdentyfikator;
+				return this._freightPO.GetEntity();
 			}
 			set {
-				if ((value != this._freightPOIdentyfikator)) {
-					this.OnPropertyChanging("FreightPOIdentyfikator", this._freightPOIdentyfikator);
-					this._freightPOIdentyfikator = value;
-					this.OnPropertyChanged("FreightPOIdentyfikator");
-				}
+				this._freightPO.SetEntity(value);
 			}
 		}
 		
@@ -3685,17 +4016,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		private void OnSecuritySealProtocolChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SecuritySealProtocol", this._securitySealProtocol.Clone());
-		}
-		
-		private void OnSecuritySealProtocolChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SecuritySealProtocol");
-		}
-		
-		private void OnSecuritySealProtocolSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
-		}
-		
 		private void OnSecurityEscortChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("SecurityEscort", this._securityEscort.Clone());
 		}
@@ -3773,6 +4093,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnTransportUnitSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TransportUnitTypeTranspotUnit> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping.Add(this);
+			}
+			else {
+				e.Item.Shipping.Remove(this);
+			}
+		}
+		
+		private void OnFreightPOChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO", this._freightPO.Clone());
+		}
+		
+		private void OnFreightPOChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO");
+		}
+		
+		private void OnFreightPOSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Shipping.Add(this);
 			}
@@ -4332,6 +4669,550 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	}
 	
 	/// <summary>
+	/// Utwórz nowy dokument.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="FreightPO", Id="0x0101003147BA6CBB014B599BBDD72087081913")]
+	public partial class FreightPO : Dokument {
+		
+		private System.Nullable<System.DateTime> _loadingDate;
+		
+		private System.Nullable<System.DateTime> _dispatchDate;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Route> _freightPO0;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<FreightPayer> _payerName;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<FreightPayer> _companyAddress;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<FreightPayer> _workZip;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<FreightPayer> _workCity;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<FreightPayer> _nIP;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<TransportUnitTypeTranspotUnit> _transportUnitType;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Route> _transportCosts;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Currency> _currency;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Partner> _carrier;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<CityType> _city;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<CountryClass> _country;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity> _commodity;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity> _sendInvoiceTo;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public FreightPO() {
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
+			this._freightPO0 = new Microsoft.SharePoint.Linq.EntityRef<Route>();
+			this._freightPO0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnFreightPO0Sync);
+			this._freightPO0.OnChanged += new System.EventHandler(this.OnFreightPO0Changed);
+			this._freightPO0.OnChanging += new System.EventHandler(this.OnFreightPO0Changing);
+			this._payerName = new Microsoft.SharePoint.Linq.EntityRef<FreightPayer>();
+			this._payerName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer>>(this.OnPayerNameSync);
+			this._payerName.OnChanged += new System.EventHandler(this.OnPayerNameChanged);
+			this._payerName.OnChanging += new System.EventHandler(this.OnPayerNameChanging);
+			this._companyAddress = new Microsoft.SharePoint.Linq.EntityRef<FreightPayer>();
+			this._companyAddress.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer>>(this.OnCompanyAddressSync);
+			this._companyAddress.OnChanged += new System.EventHandler(this.OnCompanyAddressChanged);
+			this._companyAddress.OnChanging += new System.EventHandler(this.OnCompanyAddressChanging);
+			this._workZip = new Microsoft.SharePoint.Linq.EntityRef<FreightPayer>();
+			this._workZip.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer>>(this.OnWorkZipSync);
+			this._workZip.OnChanged += new System.EventHandler(this.OnWorkZipChanged);
+			this._workZip.OnChanging += new System.EventHandler(this.OnWorkZipChanging);
+			this._workCity = new Microsoft.SharePoint.Linq.EntityRef<FreightPayer>();
+			this._workCity.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer>>(this.OnWorkCitySync);
+			this._workCity.OnChanged += new System.EventHandler(this.OnWorkCityChanged);
+			this._workCity.OnChanging += new System.EventHandler(this.OnWorkCityChanging);
+			this._nIP = new Microsoft.SharePoint.Linq.EntityRef<FreightPayer>();
+			this._nIP.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer>>(this.OnNIPSync);
+			this._nIP.OnChanged += new System.EventHandler(this.OnNIPChanged);
+			this._nIP.OnChanging += new System.EventHandler(this.OnNIPChanging);
+			this._transportUnitType = new Microsoft.SharePoint.Linq.EntityRef<TransportUnitTypeTranspotUnit>();
+			this._transportUnitType.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TransportUnitTypeTranspotUnit>>(this.OnTransportUnitTypeSync);
+			this._transportUnitType.OnChanged += new System.EventHandler(this.OnTransportUnitTypeChanged);
+			this._transportUnitType.OnChanging += new System.EventHandler(this.OnTransportUnitTypeChanging);
+			this._transportCosts = new Microsoft.SharePoint.Linq.EntityRef<Route>();
+			this._transportCosts.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnTransportCostsSync);
+			this._transportCosts.OnChanged += new System.EventHandler(this.OnTransportCostsChanged);
+			this._transportCosts.OnChanging += new System.EventHandler(this.OnTransportCostsChanging);
+			this._currency = new Microsoft.SharePoint.Linq.EntityRef<Currency>();
+			this._currency.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency>>(this.OnCurrencySync);
+			this._currency.OnChanged += new System.EventHandler(this.OnCurrencyChanged);
+			this._currency.OnChanging += new System.EventHandler(this.OnCurrencyChanging);
+			this._carrier = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
+			this._carrier.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnCarrierSync);
+			this._carrier.OnChanged += new System.EventHandler(this.OnCarrierChanged);
+			this._carrier.OnChanging += new System.EventHandler(this.OnCarrierChanging);
+			this._city = new Microsoft.SharePoint.Linq.EntityRef<CityType>();
+			this._city.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>(this.OnCitySync);
+			this._city.OnChanged += new System.EventHandler(this.OnCityChanged);
+			this._city.OnChanging += new System.EventHandler(this.OnCityChanging);
+			this._country = new Microsoft.SharePoint.Linq.EntityRef<CountryClass>();
+			this._country.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CountryClass>>(this.OnCountrySync);
+			this._country.OnChanged += new System.EventHandler(this.OnCountryChanged);
+			this._country.OnChanging += new System.EventHandler(this.OnCountryChanging);
+			this._commodity = new Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity>();
+			this._commodity.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity>>(this.OnCommoditySync);
+			this._commodity.OnChanged += new System.EventHandler(this.OnCommodityChanged);
+			this._commodity.OnChanging += new System.EventHandler(this.OnCommodityChanging);
+			this._sendInvoiceTo = new Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity>();
+			this._sendInvoiceTo.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity>>(this.OnSendInvoiceToSync);
+			this._sendInvoiceTo.OnChanged += new System.EventHandler(this.OnSendInvoiceToChanged);
+			this._sendInvoiceTo.OnChanging += new System.EventHandler(this.OnSendInvoiceToChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOLoadingDate", Storage="_loadingDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> LoadingDate {
+			get {
+				return this._loadingDate;
+			}
+			set {
+				if ((value != this._loadingDate)) {
+					this.OnPropertyChanging("LoadingDate", this._loadingDate);
+					this._loadingDate = value;
+					this.OnPropertyChanged("LoadingDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPODispatchDate", Storage="_dispatchDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> DispatchDate {
+			get {
+				return this._dispatchDate;
+			}
+			set {
+				if ((value != this._dispatchDate)) {
+					this.OnPropertyChanging("DispatchDate", this._dispatchDate);
+					this._dispatchDate = value;
+					this.OnPropertyChanged("DispatchDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2FreightPOIndex", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+			get {
+				return this._shipping;
+			}
+			set {
+				this._shipping.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2RouteGoodsHandlingPO", Storage="_freightPO0", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Route")]
+		public Route FreightPO0 {
+			get {
+				return this._freightPO0.GetEntity();
+			}
+			set {
+				this._freightPO0.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerPayerName", Storage="_payerName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Freight Payer")]
+		public FreightPayer PayerName {
+			get {
+				return this._payerName.GetEntity();
+			}
+			set {
+				this._payerName.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerCompanyAddress", Storage="_companyAddress", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Freight Payer")]
+		public FreightPayer CompanyAddress {
+			get {
+				return this._companyAddress.GetEntity();
+			}
+			set {
+				this._companyAddress.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerWorkZip", Storage="_workZip", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Freight Payer")]
+		public FreightPayer WorkZip {
+			get {
+				return this._workZip.GetEntity();
+			}
+			set {
+				this._workZip.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerWorkCity", Storage="_workCity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Freight Payer")]
+		public FreightPayer WorkCity {
+			get {
+				return this._workCity.GetEntity();
+			}
+			set {
+				this._workCity.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerNIP", Storage="_nIP", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Freight Payer")]
+		public FreightPayer NIP {
+			get {
+				return this._nIP.GetEntity();
+			}
+			set {
+				this._nIP.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2TransportUnitTypeTitle", Storage="_transportUnitType", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Transport Unit Type")]
+		public TransportUnitTypeTranspotUnit TransportUnitType {
+			get {
+				return this._transportUnitType.GetEntity();
+			}
+			set {
+				this._transportUnitType.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2RouteTransportCosts", Storage="_transportCosts", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Route")]
+		public Route TransportCosts {
+			get {
+				return this._transportCosts.GetEntity();
+			}
+			set {
+				this._transportCosts.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2CurrencyTitle", Storage="_currency", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Currency")]
+		public Currency Currency {
+			get {
+				return this._currency.GetEntity();
+			}
+			set {
+				this._currency.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2PartnerCarrier", Storage="_carrier", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
+		public Partner Carrier {
+			get {
+				return this._carrier.GetEntity();
+			}
+			set {
+				this._carrier.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2CityTitle", Storage="_city", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
+		public CityType City {
+			get {
+				return this._city.GetEntity();
+			}
+			set {
+				this._city.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2CountryTitle", Storage="_country", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Country")]
+		public CountryClass Country {
+			get {
+				return this._country.GetEntity();
+			}
+			set {
+				this._country.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2CommodityTitle", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
+		public CommodityCommodity Commodity {
+			get {
+				return this._commodity.GetEntity();
+			}
+			set {
+				this._commodity.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerSendInvoiceTo", Storage="_sendInvoiceTo", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
+		public CommodityCommodity SendInvoiceTo {
+			get {
+				return this._sendInvoiceTo.GetEntity();
+			}
+			set {
+				this._sendInvoiceTo.SetEntity(value);
+			}
+		}
+		
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
+		}
+		
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
+		}
+		
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO = this;
+			}
+			else {
+				e.Item.FreightPO = null;
+			}
+		}
+		
+		private void OnFreightPO0Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO0", this._freightPO0.Clone());
+		}
+		
+		private void OnFreightPO0Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO0");
+		}
+		
+		private void OnFreightPO0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO0.Add(this);
+			}
+			else {
+				e.Item.FreightPO0.Remove(this);
+			}
+		}
+		
+		private void OnPayerNameChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("PayerName", this._payerName.Clone());
+		}
+		
+		private void OnPayerNameChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("PayerName");
+		}
+		
+		private void OnPayerNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO.Add(this);
+			}
+			else {
+				e.Item.FreightPO.Remove(this);
+			}
+		}
+		
+		private void OnCompanyAddressChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CompanyAddress", this._companyAddress.Clone());
+		}
+		
+		private void OnCompanyAddressChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CompanyAddress");
+		}
+		
+		private void OnCompanyAddressSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO0.Add(this);
+			}
+			else {
+				e.Item.FreightPO0.Remove(this);
+			}
+		}
+		
+		private void OnWorkZipChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("WorkZip", this._workZip.Clone());
+		}
+		
+		private void OnWorkZipChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("WorkZip");
+		}
+		
+		private void OnWorkZipSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO1.Add(this);
+			}
+			else {
+				e.Item.FreightPO1.Remove(this);
+			}
+		}
+		
+		private void OnWorkCityChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("WorkCity", this._workCity.Clone());
+		}
+		
+		private void OnWorkCityChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("WorkCity");
+		}
+		
+		private void OnWorkCitySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO2.Add(this);
+			}
+			else {
+				e.Item.FreightPO2.Remove(this);
+			}
+		}
+		
+		private void OnNIPChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("NIP", this._nIP.Clone());
+		}
+		
+		private void OnNIPChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("NIP");
+		}
+		
+		private void OnNIPSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPayer> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO3.Add(this);
+			}
+			else {
+				e.Item.FreightPO3.Remove(this);
+			}
+		}
+		
+		private void OnTransportUnitTypeChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TransportUnitType", this._transportUnitType.Clone());
+		}
+		
+		private void OnTransportUnitTypeChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TransportUnitType");
+		}
+		
+		private void OnTransportUnitTypeSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TransportUnitTypeTranspotUnit> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO.Add(this);
+			}
+			else {
+				e.Item.FreightPO.Remove(this);
+			}
+		}
+		
+		private void OnTransportCostsChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TransportCosts", this._transportCosts.Clone());
+		}
+		
+		private void OnTransportCostsChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TransportCosts");
+		}
+		
+		private void OnTransportCostsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO1.Add(this);
+			}
+			else {
+				e.Item.FreightPO1.Remove(this);
+			}
+		}
+		
+		private void OnCurrencyChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Currency", this._currency.Clone());
+		}
+		
+		private void OnCurrencyChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Currency");
+		}
+		
+		private void OnCurrencySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO.Add(this);
+			}
+			else {
+				e.Item.FreightPO.Remove(this);
+			}
+		}
+		
+		private void OnCarrierChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Carrier", this._carrier.Clone());
+		}
+		
+		private void OnCarrierChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Carrier");
+		}
+		
+		private void OnCarrierSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO.Add(this);
+			}
+			else {
+				e.Item.FreightPO.Remove(this);
+			}
+		}
+		
+		private void OnCityChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("City", this._city.Clone());
+		}
+		
+		private void OnCityChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("City");
+		}
+		
+		private void OnCitySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO.Add(this);
+			}
+			else {
+				e.Item.FreightPO.Remove(this);
+			}
+		}
+		
+		private void OnCountryChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Country", this._country.Clone());
+		}
+		
+		private void OnCountryChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Country");
+		}
+		
+		private void OnCountrySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CountryClass> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO.Add(this);
+			}
+			else {
+				e.Item.FreightPO.Remove(this);
+			}
+		}
+		
+		private void OnCommodityChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Commodity", this._commodity.Clone());
+		}
+		
+		private void OnCommodityChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Commodity");
+		}
+		
+		private void OnCommoditySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO.Add(this);
+			}
+			else {
+				e.Item.FreightPO.Remove(this);
+			}
+		}
+		
+		private void OnSendInvoiceToChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SendInvoiceTo", this._sendInvoiceTo.Clone());
+		}
+		
+		private void OnSendInvoiceToChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SendInvoiceTo");
+		}
+		
+		private void OnSendInvoiceToSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.FreightPO0.Add(this);
+			}
+			else {
+				e.Item.FreightPO0.Remove(this);
+			}
+		}
+	}
+	
+	/// <summary>
 	/// Time Slot
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlot", Id="0x0102008B8977AFA9104B18B4B25D7C06A4A3AA")]
@@ -4706,6 +5587,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Warehouse> _warehouse;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO0;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -4725,6 +5610,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._warehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseSync);
 			this._warehouse.OnChanged += new System.EventHandler(this.OnWarehouseChanged);
 			this._warehouse.OnChanging += new System.EventHandler(this.OnWarehouseChanging);
+			this._freightPO = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPOSync);
+			this._freightPO.OnChanged += new System.EventHandler(this.OnFreightPOChanged);
+			this._freightPO.OnChanging += new System.EventHandler(this.OnFreightPOChanging);
+			this._freightPO0 = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPO0Sync);
+			this._freightPO0.OnChanged += new System.EventHandler(this.OnFreightPO0Changed);
+			this._freightPO0.OnChanging += new System.EventHandler(this.OnFreightPO0Changing);
 			this.OnCreated();
 		}
 		
@@ -4769,6 +5662,26 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			set {
 				this._warehouse.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2CommodityTitle", Storage="_freightPO", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO {
+			get {
+				return this._freightPO;
+			}
+			set {
+				this._freightPO.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2FreightPayerSendInvoiceTo", Storage="_freightPO0", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO0 {
+			get {
+				return this._freightPO0;
+			}
+			set {
+				this._freightPO0.Assign(value);
 			}
 		}
 		
@@ -4822,6 +5735,40 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 				e.Item.Commodity = null;
 			}
 		}
+		
+		private void OnFreightPOChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO", this._freightPO.Clone());
+		}
+		
+		private void OnFreightPOChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO");
+		}
+		
+		private void OnFreightPOSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Commodity = this;
+			}
+			else {
+				e.Item.Commodity = null;
+			}
+		}
+		
+		private void OnFreightPO0Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO0", this._freightPO0.Clone());
+		}
+		
+		private void OnFreightPO0Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO0");
+		}
+		
+		private void OnFreightPO0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SendInvoiceTo = this;
+			}
+			else {
+				e.Item.SendInvoiceTo = null;
+			}
+		}
 	}
 	
 	/// <summary>
@@ -4834,6 +5781,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<CityType> _cityType;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -4845,6 +5794,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._cityType.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>(this.OnCityTypeSync);
 			this._cityType.OnChanged += new System.EventHandler(this.OnCityTypeChanged);
 			this._cityType.OnChanging += new System.EventHandler(this.OnCityTypeChanging);
+			this._freightPO = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPOSync);
+			this._freightPO.OnChanged += new System.EventHandler(this.OnFreightPOChanged);
+			this._freightPO.OnChanging += new System.EventHandler(this.OnFreightPOChanging);
 			this.OnCreated();
 		}
 		
@@ -4872,6 +5825,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2CountryTitle", Storage="_freightPO", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO {
+			get {
+				return this._freightPO;
+			}
+			set {
+				this._freightPO.Assign(value);
+			}
+		}
+		
 		private void OnCityTypeChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("CityType", this._cityType.Clone());
 		}
@@ -4886,6 +5849,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			else {
 				e.Item.CountryName = null;
+			}
+		}
+		
+		private void OnFreightPOChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO", this._freightPO.Clone());
+		}
+		
+		private void OnFreightPOChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO");
+		}
+		
+		private void OnFreightPOSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Country = this;
+			}
+			else {
+				e.Item.Country = null;
 			}
 		}
 	}
@@ -5067,6 +6047,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -5082,6 +6064,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
 			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
 			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
+			this._freightPO = new Microsoft.SharePoint.Linq.EntitySet<FreightPO>();
+			this._freightPO.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPOSync);
+			this._freightPO.OnChanged += new System.EventHandler(this.OnFreightPOChanged);
+			this._freightPO.OnChanging += new System.EventHandler(this.OnFreightPOChanging);
 			this.OnCreated();
 		}
 		
@@ -5119,6 +6105,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FPO2TransportUnitTypeTitle", Storage="_freightPO", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Freight PO Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<FreightPO> FreightPO {
+			get {
+				return this._freightPO;
+			}
+			set {
+				this._freightPO.Assign(value);
+			}
+		}
+		
 		private void OnRouteChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Route", this._route.Clone());
 		}
@@ -5150,6 +6146,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 			else {
 				e.Item.TransportUnit = null;
+			}
+		}
+		
+		private void OnFreightPOChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("FreightPO", this._freightPO.Clone());
+		}
+		
+		private void OnFreightPOChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("FreightPO");
+		}
+		
+		private void OnFreightPOSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TransportUnitType = this;
+			}
+			else {
+				e.Item.TransportUnitType = null;
 			}
 		}
 	}

@@ -553,9 +553,13 @@
     </Content>
     <Content Include="Lists\Libraries\EscortPOLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\EditDlg.htm" />
-    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\FileDlg.htm" />
-    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\FreightPOLibrary\Elements.xml" />
+    <Content Include="Lists\Libraries\FreightPOLibraryTemplate\FreightPOLibrary\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Repair.aspx" />
     <Content Include="Lists\Libraries\FreightPOLibraryTemplate\Schema.xml">
       <SubType>Designer</SubType>
