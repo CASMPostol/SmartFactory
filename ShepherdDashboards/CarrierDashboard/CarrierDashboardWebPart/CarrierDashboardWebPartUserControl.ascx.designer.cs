@@ -229,6 +229,42 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.DropDownList m_TransportUnitTypeDropDownList;
         
         /// <summary>
+        /// LabelTruck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelTruck;
+        
+        /// <summary>
+        /// m_TruckRegistrationNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell m_TruckRegistrationNumber;
+        
+        /// <summary>
+        /// LabelTrailer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelTrailer;
+        
+        /// <summary>
+        /// m_TrailerRegistrationNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell m_TrailerRegistrationNumber;
+        
+        /// <summary>
         /// m_DocNumberLabel control.
         /// </summary>
         /// <remarks>

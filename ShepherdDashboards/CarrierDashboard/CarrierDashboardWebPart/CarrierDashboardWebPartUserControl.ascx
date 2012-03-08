@@ -88,6 +88,18 @@
       </asp:TableCell>
       </asp:TableRow>
       <asp:TableRow>
+        <asp:TableCell>
+            <asp:Label Text="Truck" ID="LabelTruck" runat="server" CssClass="Label"></asp:Label>
+        </asp:TableCell>
+        <asp:TableCell ID="m_TruckRegistrationNumber" runat="server" CssClass="Label"></asp:TableCell>
+      </asp:TableRow>
+      <asp:TableRow>
+        <asp:TableCell>
+            <asp:Label Text="Trailer" ID="LabelTrailer" runat="server" CssClass="Label"></asp:Label>
+        </asp:TableCell>
+        <asp:TableCell ID="m_TrailerRegistrationNumber" runat="server" CssClass="Label"></asp:TableCell>
+      </asp:TableRow>
+      <asp:TableRow>
             <asp:TableCell>
                 <asp:Label Text="Dock number" ID="m_DocNumberLabel" runat="server" CssClass="Label"></asp:Label>
             </asp:TableCell>
