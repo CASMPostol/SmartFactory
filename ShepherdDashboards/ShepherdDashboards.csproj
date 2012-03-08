@@ -322,7 +322,9 @@
     <Content Include="LoadDescriptionWebPart\LoadDescriptionWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="WebPartPages\GateDashboardTemplate.aspx" />
+    <Content Include="WebPartPages\GateDashboardTemplate.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="TimeSlotWebPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
