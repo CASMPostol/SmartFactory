@@ -129,24 +129,6 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="4" >
-        <![CDATA[<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResources.TransportResources, $SharePoint.Project.AssemblyFullName$" />
-      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="Title" type="string">Escort Resources Manager</property>
-        <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
-        <property name="ID" type="string">WPTransportResources</property>
-        <property name="Role">SecurityEscort</property>
-      </properties>
-    </data>
-  </webPart>
-</webParts>]]>
-      </AllUsersWebPart>
     </File>
   </Module>
 </Elements>

@@ -22,6 +22,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
     internal const string MenuCoordinatorTitle = "Coordinator";
     internal const string MenuOutboundCoordinatorTitle = "Outbound Coordinator";
     internal const string MenuOperatorTitle = "Operator";
+    internal const string MenuSupervisorTitle = "Supervisor";
 
     //Webpages
     internal const string WebPartPagesFolder = "WebPartPages";
@@ -34,6 +35,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
     internal const string URLCoordinator = WebPartPagesFolder + "/CoordinatorDashboard.aspx";
     internal const string URLOutboundCoordinator = WebPartPagesFolder + "/OutboundCoordinatorDashboard.aspx";
     internal const string URLOperator = WebPartPagesFolder + "/OperatorDashboard.aspx";
+    internal const string URLSupervisor = WebPartPagesFolder + "/SupervisorDashboard.aspx";
 
     internal const string IDCurrentUser = "CDCurrentUser";
     internal const string IDTimeSlots = "CDTimeSlots";
