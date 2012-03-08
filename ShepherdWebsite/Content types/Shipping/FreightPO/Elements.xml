@@ -5,7 +5,8 @@
                Group="CAS Smart Factory Shepherd"
                Description="Freight PO Library"
                Overwrite="TRUE"
-               Inherits="TRUE">
+               Inherits="TRUE"
+               >
     <Folder TargetName="FreightPO" />
     <FieldRefs>
       <FieldRef ID="{C9DB7622-0DFF-44D5-B61E-17AD2BC8BD7D}" Name="FPO2RouteGoodsHandlingPO" />
