@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FreightPOLibraryWorkflowAssociationData"
+    targetNamespace="http://cas.eu/schemas/WorkflowAssociationData/FreightPOLibraryWorkflowAssociationData.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://cas.eu/schemas/WorkflowAssociationData/POLibraryWorkflowAssociationData.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="POLibraryWorkflowAssociationData">
+    <xs:complexType >
+      <xs:sequence>
+        <xs:annotation >
+          <xs:documentation> Title of the message</xs:documentation>
+        </xs:annotation>
+        <xs:element name="Title" type="xs:string"/>
+        <!--Content of the message-->
+        <xs:element name="Content" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
