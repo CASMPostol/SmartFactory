@@ -1,0 +1,21 @@
+﻿  <p>
+    <b>Freight Purches Order:</b> <#= FPO2RouteGoodsHandlingPO #></p>
+  <p>
+    <b>Collections:</b>JTI Polska Sp. z o.o., Gostków Stary 42, 99-220 Wartkowice</p>
+  <p>
+    <b>Deliveries:</b> <#= FPO2CityTitle #>, <#= FPO2CountryTitle #></p>
+  <p>
+    <b>Loading Date:</b> <#= FPOLoadingDate #></p>
+  <p>
+    <b>Type of transport:</b> <#= FPO2TransportUnitTypeTitle #></p>
+  <p>
+    <b>Commodity:</b> <#= FPO2CommodityTitle #></p>
+  <p>
+    <b>Freight Purchase Order document:</b> <a href="<#= Encodedabsurl #>"> <#= DocumentName #></a>
+  <p>
+    <b>Place and date of order issuance:</b> <#= Modified #>, <#= ModifiedBy #></p>
+  <p>
+    ---</p>
+  <p>
+    Information about driver’s names and truck/trailers should be supplemented in Shepherd
+    system before planned loading.</p>
