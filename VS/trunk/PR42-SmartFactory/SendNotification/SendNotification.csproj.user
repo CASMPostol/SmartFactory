@@ -9,15 +9,15 @@
       <FlavorProperties GUID="{BB1F664B-9266-4fd6-B973-E1E44974B511}">
         <ProjectItemStore Id="{1783f2bc-07c6-4fa0-a343-7eb67ed5f587}">
           <DisplayName>SendNotification - SendEmail</DisplayName>
-          <HistoryList>Wingtip Workflow History</HistoryList>
-          <HistoryListGuid>{ba8b14aa-6c53-46de-b9ba-9ae10fef116e}</HistoryListGuid>
-          <TaskList>Tasks</TaskList>
-          <TaskListGuid>{8ffc7cf6-d9cc-4de5-a704-e9c61c02e439}</TaskListGuid>
+          <HistoryList>Send Notification Workflow History</HistoryList>
+          <HistoryListGuid>{e774398d-16a4-46c7-bc1b-a1139a7079dc}</HistoryListGuid>
+          <TaskList>Send Notification Workflow Tasks</TaskList>
+          <TaskListGuid>{94edb2be-d698-4e2e-8583-41085ae629f3}</TaskListGuid>
           <AutoAssociate>false</AutoAssociate>
-          <ManualStart>true</ManualStart>
-          <ListURL>http://casmp/sites/awf/Shared%20Documents/Forms/AllItems.aspx</ListURL>
-          <TargetList>Shared Documents</TargetList>
-          <TargetListGuid>{9e94364d-8da1-4dcb-abcd-0adf47c7f23d}</TargetListGuid>
+          <ManualStart>false</ManualStart>
+          <ListURL>http://casmp/sites/sh9/Lists/FreightPOLibrary/Forms/AllItems.aspx</ListURL>
+          <TargetList>Freight PO Library</TargetList>
+          <TargetListGuid>{80374623-3324-417a-b08e-a12f45db7666}</TargetListGuid>
           <StartOnCreate>true</StartOnCreate>
           <StartOnChange>false</StartOnChange>
         </ProjectItemStore>
