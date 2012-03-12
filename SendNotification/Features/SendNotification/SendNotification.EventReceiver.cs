@@ -43,18 +43,16 @@ namespace CAS.SmartFactorySendNotification.Features.SendNotification
         CommonDefinition.SendNotificationWorkflowAssociationName, 
         _taskList, 
         _historyList);
-
       // configure workflow association and add to WorkflowAssociations collection
       _freightPOLibraryWorkflowAssociation.Description = "Used to send the PO by email.";
       _freightPOLibraryWorkflowAssociation.AllowManual = true;
       _freightPOLibraryWorkflowAssociation.AutoStartCreate = true;
       _freightPOLibraryWorkflowAssociation.AutoStartChange = true;
-
-      // add sample workflow association data
+      // add workflow association data
       POLibraryWorkflowAssociationData _wfData = new POLibraryWorkflowAssociationData()
       {
         Content = "Content of the message", //TODO define content of the mail
-        Title = "message content"
+        Title = "New fright purchase order"
       };
       using (MemoryStream stream = new MemoryStream())
       {

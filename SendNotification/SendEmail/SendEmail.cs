@@ -28,8 +28,7 @@ namespace CAS.SmartFactorySendNotification.SendEmail
     {
       InitializeComponent();
     }
-    public Guid workflowId = default(System.Guid);
-    public SPWorkflowActivationProperties m_WorkflowProperties = default(SPWorkflowActivationProperties);
+    #region Activation
     private string m_EmailSubject;
     private FreightPurchaseOrderTemplate _emailBodyObject = new FreightPurchaseOrderTemplate();
     private void m_onWorkflowActivated_Invoked(object sender, ExternalDataEventArgs e)
@@ -74,6 +73,11 @@ namespace CAS.SmartFactorySendNotification.SendEmail
         throw new ApplicationException(String.Format(_frmt, ex.Message));
       }
     }
+    public Guid workflowId = default(System.Guid);
+    public SPWorkflowActivationProperties m_WorkflowProperties = default(SPWorkflowActivationProperties);
+    #endregion
+
+    #region SentEmail
     private void m_sendEmail1_MethodInvoking(object sender, EventArgs e)
     {
       try
@@ -95,7 +99,9 @@ namespace CAS.SmartFactorySendNotification.SendEmail
     public String m_sendEmail1_From = default(System.String);
     public String m_sendEmail1_Subject = default(System.String);
     public String m_sendEmail1_To = default(System.String);
+    #endregion
 
+    #region LogToHistory
     private void m_logToHistoryListActivity1_MethodInvoking(object sender, EventArgs e)
     {
       m_logToHistoryListActivity1_HistoryDescription = String.Format("Sending notification to: {0}", m_WorkflowProperties.Item["Carrier"]);
@@ -106,8 +112,7 @@ namespace CAS.SmartFactorySendNotification.SendEmail
     public String m_logToHistoryListActivity1_HistoryDescription = default(System.String);
     public String m_logToHistoryListActivity1_HistoryOutcome = default(System.String);
     public String m_logToHistoryListActivity1_OtherData = default(System.String);
-
-
+    #endregion
 
     public String _OnFaultLogToHistoryListActivity_HistoryDescription1 = default(System.String);
     public String _OnFaultLogToHistoryListActivity_HistoryOutcome1 = default(System.String);
