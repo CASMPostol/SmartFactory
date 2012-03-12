@@ -9,6 +9,7 @@
     <Folder TargetName="_cts/Warehouse" />
     <FieldRefs>
       <FieldRef ID="{612E92FE-DAEF-4E47-9750-C1C7397E120B}" Name="CommodityTitle" />
+      <FieldRef ID="{0DAF2E3B-539C-4161-B681-5E114936E515}" Name="WarehouseAddress" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
