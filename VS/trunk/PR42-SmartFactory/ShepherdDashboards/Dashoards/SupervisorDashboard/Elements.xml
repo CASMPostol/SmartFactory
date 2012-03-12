@@ -13,7 +13,7 @@
  <data>
  <properties>
  <property name="Title" type="string">Alarms and events</property>
- <property name="TitleUrl" type="string">SecurityEscortProviderDashboard.aspx</property>
+ <property name="TitleUrl" type="string">SupervisorDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
  </data>
@@ -50,7 +50,7 @@
  <data>
  <properties>
  <property name="Title" type="string">Select warehouse</property>
- <property name="TitleUrl" type="string">OperatorDashboard.aspx</property>
+ <property name="TitleUrl" type="string">SupervisorDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
  </data>
@@ -69,7 +69,7 @@
  <data>
  <properties>
  <property name="Title" type="string">Shippings</property>
- <property name="TitleUrl" type="string">SecurityEscortProviderDashboard.aspx</property>
+ <property name="TitleUrl" type="string">SupervisorDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
  </data>
