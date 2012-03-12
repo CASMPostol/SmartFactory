@@ -6,6 +6,7 @@
         <Folder TargetName="_cts/Warehouse" />
         <FieldRefs>
           <FieldRef ID="{612E92FE-DAEF-4E47-9750-C1C7397E120B}" Name="CommodityTitle" />
+          <FieldRef ID="{0DAF2E3B-539C-4161-B681-5E114936E515}" Name="WarehouseAddress" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -20,6 +21,7 @@
     </ContentTypes>
     <Fields>
       <Field Name="CommodityTitle" ID="{612e92fe-daef-4e47-9750-c1c7397e120b}" Type="Lookup" List="Lists/CommodityList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Commodity" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="WarehouseAddress" ID="{0DAF2E3B-539C-4161-B681-5E114936E515}" Type="Note" DisplayName="Warehouse Address" Group="CAS Smart Factory Shepherd" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -52,6 +54,7 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{612E92FE-DAEF-4E47-9750-C1C7397E120B}" Name="CommodityTitle" />
+          <FieldRef ID="{0DAF2E3B-539C-4161-B681-5E114936E515}" Name="WarehouseAddress" />
         </ViewFields>
         <Query>
           <OrderBy>

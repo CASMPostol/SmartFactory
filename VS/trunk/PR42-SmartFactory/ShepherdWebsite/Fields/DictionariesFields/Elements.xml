@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="WarehouseAddress"
+    ID="{0DAF2E3B-539C-4161-B681-5E114936E515}"
+    Type="Note"
+    DisplayName="Warehouse Address"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Name="Incoterm"
     ID="{0D2CDADE-3D21-4C8C-97D9-0D162026EB3F}"
     Type="Text"
