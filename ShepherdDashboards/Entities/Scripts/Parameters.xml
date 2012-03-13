@@ -58,7 +58,6 @@
   <List Name="Event Log List"/>
   <List Name="Security Seal Protocol"/>
   <List Name="Alarms And Events"></List>
-  <List Name="Goods Handling PO Number"></List>
   <List Name="Load Description"></List>
   <List Name="Security Escort PO Number"></List>
   <List Name="Drivers Team"></List>
