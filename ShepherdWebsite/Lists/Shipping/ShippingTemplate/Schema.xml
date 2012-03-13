@@ -180,12 +180,13 @@
       <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Vendor" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Vendor.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">10</RowLimit>
+        <RowLimit Paged="TRUE">16</RowLimit>
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
+          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
         </ViewFields>
         <Query>
           <Where>
@@ -263,7 +264,7 @@
       <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundOwner.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">10</RowLimit>
+        <RowLimit Paged="TRUE">16</RowLimit>
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
@@ -292,13 +293,14 @@
       <View BaseViewID="6" Type="HTML" WebPartZoneID="Main" DisplayName="Inbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="InboundOwner.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">10</RowLimit>
+        <RowLimit Paged="TRUE">16</RowLimit>
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
         </ViewFields>
         <Query>
           <Where>
@@ -327,7 +329,11 @@
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
           <FieldRef ID="{A55637EF-0C88-490E-BCAF-16215A28EA52}" Name="Shipping2City" />
-          <FieldRef ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}" Name="Shipping2TransportUnitType" />       
+          <FieldRef ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}" Name="Shipping2TransportUnitType" />
+          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
+          <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
+          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
         </ViewFields>
         <Query>
           <Where>
