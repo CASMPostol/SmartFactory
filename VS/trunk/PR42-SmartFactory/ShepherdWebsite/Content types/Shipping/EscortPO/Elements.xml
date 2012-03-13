@@ -23,6 +23,7 @@
       <FieldRef ID="{A73E99F9-FFF4-45CA-B88F-0CC7395E1D8D}" Name="SPO2CommodityTitle" />
       <FieldRef ID="{827B7731-7308-4A9F-8EC4-276499E50F18}" Name="SPO2FreightPayerSendInvoiceTo" />
       <FieldRef ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="Email" />
+      <FieldRef ID="{FE72FC76-74DC-4F27-981F-DDB728A58D0F}" Name="SPO2WarehouseAddress" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
