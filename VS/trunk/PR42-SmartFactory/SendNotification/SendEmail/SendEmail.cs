@@ -65,6 +65,7 @@ namespace CAS.SmartFactorySendNotification.SendEmail
           Modified = (DateTime)m_WorkflowProperties.Item["Modified"],
           ModifiedBy = m_WorkflowProperties.Item["Editor"].Cast2String(),
           DocumentName = m_WorkflowProperties.Item.File.Name,
+          FPO2WarehouseAddress = m_WorkflowProperties.Item["FPO2WarehouseAddress"].Cast2String()
         };
       }
       catch (Exception ex)
