@@ -26,44 +26,58 @@ namespace CAS.SmartFactorySendNotification.Features.SendNotification
     /// <param name="properties">An <see cref="T:Microsoft.SharePoint.SPFeatureReceiverProperties"/> object that represents the properties of the event.</param>
     public override void FeatureActivated(SPFeatureReceiverProperties properties)
     {
-      SPSite _siteCollection = (SPSite)properties.Feature.Parent;
-      SPWeb _web = _siteCollection.RootWeb;
-      // obtain referecnes to lists
-      SPList _targetList = _web.Lists[CommonDefinition.FreightPOLibrary];
-      SPList _taskList = _web.Lists[CommonDefinition.SendNotificationWorkflowTasks];
-      SPList _historyList = _web.Lists[CommonDefinition.SendNotificationWorkflowHistory];
-      _taskList.UseFormsForDisplay = false;
-      _taskList.Update();
-      // obtain reference to workflow template
-      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[CommonDefinition.SendNotificationWorkflowTemplateId];
-      // create workflow association
-      SPWorkflowAssociation _freightPOLibraryWorkflowAssociation =
-        SPWorkflowAssociation.CreateListAssociation(
-        _workflowTemplate, 
-        CommonDefinition.SendNotificationWorkflowAssociationName, 
-        _taskList, 
-        _historyList);
-      // configure workflow association and add to WorkflowAssociations collection
-      _freightPOLibraryWorkflowAssociation.Description = "Used to send the PO by email.";
-      _freightPOLibraryWorkflowAssociation.AllowManual = true;
-      _freightPOLibraryWorkflowAssociation.AutoStartCreate = true;
-      _freightPOLibraryWorkflowAssociation.AutoStartChange = true;
-      // add workflow association data
-      POLibraryWorkflowAssociationData _wfData = new POLibraryWorkflowAssociationData()
+      string _state = default(string);
+      try
       {
-        Content = "Content of the message", //TODO define content of the mail
-        Title = "New fright purchase order"
-      };
-      using (MemoryStream stream = new MemoryStream())
-      {
-        XmlSerializer serializer = new XmlSerializer(typeof(POLibraryWorkflowAssociationData));
-        serializer.Serialize(stream, _wfData);
-        stream.Position = 0;
-        byte[] bytes = new byte[stream.Length];
-        stream.Read(bytes, 0, bytes.Length);
-        _freightPOLibraryWorkflowAssociation.AssociationData = Encoding.UTF8.GetString(bytes);
+        SPSite _siteCollection = (SPSite)properties.Feature.Parent;
+        _state = "Feature.Parent";
+        SPWeb _web = _siteCollection.RootWeb;
+        // obtain referecnes to lists
+        SPList _targetList = _web.Lists[CommonDefinition.FreightPOLibrary];
+        SPList _taskList = _web.Lists[CommonDefinition.SendNotificationWorkflowTasks];
+        SPList _historyList = _web.Lists[CommonDefinition.SendNotificationWorkflowHistory];
+        _taskList.UseFormsForDisplay = false;
+        _taskList.Update();
+        _state = "_taskList.Update";
+        // obtain reference to workflow template
+        SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[CommonDefinition.SendNotificationWorkflowTemplateId];
+        // create workflow association
+        SPWorkflowAssociation _freightPOLibraryWorkflowAssociation =
+          SPWorkflowAssociation.CreateListAssociation(
+          _workflowTemplate,
+          CommonDefinition.SendNotificationWorkflowAssociationName,
+          _taskList,
+          _historyList);
+        _state = "CreateListAssociation";
+        // configure workflow association and add to WorkflowAssociations collection
+        _freightPOLibraryWorkflowAssociation.Description = "Used to send the PO by email.";
+        _freightPOLibraryWorkflowAssociation.AllowManual = true;
+        _freightPOLibraryWorkflowAssociation.AutoStartCreate = true;
+        _freightPOLibraryWorkflowAssociation.AutoStartChange = true;
+        // add workflow association data
+        POLibraryWorkflowAssociationData _wfData = new POLibraryWorkflowAssociationData()
+        {
+          Content = "Content of the message", //TODO define content of the mail
+          Title = "New fright purchase order"
+        };
+        using (MemoryStream stream = new MemoryStream())
+        {
+          XmlSerializer serializer = new XmlSerializer(typeof(POLibraryWorkflowAssociationData));
+          serializer.Serialize(stream, _wfData);
+          stream.Position = 0;
+          byte[] bytes = new byte[stream.Length];
+          stream.Read(bytes, 0, bytes.Length);
+          _freightPOLibraryWorkflowAssociation.AssociationData = Encoding.UTF8.GetString(bytes);
+        }
+        _state = "AssociationData";
+        _targetList.WorkflowAssociations.Add(_freightPOLibraryWorkflowAssociation);
+        _state = "WorkflowAssociations.Add";
       }
-      _targetList.WorkflowAssociations.Add(_freightPOLibraryWorkflowAssociation);
+      catch (Exception _ex)
+      {
+        string _frmt = "ActivationContext failed in the {0} state because of the error {1}";
+        throw new ApplicationException(String.Format(_frmt, _state, _ex.Message));
+      }
     }
     /// <summary>
     /// Occurs when a Feature is deactivated.
