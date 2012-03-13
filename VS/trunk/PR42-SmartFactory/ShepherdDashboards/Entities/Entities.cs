@@ -4558,6 +4558,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Warehouse", Id="0x01001E57547208B49B46B4AA7CB4536B1A55")]
 	public partial class Warehouse : Element {
 		
+		private string _warehouseAddress;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<Partner> _partner;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<ShippingPoint> _shippingPoint;
@@ -4584,6 +4586,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._commodity.OnChanged += new System.EventHandler(this.OnCommodityChanged);
 			this._commodity.OnChanging += new System.EventHandler(this.OnCommodityChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WarehouseAddress", Storage="_warehouseAddress", FieldType="Note")]
+		public string WarehouseAddress {
+			get {
+				return this._warehouseAddress;
+			}
+			set {
+				if ((value != this._warehouseAddress)) {
+					this.OnPropertyChanging("WarehouseAddress", this._warehouseAddress);
+					this._warehouseAddress = value;
+					this.OnPropertyChanged("WarehouseAddress");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Partner2WarehouseTitle", Storage="_partner", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Partner")]
@@ -4677,6 +4693,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		private System.Nullable<System.DateTime> _loadingDate;
 		
 		private System.Nullable<System.DateTime> _dispatchDate;
+		
+		private string _adresEMail;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
@@ -4802,6 +4820,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this.OnPropertyChanging("DispatchDate", this._dispatchDate);
 					this._dispatchDate = value;
 					this.OnPropertyChanged("DispatchDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EMail", Storage="_adresEMail", FieldType="Text")]
+		public string AdresEMail {
+			get {
+				return this._adresEMail;
+			}
+			set {
+				if ((value != this._adresEMail)) {
+					this.OnPropertyChanging("AdresEMail", this._adresEMail);
+					this._adresEMail = value;
+					this.OnPropertyChanged("AdresEMail");
 				}
 			}
 		}
