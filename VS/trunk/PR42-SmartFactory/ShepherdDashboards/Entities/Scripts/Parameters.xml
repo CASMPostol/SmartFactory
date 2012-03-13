@@ -39,6 +39,7 @@
     </ContentType>
   </List>
   <List Name="Schedule Template"></List>
+  <List Name="Security Escort Route"></List>
   <List Name="Shipment Type">
     <ContentType Name="ShipmentType">
       <Column Name="Dummy"/>
