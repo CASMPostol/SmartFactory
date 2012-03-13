@@ -322,7 +322,7 @@
       <View BaseViewID="7" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Coordinator" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundCoordinator.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">10</RowLimit>
+        <RowLimit Paged="TRUE">20</RowLimit>
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
@@ -355,12 +355,16 @@
       <View BaseViewID="8" Type="HTML" WebPartZoneID="Main" DisplayName="Forwarder" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Forwarder.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">10</RowLimit>
+        <RowLimit Paged="TRUE">16</RowLimit>
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
+          <FieldRef ID="{A55637EF-0C88-490E-BCAF-16215A28EA52}" Name="Shipping2City" />
+          <FieldRef ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}" Name="Shipping2TransportUnitType" />
+          <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
+          <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
         </ViewFields>
         <Query>
           <Where>
