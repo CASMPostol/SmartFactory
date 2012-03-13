@@ -25,7 +25,7 @@ namespace CAS.SmartFactorySendNotification.WorkflowData
             
             #line default
             #line hidden
-            this.Write("</p>\r\n  <p>\r\n    <b>Collections:</b> ");
+            this.Write("</p>\r\n  <p>\r\n    <b>Warehouse address:</b> ");
             
             #line 4 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FPO2WarehouseAddress));
