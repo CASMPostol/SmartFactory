@@ -419,6 +419,13 @@
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
           <FieldRef ID="{DEBE4D8F-04DE-4A3B-AA59-320884A6E044}" Name="IsOutbound" />
+          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
+          <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
+          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
+          <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
+          <FieldRef ID="{2CEB1781-878F-46E5-9DF5-432463ABD971}" Name="ShippingOperationOutband2PartnerTitle" />
+          <FieldRef ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}" Name="ShippingOperationOutband2TruckTitle" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -434,15 +441,18 @@
       <View BaseViewID="11" Type="HTML" WebPartZoneID="Main" DisplayName="Operator" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Operator.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">20</RowLimit>
+        <RowLimit Paged="TRUE">16</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
+          <FieldRef ID="{A55637EF-0C88-490E-BCAF-16215A28EA52}" Name="Shipping2City" />
           <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{DEBE4D8F-04DE-4A3B-AA59-320884A6E044}" Name="IsOutbound" />
+          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
+          <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
         </ViewFields>
         <Query>
           <OrderBy>
