@@ -17,5 +17,6 @@ namespace CAS.SmartFactorySendNotification.WorkflowData
     public string ModifiedBy { get; set; }
     public Uri Encodedabsurl { get; set; }
     public string DocumentName { get; set; }
+    public string FPO2WarehouseAddress { get; set; }
   }
 }

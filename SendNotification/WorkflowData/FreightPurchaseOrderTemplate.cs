@@ -25,8 +25,14 @@ namespace CAS.SmartFactorySendNotification.WorkflowData
             
             #line default
             #line hidden
-            this.Write("</p>\r\n  <p>\r\n    <b>Collections:</b>JTI Polska Sp. z o.o., Gostków Stary 42, 99-2" +
-                    "20 Wartkowice</p>\r\n  <p>\r\n    <b>Deliveries:</b> ");
+            this.Write("</p>\r\n  <p>\r\n    <b>Collections:</b> ");
+            
+            #line 4 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(FPO2WarehouseAddress));
+            
+            #line default
+            #line hidden
+            this.Write("</p>\r\n  <p>\r\n    <b>Deliveries:</b> ");
             
             #line 6 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FPO2CityTitle));
