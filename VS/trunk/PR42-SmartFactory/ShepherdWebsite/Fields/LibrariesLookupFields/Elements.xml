@@ -18,23 +18,6 @@
     ReadOnly="False"
     />
   <Field
-    Name="FPO2WarehouseAddress"
-    ID="{BBE09ECA-8C96-47B4-B604-6515E57D6BDE}"
-    Type="Lookup"
-    List="Lists/WarehouseList"
-    ShowField="WarehouseAddress"
-    UnlimitedLengthInDocumentLibrary="False"
-    Indexed="True"
-    RelationshipDeleteBehavior="None"
-    DisplayName="Warehouse Address"
-    Group="CAS Smart Factory Shepherd"
-    Required="False"
-    Hidden="False"
-    DisplaceOnUpgrade="True"
-    EnforceUniqueValues="False"
-    ReadOnly="False"
-    />
-  <Field
     Name="SealProtocol2TrailerTitle"
     ID="{A8340501-5EF0-48BF-84A9-AFDB93952C68}"
     Type="Lookup"
