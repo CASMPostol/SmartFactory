@@ -571,7 +571,9 @@
     <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\Elements.xml" />
     <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\Repair.aspx" />
-    <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\SealProtocolLibrary\Elements.xml" />
     <Content Include="Lists\Libraries\SealProtocolLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Elements.xml" />

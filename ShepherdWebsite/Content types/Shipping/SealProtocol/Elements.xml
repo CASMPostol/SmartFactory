@@ -20,8 +20,7 @@
       <FieldRef ID="{6E74A050-1323-4FF4-A7C5-C2784A9A84CC}" Name="SealProtocol2DriverTitleEscor2" />
       <FieldRef ID="{9E070D58-11EE-4F9C-A3C3-04168EE6F3D7}" Name="SealProtocol2EscortPhone" />
       <FieldRef ID="{EB250417-3BBF-4DAB-A528-30283BD71329}" Name="SealProtocol2TruckTitleEscort" />
-      <FieldRef ID="{DD04BBA8-9D56-4B45-8807-D61CEB15BF9D}" Name="SealProtocol1stContainerNo" />
-      <FieldRef ID="{731BD3CE-B65A-481A-967E-355306A6524A}" Name="SealProtocol2ndContainerNo" />
+      <FieldRef ID="{D274F76F-B824-480A-9BEB-F2AB0CB24961}" Name="SealProtocol2ShippingContainerNo" />
       <FieldRef ID="{CA920A00-3978-4CA8-8329-D461CF5BB787}" Name="SealProtocolDispatchDateActual" />
       <FieldRef ID="{B13AEFD2-6F1D-4ECC-84F0-A55E3E2831F4}" Name="SealProtocol2WarehouseTitle" />
       <FieldRef ID="{A2177032-8D45-4C5A-A1E1-0FE23F8DD988}" Name="SealProtocol2TruckTitle" />
