@@ -514,7 +514,7 @@
     Name="FPO2FreightPayerSendInvoiceTo"
     ID="{C8D32FDE-1CAA-4CE9-8AAD-32C1EF8062D4}"
     Type="Lookup"
-    List="Lists/CommodityList"
+    List="Lists/FreightPayerList"
     ShowField="SendInvoiceTo"
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
