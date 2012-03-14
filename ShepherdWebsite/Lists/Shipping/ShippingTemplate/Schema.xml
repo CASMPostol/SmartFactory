@@ -33,6 +33,7 @@
           <FieldRef ID="{045419D2-8EDB-4989-A2B8-650A8EF7C16C}" Name="Shipping2EscortPOIndex" />
           <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
           <FieldRef ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}" Name="TrailerConditionComments" />
+          <FieldRef ID="{DF668BB4-81B5-4E6A-BBCB-44BD0F71F8C3}" Name="ContainerNo" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -105,6 +106,7 @@
         </CHOICES>
       </Field>
       <Field DisplayName="Comments" Name="TrailerConditionComments" Type="Note" ID="{d28631e5-d7a6-46d4-b2c2-73140ce72704}" Group="CAS Smart Factory Shepherd" />
+      <Field DisplayName="Container No." Name="ContainerNo" Type="Text" ID="{DF668BB4-81B5-4E6A-BBCB-44BD0F71F8C3}" Group="CAS Smart Factory Shepherd" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -165,6 +167,7 @@
           <FieldRef ID="{045419D2-8EDB-4989-A2B8-650A8EF7C16C}" Name="Shipping2EscortPOIndex" />
           <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
           <FieldRef ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}" Name="TrailerConditionComments" />
+          <FieldRef ID="{DF668BB4-81B5-4E6A-BBCB-44BD0F71F8C3}" Name="ContainerNo" />
         </ViewFields>
         <Query>
           <OrderBy>

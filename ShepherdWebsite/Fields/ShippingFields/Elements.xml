@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="Container No."
+    Name="ContainerNo"
+    Type="Text"
+    ID="{DF668BB4-81B5-4E6A-BBCB-44BD0F71F8C3}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
    Type="Choice"
    DisplayName="Occupied"
    ID="{1A17B25C-CEEC-42BB-A17C-25B4CBD79FA2}"
