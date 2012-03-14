@@ -11,7 +11,7 @@
       <FieldRef ID="{6483C7B1-BF97-409C-AE10-03B369E9D70F}" Name="ShepherdUser" />
       <FieldRef ID="{7A847280-FE50-471A-B399-1F7D7EF19DA3}" Name="VendorNumber" />
       <FieldRef ID="{6F534579-F010-432C-BE79-5AE3B369E7CF}" Name="ServiceType" />
-      <FieldRef ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="Email" />
+      <FieldRef ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}" Name="EmailAddress" />
       <FieldRef ID="{fd630629-c165-4513-b43c-fdb16b86a14d}" Name="WorkPhone" />
       <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
       <FieldRef ID="{074A69F8-5CE5-407F-81CD-6E691DFB7214}" Name="Partner2WarehouseTitle" />
