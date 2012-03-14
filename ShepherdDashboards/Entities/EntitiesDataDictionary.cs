@@ -56,14 +56,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     internal void AddPartner(UpdateToolStripEvent _update, Schemas.PreliminaryDataRoutePartnersRow _partner, bool _testData)
     {
       Partner _prtnr = Create<Partner>(m_EDC.Partner, m_Partner, _partner.Name, _testData);
-      _prtnr.AdresEMail = DummyName( _partner.E_Mail, "AdresEMail", _testData);
+      _prtnr.EMail = DummyEmail( _partner.E_Mail, "AdresEMail", _testData);
       _prtnr.NumerTelefonuKomórkowego = DummyName(_partner.Mobile, "Mobile", _testData); ;
       _prtnr.ServiceType = ParseServiceType(_partner.ServiceType);
       _prtnr.TelefonSłużbowy = DummyName(_partner.BusinessPhone, "BusinessPhone", _testData); ;
       _prtnr.VendorNumberFromSAP = DummyName(_partner.NumberFromSAP, "NumberFromSAP", _testData); ;
       _prtnr.Warehouse = GetOrAdd<Warehouse>(m_EDC.Warehouse, _update, m_Warehouse, _partner.Warehouse, false);
     }
-
     internal void AddFreightPayer(UpdateToolStripEvent _update, Schemas.PreliminaryDataRoutePayersRow item, bool _testData)
     {
       FreightPayer _fp = Create<FreightPayer>(m_EDC.FreightPayer, m_FreightPayer, item.Freight_Payer__I_C__MainLeg, _testData);
@@ -263,6 +262,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     private string DummyName(string _text, string _replacement, bool _testData)
     {
       return _testData ? String.Format("{0} {1}", _replacement, m_EmptyKeyIdx++) : _text;
+    }
+    private string DummyEmail(string _text, string _replacement, bool _testData)
+    {
+      return _testData ? "oferty@case.eu" : _text;
     }
     #endregion
 
