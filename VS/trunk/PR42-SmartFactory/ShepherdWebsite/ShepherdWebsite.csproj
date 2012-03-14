@@ -384,7 +384,9 @@
     <Content Include="Content types\Dictionaries\Country\Elements.xml" />
     <Content Include="Content types\Dictionaries\Currency\Elements.xml" />
     <Content Include="Content types\Dictionaries\DestinationMarket\Elements.xml" />
-    <Content Include="Content types\Dictionaries\Driver\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Driver\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\ExchangeRate\Elements.xml" />
     <Content Include="Content types\Dictionaries\FreightPayer\Elements.xml" />
     <Content Include="Content types\Dictionaries\Market\Elements.xml" />

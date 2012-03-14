@@ -10,6 +10,7 @@
     <FieldRefs>
       <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
       <FieldRef ID="{ABE1FBCA-A3B4-4425-A819-80CD436CC98D}" Name="DriverTitle" />
+      <FieldRef ID="{6A3FBFD2-0901-4813-AB9E-43D788572021}" Name="DriversTeamDriverID" />
       <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="ShippingIndex" />
     </FieldRefs>
     <XmlDocuments>

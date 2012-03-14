@@ -1,6 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Type="Lookup"
+    DisplayName="ID Number"
+    List="Lists/DriverList"
+    ShowField="IdentityDocumentNumber"
+    FieldRef="ABE1FBCA-A3B4-4425-A819-80CD436CC98D"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Shepherd"
+    ID="{6A3FBFD2-0901-4813-AB9E-43D788572021}"
+    Name="DriversTeamDriverID"
+    Overwrite="TRUE"
+  />
+  <Field
     Name="Shipping2TransportUnitType"
     ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}"
     Type="Lookup"
