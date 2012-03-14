@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="FPOWarehouseAddress"
+    ID="{C8BAB435-1138-4241-A5A8-C2BBB11802F5}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Warehouse address" />
+  <Field
     Name="SealProtocol2ndContainerNo"
     ID="{731BD3CE-B65A-481A-967E-355306A6524A}"
     Type="Text"

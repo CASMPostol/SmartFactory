@@ -20,7 +20,7 @@
           <FieldRef ID="{A73E99F9-FFF4-45CA-B88F-0CC7395E1D8D}" Name="SPO2CommodityTitle" />
           <FieldRef ID="{827B7731-7308-4A9F-8EC4-276499E50F18}" Name="SPO2FreightPayerSendInvoiceTo" />
           <FieldRef ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}" Name="EmailAddress" />
-          <FieldRef ID="{FE72FC76-74DC-4F27-981F-DDB728A58D0F}" Name="SPO2WarehouseAddress" />
+          <FieldRef ID="{C8BAB435-1138-4241-A5A8-C2BBB11802F5}" Name="FPOWarehouseAddress" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -154,7 +154,7 @@
           <FieldRef ID="{A73E99F9-FFF4-45CA-B88F-0CC7395E1D8D}" Name="SPO2CommodityTitle" />
           <FieldRef ID="{827B7731-7308-4A9F-8EC4-276499E50F18}" Name="SPO2FreightPayerSendInvoiceTo" />
           <FieldRef ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}" Name="EmailAddress" />
-          <FieldRef ID="{FE72FC76-74DC-4F27-981F-DDB728A58D0F}" Name="SPO2WarehouseAddress" />
+          <FieldRef ID="{C8BAB435-1138-4241-A5A8-C2BBB11802F5}" Name="FPOWarehouseAddress" />
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
