@@ -25,7 +25,7 @@
       <FieldRef ID="{4702D9EC-7F41-4780-8B38-22F3249D5FC3}" Name="FPO2CountryTitle" />
       <FieldRef ID="{65BBD083-7C7F-427B-B061-59F9B15E2263}" Name="FPO2CommodityTitle" />
       <FieldRef ID="{C8D32FDE-1CAA-4CE9-8AAD-32C1EF8062D4}" Name="FPO2FreightPayerSendInvoiceTo" />
-      <FieldRef ID="{fce16b4c-fe53-4793-aaab-b4892e736d15}" Name="Email" />
+      <FieldRef ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}" Name="EmailAddress" />
       <FieldRef ID="{BBE09ECA-8C96-47B4-B604-6515E57D6BDE}" Name="FPO2WarehouseAddress" />
     </FieldRefs>
     <XmlDocuments>

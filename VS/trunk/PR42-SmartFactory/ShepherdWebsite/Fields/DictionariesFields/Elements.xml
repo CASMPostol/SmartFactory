@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="EmailAddress"
+    ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}"
+    Type="Text"
+    DisplayName="E-mail"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Name="WarehouseAddress"
     ID="{0DAF2E3B-539C-4161-B681-5E114936E515}"
     Type="Note"
