@@ -2415,7 +2415,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private string _vendorNumberFromSAP;
 		
-		private string _adresEMail;
+		private string _eMail;
 		
 		private string _telefonSłużbowy;
 		
@@ -2493,16 +2493,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EMail", Storage="_adresEMail", FieldType="Text")]
-		public string AdresEMail {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EmailAddress", Storage="_eMail", FieldType="Text")]
+		public string EMail {
 			get {
-				return this._adresEMail;
+				return this._eMail;
 			}
 			set {
-				if ((value != this._adresEMail)) {
-					this.OnPropertyChanging("AdresEMail", this._adresEMail);
-					this._adresEMail = value;
-					this.OnPropertyChanged("AdresEMail");
+				if ((value != this._eMail)) {
+					this.OnPropertyChanging("EMail", this._eMail);
+					this._eMail = value;
+					this.OnPropertyChanged("EMail");
 				}
 			}
 		}
@@ -5116,7 +5116,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private System.Nullable<System.DateTime> _dispatchDate;
 		
-		private string _adresEMail;
+		private string _eMail;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
@@ -5230,16 +5230,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EMail", Storage="_adresEMail", FieldType="Text")]
-		public string AdresEMail {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EmailAddress", Storage="_eMail", FieldType="Text")]
+		public string EMail {
 			get {
-				return this._adresEMail;
+				return this._eMail;
 			}
 			set {
-				if ((value != this._adresEMail)) {
-					this.OnPropertyChanging("AdresEMail", this._adresEMail);
-					this._adresEMail = value;
-					this.OnPropertyChanged("AdresEMail");
+				if ((value != this._eMail)) {
+					this.OnPropertyChanging("EMail", this._eMail);
+					this._eMail = value;
+					this.OnPropertyChanged("EMail");
 				}
 			}
 		}
@@ -5661,7 +5661,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private System.Nullable<System.DateTime> _dispatchDate;
 		
-		private string _adresEMail;
+		private string _eMail;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
@@ -5797,16 +5797,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EMail", Storage="_adresEMail", FieldType="Text")]
-		public string AdresEMail {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EmailAddress", Storage="_eMail", FieldType="Text")]
+		public string EMail {
 			get {
-				return this._adresEMail;
+				return this._eMail;
 			}
 			set {
-				if ((value != this._adresEMail)) {
-					this.OnPropertyChanging("AdresEMail", this._adresEMail);
-					this._adresEMail = value;
-					this.OnPropertyChanged("AdresEMail");
+				if ((value != this._eMail)) {
+					this.OnPropertyChanging("EMail", this._eMail);
+					this._eMail = value;
+					this.OnPropertyChanged("EMail");
 				}
 			}
 		}
