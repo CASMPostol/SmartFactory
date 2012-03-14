@@ -7,18 +7,6 @@
     Group="CAS Smart Factory Shepherd"
     DisplayName="Warehouse address" />
   <Field
-    Name="SealProtocol2ndContainerNo"
-    ID="{731BD3CE-B65A-481A-967E-355306A6524A}"
-    Type="Text"
-    Group="CAS Smart Factory Shepherd"
-    DisplayName="2nd Container No." />
-  <Field
-    Name="SealProtocol1stContainerNo"
-    ID="{DD04BBA8-9D56-4B45-8807-D61CEB15BF9D}"
-    Type="Text"
-    Group="CAS Smart Factory Shepherd"
-    DisplayName="1st Container No." />
-  <Field
     Name="SealProtocolDispatchDateActual"
     ID="{CA920A00-3978-4CA8-8329-D461CF5BB787}"
     Type="DateTime"

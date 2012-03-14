@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="SealProtocol2ShippingContainerNo"
+    ID="{D274F76F-B824-480A-9BEB-F2AB0CB24961}"
+    Type="Lookup"
+    List="Lists/ShippingList"
+    ShowField="ContainerNo"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Container No."
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="SPO2WarehouseAddress"
     ID="{FE72FC76-74DC-4F27-981F-DDB728A58D0F}"
     Type="Lookup"
