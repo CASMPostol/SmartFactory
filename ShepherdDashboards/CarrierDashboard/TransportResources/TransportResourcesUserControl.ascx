@@ -11,7 +11,7 @@
 <asp:Table ID="TransportResourcesWebPart" runat="server" CssClass="Table">
     <asp:TableRow>
         <asp:TableCell>
-            <asp:Table>
+            <asp:Table ID="Row1" runat="server" CssClass="TableInside">
             <asp:TableRow>
             <asp:TableCell>
                 <asp:Label ID="Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label>
@@ -44,7 +44,7 @@
     </asp:TableRow>
     <asp:TableRow>
         <asp:TableCell>
-        <asp:Table>
+        <asp:Table ID="Row3" runat="server" CssClass="TableInside">
             <asp:TableRow>
             <asp:TableCell>
             <asp:Label ID="m_TruckHeaderLabel" runat="server" Text="Truck" CssClass="Label"></asp:Label>
@@ -53,12 +53,6 @@
             <asp:DropDownList ID="m_TruckDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack="true"></asp:DropDownList>
         </asp:TableCell>
             </asp:TableRow>
-            </asp:Table>
-        </asp:TableCell>
-    </asp:TableRow>
-    <asp:TableRow>
-        <asp:TableCell>
-        <asp:Table>
             <asp:TableRow>
             <asp:TableCell>
             <asp:Label ID="m_TrailerHeaderLabel" runat="server" Text="Trailer" CssClass="Label"></asp:Label>
@@ -67,12 +61,6 @@
             <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack="true"></asp:DropDownList>
         </asp:TableCell>
             </asp:TableRow>
-            </asp:Table>
-        </asp:TableCell>
-    </asp:TableRow>
-    <asp:TableRow>
-        <asp:TableCell>
-        <asp:Table>
             <asp:TableRow>
             <asp:TableCell>
             <asp:Label ID="ContainerNo" runat="server" Text="Container No." CssClass="Label"></asp:Label>
@@ -81,7 +69,7 @@
             <asp:TextBox ID="m_ContainerNoTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
         </asp:TableCell>
             </asp:TableRow>
-            </asp:Table>
+        </asp:Table>
         </asp:TableCell>
     </asp:TableRow>
 </asp:Table>
