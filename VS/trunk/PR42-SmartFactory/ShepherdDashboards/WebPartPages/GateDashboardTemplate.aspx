@@ -18,10 +18,10 @@
 <asp:Content ID="Content3" ContentPlaceHolderId="PlaceHolderMain" runat="server">
 
   <div id="Body" >
-    <table style="Width:100%" >
+    <table Width="100%" >
       <tr>
-        <td style="Width:100%;vertical-align:top">
-            <table style="Width:100%" >
+        <td width="100% valign="top">
+            <table width="100% valign="top" >
                 <tr>
                     <td colspan="2" valign="top">
                         <WebPartPages:WebPartZone
