@@ -18,21 +18,21 @@
 <asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
 
   <div id="Body" >
-    <table style="Width:100%" >
+    <table width="100%" >
       <tr>
-        <td style="Width:40%;vertical-align:top">
+        <td width="40%" valign="top">
             <WebPartPages:WebpartZone
             ID="Main1" runat="server"
             Title="1st Main Web Part Zone"
             FrameType="TitleBarOnly" />
         </td>
-        <td style="Width:40%;vertical-align:top">
+        <td width="40%" valign="top">
             <WebPartPages:WebpartZone
             ID="Main2" runat="server"
             Title="2nd Main Web Part Zone"
             FrameType="TitleBarOnly" />
         </td>
-        <td style="Width:20%;vertical-align:top" >
+        <td width="20%" valign="top" >
           <WebPartPages:WebPartZone 
             ID="Right" runat="server" 
             Title="Right Web Part Zone"
