@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
+  <List Name="Transport Unit Type">
+    <ContentType Name="TranspotUnit">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
+  <List Name="Currency" ></List>
+  <List Name="Country" >
+    <ContentType Name="CountryType" Class="CountryClass">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
+  <List Name="Freight Payer"></List>
+  <List Name="Route"></List>
+  <List Name="Commodity">
+    <ContentType Name="Commodity">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
+  <List Name="City"></List>
+  <List Name="Partner" ></List>
+  <List Name="Security Escort Route"></List>
+  <List Name="Warehouse"></List>
+  <List Name="Event Log List"/>
+  <List Name="Security Seal Protocol"/>
+  <List Name="Alarms And Events"></List>
+  <List Name="Shipping"></List>
+  <List Name="Freight PO Library"/>
+  <List Name="Escort PO Library"/>
+  <ExcludeOtherLists/>
+</Web>

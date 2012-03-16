@@ -19,6 +19,7 @@ using CAS.SmartFactorySendNotification.WorkflowData;
 using System.Xml;
 using System.IO;
 using System.Text;
+using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 
 namespace CAS.SmartFactorySendNotification.SendEmail
 {
@@ -53,20 +54,26 @@ namespace CAS.SmartFactorySendNotification.SendEmail
       try
       {
         m_EmailSubject = _activationData.Title;
-        return new FreightPurchaseOrderTemplate()
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(m_WorkflowProperties.Site.Url))
         {
-          Encodedabsurl = new Uri((string)m_WorkflowProperties.Item["EncodedAbsUrl"]),
-          FPO2CityTitle = m_WorkflowProperties.Item["FPO2CityTitle"].Cast2String(),
-          FPO2CommodityTitle = m_WorkflowProperties.Item["FPO2CommodityTitle"].Cast2String(),
-          FPO2CountryTitle = m_WorkflowProperties.Item["FPO2CountryTitle"].Cast2String(),
-          FPO2RouteGoodsHandlingPO = m_WorkflowProperties.Item["FPO2RouteGoodsHandlingPO"].Cast2String(),
-          FPO2TransportUnitTypeTitle = m_WorkflowProperties.Item["FPO2TransportUnitTypeTitle"].Cast2String(),
-          FPOLoadingDate = (DateTime)m_WorkflowProperties.Item["FPOLoadingDate"],
-          Modified = (DateTime)m_WorkflowProperties.Item["Modified"],
-          ModifiedBy = m_WorkflowProperties.Item["Editor"].Cast2String(),
-          DocumentName = m_WorkflowProperties.Item.File.Name,
-          FPO2WarehouseAddress = m_WorkflowProperties.Item["FPO2WarehouseAddress"].Cast2String()
-        };
+          FreightPO _fpo = (from idx in _EDC.FreightPOLibrary
+                            where idx.Identyfikator == m_WorkflowProperties.ItemId
+                            select idx).First();
+          return new FreightPurchaseOrderTemplate()
+          {
+            Encodedabsurl = new Uri( (string)m_WorkflowProperties.Item["EncodedAbsUrl"]),
+            Modified = (DateTime)m_WorkflowProperties.Item["Modified"],
+            ModifiedBy = m_WorkflowProperties.OriginatorUser.Name,
+            DocumentName = m_WorkflowProperties.Item.File.Name,
+            FPO2CityTitle = _fpo.City == null ? String.Empty : _fpo.City.Tytuł,
+            FPO2CommodityTitle = _fpo.Commodity == null ? String.Empty : _fpo.Commodity.Tytuł,
+            FPO2CountryTitle = _fpo.Country == null ? String.Empty : _fpo.Country.Tytuł,
+            FPO2RouteGoodsHandlingPO = _fpo.FreightPO0 == null ? String.Empty : _fpo.FreightPO0,
+            FPO2TransportUnitTypeTitle = _fpo.TransportUnitType == null ? String.Empty : _fpo.TransportUnitType.Tytuł,
+            FPOLoadingDate = _fpo.LoadingDate.GetValueOrDefault(DateTime.MaxValue),
+            FPO2WarehouseAddress = _fpo.WarehouseAddress == null ? String.Empty : _fpo.WarehouseAddress
+          };
+        }
       }
       catch (Exception ex)
       {

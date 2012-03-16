@@ -81,7 +81,7 @@ namespace CAS.SmartFactorySendNotification.WorkflowData
             
             #line default
             #line hidden
-            this.Write("</a>\r\n  <p>\r\n    <b>Place and date of order issuance:</b> ");
+            this.Write("</a>\r\n  <p>\r\n    <b>Date and author of the order:</b> ");
             
             #line 16 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Modified));
@@ -95,9 +95,10 @@ namespace CAS.SmartFactorySendNotification.WorkflowData
             
             #line default
             #line hidden
-            this.Write("</p>\r\n  <p>\r\n    ---</p>\r\n  <p>\r\n    Information about driver’s names and truck/t" +
-                    "railers should be supplemented in Shepherd\r\n    system before planned loading.</" +
-                    "p>\r\n");
+            this.Write("</p>\r\n  _________________________________________________________________________" +
+                    "___________________</br>\r\n  NOTE: Information about driver’s names and truck/tra" +
+                    "ilers should be supplemented in Shepherd\r\n        system before planned loading." +
+                    "</br>  ");
             return this.GenerationEnvironment.ToString();
         }
     }
