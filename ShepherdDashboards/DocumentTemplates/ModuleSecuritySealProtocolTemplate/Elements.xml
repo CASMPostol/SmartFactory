@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="ModuleSecuritySealProtocolTemplate" Url="Lists/SealProtocolLibrary" >
+  <File Path="ModuleSecuritySealProtocolTemplate\SecurityEscortPurchaseOrderTemplate.dotx" 
+        Url="Forms/SecurityEscortPurchaseOrderTemplate.dotx"
+        Type="GhostableInLibrary" />
+</Module>
+</Elements>
