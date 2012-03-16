@@ -13,9 +13,7 @@
   <p>
     <b>Freight Purchase Order document:</b> <a href="<#= Encodedabsurl #>"> <#= DocumentName #></a>
   <p>
-    <b>Place and date of order issuance:</b> <#= Modified #>, <#= ModifiedBy #></p>
-  <p>
-    ---</p>
-  <p>
-    Information about driver’s names and truck/trailers should be supplemented in Shepherd
-    system before planned loading.</p>
+    <b>Date and author of the order:</b> <#= Modified #>, <#= ModifiedBy #></p>
+  ____________________________________________________________________________________________</br>
+  NOTE: Information about driver’s names and truck/trailers should be supplemented in Shepherd
+        system before planned loading.</br>  

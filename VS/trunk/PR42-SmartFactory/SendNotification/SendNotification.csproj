@@ -40,6 +40,8 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -53,9 +55,18 @@
     <Reference Include="System.Workflow.Activities" />
     <Reference Include="System.Workflow.ComponentModel" />
     <Reference Include="System.Workflow.Runtime" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonDefinition.cs" />
+    <Compile Include="CreatePO\CreatePO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CreatePO\CreatePO.Designer.cs">
+      <DependentUpon>CreatePO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Element.cs" />
+    <Compile Include="Entities\Entities.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Features\SendNotification\SendNotification.EventReceiver.cs">
       <DependentUpon>SendNotification.feature</DependentUpon>
@@ -78,6 +89,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="CreatePO\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2c449354-5fc5-47fe-a13f-84165a95e8c9}</SharePointProjectItemId>
+    </None>
+    <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="key.snk" />
     <None Include="SendEmail\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1783f2bc-07c6-4fa0-a343-7eb67ed5f587}</SharePointProjectItemId>
@@ -112,6 +127,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CreatePO\Elements.xml" />
+    <Content Include="Entities\Scripts\Parameters.xml" />
     <Content Include="SendEmail\Elements.xml" />
     <Content Include="WorkflowData\P-1101040004010401_Freight_Purchase_Order_Template_HTML.htm" />
     <Content Include="WorkflowLists\SendNotificationHistory\Elements.xml" />
