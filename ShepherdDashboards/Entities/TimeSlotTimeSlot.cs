@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       for (int _i = 0; _i < _avlblTmslts.Count; _i++)
       {
-        if ((_avlblTmslts[_i].StartTime.Value - this.EndTime.Value).Duration() <= Span15min)
+        if ((_avlblTmslts[_i].CzasRozpoczęcia.Value - this.CzasZakończenia.Value).Duration() <= Span15min)
           return _avlblTmslts[_i];
       }
       throw new ApplicationException("Cannot find the time slot to make the couple.");
