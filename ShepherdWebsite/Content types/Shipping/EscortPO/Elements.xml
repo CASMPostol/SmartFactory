@@ -8,7 +8,7 @@
                Inherits="TRUE">
     <Folder TargetName="EscortPO" />
     <FieldRefs>
-      <FieldRef ID="{24F34C2E-0025-4FD9-A7A0-CADEEF202D77}" Name="SPO2SecurityEscortRouteSecurityEscrotPO" />
+      <FieldRef ID="{A2297425-2114-4FD6-A543-51AF45CE0F70}" Name="SPOFreightPO" />
       <FieldRef ID="{6948E3B5-8714-4298-A44A-1EF7CB091C40}" Name="SPO2FreightPayerPayerName" />
       <FieldRef ID="{F854AD5E-B3F0-4F3B-8057-AA52D30E7A64}" Name="SPO2FreightPayerCompanyAddress" />
       <FieldRef ID="{8834E2C8-8443-4996-82E2-ED2A503ECE29}" Name="SPO2FreightPayerWorkZip" />

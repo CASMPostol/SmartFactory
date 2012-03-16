@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="SPOFreightPO"
+    ID="{A2297425-2114-4FD6-A543-51AF45CE0F70}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Freight PO" />
+  <Field
+    Name="FPOFreightPO"
+    ID="{B5B628BF-AFA7-4170-84CD-085CBED9509C}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Freight PO" />
+  <Field
     Name="FPOWarehouseAddress"
     ID="{C8BAB435-1138-4241-A5A8-C2BBB11802F5}"
     Type="Text"
