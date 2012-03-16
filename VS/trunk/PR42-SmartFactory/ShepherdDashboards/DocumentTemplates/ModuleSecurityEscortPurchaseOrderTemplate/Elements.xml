@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="ModuleSecurityEscortPurchaseOrderTemplate" Url="Lists/EscortPOLibrary" >
-  <File Path="ModuleSecurityEscortPurchaseOrderTemplate\SecurityEscortPurchaseOrderTemplate.dotx" Url="ModuleSecurityEscortPurchaseOrderTemplate/SecurityEscortPurchaseOrderTemplate.dotx" />
+  <File Path="ModuleSecurityEscortPurchaseOrderTemplate\SecurityEscortPurchaseOrderTemplate.dotx" 
+        Url="Forms/SecurityEscortPurchaseOrderTemplate.dotx" 
+        Type="GhostableInLibrary" />
 </Module>
 </Elements>
