@@ -340,6 +340,17 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="WebPartPages\CarrierDashboardTemplate.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_Escort.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_Forwarder.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_Gate.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_InboundOwner.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_Operator.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_OutboundCoordinator.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_OutboundOwner.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_Supervisor.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_Vendor.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />

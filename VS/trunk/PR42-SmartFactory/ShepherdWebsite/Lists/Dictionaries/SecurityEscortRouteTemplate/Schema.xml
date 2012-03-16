@@ -98,7 +98,6 @@
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{40070CB4-6ED0-4024-9269-70DAC8932C42}" Name="SecurityEscortCatalog2BusinessDescriptionTitle" />
           <FieldRef ID="{4E19EC40-3A94-453E-ABEA-4DCBE1BF8ECD}" Name="EscortDestination" />
-          <FieldRef ID="{40088770-43E3-441B-9973-D3B093DC131C}" Name="RemarkMM" />
           <FieldRef ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}" Name="SecurityEscrotPO" />
         </ViewFields>
         <Query>

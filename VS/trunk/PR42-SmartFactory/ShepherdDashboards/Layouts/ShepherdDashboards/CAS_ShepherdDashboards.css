@@ -14,12 +14,27 @@
     border-style:solid;
     font-family:Verdana;
     font-size:10pt;
-    width:200px;
+    width:160px;
 }
 .Button
 {
     border-width:1px 1px 1px 12px;
     width:90px;
+    height:20px;
+    border-top-color:#addbf7;
+    border-bottom-color:#addbf7;
+    border-left-color:#91cdf2;
+    border-right-color:#91cdf2;
+    border-style:solid;
+    background-image:url(/_layouts/images/ShepherdDashboards/button_background.jpg);
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:10pt; 
+}
+.Button_TR
+{
+    border-width:1px 1px 1px 12px;
+    width:70px;
     height:20px;
     border-top-color:#addbf7;
     border-bottom-color:#addbf7;
@@ -67,7 +82,7 @@
     background-color:#FFFFFF;
     font-family:Verdana;
     font-size:10pt;
-    width:200px;
+    width:160px;
 }
 .ListBox
 {
@@ -86,12 +101,12 @@
     background-color:#FFFFFF;
     font-family:Verdana;
     font-size:10pt;
-    width:200px;
+    width:160px;
 }
 /* TimeSlot Callendar Part */
 .DashboardCalendar
 {
-    width:450px;
+    width:300px;
     height:auto;
 }
 /*do użycia w kalendarzu */

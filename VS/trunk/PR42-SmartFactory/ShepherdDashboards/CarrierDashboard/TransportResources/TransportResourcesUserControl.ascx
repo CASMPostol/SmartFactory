@@ -31,9 +31,9 @@
                 <asp:ListBox ID="m_DriversListBox" runat="server" CssClass="ListBoxInside" Enabled="false"></asp:ListBox>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:Button ID="m_AddDriverButton" runat="server" Text="Add" CssClass="Button" Enabled="false"/>
+                <asp:Button ID="m_AddDriverButton" runat="server" Text=" >> " CssClass="Button_TR" Enabled="false"/>
                 <br /><br />
-                <asp:Button ID="m_RemoveDriverButton" runat="server" Text="Remove" CssClass="Button" Enabled="false"/>
+                <asp:Button ID="m_RemoveDriverButton" runat="server" Text=" << " CssClass="Button_TR" Enabled="false"/>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:ListBox ID="m_DriversTeamListBox" runat="server" CssClass="ListBoxInside" Enabled="false"></asp:ListBox>

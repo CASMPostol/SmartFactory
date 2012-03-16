@@ -1,45 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="VendorDashboard">
-    <File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url="WebPartPages/VendorDashboard.aspx">
-      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0" ID="VDAlarmsAndEvents">
-        <![CDATA[
- <webParts>
- <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
- <metaData>
- <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
- <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
- </metaData>
- <data>
- <properties>
- <property name="Title" type="string">Alarms and events</property>
- <property name="TitleUrl" type="string">VendorDashboard.aspx</property>
- <property name="AllowConnect" type="bool">True</property>
- </properties>
- </data>
- </webPart>
- </webParts>
- ]]>
-      </View>
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="VDCarrierDashboardWebPart">
-        <![CDATA[<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
-      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="Title" type="string">Shipping Manager</property>
-        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
-        <property name="ID" type="string">CarrierDashboardWebPart</property>
-        <property name="Role">Vendor</property>
-      </properties>
-    </data>
-  </webPart>
-</webParts>]]>
-      </AllUsersWebPart>
-      <View List="Lists/ShippingList" BaseViewID="2" WebPartZoneID="Main1" WebPartOrder="1">
+    <File Path="WebPartPages\WebPageTemplate_Vendor.aspx" Url="WebPartPages/VendorDashboard.aspx">
+      <View List="Lists/ShippingList" BaseViewID="2" WebPartZoneID="Shippings" WebPartOrder="1">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -58,24 +21,25 @@
  </webParts>
  ]]>
       </View>
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="2" ID="VDLoadDescription">
+      <AllUsersWebPart WebPartZoneID="ShippingManager" WebPartOrder="0">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart.LoadDescriptionWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
       <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Load Manager</property>
-        <property name="Description" type="string">My Visual WebPart</property>
+        <property name="Title" type="string">Shipping Manager</property>
+        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
+        <property name="ID" type="string">CarrierDashboardWebPart</property>
         <property name="Role">Vendor</property>
       </properties>
     </data>
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="VDTimeSlots">
+      <AllUsersWebPart WebPartZoneID="TimeSlot" WebPartOrder="0">
         <![CDATA[<webParts>
                   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >
                     <metaData>
@@ -93,7 +57,24 @@
                   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" ID="VDTransportResources" >
+      <AllUsersWebPart WebPartZoneID="LoadManager" WebPartOrder="0">
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart.LoadDescriptionWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Load Manager</property>
+        <property name="Description" type="string">My Visual WebPart</property>
+        <property name="Role">Vendor</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+      <AllUsersWebPart WebPartZoneID="TransportResources" WebPartOrder="0">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -110,7 +91,7 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="VDCurrentUser" >
+      <AllUsersWebPart WebPartZoneID="TransportResources" WebPartOrder="1">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -130,7 +111,26 @@
     </data>
   </webPart>
 </webParts>]]>
-      </AllUsersWebPart>   
+      </AllUsersWebPart>
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="AlarmsAndEvents" WebPartOrder="0">
+        <![CDATA[
+ <webParts>
+ <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+ <metaData>
+ <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+ <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+ </metaData>
+ <data>
+ <properties>
+ <property name="Title" type="string">Alarms and events</property>
+ <property name="TitleUrl" type="string">VendorDashboard.aspx</property>
+ <property name="AllowConnect" type="bool">True</property>
+ </properties>
+ </data>
+ </webPart>
+ </webParts>
+ ]]>
+      </View>  
     </File>
   </Module>
 </Elements>

@@ -1,83 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="GateDashboard">
-    <File Path="WebPartPages\GateDashboardTemplate.aspx" Url="WebPartPages/GateDashboard.aspx">
-      <View List="Lists/ShippingList" BaseViewID="9" WebPartZoneID="SelectedShippingZone" WebPartOrder="0">
-        <![CDATA[
- <webParts>
- <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
- <metaData>
- <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
- <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
- </metaData>
- <data>
- <properties>
- <property name="Title" type="string">Selected shipping details</property>
- <property name="TitleUrl" type="string">GateDashboard.aspx</property>
- <property name="AllowConnect" type="bool">True</property>
- </properties>
- </data>
- </webPart>
- </webParts>
- ]]>
-      </View>
-      <View List="Lists/ShippingDriversTeamList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="0" ID="GDDriversTeam">
-        <![CDATA[
- <webParts>
- <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
- <metaData>
- <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
- <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
- </metaData>
- <data>
- <properties>
- <property name="Title" type="string">Drivers and escort</property>
- <property name="TitleUrl" type="string">GateDashboard.aspx</property>
- <property name="AllowConnect" type="bool">True</property>
- </properties>
- </data>
- </webPart>
- </webParts>
- ]]>
-      </View>
-      <View List="Lists/ShippingList" BaseViewID="15" WebPartZoneID="Main1" WebPartOrder="0">
-        <![CDATA[
- <webParts>
- <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
- <metaData>
- <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
- <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
- </metaData>
- <data>
- <properties>
- <property name="Title" type="string">Escort details</property>
- <property name="TitleUrl" type="string">GateDashboard.aspx</property>
- <property name="AllowConnect" type="bool">True</property>
- </properties>
- </data>
- </webPart>
- </webParts>
- ]]>
-      </View>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="1" >
-        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart.GuardWebPart, $SharePoint.Project.AssemblyFullName$" />
-      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="Title" type="string">Guard Manager</property>
-        <property name="Description" type="string">My Visual WebPart</property>
-      </properties>
-    </data>
-  </webPart>
-</webParts>
-]]>
-      </AllUsersWebPart>
-      <View List="Lists/ShippingList" BaseViewID="10" WebPartZoneID="Main1" WebPartOrder="1">
+    <File Path="WebPartPages\WebPageTemplate_Gate.aspx" Url="WebPartPages/GateDashboard.aspx">
+      <View List="Lists/ShippingList" BaseViewID="10" WebPartZoneID="Shippings" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -96,6 +21,43 @@
  </webParts>
  ]]>
       </View>
+      <View List="Lists/ShippingDriversTeamList" BaseViewID="2" WebPartZoneID="DriversTeam" WebPartOrder="0">
+        <![CDATA[
+ <webParts>
+ <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+ <metaData>
+ <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+ <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+ </metaData>
+ <data>
+ <properties>
+ <property name="Title" type="string">Drivers and escort</property>
+ <property name="TitleUrl" type="string">GateDashboard.aspx</property>
+ <property name="AllowConnect" type="bool">True</property>
+ </properties>
+ </data>
+ </webPart>
+ </webParts>
+ ]]>
+      </View>
+      <AllUsersWebPart WebPartZoneID="GuardManager" WebPartOrder="0" >
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart.GuardWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Guard Manager</property>
+        <property name="Description" type="string">My Visual WebPart</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
+]]>
+      </AllUsersWebPart>
     </File>
   </Module>
 </Elements>
