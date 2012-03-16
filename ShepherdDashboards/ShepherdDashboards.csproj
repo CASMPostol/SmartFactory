@@ -189,7 +189,7 @@
     <None Include="DocumentTemplates\ModuleFreightPurchaseOrderTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{56f6a063-45cd-45c9-b270-efd01fcd5fb1}</SharePointProjectItemId>
     </None>
-    <None Include="DocumentTemplates\ModuleSecurityEscortPurchaseOrderTemplate\SecurityEscortPurchaseOrderTemplate.doc" />
+    <None Include="DocumentTemplates\ModuleSecurityEscortPurchaseOrderTemplate\SecurityEscortPurchaseOrderTemplate.dotx" />
     <None Include="DocumentTemplates\ModuleSecurityEscortPurchaseOrderTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6249650-4f12-4dce-ada2-5938cf2b4b78}</SharePointProjectItemId>
     </None>
