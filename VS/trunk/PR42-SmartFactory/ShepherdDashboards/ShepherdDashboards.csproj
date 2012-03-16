@@ -193,6 +193,10 @@
     <None Include="DocumentTemplates\ModuleSecurityEscortPurchaseOrderTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6249650-4f12-4dce-ada2-5938cf2b4b78}</SharePointProjectItemId>
     </None>
+    <None Include="DocumentTemplates\ModuleSecuritySealProtocolTemplate\SecurityEscortPurchaseOrderTemplate.dotx" />
+    <None Include="DocumentTemplates\ModuleSecuritySealProtocolTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2bd9d901-01b9-482f-8c26-03ade11b68a8}</SharePointProjectItemId>
+    </None>
     <None Include="Entities\Entities.cd" />
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Features\Dashboards\Dashboards.feature">
@@ -288,6 +292,7 @@
     <Content Include="DocumentTemplates\ModuleSecurityEscortPurchaseOrderTemplate\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DocumentTemplates\ModuleSecuritySealProtocolTemplate\Elements.xml" />
     <Content Include="Entities\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
