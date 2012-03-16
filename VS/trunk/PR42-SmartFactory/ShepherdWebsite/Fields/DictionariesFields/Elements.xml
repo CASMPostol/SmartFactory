@@ -38,7 +38,7 @@
   <Field
     Name="SendInvoiceTo"
     ID="{6CE9A06C-1964-4176-926D-A5114048A95D}"
-    Type="Note"
+    Type="Text"
     DisplayName="Send invoice to"
     Group="CAS Smart Factory Shepherd"
     />

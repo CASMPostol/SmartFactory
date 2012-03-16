@@ -25,7 +25,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="SendInvoiceTo" ID="{6CE9A06C-1964-4176-926D-A5114048A95D}" Type="Note" DisplayName="Send invoice to" Group="CAS Smart Factory Shepherd" />
+      <Field Name="SendInvoiceTo" ID="{6CE9A06C-1964-4176-926D-A5114048A95D}" Type="Text" DisplayName="Send invoice to" Group="CAS Smart Factory Shepherd" />
       <Field Name="PayerName" ID="{654389E7-36DA-4528-AEC7-E6BB99634022}" Type="Text" DisplayName="Company" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Address" Name="CompanyAddress" Type="Text" ID="{e0bcc826-1f93-4156-8fc1-7f4506234dfa}" Group="CAS Smart Factory Shepherd" Description="Address" />
       <Field DisplayName="NIP / VAT No." Name="NIP" Type="Text" ID="{dc0e5632-a487-412b-aa3e-4cc025116c28}" Group="CAS Smart Factory Shepherd" Description="NIP" />
