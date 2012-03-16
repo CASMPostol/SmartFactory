@@ -8,5 +8,14 @@
     <ProjectItemFile Source="..\WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="..\WebPartPages\WebPageTemplate_2.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="..\WebPartPages\WebPageTemplate_1.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_OutboundOwner.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_OutboundCoordinator.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_Forwarder.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_Escort.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_InboundOwner.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_Vendor.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_Operator.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_Gate.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_Supervisor.aspx" Target="WebPartPages\" Type="ElementFile" />
   </Files>
 </ProjectItem>

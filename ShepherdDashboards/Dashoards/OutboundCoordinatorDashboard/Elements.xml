@@ -1,26 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="OutboundCoordinatorDashboard">
-    <File Path="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Url="WebPartPages/OutboundCoordinatorDashboard.aspx">
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="0" ID="OCDCarrierDashboardWebPart">
-        <![CDATA[<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
-      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="Title" type="string">Shipping Manager</property>
-        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
-        <property name="ID" type="string">CarrierDashboardWebPart</property>
-        <property name="Role" >Coordinator</property>
-      </properties>
-    </data>
-  </webPart>
-</webParts>]]>
-      </AllUsersWebPart>
-      <View List="Lists/ShippingList" BaseViewID="7" WebPartZoneID="Main1" WebPartOrder="1">
+    <File Path="WebPartPages\WebPageTemplate_OutboundCoordinator.aspx" Url="WebPartPages/OutboundCoordinatorDashboard.aspx">
+      <View List="Lists/ShippingList" BaseViewID="7" WebPartZoneID="Shippings" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -39,24 +21,25 @@
  </webParts>
  ]]>
       </View>
-      <AllUsersWebPart WebPartZoneID="Main1" WebPartOrder="2" ID="OCDLoadDescription">
+      <AllUsersWebPart WebPartZoneID="ShippingManager" WebPartOrder="0">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart.LoadDescriptionWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart.CarrierDashboardWebPart, $SharePoint.Project.AssemblyFullName$" />
       <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Load Manager</property>
-        <property name="Description" type="string">My Visual WebPart</property>
+        <property name="Title" type="string">Shipping Manager</property>
+        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
+        <property name="ID" type="string">CarrierDashboardWebPart</property>
         <property name="Role" >Coordinator</property>
       </properties>
     </data>
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="0" ID="OCDimeSlots">
+      <AllUsersWebPart WebPartZoneID="TimeSlot" WebPartOrder="0">
         <![CDATA[<webParts>
                   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3" >
                     <metaData>
@@ -74,26 +57,7 @@
                   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/RouteList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="1" ID="OCDRoute">
-        <![CDATA[
- <webParts>
- <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
- <metaData>
- <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
- <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
- </metaData>
- <data>
- <properties>
- <property name="Title" type="string">Available routes</property>
- <property name="TitleUrl" type="string">SupervisorDashboard.aspx</property>
- <property name="AllowConnect" type="bool">True</property>
- </properties>
- </data>
- </webPart>
- </webParts>
- ]]>
-      </View>
-      <View List="Lists/SecurityEscortRouteList" BaseViewID="2" WebPartZoneID="Main2" WebPartOrder="2" ID="OCDSecurityEscortRoute">
+      <View List="Lists/SecurityEscortRouteList" BaseViewID="2" WebPartZoneID="Escort" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -112,7 +76,26 @@
  </webParts>
  ]]>
       </View>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="3" ID="OCDForwarderTransportResources" >
+      <View List="Lists/RouteList" BaseViewID="2" WebPartZoneID="Route" WebPartOrder="0">
+        <![CDATA[
+ <webParts>
+ <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+ <metaData>
+ <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
+ <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+ </metaData>
+ <data>
+ <properties>
+ <property name="Title" type="string">Available routes</property>
+ <property name="TitleUrl" type="string">SupervisorDashboard.aspx</property>
+ <property name="AllowConnect" type="bool">True</property>
+ </properties>
+ </data>
+ </webPart>
+ </webParts>
+ ]]>
+      </View>
+      <AllUsersWebPart WebPartZoneID="TransportResource" WebPartOrder="0">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -130,7 +113,24 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="Main2" WebPartOrder="4" ID="OCDSecuirtyResources" >
+      <AllUsersWebPart WebPartZoneID="LoadManager" WebPartOrder="0">
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart.LoadDescriptionWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Load Manager</property>
+        <property name="Description" type="string">My Visual WebPart</property>
+        <property name="Role" >Coordinator</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+      <AllUsersWebPart WebPartZoneID="EscortResource" WebPartOrder="0">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
@@ -148,7 +148,7 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="Right" WebPartOrder="0">
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="AlarmsAndEvents" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
