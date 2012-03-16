@@ -180,7 +180,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         {
           DateTime _bgn = _dy + TimeSpan.FromHours(_indx);
           DateTime _end = _bgn + TimeSpan.FromHours(1);
-          _ts.Add(new TimeSlotTimeSlot() { EntryTime = _bgn, EndTime = _end, ExitTime = _end, Occupied = Occupied.Free , ShippingPoint = _sp, StartTime = _bgn });
+          _ts.Add(new TimeSlotTimeSlot() { EntryTime = _bgn, CzasZakończenia = _end, ExitTime = _end, Occupied = Occupied.Free , ShippingPoint = _sp, CzasRozpoczęcia = _bgn });
           _update(this, new ProgressChangedEventArgs(1, _bgn.ToShortDateString()));
         }
         _EDC.TimeSlot.InsertAllOnSubmit(_ts);
