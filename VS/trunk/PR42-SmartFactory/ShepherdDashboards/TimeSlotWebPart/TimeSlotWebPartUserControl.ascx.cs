@@ -132,8 +132,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           if (_spoint.Direction != _direction && _spoint.Direction != Direction.BothDirections)
             continue;
           List<TimeSlot> _avlblTmslts = (from _tsidx in _spoint.TimeSlot
-                                         where _tsidx.Occupied.Value == Entities.Occupied.Free && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
-                                         orderby _tsidx.StartTime ascending
+                                         where _tsidx.Occupied.Value == Entities.Occupied.Free && _tsidx.CzasRozpoczęcia >= _strt && _tsidx.CzasRozpoczęcia < _end
+                                         orderby _tsidx.CzasRozpoczęcia ascending
                                          select _tsidx).ToList<TimeSlot>();
           if (m_ShowDoubleTimeSlots.Checked)
           {
@@ -141,10 +141,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
             for (int _i = 0; _i < _avlblTmslts.Count - 1; _i++)
             {
               TimeSlot _cts = _avlblTmslts[_i];
-              if ((_avlblTmslts[_i + 1].StartTime.Value - _cts.EndTime.Value).Duration() > TimeSlotTimeSlot.Span15min)
+              if ((_avlblTmslts[_i + 1].CzasRozpoczęcia.Value - _cts.CzasZakończenia.Value).Duration() > TimeSlotTimeSlot.Span15min)
                 continue;
               AddToAvailable(_cts);
-              if (_cts.StartTime.Value.Date != _sd)
+              if (_cts.CzasRozpoczęcia.Value.Date != _sd)
                 continue;
               _2Expose.Add(_cts);
             }
@@ -153,7 +153,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
             foreach (TimeSlot _cts in _avlblTmslts)
             {
               AddToAvailable(_cts);
-              if (_cts.StartTime.Value.Date != _sd)
+              if (_cts.CzasRozpoczęcia.Value.Date != _sd)
                 continue;
               _2Expose.Add(_cts);
             }
@@ -167,10 +167,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     }
     private void AddToAvailable(TimeSlot _cts)
     {
-      if (!m_AvailableDays.ContainsKey(_cts.StartTime.Value.Date))
-        m_AvailableDays.Add(_cts.StartTime.Value.Date, 1);
+      if (!m_AvailableDays.ContainsKey(_cts.CzasRozpoczęcia.Value.Date))
+        m_AvailableDays.Add(_cts.CzasRozpoczęcia.Value.Date, 1);
       else
-        m_AvailableDays[_cts.StartTime.Value.Date] += 1;
+        m_AvailableDays[_cts.CzasRozpoczęcia.Value.Date] += 1;
     }
     private void ExposeTimeSlots(List<TimeSlot> _avlblTmslts)
     {
@@ -179,9 +179,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       m_TimeSlotList.Items.Clear();
       string _dtFormat = "{0:HH:mm}";
       HashSet<string> _labels2Display = new HashSet<string>();
-      foreach (TimeSlot _item in _avlblTmslts.OrderBy<TimeSlot, DateTime>(x => x.StartTime.Value))
+      foreach (TimeSlot _item in _avlblTmslts.OrderBy<TimeSlot, DateTime>(x => x.CzasRozpoczęcia.Value))
       {
-        string _label = String.Format(_dtFormat, _item.StartTime.Value);
+        string _label = String.Format(_dtFormat, _item.CzasRozpoczęcia.Value);
         if (_labels2Display.Contains(_label))
           continue;
         _labels2Display.Add(_label);

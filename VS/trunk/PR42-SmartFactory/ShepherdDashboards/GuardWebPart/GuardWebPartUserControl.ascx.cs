@@ -170,10 +170,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case State.Underway:
             TimeSlot _ts = (from _tsidx in CurrentShipping.TimeSlot
                             where _tsidx.Occupied.Value == Occupied.Free
-                            orderby _tsidx.StartTime ascending
+                            orderby _tsidx.CzasRozpoczęcia ascending
                             select _tsidx).First();
-            CurrentShipping.StartTime = _ts.StartTime;
-            CurrentShipping.EndTime = _ts.EndTime;
+            CurrentShipping.StartTime = _ts.CzasRozpoczęcia;
+            CurrentShipping.EndTime = _ts.CzasZakończenia;
             CurrentShipping.State = State.Confirmed;
             EDC.SubmitChanges();
             break;
