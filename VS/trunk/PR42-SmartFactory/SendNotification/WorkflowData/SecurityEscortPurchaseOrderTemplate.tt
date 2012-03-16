@@ -1,0 +1,17 @@
+﻿  <p>
+    <b>Freight Purches Order:</b> <#= SPOFreightPO #></p>
+  <p>
+    <b>Warehouse address:</b> <#= FPO2WarehouseAddress #></p>
+  <p>
+    <b>Deliveries:</b> <#= SPO2CityTitle #>, <#= SPO2CountryTitle #></p>
+  <p>
+    <b>Dispatch Date:</b> <#= SPODispatchDate #></p>
+  <p>
+    <b>Commodity:</b> <#= SPO2CommodityTitle #></p>
+  <p>
+    <b>Freight Purchase Order document:</b> <a href="<#= Encodedabsurl #>"> <#= DocumentName #></a>
+  <p>
+    <b>Date and author of the order:</b> <#= Modified #>, <#= ModifiedBy #></p>
+  ____________________________________________________________________________________________</br>
+  NOTE: Information about driver’s names and car should be supplemented in Shepherd
+        system before planned loading.</br>  

@@ -292,7 +292,9 @@
     <Content Include="DocumentTemplates\ModuleSecurityEscortPurchaseOrderTemplate\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentTemplates\ModuleSecuritySealProtocolTemplate\Elements.xml" />
+    <Content Include="DocumentTemplates\ModuleSecuritySealProtocolTemplate\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Entities\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
