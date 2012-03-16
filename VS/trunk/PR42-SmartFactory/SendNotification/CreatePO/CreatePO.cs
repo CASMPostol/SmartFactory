@@ -77,7 +77,7 @@ namespace CAS.SmartFactorySendNotification.CreatePO
             _docStrm.Close();
           }
           _stt = "_doc";
-          int _docId = (int)_docFile.ListItemAllFields.ID;
+          int _docId = (int)_docFile.Item.ID;
           FreightPayer _FreightPayer = null;
           CommodityCommodity _Commodity = null;
           CountryClass _Country = null;
