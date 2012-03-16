@@ -12,9 +12,9 @@ namespace CAS.SmartFactorySendNotification.WorkflowData
     using System;
     
     
-    #line 1 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
+    #line 1 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\MissingDataEscortTemplate.tt"
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
-    public partial class FreightPurchaseOrderTemplate : FreightPurchaseOrderTemplateBase
+    public partial class MissingDataEscortTemplate : MissingDataEscortTemplateBase
     {
         #region ToString Helpers
         /// <summary>
@@ -75,87 +75,31 @@ namespace CAS.SmartFactorySendNotification.WorkflowData
         public virtual string TransformText()
         {
             this.GenerationEnvironment = null;
-            this.Write("  <p>\r\n    <b>Freight Purches Order:</b> ");
+            this.Write("<p><b>Missing data. Please verify shipping data and supplement them.</b></p>\r\n<p>" +
+                    "<b>Vendor:</b> ");
             
-            #line 2 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(FPO2RouteGoodsHandlingPO));
-            
-            #line default
-            #line hidden
-            this.Write("</p>\r\n  <p>\r\n    <b>Warehouse address:</b> ");
-            
-            #line 4 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(FPO2WarehouseAddress));
+            #line 2 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\MissingDataEscortTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ShippingOperationOutband2PartnerTitle));
             
             #line default
             #line hidden
-            this.Write("</p>\r\n  <p>\r\n    <b>Deliveries:</b> ");
+            this.Write("</p>\r\n<p><b>Shipping:</b> ");
             
-            #line 6 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(FPO2CityTitle));
-            
-            #line default
-            #line hidden
-            this.Write(", ");
-            
-            #line 6 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(FPO2CountryTitle));
+            #line 3 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\MissingDataEscortTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Title));
             
             #line default
             #line hidden
-            this.Write("</p>\r\n  <p>\r\n    <b>Loading Date:</b> ");
+            this.Write("</p>\r\n<p><b>Time Slot:</b> ");
             
-            #line 8 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(FPOLoadingDate));
-            
-            #line default
-            #line hidden
-            this.Write("</p>\r\n  <p>\r\n    <b>Type of transport:</b> ");
-            
-            #line 10 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(FPO2TransportUnitTypeTitle));
+            #line 4 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\MissingDataEscortTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(StartTime));
             
             #line default
             #line hidden
-            this.Write("</p>\r\n  <p>\r\n    <b>Commodity:</b> ");
-            
-            #line 12 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(FPO2CommodityTitle));
-            
-            #line default
-            #line hidden
-            this.Write("</p>\r\n  <p>\r\n    <b>Freight Purchase Order document:</b> <a href=\"");
-            
-            #line 14 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Encodedabsurl));
-            
-            #line default
-            #line hidden
-            this.Write("\"> ");
-            
-            #line 14 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(DocumentName));
-            
-            #line default
-            #line hidden
-            this.Write("</a>\r\n  <p>\r\n    <b>Date and author of the order:</b> ");
-            
-            #line 16 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Modified));
-            
-            #line default
-            #line hidden
-            this.Write(", ");
-            
-            #line 16 "D:\CAS\PR42-SmartFactory\SendNotification\WorkflowData\FreightPurchaseOrderTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(ModifiedBy));
-            
-            #line default
-            #line hidden
-            this.Write("</p>\r\n  _________________________________________________________________________" +
-                    "___________________</br>\r\n  NOTE: Information about driver’s names and truck/tra" +
-                    "ilers should be supplemented in Shepherd\r\n        system before planned loading." +
-                    "</br>  ");
+            this.Write("</p>\r\n___________________________________________________________________________" +
+                    "_________________</br>\r\n  NOTE: Information about driver’s names and car should " +
+                    "be supplemented in Shepherd\r\n        system before planned loading.</br> ");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -167,7 +111,7 @@ namespace CAS.SmartFactorySendNotification.WorkflowData
     /// Base class for this transformation
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "10.0.0.0")]
-    public class FreightPurchaseOrderTemplateBase
+    public class MissingDataEscortTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

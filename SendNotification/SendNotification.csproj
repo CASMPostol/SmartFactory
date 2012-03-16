@@ -87,6 +87,11 @@
     <Compile Include="WorkflowData\POLibraryWorkflowAssociationData.cs">
       <DependentUpon>POLibraryWorkflowAssociationData.xsd</DependentUpon>
     </Compile>
+    <Compile Include="WorkflowData\SecurityEscortPurchaseOrderTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityEscortPurchaseOrderTemplate.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="CreatePO\SharePointProjectItem.spdata">
@@ -105,6 +110,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="WorkflowData\Scripts\CreateCS.ps1" />
+    <None Include="WorkflowData\SecurityEscortPurchaseOrderTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SecurityEscortPurchaseOrderTemplate.cs</LastGenOutput>
+    </None>
     <None Include="WorkflowLists\SendNotificationHistory\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e2ac98ea-de91-440b-823c-6c76f783c49a}</SharePointProjectItemId>
     </None>
