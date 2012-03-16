@@ -14,11 +14,11 @@
   <div id="Body" >
     <table cellspacing="0" cellpadding="0" border="0">
         <tr>
-            <td style="Width:940px;Height:201px;vertical-align:top" background="_layouts/images/ShepherdImages/DefaultBanner_truck.jpg">
+            <td style="Width:940px;Height:201px;vertical-align:top" background="_layouts/images/ShepherdImages/DefaultBanner.jpg">
             </td>
         </tr>
         <tr>
-            <td style="Width:940px;Height:64px" background="_layouts/images/ShepherdImages/DefaultBanner2_truck.jpg">
+            <td style="Width:940px;Height:64px" background="_layouts/images/ShepherdImages/DefaultBanner2.jpg">
                 <h1 class="H1White">Welcome to Shepherd!</h1>
             </td>
         </tr>

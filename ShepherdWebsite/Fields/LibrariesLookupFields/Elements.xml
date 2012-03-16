@@ -349,7 +349,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="Security Cost"
+    DisplayName="Security Escort Provider"
     Group="CAS Smart Factory Shepherd"
     Required="False"
     Hidden="False"
