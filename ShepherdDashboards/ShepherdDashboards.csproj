@@ -285,7 +285,9 @@
     <Content Include="DocumentTemplates\ModuleFreightPurchaseOrderTemplate\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentTemplates\ModuleSecurityEscortPurchaseOrderTemplate\Elements.xml" />
+    <Content Include="DocumentTemplates\ModuleSecurityEscortPurchaseOrderTemplate\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Entities\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
