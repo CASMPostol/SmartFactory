@@ -34,8 +34,11 @@ namespace CAS.SmartFactorySendNotification.CreatePO
     public SPWorkflowActivationProperties m_WorkflowProperties = new SPWorkflowActivationProperties();
     private void m_OnWorkflowActivated_Invoked(object sender, ExternalDataEventArgs e)
     {
-      _url = m_WorkflowProperties.Site.Url;
-      m_LogAfterCreateToHistoryList_UserId1 = m_WorkflowProperties.OriginatorUser.ID;
+      using (SPSite _st = m_WorkflowProperties.Site)
+      {
+        _url = _st.Url;
+
+      } m_LogAfterCreateToHistoryList_UserId1 = m_WorkflowProperties.OriginatorUser.ID;
       m_LogAfterCreateToHistoryList_HistoryOutcome1 = "Activation";
       m_LogAfterCreateToHistoryList_HistoryDescription1 = "OnWorkflowActivated finished";
       m_LogAfterCreateToHistoryList_OtherData1 = default(string);
