@@ -30,7 +30,6 @@ namespace CAS.SmartFactorySendNotification.SendEmail
       InitializeComponent();
     }
     #region Activation
-    private string m_EmailSubject;
     private FreightPurchaseOrderTemplate _emailBodyObject = new FreightPurchaseOrderTemplate();
     private void m_onWorkflowActivated_Invoked(object sender, ExternalDataEventArgs e)
     {
@@ -53,26 +52,32 @@ namespace CAS.SmartFactorySendNotification.SendEmail
     {
       try
       {
-        m_EmailSubject = _activationData.Title;
-        using (EntitiesDataContext _EDC = new EntitiesDataContext(m_WorkflowProperties.Site.Url))
+        m_sendEmail1_CC = m_WorkflowProperties.OriginatorEmail;
+        m_sendEmail1_From = m_WorkflowProperties.OriginatorEmail;
+        m_sendEmail1_Subject = _activationData.Title;
+        using (SPSite _st = m_WorkflowProperties.Site)
         {
-          FreightPO _fpo = (from idx in _EDC.FreightPOLibrary
-                            where idx.Identyfikator == m_WorkflowProperties.ItemId
-                            select idx).First();
-          return new FreightPurchaseOrderTemplate()
+          using (EntitiesDataContext _EDC = new EntitiesDataContext(_st.Url))
           {
-            Encodedabsurl = new Uri( (string)m_WorkflowProperties.Item["EncodedAbsUrl"]),
-            Modified = (DateTime)m_WorkflowProperties.Item["Modified"],
-            ModifiedBy = m_WorkflowProperties.OriginatorUser.Name,
-            DocumentName = m_WorkflowProperties.Item.File.Name,
-            FPO2CityTitle = _fpo.City == null ? String.Empty : _fpo.City.Tytuł,
-            FPO2CommodityTitle = _fpo.Commodity == null ? String.Empty : _fpo.Commodity.Tytuł,
-            FPO2CountryTitle = _fpo.Country == null ? String.Empty : _fpo.Country.Tytuł,
-            FPO2RouteGoodsHandlingPO = _fpo.FreightPO0 == null ? String.Empty : _fpo.FreightPO0,
-            FPO2TransportUnitTypeTitle = _fpo.TransportUnitType == null ? String.Empty : _fpo.TransportUnitType.Tytuł,
-            FPOLoadingDate = _fpo.LoadingDate.GetValueOrDefault(DateTime.MaxValue),
-            FPO2WarehouseAddress = _fpo.WarehouseAddress == null ? String.Empty : _fpo.WarehouseAddress
-          };
+            FreightPO _fpo = (from idx in _EDC.FreightPOLibrary
+                              where idx.Identyfikator == m_WorkflowProperties.ItemId
+                              select idx).First();
+            m_sendEmail1_To = _fpo.Carrier == null ? CommonDefinition.PartnerSentToBackUpEmail : _fpo.Carrier.EMail;
+            return new FreightPurchaseOrderTemplate()
+            {
+              Encodedabsurl = new Uri((string)m_WorkflowProperties.Item["EncodedAbsUrl"]),
+              Modified = (DateTime)m_WorkflowProperties.Item["Modified"],
+              ModifiedBy = m_WorkflowProperties.OriginatorUser.Name,
+              DocumentName = m_WorkflowProperties.Item.File.Name,
+              FPO2CityTitle = _fpo.City == null ? String.Empty : _fpo.City.Tytuł,
+              FPO2CommodityTitle = _fpo.Commodity == null ? String.Empty : _fpo.Commodity.Tytuł,
+              FPO2CountryTitle = _fpo.Country == null ? String.Empty : _fpo.Country.Tytuł,
+              FPO2RouteGoodsHandlingPO = _fpo.FreightPO0 == null ? String.Empty : _fpo.FreightPO0,
+              FPO2TransportUnitTypeTitle = _fpo.TransportUnitType == null ? String.Empty : _fpo.TransportUnitType.Tytuł,
+              FPOLoadingDate = _fpo.LoadingDate.GetValueOrDefault(DateTime.MaxValue),
+              FPO2WarehouseAddress = _fpo.WarehouseAddress == null ? String.Empty : _fpo.WarehouseAddress,
+            };
+          }
         }
       }
       catch (Exception ex)
@@ -97,10 +102,6 @@ namespace CAS.SmartFactorySendNotification.SendEmail
         string _frmt = "Worflow aborted in TransformText because of the error: {0}";
         throw new ApplicationException(String.Format(_frmt, ex.Message));
       }
-      m_sendEmail1_CC = m_WorkflowProperties.OriginatorEmail;
-      m_sendEmail1_From = m_WorkflowProperties.OriginatorEmail;
-      m_sendEmail1_Subject = m_EmailSubject;
-      m_sendEmail1_To = "mpostol@cas.eu";
     }
     public String m_sendEmail1_Body = default(System.String);
     public String m_sendEmail1_CC = default(System.String);

@@ -16,5 +16,6 @@ namespace CAS.SmartFactorySendNotification
     //Workflow working lists
     internal const string SendNotificationWorkflowTasks = "Send Notification Workflow Tasks";
     internal const string SendNotificationWorkflowHistory = "Send Notification Workflow History";
+    internal const string PartnerSentToBackUpEmail = "oferty@cas.eu";
   }
 }

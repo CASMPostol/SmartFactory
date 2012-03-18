@@ -84,43 +84,8 @@
       <DependentUpon>FreightPurchaseOrderTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="WorkflowData\FreightPurchaseOrderTemplate.partial.cs" />
-    <Compile Include="WorkflowData\IncorrectDataEscortTemplate.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>IncorrectDataEscortTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WorkflowData\IncorrectDataVendorTemplate.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>IncorrectDataVendorTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WorkflowData\MissingDataEscortTemplate.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MissingDataEscortTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WorkflowData\MissingDataVendorTemplate.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MissingDataVendorTemplate.tt</DependentUpon>
-    </Compile>
     <Compile Include="WorkflowData\POLibraryWorkflowAssociationData.cs">
       <DependentUpon>POLibraryWorkflowAssociationData.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="WorkflowData\SecurityEscortPurchaseOrderTemplate.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SecurityEscortPurchaseOrderTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WorkflowData\SupplementData2hEscortTemplate.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SupplementData2hEscortTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WorkflowData\SupplementData2hVendorTemplate.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SupplementData2hVendorTemplate.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -136,38 +101,10 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>FreightPurchaseOrderTemplate.cs</LastGenOutput>
     </None>
-    <None Include="WorkflowData\IncorrectDataEscortTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>IncorrectDataEscortTemplate.cs</LastGenOutput>
-    </None>
-    <None Include="WorkflowData\IncorrectDataVendorTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>IncorrectDataVendorTemplate.cs</LastGenOutput>
-    </None>
-    <None Include="WorkflowData\MissingDataEscortTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>MissingDataEscortTemplate.cs</LastGenOutput>
-    </None>
-    <None Include="WorkflowData\MissingDataVendorTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>MissingDataVendorTemplate.cs</LastGenOutput>
-    </None>
     <None Include="WorkflowData\POLibraryWorkflowAssociationData.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="WorkflowData\Scripts\CreateCS.ps1" />
-    <None Include="WorkflowData\SecurityEscortPurchaseOrderTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>SecurityEscortPurchaseOrderTemplate.cs</LastGenOutput>
-    </None>
-    <None Include="WorkflowData\SupplementData2hEscortTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>SupplementData2hEscortTemplate.cs</LastGenOutput>
-    </None>
-    <None Include="WorkflowData\SupplementData2hVendorTemplate.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>SupplementData2hVendorTemplate.cs</LastGenOutput>
-    </None>
     <None Include="WorkflowLists\SendNotificationHistory\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e2ac98ea-de91-440b-823c-6c76f783c49a}</SharePointProjectItemId>
     </None>
@@ -193,7 +130,6 @@
     <Content Include="CreatePO\Elements.xml" />
     <Content Include="Entities\Scripts\Parameters.xml" />
     <Content Include="SendEmail\Elements.xml" />
-    <Content Include="WorkflowData\P-1101040004010401_Freight_Purchase_Order_Template_HTML.htm" />
     <Content Include="WorkflowLists\SendNotificationHistory\Elements.xml" />
     <Content Include="WorkflowLists\SendNotificationWorkflowTasks\Elements.xml" />
   </ItemGroup>
