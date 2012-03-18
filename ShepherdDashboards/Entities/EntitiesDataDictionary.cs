@@ -265,7 +265,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     private string DummyEmail(string _text, string _replacement, bool _testData)
     {
-      return _testData ? "oferty@case.eu" : _text;
+      return _testData ? "oferty@cas.eu" : _text;
     }
     #endregion
 
