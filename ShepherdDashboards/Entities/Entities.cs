@@ -5055,9 +5055,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Currency> _currency;
 		
-		private System.Nullable<int> _securityCostIdentyfikator;
+		private System.Nullable<int> _securityEscortProviderIdentyfikator;
 		
-		private string _securityCostTitle;
+		private string _securityEscortProviderTitle;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CityType> _city;
 		
@@ -5261,30 +5261,30 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SPO2PartnerTitle", Storage="_securityCostIdentyfikator", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> SecurityCostIdentyfikator {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SPO2PartnerTitle", Storage="_securityEscortProviderIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> SecurityEscortProviderIdentyfikator {
 			get {
-				return this._securityCostIdentyfikator;
+				return this._securityEscortProviderIdentyfikator;
 			}
 			set {
-				if ((value != this._securityCostIdentyfikator)) {
-					this.OnPropertyChanging("SecurityCostIdentyfikator", this._securityCostIdentyfikator);
-					this._securityCostIdentyfikator = value;
-					this.OnPropertyChanged("SecurityCostIdentyfikator");
+				if ((value != this._securityEscortProviderIdentyfikator)) {
+					this.OnPropertyChanging("SecurityEscortProviderIdentyfikator", this._securityEscortProviderIdentyfikator);
+					this._securityEscortProviderIdentyfikator = value;
+					this.OnPropertyChanged("SecurityEscortProviderIdentyfikator");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SPO2PartnerTitle", Storage="_securityCostTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
-		public string SecurityCostTitle {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SPO2PartnerTitle", Storage="_securityEscortProviderTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string SecurityEscortProviderTitle {
 			get {
-				return this._securityCostTitle;
+				return this._securityEscortProviderTitle;
 			}
 			set {
-				if ((value != this._securityCostTitle)) {
-					this.OnPropertyChanging("SecurityCostTitle", this._securityCostTitle);
-					this._securityCostTitle = value;
-					this.OnPropertyChanged("SecurityCostTitle");
+				if ((value != this._securityEscortProviderTitle)) {
+					this.OnPropertyChanging("SecurityEscortProviderTitle", this._securityEscortProviderTitle);
+					this._securityEscortProviderTitle = value;
+					this.OnPropertyChanged("SecurityEscortProviderTitle");
 				}
 			}
 		}
