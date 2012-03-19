@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
       this._OnFaultLogToHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_FaultHandlerActivity = new System.Workflow.ComponentModel.FaultHandlerActivity();
       this.m_faultHandlersActivity = new System.Workflow.ComponentModel.FaultHandlersActivity();
-      this.m_logToHistoryListActivity1 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+      this.m_logToHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_sendEmail = new Microsoft.SharePoint.WorkflowActions.SendEmail();
       this.m_onWorkflowActivated = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
       // 
@@ -76,24 +76,24 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
       this.m_faultHandlersActivity.Description = "Handles to deal with any errors";
       this.m_faultHandlersActivity.Name = "m_faultHandlersActivity";
       // 
-      // m_logToHistoryListActivity1
+      // m_logToHistoryListActivity
       // 
-      this.m_logToHistoryListActivity1.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-      this.m_logToHistoryListActivity1.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowCompleted;
+      this.m_logToHistoryListActivity.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+      this.m_logToHistoryListActivity.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowCompleted;
       activitybind3.Name = "SendEmail";
       activitybind3.Path = "m_logToHistoryListActivity1_HistoryDescription";
       activitybind4.Name = "SendEmail";
       activitybind4.Path = "m_logToHistoryListActivity1_HistoryOutcome";
-      this.m_logToHistoryListActivity1.Name = "m_logToHistoryListActivity1";
+      this.m_logToHistoryListActivity.Name = "m_logToHistoryListActivity";
       activitybind5.Name = "SendEmail";
       activitybind5.Path = "m_logToHistoryListActivity1_OtherData";
       activitybind6.Name = "SendEmail";
       activitybind6.Path = "m_logToHistoryListActivity1_UserId";
-      this.m_logToHistoryListActivity1.MethodInvoking += new System.EventHandler(this.m_logToHistoryListActivity1_MethodInvoking);
-      this.m_logToHistoryListActivity1.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind3)));
-      this.m_logToHistoryListActivity1.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind4)));
-      this.m_logToHistoryListActivity1.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind6)));
-      this.m_logToHistoryListActivity1.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.OtherDataProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
+      this.m_logToHistoryListActivity.MethodInvoking += new System.EventHandler(this.m_logToHistoryListActivity1_MethodInvoking);
+      this.m_logToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind3)));
+      this.m_logToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind4)));
+      this.m_logToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind6)));
+      this.m_logToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.OtherDataProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
       // 
       // m_sendEmail
       // 
@@ -140,7 +140,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
       // 
       this.Activities.Add(this.m_onWorkflowActivated);
       this.Activities.Add(this.m_sendEmail);
-      this.Activities.Add(this.m_logToHistoryListActivity1);
+      this.Activities.Add(this.m_logToHistoryListActivity);
       this.Activities.Add(this.m_faultHandlersActivity);
       this.Name = "SendEmail";
       this.CanModifyActivities = false;
@@ -157,9 +157,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
 
     private Microsoft.SharePoint.WorkflowActions.SendEmail m_sendEmail;
 
-    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity m_logToHistoryListActivity1;
+    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity m_logToHistoryListActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_onWorkflowActivated;
+
 
 
 
