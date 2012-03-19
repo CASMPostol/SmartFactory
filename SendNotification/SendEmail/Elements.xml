@@ -9,7 +9,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
      Name="Send Email Notification"
      Description="Send Email on Item Created"
      Id="1bb10ba9-70da-4064-95b3-cd048ce4c3cd"
-     CodeBesideClass="CAS.SmartFactorySendNotification.SendEmail.SendEmail"
+     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.SendEmail.SendEmail"
      CodeBesideAssembly="$assemblyname$">
     <Categories/>
     <MetaData>

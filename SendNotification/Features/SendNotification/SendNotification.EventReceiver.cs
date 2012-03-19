@@ -1,13 +1,13 @@
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Xml.Serialization;
+using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
-using System.Xml.Serialization;
-using System.IO;
-using CAS.SmartFactorySendNotification.WorkflowData;
-using System.Text;
 
-namespace CAS.SmartFactorySendNotification.Features.SendNotification
+namespace CAS.SmartFactory.Shepherd.SendNotification.Features
 {
   /// <summary>
   /// This class handles events raised during feature activation, deactivation, installation, uninstallation, and upgrade.
@@ -27,20 +27,26 @@ namespace CAS.SmartFactorySendNotification.Features.SendNotification
       string _state = default(string);
       try
       {
-        SPSite _siteCollection = (SPSite)properties.Feature.Parent;
-        _state = "Feature.Parent";
-        SPWeb _web = _siteCollection.RootWeb;
-        // obtain referecnes to lists
-        SPList _taskList = _web.Lists[CommonDefinition.SendNotificationWorkflowTasks];
-        SPList _historyList = _web.Lists[CommonDefinition.SendNotificationWorkflowHistory];
-        _taskList.UseFormsForDisplay = false;
-        _taskList.Update();
-        _state = "_taskList.Update";
-        // obtain reference to workflow template
-        AddFPONotificationAssociation(_web, _taskList, _historyList);
-        AddCreateFPOAssociation(_web, _taskList, _historyList);
-        _state = "AssociationData";
-        _state = "WorkflowAssociations.Add";
+        using (SPSite _siteCollection = (SPSite)properties.Feature.Parent)
+        {
+          _state = "Feature.Parent";
+          using (SPWeb _web = _siteCollection.RootWeb)
+          {
+            // obtain referecnes to lists
+            SPList _taskList = _web.Lists[CommonDefinition.SendNotificationWorkflowTasks];
+            SPList _historyList = _web.Lists[CommonDefinition.SendNotificationWorkflowHistory];
+            _taskList.UseFormsForDisplay = false;
+            _taskList.Update();
+            _state = "_taskList.Update";
+            // obtain reference to workflow template
+            AddFPONotificationAssociation(_web, _taskList, _historyList);
+            _state = "AddFPONotificationAssociation";
+            AddCreateFPOAssociation(_web, _taskList, _historyList);
+            _state = "AddCreateFPOAssociation";
+            AddShippingStateMachineWorkflowAssociation(_web, _taskList, _historyList);
+            _state = "AddShippingStateMachineWorkflowAssociation";
+          }
+        }
       }
       catch (Exception _ex)
       {
@@ -61,6 +67,7 @@ namespace CAS.SmartFactorySendNotification.Features.SendNotification
         SPWeb site = siteCollection.RootWeb;
         RemoveWorkflowAssociation(site.Lists[CommonDefinition.FreightPOLibraryName], CommonDefinition.SendNotificationWorkflowTemplateId);
         RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListName], CommonDefinition.CreatePOWorkflowTemplateId);
+        RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListName], CommonDefinition.ShippingStateMachineTemplateID);
       }
       catch (Exception _ex)
       {
@@ -108,7 +115,7 @@ namespace CAS.SmartFactorySendNotification.Features.SendNotification
       SPWorkflowAssociation _freightPOLibraryWorkflowAssociation =
         SPWorkflowAssociation.CreateListAssociation(
         _workflowTemplate,
-        "It creates new freight PO for selected shipping.",
+        "It creates new  freight PO for selected shipping.",
         _taskList,
         _historyList);
       // configure workflow association and add to WorkflowAssociations collection
@@ -120,15 +127,33 @@ namespace CAS.SmartFactorySendNotification.Features.SendNotification
       SPList _targetList = _web.Lists[CommonDefinition.ShippingListName];
       _targetList.WorkflowAssociations.Add(_freightPOLibraryWorkflowAssociation);
     }
+    private static void AddShippingStateMachineWorkflowAssociation(SPWeb _web, SPList _taskList, SPList _historyList)
+    {
+      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[CommonDefinition.ShippingStateMachineTemplateID];
+      // create workflow association
+      SPWorkflowAssociation _association = SPWorkflowAssociation.CreateListAssociation(
+        _workflowTemplate,
+        "Shipping  State Machine Workflow.",
+        _taskList,
+        _historyList);
+      // configure workflow association and add to WorkflowAssociations collection
+      _association.Description = "Shipping state machine";
+      _association.AllowManual = true;
+      _association.AutoStartCreate = false;
+      _association.AutoStartChange = false;
+      _association.AssociationData = "Any data if needed.";
+      SPList _targetList = _web.Lists[CommonDefinition.ShippingListName];
+      _targetList.WorkflowAssociations.Add(_association);
+    }
     /// <summary>
     /// Removes the workflow association.
     /// </summary>
-    /// <param name="_productProposalsList">The _product proposals list.</param>
+    /// <param name="_list">The _product proposals list.</param>
     /// <param name="_workflowTemplateId">The _workflow template id.</param>
-    private static void RemoveWorkflowAssociation(SPList _productProposalsList, Guid _workflowTemplateId)
+    private static void RemoveWorkflowAssociation(SPList _list, Guid _workflowTemplateId)
     {
-      SPWorkflowAssociation _wfa = _productProposalsList.WorkflowAssociations.GetAssociationByBaseID(_workflowTemplateId);
-      _productProposalsList.WorkflowAssociations.Remove(_wfa.Id);
+      SPWorkflowAssociation _wfa = _list.WorkflowAssociations.GetAssociationByBaseID(_workflowTemplateId);
+      _list.WorkflowAssociations.Remove(_wfa.Id);
     }
   }
 }

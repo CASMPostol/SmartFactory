@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CAS.SmartFactorySendNotification
+namespace CAS.SmartFactory.Shepherd.SendNotification
 {
   public static class Extensions
   {
