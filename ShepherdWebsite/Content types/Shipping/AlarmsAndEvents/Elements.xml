@@ -8,6 +8,9 @@
                Inherits="True">
     <Folder TargetName="_cts/AlarmsAndEvents" />
     <FieldRefs>
+      <FieldRef ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}" Name="AlarmAndEventDetails" />
+      <FieldRef ID="{7906427A-07BA-4AAE-B4CB-A73F9B57DFF3}" Name="AlarmsAndEventsList2ShippingTitle" />
+      <FieldRef ID="{177A27B7-A685-411B-950F-ED55740AD617}" Name="AlarmAndEventOwner" />
       <FieldRef ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}" Name="AlarmsAndEventsList2ShippingIndex" />
       <FieldRef ID="{7F341C2D-FEBA-48BD-9D59-4BF410959229}" Name="AlarmsAndEventsList2PartnerTitle" />
     </FieldRefs>

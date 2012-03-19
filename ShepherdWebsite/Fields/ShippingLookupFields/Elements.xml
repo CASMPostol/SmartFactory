@@ -133,6 +133,23 @@
     ReadOnly="False"
     />
   <Field
+    Name="AlarmsAndEventsList2ShippingTitle"
+    ID="{7906427A-07BA-4AAE-B4CB-A73F9B57DFF3}"
+    Type="Lookup"
+    List="Lists/ShippingList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Shipping"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="AlarmsAndEventsList2ShippingIndex"
     ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}"
     Type="Lookup"

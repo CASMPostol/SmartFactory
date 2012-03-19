@@ -413,7 +413,9 @@
     </Content>
     <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
-    <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml" />
+    <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Shipping\EscortPO\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

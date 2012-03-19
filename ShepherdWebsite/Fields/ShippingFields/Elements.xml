@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="Details"
+    Name="AlarmAndEventDetails"
+    Type="Text"
+    ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Owner"
+    Name="AlarmAndEventOwner"
+    Type="Text"
+    ID="{177A27B7-A685-411B-950F-ED55740AD617}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     DisplayName="Container No."
     Name="ContainerNo"
     Type="Text"
