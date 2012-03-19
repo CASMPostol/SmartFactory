@@ -13,6 +13,7 @@
       <FieldRef ID="{177A27B7-A685-411B-950F-ED55740AD617}" Name="AlarmAndEventOwner" />
       <FieldRef ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}" Name="AlarmsAndEventsList2ShippingIndex" />
       <FieldRef ID="{7F341C2D-FEBA-48BD-9D59-4BF410959229}" Name="AlarmsAndEventsList2PartnerTitle" />
+      <FieldRef ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}" Name="AlarmPriority" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

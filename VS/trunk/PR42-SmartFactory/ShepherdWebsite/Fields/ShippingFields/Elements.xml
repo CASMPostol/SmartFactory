@@ -1,6 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+   Type="Choice"
+   DisplayName="Priority"
+   ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}"
+   Format="Dropdown"
+   BaseType="Text"
+   Name="AlarmPriority"
+   Group="CAS Smart Factory Shepherd">
+    <Default>Normal</Default>
+    <CHOICES>
+      <CHOICE>Normal</CHOICE>
+      <CHOICE>High</CHOICE>
+      <CHOICE>Warning</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
     DisplayName="Details"
     Name="AlarmAndEventDetails"
     Type="Text"

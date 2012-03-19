@@ -10,6 +10,7 @@
           <FieldRef ID="{177A27B7-A685-411B-950F-ED55740AD617}" Name="AlarmAndEventOwner" />
           <FieldRef ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}" Name="AlarmsAndEventsList2ShippingIndex" />
           <FieldRef ID="{7F341C2D-FEBA-48BD-9D59-4BF410959229}" Name="AlarmsAndEventsList2PartnerTitle" />
+          <FieldRef ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}" Name="AlarmPriority" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -28,6 +29,14 @@
       <Field Name="AlarmsAndEventsList2ShippingTitle" ID="{7906427A-07BA-4AAE-B4CB-A73F9B57DFF3}" Type="Lookup" List="Lists/ShippingList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field DisplayName="Details" Name="AlarmAndEventDetails" Type="Text" ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Owner" Name="AlarmAndEventOwner" Type="Text" ID="{177A27B7-A685-411B-950F-ED55740AD617}" Group="CAS Smart Factory Shepherd" />
+      <Field Type="Choice" DisplayName="Priority" ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}" Format="Dropdown" BaseType="Text" Name="AlarmPriority" Group="CAS Smart Factory Shepherd">
+        <Default>Normal</Default>
+        <CHOICES>
+          <CHOICE>Normal</CHOICE>
+          <CHOICE>High</CHOICE>
+          <CHOICE>Warning</CHOICE>
+        </CHOICES>
+      </Field>
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -81,6 +90,7 @@
           <FieldRef ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}" Name="AlarmAndEventDetails" />
           <FieldRef ID="{7906427A-07BA-4AAE-B4CB-A73F9B57DFF3}" Name="AlarmsAndEventsList2ShippingTitle" />
           <FieldRef ID="{177A27B7-A685-411B-950F-ED55740AD617}" Name="AlarmAndEventOwner" />
+          <FieldRef ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}" Name="AlarmPriority" />
         </ViewFields>
         <Query>
           <OrderBy>
