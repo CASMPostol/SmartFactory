@@ -1,24 +1,12 @@
 ﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Collections;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Workflow.ComponentModel.Compiler;
-using System.Workflow.ComponentModel.Serialization;
-using System.Workflow.ComponentModel;
-using System.Workflow.ComponentModel.Design;
-using System.Workflow.Runtime;
 using System.Workflow.Activities;
-using System.Workflow.Activities.Rules;
+using CAS.SmartFactory.Shepherd.SendNotification.Entities;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
-using Microsoft.SharePoint.WorkflowActions;
-using CAS.SmartFactory.Shepherd.SendNotification.Entities;
-using System.IO;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using DocumentFormat.OpenXml;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
 {
@@ -65,7 +53,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
           byte[] _buff = null;
           using (Stream _tmpStrm = _teml.OpenBinaryStream())
           {
-            _buff = new byte[_tmpStrm.Length];
+            _buff = new byte[_tmpStrm.Length +200000]; //must be expandable
             _tmpStrm.Read(_buff, 0, (int)_tmpStrm.Length);
           }
           SPFile _docFile = null;
