@@ -58,7 +58,7 @@
                     </tr>
                 </table>
         </td>
-        <td valign="top" width="200px" >
+        <td valign="top" width="400px" >
             <WebPartPages:WebpartZone
             ID="AlarmsAndEvents" runat="server"
             Title="AlarmsAndEvents Web Part Zone"
