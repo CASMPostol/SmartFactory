@@ -2,7 +2,7 @@
 using Microsoft.SharePoint.Linq;
 using System.Linq;
 
-namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
+namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 {
   public partial class Element
   {

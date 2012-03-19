@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-
 <!-- Customize the text in square brackets. 
 Remove brackets when filling in, e.g.
 Name="[NAME]" ==> Name="MyWorkflow" -->
 
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Workflow
-     Name="CreatePO"
+     Name="ShippingStateMachine"
      Description="My SharePoint Workflow"
-     Id="54732fdd-0178-406a-aae1-7fdfb11ed7e7"
-     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.CreatePO.CreatePO"
+     Id="cd61e1a0-3401-40f9-9eb1-c7428f6f2516"
+     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine"
      CodeBesideAssembly="$assemblyname$">
     <Categories/>
     <MetaData>
-      <AssociationCategories>List;693191fd-6a7a-4db6-ac8e-a3f747ddf439;10033</AssociationCategories>
+      <AssociationCategories>List</AssociationCategories>
       <!-- Tags to specify InfoPath forms for the workflow; delete tags for forms that you do not have -->
       <!--<Association_FormURN>[URN FOR ASSOCIATION FORM]</Association_FormURN>
        <Instantiation_FormURN>[URN FOR INSTANTIATION FORM]</Instantiation_FormURN>

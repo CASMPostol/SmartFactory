@@ -7,7 +7,7 @@
     <ProjectGuid>{89325B12-F757-42B3-97B5-EB5991F8A959}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CAS.SmartFactorySendNotification</RootNamespace>
+    <RootNamespace>CAS.SmartFactory.SendNotification</RootNamespace>
     <AssemblyName>CAS.SmartFactorySendNotification</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -78,6 +78,12 @@
     <Compile Include="SendEmail\SendEmail.Designer.cs">
       <DependentUpon>SendEmail.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShippingStateMachine\ShippingStateMachine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShippingStateMachine\ShippingStateMachine.Designer.cs">
+      <DependentUpon>ShippingStateMachine.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorkflowData\FreightPurchaseOrderTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -96,6 +102,9 @@
     <None Include="key.snk" />
     <None Include="SendEmail\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1783f2bc-07c6-4fa0-a343-7eb67ed5f587}</SharePointProjectItemId>
+    </None>
+    <None Include="ShippingStateMachine\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a572a7e5-dff0-457d-9089-b02216efe685}</SharePointProjectItemId>
     </None>
     <None Include="WorkflowData\FreightPurchaseOrderTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -130,6 +139,7 @@
     <Content Include="CreatePO\Elements.xml" />
     <Content Include="Entities\Scripts\Parameters.xml" />
     <Content Include="SendEmail\Elements.xml" />
+    <Content Include="ShippingStateMachine\Elements.xml" />
     <Content Include="WorkflowLists\SendNotificationHistory\Elements.xml" />
     <Content Include="WorkflowLists\SendNotificationWorkflowTasks\Elements.xml" />
   </ItemGroup>

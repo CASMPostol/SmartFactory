@@ -1,27 +1,15 @@
 ﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Collections;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Workflow.ComponentModel.Compiler;
-using System.Workflow.ComponentModel.Serialization;
-using System.Workflow.ComponentModel;
-using System.Workflow.ComponentModel.Design;
-using System.Workflow.Runtime;
 using System.Workflow.Activities;
-using System.Workflow.Activities.Rules;
+using System.Xml;
+using System.Xml.Serialization;
+using CAS.SmartFactory.Shepherd.SendNotification.Entities;
+using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
-using Microsoft.SharePoint.WorkflowActions;
-using System.Xml.Serialization;
-using CAS.SmartFactorySendNotification.WorkflowData;
-using System.Xml;
-using System.IO;
-using System.Text;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 
-namespace CAS.SmartFactorySendNotification.SendEmail
+namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
 {
   public sealed partial class SendEmail : SequentialWorkflowActivity
   {
@@ -62,7 +50,7 @@ namespace CAS.SmartFactorySendNotification.SendEmail
             FreightPO _fpo = (from idx in _EDC.FreightPOLibrary
                               where idx.Identyfikator == m_WorkflowProperties.ItemId
                               select idx).First();
-            m_sendEmail1_To = _fpo.Carrier == null ? CommonDefinition.PartnerSentToBackUpEmail : _fpo.Carrier.EMail;
+            m_sendEmail1_To = _fpo.Carrier == null ? CommonDefinition.PartnerSentToBackupEmail : _fpo.Carrier.EMail;
             return new FreightPurchaseOrderTemplate()
             {
               Encodedabsurl = new Uri((string)m_WorkflowProperties.Item["EncodedAbsUrl"]),

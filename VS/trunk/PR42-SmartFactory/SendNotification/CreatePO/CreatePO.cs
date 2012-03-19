@@ -14,13 +14,13 @@ using System.Workflow.Activities.Rules;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.WorkflowActions;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.Shepherd.SendNotification.Entities;
 using System.IO;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using DocumentFormat.OpenXml;
 
-namespace CAS.SmartFactorySendNotification.CreatePO
+namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
 {
   public sealed partial class CreatePO : SequentialWorkflowActivity
   {
@@ -37,8 +37,8 @@ namespace CAS.SmartFactorySendNotification.CreatePO
       using (SPSite _st = m_WorkflowProperties.Site)
       {
         _url = _st.Url;
-
-      } m_LogAfterCreateToHistoryList_UserId1 = m_WorkflowProperties.OriginatorUser.ID;
+      } 
+      m_LogAfterCreateToHistoryList_UserId1 = m_WorkflowProperties.OriginatorUser.ID;
       m_LogAfterCreateToHistoryList_HistoryOutcome1 = "Activation";
       m_LogAfterCreateToHistoryList_HistoryDescription1 = "OnWorkflowActivated finished";
       m_LogAfterCreateToHistoryList_OtherData1 = default(string);
