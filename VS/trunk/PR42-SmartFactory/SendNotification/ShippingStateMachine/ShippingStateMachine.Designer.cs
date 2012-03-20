@@ -47,6 +47,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       System.Workflow.ComponentModel.ActivityBind activitybind16 = new System.Workflow.ComponentModel.ActivityBind();
       this.m_NotificationSendEmail = new Microsoft.SharePoint.WorkflowActions.SendEmail();
       this.m_TimeOutLogToHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+      this.m_AfterTimeOutSequenceActivity = new System.Workflow.Activities.SequenceActivity();
       this.m_TimeOutDelay = new System.Workflow.Activities.DelayActivity();
       this.m_WhileRoundLogToHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_OnWorkflowItemChanged = new Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged();
@@ -92,9 +93,15 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_TimeOutLogToHistoryListActivity.Name = "m_TimeOutLogToHistoryListActivity";
       this.m_TimeOutLogToHistoryListActivity.OtherData = "";
       this.m_TimeOutLogToHistoryListActivity.UserId = -1;
-      this.m_TimeOutLogToHistoryListActivity.MethodInvoking += new System.EventHandler(this.m_TimeOutLogToHistoryListActivity_MethodInvoking);
       this.m_TimeOutLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind2)));
       this.m_TimeOutLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind1)));
+      // 
+      // m_AfterTimeOutSequenceActivity
+      // 
+      this.m_AfterTimeOutSequenceActivity.Activities.Add(this.m_TimeOutLogToHistoryListActivity);
+      this.m_AfterTimeOutSequenceActivity.Activities.Add(this.m_NotificationSendEmail);
+      this.m_AfterTimeOutSequenceActivity.Description = "After Time Out Sequence Activity";
+      this.m_AfterTimeOutSequenceActivity.Name = "m_AfterTimeOutSequenceActivity";
       // 
       // m_TimeOutDelay
       // 
@@ -124,9 +131,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       // m_OnWorkflowItemChanged
       // 
       activitybind7.Name = "ShippingStateMachine";
-      activitybind7.Path = "m_AfterProperties";
+      activitybind7.Path = "m_OnWorkflowItemChanged_AfterProperties1";
       activitybind8.Name = "ShippingStateMachine";
-      activitybind8.Path = "m_BeforeProperties";
+      activitybind8.Path = "m_OnWorkflowItemChanged_BeforeProperties1";
       this.m_OnWorkflowItemChanged.CorrelationToken = correlationtoken1;
       this.m_OnWorkflowItemChanged.Description = "On workflow item changed";
       this.m_OnWorkflowItemChanged.Name = "m_OnWorkflowItemChanged";
@@ -137,8 +144,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       // m_WaitTimeOutEventDrivenActivity
       // 
       this.m_WaitTimeOutEventDrivenActivity.Activities.Add(this.m_TimeOutDelay);
-      this.m_WaitTimeOutEventDrivenActivity.Activities.Add(this.m_TimeOutLogToHistoryListActivity);
-      this.m_WaitTimeOutEventDrivenActivity.Activities.Add(this.m_NotificationSendEmail);
+      this.m_WaitTimeOutEventDrivenActivity.Activities.Add(this.m_AfterTimeOutSequenceActivity);
       this.m_WaitTimeOutEventDrivenActivity.Description = "Wait until time out";
       this.m_WaitTimeOutEventDrivenActivity.Name = "m_WaitTimeOutEventDrivenActivity";
       // 
@@ -190,6 +196,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       // 
       // m_CalculateTimeoutCode
       // 
+      this.m_CalculateTimeoutCode.Description = "Calculate Timeout";
       this.m_CalculateTimeoutCode.Name = "m_CalculateTimeoutCode";
       this.m_CalculateTimeoutCode.ExecuteCode += new System.EventHandler(this.m_CalculateTimeoutCode_ExecuteCode);
       // 
@@ -276,6 +283,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 
     #endregion
 
+    private SequenceActivity m_AfterTimeOutSequenceActivity;
+
     private DelayActivity m_TimeOutDelay;
 
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity m_DeadlineLogToHistoryListActivity;
@@ -311,6 +320,15 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private SequenceActivity m_SequenceActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated;
+
+
+
+
+
+
+
+
+
 
 
 

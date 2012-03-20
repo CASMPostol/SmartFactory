@@ -23,6 +23,21 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         _EDC.SubmitChanges();
       }
     }
+    private void ReportAlarmsAndEvents(string _mssg)
+    {
+      using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
+      {
+        Shipping _sh = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        Entities.AlarmsAndEvents _ae = new AlarmsAndEvents()
+        {
+          ShippingIndex = _sh,
+          Tytuł = _mssg,
+          VendorName = _sh.VendorName
+        };
+        _EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
+        _EDC.SubmitChanges();
+      }
+    }
     #endregion
 
     #region public
@@ -41,6 +56,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       {
         m_URL = _st.Url;
       }
+      m_DeadlineLogToHistoryListActivity_HistoryOutcome1 = "New dedline";
     }
     #endregion
 
@@ -55,33 +71,75 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region WhileActivity
     private void m_MainLoopWhileActivity_ConditionEventHandler(object sender, ConditionalEventArgs e)
     {
-
-      e.Result = true;
+      using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
+      {
+        Shipping _sp = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        e.Result = !(_sp.State.HasValue && (_sp.State.Value == State.Completed || _sp.State.Value == State.Canceled));
+      }
     }
     #endregion
 
     #region WorkflowItemChanged
-    public Hashtable m_AfterProperties = default(Hashtable);
-    public Hashtable m_BeforeProperties = default(Hashtable);
     private void m_OnWorkflowItemChanged_Invoked(object sender, ExternalDataEventArgs e)
     {
-      m_SendWarningLogToHistoryListActivity_HistoryOutcome = "Shiping changed";
-      m_SendWarningLogToHistoryListActivity_HistoryDescription = "The following coluns have been changed: ";
-      foreach (var item in m_AfterProperties.Keys)
+      m_SendWarningLogToHistoryListActivity_HistoryOutcome = "Shiping";
+      m_SendWarningLogToHistoryListActivity_HistoryDescription = "The shipping has been modified and the schedule wiil be updated.";
+      ReportAlarmsAndEvents(m_SendWarningLogToHistoryListActivity_HistoryDescription);
+      //if (m_OnWorkflowItemChanged_BeforeProperties1.Count == 0)
+      //{
+      //  string _msg = "Connot display changes because the BeforeProperties is empty.";
+      //  m_SendWarningLogToHistoryListActivity_HistoryDescription = _msg;
+      //}
+      //else
+      //{
+      //  m_SendWarningLogToHistoryListActivity_HistoryDescription = "The following coluns have been changed: ";
+      //  foreach (var item in m_OnWorkflowItemChanged_AfterProperties1.Keys)
+      //  {
+      //    try
+      //    {
+      //      if (m_OnWorkflowItemChanged_AfterProperties1[item] == null)
+      //        throw new ApplicationException(String.Format("AfterProperties for key {0} is null.", item));
+      //      if (m_OnWorkflowItemChanged_BeforeProperties1[item] == null)
+      //        continue;
+      //      if (m_OnWorkflowItemChanged_AfterProperties1[item].ToString() != m_OnWorkflowItemChanged_BeforeProperties1[item].ToString())
+      //        m_SendWarningLogToHistoryListActivity_HistoryDescription += item.ToString() + ", ";
+      //    }
+      //    catch (Exception ex)
+      //    {
+      //      ReportException("m_OnWorkflowItemChanged_Invoked", ex);
+      //    }
+      //  }
+      //}
+    }
+
+    public static DependencyProperty m_OnWorkflowItemChanged_BeforeProperties1Property = DependencyProperty.Register("m_OnWorkflowItemChanged_BeforeProperties1", typeof(System.Collections.Hashtable), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
+    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+    [BrowsableAttribute(true)]
+    [CategoryAttribute("Misc")]
+    public Hashtable m_OnWorkflowItemChanged_BeforeProperties1
+    {
+      get
       {
-        try
-        {
-          if (m_AfterProperties[item] == null)
-            throw new ApplicationException("AfterProperties is null.");
-          if (m_BeforeProperties[item] == null)
-            throw new ApplicationException("BeforeProperties is null.");
-          if (m_AfterProperties[item].ToString() != m_BeforeProperties[item].ToString())
-            m_SendWarningLogToHistoryListActivity_HistoryDescription += item.ToString() + ", ";
-        }
-        catch (Exception ex)
-        {
-          ReportException("m_OnWorkflowItemChanged_Invoked", ex);
-        }
+        return ((System.Collections.Hashtable)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_OnWorkflowItemChanged_BeforeProperties1Property)));
+      }
+      set
+      {
+        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_OnWorkflowItemChanged_BeforeProperties1Property, value);
+      }
+    }
+    public static DependencyProperty m_OnWorkflowItemChanged_AfterProperties1Property = DependencyProperty.Register("m_OnWorkflowItemChanged_AfterProperties1", typeof(System.Collections.Hashtable), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
+    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+    [BrowsableAttribute(true)]
+    [CategoryAttribute("Misc")]
+    public Hashtable m_OnWorkflowItemChanged_AfterProperties1
+    {
+      get
+      {
+        return ((System.Collections.Hashtable)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_OnWorkflowItemChanged_AfterProperties1Property)));
+      }
+      set
+      {
+        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_OnWorkflowItemChanged_AfterProperties1Property, value);
       }
     }
     #endregion
@@ -92,12 +150,134 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #endregion
 
     #region CalculateTimeoutCode
+    private static TimeSpan _5min = new TimeSpan(0, 5, 0);
+
     private void m_CalculateTimeoutCode_ExecuteCode(object sender, EventArgs e)
     {
-      m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, 5, 0);
-      m_DeadlineLogToHistoryListActivity_HistoryOutcome1 = "New dedline";
-      string _frmt = "Waiting for {0} until: {1}.";
-      m_DeadlineLogToHistoryListActivity_HistoryDescription1 = String.Format(_frmt, "Shipping data", DateTime.Now + m_TimeOutDelay_TimeoutDuration1);
+      using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
+      {
+        Shipping _sp = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        string _frmt = default(string);
+        switch (_sp.State.Value)
+        {
+          case State.Confirmed:
+            if (_sp.StartTime.Value > DateTime.Now)
+            {
+              _frmt = "Wanning: The truck is late. Call the driver: {0}";
+              SetupEnvironment(
+                _sp.StartTime.Value - DateTime.Now,
+                "We expect the truck in {0} up to {1}.",
+                String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????"),
+                "Timeout warning"
+                );
+            }
+            else
+            {
+              _sp.State = State.Delayed;
+              _EDC.SubmitChanges();
+              SetupEnvironmentDelayed();
+            }
+            break;
+          case State.Waiting4ExternalApproval:
+          case State.Waiting4InternalApproval:
+          case State.Creation:
+            TimeSpan _2h = new TimeSpan(2, 0, 0);
+            TimeSpan _24h = new TimeSpan(24, 0, 0);
+            TimeSpan _72h = new TimeSpan(3, 0, 0, 0);
+            if (_sp.StartTime.Value > DateTime.Now + _72h)
+            {
+              _frmt = "Truck, trailer and drivers detailed information must be provided in {0:H:mm} up to {1:g}.";
+              SetupEnvironment
+                (
+                  _sp.StartTime.Value - DateTime.Now - _72h,
+                  _frmt,
+                  "Time out while waiting on missing data. Please verify shipping data and supplement it.",
+                  "Timeout notification"
+                );
+            }
+            else if (_sp.StartTime.Value > DateTime.Now + _24h)
+            {
+              _frmt = "Truck, trailer and drivers detailed information must be provided in {0:H:mm} up to {1:g}.";
+              SetupEnvironment
+                (
+                  _sp.StartTime.Value - DateTime.Now - _24h,
+                  _frmt,
+                  "Time out while waiting on missing data. Please verify shipping data and supplement it.",
+                  "Timeout notification"
+                );
+            }
+            else if (_sp.StartTime.Value > DateTime.Now + _2h)
+            {
+              _frmt = "Truck, trailer and drivers detailed information must be provided in {0:H:mm} up to {1:g}.";
+              SetupEnvironment
+                (
+                  _sp.StartTime.Value - DateTime.Now - _2h,
+                  _frmt,
+                  "Time out while waiting on missing data. Please verify shipping data and supplement it.",
+                  "Timeout warning"
+                );
+            }
+            else if (_sp.StartTime.Value > DateTime.Now)
+            {
+              _frmt = "Missing data warning !! Truck, trailer and drivers detailed information must be provided as soon as posible but not letter than in {0:H:mm} up to {1:g}.";
+              SetupEnvironment
+                (
+                  _2h,
+                  _frmt,
+                  "Time out waiting on missing data. Please verify shipping data and supplement them",
+                  "Timeout warning"
+                );
+            }
+            else
+            {
+              _sp.State = State.Delayed;
+              _EDC.SubmitChanges();
+              SetupEnvironmentDelayed();
+            }
+            break;
+          case State.Delayed:
+            SetupEnvironmentDelayed();
+            break;
+          case State.Underway:
+            if (_sp.EndTime.Value < DateTime.Now)
+              SetupEnvironment(_sp.EndTime.Value - DateTime.Now, "Truck must exit in {0:g} until {1:g}", "Wanning: The truck has not exited until the deadline.", "Timeout notification");
+            else
+            {
+              m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, 30, 0);
+              SetupEnvironment
+                (
+                  new TimeSpan(0, 30, 0),
+                  "Warning: the truck is still inside and should have leaved until {0:g}. Next remainder will be issued at: {1:g}. To stop sending remainders change the state of the shipping or manually terminate the warkflow.",
+                  "Wanning: The truck has not exited until the deadline.",
+                  "Timeout warning"
+                 );
+            }
+            break;
+          default:
+            {
+              _frmt = "Unsupported state {0} in CalculateTimeoutCode encountered";
+              throw new ApplicationException(String.Format(_frmt, _sp.State.Value));
+            }
+        }
+      }
+    }
+    private void SetupEnvironmentDelayed()
+    {
+      string _frmt = "The shipping is delayed and the state must be updatede. Next remainder will be issued in {0:g} at {1:g}. To stop sending remainders change the state of the shipping or manually terminate the warkflow.";
+      SetupEnvironment
+        (
+        _5min,
+        _frmt,
+        "Time out while waiting on shipping state change.",
+        "Timeout warning"
+        );
+    }
+    private void SetupEnvironment(TimeSpan _delay, string _logDescription, string _afterDelayDescription, string _afterDelayOutcome)
+    {
+      m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
+      m_DeadlineLogToHistoryListActivity_HistoryDescription1 = String.Format(_logDescription, m_TimeOutDelay_TimeoutDuration1, DateTime.Now + _delay);
+      m_TimeOutLogToHistoryListActivity_HistoryDescription1 = _afterDelayDescription;
+      m_TimeOutLogToHistoryListActivity_HistoryOutcome1 = _afterDelayOutcome;
     }
     #endregion
 
@@ -108,22 +288,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       m_FaultHandlerLogToHistoryListActivity_HistoryOutcome1 = "Error";
       m_FaultHandlerLogToHistoryListActivity_HistoryDescription1 = m_MainFaultHandlerActivity.Fault.Message;
+      ReportException("FaultHandlersActivity", m_MainFaultHandlerActivity.Fault);
     }
     #endregion
 
     #region TimeOutLogToHistoryList
-    private void m_TimeOutLogToHistoryListActivity_MethodInvoking(object sender, EventArgs e)
-    {
-      try
-      {
-        m_TimeOutLogToHistoryListActivity_HistoryDescription1 = m_TimeOutDelay_TimeoutDuration1.ToString() + "/" +
-          m_TimeOutLogToHistoryListActivity.Duration.ToString();
-      }
-      catch (Exception _ex)
-      {
-        ReportException("TimeOutLogToHistoryListActivity", _ex);
-      }
-    }
     public String m_TimeOutLogToHistoryListActivity_HistoryOutcome1 = default(System.String);
     public String m_TimeOutLogToHistoryListActivity_HistoryDescription1 = default(System.String);
     #endregion
@@ -141,6 +310,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           m_NotificationSendEmail.Body = "Warning";
           m_NotificationSendEmail.To = _sp.VendorName != null ? _sp.VendorName.EMail : "unknown@comapny.com";
           m_NotificationSendEmail.CC = m_OnWorkflowActivated_WorkflowProperties.OriginatorEmail;
+          ReportAlarmsAndEvents(_sp.Tytuł + " Delayed !!");
         }
       }
       catch (Exception _ex)
@@ -183,8 +353,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     #endregion
 
+    #region TimeOutDelay
     public static DependencyProperty m_TimeOutDelay_TimeoutDuration1Property = DependencyProperty.Register("m_TimeOutDelay_TimeoutDuration1", typeof(System.TimeSpan), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-
     [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
     [BrowsableAttribute(true)]
     [CategoryAttribute("Misc")]
@@ -199,6 +369,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_TimeOutDelay_TimeoutDuration1Property, value);
       }
     }
+    #endregion
 
   }
 }
