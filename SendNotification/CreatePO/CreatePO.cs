@@ -18,6 +18,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
     }
 
     #region WorkflowActivated
+    internal static Guid WorkflowId = new Guid("54732fdd-0178-406a-aae1-7fdfb11ed7e7");
+    internal static WorkflowDescription WorkflowDescription { get { return new WorkflowDescription(WorkflowId, "New Freight PO", "Create Freight Purchae Order"); } }
     public Guid workflowId = default(System.Guid);
     public SPWorkflowActivationProperties m_WorkflowProperties = new SPWorkflowActivationProperties();
     private void m_OnWorkflowActivated_Invoked(object sender, ExternalDataEventArgs e)
@@ -25,7 +27,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
       using (SPSite _st = m_WorkflowProperties.Site)
       {
         _url = _st.Url;
-      } 
+      }
       m_LogAfterCreateToHistoryList_UserId1 = m_WorkflowProperties.OriginatorUser.ID;
       m_LogAfterCreateToHistoryList_HistoryOutcome1 = "Activation";
       m_LogAfterCreateToHistoryList_HistoryDescription1 = "OnWorkflowActivated finished";
@@ -53,7 +55,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
           byte[] _buff = null;
           using (Stream _tmpStrm = _teml.OpenBinaryStream())
           {
-            _buff = new byte[_tmpStrm.Length +200000]; //must be expandable
+            _buff = new byte[_tmpStrm.Length + 200000]; //must be expandable
             _tmpStrm.Read(_buff, 0, (int)_tmpStrm.Length);
           }
           SPFile _docFile = null;

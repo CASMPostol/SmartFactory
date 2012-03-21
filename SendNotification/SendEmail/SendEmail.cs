@@ -74,6 +74,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
         throw new ApplicationException(String.Format(_frmt, ex.Message));
       }
     }
+    internal static Guid WorkflowId = new Guid("1bb10ba9-70da-4064-95b3-cd048ce4c3cd");
     public Guid workflowId = default(System.Guid);
     public SPWorkflowActivationProperties m_WorkflowProperties = default(SPWorkflowActivationProperties);
     #endregion
