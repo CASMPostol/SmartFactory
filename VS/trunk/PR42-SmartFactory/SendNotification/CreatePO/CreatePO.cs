@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
                           select idx).First();
           _stt = "Shipping";
           _spTitle = _sp.Tytuł;
-          SPDocumentLibrary _lib = (SPDocumentLibrary)m_WorkflowProperties.Web.Lists[CommonDefinition.FreightPOLibraryName];
+          SPDocumentLibrary _lib = (SPDocumentLibrary)m_WorkflowProperties.Web.Lists[CommonDefinition.FreightPOLibraryTitle];
           _stt = "SPDocumentLibrary";
           SPFile _teml = m_WorkflowProperties.Web.GetFile(_lib.DocumentTemplateUrl);
           byte[] _buff = null;
@@ -61,6 +61,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
           using (MemoryStream _docStrm = new MemoryStream(_buff))
           {
             WordprocessingDocument _doc = WordprocessingDocument.Open(_docStrm, true);
+            _stt = "Open";
             _doc.ChangeDocumentType(WordprocessingDocumentType.Document);
             _doc.Close();
             _docFile = _lib.RootFolder.Files.Add(String.Format("FREIGHT PO No {0}.docx", _sp.Identyfikator.ToString()), _docStrm, true);

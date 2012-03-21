@@ -7,7 +7,7 @@
     <ProjectGuid>{89325B12-F757-42B3-97B5-EB5991F8A959}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CAS.SmartFactory.SendNotification</RootNamespace>
+    <RootNamespace>CAS.SmartFactory.Shepherd.SendNotification</RootNamespace>
     <AssemblyName>CAS.SmartFactorySendNotification</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -93,6 +93,7 @@
     <Compile Include="WorkflowData\POLibraryWorkflowAssociationData.cs">
       <DependentUpon>POLibraryWorkflowAssociationData.xsd</DependentUpon>
     </Compile>
+    <Compile Include="WorkflowData\POLibraryWorkflowAssociationData.Partial..cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CreatePO\SharePointProjectItem.spdata">
@@ -138,7 +139,9 @@
   <ItemGroup>
     <Content Include="CreatePO\Elements.xml" />
     <Content Include="Entities\Scripts\Parameters.xml" />
-    <Content Include="SendEmail\Elements.xml" />
+    <Content Include="SendEmail\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ShippingStateMachine\Elements.xml" />
     <Content Include="WorkflowLists\SendNotificationHistory\Elements.xml" />
     <Content Include="WorkflowLists\SendNotificationWorkflowTasks\Elements.xml" />
