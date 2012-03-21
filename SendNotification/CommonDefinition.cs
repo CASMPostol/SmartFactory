@@ -12,8 +12,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     internal static Guid CreatePOWorkflowTemplateId = new Guid("54732fdd-0178-406a-aae1-7fdfb11ed7e7");
     internal static Guid ShippingStateMachineTemplateID = new Guid("cd61e1a0-3401-40f9-9eb1-c7428f6f2516");
     //Target lists
-    internal const string FreightPOLibraryName = "Freight PO Library";
-    internal const string ShippingListName = "Shipping";
+    internal const string FreightPOLibraryTitle = "Freight PO Library";
+    internal const string EscortPOLibraryTitle = "Escort PO Library";
+    internal const string ShippingListTitle = "Shipping";
     //Workflow working lists
     internal const string SendNotificationWorkflowTasks = "Send Notification Workflow Tasks";
     internal const string SendNotificationWorkflowHistory = "Send Notification Workflow History";

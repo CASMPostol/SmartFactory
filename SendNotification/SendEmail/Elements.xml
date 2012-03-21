@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<!-- Customize the text in square brackets. 
-Remove brackets when filling in, e.g.
-Name="[NAME]" ==> Name="MyWorkflow" -->
-
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Workflow
      Name="Send Email Notification"
