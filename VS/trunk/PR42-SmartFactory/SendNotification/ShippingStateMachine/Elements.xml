@@ -6,7 +6,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Workflow
      Name="ShippingStateMachine"
-     Description="My SharePoint Workflow"
+     Description="Shipping State Machine Workflow"
      Id="cd61e1a0-3401-40f9-9eb1-c7428f6f2516"
      CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine"
      CodeBesideAssembly="$assemblyname$">

@@ -46,6 +46,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
@@ -65,12 +67,25 @@
     <Compile Include="CreatePO\CreatePO.Designer.cs">
       <DependentUpon>CreatePO.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateSealProtocol\CreateSealProtocol.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CreateSealProtocol\CreateSealProtocol.Designer.cs">
+      <DependentUpon>CreateSealProtocol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateSecurityPO\CreateSecurituPO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CreateSecurityPO\CreateSecurituPO.Designer.cs">
+      <DependentUpon>CreateSecurituPO.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Features\SendNotification\SendNotification.EventReceiver.cs">
       <DependentUpon>SendNotification.feature</DependentUpon>
     </Compile>
+    <Compile Include="WorkflowDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendEmail\SendEmail.cs">
       <SubType>Component</SubType>
@@ -98,6 +113,12 @@
   <ItemGroup>
     <None Include="CreatePO\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2c449354-5fc5-47fe-a13f-84165a95e8c9}</SharePointProjectItemId>
+    </None>
+    <None Include="CreateSealProtocol\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e96c1352-1441-4927-a07c-e5366963adfe}</SharePointProjectItemId>
+    </None>
+    <None Include="CreateSecurityPO\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{fdea486f-d881-4e44-80fa-e895df1ff502}</SharePointProjectItemId>
     </None>
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="key.snk" />
@@ -138,6 +159,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CreatePO\Elements.xml" />
+    <Content Include="CreateSealProtocol\Elements.xml" />
+    <Content Include="CreateSecurityPO\Elements.xml" />
     <Content Include="Entities\Scripts\Parameters.xml" />
     <Content Include="SendEmail\Elements.xml">
       <SubType>Designer</SubType>

@@ -6,14 +6,14 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
 
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Workflow
-     Name="CreatePO"
-     Description="Create Freight Purchae Order"
-     Id="54732fdd-0178-406a-aae1-7fdfb11ed7e7"
-     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.CreatePO.CreatePO"
+     Name="CreateSecurityPO"
+     Description="Create Security Purchase Order"
+     Id="b0d933a7-f1b4-4659-9181-b314ea3a0d29"
+     CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.CreateSecurituPO.CreateSecurituPO"
      CodeBesideAssembly="$assemblyname$">
     <Categories/>
     <MetaData>
-      <AssociationCategories>List;693191fd-6a7a-4db6-ac8e-a3f747ddf439;10033</AssociationCategories>
+      <AssociationCategories>List</AssociationCategories>
       <!-- Tags to specify InfoPath forms for the workflow; delete tags for forms that you do not have -->
       <!--<Association_FormURN>[URN FOR ASSOCIATION FORM]</Association_FormURN>
        <Instantiation_FormURN>[URN FOR INSTANTIATION FORM]</Instantiation_FormURN>

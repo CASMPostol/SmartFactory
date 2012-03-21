@@ -42,10 +42,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
             _state = "FreightPOLibraryName";
             NewPONotificationAssociation(CommonDefinition.EscortPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.SecurityPOAssociationData(), "Email Escort PO");
             _state = "EscortPOLibraryTitle";
-            AddCreateFPOAssociation(_web, _taskList, _historyList);
+            NewCreatePOAssociation(CreatePO.CreatePO.WorkflowDescription, _web, _taskList, _historyList);
             _state = "AddCreateFPOAssociation";
-            AddShippingStateMachineWorkflowAssociation(_web, _taskList, _historyList);
-            _state = "AddShippingStateMachineWorkflowAssociation";
+            NewCreatePOAssociation(CreateSecurityPO.CreateSecurityPO.WorkflowDescription, _web, _taskList, _historyList);
+            _state = "AddCreateFPOAssociation";
+            NewCreatePOAssociation(CreateSealProtocol.CreateSealProtocol.WorkflowDescription, _web, _taskList, _historyList);
+            _state = "AddCreateFPOAssociation";
+            NewCreatePOAssociation(ShippingStateMachine.ShippingStateMachine.WorkflowDescription, _web, _taskList, _historyList);
+            _state = "ShippingStateMachine";
           }
         }
       }
@@ -68,10 +72,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
         {
           using (SPWeb site = siteCollection.RootWeb)
           {
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CommonDefinition.ShippingStateMachineTemplateID);
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CommonDefinition.CreatePOWorkflowTemplateId);
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.EscortPOLibraryTitle], CommonDefinition.SendNotificationWorkflowTemplateId);
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.FreightPOLibraryTitle], CommonDefinition.SendNotificationWorkflowTemplateId);
+            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], ShippingStateMachine.ShippingStateMachine.WorkflowId);
+            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreateSealProtocol.CreateSealProtocol.WorkflowId);
+            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreateSecurityPO.CreateSecurityPO.WorkflowId);
+            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreatePO.CreatePO.WorkflowId);
+            RemoveWorkflowAssociation(site.Lists[CommonDefinition.EscortPOLibraryTitle], SendEmail.SendEmail.WorkflowId);
+            RemoveWorkflowAssociation(site.Lists[CommonDefinition.FreightPOLibraryTitle], SendEmail.SendEmail.WorkflowId);
           }
         }
       }
@@ -83,7 +89,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
     }
     private static void NewPONotificationAssociation(string _targetList, SPWeb _web, SPList _taskList, SPList _historyList, POLibraryWorkflowAssociationData _wfData, string _wName)
     {
-      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[CommonDefinition.SendNotificationWorkflowTemplateId];
+      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[SendEmail.SendEmail.WorkflowId];
       // create workflow association
       SPWorkflowAssociation _wa = SPWorkflowAssociation.CreateListAssociation(
         _workflowTemplate,
@@ -96,53 +102,26 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
       _wa.AutoStartCreate = false;
       _wa.AutoStartChange = false;
       // add workflow association data
-      using (MemoryStream stream = new MemoryStream())
-      {
-        XmlSerializer serializer = new XmlSerializer(typeof(POLibraryWorkflowAssociationData));
-        serializer.Serialize(stream, _wfData);
-        stream.Position = 0;
-        byte[] bytes = new byte[stream.Length];
-        stream.Read(bytes, 0, bytes.Length);
-        _wa.AssociationData = Encoding.UTF8.GetString(bytes);
-      }
+      _wa.AssociationData = _wfData.Serialize(_wa);
       _web.Lists[_targetList].WorkflowAssociations.Add(_wa);
     }
-    private static void AddCreateFPOAssociation(SPWeb _web, SPList _taskList, SPList _historyList)
+    private static void NewCreatePOAssociation(WorkflowDescription _dsc, SPWeb _web, SPList _taskList, SPList _historyList)
     {
-      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[CommonDefinition.CreatePOWorkflowTemplateId];
+      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[_dsc.WorkflowId];
       // create workflow association
       SPWorkflowAssociation _freightPOLibraryWorkflowAssociation =
         SPWorkflowAssociation.CreateListAssociation(
         _workflowTemplate,
-        "It creates new freight PO for selected shipping.",
+        _dsc.Name,
         _taskList,
         _historyList);
       // configure workflow association and add to WorkflowAssociations collection
-      _freightPOLibraryWorkflowAssociation.Description = "Create new Fraight PO";
+      _freightPOLibraryWorkflowAssociation.Description = _dsc.Description;
       _freightPOLibraryWorkflowAssociation.AllowManual = true;
       _freightPOLibraryWorkflowAssociation.AutoStartCreate = false;
       _freightPOLibraryWorkflowAssociation.AutoStartChange = false;
-      _freightPOLibraryWorkflowAssociation.AssociationData = "Any data if needed.";
-      SPList _targetList = _web.Lists[CommonDefinition.ShippingListTitle];
-      _targetList.WorkflowAssociations.Add(_freightPOLibraryWorkflowAssociation);
-    }
-    private static void AddShippingStateMachineWorkflowAssociation(SPWeb _web, SPList _taskList, SPList _historyList)
-    {
-      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[CommonDefinition.ShippingStateMachineTemplateID];
-      // create workflow association
-      SPWorkflowAssociation _association = SPWorkflowAssociation.CreateListAssociation(
-        _workflowTemplate,
-        "Shipping  State Machine Workflow.",
-        _taskList,
-        _historyList);
-      // configure workflow association and add to WorkflowAssociations collection
-      _association.Description = "Shipping state machine";
-      _association.AllowManual = true;
-      _association.AutoStartCreate = false;
-      _association.AutoStartChange = false;
-      _association.AssociationData = "Any data if needed.";
-      SPList _targetList = _web.Lists[CommonDefinition.ShippingListTitle];
-      _targetList.WorkflowAssociations.Add(_association);
+      _freightPOLibraryWorkflowAssociation.AssociationData = _dsc.Name;
+      _web.Lists[CommonDefinition.ShippingListTitle].WorkflowAssociations.Add(_freightPOLibraryWorkflowAssociation);
     }
     /// <summary>
     /// Removes the workflow association.
