@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="Shipping2CarrierTitle"
+    ID="{977CA86A-3196-46BE-9B2D-1316F15202BE}"
+    Type="Lookup"
+    List="Lists/CarrierList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Forwarder ocean/air"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="Route2Commodity"
     ID="{C03A04A9-ED5E-481F-98AB-0474CE8B8C9F}"
     Type="Lookup"
