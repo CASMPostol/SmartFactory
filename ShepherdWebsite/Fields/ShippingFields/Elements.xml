@@ -196,8 +196,8 @@
       <CHOICE>Confirmed</CHOICE>
       <CHOICE>Creation</CHOICE>
       <CHOICE>Delayed</CHOICE>
-      <CHOICE>Waiting4ExternalApproval</CHOICE>
-      <CHOICE>Waiting4InternalApproval</CHOICE>
+      <CHOICE>WaitingForCarrierData</CHOICE>
+      <CHOICE>WaitingForSecurityData</CHOICE>
       <CHOICE>Underway</CHOICE>
     </CHOICES>
   </Field>
