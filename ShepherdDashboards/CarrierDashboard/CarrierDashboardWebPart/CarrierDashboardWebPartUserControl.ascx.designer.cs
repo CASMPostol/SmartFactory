@@ -283,6 +283,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.TextBox m_TrailerConditionCommentsTextBox;
         
         /// <summary>
+        /// ContainerNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ContainerNo;
+        
+        /// <summary>
+        /// m_ContainerNoTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox m_ContainerNoTextBox;
+        
+        /// <summary>
         /// m_NewShippingButton control.
         /// </summary>
         /// <remarks>
