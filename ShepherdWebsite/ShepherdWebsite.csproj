@@ -89,9 +89,6 @@
     <None Include="Content types\Dictionaries\Market\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6da7f0dc-a9a8-4c86-b2e3-d081b837ab87}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Dictionaries\PalletTypes\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{fd23d244-70eb-4977-b7cb-644d6ce0b6c3}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Dictionaries\Partner\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{20e4e827-8808-4ac0-ad37-a926e6504d4b}</SharePointProjectItemId>
     </None>
@@ -240,12 +237,6 @@
     <None Include="Lists\Dictionaries\MarketTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6bec2630-2f9e-4a97-a991-2d1e04be5df9}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Dictionaries\PalletTypesTemplate\PalletTypesList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{bb4facac-1cdf-4988-8a0a-cfeb847d62f5}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Dictionaries\PalletTypesTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{697bd4d1-bc70-40ef-b1a7-b98ddbe6e6eb}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Dictionaries\RouteTemplate\RouteList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8d6b6b09-28f3-427e-be79-045481ea53ac}</SharePointProjectItemId>
     </None>
@@ -390,7 +381,6 @@
     <Content Include="Content types\Dictionaries\ExchangeRate\Elements.xml" />
     <Content Include="Content types\Dictionaries\FreightPayer\Elements.xml" />
     <Content Include="Content types\Dictionaries\Market\Elements.xml" />
-    <Content Include="Content types\Dictionaries\PalletTypes\Elements.xml" />
     <Content Include="Content types\Dictionaries\Partner\Elements.xml" />
     <Content Include="Content types\Dictionaries\Route\Elements.xml">
       <SubType>Designer</SubType>
@@ -499,9 +489,6 @@
     <Content Include="Lists\Dictionaries\MarketTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\Dictionaries\PalletTypesTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\PalletTypesTemplate\PalletTypesList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\PalletTypesTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\RouteTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\RouteTemplate\RouteList\Elements.xml" />
     <Content Include="Lists\Dictionaries\RouteTemplate\Schema.xml">

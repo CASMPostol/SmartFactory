@@ -10,7 +10,7 @@
     <FieldRefs>
       <FieldRef ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Name="LoadDescription2ShippingIndex" />
       <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
-      <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
+      <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
       <FieldRef ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}" Name="DeliveryNumber" />
       <FieldRef ID="{E7BFEA15-E33C-4E18-8E55-B68D0B3A09D0}" Name="GoodsQuantity" />
       <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />

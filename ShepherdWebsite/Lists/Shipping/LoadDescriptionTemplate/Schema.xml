@@ -7,7 +7,7 @@
         <FieldRefs>
           <FieldRef ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Name="LoadDescription2ShippingIndex" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
-          <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
+          <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
           <FieldRef ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}" Name="DeliveryNumber" />
           <FieldRef ID="{E7BFEA15-E33C-4E18-8E55-B68D0B3A09D0}" Name="GoodsQuantity" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
@@ -28,7 +28,6 @@
     </ContentTypes>
     <Fields>
       <Field Name="MarketTitle" ID="{44f4b458-2ea8-4b75-9546-80a495738f59}" Type="Lookup" List="Lists/MarketList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Market" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="PalletTypesTitle" ID="{6d61692d-41ae-46e4-a0b7-3d8c97201377}" Type="Lookup" List="Lists/PalletTypesList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Pallet Types" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field DisplayName="Delivery Number" Name="DeliveryNumber" Type="Text" ID="{0701b3fa-7524-4eb7-b1e4-6c96dc3a993d}" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Goods Quantity" Name="GoodsQuantity" Type="Number" ID="{e7bfea15-e33c-4e18-8e55-b68d0b3a09d0}" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Number of pallets" Name="NumberOfPallets" Type="Number" ID="{ec642bdf-f692-42b9-aab6-90758df7ba20}" Group="CAS Smart Factory Shepherd" />
@@ -36,6 +35,14 @@
       <Field DisplayName="CMR number" Name="CMRNumber" Type="Text" ID="{9BD4A74E-9645-488C-99EB-16EDD9912775}" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Invoice number"  Name="InvoiceNumber" Type="Text" ID="{53A5407C-8FA7-4945-9E22-6DDDE8DC9B4F}" Group="CAS Smart Factory Shepherd" />
       <Field Name="LoadDescription2Commodity" ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Type="Lookup" List="Lists/CommodityList"  ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Commodity" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Type="Choice" DisplayName="Pallet type" ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Format="Dropdown" BaseType="Text" Name="PalletType" Group="CAS Smart Factory Shepherd">
+        <Default>Euro</Default>
+        <CHOICES>
+          <CHOICE>Euro</CHOICE>
+          <CHOICE>Industrial</CHOICE>
+          <CHOICE>Other</CHOICE>
+        </CHOICES>
+      </Field>
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -69,7 +76,7 @@
           </FieldRef>
           <FieldRef ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Name="LoadDescription2ShippingIndex" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
-          <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
+          <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
           <FieldRef ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}" Name="DeliveryNumber" />
           <FieldRef ID="{E7BFEA15-E33C-4E18-8E55-B68D0B3A09D0}" Name="GoodsQuantity" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
@@ -95,7 +102,7 @@
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
-          <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
+          <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
         </ViewFields>
         <Query>
@@ -117,7 +124,7 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
-          <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
+          <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
           <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
         </ViewFields>
@@ -139,7 +146,7 @@
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{6D61692D-41AE-46E4-A0B7-3D8C97201377}" Name="PalletTypesTitle" />
+          <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
           <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
         </ViewFields>
