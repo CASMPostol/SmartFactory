@@ -34,6 +34,11 @@
           <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
           <FieldRef ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}" Name="TrailerConditionComments" />
           <FieldRef ID="{DF668BB4-81B5-4E6A-BBCB-44BD0F71F8C3}" Name="ContainerNo" />
+          <FieldRef ID="{3B7F6914-4ED0-432D-A936-41169D2CADC5}" Name="Shipping2CountryTitle" />
+          <FieldRef ID="{A7068092-4FC7-43BC-8CD0-3518E1A45B77}" Name="Shipping2FreightPayerTitle" />
+          <FieldRef ID="{C51BD4EF-DDEE-47DA-A3AB-09EDF7F729EC}" Name="EuroPalletsQuantity" />
+          <FieldRef ID="{ADD1AA98-DA0F-469D-9DA5-4566BF2B6726}" Name="InduPalletsQuantity" />
+          <FieldRef ID="{01C009C0-F8B9-4220-A37F-E3D53EAF3629}" Name="Shipping2RouteDepartureCity" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -107,6 +112,11 @@
       </Field>
       <Field DisplayName="Comments" Name="TrailerConditionComments" Type="Note" ID="{d28631e5-d7a6-46d4-b2c2-73140ce72704}" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Container No." Name="ContainerNo" Type="Text" ID="{DF668BB4-81B5-4E6A-BBCB-44BD0F71F8C3}" Group="CAS Smart Factory Shepherd" />
+      <Field Name="Shipping2CountryTitle" ID="{3B7F6914-4ED0-432D-A936-41169D2CADC5}" Type="Lookup" List="Lists/CountryList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Delivery To Country" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="Shipping2FreightPayerTitle" ID="{A7068092-4FC7-43BC-8CD0-3518E1A45B77}" Type="Lookup" List="Lists/FreightPayerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Consignee" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="EuroPalletsQuantity" DisplayName="Euro Pallets Quantity" Type="Number" ID="{C51BD4EF-DDEE-47DA-A3AB-09EDF7F729EC}" Group="CAS Smart Factory Shepherd" />
+      <Field Name="InduPalletsQuantity" DisplayName="Indu Pallets Quantity" Type="Number" ID="{ADD1AA98-DA0F-469D-9DA5-4566BF2B6726}" Group="CAS Smart Factory Shepherd" />
+      <Field Name="Shipping2RouteDepartureCity" ID="{01C009C0-F8B9-4220-A37F-E3D53EAF3629}" Type="Lookup" List="Lists/RouteList" ShowField="DepartureCity" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Departure City" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
