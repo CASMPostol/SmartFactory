@@ -2,6 +2,21 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
    Type="Choice"
+   DisplayName="Pallet type"
+   ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}"
+   Format="Dropdown"
+   BaseType="Text"
+   Name="PalletType"
+   Group="CAS Smart Factory Shepherd">
+    <Default>Euro</Default>
+    <CHOICES>
+      <CHOICE>Euro</CHOICE>
+      <CHOICE>Industrial</CHOICE>
+      <CHOICE>Other</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+   Type="Choice"
    DisplayName="Priority"
    ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}"
    Format="Dropdown"
