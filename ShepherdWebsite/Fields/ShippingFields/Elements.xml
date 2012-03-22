@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="InduPalletsQuantity"
+    DisplayName="Indu Pallets Quantity"
+    Type="Number"
+    ID="{ADD1AA98-DA0F-469D-9DA5-4566BF2B6726}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    Name="EuroPalletsQuantity"
+    DisplayName="Euro Pallets Quantity"
+    Type="Number"
+    ID="{C51BD4EF-DDEE-47DA-A3AB-09EDF7F729EC}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
    Type="Choice"
    DisplayName="Pallet type"
    ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}"
