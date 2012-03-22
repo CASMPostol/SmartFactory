@@ -713,6 +713,31 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
+      <View BaseViewID="16" Type="HTML" WebPartZoneID="Main" DisplayName="Pallets Report" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="PalletsReport.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">1</RowLimit>
+        <ViewFields>
+          <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
+          <FieldRef ID="{01C009C0-F8B9-4220-A37F-E3D53EAF3629}" Name="Shipping2RouteDepartureCity" />
+          <FieldRef ID="{3B7F6914-4ED0-432D-A936-41169D2CADC5}" Name="Shipping2CountryTitle" />
+          <FieldRef ID="{A55637EF-0C88-490E-BCAF-16215A28EA52}" Name="Shipping2City" />
+          <FieldRef ID="{A7068092-4FC7-43BC-8CD0-3518E1A45B77}" Name="Shipping2FreightPayerTitle" />
+          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
+          <FieldRef ID="{C51BD4EF-DDEE-47DA-A3AB-09EDF7F729EC}" Name="EuroPalletsQuantity" />
+          <FieldRef ID="{ADD1AA98-DA0F-469D-9DA5-4566BF2B6726}" Name="InduPalletsQuantity" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="StartTime">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
     </Views>
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
