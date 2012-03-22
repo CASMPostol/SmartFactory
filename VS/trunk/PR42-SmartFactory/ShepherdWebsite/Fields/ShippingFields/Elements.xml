@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="TotalQuantityKU"
+    DisplayName="Total Quantity in KU"
+    Type="Number"
+    ID="{77435F24-1DF2-4A77-934B-AEEBA52321BF}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Name="CarrierPerformanceReportNumberRejectedBadQuality"
     DisplayName="Number TU rejected / bad quality"
     Type="Number"
