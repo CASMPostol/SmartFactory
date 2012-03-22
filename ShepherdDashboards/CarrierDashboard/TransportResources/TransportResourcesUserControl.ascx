@@ -60,6 +60,9 @@
         <asp:TableCell>
             <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack="true"></asp:DropDownList>
         </asp:TableCell>
-            </asp:TableRow> 
+            </asp:TableRow>
+        </asp:Table>
+        </asp:TableCell>
+        </asp:TableRow>
 </asp:Table>
 </asp:Panel>

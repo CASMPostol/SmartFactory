@@ -119,9 +119,6 @@
             <asp:TextBox ID="m_ContainerNoTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
         </asp:TableCell>
             </asp:TableRow>
-        </asp:Table>
-        </asp:TableCell>
-    </asp:TableRow>
   </asp:Table>
   <asp:Button ID="m_NewShippingButton" runat="server" Text="Add new" CssClass="Button" />
   <asp:Button ID="m_EditButton" runat="server" Text="Edit" CssClass="Button" />
