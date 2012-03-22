@@ -128,6 +128,9 @@
     <None Include="Content types\Shipping\AlarmsAndEvents\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fb5db4c0-6c0f-4bc1-9f64-be2f02c7f1a0}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Shipping\CarrierPerformanceReport\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9aabb318-1dce-47e9-8fd2-f8c61ba45778}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Shipping\EscortPO\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{314c2b32-2076-4ad8-b5b7-d10f50be9d69}</SharePointProjectItemId>
     </None>
@@ -333,6 +336,12 @@
     <None Include="Lists\Shipping\AlarmsAndEventsTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a11dbd49-ee9d-4918-9731-922ffbd1a116}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Shipping\CarrierPerformanceReportTemplate\CarrierPerformanceReportList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{dde62d86-b903-449f-8119-7422e41197e1}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Shipping\CarrierPerformanceReportTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ad56f4c7-a368-4354-ab38-a6edf9bde5c8}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a8cb96f1-7e6f-428a-9232-c5b4d9f2321a}</SharePointProjectItemId>
     </None>
@@ -406,6 +415,7 @@
     <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\Shipping\CarrierPerformanceReport\Elements.xml" />
     <Content Include="Content types\Shipping\EscortPO\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -572,6 +582,9 @@
     <Content Include="Lists\Shipping\AlarmsAndEventsTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Shipping\CarrierPerformanceReportTemplate\Elements.xml" />
+    <Content Include="Lists\Shipping\CarrierPerformanceReportTemplate\CarrierPerformanceReportList\Elements.xml" />
+    <Content Include="Lists\Shipping\CarrierPerformanceReportTemplate\Schema.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\LoadDescriptionList\Elements.xml" />
     <Content Include="Lists\Shipping\LoadDescriptionTemplate\Schema.xml">

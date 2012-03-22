@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="CaeeierPerformanceReport2PartnerTitle"
+    ID="{4C3F381F-C7EF-4204-B5F7-0C61A822DA1C}"
+    Type="Lookup"
+    List="Lists/PartnerList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Carrier"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="Shipping2RouteDepartureCity"
     ID="{01C009C0-F8B9-4220-A37F-E3D53EAF3629}"
     Type="Lookup"
