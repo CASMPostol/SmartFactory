@@ -10,16 +10,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
 {
   public partial class POLibraryWorkflowAssociationData
   {
+    private const string Security = "Security";
+    private const string Freight = "Freight";
     private POLibraryWorkflowAssociationData(string _title)
     {
       Content = "Content of the message"; //TODO define content of the mail
       Title = _title;
     }
+    public POLibraryWorkflowAssociationData() { }
     public static POLibraryWorkflowAssociationData SecurityPOAssociationData() { return new POLibraryWorkflowAssociationData(Security); }
     public static POLibraryWorkflowAssociationData FreightPOAssociationData() { return new POLibraryWorkflowAssociationData(Freight); }
-    private const string Security = "Security";
-    private const string Freight = "Freight";
-    internal string Serialize( SPWorkflowAssociation _wa)
+    internal string Serialize(SPWorkflowAssociation _wa)
     {
       using (MemoryStream stream = new MemoryStream())
       {
