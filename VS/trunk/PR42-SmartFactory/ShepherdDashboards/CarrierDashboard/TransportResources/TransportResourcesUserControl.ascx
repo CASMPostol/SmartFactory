@@ -60,17 +60,6 @@
         <asp:TableCell>
             <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack="true"></asp:DropDownList>
         </asp:TableCell>
-            </asp:TableRow>
-            <asp:TableRow>
-            <asp:TableCell>
-            <asp:Label ID="ContainerNo" runat="server" Text="Container No." CssClass="Label"></asp:Label>
-        </asp:TableCell>
-        <asp:TableCell>
-            <asp:TextBox ID="m_ContainerNoTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
-        </asp:TableCell>
-            </asp:TableRow>
-        </asp:Table>
-        </asp:TableCell>
-    </asp:TableRow>
+            </asp:TableRow> 
 </asp:Table>
 </asp:Panel>
