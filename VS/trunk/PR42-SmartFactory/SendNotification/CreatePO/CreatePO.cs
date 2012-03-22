@@ -53,26 +53,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
           SPDocumentLibrary _lib = (SPDocumentLibrary)m_WorkflowProperties.Web.Lists[CommonDefinition.FreightPOLibraryTitle];
           _stt = "SPDocumentLibrary";
           SPFile _teml = m_WorkflowProperties.Web.GetFile(_lib.DocumentTemplateUrl);
-          SPFile _docFile = default(SPFile);
-          using (Stream _tmpStrm = _teml.OpenBinaryStream())
-          using (MemoryStream _docStrm = new MemoryStream())
-          {
-            byte[] _buff = new byte[_tmpStrm.Length + 200];
-            int _leng = _tmpStrm.Read(_buff, 0, (int)_tmpStrm.Length);
-            _stt = "Read";
-            _docStrm.Write(_buff, 0, _leng);
-            _docStrm.Position = 0;
-            _stt = "Read";
-            WordprocessingDocument _doc = WordprocessingDocument.Open(_docStrm, true);
-            _stt = "Open";
-            _doc.ChangeDocumentType(WordprocessingDocumentType.Document);
-            _stt = "ChangeDocumentType";
-            _doc.Close();
-            _docFile = _lib.RootFolder.Files.Add(String.Format("FREIGHT PO No {0}.docx", _sp.Identyfikator.ToString()), _docStrm, true);
-            _newFileName = _docFile.Name;
-            _docStrm.Flush();
-            _docStrm.Close();
-          }
+          string _fname = String.Format("FREIGHT PO No {0}.docx", _sp.Identyfikator.ToString());
+          SPFile _docFile = OpenXMLHelpers.AddDocument2Collection(_teml, _lib.RootFolder.Files, _fname);
+          _newFileName = _docFile.Name;
           _stt = "_doc";
           int _docId = (int)_docFile.Item.ID;
           FreightPayer _FreightPayer = null;
@@ -120,7 +103,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
         };
         _stt = "SubmitChanges";
         m_LogAfterCreateToHistoryList_HistoryOutcome1 = "Item Created";
-        m_LogAfterCreateToHistoryList_HistoryDescription1 = String.Format( "File {0} containing purchase order for shipping {1} successfully created.", _newFileName, _spTitle);
+        m_LogAfterCreateToHistoryList_HistoryDescription1 = String.Format("File {0} containing purchase order for shipping {1} successfully created.", _newFileName, _spTitle);
         m_LogAfterCreateToHistoryList_OtherData1 = default(string);
       }
       catch (Exception _ex)
