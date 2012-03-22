@@ -39,6 +39,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
     {
       string _spTitle = default(string);
       string _stt = default(string);
+      string _newFileName = default(string);
       try
       {
         using (EntitiesDataContext _EDC = new EntitiesDataContext(_url))
@@ -68,6 +69,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
             _stt = "ChangeDocumentType";
             _doc.Close();
             _docFile = _lib.RootFolder.Files.Add(String.Format("FREIGHT PO No {0}.docx", _sp.Identyfikator.ToString()), _docStrm, true);
+            _newFileName = _docFile.Name;
             _docStrm.Flush();
             _docStrm.Close();
           }
@@ -118,7 +120,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
         };
         _stt = "SubmitChanges";
         m_LogAfterCreateToHistoryList_HistoryOutcome1 = "Item Created";
-        m_LogAfterCreateToHistoryList_HistoryDescription1 = "Shipping: " + _spTitle;
+        m_LogAfterCreateToHistoryList_HistoryDescription1 = String.Format( "File {0} containing purchase order for shipping {1} successfully created.", _newFileName, _spTitle);
         m_LogAfterCreateToHistoryList_OtherData1 = default(string);
       }
       catch (Exception _ex)
