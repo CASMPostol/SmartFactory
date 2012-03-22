@@ -52,19 +52,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
           SPDocumentLibrary _lib = (SPDocumentLibrary)m_WorkflowProperties.Web.Lists[CommonDefinition.FreightPOLibraryTitle];
           _stt = "SPDocumentLibrary";
           SPFile _teml = m_WorkflowProperties.Web.GetFile(_lib.DocumentTemplateUrl);
-          byte[] _buff = null;
+          SPFile _docFile = default(SPFile);
           using (Stream _tmpStrm = _teml.OpenBinaryStream())
+          using (MemoryStream _docStrm = new MemoryStream())
           {
-            _buff = new byte[_tmpStrm.Length + 200000]; //must be expandable
-            _tmpStrm.Read(_buff, 0, (int)_tmpStrm.Length);
-          }
-          SPFile _docFile = null;
-          _stt = "_buff";
-          using (MemoryStream _docStrm = new MemoryStream(_buff))
-          {
+            byte[] _buff = new byte[_tmpStrm.Length + 200];
+            int _leng = _tmpStrm.Read(_buff, 0, (int)_tmpStrm.Length);
+            _stt = "Read";
+            _docStrm.Write(_buff, 0, _leng);
+            _docStrm.Position = 0;
+            _stt = "Read";
             WordprocessingDocument _doc = WordprocessingDocument.Open(_docStrm, true);
             _stt = "Open";
             _doc.ChangeDocumentType(WordprocessingDocumentType.Document);
+            _stt = "ChangeDocumentType";
             _doc.Close();
             _docFile = _lib.RootFolder.Files.Add(String.Format("FREIGHT PO No {0}.docx", _sp.Identyfikator.ToString()), _docStrm, true);
             _docStrm.Flush();
