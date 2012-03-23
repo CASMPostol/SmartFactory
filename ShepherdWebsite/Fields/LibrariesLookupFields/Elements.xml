@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="Shipping2WarehouseTitle"
+    ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}"
+    Type="Lookup"
+    List="Lists/WarehouseList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Warehouse"
+    Group="CAS Smart Factory Shepherd"
+    Required="False"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="SPO2WarehouseAddress"
     ID="{FE72FC76-74DC-4F27-981F-DDB728A58D0F}"
     Type="Lookup"

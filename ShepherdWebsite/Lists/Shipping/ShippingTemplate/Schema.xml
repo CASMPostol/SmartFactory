@@ -6,7 +6,7 @@
         <Folder TargetName="_cts/Shipping" />
         <FieldRefs>
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
-          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
+          <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
           <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
@@ -65,7 +65,7 @@
     </CHOICES>
   </Field>
       <Field Name="SecurityEscortCatalogTitle" ID="{5d320c1b-8d60-4540-842a-e1b8b20168b8}" Type="Lookup" List="Lists/SecurityEscortRouteList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Security Escort" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field DisplayName="Warehouse" Name="Warehouse" Type="Text" ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Group="CAS Smart Factory Shepherd" />
+      <Field Name="Shipping2WarehouseTitle" ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Type="Lookup" List="Lists/WarehouseList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Warehouse" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="PartnerTitle" ID="{c7ca4aa6-8399-4714-a4a4-42145faba936}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="TruckTitle" ID="{c50e99df-7169-4cf1-a771-47b371f6d3fe}" Type="Lookup" List="Lists/TruckList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Truck / Car: Registration Number" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="TrailerTitle" ID="{79166d3d-149d-4423-9a81-c74b4137f13c}" Type="Lookup" List="Lists/TrailerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Trailer : Registration Number" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
@@ -160,7 +160,7 @@
           </FieldRef>
           <FieldRef Name="ID" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
-          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
+          <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
           <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
@@ -209,7 +209,7 @@
           </FieldRef>
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
-          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
+          <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
         </ViewFields>
         <Query>
           <Where>
@@ -348,7 +348,7 @@
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
-          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
+          <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
         </ViewFields>
         <Query>
           <Where>
@@ -387,7 +387,7 @@
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
           <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
-          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
+          <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
           <FieldRef ID="{E6381646-DB08-4C85-9A2F-59B931D98DBB}" Name="LoadingType" />
         </ViewFields>
         <Query>
@@ -458,7 +458,7 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
-          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
+          <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
           <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />         
           <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
@@ -486,7 +486,7 @@
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
           <FieldRef ID="{DEBE4D8F-04DE-4A3B-AA59-320884A6E044}" Name="IsOutbound" />
-          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
+          <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
           <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
@@ -521,7 +521,7 @@
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
           <FieldRef ID="{A55637EF-0C88-490E-BCAF-16215A28EA52}" Name="Shipping2City" />
-          <FieldRef ID="{22C147E5-6F83-416A-A6BB-49342F642952}" Name="Warehouse" />
+          <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
           <FieldRef ID="{E6381646-DB08-4C85-9A2F-59B931D98DBB}" Name="LoadingType" />
           <FieldRef ID="{DEBE4D8F-04DE-4A3B-AA59-320884A6E044}" Name="IsOutbound" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
