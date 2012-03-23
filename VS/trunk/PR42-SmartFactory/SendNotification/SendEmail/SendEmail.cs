@@ -50,20 +50,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
             FreightPO _fpo = (from idx in _EDC.FreightPOLibrary
                               where idx.Identyfikator == m_WorkflowProperties.ItemId
                               select idx).First();
-            m_sendEmail1_To = _fpo.Carrier == null ? CommonDefinition.PartnerSentToBackupEmail : _fpo.Carrier.EMail;
+            m_sendEmail1_To = String.IsNullOrEmpty(_fpo.EMail) ? CommonDefinition.PartnerSentToBackupEmail : _fpo.EMail;
             return new FreightPurchaseOrderTemplate()
             {
               Encodedabsurl = new Uri((string)m_WorkflowProperties.Item["EncodedAbsUrl"]),
               Modified = (DateTime)m_WorkflowProperties.Item["Modified"],
               ModifiedBy = m_WorkflowProperties.OriginatorUser.Name,
               DocumentName = m_WorkflowProperties.Item.File.Name,
-              FPO2CityTitle = _fpo.City == null ? String.Empty : _fpo.City.Tytuł,
-              FPO2CommodityTitle = _fpo.Commodity == null ? String.Empty : _fpo.Commodity.Tytuł,
-              FPO2CountryTitle = _fpo.Country == null ? String.Empty : _fpo.Country.Tytuł,
-              FPO2RouteGoodsHandlingPO = _fpo.FreightPO0 == null ? String.Empty : _fpo.FreightPO0,
-              FPO2TransportUnitTypeTitle = _fpo.TransportUnitType == null ? String.Empty : _fpo.TransportUnitType.Tytuł,
+              FPO2CityTitle = _fpo.City,
+              FPO2CommodityTitle = _fpo.Commodity,
+              FPO2CountryTitle = _fpo.Country,
+              FPO2RouteGoodsHandlingPO = _fpo.FreightPO0,
+              FPO2TransportUnitTypeTitle = _fpo.TransportUnit,
               FPOLoadingDate = _fpo.LoadingDate.GetValueOrDefault(DateTime.MaxValue),
-              FPO2WarehouseAddress = _fpo.WarehouseAddress == null ? String.Empty : _fpo.WarehouseAddress,
+              FPO2WarehouseAddress = _fpo.WarehouseAddress,
             };
           }
         }
