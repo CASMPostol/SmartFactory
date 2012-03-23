@@ -3207,8 +3207,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Shipping", Id="0x0100BBD0D4AB58624F5B900FECE61EEC2988")]
 	public partial class Shipping : Element {
 		
-		private string _warehouse;
-		
 		private string _dockNumber;
 		
 		private System.Nullable<System.DateTime> _startTime;
@@ -3252,6 +3250,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Warehouse> _warehouse;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Truck> _truckCarRegistrationNumber;
 		
@@ -3318,6 +3318,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._vendorName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnVendorNameSync);
 			this._vendorName.OnChanged += new System.EventHandler(this.OnVendorNameChanged);
 			this._vendorName.OnChanging += new System.EventHandler(this.OnVendorNameChanging);
+			this._warehouse = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
+			this._warehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseSync);
+			this._warehouse.OnChanged += new System.EventHandler(this.OnWarehouseChanged);
+			this._warehouse.OnChanging += new System.EventHandler(this.OnWarehouseChanging);
 			this._truckCarRegistrationNumber = new Microsoft.SharePoint.Linq.EntityRef<Truck>();
 			this._truckCarRegistrationNumber.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck>>(this.OnTruckCarRegistrationNumberSync);
 			this._truckCarRegistrationNumber.OnChanged += new System.EventHandler(this.OnTruckCarRegistrationNumberChanged);
@@ -3391,20 +3395,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._timeSlot.OnChanged += new System.EventHandler(this.OnTimeSlotChanged);
 			this._timeSlot.OnChanging += new System.EventHandler(this.OnTimeSlotChanging);
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Warehouse", Storage="_warehouse", FieldType="Text")]
-		public string Warehouse {
-			get {
-				return this._warehouse;
-			}
-			set {
-				if ((value != this._warehouse)) {
-					this.OnPropertyChanging("Warehouse", this._warehouse);
-					this._warehouse = value;
-					this.OnPropertyChanged("Warehouse");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DockNumber", Storage="_dockNumber", FieldType="Text")]
@@ -3701,6 +3691,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2WarehouseTitle", Storage="_warehouse", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Warehouse")]
+		public Warehouse Warehouse {
+			get {
+				return this._warehouse.GetEntity();
+			}
+			set {
+				this._warehouse.SetEntity(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TruckTitle", Storage="_truckCarRegistrationNumber", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Truck")]
 		public Truck TruckCarRegistrationNumber {
 			get {
@@ -3972,6 +3972,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnVendorNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+		}
+		
+		private void OnWarehouseChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Warehouse", this._warehouse.Clone());
+		}
+		
+		private void OnWarehouseChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Warehouse");
+		}
+		
+		private void OnWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping.Add(this);
+			}
+			else {
+				e.Item.Shipping.Remove(this);
+			}
 		}
 		
 		private void OnTruckCarRegistrationNumberChanging(object sender, System.EventArgs e) {
@@ -4707,6 +4724,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Partner> _partner;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<ShippingPoint> _shippingPoint;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity> _commodity;
@@ -4722,6 +4741,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._partner.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnPartnerSync);
 			this._partner.OnChanged += new System.EventHandler(this.OnPartnerChanged);
 			this._partner.OnChanging += new System.EventHandler(this.OnPartnerChanging);
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this._shippingPoint = new Microsoft.SharePoint.Linq.EntitySet<ShippingPoint>();
 			this._shippingPoint.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnShippingPointSync);
 			this._shippingPoint.OnChanged += new System.EventHandler(this.OnShippingPointChanged);
@@ -4757,6 +4780,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2WarehouseTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+			get {
+				return this._shipping;
+			}
+			set {
+				this._shipping.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="WarehouseTitle", Storage="_shippingPoint", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping Point")]
 		public Microsoft.SharePoint.Linq.EntitySet<ShippingPoint> ShippingPoint {
 			get {
@@ -4786,6 +4819,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnPartnerSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Warehouse = this;
+			}
+			else {
+				e.Item.Warehouse = null;
+			}
+		}
+		
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
+		}
+		
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
+		}
+		
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Warehouse = this;
 			}
@@ -4854,6 +4904,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		private string _currency;
 		
 		private string _securityEscortProvider;
+		
+		private string _city;
 		
 		private string _country;
 		
@@ -5017,6 +5069,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this.OnPropertyChanging("SecurityEscortProvider", this._securityEscortProvider);
 					this._securityEscortProvider = value;
 					this.OnPropertyChanged("SecurityEscortProvider");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOCity", Storage="_city", FieldType="Text")]
+		public string City {
+			get {
+				return this._city;
+			}
+			set {
+				if ((value != this._city)) {
+					this.OnPropertyChanging("City", this._city);
+					this._city = value;
+					this.OnPropertyChanged("City");
 				}
 			}
 		}
