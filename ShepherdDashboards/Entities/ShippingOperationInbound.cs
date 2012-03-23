@@ -45,8 +45,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         case Entities.State.Confirmed:
         case Entities.State.Creation:
         case Entities.State.Delayed:
-        case Entities.State.Waiting4ExternalApproval:
-        case Entities.State.Waiting4InternalApproval:
+        case Entities.State.WaitingForCarrierData:
+        case Entities.State.WaitingForSecurityData:
         case Entities.State.Underway:
           return true;
         case Entities.State.Invalid:
@@ -95,8 +95,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       //  _ts.Tytuł = String.Format("Outbound No. {0} to {1}", this.Tytuł, this.City == null ? "--not assigned--" : City.Tytuł);
       //else
       //  _ts.Tytuł = String.Format("Inbound No. {0} by {1}", this.Tytuł, this.VendorName == null ? "--not assigned--" : VendorName.Tytuł);
-      this.StartTime = _ts.CzasRozpoczęcia;
-      this.EndTime = _ts.CzasZakończenia;
+      this.StartTime = _ts.StartTime;
+      this.EndTime = _ts.StartTime;
       this.Warehouse = _ts.GetWarehouse().Tytuł;
       if (!_isDouble)
       {
@@ -105,11 +105,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       }
       this.LoadingType = Entities.LoadingType.Manual;
       EntitySet<TimeSlot> _tslots = _ts.ShippingPoint.TimeSlot;
-      DateTime _tdy = _ts.CzasRozpoczęcia.Value.Date;
+      DateTime _tdy = _ts.StartTime.Value.Date;
       List<TimeSlot> _avlblTmslts = (from _tsidx in _tslots
-                                     let _idx = _tsidx.CzasRozpoczęcia.Value.Date
+                                     let _idx = _tsidx.StartTime.Value.Date
                                      where _tsidx.Occupied.Value == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays(1)
-                                     orderby _tsidx.CzasRozpoczęcia ascending
+                                     orderby _tsidx.StartTime ascending
                                      select _tsidx).ToList<TimeSlot>();
       TimeSlot _next = _ts.FindAdjacent(_avlblTmslts);
       _next.Occupied = Entities.Occupied.Occupied0;

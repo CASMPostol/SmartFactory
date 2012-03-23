@@ -21,11 +21,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas
       _update(this, new ProgressChangedEventArgs(1, "ImportData starting"));
       using (EntitiesDataDictionary _dictionary = new EntitiesDataDictionary(_URL.Trim()))
       {
-        foreach (PreliminaryDataRoutePalletTypeRow _palletType in this.PalletTypeTable)
-        {
-          _dictionary.AddPalletType(_update, _palletType);
-          _update(this, new ProgressChangedEventArgs(1, "AddCommodity " + _palletType.Title));
-        }
         foreach (PreliminaryDataRouteCommodityRow _Commodity in this.CommodityTable)
         {
           _dictionary.AddCommodity(_update, _Commodity);

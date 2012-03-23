@@ -108,9 +108,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         m_StateMachineEngine.InitMahine();
         if (m_PalletTypesDropDown.Visible)
         {
-          m_PalletTypesDropDown.DataSource = from _idx in m_EDC.PalletTypes
-                                             orderby _idx.Tytuł ascending
-                                             select new { Label = _idx.Tytuł, Index = _idx.Identyfikator };
+          m_PalletTypesDropDown.Items.Add(new ListItem(PalletType.Euro.ToString(), ((int)PalletType.Euro).ToString()));
+          m_PalletTypesDropDown.Items.Add(new ListItem(PalletType.Industrial.ToString(), ((int)PalletType.Industrial).ToString()));
+          m_PalletTypesDropDown.Items.Add(new ListItem(PalletType.Other.ToString(), ((int)PalletType.Other).ToString()));
           m_PalletTypesDropDown.DataTextField = "Label";
           m_PalletTypesDropDown.DataValueField = "Index";
           m_PalletTypesDropDown.DataBind();
@@ -418,7 +418,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_InvoiceTextBox.Text = _ld.InvoiceNumber;
       Select(m_MarketDropDown, _ld.Market);
       m_NumberOfPalletsTextBox.Text = _ld.NumberOfPallets.HasValue ? _ld.NumberOfPallets.Value.ToString() : String.Empty;
-      Select(m_PalletTypesDropDown, _ld.PalletTypes);
+      Select(m_PalletTypesDropDown, (int)_ld.PalletType);
     }
     private StateMachineEngine.ActionResult Update(LoadDescription _ld, List<string> _ve)
     {
@@ -431,7 +431,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         _ld.InvoiceNumber = m_InvoiceTextBox.Text;
         _ld.Market = Element.FindAtIndex<MarketMarket>(m_EDC.Market, m_MarketDropDown.SelectedValue);
         _ld.NumberOfPallets = m_NumberOfPalletsTextBox.TextBox2Double(_ve);
-        _ld.PalletTypes = Element.FindAtIndex<PalletTypes>(m_EDC.PalletTypes, m_PalletTypesDropDown.SelectedValue);
+        _ld.PalletType = (PalletType)m_PalletTypesDropDown.SelectedValue.String2Int().Value;
         _ld.Tytuł = _ld.DeliveryNumber;
       }
       catch (Exception ex)
@@ -449,7 +449,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
                                              {
                                                Title = _ldidx.Tytuł,
                                                DeliveryNumber = _ldidx.DeliveryNumber,
-                                               PalletTypes = _ldidx.PalletTypes == null ? string.Empty : _ldidx.PalletTypes.Tytuł,
+                                               PalletTypes = _ldidx.PalletType.HasValue ?_ldidx.PalletType.Value : PalletType.Other,
                                                NumberOfPallets = _ldidx.NumberOfPallets,
                                                Commodity = _ldidx.Commodity == null ? String.Empty : _ldidx.Commodity.Tytuł,
                                                ID = _ldidx.Identyfikator.Value
@@ -501,10 +501,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     }
     private void Select(DropDownList _ddl, Element _row)
     {
-      _ddl.SelectedIndex = -1;
       if (_row == null)
         return;
-      ListItem _li = _ddl.Items.FindByValue(_row.Identyfikator.Value.ToString());
+      Select(_ddl, _row.Identyfikator.Value);
+    }
+    private static void Select(DropDownList _ddl, int _row)
+    {
+      _ddl.SelectedIndex = -1;
+      ListItem _li = _ddl.Items.FindByValue(_row.ToString());
       if (_li == null)
         return;
       _li.Selected = true;
