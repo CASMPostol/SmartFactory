@@ -1,6 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="FreightPOSendInvoiceTo"
+    ID="{F350E678-C8E1-422D-A925-0895DF2B34E0}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Send invoice to" />
+  <Field
+    Name="FreightPOCommodity"
+    ID="{F0B1923E-9A86-4C26-B598-D06F1DF24D20}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Commodity" />
+  <Field
+    Name="FreightPOCountry"
+    ID="{0979915B-32F8-4471-BB67-1BC009D206C3}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Country" />
+  <Field
+    Name="FreightPOCity"
+    ID="{97A6F037-B8B1-443B-9D02-8CF5A46BA5D1}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="City" />
+  <Field
+    Name="FreightPOForwarder"
+    ID="{357CCA41-00F4-4227-8481-64B6B224288D}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Forwarder" />
+  <Field
+    Name="FreightPOCurrency"
+    ID="{B7B28DB9-540D-4A2B-911F-710EDC1D7B03}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Currency" />
+  <Field
+    Name="FreightPOTransportCosts"
+    ID="{B26EA2D9-6530-4751-B921-DAE24269C53E}"
+    Type="Number"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Transport costs" />
+  <Field
+    Name="FreightPOTransportUnitType"
+    ID="{3FDCFED4-50F3-4FDC-96BE-E24870E4C57B}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Transport Unit" />
+  <Field
+    Name="FreightPOPayerNIP"
+    ID="{BD31CB3C-3ADB-4197-AC3F-D9228004008B}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Payer NIP" />
+  <Field
+    Name="FreightPOPayerCity"
+    ID="{6C572816-985F-45B0-B609-EB4E824FD2C7}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Payer city" />
+  <Field
+    Name="FreightPOPayerZip"
+    ID="{0CA7CF92-40C1-4892-B689-0350874D686D}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Payer zip code" />
+  <Field
+    Name="FreightPOPayerAddress"
+    ID="{2D6A14E8-2299-403A-8EB4-297F3F73AA34}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Payer address" />
+  <Field
+    Name="FreightPOPayerName"
+    ID="{686331B2-9DF3-4513-8B93-D549A1C6F943}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Payer name" />
+  <Field
     Name="SPOFreightPO"
     ID="{A2297425-2114-4FD6-A543-51AF45CE0F70}"
     Type="Text"
