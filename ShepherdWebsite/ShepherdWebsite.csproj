@@ -77,6 +77,9 @@
     <None Include="Content types\Dictionaries\DestinationMarket\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8dbc99c2-b909-41f0-b478-ed92b788c4f4}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Dictionaries\DistributionList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9bf26729-3ce2-47a2-8003-e2c714f71b96}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\Driver\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2893f301-494b-4b50-b6e9-2408b93e7aca}</SharePointProjectItemId>
     </None>
@@ -215,6 +218,12 @@
     </None>
     <None Include="Lists\Dictionaries\DestinationMarketTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{68b93bcb-dba1-493c-8dbe-cd6dd4254c06}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\DistributionListTemplate\DistributionListInstance\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0f76e5cd-02ef-498f-b014-5ce8c8dd5e80}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Dictionaries\DistributionListTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c092fcea-a174-4179-a53b-f335736ab6b7}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\DriverTemplate\DriverList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0a2db3c9-8677-4faf-939c-5556a342109e}</SharePointProjectItemId>
@@ -384,6 +393,7 @@
     <Content Include="Content types\Dictionaries\Country\Elements.xml" />
     <Content Include="Content types\Dictionaries\Currency\Elements.xml" />
     <Content Include="Content types\Dictionaries\DestinationMarket\Elements.xml" />
+    <Content Include="Content types\Dictionaries\DistributionList\Elements.xml" />
     <Content Include="Content types\Dictionaries\Driver\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -481,6 +491,9 @@
     <Content Include="Lists\Dictionaries\DestinationMarketTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\DestinationMarketTemplate\DestinationMarketList\Elements.xml" />
     <Content Include="Lists\Dictionaries\DestinationMarketTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\DistributionListTemplate\Elements.xml" />
+    <Content Include="Lists\Dictionaries\DistributionListTemplate\DistributionListInstance\Elements.xml" />
+    <Content Include="Lists\Dictionaries\DistributionListTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\DriverTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\DriverTemplate\DriverList\Elements.xml" />
     <Content Include="Lists\Dictionaries\DriverTemplate\Schema.xml">

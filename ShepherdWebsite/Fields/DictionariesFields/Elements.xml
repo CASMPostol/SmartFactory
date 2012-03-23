@@ -1,6 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Type="Choice"
+    DisplayName="Shepherd Role"
+    ID="{8A0AFE8D-8D20-4326-9D4C-E53A14CC99AF}"
+    Format="Dropdown"
+    BaseType="Text"
+    Name="ShepherdRole"
+    Group="CAS Smart Factory Shepherd">
+    <Default>Administrator</Default>
+    <CHOICES>
+      <CHOICE>Administrator</CHOICE>
+      <CHOICE>InboundOwner</CHOICE>
+      <CHOICE>OutboundOwner</CHOICE>
+      <CHOICE>Operator</CHOICE>
+      <CHOICE>Supervisor</CHOICE>
+      <CHOICE>Guard</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
     Name="EmailAddress"
     ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}"
     Type="Text"
