@@ -435,7 +435,9 @@
     <Content Include="Content types\Shipping\LoadDescription\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Shipping\SealProtocol\Elements.xml" />
+    <Content Include="Content types\Shipping\SealProtocol\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Shipping\ShippingDriversTeam\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
