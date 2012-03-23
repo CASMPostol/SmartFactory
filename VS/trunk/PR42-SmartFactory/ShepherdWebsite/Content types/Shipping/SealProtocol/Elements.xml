@@ -9,22 +9,22 @@
     <Folder TargetName="SealProtocol" />
     <FieldRefs>
       <FieldRef ID="{69CCC219-D59C-4D53-8713-D1EE23A03C01}" Name="SealProtocolDispatchDate" />
-      <FieldRef ID="{7CFE4EFE-9C8D-417E-9E3A-A43BD49774AB}" Name="SealProtocol2CityTitle" />
-      <FieldRef ID="{7CFE4EFE-9C8D-417E-9E3A-A43BD49774AB}" Name="SealProtocol2CountryTitle" />
-      <FieldRef ID="{B06726AB-C76F-45F0-B024-C633A985DE21}" Name="SealProtocol2PartnerTitleForwarder" />
-      <FieldRef ID="{CE19CFFB-B722-4A5D-8208-DDEFA5C8C3C4}" Name="SealProtocol2DriverTitleDriver1" />
-      <FieldRef ID="{3994C455-88A4-433B-9B5F-6A8915C7C2DF}" Name="SealProtocol2DriverTitleDriver2" />
-      <FieldRef ID="{11E9D081-877B-4158-A815-7369B23776B3}" Name="SealProtocol2DriverPhone" />
-      <FieldRef ID="{B27739E0-EF0F-4500-98A7-9383B6ED0E04}" Name="SealProtocol2PartnerTitleEscort" />
-      <FieldRef ID="{93FDF25D-9E2B-49E7-B809-10CA42C631D6}" Name="SealProtocol2DriverTitleEscor1" />
-      <FieldRef ID="{6E74A050-1323-4FF4-A7C5-C2784A9A84CC}" Name="SealProtocol2DriverTitleEscor2" />
-      <FieldRef ID="{9E070D58-11EE-4F9C-A3C3-04168EE6F3D7}" Name="SealProtocol2EscortPhone" />
-      <FieldRef ID="{EB250417-3BBF-4DAB-A528-30283BD71329}" Name="SealProtocol2TruckTitleEscort" />
-      <FieldRef ID="{D274F76F-B824-480A-9BEB-F2AB0CB24961}" Name="SealProtocol2ShippingContainerNo" />
+      <FieldRef ID="{6958BFF5-474B-4385-A9AD-01D5C6E97316}" Name="SealProtocolCity" />
+      <FieldRef ID="{CEC90104-61BA-4EA8-B61D-B25B18605A4A}" Name="SealProtocolCountry" />
+      <FieldRef ID="{82A67390-7CF9-408A-9339-6E633E681367}" Name="SealProtocolForwarder" />
+      <FieldRef ID="{E6B0743C-9A7A-4E28-AFE1-9E72D92A1C42}" Name="SealProtocol1stDriver" />
+      <FieldRef ID="{264A670B-48E3-4DFF-B07E-4AC6CE93E243}" Name="SealProtocol2ndDriver" />
+      <FieldRef ID="{41C9DC2A-E1F4-440C-B14B-5B3CB6B4C9CA}" Name="SealProtocolDriverPhone" />
+      <FieldRef ID="{D2B19CFA-88EF-405B-95F6-99D6462FEE9C}" Name="SealProtocolSecurityEscortProvider" />
+      <FieldRef ID="{831A0F50-3C7F-4A83-9D4E-16BB743F4C91}" Name="SealProtocol1stEscort" />
+      <FieldRef ID="{FD582EC0-82F0-4194-89AF-FC9C601E3F8D}" Name="SealProtocol2ndEscort" />
+      <FieldRef ID="{C005239A-8472-4BCD-BAEC-66F904C06414}" Name="SealProtocolEscortPhone" />
+      <FieldRef ID="{D6905D84-5B20-49F6-A4D8-6CA75C7259D5}" Name="SealProtocolEscortCarNo" />
+      <FieldRef ID="{DF04156B-B301-4E48-B771-B8F1357DFB77}" Name="SealProtocolContainersNo" />
       <FieldRef ID="{CA920A00-3978-4CA8-8329-D461CF5BB787}" Name="SealProtocolDispatchDateActual" />
-      <FieldRef ID="{B13AEFD2-6F1D-4ECC-84F0-A55E3E2831F4}" Name="SealProtocol2WarehouseTitle" />
-      <FieldRef ID="{A2177032-8D45-4C5A-A1E1-0FE23F8DD988}" Name="SealProtocol2TruckTitle" />
-      <FieldRef ID="{A8340501-5EF0-48BF-84A9-AFDB93952C68}" Name="SealProtocol2TrailerTitle" />
+      <FieldRef ID="{508CA972-F9CB-47DD-AE0B-50396003B51A}" Name="SealProtocolWarehouse" />
+      <FieldRef ID="{AE8BE646-3E57-44DB-B910-6A94A3EC2A9F}" Name="SealProtocolTruckNo" />
+      <FieldRef ID="{1ECB370E-6156-4E8D-B304-98B517980417}" Name="SealProtocolTrailerNo" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
