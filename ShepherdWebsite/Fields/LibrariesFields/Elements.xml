@@ -1,6 +1,96 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="SealProtocolTrailerNo"
+    ID="{1ECB370E-6156-4E8D-B304-98B517980417}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Trailer No." />
+  <Field
+    Name="SealProtocolTruckNo"
+    ID="{AE8BE646-3E57-44DB-B910-6A94A3EC2A9F}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Truck No." />
+  <Field
+    Name="SealProtocolWarehouse"
+    ID="{508CA972-F9CB-47DD-AE0B-50396003B51A}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Warehouse" />
+  <Field
+    Name="SealProtocolContainersNo"
+    ID="{DF04156B-B301-4E48-B771-B8F1357DFB77}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Conainers No." />
+  <Field
+    Name="SealProtocolEscortCarNo"
+    ID="{D6905D84-5B20-49F6-A4D8-6CA75C7259D5}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Escort Car No." />
+  <Field
+    Name="SealProtocolEscortPhone"
+    ID="{C005239A-8472-4BCD-BAEC-66F904C06414}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Escort Phone" />
+  <Field
+    Name="SealProtocol2ndEscort"
+    ID="{FD582EC0-82F0-4194-89AF-FC9C601E3F8D}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="2nd Escort" />
+  <Field
+    Name="SealProtocol1stEscort"
+    ID="{831A0F50-3C7F-4A83-9D4E-16BB743F4C91}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="1st Escort" />
+  <Field
+    Name="SealProtocolSecurityEscortProvider"
+    ID="{D2B19CFA-88EF-405B-95F6-99D6462FEE9C}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Security Escort Provider" />
+  <Field
+    Name="SealProtocolDriverPhone"
+    ID="{41C9DC2A-E1F4-440C-B14B-5B3CB6B4C9CA}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Driver's phone" />
+  <Field
+    Name="SealProtocol2ndDriver"
+    ID="{264A670B-48E3-4DFF-B07E-4AC6CE93E243}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="2nd Driver" />
+  <Field
+    Name="SealProtocol1stDriver"
+    ID="{E6B0743C-9A7A-4E28-AFE1-9E72D92A1C42}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="1st Driver" />
+  <Field
+    Name="SealProtocolForwarder"
+    ID="{82A67390-7CF9-408A-9339-6E633E681367}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Forwarder" />
+  <Field
+    Name="SealProtocolCountry"
+    ID="{CEC90104-61BA-4EA8-B61D-B25B18605A4A}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Country" />
+  <Field
+    Name="SealProtocolCity"
+    ID="{6958BFF5-474B-4385-A9AD-01D5C6E97316}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="City" />
+  <Field
     Name="SecurityPOSentInvoiceTo"
     ID="{29B66983-6AC7-460E-9C84-E7BB5B5E1BFC}"
     Type="Text"
