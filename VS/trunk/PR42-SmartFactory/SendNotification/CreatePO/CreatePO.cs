@@ -83,7 +83,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
           _stt = "Route";
           _stt = "_fpo";
           _fpo.Forwarder = _sp.VendorName.Tytuł;
-          _fpo.City = _sp.City.ToString();
+          _fpo.City = _sp.City.Title();
           _fpo.DispatchDate = _sp.EndTime;
           _fpo.EMail = _sp.VendorName == null ? "oferty@cas.eu" : _sp.VendorName.EMail;
           _fpo.LoadingDate = _sp.StartTime;
