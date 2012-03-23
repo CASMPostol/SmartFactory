@@ -28,5 +28,6 @@
   <List Name="Shipping"></List>
   <List Name="Freight PO Library"/>
   <List Name="Escort PO Library"/>
+  <List Name="Distribution List" />
   <ExcludeOtherLists/>
 </Web>
