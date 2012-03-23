@@ -11,6 +11,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     //Target lists
     internal const string FreightPOLibraryTitle = "Freight PO Library";
     internal const string EscortPOLibraryTitle = "Escort PO Library";
+    internal const string SealProtocolLibraryTitle = "Seal Protocol Library";
     internal const string ShippingListTitle = "Shipping";
     //Workflow working lists
     internal const string SendNotificationWorkflowTasks = "Send Notification Workflow Tasks";
