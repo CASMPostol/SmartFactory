@@ -104,6 +104,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		/// <summary>
+		/// Distribution List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Distribution List")]
+		public Microsoft.SharePoint.Linq.EntityList<DistributionList> DistributionList {
+			get {
+				return this.GetList<DistributionList>("Distribution List");
+			}
+		}
+		
+		/// <summary>
 		/// Driver List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Driver")]
@@ -336,6 +346,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CountryType))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Currency))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DestinationMarket))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DistributionList))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Driver))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingDriversTeam))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Dokument))]
@@ -1334,6 +1345,55 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnMarketSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<MarketMarket> e) {
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DistributionList", Id="0x01009EC30F7F369D427D825C9478610D3E58")]
+	public partial class DistributionList : Element {
+		
+		private string _eMail;
+		
+		private System.Nullable<ShepherdRole> _shepherdRole;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public DistributionList() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EmailAddress", Storage="_eMail", FieldType="Text")]
+		public string EMail {
+			get {
+				return this._eMail;
+			}
+			set {
+				if ((value != this._eMail)) {
+					this.OnPropertyChanging("EMail", this._eMail);
+					this._eMail = value;
+					this.OnPropertyChanged("EMail");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShepherdRole", Storage="_shepherdRole", FieldType="Choice")]
+		public System.Nullable<ShepherdRole> ShepherdRole {
+			get {
+				return this._shepherdRole;
+			}
+			set {
+				if ((value != this._shepherdRole)) {
+					this.OnPropertyChanging("ShepherdRole", this._shepherdRole);
+					this._shepherdRole = value;
+					this.OnPropertyChanged("ShepherdRole");
+				}
+			}
 		}
 	}
 	
@@ -6551,6 +6611,31 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Warning")]
 		Warning = 8,
+	}
+	
+	public enum ShepherdRole : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Administrator")]
+		Administrator = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="InboundOwner")]
+		InboundOwner = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="OutboundOwner")]
+		OutboundOwner = 8,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Operator")]
+		Operator = 16,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Supervisor")]
+		Supervisor = 32,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Guard")]
+		Guard = 64,
 	}
 	
 	public enum PalletType : int {
