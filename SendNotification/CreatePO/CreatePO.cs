@@ -88,7 +88,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
           _fpo.EMail = _sp.VendorName == null ? "oferty@cas.eu" : _sp.VendorName.EMail;
           _fpo.LoadingDate = _sp.StartTime;
           _fpo.Tytuł = "FREIGHT PURCHASE ORDER # {0}";
-          _fpo.WarehouseAddress = _sp.Warehouse;
+          _fpo.WarehouseAddress = _sp.Warehouse == null ? String.Empty : _sp.Warehouse.WarehouseAddress;
           _stt = "FreightPO";
           _fpo.Tytuł = String.Format(_fpo.Tytuł, _fpo.Identyfikator);
           _stt = "_fpo.Tytuł";
