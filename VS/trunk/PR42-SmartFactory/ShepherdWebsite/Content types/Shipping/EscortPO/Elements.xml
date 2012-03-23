@@ -18,6 +18,7 @@
       <FieldRef ID="{CB112A6C-474D-4F05-A9A7-6C83DB76FC7C}" Name="SecurityPOEscortCosts" />
       <FieldRef ID="{96187BDE-610A-4A59-A383-04F056E61E12}" Name="SecurityPOEscortCurrency" />
       <FieldRef ID="{5E5625FC-BF90-4A4D-A559-064D2F9768A1}" Name="SecurityPOEscortProvider" />
+      <FieldRef ID="{0E5465B4-D5E8-4C08-B381-FFD3055A7FA4}" Name="SecurityPOCity" />
       <FieldRef ID="{096D79CF-26EA-4EBB-8DA9-2E67549509A6}" Name="SecurityPOCountry" />
       <FieldRef ID="{180D9CFC-48D8-4C83-8740-780D3A8882EF}" Name="SecurityPOCommodity" />
       <FieldRef ID="{29B66983-6AC7-460E-9C84-E7BB5B5E1BFC}" Name="SecurityPOSentInvoiceTo" />
