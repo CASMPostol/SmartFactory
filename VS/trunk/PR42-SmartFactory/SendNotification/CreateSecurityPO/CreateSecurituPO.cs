@@ -49,9 +49,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO
       string _stt = "Starting";
       try
       {
-        _stt = "using";
         using (EntitiesDataContext _EDC = new EntitiesDataContext(_url))
         {
+          _stt = "using";
           Shipping _sp = (from idx in _EDC.Shipping
                           where idx.Identyfikator == m_OnWorkflowActivated_WorkflowProperties.ItemId
                           select idx).First();
@@ -65,14 +65,45 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO
           _newFileName = _docFile.Name;
           _stt = "_doc";
           int _docId = (int)_docFile.Item.ID;
-          SecurityEscortCatalog _fpo = (from idx in _EDC.SecurityEscortRoute
+          EscortPO _epo = (from idx in _EDC.EscortPOLibrary
                                         where idx.Identyfikator == _docId
                                         select idx).First();
-
+          _stt = "EscortPO";
+          if (_sp.Route != null)
+          {
+            _epo.Commodity = _sp.Route.Commodity.Title();
+            if (_sp.Route.FreightPayer != null)
+            {
+              _epo.PayerAddress = _sp.Route.FreightPayer != null ? _sp.Route.FreightPayer.Address : String.Empty;
+              _epo.PayerCty = _sp.Route.FreightPayer.Miasto;
+              _epo.PayerName = _sp.Route.FreightPayer.Tytuł;
+              _epo.PayerNIP = _sp.Route.FreightPayer.NIPVATNo;
+              _epo.PayerZipCode = _sp.Route.FreightPayer.NIPVATNo;
+              _epo.SendInvoiceTo = _sp.Route.FreightPayer.SendInvoiceTo;
+            }
+          }
+          _stt = "SendInvoiceTo";
+          if (_sp.SecurityEscortProvider != null)
+          {
+            _epo.City = _sp.SecurityEscort.FreightPayer.Miasto;
+            _epo.Country = _sp.SecurityEscort.EscortDestination;
+            _epo.Currency = _sp.SecurityEscort.Currency.Title();
+            _epo.EscortCosts = _sp.SecurityEscort.SecurityCost;
+            _epo.FreightPO = _sp.SecurityEscort.SecurityEscortPO;
+            _epo.SecurityEscortProvider = _sp.SecurityEscortProvider.Title();
+          }
+          _stt = "SecurityEscortProvider";
+          _epo.DispatchDate = _sp.EndTime;
+          _epo.EMail = _sp.VendorName == null ? "oferty@cas.eu" : _sp.VendorName.EMail;
+          _epo.Tytuł = String.Format("SECURITY ESCORT PURCHASE ORDER EPO-2{0, 5}", _epo.Identyfikator);
+          _epo.WarehouseAddress = _sp.Warehouse == null ? String.Empty : _sp.Warehouse.WarehouseAddress;
+          _stt = "WarehouseAddress";
+          _sp.EscortPO = _epo;
+          _EDC.SubmitChanges();
         }
+        _stt = "SubmitChanges";
         m_AfterCreateLogToHistoryList_HistoryOutcome1 = "Item Created";
         m_AfterCreateLogToHistoryList_HistoryDescription1 = String.Format("File {0} containing purchase order for shipping {1} successfully created.", _newFileName, _spTitle);
-
       }
       catch (Exception _ex)
       {
