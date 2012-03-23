@@ -19,11 +19,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       m_EDC.SubmitChanges();
       m_EDC.Dispose(); ;
     }
-    internal void AddPalletType(UpdateToolStripEvent _update, Schemas.PreliminaryDataRoutePalletTypeRow _palletTypeRow)
-    {
-      PalletTypes _pl = Create<PalletTypes>(m_EDC.PalletTypes, m_PalletTypeDictionary, _palletTypeRow.Title, false);
-      _pl.PalletSize = _palletTypeRow.PalletSize;
-    }
     internal void AddCommodity(UpdateToolStripEvent _update, Schemas.PreliminaryDataRouteCommodityRow _CommodityRow)
     {
       Commodity _c = Create<CommodityCommodity>(m_EDC.Commodity, m_CommodityCommodity, _CommodityRow.Title, false);
@@ -270,7 +265,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     #endregion
 
     #region Dictionaries
-    private Dictionary<string, PalletTypes> m_PalletTypeDictionary = new Dictionary<string, PalletTypes>();
     private Dictionary<string, Partner> m_Partner = new Dictionary<string, Partner>();
     private Dictionary<string, FreightPayer> m_FreightPayer = new Dictionary<string, FreightPayer>();
     private Dictionary<string, CityType> m_CityType = new Dictionary<string, CityType>();

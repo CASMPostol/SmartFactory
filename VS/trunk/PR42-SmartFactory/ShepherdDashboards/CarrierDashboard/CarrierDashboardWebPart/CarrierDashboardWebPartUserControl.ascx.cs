@@ -534,7 +534,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         TimeSlotTimeSlot _timeSlot = null;
         try
         {
-          _timeSlot = (TimeSlotTimeSlot)(from _ts in _sppng.TimeSlot orderby _ts.CzasRozpoczęcia ascending select _ts).First();
+          _timeSlot = (TimeSlotTimeSlot)(from _ts in _sppng.TimeSlot orderby _ts.StartTime ascending select _ts).First();
           m_ControlState.TimeSlotID = _timeSlot.Identyfikator.IntToString();
           m_ControlState.TimeSlotChanged = false;
         }
@@ -579,7 +579,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_TimeSlotTextBox.Text = _isEditable ? "-- Select Time Slot --" : "-- Shipping locked --";
         return;
       }
-      m_TimeSlotTextBox.Text = String.Format("{0:g}{1}{2}", _cts.CzasRozpoczęcia, _isEditable ? "" : "!", _isDouble ? "x2" : "");
+      m_TimeSlotTextBox.Text = String.Format("{0:g}{1}{2}", _cts.StartTime, _isEditable ? "" : "!", _isDouble ? "x2" : "");
       Warehouse _wrs = _cts.GetWarehouse();
       m_WarehouseLabel.Text = _wrs.Tytuł;
     }
@@ -819,8 +819,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           case State.Completed:
           case State.Creation:
           case State.Delayed:
-          case State.Waiting4ExternalApproval:
-          case State.Waiting4InternalApproval:
+          case State.WaitingForCarrierData:
+          case State.WaitingForSecurityData:
           case State.Underway:
             throw new ApplicationException("Wrong state");
           default:
