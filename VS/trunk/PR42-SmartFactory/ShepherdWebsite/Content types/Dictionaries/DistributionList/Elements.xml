@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x01009ec30f7f369d427d825c9478610d3e58"
+               Name="DistributionList"
+               Group="CAS Smart Factory Shepherd"
+             Description="Distribution List"
+             Overwrite="TRUE"
+             Inherits="TRUE">
+    <Folder TargetName="_cts/DistributionList" />
+    <FieldRefs>
+      <FieldRef ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}" Name="EmailAddress" />
+      <FieldRef ID="{8A0AFE8D-8D20-4326-9D4C-E53A14CC99AF}" Name="ShepherdRole" />
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
+</Elements>

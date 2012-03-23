@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Distribution List"
+                OnQuickLaunch="TRUE"
+                TemplateType="10055"
+                Url="Lists/DistributionListInstance"
+                Description="Distribution List Instance">
+  </ListInstance>
+</Elements>

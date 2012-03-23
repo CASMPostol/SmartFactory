@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+
+    <ListTemplate
+        Name="DistributionListTemplate"
+        Type="10055"
+        BaseType="0"
+        OnQuickLaunch="TRUE"
+        SecurityBits="11"
+        Sequence="410"
+        DisplayName="Distribution List Template"
+        Description="Distribution List Definition"
+        Image="/_layouts/images/itgen.png"/>
+</Elements>
