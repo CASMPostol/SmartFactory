@@ -34,19 +34,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
       System.Workflow.ComponentModel.ActivityBind activitybind6 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind7 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind8 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.ComponentModel.ActivityBind activitybind9 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind10 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.ComponentModel.ActivityBind activitybind11 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.ComponentModel.ActivityBind activitybind12 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.ComponentModel.ActivityBind activitybind14 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
-      System.Workflow.ComponentModel.ActivityBind activitybind13 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind9 = new System.Workflow.ComponentModel.ActivityBind();
       this.logToHistoryListActivity1 = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_CreatePOFaultHandlerActivity = new System.Workflow.ComponentModel.FaultHandlerActivity();
       this.m_FaultHandlersActivity = new System.Workflow.ComponentModel.FaultHandlersActivity();
       this.m_LogAfterCreateToHistoryList = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_CodeActivity = new System.Workflow.Activities.CodeActivity();
-      this.m_CreateFOStartedLogToHistory = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_OnWorkflowActivated = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
       // 
       // logToHistoryListActivity1
@@ -103,26 +98,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
       this.m_CodeActivity.Description = "Create new PO entry";
       this.m_CodeActivity.Name = "m_CodeActivity";
       this.m_CodeActivity.ExecuteCode += new System.EventHandler(this.CreatePOItem);
-      // 
-      // m_CreateFOStartedLogToHistory
-      // 
-      this.m_CreateFOStartedLogToHistory.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
-      this.m_CreateFOStartedLogToHistory.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowStarted;
-      activitybind9.Name = "CreatePO";
-      activitybind9.Path = "m_LogAfterCreateToHistoryList_HistoryDescription1";
       activitybind10.Name = "CreatePO";
-      activitybind10.Path = "m_LogAfterCreateToHistoryList_HistoryOutcome1";
-      this.m_CreateFOStartedLogToHistory.Name = "m_CreateFOStartedLogToHistory";
-      activitybind11.Name = "CreatePO";
-      activitybind11.Path = "m_LogAfterCreateToHistoryList_OtherData1";
-      activitybind12.Name = "CreatePO";
-      activitybind12.Path = "m_LogAfterCreateToHistoryList_UserId1";
-      this.m_CreateFOStartedLogToHistory.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind9)));
-      this.m_CreateFOStartedLogToHistory.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind10)));
-      this.m_CreateFOStartedLogToHistory.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.OtherDataProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind11)));
-      this.m_CreateFOStartedLogToHistory.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind12)));
-      activitybind14.Name = "CreatePO";
-      activitybind14.Path = "workflowId";
+      activitybind10.Path = "workflowId";
       // 
       // m_OnWorkflowActivated
       // 
@@ -131,16 +108,15 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
       this.m_OnWorkflowActivated.CorrelationToken = correlationtoken1;
       this.m_OnWorkflowActivated.EventName = "OnWorkflowActivated";
       this.m_OnWorkflowActivated.Name = "m_OnWorkflowActivated";
-      activitybind13.Name = "CreatePO";
-      activitybind13.Path = "m_WorkflowProperties";
+      activitybind9.Name = "CreatePO";
+      activitybind9.Path = "m_WorkflowProperties";
       this.m_OnWorkflowActivated.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.m_OnWorkflowActivated_Invoked);
-      this.m_OnWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind14)));
-      this.m_OnWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind13)));
+      this.m_OnWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind10)));
+      this.m_OnWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind9)));
       // 
       // CreatePO
       // 
       this.Activities.Add(this.m_OnWorkflowActivated);
-      this.Activities.Add(this.m_CreateFOStartedLogToHistory);
       this.Activities.Add(this.m_CodeActivity);
       this.Activities.Add(this.m_LogAfterCreateToHistoryList);
       this.Activities.Add(this.m_FaultHandlersActivity);
@@ -150,8 +126,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
     }
 
     #endregion
-
-    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity m_CreateFOStartedLogToHistory;
 
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity logToHistoryListActivity1;
 
@@ -164,6 +138,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
     private CodeActivity m_CodeActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated;
+
 
 
 
