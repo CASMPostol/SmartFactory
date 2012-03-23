@@ -1,6 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="SecurityPOSentInvoiceTo"
+    ID="{29B66983-6AC7-460E-9C84-E7BB5B5E1BFC}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Send invoice to" />
+  <Field
+    Name="SecurityPOCommodity"
+    ID="{180D9CFC-48D8-4C83-8740-780D3A8882EF}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Commodity" />
+  <Field
+    Name="SecurityPOCountry"
+    ID="{096D79CF-26EA-4EBB-8DA9-2E67549509A6}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Country" />
+  <Field
+    Name="SecurityPOCity"
+    ID="{0E5465B4-D5E8-4C08-B381-FFD3055A7FA4}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="City" />
+  <Field
+    Name="SecurityPOEscortProvider"
+    ID="{5E5625FC-BF90-4A4D-A559-064D2F9768A1}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Security Escort Provider" />
+  <Field
+    Name="SecurityPOEscortCurrency"
+    ID="{96187BDE-610A-4A59-A383-04F056E61E12}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Currency" />
+  <Field
+    Name="SecurityPOEscortCosts"
+    ID="{CB112A6C-474D-4F05-A9A7-6C83DB76FC7C}"
+    Type="Number"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Escort costs" />
+  <Field
+    Name="SecurityPOEscortPayerNIP"
+    ID="{35950BC8-95D5-452F-9295-25D135CB486D}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Payer NIP" />
+  <Field
+    Name="SecurityPOEscortPayerCity"
+    ID="{1A24AAFA-C962-4E14-A7DE-B1B23B920669}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Payer Cty" />
+  <Field
+    Name="SecurityPOEscortPayerZip"
+    ID="{D4BEAF56-EA0C-4D14-9744-5D92F29D58EF}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Payer Zip code" />
+  <Field
+    Name="SecurityPOEscortPayerAddress"
+    ID="{77E52EB7-532C-4017-AF84-DF69555F3D30}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Payer address" />
+  <Field
+    Name="SecurityPOEscortPayerName"
+    ID="{E37FD43A-5F6A-48C3-82CE-9D3EAC0ED4BA}"
+    Type="Text"
+    Group="CAS Smart Factory Shepherd"
+    DisplayName="Payer name" />
+  <Field
     Name="FreightPOSendInvoiceTo"
     ID="{F350E678-C8E1-422D-A925-0895DF2B34E0}"
     Type="Text"

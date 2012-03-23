@@ -444,7 +444,9 @@
     <Content Include="Fields\DictionariesLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Fields\LibrariesFields\Elements.xml" />
+    <Content Include="Fields\LibrariesFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Fields\LibrariesLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
