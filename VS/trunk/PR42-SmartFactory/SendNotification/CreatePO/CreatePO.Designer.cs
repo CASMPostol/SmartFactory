@@ -77,6 +77,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
       // 
       // m_LogAfterCreateToHistoryList
       // 
+      this.m_LogAfterCreateToHistoryList.Description = "Log After Create To History List";
       this.m_LogAfterCreateToHistoryList.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
       this.m_LogAfterCreateToHistoryList.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowCompleted;
       activitybind5.Name = "CreatePO";
@@ -90,8 +91,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
       activitybind8.Path = "m_LogAfterCreateToHistoryList_UserId1";
       this.m_LogAfterCreateToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
       this.m_LogAfterCreateToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind6)));
-      this.m_LogAfterCreateToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.OtherDataProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind7)));
       this.m_LogAfterCreateToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind8)));
+      this.m_LogAfterCreateToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.OtherDataProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind7)));
       // 
       // m_CodeActivity
       // 
@@ -138,6 +139,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
     private CodeActivity m_CodeActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated;
+
+
+
 
 
 

@@ -1,25 +1,16 @@
 ﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Collections;
-using System.Drawing;
 using System.Linq;
-using System.Workflow.ComponentModel.Compiler;
-using System.Workflow.ComponentModel.Serialization;
-using System.Workflow.ComponentModel;
-using System.Workflow.ComponentModel.Design;
-using System.Workflow.Runtime;
 using System.Workflow.Activities;
-using System.Workflow.Activities.Rules;
+using CAS.SmartFactory.Shepherd.SendNotification.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
-using Microsoft.SharePoint.WorkflowActions;
-using CAS.SmartFactory.Shepherd.SendNotification.Entities;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
 {
   public sealed partial class CreateSealProtocol : SequentialWorkflowActivity
   {
+    #region public
     public CreateSealProtocol()
     {
       InitializeComponent();
@@ -27,6 +18,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
     internal static Guid WorkflowId = new Guid("dddc274f-d1ff-4613-834a-548546f527aa");
     internal static WorkflowDescription WorkflowDescription { get { return new WorkflowDescription(WorkflowId, "New Seal Protocol", "Create Seal Protocol"); } }
     public Guid workflowId = default(System.Guid);
+    #endregion
+
     #region OnWorkflowActivated
     public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
     private void m_OnWorkflowActivated1_Invoked(object sender, ExternalDataEventArgs e)
@@ -39,6 +32,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
     #endregion
 
     #region CreatePO
+    private enum TeamMembers
+    {
+      _1stDriver, _2ndDriver, _1stEscort, _2ndEscort, DriverSPhone, EscortCarNo, EscortPhone, TrailerNo, TruckNo
+    }
     private void m_CreatePO_ExecuteCode(object sender, EventArgs e)
     {
       string _spTitle = default(string);
@@ -62,9 +59,31 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
           _newFileName = _docFile.Name;
           _stt = "_doc";
           int _docId = (int)_docFile.Item.ID;
-          SealProtocol _fpo = (from idx in _EDC.SealProtocolLibrary
-                               where idx.Identyfikator == _docId
-                               select idx).First();
+          SealProtocol _sprt = (from idx in _EDC.SealProtocolLibrary
+                                where idx.Identyfikator == _docId
+                                select idx).First();
+          Dictionary<TeamMembers, string> _team = GetTeamData(_sp);
+          _sprt._1stDriver = _team[TeamMembers._1stDriver];
+          _sprt._2ndDriver = _team[TeamMembers._2ndDriver];
+          _sprt._1stEscort = _team[TeamMembers._1stEscort];
+          _sprt._2ndEscort = _team[TeamMembers._2ndEscort];
+          _sprt.ActualDispatchDate = _sp.EndTime;
+          _sprt.City = _sp.City.Title();
+          _sprt.ConainersNo = _sp.ContainerNo;
+          _sprt.Country = _sp.City == null ? String.Empty : _sp.City.CountryName.Title();
+          _sprt.DispatchDate = _sp.EndTime;
+          _sprt.DriverSPhone = _team[TeamMembers.DriverSPhone];
+          _sprt.EscortCarNo = _team[TeamMembers.EscortCarNo];
+          _sprt.EscortPhone = _team[TeamMembers.EscortPhone];
+          _sprt.Forwarder = _sp.VendorName.Title();
+          _sprt.SecurityEscortProvider = _sp.SecurityEscortProvider.Title();
+          _sp.SecuritySealProtocol = _sprt;
+          _sprt.TrailerNo = _team[TeamMembers.TrailerNo];
+          _sprt.TruckNo = _team[TeamMembers.TruckNo];
+          _sprt.Tytuł = String.Format("Security Seal & Signature Protocol SSP-3{0, 5}", _sprt.Identyfikator);
+          _sprt.Warehouse = _sp.Warehouse == null ? String.Empty : _sp.Warehouse.WarehouseAddress;
+          _stt = "WarehouseAddress ";
+          _EDC.SubmitChanges();
         }
         m_AfterCreationLogToHistoryList_HistoryOutcome1 = "Item Created";
         m_AfterCreationLogToHistoryList_HistoryDescription1 = String.Format("File {0} containing purchase order for shipping {1} successfully created.", _newFileName, _spTitle);
@@ -75,6 +94,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
         string _frmt = "Creation of the Seal Protocol failed in the \"{0}\" state because of the error {1}";
         m_AfterCreationLogToHistoryList_HistoryDescription1 = string.Format(_frmt, _stt, _ex.Message);
       }
+    }
+    private Dictionary<TeamMembers, string> GetTeamData(Shipping _sp)
+    {
+      throw new NotImplementedException();
     }
     #endregion
 
