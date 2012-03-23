@@ -26,10 +26,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void InitializeComponent()
     {
       this.CanModifyActivities = true;
-      System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
+      System.Workflow.Activities.CodeCondition codecondition1 = new System.Workflow.Activities.CodeCondition();
       System.Workflow.ComponentModel.ActivityBind activitybind1 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind2 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind3 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
       System.Workflow.ComponentModel.ActivityBind activitybind4 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind5 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind6 = new System.Workflow.ComponentModel.ActivityBind();
@@ -41,12 +42,21 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       System.Workflow.ComponentModel.ActivityBind activitybind12 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind13 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind14 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.Activities.CodeCondition codecondition1 = new System.Workflow.Activities.CodeCondition();
       System.Workflow.ComponentModel.ActivityBind activitybind15 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.ComponentModel.ActivityBind activitybind17 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind16 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind17 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind18 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind19 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind20 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind21 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind22 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.Activities.CodeCondition codecondition2 = new System.Workflow.Activities.CodeCondition();
+      System.Workflow.ComponentModel.ActivityBind activitybind23 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind25 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind24 = new System.Workflow.ComponentModel.ActivityBind();
       this.m_NotificationSendEmail = new Microsoft.SharePoint.WorkflowActions.SendEmail();
       this.m_TimeOutLogToHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+      this.m_HandleTimeoutConditionedActivityGroup = new System.Workflow.Activities.ConditionedActivityGroup();
       this.m_AfterTimeOutSequenceActivity = new System.Workflow.Activities.SequenceActivity();
       this.m_TimeOutDelay = new System.Workflow.Activities.DelayActivity();
       this.m_WhileRoundLogToHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -64,42 +74,62 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_MainLoopWhileActivity = new System.Workflow.Activities.WhileActivity();
       this.m_OnStartedLogToHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_OnWorkflowActivated = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
+      codecondition1.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.m_NotificationSendEmailCondition);
       // 
       // m_NotificationSendEmail
       // 
-      this.m_NotificationSendEmail.BCC = null;
-      this.m_NotificationSendEmail.Body = null;
-      this.m_NotificationSendEmail.CC = null;
+      activitybind1.Name = "ShippingStateMachine";
+      activitybind1.Path = "m_NotificationSendEmail_BCC";
+      activitybind2.Name = "ShippingStateMachine";
+      activitybind2.Path = "m_NotificationSendEmail_Body";
+      activitybind3.Name = "ShippingStateMachine";
+      activitybind3.Path = "m_NotificationSendEmail_CC";
       correlationtoken1.Name = "workflowToken";
       correlationtoken1.OwnerActivityName = "ShippingStateMachine";
       this.m_NotificationSendEmail.CorrelationToken = correlationtoken1;
       this.m_NotificationSendEmail.Description = "Send warning by email";
-      this.m_NotificationSendEmail.From = null;
+      activitybind4.Name = "m_OnWorkflowActivated";
+      activitybind4.Path = "WorkflowProperties.OriginatorEmail";
       this.m_NotificationSendEmail.Headers = null;
-      this.m_NotificationSendEmail.IncludeStatus = false;
+      this.m_NotificationSendEmail.IncludeStatus = true;
       this.m_NotificationSendEmail.Name = "m_NotificationSendEmail";
-      this.m_NotificationSendEmail.Subject = null;
-      this.m_NotificationSendEmail.To = null;
-      this.m_NotificationSendEmail.MethodInvoking += new System.EventHandler(this.m_NotificationSendEmail_MethodInvoking);
+      activitybind5.Name = "ShippingStateMachine";
+      activitybind5.Path = "m_NotificationSendEmail_Subject";
+      activitybind6.Name = "ShippingStateMachine";
+      activitybind6.Path = "m_NotificationSendEmail_To1";
+      this.m_NotificationSendEmail.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BodyProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind2)));
+      this.m_NotificationSendEmail.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.CCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind3)));
+      this.m_NotificationSendEmail.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.BCCProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind1)));
+      this.m_NotificationSendEmail.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.FromProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind4)));
+      this.m_NotificationSendEmail.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.SubjectProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
+      this.m_NotificationSendEmail.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.ToProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind6)));
+      this.m_NotificationSendEmail.SetValue(System.Workflow.Activities.ConditionedActivityGroup.WhenConditionProperty, codecondition1);
       // 
       // m_TimeOutLogToHistoryListActivity
       // 
       this.m_TimeOutLogToHistoryListActivity.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
       this.m_TimeOutLogToHistoryListActivity.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-      activitybind1.Name = "ShippingStateMachine";
-      activitybind1.Path = "m_TimeOutLogToHistoryListActivity_HistoryDescription1";
-      activitybind2.Name = "ShippingStateMachine";
-      activitybind2.Path = "m_TimeOutLogToHistoryListActivity_HistoryOutcome1";
+      activitybind7.Name = "ShippingStateMachine";
+      activitybind7.Path = "m_TimeOutLogToHistoryListActivity_HistoryDescription1";
+      activitybind8.Name = "ShippingStateMachine";
+      activitybind8.Path = "m_TimeOutLogToHistoryListActivity_HistoryOutcome1";
       this.m_TimeOutLogToHistoryListActivity.Name = "m_TimeOutLogToHistoryListActivity";
       this.m_TimeOutLogToHistoryListActivity.OtherData = "";
-      this.m_TimeOutLogToHistoryListActivity.UserId = -1;
-      this.m_TimeOutLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind2)));
-      this.m_TimeOutLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind1)));
+      activitybind9.Name = "ShippingStateMachine";
+      activitybind9.Path = "m_OnStartedLogToHistoryListActivity_UserId1";
+      this.m_TimeOutLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind8)));
+      this.m_TimeOutLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind7)));
+      this.m_TimeOutLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind9)));
+      // 
+      // m_HandleTimeoutConditionedActivityGroup
+      // 
+      this.m_HandleTimeoutConditionedActivityGroup.Activities.Add(this.m_TimeOutLogToHistoryListActivity);
+      this.m_HandleTimeoutConditionedActivityGroup.Activities.Add(this.m_NotificationSendEmail);
+      this.m_HandleTimeoutConditionedActivityGroup.Name = "m_HandleTimeoutConditionedActivityGroup";
       // 
       // m_AfterTimeOutSequenceActivity
       // 
-      this.m_AfterTimeOutSequenceActivity.Activities.Add(this.m_TimeOutLogToHistoryListActivity);
-      this.m_AfterTimeOutSequenceActivity.Activities.Add(this.m_NotificationSendEmail);
+      this.m_AfterTimeOutSequenceActivity.Activities.Add(this.m_HandleTimeoutConditionedActivityGroup);
       this.m_AfterTimeOutSequenceActivity.Description = "After Time Out Sequence Activity";
       this.m_AfterTimeOutSequenceActivity.Name = "m_AfterTimeOutSequenceActivity";
       // 
@@ -107,39 +137,39 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       // 
       this.m_TimeOutDelay.Description = "Timeout before the dedline.";
       this.m_TimeOutDelay.Name = "m_TimeOutDelay";
-      activitybind3.Name = "ShippingStateMachine";
-      activitybind3.Path = "m_TimeOutDelay_TimeoutDuration1";
-      this.m_TimeOutDelay.SetBinding(System.Workflow.Activities.DelayActivity.TimeoutDurationProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind3)));
+      activitybind10.Name = "ShippingStateMachine";
+      activitybind10.Path = "m_TimeOutDelay_TimeoutDuration1";
+      this.m_TimeOutDelay.SetBinding(System.Workflow.Activities.DelayActivity.TimeoutDurationProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind10)));
       // 
       // m_WhileRoundLogToHistoryListActivity
       // 
       this.m_WhileRoundLogToHistoryListActivity.Description = "Warning: time out for shipping encountered.";
       this.m_WhileRoundLogToHistoryListActivity.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
       this.m_WhileRoundLogToHistoryListActivity.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-      activitybind4.Name = "ShippingStateMachine";
-      activitybind4.Path = "m_SendWarningLogToHistoryListActivity_HistoryDescription";
-      activitybind5.Name = "ShippingStateMachine";
-      activitybind5.Path = "m_SendWarningLogToHistoryListActivity_HistoryOutcome";
+      activitybind11.Name = "ShippingStateMachine";
+      activitybind11.Path = "m_SendWarningLogToHistoryListActivity_HistoryDescription";
+      activitybind12.Name = "ShippingStateMachine";
+      activitybind12.Path = "m_SendWarningLogToHistoryListActivity_HistoryOutcome";
       this.m_WhileRoundLogToHistoryListActivity.Name = "m_WhileRoundLogToHistoryListActivity";
       this.m_WhileRoundLogToHistoryListActivity.OtherData = "";
-      activitybind6.Name = "ShippingStateMachine";
-      activitybind6.Path = "m_OnStartedLogToHistoryListActivity_UserId1";
-      this.m_WhileRoundLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind5)));
-      this.m_WhileRoundLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind4)));
-      this.m_WhileRoundLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind6)));
+      activitybind13.Name = "ShippingStateMachine";
+      activitybind13.Path = "m_OnStartedLogToHistoryListActivity_UserId1";
+      this.m_WhileRoundLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind12)));
+      this.m_WhileRoundLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind11)));
+      this.m_WhileRoundLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind13)));
       // 
       // m_OnWorkflowItemChanged
       // 
-      activitybind7.Name = "ShippingStateMachine";
-      activitybind7.Path = "m_OnWorkflowItemChanged_AfterProperties1";
-      activitybind8.Name = "ShippingStateMachine";
-      activitybind8.Path = "m_OnWorkflowItemChanged_BeforeProperties1";
+      activitybind14.Name = "ShippingStateMachine";
+      activitybind14.Path = "m_OnWorkflowItemChanged_AfterProperties1";
+      activitybind15.Name = "ShippingStateMachine";
+      activitybind15.Path = "m_OnWorkflowItemChanged_BeforeProperties1";
       this.m_OnWorkflowItemChanged.CorrelationToken = correlationtoken1;
       this.m_OnWorkflowItemChanged.Description = "On workflow item changed";
       this.m_OnWorkflowItemChanged.Name = "m_OnWorkflowItemChanged";
       this.m_OnWorkflowItemChanged.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.m_OnWorkflowItemChanged_Invoked);
-      this.m_OnWorkflowItemChanged.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged.AfterPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind7)));
-      this.m_OnWorkflowItemChanged.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged.BeforePropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind8)));
+      this.m_OnWorkflowItemChanged.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged.AfterPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind14)));
+      this.m_OnWorkflowItemChanged.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowItemChanged.BeforePropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind15)));
       // 
       // m_WaitTimeOutEventDrivenActivity
       // 
@@ -159,16 +189,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       // 
       this.m_FaultHandlerLogToHistoryListActivity.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
       this.m_FaultHandlerLogToHistoryListActivity.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-      activitybind9.Name = "ShippingStateMachine";
-      activitybind9.Path = "m_FaultHandlerLogToHistoryListActivity_HistoryDescription1";
-      activitybind10.Name = "ShippingStateMachine";
-      activitybind10.Path = "m_FaultHandlerLogToHistoryListActivity_HistoryOutcome1";
+      activitybind16.Name = "ShippingStateMachine";
+      activitybind16.Path = "m_FaultHandlerLogToHistoryListActivity_HistoryDescription1";
+      activitybind17.Name = "ShippingStateMachine";
+      activitybind17.Path = "m_FaultHandlerLogToHistoryListActivity_HistoryOutcome1";
       this.m_FaultHandlerLogToHistoryListActivity.Name = "m_FaultHandlerLogToHistoryListActivity";
       this.m_FaultHandlerLogToHistoryListActivity.OtherData = "";
       this.m_FaultHandlerLogToHistoryListActivity.UserId = -1;
       this.m_FaultHandlerLogToHistoryListActivity.MethodInvoking += new System.EventHandler(this.m_FaultHandlerLogToHistoryListActivity_MethodInvoking);
-      this.m_FaultHandlerLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind9)));
-      this.m_FaultHandlerLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind10)));
+      this.m_FaultHandlerLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind16)));
+      this.m_FaultHandlerLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind17)));
       // 
       // m_WaiyForEventListenActivity
       // 
@@ -182,17 +212,19 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_DeadlineLogToHistoryListActivity.Description = "Log information about new dedline.";
       this.m_DeadlineLogToHistoryListActivity.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
       this.m_DeadlineLogToHistoryListActivity.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-      activitybind11.Name = "ShippingStateMachine";
-      activitybind11.Path = "m_DeadlineLogToHistoryListActivity_HistoryDescription1";
-      activitybind12.Name = "ShippingStateMachine";
-      activitybind12.Path = "m_DeadlineLogToHistoryListActivity_HistoryOutcome1";
+      activitybind18.Name = "ShippingStateMachine";
+      activitybind18.Path = "m_DeadlineLogToHistoryListActivity_HistoryDescription1";
+      activitybind19.Name = "ShippingStateMachine";
+      activitybind19.Path = "m_DeadlineLogToHistoryListActivity_HistoryOutcome1";
       this.m_DeadlineLogToHistoryListActivity.Name = "m_DeadlineLogToHistoryListActivity";
-      this.m_DeadlineLogToHistoryListActivity.OtherData = "";
-      activitybind13.Name = "ShippingStateMachine";
-      activitybind13.Path = "m_OnStartedLogToHistoryListActivity_UserId1";
-      this.m_DeadlineLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind11)));
-      this.m_DeadlineLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind12)));
-      this.m_DeadlineLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind13)));
+      activitybind20.Name = "ShippingStateMachine";
+      activitybind20.Path = "m_DeadlineLogToHistoryListActivity_OtherData";
+      activitybind21.Name = "ShippingStateMachine";
+      activitybind21.Path = "m_OnStartedLogToHistoryListActivity_UserId1";
+      this.m_DeadlineLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind18)));
+      this.m_DeadlineLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind19)));
+      this.m_DeadlineLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind21)));
+      this.m_DeadlineLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.OtherDataProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind20)));
       // 
       // m_CalculateTimeoutCode
       // 
@@ -230,15 +262,15 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_OnWokflowCompletedLogToHistoryListActivity.HistoryOutcome = "Completed";
       this.m_OnWokflowCompletedLogToHistoryListActivity.Name = "m_OnWokflowCompletedLogToHistoryListActivity";
       this.m_OnWokflowCompletedLogToHistoryListActivity.OtherData = "";
-      activitybind14.Name = "ShippingStateMachine";
-      activitybind14.Path = "m_OnStartedLogToHistoryListActivity_UserId1";
-      this.m_OnWokflowCompletedLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind14)));
+      activitybind22.Name = "ShippingStateMachine";
+      activitybind22.Path = "m_OnStartedLogToHistoryListActivity_UserId1";
+      this.m_OnWokflowCompletedLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind22)));
       // 
       // m_MainLoopWhileActivity
       // 
       this.m_MainLoopWhileActivity.Activities.Add(this.m_SequenceActivity);
-      codecondition1.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.m_MainLoopWhileActivity_ConditionEventHandler);
-      this.m_MainLoopWhileActivity.Condition = codecondition1;
+      codecondition2.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.m_MainLoopWhileActivity_ConditionEventHandler);
+      this.m_MainLoopWhileActivity.Condition = codecondition2;
       this.m_MainLoopWhileActivity.Description = "Main loop of the shipping state machine.";
       this.m_MainLoopWhileActivity.Name = "m_MainLoopWhileActivity";
       // 
@@ -250,12 +282,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_OnStartedLogToHistoryListActivity.HistoryOutcome = "New shipping";
       this.m_OnStartedLogToHistoryListActivity.Name = "m_OnStartedLogToHistoryListActivity";
       this.m_OnStartedLogToHistoryListActivity.OtherData = "";
-      activitybind15.Name = "ShippingStateMachine";
-      activitybind15.Path = "m_OnStartedLogToHistoryListActivity_UserId1";
+      activitybind23.Name = "ShippingStateMachine";
+      activitybind23.Path = "m_OnStartedLogToHistoryListActivity_UserId1";
       this.m_OnStartedLogToHistoryListActivity.MethodInvoking += new System.EventHandler(this.m_OnStartedLogToHistoryListActivity_MethodInvoking);
-      this.m_OnStartedLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind15)));
-      activitybind17.Name = "ShippingStateMachine";
-      activitybind17.Path = "workflowId";
+      this.m_OnStartedLogToHistoryListActivity.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind23)));
+      activitybind25.Name = "ShippingStateMachine";
+      activitybind25.Path = "workflowId";
       // 
       // m_OnWorkflowActivated
       // 
@@ -263,11 +295,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_OnWorkflowActivated.Description = "On workflow activated";
       this.m_OnWorkflowActivated.EventName = "OnWorkflowActivated";
       this.m_OnWorkflowActivated.Name = "m_OnWorkflowActivated";
-      activitybind16.Name = "ShippingStateMachine";
-      activitybind16.Path = "m_OnWorkflowActivated_WorkflowProperties";
+      activitybind24.Name = "ShippingStateMachine";
+      activitybind24.Path = "m_OnWorkflowActivated_WorkflowProperties";
       this.m_OnWorkflowActivated.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.m_OnWorkflowActivated_Invoked);
-      this.m_OnWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind17)));
-      this.m_OnWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind16)));
+      this.m_OnWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind25)));
+      this.m_OnWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind24)));
       // 
       // ShippingStateMachine
       // 
@@ -282,6 +314,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
 
     #endregion
+
+    private ConditionedActivityGroup m_HandleTimeoutConditionedActivityGroup;
 
     private SequenceActivity m_AfterTimeOutSequenceActivity;
 
@@ -320,6 +354,24 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private SequenceActivity m_SequenceActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -26,36 +26,85 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO
     private void InitializeComponent()
     {
       this.CanModifyActivities = true;
-      System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
       System.Workflow.ComponentModel.ActivityBind activitybind1 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind2 = new System.Workflow.ComponentModel.ActivityBind();
-      this.onWorkflowActivated1 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
+      System.Workflow.ComponentModel.ActivityBind activitybind3 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
+      System.Workflow.ComponentModel.ActivityBind activitybind4 = new System.Workflow.ComponentModel.ActivityBind();
+      this.m_AfterCreateLogToHistoryList = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
+      this.CreatePO = new System.Workflow.Activities.CodeActivity();
+      this.m_OnWorkflowActivated1 = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
       // 
-      // onWorkflowActivated1
+      // m_AfterCreateLogToHistoryList
       // 
-      correlationtoken1.Name = "workflowToken";
-      correlationtoken1.OwnerActivityName = "CreateSecurituPO";
-      this.onWorkflowActivated1.CorrelationToken = correlationtoken1;
-      this.onWorkflowActivated1.EventName = "OnWorkflowActivated";
-      this.onWorkflowActivated1.Name = "onWorkflowActivated1";
-      this.onWorkflowActivated1.WorkflowId = new System.Guid("00000000-0000-0000-0000-000000000000");
-      activitybind1.Name = "CreateSecurituPO";
-      activitybind1.Path = "workflowId";
-      activitybind2.Name = "CreateSecurituPO";
-      activitybind2.Path = "workflowProperties";
-      this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind1)));
-      this.onWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind2)));
+      this.m_AfterCreateLogToHistoryList.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+      this.m_AfterCreateLogToHistoryList.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+      activitybind1.Name = "CreateSecurityPO";
+      activitybind1.Path = "m_AfterCreateLogToHistoryList_HistoryDescription1";
+      activitybind2.Name = "CreateSecurityPO";
+      activitybind2.Path = "m_AfterCreateLogToHistoryList_HistoryOutcome1";
+      this.m_AfterCreateLogToHistoryList.Name = "m_AfterCreateLogToHistoryList";
+      this.m_AfterCreateLogToHistoryList.OtherData = "";
+      activitybind3.Name = "CreateSecurityPO";
+      activitybind3.Path = "m_AfterCreateLogToHistoryList_UserId1";
+      this.m_AfterCreateLogToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind1)));
+      this.m_AfterCreateLogToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind2)));
+      this.m_AfterCreateLogToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind3)));
       // 
-      // CreateSecurituPO
+      // CreatePO
       // 
-      this.Activities.Add(this.onWorkflowActivated1);
-      this.Name = "CreateSecurituPO";
+      this.CreatePO.Name = "CreatePO";
+      this.CreatePO.ExecuteCode += new System.EventHandler(this.CreatePO_ExecuteCode);
+      // 
+      // m_OnWorkflowActivated1
+      // 
+      correlationtoken1.Name = "m_Token";
+      correlationtoken1.OwnerActivityName = "CreateSecurityPO";
+      this.m_OnWorkflowActivated1.CorrelationToken = correlationtoken1;
+      this.m_OnWorkflowActivated1.EventName = "OnWorkflowActivated";
+      this.m_OnWorkflowActivated1.Name = "m_OnWorkflowActivated1";
+      activitybind4.Name = "CreateSecurityPO";
+      activitybind4.Path = "m_OnWorkflowActivated_WorkflowProperties";
+      this.m_OnWorkflowActivated1.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.m_OnWorkflowActivated_Invoked);
+      this.m_OnWorkflowActivated1.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind4)));
+      // 
+      // CreateSecurityPO
+      // 
+      this.Activities.Add(this.m_OnWorkflowActivated1);
+      this.Activities.Add(this.CreatePO);
+      this.Activities.Add(this.m_AfterCreateLogToHistoryList);
+      this.Name = "CreateSecurityPO";
       this.CanModifyActivities = false;
 
     }
 
     #endregion
 
-    private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated1;
+    private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated1;
+
+    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity m_AfterCreateLogToHistoryList;
+
+    private CodeActivity CreatePO;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 }

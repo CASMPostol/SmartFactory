@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
       {
-        Shipping _sh = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        ShippingShipping _sh = Element.GetAtIndex<ShippingShipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
         Entities.AlarmsAndEvents _ae = new AlarmsAndEvents()
         {
           ShippingIndex = _sh,
@@ -75,7 +75,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
       {
-        Shipping _sp = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
         e.Result = !(_sp.State.HasValue && (_sp.State.Value == State.Completed || _sp.State.Value == State.Canceled));
       }
     }
@@ -153,12 +153,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 
     #region CalculateTimeoutCode
     private static TimeSpan _5min = new TimeSpan(0, 5, 0);
-
     private void m_CalculateTimeoutCode_ExecuteCode(object sender, EventArgs e)
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
       {
-        Shipping _sp = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
         string _frmt = default(string);
         switch (_sp.State.Value)
         {
@@ -261,6 +260,18 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               throw new ApplicationException(String.Format(_frmt, _sp.State.Value));
             }
         }
+        try
+        {
+          m_NotificationSendEmail_Subject = _sp.Tytuł + " Delayed !!";
+          m_NotificationSendEmail_Body = "Warning";
+          m_NotificationSendEmail_To1 = _sp.VendorName != null ? _sp.VendorName.EMail : "unknown@comapny.com";
+          m_NotificationSendEmail_CC = m_OnWorkflowActivated_WorkflowProperties.OriginatorEmail;
+          ReportAlarmsAndEvents(_sp.Tytuł + " Delayed !!");
+        }
+        catch (Exception _ex)
+        {
+          ReportException("NotificationSendEmail", _ex);
+        }
       }
     }
     private void SetupEnvironmentDelayed()
@@ -302,23 +313,87 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region NotificationSendEmail
     private void m_NotificationSendEmail_MethodInvoking(object sender, EventArgs e)
     {
-      try
+
+    }
+    public static DependencyProperty m_NotificationSendEmail_To1Property = DependencyProperty.Register("m_NotificationSendEmail_To1", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
+    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+    [BrowsableAttribute(true)]
+    [CategoryAttribute("Misc")]
+    public String m_NotificationSendEmail_To1
+    {
+      get
       {
-        using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
-        {
-          Shipping _sp = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
-          m_NotificationSendEmail.Subject = _sp.Tytuł + " Delayed !!";
-          m_NotificationSendEmail.WorkflowId = m_OnWorkflowActivated_WorkflowProperties.WorkflowId;
-          m_NotificationSendEmail.Body = "Warning";
-          m_NotificationSendEmail.To = _sp.VendorName != null ? _sp.VendorName.EMail : "unknown@comapny.com";
-          m_NotificationSendEmail.CC = m_OnWorkflowActivated_WorkflowProperties.OriginatorEmail;
-          ReportAlarmsAndEvents(_sp.Tytuł + " Delayed !!");
-        }
+        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_To1Property)));
       }
-      catch (Exception _ex)
+      set
       {
-        ReportException("NotificationSendEmail", _ex);
+        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_To1Property, value);
       }
+    }
+    public static DependencyProperty m_NotificationSendEmail_BCCProperty = DependencyProperty.Register("m_NotificationSendEmail_BCC", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
+    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+    [BrowsableAttribute(true)]
+    [CategoryAttribute("Misc")]
+    public String m_NotificationSendEmail_BCC
+    {
+      get
+      {
+        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_BCCProperty)));
+      }
+      set
+      {
+        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_BCCProperty, value);
+      }
+    }
+    public static DependencyProperty m_NotificationSendEmail_BodyProperty = DependencyProperty.Register("m_NotificationSendEmail_Body", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
+    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+    [BrowsableAttribute(true)]
+    [CategoryAttribute("Misc")]
+    public String m_NotificationSendEmail_Body
+    {
+      get
+      {
+        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_BodyProperty)));
+      }
+      set
+      {
+        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_BodyProperty, value);
+      }
+    }
+    public static DependencyProperty m_NotificationSendEmail_CCProperty = DependencyProperty.Register("m_NotificationSendEmail_CC", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
+    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+    [BrowsableAttribute(true)]
+    [CategoryAttribute("Misc")]
+    public String m_NotificationSendEmail_CC
+    {
+      get
+      {
+        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_CCProperty)));
+      }
+      set
+      {
+        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_CCProperty, value);
+      }
+    }
+    public static DependencyProperty m_NotificationSendEmail_SubjectProperty = DependencyProperty.Register("m_NotificationSendEmail_Subject", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
+    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+    [BrowsableAttribute(true)]
+    [CategoryAttribute("Misc")]
+    public String m_NotificationSendEmail_Subject
+    {
+      get
+      {
+        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_SubjectProperty)));
+      }
+      set
+      {
+        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_SubjectProperty, value);
+      }
+    }
+    private void m_NotificationSendEmailCondition(object sender, ConditionalEventArgs e)
+    {
+      e.Result = !String.IsNullOrEmpty(m_NotificationSendEmail_To1);
+      m_NotificationSendEmail_To1 = string.Empty;
     }
     #endregion
 
@@ -372,6 +447,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
     }
     #endregion
+
+    public static DependencyProperty m_DeadlineLogToHistoryListActivity_OtherDataProperty = DependencyProperty.Register("m_DeadlineLogToHistoryListActivity_OtherData", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
+
+    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+    [BrowsableAttribute(true)]
+    [CategoryAttribute("Misc")]
+    public String m_DeadlineLogToHistoryListActivity_OtherData
+    {
+      get
+      {
+        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_DeadlineLogToHistoryListActivity_OtherDataProperty)));
+      }
+      set
+      {
+        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_DeadlineLogToHistoryListActivity_OtherDataProperty, value);
+      }
+    }
 
   }
 }

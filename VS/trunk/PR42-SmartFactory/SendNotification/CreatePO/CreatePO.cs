@@ -31,15 +31,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
       m_LogAfterCreateToHistoryList_UserId1 = m_WorkflowProperties.OriginatorUser.ID;
       m_LogAfterCreateToHistoryList_HistoryOutcome1 = "Activation";
       m_LogAfterCreateToHistoryList_HistoryDescription1 = "OnWorkflowActivated finished";
-      m_LogAfterCreateToHistoryList_OtherData1 = default(string);
     }
     #endregion
     private string _url = default(string);
     private void CreatePOItem(object sender, EventArgs e)
     {
       string _spTitle = default(string);
-      string _stt = default(string);
       string _newFileName = default(string);
+      string _stt = default(string);
       try
       {
         using (EntitiesDataContext _EDC = new EntitiesDataContext(_url))
@@ -104,12 +103,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
         _stt = "SubmitChanges";
         m_LogAfterCreateToHistoryList_HistoryOutcome1 = "Item Created";
         m_LogAfterCreateToHistoryList_HistoryDescription1 = String.Format("File {0} containing purchase order for shipping {1} successfully created.", _newFileName, _spTitle);
-        m_LogAfterCreateToHistoryList_OtherData1 = default(string);
       }
       catch (Exception _ex)
       {
         m_LogAfterCreateToHistoryList_HistoryOutcome1 = "Exception";
-        string _frmt = "Create PO failed in the \"{0}\" state because of the error {1}";
+        string _frmt = "Creation of the PO failed in the \"{0}\" state because of the error {1}";
         m_LogAfterCreateToHistoryList_HistoryDescription1 = string.Format(_frmt, _stt, _ex.Message);
         m_LogAfterCreateToHistoryList_OtherData1 = _spTitle;
       }

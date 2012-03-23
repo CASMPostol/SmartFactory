@@ -8,8 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
-{
+namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	using System;
 	
 	
@@ -135,6 +134,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 		}
 		
 		/// <summary>
+		/// Seal Protocol Library Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Seal Protocol Library")]
+		public Microsoft.SharePoint.Linq.EntityList<SealProtocol> SealProtocolLibrary {
+			get {
+				return this.GetList<SealProtocol>("Seal Protocol Library");
+			}
+		}
+		
+		/// <summary>
 		/// Security Escort Route List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Security Escort Route")]
@@ -148,9 +157,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 		/// Shipping List List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Shipping")]
-		public Microsoft.SharePoint.Linq.EntityList<Shipping> Shipping {
+		public Microsoft.SharePoint.Linq.EntityList<ShippingShipping> Shipping {
 			get {
-				return this.GetList<Shipping>("Shipping");
+				return this.GetList<ShippingShipping>("Shipping");
 			}
 		}
 		
@@ -322,6 +331,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Dokument", Id="0x0101")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(EscortPO))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(FreightPO))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SealProtocol))]
 	public partial class Dokument : Element {
 		
 		private string _nazwa;
@@ -438,7 +448,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="AlarmsAndEvents", Id="0x010049AA7238FCE34BE18336F419AE924845")]
 	public partial class AlarmsAndEvents : Element {
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shippingIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<ShippingShipping> _shippingIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
 		
@@ -449,8 +459,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 		#endregion
 		
 		public AlarmsAndEvents() {
-			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
+			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<ShippingShipping>();
+			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping>>(this.OnShippingIndexSync);
 			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
 			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
 			this._vendorName = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
@@ -461,7 +471,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public Shipping ShippingIndex {
+		public ShippingShipping ShippingIndex {
 			get {
 				return this._shippingIndex.GetEntity();
 			}
@@ -488,7 +498,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 			this.OnPropertyChanged("ShippingIndex");
 		}
 		
-		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.AlarmsAndEvents.Add(this);
 			}
@@ -2426,6 +2436,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 	/// Utwórz nowy element listy.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Shipping", Id="0x0100BBD0D4AB58624F5B900FECE61EEC2988")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingShipping))]
 	public partial class Shipping : Element {
 		
 		private string _warehouse;
@@ -2458,8 +2469,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 		
 		private System.Nullable<TrailerCondition> _trailerCondition;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents;
-		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
 		
 		private System.Nullable<int> _truckCarRegistrationNumberIdentyfikator;
@@ -2472,7 +2481,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _securityEscortProvider;
 		
-		private System.Nullable<int> _securitySealProtocolIdentyfikator;
+		private Microsoft.SharePoint.Linq.EntityRef<SealProtocol> _securitySealProtocol;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog> _securityEscort;
 		
@@ -2497,10 +2506,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 		#endregion
 		
 		public Shipping() {
-			this._alarmsAndEvents = new Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents>();
-			this._alarmsAndEvents.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents>>(this.OnAlarmsAndEventsSync);
-			this._alarmsAndEvents.OnChanged += new System.EventHandler(this.OnAlarmsAndEventsChanged);
-			this._alarmsAndEvents.OnChanging += new System.EventHandler(this.OnAlarmsAndEventsChanging);
 			this._vendorName = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
 			this._vendorName.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnVendorNameSync);
 			this._vendorName.OnChanged += new System.EventHandler(this.OnVendorNameChanged);
@@ -2509,6 +2514,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 			this._securityEscortProvider.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnSecurityEscortProviderSync);
 			this._securityEscortProvider.OnChanged += new System.EventHandler(this.OnSecurityEscortProviderChanged);
 			this._securityEscortProvider.OnChanging += new System.EventHandler(this.OnSecurityEscortProviderChanging);
+			this._securitySealProtocol = new Microsoft.SharePoint.Linq.EntityRef<SealProtocol>();
+			this._securitySealProtocol.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocol>>(this.OnSecuritySealProtocolSync);
+			this._securitySealProtocol.OnChanged += new System.EventHandler(this.OnSecuritySealProtocolChanged);
+			this._securitySealProtocol.OnChanging += new System.EventHandler(this.OnSecuritySealProtocolChanging);
 			this._securityEscort = new Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog>();
 			this._securityEscort.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog>>(this.OnSecurityEscortSync);
 			this._securityEscort.OnChanged += new System.EventHandler(this.OnSecurityEscortChanged);
@@ -2752,16 +2761,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_alarmsAndEvents", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Alarms And Events")]
-		public Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> AlarmsAndEvents {
-			get {
-				return this._alarmsAndEvents;
-			}
-			set {
-				this._alarmsAndEvents.Assign(value);
-			}
-		}
-		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
 		public Partner VendorName {
 			get {
@@ -2838,17 +2837,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecuritySealProtocolIndex", Storage="_securitySealProtocolIdentyfikator", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> SecuritySealProtocolIdentyfikator {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_securitySealProtocol", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Seal Protocol Library")]
+		public SealProtocol SecuritySealProtocol {
 			get {
-				return this._securitySealProtocolIdentyfikator;
+				return this._securitySealProtocol.GetEntity();
 			}
 			set {
-				if ((value != this._securitySealProtocolIdentyfikator)) {
-					this.OnPropertyChanging("SecuritySealProtocolIdentyfikator", this._securitySealProtocolIdentyfikator);
-					this._securitySealProtocolIdentyfikator = value;
-					this.OnPropertyChanged("SecuritySealProtocolIdentyfikator");
-				}
+				this._securitySealProtocol.SetEntity(value);
 			}
 		}
 		
@@ -2940,23 +2935,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 			}
 		}
 		
-		private void OnAlarmsAndEventsChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("AlarmsAndEvents", this._alarmsAndEvents.Clone());
-		}
-		
-		private void OnAlarmsAndEventsChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("AlarmsAndEvents");
-		}
-		
-		private void OnAlarmsAndEventsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingIndex = this;
-			}
-			else {
-				e.Item.ShippingIndex = null;
-			}
-		}
-		
 		private void OnVendorNameChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("VendorName", this._vendorName.Clone());
 		}
@@ -2977,6 +2955,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 		}
 		
 		private void OnSecurityEscortProviderSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping.Add(this);
+			}
+			else {
+				e.Item.Shipping.Remove(this);
+			}
+		}
+		
+		private void OnSecuritySealProtocolChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SecuritySealProtocol", this._securitySealProtocol.Clone());
+		}
+		
+		private void OnSecuritySealProtocolChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SecuritySealProtocol");
+		}
+		
+		private void OnSecuritySealProtocolSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocol> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Shipping.Add(this);
 			}
@@ -3118,6 +3113,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity> _commodity;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<SealProtocol> _sealProtocol;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -3133,6 +3130,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 			this._commodity.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity>>(this.OnCommoditySync);
 			this._commodity.OnChanged += new System.EventHandler(this.OnCommodityChanged);
 			this._commodity.OnChanging += new System.EventHandler(this.OnCommodityChanging);
+			this._sealProtocol = new Microsoft.SharePoint.Linq.EntitySet<SealProtocol>();
+			this._sealProtocol.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocol>>(this.OnSealProtocolSync);
+			this._sealProtocol.OnChanged += new System.EventHandler(this.OnSealProtocolChanged);
+			this._sealProtocol.OnChanging += new System.EventHandler(this.OnSealProtocolChanging);
 			this.OnCreated();
 		}
 		
@@ -3170,6 +3171,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SealProtocol2WarehouseTitle", Storage="_sealProtocol", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Seal Protocol Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<SealProtocol> SealProtocol {
+			get {
+				return this._sealProtocol;
+			}
+			set {
+				this._sealProtocol.Assign(value);
+			}
+		}
+		
 		private void OnPartnerChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Partner", this._partner.Clone());
 		}
@@ -3201,6 +3212,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 			}
 			else {
 				e.Item.Warehouse.Remove(this);
+			}
+		}
+		
+		private void OnSealProtocolChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SealProtocol", this._sealProtocol.Clone());
+		}
+		
+		private void OnSealProtocolChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SealProtocol");
+		}
+		
+		private void OnSealProtocolSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocol> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Warehouse = this;
+			}
+			else {
+				e.Item.Warehouse = null;
 			}
 		}
 	}
@@ -4274,6 +4302,539 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 	}
 	
 	/// <summary>
+	/// Utwórz nowy dokument.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SealProtocol", Id="0x010100CCFCCB37046E4ED39C17D28FAE78ED47")]
+	public partial class SealProtocol : Dokument {
+		
+		private System.Nullable<System.DateTime> _dispatchDate;
+		
+		private System.Nullable<System.DateTime> _actualDispatchDate;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<CountryClass> _country;
+		
+		private System.Nullable<int> _truckingCompanyIdentyfikator;
+		
+		private string _truckingCompanyTitle;
+		
+		private System.Nullable<int> @__1stDriverIdentyfikator;
+		
+		private string @__1stDriverTitle;
+		
+		private System.Nullable<int> @__2ndDriverIdentyfikator;
+		
+		private string @__2ndDriverTitle;
+		
+		private System.Nullable<int> _driverPhoneNoIdentyfikator;
+		
+		private string _driverPhoneNoCellPhone;
+		
+		private System.Nullable<int> _securityCompanyIdentyfikator;
+		
+		private string _securityCompanyTitle;
+		
+		private System.Nullable<int> @__1stEscortDriverIdentyfikator;
+		
+		private string @__1stEscortDriverTitle;
+		
+		private System.Nullable<int> @__2ndEscortDriverIdentyfikator;
+		
+		private string @__2ndEscortDriverTitle;
+		
+		private System.Nullable<int> _escortPhoneNoIdentyfikator;
+		
+		private string _escortPhoneNoCellPhone;
+		
+		private System.Nullable<int> _securityCarNoIdentyfikator;
+		
+		private string _securityCarNoTitle;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<ShippingShipping> _containerNo;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Warehouse> _warehouse;
+		
+		private System.Nullable<int> _truckNoIdentyfikator;
+		
+		private string _truckNoTitle;
+		
+		private System.Nullable<int> _trailerNoIdentyfikator;
+		
+		private string _trailerNoTitle;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SealProtocol() {
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
+			this._country = new Microsoft.SharePoint.Linq.EntityRef<CountryClass>();
+			this._country.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CountryClass>>(this.OnCountrySync);
+			this._country.OnChanged += new System.EventHandler(this.OnCountryChanged);
+			this._country.OnChanging += new System.EventHandler(this.OnCountryChanging);
+			this._containerNo = new Microsoft.SharePoint.Linq.EntityRef<ShippingShipping>();
+			this._containerNo.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping>>(this.OnContainerNoSync);
+			this._containerNo.OnChanged += new System.EventHandler(this.OnContainerNoChanged);
+			this._containerNo.OnChanging += new System.EventHandler(this.OnContainerNoChanging);
+			this._warehouse = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
+			this._warehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseSync);
+			this._warehouse.OnChanged += new System.EventHandler(this.OnWarehouseChanged);
+			this._warehouse.OnChanging += new System.EventHandler(this.OnWarehouseChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolDispatchDate", Storage="_dispatchDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> DispatchDate {
+			get {
+				return this._dispatchDate;
+			}
+			set {
+				if ((value != this._dispatchDate)) {
+					this.OnPropertyChanging("DispatchDate", this._dispatchDate);
+					this._dispatchDate = value;
+					this.OnPropertyChanged("DispatchDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolDispatchDateActual", Storage="_actualDispatchDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> ActualDispatchDate {
+			get {
+				return this._actualDispatchDate;
+			}
+			set {
+				if ((value != this._actualDispatchDate)) {
+					this.OnPropertyChanging("ActualDispatchDate", this._actualDispatchDate);
+					this._actualDispatchDate = value;
+					this.OnPropertyChanged("ActualDispatchDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+			get {
+				return this._shipping;
+			}
+			set {
+				this._shipping.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SealProtocol2CountryTitle", Storage="_country", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Country")]
+		public CountryClass Country {
+			get {
+				return this._country.GetEntity();
+			}
+			set {
+				this._country.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2PartnerTitleForwarder", Storage="_truckingCompanyIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> TruckingCompanyIdentyfikator {
+			get {
+				return this._truckingCompanyIdentyfikator;
+			}
+			set {
+				if ((value != this._truckingCompanyIdentyfikator)) {
+					this.OnPropertyChanging("TruckingCompanyIdentyfikator", this._truckingCompanyIdentyfikator);
+					this._truckingCompanyIdentyfikator = value;
+					this.OnPropertyChanged("TruckingCompanyIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2PartnerTitleForwarder", Storage="_truckingCompanyTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string TruckingCompanyTitle {
+			get {
+				return this._truckingCompanyTitle;
+			}
+			set {
+				if ((value != this._truckingCompanyTitle)) {
+					this.OnPropertyChanging("TruckingCompanyTitle", this._truckingCompanyTitle);
+					this._truckingCompanyTitle = value;
+					this.OnPropertyChanged("TruckingCompanyTitle");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2DriverTitleDriver1", Storage="__1stDriverIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> _1stDriverIdentyfikator {
+			get {
+				return this.@__1stDriverIdentyfikator;
+			}
+			set {
+				if ((value != this.@__1stDriverIdentyfikator)) {
+					this.OnPropertyChanging("_1stDriverIdentyfikator", this.@__1stDriverIdentyfikator);
+					this.@__1stDriverIdentyfikator = value;
+					this.OnPropertyChanged("_1stDriverIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2DriverTitleDriver1", Storage="__1stDriverTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string _1stDriverTitle {
+			get {
+				return this.@__1stDriverTitle;
+			}
+			set {
+				if ((value != this.@__1stDriverTitle)) {
+					this.OnPropertyChanging("_1stDriverTitle", this.@__1stDriverTitle);
+					this.@__1stDriverTitle = value;
+					this.OnPropertyChanged("_1stDriverTitle");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2DriverTitleDriver2", Storage="__2ndDriverIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> _2ndDriverIdentyfikator {
+			get {
+				return this.@__2ndDriverIdentyfikator;
+			}
+			set {
+				if ((value != this.@__2ndDriverIdentyfikator)) {
+					this.OnPropertyChanging("_2ndDriverIdentyfikator", this.@__2ndDriverIdentyfikator);
+					this.@__2ndDriverIdentyfikator = value;
+					this.OnPropertyChanged("_2ndDriverIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2DriverTitleDriver2", Storage="__2ndDriverTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string _2ndDriverTitle {
+			get {
+				return this.@__2ndDriverTitle;
+			}
+			set {
+				if ((value != this.@__2ndDriverTitle)) {
+					this.OnPropertyChanging("_2ndDriverTitle", this.@__2ndDriverTitle);
+					this.@__2ndDriverTitle = value;
+					this.OnPropertyChanged("_2ndDriverTitle");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2DriverPhone", Storage="_driverPhoneNoIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> DriverPhoneNoIdentyfikator {
+			get {
+				return this._driverPhoneNoIdentyfikator;
+			}
+			set {
+				if ((value != this._driverPhoneNoIdentyfikator)) {
+					this.OnPropertyChanging("DriverPhoneNoIdentyfikator", this._driverPhoneNoIdentyfikator);
+					this._driverPhoneNoIdentyfikator = value;
+					this.OnPropertyChanged("DriverPhoneNoIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2DriverPhone", Storage="_driverPhoneNoCellPhone", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string DriverPhoneNoCellPhone {
+			get {
+				return this._driverPhoneNoCellPhone;
+			}
+			set {
+				if ((value != this._driverPhoneNoCellPhone)) {
+					this.OnPropertyChanging("DriverPhoneNoCellPhone", this._driverPhoneNoCellPhone);
+					this._driverPhoneNoCellPhone = value;
+					this.OnPropertyChanged("DriverPhoneNoCellPhone");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2PartnerTitleEscort", Storage="_securityCompanyIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> SecurityCompanyIdentyfikator {
+			get {
+				return this._securityCompanyIdentyfikator;
+			}
+			set {
+				if ((value != this._securityCompanyIdentyfikator)) {
+					this.OnPropertyChanging("SecurityCompanyIdentyfikator", this._securityCompanyIdentyfikator);
+					this._securityCompanyIdentyfikator = value;
+					this.OnPropertyChanged("SecurityCompanyIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2PartnerTitleEscort", Storage="_securityCompanyTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string SecurityCompanyTitle {
+			get {
+				return this._securityCompanyTitle;
+			}
+			set {
+				if ((value != this._securityCompanyTitle)) {
+					this.OnPropertyChanging("SecurityCompanyTitle", this._securityCompanyTitle);
+					this._securityCompanyTitle = value;
+					this.OnPropertyChanged("SecurityCompanyTitle");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2DriverTitleEscor1", Storage="__1stEscortDriverIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> _1stEscortDriverIdentyfikator {
+			get {
+				return this.@__1stEscortDriverIdentyfikator;
+			}
+			set {
+				if ((value != this.@__1stEscortDriverIdentyfikator)) {
+					this.OnPropertyChanging("_1stEscortDriverIdentyfikator", this.@__1stEscortDriverIdentyfikator);
+					this.@__1stEscortDriverIdentyfikator = value;
+					this.OnPropertyChanged("_1stEscortDriverIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2DriverTitleEscor1", Storage="__1stEscortDriverTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string _1stEscortDriverTitle {
+			get {
+				return this.@__1stEscortDriverTitle;
+			}
+			set {
+				if ((value != this.@__1stEscortDriverTitle)) {
+					this.OnPropertyChanging("_1stEscortDriverTitle", this.@__1stEscortDriverTitle);
+					this.@__1stEscortDriverTitle = value;
+					this.OnPropertyChanged("_1stEscortDriverTitle");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2DriverTitleEscor2", Storage="__2ndEscortDriverIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> _2ndEscortDriverIdentyfikator {
+			get {
+				return this.@__2ndEscortDriverIdentyfikator;
+			}
+			set {
+				if ((value != this.@__2ndEscortDriverIdentyfikator)) {
+					this.OnPropertyChanging("_2ndEscortDriverIdentyfikator", this.@__2ndEscortDriverIdentyfikator);
+					this.@__2ndEscortDriverIdentyfikator = value;
+					this.OnPropertyChanged("_2ndEscortDriverIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2DriverTitleEscor2", Storage="__2ndEscortDriverTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string _2ndEscortDriverTitle {
+			get {
+				return this.@__2ndEscortDriverTitle;
+			}
+			set {
+				if ((value != this.@__2ndEscortDriverTitle)) {
+					this.OnPropertyChanging("_2ndEscortDriverTitle", this.@__2ndEscortDriverTitle);
+					this.@__2ndEscortDriverTitle = value;
+					this.OnPropertyChanged("_2ndEscortDriverTitle");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2EscortPhone", Storage="_escortPhoneNoIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> EscortPhoneNoIdentyfikator {
+			get {
+				return this._escortPhoneNoIdentyfikator;
+			}
+			set {
+				if ((value != this._escortPhoneNoIdentyfikator)) {
+					this.OnPropertyChanging("EscortPhoneNoIdentyfikator", this._escortPhoneNoIdentyfikator);
+					this._escortPhoneNoIdentyfikator = value;
+					this.OnPropertyChanged("EscortPhoneNoIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2EscortPhone", Storage="_escortPhoneNoCellPhone", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string EscortPhoneNoCellPhone {
+			get {
+				return this._escortPhoneNoCellPhone;
+			}
+			set {
+				if ((value != this._escortPhoneNoCellPhone)) {
+					this.OnPropertyChanging("EscortPhoneNoCellPhone", this._escortPhoneNoCellPhone);
+					this._escortPhoneNoCellPhone = value;
+					this.OnPropertyChanged("EscortPhoneNoCellPhone");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2TruckTitleEscort", Storage="_securityCarNoIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> SecurityCarNoIdentyfikator {
+			get {
+				return this._securityCarNoIdentyfikator;
+			}
+			set {
+				if ((value != this._securityCarNoIdentyfikator)) {
+					this.OnPropertyChanging("SecurityCarNoIdentyfikator", this._securityCarNoIdentyfikator);
+					this._securityCarNoIdentyfikator = value;
+					this.OnPropertyChanged("SecurityCarNoIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2TruckTitleEscort", Storage="_securityCarNoTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string SecurityCarNoTitle {
+			get {
+				return this._securityCarNoTitle;
+			}
+			set {
+				if ((value != this._securityCarNoTitle)) {
+					this.OnPropertyChanging("SecurityCarNoTitle", this._securityCarNoTitle);
+					this._securityCarNoTitle = value;
+					this.OnPropertyChanged("SecurityCarNoTitle");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SealProtocol2ShippingContainerNo", Storage="_containerNo", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
+		public ShippingShipping ContainerNo {
+			get {
+				return this._containerNo.GetEntity();
+			}
+			set {
+				this._containerNo.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SealProtocol2WarehouseTitle", Storage="_warehouse", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Warehouse")]
+		public Warehouse Warehouse {
+			get {
+				return this._warehouse.GetEntity();
+			}
+			set {
+				this._warehouse.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2TruckTitle", Storage="_truckNoIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> TruckNoIdentyfikator {
+			get {
+				return this._truckNoIdentyfikator;
+			}
+			set {
+				if ((value != this._truckNoIdentyfikator)) {
+					this.OnPropertyChanging("TruckNoIdentyfikator", this._truckNoIdentyfikator);
+					this._truckNoIdentyfikator = value;
+					this.OnPropertyChanged("TruckNoIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2TruckTitle", Storage="_truckNoTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string TruckNoTitle {
+			get {
+				return this._truckNoTitle;
+			}
+			set {
+				if ((value != this._truckNoTitle)) {
+					this.OnPropertyChanging("TruckNoTitle", this._truckNoTitle);
+					this._truckNoTitle = value;
+					this.OnPropertyChanged("TruckNoTitle");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2TrailerTitle", Storage="_trailerNoIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> TrailerNoIdentyfikator {
+			get {
+				return this._trailerNoIdentyfikator;
+			}
+			set {
+				if ((value != this._trailerNoIdentyfikator)) {
+					this.OnPropertyChanging("TrailerNoIdentyfikator", this._trailerNoIdentyfikator);
+					this._trailerNoIdentyfikator = value;
+					this.OnPropertyChanged("TrailerNoIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2TrailerTitle", Storage="_trailerNoTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string TrailerNoTitle {
+			get {
+				return this._trailerNoTitle;
+			}
+			set {
+				if ((value != this._trailerNoTitle)) {
+					this.OnPropertyChanging("TrailerNoTitle", this._trailerNoTitle);
+					this._trailerNoTitle = value;
+					this.OnPropertyChanged("TrailerNoTitle");
+				}
+			}
+		}
+		
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
+		}
+		
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
+		}
+		
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SecuritySealProtocol = this;
+			}
+			else {
+				e.Item.SecuritySealProtocol = null;
+			}
+		}
+		
+		private void OnCountryChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Country", this._country.Clone());
+		}
+		
+		private void OnCountryChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Country");
+		}
+		
+		private void OnCountrySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CountryClass> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SealProtocol.Add(this);
+			}
+			else {
+				e.Item.SealProtocol.Remove(this);
+			}
+		}
+		
+		private void OnContainerNoChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ContainerNo", this._containerNo.Clone());
+		}
+		
+		private void OnContainerNoChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ContainerNo");
+		}
+		
+		private void OnContainerNoSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SealProtocol.Add(this);
+			}
+			else {
+				e.Item.SealProtocol.Remove(this);
+			}
+		}
+		
+		private void OnWarehouseChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Warehouse", this._warehouse.Clone());
+		}
+		
+		private void OnWarehouseChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Warehouse");
+		}
+		
+		private void OnWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SealProtocol.Add(this);
+			}
+			else {
+				e.Item.SealProtocol.Remove(this);
+			}
+		}
+	}
+	
+	/// <summary>
 	/// Commodity content type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Commodity", Id="0x01003A76AB24637A7541B0D982B65D5916CE", List="Commodity")]
@@ -4452,6 +5013,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 		
 		private Microsoft.SharePoint.Linq.EntitySet<FreightPO> _freightPO;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<SealProtocol> _sealProtocol;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -4471,6 +5034,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 			this._freightPO.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnFreightPOSync);
 			this._freightPO.OnChanged += new System.EventHandler(this.OnFreightPOChanged);
 			this._freightPO.OnChanging += new System.EventHandler(this.OnFreightPOChanging);
+			this._sealProtocol = new Microsoft.SharePoint.Linq.EntitySet<SealProtocol>();
+			this._sealProtocol.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocol>>(this.OnSealProtocolSync);
+			this._sealProtocol.OnChanged += new System.EventHandler(this.OnSealProtocolChanged);
+			this._sealProtocol.OnChanging += new System.EventHandler(this.OnSealProtocolChanging);
 			this.OnCreated();
 		}
 		
@@ -4515,6 +5082,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 			}
 			set {
 				this._freightPO.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SealProtocol2CountryTitle", Storage="_sealProtocol", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Seal Protocol Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<SealProtocol> SealProtocol {
+			get {
+				return this._sealProtocol;
+			}
+			set {
+				this._sealProtocol.Assign(value);
 			}
 		}
 		
@@ -4566,6 +5143,122 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 			}
 			else {
 				e.Item.Country = null;
+			}
+		}
+		
+		private void OnSealProtocolChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SealProtocol", this._sealProtocol.Clone());
+		}
+		
+		private void OnSealProtocolChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SealProtocol");
+		}
+		
+		private void OnSealProtocolSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocol> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Country = this;
+			}
+			else {
+				e.Item.Country = null;
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Shipping Operation - Inbound
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Shipping", Id="0x0100BBD0D4AB58624F5B900FECE61EEC2988", List="Shipping")]
+	public partial class ShippingShipping : Shipping {
+		
+		private System.Nullable<int> _newFreig;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<SealProtocol> _sealProtocol;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public ShippingShipping() {
+			this._alarmsAndEvents = new Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents>();
+			this._alarmsAndEvents.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents>>(this.OnAlarmsAndEventsSync);
+			this._alarmsAndEvents.OnChanged += new System.EventHandler(this.OnAlarmsAndEventsChanged);
+			this._alarmsAndEvents.OnChanging += new System.EventHandler(this.OnAlarmsAndEventsChanging);
+			this._sealProtocol = new Microsoft.SharePoint.Linq.EntitySet<SealProtocol>();
+			this._sealProtocol.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocol>>(this.OnSealProtocolSync);
+			this._sealProtocol.OnChanged += new System.EventHandler(this.OnSealProtocolChanged);
+			this._sealProtocol.OnChanging += new System.EventHandler(this.OnSealProtocolChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NewFreig", Storage="_newFreig", ReadOnly=true, FieldType="WorkflowStatus")]
+		public System.Nullable<int> NewFreig {
+			get {
+				return this._newFreig;
+			}
+			set {
+				if ((value != this._newFreig)) {
+					this.OnPropertyChanging("NewFreig", this._newFreig);
+					this._newFreig = value;
+					this.OnPropertyChanged("NewFreig");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_alarmsAndEvents", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Alarms And Events")]
+		public Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> AlarmsAndEvents {
+			get {
+				return this._alarmsAndEvents;
+			}
+			set {
+				this._alarmsAndEvents.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SealProtocol2ShippingContainerNo", Storage="_sealProtocol", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Seal Protocol Library")]
+		public Microsoft.SharePoint.Linq.EntitySet<SealProtocol> SealProtocol {
+			get {
+				return this._sealProtocol;
+			}
+			set {
+				this._sealProtocol.Assign(value);
+			}
+		}
+		
+		private void OnAlarmsAndEventsChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("AlarmsAndEvents", this._alarmsAndEvents.Clone());
+		}
+		
+		private void OnAlarmsAndEventsChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("AlarmsAndEvents");
+		}
+		
+		private void OnAlarmsAndEventsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ShippingIndex = this;
+			}
+			else {
+				e.Item.ShippingIndex = null;
+			}
+		}
+		
+		private void OnSealProtocolChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SealProtocol", this._sealProtocol.Clone());
+		}
+		
+		private void OnSealProtocolChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SealProtocol");
+		}
+		
+		private void OnSealProtocolSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocol> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ContainerNo = this;
+			}
+			else {
+				e.Item.ContainerNo = null;
 			}
 		}
 	}

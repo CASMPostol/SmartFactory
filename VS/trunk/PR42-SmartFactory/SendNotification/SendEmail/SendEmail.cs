@@ -112,6 +112,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
     public String m_logToHistoryListActivity1_OtherData = default(System.String);
     #endregion
 
+    #region OnFaultLog
     public String _OnFaultLogToHistoryListActivity_HistoryDescription1 = default(System.String);
     public String _OnFaultLogToHistoryListActivity_HistoryOutcome1 = default(System.String);
     private void _OnFaultLogToHistoryListActivity_MethodInvoking(object sender, EventArgs e)
@@ -119,5 +120,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
       _OnFaultLogToHistoryListActivity_HistoryOutcome1 = "Error";
       _OnFaultLogToHistoryListActivity_HistoryDescription1 = m_FaultHandlerActivity.Fault.Message;
     }
+    #endregion
   }
 }
