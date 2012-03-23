@@ -57,44 +57,38 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
           _newFileName = _docFile.Name;
           _stt = "_doc";
           int _docId = (int)_docFile.Item.ID;
-          FreightPayer _FreightPayer = null;
-          CommodityCommodity _Commodity = null;
-          CountryClass _Country = null;
-          Currency _Currency = null;
-          string _FreightPO0 = String.Empty;
-          if (_sp.Route != null)
-          {
-            Route _rt = _sp.Route;
-            _FreightPayer = _rt.FreightPayer;
-            _Commodity = _rt.Commodity;
-            _Country = _rt.CityName == null ? null : _rt.CityName.CountryName;
-            _Currency = _rt.Currency;
-            _FreightPO0 = _rt.FreightPO;
-          }
-          _stt = "Route";
           FreightPO _fpo = (from idx in _EDC.FreightPOLibrary
                             where idx.Identyfikator == _docId
                             select idx).First();
+          if (_sp.Route != null)
+          {
+            Route _rt = _sp.Route;
+            if (_rt.FreightPayer != null)
+            {
+              _fpo.PayerAddress = _rt.FreightPayer != null ? _rt.FreightPayer.Address : String.Empty;
+              _fpo.PayerNIP = _rt.FreightPayer.NIPVATNo;
+              _fpo.PayerName = _rt.FreightPayer.Tytuł;
+              _fpo.SendInvoiceTo = _rt.FreightPayer.SendInvoiceTo;
+              _fpo.PayerZipCode = _rt.FreightPayer.KodPocztowy;
+              _fpo.PayerCity = _rt.FreightPayer.Miasto;
+            }
+            _fpo.TransportCosts = _sp.Route.TransportCosts.GetValueOrDefault(0.0);
+            _fpo.TransportUnit = _sp.TransportUnit.Title();
+
+            _fpo.Commodity = _rt.Commodity.Title();
+            _fpo.Country = _rt.CityName == null ? String.Empty : _rt.CityName.CountryName.Title();
+            _fpo.Currency = _rt.Currency.Title();
+            _fpo.FreightPO0 = _rt.FreightPO;
+          }
+          _stt = "Route";
           _stt = "_fpo";
-          _fpo.Carrier = _sp.VendorName;
-          _fpo.City = _sp.City;
-          _fpo.Commodity = _Commodity;
-          _fpo.CompanyAddress = _FreightPayer;
-          _fpo.Country = _Country;
-          _fpo.Currency = _Currency;
+          _fpo.Forwarder = _sp.VendorName.Tytuł;
+          _fpo.City = _sp.City.ToString();
           _fpo.DispatchDate = _sp.EndTime;
           _fpo.EMail = _sp.VendorName == null ? "oferty@cas.eu" : _sp.VendorName.EMail;
-          _fpo.FreightPO0 = _FreightPO0;
           _fpo.LoadingDate = _sp.StartTime;
-          _fpo.NIP = _FreightPayer;
-          _fpo.PayerName = _FreightPayer;
-          _fpo.SendInvoiceTo = _FreightPayer;
-          _fpo.TransportCosts = _sp.Route;
-          _fpo.TransportUnitType = _sp.TransportUnit;
           _fpo.Tytuł = "FREIGHT PURCHASE ORDER # {0}";
           _fpo.WarehouseAddress = _sp.Warehouse;
-          _fpo.WorkZip = _FreightPayer;
-          _fpo.WorkCity = _FreightPayer;
           _stt = "FreightPO";
           _fpo.Tytuł = String.Format(_fpo.Tytuł, _fpo.Identyfikator);
           _stt = "_fpo.Tytuł";

@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
       {
-        ShippingShipping _sh = Element.GetAtIndex<ShippingShipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        Shipping _sh = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
         Entities.AlarmsAndEvents _ae = new AlarmsAndEvents()
         {
           ShippingIndex = _sh,
@@ -75,7 +75,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
       {
-        ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        Shipping _sp = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
         e.Result = !(_sp.State.HasValue && (_sp.State.Value == State.Completed || _sp.State.Value == State.Canceled));
       }
     }
@@ -157,7 +157,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
       {
-        ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        Shipping _sp = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
         string _frmt = default(string);
         switch (_sp.State.Value)
         {
@@ -179,8 +179,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               SetupEnvironmentDelayed();
             }
             break;
-          case State.Waiting4ExternalApproval:
-          case State.Waiting4InternalApproval:
+          case State.WaitingForCarrierData:
+          case State.WaitingForSecurityData:
           case State.Creation:
             TimeSpan _2h = new TimeSpan(2, 0, 0);
             TimeSpan _24h = new TimeSpan(24, 0, 0);

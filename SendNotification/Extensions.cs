@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using CAS.SmartFactory.Shepherd.SendNotification.Entities;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification
 {
@@ -10,6 +8,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     public static string Cast2String(this object value)
     {
       return value == null ? String.Empty : (string)value;
+    }
+    public static string Title(this Element _val)
+    {
+      return _val == null ? String.Empty : _val.Tytuł;
     }
   }
 }
