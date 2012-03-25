@@ -239,8 +239,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EditButton.Click += new EventHandler(m_StateMachineEngine.EditButton_Click);
       m_AbortButton.Click += new EventHandler(m_StateMachineEngine.AbortButton_Click);
       m_AcceptButton.Click += new EventHandler(m_StateMachineEngine.AcceptButton_Click);
+      m_CoordinatorEditCheckBox.CheckedChanged += new EventHandler(m_StateMachineEngine.m_CoordinatorEditCheckBox_CheckedChanged);
       m_SecurityRequiredChecbox.CheckedChanged += new EventHandler(m_StateMachineEngine.m_SecurityRequiredChecbox_CheckedChanged);
     }
+
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -278,6 +280,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_EditButton.Enabled = false;
         m_AbortButton.Enabled = false;
         m_AcceptButton.Enabled = false;
+        m_CoordinatorPanel.Enabled = false;
       }
       base.OnPreRender(e);
     }
@@ -458,12 +461,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void SetInterconnectionData(RouteInterconnectionnData _route)
     {
+      if (!m_CoordinatorPanel.Enabled)
+        return;
       m_ControlState.RouteID = _route.ID;
       m_RouteLabel.Text = _route.Title;
     }
     private void SetInterconnectionData(SecurityEscortCatalogInterconnectionData _Escort)
     {
-      if (!m_SecurityRequiredChecbox.Checked)
+      if (!m_CoordinatorPanel.Enabled || !m_SecurityRequiredChecbox.Checked)
         return;
       m_ControlState.SecurityCatalogID = _Escort.ID;
       m_SecurityEscortLabel.Text = _Escort.Title;
@@ -496,9 +501,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ControlState.ClearShipping();
       m_TimeSlotTextBox.Text = String.Empty;
       m_WarehouseLabel.Text = String.Empty;
-      m_CityLabel.Text = String.Empty;
-      m_RouteLabel.Text = String.Empty;
-      m_SecurityEscortLabel.Text = String.Empty;
       m_DocumentTextBox.TextBoxTextProperty(String.Empty, true);
       m_CommentsTextBox.TextBoxTextProperty(String.Empty, false);
       m_EstimateDeliveryTimeDateTimeControl.SelectedDate = DateTime.Now;
@@ -507,6 +509,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TrailerConditionCommentsTextBox.Text = String.Empty;
       if (m_TrailerConditionDropdown.Visible && m_TrailerConditionDropdown.Items.Count > 0)
         m_TrailerConditionDropdown.SelectedIndex = 0;
+      ClearCoordinatorPanel();
+    }
+    private void ClearCoordinatorPanel()
+    {
+      m_SecurityRequiredChecbox.Checked = false;
+      m_CoordinatorEditCheckBox.Checked = false;
+      m_CityLabel.Text = String.Empty;
+      m_RouteLabel.Text = String.Empty;
+      m_SecurityEscortLabel.Text = String.Empty;
     }
     #endregion
 
@@ -612,6 +623,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return;
       m_SecurityEscortLabel.Text = _security.Tytuł;
       m_ControlState.SecurityCatalogID = _security.Identyfikator.IntToString();
+      m_SecurityRequiredChecbox.Checked = true;
     }
     private void Show(TransportUnitTypeTranspotUnit _unitType)
     {
@@ -771,7 +783,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void UpdateSecurityEscort(Shipping _sipping)
     {
-      if (!m_SecurityRequiredChecbox.Checked || m_ControlState.SecurityCatalogID.IsNullOrEmpty())
+      if (m_ControlState.SecurityCatalogID.IsNullOrEmpty())
       {
         _sipping.SecurityEscort = null;
         _sipping.SecurityEscortProvider = null;
@@ -871,11 +883,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TransportUnitTypeLabel.Visible = (_set & ButtonsSet.TransportUnitOn) != 0;
       m_EstimateDeliveryTimeLabel.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_EstimateDeliveryTimeDateTimeControl.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
-      m_RouteLabel.Visible = m_RouteHeaderLabel.Visible = (_set & ButtonsSet.RouteOn) != 0;
-      m_SecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
-      m_SecurityEscortHeaderLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
-      m_SecurityRequiredChecbox.Visible = (_set & ButtonsSet.EscortRequiredOn) != 0;
-      m_SecurityRequiredLabel.Visible = (_set & ButtonsSet.EscortRequiredOn) != 0;
+
+      m_CoordinatorPanel.Visible = (_set & ButtonsSet.RouteOn) != 0;
+      //m_RouteLabel.Visible = m_RouteHeaderLabel.Visible = (_set & ButtonsSet.RouteOn) != 0;
+      //m_SecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
+      //m_SecurityEscortHeaderLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
+      //m_SecurityRequiredChecbox.Visible = (_set & ButtonsSet.EscortRequiredOn) != 0;
+      //m_SecurityRequiredLabel.Visible = (_set & ButtonsSet.EscortRequiredOn) != 0;
       //Operator
       m_DockNumberTextBox.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_DocNumberLabel.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
@@ -909,6 +923,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TrailerConditionCommentsTextBox.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionDropdown.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
       //m_TrailerConditionDropdownLabel.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_CoordinatorPanel.Enabled = true;
     }
     #endregion
 
