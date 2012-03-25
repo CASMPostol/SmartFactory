@@ -19,44 +19,47 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
   {
     public override void FeatureActivated(SPFeatureReceiverProperties properties)
     {
-      SPSite site = properties.Feature.Parent as SPSite;
-      SPWeb _root = site.RootWeb;
-      if (site == null)
-        throw new ApplicationException("FeatureActivated cannot get access to the Web");
-      AddDocumentTemplates(_root);
-      using (Entities.EntitiesDataContext _edc = new Entities.EntitiesDataContext(_root.Url))
+      using (SPSite site = (SPSite)properties.Feature.Parent)
       {
-        Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated strating");
-        _root.Title = "Shepherd Home";
-        _root.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
-        _root.Update();
-        // create dropdown menu for custom site pages
-        Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
-        SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuInboundOwnerTitle, ProjectElementManagement.URLInboundOwner));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCoordinatorTitle, ProjectElementManagement.URLCoordinator));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundOwnerTitle, ProjectElementManagement.URLOutboundOwner));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundCoordinatorTitle, ProjectElementManagement.URLOutboundCoordinator));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuForwarderTitle, ProjectElementManagement.URLForwarderDashboard));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityEscortProviderTitle, ProjectElementManagement.URLSecurityEscortProviderDashboard));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityGateTitle, ProjectElementManagement.URLGateDashboard));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOperatorTitle, ProjectElementManagement.URLOperator));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSupervisorTitle, ProjectElementManagement.URLSupervisor));
-        foreach (SPNavigationNode item in _topNav)
-          item.Update();
-        WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
-        //SPWeb site = (SPWeb)properties.Feature.Parent;
-        Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated finished");
+        using (SPWeb _root = site.RootWeb)
+        {
+          AddDocumentTemplates(_root, GlobalDefinitions.FreightPurchaseOrderTemplate, GlobalDefinitions.FreightPOLibraryTitle);
+          AddDocumentTemplates(_root, GlobalDefinitions.EscortPOLibraryTemplate, GlobalDefinitions.EscortPOLibraryTitle);
+          AddDocumentTemplates(_root, GlobalDefinitions.SealProtocolLibraryTemplate, GlobalDefinitions.SealProtocolLibraryTitle);
+          using (Entities.EntitiesDataContext _edc = new Entities.EntitiesDataContext(_root.Url))
+          {
+            Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated strating");
+            _root.Title = "Shepherd Home";
+            _root.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
+            _root.Update();
+            // create dropdown menu for custom site pages
+            Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
+            SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuInboundOwnerTitle, ProjectElementManagement.URLInboundOwner));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCoordinatorTitle, ProjectElementManagement.URLCoordinator));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundOwnerTitle, ProjectElementManagement.URLOutboundOwner));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundCoordinatorTitle, ProjectElementManagement.URLOutboundCoordinator));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuForwarderTitle, ProjectElementManagement.URLForwarderDashboard));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityEscortProviderTitle, ProjectElementManagement.URLSecurityEscortProviderDashboard));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityGateTitle, ProjectElementManagement.URLGateDashboard));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOperatorTitle, ProjectElementManagement.URLOperator));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSupervisorTitle, ProjectElementManagement.URLSupervisor));
+            foreach (SPNavigationNode item in _topNav)
+              item.Update();
+            WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
+            //SPWeb site = (SPWeb)properties.Feature.Parent;
+            Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated finished");
+
+          }
+        }
       }
     }
-    private static void AddDocumentTemplates(SPWeb _root)
+    private static void AddDocumentTemplates(SPWeb _root, string templateUrl, string _strListName)
     {
-      SPDocumentLibrary libProposals;
-      libProposals = (SPDocumentLibrary)_root.Lists["Freight PO Library"];
-      string templateUrl = @"Lists/FreightPOLibrary/Forms/FreightPurchaseOrderTemplate.dotx";
-      libProposals.DocumentTemplateUrl = templateUrl;
-      libProposals.Update();
+      SPDocumentLibrary _list = (SPDocumentLibrary)_root.Lists[_strListName];
+      _list.DocumentTemplateUrl = templateUrl;
+      _list.Update();
     }
     // Uncomment the method below to handle the event raised before a feature is deactivated.
     public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
