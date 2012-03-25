@@ -122,12 +122,25 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
       }
     }
-    internal void m_SecurityRequiredChecbox_CheckedChanged(object sender, EventArgs e)
+    internal void m_CoordinatorEditCheckBox_CheckedChanged(object sender, EventArgs e)
     {
       switch (CurrentMachineState)
       {
         case InterfaceState.EditState:
           UpdateEscxort();
+          break;
+        case InterfaceState.ViewState:
+        case InterfaceState.NewState:
+        default:
+          SMError(InterfaceEvent.AbortClick);
+          break;
+      }
+    }
+    internal void m_SecurityRequiredChecbox_CheckedChanged(object sender, EventArgs e)
+    {
+      switch (CurrentMachineState)
+      {
+        case InterfaceState.EditState:
           break;
         case InterfaceState.ViewState:
         case InterfaceState.NewState:
