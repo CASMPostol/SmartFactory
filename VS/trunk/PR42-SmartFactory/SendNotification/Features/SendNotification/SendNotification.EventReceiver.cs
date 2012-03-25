@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
             _state = "EscortPOLibraryTitle";
             NewCreatePOAssociation(CreatePO.CreatePO.WorkflowDescription, _web, _taskList, _historyList);
             _state = "AddCreateFPOAssociation";
-            NewCreatePOAssociation(CreateSecurityPO.CreateSecurityPO.WorkflowDescription, _web, _taskList, _historyList);
+            NewCreatePOAssociation(CreateSecurityPO1.CreateSecurityPO1.WorkflowDescription, _web, _taskList, _historyList);
             _state = "AddCreateFPOAssociation";
             NewCreatePOAssociation(CreateSealProtocol.CreateSealProtocol.WorkflowDescription, _web, _taskList, _historyList);
             _state = "AddCreateFPOAssociation";
@@ -74,7 +74,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
           {
             RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], ShippingStateMachine.ShippingStateMachine.WorkflowId);
             RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreateSealProtocol.CreateSealProtocol.WorkflowId);
-            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreateSecurityPO.CreateSecurityPO.WorkflowId);
+            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreateSecurityPO1.CreateSecurityPO1.WorkflowId);
             RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreatePO.CreatePO.WorkflowId);
             RemoveWorkflowAssociation(site.Lists[CommonDefinition.EscortPOLibraryTitle], SendEmail.SendEmail.WorkflowId);
             RemoveWorkflowAssociation(site.Lists[CommonDefinition.FreightPOLibraryTitle], SendEmail.SendEmail.WorkflowId);

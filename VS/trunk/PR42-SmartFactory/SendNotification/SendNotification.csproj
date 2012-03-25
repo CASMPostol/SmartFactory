@@ -73,11 +73,11 @@
     <Compile Include="CreateSealProtocol\CreateSealProtocol.Designer.cs">
       <DependentUpon>CreateSealProtocol.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateSecurityPO\CreateSecurituPO.cs">
+    <Compile Include="CreateSecurityPO1\CreateSecurityPO1.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CreateSecurityPO\CreateSecurituPO.Designer.cs">
-      <DependentUpon>CreateSecurituPO.cs</DependentUpon>
+    <Compile Include="CreateSecurityPO1\CreateSecurityPO1.Designer.cs">
+      <DependentUpon>CreateSecurityPO1.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />
@@ -118,8 +118,8 @@
     <None Include="CreateSealProtocol\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e96c1352-1441-4927-a07c-e5366963adfe}</SharePointProjectItemId>
     </None>
-    <None Include="CreateSecurityPO\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{fdea486f-d881-4e44-80fa-e895df1ff502}</SharePointProjectItemId>
+    <None Include="CreateSecurityPO1\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{38cea048-1e1a-4e41-8780-7fc16d1f17c0}</SharePointProjectItemId>
     </None>
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="key.snk" />
@@ -161,7 +161,7 @@
   <ItemGroup>
     <Content Include="CreatePO\Elements.xml" />
     <Content Include="CreateSealProtocol\Elements.xml" />
-    <Content Include="CreateSecurityPO\Elements.xml" />
+    <Content Include="CreateSecurityPO1\Elements.xml" />
     <Content Include="Entities\Scripts\Parameters.xml" />
     <Content Include="SendEmail\Elements.xml">
       <SubType>Designer</SubType>

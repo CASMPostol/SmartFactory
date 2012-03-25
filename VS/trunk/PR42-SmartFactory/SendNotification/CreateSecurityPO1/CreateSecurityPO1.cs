@@ -16,26 +16,25 @@ using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.WorkflowActions;
 using CAS.SmartFactory.Shepherd.SendNotification.Entities;
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO
+namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
 {
-  public sealed partial class CreateSecurityPO : SequentialWorkflowActivity
+  public sealed partial class CreateSecurityPO1 : SequentialWorkflowActivity
   {
-    #region public
-    public CreateSecurityPO()
+    public CreateSecurityPO1()
     {
       InitializeComponent();
     }
-    internal static Guid WorkflowId = new Guid("b0d933a7-f1b4-4659-9181-b314ea3a0d29");
+    internal static Guid WorkflowId = new Guid("668b6423-a3a9-47eb-a8f4-5c11bf29474e");
     internal static WorkflowDescription WorkflowDescription { get { return new WorkflowDescription(WorkflowId, "New Security PO", "Create Security Escort Purchae Order"); } }
     public Guid workflowId = default(System.Guid);
-    #endregion
 
     #region OnWorkflowActivated
-    public SPWorkflowActivationProperties workflowProperties = new Microsoft.SharePoint.Workflow.SPWorkflowActivationProperties();
+    public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
     private void m_OnWorkflowActivated_Invoked(object sender, ExternalDataEventArgs e)
     {
       using (SPSite _st = workflowProperties.Site)
         _url = _st.Url;
+      m_AfterCreateLogToHistoryList_UserId = workflowProperties.OriginatorUser.ID;
     }
     private string _url = default(string);
     #endregion
@@ -101,23 +100,22 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO
           _EDC.SubmitChanges();
         }
         _stt = "SubmitChanges";
-        m_AfterCreateLogToHistoryList_HistoryOutcome1 = "Item Created";
-        m_AfterCreateLogToHistoryList_HistoryDescription1 = String.Format("File {0} containing purchase order for shipping {1} successfully created.", _newFileName, _spTitle);
+        m_AfterCreateLogToHistoryList_HistoryOutcome = "Item Created";
+        m_AfterCreateLogToHistoryList_HistoryDescription = String.Format("File {0} containing purchase order for shipping {1} successfully created.", _newFileName, _spTitle);
       }
       catch (Exception _ex)
       {
-        m_AfterCreateLogToHistoryList_HistoryOutcome1 = "Exception";
+        m_AfterCreateLogToHistoryList_HistoryOutcome = "Exception";
         string _frmt = "Creation of the Escort PO failed in the \"{0}\" state because of the error {1}";
-        m_AfterCreateLogToHistoryList_HistoryDescription1 = string.Format(_frmt, _stt, _ex.Message);
+        m_AfterCreateLogToHistoryList_HistoryDescription = string.Format(_frmt, _stt, _ex.Message);
       }
     }
-    #endregion
 
+    #endregion
     #region AfterCreateLogToHistoryList
-    public String m_AfterCreateLogToHistoryList_HistoryDescription1 = default(System.String);
-    public String m_AfterCreateLogToHistoryList_HistoryOutcome1 = default(System.String);
-    public Int32 m_AfterCreateLogToHistoryList_UserId1 = default(System.Int32);
+    public String m_AfterCreateLogToHistoryList_HistoryDescription = default(System.String);
+    public String m_AfterCreateLogToHistoryList_HistoryOutcome = default(System.String);
+    public Int32 m_AfterCreateLogToHistoryList_UserId = default(System.Int32);
     #endregion
-
   }
 }
