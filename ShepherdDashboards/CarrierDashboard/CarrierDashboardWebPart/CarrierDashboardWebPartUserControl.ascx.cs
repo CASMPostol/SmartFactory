@@ -80,13 +80,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           case GlobalDefinitions.Roles.OutboundOwner:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.ContainerNoOn;
-            m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.EstimatedDeliveryTime;
+            m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.PartnerOn;
             m_DocumentLabel.Text = m_LabetTextLike_DeliveryNo;
             m_ShowDocumentLabel = ShowDocumentLabelOutbound;
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Coordinator:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.OperatorControlsOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.PartnerOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.OperatorControlsOn;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel(null);
@@ -125,7 +125,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Forwarder:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn ^ 
+              ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.PartnerOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn;
             m_ShowDocumentLabel = ShowDocumentLabelForwarder;
             m_ShowDocumentLabel(null);
@@ -554,6 +555,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         catch (Exception) { }
         Show(_timeSlot, _sppng.IsEditable(), _timeSlot.IsDouble.GetValueOrDefault(false));
         m_CommentsTextBox.TextBoxTextProperty(_sppng.CancelationReason, false);
+        m_ContainerNoTextBox.TextBoxTextProperty(_sppng.ContainerNo, false);
         m_ShowDocumentLabel(_sppng);
         ShowOperatorStuff(_sppng);
         if (_sppng.IsOutbound.Value)
@@ -715,6 +717,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return;
       }
       _sppng.CancelationReason = m_CommentsTextBox.Text;
+      if (m_ContainerNoTextBox.Visible && m_ContainerNoTextBox.Enabled)
+        _sppng.ContainerNo = m_ContainerNoTextBox.Text;
       UpdateTransportUnitType(_sppng);
       UpdateOperatorPanel(_sppng);
       if (_sppng.IsOutbound.Value)
@@ -759,6 +763,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void UpdateTransportUnitType(Shipping _sppng)
     {
+      if (!m_TransportUnitTypeDropDownList.Enabled || !m_ContainerNoTextBox.Enabled)
+        return;
       if (m_TransportUnitTypeDropDownList.SelectedIndex < 0)
       {
         _sppng.TransportUnit = null;
