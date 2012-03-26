@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="TimeSlotsTemplateTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-TimeSlotsTemplateTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x0100e4381e17de2049b895b5140f70d7c21c" Name="TimeSlotsTemplate" Group="CAS Smart Factory Shepherd" Description="TimeSlotTemplate" Overwrite="TRUE" Inherits="FALSE">
+        <Folder TargetName="_cts/TimeSlotsTemplate" />
+        <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
+          <FieldRef ID="{BFA0D483-0643-4E54-8AED-B0170A8E0091}" Name="ScheduleTemplateTitle" />
+          <FieldRef ID="{4393284E-7070-419C-8E48-EE509BD12654}" Name="TimeSlotsTemplateDay" />
+          <FieldRef ID="{F68EEED7-A54A-4BBE-A4F6-C39C03A08FFC}" Name="TimeSlotsTemplateStartHour" />
+          <FieldRef ID="{2217F6E2-E799-4A4A-BFF4-7DF186EA59BC}" Name="TimeSlotsTemplateStartMinute" />
+          <FieldRef ID="{C86DF691-C23D-4CEB-BE18-64F11F3799DE}" Name="TimeSlotsTemplateEndHour" />
+          <FieldRef ID="{F1D9414F-F7C2-4229-A090-F2ED2258BF3C}" Name="TimeSlotsTemplateEndMinute" />
+        </FieldRefs>
+        <XmlDocuments>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
+          </XmlDocument>
+        </XmlDocuments>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+      <Field Type="Choice" DisplayName="End minute" ID="{f1d9414f-f7c2-4229-a090-f2ed2258bf3c}" Format="Dropdown" BaseType="Text" Name="TimeSlotsTemplateEndMinute" Group="CAS Smart Factory Shepherd">
+    <Default>0</Default>
+    <CHOICES>
+      <CHOICE>0</CHOICE>
+      <CHOICE>15</CHOICE>
+      <CHOICE>30</CHOICE>
+      <CHOICE>45</CHOICE>
+    </CHOICES>
+  </Field>
+      <Field Type="Choice" DisplayName="End hour" ID="{c86df691-c23d-4ceb-be18-64f11f3799de}" Format="Dropdown" BaseType="Text" Name="TimeSlotsTemplateEndHour" Group="CAS Smart Factory Shepherd">
+    <Default>0</Default>
+    <CHOICES>
+      <CHOICE>0</CHOICE>
+      <CHOICE>1</CHOICE>
+      <CHOICE>2</CHOICE>
+      <CHOICE>3</CHOICE>
+      <CHOICE>4</CHOICE>
+      <CHOICE>5</CHOICE>
+      <CHOICE>6</CHOICE>
+      <CHOICE>7</CHOICE>
+      <CHOICE>8</CHOICE>
+      <CHOICE>9</CHOICE>
+      <CHOICE>10</CHOICE>
+      <CHOICE>11</CHOICE>
+      <CHOICE>12</CHOICE>
+      <CHOICE>13</CHOICE>
+      <CHOICE>14</CHOICE>
+      <CHOICE>15</CHOICE>
+      <CHOICE>16</CHOICE>
+      <CHOICE>17</CHOICE>
+      <CHOICE>18</CHOICE>
+      <CHOICE>19</CHOICE>
+      <CHOICE>20</CHOICE>
+      <CHOICE>21</CHOICE>
+      <CHOICE>22</CHOICE>
+      <CHOICE>23</CHOICE>
+    </CHOICES>
+  </Field>
+      <Field Type="Choice" DisplayName="Start minute" ID="{2217f6e2-e799-4a4a-bff4-7df186ea59bc}" Format="Dropdown" BaseType="Text" Name="TimeSlotsTemplateStartMinute" Group="CAS Smart Factory Shepherd">
+    <Default>0</Default>
+    <CHOICES>
+      <CHOICE>0</CHOICE>
+      <CHOICE>15</CHOICE>
+      <CHOICE>30</CHOICE>
+      <CHOICE>45</CHOICE>
+    </CHOICES>
+  </Field>
+      <Field Type="Choice" DisplayName="Start hour" ID="{f68eeed7-a54a-4bbe-a4f6-c39c03a08ffc}" Format="Dropdown" BaseType="Text" Name="TimeSlotsTemplateStartHour" Group="CAS Smart Factory Shepherd">
+    <Default>0</Default>
+    <CHOICES>
+      <CHOICE>0</CHOICE>
+      <CHOICE>1</CHOICE>
+      <CHOICE>2</CHOICE>
+      <CHOICE>3</CHOICE>
+      <CHOICE>4</CHOICE>
+      <CHOICE>5</CHOICE>
+      <CHOICE>6</CHOICE>
+      <CHOICE>7</CHOICE>
+      <CHOICE>8</CHOICE>
+      <CHOICE>9</CHOICE>
+      <CHOICE>10</CHOICE>
+      <CHOICE>11</CHOICE>
+      <CHOICE>12</CHOICE>
+      <CHOICE>13</CHOICE>
+      <CHOICE>14</CHOICE>
+      <CHOICE>15</CHOICE>
+      <CHOICE>16</CHOICE>
+      <CHOICE>17</CHOICE>
+      <CHOICE>18</CHOICE>
+      <CHOICE>19</CHOICE>
+      <CHOICE>20</CHOICE>
+      <CHOICE>21</CHOICE>
+      <CHOICE>22</CHOICE>
+      <CHOICE>23</CHOICE>
+    </CHOICES>
+  </Field>
+      <Field Type="Choice" DisplayName="Day" ID="{4393284e-7070-419c-8e48-ee509bd12654}" Format="Dropdown" BaseType="Text" Name="TimeSlotsTemplateDay" Group="CAS Smart Factory Shepherd">
+    <Default>Monday</Default>
+    <CHOICES>
+      <CHOICE>Monday</CHOICE>
+      <CHOICE>Tuesday</CHOICE>
+      <CHOICE>Wednesday</CHOICE>
+      <CHOICE>Thursday</CHOICE>
+      <CHOICE>Friday</CHOICE>
+      <CHOICE>Saturday</CHOICE>
+      <CHOICE>Sunday</CHOICE>
+    </CHOICES>
+  </Field>
+      <Field Name="ScheduleTemplateTitle" ID="{bfa0d483-0643-4e54-8aed-b0170a8e0091}" Type="Lookup" List="Lists/ScheduleTemplateList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Schedule Template Shepherd" Group="CAS Smart Factory" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu">
+          </FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef ID="{BFA0D483-0643-4E54-8AED-B0170A8E0091}" Name="ScheduleTemplateTitle" />
+          <FieldRef ID="{4393284E-7070-419C-8E48-EE509BD12654}" Name="TimeSlotsTemplateDay" />
+          <FieldRef ID="{F68EEED7-A54A-4BBE-A4F6-C39C03A08FFC}" Name="TimeSlotsTemplateStartHour" />
+          <FieldRef ID="{2217F6E2-E799-4A4A-BFF4-7DF186EA59BC}" Name="TimeSlotsTemplateStartMinute" />
+          <FieldRef ID="{C86DF691-C23D-4CEB-BE18-64F11F3799DE}" Name="TimeSlotsTemplateEndHour" />
+          <FieldRef ID="{F1D9414F-F7C2-4229-A090-F2ED2258BF3C}" Name="TimeSlotsTemplateEndMinute" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

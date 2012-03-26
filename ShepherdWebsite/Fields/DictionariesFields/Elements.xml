@@ -2,6 +2,129 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
     Type="Choice"
+    DisplayName="End minute"
+    ID="{F1D9414F-F7C2-4229-A090-F2ED2258BF3C}"
+    Format="Dropdown"
+    BaseType="Text"
+    Name="TimeSlotsTemplateEndMinute"
+    Group="CAS Smart Factory Shepherd">
+    <Default>0</Default>
+    <CHOICES>
+      <CHOICE>0</CHOICE>
+      <CHOICE>15</CHOICE>
+      <CHOICE>30</CHOICE>
+      <CHOICE>45</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    Type="Choice"
+    DisplayName="End hour"
+    ID="{C86DF691-C23D-4CEB-BE18-64F11F3799DE}"
+    Format="Dropdown"
+    BaseType="Text"
+    Name="TimeSlotsTemplateEndHour"
+    Group="CAS Smart Factory Shepherd">
+    <Default>0</Default>
+    <CHOICES>
+      <CHOICE>0</CHOICE>
+      <CHOICE>1</CHOICE>
+      <CHOICE>2</CHOICE>
+      <CHOICE>3</CHOICE>
+      <CHOICE>4</CHOICE>
+      <CHOICE>5</CHOICE>
+      <CHOICE>6</CHOICE>
+      <CHOICE>7</CHOICE>
+      <CHOICE>8</CHOICE>
+      <CHOICE>9</CHOICE>
+      <CHOICE>10</CHOICE>
+      <CHOICE>11</CHOICE>
+      <CHOICE>12</CHOICE>
+      <CHOICE>13</CHOICE>
+      <CHOICE>14</CHOICE>
+      <CHOICE>15</CHOICE>
+      <CHOICE>16</CHOICE>
+      <CHOICE>17</CHOICE>
+      <CHOICE>18</CHOICE>
+      <CHOICE>19</CHOICE>
+      <CHOICE>20</CHOICE>
+      <CHOICE>21</CHOICE>
+      <CHOICE>22</CHOICE>
+      <CHOICE>23</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    Type="Choice"
+    DisplayName="Start minute"
+    ID="{2217F6E2-E799-4A4A-BFF4-7DF186EA59BC}"
+    Format="Dropdown"
+    BaseType="Text"
+    Name="TimeSlotsTemplateStartMinute"
+    Group="CAS Smart Factory Shepherd">
+    <Default>0</Default>
+    <CHOICES>
+      <CHOICE>0</CHOICE>
+      <CHOICE>15</CHOICE>
+      <CHOICE>30</CHOICE>
+      <CHOICE>45</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    Type="Choice"
+    DisplayName="Start hour"
+    ID="{F68EEED7-A54A-4BBE-A4F6-C39C03A08FFC}"
+    Format="Dropdown"
+    BaseType="Text"
+    Name="TimeSlotsTemplateStartHour"
+    Group="CAS Smart Factory Shepherd">
+    <Default>0</Default>
+    <CHOICES>
+      <CHOICE>0</CHOICE>
+      <CHOICE>1</CHOICE>
+      <CHOICE>2</CHOICE>
+      <CHOICE>3</CHOICE>
+      <CHOICE>4</CHOICE>
+      <CHOICE>5</CHOICE>
+      <CHOICE>6</CHOICE>
+      <CHOICE>7</CHOICE>
+      <CHOICE>8</CHOICE>
+      <CHOICE>9</CHOICE>
+      <CHOICE>10</CHOICE>
+      <CHOICE>11</CHOICE>
+      <CHOICE>12</CHOICE>
+      <CHOICE>13</CHOICE>
+      <CHOICE>14</CHOICE>
+      <CHOICE>15</CHOICE>
+      <CHOICE>16</CHOICE>
+      <CHOICE>17</CHOICE>
+      <CHOICE>18</CHOICE>
+      <CHOICE>19</CHOICE>
+      <CHOICE>20</CHOICE>
+      <CHOICE>21</CHOICE>
+      <CHOICE>22</CHOICE>
+      <CHOICE>23</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    Type="Choice"
+    DisplayName="Day"
+    ID="{4393284E-7070-419C-8E48-EE509BD12654}"
+    Format="Dropdown"
+    BaseType="Text"
+    Name="TimeSlotsTemplateDay"
+    Group="CAS Smart Factory Shepherd">
+    <Default>Monday</Default>
+    <CHOICES>
+      <CHOICE>Monday</CHOICE>
+      <CHOICE>Tuesday</CHOICE>
+      <CHOICE>Wednesday</CHOICE>
+      <CHOICE>Thursday</CHOICE>
+      <CHOICE>Friday</CHOICE>
+      <CHOICE>Saturday</CHOICE>
+      <CHOICE>Sunday</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
+    Type="Choice"
     DisplayName="Shepherd Role"
     ID="{8A0AFE8D-8D20-4326-9D4C-E53A14CC99AF}"
     Format="Dropdown"

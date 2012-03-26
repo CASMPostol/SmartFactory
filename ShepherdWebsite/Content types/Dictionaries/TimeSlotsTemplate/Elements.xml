@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0100e4381e17de2049b895b5140f70d7c21c"
+               Name="TimeSlotsTemplate"
+               Group="CAS Smart Factory Shepherd"
+               Description="TimeSlotTemplate"
+               Overwrite="TRUE"
+               Inherits="FALSE">
+    <Folder TargetName="_cts/TimeSlotsTemplate" />
+    <FieldRefs>
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
+      <FieldRef ID="{BFA0D483-0643-4E54-8AED-B0170A8E0091}" Name="ScheduleTemplateTitle" />
+      <FieldRef ID="{4393284E-7070-419C-8E48-EE509BD12654}" Name="TimeSlotsTemplateDay"/>
+      <FieldRef ID="{F68EEED7-A54A-4BBE-A4F6-C39C03A08FFC}" Name="TimeSlotsTemplateStartHour" />
+      <FieldRef ID="{2217F6E2-E799-4A4A-BFF4-7DF186EA59BC}" Name="TimeSlotsTemplateStartMinute" />
+      <FieldRef ID="{C86DF691-C23D-4CEB-BE18-64F11F3799DE}" Name="TimeSlotsTemplateEndHour" />
+      <FieldRef ID="{F1D9414F-F7C2-4229-A090-F2ED2258BF3C}" Name="TimeSlotsTemplateEndMinute" />
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
+</Elements>
