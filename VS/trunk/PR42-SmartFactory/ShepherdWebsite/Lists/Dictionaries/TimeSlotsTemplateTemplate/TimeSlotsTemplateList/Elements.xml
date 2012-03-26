@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="TimeSlot Templates"
+  <ListInstance Title="TimeSlots Template"
                 OnQuickLaunch="TRUE"
                 TemplateType="10050"
-                Url="Lists/TimeSlotTemplatesList"
-                Description="Time Slot Templates List Instance">
+                Url="Lists/TimeSlotsTemplateList"
+                Description="TimeSlots Template List Instance">
   </ListInstance>
 </Elements>
