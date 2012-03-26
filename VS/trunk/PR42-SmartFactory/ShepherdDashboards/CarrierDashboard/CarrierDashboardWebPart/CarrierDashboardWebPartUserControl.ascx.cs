@@ -79,7 +79,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         switch (value)
         {
           case GlobalDefinitions.Roles.OutboundOwner:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.OperatorControlsOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.ContainerNoOn;
             m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.EstimatedDeliveryTime;
             m_DocumentLabel.Text = m_LabetTextLike_DeliveryNo;
             m_ShowDocumentLabel = ShowDocumentLabelOutbound;
@@ -126,7 +126,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Forwarder:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.NewOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn;
             m_ShowDocumentLabel = ShowDocumentLabelForwarder;
             m_ShowDocumentLabel(null);
