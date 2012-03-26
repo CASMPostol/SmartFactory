@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       SaveOn = 0x01, EditOn = 0x02, CancelOn = 0x04, NewOn = 0x08,
       DocumentOn = 0x10, AbortOn = 0x20, CommentsOn = 0x40, EstimatedDeliveryTime = 0x80,
       CoordinatorPanelOn = 0x100, ContainerNoOn = 0x200, WarehouseOn = 0x400, TimeSlotOn = 0x800,
-      AcceptOn = 0x1000, TransportUnitOn = 0x2000, CityOn = 0x4000, 
+      AcceptOn = 0x1000, TransportUnitOn = 0x2000, CityOn = 0x4000, PartnerOn = 0x8000,
       OperatorControlsOn = 0x10000
     }
     internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, EnterState, AbortClick }
@@ -157,12 +157,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       switch (CurrentMachineState)
       {
-        case InterfaceState.ViewState:
-          break;
         case InterfaceState.NewState:
         case InterfaceState.EditState:
           SetInterconnectionData(e);
           break;
+        case InterfaceState.ViewState:
         default:
           break;
       }
@@ -176,7 +175,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
         case InterfaceState.EditState:
         case InterfaceState.NewState:
-          break;
         default:
           break;
       }
@@ -190,7 +188,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
         case InterfaceState.NewState:
         case InterfaceState.ViewState:
-          break;
         default:
           break;
       }
@@ -204,7 +201,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
         case InterfaceState.NewState:
         case InterfaceState.ViewState:
-          break;
         default:
           break;
       }
@@ -214,11 +210,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       switch (CurrentMachineState)
       {
         case InterfaceState.NewState:
-        case InterfaceState.EditState:
           SetInterconnectionData(e);
           break;
+        case InterfaceState.EditState:
         case InterfaceState.ViewState:
-          break;
         default:
           break;
       }
@@ -232,7 +227,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           break;
         case InterfaceState.EditState:
         case InterfaceState.ViewState:
-          break;
         default:
           break;
       }

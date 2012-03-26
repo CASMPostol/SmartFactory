@@ -157,6 +157,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.Label m_CityLabel;
         
         /// <summary>
+        /// m_PartnerHeaderLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_PartnerHeaderLabel;
+        
+        /// <summary>
+        /// m_PartnerLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_PartnerLabel;
+        
+        /// <summary>
         /// m_CoordinatorPanel control.
         /// </summary>
         /// <remarks>
