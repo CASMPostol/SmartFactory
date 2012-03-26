@@ -75,11 +75,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         m_DashboardType = value;
         ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTime ^
-          ButtonsSet.RouteOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.EscortRequiredOn ^ ButtonsSet.OperatorControlsOn;
+          ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.OperatorControlsOn;
         switch (value)
         {
           case GlobalDefinitions.Roles.OutboundOwner:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.RouteOn ^ ButtonsSet.EscortRequiredOn ^ ButtonsSet.OperatorControlsOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.OperatorControlsOn;
             m_EditbilityACL = m_VisibilityACL ^ ButtonsSet.EstimatedDeliveryTime;
             m_DocumentLabel.Text = m_LabetTextLike_DeliveryNo;
             m_ShowDocumentLabel = ShowDocumentLabelOutbound;
@@ -93,15 +93,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             break;
           case GlobalDefinitions.Roles.Supervisor:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
-              ButtonsSet.SecurityEscortOn ^ ButtonsSet.EscortRequiredOn;
+              ButtonsSet.CoordinatorPanelOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
-              ButtonsSet.SecurityEscortOn ^ ButtonsSet.EscortRequiredOn;
+              ButtonsSet.CoordinatorPanelOn;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.InboundOwner:
             m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_Vendor;
-            m_VisibilityACL = _inbound | ButtonsSet.SecurityEscortOn;
+            m_VisibilityACL = _inbound;
             m_EditbilityACL = _inbound;
             m_ShowDocumentLabel = ShowDocumentLabelInboundVendor;
             m_ShowDocumentLabel(null);
@@ -120,23 +120,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Guard:
-            m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.DocumentOn | ButtonsSet.RouteOn | ButtonsSet.WarehouseOn
-              | ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn;
+            m_VisibilityACL = ButtonsSet.CommentsOn | ButtonsSet.DocumentOn | ButtonsSet.WarehouseOn | ButtonsSet.TimeSlotOn;
             m_EditbilityACL = 0;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Forwarder:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.NewOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^
-              ButtonsSet.EscortRequiredOn ^ ButtonsSet.OperatorControlsOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.SecurityEscortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^
-              ButtonsSet.EscortRequiredOn ^ ButtonsSet.OperatorControlsOn;
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn;
             m_ShowDocumentLabel = ShowDocumentLabelForwarder;
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Escort:
-            m_VisibilityACL = ButtonsSet.TimeSlotOn | ButtonsSet.SecurityEscortOn | ButtonsSet.DocumentOn | ButtonsSet.RouteOn;
-            m_EditbilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.SecurityEscortOn;
+            m_VisibilityACL = ButtonsSet.TimeSlotOn | ButtonsSet.CoordinatorPanelOn | ButtonsSet.DocumentOn;
+            m_EditbilityACL = m_AllButtons ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.CoordinatorPanelOn;
             m_ShowDocumentLabel = ShowDocumentLabelEscort;
             m_ShowDocumentLabel(null);
             break;
@@ -242,7 +239,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_CoordinatorEditCheckBox.CheckedChanged += new EventHandler(m_StateMachineEngine.m_CoordinatorEditCheckBox_CheckedChanged);
       m_SecurityRequiredChecbox.CheckedChanged += new EventHandler(m_StateMachineEngine.m_SecurityRequiredChecbox_CheckedChanged);
     }
-
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -280,8 +276,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_EditButton.Enabled = false;
         m_AbortButton.Enabled = false;
         m_AcceptButton.Enabled = false;
-        m_CoordinatorPanel.Enabled = false;
+        m_CoordinatorEditCheckBox.Enabled = false;
       }
+      m_SecurityRequiredChecbox.Enabled = m_CoordinatorEditCheckBox.Checked;
       base.OnPreRender(e);
     }
     /// <summary>
@@ -404,9 +401,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         foreach (var item in _rslt)
           Parent.Controls.Add(new LiteralControl(item));
       }
-      protected override void UpdateEscxort()
+      protected override void UpdateEscxortRequired()
       {
-        Parent.UpdateEscxort();
+        Parent.UpdateEscxortRequired();
       }
       #endregion
 
@@ -461,14 +458,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void SetInterconnectionData(RouteInterconnectionnData _route)
     {
-      if (!m_CoordinatorPanel.Enabled)
+      if (!m_CoordinatorEditCheckBox.Checked)
         return;
       m_ControlState.RouteID = _route.ID;
       m_RouteLabel.Text = _route.Title;
     }
     private void SetInterconnectionData(SecurityEscortCatalogInterconnectionData _Escort)
     {
-      if (!m_CoordinatorPanel.Enabled || !m_SecurityRequiredChecbox.Checked)
+      if (!m_CoordinatorEditCheckBox.Checked || !m_SecurityRequiredChecbox.Checked)
         return;
       m_ControlState.SecurityCatalogID = _Escort.ID;
       m_SecurityEscortLabel.Text = _Escort.Title;
@@ -509,24 +506,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TrailerConditionCommentsTextBox.Text = String.Empty;
       if (m_TrailerConditionDropdown.Visible && m_TrailerConditionDropdown.Items.Count > 0)
         m_TrailerConditionDropdown.SelectedIndex = 0;
+      m_CityLabel.Text = String.Empty;
       ClearCoordinatorPanel();
     }
     private void ClearCoordinatorPanel()
     {
-      m_SecurityRequiredChecbox.Checked = false;
       m_CoordinatorEditCheckBox.Checked = false;
-      m_CityLabel.Text = String.Empty;
+      m_SecurityRequiredChecbox.Checked = false;
       m_RouteLabel.Text = String.Empty;
       m_SecurityEscortLabel.Text = String.Empty;
     }
     #endregion
 
     #region Show
-    internal void UpdateEscxort()
+    internal void UpdateEscxortRequired()
     {
-      if (m_SecurityRequiredChecbox.Checked)
-        Show(CurrentShipping.SecurityEscort);
-      else
+      if (!m_SecurityRequiredChecbox.Checked)
         ClearSecurityEscor();
     }
     private ActionResult ShowShipping()
@@ -883,13 +878,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_TransportUnitTypeLabel.Visible = (_set & ButtonsSet.TransportUnitOn) != 0;
       m_EstimateDeliveryTimeLabel.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_EstimateDeliveryTimeDateTimeControl.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
-
-      m_CoordinatorPanel.Visible = (_set & ButtonsSet.RouteOn) != 0;
-      //m_RouteLabel.Visible = m_RouteHeaderLabel.Visible = (_set & ButtonsSet.RouteOn) != 0;
-      //m_SecurityEscortLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
-      //m_SecurityEscortHeaderLabel.Visible = (_set & ButtonsSet.SecurityEscortOn) != 0;
-      //m_SecurityRequiredChecbox.Visible = (_set & ButtonsSet.EscortRequiredOn) != 0;
-      //m_SecurityRequiredLabel.Visible = (_set & ButtonsSet.EscortRequiredOn) != 0;
+      m_CoordinatorPanel.Visible = (_set & ButtonsSet.CoordinatorPanelOn) != 0;
       //Operator
       m_DockNumberTextBox.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_DocNumberLabel.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
@@ -905,9 +894,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_DocumentTextBox.Enabled = (_set & ButtonsSet.DocumentOn) != 0;
       m_EstimateDeliveryTimeDateTimeControl.Enabled = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_TimeSlotTextBox.Enabled = false;
-      //m_WarehouseLabel.Enabled = false;
       m_TransportUnitTypeDropDownList.Enabled = (_set & ButtonsSet.TransportUnitOn) != 0;
-      //m_TransportUnitTypeLabel.Enabled = (_set & ButtonsSet.TransportUnitOn) != 0;
       //Buttons
       m_AcceptButton.Enabled = (_set & ButtonsSet.AcceptOn) != 0;
       m_AbortButton.Enabled = (_set & ButtonsSet.AbortOn) != 0;
@@ -915,15 +902,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EditButton.Enabled = (_set & ButtonsSet.EditOn) != 0;
       m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
       m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
-      m_SecurityRequiredChecbox.Enabled = (_set & ButtonsSet.SaveOn) != 0;
+      m_CoordinatorEditCheckBox.Enabled = (_set & ButtonsSet.CoordinatorPanelOn) != 0;
       //Operator
       m_DockNumberTextBox.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
-      //m_DocNumberLabel.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
-      //m_TrailerConditionCommentsLabel.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionCommentsTextBox.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionDropdown.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
-      //m_TrailerConditionDropdownLabel.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
-      m_CoordinatorPanel.Enabled = true;
     }
     #endregion
 
