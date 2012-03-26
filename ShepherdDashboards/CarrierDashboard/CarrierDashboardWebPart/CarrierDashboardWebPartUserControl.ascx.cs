@@ -862,6 +862,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       _set &= m_VisibilityACL;
       m_CommentsTextBox.Visible = m_CommentsLabel.Visible = (_set & ButtonsSet.CommentsOn) != 0;
       m_DocumentTextBox.Visible = m_DocumentLabel.Visible = (_set & ButtonsSet.DocumentOn) != 0;
+
       m_TimeSlotTextBox.Visible = m_TimeSlotLabel.Visible = (_set & ButtonsSet.TimeSlotOn) != 0;
       m_WarehouseLabel.Visible = m_WarehousehHeaderLabel.Visible = (_set & ButtonsSet.WarehouseOn) != 0;
       //buttons
@@ -874,18 +875,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       //outbound
       m_CityHeaderLabel.Visible = (_set & ButtonsSet.CityOn) != 0;
       m_CityLabel.Visible = (_set & ButtonsSet.CityOn) != 0;
+      //TransportUnit
       m_TransportUnitTypeDropDownList.Visible = (_set & ButtonsSet.TransportUnitOn) != 0;
       m_TransportUnitTypeLabel.Visible = (_set & ButtonsSet.TransportUnitOn) != 0;
+      //EstimateDeliveryTime
       m_EstimateDeliveryTimeLabel.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_EstimateDeliveryTimeDateTimeControl.Visible = (_set & ButtonsSet.EstimatedDeliveryTime) != 0;
       m_CoordinatorPanel.Visible = (_set & ButtonsSet.CoordinatorPanelOn) != 0;
       //Operator
       m_DockNumberTextBox.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_DocNumberLabel.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      //TrailerCondition
       m_TrailerConditionDropdownLabel.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionDropdown.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionCommentsLabel.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionCommentsTextBox.Visible = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      //Container
+      m_ContainerNoLabel.Visible = (_set & ButtonsSet.ContainerNoOn) != 0;
+      m_ContainerNoTextBox.Visible = (_set & ButtonsSet.ContainerNoOn) != 0;
     }
     private void SetEnabled(StateMachineEngine.ControlsSet _set)
     {
@@ -907,6 +914,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_DockNumberTextBox.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionCommentsTextBox.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionDropdown.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
+      m_ContainerNoTextBox.Enabled = (_set & ButtonsSet.ContainerNoOn) != 0;
     }
     #endregion
 
