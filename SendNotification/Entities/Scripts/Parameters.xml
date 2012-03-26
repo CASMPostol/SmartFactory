@@ -29,5 +29,10 @@
   <List Name="Freight PO Library"/>
   <List Name="Escort PO Library"/>
   <List Name="Distribution List" />
+  <List Name="Truck"></List>
+  <List Name="Trailer"></List>
+  <List Name="Drivers Team"></List>
+  <List Name="Driver"></List>
+
   <ExcludeOtherLists/>
 </Web>
