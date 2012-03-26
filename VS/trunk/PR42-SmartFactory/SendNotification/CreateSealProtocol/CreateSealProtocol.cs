@@ -97,7 +97,45 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
     }
     private Dictionary<TeamMembers, string> GetTeamData(Shipping _sp)
     {
-      throw new NotImplementedException();
+      Dictionary<TeamMembers, string> _ret = new Dictionary<TeamMembers, string>();
+      _ret.Add(TeamMembers._1stDriver, "");
+      _ret.Add(TeamMembers._1stEscort, "");
+      _ret.Add(TeamMembers._2ndDriver, "");
+      _ret.Add(TeamMembers._2ndEscort, "");
+      _ret.Add(TeamMembers.DriverSPhone, "");
+      _ret.Add(TeamMembers.EscortPhone, "");
+      _ret.Add(TeamMembers.EscortCarNo, _sp.SecurityEscortCarRegistrationNumber.Title());
+      _ret.Add(TeamMembers.TrailerNo, _sp.TrailerRegistrationNumber.Title());
+      _ret.Add(TeamMembers.TruckNo, _sp.TruckCarRegistrationNumber.Title());
+
+      foreach (ShippingDriversTeam _std in _sp.ShippingDriversTeam)
+      {
+        if (_std.Driver == null)
+          continue;
+        TeamMembers _cd = TeamMembers._1stDriver;
+        TeamMembers _cse = TeamMembers._1stEscort; 
+        if (_std.Driver.VendorName.ServiceType.Value == ServiceType.Forwarder)
+        {
+          _ret[_cd] = _std.Driver.Title();
+          if (_cd == TeamMembers._1stDriver)
+          {
+            _cd = TeamMembers._2ndDriver;
+            _ret[TeamMembers.DriverSPhone] = _std.Driver != null ? _std.Driver.NumerTelefonuKomórkowego : " -- not set --";
+          }
+        }
+        else if (_std.Driver.VendorName.ServiceType.Value == ServiceType.SecurityEscortProvider)
+        {
+          _ret[_cse] = _std.Driver.Title();
+          if (_cse == TeamMembers._1stEscort)
+          {
+            _cd = TeamMembers._2ndEscort;
+            _ret[TeamMembers.EscortPhone] = _std.Driver != null ? _std.Driver.NumerTelefonuKomórkowego : " -- not set --";
+          }
+        }
+        else
+          new ApplicationException(String.Format("Wrong ServiceType = {0}", _std.Driver.VendorName.ServiceType.Value));
+      }
+      return _ret;
     }
     #endregion
 
