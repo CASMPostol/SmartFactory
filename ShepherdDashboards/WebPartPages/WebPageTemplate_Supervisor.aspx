@@ -25,16 +25,6 @@
                     <tr>
                         <td width="1000px" valign="top">
                         <WebPartPages:WebpartZone
-                        ID="Warehouse" runat="server"
-                        Title="Warehouse Web Part Zone"
-                        FrameType="TitleBarOnly" />
-                        </td>
-                    </tr>
-                </table>
-                <table border="0" width="1000px">
-                    <tr>
-                        <td width="1000px" valign="top">
-                        <WebPartPages:WebpartZone
                         ID="Shippings" runat="server"
                         Title="Shippings Web Part Zone"
                         FrameType="TitleBarOnly" />

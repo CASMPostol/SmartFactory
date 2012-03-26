@@ -2,25 +2,6 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="SupervisorDashboard">
     <File Path="WebPartPages\WebPageTemplate_Supervisor.aspx" Url="WebPartPages/SupervisorDashboard.aspx">
-      <View List="Lists/WarehouseList" BaseViewID="2" WebPartZoneID="Warehouse" WebPartOrder="0">
-        <![CDATA[
- <webParts>
- <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
- <metaData>
- <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart,Microsoft.SharePoint,Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" />
- <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
- </metaData>
- <data>
- <properties>
- <property name="Title" type="string">Select warehouse</property>
- <property name="TitleUrl" type="string">SupervisorDashboard.aspx</property>
- <property name="AllowConnect" type="bool">True</property>
- </properties>
- </data>
- </webPart>
- </webParts>
- ]]>
-      </View>
       <View List="Lists/ShippingList" BaseViewID="11" WebPartZoneID="Shippings" WebPartOrder="0">
         <![CDATA[
  <webParts>
