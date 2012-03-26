@@ -51,14 +51,14 @@
                 <tr>
                     <td width="50%" valign="top">
                     <WebPartPages:WebpartZone
-                    ID="ShippingManager" runat="server"
-                    Title="Shipping Manager Web Part Zone"
+                    ID="TransportResource" runat="server"
+                    Title="Transport Resource Web Part Zone"
                     FrameType="TitleBarOnly" />
                     </td>
                     <td width="50%" valign="top">
                     <WebPartPages:WebpartZone
-                    ID="TransportResource" runat="server"
-                    Title="Transport Resource Web Part Zone"
+                    ID="Empty" runat="server"
+                    Title="Empty Web Part Zone"
                     FrameType="TitleBarOnly" />
                     </td>
                 </tr>
