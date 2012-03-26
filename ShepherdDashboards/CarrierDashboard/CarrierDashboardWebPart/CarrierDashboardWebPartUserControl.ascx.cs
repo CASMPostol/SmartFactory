@@ -95,7 +95,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
               ButtonsSet.CoordinatorPanelOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
-              ButtonsSet.CoordinatorPanelOn;
+              ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.CommentsOn;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel(null);
             break;
@@ -108,7 +108,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             break;
           case GlobalDefinitions.Roles.Operator:
             m_VisibilityACL = _inbound ^ ButtonsSet.AbortOn ^ ButtonsSet.NewOn | ButtonsSet.OperatorControlsOn;
-            m_EditbilityACL = _inbound | ButtonsSet.OperatorControlsOn;
+            m_EditbilityACL = (_inbound | ButtonsSet.OperatorControlsOn) ^ ButtonsSet.CommentsOn;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel(null);
             break;
