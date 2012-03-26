@@ -11,7 +11,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       SaveOn = 0x01, EditOn = 0x02, CancelOn = 0x04, NewOn = 0x08,
       DocumentOn = 0x10, AbortOn = 0x20, CommentsOn = 0x40, EstimatedDeliveryTime = 0x80,
-      CoordinatorPanelOn = 0x100, WarehouseOn = 0x400, TimeSlotOn = 0x800,
+      CoordinatorPanelOn = 0x100, ContainerNoOn = 0x200, WarehouseOn = 0x400, TimeSlotOn = 0x800,
       AcceptOn = 0x1000, TransportUnitOn = 0x2000, CityOn = 0x4000, 
       OperatorControlsOn = 0x10000
     }
@@ -276,14 +276,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             (
               ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.CommentsOn | ControlsSet.EstimatedDeliveryTime |
               ControlsSet.AbortOn | ControlsSet.AcceptOn | ControlsSet.TransportUnitOn | ControlsSet.CoordinatorPanelOn | 
-              ControlsSet.OperatorControlsOn
+              ControlsSet.OperatorControlsOn | ControlsSet.ContainerNoOn
             );
           break;
         case InterfaceState.NewState:
           SetEnabled
             (
               ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.CommentsOn | ControlsSet.EstimatedDeliveryTime |
-              ControlsSet.DocumentOn | ControlsSet.TransportUnitOn | ControlsSet.CoordinatorPanelOn
+              ControlsSet.DocumentOn | ControlsSet.TransportUnitOn | ControlsSet.CoordinatorPanelOn | ControlsSet.ContainerNoOn
             );
           ClearUserInterface();
           break;
