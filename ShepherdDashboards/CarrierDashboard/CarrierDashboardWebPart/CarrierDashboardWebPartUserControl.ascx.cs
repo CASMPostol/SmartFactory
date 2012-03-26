@@ -681,8 +681,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         EDC.LoadDescription.InsertOnSubmit(_ld);
         MakeBooking(_sppng, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble);
         EDC.SubmitChanges();
-        ReportAlert(_sppng, "Shipping Created");
-        SendShippingData(_sppng);
       }
       catch (Exception ex)
       {
@@ -700,7 +698,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         UpdateTimeSlot(CurrentShipping, _rst);
         EDC.SubmitChanges();
         m_ControlState.TimeSlotChanged = false;
-        ReportAlert(CurrentShipping, "Shipping updated");
       }
       catch (Exception ex)
       {
@@ -829,10 +826,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           case State.Canceled:
             CurrentShipping.ReleaseBooking(null);
-            ReportAlert(CurrentShipping, "The shipping has been canceled.");
             break;
           case State.Confirmed:
-            ReportAlert(CurrentShipping, "The shipping has been confirmed.");
             break;
           case State.None:
           case State.Invalid:
@@ -940,17 +935,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       string _tmplt = "The current operation has been interrupted by error {0}.";
       Entities.Anons _entry = new Anons(_source, String.Format(_tmplt, ex.Message));
       EDC.EventLogList.InsertOnSubmit(_entry);
-      EDC.SubmitChanges();
-    }
-    private void ReportAlert(Shipping _shipping, string _msg)
-    {
-      Entities.AlarmsAndEvents _ae = new Entities.AlarmsAndEvents()
-      {
-        ShippingIndex = _shipping,
-        VendorName = _shipping.VendorName,
-        Tytuł = _msg,
-      };
-      EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
       EDC.SubmitChanges();
     }
     #endregion
