@@ -75,7 +75,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         m_DashboardType = value;
         ButtonsSet _inbound = m_AllButtons ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^ ButtonsSet.EstimatedDeliveryTime ^
-          ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.OperatorControlsOn;
+          ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.OperatorControlsOn ^ ButtonsSet.PartnerOn;
         switch (value)
         {
           case GlobalDefinitions.Roles.OutboundOwner:
@@ -93,21 +93,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             break;
           case GlobalDefinitions.Roles.Supervisor:
             m_VisibilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
-              ButtonsSet.CoordinatorPanelOn;
+              ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.PartnerOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.AcceptOn ^ ButtonsSet.EstimatedDeliveryTime ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.CityOn ^
               ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.CommentsOn;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.InboundOwner:
-            m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_Vendor;
-            m_VisibilityACL = _inbound;
+            m_VisibilityACL = _inbound | ButtonsSet.PartnerOn;
             m_EditbilityACL = _inbound;
             m_ShowDocumentLabel = ShowDocumentLabelInboundVendor;
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Operator:
-            m_VisibilityACL = _inbound ^ ButtonsSet.AbortOn ^ ButtonsSet.NewOn | ButtonsSet.OperatorControlsOn;
+            m_VisibilityACL = (_inbound ^ ButtonsSet.AbortOn ^ ButtonsSet.NewOn) | ButtonsSet.OperatorControlsOn;
             m_EditbilityACL = (_inbound | ButtonsSet.OperatorControlsOn) ^ ButtonsSet.CommentsOn;
             m_ShowDocumentLabel = ShowDocumentLabelDefault;
             m_ShowDocumentLabel(null);
@@ -349,8 +348,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       protected override void SetInterconnectionData(PartnerInterconnectionData _partner)
       {
-        Parent.m_ControlState.PartnerID = _partner.ID;
-        Parent.m_SecurityEscortLabel.Text = _partner.Title;
+        Parent.SetInterconnectionData(_partner);
       }
       protected override void SetInterconnectionData(CityInterconnectionData _city)
       {
@@ -423,6 +421,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private LocalStateMachineEngine m_StateMachineEngine;
     #endregion
 
+
     #region Interconnection
     private void SetInterconnectionData(ShippingInterconnectionData _interconnectionData)
     {
@@ -455,6 +454,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ControlState.CityID = _city.ID;
       m_CityLabel.Text = _city.Title;
       ClearRoute();
+    }
+    internal void SetInterconnectionData(PartnerInterconnectionData _partner)
+    {
+      m_ControlState.PartnerID = _partner.ID;
+      m_PartnerHeaderLabel.Text = m_LabetTextLike_Vendor;
+      m_PartnerLabel.Text = _partner.Title;
     }
     private void SetInterconnectionData(RouteInterconnectionnData _route)
     {
@@ -507,6 +512,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       if (m_TrailerConditionDropdown.Visible && m_TrailerConditionDropdown.Items.Count > 0)
         m_TrailerConditionDropdown.SelectedIndex = 0;
       m_CityLabel.Text = String.Empty;
+      m_PartnerLabel.Text = String.Empty;
+      m_ContainerNoTextBox.Text = String.Empty;
       ClearCoordinatorPanel();
     }
     private void ClearCoordinatorPanel()
@@ -605,10 +612,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void Show(Partner _partner)
     {
-      m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_Vendor;
       if (_partner == null)
         return;
-      m_SecurityEscortLabel.Text = _partner.Tytuł;
+      m_PartnerHeaderLabel.Text = m_LabetTextLike_Vendor;
+      m_PartnerLabel.Text = _partner.Tytuł;
       m_ControlState.PartnerID = _partner.Identyfikator.IntToString();
     }
     private void Show(SecurityEscortCatalog _security)
@@ -893,6 +900,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       //Container
       m_ContainerNoLabel.Visible = (_set & ButtonsSet.ContainerNoOn) != 0;
       m_ContainerNoTextBox.Visible = (_set & ButtonsSet.ContainerNoOn) != 0;
+      //
+      m_PartnerHeaderLabel.Visible = (_set & ButtonsSet.PartnerOn) != 0;
+      m_PartnerLabel.Visible = (_set & ButtonsSet.PartnerOn) != 0;
     }
     private void SetEnabled(StateMachineEngine.ControlsSet _set)
     {
@@ -1118,6 +1128,5 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #endregion
-
   }
 }
