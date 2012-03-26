@@ -26,6 +26,17 @@
     <asp:TableRow>
         <asp:TableCell>
             <asp:Table ID="Row2" runat="server" CssClass="TableInside">
+            <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label runat="server" CssClass="Label" ID="Label1" Text="All drivers:"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                        <asp:Label runat="server" CssClass="Label" ID="Label2" Text=""></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                        <asp:Label runat="server" CssClass="Label" ID="Label3" Text="Selected drivers:"></asp:Label>
+            </asp:TableCell>
+                </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
                 <asp:ListBox ID="m_DriversListBox" runat="server" CssClass="ListBoxInside" Enabled="false"></asp:ListBox>
