@@ -96,7 +96,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       //else
       //  _ts.Tytuł = String.Format("Inbound No. {0} by {1}", this.Tytuł, this.VendorName == null ? "--not assigned--" : VendorName.Tytuł);
       this.StartTime = _ts.StartTime;
-      this.EndTime = _ts.StartTime;
+      this.EndTime = _ts.EndTime;
+      this.Duration = Convert.ToDouble((_ts.EndTime.Value - _ts.EndTime.Value).TotalMinutes);
       this.Warehouse = _ts.GetWarehouse();
       if (!_isDouble)
       {
@@ -115,6 +116,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       _next.Occupied = Entities.Occupied.Occupied0;
       _next.ShippingIndex = this;
       _next.IsDouble = true;
+      this.EndTime = _next.EndTime;
+      this.Duration = Convert.ToDouble((_ts.EndTime.Value - _ts.EndTime.Value).TotalMinutes);
     }
     internal void UpdateTitle()
     {
