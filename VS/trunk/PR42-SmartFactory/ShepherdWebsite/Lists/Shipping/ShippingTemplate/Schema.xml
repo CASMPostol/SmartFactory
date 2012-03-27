@@ -28,6 +28,7 @@
           <FieldRef ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}" Name="Shipping2TransportUnitType" />
           <FieldRef ID="{E6381646-DB08-4C85-9A2F-59B931D98DBB}" Name="LoadingType" />
           <FieldRef ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}" Name="AdditionalCosts" />
+          <FieldRef ID="{2294100C-D521-4B8B-BC56-F8CD71583E22}" Name="Shipping2CurrencyForAdditionalCosts" />
           <FieldRef ID="{DEBE4D8F-04DE-4A3B-AA59-320884A6E044}" Name="IsOutbound" />
           <FieldRef ID="{FF299D34-A04A-4507-82E7-EF325CC6797E}" Name="Shipping2FreightPOIndex" />
           <FieldRef ID="{045419D2-8EDB-4989-A2B8-650A8EF7C16C}" Name="Shipping2EscortPOIndex" />
@@ -44,6 +45,8 @@
           <FieldRef ID="{77435F24-1DF2-4A77-934B-AEEBA52321BF}" Name="TotalQuantityKU" />
           <FieldRef ID="{6E8574E7-9665-4240-B5BC-4D4528AECAE2}" Name="Shipping2RouteTransportCosts" />
           <FieldRef ID="{61110A63-4CF5-4EE5-BB08-C0CCF25AE5D0}" Name="Shipping2SecuirtyEscorRouteSecurityCost" />
+          <FieldRef ID="{72FAC253-6C2E-474F-86C5-269D2DE5AA20}" Name="TotalCostsPerKU" />
+          <FieldRef ID="{EEAE731E-40E4-4C16-B620-E747A8A6675A}" Name="Shipping2CurrencyForTotalCostsPerKU" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -127,6 +130,11 @@
       <Field Name="TotalQuantityKU" DisplayName="Total Quantity in KU" Type="Number" ID="{77435F24-1DF2-4A77-934B-AEEBA52321BF}" Group="CAS Smart Factory Shepherd" />
       <Field Name="Shipping2RouteTransportCosts" ID="{6E8574E7-9665-4240-B5BC-4D4528AECAE2}" Type="Lookup" List="Lists/RouteList" ShowField="TransportCosts" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Freight Cost" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="Shipping2SecuirtyEscorRouteSecurityCost" ID="{61110A63-4CF5-4EE5-BB08-C0CCF25AE5D0}" Type="Lookup" List="Lists/SecurityEscortRouteList" ShowField="SecurityCost" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Escort Cost" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="Shipping2CurrencyForAdditionalCosts" ID="{2294100C-D521-4B8B-BC56-F8CD71583E22}" Type="Lookup" List="Lists/CurrencyList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Additional costs currency" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="Shipping2CurrencyForFreight" ID="{DDCD7887-5687-40A8-8E25-58AFA4C0F640}" Type="Lookup" List="Lists/CurrencyList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Freight costs currency" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="Shipping2CurrencyForEscort" ID="{5AAF6163-D537-4B00-BBEB-6AB56D2FAFF0}" Type="Lookup" List="Lists/CurrencyList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Escort costs currency" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="TotalCostsPerKU" DisplayName="Total costs per KU" Type="Number" ID="{72FAC253-6C2E-474F-86C5-269D2DE5AA20}" Group="CAS Smart Factory Shepherd" />
+      <Field Name="Shipping2CurrencyForTotalCostsPerKU" ID="{EEAE731E-40E4-4C16-B620-E747A8A6675A}" Type="Lookup" List="Lists/CurrencyList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Total costs per KU currency" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -182,12 +190,25 @@
           <FieldRef ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}" Name="Shipping2TransportUnitType" />
           <FieldRef ID="{E6381646-DB08-4C85-9A2F-59B931D98DBB}" Name="LoadingType" />
           <FieldRef ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}" Name="AdditionalCosts" />
+          <FieldRef ID="{2294100C-D521-4B8B-BC56-F8CD71583E22}" Name="Shipping2CurrencyForAdditionalCosts" />
           <FieldRef ID="{DEBE4D8F-04DE-4A3B-AA59-320884A6E044}" Name="IsOutbound" />
           <FieldRef ID="{FF299D34-A04A-4507-82E7-EF325CC6797E}" Name="Shipping2FreightPOIndex" />
           <FieldRef ID="{045419D2-8EDB-4989-A2B8-650A8EF7C16C}" Name="Shipping2EscortPOIndex" />
           <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
           <FieldRef ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}" Name="TrailerConditionComments" />
           <FieldRef ID="{DF668BB4-81B5-4E6A-BBCB-44BD0F71F8C3}" Name="ContainerNo" />
+          <FieldRef ID="{3B7F6914-4ED0-432D-A936-41169D2CADC5}" Name="Shipping2CountryTitle" />
+          <FieldRef ID="{A7068092-4FC7-43BC-8CD0-3518E1A45B77}" Name="Shipping2FreightPayerTitle" />
+          <FieldRef ID="{C51BD4EF-DDEE-47DA-A3AB-09EDF7F729EC}" Name="EuroPalletsQuantity" />
+          <FieldRef ID="{ADD1AA98-DA0F-469D-9DA5-4566BF2B6726}" Name="InduPalletsQuantity" />
+          <FieldRef ID="{01C009C0-F8B9-4220-A37F-E3D53EAF3629}" Name="Shipping2RouteDepartureCity" />
+          <FieldRef ID="{977CA86A-3196-46BE-9B2D-1316F15202BE}" Name="Shipping2CarrierTitle" />
+          <FieldRef ID="{2894653B-6BD1-42DC-96E1-C14F2D048E9B}" Name="Shipping2CommodityTitle" />
+          <FieldRef ID="{77435F24-1DF2-4A77-934B-AEEBA52321BF}" Name="TotalQuantityKU" />
+          <FieldRef ID="{6E8574E7-9665-4240-B5BC-4D4528AECAE2}" Name="Shipping2RouteTransportCosts" />
+          <FieldRef ID="{61110A63-4CF5-4EE5-BB08-C0CCF25AE5D0}" Name="Shipping2SecuirtyEscorRouteSecurityCost" />
+          <FieldRef ID="{72FAC253-6C2E-474F-86C5-269D2DE5AA20}" Name="TotalCostsPerKU" />
+          <FieldRef ID="{EEAE731E-40E4-4C16-B620-E747A8A6675A}" Name="Shipping2CurrencyForTotalCostsPerKU" />
         </ViewFields>
         <Query>
           <OrderBy>

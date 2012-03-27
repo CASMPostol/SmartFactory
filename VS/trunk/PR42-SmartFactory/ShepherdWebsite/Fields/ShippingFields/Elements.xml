@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="TotalCostsPerKU"
+    DisplayName="Total costs per KU"
+    Type="Number"
+    ID="{72FAC253-6C2E-474F-86C5-269D2DE5AA20}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Name="TotalQuantityKU"
     DisplayName="Total Quantity in KU"
     Type="Number"

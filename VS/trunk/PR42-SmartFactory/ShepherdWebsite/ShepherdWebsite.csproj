@@ -545,7 +545,9 @@
     </Content>
     <Content Include="Lists\Dictionaries\ShippingPointTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\TimeSlotsTemplateTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\TimeSlotsTemplateTemplate\TimeSlotsTemplateList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\TimeSlotsTemplateTemplate\TimeSlotsTemplateList\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\TimeSlotsTemplateTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\TrailerList\Elements.xml" />
