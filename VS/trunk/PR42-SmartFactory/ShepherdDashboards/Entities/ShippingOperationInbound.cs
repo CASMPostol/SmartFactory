@@ -124,5 +124,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       string _tf = "{0}{1:D6}";
       Tytuł = String.Format(_tf, IsOutbound.Value ? "O" : "I", Identyfikator.Value);
     }
+    internal void SetStateOnDrivers(int _numOfDrivers, bool _carrier)
+    {
+      //TODO throw new NotImplementedException();
+    }
+
   }
 }

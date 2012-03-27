@@ -96,6 +96,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           foreach (ShippingDriversTeam item in from idx in _Shipping.ShippingDriversTeam select idx)
           {
             Driver _driver = item.Driver;
+            if (Role == TransportResources.RolesSet.SecurityEscort && _driver.VendorName.ServiceType.Value != ServiceType.SecurityEscortProvider)
+              continue;
             m_DriversTeamListBox.Items.Add(new ListItem(_driver.Tytuł, item.Identyfikator.Value.ToString()));
             _drivers.Remove(_driver.Identyfikator.Value);
           }
@@ -103,11 +105,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
             m_DriversListBox.Items.Add(new ListItem(item.Value.Tytuł, item.Key.ToString()));
           m_ShippingTextBox.Text = _Shipping.Tytuł;
           m_TruckDropDown.Items.Add(new ListItem());
-          foreach (Truck item in _prtn.Truck)
+          foreach (Truck _item in _prtn.Truck)
           {
-            ListItem _li = new ListItem(item.Tytuł, item.Identyfikator.Value.ToString());
+            if (Role == TransportResources.RolesSet.SecurityEscort && _item.VendorName.ServiceType.Value != ServiceType.SecurityEscortProvider)
+              continue;
+            ListItem _li = new ListItem(_item.Tytuł, _item.Identyfikator.Value.ToString());
             m_TruckDropDown.Items.Add(_li);
-            if (_Shipping.TruckCarRegistrationNumber == item)
+            if (_Shipping.TruckCarRegistrationNumber == _item)
               _li.Selected = true;
           }
           m_TrailerDropDown.Items.Add(new ListItem());
@@ -158,6 +162,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           ShippingDriversTeam _cd = Element.GetAtIndex<ShippingDriversTeam>(edc.DriversTeam, _sel.Value);
+          _cd.ShippingIndex.SetStateOnDrivers(m_DriversTeamListBox.Items.Count - 1, Role == TransportResources.RolesSet.Carrier);
           edc.DriversTeam.DeleteOnSubmit(_cd);
           edc.SubmitChanges();
         }
@@ -179,7 +184,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         {
           ShippingDriversTeam _cd = new ShippingDriversTeam()
             {
-              Driver = Element.GetAtIndex< Driver>(edc.Driver, _sel.Value),
+              Driver = Element.GetAtIndex<Driver>(edc.Driver, _sel.Value),
               ShippingIndex = Element.GetAtIndex(edc.Shipping, m_ControlState.ShippingIdx)
             };
           edc.DriversTeam.InsertOnSubmit(_cd);
