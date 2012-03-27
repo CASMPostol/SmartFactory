@@ -38,17 +38,17 @@
       <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
       <FieldRef ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}" Name="TrailerConditionComments" />
       <FieldRef ID="{DF668BB4-81B5-4E6A-BBCB-44BD0F71F8C3}" Name="ContainerNo" />
-      <FieldRef ID="{3B7F6914-4ED0-432D-A936-41169D2CADC5}" Name="Shipping2CountryTitle" />
-      <FieldRef ID="{A7068092-4FC7-43BC-8CD0-3518E1A45B77}" Name="Shipping2FreightPayerTitle" />
+      <FieldRef ID="{AF3CCE36-0E33-4C19-875D-87288AC9E2A0}" Name="ShippingCountryTitle" />
+      <FieldRef ID="{4EB31678-5914-4195-960C-833FDBAA0985}" Name="ShippingFreightPayerTitle" />
       <FieldRef ID="{C51BD4EF-DDEE-47DA-A3AB-09EDF7F729EC}" Name="EuroPalletsQuantity" />
       <FieldRef ID="{ADD1AA98-DA0F-469D-9DA5-4566BF2B6726}" Name="InduPalletsQuantity" />
-      <FieldRef ID="{01C009C0-F8B9-4220-A37F-E3D53EAF3629}" Name="Shipping2RouteDepartureCity" />
-      <FieldRef ID="{977CA86A-3196-46BE-9B2D-1316F15202BE}" Name="Shipping2CarrierTitle" />
-      <FieldRef ID="{2894653B-6BD1-42DC-96E1-C14F2D048E9B}" Name="Shipping2CommodityTitle" />
+      <FieldRef ID="{F72EF978-BC6E-49CC-ABD9-0BE650D2A5F2}" Name="ShippingRouteDepartureCity" />
+      <FieldRef ID="{C47879D8-34F5-4D89-94ED-6EF88ED9F99D}" Name="ShippingCarrierTitle" />
+      <FieldRef ID="{9E0B8A63-C763-4D7E-9063-EF18EEB5170F}" Name="ShippingCommodityTitle" />
       <FieldRef ID="{77435F24-1DF2-4A77-934B-AEEBA52321BF}" Name="TotalQuantityKU" />
-      <FieldRef ID="{6E8574E7-9665-4240-B5BC-4D4528AECAE2}" Name="Shipping2RouteTransportCosts" />
+      <FieldRef ID="{F56B2E7B-E38C-42D2-B42F-9B35B639C923}" Name="ShippingFreightCost" />
       <FieldRef ID="{DDCD7887-5687-40A8-8E25-58AFA4C0F640}" Name="Shipping2CurrencyForFreight" />
-      <FieldRef ID="{61110A63-4CF5-4EE5-BB08-C0CCF25AE5D0}" Name="Shipping2SecuirtyEscorRouteSecurityCost" />
+      <FieldRef ID="{4ECF951A-9E61-47E0-86A0-5465A8DD9D9D}" Name="ShippingSecurityCost" />
       <FieldRef ID="{5AAF6163-D537-4B00-BBEB-6AB56D2FAFF0}" Name="Shipping2CurrencyForEscort" />
       <FieldRef ID="{72FAC253-6C2E-474F-86C5-269D2DE5AA20}" Name="TotalCostsPerKU" />
       <FieldRef ID="{EEAE731E-40E4-4C16-B620-E747A8A6675A}" Name="Shipping2CurrencyForTotalCostsPerKU" />

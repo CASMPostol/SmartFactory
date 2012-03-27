@@ -1,6 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="Security escort cost"
+    Name="ShippingSecurityCost"
+    Type="Number"
+    ID="{4ECF951A-9E61-47E0-86A0-5465A8DD9D9D}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Freight cost"
+    Name="ShippingFreightCost"
+    Type="Number"
+    ID="{F56B2E7B-E38C-42D2-B42F-9B35B639C923}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Commodity"
+    Name="ShippingCommodityTitle"
+    Type="Text"
+    ID="{9E0B8A63-C763-4D7E-9063-EF18EEB5170F}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Forwarder ocean/air"
+    Name="ShippingCarrierTitle"
+    Type="Text"
+    ID="{C47879D8-34F5-4D89-94ED-6EF88ED9F99D}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Departure City"
+    Name="ShippingRouteDepartureCity"
+    Type="Text"
+    ID="{F72EF978-BC6E-49CC-ABD9-0BE650D2A5F2}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Consignee"
+    Name="ShippingFreightPayerTitle"
+    Type="Text"
+    ID="{4EB31678-5914-4195-960C-833FDBAA0985}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
+    DisplayName="Delivery to country"
+    Name="ShippingCountryTitle"
+    Type="Text"
+    ID="{AF3CCE36-0E33-4C19-875D-87288AC9E2A0}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     Name="TotalCostsPerKU"
     DisplayName="Total costs per KU"
     Type="Number"
