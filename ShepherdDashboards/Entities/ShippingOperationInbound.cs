@@ -128,6 +128,5 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       //TODO throw new NotImplementedException();
     }
-
   }
 }
