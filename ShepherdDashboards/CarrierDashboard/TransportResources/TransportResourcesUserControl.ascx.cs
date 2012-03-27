@@ -162,8 +162,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           ShippingDriversTeam _cd = Element.GetAtIndex<ShippingDriversTeam>(edc.DriversTeam, _sel.Value);
-          _cd.ShippingIndex.SetStateOnDrivers(m_DriversTeamListBox.Items.Count - 1, Role == TransportResources.RolesSet.Carrier);
           edc.DriversTeam.DeleteOnSubmit(_cd);
+          _cd.ShippingIndex.CalculateState();
           edc.SubmitChanges();
         }
         UpdateUserInterface();
@@ -187,7 +187,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
               Driver = Element.GetAtIndex<Driver>(edc.Driver, _sel.Value),
               ShippingIndex = Element.GetAtIndex(edc.Shipping, m_ControlState.ShippingIdx)
             };
+          _cd.ShippingIndex.SetStateOnDrivers(m_DriversTeamListBox.Items.Count + 1, Role == TransportResources.RolesSet.Carrier);
           edc.DriversTeam.InsertOnSubmit(_cd);
+          _cd.ShippingIndex.CalculateState();
           edc.SubmitChanges();
         }
         UpdateUserInterface();
@@ -211,6 +213,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
             _sh.TruckCarRegistrationNumber = null;
           else
             _sh.TruckCarRegistrationNumber = Element.GetAtIndex<Truck>(edc.Truck, _li.Value);
+          _sh.CalculateState();
           edc.SubmitChanges();
         }
         catch (Exception _ex)
@@ -233,6 +236,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
             _sh.TrailerRegistrationNumber = null;
           else
             _sh.TrailerRegistrationNumber = Element.GetAtIndex<Trailer>(edc.Trailer, _li.Value);
+          _sh.CalculateState();
           edc.SubmitChanges();
         }
         catch (Exception _ex)

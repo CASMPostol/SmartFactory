@@ -19,22 +19,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       this.BusinessDescription = Route.BusinessDescription == null ? String.Empty : Route.BusinessDescription.Tytuł;
       this.VendorName = Route.VendorName;
     }
-    internal static Shipping GetAtIndex(EntitiesDataContext edc, int? _index)
-    {
-      if (!_index.HasValue)
-        throw new ApplicationException("ShippingOperationInbound index is null"); ;
-      try
-      {
-        return (
-              from idx in edc.Shipping
-              where idx.Identyfikator == _index.Value
-              select idx).First();
-      }
-      catch (Exception)
-      {
-        throw new ApplicationException(String.Format("ShippingOperationInbound cannot be found at specified index{0}", _index.Value));
-      }
-    }
     internal bool IsEditable()
     {
       switch (this.State.Value)
@@ -126,7 +110,76 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     internal void SetStateOnDrivers(int _numOfDrivers, bool _carrier)
     {
-      //TODO throw new NotImplementedException();
+      if (_carrier)
+        switch (this.State.Value)
+        {
+          case Entities.State.Confirmed:
+            if (_numOfDrivers == 0)
+              State = Entities.State.WaitingForCarrierData;
+            break;
+          case Entities.State.Creation:
+            if (_numOfDrivers > 0)
+              State = Entities.State.WaitingForSecurityData;
+            break;
+          case Entities.State.WaitingForCarrierData:
+            break;
+          case Entities.State.WaitingForSecurityData:
+            if (_numOfDrivers == 0)
+              State = Entities.State.Creation;
+            break;
+          case Entities.State.Delayed:
+          case Entities.State.Underway:
+            break;
+          default:
+            throw new ApplicationException("Wrong state of the shipping while changing transport resources.");
+        }
+      else
+      {
+        switch (this.State.Value)
+        {
+          case Entities.State.Confirmed:
+            if (_numOfDrivers == 0)
+              State = Entities.State.WaitingForSecurityData;
+            break;
+          case Entities.State.Creation:
+            if (_numOfDrivers > 0)
+              State = Entities.State.WaitingForCarrierData;
+            break;
+          case Entities.State.WaitingForCarrierData:
+            if (_numOfDrivers == 0)
+              State = Entities.State.Creation;
+            break;
+          case Entities.State.WaitingForSecurityData:
+            if (_numOfDrivers > 0)
+              State = Entities.State.Confirmed;
+            break;
+          case Entities.State.Delayed:
+          case Entities.State.Underway:
+            break;
+          default:
+            throw new ApplicationException("Wrong state of the shipping while changing transport resources.");
+        };
+      }
+    }
+    internal void CalculateState()
+    {
+      int _seDrivers = 0;
+      int _crDrivers = 0;
+      foreach (var _dr in this.ShippingDriversTeam)
+        if (_dr.Driver.VendorName.ServiceType.Value == ServiceType.SecurityEscortProvider)
+          _seDrivers++;
+        else
+          _crDrivers++;
+      this.State = Entities.State.Creation;
+      if (_crDrivers > 0 && this.TruckCarRegistrationNumber != null)
+      {
+        if (this.SecurityEscort == null || (_seDrivers >0 && this.SecurityEscortCarRegistrationNumber != null))
+          this.State = Entities.State.Confirmed;
+        else
+          this.State = Entities.State.WaitingForSecurityData;
+      }
+      else if (this.SecurityEscort == null || (_seDrivers > 0 && this.SecurityEscortCarRegistrationNumber != null))
+        this.State = Entities.State.WaitingForCarrierData;
     }
   }
 }
