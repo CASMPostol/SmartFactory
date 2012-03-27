@@ -36,6 +36,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           case GlobalDefinitions.Roles.Forwarder:
           case GlobalDefinitions.Roles.Escort:
             m_OutboundControlsPanel.Visible = false;
+            m_IsInbound = true;
             break;
           case GlobalDefinitions.Roles.OutboundOwner:
           case GlobalDefinitions.Roles.Coordinator:
@@ -44,6 +45,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           case GlobalDefinitions.Roles.Guard:
           case GlobalDefinitions.Roles.None:
             m_OutboundControlsPanel.Visible = true;
+            m_IsInbound = false;
             break;
           default:
             break;
@@ -73,7 +75,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       }
       #endregion
 
-
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
@@ -98,10 +99,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         m_LoadDescriptionGridView.AutoGenerateColumns = false;
         m_LoadDescriptionGridView.Caption = "Loads";
         //m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "Title", Visible = true, HeaderText = "Title" });
-        m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "DeliveryNumber", Visible = true, HeaderText = "Delivery No." });
+        m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "DeliveryNumber", Visible = true, HeaderText = m_IsInbound ? "PO No." : "Delivery No." });
         m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "PalletTypes", Visible = true, HeaderText = "Pallet type" });
         m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "NumberOfPallets", Visible = true, HeaderText = "Pallets Qty." });
         m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "Commodity", Visible = true, HeaderText = "Commodity" });
+        m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "MarketTitle", Visible = !m_IsInbound, HeaderText = "Market" });
         m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "ID", Visible = false, HeaderText = "ID" });
         m_LoadDescriptionGridView.DataKeyNames = new String[] { "ID" };
         //SetVisible(m_AllButtons);
@@ -298,8 +300,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         return m_Shipping;
       }
     }
+    private bool m_IsInbound = default(bool);
     #endregion
 
+    #region private methods
     private StateMachineEngine.ActionResult ShowShipping()
     {
       if (m_ControlState.ShippingID.IsNullOrEmpty())
@@ -449,9 +453,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
                                              {
                                                Title = _ldidx.Tytuł,
                                                DeliveryNumber = _ldidx.DeliveryNumber,
-                                               PalletTypes = _ldidx.PalletType.HasValue ?_ldidx.PalletType.Value : PalletType.Other,
+                                               PalletTypes = _ldidx.PalletType.HasValue ? _ldidx.PalletType.Value : PalletType.Other,
                                                NumberOfPallets = _ldidx.NumberOfPallets,
                                                Commodity = _ldidx.Commodity == null ? String.Empty : _ldidx.Commodity.Tytuł,
+                                               MarketTitle = _ldidx.Market == null ? String.Empty : _ldidx.Market.Tytuł,
                                                ID = _ldidx.Identyfikator.Value
                                              };
       m_LoadDescriptionGridView.DataBind();
@@ -521,5 +526,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         this.Controls.Add(new LiteralControl(String.Format(GlobalDefinitions.ErrorMessageFormat, item)));
       return StateMachineEngine.ActionResult.NotValidated;
     }
+    #endregion
   }
 }
