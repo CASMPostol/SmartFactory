@@ -4356,7 +4356,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 				e.Item.ShippingIndex = null;
 			}
 		}
-	}
+
+    }
 	
 	/// <summary>
 	/// Utwórz nowy element listy.
