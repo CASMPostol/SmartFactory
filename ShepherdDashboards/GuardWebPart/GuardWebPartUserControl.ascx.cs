@@ -67,7 +67,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     {
       m_EnteredButton.Click += new EventHandler(m_EnteredButton_Click);
       m_LeftButton.Click += new EventHandler(m_LeftButton_Click);
-      m_RejectButton.Click += new EventHandler(m_RejectButton_Click);
+      m_ArrivedButton.Click += new EventHandler(m_ArrivedButton_Click);
       m_UnDoButton.Click += new EventHandler(m_UnDoButton_Click);
     }
     /// <summary>
@@ -174,7 +174,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
                             select _tsidx).First();
             CurrentShipping.StartTime = _ts.StartTime;
             CurrentShipping.EndTime = _ts.EndTime;
-            CurrentShipping.State = State.Confirmed;
+            CurrentShipping.Duration = _ts.Duration();
+            CurrentShipping.CalculateState();
+            CurrentShipping.Awaiting = false;
             EDC.SubmitChanges();
             break;
           case State.Confirmed:
@@ -195,7 +197,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
         ReportException("UnDoButton_Click", ex);
       }
     }
-    private void m_RejectButton_Click(object sender, EventArgs e)
+    private void m_ArrivedButton_Click(object sender, EventArgs e)
     {
       try
       {
@@ -206,6 +208,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case State.Delayed:
           case State.WaitingForCarrierData:
           case State.WaitingForSecurityData:
+            if (CurrentShipping.Awaiting.GetValueOrDefault(false))
+              return;
+            CurrentShipping.Awaiting = true;
+            EDC.SubmitChanges();
             break;
           case State.Underway:
           case State.None:
@@ -230,6 +236,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case State.Underway:
             CurrentShipping.EndTime = DateTime.Now;
             CurrentShipping.State = State.Completed;
+            CurrentShipping.Duration = (CurrentShipping.EndTime.Value - CurrentShipping.StartTime.Value).TotalMinutes;
             EDC.SubmitChanges();
             break;
           case State.Confirmed:
@@ -264,6 +271,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             CurrentShipping.StartTime = DateTime.Now;
             CurrentShipping.EndTime = null;
             CurrentShipping.State = State.Underway;
+            CurrentShipping.Awaiting = true;
             EDC.SubmitChanges();
             break;
           case State.Underway:
@@ -282,7 +290,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     }
     #endregion
 
-    #region MyRegion
+    #region variables
     private ControlState m_ControlState = new ControlState(null);
     private EntitiesDataContext _EDC = null;
     private EntitiesDataContext EDC

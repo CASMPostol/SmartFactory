@@ -11,18 +11,18 @@
   Inherits="CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart.GuardWebPartUserControl" %>
 <SharePoint:CssRegistration runat="server" ID="cssreg" Name="/_layouts/ShepherdDashboards/CAS_ShepherdDashboards.css" />
 <asp:Panel ID="m_Panel" runat="server">
-<asp:Table ID="m_GuardTable" runat="server" CssClass="Table">
+  <asp:Table ID="_GuardTable" runat="server" CssClass="Table">
     <asp:TableRow>
-            <asp:TableCell>
-              <asp:Label ID="m_Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-              <asp:Label ID="m_ShippingLabel" runat="server" CssClass="Label"></asp:Label>
-            </asp:TableCell>
+      <asp:TableCell>
+        <asp:Label ID="m_Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label>
+      </asp:TableCell>
+      <asp:TableCell>
+        <asp:Label ID="m_ShippingLabel" runat="server" CssClass="Label"></asp:Label>
+      </asp:TableCell>
     </asp:TableRow>
-</asp:Table>
-<asp:Button ID="m_EnteredButton" runat="server" Text="Enters" CssClass="Button" />
-<asp:Button ID="m_LeftButton" runat="server" Text="Leaves" CssClass="Button" />
-<asp:Button ID="m_RejectButton" runat="server" Text="Reject" CssClass="Button" />
-<asp:Button ID="m_UnDoButton" runat="server" Text="Undo" CssClass="Button" />
+  </asp:Table>
+  <asp:Button ID="m_EnteredButton" runat="server" Text="Enters" CssClass="Button" />
+  <asp:Button ID="m_LeftButton" runat="server" Text="Leaves" CssClass="Button" />
+  <asp:Button ID="m_ArrivedButton" runat="server" Text="Arrived" CssClass="Button" />
+  <asp:Button ID="m_UnDoButton" runat="server" Text="Undo" CssClass="Button" />
 </asp:Panel>
