@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       if (edc.Partner == null)
         return null;
       else
-        return edc.Partner.FirstOrDefault(idx => idx.ShepherdUserTitle.Contains(_user.Name));
+        return edc.Partner.FirstOrDefault(idx => idx.ShepherdUserTitle.IsNullOrEmpty() ? false : idx.ShepherdUserTitle.Contains(_user.Name));
     }
   }
 }
