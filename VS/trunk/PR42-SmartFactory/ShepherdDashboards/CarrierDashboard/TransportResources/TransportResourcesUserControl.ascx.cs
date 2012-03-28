@@ -68,8 +68,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     #region Connectivity
     private void NewDataEventHandler(object sender, ShippingInterconnectionData e)
     {
-      if (e.ID == m_ControlState.ShippingIdx)
-        return;
       m_ControlState.ShippingIdx = e.ID;
       try
       {
