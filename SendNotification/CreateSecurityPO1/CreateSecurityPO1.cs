@@ -83,14 +83,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
           _stt = "SendInvoiceTo";
           if (_sp.SecurityEscortProvider != null)
           {
-            _epo.City = _sp.SecurityEscort.FreightPayer.Miasto;
-            _epo.Country = _sp.SecurityEscort.EscortDestination;
             _epo.Currency = _sp.SecurityEscort.Currency.Title();
             _epo.EscortCosts = _sp.SecurityEscort.SecurityCost;
             _epo.FreightPO = _sp.SecurityEscort.SecurityEscortPO;
             _epo.SecurityEscortProvider = _sp.SecurityEscortProvider.Title();
           }
           _stt = "SecurityEscortProvider";
+          _epo.City = _sp.City.Title();
+          _epo.Country = _sp.City == null ? " -- not set -- " : _sp.City.CountryName.Title();
           _epo.DispatchDate = _sp.EndTime;
           _epo.EMail = _sp.VendorName == null ? "oferty@cas.eu" : _sp.VendorName.EMail;
           _epo.Tytuł = String.Format("SECURITY ESCORT PURCHASE ORDER EPO-2{0, 5}", _epo.Identyfikator);
