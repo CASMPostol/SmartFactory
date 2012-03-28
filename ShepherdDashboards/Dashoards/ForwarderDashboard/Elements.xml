@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="ForwarderDashboard">
     <File Path="WebPartPages\WebPageTemplate_Forwarder.aspx" Url="WebPartPages/ForwarderDashboard.aspx">
-      <View List="Lists/ShippingList" BaseViewID="6" WebPartZoneID="Shippings" WebPartOrder="0">
+      <View List="Lists/ShippingList" BaseViewID="8" WebPartZoneID="Shippings" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">

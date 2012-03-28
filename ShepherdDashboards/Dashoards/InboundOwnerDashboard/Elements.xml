@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="InboundOwnerDashboard">
     <File Path="WebPartPages\WebPageTemplate_InboundOwner.aspx" Url ="WebPartPages/InboundOwnerDashboard.aspx">
-      <View List="Lists/ShippingList" BaseViewID="4" WebPartZoneID="Shippings" WebPartOrder="0">
+      <View List="Lists/ShippingList" BaseViewID="6" WebPartZoneID="Shippings" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">

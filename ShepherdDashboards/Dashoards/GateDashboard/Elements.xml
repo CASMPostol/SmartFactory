@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="GateDashboard">
     <File Path="WebPartPages\WebPageTemplate_Gate.aspx" Url="WebPartPages/GateDashboard.aspx">
-      <View List="Lists/ShippingList" BaseViewID="7" WebPartZoneID="Shippings" WebPartOrder="0">
+      <View List="Lists/ShippingList" BaseViewID="10" WebPartZoneID="Shippings" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">

@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="SecurityEscortProviderDashboard">
     <File Path="WebPartPages\WebPageTemplate_Escort.aspx" Url="WebPartPages/SecurityEscortProviderDashboard.aspx">
-      <View List="Lists/ShippingList" BaseViewID="9" WebPartZoneID="Shippings" WebPartOrder="0">
+      <View List="Lists/ShippingList" BaseViewID="12" WebPartZoneID="Shippings" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
