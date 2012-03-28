@@ -27,9 +27,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
         _phase = "After Page.Load";
         m_Control = (CurrentUserWebPartUserControl)_ctrl;
         _phase = "After cast";
-        if (m_UserDescriptor == null)
-          m_UserDescriptor = GetUserDescriptor();
-        m_Control.DisplayUserName(m_UserDescriptor);
         _phase = "After DisplayUserName";
         Controls.Add(m_Control);
         _phase = "Finishing";
@@ -40,8 +37,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
         Controls.Add(new LiteralControl(String.Format(_frmt, _phase, ex.Message)));
       }
     }
+    protected override void OnPreRender(EventArgs e)
+    {
+      //if (m_UserDescriptor == null)
+      try
+      {
+        m_Control.DisplayUserName(GetUserDescriptor());
+      }
+      catch (Exception ex)
+      {
+        string _frmt = "Cannot execute OnPreRender because: {0}";
+        Controls.Add(new LiteralControl(String.Format(_frmt, ex.Message)));
+      } 
+      base.OnLoad(e);
+    }
     private CurrentUserWebPartUserControl m_Control;
-    private UserDescriptor m_UserDescriptor = null;
     private UserDescriptor GetUserDescriptor()
     {
       if (this.Context == null)
@@ -55,12 +65,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart
     [System.Web.UI.WebControls.WebParts.ConnectionProvider("Current User", "CurrentUserProviderPoint", AllowsMultipleConnections = true)]
     public System.Web.UI.WebControls.WebParts.IWebPartRow GetConnectionInterface()
     {
-      return m_UserDescriptor;
+      return GetUserDescriptor();
     }
     public CurrentUserWebPart()
       : base()
     {
-      m_UserDescriptor = GetUserDescriptor();
+      //m_UserDescriptor = GetUserDescriptor();
     }
     internal static string CurrentUserProviderPoint = "CurrentUserProviderPoint";
     #endregion
