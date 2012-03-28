@@ -1076,7 +1076,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region variables
-    private const string m_LabetTextLike_PurchaseOrder = "Purchase Order";
+    private const string m_LabetTextLike_PurchaseOrder = "PO No";
     private const string m_LabetTextLike_DeliveryNo = "Delivery No";
     private const string m_LabetTextLike_Vendor = "Vendor";
     private const string m_LabetTextLike_SecurityEscort = "Security Escort";

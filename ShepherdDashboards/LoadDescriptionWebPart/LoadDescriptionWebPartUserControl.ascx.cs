@@ -36,7 +36,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           case GlobalDefinitions.Roles.Forwarder:
           case GlobalDefinitions.Roles.Escort:
             m_OutboundControlsPanel.Visible = false;
-            m_IsInbound = true;
             break;
           case GlobalDefinitions.Roles.OutboundOwner:
           case GlobalDefinitions.Roles.Coordinator:
@@ -45,7 +44,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           case GlobalDefinitions.Roles.Guard:
           case GlobalDefinitions.Roles.None:
             m_OutboundControlsPanel.Visible = true;
-            m_IsInbound = false;
             break;
           default:
             break;
@@ -99,11 +97,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         m_LoadDescriptionGridView.AutoGenerateColumns = false;
         m_LoadDescriptionGridView.Caption = "Loads";
         //m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "Title", Visible = true, HeaderText = "Title" });
-        m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "DeliveryNumber", Visible = true, HeaderText = m_IsInbound ? "PO No." : "Delivery No." });
+        m_LoadDescriptionGridView.Columns.Add(m_DeliveryNumberBoundField);
         m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "PalletTypes", Visible = true, HeaderText = "Pallet type" });
         m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "NumberOfPallets", Visible = true, HeaderText = "Pallets Qty." });
         m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "Commodity", Visible = true, HeaderText = "Commodity" });
-        m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "MarketTitle", Visible = !m_IsInbound, HeaderText = "Market" });
+        m_LoadDescriptionGridView.Columns.Add(m_MarketTitleBoundField);
         m_LoadDescriptionGridView.Columns.Add(new BoundField() { DataField = "ID", Visible = false, HeaderText = "ID" });
         m_LoadDescriptionGridView.DataKeyNames = new String[] { "ID" };
         //SetVisible(m_AllButtons);
@@ -233,7 +231,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       }
       protected override void ClearUserInterface()
       {
-        Parent.ClearUserInterface();
+        Parent.ClearUserInterface(false);
       }
       protected override void SetEnabled(ControlsSet _buttons)
       {
@@ -300,7 +298,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         return m_Shipping;
       }
     }
-    private bool m_IsInbound = default(bool);
+    private BoundField m_DeliveryNumberBoundField = new BoundField() { DataField = "DeliveryNumber", Visible = true, HeaderText = "PO/Delivery No" };
+    private BoundField m_MarketTitleBoundField = new BoundField() { DataField = "MarketTitle", Visible = false, HeaderText = "Market" };
     #endregion
 
     #region private methods
@@ -308,7 +307,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     {
       if (m_ControlState.ShippingID.IsNullOrEmpty())
       {
-        ClearUserInterface();
+        ClearUserInterface(false);
         return StateMachineEngine.ActionResult.Success;
       }
       return ShowShipping(CurrentShipping);
@@ -325,7 +324,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     {
       try
       {
-        ClearUserInterface();
+        ClearUserInterface(_sppng.IsOutbound.Value);
         m_ShippingLabel.Text = _sppng.Tytuł;
         m_ControlState.IsEditable = _sppng.IsEditable();
         if (m_MarketDropDown.Visible && _sppng.City != null)
@@ -462,7 +461,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_LoadDescriptionGridView.DataBind();
       m_LoadDescriptionGridView.SelectedIndex = -1;
     }
-    private void ClearUserInterface()
+    private void ClearUserInterface(bool _isOutbound)
     {
       m_ControlState.LoadDescriptionID = String.Empty;
       m_LoadDescriptionNumberTextBox.Text = String.Empty;
@@ -473,6 +472,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_MarketDropDown.SelectedIndex = -1;
       m_PalletTypesDropDown.SelectedIndex = -1;
       m_CommodityDropDown.SelectedIndex = -1;
+      string _label = default(string);
+      _label = _isOutbound ? "Delivery No." : "PO No.";
+      m_LoadDescriptionNumberLabel.Text = _label;
+      m_DeliveryNumberBoundField.HeaderText = _label;
+      m_MarketTitleBoundField.Visible = _isOutbound;
     }
     private void SetEnabled(StateMachineEngine.ControlsSet _set)
     {

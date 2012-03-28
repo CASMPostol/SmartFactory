@@ -67,13 +67,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart {
         protected global::System.Web.UI.WebControls.Label m_ShippingLabel;
         
         /// <summary>
-        /// Outside control.
+        /// _Outside control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Outside;
+        protected global::System.Web.UI.WebControls.Table _Outside;
         
         /// <summary>
         /// LoadDescriptionManager_CommonPart control.
