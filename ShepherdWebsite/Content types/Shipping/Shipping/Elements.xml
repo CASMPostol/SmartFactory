@@ -33,6 +33,7 @@
       <FieldRef ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}" Name="AdditionalCosts" />
       <FieldRef ID="{2294100C-D521-4B8B-BC56-F8CD71583E22}" Name="Shipping2CurrencyForAdditionalCosts" />
       <FieldRef ID="{DEBE4D8F-04DE-4A3B-AA59-320884A6E044}" Name="IsOutbound" />
+      <FieldRef ID="{4BC3C930-FBAD-4F1A-973F-13D191BEEF05}" Name="TruckAwaiting" />
       <FieldRef ID="{FF299D34-A04A-4507-82E7-EF325CC6797E}" Name="Shipping2FreightPOIndex" />
       <FieldRef ID="{045419D2-8EDB-4989-A2B8-650A8EF7C16C}" Name="Shipping2EscortPOIndex" />
       <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
