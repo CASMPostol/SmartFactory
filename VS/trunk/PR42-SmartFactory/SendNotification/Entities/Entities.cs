@@ -509,8 +509,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private System.Nullable<Priority> _priority;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<ShippingShipping> _shipping;
-		
 		private Microsoft.SharePoint.Linq.EntityRef<ShippingShipping> _shippingIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
@@ -522,10 +520,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		#endregion
 		
 		public AlarmsAndEvents() {
-			this._shipping = new Microsoft.SharePoint.Linq.EntityRef<ShippingShipping>();
-			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping>>(this.OnShippingSync);
-			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
-			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<ShippingShipping>();
 			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping>>(this.OnShippingIndexSync);
 			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
@@ -579,16 +573,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingTitle", Storage="_shipping", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public ShippingShipping Shipping {
-			get {
-				return this._shipping.GetEntity();
-			}
-			set {
-				this._shipping.SetEntity(value);
-			}
-		}
-		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
 		public ShippingShipping ShippingIndex {
 			get {
@@ -609,23 +593,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
-		private void OnShippingChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Shipping", this._shipping.Clone());
-		}
-		
-		private void OnShippingChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Shipping");
-		}
-		
-		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.AlarmsAndEvents.Add(this);
-			}
-			else {
-				e.Item.AlarmsAndEvents.Remove(this);
-			}
-		}
-		
 		private void OnShippingIndexChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("ShippingIndex", this._shippingIndex.Clone());
 		}
@@ -636,10 +603,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.AlarmsAndEvents0.Add(this);
+				e.Item.AlarmsAndEvents.Add(this);
 			}
 			else {
-				e.Item.AlarmsAndEvents0.Remove(this);
+				e.Item.AlarmsAndEvents.Remove(this);
 			}
 		}
 		
@@ -2455,6 +2422,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private System.Nullable<bool> _isOutbound;
 		
+		private System.Nullable<bool> _awaiting;
+		
 		private string _comments;
 		
 		private string _containerNo;
@@ -2721,6 +2690,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 					this.OnPropertyChanging("IsOutbound", this._isOutbound);
 					this._isOutbound = value;
 					this.OnPropertyChanged("IsOutbound");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TruckAwaiting", Storage="_awaiting", FieldType="Boolean")]
+		public System.Nullable<bool> Awaiting {
+			get {
+				return this._awaiting;
+			}
+			set {
+				if ((value != this._awaiting)) {
+					this.OnPropertyChanging("Awaiting", this._awaiting);
+					this._awaiting = value;
+					this.OnPropertyChanged("Awaiting");
 				}
 			}
 		}
@@ -4947,8 +4930,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents0;
-		
 		private Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam> _shippingDriversTeam;
 		
 		private System.Nullable<int> _zmodyfikowanePrzezIdentyfikator;
@@ -4966,10 +4947,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this._alarmsAndEvents.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents>>(this.OnAlarmsAndEventsSync);
 			this._alarmsAndEvents.OnChanged += new System.EventHandler(this.OnAlarmsAndEventsChanged);
 			this._alarmsAndEvents.OnChanging += new System.EventHandler(this.OnAlarmsAndEventsChanging);
-			this._alarmsAndEvents0 = new Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents>();
-			this._alarmsAndEvents0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents>>(this.OnAlarmsAndEvents0Sync);
-			this._alarmsAndEvents0.OnChanged += new System.EventHandler(this.OnAlarmsAndEvents0Changed);
-			this._alarmsAndEvents0.OnChanging += new System.EventHandler(this.OnAlarmsAndEvents0Changing);
 			this._shippingDriversTeam = new Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam>();
 			this._shippingDriversTeam.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingDriversTeam>>(this.OnShippingDriversTeamSync);
 			this._shippingDriversTeam.OnChanged += new System.EventHandler(this.OnShippingDriversTeamChanged);
@@ -4991,23 +4968,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingTitle", Storage="_alarmsAndEvents", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Alarms And Events")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_alarmsAndEvents", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Alarms And Events")]
 		public Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> AlarmsAndEvents {
 			get {
 				return this._alarmsAndEvents;
 			}
 			set {
 				this._alarmsAndEvents.Assign(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_alarmsAndEvents0", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Alarms And Events")]
-		public Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> AlarmsAndEvents0 {
-			get {
-				return this._alarmsAndEvents0;
-			}
-			set {
-				this._alarmsAndEvents0.Assign(value);
 			}
 		}
 		
@@ -5058,23 +5025,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		private void OnAlarmsAndEventsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping = this;
-			}
-			else {
-				e.Item.Shipping = null;
-			}
-		}
-		
-		private void OnAlarmsAndEvents0Changing(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("AlarmsAndEvents0", this._alarmsAndEvents0.Clone());
-		}
-		
-		private void OnAlarmsAndEvents0Changed(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("AlarmsAndEvents0");
-		}
-		
-		private void OnAlarmsAndEvents0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.ShippingIndex = this;
 			}
