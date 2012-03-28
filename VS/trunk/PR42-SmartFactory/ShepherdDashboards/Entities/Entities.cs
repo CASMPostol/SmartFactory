@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
+namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	using System;
 	
 	
@@ -280,16 +280,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		public Microsoft.SharePoint.Linq.EntityList<TimeSlotTimeSlot> TimeSlot {
 			get {
 				return this.GetList<TimeSlotTimeSlot>("TimeSlot");
-			}
-		}
-		
-		/// <summary>
-		/// Time Slot Templates List Instance
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="TimeSlot Templates")]
-		public Microsoft.SharePoint.Linq.EntityList<TimeSlotTemplatesTimeSlotTemplates> TimeSlotTemplates {
-			get {
-				return this.GetList<TimeSlotTemplatesTimeSlotTemplates>("TimeSlot Templates");
 			}
 		}
 		
@@ -611,7 +601,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Wydarzenie", Id="0x0102")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlot))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlotTemplatesTimeSlotTemplates))]
 	public partial class Wydarzenie : Element {
 		
 		private string _lokalizacja;
@@ -669,7 +658,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EndDate", Storage="_endTime", Required=true, FieldType="DateTime")]
-		public virtual System.Nullable<System.DateTime> EndTime {
+		public System.Nullable<System.DateTime> EndTime {
 			get {
 				return this._endTime;
 			}
@@ -765,8 +754,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private System.Nullable<Priority> _priority;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shipping;
-		
 		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _shippingIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendorName;
@@ -778,10 +765,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		#endregion
 		
 		public AlarmsAndEvents() {
-			this._shipping = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
-			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
-			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
 			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingIndexSync);
 			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
@@ -835,16 +818,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingTitle", Storage="_shipping", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public Shipping Shipping {
-			get {
-				return this._shipping.GetEntity();
-			}
-			set {
-				this._shipping.SetEntity(value);
-			}
-		}
-		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
 		public Shipping ShippingIndex {
 			get {
@@ -865,23 +838,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		private void OnShippingChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Shipping", this._shipping.Clone());
-		}
-		
-		private void OnShippingChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Shipping");
-		}
-		
-		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.AlarmsAndEvents.Add(this);
-			}
-			else {
-				e.Item.AlarmsAndEvents.Remove(this);
-			}
-		}
-		
 		private void OnShippingIndexChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("ShippingIndex", this._shippingIndex.Clone());
 		}
@@ -892,10 +848,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.AlarmsAndEvents0.Add(this);
+				e.Item.AlarmsAndEvents.Add(this);
 			}
 			else {
-				e.Item.AlarmsAndEvents0.Remove(this);
+				e.Item.AlarmsAndEvents.Remove(this);
 			}
 		}
 		
@@ -3252,6 +3208,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private System.Nullable<bool> _isOutbound;
 		
+		private System.Nullable<bool> _awaiting;
+		
 		private string _comments;
 		
 		private string _containerNo;
@@ -3285,8 +3243,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		private System.Nullable<TrailerCondition> _trailerCondition;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents0;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam> _shippingDriversTeam;
 		
@@ -3339,10 +3295,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._alarmsAndEvents.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents>>(this.OnAlarmsAndEventsSync);
 			this._alarmsAndEvents.OnChanged += new System.EventHandler(this.OnAlarmsAndEventsChanged);
 			this._alarmsAndEvents.OnChanging += new System.EventHandler(this.OnAlarmsAndEventsChanging);
-			this._alarmsAndEvents0 = new Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents>();
-			this._alarmsAndEvents0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents>>(this.OnAlarmsAndEvents0Sync);
-			this._alarmsAndEvents0.OnChanged += new System.EventHandler(this.OnAlarmsAndEvents0Changed);
-			this._alarmsAndEvents0.OnChanging += new System.EventHandler(this.OnAlarmsAndEvents0Changing);
 			this._shippingDriversTeam = new Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam>();
 			this._shippingDriversTeam.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingDriversTeam>>(this.OnShippingDriversTeamSync);
 			this._shippingDriversTeam.OnChanged += new System.EventHandler(this.OnShippingDriversTeamChanged);
@@ -3544,6 +3496,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this.OnPropertyChanging("IsOutbound", this._isOutbound);
 					this._isOutbound = value;
 					this.OnPropertyChanged("IsOutbound");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TruckAwaiting", Storage="_awaiting", FieldType="Boolean")]
+		public System.Nullable<bool> Awaiting {
+			get {
+				return this._awaiting;
+			}
+			set {
+				if ((value != this._awaiting)) {
+					this.OnPropertyChanging("Awaiting", this._awaiting);
+					this._awaiting = value;
+					this.OnPropertyChanged("Awaiting");
 				}
 			}
 		}
@@ -3778,23 +3744,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingTitle", Storage="_alarmsAndEvents", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Alarms And Events")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_alarmsAndEvents", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Alarms And Events")]
 		public Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> AlarmsAndEvents {
 			get {
 				return this._alarmsAndEvents;
 			}
 			set {
 				this._alarmsAndEvents.Assign(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_alarmsAndEvents0", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Alarms And Events")]
-		public Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> AlarmsAndEvents0 {
-			get {
-				return this._alarmsAndEvents0;
-			}
-			set {
-				this._alarmsAndEvents0.Assign(value);
 			}
 		}
 		
@@ -4011,23 +3967,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		private void OnAlarmsAndEventsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping = this;
-			}
-			else {
-				e.Item.Shipping = null;
-			}
-		}
-		
-		private void OnAlarmsAndEvents0Changing(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("AlarmsAndEvents0", this._alarmsAndEvents0.Clone());
-		}
-		
-		private void OnAlarmsAndEvents0Changed(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("AlarmsAndEvents0");
-		}
-		
-		private void OnAlarmsAndEvents0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.ShippingIndex = this;
 			}
@@ -6377,143 +6316,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this.OnPropertyChanging("StartTime", this._startTime);
 					this._startTime = value;
 					this.OnPropertyChanged("StartTime");
-				}
-			}
-		}
-	}
-	
-	/// <summary>
-	/// TimeSlotTemplates
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlotTemplates", Id="0x0102", List="TimeSlot Templates")]
-	public partial class TimeSlotTemplatesTimeSlotTemplates : Wydarzenie {
-		
-		private System.Nullable<int> _scheduleTemplateShepherdIdentyfikator;
-		
-		private string _scheduleTemplateShepherdTitle;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public TimeSlotTemplatesTimeSlotTemplates() {
-			this.OnCreated();
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Lokalizacja {
-			get {
-				throw new System.InvalidOperationException("Pole Location zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Location zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<System.DateTime> StartTime {
-			get {
-				throw new System.InvalidOperationException("Pole StartDate zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole StartDate zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<System.DateTime> EndTime {
-			get {
-				throw new System.InvalidOperationException("Pole EndDate zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole EndDate zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Description {
-			get {
-				throw new System.InvalidOperationException("Pole Comments zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Comments zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<bool> WydarzenieCałodzienne {
-			get {
-				throw new System.InvalidOperationException("Pole fAllDayEvent zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole fAllDayEvent zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<bool> Cykl {
-			get {
-				throw new System.InvalidOperationException("Pole fRecurrence zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole fRecurrence zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<bool> ObszarRoboczy {
-			get {
-				throw new System.InvalidOperationException("Pole WorkspaceLink zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole WorkspaceLink zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<Kategoria> Kategoria {
-			get {
-				throw new System.InvalidOperationException("Pole Category zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Category zostało usunięte z typu zawartości TimeSlotTemplates.");
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ScheduleTemplateTitle", Storage="_scheduleTemplateShepherdIdentyfikator", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> ScheduleTemplateShepherdIdentyfikator {
-			get {
-				return this._scheduleTemplateShepherdIdentyfikator;
-			}
-			set {
-				if ((value != this._scheduleTemplateShepherdIdentyfikator)) {
-					this.OnPropertyChanging("ScheduleTemplateShepherdIdentyfikator", this._scheduleTemplateShepherdIdentyfikator);
-					this._scheduleTemplateShepherdIdentyfikator = value;
-					this.OnPropertyChanged("ScheduleTemplateShepherdIdentyfikator");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ScheduleTemplateTitle", Storage="_scheduleTemplateShepherdTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
-		public string ScheduleTemplateShepherdTitle {
-			get {
-				return this._scheduleTemplateShepherdTitle;
-			}
-			set {
-				if ((value != this._scheduleTemplateShepherdTitle)) {
-					this.OnPropertyChanging("ScheduleTemplateShepherdTitle", this._scheduleTemplateShepherdTitle);
-					this._scheduleTemplateShepherdTitle = value;
-					this.OnPropertyChanged("ScheduleTemplateShepherdTitle");
 				}
 			}
 		}
