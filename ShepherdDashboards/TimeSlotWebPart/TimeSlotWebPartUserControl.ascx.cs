@@ -133,6 +133,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         DateTime _sd = m_Calendar.SelectedDate.Date;
         DateTime _strt = new DateTime(m_Calendar.VisibleDate.Year, m_Calendar.VisibleDate.Month, 1);
         DateTime _end = _strt.AddMonths(1);
+        if (m_WarehouseDropDownList.SelectedValue.IsNullOrEmpty())
+          return;
         Warehouse _warehouse = Element.GetAtIndex(m_EDC.Warehouse, m_WarehouseDropDownList.SelectedValue);
         List<TimeSlot> _2Expose = new List<TimeSlot>();
         foreach (var _spoint in (from _sp in _warehouse.ShippingPoint select _sp))
