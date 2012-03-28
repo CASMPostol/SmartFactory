@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
+namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	using System;
 	
 	

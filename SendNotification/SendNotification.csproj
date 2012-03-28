@@ -162,7 +162,9 @@
     <Content Include="CreatePO\Elements.xml" />
     <Content Include="CreateSealProtocol\Elements.xml" />
     <Content Include="CreateSecurityPO1\Elements.xml" />
-    <Content Include="Entities\Scripts\Parameters.xml" />
+    <Content Include="Entities\Scripts\Parameters.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SendEmail\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
