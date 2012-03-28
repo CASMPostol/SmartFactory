@@ -28,4 +28,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     private const string m_ShippingNotFpundMessage = "Shipping slot is not selected";
   }
+  public partial class TimeSlot
+  {
+    internal double? Duration()
+    {
+      if (!EndTime.HasValue || !StartTime.HasValue)
+        return null;
+      return (EndTime.Value - StartTime.Value).TotalMinutes;
+    }
+  }
 }

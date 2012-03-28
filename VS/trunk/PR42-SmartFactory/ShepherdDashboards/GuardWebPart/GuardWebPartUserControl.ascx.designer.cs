@@ -31,13 +31,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart {
         protected global::System.Web.UI.WebControls.Panel m_Panel;
         
         /// <summary>
-        /// m_GuardTable control.
+        /// _GuardTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table m_GuardTable;
+        protected global::System.Web.UI.WebControls.Table _GuardTable;
         
         /// <summary>
         /// m_Label4 control.
@@ -76,13 +76,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart {
         protected global::System.Web.UI.WebControls.Button m_LeftButton;
         
         /// <summary>
-        /// m_RejectButton control.
+        /// m_ArrivedButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_RejectButton;
+        protected global::System.Web.UI.WebControls.Button m_ArrivedButton;
         
         /// <summary>
         /// m_UnDoButton control.
