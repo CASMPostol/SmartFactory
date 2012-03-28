@@ -255,7 +255,9 @@
     <Content Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx" />
+    <Content Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CurrentUserWebPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -28,7 +28,7 @@
             </asp:TableCell>
           </asp:TableRow>
     </asp:Table>
-  <asp:Table ID="Outside" CssClass="TableInside" runat="server">
+  <asp:Table ID="_Outside" CssClass="TableInside" runat="server">
     <asp:TableRow>
       <asp:TableCell VerticalAlign="Top">
         <asp:Table ID="LoadDescriptionManager_CommonPart" CssClass="TableInside" runat="server">
