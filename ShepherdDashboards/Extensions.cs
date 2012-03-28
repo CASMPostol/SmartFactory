@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Web.UI.WebControls;
 using System.Collections.Generic;
+using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
@@ -99,6 +100,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     public static bool IsNullOrEmpty(this string _val)
     {
       return String.IsNullOrEmpty(_val);
+    }
+    public static void Select(this DropDownList _ddl, Element _row)
+    {
+      if (_row == null)
+        return;
+      _ddl.Select(_row.Identyfikator.Value);
+    }
+    public static void Select(this DropDownList _ddl, int _row)
+    {
+      _ddl.SelectedIndex = -1;
+      ListItem _li = _ddl.Items.FindByValue(_row.ToString());
+      if (_li == null)
+        return;
+      _li.Selected = true;
     }
     #endregion
 

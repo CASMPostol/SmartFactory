@@ -10,17 +10,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
   {
     internal static Partner FindForUser(EntitiesDataContext edc, SPUser _user)
     {
-      try
-      {
-        return (
-              from idx in edc.Partner
-              where idx.ShepherdUserTitle.Contains(_user.Name)
-              select idx).First();
-      }
-      catch (Exception)
-      {
-        return null;
-      }
+      return (
+            from idx in edc.Partner
+            where idx.ShepherdUserTitle.Contains(_user.Name)
+            select idx).FirstOrDefault();
     }
   }
 }
