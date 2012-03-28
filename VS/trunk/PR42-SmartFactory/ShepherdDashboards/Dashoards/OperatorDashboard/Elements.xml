@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="OperatorDashboard">
     <File Path="WebPartPages\WebPageTemplate_Operator.aspx" Url="WebPartPages/OperatorDashboard.aspx">
-      <View List="Lists/ShippingList" BaseViewID="11" WebPartZoneID="Shippings" WebPartOrder="0">
+      <View List="Lists/ShippingList" BaseViewID="8" WebPartZoneID="Shippings" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">

@@ -258,75 +258,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main"  DisplayName="Gate - Outbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateOutbound.aspx">
-        <Toolbar Type="None" />
-        <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">10</RowLimit>
-        <ViewFields>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
-          <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
-          <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
-        </ViewFields>
-        <Query>
-          <Where>
-            <And>
-              <Neq>
-                <FieldRef Name="IsOutbound" />
-                <Value Type="Boolean">No</Value>
-              </Neq>
-              <Neq>
-                <FieldRef Name="ShippingState" />
-                <Value Type="Choice">Completed</Value>
-              </Neq>
-            </And>
-          </Where>
-          <OrderBy>
-            <FieldRef Name="StartTime">
-            </FieldRef>
-          </OrderBy>
-        </Query>
-        <ParameterBindings>
-          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
-          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
-        </ParameterBindings>
-      </View>
-      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="Gate - Inbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateInbound.aspx">
-        <Toolbar Type="None" />
-        <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">10</RowLimit>
-        <ViewFields>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
-          <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
-          <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
-        </ViewFields>
-        <Query>
-          <Where>
-            <And>
-              <Eq>
-                <FieldRef Name="IsOutbound" />
-                <Value Type="Boolean">NO</Value>
-              </Eq>
-              <Neq>
-                <FieldRef Name="ShippingState" />
-                <Value Type="Choice">Completed</Value>
-              </Neq>
-            </And>
-          </Where>
-          <OrderBy>
-            <FieldRef Name="StartTime">
-            </FieldRef>
-          </OrderBy>
-        </Query>
-        <ParameterBindings>
-          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
-          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
-        </ParameterBindings>
-      </View>
-      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundOwner.aspx">
+      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundOwner.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">16</RowLimit>
@@ -362,7 +294,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="6" Type="HTML" WebPartZoneID="Main" DisplayName="Inbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="InboundOwner.aspx">
+      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="Inbound Owner" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="InboundOwner.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">16</RowLimit>
@@ -397,7 +329,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="7" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Coordinator" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundCoordinator.aspx">
+      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="Outbound Coordinator" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundCoordinator.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">20</RowLimit>
@@ -413,6 +345,7 @@
           <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
           <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
           <FieldRef ID="{E6381646-DB08-4C85-9A2F-59B931D98DBB}" Name="LoadingType" />
+          <FieldRef ID="{2CEB1781-878F-46E5-9DF5-432463ABD971}" Name="ShippingOperationOutband2PartnerTitle" />
         </ViewFields>
         <Query>
           <Where>
@@ -437,7 +370,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="8" Type="HTML" WebPartZoneID="Main" DisplayName="Forwarder" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Forwarder.aspx">
+      <View BaseViewID="6" Type="HTML" WebPartZoneID="Main" DisplayName="Forwarder" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Forwarder.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">16</RowLimit>
@@ -474,32 +407,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="9" Type="HTML" WebPartZoneID="Main" DisplayName="Gate - Shipping details" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateShippingDetails.aspx">
-        <Toolbar Type="None" />
-        <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">1</RowLimit>
-        <ViewFields>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
-          <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
-          <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
-          <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
-          <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />         
-          <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
-          <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />        
-        </ViewFields>
-        <Query>
-          <OrderBy>
-            <FieldRef Name="ID">
-            </FieldRef>
-          </OrderBy>
-        </Query>
-        <ParameterBindings>
-          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
-          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
-        </ParameterBindings>
-      </View>
-      <View BaseViewID="10" Type="HTML" WebPartZoneID="Main"  DisplayName="Gate - All Shippings" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateAlShippings.aspx">
+      <View BaseViewID="7" Type="HTML" WebPartZoneID="Main"  DisplayName="Gate - All Shippings" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateAllShippings.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">15</RowLimit>
@@ -534,7 +442,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="11" Type="HTML" WebPartZoneID="Main" DisplayName="Operator" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Operator.aspx">
+      <View BaseViewID="8" Type="HTML" WebPartZoneID="Main" DisplayName="Operator" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Operator.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">16</RowLimit>
@@ -550,6 +458,7 @@
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
           <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
+          <FieldRef ID="{DF668BB4-81B5-4E6A-BBCB-44BD0F71F8C3}" Name="ContainerNo" />
         </ViewFields>
         <Query>
           <Where>
@@ -568,7 +477,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="12" Type="HTML" WebPartZoneID="Main" DisplayName="Escort" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Escort.aspx">
+      <View BaseViewID="9" Type="HTML" WebPartZoneID="Main" DisplayName="Escort" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Escort.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">10</RowLimit>
@@ -603,150 +512,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="13" Type="CALENDAR" WebPartZoneID="Main" DisplayName="Outbound" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="Outbound.aspx" RecurrenceRowset="TRUE" DefaultView="FALSE" MobileUrl="_layouts/mobile/viewdaily.aspx">
-        <Toolbar Type="Standard" />
-        <ParameterBindings>
-          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
-          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
-        </ParameterBindings>
-        <ViewFields>
-          <FieldRef Name="StartTime">
-          </FieldRef>
-          <FieldRef Name="fRecurrence" />
-          <FieldRef Name="EventType" />
-          <FieldRef Name="Attachments">
-          </FieldRef>
-          <FieldRef Name="WorkspaceLink" />
-          <FieldRef Name="Title">
-          </FieldRef>
-          <FieldRef Name="Location">
-          </FieldRef>
-          <FieldRef Name="Description" />
-          <FieldRef Name="Workspace">
-          </FieldRef>
-          <FieldRef Name="MasterSeriesItemID">
-          </FieldRef>
-          <FieldRef Name="fAllDayEvent">
-          </FieldRef>
-        </ViewFields>
-        <ViewData>
-          <FieldRef Name="Title" Type="CalendarMonthTitle">
-          </FieldRef>
-          <FieldRef Name="Title" Type="CalendarWeekTitle">
-          </FieldRef>
-          <FieldRef Name="Location" Type="CalendarWeekLocation">
-          </FieldRef>
-          <FieldRef Name="Title" Type="CalendarDayTitle">
-          </FieldRef>
-          <FieldRef Name="Location" Type="CalendarDayLocation">
-          </FieldRef>
-        </ViewData>
-        <Query>
-          <Where>
-            <And>
-              <DateRangesOverlap>
-                <FieldRef Name="StartTime">
-                </FieldRef>
-                <FieldRef Name="EndTime">
-                </FieldRef>
-                <FieldRef Name="RecurrenceID">
-                </FieldRef>
-                <Value Type="DateTime">
-                  <Month>
-                  </Month>
-                </Value>
-              </DateRangesOverlap>
-              <Neq>
-                <FieldRef Name="IsOutbound" />
-                <Value Type="Boolean">No</Value>
-              </Neq>
-            </And>
-          </Where>
-        </Query>
-      </View>
-      <View BaseViewID="14" Type="CALENDAR" WebPartZoneID="Main" DisplayName="Inbound" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/events.png" TabularView="FALSE" Url="Inbound.aspx" RecurrenceRowset="TRUE" DefaultView="FALSE" MobileUrl="_layouts/mobile/viewdaily.aspx">
-        <Toolbar Type="Standard" />
-        <ParameterBindings>
-          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
-          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
-        </ParameterBindings>
-        <ViewFields>
-          <FieldRef Name="StartTime">
-          </FieldRef>
-          <FieldRef Name="fRecurrence" />
-          <FieldRef Name="EventType" />
-          <FieldRef Name="Attachments">
-          </FieldRef>
-          <FieldRef Name="WorkspaceLink" />
-          <FieldRef Name="Title">
-          </FieldRef>
-          <FieldRef Name="Location">
-          </FieldRef>
-          <FieldRef Name="Description" />
-          <FieldRef Name="Workspace">
-          </FieldRef>
-          <FieldRef Name="MasterSeriesItemID">
-          </FieldRef>
-          <FieldRef Name="fAllDayEvent">
-          </FieldRef>
-        </ViewFields>
-        <ViewData>
-          <FieldRef Name="Title" Type="CalendarMonthTitle">
-          </FieldRef>
-          <FieldRef Name="Title" Type="CalendarWeekTitle">
-          </FieldRef>
-          <FieldRef Name="Location" Type="CalendarWeekLocation">
-          </FieldRef>
-          <FieldRef Name="Title" Type="CalendarDayTitle">
-          </FieldRef>
-          <FieldRef Name="Location" Type="CalendarDayLocation">
-          </FieldRef>
-        </ViewData>
-        <Query>
-          <Where>
-            <And>
-              <DateRangesOverlap>
-                <FieldRef Name="StartTime">
-                </FieldRef>
-                <FieldRef Name="EndTime">
-                </FieldRef>
-                <FieldRef Name="RecurrenceID">
-                </FieldRef>
-                <Value Type="DateTime">
-                  <Month>
-                  </Month>
-                </Value>
-              </DateRangesOverlap>
-              <Eq>
-                <FieldRef Name="IsOutbound" />
-                <Value Type="Boolean">No</Value>
-              </Eq>
-            </And>
-          </Where>
-        </Query>
-      </View>
-      <View BaseViewID="15" Type="HTML" WebPartZoneID="Main" DisplayName="Gate - Escort details" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="GateShippingDetails.aspx">
-        <Toolbar Type="None" />
-        <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">1</RowLimit>
-        <ViewFields>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
-          <FieldRef ID="{2CEB1781-878F-46E5-9DF5-432463ABD971}" Name="ShippingOperationOutband2PartnerTitle" />
-          <FieldRef ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}" Name="ShippingOperationOutband2TruckTitle" />
-        </ViewFields>
-        <Query>
-          <OrderBy>
-            <FieldRef Name="ID">
-            </FieldRef>
-          </OrderBy>
-        </Query>
-        <ParameterBindings>
-          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
-          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
-        </ParameterBindings>
-      </View>
-      <View BaseViewID="16" Type="HTML" WebPartZoneID="Main" DisplayName="Pallets Report" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="PalletsReport.aspx">
+      <View BaseViewID="10" Type="HTML" WebPartZoneID="Main" DisplayName="Pallets Report" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="PalletsReport.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">1</RowLimit>
