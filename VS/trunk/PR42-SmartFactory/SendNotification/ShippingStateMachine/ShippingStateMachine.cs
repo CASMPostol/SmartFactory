@@ -23,16 +23,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         _EDC.SubmitChanges();
       }
     }
-    private void ReportAlarmsAndEvents(string _mssg)
+    private void ReportAlarmsAndEvents(string _mssg, Priority _Priority)
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
       {
-        Shipping _sh = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        ShippingShipping _sh = Element.GetAtIndex<ShippingShipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
         Entities.AlarmsAndEvents _ae = new AlarmsAndEvents()
         {
+          Details = _mssg,
+          Owner = _sh.ZmodyfikowanePrzez,
+          Priority = _Priority,
+          Shipping = _sh,
           ShippingIndex = _sh,
-          Tytuł = _mssg,
-          VendorName = _sh.VendorName
+          VendorName = _sh.VendorName,
+          Tytuł = _sh.Title(),
         };
         _EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
         _EDC.SubmitChanges();
@@ -75,7 +79,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
       {
-        Shipping _sp = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
         e.Result = !(_sp.State.HasValue && (_sp.State.Value == State.Completed || _sp.State.Value == State.Canceled));
       }
     }
@@ -84,9 +88,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region WorkflowItemChanged
     private void m_OnWorkflowItemChanged_Invoked(object sender, ExternalDataEventArgs e)
     {
-      m_SendWarningLogToHistoryListActivity_HistoryOutcome = "Shiping";
+      m_SendWarningLogToHistoryListActivity_HistoryOutcome = "Shipping";
       m_SendWarningLogToHistoryListActivity_HistoryDescription = "The shipping has been modified and the schedule wiil be updated.";
-      ReportAlarmsAndEvents(m_SendWarningLogToHistoryListActivity_HistoryDescription);
+      ReportAlarmsAndEvents(m_SendWarningLogToHistoryListActivity_HistoryDescription, Priority.Normal);
       //if (m_OnWorkflowItemChanged_BeforeProperties1.Count == 0)
       //{
       //  string _msg = "Connot display changes because the BeforeProperties is empty.";
@@ -113,7 +117,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       //  }
       //}
     }
-
     public static DependencyProperty m_OnWorkflowItemChanged_BeforeProperties1Property = DependencyProperty.Register("m_OnWorkflowItemChanged_BeforeProperties1", typeof(System.Collections.Hashtable), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
     [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
     [BrowsableAttribute(true)]
@@ -157,7 +160,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
       {
-        Shipping _sp = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
         string _frmt = default(string);
         switch (_sp.State.Value)
         {
@@ -266,7 +269,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           m_NotificationSendEmail_Body = "Warning";
           m_NotificationSendEmail_To1 = _sp.VendorName != null ? _sp.VendorName.EMail : "unknown@comapny.com";
           m_NotificationSendEmail_CC = m_OnWorkflowActivated_WorkflowProperties.OriginatorEmail;
-          ReportAlarmsAndEvents(_sp.Tytuł + " Delayed !!");
+          ReportAlarmsAndEvents(_sp.Tytuł + " Delayed !!", Priority.Warning);
         }
         catch (Exception _ex)
         {

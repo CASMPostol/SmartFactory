@@ -46,9 +46,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
         _stt = "using";
         using (EntitiesDataContext _EDC = new EntitiesDataContext(_url))
         {
-          Shipping _sp = (from idx in _EDC.Shipping
-                          where idx.Identyfikator == workflowProperties.ItemId
-                          select idx).First();
+          ShippingShipping _sp = (from idx in _EDC.Shipping
+                                  where idx.Identyfikator == workflowProperties.ItemId
+                                  select idx).First();
           _stt = "Shipping";
           _spTitle = _sp.Tytuł;
           SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[CommonDefinition.SealProtocolLibraryTitle];
@@ -95,7 +95,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
         m_AfterCreationLogToHistoryList_HistoryDescription1 = string.Format(_frmt, _stt, _ex.Message);
       }
     }
-    private Dictionary<TeamMembers, string> GetTeamData(Shipping _sp)
+    private Dictionary<TeamMembers, string> GetTeamData(ShippingShipping _sp)
     {
       Dictionary<TeamMembers, string> _ret = new Dictionary<TeamMembers, string>();
       _ret.Add(TeamMembers._1stDriver, "");
@@ -113,7 +113,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
         if (_std.Driver == null)
           continue;
         TeamMembers _cd = TeamMembers._1stDriver;
-        TeamMembers _cse = TeamMembers._1stEscort; 
+        TeamMembers _cse = TeamMembers._1stEscort;
         if (_std.Driver.VendorName.ServiceType.Value == ServiceType.Forwarder)
         {
           _ret[_cd] = _std.Driver.Title();
