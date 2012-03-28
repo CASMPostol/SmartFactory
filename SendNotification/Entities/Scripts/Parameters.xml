@@ -25,7 +25,12 @@
   <List Name="Event Log List"/>
   <List Name="Seal Protocol Library"/>
   <List Name="Alarms And Events"></List>
-  <List Name="Shipping"></List>
+  <List Name="Shipping">
+    <ContentType Name="Shipping">
+      <Column Name="Modified"/>
+      <Column Name="Editor"/>
+    </ContentType>
+  </List>
   <List Name="Freight PO Library"/>
   <List Name="Escort PO Library"/>
   <List Name="Distribution List" />
