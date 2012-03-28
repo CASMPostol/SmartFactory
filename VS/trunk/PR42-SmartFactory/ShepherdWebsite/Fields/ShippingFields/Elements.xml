@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="Awaiting"
+    Name="TruckAwaiting"
+    Type="Boolean"
+    ID="{4BC3C930-FBAD-4F1A-973F-13D191BEEF05}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     DisplayName="Security escort cost"
     Name="ShippingSecurityCost"
     Type="Number"
