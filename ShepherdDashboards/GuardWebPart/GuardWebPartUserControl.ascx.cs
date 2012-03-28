@@ -165,11 +165,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     {
       try
       {
+        if (CurrentShipping == null)
+          return;
         switch (CurrentShipping.State.Value)
         {
           case State.Underway:
             TimeSlot _ts = (from _tsidx in CurrentShipping.TimeSlot
-                            where _tsidx.Occupied.Value == Occupied.Free
+                            where _tsidx.Occupied.Value == Occupied.Occupied0
                             orderby _tsidx.StartTime ascending
                             select _tsidx).First();
             CurrentShipping.StartTime = _ts.StartTime;
@@ -201,6 +203,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     {
       try
       {
+        if (CurrentShipping == null)
+          return;
         switch (CurrentShipping.State.Value)
         {
           case State.Confirmed:
@@ -224,13 +228,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
       }
       catch (Exception ex)
       {
-        ReportException("EnteredButton_Click", ex);
+        ReportException("m_ArrivedButton_Click", ex);
       }
     }
     private void m_LeftButton_Click(object sender, EventArgs e)
     {
       try
       {
+        if (CurrentShipping == null)
+          return;
         switch (CurrentShipping.State.Value)
         {
           case State.Underway:
@@ -261,6 +267,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     {
       try
       {
+        if (CurrentShipping == null)
+          return;
         switch (CurrentShipping.State.Value)
         {
           case State.Confirmed:
