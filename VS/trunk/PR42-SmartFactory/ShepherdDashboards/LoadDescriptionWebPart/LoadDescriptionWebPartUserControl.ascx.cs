@@ -415,13 +415,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_ControlState.LoadDescriptionID = _dataKey.Value.ToString();
       LoadDescription _ld = Element.GetAtIndex<LoadDescription>(m_EDC.LoadDescription, m_ControlState.LoadDescriptionID);
       m_CMRTextBox.Text = _ld.CMRNumber;
-      Select(m_CommodityDropDown, _ld.Commodity);
+      m_CommodityDropDown.Select(_ld.Commodity);
       m_LoadDescriptionNumberTextBox.Text = _ld.DeliveryNumber;
       m_GoodsQuantityTextBox.Text = _ld.GoodsQuantity.HasValue ? _ld.GoodsQuantity.ToString() : String.Empty;
       m_InvoiceTextBox.Text = _ld.InvoiceNumber;
-      Select(m_MarketDropDown, _ld.Market);
+      m_MarketDropDown.Select(_ld.Market);
       m_NumberOfPalletsTextBox.Text = _ld.NumberOfPallets.HasValue ? _ld.NumberOfPallets.Value.ToString() : String.Empty;
-      Select(m_PalletTypesDropDown, (int)_ld.PalletType);
+      m_PalletTypesDropDown.Select( (int)_ld.PalletType);
     }
     private StateMachineEngine.ActionResult Update(LoadDescription _ld, List<string> _ve)
     {
@@ -508,20 +508,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
       m_EDC.SubmitChanges();
     }
-    private void Select(DropDownList _ddl, Element _row)
-    {
-      if (_row == null)
-        return;
-      Select(_ddl, _row.Identyfikator.Value);
-    }
-    private static void Select(DropDownList _ddl, int _row)
-    {
-      _ddl.SelectedIndex = -1;
-      ListItem _li = _ddl.Items.FindByValue(_row.ToString());
-      if (_li == null)
-        return;
-      _li.Selected = true;
-    }
+
     private StateMachineEngine.ActionResult AddValidationMessages(List<string> _ve)
     {
       if (_ve.Count == 0)

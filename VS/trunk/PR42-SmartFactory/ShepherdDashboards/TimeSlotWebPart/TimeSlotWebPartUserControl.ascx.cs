@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint;
 using System.Linq;
+using Microsoft.SharePoint.WebControls;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
 {
@@ -61,11 +62,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       {
         m_WarehouseDropDownList.DataSource = from _idx in m_EDC.Warehouse
                                              orderby _idx.Tytuł ascending
-                                             select _idx;
-        m_WarehouseDropDownList.DataTextField = Element.TitlePropertyName;
-        m_WarehouseDropDownList.DataValueField = Element.IDPropertyName;
+                                             select new { Title = _idx.Tytuł, ID = _idx.Identyfikator.Value };
+        m_WarehouseDropDownList.DataTextField = "Title";
+        m_WarehouseDropDownList.DataValueField = "ID";
         m_WarehouseDropDownList.DataBind();
-        m_WarehouseDropDownList.SelectedIndex = 0;
+        using (SPWeb currentWeb = SPControl.GetContextWeb(this.Context))
+        {
+          Partner _Partner = Partner.FindForUser(m_EDC, currentWeb.CurrentUser);
+          if (_Partner != null)
+            m_WarehouseDropDownList.Select(_Partner.Warehouse);
+          else
+            m_WarehouseDropDownList.SelectedIndex = 0;
+        }
         m_Calendar.VisibleDate = DateTime.Today;
         m_Calendar.SelectedDate = DateTime.Today;
       }
@@ -132,7 +140,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           if (_spoint.Direction != _direction && _spoint.Direction != Direction.BothDirections)
             continue;
           List<TimeSlot> _avlblTmslts = (from _tsidx in _spoint.TimeSlot
-                                         where _tsidx.Occupied.Value == Entities.Occupied.Free && _tsidx.StartTime >= _strt && _tsidx.StartTime< _end
+                                         where _tsidx.Occupied.Value == Entities.Occupied.Free && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
                                          orderby _tsidx.StartTime ascending
                                          select _tsidx).ToList<TimeSlot>();
           if (m_ShowDoubleTimeSlots.Checked)
