@@ -6,7 +6,7 @@
         <Folder TargetName="_cts/AlarmsAndEvents" />
         <FieldRefs>
           <FieldRef ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}" Name="AlarmAndEventDetails" />
-          <FieldRef ID="{7906427A-07BA-4AAE-B4CB-A73F9B57DFF3}" Name="AlarmsAndEventsList2ShippingTitle" />
+          <FieldRef ID="{3D6333C7-7065-49A1-9A22-074D9D33D9C3}" Name="AlarmsAndEventsShippingTitle" />
           <FieldRef ID="{177A27B7-A685-411B-950F-ED55740AD617}" Name="AlarmAndEventOwner" />
           <FieldRef ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}" Name="AlarmsAndEventsList2ShippingIndex" />
           <FieldRef ID="{7F341C2D-FEBA-48BD-9D59-4BF410959229}" Name="AlarmsAndEventsList2PartnerTitle" />
@@ -26,7 +26,7 @@
     <Fields>
       <Field Name="AlarmsAndEventsList2ShippingIndex" ID="{907b59c1-8dc8-477b-bf68-2c79a0354990}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="AlarmsAndEventsList2PartnerTitle" ID="{7f341c2d-feba-48bd-9d59-4bf410959229}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="AlarmsAndEventsList2ShippingTitle" ID="{7906427A-07BA-4AAE-B4CB-A73F9B57DFF3}" Type="Lookup" List="Lists/ShippingList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Type="Lookup" DisplayName="Shipping" List="Lists/ShippingList" ShowField="Title" FieldRef="907B59C1-8DC8-477B-BF68-2C79A0354990" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{3D6333C7-7065-49A1-9A22-074D9D33D9C3}" Name="AlarmsAndEventsShippingTitle" Overwrite="TRUE" />
       <Field DisplayName="Details" Name="AlarmAndEventDetails" Type="Text" ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Owner" Name="AlarmAndEventOwner" Type="Text" ID="{177A27B7-A685-411B-950F-ED55740AD617}" Group="CAS Smart Factory Shepherd" />
       <Field Type="Choice" DisplayName="Priority" ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}" Format="Dropdown" BaseType="Text" Name="AlarmPriority" Group="CAS Smart Factory Shepherd">
@@ -68,6 +68,12 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
+          <FieldRef ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}" Name="AlarmAndEventDetails" />
+          <FieldRef ID="{3D6333C7-7065-49A1-9A22-074D9D33D9C3}" Name="AlarmsAndEventsShippingTitle" />
+          <FieldRef ID="{177A27B7-A685-411B-950F-ED55740AD617}" Name="AlarmAndEventOwner" />
+          <FieldRef ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}" Name="AlarmsAndEventsList2ShippingIndex" />
+          <FieldRef ID="{7F341C2D-FEBA-48BD-9D59-4BF410959229}" Name="AlarmsAndEventsList2PartnerTitle" />
+          <FieldRef ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}" Name="AlarmPriority" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -88,7 +94,7 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}" Name="AlarmAndEventDetails" />
-          <FieldRef ID="{7906427A-07BA-4AAE-B4CB-A73F9B57DFF3}" Name="AlarmsAndEventsList2ShippingTitle" />
+          <FieldRef ID="{3D6333C7-7065-49A1-9A22-074D9D33D9C3}" Name="AlarmsAndEventsShippingTitle" />
           <FieldRef ID="{177A27B7-A685-411B-950F-ED55740AD617}" Name="AlarmAndEventOwner" />
           <FieldRef ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}" Name="AlarmPriority" />
         </ViewFields>
