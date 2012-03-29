@@ -245,11 +245,17 @@
               <FieldRef Name="IsOutbound" />
               <Value Type="Boolean">NO</Value>
             </Eq>
-                  <Neq>
-                    <FieldRef Name="ShippingState" />
-                    <Value Type="Choice">Completed</Value>
-                  </Neq>
-            </And>
+              <And>
+                <Neq>
+                  <FieldRef Name="ShippingState" />
+                  <Value Type="Choice">Completed</Value>
+                </Neq>
+                <Neq>
+                  <FieldRef Name="ShippingState" />
+                  <Value Type="Choice">Canceled</Value>
+                </Neq>
+              </And>
+                </And>
           </Where>
           <OrderBy>
             <FieldRef Name="ID">
@@ -349,14 +355,20 @@
                 <FieldRef Name="IsOutbound" />
                 <Value Type="Boolean">No</Value>
               </Neq>
-              <Neq>
-                <FieldRef Name="ShippingState" />
-                <Value Type="Choice">Completed</Value>
-              </Neq>
+              <And>
+                <Neq>
+                  <FieldRef Name="ShippingState" />
+                  <Value Type="Choice">Completed</Value>
+                </Neq>
+                <Neq>
+                  <FieldRef Name="ShippingState" />
+                  <Value Type="Choice">Canceled</Value>
+                </Neq>
+              </And>
             </And>
           </Where>
           <OrderBy>
-            <FieldRef Name="ID">
+            <FieldRef Name="StartTime">
             </FieldRef>
           </OrderBy>
         </Query>
@@ -384,14 +396,20 @@
                 <FieldRef Name="IsOutbound" />
                 <Value Type="Boolean">NO</Value>
               </Eq>
-              <Neq>
-                <FieldRef Name="ShippingState" />
-                <Value Type="Choice">Completed</Value>
-              </Neq>
+              <And>
+                <Neq>
+                  <FieldRef Name="ShippingState" />
+                  <Value Type="Choice">Completed</Value>
+                </Neq>
+                <Neq>
+                  <FieldRef Name="ShippingState" />
+                  <Value Type="Choice">Canceled</Value>
+                </Neq>
+              </And>
             </And>
           </Where>
           <OrderBy>
-            <FieldRef Name="ID">
+            <FieldRef Name="StartTime">
             </FieldRef>
           </OrderBy>
         </Query>
@@ -420,16 +438,10 @@
         </ViewFields>
         <Query>
           <Where>
-            <And>
               <Neq>
                 <FieldRef Name="IsOutbound" />
                 <Value Type="Boolean">No</Value>
               </Neq>
-              <Neq>
-                <FieldRef Name="ShippingState" />
-                <Value Type="Choice">Completed</Value>
-              </Neq>
-            </And>
           </Where>
           <OrderBy>
             <FieldRef Name="StartTime">
@@ -462,14 +474,20 @@
                 <FieldRef Name="IsOutbound" />
                 <Value Type="Boolean">No</Value>
               </Neq>
-              <Neq>
-                <FieldRef Name="ShippingState" />
-                <Value Type="Choice">Completed</Value>
-              </Neq>
+              <And>
+                <Neq>
+                  <FieldRef Name="ShippingState" />
+                  <Value Type="Choice">Completed</Value>
+                </Neq>
+                <Neq>
+                  <FieldRef Name="ShippingState" />
+                  <Value Type="Choice">Canceled</Value>
+                </Neq>
+              </And>
             </And>
           </Where>
           <OrderBy>
-            <FieldRef Name="ID">
+            <FieldRef Name="StartTime">
             </FieldRef>
           </OrderBy>
         </Query>
@@ -524,10 +542,16 @@
         </ViewFields>
         <Query>
           <Where>
-            <Neq>
-              <FieldRef Name="ShippingState" />
-              <Value Type="Choice">Completed</Value>
-            </Neq>
+            <And>
+              <Neq>
+                <FieldRef Name="ShippingState" />
+                <Value Type="Choice">Completed</Value>
+              </Neq>
+              <Neq>
+                <FieldRef Name="ShippingState" />
+                <Value Type="Choice">Canceled</Value>
+              </Neq>
+            </And>
           </Where>
           <OrderBy>
             <FieldRef Name="StartTime">
@@ -560,10 +584,16 @@
         </ViewFields>
         <Query>
           <Where>
-            <Neq>
-              <FieldRef Name="ShippingState" />
-              <Value Type="Choice">Completed</Value>
-            </Neq>
+            <And>
+              <Neq>
+                <FieldRef Name="ShippingState" />
+                <Value Type="Choice">Completed</Value>
+              </Neq>
+              <Neq>
+                <FieldRef Name="ShippingState" />
+                <Value Type="Choice">Canceled</Value>
+              </Neq>
+            </And>
           </Where>
           <OrderBy>
             <FieldRef Name="StartTime">
@@ -594,10 +624,16 @@
                 <FieldRef Name="IsOutbound" />
                 <Value Type="Boolean">No</Value>
               </Neq>
-              <Neq>
-                <FieldRef Name="ShippingState" />
-                <Value Type="Choice">Completed</Value>
-              </Neq>
+              <And>
+                <Neq>
+                  <FieldRef Name="ShippingState" />
+                  <Value Type="Choice">Completed</Value>
+                </Neq>
+                <Neq>
+                  <FieldRef Name="ShippingState" />
+                  <Value Type="Choice">Canceled</Value>
+                </Neq>
+              </And>
             </And>
           </Where>
           <OrderBy>
