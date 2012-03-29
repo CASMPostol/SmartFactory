@@ -11,7 +11,7 @@
           <FieldRef ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Name="WorkCity" />
           <FieldRef ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Name="WorkCountry" />
           <FieldRef ID="{DC0E5632-A487-412B-AA3E-4CC025116C28}" Name="NIP" />
-          <FieldRef ID="{6CE9A06C-1964-4176-926D-A5114048A95D}" Name="SendInvoiceTo" />
+          <FieldRef ID="{6D1FB660-86D4-48A2-92AE-91C4773A29EF}" Name="SendInvoiceToMultiline" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -25,7 +25,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="SendInvoiceTo" ID="{6CE9A06C-1964-4176-926D-A5114048A95D}" Type="Text" DisplayName="Send invoice to" Group="CAS Smart Factory Shepherd" />
+      <Field Name="SendInvoiceToMultiline" ID="{6D1FB660-86D4-48A2-92AE-91C4773A29EF}" Type="Note" DisplayName="Send invoice to" Group="CAS Smart Factory Shepherd" />
       <Field Name="PayerName" ID="{654389E7-36DA-4528-AEC7-E6BB99634022}" Type="Text" DisplayName="Company" Group="CAS Smart Factory Shepherd" />
       <Field DisplayName="Address" Name="CompanyAddress" Type="Text" ID="{e0bcc826-1f93-4156-8fc1-7f4506234dfa}" Group="CAS Smart Factory Shepherd" Description="Address" />
       <Field DisplayName="NIP / VAT No." Name="NIP" Type="Text" ID="{dc0e5632-a487-412b-aa3e-4cc025116c28}" Group="CAS Smart Factory Shepherd" Description="NIP" />
@@ -69,7 +69,7 @@
           <FieldRef ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Name="WorkCity" />
           <FieldRef ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Name="WorkCountry" />
           <FieldRef ID="{DC0E5632-A487-412B-AA3E-4CC025116C28}" Name="NIP" />
-          <FieldRef ID="{6CE9A06C-1964-4176-926D-A5114048A95D}" Name="SendInvoiceTo" />
+          <FieldRef ID="{6D1FB660-86D4-48A2-92AE-91C4773A29EF}" Name="SendInvoiceToMultiline" />
         </ViewFields>
         <Query>
           <OrderBy>
