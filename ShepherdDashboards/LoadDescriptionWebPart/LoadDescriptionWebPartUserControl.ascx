@@ -31,10 +31,10 @@
   <asp:Table ID="_Outside" CssClass="TableInside" runat="server">
     <asp:TableRow>
       <asp:TableCell VerticalAlign="Top">
-        <asp:Table ID="LoadDescriptionManager_CommonPart" CssClass="TableInside" runat="server">
+        <asp:Table ID="_LoadDescriptionManager_CommonPart" CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_LoadDescriptionNumberLabel" runat="server" Text="No." CssClass="Label"></asp:Label>
+              <asp:Label ID="m_LoadDescriptionNumberLabel" runat="server" Text="PO No/Del" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
               <asp:TextBox ID="m_LoadDescriptionNumberTextBox" runat="server" CssClass="TextBoxLD"></asp:TextBox>
