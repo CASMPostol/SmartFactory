@@ -147,7 +147,9 @@
     <None Include="CarrierDashboard\TransportResources\TransportResources.webpart">
       <SubType>Designer</SubType>
     </None>
-    <None Include="CurrentUserWebPart\CurrentUserWebPart.webpart" />
+    <None Include="CurrentUserWebPart\CurrentUserWebPart.webpart">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="CurrentUserWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2614e454-2e2d-48e2-a02c-9f72cdb22425}</SharePointProjectItemId>
       <SubType>Designer</SubType>
@@ -351,6 +353,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="WebPartPages\CarrierDashboardTemplate.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_Coordinator.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Escort.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Forwarder.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Gate.aspx" />
