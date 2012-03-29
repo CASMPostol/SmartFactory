@@ -117,9 +117,9 @@
         </ParameterBindings>
       </View>
       <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="OutboundOwner" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundOwner.aspx">
-        <Toolbar Type="Standard" />
+        <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">10</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
@@ -140,9 +140,9 @@
         </ParameterBindings>
       </View>
       <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="InboundOwner" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="InboundOwner.aspx">
-        <Toolbar Type="Standard" />
+        <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">10</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
