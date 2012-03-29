@@ -177,9 +177,9 @@
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    Name="SendInvoiceTo"
-    ID="{6CE9A06C-1964-4176-926D-A5114048A95D}"
-    Type="Text"
+    Name="SendInvoiceToMultiline"
+    ID="{6D1FB660-86D4-48A2-92AE-91C4773A29EF}"
+    Type="Note"
     DisplayName="Send invoice to"
     Group="CAS Smart Factory Shepherd"
     />
