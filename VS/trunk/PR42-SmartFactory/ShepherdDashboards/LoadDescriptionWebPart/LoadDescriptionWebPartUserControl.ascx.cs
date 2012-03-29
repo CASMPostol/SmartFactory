@@ -231,7 +231,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       }
       protected override void ClearUserInterface()
       {
-        Parent.ClearUserInterface(false);
+        Parent.ClearUserInterface();
       }
       protected override void SetEnabled(ControlsSet _buttons)
       {
@@ -421,7 +421,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_InvoiceTextBox.Text = _ld.InvoiceNumber;
       m_MarketDropDown.Select(_ld.Market);
       m_NumberOfPalletsTextBox.Text = _ld.NumberOfPallets.HasValue ? _ld.NumberOfPallets.Value.ToString() : String.Empty;
-      m_PalletTypesDropDown.Select( (int)_ld.PalletType);
+      m_PalletTypesDropDown.Select((int)_ld.PalletType);
     }
     private StateMachineEngine.ActionResult Update(LoadDescription _ld, List<string> _ve)
     {
@@ -460,6 +460,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
                                              };
       m_LoadDescriptionGridView.DataBind();
       m_LoadDescriptionGridView.SelectedIndex = -1;
+    }
+    internal void ClearUserInterface()
+    {
+      ClearUserInterface(CurrentShipping.IsOutbound.Value);
     }
     private void ClearUserInterface(bool _isOutbound)
     {
@@ -508,7 +512,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
       m_EDC.SubmitChanges();
     }
-
     private StateMachineEngine.ActionResult AddValidationMessages(List<string> _ve)
     {
       if (_ve.Count == 0)
