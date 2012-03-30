@@ -60,6 +60,19 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddTimeSlots\AddTimeSlots.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AddTimeSlots\AddTimeSlots.Designer.cs">
+      <DependentUpon>AddTimeSlots.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddTimeSlots\AddTimeSlotsInitiationForm.aspx.cs">
+      <DependentUpon>AddTimeSlotsInitiationForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddTimeSlots\AddTimeSlotsInitiationForm.aspx.designer.cs">
+      <DependentUpon>AddTimeSlotsInitiationForm.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommonDefinition.cs" />
     <Compile Include="CreatePO\CreatePO.cs">
       <SubType>Component</SubType>
@@ -112,6 +125,9 @@
     <Compile Include="WorkflowData\POLibraryWorkflowAssociationData.Partial..cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AddTimeSlots\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5e3566c7-899f-4796-a630-06e991a4ea6b}</SharePointProjectItemId>
+    </None>
     <None Include="CreatePO\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2c449354-5fc5-47fe-a13f-84165a95e8c9}</SharePointProjectItemId>
     </None>
@@ -123,6 +139,7 @@
     </None>
     <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="key.snk" />
+    <None Include="Model.T4" />
     <None Include="SendEmail\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1783f2bc-07c6-4fa0-a343-7eb67ed5f587}</SharePointProjectItemId>
     </None>
@@ -159,6 +176,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddTimeSlots\AddTimeSlotsInitiationForm.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <None Include="AddTimeSlots\Elements.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Elements.xml</LastGenOutput>
+    </None>
+    <Content Include="AddTimeSlots\Elements.xml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Elements.tt</DependentUpon>
+    </Content>
     <Content Include="CreatePO\Elements.xml" />
     <Content Include="CreateSealProtocol\Elements.xml" />
     <Content Include="CreateSecurityPO1\Elements.xml" />
