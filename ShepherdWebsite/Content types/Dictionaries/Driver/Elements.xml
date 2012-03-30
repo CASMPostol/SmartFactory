@@ -5,7 +5,7 @@
                Group="CAS Smart Factory Shepherd"
                Description="Driver"
                Overwrite="TRUE"
-               Inherits="TRUE">
+               Inherits="FALSE">
     <Folder TargetName="_cts/Driver" />
     <FieldRefs>
       <FieldRef ID="{491CA972-C42C-4936-B8CD-D856E45B05EF}" Name="Driver2PartnerTitle" />
@@ -13,11 +13,11 @@
       <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
     </FieldRefs>
     <XmlDocuments>
-      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-          <Display>ListForm</Display>
-          <Edit>ListForm</Edit>
-          <New>ListForm</New>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
+          <Display>_layouts/ShepherdDashboards/DriverNewForm.aspx</Display>
+          <Edit>_layouts/ShepherdDashboards/DriverNewForm.aspx</Edit>
+          <New>_layouts/ShepherdDashboards/DriverNewForm.aspx</New>
         </FormTemplates>
       </XmlDocument>
     </XmlDocuments>

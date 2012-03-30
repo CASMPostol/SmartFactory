@@ -2,12 +2,12 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
     <ListTemplate
         Name="DriverTemplate"
-        Type="10043"
+        Type="10041"
         BaseType="0"
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="Driver"
+        DisplayName="Driver List Template"
         Description="Driver List Definition"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

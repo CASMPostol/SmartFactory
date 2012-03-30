@@ -2,12 +2,12 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
     <ListTemplate
         Name="TruckTemplate"
-        Type="10041"
+        Type="10042"
         BaseType="0"
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="Truck"
+        DisplayName="Truck List Template"
         Description="Truck List Definition"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

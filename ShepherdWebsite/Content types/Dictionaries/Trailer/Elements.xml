@@ -12,11 +12,11 @@
       <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
     </FieldRefs>
     <XmlDocuments>
-      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-          <Display>ListForm</Display>
-          <Edit>ListForm</Edit>
-          <New>ListForm</New>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
+          <Display>_layouts/ShepherdDashboards/TrailerNewForm.aspx</Display>
+          <Edit>_layouts/ShepherdDashboards/TrailerNewForm.aspx</Edit>
+          <New>_layouts/ShepherdDashboards/TrailerNewForm.aspx</New>
         </FormTemplates>
       </XmlDocument>
     </XmlDocuments>
