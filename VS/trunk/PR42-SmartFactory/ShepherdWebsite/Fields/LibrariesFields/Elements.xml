@@ -91,9 +91,9 @@
     Group="CAS Smart Factory Shepherd"
     DisplayName="City" />
   <Field
-    Name="SecurityPOSentInvoiceTo"
-    ID="{29B66983-6AC7-460E-9C84-E7BB5B5E1BFC}"
-    Type="Text"
+    Name="SecurityPOSentInvoiceToMultiline"
+    ID="{9655FAD3-12BD-4059-AE3F-684F7BF420B6}"
+    Type="Note"
     Group="CAS Smart Factory Shepherd"
     DisplayName="Send invoice to" />
   <Field
@@ -163,9 +163,9 @@
     Group="CAS Smart Factory Shepherd"
     DisplayName="Payer name" />
   <Field
-    Name="FreightPOSendInvoiceTo"
-    ID="{F350E678-C8E1-422D-A925-0895DF2B34E0}"
-    Type="Text"
+    Name="FreightPOSendInvoiceToMultiline"
+    ID="{D2E2CF31-D57C-46E2-85B2-46FED8468F86}"
+    Type="Note"
     Group="CAS Smart Factory Shepherd"
     DisplayName="Send invoice to" />
   <Field
