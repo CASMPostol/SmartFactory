@@ -147,5 +147,4 @@
   <asp:Button ID="m_AbortButton" runat="server" Text="Abort" CssClass="Button" />
   <asp:Button ID="m_SaveButton" runat="server" Text="Save" CssClass="Button" />
   <asp:Button ID="m_CancelButton" runat="server" Text="Cancel" CssClass="Button" />
-  <asp:Button ID="m_AcceptButton" runat="server" Text="Accept" CssClass="Button" />
 </asp:Panel>
