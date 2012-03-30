@@ -1808,7 +1808,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SendInvoiceTo", Storage="_sendInvoiceTo", FieldType="Text")]
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SendInvoiceToMultiline", Storage="_sendInvoiceTo", FieldType="Note")]
 		public string SendInvoiceTo {
 			get {
 				return this._sendInvoiceTo;
