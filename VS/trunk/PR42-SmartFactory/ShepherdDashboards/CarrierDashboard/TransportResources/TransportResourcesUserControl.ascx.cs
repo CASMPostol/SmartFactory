@@ -116,6 +116,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           continue;
         ListItem _li = new ListItem(_item.Tytuł, _item.Identyfikator.Value.ToString());
         m_TruckDropDown.Items.Add(_li);
+        if (Role == TransportResources.RolesSet.SecurityEscort)
+          if (_Shipping.SecurityEscortCarRegistrationNumber == _item)
+            _li.Selected = true;
+          else
         if (_Shipping.TruckCarRegistrationNumber == _item)
           _li.Selected = true;
       }
