@@ -204,6 +204,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Elements.tt</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="CreatePO\Elements.xml" />
     <Content Include="CreateSealProtocol\Elements.xml" />

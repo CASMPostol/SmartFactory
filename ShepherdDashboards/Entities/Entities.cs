@@ -1486,7 +1486,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Driver
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Driver", Id="0x0100B0982F01816047B1ABFF933B9F49B5DB")]
 	public partial class Driver : Element {
@@ -1542,6 +1542,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this._numerTelefonuKomórkowego = value;
 					this.OnPropertyChanged("NumerTelefonuKomórkowego");
 				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Driver.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Driver.");
 			}
 		}
 		
@@ -4562,7 +4573,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Truck
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Truck", Id="0x01003E7761AEF97A4C619F44D01B53A56568")]
 	public partial class Truck : Element {
@@ -4610,6 +4621,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 					this._comments = value;
 					this.OnPropertyChanged("Comments");
 				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Truck.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Truck.");
 			}
 		}
 		
@@ -5110,7 +5132,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOSentInvoiceTo", Storage="_sendInvoiceTo", FieldType="Text")]
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOSentInvoiceToMultiline", Storage="_sendInvoiceTo", FieldType="Note")]
 		public string SendInvoiceTo {
 			get {
 				return this._sendInvoiceTo;
@@ -5448,7 +5470,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOSendInvoiceTo", Storage="_sendInvoiceTo", FieldType="Text")]
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOSendInvoiceToMultiline", Storage="_sendInvoiceTo", FieldType="Note")]
 		public string SendInvoiceTo {
 			get {
 				return this._sendInvoiceTo;
