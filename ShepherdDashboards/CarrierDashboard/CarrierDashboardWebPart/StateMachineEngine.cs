@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       SaveOn = 0x01, EditOn = 0x02, CancelOn = 0x04, NewOn = 0x08,
       DocumentOn = 0x10, AbortOn = 0x20, CommentsOn = 0x40, EstimatedDeliveryTime = 0x80,
       CoordinatorPanelOn = 0x100, ContainerNoOn = 0x200, WarehouseOn = 0x400, TimeSlotOn = 0x800,
-      AcceptOn = 0x1000, TransportUnitOn = 0x2000, CityOn = 0x4000, PartnerOn = 0x8000,
+      TransportUnitOn = 0x2000, CityOn = 0x4000, PartnerOn = 0x8000,
       OperatorControlsOn = 0x10000
     }
     internal enum InterfaceEvent { SaveClick, EditClick, CancelClick, NewClick, EnterState, AbortClick }
@@ -98,21 +98,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.EditState:
           AbortShipping();
-          CurrentMachineState = InterfaceState.ViewState;
-          break;
-        case InterfaceState.ViewState:
-        case InterfaceState.NewState:
-        default:
-          SMError(InterfaceEvent.AbortClick);
-          break;
-      }
-    }
-    internal void AcceptButton_Click(object sender, EventArgs e)
-    {
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.EditState:
-          AcceptShipping();
           CurrentMachineState = InterfaceState.ViewState;
           break;
         case InterfaceState.ViewState:
@@ -249,7 +234,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     protected abstract void ClearUserInterface();
     protected abstract ActionResult UpdateShipping();
     protected abstract ActionResult CreateShipping();
-    protected abstract void AcceptShipping();
     protected abstract void AbortShipping();
     protected abstract void SetEnabled(ControlsSet _buttons);
     protected abstract void SMError(InterfaceEvent interfaceEvent);
@@ -269,7 +253,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           SetEnabled
             (
               ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.CommentsOn | ControlsSet.EstimatedDeliveryTime |
-              ControlsSet.AbortOn | ControlsSet.AcceptOn | ControlsSet.TransportUnitOn | ControlsSet.CoordinatorPanelOn | 
+              ControlsSet.AbortOn | ControlsSet.TransportUnitOn | ControlsSet.CoordinatorPanelOn | 
               ControlsSet.OperatorControlsOn | ControlsSet.ContainerNoOn
             );
           break;
