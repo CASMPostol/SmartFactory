@@ -270,7 +270,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_EditButton.Enabled = false;
         m_AbortButton.Enabled = false;
         m_AcceptButton.Enabled = false;
-        m_CoordinatorEditCheckBox.Enabled = false;
+        m_CoordinatorPanel.Enabled = false;
+        m_CoordinatorEditCheckBox.Checked= false;
       }
       m_SecurityRequiredChecbox.Enabled = m_CoordinatorEditCheckBox.Checked;
       base.OnPreRender(e);
