@@ -8,8 +8,8 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
 
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Workflow
-     Name="AddTimeSlots"
-     Description="Adds Time Slots according to the selected template."
+     Name="<#= AddTimeSlots_Name #>"
+     Description="<#= AddTimeSlots_Description #>"
      Id="<#=AddTimeSlots_ID#>"
      CodeBesideClass="CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots.AddTimeSlots"
      CodeBesideAssembly="$assemblyname$" InstantiationUrl="_layouts/SendNotification/AddTimeSlots/AddTimeSlotsInitiationForm.aspx">
@@ -29,4 +29,4 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
     </MetaData>
   </Workflow>
 </Elements>
-<#+ string AddTimeSlots_ID = "2e240fb3-f93c-4b87-9170-b5443815793b"; #>
+<#@ include file = "..\Model.T4" #>
