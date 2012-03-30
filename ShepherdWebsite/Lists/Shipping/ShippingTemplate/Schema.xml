@@ -828,6 +828,12 @@
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
         </ViewFields>
         <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="IsOutbound" />
+              <Value Type="Boolean">No</Value>
+            </Eq>
+          </Where>
           <OrderBy>
             <FieldRef Name="StartTime">
             </FieldRef>
@@ -853,6 +859,12 @@
           <FieldRef ID="{AF3CCE36-0E33-4C19-875D-87288AC9E2A0}" Name="ShippingCountryTitle" />
         </ViewFields>
         <Query>
+          <Where>
+            <Neq>
+              <FieldRef Name="IsOutbound" />
+              <Value Type="Boolean">No</Value>
+            </Neq>
+          </Where>
           <OrderBy>
             <FieldRef Name="StartTime">
             </FieldRef>
