@@ -187,6 +187,15 @@
     <None Include="Dashoards\InboundOwnerDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bcbd1896-721b-4ff8-8267-db465d242d38}</SharePointProjectItemId>
     </None>
+    <None Include="Dashoards\ManageDriversDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4033fbe9-36c7-4f7a-b895-0af29edf8abf}</SharePointProjectItemId>
+    </None>
+    <None Include="Dashoards\ManageCarsDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5079bcc5-49c3-4312-b627-bf32432b5343}</SharePointProjectItemId>
+    </None>
+    <None Include="Dashoards\ManageTrailersDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9eee642a-7c2b-4c38-960c-c7317047bf5c}</SharePointProjectItemId>
+    </None>
     <None Include="Dashoards\OperatorDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2374663f-bd66-4211-8c37-bc6441c2cc2a}</SharePointProjectItemId>
     </None>
@@ -298,6 +307,9 @@
     <Content Include="Dashoards\InboundOwnerDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Dashoards\ManageDriversDashboard\Elements.xml" />
+    <Content Include="Dashoards\ManageCarsDashboard\Elements.xml" />
+    <Content Include="Dashoards\ManageTrailersDashboard\Elements.xml" />
     <Content Include="Dashoards\OperatorDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -392,6 +404,7 @@
     <Content Include="WebPartPages\WebPageTemplate_Forwarder.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Gate.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_InboundOwner.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_ManageResources.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Operator.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_OutboundCoordinator.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_OutboundOwner.aspx" />

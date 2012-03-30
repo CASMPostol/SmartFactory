@@ -45,6 +45,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
             _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityGateTitle, ProjectElementManagement.URLGateDashboard));
             _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOperatorTitle, ProjectElementManagement.URLOperator));
             _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSupervisorTitle, ProjectElementManagement.URLSupervisor));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuDriversTitle, ProjectElementManagement.URLDrivers));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCarsTitle, ProjectElementManagement.URLCars));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuTrailersTitle, ProjectElementManagement.URLTrailers));
             foreach (SPNavigationNode item in _topNav)
               item.Update();
             WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
