@@ -125,7 +125,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.Forwarder:
-            m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn ^ 
+            m_VisibilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn ^
               ButtonsSet.NewOn ^ ButtonsSet.AbortOn ^ ButtonsSet.PartnerOn;
             m_EditbilityACL = m_AllButtons ^ ButtonsSet.CoordinatorPanelOn ^ ButtonsSet.AcceptOn ^ ButtonsSet.TransportUnitOn ^ ButtonsSet.OperatorControlsOn;
             m_ShowDocumentLabel = ShowDocumentLabelForwarder;
@@ -210,25 +210,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         SetVisible(m_AllButtons);
         m_StateMachineEngine.InitMahine();
-        if (m_TrailerConditionDropdown.Visible)
-        {
-          m_TrailerConditionDropdown.Items.Add(new ListItem(" -- Select trailer condition  --", "-1") { Selected = true });
-          m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Unacceptable", ((int)Entities.TrailerCondition._1Unexceptable).ToString()));
-          m_TrailerConditionDropdown.Items.Add(new ListItem("2 - Bad", ((int)Entities.TrailerCondition._2).ToString()));
-          m_TrailerConditionDropdown.Items.Add(new ListItem("3 - Poor", ((int)Entities.TrailerCondition._3).ToString()));
-          m_TrailerConditionDropdown.Items.Add(new ListItem("4 - Good", ((int)Entities.TrailerCondition._4).ToString()));
-          m_TrailerConditionDropdown.Items.Add(new ListItem("5 - Excellent", ((int)Entities.TrailerCondition._5Excellent).ToString()));
-        }
-        if (m_TransportUnitTypeDropDownList.Visible)
-        {
-          m_TransportUnitTypeDropDownList.DataSource = from _idx in EDC.TransportUnitType
-                                                       orderby _idx.Tytuł ascending
-                                                       select _idx;
-          m_TransportUnitTypeDropDownList.DataTextField = Element.TitlePropertyName;
-          m_TransportUnitTypeDropDownList.DataValueField = Element.IDPropertyName;
-          m_TransportUnitTypeDropDownList.DataBind();
-          m_TransportUnitTypeDropDownList.SelectedIndex = 0;
-        }
+        m_TrailerConditionDropdown.Items.Add(new ListItem(" -- Select trailer condition  --", "-1") { Selected = true });
+        m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Unacceptable", ((int)Entities.TrailerCondition._1Unexceptable).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("2 - Bad", ((int)Entities.TrailerCondition._2).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("3 - Poor", ((int)Entities.TrailerCondition._3).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("4 - Good", ((int)Entities.TrailerCondition._4).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("5 - Excellent", ((int)Entities.TrailerCondition._5Excellent).ToString()));
+        m_TransportUnitTypeDropDownList.DataSource = from _idx in EDC.TransportUnitType
+                                                     orderby _idx.Tytuł ascending
+                                                     select new { Title = _idx.Tytuł, Index = _idx.Identyfikator };
+        m_TransportUnitTypeDropDownList.DataTextField = "Title";
+        m_TransportUnitTypeDropDownList.DataValueField = "Index";
+        m_TransportUnitTypeDropDownList.DataBind();
+        m_TransportUnitTypeDropDownList.SelectedIndex = 0;
       }
       m_SaveButton.Click += new EventHandler(m_StateMachineEngine.SaveButton_Click);
       m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.NewShippingButton_Click);
@@ -681,6 +675,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         EDC.LoadDescription.InsertOnSubmit(_ld);
         MakeBooking(_sppng, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble);
         EDC.SubmitChanges();
+        SendShippingData(_sppng);
       }
       catch (Exception ex)
       {
@@ -861,7 +856,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         ReportException("SendShippingData", ex);
       }
     }
-
     #endregion
 
     #region Controls management
@@ -920,7 +914,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_EditButton.Enabled = (_set & ButtonsSet.EditOn) != 0;
       m_NewShippingButton.Enabled = (_set & ButtonsSet.NewOn) != 0;
       m_SaveButton.Enabled = (_set & ButtonsSet.SaveOn) != 0;
-      m_CoordinatorEditCheckBox.Enabled = (_set & ButtonsSet.CoordinatorPanelOn) != 0;
+      m_CoordinatorPanel.Enabled = (_set & ButtonsSet.CoordinatorPanelOn) != 0;
+      if (!m_CoordinatorPanel.Enabled)
+        m_CoordinatorEditCheckBox.Checked = false;
       //Operator
       m_DockNumberTextBox.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
       m_TrailerConditionCommentsTextBox.Enabled = (_set & ButtonsSet.OperatorControlsOn) != 0;
