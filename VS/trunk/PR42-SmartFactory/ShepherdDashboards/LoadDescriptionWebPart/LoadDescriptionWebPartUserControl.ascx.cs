@@ -463,7 +463,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     }
     internal void ClearUserInterface()
     {
-      ClearUserInterface(CurrentShipping.IsOutbound.Value);
+      ClearUserInterface(CurrentShipping == null ? false : CurrentShipping.IsOutbound.Value);
     }
     private void ClearUserInterface(bool _isOutbound)
     {
