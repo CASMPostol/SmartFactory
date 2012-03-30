@@ -91,22 +91,5 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
 }
