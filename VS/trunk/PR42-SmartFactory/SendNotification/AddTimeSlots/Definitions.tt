@@ -1,0 +1,22 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+using System;
+
+namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
+{
+  internal static class Definitions
+  {
+    internal const string ID = "<#= AddTimeSlots_ID #>";
+    internal static Guid IDGuid = new Guid(ID);
+    internal const string Name = "<#= AddTimeSlots_Name #>";
+    internal const string Description = "<#= AddTimeSlots_Description#>";
+    internal static WorkflowDescription WorkflowDescription
+    {
+      get
+      {
+        return new WorkflowDescription(IDGuid, "Create Timeslots", Description);
+      }
+    }
+  }
+}
+<#@ include file = "..\Model.T4" #>

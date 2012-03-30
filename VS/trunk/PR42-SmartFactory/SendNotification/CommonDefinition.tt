@@ -1,4 +1,6 @@
-﻿namespace CAS.SmartFactory.Shepherd.SendNotification
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+namespace CAS.SmartFactory.Shepherd.SendNotification
 {
   internal static class CommonDefinition
   {
@@ -8,10 +10,11 @@
     internal const string EscortPOLibraryTitle = "Escort PO Library";
     internal const string SealProtocolLibraryTitle = "Seal Protocol Library";
     internal const string ShippingListTitle = "Shipping";
-    internal const string ScheduleTemplateListTitle = "Schedule Template";
+    internal const string ScheduleTemplateListTitle = "<#= ScheduleTemplate_ListTitle #>";
     //Workflow working lists
     internal const string SendNotificationWorkflowTasks = "Send Notification Workflow Tasks";
     internal const string SendNotificationWorkflowHistory = "Send Notification Workflow History";
     internal const string PartnerSentToBackupEmail = "oferty@cas.eu";
   }
 }
+<#@ include file = "Model.T4" #>

@@ -50,6 +50,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
             _state = "AddCreateFPOAssociation";
             NewCreatePOAssociation(ShippingStateMachine.ShippingStateMachine.WorkflowDescription, _web, _taskList, _historyList);
             _state = "ShippingStateMachine";
+            NewWorkflowAssociation(CommonDefinition.ScheduleTemplateListTitle, AddTimeSlots.Definitions.WorkflowDescription, _web, _taskList, _historyList);
+            _state = "ScheduleTemplateListTitle";
           }
         }
       }
@@ -72,6 +74,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
         {
           using (SPWeb site = siteCollection.RootWeb)
           {
+            RemoveWorkflowAssociation(site.Lists[CommonDefinition.ScheduleTemplateListTitle], AddTimeSlots.Definitions.IDGuid);
             RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], ShippingStateMachine.ShippingStateMachine.WorkflowId);
             RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreateSealProtocol.CreateSealProtocol.WorkflowId);
             RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreateSecurityPO1.CreateSecurityPO1.WorkflowId);
@@ -122,6 +125,24 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
       _freightPOLibraryWorkflowAssociation.AutoStartChange = false;
       _freightPOLibraryWorkflowAssociation.AssociationData = _dsc.Name;
       _web.Lists[CommonDefinition.ShippingListTitle].WorkflowAssociations.Add(_freightPOLibraryWorkflowAssociation);
+    }
+    private static void NewWorkflowAssociation(string _targetList, WorkflowDescription _dsc, SPWeb _web, SPList _taskList, SPList _historyList)
+    {
+      SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[_dsc.WorkflowId];
+      // create workflow association
+      SPWorkflowAssociation _workflowAssociation =
+        SPWorkflowAssociation.CreateListAssociation(
+        _workflowTemplate,
+        _dsc.Name,
+        _taskList,
+        _historyList);
+      // configure workflow association and add to WorkflowAssociations collection
+      _workflowAssociation.Description = _dsc.Description;
+      _workflowAssociation.AllowManual = true;
+      _workflowAssociation.AutoStartCreate = false;
+      _workflowAssociation.AutoStartChange = false;
+      _workflowAssociation.AssociationData = _dsc.Name;
+      _web.Lists[_targetList].WorkflowAssociations.Add(_workflowAssociation);
     }
     /// <summary>
     /// Removes the workflow association.
