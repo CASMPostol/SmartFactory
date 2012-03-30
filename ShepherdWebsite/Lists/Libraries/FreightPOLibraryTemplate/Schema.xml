@@ -20,7 +20,7 @@
           <FieldRef ID="{97A6F037-B8B1-443B-9D02-8CF5A46BA5D1}" Name="FreightPOCity" />
           <FieldRef ID="{0979915B-32F8-4471-BB67-1BC009D206C3}" Name="FreightPOCountry" />
           <FieldRef ID="{F0B1923E-9A86-4C26-B598-D06F1DF24D20}" Name="FreightPOCommodity" />
-          <FieldRef ID="{F350E678-C8E1-422D-A925-0895DF2B34E0}" Name="FreightPOSendInvoiceTo" />
+          <FieldRef ID="{D2E2CF31-D57C-46E2-85B2-46FED8468F86}" Name="FreightPOSendInvoiceToMultiline" />
           <FieldRef ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}" Name="EmailAddress" />
           <FieldRef ID="{C8BAB435-1138-4241-A5A8-C2BBB11802F5}" Name="FPOWarehouseAddress" />
         </FieldRefs>
@@ -155,7 +155,7 @@
           <FieldRef ID="{97A6F037-B8B1-443B-9D02-8CF5A46BA5D1}" Name="FreightPOCity" />
           <FieldRef ID="{0979915B-32F8-4471-BB67-1BC009D206C3}" Name="FreightPOCountry" />
           <FieldRef ID="{F0B1923E-9A86-4C26-B598-D06F1DF24D20}" Name="FreightPOCommodity" />
-          <FieldRef ID="{F350E678-C8E1-422D-A925-0895DF2B34E0}" Name="FreightPOSendInvoiceTo" />
+          <FieldRef ID="{D2E2CF31-D57C-46E2-85B2-46FED8468F86}" Name="FreightPOSendInvoiceToMultiline" />
           <FieldRef ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}" Name="EmailAddress" />
           <FieldRef ID="{C8BAB435-1138-4241-A5A8-C2BBB11802F5}" Name="FPOWarehouseAddress" />
         </ViewFields>

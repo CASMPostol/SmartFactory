@@ -18,7 +18,7 @@
           <FieldRef ID="{0E5465B4-D5E8-4C08-B381-FFD3055A7FA4}" Name="SecurityPOCity" />
           <FieldRef ID="{096D79CF-26EA-4EBB-8DA9-2E67549509A6}" Name="SecurityPOCountry" />
           <FieldRef ID="{180D9CFC-48D8-4C83-8740-780D3A8882EF}" Name="SecurityPOCommodity" />
-          <FieldRef ID="{29B66983-6AC7-460E-9C84-E7BB5B5E1BFC}" Name="SecurityPOSentInvoiceTo" />
+          <FieldRef ID="{9655FAD3-12BD-4059-AE3F-684F7BF420B6}" Name="SecurityPOSentInvoiceToMultiline" />
           <FieldRef ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}" Name="EmailAddress" />
           <FieldRef ID="{C8BAB435-1138-4241-A5A8-C2BBB11802F5}" Name="FPOWarehouseAddress" />
         </FieldRefs>
