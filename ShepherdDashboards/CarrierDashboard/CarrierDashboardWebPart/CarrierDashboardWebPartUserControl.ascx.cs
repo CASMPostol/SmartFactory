@@ -271,7 +271,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_AbortButton.Enabled = false;
         m_AcceptButton.Enabled = false;
         m_CoordinatorPanel.Enabled = false;
-        m_CoordinatorEditCheckBox.Checked= false;
+        m_CoordinatorEditCheckBox.Checked = false;
       }
       m_SecurityRequiredChecbox.Enabled = m_CoordinatorEditCheckBox.Checked;
       base.OnPreRender(e);
@@ -756,7 +756,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void UpdateTransportUnitType(Shipping _sppng)
     {
-      if (!m_TransportUnitTypeDropDownList.Enabled || !m_ContainerNoTextBox.Enabled)
+      if (!m_TransportUnitTypeDropDownList.Enabled)
         return;
       if (m_TransportUnitTypeDropDownList.SelectedIndex < 0)
       {
