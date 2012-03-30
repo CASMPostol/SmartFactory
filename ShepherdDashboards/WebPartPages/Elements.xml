@@ -15,6 +15,7 @@
 <File Path="WebPartPages\WebPageTemplate_Operator.aspx" Url="WebPartPages/WebPageTemplate_Operator.aspx" />
 <File Path="WebPartPages\WebPageTemplate_Gate.aspx" Url="WebPartPages/WebPageTemplate_Gate.aspx" />
 <File Path="WebPartPages\WebPageTemplate_Supervisor.aspx" Url="WebPartPages/WebPageTemplate_Supervisor.aspx" />
+<File Path="WebPartPages\WebPageTemplate_ManageResources.aspx" Url="WebPartPages/WebPageTemplate_ManageResources.aspx" />
 <File Path="WebPartPages\WebPageTemplate_Coordinator.aspx" Url="WebPartPages/WebPageTemplate_Coordinator.aspx" />
 </Module>
 </Elements>
