@@ -107,14 +107,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
       _ret.Add(TeamMembers.EscortCarNo, _sp.SecurityEscortCarRegistrationNumber.Title());
       _ret.Add(TeamMembers.TrailerNo, _sp.TrailerRegistrationNumber.Title());
       _ret.Add(TeamMembers.TruckNo, _sp.TruckCarRegistrationNumber.Title());
-
+      TeamMembers _cd = TeamMembers._1stDriver;
+      TeamMembers _cse = TeamMembers._1stEscort;
       foreach (ShippingDriversTeam _std in _sp.ShippingDriversTeam)
       {
         if (_std.Driver == null)
           continue;
-        TeamMembers _cd = TeamMembers._1stDriver;
-        TeamMembers _cse = TeamMembers._1stEscort;
-        if (_std.Driver.VendorName.ServiceType.Value == ServiceType.Forwarder)
+        if (_std.Driver.VendorName.ServiceType.Value != ServiceType.SecurityEscortProvider)
         {
           _ret[_cd] = _std.Driver.Title();
           if (_cd == TeamMembers._1stDriver)
@@ -128,7 +127,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
           _ret[_cse] = _std.Driver.Title();
           if (_cse == TeamMembers._1stEscort)
           {
-            _cd = TeamMembers._2ndEscort;
+            _cse = TeamMembers._2ndEscort;
             _ret[TeamMembers.EscortPhone] = _std.Driver != null ? _std.Driver.NumerTelefonuKomórkowego : " -- not set --";
           }
         }
