@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="DriverTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-DriverTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List EnableContentTypes="TRUE" xmlns:ows="Microsoft SharePoint" Title="DriverTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-DriverTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100b0982f01816047b1abff933b9f49b5db" Name="Driver" Group="CAS Smart Factory Shepherd" Description="Driver" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x0100b0982f01816047b1abff933b9f49b5db" Name="Driver" Group="CAS Smart Factory Shepherd" Description="Driver" Overwrite="TRUE" Inherits="FALSE">
         <Folder TargetName="_cts/Driver" />
         <FieldRefs>
           <FieldRef ID="{491CA972-C42C-4936-B8CD-D856E45B05EF}" Name="Driver2PartnerTitle" />
@@ -10,11 +10,11 @@
           <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
         </FieldRefs>
         <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
+              <Display>_layouts/ShepherdDashboards/DriverNewForm.aspx</Display>
+              <Edit>_layouts/ShepherdDashboards/DriverNewForm.aspx</Edit>
+              <New>_layouts/ShepherdDashboards/DriverNewForm.aspx</New>
             </FormTemplates>
           </XmlDocument>
         </XmlDocuments>
@@ -22,7 +22,7 @@
     </ContentTypes>
     <Fields>
       <Field DisplayName="Identity document number" Name="IdentityDocumentNumber" Type="Text" ID="{9889c906-2676-4309-a8c3-ce3f91d8a640}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="Driver2PartnerTitle" ID="{491CA972-C42C-4936-B8CD-D856E45B05EF}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="Driver2PartnerTitle" ID="{491ca972-c42c-4936-b8cd-d856e45b05ef}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="CellPhone" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Mobile_Phone;" Type="Text" IMEMode="inactive" />
     </Fields>
     <Views>
@@ -53,6 +53,28 @@
         <ViewFields>
           <FieldRef Name="Attachments">
           </FieldRef>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef ID="{491CA972-C42C-4936-B8CD-D856E45B05EF}" Name="Driver2PartnerTitle" />
+          <FieldRef ID="{9889C906-2676-4309-A8C3-CE3F91D8A640}" Name="IdentityDocumentNumber" />
+          <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Manage Drivers" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="ManageDrivers.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{491CA972-C42C-4936-B8CD-D856E45B05EF}" Name="Driver2PartnerTitle" />

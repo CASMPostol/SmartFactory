@@ -110,6 +110,27 @@
     <Compile Include="GuardWebPart\GuardWebPartUserControl.ascx.designer.cs">
       <DependentUpon>GuardWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Layouts\ShepherdDashboards\DriverNewForm.aspx.cs">
+      <DependentUpon>DriverNewForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ShepherdDashboards\DriverNewForm.aspx.designer.cs">
+      <DependentUpon>DriverNewForm.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\ShepherdDashboards\TrailerNewForm.aspx.cs">
+      <DependentUpon>TrailerNewForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ShepherdDashboards\TrailerNewForm.aspx.designer.cs">
+      <DependentUpon>TrailerNewForm.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\ShepherdDashboards\TruckNewForm.aspx.cs">
+      <DependentUpon>TruckNewForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\ShepherdDashboards\TruckNewForm.aspx.designer.cs">
+      <DependentUpon>TruckNewForm.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadDescriptionWebPart\LoadDescriptionWebPart.cs" />
     <Compile Include="LoadDescriptionWebPart\LoadDescriptionWebPartUserControl.ascx.cs">
       <DependentUpon>LoadDescriptionWebPartUserControl.ascx</DependentUpon>
@@ -245,7 +266,9 @@
       <SharePointProjectItemId>{5a1c2296-d4cc-40fb-87ca-b81deda11661}</SharePointProjectItemId>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Forms\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
@@ -263,7 +286,9 @@
     <Content Include="CurrentUserWebPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Dashoards\CoordinatorDashboard\Elements.xml" />
+    <Content Include="Dashoards\CoordinatorDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashoards\ForwarderDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -279,7 +304,9 @@
     <Content Include="Dashoards\OutboundCoordinatorDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Dashoards\OutboundOwnerDashboard\Elements.xml" />
+    <Content Include="Dashoards\OutboundOwnerDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashoards\SecurityEscortProviderDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -319,6 +346,15 @@
     <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner2_truck.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner_truck.jpg" />
+    <Content Include="Layouts\ShepherdDashboards\DriverNewForm.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Layouts\ShepherdDashboards\TrailerNewForm.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Layouts\ShepherdDashboards\TruckNewForm.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="WebPartPages\WebPageTemplate_1.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -332,9 +368,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
-    <Content Include="DefaultPage\DefaultTemplate.aspx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="DefaultPage\DefaultTemplate.aspx" />
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDefault.css" />
     <Content Include="LoadDescriptionWebPart\Elements.xml" />
     <Content Include="LoadDescriptionWebPart\LoadDescriptionWebPartUserControl.ascx">

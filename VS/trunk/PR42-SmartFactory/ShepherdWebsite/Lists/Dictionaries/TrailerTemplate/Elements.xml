@@ -2,12 +2,12 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
     <ListTemplate
         Name="TrailerTemplate"
-        Type="10042"
+        Type="10043"
         BaseType="0"
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="Trailer"
+        DisplayName="Trailer List Template"
         Description="Trailer List Definition"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

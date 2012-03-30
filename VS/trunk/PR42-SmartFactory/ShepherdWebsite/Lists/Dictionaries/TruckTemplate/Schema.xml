@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="TruckTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-TruckTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List EnableContentTypes="TRUE" xmlns:ows="Microsoft SharePoint" Title="TruckTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-TruckTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01003e7761aef97a4c619f44d01b53a56568" Name="Truck" Group="CAS Smart Factory Shepherd" Description="Truck" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01003e7761aef97a4c619f44d01b53a56568" Name="Truck" Group="CAS Smart Factory Shepherd" Description="Truck" Overwrite="TRUE" Inherits="FALSE">
         <Folder TargetName="_cts/Truck" />
         <FieldRefs>
           <FieldRef ID="{E842EBA6-B4B3-48D1-BE6D-A6797F1F6C68}" Name="Truck2PartnerTitle" />
@@ -10,11 +10,11 @@
           <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
         </FieldRefs>
         <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
+              <Display>_layouts/ShepherdDashboards/TruckNewForm.aspx</Display>
+              <Edit>_layouts/ShepherdDashboards/TruckNewForm.aspx</Edit>
+              <New>_layouts/ShepherdDashboards/TruckNewForm.aspx</New>
             </FormTemplates>
           </XmlDocument>
         </XmlDocuments>
@@ -30,7 +30,7 @@
     </CHOICES>
   </Field>
       <Field DisplayName="Comments" Name="AdditionalComments" Type="Text" ID="{cb92513d-35a8-4352-97f4-59d816c74c5a}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="Truck2PartnerTitle" ID="{E842EBA6-B4B3-48D1-BE6D-A6797F1F6C68}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="Truck2PartnerTitle" ID="{e842eba6-b4b3-48d1-be6d-a6797f1f6c68}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -60,6 +60,28 @@
         <ViewFields>
           <FieldRef Name="Attachments">
           </FieldRef>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef ID="{E842EBA6-B4B3-48D1-BE6D-A6797F1F6C68}" Name="Truck2PartnerTitle" />
+          <FieldRef ID="{4521F780-1838-4A0A-B3B7-04997B3DEA37}" Name="VehicleType" />
+          <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Manage Trucks" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="ManageTrucks.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{E842EBA6-B4B3-48D1-BE6D-A6797F1F6C68}" Name="Truck2PartnerTitle" />

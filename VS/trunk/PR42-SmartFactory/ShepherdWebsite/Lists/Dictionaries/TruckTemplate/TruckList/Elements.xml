@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <ListInstance Title="Truck"
                 OnQuickLaunch="TRUE"
-                TemplateType="10041"
+                TemplateType="10042"
                 Url="Lists/TruckList"
                 Description="Truck List Instance">
   </ListInstance>

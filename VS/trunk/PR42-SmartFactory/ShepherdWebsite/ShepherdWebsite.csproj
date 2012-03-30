@@ -226,10 +226,10 @@
       <SharePointProjectItemId>{c092fcea-a174-4179-a53b-f335736ab6b7}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\DriverTemplate\DriverList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0a2db3c9-8677-4faf-939c-5556a342109e}</SharePointProjectItemId>
+      <SharePointProjectItemId>{9689db53-e0a1-4545-83bb-9e2d12df7184}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\DriverTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{37389aa8-155b-476e-9fc3-c32112ea64d0}</SharePointProjectItemId>
+      <SharePointProjectItemId>{351e2180-9316-4fea-ac36-557e6d327705}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\FreightPayerTemplate\FreightPayerList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c82437b8-8ab9-4d13-970d-016dea8c88c7}</SharePointProjectItemId>
@@ -292,10 +292,10 @@
       <SharePointProjectItemId>{9b14d4ab-8813-4585-8849-368cfc06f08e}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\TrailerTemplate\TrailerList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{90db5152-64d8-402f-b1c1-19eeedec2ceb}</SharePointProjectItemId>
+      <SharePointProjectItemId>{76158f1d-4b3b-45c8-88b6-bfee571a3653}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\TrailerTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{be0fe7d4-c68c-48f3-aef5-458f3aca5b01}</SharePointProjectItemId>
+      <SharePointProjectItemId>{fe45f965-af6c-4500-a22d-4d56002ad11f}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\TransportUnitTypeTemplate\TransportUnitTypeList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{16ea5f48-0bd1-4be0-ae75-8afaeccabe86}</SharePointProjectItemId>
@@ -304,10 +304,10 @@
       <SharePointProjectItemId>{cc0f6fe1-1043-4d4a-9765-1bad1d82339c}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\TruckTemplate\TruckList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{592b65e7-dffe-477e-818e-3901e7fc1c9f}</SharePointProjectItemId>
+      <SharePointProjectItemId>{9413ff5e-230c-4d8f-9c49-38cdbddf02f2}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\TruckTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{53f1ef78-f9a2-4529-99b0-2759381e802f}</SharePointProjectItemId>
+      <SharePointProjectItemId>{0ef23410-b24c-4999-8e82-d4f191fbc2ca}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Dictionaries\WarehouseTemplate\WarehouseList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{05962056-3618-42be-b14b-088030a4263f}</SharePointProjectItemId>
@@ -420,11 +420,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\TimeSlotsTemplate\Elements.xml" />
-    <Content Include="Content types\Dictionaries\Trailer\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Trailer\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\TranspotUnit\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Dictionaries\Truck\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Truck\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\Warehouse\Elements.xml" />
     <Content Include="Content types\Shipping\AlarmsAndEvents\Elements.xml">
       <SubType>Designer</SubType>
@@ -502,9 +506,7 @@
     <Content Include="Lists\Dictionaries\DistributionListTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\DriverTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\DriverTemplate\DriverList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\DriverTemplate\Schema.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Lists\Dictionaries\DriverTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\FreightPayerList\Elements.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\Schema.xml">

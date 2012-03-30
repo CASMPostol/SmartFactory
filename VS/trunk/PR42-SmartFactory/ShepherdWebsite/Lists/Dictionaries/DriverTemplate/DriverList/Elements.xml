@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <ListInstance Title="Driver"
                 OnQuickLaunch="TRUE"
-                TemplateType="10043"
+                TemplateType="10041"
                 Url="Lists/DriverList"
                 Description="Driver List Instance">
   </ListInstance>
