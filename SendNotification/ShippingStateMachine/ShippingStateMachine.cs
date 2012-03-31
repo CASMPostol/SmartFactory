@@ -23,18 +23,34 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         _EDC.SubmitChanges();
       }
     }
-    private void ReportAlarmsAndEvents(string _mssg, Priority _Priority)
+    private void ReportAlarmsAndEvents(string _mssg, Priority _priority, ServiceType _partner)
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
       {
         ShippingShipping _sh = Element.GetAtIndex<ShippingShipping>(_EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        Partner _principal = null;
+        switch (_partner)
+        {
+          case ServiceType.Vendor:
+          case ServiceType.Forwarder:
+          case ServiceType.VendorAndForwarder:
+            _principal = _sh.VendorName;
+            break;
+          case ServiceType.SecurityEscortProvider:
+            _principal = _sh.SecurityEscortProvider;
+            break;
+          case ServiceType.None:
+          case ServiceType.Invalid:
+          default:
+            break;
+        }
         Entities.AlarmsAndEvents _ae = new AlarmsAndEvents()
         {
           Details = _mssg,
           Owner = _sh.ZmodyfikowanePrzez,
-          Priority = _Priority,
+          Priority = _priority,
           ShippingIndex = _sh,
-          VendorName = _sh.VendorName,
+          VendorName = _principal,
           Tytuł = _sh.Title(),
         };
         _EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
@@ -61,7 +77,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       {
         m_URL = _st.Url;
       }
-      m_DeadlineLogToHistoryListActivity_HistoryOutcome1 = "New dedline";
     }
     #endregion
 
@@ -89,7 +104,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       m_SendWarningLogToHistoryListActivity_HistoryOutcome = "Shipping";
       m_SendWarningLogToHistoryListActivity_HistoryDescription = "The shipping has been modified and the schedule wiil be updated.";
-      ReportAlarmsAndEvents(m_SendWarningLogToHistoryListActivity_HistoryDescription, Priority.Normal);
+      ReportAlarmsAndEvents(m_SendWarningLogToHistoryListActivity_HistoryDescription, Priority.Normal, ServiceType.None);
       //if (m_OnWorkflowItemChanged_BeforeProperties1.Count == 0)
       //{
       //  string _msg = "Connot display changes because the BeforeProperties is empty.";
@@ -155,6 +170,36 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 
     #region CalculateTimeoutCode
     private static TimeSpan _5min = new TimeSpan(0, 5, 0);
+    private enum Distance { UpTo72h, UpTo24h, UpTo2h, VeryClose, Late }
+    private Distance CalculateDistance(out TimeSpan _ts, Shipping _sp)
+    {
+      TimeSpan _2h = new TimeSpan(2, 0, 0);
+      TimeSpan _24h = new TimeSpan(24, 0, 0);
+      TimeSpan _72h = new TimeSpan(3, 0, 0, 0);
+      _ts = TimeSpan.Zero;
+      if (_sp.StartTime.Value > DateTime.Now + _72h)
+      {
+        _ts = _sp.StartTime.Value - DateTime.Now - _24h;
+        return Distance.UpTo72h;
+      }
+      else if (_sp.StartTime.Value > DateTime.Now + _24h)
+      {
+        _ts = _sp.StartTime.Value - DateTime.Now - _24h;
+        return Distance.UpTo24h;
+      }
+      else if (_sp.StartTime.Value > DateTime.Now + _2h)
+      {
+        _ts = _sp.StartTime.Value - DateTime.Now - _2h;
+        return Distance.UpTo2h;
+      }
+      else if (_sp.StartTime.Value > DateTime.Now)
+      {
+        _ts = _sp.StartTime.Value - DateTime.Now;
+        return Distance.VeryClose;
+      }
+      else
+        return Distance.Late;
+    }
     private void m_CalculateTimeoutCode_ExecuteCode(object sender, EventArgs e)
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URL))
@@ -167,43 +212,41 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             if (_sp.StartTime.Value > DateTime.Now)
               SetupEnvironment(_sp.StartTime.Value - DateTime.Now, "The truck is expected in {0} min up to {1}.", 0, _sp);
             else
-              MakeFelayed(_EDC, _sp);
+              MakeDelayed(_EDC, _sp);
             break;
           case State.WaitingForCarrierData:
           case State.WaitingForSecurityData:
           case State.Creation:
-            TimeSpan _2h = new TimeSpan(2, 0, 0);
-            TimeSpan _24h = new TimeSpan(24, 0, 0);
-            TimeSpan _72h = new TimeSpan(3, 0, 0, 0);
-            if (_sp.StartTime.Value > DateTime.Now + _72h)
+            TimeSpan _timeDistance;
+            RequiredOperations _ro = 0;
+            Priority _pr = 0;
+            _frmt = "Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}.";
+            switch (CalculateDistance(out _timeDistance, _sp))
             {
-              _frmt = "Truck, trailer and drivers detailed information must be provided in {0:H:mm} up to {1:g}.";
-              SetupEnvironment(_sp.StartTime.Value - DateTime.Now - _72h, _frmt, 0, _sp);
+              case Distance.UpTo72h:
+                _ro = CalculateOperations2Do(_sp, false, true);
+                _pr = Priority.Normal;
+                break;
+              case Distance.UpTo24h:
+                _frmt.Insert(0, "Remainder; ");
+                _ro = CalculateOperations2Do(_sp, false, true);
+                _pr = Priority.Warning;
+                break;
+              case Distance.UpTo2h:
+                _frmt.Insert(0, "Warnning !");
+                _ro = CalculateOperations2Do(_sp, true, true);
+                _pr = Priority.Warning;
+                break;
+              case Distance.VeryClose:
+                _frmt.Insert(0, "It is last call !!!");
+                _ro = CalculateOperations2Do(_sp, true, true);
+                _pr = Priority.High;
+                break;
+              case Distance.Late:
+                MakeDelayed(_EDC, _sp);
+                break;
             }
-            else if (_sp.StartTime.Value > DateTime.Now + _24h)
-            {
-              _frmt = "Truck, trailer and drivers detailed information must be provided in {0:H:mm} up to {1:g}.";
-              SetupEnvironment(_sp.StartTime.Value - DateTime.Now - _24h, _frmt, 0, _sp, Priority.Warning);
-            }
-            else if (_sp.StartTime.Value > DateTime.Now + _2h)
-            {
-              _frmt = "Truck, trailer and drivers detailed information must be provided in {0:H:mm} up to {1:g}.";
-              RequiredOperations _oprtns = 0;
-              if (_sp.State.Value == State.Confirmed)
-              {
-                _oprtns = RequiredOperations.SendEmail2Carrier;
-                if (_sp.SecurityEscort != null)
-                  _oprtns |= RequiredOperations.SendEmail2Escort;
-              }
-              else if (_sp.State.Value == State.WaitingForCarrierData)
-                _oprtns = RequiredOperations.SendEmail2Carrier;
-              else
-                if (_sp.SecurityEscort != null)
-                  _oprtns = RequiredOperations.SendEmail2Escort;
-              SetupEnvironment(_sp.StartTime.Value - DateTime.Now - _2h, _frmt, _oprtns, _sp, Priority.High);
-            }
-            else
-              MakeFelayed(_EDC, _sp);
+            SetupEnvironment(_timeDistance, _frmt, _ro, _sp, _pr);
             break;
           case State.Delayed:
             break;
@@ -211,7 +254,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             if (_sp.EndTime.Value < DateTime.Now)
             {
               _frmt = "Truck must exit in {0:g} until {1:g}";
-               SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, 0, _sp);
+              SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, 0, _sp);
             }
             break;
           default:
@@ -222,28 +265,72 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         }
       }
     }
-    private void MakeFelayed(EntitiesDataContext _EDC, ShippingShipping _sp)
+    private static RequiredOperations CalculateOperations2Do(Shipping _sp, bool _email, bool _alarm)
+    {
+      RequiredOperations _ret = 0;
+      RequiredOperations _cr = 0;
+      RequiredOperations _escrt = 0;
+      if (_alarm)
+      {
+        if (_sp.VendorName != null)
+          _cr = RequiredOperations.AddAlarm2Carrier;
+        if (_sp.SecurityEscortProvider != null)
+          _escrt = RequiredOperations.AddAlarm2Escort;
+      }
+      if (_email)
+      {
+        if (_sp.VendorName != null)
+          _cr |= RequiredOperations.SendEmail2Carrier;
+        if (_sp.SecurityEscortProvider != null)
+          _escrt |= RequiredOperations.SendEmail2Escort;
+      }
+      switch (_sp.State.Value)
+      {
+        case State.Confirmed:
+        case State.Creation:
+        case State.Delayed:
+        case State.Underway:
+          _ret = _cr | _escrt;
+          break;
+        case State.WaitingForCarrierData:
+          _ret = _cr;
+          break;
+        case State.WaitingForSecurityData:
+          _ret = _escrt;
+          break;
+        default:
+          break;
+      }
+      return _ret;
+    }
+    private void MakeDelayed(EntitiesDataContext _EDC, ShippingShipping _sp)
     {
       _sp.State = State.Delayed;
       _EDC.SubmitChanges();
-      SetupEnvironmentDelayed(_sp, Priority.High);
+      SetupEnvironmentDelayed(_sp);
     }
-    private void SetupEnvironmentDelayed(Shipping _sp, Priority _prrty)
+    private void SetupEnvironmentDelayed(Shipping _sp)
     {
-      string _frmt = "Wanning: The truck is late. Call the driver: {0}";
+      string _frmt = "Wanning !! The truck is late. Call the driver: {0}";
       _frmt = String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????");
       _frmt += "The shipping is should finisch in {0:g} at {1:g}.";
-      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, 0, _sp, _prrty);
+      RequiredOperations _ro = CalculateOperations2Do(_sp, true, true);
+      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High);
     }
     private void SetupEnvironment(TimeSpan _delay, string _logDescription, RequiredOperations _operations, Shipping _sp, Priority _prrty)
     {
-      ReportAlarmsAndEvents(m_DeadlineLogToHistoryListActivity_HistoryDescription1, _prrty);
-      SetupEnvironment(_delay, _logDescription, _operations, _sp);
+      string _msg = String.Format(_logDescription, _delay, DateTime.Now + _delay);
+      if (this.InSet(_operations, RequiredOperations.AddAlarm2Carrier))
+        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.VendorAndForwarder);
+      if (this.InSet(_operations, RequiredOperations.AddAlarm2Carrier))
+        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.VendorAndForwarder);
+      SetupEnvironment(_delay, _msg, _operations, _sp);
     }
-    private void SetupEnvironment(TimeSpan _delay, string _logDescription, RequiredOperations _operations, Shipping _sp)
+    private void SetupEnvironment(TimeSpan _delay, string _msg, RequiredOperations _operations, Shipping _sp)
     {
       m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
-      m_DeadlineLogToHistoryListActivity_HistoryDescription1 = String.Format(_logDescription, m_TimeOutDelay_TimeoutDuration1, DateTime.Now + _delay);
+      string _lm = "New time out {0} min calculated for the shipping {1} at state {2}";
+      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value);
       if (InSet(_operations, RequiredOperations.SendEmail2Carrier))
       {
         try
@@ -252,7 +339,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           m_CarrierNotificationSendEmail_Body = "Warning";
           m_CarrierNotificationSendEmail_To = _sp.VendorName != null ? _sp.VendorName.EMail : "unknown@comapny.com";
           m_CarrierNotificationSendEmail_CC = m_OnWorkflowActivated_WorkflowProperties.OriginatorEmail;
-          ReportAlarmsAndEvents(_sp.Tytuł + " Delayed !!", Priority.Warning);
         }
         catch (Exception _ex)
         {
@@ -264,6 +350,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 
       }
     }
+    public String m_CalculateTimeoutLogToHistoryList_HistoryDescription = default(System.String);
     #endregion
 
     #region FaultHandlersActivity
@@ -278,6 +365,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #endregion
 
     #region TimeOutLogToHistoryList
+    private void m_TimeOutLogToHistoryListActivity_MethodInvoking(object sender, EventArgs e)
+    {
+      m_TimeOutLogToHistoryListActivity_HistoryOutcome1 = "Timeout";
+      m_TimeOutLogToHistoryListActivity_HistoryDescription1 = String.Format("Timeout expired at {0:g}", DateTime.Now);
+    }
     public String m_TimeOutLogToHistoryListActivity_HistoryOutcome1 = default(System.String);
     public String m_TimeOutLogToHistoryListActivity_HistoryDescription1 = default(System.String);
     #endregion
@@ -321,44 +413,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     #endregion
 
-    #region DeadlineLogToHistoryList
-    private void m_TimeOutLogToHistoryListActivity_MethodInvoking(object sender, EventArgs e)
-    {
-      m_TimeOutLogToHistoryListActivity_HistoryOutcome1 = "Timeout";
-      m_TimeOutLogToHistoryListActivity_HistoryDescription1 = String.Format("Timeout expired at {0:g}", DateTime.Now);
-    }
-    public static DependencyProperty m_DeadlineLogToHistoryListActivity_HistoryDescription1Property = DependencyProperty.Register("m_DeadlineLogToHistoryListActivity_HistoryDescription1", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
-    [BrowsableAttribute(true)]
-    [CategoryAttribute("Misc")]
-    public String m_DeadlineLogToHistoryListActivity_HistoryDescription1
-    {
-      get
-      {
-        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_DeadlineLogToHistoryListActivity_HistoryDescription1Property)));
-      }
-      set
-      {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_DeadlineLogToHistoryListActivity_HistoryDescription1Property, value);
-      }
-    }
-    public static DependencyProperty m_DeadlineLogToHistoryListActivity_HistoryOutcome1Property = DependencyProperty.Register("m_DeadlineLogToHistoryListActivity_HistoryOutcome1", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
-    [BrowsableAttribute(true)]
-    [CategoryAttribute("Misc")]
-    public String m_DeadlineLogToHistoryListActivity_HistoryOutcome1
-    {
-      get
-      {
-        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_DeadlineLogToHistoryListActivity_HistoryOutcome1Property)));
-      }
-      set
-      {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_DeadlineLogToHistoryListActivity_HistoryOutcome1Property, value);
-      }
-    }
-    #endregion
-
     #region TimeOutDelay
     public static DependencyProperty m_TimeOutDelay_TimeoutDuration1Property = DependencyProperty.Register("m_TimeOutDelay_TimeoutDuration1", typeof(System.TimeSpan), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
     [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
@@ -382,7 +436,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private enum RequiredOperations
     {
       SendEmail2Carrier,
-      SendEmail2Escort
+      SendEmail2Escort,
+      AddAlarm2Carrier,
+      AddAlarm2Escort
     }
     private RequiredOperations Operation2Do { get; set; }
     private bool InSet(RequiredOperations _set, RequiredOperations _item)
@@ -390,7 +446,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       return (_set & _item) != 0;
     }
     #endregion
-
 
 
   }
