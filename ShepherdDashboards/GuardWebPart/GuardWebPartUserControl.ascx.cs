@@ -277,7 +277,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case State.WaitingForCarrierData:
           case State.WaitingForSecurityData:
             CurrentShipping.StartTime = DateTime.Now;
-            CurrentShipping.EndTime = null;
             CurrentShipping.State = State.Underway;
             CurrentShipping.Awaiting = true;
             EDC.SubmitChanges();

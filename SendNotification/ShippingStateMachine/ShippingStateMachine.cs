@@ -313,9 +313,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #endregion
 
     #region NotificationSendEmail
-    private void m_NotificationSendEmail_MethodInvoking(object sender, EventArgs e)
-    {
 
+    private void m_CarrierNotificationSendEmail_MethodInvoking(object sender, EventArgs e)
+    {
+      Operation2Do &= RequiredOperations.SendEmail2Escort;
+    }
+    private void m_CarrierNotificationSendEmail_Condition(object sender, ConditionalEventArgs e)
+    {
+      e.Result = (Operation2Do & RequiredOperations.SendEmail2Carrier) != 0;
     }
     public static DependencyProperty m_NotificationSendEmail_To1Property = DependencyProperty.Register("m_NotificationSendEmail_To1", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
     [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
@@ -392,10 +397,27 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_SubjectProperty, value);
       }
     }
-    private void m_NotificationSendEmailCondition(object sender, ConditionalEventArgs e)
+    #endregion
+
+    #region EscortSend
+    private void m_EscortSendEmail_Condition(object sender, ConditionalEventArgs e)
     {
-      e.Result = !String.IsNullOrEmpty(m_NotificationSendEmail_To1);
-      m_NotificationSendEmail_To1 = string.Empty;
+      e.Result = (Operation2Do & RequiredOperations.SendEmail2Escort) != 0;
+    }
+    private void m_EscortSendEmail_MethodInvoking(object sender, EventArgs e)
+    {
+      Operation2Do &= RequiredOperations.SendEmail2Escort;
+    }
+    #endregion
+
+    #region AlarmsEventsAddEntry
+    private void m_AlarmsEventsAddEntryCodeActivityCondition(object sender, ConditionalEventArgs e)
+    {
+      e.Result = (Operation2Do & RequiredOperations.AddAlarm) != 0;
+    }
+    private void m_AlarmsEventsAddEntryCodeActivity_ExecuteCode(object sender, EventArgs e)
+    {
+      Operation2Do &= RequiredOperations.AddAlarm;
     }
     #endregion
 
@@ -450,22 +472,15 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     #endregion
 
-    public static DependencyProperty m_DeadlineLogToHistoryListActivity_OtherDataProperty = DependencyProperty.Register("m_DeadlineLogToHistoryListActivity_OtherData", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-
-    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
-    [BrowsableAttribute(true)]
-    [CategoryAttribute("Misc")]
-    public String m_DeadlineLogToHistoryListActivity_OtherData
+    #region private
+    [Flags]
+    private enum RequiredOperations
     {
-      get
-      {
-        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_DeadlineLogToHistoryListActivity_OtherDataProperty)));
-      }
-      set
-      {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_DeadlineLogToHistoryListActivity_OtherDataProperty, value);
-      }
+      SendEmail2Carrier,
+      SendEmail2Escort,
+      AddAlarm
     }
-
+    private RequiredOperations Operation2Do { get; set; }
+    #endregion
   }
 }

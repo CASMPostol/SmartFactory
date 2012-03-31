@@ -275,9 +275,7 @@
       <SharePointProjectItemId>{5a1c2296-d4cc-40fb-87ca-b81deda11661}</SharePointProjectItemId>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
