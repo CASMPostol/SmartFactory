@@ -27,32 +27,30 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
       string _state = default(string);
       try
       {
-        using (SPSite _siteCollection = (SPSite)properties.Feature.Parent)
+        SPSite _siteCollection = (SPSite)properties.Feature.Parent;
+        _state = "Feature.Parent";
+        using (SPWeb _web = _siteCollection.RootWeb)
         {
-          _state = "Feature.Parent";
-          using (SPWeb _web = _siteCollection.RootWeb)
-          {
-            // obtain referecnes to lists
-            SPList _taskList = _web.Lists[CommonDefinition.SendNotificationWorkflowTasks];
-            SPList _historyList = _web.Lists[CommonDefinition.SendNotificationWorkflowHistory];
-            _taskList.UseFormsForDisplay = false;
-            _taskList.Update();
-            _state = "_taskList.Update";
-            NewPONotificationAssociation(CommonDefinition.FreightPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.FreightPOAssociationData(), "Email Freight PO");
-            _state = "FreightPOLibraryName";
-            NewPONotificationAssociation(CommonDefinition.EscortPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.SecurityPOAssociationData(), "Email Escort PO");
-            _state = "EscortPOLibraryTitle";
-            NewCreatePOAssociation(CreatePO.CreatePO.WorkflowDescription, _web, _taskList, _historyList);
-            _state = "AddCreateFPOAssociation";
-            NewCreatePOAssociation(CreateSecurityPO1.CreateSecurityPO1.WorkflowDescription, _web, _taskList, _historyList);
-            _state = "AddCreateFPOAssociation";
-            NewCreatePOAssociation(CreateSealProtocol.CreateSealProtocol.WorkflowDescription, _web, _taskList, _historyList);
-            _state = "AddCreateFPOAssociation";
-            NewCreatePOAssociation(ShippingStateMachine.ShippingStateMachine.WorkflowDescription, _web, _taskList, _historyList);
-            _state = "ShippingStateMachine";
-            NewWorkflowAssociation(CommonDefinition.ScheduleTemplateListTitle, AddTimeSlots.Definitions.WorkflowDescription, _web, _taskList, _historyList);
-            _state = "ScheduleTemplateListTitle";
-          }
+          // obtain referecnes to lists
+          SPList _taskList = _web.Lists[CommonDefinition.SendNotificationWorkflowTasks];
+          SPList _historyList = _web.Lists[CommonDefinition.SendNotificationWorkflowHistory];
+          _taskList.UseFormsForDisplay = false;
+          _taskList.Update();
+          _state = "_taskList.Update";
+          NewPONotificationAssociation(CommonDefinition.FreightPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.FreightPOAssociationData(), "Email Freight PO");
+          _state = "FreightPOLibraryName";
+          NewPONotificationAssociation(CommonDefinition.EscortPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.SecurityPOAssociationData(), "Email Escort PO");
+          _state = "EscortPOLibraryTitle";
+          NewCreatePOAssociation(CreatePO.CreatePO.WorkflowDescription, _web, _taskList, _historyList);
+          _state = "AddCreateFPOAssociation";
+          NewCreatePOAssociation(CreateSecurityPO1.CreateSecurityPO1.WorkflowDescription, _web, _taskList, _historyList);
+          _state = "AddCreateFPOAssociation";
+          NewCreatePOAssociation(CreateSealProtocol.CreateSealProtocol.WorkflowDescription, _web, _taskList, _historyList);
+          _state = "AddCreateFPOAssociation";
+          NewCreatePOAssociation(ShippingStateMachine.ShippingStateMachine.WorkflowDescription, _web, _taskList, _historyList);
+          _state = "ShippingStateMachine";
+          NewWorkflowAssociation(CommonDefinition.ScheduleTemplateListTitle, AddTimeSlots.Definitions.WorkflowDescription, _web, _taskList, _historyList);
+          _state = "ScheduleTemplateListTitle";
         }
       }
       catch (Exception _ex)
@@ -128,6 +126,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
     }
     private static void NewWorkflowAssociation(string _targetList, WorkflowDescription _dsc, SPWeb _web, SPList _taskList, SPList _historyList)
     {
+      if (string.IsNullOrEmpty(_targetList))
+        throw new ApplicationException("The parameter _targetList of the NewWorkflowAssociation cannot be null or empty");
       SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[_dsc.WorkflowId];
       // create workflow association
       SPWorkflowAssociation _workflowAssociation =
