@@ -165,21 +165,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         {
           case State.Confirmed:
             if (_sp.StartTime.Value > DateTime.Now)
-            {
-              _frmt = "Wanning: The truck is late. Call the driver: {0}";
-              SetupEnvironment(
-                _sp.StartTime.Value - DateTime.Now,
-                "We expect the truck in {0} up to {1}.",
-                String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????"),
-                "Timeout warning"
-                );
-            }
+              SetupEnvironment(_sp.StartTime.Value - DateTime.Now, "The truck is expected in {0} min up to {1}.", 0, _sp);
             else
-            {
-              _sp.State = State.Delayed;
-              _EDC.SubmitChanges();
-              SetupEnvironmentDelayed();
-            }
+              MakeFelayed(_EDC, _sp);
             break;
           case State.WaitingForCarrierData:
           case State.WaitingForSecurityData:
@@ -190,70 +178,40 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             if (_sp.StartTime.Value > DateTime.Now + _72h)
             {
               _frmt = "Truck, trailer and drivers detailed information must be provided in {0:H:mm} up to {1:g}.";
-              SetupEnvironment
-                (
-                  _sp.StartTime.Value - DateTime.Now - _72h,
-                  _frmt,
-                  "Time out while waiting on missing data. Please verify shipping data and supplement it.",
-                  "Timeout notification"
-                );
+              SetupEnvironment(_sp.StartTime.Value - DateTime.Now - _72h, _frmt, 0, _sp);
             }
             else if (_sp.StartTime.Value > DateTime.Now + _24h)
             {
               _frmt = "Truck, trailer and drivers detailed information must be provided in {0:H:mm} up to {1:g}.";
-              SetupEnvironment
-                (
-                  _sp.StartTime.Value - DateTime.Now - _24h,
-                  _frmt,
-                  "Time out while waiting on missing data. Please verify shipping data and supplement it.",
-                  "Timeout notification"
-                );
+              SetupEnvironment(_sp.StartTime.Value - DateTime.Now - _24h, _frmt, 0, _sp, Priority.Warning);
             }
             else if (_sp.StartTime.Value > DateTime.Now + _2h)
             {
               _frmt = "Truck, trailer and drivers detailed information must be provided in {0:H:mm} up to {1:g}.";
-              SetupEnvironment
-                (
-                  _sp.StartTime.Value - DateTime.Now - _2h,
-                  _frmt,
-                  "Time out while waiting on missing data. Please verify shipping data and supplement it.",
-                  "Timeout warning"
-                );
-            }
-            else if (_sp.StartTime.Value > DateTime.Now)
-            {
-              _frmt = "Missing data warning !! Truck, trailer and drivers detailed information must be provided as soon as posible but not letter than in {0:H:mm} up to {1:g}.";
-              SetupEnvironment
-                (
-                  _2h,
-                  _frmt,
-                  "Time out waiting on missing data. Please verify shipping data and supplement them",
-                  "Timeout warning"
-                );
+              RequiredOperations _oprtns = 0;
+              if (_sp.State.Value == State.Confirmed)
+              {
+                _oprtns = RequiredOperations.SendEmail2Carrier;
+                if (_sp.SecurityEscort != null)
+                  _oprtns |= RequiredOperations.SendEmail2Escort;
+              }
+              else if (_sp.State.Value == State.WaitingForCarrierData)
+                _oprtns = RequiredOperations.SendEmail2Carrier;
+              else
+                if (_sp.SecurityEscort != null)
+                  _oprtns = RequiredOperations.SendEmail2Escort;
+              SetupEnvironment(_sp.StartTime.Value - DateTime.Now - _2h, _frmt, _oprtns, _sp, Priority.High);
             }
             else
-            {
-              _sp.State = State.Delayed;
-              _EDC.SubmitChanges();
-              SetupEnvironmentDelayed();
-            }
+              MakeFelayed(_EDC, _sp);
             break;
           case State.Delayed:
-            SetupEnvironmentDelayed();
             break;
           case State.Underway:
             if (_sp.EndTime.Value < DateTime.Now)
-              SetupEnvironment(_sp.EndTime.Value - DateTime.Now, "Truck must exit in {0:g} until {1:g}", "Wanning: The truck has not exited until the deadline.", "Timeout notification");
-            else
             {
-              m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, 30, 0);
-              SetupEnvironment
-                (
-                  new TimeSpan(0, 30, 0),
-                  "Warning: the truck is still inside and should have leaved until {0:g}. Next remainder will be issued at: {1:g}. To stop sending remainders change the state of the shipping or manually terminate the warkflow.",
-                  "Wanning: The truck has not exited until the deadline.",
-                  "Timeout warning"
-                 );
+              _frmt = "Truck must exit in {0:g} until {1:g}";
+               SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, 0, _sp);
             }
             break;
           default:
@@ -262,12 +220,38 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               throw new ApplicationException(String.Format(_frmt, _sp.State.Value));
             }
         }
+      }
+    }
+    private void MakeFelayed(EntitiesDataContext _EDC, ShippingShipping _sp)
+    {
+      _sp.State = State.Delayed;
+      _EDC.SubmitChanges();
+      SetupEnvironmentDelayed(_sp, Priority.High);
+    }
+    private void SetupEnvironmentDelayed(Shipping _sp, Priority _prrty)
+    {
+      string _frmt = "Wanning: The truck is late. Call the driver: {0}";
+      _frmt = String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????");
+      _frmt += "The shipping is should finisch in {0:g} at {1:g}.";
+      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, 0, _sp, _prrty);
+    }
+    private void SetupEnvironment(TimeSpan _delay, string _logDescription, RequiredOperations _operations, Shipping _sp, Priority _prrty)
+    {
+      ReportAlarmsAndEvents(m_DeadlineLogToHistoryListActivity_HistoryDescription1, _prrty);
+      SetupEnvironment(_delay, _logDescription, _operations, _sp);
+    }
+    private void SetupEnvironment(TimeSpan _delay, string _logDescription, RequiredOperations _operations, Shipping _sp)
+    {
+      m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
+      m_DeadlineLogToHistoryListActivity_HistoryDescription1 = String.Format(_logDescription, m_TimeOutDelay_TimeoutDuration1, DateTime.Now + _delay);
+      if (InSet(_operations, RequiredOperations.SendEmail2Carrier))
+      {
         try
         {
-          m_NotificationSendEmail_Subject = _sp.Tytuł + " Delayed !!";
-          m_NotificationSendEmail_Body = "Warning";
-          m_NotificationSendEmail_To1 = _sp.VendorName != null ? _sp.VendorName.EMail : "unknown@comapny.com";
-          m_NotificationSendEmail_CC = m_OnWorkflowActivated_WorkflowProperties.OriginatorEmail;
+          m_CarrierNotificationSendEmail_Subject1 = _sp.Tytuł + " Delayed !!";
+          m_CarrierNotificationSendEmail_Body = "Warning";
+          m_CarrierNotificationSendEmail_To = _sp.VendorName != null ? _sp.VendorName.EMail : "unknown@comapny.com";
+          m_CarrierNotificationSendEmail_CC = m_OnWorkflowActivated_WorkflowProperties.OriginatorEmail;
           ReportAlarmsAndEvents(_sp.Tytuł + " Delayed !!", Priority.Warning);
         }
         catch (Exception _ex)
@@ -275,24 +259,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           ReportException("NotificationSendEmail", _ex);
         }
       }
-    }
-    private void SetupEnvironmentDelayed()
-    {
-      string _frmt = "The shipping is delayed and the state must be updatede. Next remainder will be issued in {0:g} at {1:g}. To stop sending remainders change the state of the shipping or manually terminate the warkflow.";
-      SetupEnvironment
-        (
-        _5min,
-        _frmt,
-        "Time out while waiting on shipping state change.",
-        "Timeout warning"
-        );
-    }
-    private void SetupEnvironment(TimeSpan _delay, string _logDescription, string _afterDelayDescription, string _afterDelayOutcome)
-    {
-      m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
-      m_DeadlineLogToHistoryListActivity_HistoryDescription1 = String.Format(_logDescription, m_TimeOutDelay_TimeoutDuration1, DateTime.Now + _delay);
-      m_TimeOutLogToHistoryListActivity_HistoryDescription1 = _afterDelayDescription;
-      m_TimeOutLogToHistoryListActivity_HistoryOutcome1 = _afterDelayOutcome;
+      if (InSet(_operations, RequiredOperations.SendEmail2Escort))
+      {
+
+      }
     }
     #endregion
 
@@ -312,8 +282,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     public String m_TimeOutLogToHistoryListActivity_HistoryDescription1 = default(System.String);
     #endregion
 
-    #region NotificationSendEmail
-
+    #region CarrierNotificationSendEmail
     private void m_CarrierNotificationSendEmail_MethodInvoking(object sender, EventArgs e)
     {
       Operation2Do &= RequiredOperations.SendEmail2Escort;
@@ -322,81 +291,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       e.Result = (Operation2Do & RequiredOperations.SendEmail2Carrier) != 0;
     }
-    public static DependencyProperty m_NotificationSendEmail_To1Property = DependencyProperty.Register("m_NotificationSendEmail_To1", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
-    [BrowsableAttribute(true)]
-    [CategoryAttribute("Misc")]
-    public String m_NotificationSendEmail_To1
+    public String m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription = default(System.String);
+    public String m_CarrierNotificationSendEmailLogToHistoryList_HistoryOutcome = default(System.String);
+    private void m_CarrierNotificationSendEmailLogToHistoryList_MethodInvoking(object sender, EventArgs e)
     {
-      get
-      {
-        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_To1Property)));
-      }
-      set
-      {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_To1Property, value);
-      }
+
     }
-    public static DependencyProperty m_NotificationSendEmail_BCCProperty = DependencyProperty.Register("m_NotificationSendEmail_BCC", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
-    [BrowsableAttribute(true)]
-    [CategoryAttribute("Misc")]
-    public String m_NotificationSendEmail_BCC
-    {
-      get
-      {
-        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_BCCProperty)));
-      }
-      set
-      {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_BCCProperty, value);
-      }
-    }
-    public static DependencyProperty m_NotificationSendEmail_BodyProperty = DependencyProperty.Register("m_NotificationSendEmail_Body", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
-    [BrowsableAttribute(true)]
-    [CategoryAttribute("Misc")]
-    public String m_NotificationSendEmail_Body
-    {
-      get
-      {
-        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_BodyProperty)));
-      }
-      set
-      {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_BodyProperty, value);
-      }
-    }
-    public static DependencyProperty m_NotificationSendEmail_CCProperty = DependencyProperty.Register("m_NotificationSendEmail_CC", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
-    [BrowsableAttribute(true)]
-    [CategoryAttribute("Misc")]
-    public String m_NotificationSendEmail_CC
-    {
-      get
-      {
-        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_CCProperty)));
-      }
-      set
-      {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_CCProperty, value);
-      }
-    }
-    public static DependencyProperty m_NotificationSendEmail_SubjectProperty = DependencyProperty.Register("m_NotificationSendEmail_Subject", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
-    [BrowsableAttribute(true)]
-    [CategoryAttribute("Misc")]
-    public String m_NotificationSendEmail_Subject
-    {
-      get
-      {
-        return ((string)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_SubjectProperty)));
-      }
-      set
-      {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_NotificationSendEmail_SubjectProperty, value);
-      }
-    }
+    public String m_CarrierNotificationSendEmail_Body = default(System.String);
+    public String m_CarrierNotificationSendEmail_CC = default(System.String);
+    public String m_CarrierNotificationSendEmail_From = default(System.String);
+    public String m_CarrierNotificationSendEmail_To = default(System.String);
+    public String m_CarrierNotificationSendEmail_Subject1 = default(System.String);
     #endregion
 
     #region EscortSend
@@ -408,20 +313,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       Operation2Do &= RequiredOperations.SendEmail2Escort;
     }
-    #endregion
+    public String m_EscortSendEmailLogToHistoryList_HistoryDescription1 = default(System.String);
+    public String m_EscortSendEmailLogToHistoryList_HistoryOutcome = default(System.String);
+    private void m_EscortSendEmailLogToHistoryList_MethodInvoking(object sender, EventArgs e)
+    {
 
-    #region AlarmsEventsAddEntry
-    private void m_AlarmsEventsAddEntryCodeActivityCondition(object sender, ConditionalEventArgs e)
-    {
-      e.Result = (Operation2Do & RequiredOperations.AddAlarm) != 0;
-    }
-    private void m_AlarmsEventsAddEntryCodeActivity_ExecuteCode(object sender, EventArgs e)
-    {
-      Operation2Do &= RequiredOperations.AddAlarm;
     }
     #endregion
 
     #region DeadlineLogToHistoryList
+    private void m_TimeOutLogToHistoryListActivity_MethodInvoking(object sender, EventArgs e)
+    {
+      m_TimeOutLogToHistoryListActivity_HistoryOutcome1 = "Timeout";
+      m_TimeOutLogToHistoryListActivity_HistoryDescription1 = String.Format("Timeout expired at {0:g}", DateTime.Now);
+    }
     public static DependencyProperty m_DeadlineLogToHistoryListActivity_HistoryDescription1Property = DependencyProperty.Register("m_DeadlineLogToHistoryListActivity_HistoryDescription1", typeof(System.String), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
     [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
     [BrowsableAttribute(true)]
@@ -477,10 +382,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private enum RequiredOperations
     {
       SendEmail2Carrier,
-      SendEmail2Escort,
-      AddAlarm
+      SendEmail2Escort
     }
     private RequiredOperations Operation2Do { get; set; }
+    private bool InSet(RequiredOperations _set, RequiredOperations _item)
+    {
+      return (_set & _item) != 0;
+    }
     #endregion
+
+
+
   }
 }
