@@ -113,6 +113,18 @@
       <DependentUpon>SendNotification.feature</DependentUpon>
     </Compile>
     <Compile Include="OpenXMLHelpers.cs" />
+    <Compile Include="WorkflowData\SupplementData2hEscortTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupplementData2hEscortTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowData\SupplementData2hEscortTemplate.partial.cs" />
+    <Compile Include="WorkflowData\SupplementData2hVendorTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupplementData2hVendorTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowData\SupplementData2hVendorTemplate.partial.cs" />
     <Compile Include="WorkflowDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendEmail\SendEmail.cs">
@@ -172,6 +184,14 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="WorkflowData\Scripts\CreateCS.ps1" />
+    <None Include="WorkflowData\SupplementData2hEscortTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SupplementData2hEscortTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="WorkflowData\SupplementData2hVendorTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SupplementData2hVendorTemplate.cs</LastGenOutput>
+    </None>
     <None Include="WorkflowLists\SendNotificationHistory\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e2ac98ea-de91-440b-823c-6c76f783c49a}</SharePointProjectItemId>
     </None>

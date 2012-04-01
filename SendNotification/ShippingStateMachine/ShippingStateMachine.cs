@@ -7,6 +7,7 @@ using Microsoft.SharePoint;
 using System.ComponentModel;
 using System.Workflow.ComponentModel;
 using System.Linq;
+using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 {
@@ -276,23 +277,39 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void SetupEmail(TimeSpan _delay, Shipping.RequiredOperations _operations, Shipping _sp)
     {
       ShepherdRole _ccRole = _sp.IsOutbound.Value ? ShepherdRole.OutboundOwner : ShepherdRole.InboundOwner;
-
       var _ccdl = (from _ccx in EDC.DistributionList
-                   where _ccx.ShepherdRole.Value == _ccRole
+                   where _ccx.ShepherdRole.GetValueOrDefault(ShepherdRole.Invalid) == _ccRole
                    select new { Email = _ccx.EMail }).FirstOrDefault();
       if (_ccdl == null || String.IsNullOrEmpty(_ccdl.Email))
         _ccdl = (from _ccx in EDC.DistributionList
-                 where _ccx.ShepherdRole.Value == ShepherdRole.Administrator
+                 where _ccx.ShepherdRole.GetValueOrDefault( ShepherdRole.Invalid) == ShepherdRole.Administrator
                  select new { Email = _ccx.EMail }).FirstOrDefault();
+      string _cc = _ccdl == null ? CommonDefinition.UnknownEmail : _ccdl.Email.UnknownIfEmpty();
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Carrier))
       {
-        m_CarrierNotificationSendEmail_Subject1 = _sp.Tytuł + " Delayed !!";
-        m_CarrierNotificationSendEmail_Body = "Warning";
+        SupplementData2hVendorTemplate _msg = new SupplementData2hVendorTemplate();
+        _msg.PartnerTitle = _sp.VendorName.Title();
+        _msg.Title = _sp.Title();
+        _msg.StartTime = _sp.StartTime.Value;
         m_CarrierNotificationSendEmail_To = _sp.VendorName != null ? _sp.VendorName.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
-        m_CarrierNotificationSendEmail_CC = _ccdl == null ? CommonDefinition.UnknownEmail : _ccdl.Email.UnknownIfEmpty();
+        m_CarrierNotificationSendEmail_Subject1 = _sp.Tytuł + " Delayed !!";
+        m_CarrierNotificationSendEmail_Body = _msg.TransformText();
+        m_CarrierNotificationSendEmail_CC = _cc;
+        m_CarrierNotificationSendEmail_From = _cc;
       }
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Escort))
       {
+        SupplementData2hEscortTemplate _msg = new SupplementData2hEscortTemplate()
+        {
+          ShippingOperationOutband2PartnerTitle = _sp.SecurityEscortProvider.Title(),
+          StartTime = _sp.StartTime.Value,
+          Title = _sp.Title()
+        };
+        m_EscortSendEmail_To = _sp.SecurityEscortProvider != null ? _sp.SecurityEscortProvider.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
+        m_EscortSendEmail_Subject = _sp.Tytuł + " Delayed !!";
+        m_EscortSendEmail_Body = "";//_msg.
+        m_EscortSendEmail_CC = _cc;
+        m_EscortSendEmail_From = _cc;
       }
     }
     private void SetupTimeOut(TimeSpan _delay, Shipping _sp)
