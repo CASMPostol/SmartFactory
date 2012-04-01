@@ -13,5 +13,6 @@
     internal const string SendNotificationWorkflowTasks = "Send Notification Workflow Tasks";
     internal const string SendNotificationWorkflowHistory = "Send Notification Workflow History";
     internal const string UnknownEmail = "unknown@comapny.com";
+    internal const string DefaultCurrency = "USD";
   }
 }

@@ -5,4 +5,5 @@ string AddTimeSlots_Description = "Adds Time Slots according to the selected tem
 string ScheduleTemplate_ListTitle = "Schedule Template";
 string LoadDescription_ListTitle ="Load Description";
 string CarrierPerformanceReport_ListTitle ="Carrier Performance Report";
+string TimeSlot_ListTitle ="TimeSlot";
 #>
