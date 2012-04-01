@@ -1,4 +1,5 @@
-﻿  <p>
+﻿
+  <p>
     <b>Freight Purches Order:</b> <#= SPOFreightPO #></p>
   <p>
     <b>Warehouse address:</b> <#= FPO2WarehouseAddress #></p>
