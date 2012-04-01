@@ -1,4 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".xml" #>
+<?xml version="1.0" encoding="utf-8" ?>
 <Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
   <List Name="Transport Unit Type">
     <ContentType Name="TranspotUnit">
@@ -38,7 +40,8 @@
   <List Name="Trailer"></List>
   <List Name="Drivers Team"></List>
   <List Name="Driver"></List>
-  <List Name="Load Description"></List>
-  <List Name="Carrier Performance Report"></List>
+  <List Name="<#= LoadDescription_ListTitle #>"></List>
+  <List Name="<#= CarrierPerformanceReport_ListTitle #>"></List>
   <ExcludeOtherLists/>
 </Web>
+<#@ include file = "..\..\Model.T4" #>

@@ -118,7 +118,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SupplementData2hEscortTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="WorkflowData\SupplementData2hEscortTemplate.partial.cs" />
+    <Compile Include="WorkflowData\SupplementData2hEscortTemplate.partial.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="WorkflowData\SupplementData2hVendorTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -168,6 +170,10 @@
       <SharePointProjectItemId>{38cea048-1e1a-4e41-8780-7fc16d1f17c0}</SharePointProjectItemId>
     </None>
     <None Include="Entities\Scripts\GetEntities.ps1" />
+    <None Include="Entities\Scripts\Parameters.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Parameters.xml</LastGenOutput>
+    </None>
     <None Include="key.snk" />
     <None Include="Model.T4" />
     <None Include="SendEmail\SharePointProjectItem.spdata">
@@ -185,7 +191,7 @@
     </None>
     <None Include="WorkflowData\Scripts\CreateCS.ps1" />
     <None Include="WorkflowData\SupplementData2hEscortTemplate.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>SupplementData2hEscortTemplate.cs</LastGenOutput>
     </None>
     <None Include="WorkflowData\SupplementData2hVendorTemplate.tt">
@@ -231,7 +237,9 @@
     <Content Include="CreateSealProtocol\Elements.xml" />
     <Content Include="CreateSecurityPO1\Elements.xml" />
     <Content Include="Entities\Scripts\Parameters.xml">
-      <SubType>Designer</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Parameters.tt</DependentUpon>
     </Content>
     <Content Include="SendEmail\Elements.xml">
       <SubType>Designer</SubType>

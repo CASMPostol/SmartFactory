@@ -3,4 +3,6 @@ string AddTimeSlots_ID = "2e240fb3-f93c-4b87-9170-b5443815793b";
 string AddTimeSlots_Name = "AddTimeSlots";
 string AddTimeSlots_Description = "Adds Time Slots according to the selected template.";
 string ScheduleTemplate_ListTitle = "Schedule Template";
+string LoadDescription_ListTitle ="Load Description";
+string CarrierPerformanceReport_ListTitle ="Carrier Performance Report";
 #>
