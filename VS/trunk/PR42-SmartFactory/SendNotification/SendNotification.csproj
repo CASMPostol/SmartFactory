@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />
+    <Compile Include="Entities\Shipping.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Features\SendNotification\SendNotification.EventReceiver.cs">
       <DependentUpon>SendNotification.feature</DependentUpon>
