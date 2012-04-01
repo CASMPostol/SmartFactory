@@ -50,7 +50,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
             FreightPO _fpo = (from idx in _EDC.FreightPOLibrary
                               where idx.Identyfikator == m_WorkflowProperties.ItemId
                               select idx).First();
-            m_sendEmail1_To = String.IsNullOrEmpty(_fpo.EMail) ? CommonDefinition.PartnerSentToBackupEmail : _fpo.EMail;
+            m_sendEmail1_To = String.IsNullOrEmpty(_fpo.EMail) ? CommonDefinition.UnknownEmail : _fpo.EMail;
             return new FreightPurchaseOrderTemplate()
             {
               Encodedabsurl = new Uri((string)m_WorkflowProperties.Item["EncodedAbsUrl"]),

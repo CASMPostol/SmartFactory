@@ -12,6 +12,6 @@
     //Workflow working lists
     internal const string SendNotificationWorkflowTasks = "Send Notification Workflow Tasks";
     internal const string SendNotificationWorkflowHistory = "Send Notification Workflow History";
-    internal const string PartnerSentToBackupEmail = "oferty@cas.eu";
+    internal const string UnknownEmail = "unknown@comapny.com";
   }
 }
