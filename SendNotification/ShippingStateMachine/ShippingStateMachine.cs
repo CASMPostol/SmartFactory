@@ -109,9 +109,24 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region WorkflowItemChanged
     private void m_OnWorkflowItemChanged_Invoked(object sender, ExternalDataEventArgs e)
     {
-      m_SendWarningLogToHistoryListActivity_HistoryOutcome = "Shipping";
-      m_SendWarningLogToHistoryListActivity_HistoryDescription = "The shipping has been modified and the schedule wiil be updated.";
-      ReportAlarmsAndEvents(m_SendWarningLogToHistoryListActivity_HistoryDescription, Priority.Normal, ServiceType.None);
+      string _msg = "The shipping at CURRENT state {0} has been modified by {1} and the schedule wiil be updated.";
+      ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
+      m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
+      ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None);
+      //foreach (Entities.
+      if (_sp.State.Value == State.Completed)
+      {
+        _sp.TotalQuantityInKU = 0;
+        _sp.TotalCostsPerKUCurrency = _sp.Route.Currency;
+        _sp.TotalCostsPerKU = _sp.TotalQuantityInKU.HasValue ? 0 : new Nullable<double>();
+        _sp.SecurityEscortCost = _sp.SecurityEscort.SecurityCost * _sp.SecurityEscort.Currency.ExchangeRate;
+        _sp.InduPalletsQuantity = 0; //TODO
+        _sp.EuroPalletsQuantity = 0;
+        _sp.ForwarderOceanAir = _sp.Route.ShipmentTypeTitle; //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3245
+        _sp.EuroPalletsQuantity = 0;
+        _sp.EscortCostsCurrency = _sp.SecurityEscort.Currency;
+      }
+
       //if (m_OnWorkflowItemChanged_BeforeProperties1.Count == 0)
       //{
       //  string _msg = "Connot display changes because the BeforeProperties is empty.";
@@ -138,41 +153,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       //  }
       //}
     }
-    public static DependencyProperty m_OnWorkflowItemChanged_BeforeProperties1Property = DependencyProperty.Register("m_OnWorkflowItemChanged_BeforeProperties1", typeof(System.Collections.Hashtable), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
-    [BrowsableAttribute(true)]
-    [CategoryAttribute("Misc")]
-    public Hashtable m_OnWorkflowItemChanged_BeforeProperties1
-    {
-      get
-      {
-        return ((System.Collections.Hashtable)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_OnWorkflowItemChanged_BeforeProperties1Property)));
-      }
-      set
-      {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_OnWorkflowItemChanged_BeforeProperties1Property, value);
-      }
-    }
-    public static DependencyProperty m_OnWorkflowItemChanged_AfterProperties1Property = DependencyProperty.Register("m_OnWorkflowItemChanged_AfterProperties1", typeof(System.Collections.Hashtable), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
-    [BrowsableAttribute(true)]
-    [CategoryAttribute("Misc")]
-    public Hashtable m_OnWorkflowItemChanged_AfterProperties1
-    {
-      get
-      {
-        return ((System.Collections.Hashtable)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_OnWorkflowItemChanged_AfterProperties1Property)));
-      }
-      set
-      {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_OnWorkflowItemChanged_AfterProperties1Property, value);
-      }
-    }
-    #endregion
-
-    #region m_WhileRoundLogToHistoryListActivity
-    public String m_SendWarningLogToHistoryListActivity_HistoryOutcome = default(System.String);
-    public String m_SendWarningLogToHistoryListActivity_HistoryDescription = default(System.String);
+    public Hashtable m_OnWorkflowItemChanged_BeforeProperties = new System.Collections.Hashtable();
+    public Hashtable m_OnWorkflowItemChanged_AfterProperties = new System.Collections.Hashtable();
+    public String m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = default(System.String);
     #endregion
 
     #region CalculateTimeoutCode
@@ -282,7 +265,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                    select new { Email = _ccx.EMail }).FirstOrDefault();
       if (_ccdl == null || String.IsNullOrEmpty(_ccdl.Email))
         _ccdl = (from _ccx in EDC.DistributionList
-                 where _ccx.ShepherdRole.GetValueOrDefault( ShepherdRole.Invalid) == ShepherdRole.Administrator
+                 where _ccx.ShepherdRole.GetValueOrDefault(ShepherdRole.Invalid) == ShepherdRole.Administrator
                  select new { Email = _ccx.EMail }).FirstOrDefault();
       string _cc = _ccdl == null ? CommonDefinition.UnknownEmail : _ccdl.Email.UnknownIfEmpty();
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Carrier))
@@ -307,7 +290,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         };
         m_EscortSendEmail_To = _sp.SecurityEscortProvider != null ? _sp.SecurityEscortProvider.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
         m_EscortSendEmail_Subject = _sp.Tytuł + " Delayed !!";
-        m_EscortSendEmail_Body = "";//_msg.
+        m_EscortSendEmail_Body = _msg.TransformText();
         m_EscortSendEmail_CC = _cc;
         m_EscortSendEmail_From = _cc;
       }
@@ -411,6 +394,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region private
     private Shipping.RequiredOperations Operation2Do { get; set; }
     #endregion
+
+
 
 
   }
