@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Workflow.ComponentModel;
 using System.Linq;
 using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 {
@@ -109,24 +110,19 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region WorkflowItemChanged
     private void m_OnWorkflowItemChanged_Invoked(object sender, ExternalDataEventArgs e)
     {
-      string _msg = "The shipping at CURRENT state {0} has been modified by {1} and the schedule wiil be updated.";
-      ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
-      m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
-      ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None);
-      //foreach (Entities.
-      if (_sp.State.Value == State.Completed)
+      try
       {
-        _sp.TotalQuantityInKU = 0;
-        _sp.TotalCostsPerKUCurrency = _sp.Route.Currency;
-        _sp.TotalCostsPerKU = _sp.TotalQuantityInKU.HasValue ? 0 : new Nullable<double>();
-        _sp.SecurityEscortCost = _sp.SecurityEscort.SecurityCost * _sp.SecurityEscort.Currency.ExchangeRate;
-        _sp.InduPalletsQuantity = 0; //TODO
-        _sp.EuroPalletsQuantity = 0;
-        _sp.ForwarderOceanAir = _sp.Route.ShipmentTypeTitle; //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3245
-        _sp.EuroPalletsQuantity = 0;
-        _sp.EscortCostsCurrency = _sp.SecurityEscort.Currency;
+        string _msg = "The shipping at CURRENT state {0} has been modified by {1} and the schedule wiil be updated.";
+        ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
+        m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
+        ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None);
+        MakeCalculation(_sp);
+        MakePerformanceReport(_sp);
       }
-
+      catch (Exception ex)
+      {
+        ReportException("m_OnWorkflowItemChanged_Invoked", ex);
+      }
       //if (m_OnWorkflowItemChanged_BeforeProperties1.Count == 0)
       //{
       //  string _msg = "Connot display changes because the BeforeProperties is empty.";
@@ -152,6 +148,117 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       //    }
       //  }
       //}
+    }
+    private void MakePerformanceReport(ShippingShipping _sp)
+    {
+      try
+      {
+        DateTime _sDate = _sp.StartTime.Value.Date;
+        Dictionary<string, CarrierPerformanceReport> _rprtDic = (from _rptx in EDC.CarrierPerformanceReport
+                                                                 where _rptx.Date.Value == _sDate
+                                                                 select _rptx).ToDictionary(x => x.CarrierTitle);
+        //CarrierPerformanceReport _rpt2 = from _rx in _sp.VendorName.CarrierPerformanceReport
+        CarrierPerformanceReport _rprt;
+        if (!_rprtDic.TryGetValue(_sp.VendorName.Tytuł, out _rprt))
+        {
+          _rprt = new CarrierPerformanceReport()
+          {
+            Date = _sp.StartTime.Value.Date,
+            //TODO CarrierTitle 
+            Tytuł = _sp.VendorName.Title(),
+            NumberTUDelayed = 0,
+            NumberTUDelayed1Hour = 0,
+            NumberTUNotDeliveredNotShowingUp = 0,
+            NumberTUOnTime = 0,
+            NumberTUOrdered = 0,
+            NumberTURejectedBadQuality = 0
+          };
+          EDC.CarrierPerformanceReport.InsertOnSubmit(_rprt);
+          EDC.SubmitChanges();
+          _rprt.NumberTUOrdered++;
+          if (_sp.TrailerCondition.Value == TrailerCondition._1Unexceptable)
+            _rprt.NumberTURejectedBadQuality++;
+          _rprt.NumberTUNotDeliveredNotShowingUp += (from _ts in _sp.TimeSlot
+                                                     where _ts.Occupied.Value == Occupied.Delayed
+                                                     select new { }).Count();
+          var _Start = (from _tsx in _sp.TimeSlot
+                        where _tsx.Occupied.Value == Occupied.Free
+                        orderby _tsx.StartTime ascending
+                        select new { Start = _tsx.StartTime.Value }).First();
+          switch (CalculateDelay(_sp.StartTime.Value - _Start.Start))
+          {
+            case Delay.JustInTime:
+              _rprt.NumberTUOnTime++;
+              break;
+            case Delay.Delayed:
+              _rprt.NumberTUDelayed++;
+              break;
+            case Delay.VeryLate:
+              _rprt.NumberTUDelayed1Hour++;
+              break;
+          }
+          EDC.SubmitChanges();
+        }
+      }
+      catch (Exception ex)
+      {
+        ReportException("MakePerformanceReport", ex);
+      }
+    }
+    private enum Delay { JustInTime, Delayed, VeryLate }
+    private Delay CalculateDelay(TimeSpan _value)
+    {
+      if (_value < TimeSpan.Zero || _value < new TimeSpan(0, 15, 0))
+        return Delay.JustInTime;
+      else if (_value < new TimeSpan(1, 0, 0))
+        return Delay.Delayed;
+      else
+        return Delay.VeryLate;
+    }
+    private void MakeCalculation(ShippingShipping _sp)
+    {
+      try
+      {
+        if (!_sp.IsOutbound.GetValueOrDefault(false) || (_sp.State.Value != State.Completed))
+          return;
+        foreach (LoadDescription _ld in _sp.LoadDescription)
+        {
+          switch (_ld.PalletType.Value)
+          {
+            case PalletType.Euro:
+              _sp.EuroPalletsQuantity += _ld.NumberOfPallets.GetValueOrDefault(0);
+              break;
+            case PalletType.Industrial:
+              _sp.InduPalletsQuantity = _ld.NumberOfPallets.GetValueOrDefault(0);
+              break;
+            case PalletType.None:
+            case PalletType.Invalid:
+            case PalletType.Other:
+            default:
+              break;
+          }
+          _sp.TotalQuantityInKU += _ld.GoodsQuantity.GetValueOrDefault(0);
+        }
+        _sp.ForwarderOceanAir = _sp.Route.ShipmentTypeTitle; //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3245
+        _sp.EscortCostsCurrency = _sp.SecurityEscort.Currency;
+        _sp.TotalCostsPerKUCurrency = (from Currency _cu in EDC.Currency
+                                       where String.IsNullOrEmpty(_cu.Tytuł) && _cu.Tytuł.Contains(CommonDefinition.DefaultCurrency)
+                                       select _cu).FirstOrDefault();
+        //Costs calculation
+        double? _forwarderCost = default(double?);
+        if (_sp.Route != null && _sp.Route.Currency != null)
+          _forwarderCost = _sp.Route.TransportCosts * _sp.Route.Currency.ExchangeRate;
+        _sp.SecurityEscortCost = _sp.SecurityEscort.SecurityCost * _sp.SecurityEscort.Currency.ExchangeRate;
+        double? _totalCost = default(double?);
+        if (_sp.AdditionalCostsCurrency != null)
+          _totalCost = _forwarderCost + _sp.SecurityEscortCost + _sp.AdditionalCosts * _sp.AdditionalCostsCurrency.ExchangeRate;
+        _sp.TotalCostsPerKU = _sp.TotalQuantityInKU.HasValue && _sp.TotalQuantityInKU.Value > 0 ? _totalCost / _sp.TotalQuantityInKU.Value : new Nullable<double>();
+        EDC.SubmitChanges();
+      }
+      catch (Exception ex)
+      {
+        ReportException("MakeCalculation", ex);
+      }
     }
     public Hashtable m_OnWorkflowItemChanged_BeforeProperties = new System.Collections.Hashtable();
     public Hashtable m_OnWorkflowItemChanged_AfterProperties = new System.Collections.Hashtable();

@@ -214,6 +214,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		/// <summary>
+		/// TimeSLot List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="TimeSlot")]
+		public Microsoft.SharePoint.Linq.EntityList<TimeSlotTimeSlot> TimeSlot {
+			get {
+				return this.GetList<TimeSlotTimeSlot>("TimeSlot");
+			}
+		}
+		
+		/// <summary>
 		/// Trailer List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Trailer")]
@@ -275,6 +285,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Route))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SecurityEscortCatalog))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Shipping))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Wydarzenie))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Trailer))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TranspotUnit))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Truck))]
@@ -514,6 +525,152 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 					this.OnPropertyChanging("Wygasa", this._wygasa);
 					this._wygasa = value;
 					this.OnPropertyChanged("Wygasa");
+				}
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowe spotkanie, termin ostateczny lub inne wydarzenie.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Wydarzenie", Id="0x0102")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlot))]
+	public partial class Wydarzenie : Element {
+		
+		private string _lokalizacja;
+		
+		protected System.Nullable<System.DateTime> _startTime;
+		
+		private System.Nullable<System.DateTime> _endTime;
+		
+		private string _description;
+		
+		private System.Nullable<bool> _wydarzenieCałodzienne;
+		
+		private System.Nullable<bool> _cykl;
+		
+		private System.Nullable<bool> _obszarRoboczy;
+		
+		private System.Nullable<Kategoria> _kategoria;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public Wydarzenie() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Location", Storage="_lokalizacja", FieldType="Text")]
+		public virtual string Lokalizacja {
+			get {
+				return this._lokalizacja;
+			}
+			set {
+				if ((value != this._lokalizacja)) {
+					this.OnPropertyChanging("Lokalizacja", this._lokalizacja);
+					this._lokalizacja = value;
+					this.OnPropertyChanged("Lokalizacja");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="StartDate", Storage="_startTime", Required=true, FieldType="DateTime")]
+		public virtual System.Nullable<System.DateTime> StartTime {
+			get {
+				return this._startTime;
+			}
+			set {
+				if ((value != this._startTime)) {
+					this.OnPropertyChanging("StartTime", this._startTime);
+					this._startTime = value;
+					this.OnPropertyChanged("StartTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EndDate", Storage="_endTime", Required=true, FieldType="DateTime")]
+		public System.Nullable<System.DateTime> EndTime {
+			get {
+				return this._endTime;
+			}
+			set {
+				if ((value != this._endTime)) {
+					this.OnPropertyChanging("EndTime", this._endTime);
+					this._endTime = value;
+					this.OnPropertyChanged("EndTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Comments", Storage="_description", FieldType="Note")]
+		public virtual string Description {
+			get {
+				return this._description;
+			}
+			set {
+				if ((value != this._description)) {
+					this.OnPropertyChanging("Description", this._description);
+					this._description = value;
+					this.OnPropertyChanged("Description");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="fAllDayEvent", Storage="_wydarzenieCałodzienne", FieldType="AllDayEvent")]
+		public virtual System.Nullable<bool> WydarzenieCałodzienne {
+			get {
+				return this._wydarzenieCałodzienne;
+			}
+			set {
+				if ((value != this._wydarzenieCałodzienne)) {
+					this.OnPropertyChanging("WydarzenieCałodzienne", this._wydarzenieCałodzienne);
+					this._wydarzenieCałodzienne = value;
+					this.OnPropertyChanged("WydarzenieCałodzienne");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="fRecurrence", Storage="_cykl", FieldType="Recurrence")]
+		public virtual System.Nullable<bool> Cykl {
+			get {
+				return this._cykl;
+			}
+			set {
+				if ((value != this._cykl)) {
+					this.OnPropertyChanging("Cykl", this._cykl);
+					this._cykl = value;
+					this.OnPropertyChanged("Cykl");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WorkspaceLink", Storage="_obszarRoboczy", FieldType="CrossProjectLink")]
+		public virtual System.Nullable<bool> ObszarRoboczy {
+			get {
+				return this._obszarRoboczy;
+			}
+			set {
+				if ((value != this._obszarRoboczy)) {
+					this.OnPropertyChanging("ObszarRoboczy", this._obszarRoboczy);
+					this._obszarRoboczy = value;
+					this.OnPropertyChanged("ObszarRoboczy");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Category", Storage="_kategoria", FieldType="Choice")]
+		public virtual System.Nullable<Kategoria> Kategoria {
+			get {
+				return this._kategoria;
+			}
+			set {
+				if ((value != this._kategoria)) {
+					this.OnPropertyChanging("Kategoria", this._kategoria);
+					this._kategoria = value;
+					this.OnPropertyChanged("Kategoria");
 				}
 			}
 		}
@@ -5172,6 +5329,249 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
+	/// Time Slot
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlot", Id="0x0102008B8977AFA9104B18B4B25D7C06A4A3AA")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlotTimeSlot))]
+	public partial class TimeSlot : Wydarzenie {
+		
+		private System.Nullable<System.DateTime> _entryTime;
+		
+		private System.Nullable<double> _actualTimeSpan;
+		
+		private System.Nullable<System.DateTime> _exitTime;
+		
+		private System.Nullable<bool> _isDouble;
+		
+		private System.Nullable<Occupied> _occupied;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<ShippingShipping> _shippingIndex;
+		
+		private System.Nullable<int> _shippingPointIdentyfikator;
+		
+		private string _shippingPointTitle;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public TimeSlot() {
+			this._shippingIndex = new Microsoft.SharePoint.Linq.EntityRef<ShippingShipping>();
+			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping>>(this.OnShippingIndexSync);
+			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
+			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EntryTime", Storage="_entryTime", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> EntryTime {
+			get {
+				return this._entryTime;
+			}
+			set {
+				if ((value != this._entryTime)) {
+					this.OnPropertyChanging("EntryTime", this._entryTime);
+					this._entryTime = value;
+					this.OnPropertyChanged("EntryTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSpan", Storage="_actualTimeSpan", FieldType="Number")]
+		public System.Nullable<double> ActualTimeSpan {
+			get {
+				return this._actualTimeSpan;
+			}
+			set {
+				if ((value != this._actualTimeSpan)) {
+					this.OnPropertyChanging("ActualTimeSpan", this._actualTimeSpan);
+					this._actualTimeSpan = value;
+					this.OnPropertyChanged("ActualTimeSpan");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ExitTime", Storage="_exitTime", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> ExitTime {
+			get {
+				return this._exitTime;
+			}
+			set {
+				if ((value != this._exitTime)) {
+					this.OnPropertyChanging("ExitTime", this._exitTime);
+					this._exitTime = value;
+					this.OnPropertyChanged("ExitTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IsDouble", Storage="_isDouble", FieldType="Boolean")]
+		public System.Nullable<bool> IsDouble {
+			get {
+				return this._isDouble;
+			}
+			set {
+				if ((value != this._isDouble)) {
+					this.OnPropertyChanging("IsDouble", this._isDouble);
+					this._isDouble = value;
+					this.OnPropertyChanged("IsDouble");
+				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Lokalizacja {
+			get {
+				throw new System.InvalidOperationException("Pole Location zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Location zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Description {
+			get {
+				throw new System.InvalidOperationException("Pole Comments zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Comments zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override System.Nullable<bool> WydarzenieCałodzienne {
+			get {
+				throw new System.InvalidOperationException("Pole fAllDayEvent zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole fAllDayEvent zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override System.Nullable<bool> Cykl {
+			get {
+				throw new System.InvalidOperationException("Pole fRecurrence zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole fRecurrence zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override System.Nullable<bool> ObszarRoboczy {
+			get {
+				throw new System.InvalidOperationException("Pole WorkspaceLink zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole WorkspaceLink zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		/// <summary>
+		/// Occupied
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Occupied", Storage="_occupied", FieldType="Choice")]
+		public System.Nullable<Occupied> Occupied {
+			get {
+				return this._occupied;
+			}
+			set {
+				if ((value != this._occupied)) {
+					this.OnPropertyChanging("Occupied", this._occupied);
+					this._occupied = value;
+					this.OnPropertyChanged("Occupied");
+				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override System.Nullable<Kategoria> Kategoria {
+			get {
+				throw new System.InvalidOperationException("Pole Category zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Category zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
+		public ShippingShipping ShippingIndex {
+			get {
+				return this._shippingIndex.GetEntity();
+			}
+			set {
+				this._shippingIndex.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_shippingPointIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> ShippingPointIdentyfikator {
+			get {
+				return this._shippingPointIdentyfikator;
+			}
+			set {
+				if ((value != this._shippingPointIdentyfikator)) {
+					this.OnPropertyChanging("ShippingPointIdentyfikator", this._shippingPointIdentyfikator);
+					this._shippingPointIdentyfikator = value;
+					this.OnPropertyChanged("ShippingPointIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_shippingPointTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string ShippingPointTitle {
+			get {
+				return this._shippingPointTitle;
+			}
+			set {
+				if ((value != this._shippingPointTitle)) {
+					this.OnPropertyChanging("ShippingPointTitle", this._shippingPointTitle);
+					this._shippingPointTitle = value;
+					this.OnPropertyChanged("ShippingPointTitle");
+				}
+			}
+		}
+		
+		private void OnShippingIndexChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ShippingIndex", this._shippingIndex.Clone());
+		}
+		
+		private void OnShippingIndexChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ShippingIndex");
+		}
+		
+		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TimeSlot.Add(this);
+			}
+			else {
+				e.Item.TimeSlot.Remove(this);
+			}
+		}
+	}
+	
+	/// <summary>
 	/// Commodity content type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Commodity", Id="0x01003A76AB24637A7541B0D982B65D5916CE", List="Commodity")]
@@ -5383,6 +5783,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<TimeSlot> _timeSlot;
+		
 		private System.Nullable<int> _zmodyfikowanePrzezIdentyfikator;
 		
 		private string _zmodyfikowanePrzez;
@@ -5406,6 +5808,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>(this.OnLoadDescriptionSync);
 			this._loadDescription.OnChanged += new System.EventHandler(this.OnLoadDescriptionChanged);
 			this._loadDescription.OnChanging += new System.EventHandler(this.OnLoadDescriptionChanging);
+			this._timeSlot = new Microsoft.SharePoint.Linq.EntitySet<TimeSlot>();
+			this._timeSlot.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot>>(this.OnTimeSlotSync);
+			this._timeSlot.OnChanged += new System.EventHandler(this.OnTimeSlotChanged);
+			this._timeSlot.OnChanging += new System.EventHandler(this.OnTimeSlotChanging);
 			this.OnCreated();
 		}
 		
@@ -5450,6 +5856,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 			set {
 				this._loadDescription.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingIndex", Storage="_timeSlot", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="TimeSlot")]
+		public Microsoft.SharePoint.Linq.EntitySet<TimeSlot> TimeSlot {
+			get {
+				return this._timeSlot;
+			}
+			set {
+				this._timeSlot.Assign(value);
 			}
 		}
 		
@@ -5524,6 +5940,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ShippingIndex = this;
+			}
+			else {
+				e.Item.ShippingIndex = null;
+			}
+		}
+		
+		private void OnTimeSlotChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TimeSlot", this._timeSlot.Clone());
+		}
+		
+		private void OnTimeSlotChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TimeSlot");
+		}
+		
+		private void OnTimeSlotSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.ShippingIndex = this;
 			}
@@ -5630,6 +6063,53 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 				e.Item.TransportUnit = null;
 			}
 		}
+	}
+	
+	/// <summary>
+	/// Time Slot
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlot", Id="0x0102008B8977AFA9104B18B4B25D7C06A4A3AA", List="TimeSlot")]
+	public partial class TimeSlotTimeSlot : TimeSlot {
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public TimeSlotTimeSlot() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EventDate", Storage="_startTime", Required=true, FieldType="DateTime")]
+		public override System.Nullable<System.DateTime> StartTime {
+			get {
+				return this._startTime;
+			}
+			set {
+				if ((value != this._startTime)) {
+					this.OnPropertyChanging("StartTime", this._startTime);
+					this._startTime = value;
+					this.OnPropertyChanged("StartTime");
+				}
+			}
+		}
+	}
+	
+	public enum Kategoria : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="(1) Category1")]
+		_1Category1 = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="(2) Category2")]
+		_2Category2 = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="(3) Category3")]
+		_3Category3 = 8,
 	}
 	
 	public enum Priority : int {
@@ -5788,5 +6268,21 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Security Escort Car")]
 		SecurityEscortCar = 8,
+	}
+	
+	public enum Occupied : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Free")]
+		Free = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Occupied")]
+		Occupied0 = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Delayed")]
+		Delayed = 8,
 	}
 }

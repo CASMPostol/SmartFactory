@@ -40,5 +40,6 @@
   <List Name="Driver"></List>
   <List Name="Load Description"></List>
   <List Name="Carrier Performance Report"></List>
+  <List Name="TimeSlot"></List>
   <ExcludeOtherLists/>
 </Web>

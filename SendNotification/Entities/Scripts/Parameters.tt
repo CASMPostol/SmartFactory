@@ -42,6 +42,7 @@
   <List Name="Driver"></List>
   <List Name="<#= LoadDescription_ListTitle #>"></List>
   <List Name="<#= CarrierPerformanceReport_ListTitle #>"></List>
+  <List Name="<#= TimeSlot_ListTitle #>"></List>
   <ExcludeOtherLists/>
 </Web>
 <#@ include file = "..\..\Model.T4" #>
