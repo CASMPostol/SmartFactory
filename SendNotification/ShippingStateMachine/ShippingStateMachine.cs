@@ -6,6 +6,7 @@ using CAS.SmartFactory.Shepherd.SendNotification.Entities;
 using Microsoft.SharePoint;
 using System.ComponentModel;
 using System.Workflow.ComponentModel;
+using System.Linq;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 {
@@ -85,9 +86,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     public Guid workflowId = default(System.Guid);
     public SPWorkflowActivationProperties m_OnWorkflowActivated_WorkflowProperties = new Microsoft.SharePoint.Workflow.SPWorkflowActivationProperties();
     private void m_OnWorkflowActivated_Invoked(object sender, ExternalDataEventArgs e)
-    {
-
-    }
+    { }
     #endregion
 
     #region OnStartedLogToHistoryList
@@ -250,7 +249,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         ReportException("SetupEnvironment", _ex);
       }
     }
-    private void MakeDelayed( ShippingShipping _sp)
+    private void MakeDelayed(ShippingShipping _sp)
     {
       _sp.State = State.Delayed;
       EDC.SubmitChanges();
@@ -276,17 +275,24 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void SetupEmail(TimeSpan _delay, Shipping.RequiredOperations _operations, Shipping _sp)
     {
-      //string _cc = 
+      ShepherdRole _ccRole = _sp.IsOutbound.Value ? ShepherdRole.OutboundOwner : ShepherdRole.InboundOwner;
+
+      var _ccdl = (from _ccx in EDC.DistributionList
+                   where _ccx.ShepherdRole.Value == _ccRole
+                   select new { Email = _ccx.EMail }).FirstOrDefault();
+      if (_ccdl == null || String.IsNullOrEmpty(_ccdl.Email))
+        _ccdl = (from _ccx in EDC.DistributionList
+                 where _ccx.ShepherdRole.Value == ShepherdRole.Administrator
+                 select new { Email = _ccx.EMail }).FirstOrDefault();
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Carrier))
       {
         m_CarrierNotificationSendEmail_Subject1 = _sp.Tytuł + " Delayed !!";
         m_CarrierNotificationSendEmail_Body = "Warning";
-        m_CarrierNotificationSendEmail_To = _sp.VendorName != null ? _sp.VendorName.EMail : "unknown@comapny.com";
-        m_CarrierNotificationSendEmail_CC = m_OnWorkflowActivated_WorkflowProperties.OriginatorEmail;
+        m_CarrierNotificationSendEmail_To = _sp.VendorName != null ? _sp.VendorName.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
+        m_CarrierNotificationSendEmail_CC = _ccdl == null ? CommonDefinition.UnknownEmail : _ccdl.Email.UnknownIfEmpty();
       }
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Escort))
       {
-
       }
     }
     private void SetupTimeOut(TimeSpan _delay, Shipping _sp)
@@ -320,19 +326,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #endregion
 
     #region CarrierNotificationSendEmail
-    private void m_CarrierNotificationSendEmail_MethodInvoking(object sender, EventArgs e)
-    {
-      Operation2Do &= Shipping.RequiredOperations.SendEmail2Escort;
-    }
+
+    #region LogToHistoryList
     private void m_CarrierNotificationSendEmail_Condition(object sender, ConditionalEventArgs e)
     {
       e.Result = (Operation2Do & Shipping.RequiredOperations.SendEmail2Carrier) != 0;
     }
     public String m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription = default(System.String);
     public String m_CarrierNotificationSendEmailLogToHistoryList_HistoryOutcome = default(System.String);
-    private void m_CarrierNotificationSendEmailLogToHistoryList_MethodInvoking(object sender, EventArgs e)
-    {
+    #endregion
 
+    #region SendEmail
+    private void m_CarrierNotificationSendEmail_MethodInvoking(object sender, EventArgs e)
+    {
+      Operation2Do ^= Shipping.RequiredOperations.SendEmail2Escort;
     }
     public String m_CarrierNotificationSendEmail_Body = default(System.String);
     public String m_CarrierNotificationSendEmail_CC = default(System.String);
@@ -340,22 +347,30 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     public String m_CarrierNotificationSendEmail_To = default(System.String);
     public String m_CarrierNotificationSendEmail_Subject1 = default(System.String);
     #endregion
+    #endregion
 
-    #region EscortSend
+    #region EscortSendEmail
+
+    #region LogToHistoryList
     private void m_EscortSendEmail_Condition(object sender, ConditionalEventArgs e)
     {
-      e.Result = (Operation2Do & Shipping.RequiredOperations.SendEmail2Escort) != 0;
-    }
-    private void m_EscortSendEmail_MethodInvoking(object sender, EventArgs e)
-    {
-      Operation2Do &= Shipping.RequiredOperations.SendEmail2Escort;
+      e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Escort);
     }
     public String m_EscortSendEmailLogToHistoryList_HistoryDescription1 = default(System.String);
     public String m_EscortSendEmailLogToHistoryList_HistoryOutcome = default(System.String);
-    private void m_EscortSendEmailLogToHistoryList_MethodInvoking(object sender, EventArgs e)
-    {
+    #endregion
 
+    #region SendEmail
+    private void m_EscortSendEmail_MethodInvoking(object sender, EventArgs e)
+    {
+      Operation2Do ^= Shipping.RequiredOperations.SendEmail2Escort;
     }
+    public String m_EscortSendEmail_Body = default(System.String);
+    public String m_EscortSendEmail_CC = default(System.String);
+    public String m_EscortSendEmail_From = default(System.String);
+    public String m_EscortSendEmail_Subject = default(System.String);
+    public String m_EscortSendEmail_To = default(System.String);
+    #endregion
     #endregion
 
     #region TimeOutDelay
@@ -379,5 +394,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region private
     private Shipping.RequiredOperations Operation2Do { get; set; }
     #endregion
+
+
   }
 }

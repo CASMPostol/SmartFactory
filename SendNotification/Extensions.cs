@@ -13,5 +13,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     {
       return _val == null ? String.Empty : _val.Tytuł;
     }
+    public static string UnknownIfEmpty(this String _val)
+    {
+      return String.IsNullOrEmpty(_val) ? CommonDefinition.UnknownEmail : _val;
+    }
   }
 }
