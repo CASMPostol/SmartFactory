@@ -14,16 +14,27 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-      if (!IsCallback)
+      if (m_PartnerTitle.Items.Count == 0)
       {
+        Driver _drv = null;
+        if (!Request.Params["ID"].IsNullOrEmpty())
+        {
+          _drv = Element.GetAtIndex<Driver>(EDC.Driver, Request.Params["ID"]);
+          m_DriverIDNumber.Text = _drv.IdentityDocumentNumber;
+          m_DriverMobileNo.Text = _drv.NumerTelefonuKomórkowego;
+        }
         Partner _Partner = Partner.FindForUser(EDC, SPContext.Current.Web.CurrentUser);
         if (_Partner == null)
         {
           m_PartnerTitle.DataSource = from Partner _prtnrs in EDC.Partner
-                                      select new { Name = _prtnrs.Tytuł, ID = _prtnrs.Identyfikator };
+                                      select new { Name = _prtnrs.Tytuł, ID = _prtnrs.Identyfikator.Value.ToString() };
           m_PartnerTitle.DataValueField = "ID";
           m_PartnerTitle.DataTextField = "Name";
           m_PartnerTitle.DataBind();
+          if (_drv == null)
+            m_PartnerTitle.SelectedIndex = -1;
+          else
+            m_PartnerTitle.Select(_drv.VendorName);
         }
         else
           m_PartnerTitle.Items.Add(new ListItem(_Partner.Tytuł, _Partner.Identyfikator.Value.ToString()));
@@ -52,16 +63,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
     {
       try
       {
+        Partner _prtn = Element.GetAtIndex<Partner>(EDC.Partner, m_PartnerTitle.SelectedValue);
         Driver _nd = new Entities.Driver()
          {
            IdentityDocumentNumber = this.m_DriverIDNumber.Text,
            NumerTelefonuKomórkowego = this.m_DriverMobileNo.Text,
-           Tytuł = m_DriverTitle.Text,
-           VendorName = Element.GetAtIndex<Partner>(EDC.Partner, m_PartnerTitle.SelectedValue)
+           //Tytuł = m_DriverTitle.Text,  
+           VendorName = _prtn
          };
         EDC.Driver.InsertOnSubmit(_nd);
         EDC.SubmitChanges();
-        SPUtility.Redirect("WebPartPages/ManageDriversDashboard.aspx", SPRedirectFlags.UseSource, HttpContext.Current); 
+        SPUtility.Redirect("../WebPartPages/ManageDriversDashboard", SPRedirectFlags.UseSource, HttpContext.Current); 
       }
       catch (Exception ex)
       {
@@ -71,7 +83,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
     }
     private void m_CancelButton_Click(object sender, EventArgs e)
     {
-      SPUtility.Redirect("WebPartPages/ManageDriversDashboard.aspx", SPRedirectFlags.UseSource, HttpContext.Current);
+      SPUtility.Redirect(this.ResolveClientUrl("../WebPartPages/ManageDriversDashboard"), SPRedirectFlags.RelativeToLayoutsPage, HttpContext.Current);
     }
     private EntitiesDataContext _EDC = null;
     private EntitiesDataContext EDC
