@@ -8,6 +8,7 @@
                Inherits="True">
     <Folder TargetName="_cts/CarrierPerformanceReport" />
     <FieldRefs>
+      <FieldRef ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Name="ReportPeriod" />
       <FieldRef ID="{A8FB5E34-44EC-4F97-AAD4-9BB3F2A81EDC}" Name="CarrierPerformanceReportDate" />
       <FieldRef ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Name="CarrierPerformanceReport2PartnerTitle" />
       <FieldRef ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}" Name="CarrierPerformanceReportNumberOrdered" />

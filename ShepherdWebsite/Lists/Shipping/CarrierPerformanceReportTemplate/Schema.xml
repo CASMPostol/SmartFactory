@@ -5,6 +5,7 @@
       <ContentType ID="0x0100bb5037bbd6ed46b98ac227a358889afa" Name="CarrierPerformanceReport" Group="CAS Smart Factory Shepherd" Description="Carrier Performance Report" Overwrite="TRUE" Inherits="True">
         <Folder TargetName="_cts/CarrierPerformanceReport" />
         <FieldRefs>
+          <FieldRef ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Name="ReportPeriod" />
           <FieldRef ID="{A8FB5E34-44EC-4F97-AAD4-9BB3F2A81EDC}" Name="CarrierPerformanceReportDate" />
           <FieldRef ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Name="CarrierPerformanceReport2PartnerTitle" />
           <FieldRef ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}" Name="CarrierPerformanceReportNumberOrdered" />
@@ -26,6 +27,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
+      <Field DisplayName="Report period" Name="ReportPeriod" Type="Text" ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Group="CAS Smart Factory Shepherd" />
       <Field Name="CarrierPerformanceReportNumberRejectedBadQuality" DisplayName="Number TU rejected / bad quality" Type="Number" ID="{ae2cd0db-ce66-46ca-862e-b9acdd4a12f9}" Group="CAS Smart Factory Shepherd" />
       <Field Name="CarrierPerformanceReportNumberNotShowingUp" DisplayName="Number TU not delivered / not showing up" Type="Number" ID="{95a6e00b-8194-4c7f-814a-6c44a1e524a4}" Group="CAS Smart Factory Shepherd" />
       <Field Name="CarrierPerformanceReportNumberDelayed1h" DisplayName="Number TU delayed &gt;1 hour" Type="Number" ID="{54900f14-6927-4794-a10a-055f20c7b0de}" Group="CAS Smart Factory Shepherd" />
@@ -63,6 +65,7 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
+          <FieldRef ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Name="ReportPeriod" />
           <FieldRef ID="{A8FB5E34-44EC-4F97-AAD4-9BB3F2A81EDC}" Name="CarrierPerformanceReportDate" />
           <FieldRef ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Name="CarrierPerformanceReport2PartnerTitle" />
           <FieldRef ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}" Name="CarrierPerformanceReportNumberOrdered" />

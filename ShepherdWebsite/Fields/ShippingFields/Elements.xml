@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="Report period"
+    Name="ReportPeriod"
+    Type="Text"
+    ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}"
+    Group="CAS Smart Factory Shepherd"
+    />
+  <Field
     DisplayName="Awaiting"
     Name="TruckAwaiting"
     Type="Boolean"
