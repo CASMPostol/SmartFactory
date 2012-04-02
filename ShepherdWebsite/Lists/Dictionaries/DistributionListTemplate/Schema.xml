@@ -29,6 +29,7 @@
       <CHOICE>Operator</CHOICE>
       <CHOICE>Supervisor</CHOICE>
       <CHOICE>Guard</CHOICE>
+      <CHOICE>Coordinator</CHOICE>
     </CHOICES>
   </Field>
       <Field Name="EmailAddress" ID="{dad5b7c3-9258-4f12-97c3-61a503c19f4e}" Type="Text" DisplayName="E-mail" Group="CAS Smart Factory Shepherd" />
