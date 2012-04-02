@@ -73,6 +73,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
       base.Dispose(disposing);
     }
+    private Shipping.RequiredOperations Operation2Do { get; set; }
     #endregion
 
     #region public
@@ -99,7 +100,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     #endregion
 
-    #region WorkflowItemChanged
+    #region OnWorkflowItemChanged
     private void m_OnWorkflowItemChanged_Invoked(object sender, ExternalDataEventArgs e)
     {
       try
@@ -298,7 +299,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                 break;
               case Shipping.Distance.UpTo2h:
                 _frmt.Insert(0, "Warnning !");
-                _ro = _sp.CalculateOperations2Do(true, true);
+                _ro = _sp.CalculateOperations2Do(false, true);
                 _pr = Priority.Warning;
                 break;
               case Shipping.Distance.VeryClose:
@@ -312,17 +313,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             }
             SetupEnvironment(_timeDistance, _frmt, _ro, _sp, _pr);
             break;
-          case State.Delayed:
-            break;
           case State.Underway:
             if (_sp.EndTime.Value < DateTime.Now)
               SetupTimeOut(TimeSpan.Zero, _sp);
             break;
+          //TODO add Sanceling http://itrserver/Bugs/BugDetail.aspx?bid=3251
           default:
-            {
-              _frmt = "Unsupported state {0} in CalculateTimeoutCode encountered";
-              throw new ApplicationException(String.Format(_frmt, _sp.State.Value));
-            }
+            SetupTimeOut(TimeSpan.Zero, _sp);
+            break;
         }
       }
       catch (Exception _ex)
@@ -337,7 +335,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       string _frmt = "Wanning !! The truck is late. Call the driver: {0}";
       _frmt = String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????");
       _frmt += "The shipping should finisch in {0:g} at {1:g}.";
-      Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true) & Shipping.CarrierOperations;
+      Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true) & Shipping.CarrierOperations; //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3251
       SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High);
     }
     private void SetupEnvironment(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, Shipping _sp, Priority _prrty)
@@ -349,8 +347,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void SetupAlarmsEvents(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, Priority _prrty)
     {
       string _msg = String.Format(_logDescription, _delay, DateTime.Now + _delay);
-      if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Carrier))
-        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.VendorAndForwarder);
+      if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Escort))
+        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.SecurityEscortProvider);
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Carrier))
         ReportAlarmsAndEvents(_msg, _prrty, ServiceType.VendorAndForwarder);
     }
@@ -367,7 +365,27 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       string _cc = _ccdl == null ? CommonDefinition.UnknownEmail : _ccdl.Email.UnknownIfEmpty();
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Carrier))
       {
-        SupplementData2hVendorTemplate _msg = new SupplementData2hVendorTemplate();
+        SupplementData2hVendorTemplate _msg = default(SupplementData2hVendorTemplate);
+        switch (_sp.State.Value)
+        {
+          case State.Delayed:
+            _msg = new SupplementData2hVendorTemplate(); //Change according to the state http://itrserver/Bugs/BugDetail.aspx?bid=3251
+            break;
+          case State.Creation:
+          case State.WaitingForCarrierData:
+          case State.WaitingForSecurityData:
+            _msg = new SupplementData2hVendorTemplate();
+            break;
+          //TODO add Sanceling http://itrserver/Bugs/BugDetail.aspx?bid=3251
+          case State.None:
+          case State.Invalid:
+          case State.Canceled:
+          case State.Completed:
+          case State.Confirmed:
+          case State.Underway:
+          default:
+            break;
+        }
         _msg.PartnerTitle = _sp.VendorName.Title();
         _msg.Title = _sp.Title();
         _msg.StartTime = _sp.StartTime.Value;
@@ -379,7 +397,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Escort))
       {
-        SupplementData2hEscortTemplate _msg = new SupplementData2hEscortTemplate()
+        SupplementData2hEscortTemplate _msg = new SupplementData2hEscortTemplate() //Change according to the state http://itrserver/Bugs/BugDetail.aspx?bid=3251
         {
           ShippingOperationOutband2PartnerTitle = _sp.SecurityEscortProvider.Title(),
           StartTime = _sp.StartTime.Value,
@@ -395,7 +413,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void SetupTimeOut(TimeSpan _delay, Shipping _sp)
     {
       m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
-      string _lm = "New time out {0} min calculated for the shipping {1} at state {2}";
+      string _lm = "New timeout {0} min calculated for the shipping {1} at state {2}";
       m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value);
     }
     public String m_CalculateTimeoutLogToHistoryList_HistoryDescription = default(System.String);
@@ -427,7 +445,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region LogToHistoryList
     private void m_CarrierNotificationSendEmail_Condition(object sender, ConditionalEventArgs e)
     {
-      e.Result = (Operation2Do & Shipping.RequiredOperations.SendEmail2Carrier) != 0;
+      e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Carrier);
     }
     public String m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription = default(System.String);
     public String m_CarrierNotificationSendEmailLogToHistoryList_HistoryOutcome = default(System.String);
@@ -487,12 +505,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
     }
     #endregion
-
-    #region private
-    private Shipping.RequiredOperations Operation2Do { get; set; }
-    #endregion
-
-
 
 
   }
