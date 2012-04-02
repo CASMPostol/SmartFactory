@@ -69,10 +69,10 @@
     ReadOnly="False"
     />
   <Field
-    Name="CaeeierPerformanceReport2PartnerTitle"
-    ID="{4C3F381F-C7EF-4204-B5F7-0C61A822DA1C}"
+    Name="CarrierPerformanceReport2PartnerTitle"
+    ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}"
     Type="Lookup"
-    List="Lists/PartnerList"
+    List="Lists/JTIPartnerList"
     ShowField="Title"
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"

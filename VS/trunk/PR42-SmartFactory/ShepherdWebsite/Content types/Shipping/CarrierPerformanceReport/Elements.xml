@@ -9,7 +9,7 @@
     <Folder TargetName="_cts/CarrierPerformanceReport" />
     <FieldRefs>
       <FieldRef ID="{A8FB5E34-44EC-4F97-AAD4-9BB3F2A81EDC}" Name="CarrierPerformanceReportDate" />
-      <FieldRef ID="{4C3F381F-C7EF-4204-B5F7-0C61A822DA1C}" Name="CaeeierPerformanceReport2PartnerTitle" />
+      <FieldRef ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Name="CarrierPerformanceReport2PartnerTitle" />
       <FieldRef ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}" Name="CarrierPerformanceReportNumberOrdered" />
       <FieldRef ID="{323D6E21-3FB8-4AEF-A8DA-F40ABDB61E64}" Name="CarrierPerformanceReportNumberOnTime" />
       <FieldRef ID="{B38ED1F3-802C-488B-8B2F-59303AD199CF}" Name="CarrierPerformanceReportNumberDelayed" />
