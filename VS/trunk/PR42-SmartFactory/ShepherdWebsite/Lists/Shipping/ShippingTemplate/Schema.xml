@@ -84,6 +84,7 @@
       <Field Type="Choice" DisplayName="State" ID="{056e8e50-8eec-4e4c-b16d-b748879d882f}" Format="Dropdown" BaseType="Text" Name="ShippingState" Group="CAS Smart Factory Shepherd">
     <Default>Creation</Default>
     <CHOICES>
+      <CHOICE>Cancelation</CHOICE>
       <CHOICE>Canceled</CHOICE>
       <CHOICE>Completed</CHOICE>
       <CHOICE>Confirmed</CHOICE>
