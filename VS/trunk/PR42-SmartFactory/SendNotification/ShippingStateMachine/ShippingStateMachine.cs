@@ -236,13 +236,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                                        where String.IsNullOrEmpty(_cu.Tytuł) && _cu.Tytuł.Contains(CommonDefinition.DefaultCurrency)
                                        select _cu).FirstOrDefault();
         //Costs calculation
-        double? _forwarderCost = default(double?);
         if (_sp.Route != null && _sp.Route.Currency != null)
-          _forwarderCost = _sp.Route.TransportCosts * _sp.Route.Currency.ExchangeRate;
+          _sp.FreightCost = _sp.Route.TransportCosts * _sp.Route.Currency.ExchangeRate;
         _sp.SecurityEscortCost = _sp.SecurityEscort.SecurityCost * _sp.SecurityEscort.Currency.ExchangeRate;
         double? _totalCost = default(double?);
         if (_sp.AdditionalCostsCurrency != null)
-          _totalCost = _forwarderCost + _sp.SecurityEscortCost + _sp.AdditionalCosts * _sp.AdditionalCostsCurrency.ExchangeRate;
+          _totalCost = _sp.FreightCost + _sp.SecurityEscortCost + _sp.AdditionalCosts * _sp.AdditionalCostsCurrency.ExchangeRate;
         _sp.TotalCostsPerKU = _sp.TotalQuantityInKU.HasValue && _sp.TotalQuantityInKU.Value > 0 ? _totalCost / _sp.TotalQuantityInKU.Value : new Nullable<double>();
         EDC.SubmitChanges();
       }
