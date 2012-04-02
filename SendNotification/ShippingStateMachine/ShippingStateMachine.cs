@@ -316,7 +316,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             if (_sp.EndTime.Value < DateTime.Now)
               SetupTimeOut(TimeSpan.Zero, _sp);
             break;
-          //TODO add Sanceling http://itrserver/Bugs/BugDetail.aspx?bid=3251
+          case State.Cancelation:
+            MakeCanceled(_sp);
+            break;
           default:
             SetupTimeOut(TimeSpan.Zero, _sp);
             break;
@@ -326,6 +328,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       {
         ReportException("SetupEnvironment", _ex);
       }
+    }
+
+    private void MakeCanceled(ShippingShipping _sp)
+    {
+      throw new NotImplementedException(); //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3251
     }
     private void MakeDelayed(ShippingShipping _sp)
     {
@@ -376,9 +383,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             _msg = new SupplementData2hVendorTemplate();
             break;
           //TODO add Sanceling http://itrserver/Bugs/BugDetail.aspx?bid=3251
+          case State.Canceled:
+            //TODO add Sanceling http://itrserver/Bugs/BugDetail.aspx?bid=3251
+            break;
           case State.None:
           case State.Invalid:
-          case State.Canceled:
           case State.Completed:
           case State.Confirmed:
           case State.Underway:
