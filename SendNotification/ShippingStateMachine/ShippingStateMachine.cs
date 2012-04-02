@@ -154,17 +154,15 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       try
       {
         DateTime _sDate = _sp.StartTime.Value.Date;
-        Dictionary<string, CarrierPerformanceReport> _rprtDic = (from _rptx in EDC.CarrierPerformanceReport
-                                                                 where _rptx.Date.Value == _sDate
-                                                                 select _rptx).ToDictionary(x => x.CarrierTitle);
-        //CarrierPerformanceReport _rpt2 = from _rx in _sp.VendorName.CarrierPerformanceReport
-        CarrierPerformanceReport _rprt;
-        if (!_rprtDic.TryGetValue(_sp.VendorName.Tytuł, out _rprt))
+        CarrierPerformanceReport _rprt = (from _rx in _sp.VendorName.CarrierPerformanceReport
+                                          where _rx.Date.Value == _sDate
+                                          select _rx).FirstOrDefault();
+        if (_rprt == null)
         {
           _rprt = new CarrierPerformanceReport()
           {
             Date = _sp.StartTime.Value.Date,
-            //TODO CarrierTitle 
+            Carrier = _sp.VendorName, 
             Tytuł = _sp.VendorName.Title(),
             NumberTUDelayed = 0,
             NumberTUDelayed1Hour = 0,

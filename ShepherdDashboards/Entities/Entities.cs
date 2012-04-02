@@ -6398,6 +6398,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Guard")]
 		Guard = 64,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Coordinator")]
+		Coordinator = 128,
 	}
 	
 	public enum PalletType : int {

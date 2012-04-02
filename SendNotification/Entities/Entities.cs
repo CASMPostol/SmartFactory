@@ -827,9 +827,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private System.Nullable<double> _numberTURejectedBadQuality;
 		
-		private System.Nullable<int> _carrierIdentyfikator;
-		
-		private string _carrierTitle;
+		private Microsoft.SharePoint.Linq.EntityRef<Partner> _carrier;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -838,6 +836,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		#endregion
 		
 		public CarrierPerformanceReport() {
+			this._carrier = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
+			this._carrier.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnCarrierSync);
+			this._carrier.OnChanged += new System.EventHandler(this.OnCarrierChanged);
+			this._carrier.OnChanging += new System.EventHandler(this.OnCarrierChanging);
 			this.OnCreated();
 		}
 		
@@ -939,31 +941,30 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CaeeierPerformanceReport2PartnerTitle", Storage="_carrierIdentyfikator", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> CarrierIdentyfikator {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierPerformanceReport2PartnerTitle", Storage="_carrier", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
+		public Partner Carrier {
 			get {
-				return this._carrierIdentyfikator;
+				return this._carrier.GetEntity();
 			}
 			set {
-				if ((value != this._carrierIdentyfikator)) {
-					this.OnPropertyChanging("CarrierIdentyfikator", this._carrierIdentyfikator);
-					this._carrierIdentyfikator = value;
-					this.OnPropertyChanged("CarrierIdentyfikator");
-				}
+				this._carrier.SetEntity(value);
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CaeeierPerformanceReport2PartnerTitle", Storage="_carrierTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
-		public string CarrierTitle {
-			get {
-				return this._carrierTitle;
+		private void OnCarrierChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Carrier", this._carrier.Clone());
+		}
+		
+		private void OnCarrierChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Carrier");
+		}
+		
+		private void OnCarrierSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CarrierPerformanceReport.Add(this);
 			}
-			set {
-				if ((value != this._carrierTitle)) {
-					this.OnPropertyChanging("CarrierTitle", this._carrierTitle);
-					this._carrierTitle = value;
-					this.OnPropertyChanged("CarrierTitle");
-				}
+			else {
+				e.Item.CarrierPerformanceReport.Remove(this);
 			}
 		}
 	}
@@ -1931,6 +1932,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport> _carrierPerformanceReport;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<Driver> _driver;
 		
 		private System.Nullable<int> _shepherdUserIdentyfikator;
@@ -1956,6 +1959,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this._alarmsAndEvents.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents>>(this.OnAlarmsAndEventsSync);
 			this._alarmsAndEvents.OnChanged += new System.EventHandler(this.OnAlarmsAndEventsChanged);
 			this._alarmsAndEvents.OnChanging += new System.EventHandler(this.OnAlarmsAndEventsChanging);
+			this._carrierPerformanceReport = new Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport>();
+			this._carrierPerformanceReport.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierPerformanceReport>>(this.OnCarrierPerformanceReportSync);
+			this._carrierPerformanceReport.OnChanged += new System.EventHandler(this.OnCarrierPerformanceReportChanged);
+			this._carrierPerformanceReport.OnChanging += new System.EventHandler(this.OnCarrierPerformanceReportChanging);
 			this._driver = new Microsoft.SharePoint.Linq.EntitySet<Driver>();
 			this._driver.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Driver>>(this.OnDriverSync);
 			this._driver.OnChanged += new System.EventHandler(this.OnDriverChanged);
@@ -2062,6 +2069,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierPerformanceReport2PartnerTitle", Storage="_carrierPerformanceReport", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Carrier Performance Report")]
+		public Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport> CarrierPerformanceReport {
+			get {
+				return this._carrierPerformanceReport;
+			}
+			set {
+				this._carrierPerformanceReport.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Driver2PartnerTitle", Storage="_driver", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Driver")]
 		public Microsoft.SharePoint.Linq.EntitySet<Driver> Driver {
 			get {
@@ -2154,6 +2171,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 			else {
 				e.Item.VendorName = null;
+			}
+		}
+		
+		private void OnCarrierPerformanceReportChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CarrierPerformanceReport", this._carrierPerformanceReport.Clone());
+		}
+		
+		private void OnCarrierPerformanceReportChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CarrierPerformanceReport");
+		}
+		
+		private void OnCarrierPerformanceReportSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierPerformanceReport> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Carrier = this;
+			}
+			else {
+				e.Item.Carrier = null;
 			}
 		}
 		
@@ -6151,6 +6185,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Guard")]
 		Guard = 64,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Coordinator")]
+		Coordinator = 128,
 	}
 	
 	public enum PalletType : int {
