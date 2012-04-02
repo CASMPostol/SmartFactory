@@ -261,6 +261,7 @@
    Group="CAS Smart Factory Shepherd">
     <Default>Creation</Default>
     <CHOICES>
+      <CHOICE>Cancelation</CHOICE>
       <CHOICE>Canceled</CHOICE>
       <CHOICE>Completed</CHOICE>
       <CHOICE>Confirmed</CHOICE>
