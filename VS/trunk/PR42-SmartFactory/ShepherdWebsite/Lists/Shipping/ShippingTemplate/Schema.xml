@@ -5,6 +5,7 @@
       <ContentType ID="0x0100bbd0d4ab58624f5b900fece61eec2988" Name="Shipping" Group="CAS Smart Factory Shepherd" Description="Shipping Operation - Inbound" Overwrite="TRUE" Inherits="True">
         <Folder TargetName="_cts/Shipping" />
         <FieldRefs>
+          <FieldRef ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Name="ReportPeriod" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
           <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
@@ -63,6 +64,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
+      <Field DisplayName="Report period" Name="ReportPeriod" Type="Text" ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Group="CAS Smart Factory Shepherd" />
       <Field Type="Choice" DisplayName="Loading Type" ID="{e6381646-db08-4c85-9a2f-59b931d98dbb}" Format="Dropdown" BaseType="Text" Description="Loading Type" Name="LoadingType" Group="CAS Smart Factory Shepherd">
     <Default>Pallet</Default>
     <CHOICES>
@@ -170,6 +172,7 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef Name="ID" />
+          <FieldRef ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Name="ReportPeriod" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
           <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
