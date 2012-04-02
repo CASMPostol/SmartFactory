@@ -189,6 +189,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case State.None:
           case State.Invalid:
           case State.Canceled:
+          case State.Cancelation:
           case State.Completed:
           default:
             break;
@@ -254,6 +255,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case State.Invalid:
           case State.Canceled:
           case State.Completed:
+          case State.Cancelation:
           default:
             break;
         }
@@ -286,6 +288,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case State.Invalid:
           case State.Canceled:
           case State.Completed:
+          case State.Cancelation:
           default:
             break;
         }

@@ -368,7 +368,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       protected override void AbortShipping()
       {
-        Parent.ChangeShippingState(State.Canceled);
+        Parent.ChangeShippingState(State.Cancelation);
       }
       protected override void ClearUserInterface()
       {
@@ -814,11 +814,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         CurrentShipping.State = _newState;
         switch (_newState)
         {
-          case State.Canceled:
+          case State.Cancelation:
             CurrentShipping.ReleaseBooking(null);
             break;
           case State.Confirmed:
             break;
+          case State.Canceled:
           case State.None:
           case State.Invalid:
           case State.Completed:
