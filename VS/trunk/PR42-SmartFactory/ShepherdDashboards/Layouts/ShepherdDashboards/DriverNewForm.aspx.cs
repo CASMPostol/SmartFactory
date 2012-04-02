@@ -1,17 +1,15 @@
 ﻿using System;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.WebControls;
-using System.Linq;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
-using System.Web.UI.WebControls;
-using System.Web.UI;
-using Microsoft.SharePoint.Utilities;
 using System.Web;
+using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Utilities;
+using Microsoft.SharePoint.WebControls;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
 {
   public partial class DriverNewForm : LayoutsPageBase
   {
+    #region Page override
     protected void Page_Load(object sender, EventArgs e)
     {
       if (m_PartnerTitle.Items.Count == 0)
@@ -24,20 +22,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
           m_DriverMobileNo.Text = _drv.NumerTelefonuKomórkowego;
         }
         Partner _Partner = Partner.FindForUser(EDC, SPContext.Current.Web.CurrentUser);
-        if (_Partner == null)
-        {
-          m_PartnerTitle.DataSource = from Partner _prtnrs in EDC.Partner
-                                      select new { Name = _prtnrs.Tytuł, ID = _prtnrs.Identyfikator.Value.ToString() };
-          m_PartnerTitle.DataValueField = "ID";
-          m_PartnerTitle.DataTextField = "Name";
-          m_PartnerTitle.DataBind();
-          if (_drv == null)
-            m_PartnerTitle.SelectedIndex = -1;
-          else
-            m_PartnerTitle.Select(_drv.VendorName);
-        }
-        else
-          m_PartnerTitle.Items.Add(new ListItem(_Partner.Tytuł, _Partner.Identyfikator.Value.ToString()));
+        m_PartnerTitle.AddPartner(_drv, _Partner, EDC);
       }
       this.m_CancelButton.Click += new EventHandler(m_CancelButton_Click);
       this.m_SaveButton.Click += new EventHandler(m_SaveButton_Click);
@@ -59,6 +44,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
       }
       base.OnUnload(e);
     }
+    #endregion
+
+    #region Event handlers
     private void m_SaveButton_Click(object sender, EventArgs e)
     {
       try
@@ -73,18 +61,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
          };
         EDC.Driver.InsertOnSubmit(_nd);
         EDC.SubmitChanges();
-        SPUtility.Redirect("../WebPartPages/ManageDriversDashboard", SPRedirectFlags.UseSource, HttpContext.Current); 
+        SPUtility.Redirect("../WebPartPages/ManageDriversDashboard", SPRedirectFlags.UseSource, HttpContext.Current);
       }
       catch (Exception ex)
       {
-        string _frmt = "Cannot save the provided data because : {0}";
-        Controls.Add(new LiteralControl(String.Format(_frmt, ex.Message)));
+        ReportException("m_SaveButton_Click", ex);
       }
     }
     private void m_CancelButton_Click(object sender, EventArgs e)
     {
       SPUtility.Redirect(this.ResolveClientUrl("../WebPartPages/ManageDriversDashboard"), SPRedirectFlags.RelativeToLayoutsPage, HttpContext.Current);
     }
+    #endregion
+
+    #region private
     private EntitiesDataContext _EDC = null;
     private EntitiesDataContext EDC
     {
@@ -96,8 +86,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
         return _EDC;
       }
     }
-
-    #region Reports
     private void ReportException(string _source, Exception ex)
     {
       string _tmplt = "The current operation has been interrupted by error {0}.";
@@ -106,6 +94,5 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
       EDC.SubmitChanges();
     }
     #endregion
-
   }
 }
