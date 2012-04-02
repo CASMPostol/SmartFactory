@@ -813,6 +813,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CarrierPerformanceReport", Id="0x0100BB5037BBD6ED46B98AC227A358889AFA")]
 	public partial class CarrierPerformanceReport : Element {
 		
+		private string _reportPeriod;
+		
 		private System.Nullable<System.DateTime> _date;
 		
 		private System.Nullable<double> _numberTUOrdered;
@@ -841,6 +843,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this._carrier.OnChanged += new System.EventHandler(this.OnCarrierChanged);
 			this._carrier.OnChanging += new System.EventHandler(this.OnCarrierChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ReportPeriod", Storage="_reportPeriod", FieldType="Text")]
+		public string ReportPeriod {
+			get {
+				return this._reportPeriod;
+			}
+			set {
+				if ((value != this._reportPeriod)) {
+					this.OnPropertyChanging("ReportPeriod", this._reportPeriod);
+					this._reportPeriod = value;
+					this.OnPropertyChanged("ReportPeriod");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportDate", Storage="_date", FieldType="DateTime")]
@@ -3000,6 +3016,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingShipping))]
 	public partial class Shipping : Element {
 		
+		private string _reportPeriod;
+		
 		private string _dockNumber;
 		
 		private System.Nullable<System.DateTime> _startTime;
@@ -3162,6 +3180,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this._totalCostsPerKUCurrency.OnChanged += new System.EventHandler(this.OnTotalCostsPerKUCurrencyChanged);
 			this._totalCostsPerKUCurrency.OnChanging += new System.EventHandler(this.OnTotalCostsPerKUCurrencyChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ReportPeriod", Storage="_reportPeriod", FieldType="Text")]
+		public string ReportPeriod {
+			get {
+				return this._reportPeriod;
+			}
+			set {
+				if ((value != this._reportPeriod)) {
+					this.OnPropertyChanging("ReportPeriod", this._reportPeriod);
+					this._reportPeriod = value;
+					this.OnPropertyChanged("ReportPeriod");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DockNumber", Storage="_dockNumber", FieldType="Text")]
@@ -6231,29 +6263,32 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		Invalid = 1,
 		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Cancelation")]
+		Cancelation = 2,
+		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Canceled")]
-		Canceled = 2,
+		Canceled = 4,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Completed")]
-		Completed = 4,
+		Completed = 8,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Confirmed")]
-		Confirmed = 8,
+		Confirmed = 16,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Creation")]
-		Creation = 16,
+		Creation = 32,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Delayed")]
-		Delayed = 32,
+		Delayed = 64,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="WaitingForCarrierData")]
-		WaitingForCarrierData = 64,
+		WaitingForCarrierData = 128,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="WaitingForSecurityData")]
-		WaitingForSecurityData = 128,
+		WaitingForSecurityData = 256,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Underway")]
-		Underway = 256,
+		Underway = 512,
 	}
 	
 	public enum LoadingType : int {

@@ -3201,6 +3201,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Shipping", Id="0x0100BBD0D4AB58624F5B900FECE61EEC2988")]
 	public partial class Shipping : Element {
 		
+		private string _reportPeriod;
+		
 		private string _dockNumber;
 		
 		private System.Nullable<System.DateTime> _startTime;
@@ -3383,6 +3385,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			this._timeSlot.OnChanged += new System.EventHandler(this.OnTimeSlotChanged);
 			this._timeSlot.OnChanging += new System.EventHandler(this.OnTimeSlotChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ReportPeriod", Storage="_reportPeriod", FieldType="Text")]
+		public string ReportPeriod {
+			get {
+				return this._reportPeriod;
+			}
+			set {
+				if ((value != this._reportPeriod)) {
+					this.OnPropertyChanging("ReportPeriod", this._reportPeriod);
+					this._reportPeriod = value;
+					this.OnPropertyChanged("ReportPeriod");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DockNumber", Storage="_dockNumber", FieldType="Text")]
@@ -6444,29 +6460,32 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		Invalid = 1,
 		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Cancelation")]
+		Cancelation = 2,
+		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Canceled")]
-		Canceled = 2,
+		Canceled = 4,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Completed")]
-		Completed = 4,
+		Completed = 8,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Confirmed")]
-		Confirmed = 8,
+		Confirmed = 16,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Creation")]
-		Creation = 16,
+		Creation = 32,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Delayed")]
-		Delayed = 32,
+		Delayed = 64,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="WaitingForCarrierData")]
-		WaitingForCarrierData = 64,
+		WaitingForCarrierData = 128,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="WaitingForSecurityData")]
-		WaitingForSecurityData = 128,
+		WaitingForSecurityData = 256,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Underway")]
-		Underway = 256,
+		Underway = 512,
 	}
 	
 	public enum LoadingType : int {
