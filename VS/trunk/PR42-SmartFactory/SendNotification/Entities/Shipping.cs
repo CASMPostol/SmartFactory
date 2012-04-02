@@ -76,9 +76,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
         _ts = this.StartTime.Value - DateTime.Now - _2h;
         return Distance.UpTo2h;
       }
-      else if (this.StartTime.Value > DateTime.Now)
+      else if (this.StartTime.Value > DateTime.Now - WatchTolerance)
       {
-        _ts = this.StartTime.Value - DateTime.Now;
+        _ts = this.StartTime.Value - DateTime.Now + WatchTolerance;
         return Distance.VeryClose;
       }
       else
@@ -88,5 +88,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
     {
       return (_set & _item) != 0;
     }
+    internal static TimeSpan WatchTolerance = new TimeSpan(0, 15, 0);
   }
 }

@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_EscortSendEmailSequenceActivity = new System.Workflow.Activities.SequenceActivity();
       this.m_FaultHandlerLogToHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_WaiyForEventListenActivity = new System.Workflow.Activities.ListenActivity();
-      this.m_HandleTimeoutConditionedActivityGroup = new System.Workflow.Activities.ConditionedActivityGroup();
+      this.m_SendEmailsConditionedActivityGroup = new System.Workflow.Activities.ConditionedActivityGroup();
       this.m_CalculateTimeoutLogToHistoryList = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_CalculateTimeoutCode = new System.Workflow.Activities.CodeActivity();
       this.m_MainFaultHandlerActivity = new System.Workflow.ComponentModel.FaultHandlerActivity();
@@ -106,7 +106,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       // 
       // m_TimeOutDelay
       // 
-      this.m_TimeOutDelay.Description = "Timeout before the dedline.";
+      this.m_TimeOutDelay.Description = "Timeout to the dedline.";
       this.m_TimeOutDelay.Name = "m_TimeOutDelay";
       activitybind4.Name = "ShippingStateMachine";
       activitybind4.Path = "m_TimeOutDelay_TimeoutDuration1";
@@ -196,7 +196,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       activitybind19.Name = "ShippingStateMachine";
       activitybind19.Path = "m_EscortSendEmail_From";
       this.m_EscortSendEmail.Headers = null;
-      this.m_EscortSendEmail.IncludeStatus = false;
+      this.m_EscortSendEmail.IncludeStatus = true;
       this.m_EscortSendEmail.Name = "m_EscortSendEmail";
       activitybind20.Name = "ShippingStateMachine";
       activitybind20.Path = "m_EscortSendEmail_Subject";
@@ -279,12 +279,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_WaiyForEventListenActivity.Description = "Waiting until item chnged or time out occured.";
       this.m_WaiyForEventListenActivity.Name = "m_WaiyForEventListenActivity";
       // 
-      // m_HandleTimeoutConditionedActivityGroup
+      // m_SendEmailsConditionedActivityGroup
       // 
-      this.m_HandleTimeoutConditionedActivityGroup.Activities.Add(this.m_EscortSendEmailSequenceActivity);
-      this.m_HandleTimeoutConditionedActivityGroup.Activities.Add(this.m_CarrierSendEmailSequenceActivity);
-      this.m_HandleTimeoutConditionedActivityGroup.Description = "Sen notification as required.";
-      this.m_HandleTimeoutConditionedActivityGroup.Name = "m_HandleTimeoutConditionedActivityGroup";
+      this.m_SendEmailsConditionedActivityGroup.Activities.Add(this.m_EscortSendEmailSequenceActivity);
+      this.m_SendEmailsConditionedActivityGroup.Activities.Add(this.m_CarrierSendEmailSequenceActivity);
+      this.m_SendEmailsConditionedActivityGroup.Description = "Sen notifications by email as required.";
+      this.m_SendEmailsConditionedActivityGroup.Name = "m_SendEmailsConditionedActivityGroup";
       // 
       // m_CalculateTimeoutLogToHistoryList
       // 
@@ -303,7 +303,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       // 
       // m_CalculateTimeoutCode
       // 
-      this.m_CalculateTimeoutCode.Description = "Calculate Timeout";
+      this.m_CalculateTimeoutCode.Description = "Calculate timeout nad make reports if completed.";
       this.m_CalculateTimeoutCode.Name = "m_CalculateTimeoutCode";
       this.m_CalculateTimeoutCode.ExecuteCode += new System.EventHandler(this.m_CalculateTimeoutCode_ExecuteCode);
       // 
@@ -318,7 +318,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       // 
       this.m_SequenceActivity.Activities.Add(this.m_CalculateTimeoutCode);
       this.m_SequenceActivity.Activities.Add(this.m_CalculateTimeoutLogToHistoryList);
-      this.m_SequenceActivity.Activities.Add(this.m_HandleTimeoutConditionedActivityGroup);
+      this.m_SequenceActivity.Activities.Add(this.m_SendEmailsConditionedActivityGroup);
       this.m_SequenceActivity.Activities.Add(this.m_WaiyForEventListenActivity);
       this.m_SequenceActivity.Description = "Main Sequence Activity";
       this.m_SequenceActivity.Name = "m_SequenceActivity";
@@ -400,7 +400,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 
     private Microsoft.SharePoint.WorkflowActions.SendEmail m_EscortSendEmail;
 
-    private ConditionedActivityGroup m_HandleTimeoutConditionedActivityGroup;
+    private ConditionedActivityGroup m_SendEmailsConditionedActivityGroup;
 
     private DelayActivity m_TimeOutDelay;
 
@@ -437,6 +437,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private SequenceActivity m_SequenceActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated;
+
+
 
 
 

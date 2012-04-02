@@ -18,8 +18,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     {
         public virtual string TransformText()
         {
-            this.Write("<p><b>2 hour remaining to supplement missing shipping data.</b></p>\r\n<p><b>Vendor" +
-                    ":</b> ");
+            this.Write("<p><b>2 hour remaining to supplement missing transport data.</b></p>\r\n<p><b>Vendo" +
+                    "r:</b> ");
             
             #line 2 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\SupplementData2hVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartnerTitle));
