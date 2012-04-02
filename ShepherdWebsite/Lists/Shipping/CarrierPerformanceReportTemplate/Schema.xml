@@ -6,7 +6,7 @@
         <Folder TargetName="_cts/CarrierPerformanceReport" />
         <FieldRefs>
           <FieldRef ID="{A8FB5E34-44EC-4F97-AAD4-9BB3F2A81EDC}" Name="CarrierPerformanceReportDate" />
-          <FieldRef ID="{4C3F381F-C7EF-4204-B5F7-0C61A822DA1C}" Name="CaeeierPerformanceReport2PartnerTitle" />
+          <FieldRef ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Name="CarrierPerformanceReport2PartnerTitle" />
           <FieldRef ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}" Name="CarrierPerformanceReportNumberOrdered" />
           <FieldRef ID="{323D6E21-3FB8-4AEF-A8DA-F40ABDB61E64}" Name="CarrierPerformanceReportNumberOnTime" />
           <FieldRef ID="{B38ED1F3-802C-488B-8B2F-59303AD199CF}" Name="CarrierPerformanceReportNumberDelayed" />
@@ -35,7 +35,7 @@
       <Field Name="CarrierPerformanceReportDate" ID="{a8fb5e34-44ec-4f97-aad4-9bb3f2a81edc}" Type="DateTime" Format="DateOnly" Group="CAS Smart Factory Shepherd" DisplayName="Date">
     <Default>[today]</Default>
   </Field>
-      <Field Name="CaeeierPerformanceReport2PartnerTitle" ID="{4c3f381f-c7ef-4204-b5f7-0c61a822da1c}" Type="Lookup" List="Lists/PartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Carrier" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="CarrierPerformanceReport2PartnerTitle" ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Carrier" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -64,7 +64,7 @@
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
           <FieldRef ID="{A8FB5E34-44EC-4F97-AAD4-9BB3F2A81EDC}" Name="CarrierPerformanceReportDate" />
-          <FieldRef ID="{4C3F381F-C7EF-4204-B5F7-0C61A822DA1C}" Name="CaeeierPerformanceReport2PartnerTitle" />
+          <FieldRef ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Name="CarrierPerformanceReport2PartnerTitle" />
           <FieldRef ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}" Name="CarrierPerformanceReportNumberOrdered" />
           <FieldRef ID="{323D6E21-3FB8-4AEF-A8DA-F40ABDB61E64}" Name="CarrierPerformanceReportNumberOnTime" />
           <FieldRef ID="{B38ED1F3-802C-488B-8B2F-59303AD199CF}" Name="CarrierPerformanceReportNumberDelayed" />

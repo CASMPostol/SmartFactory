@@ -563,7 +563,9 @@
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\TruckTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TruckTemplate\TruckList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\TruckTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\TruckTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\WarehouseTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\WarehouseTemplate\WarehouseList\Elements.xml" />
     <Content Include="Lists\Dictionaries\WarehouseTemplate\Schema.xml">
