@@ -25,6 +25,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       {
         case Entities.State.Canceled:
         case Entities.State.Completed:
+        case Entities.State.Cancelation:
           return false;
         case Entities.State.Confirmed:
         case Entities.State.Creation:
@@ -107,59 +108,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       string _tf = "{0}{1:D6}";
       Tytuł = String.Format(_tf, IsOutbound.Value ? "O" : "I", Identyfikator.Value);
-    }
-    internal void SetStateOnDrivers(int _numOfDrivers, bool _carrier)
-    {
-      if (_carrier)
-        switch (this.State.Value)
-        {
-          case Entities.State.Confirmed:
-            if (_numOfDrivers == 0)
-              State = Entities.State.WaitingForCarrierData;
-            break;
-          case Entities.State.Creation:
-            if (_numOfDrivers > 0)
-              State = Entities.State.WaitingForSecurityData;
-            break;
-          case Entities.State.WaitingForCarrierData:
-            break;
-          case Entities.State.WaitingForSecurityData:
-            if (_numOfDrivers == 0)
-              State = Entities.State.Creation;
-            break;
-          case Entities.State.Delayed:
-          case Entities.State.Underway:
-            break;
-          default:
-            throw new ApplicationException("Wrong state of the shipping while changing transport resources.");
-        }
-      else
-      {
-        switch (this.State.Value)
-        {
-          case Entities.State.Confirmed:
-            if (_numOfDrivers == 0)
-              State = Entities.State.WaitingForSecurityData;
-            break;
-          case Entities.State.Creation:
-            if (_numOfDrivers > 0)
-              State = Entities.State.WaitingForCarrierData;
-            break;
-          case Entities.State.WaitingForCarrierData:
-            if (_numOfDrivers == 0)
-              State = Entities.State.Creation;
-            break;
-          case Entities.State.WaitingForSecurityData:
-            if (_numOfDrivers > 0)
-              State = Entities.State.Confirmed;
-            break;
-          case Entities.State.Delayed:
-          case Entities.State.Underway:
-            break;
-          default:
-            throw new ApplicationException("Wrong state of the shipping while changing transport resources.");
-        };
-      }
     }
     internal void CalculateState()
     {
