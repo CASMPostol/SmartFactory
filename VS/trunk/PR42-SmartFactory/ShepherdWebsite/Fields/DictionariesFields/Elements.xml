@@ -139,6 +139,7 @@
       <CHOICE>Operator</CHOICE>
       <CHOICE>Supervisor</CHOICE>
       <CHOICE>Guard</CHOICE>
+      <CHOICE>Coordinator</CHOICE>
     </CHOICES>
   </Field>
   <Field
