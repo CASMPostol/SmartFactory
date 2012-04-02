@@ -91,14 +91,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     { }
     #endregion
 
-    #region OnStartedLogToHistoryList
-    public Int32 m_OnStartedLogToHistoryListActivity_UserId1 = default(System.Int32);
-    private void m_OnStartedLogToHistoryListActivity_MethodInvoking(object sender, EventArgs e)
-    {
-      m_OnStartedLogToHistoryListActivity_UserId1 = m_OnWorkflowActivated_WorkflowProperties.OriginatorUser.ID;
-    }
-    #endregion
-
     #region WhileActivity
     private void m_MainLoopWhileActivity_ConditionEventHandler(object sender, ConditionalEventArgs e)
     {
@@ -162,7 +154,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           _rprt = new CarrierPerformanceReport()
           {
             Date = _sp.StartTime.Value.Date,
-            Carrier = _sp.VendorName, 
+            Carrier = _sp.VendorName,
             Tytuł = _sp.VendorName.Title(),
             NumberTUDelayed = 0,
             NumberTUDelayed1Hour = 0,
