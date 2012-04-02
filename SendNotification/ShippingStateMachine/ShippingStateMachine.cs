@@ -237,7 +237,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           }
           _sp.TotalQuantityInKU += _ld.GoodsQuantity.GetValueOrDefault(0);
         }
-        _sp.ForwarderOceanAir = _sp.Route.ShipmentTypeTitle; //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3245
+        _sp.ForwarderOceanAir = _sp.Route.CarrierTitle;
         _sp.EscortCostsCurrency = _sp.SecurityEscort.Currency;
         _sp.TotalCostsPerKUCurrency = (from Currency _cu in EDC.Currency
                                        where String.IsNullOrEmpty(_cu.Tytuł) && _cu.Tytuł.Contains(CommonDefinition.DefaultCurrency)
