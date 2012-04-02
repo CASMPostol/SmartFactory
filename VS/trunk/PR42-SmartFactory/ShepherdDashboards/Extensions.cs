@@ -116,25 +116,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
         return;
       _li.Selected = true;
     }
-    /// <summary>
-    /// Adds the <paramref name="_Partner"/> of <see cref="Partner"/> if not empty otherwise adds all partners and selects <paramref name="_drv"/> </para>.
-    /// </summary>
-    /// <param name="_ddl">The <see cref="DropDownList" to be populated by selected or all <see cref="Partner"/> />.</param>
-    /// <param name="_drv">The _DRV.</param>
-    /// <param name="_Partner">The _ partner.</param>
-    public static void AddPartner(this DropDownList _ddl, Driver _drv, Partner _Partner, EntitiesDataContext EDC)
+    public static void AddPartner(this DropDownList _ddl, bool _all, Partner _Partner, EntitiesDataContext EDC)
     {
-      if (_Partner == null)
+      if (_all)
       {
         _ddl.DataSource = from Partner _prtnrs in EDC.Partner
                           select new { Name = _prtnrs.Tytuł, ID = _prtnrs.Identyfikator.Value.ToString() };
         _ddl.DataValueField = "ID";
         _ddl.DataTextField = "Name";
         _ddl.DataBind();
-        if (_drv == null)
+        if (_Partner == null)
           _ddl.SelectedIndex = -1;
         else
-          _ddl.Select(_drv.VendorName);
+          _ddl.Select(_Partner);
       }
       else
         _ddl.Items.Add(new ListItem(_Partner.Tytuł, _Partner.Identyfikator.Value.ToString()));

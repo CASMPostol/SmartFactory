@@ -22,7 +22,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
           m_DriverMobileNo.Text = _drv.NumerTelefonuKomórkowego;
         }
         Partner _Partner = Partner.FindForUser(EDC, SPContext.Current.Web.CurrentUser);
-        m_PartnerTitle.AddPartner(_drv, _Partner, EDC);
+        if (_Partner == null)
+          m_PartnerTitle.AddPartner(true, _drv == null ? null : _drv.VendorName, EDC);
+        else
+          m_PartnerTitle.AddPartner(false, _Partner, EDC);
       }
       this.m_CancelButton.Click += new EventHandler(m_CancelButton_Click);
       this.m_SaveButton.Click += new EventHandler(m_SaveButton_Click);
