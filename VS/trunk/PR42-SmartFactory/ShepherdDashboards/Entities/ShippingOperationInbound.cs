@@ -41,6 +41,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
           throw new ApplicationException("Wrong Shipping state");
       }
     }
+    internal bool Fixed()
+    {
+      return this.StartTime.Value - _12h > DateTime.Now;
+    }
     internal bool ReleaseBooking(int? _newTimeSlot)
     {
       if (this.TimeSlot == null || this.TimeSlot.Count == 0)
@@ -64,7 +68,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       foreach (var item in _2release)
       {
         //item.Tytuł = "-- not assigned --";
-        if (item.StartTime - _12h < DateTime.Now)
+        if (Fixed())
           item.Occupied = Entities.Occupied.Delayed;
         else
         {
