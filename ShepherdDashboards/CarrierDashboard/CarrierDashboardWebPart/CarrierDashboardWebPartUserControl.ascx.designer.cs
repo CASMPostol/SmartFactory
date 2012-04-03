@@ -184,6 +184,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.Panel m_CoordinatorPanel;
         
         /// <summary>
+        /// Edit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Edit;
+        
+        /// <summary>
         /// m_CoordinatorEditCheckBox control.
         /// </summary>
         /// <remarks>
@@ -193,22 +202,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         protected global::System.Web.UI.WebControls.CheckBox m_CoordinatorEditCheckBox;
         
         /// <summary>
-        /// m_RouteHeaderLabel control.
+        /// SPAN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_RouteHeaderLabel;
-        
-        /// <summary>
-        /// m_RouteLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_RouteLabel;
+        protected global::System.Web.UI.WebControls.Label SPAN;
         
         /// <summary>
         /// m_SecurityRequiredLabel control.
@@ -227,6 +227,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox m_SecurityRequiredChecbox;
+        
+        /// <summary>
+        /// m_RouteHeaderLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_RouteHeaderLabel;
+        
+        /// <summary>
+        /// m_RouteLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_RouteLabel;
         
         /// <summary>
         /// m_SecurityEscortHeaderLabel control.

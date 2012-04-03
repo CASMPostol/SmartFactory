@@ -76,31 +76,31 @@
           ToolTip="Select the check box to enable editing" ID="m_CoordinatorPanel">
           <asp:Table runat="server">
             <asp:TableRow>
-              <asp:TableCell ColumnSpan="2" HorizontalAlign="Right">
-                <asp:CheckBox runat="server" Text="Edit" TextAlign="Left" ToolTip="Select to start editing route and escort association."
-                  AutoPostBack="True" ID="m_CoordinatorEditCheckBox" />
+              <asp:TableCell>
+                <asp:Label ID="Edit" CssClass="Label" runat="server" Text="Edit Route / Escort"></asp:Label>
+                <asp:CheckBox runat="server" TextAlign="Left" ToolTip="Select to start editing route and escort association." AutoPostBack="True" ID="m_CoordinatorEditCheckBox" />
+              </asp:TableCell>
+              <asp:TableCell>
+                <asp:Label ID="SPAN" runat="server" CssClass="Label" Text="|"></asp:Label>
+              </asp:TableCell>
+              <asp:TableCell>
+                <asp:Label ID="m_SecurityRequiredLabel" runat="server" Text="Security Required" CssClass="Label"></asp:Label>
+                <asp:CheckBox ID="m_SecurityRequiredChecbox" AutoPostBack="true" runat="server" Checked="false"></asp:CheckBox>
               </asp:TableCell>
             </asp:TableRow>
+          </asp:Table>
+          <asp:Table runat="server">
             <asp:TableRow>
               <asp:TableCell>
                 <asp:Label ID="m_RouteHeaderLabel" runat="server" Text="Route" CssClass="Label"></asp:Label></asp:TableCell>
               <asp:TableCell>
                 <asp:Label ID="m_RouteLabel" runat="server" Text="" CssClass="Label"></asp:Label></asp:TableCell>
-            </asp:TableRow>
+            </asp:TableRow>            
             <asp:TableRow>
               <asp:TableCell>
-                <asp:Label ID="m_SecurityRequiredLabel" runat="server" Text="Security Required" CssClass="Label"></asp:Label>
+                <asp:Label ID="m_SecurityEscortHeaderLabel" runat="server" Text="Security Escort" CssClass="Label"></asp:Label>
               </asp:TableCell>
               <asp:TableCell>
-                <asp:CheckBox ID="m_SecurityRequiredChecbox" AutoPostBack="true" runat="server" Checked="false">
-                </asp:CheckBox>
-              </asp:TableCell>
-            </asp:TableRow>
-            <asp:TableRow>
-              <asp:TableCell>
-                <asp:Label ID="m_SecurityEscortHeaderLabel" runat="server" Text="Security Escort"
-                  CssClass="Label"> </asp:Label>
-              </asp:TableCell><asp:TableCell>
                 <asp:Label ID="m_SecurityEscortLabel" runat="server" Text="" CssClass="Label"></asp:Label>
               </asp:TableCell>
             </asp:TableRow>
