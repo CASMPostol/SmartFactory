@@ -20,6 +20,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
           _drv = Element.GetAtIndex<Driver>(EDC.Driver, Request.Params["ID"]);
           m_DriverIDNumber.Text = _drv.IdentityDocumentNumber;
           m_DriverMobileNo.Text = _drv.NumerTelefonuKomórkowego;
+          m_DriverTitle.Text = _drv.Tytuł;
         }
         Partner _Partner = Partner.FindForUser(EDC, SPContext.Current.Web.CurrentUser);
         if (_Partner == null)
@@ -59,7 +60,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
          {
            IdentityDocumentNumber = this.m_DriverIDNumber.Text,
            NumerTelefonuKomórkowego = this.m_DriverMobileNo.Text,
-           //Tytuł = m_DriverTitle.Text,  
+           Tytuł = m_DriverTitle.Text,  
            VendorName = _prtn
          };
         EDC.Driver.InsertOnSubmit(_nd);
