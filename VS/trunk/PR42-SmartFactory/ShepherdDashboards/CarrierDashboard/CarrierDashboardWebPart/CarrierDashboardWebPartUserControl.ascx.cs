@@ -113,7 +113,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             break;
           case GlobalDefinitions.Roles.Vendor:
             m_SecurityEscortHeaderLabel.Text = m_LabetTextLike_Vendor;
-            m_VisibilityACL = _inbound;
+            m_VisibilityACL = _inbound ^ ButtonsSet.OperatorControlsOn;
             m_EditbilityACL = _inbound;
             m_ShowDocumentLabel = ShowDocumentLabelInboundVendor;
             m_ShowDocumentLabel(null);
