@@ -17,5 +17,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     {
       return String.IsNullOrEmpty(_val) ? CommonDefinition.UnknownEmail : _val;
     }
+    public static string ToMonthString(this DateTime _dateTime)
+    {
+      return new DateTime(_dateTime.Year, _dateTime.Month, 1).ToShortDateString();
+    }
   }
 }
