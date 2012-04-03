@@ -105,12 +105,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       try
       {
-        string _msg = "The shipping at CURRENT state {0} has been modified by {1} and the schedule wiil be updated.";
+        string _msg = "The shipping at current state {0} has been modified by {1} and the schedule wiil be updated.";
         ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
         m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
         ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None);
-        MakeCalculation(_sp);
-        MakePerformanceReport(_sp);
+        if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value != State.Completed))
+          MakeCalculation(_sp);
+        else if (_sp.State.Value != State.Completed || _sp.State.Value != State.Cancelation)
+          MakePerformanceReport(_sp);
       }
       catch (Exception ex)
       {
@@ -167,26 +169,31 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           EDC.CarrierPerformanceReport.InsertOnSubmit(_rprt);
           EDC.SubmitChanges();
           _rprt.NumberTUOrdered++;
-          if (_sp.TrailerCondition.Value == TrailerCondition._1Unexceptable)
-            _rprt.NumberTURejectedBadQuality++;
           _rprt.NumberTUNotDeliveredNotShowingUp += (from _ts in _sp.TimeSlot
                                                      where _ts.Occupied.Value == Occupied.Delayed
                                                      select new { }).Count();
-          var _Start = (from _tsx in _sp.TimeSlot
-                        where _tsx.Occupied.Value == Occupied.Free
-                        orderby _tsx.StartTime ascending
-                        select new { Start = _tsx.StartTime.Value }).First();
-          switch (CalculateDelay(_sp.StartTime.Value - _Start.Start))
+          if (_sp.State.Value == State.Cancelation)
+            _rprt.NumberTUNotDeliveredNotShowingUp++;
+          else
           {
-            case Delay.JustInTime:
-              _rprt.NumberTUOnTime++;
-              break;
-            case Delay.Delayed:
-              _rprt.NumberTUDelayed++;
-              break;
-            case Delay.VeryLate:
-              _rprt.NumberTUDelayed1Hour++;
-              break;
+            if (_sp.TrailerCondition.Value == TrailerCondition._1Unexceptable)
+              _rprt.NumberTURejectedBadQuality++;
+            var _Start = (from _tsx in _sp.TimeSlot
+                          where _tsx.Occupied.Value == Occupied.Free
+                          orderby _tsx.StartTime ascending
+                          select new { Start = _tsx.StartTime.Value }).First();
+            switch (CalculateDelay(_sp.StartTime.Value - _Start.Start))
+            {
+              case Delay.JustInTime:
+                _rprt.NumberTUOnTime++;
+                break;
+              case Delay.Delayed:
+                _rprt.NumberTUDelayed++;
+                break;
+              case Delay.VeryLate:
+                _rprt.NumberTUDelayed1Hour++;
+                break;
+            }
           }
           EDC.SubmitChanges();
         }
@@ -210,8 +217,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       try
       {
-        if (!_sp.IsOutbound.GetValueOrDefault(false) || (_sp.State.Value != State.Completed))
-          return;
         foreach (LoadDescription _ld in _sp.LoadDescription)
         {
           switch (_ld.PalletType.Value)
@@ -238,7 +243,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         //Costs calculation
         if (_sp.Route != null && _sp.Route.Currency != null)
           _sp.FreightCost = _sp.Route.TransportCosts * _sp.Route.Currency.ExchangeRate;
-        _sp.SecurityEscortCost = _sp.SecurityEscort.SecurityCost * _sp.SecurityEscort.Currency.ExchangeRate;
+        if (_sp.SecurityEscortCost != null && _sp.SecurityEscort.Currency != null)
+          _sp.SecurityEscortCost = _sp.SecurityEscort.SecurityCost * _sp.SecurityEscort.Currency.ExchangeRate;
         double? _totalCost = default(double?);
         if (_sp.AdditionalCostsCurrency != null)
           _totalCost = _sp.FreightCost + _sp.SecurityEscortCost + _sp.AdditionalCosts * _sp.AdditionalCostsCurrency.ExchangeRate;
