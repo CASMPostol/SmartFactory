@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections;
-using System.Workflow.Activities;
-using Microsoft.SharePoint.Workflow;
-using CAS.SmartFactory.Shepherd.SendNotification.Entities;
-using Microsoft.SharePoint;
 using System.ComponentModel;
-using System.Workflow.ComponentModel;
 using System.Linq;
+using System.Workflow.Activities;
+using System.Workflow.ComponentModel;
+using CAS.SmartFactory.Shepherd.SendNotification.Entities;
 using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
-using System.Collections.Generic;
+using Microsoft.SharePoint.Workflow;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 {
@@ -164,7 +162,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             NumberTUNotDeliveredNotShowingUp = 0,
             NumberTUOnTime = 0,
             NumberTUOrdered = 0,
-            NumberTURejectedBadQuality = 0
+            NumberTURejectedBadQuality = 0,
+            ReportPeriod = _sp.StartTime.Value.ToMonthString()
           };
           EDC.CarrierPerformanceReport.InsertOnSubmit(_rprt);
           EDC.SubmitChanges();
@@ -203,6 +202,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         ReportException("MakePerformanceReport", ex);
       }
     }
+
     private enum Delay { JustInTime, Delayed, VeryLate }
     private Delay CalculateDelay(TimeSpan _value)
     {
@@ -249,6 +249,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         if (_sp.AdditionalCostsCurrency != null)
           _totalCost = _sp.FreightCost + _sp.SecurityEscortCost + _sp.AdditionalCosts * _sp.AdditionalCostsCurrency.ExchangeRate;
         _sp.TotalCostsPerKU = _sp.TotalQuantityInKU.HasValue && _sp.TotalQuantityInKU.Value > 0 ? _totalCost / _sp.TotalQuantityInKU.Value : new Nullable<double>();
+        _sp.ReportPeriod = _sp.StartTime.Value.ToMonthString();
         EDC.SubmitChanges();
       }
       catch (Exception ex)
