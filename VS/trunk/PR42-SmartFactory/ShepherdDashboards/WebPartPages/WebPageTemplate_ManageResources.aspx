@@ -40,3 +40,11 @@
   </div>
 
 </asp:Content>
+
+<asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
+Manage Resources
+</asp:Content>
+
+<asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
+Manage Resources
+</asp:Content>

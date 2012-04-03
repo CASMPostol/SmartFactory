@@ -71,3 +71,11 @@
   </div>
 
 </asp:Content>
+
+<asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
+Forwarder Dashboard
+</asp:Content>
+
+<asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
+Forwarder Dashboard
+</asp:Content>

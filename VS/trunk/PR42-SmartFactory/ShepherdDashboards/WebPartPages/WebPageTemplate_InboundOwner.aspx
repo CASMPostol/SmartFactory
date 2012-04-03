@@ -97,3 +97,11 @@
   </div>
 
 </asp:Content>
+
+<asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
+Inbound Owner Dashboard
+</asp:Content>
+
+<asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
+Inbound Owner Dashboard
+</asp:Content>
