@@ -2,12 +2,6 @@
 <ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="WebPartPages\" Type="ElementManifest" />
-    <ProjectItemFile Source="CarrierDashboardTemplate.aspx" Target="WebPartPages\" Type="ElementFile" />
-    <ProjectItemFile Source="..\WebPartPages\GateDashboardTemplate.aspx" Target="WebPartPages\" Type="ElementFile" />
-    <ProjectItemFile Source="..\WebPartPages\CarrierDashboardAlternativeTemplate.aspx" Target="WebPartPages\" Type="ElementFile" />
-    <ProjectItemFile Source="..\WebPartPages\WebPageTemplate_3columns_40_40_20.aspx" Target="WebPartPages\" Type="ElementFile" />
-    <ProjectItemFile Source="..\WebPartPages\WebPageTemplate_2.aspx" Target="WebPartPages\" Type="ElementFile" />
-    <ProjectItemFile Source="..\WebPartPages\WebPageTemplate_1.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_OutboundOwner.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_OutboundCoordinator.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_Forwarder.aspx" Target="WebPartPages\" Type="ElementFile" />

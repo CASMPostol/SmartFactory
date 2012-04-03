@@ -356,6 +356,7 @@
     <Content Include="Images\ShepherdImages\DefaultBanner2.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner2_truck.jpg" />
     <Content Include="Images\ShepherdImages\DefaultBanner_truck.jpg" />
+    <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdLayouts.css" />
     <Content Include="Layouts\ShepherdDashboards\DriverNewForm.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -365,26 +366,13 @@
     <Content Include="Layouts\ShepherdDashboards\TruckNewForm.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="WebPartPages\WebPageTemplate_1.aspx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="WebPartPages\WebPageTemplate_2.aspx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="WebPartPages\WebPageTemplate_3columns_40_40_20.aspx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="WebPartPages\CarrierDashboardAlternativeTemplate.aspx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDashboards.css" />
-    <Content Include="DefaultPage\DefaultTemplate.aspx" />
+    <Content Include="DefaultPage\DefaultTemplate.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Layouts\ShepherdDashboards\CAS_ShepherdDefault.css" />
     <Content Include="LoadDescriptionWebPart\Elements.xml" />
     <Content Include="LoadDescriptionWebPart\LoadDescriptionWebPartUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="WebPartPages\GateDashboardTemplate.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="TimeSlotWebPart\Elements.xml">
@@ -396,7 +384,6 @@
     <Content Include="WebPartPages\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="WebPartPages\CarrierDashboardTemplate.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Coordinator.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Escort.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Forwarder.aspx" />
