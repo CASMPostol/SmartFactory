@@ -117,11 +117,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         ListItem _li = new ListItem(_item.Tytuł, _item.Identyfikator.Value.ToString());
         m_TruckDropDown.Items.Add(_li);
         if (Role == TransportResources.RolesSet.SecurityEscort)
+        {
           if (_Shipping.SecurityEscortCarRegistrationNumber == _item)
             _li.Selected = true;
-          else
-        if (_Shipping.TruckCarRegistrationNumber == _item)
-          _li.Selected = true;
+        }
+        else
+          if (_Shipping.TruckCarRegistrationNumber == _item)
+            _li.Selected = true;
       }
       m_TrailerDropDown.Items.Add(new ListItem());
       foreach (Trailer item in _prtn.Trailer)
@@ -271,7 +273,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
     private void SignalException(string _source, string _format, Exception _ex)
     {
       string _msg = String.Format(_format, _ex.Message);
-      this.Controls.Add(new LiteralControl(_msg ));
+      this.Controls.Add(new LiteralControl(_msg));
       using (EntitiesDataContext edc = new EntitiesDataContext(SPContext.Current.Web.Url))
       {
         Anons.WriteEntry(edc, _source, _msg);
