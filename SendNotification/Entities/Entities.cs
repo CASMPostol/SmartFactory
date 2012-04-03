@@ -1430,17 +1430,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Tytuł {
-			get {
-				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Driver.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Driver.");
-			}
-		}
-		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Driver2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
 		public Partner VendorName {
 			get {
@@ -4186,17 +4175,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 					this._comments = value;
 					this.OnPropertyChanged("Comments");
 				}
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Tytuł {
-			get {
-				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Truck.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Truck.");
 			}
 		}
 		
