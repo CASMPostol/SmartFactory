@@ -264,6 +264,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       m_StateLiteral.Text = m_ControlState.InterfaceState.ToString();
       SetEnabled(m_ControlState.SetEnabled);
+      if (VendorFixed())
+        m_AbortButton.Enabled = false;
       if (!m_ControlState.Editable)
       {
         m_EditButton.Enabled = false;
@@ -386,8 +388,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       protected override void ShowActionResult(ActionResult _rslt)
       {
-        foreach (var item in _rslt)
-          Parent.Controls.Add(new LiteralControl(item));
+        Parent.ShowActionResult(_rslt);
       }
       protected override void UpdateEscxortRequired()
       {
@@ -421,12 +422,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ControlState.ShippingID = _interconnectionData.ID;
       ShowShipping(CurrentShipping);
     }
+    private bool VendorFixed()
+    {
+      return (m_DashboardType == GlobalDefinitions.Roles.Vendor) && (CurrentShipping != null) && CurrentShipping.Fixed();
+    }
     private void SetInterconnectionData(TimeSlotInterconnectionData _interconnectionData)
     {
       if (m_ControlState.TimeSlotID == _interconnectionData.ID)
         return;
       try
       {
+        if (VendorFixed())
+        {
+          ActionResult _rst = new ActionResult();
+          _rst.Add("It is too late to change the schedule");
+          ShowActionResult(_rst);
+          return;
+        }
         TimeSlotTimeSlot _cts = Element.GetAtIndex(EDC.TimeSlot, _interconnectionData.ID);
         Debug.Assert(_cts.Occupied.Value == Occupied.Free, "Time slot is in use but it is selected as free.");
         m_ControlState.TimeSlotID = _interconnectionData.ID;
@@ -926,6 +938,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       Entities.Anons _entry = new Anons(_source, String.Format(_tmplt, ex.Message));
       EDC.EventLogList.InsertOnSubmit(_entry);
       EDC.SubmitChanges();
+    }
+    private void ShowActionResult(ActionResult _rslt)
+    {
+      foreach (var item in _rslt)
+        Parent.Controls.Add(new LiteralControl(item));
     }
     #endregion
 
