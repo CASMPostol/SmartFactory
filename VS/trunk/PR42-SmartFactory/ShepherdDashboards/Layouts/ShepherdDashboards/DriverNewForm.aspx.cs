@@ -15,9 +15,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
       if (m_PartnerTitle.Items.Count == 0)
       {
         Driver _drv = null;
-        if (!Request.Params["ID"].IsNullOrEmpty())
+        m_ItemID.Value = Request.Params["ID"];
+        if (!m_ItemID.Value.IsNullOrEmpty())
         {
-          _drv = Element.GetAtIndex<Driver>(EDC.Driver, Request.Params["ID"]);
+          _drv = Element.GetAtIndex<Driver>(EDC.Driver, m_ItemID.Value);
           m_DriverIDNumber.Text = _drv.IdentityDocumentNumber;
           m_DriverMobileNo.Text = _drv.NumerTelefonuKomórkowego;
           m_DriverTitle.Text = _drv.Tytuł;
@@ -56,16 +57,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
       try
       {
         Partner _prtn = Element.GetAtIndex<Partner>(EDC.Partner, m_PartnerTitle.SelectedValue);
-        Driver _nd = new Entities.Driver()
-         {
-           IdentityDocumentNumber = this.m_DriverIDNumber.Text,
-           NumerTelefonuKomórkowego = this.m_DriverMobileNo.Text,
-           Tytuł = m_DriverTitle.Text,  
-           VendorName = _prtn
-         };
-        EDC.Driver.InsertOnSubmit(_nd);
+        Driver _nd = null;
+        if (m_ItemID.Value.IsNullOrEmpty())
+        {
+          _nd = new Entities.Driver();
+          EDC.Driver.InsertOnSubmit(_nd);
+        }
+        else
+          _nd = Element.GetAtIndex<Driver>(EDC.Driver, m_ItemID.Value);
+        _nd.IdentityDocumentNumber = this.m_DriverIDNumber.Text;
+        _nd.NumerTelefonuKomórkowego = this.m_DriverMobileNo.Text;
+        _nd.Tytuł = m_DriverTitle.Text;
+        _nd.VendorName = _prtn;
         EDC.SubmitChanges();
-        SPUtility.Redirect("../WebPartPages/ManageDriversDashboard", SPRedirectFlags.UseSource, HttpContext.Current);
+        SPUtility.Redirect(Request.Params["Source"], SPRedirectFlags.Default, HttpContext.Current);
       }
       catch (Exception ex)
       {
@@ -74,7 +79,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
     }
     private void m_CancelButton_Click(object sender, EventArgs e)
     {
-      SPUtility.Redirect(this.ResolveClientUrl("../WebPartPages/ManageDriversDashboard"), SPRedirectFlags.RelativeToLayoutsPage, HttpContext.Current);
+      SPUtility.Redirect(Request.Params["Source"], SPRedirectFlags.Default, HttpContext.Current);
     }
     #endregion
 

@@ -14,9 +14,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
       if (m_PartnerTitle.Items.Count == 0)
       {
         Trailer _trl = null;
-        if (!Request.Params["ID"].IsNullOrEmpty())
+        m_ItemID.Value = Request.Params["ID"];
+        if (!m_ItemID.Value.IsNullOrEmpty())
         {
-          _trl = Element.GetAtIndex<Trailer>(EDC.Trailer, Request.Params["ID"]);
+          _trl = Element.GetAtIndex<Trailer>(EDC.Trailer, m_ItemID.Value);
           m_Comments.Text = _trl.Comments;
           m_TruckTitle.Text = _trl.Tytuł;
         }
@@ -52,15 +53,19 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
       try
       {
         Partner _prtn = Element.GetAtIndex<Partner>(EDC.Partner, m_PartnerTitle.SelectedValue);
-        Trailer _nd = new Entities.Trailer()
+        Trailer _nd = null;
+        if (m_ItemID.Value.IsNullOrEmpty())
         {
-           Comments = this.m_Comments.Text,
-           Tytuł = this.m_TruckTitle.Text,
-          VendorName = _prtn
-        };
-        EDC.Trailer.InsertOnSubmit(_nd);
+          _nd = new Entities.Trailer();
+          EDC.Trailer.InsertOnSubmit(_nd);
+        }
+        else
+          _nd = Element.GetAtIndex<Trailer>(EDC.Trailer, m_ItemID.Value);
+        _nd.Comments = this.m_Comments.Text;
+        _nd.Tytuł = this.m_TruckTitle.Text;
+        _nd.VendorName = _prtn;
         EDC.SubmitChanges();
-        SPUtility.Redirect("../WebPartPages/ManageDriversDashboard", SPRedirectFlags.UseSource, HttpContext.Current);
+        SPUtility.Redirect(Request.Params["Source"], SPRedirectFlags.Default, HttpContext.Current);
       }
       catch (Exception ex)
       {
@@ -69,7 +74,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
     }
     private void m_CancelButton_Click(object sender, EventArgs e)
     {
-      SPUtility.Redirect(this.ResolveClientUrl("../WebPartPages/ManageDriversDashboard"), SPRedirectFlags.RelativeToLayoutsPage, HttpContext.Current);
+      SPUtility.Redirect(Request.Params["Source"], SPRedirectFlags.Default, HttpContext.Current);
     }
     #endregion
     #region private

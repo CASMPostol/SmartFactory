@@ -5,6 +5,7 @@ using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
+using System.Web.UI;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
 {
@@ -21,9 +22,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
           m_VehicleType.Items.Add(new ListItem(VehicleType.Truck.ToString(), ((int)VehicleType.Truck).ToString()));
           m_VehicleType.Items.Add(new ListItem(VehicleType.Van.ToString(), ((int)VehicleType.Van).ToString()));
           Truck _drv = null;
-          if (!Request.Params["ID"].IsNullOrEmpty())
+          m_ItemID.Value = Request.Params["ID"];
+          if (!m_ItemID.Value.IsNullOrEmpty())
           {
-            _drv = Element.GetAtIndex<Truck>(EDC.Truck, Request.Params["ID"]);
+            _drv = Element.GetAtIndex<Truck>(EDC.Truck, m_ItemID.Value);
             m_Comments.Text = _drv.Comments;
             m_TruckTitle.Text = _drv.Tytuł;
             m_VehicleType.Select((int)_drv.VehicleType.GetValueOrDefault(0));
@@ -35,7 +37,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
             m_PartnerTitle.AddPartner(false, _Partner, EDC);
         }
         this.m_CancelButton.Click += new EventHandler(m_CancelButton_Click);
+        this.m_CancelButton.UseSubmitBehavior = false;
         this.m_SaveButton.Click += new EventHandler(m_SaveButton_Click);
+        this.m_SaveButton.UseSubmitBehavior = false;
       }
       catch (Exception ex)
       {
@@ -68,16 +72,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
       try
       {
         Partner _prtn = Element.GetAtIndex<Partner>(EDC.Partner, m_PartnerTitle.SelectedValue);
-        Truck _nd = new Entities.Truck()
+        Truck _nd = null;
+        if (m_ItemID.Value.IsNullOrEmpty())
         {
-          Comments = this.m_Comments.Text,
-          Tytuł = this.m_TruckTitle.Text,
-          VehicleType = (VehicleType)m_VehicleType.SelectedValue.String2Int().Value,
-          VendorName = _prtn
-        };
-        EDC.Truck.InsertOnSubmit(_nd);
+          _nd = new Entities.Truck();
+          EDC.Truck.InsertOnSubmit(_nd);
+        }
+        else
+          _nd = Element.GetAtIndex<Truck>(EDC.Truck, m_ItemID.Value);
+        _nd.Comments = this.m_Comments.Text;
+        _nd.Tytuł = this.m_TruckTitle.Text;
+        _nd.VehicleType = (VehicleType)m_VehicleType.SelectedValue.String2Int().Value;
+        _nd.VendorName = _prtn;
         EDC.SubmitChanges();
-        SPUtility.Redirect("../WebPartPages/ManageDriversDashboard", SPRedirectFlags.UseSource, HttpContext.Current);
+        SPUtility.Redirect(Request.Params["Source"], SPRedirectFlags.Default, HttpContext.Current);
       }
       catch (Exception ex)
       {
@@ -86,7 +94,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
     }
     private void m_CancelButton_Click(object sender, EventArgs e)
     {
-      SPUtility.Redirect(this.ResolveClientUrl("../WebPartPages/ManageDriversDashboard"), SPRedirectFlags.RelativeToLayoutsPage, HttpContext.Current);
+      SPUtility.Redirect(Request.Params["Source"], SPRedirectFlags.Default, HttpContext.Current);
     }
     #endregion
 
