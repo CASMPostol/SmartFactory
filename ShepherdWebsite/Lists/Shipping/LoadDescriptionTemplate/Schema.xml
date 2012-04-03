@@ -96,12 +96,14 @@
         </ParameterBindings>
       </View>
       <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Vendor" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Vendor.aspx">
-        <Toolbar Type="Standard" />
+        <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">16</RowLimit>
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
+          <FieldRef ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Name="LoadDescription2ShippingIndex" />
+          <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
           <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
         </ViewFields>
@@ -119,7 +121,7 @@
       <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="OutboundOwner" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="OutboundOwner.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">10</RowLimit>
+        <RowLimit Paged="TRUE">16</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
@@ -142,7 +144,7 @@
       <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="InboundOwner" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="InboundOwner.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">10</RowLimit>
+        <RowLimit Paged="TRUE">16</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
