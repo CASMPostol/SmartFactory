@@ -7,6 +7,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
   public partial class Shipping
   {
+    #region private
     internal void ChangeRout(Route _nr)
     {
       this.Route = _nr;
@@ -63,9 +64,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       foreach (var item in _2release)
       {
         //item.Tytuł = "-- not assigned --";
-        item.Occupied = Entities.Occupied.Free;
-        item.ShippingIndex = null;
-        item.IsDouble = false;
+        if (item.StartTime - _12h < DateTime.Now)
+          item.Occupied = Entities.Occupied.Delayed;
+        else
+        {
+          item.Occupied = Entities.Occupied.Free;
+          item.ShippingIndex = null;
+          item.IsDouble = false;
+        }
       }
       return true;
     }
@@ -121,7 +127,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       this.State = Entities.State.Creation;
       if (_crDrivers > 0 && this.TruckCarRegistrationNumber != null)
       {
-        if (this.SecurityEscort == null || (_seDrivers >0 && this.SecurityEscortCarRegistrationNumber != null))
+        if (this.SecurityEscort == null || (_seDrivers > 0 && this.SecurityEscortCarRegistrationNumber != null))
           this.State = Entities.State.Confirmed;
         else
           this.State = Entities.State.WaitingForSecurityData;
@@ -129,5 +135,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       else if (this.SecurityEscort == null || (_seDrivers > 0 && this.SecurityEscortCarRegistrationNumber != null))
         this.State = Entities.State.WaitingForCarrierData;
     }
+    #endregion
+
+    #region private
+    private TimeSpan _12h = new TimeSpan(12, 0, 0);
+    #endregion
   }
 }

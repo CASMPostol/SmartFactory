@@ -173,7 +173,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             TimeSlot _ts = (from _tsidx in CurrentShipping.TimeSlot
                             where _tsidx.Occupied.Value == Occupied.Occupied0
                             orderby _tsidx.StartTime ascending
-                            select _tsidx).First();
+                            select _tsidx).FirstOrDefault();
+            if (_ts == null)
+              break;
             CurrentShipping.StartTime = _ts.StartTime;
             CurrentShipping.EndTime = _ts.EndTime;
             CurrentShipping.Duration = _ts.Duration();

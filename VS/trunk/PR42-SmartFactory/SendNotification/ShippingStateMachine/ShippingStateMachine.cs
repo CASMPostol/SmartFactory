@@ -110,7 +110,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
         ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None);
         if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value != State.Completed))
-          MakeCalculation(_sp);
+          MakeShippingReport(_sp);
         else if (_sp.State.Value != State.Completed || _sp.State.Value != State.Cancelation)
           MakePerformanceReport(_sp);
       }
@@ -168,35 +168,35 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           };
           EDC.CarrierPerformanceReport.InsertOnSubmit(_rprt);
           EDC.SubmitChanges();
-          _rprt.NumberTUOrdered++;
-          _rprt.NumberTUNotDeliveredNotShowingUp += (from _ts in _sp.TimeSlot
-                                                     where _ts.Occupied.Value == Occupied.Delayed
-                                                     select new { }).Count();
-          if (_sp.State.Value == State.Cancelation)
-            _rprt.NumberTUNotDeliveredNotShowingUp++;
-          else
-          {
-            if (_sp.TrailerCondition.Value == TrailerCondition._1Unexceptable)
-              _rprt.NumberTURejectedBadQuality++;
-            var _Start = (from _tsx in _sp.TimeSlot
-                          where _tsx.Occupied.Value == Occupied.Free
-                          orderby _tsx.StartTime ascending
-                          select new { Start = _tsx.StartTime.Value }).First();
-            switch (CalculateDelay(_sp.StartTime.Value - _Start.Start))
-            {
-              case Delay.JustInTime:
-                _rprt.NumberTUOnTime++;
-                break;
-              case Delay.Delayed:
-                _rprt.NumberTUDelayed++;
-                break;
-              case Delay.VeryLate:
-                _rprt.NumberTUDelayed1Hour++;
-                break;
-            }
-          }
-          EDC.SubmitChanges();
         }
+        _rprt.NumberTUOrdered++;
+        _rprt.NumberTUNotDeliveredNotShowingUp += (from _ts in _sp.TimeSlot
+                                                   where _ts.Occupied.Value == Occupied.Delayed
+                                                   select new { }).Count();
+        if (_sp.State.Value == State.Cancelation)
+          _rprt.NumberTUNotDeliveredNotShowingUp++;
+        else
+        {
+          if (_sp.TrailerCondition.Value == TrailerCondition._1Unexceptable)
+            _rprt.NumberTURejectedBadQuality++;
+          var _Start = (from _tsx in _sp.TimeSlot
+                        where _tsx.Occupied.Value == Occupied.Free
+                        orderby _tsx.StartTime ascending
+                        select new { Start = _tsx.StartTime.Value }).First();
+          switch (CalculateDelay(_sp.StartTime.Value - _Start.Start))
+          {
+            case Delay.JustInTime:
+              _rprt.NumberTUOnTime++;
+              break;
+            case Delay.Delayed:
+              _rprt.NumberTUDelayed++;
+              break;
+            case Delay.VeryLate:
+              _rprt.NumberTUDelayed1Hour++;
+              break;
+          }
+        }
+        EDC.SubmitChanges();
       }
       catch (Exception ex)
       {
@@ -213,7 +213,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       else
         return Delay.VeryLate;
     }
-    private void MakeCalculation(ShippingShipping _sp)
+    private void MakeShippingReport(ShippingShipping _sp)
     {
       try
       {
