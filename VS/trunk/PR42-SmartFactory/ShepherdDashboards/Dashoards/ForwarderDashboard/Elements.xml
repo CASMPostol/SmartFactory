@@ -12,7 +12,7 @@
  </metaData>
  <data>
  <properties>
- <property name="Title" type="string">My shippings</property>
+ <property name="Title" type="string">Shippings</property>
  <property name="TitleUrl" type="string">ForwarderDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
@@ -96,7 +96,7 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="AlarmsAndEvents" WebPartOrder="0">
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="3" WebPartZoneID="AlarmsAndEvents" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">

@@ -12,13 +12,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="CollaborationServer" content="SharePoint Team Web Site" />
 <link href="/_layouts/ShepherdDashboards/CAS_ShepherdDashboards.css" rel="stylesheet" type="text/css" />
+<link href="/_layouts/ShepherdDashboards/CAS_ShepherdLayouts.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderId="PlaceHolderLeftNavBar" runat="server"></asp:Content>
 <asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
 
   <div id="Body" >
-    <table border="0" width="1200">
+    <table border="0" width="1100px">
         <tr>
                         <td width="100%" valign="top">
                         <WebPartPages:WebpartZone
