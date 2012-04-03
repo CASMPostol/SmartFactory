@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     internal bool Fixed()
     {
-      return this.StartTime.Value - _12h > DateTime.Now;
+      return this.StartTime.Value - _12h < DateTime.Now;
     }
     internal bool ReleaseBooking(int? _newTimeSlot)
     {
@@ -92,7 +92,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       //  _ts.Tytuł = String.Format("Inbound No. {0} by {1}", this.Tytuł, this.VendorName == null ? "--not assigned--" : VendorName.Tytuł);
       this.StartTime = _ts.StartTime;
       this.EndTime = _ts.EndTime;
-      this.Duration = Convert.ToDouble((_ts.EndTime.Value - _ts.EndTime.Value).TotalMinutes);
+      this.Duration = Convert.ToDouble((_ts.EndTime.Value - _ts.StartTime.Value).TotalMinutes);
       this.Warehouse = _ts.GetWarehouse();
       if (!_isDouble)
       {
