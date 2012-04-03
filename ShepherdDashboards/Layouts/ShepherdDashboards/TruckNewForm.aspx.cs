@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
           {
             _drv = Element.GetAtIndex<Truck>(EDC.Truck, Request.Params["ID"]);
             m_Comments.Text = _drv.Comments;
-            //m_TruckTitle.Text = _drv.Tytuł;
+            m_TruckTitle.Text = _drv.Tytuł;
             m_VehicleType.Select((int)_drv.VehicleType.GetValueOrDefault(0));
           }
           Partner _Partner = Partner.FindForUser(EDC, SPContext.Current.Web.CurrentUser);
@@ -71,7 +71,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
         Truck _nd = new Entities.Truck()
         {
           Comments = this.m_Comments.Text,
-          //Tytuł = this.m_TruckTitle.Text,
+          Tytuł = this.m_TruckTitle.Text,
           VehicleType = (VehicleType)m_VehicleType.SelectedValue.String2Int().Value,
           VendorName = _prtn
         };
