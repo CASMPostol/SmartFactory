@@ -147,6 +147,12 @@
       <DependentUpon>SupplementData2hVendorTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="WorkflowData\SupplementData2hVendorTemplate.partial.cs" />
+    <Compile Include="WorkflowData\TimeSlotsInitiationData.cs">
+      <DependentUpon>TimeSlotsInitiationData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowData\TimeSlotsInitiationData.xsd.cs">
+      <DependentUpon>TimeSlotsInitiationData.xsd</DependentUpon>
+    </Compile>
     <Compile Include="WorkflowDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendEmail\SendEmail.cs">
@@ -229,6 +235,9 @@
     <None Include="WorkflowData\SupplementData2hVendorTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>SupplementData2hVendorTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="WorkflowData\TimeSlotsInitiationData.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="WorkflowLists\SendNotificationHistory\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e2ac98ea-de91-440b-823c-6c76f783c49a}</SharePointProjectItemId>

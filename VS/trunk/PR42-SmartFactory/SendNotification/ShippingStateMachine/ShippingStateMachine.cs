@@ -13,14 +13,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
   public sealed partial class ShippingStateMachine : SequentialWorkflowActivity
   {
     #region private
-    private void ReportException(string _source, Exception ex)
+    private void ReportException(string _source, Exception ex, EntitiesDataContext EDC)
     {
       string _tmplt = "The current operation has been interrupted by error {0}.";
       Anons _entry = new Anons() { Tytuł = _source, Treść = String.Format(_tmplt, ex.Message), Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
       EDC.EventLogList.InsertOnSubmit(_entry);
       EDC.SubmitChanges();
     }
-    private void ReportAlarmsAndEvents(string _mssg, Priority _priority, ServiceType _partner)
+    private void ReportAlarmsAndEvents(string _mssg, Priority _priority, ServiceType _partner, EntitiesDataContext EDC)
     {
       ShippingShipping _sh = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
       Partner _principal = null;
@@ -51,26 +51,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
       EDC.SubmitChanges();
     }
-    private EntitiesDataContext p_EDC = null;
-    private EntitiesDataContext EDC
-    {
-      get
-      {
-        if (p_EDC != null)
-          return p_EDC;
-        p_EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url);
-        return p_EDC;
-      }
-    }
-    protected override void Dispose(bool disposing)
-    {
-      if (p_EDC != null)
-      {
-        p_EDC.Dispose();
-        p_EDC = null;
-      }
-      base.Dispose(disposing);
-    }
+    //private EntitiesDataContext p_EDC = null;
+    //private EntitiesDataContext EDC
+    //{
+    //  get
+    //  {
+    //    if (p_EDC != null)
+    //      return p_EDC;
+    //    p_EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url);
+    //    return p_EDC;
+    //  }
+    //}
     private Shipping.RequiredOperations Operation2Do { get; set; }
     #endregion
 
@@ -93,28 +84,34 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region WhileActivity
     private void m_MainLoopWhileActivity_ConditionEventHandler(object sender, ConditionalEventArgs e)
     {
-      ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
-      e.Result = !(_sp.State.HasValue && (_sp.State.Value == State.Completed || _sp.State.Value == State.Canceled));
+      using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
+      {
+        ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+        e.Result = !(_sp.State.HasValue && (_sp.State.Value == State.Completed || _sp.State.Value == State.Canceled));
+      }
     }
     #endregion
 
     #region OnWorkflowItemChanged
     private void m_OnWorkflowItemChanged_Invoked(object sender, ExternalDataEventArgs e)
     {
-      try
+      using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
       {
-        string _msg = "The shipping at current state {0} has been modified by {1} and the schedule wiil be updated.";
-        ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
-        m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
-        ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None);
-        if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value != State.Completed))
-          MakeShippingReport(_sp);
-        else if (_sp.State.Value != State.Completed || _sp.State.Value != State.Cancelation)
-          MakePerformanceReport(_sp);
-      }
-      catch (Exception ex)
-      {
-        ReportException("m_OnWorkflowItemChanged_Invoked", ex);
+        try
+        {
+          string _msg = "The shipping at current state {0} has been modified by {1} and the schedule wiil be updated.";
+          ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
+          m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
+          ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None, EDC);
+          if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value != State.Completed))
+            MakeShippingReport(_sp, EDC);
+          else if (_sp.State.Value != State.Completed || _sp.State.Value != State.Cancelation)
+            MakePerformanceReport(_sp, EDC);
+        }
+        catch (Exception ex)
+        {
+          ReportException("m_OnWorkflowItemChanged_Invoked", ex, EDC);
+        }
       }
       //if (m_OnWorkflowItemChanged_BeforeProperties1.Count == 0)
       //{
@@ -142,7 +139,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       //  }
       //}
     }
-    private void MakePerformanceReport(ShippingShipping _sp)
+    private void MakePerformanceReport(ShippingShipping _sp, EntitiesDataContext EDC)
     {
       try
       {
@@ -199,7 +196,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
       catch (Exception ex)
       {
-        ReportException("MakePerformanceReport", ex);
+        ReportException("MakePerformanceReport", ex, EDC);
       }
     }
     private enum Delay { JustInTime, Delayed, VeryLate }
@@ -212,7 +209,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       else
         return Delay.VeryLate;
     }
-    private void MakeShippingReport(ShippingShipping _sp)
+    private void MakeShippingReport(ShippingShipping _sp, EntitiesDataContext EDC)
     {
       try
       {
@@ -253,7 +250,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
       catch (Exception ex)
       {
-        ReportException("MakeCalculation", ex);
+        ReportException("MakeCalculation", ex, EDC);
       }
     }
     public Hashtable m_OnWorkflowItemChanged_BeforeProperties = new System.Collections.Hashtable();
@@ -264,68 +261,71 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region CalculateTimeoutCode
     private void m_CalculateTimeoutCode_ExecuteCode(object sender, EventArgs e)
     {
-      try
+      using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
       {
-        ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
-        TimeSpan _timeDistance;
-        Shipping.RequiredOperations _ro = 0;
-        switch (_sp.State.Value)
+        try
         {
-          case State.Confirmed:
-            switch (_sp.CalculateDistance(out _timeDistance))
-            {
-              case Shipping.Distance.UpTo72h:
-              case Shipping.Distance.UpTo24h:
-              case Shipping.Distance.UpTo2h:
-              case Shipping.Distance.VeryClose:
-                SetupTimeOut(_timeDistance, _sp);
-                break;
-              case Shipping.Distance.Late:
-                MakeDelayed(_sp);
-                break;
-            }
-            break;
-          case State.WaitingForCarrierData:
-          case State.WaitingForSecurityData:
-          case State.Creation:
-            switch (_sp.CalculateDistance(out _timeDistance))
-            {
-              case Shipping.Distance.UpTo72h:
-                _ro = _sp.CalculateOperations2Do(false, true);
-                RequestData(_sp, _timeDistance, _ro, Priority.Normal);
-                break;
-              case Shipping.Distance.UpTo24h:
-                _ro = _sp.CalculateOperations2Do(false, true);
-                RequestData(_sp, _timeDistance, _ro, Priority.Warning);
-                break;
-              case Shipping.Distance.UpTo2h:
-                _ro = _sp.CalculateOperations2Do(false, true);
-                RequestData(_sp, _timeDistance, _ro, Priority.Warning);
-                break;
-              case Shipping.Distance.VeryClose:
-                _ro = _sp.CalculateOperations2Do(true, true);
-                RequestData(_sp, _timeDistance, _ro, Priority.High);
-                break;
-              case Shipping.Distance.Late:
-                MakeDelayed(_sp);
-                break;
-            }
-            break;
-          case State.Cancelation:
-            MakeCanceled(_sp);
-            break;
-          case State.Underway:
-          default:
-            SetupTimeOut(TimeSpan.Zero, _sp);
-            break;
+          ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+          TimeSpan _timeDistance;
+          Shipping.RequiredOperations _ro = 0;
+          switch (_sp.State.Value)
+          {
+            case State.Confirmed:
+              switch (_sp.CalculateDistance(out _timeDistance))
+              {
+                case Shipping.Distance.UpTo72h:
+                case Shipping.Distance.UpTo24h:
+                case Shipping.Distance.UpTo2h:
+                case Shipping.Distance.VeryClose:
+                  SetupTimeOut(_timeDistance, _sp);
+                  break;
+                case Shipping.Distance.Late:
+                  MakeDelayed(_sp, EDC);
+                  break;
+              }
+              break;
+            case State.WaitingForCarrierData:
+            case State.WaitingForSecurityData:
+            case State.Creation:
+              switch (_sp.CalculateDistance(out _timeDistance))
+              {
+                case Shipping.Distance.UpTo72h:
+                  _ro = _sp.CalculateOperations2Do(false, true);
+                  RequestData(_sp, _timeDistance, _ro, Priority.Normal, EDC);
+                  break;
+                case Shipping.Distance.UpTo24h:
+                  _ro = _sp.CalculateOperations2Do(false, true);
+                  RequestData(_sp, _timeDistance, _ro, Priority.Warning, EDC);
+                  break;
+                case Shipping.Distance.UpTo2h:
+                  _ro = _sp.CalculateOperations2Do(false, true);
+                  RequestData(_sp, _timeDistance, _ro, Priority.Warning, EDC);
+                  break;
+                case Shipping.Distance.VeryClose:
+                  _ro = _sp.CalculateOperations2Do(true, true);
+                  RequestData(_sp, _timeDistance, _ro, Priority.High, EDC);
+                  break;
+                case Shipping.Distance.Late:
+                  MakeDelayed(_sp, EDC);
+                  break;
+              }
+              break;
+            case State.Cancelation:
+              MakeCanceled(_sp, EDC);
+              break;
+            case State.Underway:
+            default:
+              SetupTimeOut(TimeSpan.Zero, _sp);
+              break;
+          }
+        }
+        catch (Exception _ex)
+        {
+          ReportException("SetupEnvironment", _ex, EDC);
         }
       }
-      catch (Exception _ex)
-      {
-        ReportException("SetupEnvironment", _ex);
-      }
     }
-    private void RequestData(ShippingShipping _sp, TimeSpan _delay, Shipping.RequiredOperations _ro, Priority _pr)
+    private void RequestData(ShippingShipping _sp, TimeSpan _delay, Shipping.RequiredOperations _ro, Priority _pr, EntitiesDataContext EDC)
     {
       string _frmt = "Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}.";
       _frmt = String.Format(_frmt, _delay, DateTime.Now + _delay);
@@ -352,9 +352,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         StartTime = _sp.StartTime.Value,
         Subject = _sp.Tytuł + " data request !!"
       };
-      SetupEnvironment(_delay, _frmt, _ro, _sp, _pr, _msg);
+      SetupEnvironment(_delay, _frmt, _ro, _sp, _pr, _msg, EDC);
     }
-    private void MakeCanceled(ShippingShipping _sp)
+    private void MakeCanceled(ShippingShipping _sp, EntitiesDataContext EDC)
     {
       _sp.State = State.Canceled;
       EDC.SubmitChanges();
@@ -368,9 +368,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         Title = _sp.Title(),
         Subject = _sp.Tytuł + " is canceled !!"
       };
-      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High, _msg);
+      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High, _msg, EDC);
     }
-    private void MakeDelayed(ShippingShipping _sp)
+    private void MakeDelayed(ShippingShipping _sp, EntitiesDataContext EDC)
     {
       _sp.State = State.Delayed;
       EDC.SubmitChanges();
@@ -386,22 +386,22 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         TruckTitle = _sp.TruckCarRegistrationNumber.Title(),
         Subject = _sp.Tytuł + " is delayed !!"
       };
-      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High, _msg);
+      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High, _msg, EDC);
     }
-    private void SetupEnvironment(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, Shipping _sp, Priority _prrty, IEmailGrnerator _msg)
+    private void SetupEnvironment(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, Shipping _sp, Priority _prrty, IEmailGrnerator _msg, EntitiesDataContext EDC)
     {
       SetupTimeOut(_delay, _sp);
-      SetupAlarmsEvents(_delay, _logDescription, _operations, _prrty);
-      SetupEmail(_delay, _operations, _sp, _msg);
+      SetupAlarmsEvents(_delay, _logDescription, _operations, _prrty, EDC);
+      SetupEmail(_delay, _operations, _sp, _msg, EDC);
     }
-    private void SetupAlarmsEvents(TimeSpan _delay, string _msg, Shipping.RequiredOperations _operations, Priority _prrty)
+    private void SetupAlarmsEvents(TimeSpan _delay, string _msg, Shipping.RequiredOperations _operations, Priority _prrty, EntitiesDataContext EDC)
     {
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Escort))
-        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.SecurityEscortProvider);
+        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.SecurityEscortProvider, EDC);
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Carrier))
-        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.VendorAndForwarder);
+        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.VendorAndForwarder, EDC);
     }
-    private void SetupEmail(TimeSpan _delay, Shipping.RequiredOperations _operations, Shipping _sp, IEmailGrnerator _body)
+    private void SetupEmail(TimeSpan _delay, Shipping.RequiredOperations _operations, Shipping _sp, IEmailGrnerator _body, EntitiesDataContext EDC)
     {
       ShepherdRole _ccRole = _sp.IsOutbound.Value ? ShepherdRole.OutboundOwner : ShepherdRole.InboundOwner;
       string _cc = DistributionList.GetEmail(_ccRole, EDC);
@@ -438,9 +438,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     public String m_FaultHandlerLogToHistoryListActivity_HistoryOutcome1 = default(System.String);
     private void m_FaultHandlerLogToHistoryListActivity_MethodInvoking(object sender, EventArgs e)
     {
-      m_FaultHandlerLogToHistoryListActivity_HistoryOutcome1 = "Error";
-      m_FaultHandlerLogToHistoryListActivity_HistoryDescription1 = m_MainFaultHandlerActivity.Fault.Message;
-      ReportException("FaultHandlersActivity", m_MainFaultHandlerActivity.Fault);
+      using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
+      {
+        m_FaultHandlerLogToHistoryListActivity_HistoryOutcome1 = "Error";
+        m_FaultHandlerLogToHistoryListActivity_HistoryDescription1 = m_MainFaultHandlerActivity.Fault.Message;
+        ReportException("FaultHandlersActivity", m_MainFaultHandlerActivity.Fault, EDC);
+      }
     }
     #endregion
 
