@@ -14,6 +14,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         return;
       this.TrailerRegistrationNumber = null;
       this.TruckCarRegistrationNumber = null;
+      _EDC.SubmitChanges();
       RemoveDrivers(_EDC, this.VendorName);
       this.Route = _nr;
       if (_nr == null)
@@ -30,6 +31,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       if (this.SecurityEscort == _nr)
         return;
       this.SecurityEscortCarRegistrationNumber = null;
+      _EDC.SubmitChanges();
       RemoveDrivers(_EDC, this.SecurityEscortProvider);
       this.SecurityEscort = _nr;
       if (_nr == null)
@@ -49,13 +51,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       {
         if (_prtne == _drv.Driver.VendorName)
         {
-          _drv.ShippingIndex = null;
-          _drv.Driver = null;
-          _2Delete.Add(_drv);
+          //_drv.ShippingIndex = null;
+          //_drv.Driver = null;
+          //_2Delete.Add(_drv);
+          //_EDC.SubmitChanges();
+        _2Delete.Add(_drv);
         }
-        _EDC.DriversTeam.DeleteAllOnSubmit(_2Delete);
-        _EDC.SubmitChanges();
       }
+      _EDC.DriversTeam.DeleteAllOnSubmit(_2Delete);
+      _EDC.SubmitChanges();
     }
     internal bool IsEditable()
     {
