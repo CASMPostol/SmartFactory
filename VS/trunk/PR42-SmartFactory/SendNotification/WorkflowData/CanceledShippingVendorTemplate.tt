@@ -1,7 +1,6 @@
-﻿<p><b>Incorrect data entered. Please verify shipping data.</b></p>
+﻿<p><b>The shipment has been canceled.</b></p>
 <p><b>Vendor:</b> <#= PartnerTitle #></p>
 <p><b>Shipping:</b> <#= Title #></p>
 <p><b>Time Slot:</b> <#= StartTime #></p>
 ____________________________________________________________________________________________</br>
-  NOTE: Information about driver’s names and truck/trailers should be supplemented in Shepherd
-        system before planned loading.</br>  
+NOTE: Information about driver’s names and truck/trailers should be supplemented in Shepherd system before planned loading.</br>  
