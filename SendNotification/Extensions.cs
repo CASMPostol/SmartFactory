@@ -1,5 +1,6 @@
 ﻿using System;
 using CAS.SmartFactory.Shepherd.SendNotification.Entities;
+using System.Web.UI.WebControls;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification
 {
@@ -20,6 +21,19 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     public static string ToMonthString(this DateTime _dateTime)
     {
       return new DateTime(_dateTime.Year, _dateTime.Month, 1).ToShortDateString();
+    }
+    public static int String2IntOrDefault(this string _val, int _default)
+    {
+      int _ret;
+      if (int.TryParse(_val, out _ret))
+      {
+        return _ret;
+      }
+      return _default;
+    }
+    public static void AddTextAndValue(this DropDownList _list, int i)
+    {
+      _list.Items.Add(new ListItem(i.ToString(), i.ToString()));
     }
   }
 }
