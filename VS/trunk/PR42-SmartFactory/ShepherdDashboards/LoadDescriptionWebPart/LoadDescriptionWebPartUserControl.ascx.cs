@@ -357,6 +357,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         if (_res.ActionSucceeded)
         {
           ReportAlert("LoadDescription created");
+          _ld.Vendor = CurrentShipping.VendorName;
           m_EDC.LoadDescription.InsertOnSubmit(_ld);
           m_EDC.SubmitChanges();
           m_ControlState.LoadDescriptionID = _ld.Identyfikator.Value.ToString();
