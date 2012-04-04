@@ -6,6 +6,8 @@
         <Folder TargetName="_cts/LoadDescription" />
         <FieldRefs>
           <FieldRef ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Name="LoadDescription2ShippingIndex" />
+          <FieldRef ID="{867E459C-C3CD-4B4D-9547-C4CB23C8A8CB}" Name="LoadDescriptionShippingTitle" />
+          <FieldRef ID="{E34A2F2D-9BDE-43CA-BFBA-80815EDC2416}" Name="LoadDescription2PartnerTitle" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
           <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
           <FieldRef ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}" Name="DeliveryNumber" />
@@ -43,6 +45,8 @@
           <CHOICE>Other</CHOICE>
         </CHOICES>
       </Field>
+      <Field Type="Lookup" DisplayName="Shipping" List="Lists/ShippingList" ShowField="Title" FieldRef="EE6CEE2D-161D-461A-BD11-01FF570752A3" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{867E459C-C3CD-4B4D-9547-C4CB23C8A8CB}" Name="LoadDescriptionShippingTitle" Overwrite="TRUE" />
+      <Field Name="LoadDescription2PartnerTitle" ID="{E34A2F2D-9BDE-43CA-BFBA-80815EDC2416}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -75,6 +79,8 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Name="LoadDescription2ShippingIndex" />
+          <FieldRef ID="{867E459C-C3CD-4B4D-9547-C4CB23C8A8CB}" Name="LoadDescriptionShippingTitle" />
+          <FieldRef ID="{E34A2F2D-9BDE-43CA-BFBA-80815EDC2416}" Name="LoadDescription2PartnerTitle" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
           <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
           <FieldRef ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}" Name="DeliveryNumber" />
@@ -102,7 +108,7 @@
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
-          <FieldRef ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Name="LoadDescription2ShippingIndex" />
+          <FieldRef ID="{867E459C-C3CD-4B4D-9547-C4CB23C8A8CB}" Name="LoadDescriptionShippingTitle" />
           <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
           <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
@@ -125,6 +131,7 @@
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
+          <FieldRef ID="{867E459C-C3CD-4B4D-9547-C4CB23C8A8CB}" Name="LoadDescriptionShippingTitle" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
           <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
@@ -148,6 +155,8 @@
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
+          <FieldRef ID="{867E459C-C3CD-4B4D-9547-C4CB23C8A8CB}" Name="LoadDescriptionShippingTitle" />
+          <FieldRef ID="{E34A2F2D-9BDE-43CA-BFBA-80815EDC2416}" Name="LoadDescription2PartnerTitle" />
           <FieldRef ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Name="PalletType" />
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
           <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
