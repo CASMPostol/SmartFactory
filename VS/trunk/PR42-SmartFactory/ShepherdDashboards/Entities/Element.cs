@@ -12,6 +12,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     internal const string IDPropertyName = "Identyfikator";
     internal const string TitlePropertyName = "Tytuł";
     /// <summary>
+    /// Try to get at index. 
+    /// </summary>
+    /// <typeparam name="t"></typeparam>
+    /// <param name="_list">The _list.</param>
+    /// <param name="_ID">The _ ID.</param>
+    /// <exception cref="ApplicationException">Element cannot be found.</exception>
+    /// <returns>An instance of the <see cref="t"/> for the selected index or null if <paramref name="_ID"/> is null or empty.</returns>
+    internal static t TryGetAtIndex<t>(EntityList<t> _list, string _ID)
+      where t : Element
+    {
+      if (_ID.IsNullOrEmpty())
+        return null;
+      return GetAtIndex<t>(_list, _ID);
+    }
+    /// <summary>
     /// Gets at index.
     /// </summary>
     /// <typeparam name="t"></typeparam>
