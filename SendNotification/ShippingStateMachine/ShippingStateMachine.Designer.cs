@@ -92,7 +92,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_TimeOutLogToHistoryListActivity.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
       this.m_TimeOutLogToHistoryListActivity.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
       activitybind1.Name = "ShippingStateMachine";
-      activitybind1.Path = "m_TimeOutLogToHistoryListActivity_HistoryDescription1";
+      activitybind1.Path = "m_TimeOutLogToHistoryListActivity_HistoryDescription";
       this.m_TimeOutLogToHistoryListActivity.HistoryOutcome = "Timeout";
       this.m_TimeOutLogToHistoryListActivity.Name = "m_TimeOutLogToHistoryListActivity";
       this.m_TimeOutLogToHistoryListActivity.OtherData = "";
@@ -434,6 +434,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private SequenceActivity m_SequenceActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated;
+
 
 
 
