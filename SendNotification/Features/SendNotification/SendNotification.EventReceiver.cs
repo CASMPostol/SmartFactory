@@ -37,9 +37,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
           _taskList.UseFormsForDisplay = false;
           _taskList.Update();
           _state = "_taskList.Update";
-          NewPONotificationAssociation(CommonDefinition.FreightPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.FreightPOAssociationData(), "Email Freight PO");
+          NewSendEmailAssociation(CommonDefinition.FreightPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.FreightPOAssociationData());
           _state = "FreightPOLibraryName";
-          NewPONotificationAssociation(CommonDefinition.EscortPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.SecurityPOAssociationData(), "Email Escort PO");
+          NewSendEmailAssociation(CommonDefinition.EscortPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.SecurityPOAssociationData());
           _state = "EscortPOLibraryTitle";
           NewCreatePOAssociation(CreatePO.CreatePO.WorkflowDescription, _web, _taskList, _historyList);
           _state = "AddCreateFPOAssociation";
@@ -88,13 +88,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
         throw new ApplicationException(String.Format(_frmt, _state, _ex.Message));
       }
     }
-    private static void NewPONotificationAssociation(string _targetList, SPWeb _web, SPList _taskList, SPList _historyList, POLibraryWorkflowAssociationData _wfData, string _wName)
+    private static void NewSendEmailAssociation(string _targetList, SPWeb _web, SPList _taskList, SPList _historyList, POLibraryWorkflowAssociationData _wfData)
     {
       SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[SendEmail.SendEmail.WorkflowId];
       // create workflow association
       SPWorkflowAssociation _wa = SPWorkflowAssociation.CreateListAssociation(
         _workflowTemplate,
-        _wName, //User-friendly name for workflow association
+        _wfData.Name,
        _taskList,
         _historyList);
       // configure workflow association and add to WorkflowAssociations collection
