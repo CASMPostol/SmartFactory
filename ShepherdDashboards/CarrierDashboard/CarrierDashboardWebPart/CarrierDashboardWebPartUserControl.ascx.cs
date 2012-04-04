@@ -790,31 +790,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void UpdateSecurityEscort(Shipping _sipping)
     {
-      if (m_ControlState.SecurityCatalogID.IsNullOrEmpty())
-      {
-        _sipping.SecurityEscort = null;
-        _sipping.SecurityEscortProvider = null;
-      }
-      else
-      {
-        _sipping.SecurityEscort = Element.GetAtIndex<SecurityEscortCatalog>(EDC.SecurityEscortRoute, m_ControlState.SecurityCatalogID);
-        _sipping.SecurityEscortProvider = _sipping.SecurityEscort.VendorName;
-      }
+      if (!m_CoordinatorEditCheckBox.Checked)
+        return;
+      _sipping.ChangeEscort(Element.TryGetAtIndex<SecurityEscortCatalog>(EDC.SecurityEscortRoute, m_ControlState.SecurityCatalogID), EDC);
     }
     private void UpdateRoute(Shipping _sipping)
     {
       if (!m_CoordinatorEditCheckBox.Checked)
         return;
-      if (m_ControlState.RouteID.IsNullOrEmpty())
-        _sipping.ChangeRout(null, EDC);
-      else
-        _sipping.ChangeRout(Element.GetAtIndex<Route>(EDC.Route, m_ControlState.RouteID), EDC);
+      _sipping.ChangeRout(Element.TryGetAtIndex<Route>(EDC.Route, m_ControlState.RouteID), EDC);
     }
     private void UpdateVendor(Shipping _sipping, ActionResult _rsult)
     {
       if (m_ControlState.PartnerID.IsNullOrEmpty())
       {
-        _rsult.Add(m_SecurityEscortHeaderLabel.Text);
+        _rsult.Add(m_PartnerHeaderLabel.Text);
         return;
       }
       if ((_sipping.VendorName != null) && (m_ControlState.PartnerID.String2Int() == _sipping.VendorName.Identyfikator.Value))

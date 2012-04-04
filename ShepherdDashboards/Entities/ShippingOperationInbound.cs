@@ -12,21 +12,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       if (this.Route == _nr)
         return;
-      this.Route = _nr;
       this.TrailerRegistrationNumber = null;
       this.TruckCarRegistrationNumber = null;
-      if (this.VendorName != null)
-        foreach (ShippingDriversTeam _drv in this.ShippingDriversTeam)
-        {
-          if (this.VendorName == _drv.Driver.VendorName)
-          {
-            _drv.ShippingIndex = null;
-            _drv.Driver = null;
-            _EDC.DriversTeam.DeleteOnSubmit(_drv);
-          }
-          _EDC.SubmitChanges();
-        }
-      if (this.Route == null)
+      RemoveDrivers(_EDC, this.VendorName);
+      this.Route = _nr;
+      if (_nr == null)
       {
         this.BusinessDescription = String.Empty;
         this.VendorName = null;
@@ -34,6 +24,38 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       }
       this.BusinessDescription = Route.BusinessDescription == null ? String.Empty : Route.BusinessDescription.Tytuł;
       this.VendorName = Route.VendorName;
+    }
+    internal void ChangeEscort(SecurityEscortCatalog _nr, EntitiesDataContext _EDC)
+    {
+      if (this.SecurityEscort == _nr)
+        return;
+      this.SecurityEscortCarRegistrationNumber = null;
+      RemoveDrivers(_EDC, this.SecurityEscortProvider);
+      this.SecurityEscort = _nr;
+      if (_nr == null)
+      {
+        this.SecurityEscortProvider = null;
+        return;
+      }
+      this.SecurityEscort = _nr;
+      this.SecurityEscortProvider = _nr == null ? null : _nr.VendorName;
+    }
+    private void RemoveDrivers(EntitiesDataContext _EDC, Partner _prtne)
+    {
+      if (_prtne == null)
+        return;
+      List<ShippingDriversTeam> _2Delete = new List<ShippingDriversTeam>();
+      foreach (ShippingDriversTeam _drv in this.ShippingDriversTeam)
+      {
+        if (_prtne == _drv.Driver.VendorName)
+        {
+          _drv.ShippingIndex = null;
+          _drv.Driver = null;
+          _2Delete.Add(_drv);
+        }
+        _EDC.DriversTeam.DeleteAllOnSubmit(_2Delete);
+        _EDC.SubmitChanges();
+      }
     }
     internal bool IsEditable()
     {
