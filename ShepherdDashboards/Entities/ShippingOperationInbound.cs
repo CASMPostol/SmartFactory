@@ -8,9 +8,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
   public partial class Shipping
   {
     #region private
-    internal void ChangeRout(Route _nr)
+    internal void ChangeRout(Route _nr, EntitiesDataContext _EDC)
     {
+      if (this.Route == _nr)
+        return;
       this.Route = _nr;
+      this.TrailerRegistrationNumber = null;
+      this.TruckCarRegistrationNumber = null;
+      if (this.VendorName != null)
+        foreach (ShippingDriversTeam _drv in this.ShippingDriversTeam)
+        {
+          if (this.VendorName == _drv.Driver.VendorName)
+          {
+            _drv.ShippingIndex = null;
+            _drv.Driver = null;
+            _EDC.DriversTeam.DeleteOnSubmit(_drv);
+          }
+          _EDC.SubmitChanges();
+        }
       if (this.Route == null)
       {
         this.BusinessDescription = String.Empty;
