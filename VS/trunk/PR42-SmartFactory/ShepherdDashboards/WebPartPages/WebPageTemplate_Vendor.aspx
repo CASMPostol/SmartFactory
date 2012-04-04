@@ -65,6 +65,16 @@
                     </td>
                 </tr>
             </table>
+            <table width="100%" border="0">
+                <tr>
+                    <td collspan="2" valign="top">
+                    <WebPartPages:WebpartZone
+                    ID="LoadDescription" runat="server"
+                    Title="Load Description Web Part Zone"
+                    FrameType="TitleBarOnly" />
+                    </td>
+                </tr>
+            </table>
             <table border="0" width="100%">
                 <tr>
                     <td valign="top" width="400px" >
