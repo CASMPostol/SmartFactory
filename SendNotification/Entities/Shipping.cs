@@ -10,10 +10,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
     [Flags]
     internal enum RequiredOperations
     {
-      SendEmail2Carrier,
-      SendEmail2Escort,
-      AddAlarm2Carrier,
-      AddAlarm2Escort
+      SendEmail2Carrier = 0x01,
+      SendEmail2Escort  = 0x02,
+      AddAlarm2Carrier  = 0x04,
+      AddAlarm2Escort   = 0x10
     }
     internal const RequiredOperations CarrierOperations = Shipping.RequiredOperations.AddAlarm2Carrier | Shipping.RequiredOperations.SendEmail2Carrier;
     internal enum Distance { UpTo72h, UpTo24h, UpTo2h, VeryClose, Late }
