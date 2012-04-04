@@ -12,6 +12,7 @@ using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.Utilities;
+using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
 {
@@ -20,17 +21,29 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
     protected void Page_Load(object sender, EventArgs e)
     {
       InitializeParams();
-
-      // Optionally, add code here to pre-populate your form fields.
+      for (int i = 1; i <= 31; i++)
+        m_Day.AddTextAndValue(i);
+      for (int i = 1; i <= 12; i++)
+        m_Month.AddTextAndValue(i);
+      int _yer = DateTime.Now.Year;
+      for (int i = _yer; i < _yer + 3; i++)
+        m_Year.AddTextAndValue(i);
+      for (int i = 1; i <= 25; i++)
+        m_Duration.AddTextAndValue(i);
     }
-
-    // This method is called when the user clicks the button to start the workflow.
+    /// <summary>
+    /// This method is called when the user clicks the button to start the workflow.
+    /// </summary>
+    /// <returns></returns>
     private string GetInitiationData()
     {
-      // TODO: Return a string that contains the initiation data that will be passed to the workflow. Typically, this is in XML format.
-      return string.Empty;
+      TimeSlotsInitiationData _data = new WorkflowData.TimeSlotsInitiationData()
+      {
+        Duration = m_Duration.SelectedItem.Text.String2IntOrDefault(30),
+        StartDate = new DateTime(m_Year.SelectedValue.String2IntOrDefault(DateTime.Now.Year), m_Month.SelectedValue.String2IntOrDefault(1), m_Day.SelectedValue.String2IntOrDefault(1))
+      };
+      return _data.Serialize(); ;
     }
-
     protected void StartWorkflow_Click(object sender, EventArgs e)
     {
       // Optionally, add code here to perform additional steps before starting your workflow
@@ -43,7 +56,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
         SPUtility.TransferToErrorPage(SPHttpUtility.UrlKeyValueEncode("Failed to Start Workflow"));
       }
     }
-
     protected void Cancel_Click(object sender, EventArgs e)
     {
       SPUtility.Redirect("Workflow.aspx", SPRedirectFlags.RelativeToLayoutsPage, HttpContext.Current, Page.ClientQueryString);
