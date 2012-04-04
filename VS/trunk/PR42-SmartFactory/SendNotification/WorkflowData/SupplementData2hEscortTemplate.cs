@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
                     " Escort Provider</b>: ");
             
             #line 3 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\SupplementData2hEscortTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(ShippingOperationOutband2PartnerTitle));
+            this.Write(this.ToStringHelper.ToStringWithCulture(PartnerTitle));
             
             #line default
             #line hidden

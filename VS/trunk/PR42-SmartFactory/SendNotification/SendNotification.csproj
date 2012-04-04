@@ -113,6 +113,19 @@
       <DependentUpon>SendNotification.feature</DependentUpon>
     </Compile>
     <Compile Include="OpenXMLHelpers.cs" />
+    <Compile Include="WorkflowData\CanceledShippingVendorTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CanceledShippingVendorTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowData\CanceledShippingVendorTemplate.partial.cs" />
+    <Compile Include="WorkflowData\DelayedShippingVendorTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DelayedShippingVendorTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowData\DelayedShippingVendorTemplate.partial.cs" />
+    <Compile Include="WorkflowData\IEmailGrnerator.cs" />
     <Compile Include="WorkflowData\SupplementData2hEscortTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -181,6 +194,14 @@
     </None>
     <None Include="ShippingStateMachine\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a572a7e5-dff0-457d-9089-b02216efe685}</SharePointProjectItemId>
+    </None>
+    <None Include="WorkflowData\CanceledShippingVendorTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CanceledShippingVendorTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="WorkflowData\DelayedShippingVendorTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DelayedShippingVendorTemplate.cs</LastGenOutput>
     </None>
     <None Include="WorkflowData\FreightPurchaseOrderTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

@@ -202,7 +202,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         ReportException("MakePerformanceReport", ex);
       }
     }
-
     private enum Delay { JustInTime, Delayed, VeryLate }
     private Delay CalculateDelay(TimeSpan _value)
     {
@@ -268,7 +267,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       try
       {
         ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
-        string _frmt = default(string);
         TimeSpan _timeDistance;
         Shipping.RequiredOperations _ro = 0;
         switch (_sp.State.Value)
@@ -290,42 +288,33 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           case State.WaitingForCarrierData:
           case State.WaitingForSecurityData:
           case State.Creation:
-            Priority _pr = 0;
-            _frmt = "Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}.";
             switch (_sp.CalculateDistance(out _timeDistance))
             {
               case Shipping.Distance.UpTo72h:
                 _ro = _sp.CalculateOperations2Do(false, true);
-                _pr = Priority.Normal;
+                RequestData(_sp, _timeDistance, _ro, Priority.Normal);
                 break;
               case Shipping.Distance.UpTo24h:
-                _frmt.Insert(0, "Remainder; ");
                 _ro = _sp.CalculateOperations2Do(false, true);
-                _pr = Priority.Warning;
+                RequestData(_sp, _timeDistance, _ro, Priority.Warning);
                 break;
               case Shipping.Distance.UpTo2h:
-                _frmt.Insert(0, "Warnning !");
                 _ro = _sp.CalculateOperations2Do(false, true);
-                _pr = Priority.Warning;
+                RequestData(_sp, _timeDistance, _ro, Priority.Warning);
                 break;
               case Shipping.Distance.VeryClose:
-                _frmt.Insert(0, "It is last call !!!");
                 _ro = _sp.CalculateOperations2Do(true, true);
-                _pr = Priority.High;
+                RequestData(_sp, _timeDistance, _ro, Priority.High);
                 break;
               case Shipping.Distance.Late:
                 MakeDelayed(_sp);
                 break;
             }
-            SetupEnvironment(_timeDistance, _frmt, _ro, _sp, _pr);
-            break;
-          case State.Underway:
-            if (_sp.EndTime.Value < DateTime.Now)
-              SetupTimeOut(TimeSpan.Zero, _sp);
             break;
           case State.Cancelation:
             MakeCanceled(_sp);
             break;
+          case State.Underway:
           default:
             SetupTimeOut(TimeSpan.Zero, _sp);
             break;
@@ -336,10 +325,50 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         ReportException("SetupEnvironment", _ex);
       }
     }
-
+    private void RequestData(ShippingShipping _sp, TimeSpan _delay, Shipping.RequiredOperations _ro, Priority _pr)
+    {
+      string _frmt = "Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}.";
+      _frmt = String.Format(_frmt, _delay, DateTime.Now + _delay);
+      switch (_pr)
+      {
+        case Priority.Normal:
+          _frmt.Insert(0, "Remainder; ");
+          break;
+        case Priority.High:
+          _frmt.Insert(0, "Warnning !");
+          break;
+        case Priority.Warning:
+          _frmt.Insert(0, "It is last call !!!");
+          break;
+        case Priority.None:
+        case Priority.Invalid:
+        default:
+          break;
+      }
+      SupplementData2hVendorTemplate _msg = new SupplementData2hVendorTemplate()
+      {
+        PartnerTitle = _sp.VendorName.Title(),
+        Title = _sp.Title(),
+        StartTime = _sp.StartTime.Value,
+        Subject = _sp.Tytuł + " data request !!"
+      };
+      SetupEnvironment(_delay, _frmt, _ro, _sp, _pr, _msg);
+    }
     private void MakeCanceled(ShippingShipping _sp)
     {
-      throw new NotImplementedException(); //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3251
+      _sp.State = State.Canceled;
+      EDC.SubmitChanges();
+      string _frmt = "Wanning !! The shipping has been cancelled by {0}";
+      _frmt = String.Format(_frmt, _sp.ZmodyfikowanePrzez);
+      Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true) & Shipping.CarrierOperations;
+      CanceledShippingVendorTemplate _msg = new CanceledShippingVendorTemplate()
+      {
+        PartnerTitle = _sp.VendorName.Title(),
+        StartTime = _sp.StartTime.Value,
+        Title = _sp.Title(),
+        Subject = _sp.Tytuł + " is canceled !!"
+      };
+      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High, _msg);
     }
     private void MakeDelayed(ShippingShipping _sp)
     {
@@ -348,24 +377,31 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       string _frmt = "Wanning !! The truck is late. Call the driver: {0}";
       _frmt = String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????");
       _frmt += "The shipping should finisch in {0:g} at {1:g}.";
-      Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true) & Shipping.CarrierOperations; //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3251
-      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High);
+      Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true) & Shipping.CarrierOperations;
+      DelayedShippingVendorTemplate _msg = new DelayedShippingVendorTemplate()
+      {
+        PartnerTitle = _sp.VendorName.Title(),
+        StartTime = _sp.StartTime.Value,
+        Title = _sp.Title(),
+        TruckTitle = _sp.TruckCarRegistrationNumber.Title(),
+        Subject = _sp.Tytuł + " is delayed !!"
+      };
+      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High, _msg);
     }
-    private void SetupEnvironment(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, Shipping _sp, Priority _prrty)
+    private void SetupEnvironment(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, Shipping _sp, Priority _prrty, IEmailGrnerator _msg)
     {
       SetupTimeOut(_delay, _sp);
       SetupAlarmsEvents(_delay, _logDescription, _operations, _prrty);
-      SetupEmail(_delay, _operations, _sp);
+      SetupEmail(_delay, _operations, _sp, _msg);
     }
-    private void SetupAlarmsEvents(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, Priority _prrty)
+    private void SetupAlarmsEvents(TimeSpan _delay, string _msg, Shipping.RequiredOperations _operations, Priority _prrty)
     {
-      string _msg = String.Format(_logDescription, _delay, DateTime.Now + _delay);
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Escort))
         ReportAlarmsAndEvents(_msg, _prrty, ServiceType.SecurityEscortProvider);
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Carrier))
         ReportAlarmsAndEvents(_msg, _prrty, ServiceType.VendorAndForwarder);
     }
-    private void SetupEmail(TimeSpan _delay, Shipping.RequiredOperations _operations, Shipping _sp)
+    private void SetupEmail(TimeSpan _delay, Shipping.RequiredOperations _operations, Shipping _sp, IEmailGrnerator _body)
     {
       ShepherdRole _ccRole = _sp.IsOutbound.Value ? ShepherdRole.OutboundOwner : ShepherdRole.InboundOwner;
       var _ccdl = (from _ccx in EDC.DistributionList
@@ -378,49 +414,19 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       string _cc = _ccdl == null ? CommonDefinition.UnknownEmail : _ccdl.Email.UnknownIfEmpty();
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Carrier))
       {
-        SupplementData2hVendorTemplate _msg = default(SupplementData2hVendorTemplate);
-        switch (_sp.State.Value)
-        {
-          case State.Delayed:
-            _msg = new SupplementData2hVendorTemplate(); //Change according to the state http://itrserver/Bugs/BugDetail.aspx?bid=3251
-            break;
-          case State.Creation:
-          case State.WaitingForCarrierData:
-          case State.WaitingForSecurityData:
-            _msg = new SupplementData2hVendorTemplate();
-            break;
-          //TODO add Sanceling http://itrserver/Bugs/BugDetail.aspx?bid=3251
-          case State.Canceled:
-            //TODO add Sanceling http://itrserver/Bugs/BugDetail.aspx?bid=3251
-            break;
-          case State.None:
-          case State.Invalid:
-          case State.Completed:
-          case State.Confirmed:
-          case State.Underway:
-          default:
-            break;
-        }
-        _msg.PartnerTitle = _sp.VendorName.Title();
-        _msg.Title = _sp.Title();
-        _msg.StartTime = _sp.StartTime.Value;
+        _body.PartnerTitle = _sp.VendorName.Title();
         m_CarrierNotificationSendEmail_To = _sp.VendorName != null ? _sp.VendorName.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
-        m_CarrierNotificationSendEmail_Subject1 = _sp.Tytuł + " Delayed !!";
-        m_CarrierNotificationSendEmail_Body = _msg.TransformText();
+        m_CarrierNotificationSendEmail_Subject1 = _body.Subject;
+        m_CarrierNotificationSendEmail_Body = _body.TransformText();
         m_CarrierNotificationSendEmail_CC = _cc;
         m_CarrierNotificationSendEmail_From = _cc;
       }
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Escort))
       {
-        SupplementData2hEscortTemplate _msg = new SupplementData2hEscortTemplate() //Change according to the state http://itrserver/Bugs/BugDetail.aspx?bid=3251
-        {
-          ShippingOperationOutband2PartnerTitle = _sp.SecurityEscortProvider.Title(),
-          StartTime = _sp.StartTime.Value,
-          Title = _sp.Title()
-        };
+        _body.PartnerTitle = _sp.SecurityEscortProvider.Title();
         m_EscortSendEmail_To = _sp.SecurityEscortProvider != null ? _sp.SecurityEscortProvider.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
-        m_EscortSendEmail_Subject = _sp.Tytuł + " Delayed !!";
-        m_EscortSendEmail_Body = _msg.TransformText();
+        m_EscortSendEmail_Subject = _body.Subject;
+        m_EscortSendEmail_Body = _body.TransformText();
         m_EscortSendEmail_CC = _cc;
         m_EscortSendEmail_From = _cc;
       }
