@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TimeSlotsInitiationData"
+    targetNamespace="http://cas.eu/schemas/SmartFactory/Shepherd/SendNotification/WorkflowData/TimeSlotsInitiationData.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://cas.eu/schemas/SmartFactory/Shepherd/SendNotification/WorkflowData/TimeSlotsInitiationData.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="TimeSlotsInitiationData">
+    <xs:complexType >
+      <xs:sequence>
+        <xs:annotation >
+          <xs:documentation> Title of the message</xs:documentation>
+        </xs:annotation>
+        <!-- The name to give this workflow association. -->
+        <xs:element name="StartDate" type="xs:date"/>
+        <xs:element name="Duration" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
