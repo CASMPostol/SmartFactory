@@ -1,4 +1,4 @@
-﻿<p><b>Missing data. Please verify shipping data and supplement them.</b></p>
+﻿<p><b>Shipment is delayed. Expected truck <#= TruckTitle #> had not arrived.</b></p>
 <p><b>Vendor:</b> <#= PartnerTitle #></p>
 <p><b>Shipping:</b> <#= Title #></p>
 <p><b>Time Slot:</b> <#= StartTime #></p>
