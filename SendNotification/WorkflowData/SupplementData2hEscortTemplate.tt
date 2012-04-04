@@ -1,6 +1,6 @@
 ﻿<#@ template language="C#" #>
 <p><b>2 hour remaining to supplement missing escort data.</b></p>
-<p><b>Security Escort Provider</b>: <#= ShippingOperationOutband2PartnerTitle #></p>
+<p><b>Security Escort Provider</b>: <#= PartnerTitle #></p>
 <p><b>Shipping:</b> <#= Title #></p>
 <p><b>Time Slot:</b> <#= StartTime #></p>
 ____________________________________________________________________________________________</br>
