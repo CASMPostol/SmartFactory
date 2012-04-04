@@ -803,10 +803,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     }
     private void UpdateRoute(Shipping _sipping)
     {
+      if (!m_CoordinatorEditCheckBox.Checked)
+        return;
       if (m_ControlState.RouteID.IsNullOrEmpty())
-        _sipping.ChangeRout(null);
+        _sipping.ChangeRout(null, EDC);
       else
-        _sipping.ChangeRout(Element.GetAtIndex<Route>(EDC.Route, m_ControlState.RouteID));
+        _sipping.ChangeRout(Element.GetAtIndex<Route>(EDC.Route, m_ControlState.RouteID), EDC);
     }
     private void UpdateVendor(Shipping _sipping, ActionResult _rsult)
     {
