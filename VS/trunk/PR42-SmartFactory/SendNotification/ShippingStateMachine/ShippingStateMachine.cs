@@ -73,10 +73,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region WhileActivity
     private void m_MainLoopWhileActivity_ConditionEventHandler(object sender, ConditionalEventArgs e)
     {
-      using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url) { ObjectTrackingEnabled = false })
+      try
       {
-        ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
-        e.Result = !(_sp.State.HasValue && (_sp.State.Value == State.Completed || _sp.State.Value == State.Canceled));
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url) { ObjectTrackingEnabled = false })
+        {
+          ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+          e.Result = !(_sp.State.HasValue && (_sp.State.Value == State.Completed || _sp.State.Value == State.Canceled));
+        }
+      }
+      catch (Exception ex)
+      {
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
+        {
+          ReportException("m_OnWorkflowItemChanged_Invoked", ex, EDC);
+        }
       }
     }
     #endregion
@@ -191,7 +201,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private enum Delay { JustInTime, Delayed, VeryLate }
     private Delay CalculateDelay(TimeSpan _value)
     {
-      if (_value < TimeSpan.Zero || _value < new TimeSpan(0, 15, 0))
+      if (_value < new TimeSpan(0, 15, 0))
         return Delay.JustInTime;
       else if (_value < new TimeSpan(1, 0, 0))
         return Delay.Delayed;
@@ -253,16 +263,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region CalculateTimeoutCode
     private void m_CalculateTimeoutCode_ExecuteCode(object sender, EventArgs e)
     {
-      using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url) { ObjectTrackingEnabled = false })
+      using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
       {
         try
         {
           ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
-          TimeSpan _timeDistance;
           Shipping.RequiredOperations _ro = 0;
           switch (_sp.State.Value)
           {
             case State.Confirmed:
+              TimeSpan _timeDistance;
               switch (_sp.CalculateDistance(out _timeDistance))
               {
                 case Shipping.Distance.UpTo72h:
@@ -307,7 +317,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               break;
             case State.Underway:
             default:
-              SetupTimeOut(TimeSpan.Zero, _sp);
+              SetupTimeOut(TimeSpan.FromHours(5), _sp);
               break;
           }
         }
@@ -449,10 +459,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region TimeOutLogToHistoryList
     private void m_TimeOutLogToHistoryListActivity_MethodInvoking(object sender, EventArgs e)
     {
-      m_TimeOutLogToHistoryListActivity_HistoryDescription1 = String.Format("Timeout expired at {0:g}", DateTime.Now);
+      m_TimeOutLogToHistoryListActivity_HistoryDescription = String.Format("Timeout expired at {0:g}", DateTime.Now);
     }
-    public String m_TimeOutLogToHistoryListActivity_HistoryOutcome1 = default(System.String);
-    public String m_TimeOutLogToHistoryListActivity_HistoryDescription1 = default(System.String);
+    public String m_TimeOutLogToHistoryListActivity_HistoryDescription = default(System.String);
     #endregion
 
     #region CarrierNotificationSendEmail
@@ -520,6 +529,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
     }
     #endregion
+
 
   }
 }
