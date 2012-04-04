@@ -105,6 +105,7 @@
     <Compile Include="CreateSecurityPO1\CreateSecurityPO1.Designer.cs">
       <DependentUpon>CreateSecurityPO1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\DistributionList.cs" />
     <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\Shipping.cs" />
@@ -126,6 +127,12 @@
     </Compile>
     <Compile Include="WorkflowData\DelayedShippingVendorTemplate.partial.cs" />
     <Compile Include="WorkflowData\IEmailGrnerator.cs" />
+    <Compile Include="WorkflowData\SecurityEscortPurchaseOrderTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityEscortPurchaseOrderTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowData\SecurityEscortPurchaseOrderTemplate.partial.cs" />
     <Compile Include="WorkflowData\SupplementData2hEscortTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -211,6 +218,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="WorkflowData\Scripts\CreateCS.ps1" />
+    <None Include="WorkflowData\SecurityEscortPurchaseOrderTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SecurityEscortPurchaseOrderTemplate.cs</LastGenOutput>
+    </None>
     <None Include="WorkflowData\SupplementData2hEscortTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>SupplementData2hEscortTemplate.cs</LastGenOutput>

@@ -404,14 +404,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void SetupEmail(TimeSpan _delay, Shipping.RequiredOperations _operations, Shipping _sp, IEmailGrnerator _body)
     {
       ShepherdRole _ccRole = _sp.IsOutbound.Value ? ShepherdRole.OutboundOwner : ShepherdRole.InboundOwner;
-      var _ccdl = (from _ccx in EDC.DistributionList
-                   where _ccx.ShepherdRole.GetValueOrDefault(ShepherdRole.Invalid) == _ccRole
-                   select new { Email = _ccx.EMail }).FirstOrDefault();
-      if (_ccdl == null || String.IsNullOrEmpty(_ccdl.Email))
-        _ccdl = (from _ccx in EDC.DistributionList
-                 where _ccx.ShepherdRole.GetValueOrDefault(ShepherdRole.Invalid) == ShepherdRole.Administrator
-                 select new { Email = _ccx.EMail }).FirstOrDefault();
-      string _cc = _ccdl == null ? CommonDefinition.UnknownEmail : _ccdl.Email.UnknownIfEmpty();
+      string _cc = DistributionList.GetEmail(_ccRole, EDC);
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Carrier))
       {
         _body.PartnerTitle = _sp.VendorName.Title();

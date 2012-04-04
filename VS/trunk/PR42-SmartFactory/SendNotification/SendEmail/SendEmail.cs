@@ -1,12 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
 using System.Workflow.Activities;
-using System.Xml;
-using System.Xml.Serialization;
 using CAS.SmartFactory.Shepherd.SendNotification.Entities;
 using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
-using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
@@ -18,62 +13,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
       InitializeComponent();
     }
     #region Activation
-    private FreightPurchaseOrderTemplate _emailBodyObject = new FreightPurchaseOrderTemplate();
-    private void m_onWorkflowActivated_Invoked(object sender, ExternalDataEventArgs e)
-    {
-      POLibraryWorkflowAssociationData _activationData = default(POLibraryWorkflowAssociationData);
-      try
-      {
-        // deserialize initiation data; 
-        XmlSerializer serializer = new XmlSerializer(typeof(POLibraryWorkflowAssociationData));
-        XmlTextReader reader = new XmlTextReader(new StringReader(m_WorkflowProperties.InitiationData));
-        _activationData = (POLibraryWorkflowAssociationData)serializer.Deserialize(reader);
-      }
-      catch (Exception ex)
-      {
-        string _frmt = "Worflow aborted in WorkflowActivated because of error: {0}";
-        throw new ApplicationException(String.Format(_frmt, ex.Message));
-      }
-      _emailBodyObject = CreateEmailMessage(_activationData);
-    }
-    private FreightPurchaseOrderTemplate CreateEmailMessage(POLibraryWorkflowAssociationData _activationData)
-    {
-      try
-      {
-        m_sendEmail1_CC = m_WorkflowProperties.OriginatorEmail;
-        m_sendEmail1_From = m_WorkflowProperties.OriginatorEmail;
-        m_sendEmail1_Subject = _activationData.Title;
-        using (SPSite _st = m_WorkflowProperties.Site)
-        {
-          using (EntitiesDataContext _EDC = new EntitiesDataContext(_st.Url))
-          {
-            FreightPO _fpo = (from idx in _EDC.FreightPOLibrary
-                              where idx.Identyfikator == m_WorkflowProperties.ItemId
-                              select idx).First();
-            m_sendEmail1_To = String.IsNullOrEmpty(_fpo.EMail) ? CommonDefinition.UnknownEmail : _fpo.EMail;
-            return new FreightPurchaseOrderTemplate()
-            {
-              Encodedabsurl = new Uri((string)m_WorkflowProperties.Item["EncodedAbsUrl"]),
-              Modified = (DateTime)m_WorkflowProperties.Item["Modified"],
-              ModifiedBy = m_WorkflowProperties.OriginatorUser.Name,
-              DocumentName = m_WorkflowProperties.Item.File.Name,
-              FPO2CityTitle = _fpo.City,
-              FPO2CommodityTitle = _fpo.Commodity,
-              FPO2CountryTitle = _fpo.Country,
-              FPO2RouteGoodsHandlingPO = _fpo.FreightPO0,
-              FPO2TransportUnitTypeTitle = _fpo.TransportUnit,
-              FPOLoadingDate = _fpo.LoadingDate.GetValueOrDefault(DateTime.MaxValue),
-              FPO2WarehouseAddress = _fpo.WarehouseAddress,
-            };
-          }
-        }
-      }
-      catch (Exception ex)
-      {
-        string _frmt = "Worflow aborted in CreateEmailMessage because of error: {0}";
-        throw new ApplicationException(String.Format(_frmt, ex.Message));
-      }
-    }
+    private void m_onWorkflowActivated_Invoked(object sender, ExternalDataEventArgs e) { }
+
     internal static Guid WorkflowId = new Guid("1bb10ba9-70da-4064-95b3-cd048ce4c3cd");
     public Guid workflowId = default(System.Guid);
     public SPWorkflowActivationProperties m_WorkflowProperties = default(SPWorkflowActivationProperties);
@@ -84,6 +25,19 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
     {
       try
       {
+        POLibraryWorkflowAssociationData _activationData = POLibraryWorkflowAssociationData.Deserialize(m_WorkflowProperties.InitiationData);
+        IPurchaseOrderTemplate _emailBodyObject = null;
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(m_WorkflowProperties.Site.Url))
+        {
+          if (_activationData.Carrier)
+            _emailBodyObject = FreightPurchaseOrderTemplate.CreateEmailMessage(m_WorkflowProperties.ItemId, m_WorkflowProperties.Item, _EDC);
+          else
+            _emailBodyObject = SecurityEscortPurchaseOrderTemplate.CreateEmailMessage(m_WorkflowProperties.ItemId, m_WorkflowProperties.Item, _EDC);
+          m_sendEmail1_CC = DistributionList.GetEmail(ShepherdRole.Coordinator, _EDC);
+        }
+        m_sendEmail1_From = m_WorkflowProperties.OriginatorEmail;
+        m_sendEmail1_Subject = _activationData.Name;
+        m_sendEmail1_To = _emailBodyObject.EmaiAddressTo;
         m_sendEmail1_Body = _emailBodyObject.TransformText();
       }
       catch (Exception ex)

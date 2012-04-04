@@ -7,39 +7,42 @@ using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
 {
-  public partial class FreightPurchaseOrderTemplate : IPurchaseOrderTemplate
+  internal interface IPurchaseOrderTemplate : IEmailGrnerator
   {
-    public string FPO2RouteGoodsHandlingPO { get; set; }
-    public string FPO2CountryTitle { get; set; }
-    public string FPO2CityTitle { get; set; }
-    public DateTime FPOLoadingDate { get; set; }
-    public string FPO2TransportUnitTypeTitle { get; set; }
-    public string FPO2CommodityTitle { get; set; }
-    public DateTime Modified { get; set; }
-    public string ModifiedBy { get; set; }
+    string EmaiAddressTo { get; set; }
+  }
+  public partial class SecurityEscortPurchaseOrderTemplate : IPurchaseOrderTemplate
+  {
+    #region MyRegion
+    public string SPOFreightPO { get; set; }
+    public string FPO2WarehouseAddress { get; set; }
+    public string SPO2CityTitle { get; set; }
+    public string SPO2CountryTitle { get; set; }
+    public DateTime SPODispatchDate { get; set; }
+    public string SPO2CommodityTitle { get; set; }
     public Uri Encodedabsurl { get; set; }
     public string DocumentName { get; set; }
-    public string FPO2WarehouseAddress { get; set; }
+    public DateTime Modified { get; set; }
+    public string ModifiedBy { get; set; }
     internal static IPurchaseOrderTemplate CreateEmailMessage(int _itemId, SPListItem _item, EntitiesDataContext _EDC)
     {
       try
       {
-        FreightPO _fpo = (from idx in _EDC.FreightPOLibrary
-                          where idx.Identyfikator == _itemId
-                          select idx).First();
-        return new FreightPurchaseOrderTemplate()
+        EscortPO _fpo = (from idx in _EDC.EscortPOLibrary
+                         where idx.Identyfikator == _itemId
+                         select idx).First();
+        return new SecurityEscortPurchaseOrderTemplate()
         {
+          SPOFreightPO = _fpo.Title(),
           EmaiAddressTo = String.IsNullOrEmpty(_fpo.EMail) ? CommonDefinition.UnknownEmail : _fpo.EMail,
           Encodedabsurl = new Uri((string)_item["EncodedAbsUrl"]),
           Modified = (DateTime)_item["Modified"],
           ModifiedBy = (string)_item["Editor"],
           DocumentName = _item.File.Name,
-          FPO2CityTitle = _fpo.City,
-          FPO2CommodityTitle = _fpo.Commodity,
-          FPO2CountryTitle = _fpo.Country,
-          FPO2RouteGoodsHandlingPO = _fpo.FreightPO0,
-          FPO2TransportUnitTypeTitle = _fpo.TransportUnit,
-          FPOLoadingDate = _fpo.LoadingDate.GetValueOrDefault(DateTime.MaxValue),
+          SPO2CityTitle = _fpo.City,
+          SPO2CommodityTitle = _fpo.Commodity,
+          SPO2CountryTitle = _fpo.Country,
+          SPODispatchDate = _fpo.DispatchDate.GetValueOrDefault(DateTime.MaxValue),
           FPO2WarehouseAddress = _fpo.WarehouseAddress,
         };
       }
@@ -49,19 +52,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
         throw new ApplicationException(String.Format(_frmt, ex.Message));
       }
     }
+    #endregion
 
-    #region IPurchaseOrderTemplate
-    public string EmaiAddressTo
-    {
-      get
-      {
-        throw new NotImplementedException();
-      }
-      set
-      {
-        throw new NotImplementedException();
-      }
-    }
+    #region IEmailGrnerator
     public string PartnerTitle
     {
       get
@@ -74,6 +67,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
       }
     }
     public string Subject
+    {
+      get
+      {
+        throw new NotImplementedException();
+      }
+      set
+      {
+        throw new NotImplementedException();
+      }
+    }
+    public string EmaiAddressTo
     {
       get
       {

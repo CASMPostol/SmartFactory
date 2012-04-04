@@ -4,7 +4,7 @@ $env:path += "; C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\x64\"
 #$cpath = get-location
 
 Write-host XSD processing
-xsd.exe ..\POLibraryWorkflowAssociationData.xsd /N:CAS.SmartFactorySendNotification.WorkflowData /c /o:.. |write-host
+xsd.exe ..\POLibraryWorkflowAssociationData.xsd /N:CAS.SmartFactory.Shepherd.SendNotification.WorkflowData /c /o:.. |write-host
 
 #set-location $cpath
 Write-host Done...
