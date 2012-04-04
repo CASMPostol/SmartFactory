@@ -1728,6 +1728,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<ShippingShipping> _shippingIndex;
 		
+		private Microsoft.SharePoint.Linq.EntityRef<Partner> _vendor;
+		
 		private System.Nullable<int> _marketIdentyfikator;
 		
 		private string _marketTitle;
@@ -1745,6 +1747,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping>>(this.OnShippingIndexSync);
 			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
 			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
+			this._vendor = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
+			this._vendor.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnVendorSync);
+			this._vendor.OnChanged += new System.EventHandler(this.OnVendorChanged);
+			this._vendor.OnChanging += new System.EventHandler(this.OnVendorChanging);
 			this._commodity = new Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity>();
 			this._commodity.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity>>(this.OnCommoditySync);
 			this._commodity.OnChanged += new System.EventHandler(this.OnCommodityChanged);
@@ -1846,6 +1852,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2PartnerTitle", Storage="_vendor", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
+		public Partner Vendor {
+			get {
+				return this._vendor.GetEntity();
+			}
+			set {
+				this._vendor.SetEntity(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="MarketTitle", Storage="_marketIdentyfikator", FieldType="Lookup", IsLookupId=true)]
 		public System.Nullable<int> MarketIdentyfikator {
 			get {
@@ -1901,6 +1917,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
+		private void OnVendorChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Vendor", this._vendor.Clone());
+		}
+		
+		private void OnVendorChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Vendor");
+		}
+		
+		private void OnVendorSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.LoadDescription.Add(this);
+			}
+			else {
+				e.Item.LoadDescription.Remove(this);
+			}
+		}
+		
 		private void OnCommodityChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Commodity", this._commodity.Clone());
 		}
@@ -1941,6 +1974,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Driver> _driver;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
+		
 		private System.Nullable<int> _shepherdUserIdentyfikator;
 		
 		private string _shepherdUserTitle;
@@ -1972,6 +2007,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this._driver.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Driver>>(this.OnDriverSync);
 			this._driver.OnChanged += new System.EventHandler(this.OnDriverChanged);
 			this._driver.OnChanging += new System.EventHandler(this.OnDriverChanging);
+			this._loadDescription = new Microsoft.SharePoint.Linq.EntitySet<LoadDescription>();
+			this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>(this.OnLoadDescriptionSync);
+			this._loadDescription.OnChanged += new System.EventHandler(this.OnLoadDescriptionChanged);
+			this._loadDescription.OnChanging += new System.EventHandler(this.OnLoadDescriptionChanging);
 			this._warehouse = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
 			this._warehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseSync);
 			this._warehouse.OnChanged += new System.EventHandler(this.OnWarehouseChanged);
@@ -2094,6 +2133,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2PartnerTitle", Storage="_loadDescription", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Load Description")]
+		public Microsoft.SharePoint.Linq.EntitySet<LoadDescription> LoadDescription {
+			get {
+				return this._loadDescription;
+			}
+			set {
+				this._loadDescription.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShepherdUser", Storage="_shepherdUserIdentyfikator", Required=true, FieldType="User", IsLookupId=true)]
 		public System.Nullable<int> ShepherdUserIdentyfikator {
 			get {
@@ -2210,6 +2259,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 			else {
 				e.Item.VendorName = null;
+			}
+		}
+		
+		private void OnLoadDescriptionChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("LoadDescription", this._loadDescription.Clone());
+		}
+		
+		private void OnLoadDescriptionChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("LoadDescription");
+		}
+		
+		private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Vendor = this;
+			}
+			else {
+				e.Item.Vendor = null;
 			}
 		}
 		
