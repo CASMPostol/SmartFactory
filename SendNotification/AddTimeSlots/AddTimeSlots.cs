@@ -23,8 +23,24 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
     {
       InitializeComponent();
     }
-
     public Guid workflowId = default(System.Guid);
     public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
+    public String StartLogToHistory_HistoryDescription = default(System.String);
+
+    private void StartLogToHistory_MethodInvoking(object sender, EventArgs e)
+    {
+      StartLogToHistory_HistoryDescription = "Starting applayin the template";
+    }
+    private void AddTimeslotsActivity_ExecuteCode(object sender, EventArgs e)
+    {
+
+    }
+
+    public String FinischLogToHistory_HistoryDescription2 = default(System.String);
+
+    private void FinischLogToHistory_MethodInvoking(object sender, EventArgs e)
+    {
+      FinischLogToHistory_HistoryDescription2 = "The template has been applied and timeslots created";
+    }
   }
 }
