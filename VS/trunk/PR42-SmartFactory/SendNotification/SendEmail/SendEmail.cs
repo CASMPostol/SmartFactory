@@ -56,9 +56,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
     #region LogToHistory
     private void m_logToHistoryListActivity1_MethodInvoking(object sender, EventArgs e)
     {
-      m_logToHistoryListActivity1_HistoryDescription = String.Format("Sending notification to: {0}", m_WorkflowProperties.Item["Carrier"]);
-      m_logToHistoryListActivity1_HistoryOutcome = m_WorkflowProperties.Workflow.ParentAssociation.Name;
-      m_logToHistoryListActivity1_UserId = m_WorkflowProperties.OriginatorUser.ID;
+      try
+      {
+        m_logToHistoryListActivity1_HistoryDescription = String.Format("Sending notification to: {0}", m_sendEmail1_To);
+        m_logToHistoryListActivity1_HistoryOutcome = m_WorkflowProperties.Workflow.ParentAssociation.Name;
+        m_logToHistoryListActivity1_UserId = m_WorkflowProperties.OriginatorUser.ID;
+      }
+      catch (Exception ex)
+      {
+        string _frmt = "Worflow aborted in LogToHistoryListActivity because of the error: {0}";
+        throw new ApplicationException(String.Format(_frmt, ex.Message));
+      }
     }
     public Int32 m_logToHistoryListActivity1_UserId = default(System.Int32);
     public String m_logToHistoryListActivity1_HistoryDescription = default(System.String);
