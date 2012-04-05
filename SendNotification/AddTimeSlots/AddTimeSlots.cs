@@ -14,6 +14,7 @@ using System.Workflow.Activities.Rules;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.WorkflowActions;
+using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
 {
@@ -29,18 +30,25 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
 
     private void StartLogToHistory_MethodInvoking(object sender, EventArgs e)
     {
-      StartLogToHistory_HistoryDescription = "Starting applayin the template";
+      TimeSlotsInitiationData _data = TimeSlotsInitiationData.Deserialize(workflowProperties.InitiationData);
+      StartLogToHistory_HistoryDescription = String.Format("Starting applayin the template. From: {0}, Weeks: {1}", _data.StartDate, _data.Duration); ;
     }
     private void AddTimeslotsActivity_ExecuteCode(object sender, EventArgs e)
     {
 
     }
-
     public String FinischLogToHistory_HistoryDescription2 = default(System.String);
 
     private void FinischLogToHistory_MethodInvoking(object sender, EventArgs e)
     {
       FinischLogToHistory_HistoryDescription2 = "The template has been applied and timeslots created";
+    }
+
+    public String FaultHandlerLogToHistory_HistoryDescription = default(System.String);
+
+    private void FaultHandlerLogToHistory_MethodInvoking(object sender, EventArgs e)
+    {
+      FaultHandlerLogToHistory_HistoryDescription = FaultHandler.Fault.Message;
     }
   }
 }
