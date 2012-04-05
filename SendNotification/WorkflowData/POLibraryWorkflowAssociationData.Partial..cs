@@ -12,8 +12,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
   public partial class POLibraryWorkflowAssociationData
   {
     //User-friendly name for workflow association
-    private const string Security = "Email Freight PO";
-    private const string Freight = "Email Escort PO";
+    private const string Security = "Email Escort PO";
+    private const string Freight = "Email Freight PO";
     private POLibraryWorkflowAssociationData(string _name, bool _carrier)
     {
       this.Carrier = _carrier;
