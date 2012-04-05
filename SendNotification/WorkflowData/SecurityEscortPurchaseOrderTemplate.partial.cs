@@ -33,17 +33,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
                          select idx).First();
         return new SecurityEscortPurchaseOrderTemplate()
         {
-          SPOFreightPO = _fpo.Title(),
+          SPOFreightPO = _fpo.Title().NotAvailable(),
           EmaiAddressTo = String.IsNullOrEmpty(_fpo.EMail) ? CommonDefinition.UnknownEmail : _fpo.EMail,
           Encodedabsurl = new Uri((string)_item["EncodedAbsUrl"]),
           Modified = (DateTime)_item["Modified"],
-          ModifiedBy = (string)_item["Editor"],
-          DocumentName = _item.File.Name,
-          SPO2CityTitle = _fpo.City,
-          SPO2CommodityTitle = _fpo.Commodity,
-          SPO2CountryTitle = _fpo.Country,
+          ModifiedBy = ((string)_item["Editor"]).NotAvailable(),
+          DocumentName = _item.File.Name.NotAvailable(),
+          SPO2CityTitle = _fpo.City.NotAvailable(),
+          SPO2CommodityTitle = _fpo.Commodity.NotAvailable(),
+          SPO2CountryTitle = _fpo.Country.NotAvailable(),
           SPODispatchDate = _fpo.DispatchDate.GetValueOrDefault(DateTime.MaxValue),
-          FPO2WarehouseAddress = _fpo.WarehouseAddress,
+          FPO2WarehouseAddress = _fpo.WarehouseAddress.NotAvailable(),
         };
       }
       catch (Exception ex)
@@ -55,39 +55,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     #endregion
 
     #region IEmailGrnerator
-    public string PartnerTitle
-    {
-      get
-      {
-        throw new NotImplementedException();
-      }
-      set
-      {
-        throw new NotImplementedException();
-      }
-    }
-    public string Subject
-    {
-      get
-      {
-        throw new NotImplementedException();
-      }
-      set
-      {
-        throw new NotImplementedException();
-      }
-    }
-    public string EmaiAddressTo
-    {
-      get
-      {
-        throw new NotImplementedException();
-      }
-      set
-      {
-        throw new NotImplementedException();
-      }
-    }
+    public string PartnerTitle { get; set; }
+    public string Subject { get; set; }
+    public string EmaiAddressTo { get; set; }
     #endregion
   }
 }

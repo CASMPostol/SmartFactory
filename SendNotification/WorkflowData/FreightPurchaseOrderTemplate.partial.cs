@@ -51,39 +51,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     }
 
     #region IPurchaseOrderTemplate
-    public string EmaiAddressTo
-    {
-      get
-      {
-        throw new NotImplementedException();
-      }
-      set
-      {
-        throw new NotImplementedException();
-      }
-    }
-    public string PartnerTitle
-    {
-      get
-      {
-        throw new NotImplementedException();
-      }
-      set
-      {
-        throw new NotImplementedException();
-      }
-    }
-    public string Subject
-    {
-      get
-      {
-        throw new NotImplementedException();
-      }
-      set
-      {
-        throw new NotImplementedException();
-      }
-    }
+    public string EmaiAddressTo{get; set;}
+    public string PartnerTitle{get; set;}
+    public string Subject{get; set;}
     #endregion
   }
 }
