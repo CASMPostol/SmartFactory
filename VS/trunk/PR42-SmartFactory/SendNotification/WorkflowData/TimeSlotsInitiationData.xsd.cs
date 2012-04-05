@@ -48,6 +48,5 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
         throw new ApplicationException(String.Format(_frmt, ex.Message));
       }
     }
-
   }
 }
