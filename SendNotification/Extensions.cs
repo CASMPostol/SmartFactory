@@ -35,5 +35,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     {
       _list.Items.Add(new ListItem(i.ToString(), i.ToString()));
     }
+    public static string NotAvailable(this string _value)
+    {
+      return String.IsNullOrEmpty(_value) ? "N/A" : _value;
+    }
   }
 }

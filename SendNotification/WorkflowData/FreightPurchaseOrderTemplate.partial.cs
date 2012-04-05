@@ -34,13 +34,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
           Modified = (DateTime)_item["Modified"],
           ModifiedBy = (string)_item["Editor"],
           DocumentName = _item.File.Name,
-          FPO2CityTitle = _fpo.City,
-          FPO2CommodityTitle = _fpo.Commodity,
-          FPO2CountryTitle = _fpo.Country,
-          FPO2RouteGoodsHandlingPO = _fpo.FreightPO0,
+          FPO2CityTitle = _fpo.City.NotAvailable(),
+          FPO2CommodityTitle = _fpo.Commodity.NotAvailable(),
+          FPO2CountryTitle = _fpo.Country.NotAvailable(),
+          FPO2RouteGoodsHandlingPO = _fpo.FreightPO0.NotAvailable(),
           FPO2TransportUnitTypeTitle = _fpo.TransportUnit,
           FPOLoadingDate = _fpo.LoadingDate.GetValueOrDefault(DateTime.MaxValue),
-          FPO2WarehouseAddress = _fpo.WarehouseAddress,
+          FPO2WarehouseAddress = _fpo.WarehouseAddress.NotAvailable()
         };
       }
       catch (Exception ex)
