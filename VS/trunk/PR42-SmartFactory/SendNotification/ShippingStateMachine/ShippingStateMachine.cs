@@ -470,12 +470,25 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     public String m_TimeOutLogToHistoryListActivity_HistoryDescription = default(System.String);
     #endregion
 
+
+    #region SendEmailsConditionedActivityGroupCondition
+    private bool m_SendEmailsConditioneExecuted = false;
+    private void m_SendEmailsConditionedActivityGroupCondition(object sender, ConditionalEventArgs e)
+    {
+      e.Result = m_SendEmailsConditioneExecuted;
+      m_SendEmailsConditioneExecuted = false;
+    }
+
     #region CarrierNotificationSendEmail
 
     #region LogToHistoryList
+    private int _loopCounterCarrier = 0;
     private void m_CarrierNotificationSendEmail_Condition(object sender, ConditionalEventArgs e)
     {
       e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Carrier);
+      if (_loopCounterEscort > 0)
+        throw new ApplicationException("Assertion failed: unexpected Operation2Do value");
+      _loopCounterEscort++;
       Operation2Do ^= Shipping.RequiredOperations.SendEmail2Carrier;
       string _frm = "Sending Carrier warning message To: {0}, CC: {1}, From: {3}, Subject: [4]";
       m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription =
@@ -487,6 +500,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region SendEmail
     private void m_CarrierNotificationSendEmail_MethodInvoking(object sender, EventArgs e)
     {
+      if (Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Carrier))
+        throw new ApplicationException("Assertion failed: unexpected Operation2Do value");
     }
     public String m_CarrierNotificationSendEmail_Body = default(System.String);
     public String m_CarrierNotificationSendEmail_CC = default(System.String);
@@ -499,9 +514,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region EscortSendEmail
 
     #region LogToHistoryList
+    private int _loopCounterEscort = 0;
     private void m_EscortSendEmail_Condition(object sender, ConditionalEventArgs e)
     {
       e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Escort);
+      if (_loopCounterEscort > 0)
+        throw new ApplicationException("Assertion failed: unexpected Operation2Do value");
+      _loopCounterEscort++;
       Operation2Do ^= Shipping.RequiredOperations.SendEmail2Escort;
       string _frm = "Sending Escort warning message To: {0}, CC: {1}, From: {3}, Subject: [4]";
       m_EscortSendEmailLogToHistoryList_HistoryDescription1 =
@@ -513,6 +532,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region SendEmail
     private void m_EscortSendEmail_MethodInvoking(object sender, EventArgs e)
     {
+      if (Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Carrier))
+        throw new ApplicationException("Assertion failed: unexpected Operation2Do value");
     }
     public String m_EscortSendEmail_Body = default(System.String);
     public String m_EscortSendEmail_CC = default(System.String);
@@ -520,6 +541,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     public String m_EscortSendEmail_Subject = default(System.String);
     public String m_EscortSendEmail_To = default(System.String);
     #endregion
+    #endregion 
     #endregion
 
     #region TimeOutDelay
@@ -539,6 +561,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
     }
     #endregion
+
+
 
 
   }

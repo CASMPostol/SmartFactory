@@ -52,10 +52,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       System.Workflow.Activities.CodeCondition codecondition2 = new System.Workflow.Activities.CodeCondition();
       System.Workflow.ComponentModel.ActivityBind activitybind22 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind23 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.Activities.CodeCondition codecondition3 = new System.Workflow.Activities.CodeCondition();
       System.Workflow.ComponentModel.ActivityBind activitybind24 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind25 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind26 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.Activities.CodeCondition codecondition3 = new System.Workflow.Activities.CodeCondition();
+      System.Workflow.Activities.CodeCondition codecondition4 = new System.Workflow.Activities.CodeCondition();
       System.Workflow.ComponentModel.ActivityBind activitybind27 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind29 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind28 = new System.Workflow.ComponentModel.ActivityBind();
@@ -276,6 +277,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_SendEmailsConditionedActivityGroup.Activities.Add(this.m_CarrierSendEmailSequenceActivity);
       this.m_SendEmailsConditionedActivityGroup.Description = "Sen notifications by email as required.";
       this.m_SendEmailsConditionedActivityGroup.Name = "m_SendEmailsConditionedActivityGroup";
+      codecondition3.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.m_SendEmailsConditionedActivityGroupCondition);
+      this.m_SendEmailsConditionedActivityGroup.UntilCondition = codecondition3;
       // 
       // m_CalculateTimeoutLogToHistoryList
       // 
@@ -336,8 +339,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       // m_MainLoopWhileActivity
       // 
       this.m_MainLoopWhileActivity.Activities.Add(this.m_SequenceActivity);
-      codecondition3.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.m_MainLoopWhileActivity_ConditionEventHandler);
-      this.m_MainLoopWhileActivity.Condition = codecondition3;
+      codecondition4.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>(this.m_MainLoopWhileActivity_ConditionEventHandler);
+      this.m_MainLoopWhileActivity.Condition = codecondition4;
       this.m_MainLoopWhileActivity.Description = "Main loop of the shipping state machine.";
       this.m_MainLoopWhileActivity.Name = "m_MainLoopWhileActivity";
       // 
@@ -428,6 +431,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private SequenceActivity m_SequenceActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated;
+
 
 
 
