@@ -239,7 +239,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         _sp.ForwarderOceanAir = _sp.Route == null ? _na : _sp.Route.CarrierTitle;
         _sp.EscortCostsCurrency = _sp.SecurityEscort == null ? null : _sp.SecurityEscort.Currency;
         _sp.TotalCostsPerKUCurrency = (from Currency _cu in EDC.Currency
-                                       where String.IsNullOrEmpty(_cu.Tytuł) && _cu.Tytuł.Contains(CommonDefinition.DefaultCurrency)
+                                       where !String.IsNullOrEmpty(_cu.Tytuł) && _cu.Tytuł.ToUpper().Contains(CommonDefinition.DefaultCurrency)
                                        select _cu).FirstOrDefault();
         //Costs calculation
         if (_sp.Route != null)
