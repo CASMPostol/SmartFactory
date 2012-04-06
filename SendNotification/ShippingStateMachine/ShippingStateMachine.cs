@@ -404,7 +404,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void SetupEnvironment(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, ShippingShipping _sp, Priority _prrty, IEmailGrnerator _msg, EntitiesDataContext EDC)
     {
-      m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
       SetupAlarmsEvents(_delay, _logDescription, _operations, _prrty, EDC, _sp);
       SetupEmail(_delay, _operations, _sp, _msg, EDC);
       SetupLogMessage(_delay, _sp);
@@ -442,7 +441,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void SetupLogMessage(TimeSpan _delay, Shipping _sp)
     {
-      string _lm = "New timeout {0} min calculated for the shipping {1} at state {2}, Request: {3:H}";
+      m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
+      string _lm = "New timeout {0} min calculated for the shipping {1} at state {2}, Request: {3:X}";
       m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value, Operation2Do);
     }
     public String m_CalculateTimeoutLogToHistoryList_HistoryDescription = default(System.String);
@@ -478,23 +478,21 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       e.Result = m_SendEmailsConditioneExecuted;
       m_SendEmailsConditioneExecuted = false;
     }
-
     #region CarrierNotificationSendEmail
 
     #region LogToHistoryList
-    private int _loopCounterCarrier = 0;
+    private const string m_CarrierNotificationSendEmailFormat = "Sending {4} warning message To: {0}, CC: {1}, From: {2}, Subject: {3}";
     private void m_CarrierNotificationSendEmail_Condition(object sender, ConditionalEventArgs e)
     {
       e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Carrier);
-      if (_loopCounterEscort > 0)
-        throw new ApplicationException("Assertion Carrier failed: unexpected Operation2Do value");
-      _loopCounterCarrier++;
       Operation2Do ^= Shipping.RequiredOperations.SendEmail2Carrier;
-      string _frm = "Sending Carrier warning message To: {0}, CC: {1}, From: {3}, Subject: [4]";
-      m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription =
-        String.Format(_frm, m_EscortSendEmail_To, m_EscortSendEmail_CC, m_EscortSendEmail_From, m_EscortSendEmail_Subject);
     }
     public String m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription = default(System.String);
+    private void m_CarrierNotificationSendEmailLogToHistoryList_MethodInvoking(object sender, EventArgs e)
+    {
+      m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription =
+        String.Format(m_CarrierNotificationSendEmailFormat, m_CarrierNotificationSendEmail_To, m_CarrierNotificationSendEmail_CC, m_CarrierNotificationSendEmail_From, m_CarrierNotificationSendEmail_Subject1, "Carrier");
+    }
     #endregion
 
     #region SendEmail
@@ -514,25 +512,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region EscortSendEmail
 
     #region LogToHistoryList
-    private int _loopCounterEscort = 0;
     private void m_EscortSendEmail_Condition(object sender, ConditionalEventArgs e)
     {
       e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Escort);
-      if (_loopCounterEscort > 0)
-        throw new ApplicationException("Assertion Escort failed: unexpected Operation2Do value");
-      _loopCounterEscort++;
       Operation2Do ^= Shipping.RequiredOperations.SendEmail2Escort;
-      string _frm = "Sending Escort warning message To: {0}, CC: {1}, From: {3}, Subject: [4]";
-      m_EscortSendEmailLogToHistoryList_HistoryDescription1 =
-        String.Format(_frm, m_EscortSendEmail_To, m_EscortSendEmail_CC, m_EscortSendEmail_From, m_EscortSendEmail_Subject);
     }
     public String m_EscortSendEmailLogToHistoryList_HistoryDescription1 = default(System.String);
+    private void m_EscortSendEmailLogToHistoryList_MethodInvoking(object sender, EventArgs e)
+    {
+      m_EscortSendEmailLogToHistoryList_HistoryDescription1 =
+        String.Format(m_CarrierNotificationSendEmailFormat, m_EscortSendEmail_To, m_EscortSendEmail_CC, m_EscortSendEmail_From, m_EscortSendEmail_Subject, "Escort");
+    }
     #endregion
 
     #region SendEmail
     private void m_EscortSendEmail_MethodInvoking(object sender, EventArgs e)
     {
-      if (Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Carrier))
+      if (Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Escort))
         throw new ApplicationException("Assertion failed: unexpected Operation2Do value");
     }
     public String m_EscortSendEmail_Body = default(System.String);
@@ -541,7 +537,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     public String m_EscortSendEmail_Subject = default(System.String);
     public String m_EscortSendEmail_To = default(System.String);
     #endregion
-    #endregion 
+    #endregion
     #endregion
 
     #region TimeOutDelay
@@ -561,6 +557,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
     }
     #endregion
+
+
+
 
 
 

@@ -175,6 +175,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_CarrierNotificationSendEmailLogToHistoryList.OtherData = "";
       activitybind14.Name = "ShippingStateMachine";
       activitybind14.Path = "m_OnWorkflowActivated_WorkflowProperties.OriginatorUser.ID";
+      this.m_CarrierNotificationSendEmailLogToHistoryList.MethodInvoking += new System.EventHandler(this.m_CarrierNotificationSendEmailLogToHistoryList_MethodInvoking);
       this.m_CarrierNotificationSendEmailLogToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind13)));
       this.m_CarrierNotificationSendEmailLogToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind14)));
       // 
@@ -214,6 +215,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_EscortSendEmailLogToHistoryList.OtherData = "";
       activitybind21.Name = "ShippingStateMachine";
       activitybind21.Path = "m_OnWorkflowActivated_WorkflowProperties.OriginatorUser.ID";
+      this.m_EscortSendEmailLogToHistoryList.MethodInvoking += new System.EventHandler(this.m_EscortSendEmailLogToHistoryList_MethodInvoking);
       this.m_EscortSendEmailLogToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind20)));
       this.m_EscortSendEmailLogToHistoryList.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind21)));
       // 
@@ -431,6 +433,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private SequenceActivity m_SequenceActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated;
+
+
 
 
 
