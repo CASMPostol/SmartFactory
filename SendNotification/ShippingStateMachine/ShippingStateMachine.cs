@@ -20,9 +20,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       EDC.EventLogList.InsertOnSubmit(_entry);
       EDC.SubmitChanges();
     }
-    private void ReportAlarmsAndEvents(string _mssg, Priority _priority, ServiceType _partner, EntitiesDataContext EDC)
+    private void ReportAlarmsAndEvents(string _mssg, Priority _priority, ServiceType _partner, EntitiesDataContext EDC, ShippingShipping _sh)
     {
-      ShippingShipping _sh = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
       Partner _principal = null;
       switch (_partner)
       {
@@ -101,7 +100,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           string _msg = "The shipping at current state {0} has been modified by {1} and the schedule wiil be updated.";
           ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
           m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
-          ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None, EDC);
+          ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None, EDC, _sp);
           if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value == State.Completed))
             MakeShippingReport(_sp, EDC);
           if (_sp.State.Value == State.Completed || _sp.State.Value == State.Cancelation)
@@ -371,7 +370,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void MakeCanceled(ShippingShipping _sp, EntitiesDataContext EDC)
     {
-      ChangeState(State.Canceled);
+      _sp.State = State.Canceled;
+      EDC.SubmitChanges();
       string _frmt = "Wanning !! The shipping has been cancelled by {0}";
       _frmt = String.Format(_frmt, _sp.ZmodyfikowanePrzez);
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true) & Shipping.CarrierOperations;
@@ -386,7 +386,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void MakeDelayed(ShippingShipping _sp, EntitiesDataContext EDC)
     {
-      ChangeState(State.Delayed);
+      _sp.State = State.Delayed;
+      EDC.SubmitChanges();
       string _frmt = "Wanning !! The truck is late. Call the driver: {0}";
       _frmt = String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????");
       _frmt += "The shipping should finisch in {0:g} at {1:g}.";
@@ -401,27 +402,18 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       };
       SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High, _msg, EDC);
     }
-    private void ChangeState(State _State)
-    {
-      using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
-      {
-        ShippingShipping _spp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
-        _spp.State = _State;
-        EDC.SubmitChanges();
-      }
-    }
-    private void SetupEnvironment(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, Shipping _sp, Priority _prrty, IEmailGrnerator _msg, EntitiesDataContext EDC)
+    private void SetupEnvironment(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, ShippingShipping _sp, Priority _prrty, IEmailGrnerator _msg, EntitiesDataContext EDC)
     {
       SetupTimeOut(_delay, _sp);
-      SetupAlarmsEvents(_delay, _logDescription, _operations, _prrty, EDC);
+      SetupAlarmsEvents(_delay, _logDescription, _operations, _prrty, EDC, _sp);
       SetupEmail(_delay, _operations, _sp, _msg, EDC);
     }
-    private void SetupAlarmsEvents(TimeSpan _delay, string _msg, Shipping.RequiredOperations _operations, Priority _prrty, EntitiesDataContext EDC)
+    private void SetupAlarmsEvents(TimeSpan _delay, string _msg, Shipping.RequiredOperations _operations, Priority _prrty, EntitiesDataContext EDC, ShippingShipping _sh)
     {
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Escort))
-        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.SecurityEscortProvider, EDC);
+        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.SecurityEscortProvider, EDC, _sh);
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Carrier))
-        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.VendorAndForwarder, EDC);
+        ReportAlarmsAndEvents(_msg, _prrty, ServiceType.VendorAndForwarder, EDC, _sh);
     }
     private void SetupEmail(TimeSpan _delay, Shipping.RequiredOperations _operations, Shipping _sp, IEmailGrnerator _body, EntitiesDataContext EDC)
     {
