@@ -372,9 +372,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       _sp.State = State.Canceled;
       EDC.SubmitChanges();
+      Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true);
       string _frmt = "Wanning !! The shipping has been cancelled by {0}";
       _frmt = String.Format(_frmt, _sp.ZmodyfikowanePrzez);
-      Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true) & Shipping.CarrierOperations;
       CanceledShippingVendorTemplate _msg = new CanceledShippingVendorTemplate()
       {
         PartnerTitle = _sp.VendorName.Title(),
@@ -417,6 +417,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void SetupEmail(TimeSpan _delay, Shipping.RequiredOperations _operations, Shipping _sp, IEmailGrnerator _body, EntitiesDataContext EDC)
     {
+      Operation2Do = _operations;
       ShepherdRole _ccRole = _sp.IsOutbound.Value ? ShepherdRole.OutboundOwner : ShepherdRole.InboundOwner;
       string _cc = DistributionList.GetEmail(_ccRole, EDC);
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Carrier))
@@ -441,8 +442,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void SetupTimeOut(TimeSpan _delay, Shipping _sp)
     {
       m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
-      string _lm = "New timeout {0} min calculated for the shipping {1} at state {2}";
-      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value);
+      string _lm = "New timeout {0} min calculated for the shipping {1} at state {2}, Request: {3}";
+      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value, _2do);
     }
     public String m_CalculateTimeoutLogToHistoryList_HistoryDescription = default(System.String);
     #endregion
