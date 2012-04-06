@@ -184,6 +184,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		/// <summary>
+		/// A schedule template is a predefined table of time slots.
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Schedule Template")]
+		public Microsoft.SharePoint.Linq.EntityList<ScheduleTemplateScheduleTemplate> ScheduleTemplate {
+			get {
+				return this.GetList<ScheduleTemplateScheduleTemplate>("Schedule Template");
+			}
+		}
+		
+		/// <summary>
 		/// Seal Protocol Library Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Seal Protocol Library")]
@@ -214,12 +224,32 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		/// <summary>
+		/// Shipping Point List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Shipping Point")]
+		public Microsoft.SharePoint.Linq.EntityList<ShippingPoint> ShippingPoint {
+			get {
+				return this.GetList<ShippingPoint>("Shipping Point");
+			}
+		}
+		
+		/// <summary>
 		/// TimeSLot List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="TimeSlot")]
 		public Microsoft.SharePoint.Linq.EntityList<TimeSlotTimeSlot> TimeSlot {
 			get {
 				return this.GetList<TimeSlotTimeSlot>("TimeSlot");
+			}
+		}
+		
+		/// <summary>
+		/// TimeSlots Template List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="TimeSlots Template")]
+		public Microsoft.SharePoint.Linq.EntityList<TimeSlotsTemplate> TimeSlotsTemplate {
+			get {
+				return this.GetList<TimeSlotsTemplate>("TimeSlots Template");
 			}
 		}
 		
@@ -283,9 +313,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(LoadDescription))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Partner))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Route))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ScheduleTemplate))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SecurityEscortCatalog))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Shipping))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingPoint))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Wydarzenie))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlotsTemplate))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Trailer))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TranspotUnit))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Truck))]
@@ -2821,6 +2854,57 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	/// <summary>
 	/// Utwórz nowy element listy.
 	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ScheduleTemplate", Id="0x010091765907174D4799B44C4DF249630D28")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ScheduleTemplateScheduleTemplate))]
+	public partial class ScheduleTemplate : Element {
+		
+		private Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _shippingPoint;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public ScheduleTemplate() {
+			this._shippingPoint = new Microsoft.SharePoint.Linq.EntityRef<ShippingPoint>();
+			this._shippingPoint.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnShippingPointSync);
+			this._shippingPoint.OnChanged += new System.EventHandler(this.OnShippingPointChanged);
+			this._shippingPoint.OnChanging += new System.EventHandler(this.OnShippingPointChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingPointLookupTitle", Storage="_shippingPoint", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping Point")]
+		public ShippingPoint ShippingPoint {
+			get {
+				return this._shippingPoint.GetEntity();
+			}
+			set {
+				this._shippingPoint.SetEntity(value);
+			}
+		}
+		
+		private void OnShippingPointChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ShippingPoint", this._shippingPoint.Clone());
+		}
+		
+		private void OnShippingPointChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ShippingPoint");
+		}
+		
+		private void OnShippingPointSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ScheduleTemplate.Add(this);
+			}
+			else {
+				e.Item.ScheduleTemplate.Remove(this);
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SecurityEscortCatalog", Id="0x01004D883AD19A284D1F826EA7B4E70F0ACA")]
 	public partial class SecurityEscortCatalog : Element {
 		
@@ -4078,6 +4162,298 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	/// <summary>
 	/// Utwórz nowy element listy.
 	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ShippingPoint", Id="0x0100CB62286DE09CE54780611F275F43DB47")]
+	public partial class ShippingPoint : Element {
+		
+		private string _description;
+		
+		private System.Nullable<Direction> _direction;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<ScheduleTemplate> _scheduleTemplate;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Warehouse> _warehouse;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<TimeSlot> _timeSlot;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public ShippingPoint() {
+			this._scheduleTemplate = new Microsoft.SharePoint.Linq.EntitySet<ScheduleTemplate>();
+			this._scheduleTemplate.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate>>(this.OnScheduleTemplateSync);
+			this._scheduleTemplate.OnChanged += new System.EventHandler(this.OnScheduleTemplateChanged);
+			this._scheduleTemplate.OnChanging += new System.EventHandler(this.OnScheduleTemplateChanging);
+			this._warehouse = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
+			this._warehouse.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnWarehouseSync);
+			this._warehouse.OnChanged += new System.EventHandler(this.OnWarehouseChanged);
+			this._warehouse.OnChanging += new System.EventHandler(this.OnWarehouseChanging);
+			this._timeSlot = new Microsoft.SharePoint.Linq.EntitySet<TimeSlot>();
+			this._timeSlot.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot>>(this.OnTimeSlotSync);
+			this._timeSlot.OnChanged += new System.EventHandler(this.OnTimeSlotChanged);
+			this._timeSlot.OnChanging += new System.EventHandler(this.OnTimeSlotChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingPointDescription", Storage="_description", FieldType="Text")]
+		public string Description {
+			get {
+				return this._description;
+			}
+			set {
+				if ((value != this._description)) {
+					this.OnPropertyChanging("Description", this._description);
+					this._description = value;
+					this.OnPropertyChanged("Description");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Direction
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Direction", Storage="_direction", FieldType="Choice")]
+		public System.Nullable<Direction> Direction {
+			get {
+				return this._direction;
+			}
+			set {
+				if ((value != this._direction)) {
+					this.OnPropertyChanging("Direction", this._direction);
+					this._direction = value;
+					this.OnPropertyChanged("Direction");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingPointLookupTitle", Storage="_scheduleTemplate", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Schedule Template")]
+		public Microsoft.SharePoint.Linq.EntitySet<ScheduleTemplate> ScheduleTemplate {
+			get {
+				return this._scheduleTemplate;
+			}
+			set {
+				this._scheduleTemplate.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="WarehouseTitle", Storage="_warehouse", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Warehouse")]
+		public Warehouse Warehouse {
+			get {
+				return this._warehouse.GetEntity();
+			}
+			set {
+				this._warehouse.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_timeSlot", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="TimeSlot")]
+		public Microsoft.SharePoint.Linq.EntitySet<TimeSlot> TimeSlot {
+			get {
+				return this._timeSlot;
+			}
+			set {
+				this._timeSlot.Assign(value);
+			}
+		}
+		
+		private void OnScheduleTemplateChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ScheduleTemplate", this._scheduleTemplate.Clone());
+		}
+		
+		private void OnScheduleTemplateChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ScheduleTemplate");
+		}
+		
+		private void OnScheduleTemplateSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ShippingPoint = this;
+			}
+			else {
+				e.Item.ShippingPoint = null;
+			}
+		}
+		
+		private void OnWarehouseChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Warehouse", this._warehouse.Clone());
+		}
+		
+		private void OnWarehouseChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Warehouse");
+		}
+		
+		private void OnWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ShippingPoint.Add(this);
+			}
+			else {
+				e.Item.ShippingPoint.Remove(this);
+			}
+		}
+		
+		private void OnTimeSlotChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TimeSlot", this._timeSlot.Clone());
+		}
+		
+		private void OnTimeSlotChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TimeSlot");
+		}
+		
+		private void OnTimeSlotSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ShippingPoint = this;
+			}
+			else {
+				e.Item.ShippingPoint = null;
+			}
+		}
+	}
+	
+	/// <summary>
+	/// TimeSlotTemplate
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlotsTemplate", Id="0x0100E4381E17DE2049B895B5140F70D7C21C")]
+	public partial class TimeSlotsTemplate : Element {
+		
+		private System.Nullable<Day> _day;
+		
+		private System.Nullable<StartHour> _startHour;
+		
+		private System.Nullable<StartMinute> _startMinute;
+		
+		private System.Nullable<EndHour> _endHour;
+		
+		private System.Nullable<EndMinute> _endMinute;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<ScheduleTemplateScheduleTemplate> _scheduleTemplateShepherd;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public TimeSlotsTemplate() {
+			this._scheduleTemplateShepherd = new Microsoft.SharePoint.Linq.EntityRef<ScheduleTemplateScheduleTemplate>();
+			this._scheduleTemplateShepherd.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplateScheduleTemplate>>(this.OnScheduleTemplateShepherdSync);
+			this._scheduleTemplateShepherd.OnChanged += new System.EventHandler(this.OnScheduleTemplateShepherdChanged);
+			this._scheduleTemplateShepherd.OnChanging += new System.EventHandler(this.OnScheduleTemplateShepherdChanging);
+			this.OnCreated();
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlotsTemplate.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlotsTemplate.");
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateDay", Storage="_day", FieldType="Choice")]
+		public System.Nullable<Day> Day {
+			get {
+				return this._day;
+			}
+			set {
+				if ((value != this._day)) {
+					this.OnPropertyChanging("Day", this._day);
+					this._day = value;
+					this.OnPropertyChanged("Day");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateStartHour", Storage="_startHour", FieldType="Choice")]
+		public System.Nullable<StartHour> StartHour {
+			get {
+				return this._startHour;
+			}
+			set {
+				if ((value != this._startHour)) {
+					this.OnPropertyChanging("StartHour", this._startHour);
+					this._startHour = value;
+					this.OnPropertyChanged("StartHour");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateStartMinute", Storage="_startMinute", FieldType="Choice")]
+		public System.Nullable<StartMinute> StartMinute {
+			get {
+				return this._startMinute;
+			}
+			set {
+				if ((value != this._startMinute)) {
+					this.OnPropertyChanging("StartMinute", this._startMinute);
+					this._startMinute = value;
+					this.OnPropertyChanged("StartMinute");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateEndHour", Storage="_endHour", FieldType="Choice")]
+		public System.Nullable<EndHour> EndHour {
+			get {
+				return this._endHour;
+			}
+			set {
+				if ((value != this._endHour)) {
+					this.OnPropertyChanging("EndHour", this._endHour);
+					this._endHour = value;
+					this.OnPropertyChanged("EndHour");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateEndMinute", Storage="_endMinute", FieldType="Choice")]
+		public System.Nullable<EndMinute> EndMinute {
+			get {
+				return this._endMinute;
+			}
+			set {
+				if ((value != this._endMinute)) {
+					this.OnPropertyChanging("EndMinute", this._endMinute);
+					this._endMinute = value;
+					this.OnPropertyChanged("EndMinute");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ScheduleTemplateTitle", Storage="_scheduleTemplateShepherd", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Schedule Template")]
+		public ScheduleTemplateScheduleTemplate ScheduleTemplateShepherd {
+			get {
+				return this._scheduleTemplateShepherd.GetEntity();
+			}
+			set {
+				this._scheduleTemplateShepherd.SetEntity(value);
+			}
+		}
+		
+		private void OnScheduleTemplateShepherdChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ScheduleTemplateShepherd", this._scheduleTemplateShepherd.Clone());
+		}
+		
+		private void OnScheduleTemplateShepherdChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ScheduleTemplateShepherd");
+		}
+		
+		private void OnScheduleTemplateShepherdSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplateScheduleTemplate> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TimeSlotsTemplate.Add(this);
+			}
+			else {
+				e.Item.TimeSlotsTemplate.Remove(this);
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Trailer", Id="0x01009EF7D9CEE9664A48928AD8C8857ADA95")]
 	public partial class Trailer : Element {
 		
@@ -4352,6 +4728,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<ShippingPoint> _shippingPoint;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity> _commodity;
 		
 		#region Extensibility Method Definitions
@@ -4369,6 +4747,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
 			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
 			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
+			this._shippingPoint = new Microsoft.SharePoint.Linq.EntitySet<ShippingPoint>();
+			this._shippingPoint.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnShippingPointSync);
+			this._shippingPoint.OnChanged += new System.EventHandler(this.OnShippingPointChanged);
+			this._shippingPoint.OnChanging += new System.EventHandler(this.OnShippingPointChanging);
 			this._commodity = new Microsoft.SharePoint.Linq.EntityRef<CommodityCommodity>();
 			this._commodity.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CommodityCommodity>>(this.OnCommoditySync);
 			this._commodity.OnChanged += new System.EventHandler(this.OnCommodityChanged);
@@ -4410,6 +4792,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="WarehouseTitle", Storage="_shippingPoint", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping Point")]
+		public Microsoft.SharePoint.Linq.EntitySet<ShippingPoint> ShippingPoint {
+			get {
+				return this._shippingPoint;
+			}
+			set {
+				this._shippingPoint.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CommodityTitle", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
 		public CommodityCommodity Commodity {
 			get {
@@ -4446,6 +4838,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Warehouse = this;
+			}
+			else {
+				e.Item.Warehouse = null;
+			}
+		}
+		
+		private void OnShippingPointChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ShippingPoint", this._shippingPoint.Clone());
+		}
+		
+		private void OnShippingPointChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ShippingPoint");
+		}
+		
+		private void OnShippingPointSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Warehouse = this;
 			}
@@ -5457,9 +5866,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<ShippingShipping> _shippingIndex;
 		
-		private System.Nullable<int> _shippingPointIdentyfikator;
-		
-		private string _shippingPointTitle;
+		private Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _shippingPoint;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -5472,6 +5879,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this._shippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping>>(this.OnShippingIndexSync);
 			this._shippingIndex.OnChanged += new System.EventHandler(this.OnShippingIndexChanged);
 			this._shippingIndex.OnChanging += new System.EventHandler(this.OnShippingIndexChanging);
+			this._shippingPoint = new Microsoft.SharePoint.Linq.EntityRef<ShippingPoint>();
+			this._shippingPoint.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnShippingPointSync);
+			this._shippingPoint.OnChanged += new System.EventHandler(this.OnShippingPointChanged);
+			this._shippingPoint.OnChanging += new System.EventHandler(this.OnShippingPointChanging);
 			this.OnCreated();
 		}
 		
@@ -5635,31 +6046,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_shippingPointIdentyfikator", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> ShippingPointIdentyfikator {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_shippingPoint", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping Point")]
+		public ShippingPoint ShippingPoint {
 			get {
-				return this._shippingPointIdentyfikator;
+				return this._shippingPoint.GetEntity();
 			}
 			set {
-				if ((value != this._shippingPointIdentyfikator)) {
-					this.OnPropertyChanging("ShippingPointIdentyfikator", this._shippingPointIdentyfikator);
-					this._shippingPointIdentyfikator = value;
-					this.OnPropertyChanged("ShippingPointIdentyfikator");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_shippingPointTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
-		public string ShippingPointTitle {
-			get {
-				return this._shippingPointTitle;
-			}
-			set {
-				if ((value != this._shippingPointTitle)) {
-					this.OnPropertyChanging("ShippingPointTitle", this._shippingPointTitle);
-					this._shippingPointTitle = value;
-					this.OnPropertyChanged("ShippingPointTitle");
-				}
+				this._shippingPoint.SetEntity(value);
 			}
 		}
 		
@@ -5672,6 +6065,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		private void OnShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingShipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TimeSlot.Add(this);
+			}
+			else {
+				e.Item.TimeSlot.Remove(this);
+			}
+		}
+		
+		private void OnShippingPointChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ShippingPoint", this._shippingPoint.Clone());
+		}
+		
+		private void OnShippingPointChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ShippingPoint");
+		}
+		
+		private void OnShippingPointSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.TimeSlot.Add(this);
 			}
@@ -5875,6 +6285,72 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 			else {
 				e.Item.CountryName = null;
+			}
+		}
+	}
+	
+	/// <summary>
+	/// A schedule template is a predefined table of time slots.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ScheduleTemplate", Id="0x010091765907174D4799B44C4DF249630D28", List="Schedule Template")]
+	public partial class ScheduleTemplateScheduleTemplate : ScheduleTemplate {
+		
+		private System.Nullable<int> _createTimeslots;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate> _timeSlotsTemplate;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public ScheduleTemplateScheduleTemplate() {
+			this._timeSlotsTemplate = new Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate>();
+			this._timeSlotsTemplate.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate>>(this.OnTimeSlotsTemplateSync);
+			this._timeSlotsTemplate.OnChanged += new System.EventHandler(this.OnTimeSlotsTemplateChanged);
+			this._timeSlotsTemplate.OnChanging += new System.EventHandler(this.OnTimeSlotsTemplateChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CreateTi", Storage="_createTimeslots", ReadOnly=true, FieldType="WorkflowStatus")]
+		public System.Nullable<int> CreateTimeslots {
+			get {
+				return this._createTimeslots;
+			}
+			set {
+				if ((value != this._createTimeslots)) {
+					this.OnPropertyChanging("CreateTimeslots", this._createTimeslots);
+					this._createTimeslots = value;
+					this.OnPropertyChanged("CreateTimeslots");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ScheduleTemplateTitle", Storage="_timeSlotsTemplate", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="TimeSlots Template")]
+		public Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate> TimeSlotsTemplate {
+			get {
+				return this._timeSlotsTemplate;
+			}
+			set {
+				this._timeSlotsTemplate.Assign(value);
+			}
+		}
+		
+		private void OnTimeSlotsTemplateChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TimeSlotsTemplate", this._timeSlotsTemplate.Clone());
+		}
+		
+		private void OnTimeSlotsTemplateChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TimeSlotsTemplate");
+		}
+		
+		private void OnTimeSlotsTemplateSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ScheduleTemplateShepherd = this;
+			}
+			else {
+				e.Item.ScheduleTemplateShepherd = null;
 			}
 		}
 	}
@@ -6368,6 +6844,246 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="1 - unexceptable")]
 		_1Unexceptable = 32,
+	}
+	
+	public enum Direction : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Inbound")]
+		Inbound = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Outbound")]
+		Outbound = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Both directions")]
+		BothDirections = 8,
+	}
+	
+	public enum Day : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Monday")]
+		Monday = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tuesday")]
+		Tuesday = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Wednesday")]
+		Wednesday = 8,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Thursday")]
+		Thursday = 16,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Friday")]
+		Friday = 32,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Saturday")]
+		Saturday = 64,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Sunday")]
+		Sunday = 128,
+	}
+	
+	public enum StartHour : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="0")]
+		_0 = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="1")]
+		_1 = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="2")]
+		_2 = 8,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="3")]
+		_3 = 16,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="4")]
+		_4 = 32,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="5")]
+		_5 = 64,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="6")]
+		_6 = 128,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="7")]
+		_7 = 256,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="8")]
+		_8 = 512,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="9")]
+		_9 = 1024,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="10")]
+		_10 = 2048,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="11")]
+		_11 = 4096,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="12")]
+		_12 = 8192,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="13")]
+		_13 = 16384,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="14")]
+		_14 = 32768,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="15")]
+		_15 = 65536,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="16")]
+		_16 = 131072,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="17")]
+		_17 = 262144,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="18")]
+		_18 = 524288,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="19")]
+		_19 = 1048576,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="20")]
+		_20 = 2097152,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="21")]
+		_21 = 4194304,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="22")]
+		_22 = 8388608,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="23")]
+		_23 = 16777216,
+	}
+	
+	public enum StartMinute : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="0")]
+		_0 = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="15")]
+		_15 = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="30")]
+		_30 = 8,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="45")]
+		_45 = 16,
+	}
+	
+	public enum EndHour : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="0")]
+		_0 = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="1")]
+		_1 = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="2")]
+		_2 = 8,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="3")]
+		_3 = 16,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="4")]
+		_4 = 32,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="5")]
+		_5 = 64,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="6")]
+		_6 = 128,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="7")]
+		_7 = 256,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="8")]
+		_8 = 512,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="9")]
+		_9 = 1024,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="10")]
+		_10 = 2048,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="11")]
+		_11 = 4096,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="12")]
+		_12 = 8192,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="13")]
+		_13 = 16384,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="14")]
+		_14 = 32768,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="15")]
+		_15 = 65536,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="16")]
+		_16 = 131072,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="17")]
+		_17 = 262144,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="18")]
+		_18 = 524288,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="19")]
+		_19 = 1048576,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="20")]
+		_20 = 2097152,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="21")]
+		_21 = 4194304,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="22")]
+		_22 = 8388608,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="23")]
+		_23 = 16777216,
+	}
+	
+	public enum EndMinute : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="0")]
+		_0 = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="15")]
+		_15 = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="30")]
+		_30 = 8,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="45")]
+		_45 = 16,
 	}
 	
 	public enum VehicleType : int {
