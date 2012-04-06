@@ -245,13 +245,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           if (_sp.Route.Currency != null)
             _sp.FreightCost = _sp.Route.TransportCosts * _sp.Route.Currency.ExchangeRate;
         }
-        if (_sp.SecurityEscortCost != null && _sp.SecurityEscort.Currency != null)
+        if (_sp.SecurityEscort != null && _sp.SecurityEscort.Currency != null)
           _sp.SecurityEscortCost = _sp.SecurityEscort.SecurityCost * _sp.SecurityEscort.Currency.ExchangeRate;
         double? _totalCost = default(double?);
         double _addCost = 0;
         if (_sp.AdditionalCostsCurrency != null)
           _addCost = (_sp.AdditionalCosts * _sp.AdditionalCostsCurrency.ExchangeRate).GetValueOrDefault(0);
-        _totalCost = _sp.FreightCost + _sp.SecurityEscortCost + _addCost;
+        _totalCost = _sp.FreightCost.GetValueOrDefault(0) + _sp.SecurityEscortCost.GetValueOrDefault(0) + _addCost;
         _sp.TotalCostsPerKU = _sp.TotalQuantityInKU.HasValue && _sp.TotalQuantityInKU.Value > 1 ? _totalCost / _sp.TotalQuantityInKU.Value : new Nullable<double>();
         _sp.ReportPeriod = _sp.StartTime.Value.ToMonthString();
         EDC.SubmitChanges();
