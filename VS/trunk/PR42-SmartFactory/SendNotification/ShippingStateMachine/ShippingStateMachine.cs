@@ -443,7 +443,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
       string _lm = "New timeout {0} min calculated for the shipping {1} at state {2}, Request: {3}";
-      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value, _2do);
+      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value, Operation2Do);
     }
     public String m_CalculateTimeoutLogToHistoryList_HistoryDescription = default(System.String);
     #endregion
