@@ -382,7 +382,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         Title = _sp.Title(),
         Subject = _sp.Tytuł + " is canceled !!"
       };
-      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High, _msg, EDC);
+      SetupEnvironment(ShippingShipping.WatchTolerance, _frmt, _ro, _sp, Priority.High, _msg, EDC);
     }
     private void MakeDelayed(ShippingShipping _sp, EntitiesDataContext EDC)
     {
@@ -400,7 +400,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         TruckTitle = _sp.TruckCarRegistrationNumber.Title(),
         Subject = _sp.Tytuł + " is delayed !!"
       };
-      SetupEnvironment(_sp.EndTime.Value - DateTime.Now, _frmt, _ro, _sp, Priority.High, _msg, EDC);
+      SetupEnvironment(ShippingShipping.WatchTolerance, _frmt, _ro, _sp, Priority.High, _msg, EDC);
     }
     private void SetupEnvironment(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, ShippingShipping _sp, Priority _prrty, IEmailGrnerator _msg, EntitiesDataContext EDC)
     {
