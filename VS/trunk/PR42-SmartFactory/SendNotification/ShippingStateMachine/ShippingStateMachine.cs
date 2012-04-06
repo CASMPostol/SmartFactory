@@ -476,15 +476,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void m_CarrierNotificationSendEmail_Condition(object sender, ConditionalEventArgs e)
     {
       e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Carrier);
+      Operation2Do ^= Shipping.RequiredOperations.SendEmail2Carrier;
+      string _frm = "Sending Carrier warning message To: {0}, CC: {1}, From: {3}, Subject: [4]";
+      m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription =
+        String.Format(_frm, m_EscortSendEmail_To, m_EscortSendEmail_CC, m_EscortSendEmail_From, m_EscortSendEmail_Subject);
     }
     public String m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription = default(System.String);
-    public String m_CarrierNotificationSendEmailLogToHistoryList_HistoryOutcome = default(System.String);
     #endregion
 
     #region SendEmail
     private void m_CarrierNotificationSendEmail_MethodInvoking(object sender, EventArgs e)
     {
-      Operation2Do ^= Shipping.RequiredOperations.SendEmail2Escort;
     }
     public String m_CarrierNotificationSendEmail_Body = default(System.String);
     public String m_CarrierNotificationSendEmail_CC = default(System.String);
@@ -500,15 +502,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void m_EscortSendEmail_Condition(object sender, ConditionalEventArgs e)
     {
       e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Escort);
+      Operation2Do ^= Shipping.RequiredOperations.SendEmail2Escort;
+      string _frm = "Sending Escort warning message To: {0}, CC: {1}, From: {3}, Subject: [4]";
+      m_EscortSendEmailLogToHistoryList_HistoryDescription1 =
+        String.Format(_frm, m_EscortSendEmail_To, m_EscortSendEmail_CC, m_EscortSendEmail_From, m_EscortSendEmail_Subject);
     }
     public String m_EscortSendEmailLogToHistoryList_HistoryDescription1 = default(System.String);
-    public String m_EscortSendEmailLogToHistoryList_HistoryOutcome = default(System.String);
     #endregion
 
     #region SendEmail
     private void m_EscortSendEmail_MethodInvoking(object sender, EventArgs e)
     {
-      Operation2Do ^= Shipping.RequiredOperations.SendEmail2Escort;
     }
     public String m_EscortSendEmail_Body = default(System.String);
     public String m_EscortSendEmail_CC = default(System.String);
