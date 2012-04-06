@@ -12,11 +12,11 @@
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
+            <FormUrls xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
               <Display>_layouts/ShepherdDashboards/DriverNewForm.aspx</Display>
               <Edit>_layouts/ShepherdDashboards/DriverNewForm.aspx</Edit>
               <New>_layouts/ShepherdDashboards/DriverNewForm.aspx</New>
-            </FormTemplates>
+            </FormUrls>
           </XmlDocument>
         </XmlDocuments>
       </ContentType>
