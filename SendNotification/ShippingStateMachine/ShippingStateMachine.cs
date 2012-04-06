@@ -172,7 +172,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           _rprt.NumberTUNotDeliveredNotShowingUp++;
         else
         {
-          if (_sp.TrailerCondition.Value == TrailerCondition._1Unexceptable)
+          if (_sp.TrailerCondition.GetValueOrDefault(TrailerCondition.None)  == TrailerCondition._1Unexceptable)
             _rprt.NumberTURejectedBadQuality++;
           var _Start = (from _tsx in _sp.TimeSlot
                         where _tsx.Occupied.Value == Occupied.Free
@@ -233,7 +233,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           }
           _sp.TotalQuantityInKU += _ld.GoodsQuantity.GetValueOrDefault(0);
         }
-        _sp.ForwarderOceanAir = _sp.Route == null ? "N/A?" : _sp.Route.CarrierTitle;
+        string _na = "N/A?";
+        _sp.ForwarderOceanAir = _sp.Route == null ? _na : _sp.Route.CarrierTitle;
         _sp.EscortCostsCurrency = _sp.SecurityEscort == null ? null : _sp.SecurityEscort.Currency;
         _sp.TotalCostsPerKUCurrency = (from Currency _cu in EDC.Currency
                                        where String.IsNullOrEmpty(_cu.Tytuł) && _cu.Tytuł.Contains(CommonDefinition.DefaultCurrency)
@@ -244,6 +245,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           _sp.FreightCostsCurrency = _sp.Route.Currency;
           if (_sp.Route.Currency != null)
             _sp.FreightCost = _sp.Route.TransportCosts * _sp.Route.Currency.ExchangeRate;
+          _sp.Commodity = _sp.Route.Commodity.Title();
+          _sp.Consignee = _sp.Route.FreightPayer == null ? String.Empty.NotAvailable() : _sp.Route.FreightPayer.Title();
+          _sp.DepartureCity = _sp.Route.CityOfDeparture;
+          _sp.DeliveryToCountry = _sp.Route.CityName == null ? String.Empty.NotAvailable() : _sp.Route.CityName.CountryName.Title();
         }
         if (_sp.SecurityEscort != null && _sp.SecurityEscort.Currency != null)
           _sp.SecurityEscortCost = _sp.SecurityEscort.SecurityCost * _sp.SecurityEscort.Currency.ExchangeRate;

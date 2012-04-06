@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     }
     public static string Title(this Element _val)
     {
-      return _val == null ? String.Empty : _val.Tytuł;
+      return _val == null ? "N/A" : _val.Tytuł;
     }
     public static string UnknownIfEmpty(this String _val)
     {
