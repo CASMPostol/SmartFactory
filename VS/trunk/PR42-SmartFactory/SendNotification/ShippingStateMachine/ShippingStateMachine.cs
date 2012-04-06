@@ -104,7 +104,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None, EDC);
           if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value == State.Completed))
             MakeShippingReport(_sp, EDC);
-          else if (_sp.State.Value == State.Completed || _sp.State.Value == State.Cancelation)
+          if (_sp.State.Value == State.Completed || _sp.State.Value == State.Cancelation)
             MakePerformanceReport(_sp, EDC);
         }
         catch (Exception ex)
@@ -239,14 +239,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                                        where String.IsNullOrEmpty(_cu.Tytuł) && _cu.Tytuł.Contains(CommonDefinition.DefaultCurrency)
                                        select _cu).FirstOrDefault();
         //Costs calculation
-        if (_sp.Route != null && _sp.Route.Currency != null)
-          _sp.FreightCost = _sp.Route.TransportCosts * _sp.Route.Currency.ExchangeRate;
+        if (_sp.Route != null)
+        {
+          _sp.FreightCostsCurrency = _sp.Route.Currency;
+          if (_sp.Route.Currency != null)
+            _sp.FreightCost = _sp.Route.TransportCosts * _sp.Route.Currency.ExchangeRate;
+        }
         if (_sp.SecurityEscortCost != null && _sp.SecurityEscort.Currency != null)
           _sp.SecurityEscortCost = _sp.SecurityEscort.SecurityCost * _sp.SecurityEscort.Currency.ExchangeRate;
         double? _totalCost = default(double?);
+        double _addCost = 0;
         if (_sp.AdditionalCostsCurrency != null)
-          _totalCost = _sp.FreightCost + _sp.SecurityEscortCost + _sp.AdditionalCosts * _sp.AdditionalCostsCurrency.ExchangeRate;
-        _sp.TotalCostsPerKU = _sp.TotalQuantityInKU.HasValue && _sp.TotalQuantityInKU.Value > 0 ? _totalCost / _sp.TotalQuantityInKU.Value : new Nullable<double>();
+          _addCost = (_sp.AdditionalCosts * _sp.AdditionalCostsCurrency.ExchangeRate).GetValueOrDefault(0);
+        _totalCost = _sp.FreightCost + _sp.SecurityEscortCost + _addCost;
+        _sp.TotalCostsPerKU = _sp.TotalQuantityInKU.HasValue && _sp.TotalQuantityInKU.Value > 1 ? _totalCost / _sp.TotalQuantityInKU.Value : new Nullable<double>();
         _sp.ReportPeriod = _sp.StartTime.Value.ToMonthString();
         EDC.SubmitChanges();
       }
