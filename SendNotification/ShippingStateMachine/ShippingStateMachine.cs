@@ -291,7 +291,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                 case Shipping.Distance.UpTo24h:
                 case Shipping.Distance.UpTo2h:
                 case Shipping.Distance.VeryClose:
-                  SetupTimeOut(_timeDistance, _sp);
+                  SetupLogMessage(_timeDistance, _sp);
                   break;
                 case Shipping.Distance.Late:
                   MakeDelayed(_sp, EDC);
@@ -329,7 +329,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               break;
             case State.Underway:
             default:
-              SetupTimeOut(TimeSpan.FromHours(5), _sp);
+              SetupLogMessage(TimeSpan.FromHours(5), _sp);
               break;
           }
         }
@@ -404,9 +404,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void SetupEnvironment(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, ShippingShipping _sp, Priority _prrty, IEmailGrnerator _msg, EntitiesDataContext EDC)
     {
-      SetupTimeOut(_delay, _sp);
+      m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
       SetupAlarmsEvents(_delay, _logDescription, _operations, _prrty, EDC, _sp);
       SetupEmail(_delay, _operations, _sp, _msg, EDC);
+      SetupLogMessage(_delay, _sp);
     }
     private void SetupAlarmsEvents(TimeSpan _delay, string _msg, Shipping.RequiredOperations _operations, Priority _prrty, EntitiesDataContext EDC, ShippingShipping _sh)
     {
@@ -439,10 +440,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         m_EscortSendEmail_From = _cc;
       }
     }
-    private void SetupTimeOut(TimeSpan _delay, Shipping _sp)
+    private void SetupLogMessage(TimeSpan _delay, Shipping _sp)
     {
-      m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
-      string _lm = "New timeout {0} min calculated for the shipping {1} at state {2}, Request: {3}";
+      string _lm = "New timeout {0} min calculated for the shipping {1} at state {2}, Request: {3:H}";
       m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value, Operation2Do);
     }
     public String m_CalculateTimeoutLogToHistoryList_HistoryDescription = default(System.String);
@@ -487,8 +487,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Carrier);
       if (_loopCounterEscort > 0)
-        throw new ApplicationException("Assertion failed: unexpected Operation2Do value");
-      _loopCounterEscort++;
+        throw new ApplicationException("Assertion Carrier failed: unexpected Operation2Do value");
+      _loopCounterCarrier++;
       Operation2Do ^= Shipping.RequiredOperations.SendEmail2Carrier;
       string _frm = "Sending Carrier warning message To: {0}, CC: {1}, From: {3}, Subject: [4]";
       m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription =
@@ -519,7 +519,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Escort);
       if (_loopCounterEscort > 0)
-        throw new ApplicationException("Assertion failed: unexpected Operation2Do value");
+        throw new ApplicationException("Assertion Escort failed: unexpected Operation2Do value");
       _loopCounterEscort++;
       Operation2Do ^= Shipping.RequiredOperations.SendEmail2Escort;
       string _frm = "Sending Escort warning message To: {0}, CC: {1}, From: {3}, Subject: [4]";
