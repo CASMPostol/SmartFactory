@@ -41,5 +41,8 @@
   <List Name="Load Description"></List>
   <List Name="Carrier Performance Report"></List>
   <List Name="TimeSlot"></List>
+  <List Name="Schedule Template"></List>
+  <List Name="TimeSlots Template"></List>
+  <List Name="Shipping Point"></List>
   <ExcludeOtherLists/>
 </Web>
