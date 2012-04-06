@@ -81,6 +81,9 @@
       <asp:PlaceHolder ID="PlaceHolder1" runat="server">                
         <asp:Button UseSubmitBehavior="false" runat="server" class="ms-ButtonHeightWidth" Text="Save" id="m_SaveButton" /> &nbsp;
         <asp:Button UseSubmitBehavior="false" runat="server" class="ms-ButtonHeightWidth" Text="Cancel" id="m_CancelButton"  />
+        <hr />
+        <SharePoint:SaveButton runat="server" ControlMode="New" id="savebutton2"/>
+        <SharePoint:GoBackButton runat="server" ControlMode="New" id="gobackbutton2"/>
       </asp:PlaceHolder>
       </template_buttons>
     </wssuc:ButtonSection>

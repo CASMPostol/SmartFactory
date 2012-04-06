@@ -139,6 +139,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards {
         protected global::System.Web.UI.WebControls.Button m_CancelButton;
         
         /// <summary>
+        /// savebutton2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.SaveButton savebutton2;
+        
+        /// <summary>
+        /// gobackbutton2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.GoBackButton gobackbutton2;
+        
+        /// <summary>
         /// m_ItemID control.
         /// </summary>
         /// <remarks>
