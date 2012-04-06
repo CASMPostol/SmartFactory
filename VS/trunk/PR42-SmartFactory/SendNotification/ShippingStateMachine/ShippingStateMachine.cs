@@ -172,12 +172,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           _rprt.NumberTUNotDeliveredNotShowingUp++;
         else
         {
-          if (_sp.TrailerCondition.GetValueOrDefault(TrailerCondition.None)  == TrailerCondition._1Unexceptable)
+          if (_sp.TrailerCondition.GetValueOrDefault(TrailerCondition.None) == TrailerCondition._1Unexceptable)
             _rprt.NumberTURejectedBadQuality++;
           var _Start = (from _tsx in _sp.TimeSlot
-                        where _tsx.Occupied.Value == Occupied.Free
+                        where _tsx.Occupied.Value == Occupied.Occupied0
                         orderby _tsx.StartTime ascending
-                        select new { Start = _tsx.StartTime.Value }).First();
+                        select new { Start = _tsx.StartTime.Value }).FirstOrDefault();
+          if (_Start == null)
+            throw new ApplicationException("Data is inconsistent - there is no timeslot allocated to the shipping.");
           switch (CalculateDelay(_sp.StartTime.Value - _Start.Start))
           {
             case Delay.JustInTime:
