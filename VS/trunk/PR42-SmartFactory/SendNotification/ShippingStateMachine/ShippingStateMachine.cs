@@ -499,7 +499,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void m_CarrierNotificationSendEmail_MethodInvoking(object sender, EventArgs e)
     {
       if (Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Carrier))
-        throw new ApplicationException("Assertion failed: unexpected Operation2Do value");
+        throw new ApplicationException(String.Format("Assertion Carrier failed: unexpected Operation2Do value = {0:X}", Operation2Do));
+      if (String.IsNullOrEmpty(m_CarrierNotificationSendEmail_To))
+        throw new ApplicationException("Assertion Carrier failed: To is empty");
     }
     public String m_CarrierNotificationSendEmail_Body = default(System.String);
     public String m_CarrierNotificationSendEmail_CC = default(System.String);
@@ -529,7 +531,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void m_EscortSendEmail_MethodInvoking(object sender, EventArgs e)
     {
       if (Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Escort))
-        throw new ApplicationException("Assertion failed: unexpected Operation2Do value");
+        throw new ApplicationException(String.Format("Assertion Escort failed: unexpected Operation2Do value = {0:X}", Operation2Do));
+      if (String.IsNullOrEmpty(m_EscortSendEmail_To))
+        throw new ApplicationException("Assertion Escort failed: To is empty");
     }
     public String m_EscortSendEmail_Body = default(System.String);
     public String m_EscortSendEmail_CC = default(System.String);
