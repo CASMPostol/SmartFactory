@@ -7,9 +7,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
 {
   public partial class SupplementData2hVendorTemplate : IEmailGrnerator
   {
-    internal string Title { get; set; }
-    internal DateTime StartTime { get; set; }
+    public string Title { get; set; }
+    public DateTime StartTime { get; set; }
     public string PartnerTitle { get; set; }
     public string Subject { get; set; }
+    public string ShippingTitle { get; set; }
   }
 }

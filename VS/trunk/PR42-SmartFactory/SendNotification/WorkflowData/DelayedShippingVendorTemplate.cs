@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
             
             #line default
             #line hidden
-            this.Write(" had not arrived.</b></p>\r\n<p><b>Vendor:</b> ");
+            this.Write(" had not arrived.</b></p>\r\n<p><b>Partner:</b> ");
             
             #line 2 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\DelayedShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartnerTitle));
@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
             this.Write("</p>\r\n<p><b>Shipping:</b> ");
             
             #line 3 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\DelayedShippingVendorTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Title));
+            this.Write(this.ToStringHelper.ToStringWithCulture(ShippingTitle));
             
             #line default
             #line hidden
@@ -46,10 +46,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
             
             #line default
             #line hidden
-            this.Write("</p>\r\n___________________________________________________________________________" +
-                    "_________________</br>\r\n  NOTE: Information about driver’s names and truck/trail" +
-                    "ers should be supplemented in Shepherd\r\n        system before planned loading.</" +
-                    "br>  ");
+            this.Write(@"</p>
+____________________________________________________________________________________________</br>
+NOTE: Information about driver’s names, trucks/trailers and security escort cars should be supplemented in Shepherd system before planned loading.</br>   ");
             return this.GenerationEnvironment.ToString();
         }
     }
