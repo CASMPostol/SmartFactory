@@ -7,6 +7,7 @@ using System.Workflow.ComponentModel;
 using CAS.SmartFactory.Shepherd.SendNotification.Entities;
 using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
 using Microsoft.SharePoint.Workflow;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 {
@@ -50,7 +51,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
       EDC.SubmitChanges();
     }
-    private Shipping.RequiredOperations Operation2Do { get; set; }
     #endregion
 
     #region public
@@ -280,11 +280,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         try
         {
           ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
-          Shipping.RequiredOperations _ro = 0;
+          TimeSpan _timeDistance;
           switch (_sp.State.Value)
           {
             case State.Confirmed:
-              TimeSpan _timeDistance;
               switch (_sp.CalculateDistance(out _timeDistance))
               {
                 case Shipping.Distance.UpTo72h:
@@ -304,20 +303,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               switch (_sp.CalculateDistance(out _timeDistance))
               {
                 case Shipping.Distance.UpTo72h:
-                  _ro = _sp.CalculateOperations2Do(false, true);
-                  RequestData(_sp, _timeDistance, _ro, Priority.Normal, EDC);
+                  RequestData(_timeDistance, _sp, Priority.Normal, EDC);
                   break;
                 case Shipping.Distance.UpTo24h:
-                  _ro = _sp.CalculateOperations2Do(false, true);
-                  RequestData(_sp, _timeDistance, _ro, Priority.Warning, EDC);
+                  RequestData(_timeDistance, _sp, Priority.Warning, EDC);
                   break;
                 case Shipping.Distance.UpTo2h:
-                  _ro = _sp.CalculateOperations2Do(false, true);
-                  RequestData(_sp, _timeDistance, _ro, Priority.Warning, EDC);
+                  RequestData(_timeDistance, _sp, Priority.Warning, EDC);
                   break;
                 case Shipping.Distance.VeryClose:
-                  _ro = _sp.CalculateOperations2Do(true, true);
-                  RequestData(_sp, _timeDistance, _ro, Priority.High, EDC);
+                  RequestData(_timeDistance, _sp, Priority.High, EDC);
                   break;
                 case Shipping.Distance.Late:
                   MakeDelayed(_sp, EDC);
@@ -339,19 +334,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         }
       }
     }
-    private void RequestData(ShippingShipping _sp, TimeSpan _delay, Shipping.RequiredOperations _ro, Priority _pr, EntitiesDataContext EDC)
+    private void RequestData(TimeSpan _delay, ShippingShipping _sp, Priority _pr, EntitiesDataContext EDC)
     {
       string _frmt = "Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}.";
       _frmt = String.Format(_frmt, _delay, DateTime.Now + _delay);
+      Shipping.RequiredOperations _ro = 0;
       switch (_pr)
       {
         case Priority.Normal:
+          _ro = _sp.CalculateOperations2Do(false, true);
           _frmt.Insert(0, "Remainder; ");
           break;
         case Priority.High:
-          _frmt.Insert(0, "Warnning !");
+          _ro = _sp.CalculateOperations2Do(true, true);
+          _frmt.Insert(0, "Warnning ! ");
           break;
         case Priority.Warning:
+          _ro = _sp.CalculateOperations2Do(false, true);
           _frmt.Insert(0, "It is last call !!!");
           break;
         case Priority.None:
@@ -359,14 +358,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         default:
           break;
       }
-      SupplementData2hVendorTemplate _msg = new SupplementData2hVendorTemplate()
-      {
-        PartnerTitle = _sp.VendorName.Title(),
-        Title = _sp.Title(),
-        StartTime = _sp.StartTime.Value,
-        Subject = _sp.Tytuł + " data request !!"
-      };
-      SetupEnvironment(_delay, _frmt, _ro, _sp, _pr, _msg, EDC);
+      SetupEnvironment(_delay, _ro, _sp, _pr, EDC, _frmt, EmailType.RequestData);
     }
     private void MakeCanceled(ShippingShipping _sp, EntitiesDataContext EDC)
     {
@@ -375,14 +367,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true);
       string _frmt = "Wanning !! The shipping has been cancelled by {0}";
       _frmt = String.Format(_frmt, _sp.ZmodyfikowanePrzez);
-      CanceledShippingVendorTemplate _msg = new CanceledShippingVendorTemplate()
-      {
-        PartnerTitle = _sp.VendorName.Title(),
-        StartTime = _sp.StartTime.Value,
-        Title = _sp.Title(),
-        Subject = _sp.Tytuł + " is canceled !!"
-      };
-      SetupEnvironment(ShippingShipping.WatchTolerance, _frmt, _ro, _sp, Priority.High, _msg, EDC);
+      SetupEnvironment(ShippingShipping.WatchTolerance, _ro, _sp, Priority.High, EDC, _frmt, EmailType.Canceled);
     }
     private void MakeDelayed(ShippingShipping _sp, EntitiesDataContext EDC)
     {
@@ -392,58 +377,47 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       _frmt = String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????");
       _frmt += "The shipping should finisch in {0:g} at {1:g}.";
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true) & Shipping.CarrierOperations;
-      DelayedShippingVendorTemplate _msg = new DelayedShippingVendorTemplate()
-      {
-        PartnerTitle = _sp.VendorName.Title(),
-        StartTime = _sp.StartTime.Value,
-        Title = _sp.Title(),
-        TruckTitle = _sp.TruckCarRegistrationNumber.Title(),
-        Subject = _sp.Tytuł + " is delayed !!"
-      };
-      SetupEnvironment(ShippingShipping.WatchTolerance, _frmt, _ro, _sp, Priority.High, _msg, EDC);
+      SetupEnvironment(ShippingShipping.WatchTolerance, _ro, _sp, Priority.High, EDC, _frmt, EmailType.Delayed);
     }
-    private void SetupEnvironment(TimeSpan _delay, string _logDescription, Shipping.RequiredOperations _operations, ShippingShipping _sp, Priority _prrty, IEmailGrnerator _msg, EntitiesDataContext EDC)
+    private void SetupEnvironment(TimeSpan _delay, Shipping.RequiredOperations _operations, ShippingShipping _sp, Priority _prrty, EntitiesDataContext EDC, string _logDescription, EmailType _etype)
     {
-      SetupAlarmsEvents(_delay, _logDescription, _operations, _prrty, EDC, _sp);
-      SetupEmail(_delay, _operations, _sp, _msg, EDC);
+      SetupAlarmsEvents(_logDescription, _operations, _prrty, EDC, _sp);
+      SetupEmail(_operations, _sp, _etype);
       SetupLogMessage(_delay, _sp);
     }
-    private void SetupAlarmsEvents(TimeSpan _delay, string _msg, Shipping.RequiredOperations _operations, Priority _prrty, EntitiesDataContext EDC, ShippingShipping _sh)
+    private void SetupAlarmsEvents(string _msg, Shipping.RequiredOperations _operations, Priority _prrty, EntitiesDataContext EDC, ShippingShipping _sh)
     {
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Escort))
+        //TODO the messge must depend on the receiver roele 
         ReportAlarmsAndEvents(_msg, _prrty, ServiceType.SecurityEscortProvider, EDC, _sh);
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.AddAlarm2Carrier))
         ReportAlarmsAndEvents(_msg, _prrty, ServiceType.VendorAndForwarder, EDC, _sh);
     }
-    private void SetupEmail(TimeSpan _delay, Shipping.RequiredOperations _operations, Shipping _sp, IEmailGrnerator _body, EntitiesDataContext EDC)
+    private void SetupEmail(Shipping.RequiredOperations _operations, Shipping _sp, EmailType _etype)
     {
-      Operation2Do = _operations;
-      ShepherdRole _ccRole = _sp.IsOutbound.Value ? ShepherdRole.OutboundOwner : ShepherdRole.InboundOwner;
-      string _cc = DistributionList.GetEmail(_ccRole, EDC);
+      List<MailData> _Operarion2Do = new List<MailData>();
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Carrier))
-      {
-        _body.PartnerTitle = _sp.VendorName.Title();
-        m_CarrierNotificationSendEmail_To = _sp.VendorName != null ? _sp.VendorName.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
-        m_CarrierNotificationSendEmail_Subject1 = _body.Subject;
-        m_CarrierNotificationSendEmail_Body = _body.TransformText();
-        m_CarrierNotificationSendEmail_CC = _cc;
-        m_CarrierNotificationSendEmail_From = _cc;
-      }
+        CreateMailData(_sp, _etype, ExternalRole.Vendor, _Operarion2Do);
       if (Shipping.InSet(_operations, Shipping.RequiredOperations.SendEmail2Escort))
+        CreateMailData(_sp, _etype, ExternalRole.Escort, _Operarion2Do);
+      this.SendingEmailsReplicator_InitialChildData = _Operarion2Do;
+    }
+    private void CreateMailData(Shipping _sp, EmailType _etype, ExternalRole _role, List<MailData> _Operarion2Do)
+    {
+      MailData _ced = new MailData()
       {
-        _body.PartnerTitle = _sp.SecurityEscortProvider.Title();
-        m_EscortSendEmail_To = _sp.SecurityEscortProvider != null ? _sp.SecurityEscortProvider.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
-        m_EscortSendEmail_Subject = _body.Subject;
-        m_EscortSendEmail_Body = _body.TransformText();
-        m_EscortSendEmail_CC = _cc;
-        m_EscortSendEmail_From = _cc;
-      }
+        EmailType = _etype,
+        Role = _role,
+        ShippmentID = _sp.Identyfikator.Value,
+        URL = this.m_OnWorkflowActivated_WorkflowProperties.Site.Url
+      };
+      _Operarion2Do.Add(_ced);
     }
     private void SetupLogMessage(TimeSpan _delay, Shipping _sp)
     {
       m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
-      string _lm = "New timeout {0} min calculated for the shipping {1} at state {2}, Request: {3:X}";
-      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value, Operation2Do);
+      string _lm = "New timeout {0} min calculated for the shipping {1} at state {2}";
+      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value);
     }
     public String m_CalculateTimeoutLogToHistoryList_HistoryDescription = default(System.String);
     #endregion
@@ -470,23 +444,103 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     public String m_TimeOutLogToHistoryListActivity_HistoryDescription = default(System.String);
     #endregion
 
-
-    #region SendEmailsConditionedActivityGroupCondition
-    private bool m_SendEmailsConditioneExecuted = false;
-    private void m_SendEmailsConditionedActivityGroupCondition(object sender, ConditionalEventArgs e)
+    #region SendingEmailsReplicator
+    private void SendingEmailsReplicator_ChildInitialized(object sender, ReplicatorChildEventArgs e)
     {
-      e.Result = m_SendEmailsConditioneExecuted;
-      m_SendEmailsConditioneExecuted = false;
+      MailData _md = (MailData)e.InstanceData;
+      using (EntitiesDataContext EDC = new EntitiesDataContext(_md.URL))
+      {
+        ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, _md.ShippmentID);
+        IEmailGrnerator _msg = default(IEmailGrnerator);
+        string _cause = default(string);
+        switch (_md.EmailType)
+        {
+          case EmailType.Delayed:
+            _msg = new DelayedShippingVendorTemplate()
+           {
+             TruckTitle = _sp.TruckCarRegistrationNumber.Title(),
+           };
+            _cause = "Shipment delayed: ";
+            break;
+          case EmailType.RequestData:
+            switch (_md.Role)
+            {
+              case ExternalRole.Vendor:
+              case ExternalRole.Forwarder:
+                _msg = new SupplementData2hVendorTemplate();
+                break;
+              case ExternalRole.Escort:
+                _msg = new SupplementData2hEscortTemplate();
+                break;
+              default:
+                break;
+            }
+            _cause = "Data request for shipment: ";
+            break;
+          case EmailType.Canceled:
+            _msg = new CanceledShippingVendorTemplate();
+            _cause = "Shipment canceled: ";
+            break;
+        }
+        switch (_md.Role)
+        {
+          case ExternalRole.Vendor:
+          case ExternalRole.Forwarder:
+            _msg.PartnerTitle = _sp.VendorName.Title();
+            m_CarrierNotificationSendEmail_To = _sp.VendorName != null ? _sp.VendorName.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
+            break;
+          case ExternalRole.Escort:
+            _msg.PartnerTitle = _sp.SecurityEscortProvider.Title();
+            m_CarrierNotificationSendEmail_To = _sp.SecurityEscortProvider != null ? _sp.SecurityEscortProvider.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
+
+            break;
+          default:
+            break;
+        }
+        _msg.ShippingTitle = _sp.Title();
+        _msg.StartTime = _sp.StartTime.Value;
+        _msg.Subject = _sp.Title().Insert(0, _cause);
+        ShepherdRole _ccRole = _sp.IsOutbound.Value ? ShepherdRole.OutboundOwner : ShepherdRole.InboundOwner;
+        string _cc = DistributionList.GetEmail(_ccRole, EDC);
+        m_CarrierNotificationSendEmail_Subject1 = _sp.Title().Insert(0, _cause);
+        m_CarrierNotificationSendEmail_CC = _cc;
+        m_CarrierNotificationSendEmail_From = _cc;
+        m_CarrierNotificationSendEmail_Body = _msg.TransformText();
+      }
     }
+    private void SendingEmailsReplicator_ChildCompleted(object sender, ReplicatorChildEventArgs e)
+    {
+
+    }
+    private void SendingEmailsReplicator_Completed(object sender, EventArgs e)
+    {
+
+    }
+    private void SendingEmailsReplicator_Initialized(object sender, EventArgs e)
+    { }
+
+    #region InitialChildData
+    public static DependencyProperty SendingEmailsReplicator_InitialChildDataProperty = DependencyProperty.Register("SendingEmailsReplicator_InitialChildData", typeof(System.Collections.IList), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
+    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
+    [BrowsableAttribute(true)]
+    [CategoryAttribute("Properties")]
+    public IList SendingEmailsReplicator_InitialChildData
+    {
+      get
+      {
+        return ((System.Collections.IList)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.SendingEmailsReplicator_InitialChildDataProperty)));
+      }
+      set
+      {
+        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.SendingEmailsReplicator_InitialChildDataProperty, value);
+      }
+    }
+    #endregion
+
     #region CarrierNotificationSendEmail
 
     #region LogToHistoryList
     private const string m_CarrierNotificationSendEmailFormat = "Sending {4} warning message To: {0}, CC: {1}, From: {2}, Subject: {3}";
-    private void m_CarrierNotificationSendEmail_Condition(object sender, ConditionalEventArgs e)
-    {
-      e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Carrier);
-      Operation2Do ^= Shipping.RequiredOperations.SendEmail2Carrier;
-    }
     public String m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription = default(System.String);
     private void m_CarrierNotificationSendEmailLogToHistoryList_MethodInvoking(object sender, EventArgs e)
     {
@@ -498,8 +552,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region SendEmail
     private void m_CarrierNotificationSendEmail_MethodInvoking(object sender, EventArgs e)
     {
-      if (Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Carrier))
-        throw new ApplicationException(String.Format("Assertion Carrier failed: unexpected Operation2Do value = {0:X}", Operation2Do));
       if (String.IsNullOrEmpty(m_CarrierNotificationSendEmail_To))
         throw new ApplicationException("Assertion Carrier failed: To is empty");
     }
@@ -511,37 +563,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #endregion
     #endregion
 
-    #region EscortSendEmail
-
-    #region LogToHistoryList
-    private void m_EscortSendEmail_Condition(object sender, ConditionalEventArgs e)
-    {
-      e.Result = Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Escort);
-      Operation2Do ^= Shipping.RequiredOperations.SendEmail2Escort;
-    }
-    public String m_EscortSendEmailLogToHistoryList_HistoryDescription1 = default(System.String);
-    private void m_EscortSendEmailLogToHistoryList_MethodInvoking(object sender, EventArgs e)
-    {
-      m_EscortSendEmailLogToHistoryList_HistoryDescription1 =
-        String.Format(m_CarrierNotificationSendEmailFormat, m_EscortSendEmail_To, m_EscortSendEmail_CC, m_EscortSendEmail_From, m_EscortSendEmail_Subject, "Escort");
-    }
-    #endregion
-
-    #region SendEmail
-    private void m_EscortSendEmail_MethodInvoking(object sender, EventArgs e)
-    {
-      if (Shipping.InSet(Operation2Do, Shipping.RequiredOperations.SendEmail2Escort))
-        throw new ApplicationException(String.Format("Assertion Escort failed: unexpected Operation2Do value = {0:X}", Operation2Do));
-      if (String.IsNullOrEmpty(m_EscortSendEmail_To))
-        throw new ApplicationException("Assertion Escort failed: To is empty");
-    }
-    public String m_EscortSendEmail_Body = default(System.String);
-    public String m_EscortSendEmail_CC = default(System.String);
-    public String m_EscortSendEmail_From = default(System.String);
-    public String m_EscortSendEmail_Subject = default(System.String);
-    public String m_EscortSendEmail_To = default(System.String);
-    #endregion
-    #endregion
     #endregion
 
     #region TimeOutDelay
@@ -561,12 +582,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
     }
     #endregion
-
-
-
-
-
-
 
   }
 }

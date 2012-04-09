@@ -54,6 +54,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     public string EmaiAddressTo{get; set;}
     public string PartnerTitle{get; set;}
     public string Subject{get; set;}
+    public DateTime StartTime{get; set;}
+    public string ShippingTitle{get; set;}
     #endregion
   }
 }

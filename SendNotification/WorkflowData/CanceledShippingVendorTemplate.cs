@@ -18,7 +18,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     {
         public virtual string TransformText()
         {
-            this.Write("<p><b>The shipment has been canceled.</b></p>\r\n<p><b>Partner:</b> ");
+            this.Write("<p><b>The shipment has been canceled. All purchase orders concerning this shipmen" +
+                    "t and received before this notification are no longer valid.</b></p>\r\n<p><b>Part" +
+                    "ner:</b> ");
             
             #line 2 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\CanceledShippingVendorTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartnerTitle));
@@ -28,7 +30,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
             this.Write("</p>\r\n<p><b>Shipping:</b> ");
             
             #line 3 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\CanceledShippingVendorTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Title));
+            this.Write(this.ToStringHelper.ToStringWithCulture(ShippingTitle));
             
             #line default
             #line hidden
@@ -39,9 +41,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
             
             #line default
             #line hidden
-            this.Write("</p>\r\n___________________________________________________________________________" +
-                    "_________________</br>\r\nNOTE: Information about driver’s names and truck/trailer" +
-                    "s should be supplemented in Shepherd system before planned loading.</br>  ");
+            this.Write(@"</p>
+____________________________________________________________________________________________</br>
+NOTE: Information about driver’s names, trucks/trailers and security escort cars should be supplemented in Shepherd system before planned loading.</br>  ");
             return this.GenerationEnvironment.ToString();
         }
     }

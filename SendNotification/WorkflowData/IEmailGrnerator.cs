@@ -9,6 +9,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
   {
     string PartnerTitle { get; set; }
     string Subject { get; set; }
+    DateTime StartTime { get; set; }
+    string ShippingTitle{ get; set; }
     string TransformText();
   }
 }

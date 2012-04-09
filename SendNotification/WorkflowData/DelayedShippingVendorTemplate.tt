@@ -1,6 +1,6 @@
 ﻿<p><b>Shipment is delayed. Expected truck <#= TruckTitle #> had not arrived.</b></p>
 <p><b>Partner:</b> <#= PartnerTitle #></p>
-<p><b>Shipping:</b> <#= Title #></p>
+<p><b>Shipping:</b> <#= ShippingTitle #></p>
 <p><b>Time Slot:</b> <#= StartTime #></p>
 ____________________________________________________________________________________________</br>
 NOTE: Information about driver’s names, trucks/trailers and security escort cars should be supplemented in Shepherd system before planned loading.</br>   

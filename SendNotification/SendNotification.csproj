@@ -114,6 +114,7 @@
       <DependentUpon>SendNotification.feature</DependentUpon>
     </Compile>
     <Compile Include="OpenXMLHelpers.cs" />
+    <Compile Include="ShippingStateMachine\MailData.cs" />
     <Compile Include="WorkflowData\CanceledShippingVendorTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
