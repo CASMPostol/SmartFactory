@@ -93,7 +93,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       this.m_TimeOutDelay.Description = "Timeout to the dedline.";
       this.m_TimeOutDelay.Name = "m_TimeOutDelay";
       activitybind3.Name = "ShippingStateMachine";
-      activitybind3.Path = "m_TimeOutDelay_TimeoutDuration1";
+      activitybind3.Path = "m_TimeOutDelay_TimeoutDuration";
       this.m_TimeOutDelay.SetBinding(System.Workflow.Activities.DelayActivity.TimeoutDurationProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind3)));
       // 
       // m_OnWorkflowItemChangedLogToHistoryList
@@ -369,6 +369,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private SequenceActivity m_SequenceActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated;
+
 
 
 

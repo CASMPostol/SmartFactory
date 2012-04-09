@@ -62,7 +62,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 
     #region OnWorkflowActivated
     internal static Guid WorkflowId = new Guid("cd61e1a0-3401-40f9-9eb1-c7428f6f2516");
-    internal static WorkflowDescription WorkflowDescription { get { return new WorkflowDescription(WorkflowId, "Shipping State Machine", "Shipping State Machine Workflow"); } }
+    internal static WorkflowDescription WorkflowDescription { get { return new WorkflowDescription(WorkflowId, "Shipment State Machine", "Shipment State Machine Workflow"); } }
     public Guid workflowId = default(System.Guid);
     public SPWorkflowActivationProperties m_OnWorkflowActivated_WorkflowProperties = new Microsoft.SharePoint.Workflow.SPWorkflowActivationProperties();
     private void m_OnWorkflowActivated_Invoked(object sender, ExternalDataEventArgs e)
@@ -97,7 +97,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       {
         try
         {
-          string _msg = "The shipping at current state {0} has been modified by {1} and the schedule wiil be updated.";
+          string _msg = "The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated.";
           ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
           m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
           ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None, EDC, _sp);
@@ -178,7 +178,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                         orderby _tsx.StartTime ascending
                         select new { Start = _tsx.StartTime.Value }).FirstOrDefault();
           if (_Start == null)
-            throw new ApplicationException("Data is inconsistent - there is no timeslot allocated to the shipping.");
+            throw new ApplicationException("Data is inconsistent - there is no timeslot allocated to the Shipment.");
           switch (CalculateDelay(_sp.StartTime.Value - _Start.Start))
           {
             case Delay.JustInTime:
@@ -290,7 +290,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                 case Shipping.Distance.UpTo24h:
                 case Shipping.Distance.UpTo2h:
                 case Shipping.Distance.VeryClose:
-                  SetupLogMessage(_timeDistance, _sp);
+                  SetupTimeout(_timeDistance, _sp);
                   break;
                 case Shipping.Distance.Late:
                   MakeDelayed(_sp, EDC);
@@ -324,7 +324,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               break;
             case State.Underway:
             default:
-              SetupLogMessage(TimeSpan.FromHours(5), _sp);
+              SetupTimeout(TimeSpan.FromHours(5), _sp);
               break;
           }
         }
@@ -365,7 +365,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       _sp.State = State.Canceled;
       EDC.SubmitChanges();
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true);
-      string _frmt = "Wanning !! The shipping has been cancelled by {0}";
+      string _frmt = "Wanning !! The Shipment has been cancelled by {0}";
       _frmt = String.Format(_frmt, _sp.ZmodyfikowanePrzez);
       SetupEnvironment(ShippingShipping.WatchTolerance, _ro, _sp, Priority.High, EDC, _frmt, EmailType.Canceled);
     }
@@ -375,7 +375,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       EDC.SubmitChanges();
       string _frmt = "Wanning !! The truck is late. Call the driver: {0}";
       _frmt = String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????");
-      _frmt += "The shipping should finisch in {0:g} at {1:g}.";
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true) & Shipping.CarrierOperations;
       SetupEnvironment(ShippingShipping.WatchTolerance, _ro, _sp, Priority.High, EDC, _frmt, EmailType.Delayed);
     }
@@ -383,7 +382,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       SetupAlarmsEvents(_logDescription, _operations, _prrty, EDC, _sp);
       SetupEmail(_operations, _sp, _etype);
-      SetupLogMessage(_delay, _sp);
+      SetupTimeout(_delay, _sp);
     }
     private void SetupAlarmsEvents(string _msg, Shipping.RequiredOperations _operations, Priority _prrty, EntitiesDataContext EDC, ShippingShipping _sh)
     {
@@ -413,11 +412,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       };
       _Operarion2Do.Add(_ced);
     }
-    private void SetupLogMessage(TimeSpan _delay, Shipping _sp)
+    private void SetupTimeout(TimeSpan _delay, Shipping _sp)
     {
       m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
-      string _lm = "New timeout {0} min calculated for the shipping {1} at state {2}";
-      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value);
+      string _lm = "New timeout at: {0} is set up for the shipment {1} at state {2}";
+      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, DateTime.Now + m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value);
     }
     public String m_CalculateTimeoutLogToHistoryList_HistoryDescription = default(System.String);
     #endregion
@@ -565,21 +564,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #endregion
 
     #region TimeOutDelay
-    public static DependencyProperty m_TimeOutDelay_TimeoutDuration1Property = DependencyProperty.Register("m_TimeOutDelay_TimeoutDuration1", typeof(System.TimeSpan), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
-    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Visible)]
-    [BrowsableAttribute(true)]
-    [CategoryAttribute("Misc")]
-    public TimeSpan m_TimeOutDelay_TimeoutDuration1
-    {
-      get
-      {
-        return ((System.TimeSpan)(base.GetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_TimeOutDelay_TimeoutDuration1Property)));
-      }
-      set
-      {
-        base.SetValue(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine.m_TimeOutDelay_TimeoutDuration1Property, value);
-      }
-    }
+    public TimeSpan m_TimeOutDelay_TimeoutDuration = default(System.TimeSpan);
     #endregion
 
   }

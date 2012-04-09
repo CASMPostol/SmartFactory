@@ -11,9 +11,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
     internal enum RequiredOperations
     {
       SendEmail2Carrier = 0x01,
-      SendEmail2Escort  = 0x02,
-      AddAlarm2Carrier  = 0x04,
-      AddAlarm2Escort   = 0x10
+      SendEmail2Escort = 0x02,
+      AddAlarm2Carrier = 0x04,
+      AddAlarm2Escort = 0x10
     }
     internal const RequiredOperations CarrierOperations = Shipping.RequiredOperations.AddAlarm2Carrier | Shipping.RequiredOperations.SendEmail2Carrier;
     internal enum Distance { UpTo72h, UpTo24h, UpTo2h, VeryClose, Late }
@@ -76,9 +76,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
         _ts = this.StartTime.Value - DateTime.Now - _2h;
         return Distance.UpTo2h;
       }
-      else if (this.StartTime.Value > DateTime.Now - WatchTolerance)
+      else if (this.StartTime.Value > DateTime.Now)
       {
-        _ts = this.StartTime.Value - DateTime.Now + WatchTolerance;
+        _ts = this.StartTime.Value - DateTime.Now;
         return Distance.VeryClose;
       }
       else
