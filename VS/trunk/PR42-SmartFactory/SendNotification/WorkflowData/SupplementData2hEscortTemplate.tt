@@ -1,7 +1,7 @@
 ﻿<#@ template language="C#" #>
 <p><b>2 hour remaining to supplement missing escort data.</b></p>
 <p><b>Security Escort Provider</b>: <#= PartnerTitle #></p>
-<p><b>Shipping:</b> <#= Title #></p>
+<p><b>Shipping:</b> <#= ShippingTitle #></p>
 <p><b>Time Slot:</b> <#= StartTime #></p>
 ____________________________________________________________________________________________</br>
 NOTE: Information about driver’s names and car should be supplemented in Shepherd system before planned loading.</br> 
