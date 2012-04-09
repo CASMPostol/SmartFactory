@@ -414,9 +414,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void SetupTimeout(TimeSpan _delay, Shipping _sp)
     {
-      m_TimeOutDelay_TimeoutDuration1 = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
+      m_TimeOutDelay_TimeoutDuration = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
       string _lm = "New timeout at: {0} is set up for the shipment {1} at state {2}";
-      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, DateTime.Now + m_TimeOutDelay_TimeoutDuration1, _sp.Title(), _sp.State.Value);
+      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, DateTime.Now + m_TimeOutDelay_TimeoutDuration, _sp.Title(), _sp.State.Value);
     }
     public String m_CalculateTimeoutLogToHistoryList_HistoryDescription = default(System.String);
     #endregion
