@@ -492,7 +492,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           case ExternalRole.Escort:
             _msg.PartnerTitle = _sp.SecurityEscortProvider.Title();
             m_CarrierNotificationSendEmail_To = _sp.SecurityEscortProvider != null ? _sp.SecurityEscortProvider.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
-
             break;
           default:
             break;

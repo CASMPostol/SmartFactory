@@ -29,7 +29,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
             this.Write("</p>\r\n<p><b>Shipping:</b> ");
             
             #line 4 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\SupplementData2hEscortTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Title));
+            this.Write(this.ToStringHelper.ToStringWithCulture(ShippingTitle));
             
             #line default
             #line hidden
