@@ -187,9 +187,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		/// A schedule template is a predefined table of time slots.
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Schedule Template")]
-		public Microsoft.SharePoint.Linq.EntityList<ScheduleTemplateScheduleTemplate> ScheduleTemplate {
+		public Microsoft.SharePoint.Linq.EntityList<ScheduleTemplate> ScheduleTemplate {
 			get {
-				return this.GetList<ScheduleTemplateScheduleTemplate>("Schedule Template");
+				return this.GetList<ScheduleTemplate>("Schedule Template");
 			}
 		}
 		
@@ -2855,10 +2855,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	/// Utwórz nowy element listy.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ScheduleTemplate", Id="0x010091765907174D4799B44C4DF249630D28")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ScheduleTemplateScheduleTemplate))]
 	public partial class ScheduleTemplate : Element {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _shippingPoint;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate> _timeSlotsTemplate;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2871,6 +2872,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this._shippingPoint.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnShippingPointSync);
 			this._shippingPoint.OnChanged += new System.EventHandler(this.OnShippingPointChanged);
 			this._shippingPoint.OnChanging += new System.EventHandler(this.OnShippingPointChanging);
+			this._timeSlotsTemplate = new Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate>();
+			this._timeSlotsTemplate.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate>>(this.OnTimeSlotsTemplateSync);
+			this._timeSlotsTemplate.OnChanged += new System.EventHandler(this.OnTimeSlotsTemplateChanged);
+			this._timeSlotsTemplate.OnChanging += new System.EventHandler(this.OnTimeSlotsTemplateChanging);
 			this.OnCreated();
 		}
 		
@@ -2881,6 +2886,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 			set {
 				this._shippingPoint.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ScheduleTemplateTitle", Storage="_timeSlotsTemplate", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="TimeSlots Template")]
+		public Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate> TimeSlotsTemplate {
+			get {
+				return this._timeSlotsTemplate;
+			}
+			set {
+				this._timeSlotsTemplate.Assign(value);
 			}
 		}
 		
@@ -2898,6 +2913,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 			else {
 				e.Item.ScheduleTemplate.Remove(this);
+			}
+		}
+		
+		private void OnTimeSlotsTemplateChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TimeSlotsTemplate", this._timeSlotsTemplate.Clone());
+		}
+		
+		private void OnTimeSlotsTemplateChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TimeSlotsTemplate");
+		}
+		
+		private void OnTimeSlotsTemplateSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ScheduleTemplateShepherd = this;
+			}
+			else {
+				e.Item.ScheduleTemplateShepherd = null;
 			}
 		}
 	}
@@ -4326,7 +4358,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private System.Nullable<EndMinute> _endMinute;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<ScheduleTemplateScheduleTemplate> _scheduleTemplateShepherd;
+		private Microsoft.SharePoint.Linq.EntityRef<ScheduleTemplate> _scheduleTemplateShepherd;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -4335,8 +4367,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		#endregion
 		
 		public TimeSlotsTemplate() {
-			this._scheduleTemplateShepherd = new Microsoft.SharePoint.Linq.EntityRef<ScheduleTemplateScheduleTemplate>();
-			this._scheduleTemplateShepherd.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplateScheduleTemplate>>(this.OnScheduleTemplateShepherdSync);
+			this._scheduleTemplateShepherd = new Microsoft.SharePoint.Linq.EntityRef<ScheduleTemplate>();
+			this._scheduleTemplateShepherd.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate>>(this.OnScheduleTemplateShepherdSync);
 			this._scheduleTemplateShepherd.OnChanged += new System.EventHandler(this.OnScheduleTemplateShepherdChanged);
 			this._scheduleTemplateShepherd.OnChanging += new System.EventHandler(this.OnScheduleTemplateShepherdChanging);
 			this.OnCreated();
@@ -4424,7 +4456,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ScheduleTemplateTitle", Storage="_scheduleTemplateShepherd", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Schedule Template")]
-		public ScheduleTemplateScheduleTemplate ScheduleTemplateShepherd {
+		public ScheduleTemplate ScheduleTemplateShepherd {
 			get {
 				return this._scheduleTemplateShepherd.GetEntity();
 			}
@@ -4441,7 +4473,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this.OnPropertyChanged("ScheduleTemplateShepherd");
 		}
 		
-		private void OnScheduleTemplateShepherdSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplateScheduleTemplate> e) {
+		private void OnScheduleTemplateShepherdSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.TimeSlotsTemplate.Add(this);
 			}
@@ -5145,7 +5177,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOWarehouseAddress", Storage="_warehouseAddress", FieldType="Text")]
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOWarehouseAddress", Storage="_warehouseAddress", FieldType="Note")]
 		public string WarehouseAddress {
 			get {
 				return this._warehouseAddress;
@@ -5483,7 +5515,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOWarehouseAddress", Storage="_warehouseAddress", FieldType="Text")]
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOWarehouseAddress", Storage="_warehouseAddress", FieldType="Note")]
 		public string WarehouseAddress {
 			get {
 				return this._warehouseAddress;
@@ -6285,72 +6317,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 			else {
 				e.Item.CountryName = null;
-			}
-		}
-	}
-	
-	/// <summary>
-	/// A schedule template is a predefined table of time slots.
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ScheduleTemplate", Id="0x010091765907174D4799B44C4DF249630D28", List="Schedule Template")]
-	public partial class ScheduleTemplateScheduleTemplate : ScheduleTemplate {
-		
-		private System.Nullable<int> _createTimeslots;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate> _timeSlotsTemplate;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public ScheduleTemplateScheduleTemplate() {
-			this._timeSlotsTemplate = new Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate>();
-			this._timeSlotsTemplate.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate>>(this.OnTimeSlotsTemplateSync);
-			this._timeSlotsTemplate.OnChanged += new System.EventHandler(this.OnTimeSlotsTemplateChanged);
-			this._timeSlotsTemplate.OnChanging += new System.EventHandler(this.OnTimeSlotsTemplateChanging);
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CreateTi", Storage="_createTimeslots", ReadOnly=true, FieldType="WorkflowStatus")]
-		public System.Nullable<int> CreateTimeslots {
-			get {
-				return this._createTimeslots;
-			}
-			set {
-				if ((value != this._createTimeslots)) {
-					this.OnPropertyChanging("CreateTimeslots", this._createTimeslots);
-					this._createTimeslots = value;
-					this.OnPropertyChanged("CreateTimeslots");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ScheduleTemplateTitle", Storage="_timeSlotsTemplate", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="TimeSlots Template")]
-		public Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate> TimeSlotsTemplate {
-			get {
-				return this._timeSlotsTemplate;
-			}
-			set {
-				this._timeSlotsTemplate.Assign(value);
-			}
-		}
-		
-		private void OnTimeSlotsTemplateChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("TimeSlotsTemplate", this._timeSlotsTemplate.Clone());
-		}
-		
-		private void OnTimeSlotsTemplateChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("TimeSlotsTemplate");
-		}
-		
-		private void OnTimeSlotsTemplateSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ScheduleTemplateShepherd = this;
-			}
-			else {
-				e.Item.ScheduleTemplateShepherd = null;
 			}
 		}
 	}
