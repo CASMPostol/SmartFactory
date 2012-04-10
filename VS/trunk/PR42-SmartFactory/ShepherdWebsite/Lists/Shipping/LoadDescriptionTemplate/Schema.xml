@@ -135,7 +135,7 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">16</RowLimit>
         <ViewFields>
-          <FieldRef Name="LinkTitle">
+          <FieldRef Name="Title">
           </FieldRef>
           <FieldRef ID="{867E459C-C3CD-4B4D-9547-C4CB23C8A8CB}" Name="LoadDescriptionShippingTitle" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
@@ -144,6 +144,10 @@
           <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
         </ViewFields>
         <Query>
+          <BeginsWith>
+            <FieldRef Name="LoadDescriptionShippingTitle" />
+            <Value Type="Text">O</Value>
+          </BeginsWith>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
@@ -159,7 +163,7 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">16</RowLimit>
         <ViewFields>
-          <FieldRef Name="LinkTitle">
+          <FieldRef Name="Title">
           </FieldRef>
           <FieldRef ID="{867E459C-C3CD-4B4D-9547-C4CB23C8A8CB}" Name="LoadDescriptionShippingTitle" />
           <FieldRef ID="{E34A2F2D-9BDE-43CA-BFBA-80815EDC2416}" Name="LoadDescription2PartnerTitle" />

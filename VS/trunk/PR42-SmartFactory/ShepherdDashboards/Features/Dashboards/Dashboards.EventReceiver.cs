@@ -37,7 +37,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
             SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
             _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
             _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuInboundOwnerTitle, ProjectElementManagement.URLInboundOwner));
-            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCoordinatorTitle, ProjectElementManagement.URLCoordinator));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuViewInboundsTitle, ProjectElementManagement.URLViewInbounds));
+            _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuViewOutboundsTitle, ProjectElementManagement.URLViewOutbounds));
             _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundOwnerTitle, ProjectElementManagement.URLOutboundOwner));
             _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundCoordinatorTitle, ProjectElementManagement.URLOutboundCoordinator));
             _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuForwarderTitle, ProjectElementManagement.URLForwarderDashboard));

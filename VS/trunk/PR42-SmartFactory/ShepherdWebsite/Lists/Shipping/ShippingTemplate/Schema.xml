@@ -819,12 +819,12 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="17" Type="HTML" WebPartZoneID="Main" DisplayName="Coordinator View - Inbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="CoordinatorViewInbound.aspx">
+      <View BaseViewID="17" Type="HTML" WebPartZoneID="Main" DisplayName="View All - Inbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="ViewInbounds.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">20</RowLimit>
         <ViewFields>
-          <FieldRef Name="LinkTitle">
+          <FieldRef Name="Title">
           </FieldRef>
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
@@ -848,12 +848,12 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="18" Type="HTML" WebPartZoneID="Main" DisplayName="Coordinator View - Outbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="CoordinatorViewOutbound.aspx">
+      <View BaseViewID="18" Type="HTML" WebPartZoneID="Main" DisplayName="View All - Outbound" DefaultView="False" MobileView="TRUE" MobileDefaultView="False" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="ViewOutbounds.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">20</RowLimit>
         <ViewFields>
-          <FieldRef Name="LinkTitle">
+          <FieldRef Name="Title">
           </FieldRef>
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />

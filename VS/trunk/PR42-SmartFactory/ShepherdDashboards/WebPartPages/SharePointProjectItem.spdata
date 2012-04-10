@@ -12,6 +12,7 @@
     <ProjectItemFile Source="WebPageTemplate_Gate.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_Supervisor.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_ManageResources.aspx" Target="WebPartPages\" Type="ElementFile" />
-    <ProjectItemFile Source="WebPageTemplate_Coordinator.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_ViewOutbounds.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_ViewInbounds.aspx" Target="WebPartPages\" Type="ElementFile" />
   </Files>
 </ProjectItem>
