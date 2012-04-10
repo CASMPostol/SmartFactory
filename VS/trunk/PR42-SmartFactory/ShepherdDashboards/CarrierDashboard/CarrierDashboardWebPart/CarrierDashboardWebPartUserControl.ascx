@@ -41,7 +41,7 @@
       <asp:TableCell>
         <asp:Label ID="m_CommentsLabel" runat="server" Text="Comments" CssClass="Label" />
       </asp:TableCell><asp:TableCell>
-        <asp:TextBox ID="m_CommentsTextBox" runat="server" TextMode="Multiline" CssClass="TextBox"></asp:TextBox>
+        <asp:TextBox ID="m_CommentsTextBox" runat="server" TextMode="Multiline" Height="60" CssClass="TextBox"></asp:TextBox>
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
@@ -132,7 +132,7 @@
       <asp:TableCell>
         <asp:Label Text="Comments" ID="m_TrailerConditionCommentsLabel" runat="server" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <asp:TextBox ID="m_TrailerConditionCommentsTextBox" TextMode="Multiline" CssClass="TextBox"
+        <asp:TextBox ID="m_TrailerConditionCommentsTextBox" TextMode="Multiline" Height="60" CssClass="TextBox"
           ToolTip="Add note about trailer condition." runat="server"></asp:TextBox>
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
