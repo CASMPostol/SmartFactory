@@ -5220,7 +5220,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOWarehouseAddress", Storage="_warehouseAddress", FieldType="Text")]
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOWarehouseAddress", Storage="_warehouseAddress", FieldType="Note")]
 		public string WarehouseAddress {
 			get {
 				return this._warehouseAddress;
@@ -5558,7 +5558,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOWarehouseAddress", Storage="_warehouseAddress", FieldType="Text")]
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOWarehouseAddress", Storage="_warehouseAddress", FieldType="Note")]
 		public string WarehouseAddress {
 			get {
 				return this._warehouseAddress;
