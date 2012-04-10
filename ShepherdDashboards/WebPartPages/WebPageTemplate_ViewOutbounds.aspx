@@ -19,13 +19,7 @@
   <div id="Body" >
     <table border="0" width="1100px">
         <tr>
-                        <td width="50%" valign="top">
-                        <WebPartPages:WebpartZone
-                        ID="InboundLoad" runat="server"
-                        Title="Inbound Load Web Part Zone"
-                        FrameType="TitleBarOnly" />
-                        </td>
-                        <td width="50%" valign="top">
+                        <td width="100%" valign="top">
                         <WebPartPages:WebpartZone
                         ID="OutboundLoad" runat="server"
                         Title="Outbound Load Web Part Zone"
@@ -33,16 +27,10 @@
                         </td>
         </tr>
         <tr>
-                        <td width="50%" valign="top">
+                        <td width="100%" valign="top">
                         <WebPartPages:WebpartZone
-                        ID="InboundShippings" runat="server"
-                        Title="Inbound Shippings Web Part Zone"
-                        FrameType="TitleBarOnly" />
-                        </td>
-                        <td width="50%" valign="top">
-                        <WebPartPages:WebpartZone
-                        ID="OutboundShippings" runat="server"
-                        Title="Outbound Shippings Web Part Zone"
+                        ID="Outbounds" runat="server"
+                        Title="Outbounds Web Part Zone"
                         FrameType="TitleBarOnly" />
                         </td>
         </tr>
@@ -52,9 +40,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-Coordinator Dashboard
+View all outbounds
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-Coordinator Dashboard
+View all outbounds
 </asp:Content>
