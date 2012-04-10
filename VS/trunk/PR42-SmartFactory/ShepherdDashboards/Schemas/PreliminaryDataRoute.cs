@@ -1553,8 +1553,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         
         private string warehouseField;
         
-        private string kolumna1Field;
-        
         /// <uwagi/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Name {
@@ -1651,17 +1649,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
             }
             set {
                 this.warehouseField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Kolumna1 {
-            get {
-                return this.kolumna1Field;
-            }
-            set {
-                this.kolumna1Field = value;
             }
         }
     }
