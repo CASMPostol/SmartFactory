@@ -255,7 +255,7 @@
   <Field
     Name="FPOWarehouseAddress"
     ID="{C8BAB435-1138-4241-A5A8-C2BBB11802F5}"
-    Type="Text"
+    Type="Note"
     Group="CAS Smart Factory Shepherd"
     DisplayName="Warehouse address" />
   <Field
