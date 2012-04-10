@@ -206,7 +206,6 @@
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="FaxNumber" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Mobile" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Warehouse" />
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Kolumna1" />
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
