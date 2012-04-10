@@ -142,6 +142,7 @@
                     <xsd:element minOccurs="0" nillable="true" type="xsd:date" name="Valid_from" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:date" name="Valid_to" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:date" name="added__changed" />
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ShipmentType" />
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
@@ -158,19 +159,6 @@
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Area" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="DestinationCountry" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="DestinationCity" />
-                  </xsd:sequence>
-                </xsd:complexType>
-              </xsd:element>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-        <xsd:element nillable="true" name="ShipmentTypeTable">
-          <xsd:complexType>
-            <xsd:sequence minOccurs="0">
-              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="ShipmentType" >
-                <xsd:complexType>
-                  <xsd:sequence minOccurs="0">
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" />
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
@@ -219,6 +207,21 @@
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Mobile" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Warehouse" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Kolumna1" />
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element nillable="true" name="DistributionList">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="0">
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="Role" form="unqualified">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element minOccurs="0" type="xsd:string" name="Title" />
+                    <xsd:element minOccurs="0" type="xsd:string" name="E_mail" />
+                    <xsd:element minOccurs="0" type="xsd:string" name="Shepherd_Role" />
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
