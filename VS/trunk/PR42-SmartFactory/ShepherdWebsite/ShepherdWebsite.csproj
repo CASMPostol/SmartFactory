@@ -557,7 +557,9 @@
     <Content Include="Lists\Dictionaries\TimeSlotsTemplateTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TrailerTemplate\TrailerList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\TrailerTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\TrailerTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\TransportUnitTypeList\Elements.xml" />
     <Content Include="Lists\Dictionaries\TransportUnitTypeTemplate\Schema.xml" />

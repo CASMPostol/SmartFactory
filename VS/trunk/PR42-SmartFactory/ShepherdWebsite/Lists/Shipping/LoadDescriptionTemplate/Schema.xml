@@ -114,6 +114,12 @@
           <FieldRef ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}" Name="NumberOfPallets" />
         </ViewFields>
         <Query>
+          <Where>
+            <BeginsWith>
+              <FieldRef Name="LoadDescriptionShippingTitle" />
+              <Value Type="Text">I</Value>
+            </BeginsWith>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
@@ -162,6 +168,12 @@
           <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
         </ViewFields>
         <Query>
+          <Where>
+            <BeginsWith>
+              <FieldRef Name="LoadDescriptionShippingTitle" />
+              <Value Type="Text">I</Value>
+            </BeginsWith>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
