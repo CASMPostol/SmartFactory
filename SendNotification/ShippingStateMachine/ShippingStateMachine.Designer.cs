@@ -36,7 +36,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
       System.Workflow.ComponentModel.ActivityBind activitybind8 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind9 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.Runtime.CorrelationToken correlationtoken2 = new System.Workflow.Runtime.CorrelationToken();
       System.Workflow.ComponentModel.ActivityBind activitybind10 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind11 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind12 = new System.Workflow.ComponentModel.ActivityBind();
@@ -119,7 +118,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       activitybind7.Name = "ShippingStateMachine";
       activitybind7.Path = "m_OnWorkflowItemChanged_BeforeProperties";
       correlationtoken1.Name = "workflowToken";
-      correlationtoken1.OwnerActivityName = "SendingEmailsReplicator";
+      correlationtoken1.OwnerActivityName = "ShippingStateMachine";
       this.m_OnWorkflowItemChanged.CorrelationToken = correlationtoken1;
       this.m_OnWorkflowItemChanged.Description = "On workflow item changed";
       this.m_OnWorkflowItemChanged.Name = "m_OnWorkflowItemChanged";
@@ -134,9 +133,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       activitybind8.Path = "m_CarrierNotificationSendEmail_Body";
       activitybind9.Name = "ShippingStateMachine";
       activitybind9.Path = "m_CarrierNotificationSendEmail_CC";
-      correlationtoken2.Name = "sendEmailToken";
-      correlationtoken2.OwnerActivityName = "SendingEmailsSequence";
-      this.m_CarrierNotificationSendEmail.CorrelationToken = correlationtoken2;
+      this.m_CarrierNotificationSendEmail.CorrelationToken = correlationtoken1;
       this.m_CarrierNotificationSendEmail.Description = "Send warning by email";
       activitybind10.Name = "ShippingStateMachine";
       activitybind10.Path = "m_CarrierNotificationSendEmail_From";
@@ -372,6 +369,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private SequenceActivity m_SequenceActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_OnWorkflowActivated;
+
 
 
 
