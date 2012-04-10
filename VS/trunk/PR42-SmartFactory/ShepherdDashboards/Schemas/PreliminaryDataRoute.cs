@@ -36,11 +36,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         
         private PreliminaryDataRouteMarket[] marketTableField;
         
-        private PreliminaryDataRouteShipmentType[] shipmentTypeTableField;
-        
         private PreliminaryDataRoutePayersRow[] payersTableField;
         
         private PreliminaryDataRoutePartnersRow[] partnersTableField;
+        
+        private PreliminaryDataRouteRole[] distributionListField;
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
@@ -116,18 +116,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("ShipmentType")]
-        public PreliminaryDataRouteShipmentType[] ShipmentTypeTable {
-            get {
-                return this.shipmentTypeTableField;
-            }
-            set {
-                this.shipmentTypeTableField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [System.Xml.Serialization.XmlArrayItemAttribute("PayersRow")]
         public PreliminaryDataRoutePayersRow[] PayersTable {
             get {
@@ -147,6 +135,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
             }
             set {
                 this.partnersTableField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Role", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PreliminaryDataRouteRole[] DistributionList {
+            get {
+                return this.distributionListField;
+            }
+            set {
+                this.distributionListField = value;
             }
         }
     }
@@ -457,6 +457,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
         private System.Nullable<System.DateTime> added__changedField;
         
         private bool added__changedFieldSpecified;
+        
+        private string shipmentTypeField;
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
@@ -1260,6 +1262,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
                 this.added__changedFieldSpecified = value;
             }
         }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ShipmentType {
+            get {
+                return this.shipmentTypeField;
+            }
+            set {
+                this.shipmentTypeField = value;
+            }
+        }
     }
     
     /// <uwagi/>
@@ -1319,28 +1332,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
             }
             set {
                 this.destinationCityField = value;
-            }
-        }
-    }
-    
-    /// <uwagi/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
-    public partial class PreliminaryDataRouteShipmentType {
-        
-        private string titleField;
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Title {
-            get {
-                return this.titleField;
-            }
-            set {
-                this.titleField = value;
             }
         }
     }
@@ -1671,6 +1662,51 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas {
             }
             set {
                 this.kolumna1Field = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd")]
+    public partial class PreliminaryDataRouteRole {
+        
+        private string titleField;
+        
+        private string e_mailField;
+        
+        private string shepherd_RoleField;
+        
+        /// <uwagi/>
+        public string Title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string E_mail {
+            get {
+                return this.e_mailField;
+            }
+            set {
+                this.e_mailField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string Shepherd_Role {
+            get {
+                return this.shepherd_RoleField;
+            }
+            set {
+                this.shepherd_RoleField = value;
             }
         }
     }

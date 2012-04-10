@@ -56,6 +56,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Schemas
           _dictionary.AddMarket(_update, _market);
           _update(this, new ProgressChangedEventArgs(1, "AddMarket " + _market.Market));
         }
+        foreach (PreliminaryDataRouteRole _role in this.DistributionList)
+        {
+          _dictionary.AddRole(_update, _role, _testData);
+          _update(this, new ProgressChangedEventArgs(1, "AddRole " + _role.Shepherd_Role));
+        }
       }
     }
   }
