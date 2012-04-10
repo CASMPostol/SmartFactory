@@ -144,10 +144,12 @@
           <FieldRef ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Name="LoadDescription2Commodity" />
         </ViewFields>
         <Query>
-          <BeginsWith>
-            <FieldRef Name="LoadDescriptionShippingTitle" />
-            <Value Type="Text">O</Value>
-          </BeginsWith>
+          <Where>
+            <BeginsWith>
+              <FieldRef Name="LoadDescriptionShippingTitle" />
+              <Value Type="Text">O</Value>
+            </BeginsWith>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
