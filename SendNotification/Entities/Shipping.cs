@@ -38,12 +38,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
       }
       switch (this.State.Value)
       {
-        case Entities.State.Confirmed:
-        case Entities.State.Creation:
-        case Entities.State.Delayed:
-        case Entities.State.Underway:
-          _ret = _cr | _escrt;
-          break;
         case Entities.State.WaitingForCarrierData:
           _ret = _cr;
           break;
@@ -51,6 +45,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
           _ret = _escrt;
           break;
         default:
+          _ret = _cr | _escrt;
           break;
       }
       return _ret;
@@ -63,7 +58,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
       _ts = TimeSpan.Zero;
       if (this.StartTime.Value > DateTime.Now + _72h)
       {
-        _ts = this.StartTime.Value - DateTime.Now - _24h;
+        _ts = this.StartTime.Value - DateTime.Now - _72h;
         return Distance.UpTo72h;
       }
       else if (this.StartTime.Value > DateTime.Now + _24h)
