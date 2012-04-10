@@ -30,6 +30,7 @@
                     </td>
                 </tr>
             </table>
+            <hr />
             <table border="0" width="100%">
                 <tr>
                     <td width="50%" valign="top">
@@ -46,6 +47,7 @@
                     </td>
                 </tr>
             </table>
+            <hr />
             <table border="0" width="100%">
                 <tr>
                     <td width="100%" valign="top">
@@ -64,6 +66,7 @@
                     </td>
                 </tr>
             </table>
+            <hr />
             <table border="0" width="100%">
                 <tr>
                     <td width="50%" valign="top">
@@ -79,6 +82,9 @@
                     FrameType="TitleBarOnly" />
                     </td>
                 </tr>
+            </table>
+            <hr />
+            <table border="0" width="100%">
                 <tr>
                     <td width="50%" valign="top">
                     <WebPartPages:WebpartZone
@@ -94,6 +100,7 @@
                     </td>
                 </tr>
             </table>
+            <hr />
             <table border="0" width="100%">
                 <tr>
                     <td valign="top" width="400px" >

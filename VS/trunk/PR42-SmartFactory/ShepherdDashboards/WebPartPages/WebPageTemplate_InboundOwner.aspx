@@ -30,6 +30,7 @@
                     </td>
                 </tr>
             </table>
+            <hr />
             <table border="0" width="100%">
                 <tr>
                     <td width="50%" valign="top">
@@ -46,6 +47,7 @@
                     </td>
                 </tr>
             </table>
+            <hr />
             <table width="100%" border="0">
                 <tr>
                     <td collspan="2" valign="top">
@@ -56,6 +58,7 @@
                     </td>
                 </tr>
             </table>
+            <hr />
             <table width="100%" border="0">
                 <tr>
                     <td width="50%" valign="top">
@@ -72,6 +75,7 @@
                     </td>
                 </tr>
             </table>
+            <hr />
             <table width="100%" border="0">
                 <tr>
                     <td collspan="2" valign="top">
@@ -82,6 +86,7 @@
                     </td>
                 </tr>
             </table>
+            <hr />
             <table border="0" width="100%">
                 <tr>
                     <td valign="top" width="100%" >
