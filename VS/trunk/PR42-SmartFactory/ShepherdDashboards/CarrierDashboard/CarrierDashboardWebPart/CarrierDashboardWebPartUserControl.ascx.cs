@@ -298,19 +298,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains event data.</param>
     protected override void OnUnload(EventArgs e)
     {
-      //if (_EDC != null)
-      //{
-      //  try
-      //  {
-      //    _EDC.SubmitChanges();
-      //    _EDC.Dispose();
-      //    _EDC = null;
-      //  }
-      //  catch (Exception ex)
-      //  {
-      //    ReportException("OnUnload", ex);
-      //  }
-      //}
       base.OnUnload(e);
     }
     #endregion
@@ -732,7 +719,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         {
           Shipping _sppng = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_ControlState.ShippingID);
           UpdateShipping(_sppng, _rst, _EDC);
-          UpdateTimeSlot(_sppng, _rst, _EDC);
+          UpdateTimeSlot(_sppng, _rst, _EDC.TimeSlot);
           try
           {
             _EDC.SubmitChanges();
@@ -816,7 +803,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       _sppng.TransportUnit = Element.GetAtIndex(_EDC.TransportUnitType, m_TransportUnitTypeDropDownList.SelectedValue);
     }
-    private void UpdateTimeSlot(Shipping _shipping, ActionResult _rslt, EntitiesDataContext _EDC)
+    private void UpdateTimeSlot(Shipping _shipping, ActionResult _rslt, EntityList<TimeSlotTimeSlot> _tsel)
     {
       if (!m_ControlState.TimeSlotChanged)
         return;
@@ -827,7 +814,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       if (_shipping.ReleaseBooking(m_ControlState.TimeSlotID.String2Int()))
       {
-        TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(_EDC.TimeSlot, m_ControlState.TimeSlotID);
+        TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(_tsel, m_ControlState.TimeSlotID);
         _shipping.SetupTiming(_newts, m_ControlState.TimeSlotIsDouble);
         _newts.MakeBooking(_shipping, m_ControlState.TimeSlotIsDouble);
       }
@@ -977,17 +964,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region Reports
     private void ReportException(string _source, Exception ex)
     {
-      using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+      try
       {
-        try
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           string _tmplt = "The current operation has been interrupted by error {0}.";
           Entities.Anons _entry = new Anons(_source, String.Format(_tmplt, ex.Message));
           _EDC.EventLogList.InsertOnSubmit(_entry);
           _EDC.SubmitChanges();
         }
-        catch (Exception) { }
       }
+      catch (Exception) { }
     }
     private void ShowActionResult(ActionResult _rslt)
     {
