@@ -67,11 +67,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
           _sprt._2ndDriver = _team[TeamMembers._2ndDriver];
           _sprt._1stEscort = _team[TeamMembers._1stEscort];
           _sprt._2ndEscort = _team[TeamMembers._2ndEscort];
-          _sprt.ActualDispatchDate = _sp.EndTime;
+          _sprt.ActualDispatchDate = _sp.StartTime;
           _sprt.City = _sp.City.Title();
           _sprt.ConainersNo = _sp.ContainerNo;
           _sprt.Country = _sp.City == null ? String.Empty : _sp.City.CountryName.Title();
-          _sprt.DispatchDate = _sp.EndTime;
+          _sprt.DispatchDate = _sp.StartTime;
           _sprt.DriverSPhone = _team[TeamMembers.DriverSPhone];
           _sprt.EscortCarNo = _team[TeamMembers.EscortCarNo];
           _sprt.EscortPhone = _team[TeamMembers.EscortPhone];
