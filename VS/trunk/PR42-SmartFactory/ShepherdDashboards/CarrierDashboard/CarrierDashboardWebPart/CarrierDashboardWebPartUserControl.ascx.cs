@@ -697,6 +697,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             Tytuł = m_DocumentTextBox.Text,
             DeliveryNumber = m_DocumentTextBox.Text,
             ShippingIndex = _sppng,
+            Vendor = _sppng.VendorName
           };
           _EDC.LoadDescription.InsertOnSubmit(_ld);
           _EDC.SubmitChanges();
