@@ -714,6 +714,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private ActionResult UpdateShipping()
     {
       ActionResult _rst = new ActionResult();
+      string _checkPoint = "Starting";
       try
       {
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
@@ -721,6 +722,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           Shipping _sppng = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_ControlState.ShippingID);
           UpdateShipping(_sppng, _rst, _EDC);
           UpdateTimeSlot(_sppng, _rst, _EDC.TimeSlot);
+          _checkPoint = "UpdateTimeSlot";
           try
           {
             _EDC.SubmitChanges();
@@ -729,6 +731,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           {
             foreach (ObjectChangeConflict changedListItem in _EDC.ChangeConflicts)
               changedListItem.Resolve(RefreshMode.KeepCurrentValues);
+            _checkPoint = "catch";
             _EDC.SubmitChanges();
           }
         }
@@ -737,7 +740,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       catch (Exception ex)
       {
         _rst.AddException(ex);
-        this.ReportException("UpdateShipping", ex);
+        this.ReportException("UpdateShipping at " + _checkPoint, ex);
       }
       return _rst;
     }

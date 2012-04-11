@@ -301,7 +301,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       try
       {
         this.SendingEmailsReplicator_InitialChildData = null;
-        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url) { ObjectTrackingEnabled = false })
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
         {
           ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
           TimeSpan _timeDistance;
@@ -350,6 +350,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             default:
               SetupTimeout(TimeSpan.FromHours(5), _sp);
               break;
+          }
+          try
+          {
+            EDC.SubmitChanges();
+          }
+          catch (ChangeConflictException)
+          {
+            foreach (ObjectChangeConflict changedListItem in EDC.ChangeConflicts)
+              changedListItem.Resolve(RefreshMode.OverwriteCurrentValues);
+            EDC.SubmitChanges();
           }
         } //using (EntitiesDataContext EDC
       }
@@ -402,19 +412,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void SetupEnvironment(TimeSpan _delay, Shipping.RequiredOperations _operations, ShippingShipping _sp, Priority _prrty, EntitiesDataContext _EDC, string _logDescription, EmailType _etype)
     {
-      //SetupAlarmsEvents(_logDescription, _operations, _prrty, _EDC, _sp);
+      SetupAlarmsEvents(_logDescription, _operations, _prrty, _EDC, _sp);
       SetupEmail(_operations, _sp, _etype);
       SetupTimeout(_delay, _sp);
-      //try
-      //{
-      //  _EDC.SubmitChanges();
-      //}
-      //catch (ChangeConflictException)
-      //{
-      //  foreach (ObjectChangeConflict changedListItem in _EDC.ChangeConflicts)
-      //    changedListItem.Resolve(RefreshMode.KeepCurrentValues);
-      //  _EDC.SubmitChanges();
-      //}
     }
     private void SetupAlarmsEvents(string _msg, Shipping.RequiredOperations _operations, Priority _prrty, EntitiesDataContext EDC, ShippingShipping _sh)
     {
