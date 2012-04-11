@@ -26,13 +26,13 @@
       this.m_URLTextBox = new System.Windows.Forms.TextBox();
       this.m_AddTimeSlotsButton = new System.Windows.Forms.Button();
       this.m_ImportDictionaries = new System.Windows.Forms.Button();
+      this.m_TestDataCheckBox = new System.Windows.Forms.CheckBox();
       this.m_ToolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
       this.m_ToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.m_FileNameStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.m_FileManagementComonent = new CAS.SmartFactory.Shepherd.ImportExport.FileDialog(this.components);
       this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
       this.m_ToolTip = new System.Windows.Forms.ToolTip(this.components);
-      this.m_TestDataCheckBox = new System.Windows.Forms.CheckBox();
       m_tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       m_CollectionURLlabel1 = new System.Windows.Forms.Label();
       m_StatusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -72,9 +72,9 @@
       this.m_TimeSlotsCreateButton.Name = "m_TimeSlotsCreateButton";
       this.m_TimeSlotsCreateButton.Size = new System.Drawing.Size(116, 23);
       this.m_TimeSlotsCreateButton.TabIndex = 0;
-      this.m_TimeSlotsCreateButton.Text = "Generate Time Slots";
+      this.m_TimeSlotsCreateButton.Text = "Create Dictionaries";
       this.m_TimeSlotsCreateButton.UseVisualStyleBackColor = true;
-      this.m_TimeSlotsCreateButton.Click += new System.EventHandler(this.TimeSlotsCreateButton_Click);
+      this.m_TimeSlotsCreateButton.Click += new System.EventHandler(this.CreateDictionaries_Click);
       // 
       // m_CollectionURLlabel1
       // 
@@ -119,6 +119,18 @@
       this.m_ImportDictionaries.Text = "Import Dictionaries";
       this.m_ImportDictionaries.UseVisualStyleBackColor = true;
       this.m_ImportDictionaries.Click += new System.EventHandler(this.ImportDictionaries_Click);
+      // 
+      // m_TestDataCheckBox
+      // 
+      this.m_TestDataCheckBox.AutoSize = true;
+      this.m_TestDataCheckBox.Checked = true;
+      this.m_TestDataCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.m_TestDataCheckBox.Location = new System.Drawing.Point(125, 87);
+      this.m_TestDataCheckBox.Name = "m_TestDataCheckBox";
+      this.m_TestDataCheckBox.Size = new System.Drawing.Size(71, 17);
+      this.m_TestDataCheckBox.TabIndex = 5;
+      this.m_TestDataCheckBox.Text = "Test data";
+      this.m_TestDataCheckBox.UseVisualStyleBackColor = true;
       // 
       // m_StatusStrip1
       // 
@@ -170,18 +182,6 @@
       this.toolStripContainer1.Size = new System.Drawing.Size(884, 402);
       this.toolStripContainer1.TabIndex = 1;
       this.toolStripContainer1.Text = "toolStripContainer1";
-      // 
-      // m_TestDataCheckBox
-      // 
-      this.m_TestDataCheckBox.AutoSize = true;
-      this.m_TestDataCheckBox.Checked = true;
-      this.m_TestDataCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.m_TestDataCheckBox.Location = new System.Drawing.Point(125, 87);
-      this.m_TestDataCheckBox.Name = "m_TestDataCheckBox";
-      this.m_TestDataCheckBox.Size = new System.Drawing.Size(71, 17);
-      this.m_TestDataCheckBox.TabIndex = 5;
-      this.m_TestDataCheckBox.Text = "Test data";
-      this.m_TestDataCheckBox.UseVisualStyleBackColor = true;
       // 
       // UserInterface
       // 
