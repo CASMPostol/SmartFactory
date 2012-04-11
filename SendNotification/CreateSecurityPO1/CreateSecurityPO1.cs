@@ -72,12 +72,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
             _epo.Commodity = _sp.Route.Commodity.Title();
             if (_sp.Route.FreightPayer != null)
             {
-              _epo.PayerAddress = _sp.Route.FreightPayer != null ? _sp.Route.FreightPayer.Address : String.Empty;
-              _epo.PayerCty = _sp.Route.FreightPayer.Miasto;
-              _epo.PayerName = _sp.Route.FreightPayer.Tytuł;
-              _epo.PayerNIP = _sp.Route.FreightPayer.NIPVATNo;
-              _epo.PayerZipCode = _sp.Route.FreightPayer.NIPVATNo;
-              _epo.SendInvoiceTo = _sp.Route.FreightPayer.SendInvoiceTo;
+              _epo.PayerAddress = _sp.Route.FreightPayer != null ? _sp.Route.FreightPayer.Address : String.Empty.NotAvailable();
+              _epo.PayerCty = _sp.Route.FreightPayer.Miasto.NotAvailable();
+              _epo.PayerName = _sp.Route.FreightPayer.Title();
+              _epo.PayerNIP = _sp.Route.FreightPayer.NIPVATNo.NotAvailable();
+              _epo.PayerZipCode = _sp.Route.FreightPayer.KodPocztowy.NotAvailable();
+              _epo.SendInvoiceTo = _sp.Route.FreightPayer.SendInvoiceTo.NotAvailable();
             }
           }
           _stt = "SendInvoiceTo";
@@ -90,11 +90,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
           }
           _stt = "SecurityEscortProvider";
           _epo.City = _sp.City.Title();
-          _epo.Country = _sp.City == null ? " -- not set -- " : _sp.City.CountryName.Title();
+          _epo.Country = _sp.City == null ? String.Empty.NotAvailable() : _sp.City.CountryName.Title();
           _epo.DispatchDate = _sp.EndTime;
-          _epo.EMail = _sp.VendorName == null ? "oferty@cas.eu" : _sp.VendorName.EMail;
+          _epo.EMail = _sp.VendorName == null ? String.Empty.NotAvailable() : _sp.VendorName.EMail.NotAvailable();
           _epo.Tytuł = String.Format("SECURITY ESCORT PURCHASE ORDER EPO-2{0, 5}", _epo.Identyfikator);
-          _epo.WarehouseAddress = _sp.Warehouse == null ? String.Empty : _sp.Warehouse.WarehouseAddress;
+          _epo.WarehouseAddress = _sp.Warehouse == null ? String.Empty.NotAvailable() : _sp.Warehouse.WarehouseAddress.NotAvailable();
           _stt = "WarehouseAddress";
           _sp.EscortPO = _epo;
           _EDC.SubmitChanges();
@@ -112,6 +112,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
     }
 
     #endregion
+
     #region AfterCreateLogToHistoryList
     public String m_AfterCreateLogToHistoryList_HistoryDescription = default(System.String);
     public String m_AfterCreateLogToHistoryList_HistoryOutcome = default(System.String);
