@@ -300,9 +300,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       try
       {
+        this.SendingEmailsReplicator_InitialChildData = null;
         using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url) { ObjectTrackingEnabled = false })
         {
-
           ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
           TimeSpan _timeDistance;
           switch (_sp.State.Value)
@@ -351,7 +351,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               SetupTimeout(TimeSpan.FromHours(5), _sp);
               break;
           }
-        }
+        } //using (EntitiesDataContext EDC
       }
       catch (Exception _ex)
       {
