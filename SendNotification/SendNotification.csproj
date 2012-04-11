@@ -60,6 +60,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResult.cs" />
     <Compile Include="AddTimeSlots\AddTimeSlots.cs">
       <SubType>Component</SubType>
     </Compile>

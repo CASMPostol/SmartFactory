@@ -8,18 +8,26 @@ using CAS.SmartFactory.Shepherd.SendNotification.Entities;
 using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
 using Microsoft.SharePoint.Workflow;
 using System.Collections.Generic;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 {
   public sealed partial class ShippingStateMachine : SequentialWorkflowActivity
   {
     #region private
-    private void ReportException(string _source, Exception ex, EntitiesDataContext EDC)
+    private void ReportException(string _source, Exception ex)
     {
-      string _tmplt = "The current operation has been interrupted by error {0}.";
-      Anons _entry = new Anons() { Tytuł = _source, Treść = String.Format(_tmplt, ex.Message), Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
-      EDC.EventLogList.InsertOnSubmit(_entry);
-      EDC.SubmitChanges();
+      try
+      {
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
+        {
+          string _tmplt = "The current operation has been interrupted by error {0}.";
+          Anons _entry = new Anons() { Tytuł = _source, Treść = String.Format(_tmplt, ex.Message), Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
+          EDC.EventLogList.InsertOnSubmit(_entry);
+          EDC.SubmitChanges();
+        }
+      }
+      catch (Exception) { }
     }
     private void ReportAlarmsAndEvents(string _mssg, Priority _priority, ServiceType _partner, EntitiesDataContext EDC, ShippingShipping _sh)
     {
@@ -44,12 +52,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         Details = _mssg,
         Owner = _sh.ZmodyfikowanePrzez,
         Priority = _priority,
-        ShippingIndex = _sh,
+        //ShippingIndex = _sh,
         VendorName = _principal,
         Tytuł = _sh.Title(),
       };
       EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
-      EDC.SubmitChanges();
     }
     #endregion
 
@@ -82,10 +89,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
       catch (Exception ex)
       {
-        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
-        {
-          ReportException("m_OnWorkflowItemChanged_Invoked", ex, EDC);
-        }
+        ReportException("m_OnWorkflowItemChanged_Invoked", ex);
       }
     }
     #endregion
@@ -93,23 +97,26 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region OnWorkflowItemChanged
     private void m_OnWorkflowItemChanged_Invoked(object sender, ExternalDataEventArgs e)
     {
-      using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
+      try
       {
-        try
+        ActionResult _ar = new ActionResult();
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url) )
         {
           string _msg = "The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated.";
           ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
           m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
           ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None, EDC, _sp);
-          if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value == State.Completed))
-            MakeShippingReport(_sp, EDC);
-          if (_sp.State.Value == State.Completed || _sp.State.Value == State.Cancelation)
-            MakePerformanceReport(_sp, EDC);
+          //if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value == State.Completed))
+          //  MakeShippingReport(_sp, EDC, _ar);
+          //if (_sp.State.Value == State.Completed || _sp.State.Value == State.Cancelation)
+          //  MakePerformanceReport(_sp, EDC, _ar);
+          EDC.SubmitChanges();
         }
-        catch (Exception ex)
-        {
-          ReportException("m_OnWorkflowItemChanged_Invoked", ex, EDC);
-        }
+        ReportActionResult(_ar);
+      }
+      catch (Exception ex)
+      {
+        ReportException("m_OnWorkflowItemChanged_Invoked", ex);
       }
       //if (m_OnWorkflowItemChanged_BeforeProperties1.Count == 0)
       //{
@@ -137,7 +144,25 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       //  }
       //}
     }
-    private void MakePerformanceReport(ShippingShipping _sp, EntitiesDataContext EDC)
+    private void ReportActionResult(ActionResult _ar)
+    {
+      if (_ar.Count == 0)
+        return;
+      try
+      {
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
+        {
+          foreach (string _msg in _ar)
+          {
+            Anons _entry = new Anons() { Tytuł = "ReportActionResult", Treść = _msg, Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
+            EDC.EventLogList.InsertOnSubmit(_entry);
+          }
+          EDC.SubmitChanges();
+        }
+      }
+      catch (Exception) { }
+    }
+    private void MakePerformanceReport(ShippingShipping _sp, EntitiesDataContext EDC, ActionResult _result)
     {
       try
       {
@@ -161,7 +186,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             ReportPeriod = _sp.StartTime.Value.ToMonthString()
           };
           EDC.CarrierPerformanceReport.InsertOnSubmit(_rprt);
-          EDC.SubmitChanges();
         }
         _rprt.NumberTUOrdered++;
         _rprt.NumberTUNotDeliveredNotShowingUp += (from _ts in _sp.TimeSlot
@@ -196,7 +220,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
       catch (Exception ex)
       {
-        ReportException("MakePerformanceReport", ex, EDC);
+        _result.AddException("MakePerformanceReport", ex);
       }
     }
     private enum Delay { JustInTime, Delayed, VeryLate }
@@ -209,7 +233,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       else
         return Delay.VeryLate;
     }
-    private void MakeShippingReport(ShippingShipping _sp, EntitiesDataContext EDC)
+    private void MakeShippingReport(ShippingShipping _sp, EntitiesDataContext EDC, ActionResult _result)
     {
       try
       {
@@ -260,11 +284,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         _totalCost = _sp.FreightCost.GetValueOrDefault(0) + _sp.SecurityEscortCost.GetValueOrDefault(0) + _addCost;
         _sp.TotalCostsPerKU = _sp.TotalQuantityInKU.HasValue && _sp.TotalQuantityInKU.Value > 1 ? _totalCost / _sp.TotalQuantityInKU.Value : new Nullable<double>();
         _sp.ReportPeriod = _sp.StartTime.Value.ToMonthString();
-        EDC.SubmitChanges();
       }
       catch (Exception ex)
       {
-        ReportException("MakeShippingReport", ex, EDC);
+        _result.AddException("MakeShippingReport", ex);
       }
     }
     public Hashtable m_OnWorkflowItemChanged_BeforeProperties = new System.Collections.Hashtable();
@@ -275,10 +298,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region CalculateTimeoutCode
     private void m_CalculateTimeoutCode_ExecuteCode(object sender, EventArgs e)
     {
-      using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
+      try
       {
-        try
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url) { ObjectTrackingEnabled = false })
         {
+
           ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
           TimeSpan _timeDistance;
           switch (_sp.State.Value)
@@ -328,10 +352,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               break;
           }
         }
-        catch (Exception _ex)
-        {
-          ReportException("m_CalculateTimeoutCode_ExecuteCode", _ex, EDC);
-        }
+      }
+      catch (Exception _ex)
+      {
+        ReportException("m_CalculateTimeoutCode_ExecuteCode", _ex);
       }
     }
     private void RequestData(TimeSpan _delay, ShippingShipping _sp, Priority _pr, EntitiesDataContext EDC)
@@ -363,7 +387,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void MakeCanceled(ShippingShipping _sp, EntitiesDataContext EDC)
     {
       _sp.State = State.Canceled;
-      EDC.SubmitChanges();
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true);
       string _frmt = "Wanning !! The Shipment has been cancelled by {0}";
       _frmt = String.Format(_frmt, _sp.ZmodyfikowanePrzez);
@@ -372,17 +395,26 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void MakeDelayed(ShippingShipping _sp, EntitiesDataContext EDC)
     {
       _sp.State = State.Delayed;
-      EDC.SubmitChanges();
       string _frmt = "Wanning !! The truck is late. Call the driver: {0}";
       _frmt = String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????");
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true) & Shipping.CarrierOperations;
       SetupEnvironment(ShippingShipping.WatchTolerance, _ro, _sp, Priority.High, EDC, _frmt, EmailType.Delayed);
     }
-    private void SetupEnvironment(TimeSpan _delay, Shipping.RequiredOperations _operations, ShippingShipping _sp, Priority _prrty, EntitiesDataContext EDC, string _logDescription, EmailType _etype)
+    private void SetupEnvironment(TimeSpan _delay, Shipping.RequiredOperations _operations, ShippingShipping _sp, Priority _prrty, EntitiesDataContext _EDC, string _logDescription, EmailType _etype)
     {
-      SetupAlarmsEvents(_logDescription, _operations, _prrty, EDC, _sp);
+      //SetupAlarmsEvents(_logDescription, _operations, _prrty, _EDC, _sp);
       SetupEmail(_operations, _sp, _etype);
       SetupTimeout(_delay, _sp);
+      //try
+      //{
+      //  _EDC.SubmitChanges();
+      //}
+      //catch (ChangeConflictException)
+      //{
+      //  foreach (ObjectChangeConflict changedListItem in _EDC.ChangeConflicts)
+      //    changedListItem.Resolve(RefreshMode.KeepCurrentValues);
+      //  _EDC.SubmitChanges();
+      //}
     }
     private void SetupAlarmsEvents(string _msg, Shipping.RequiredOperations _operations, Priority _prrty, EntitiesDataContext EDC, ShippingShipping _sh)
     {
@@ -426,12 +458,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     public String m_FaultHandlerLogToHistoryListActivity_HistoryOutcome1 = default(System.String);
     private void m_FaultHandlerLogToHistoryListActivity_MethodInvoking(object sender, EventArgs e)
     {
-      using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
-      {
-        m_FaultHandlerLogToHistoryListActivity_HistoryOutcome1 = "Error";
-        m_FaultHandlerLogToHistoryListActivity_HistoryDescription1 = m_MainFaultHandlerActivity.Fault.Message;
-        ReportException("FaultHandlersActivity", m_MainFaultHandlerActivity.Fault, EDC);
-      }
+      m_FaultHandlerLogToHistoryListActivity_HistoryOutcome1 = "Error";
+      m_FaultHandlerLogToHistoryListActivity_HistoryDescription1 = m_MainFaultHandlerActivity.Fault.Message;
+      ReportException("FaultHandlersActivity", m_MainFaultHandlerActivity.Fault);
     }
     #endregion
 
@@ -447,75 +476,76 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void SendingEmailsReplicator_ChildInitialized(object sender, ReplicatorChildEventArgs e)
     {
       MailData _md = (MailData)e.InstanceData;
-      using (EntitiesDataContext EDC = new EntitiesDataContext(_md.URL))
+      try
       {
-        ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, _md.ShippmentID);
-        IEmailGrnerator _msg = default(IEmailGrnerator);
-        string _cause = default(string);
-        switch (_md.EmailType)
+
+        using (EntitiesDataContext EDC = new EntitiesDataContext(_md.URL) { ObjectTrackingEnabled = false })
         {
-          case EmailType.Delayed:
-            _msg = new DelayedShippingVendorTemplate()
-           {
-             TruckTitle = _sp.TruckCarRegistrationNumber.Title(),
-           };
-            _cause = "Shipment delayed: ";
-            break;
-          case EmailType.RequestData:
-            switch (_md.Role)
-            {
-              case ExternalRole.Vendor:
-              case ExternalRole.Forwarder:
-                _msg = new SupplementData2hVendorTemplate();
-                break;
-              case ExternalRole.Escort:
-                _msg = new SupplementData2hEscortTemplate();
-                break;
-              default:
-                break;
-            }
-            _cause = "Data request for shipment: ";
-            break;
-          case EmailType.Canceled:
-            _msg = new CanceledShippingVendorTemplate();
-            _cause = "Shipment canceled: ";
-            break;
-        }
-        switch (_md.Role)
-        {
-          case ExternalRole.Vendor:
-          case ExternalRole.Forwarder:
-            _msg.PartnerTitle = _sp.VendorName.Title();
-            m_CarrierNotificationSendEmail_To = _sp.VendorName != null ? _sp.VendorName.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
-            break;
-          case ExternalRole.Escort:
-            _msg.PartnerTitle = _sp.SecurityEscortProvider.Title();
-            m_CarrierNotificationSendEmail_To = _sp.SecurityEscortProvider != null ? _sp.SecurityEscortProvider.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
-            break;
-          default:
-            break;
-        }
-        _msg.ShippingTitle = _sp.Title();
-        _msg.StartTime = _sp.StartTime.Value;
-        _msg.Subject = _sp.Title().Insert(0, _cause);
-        ShepherdRole _ccRole = _sp.IsOutbound.Value ? ShepherdRole.OutboundOwner : ShepherdRole.InboundOwner;
-        string _cc = DistributionList.GetEmail(_ccRole, EDC);
-        m_CarrierNotificationSendEmail_Subject1 = _sp.Title().Insert(0, _cause);
-        m_CarrierNotificationSendEmail_CC = _cc;
-        m_CarrierNotificationSendEmail_From = _cc;
-        m_CarrierNotificationSendEmail_Body = _msg.TransformText();
+          ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, _md.ShippmentID);
+          IEmailGrnerator _msg = default(IEmailGrnerator);
+          string _cause = default(string);
+          switch (_md.EmailType)
+          {
+            case EmailType.Delayed:
+              _msg = new DelayedShippingVendorTemplate()
+             {
+               TruckTitle = _sp.TruckCarRegistrationNumber.Title(),
+             };
+              _cause = "Shipment delayed: ";
+              break;
+            case EmailType.RequestData:
+              switch (_md.Role)
+              {
+                case ExternalRole.Vendor:
+                case ExternalRole.Forwarder:
+                  _msg = new SupplementData2hVendorTemplate();
+                  break;
+                case ExternalRole.Escort:
+                  _msg = new SupplementData2hEscortTemplate();
+                  break;
+                default:
+                  break;
+              }
+              _cause = "Data request for shipment: ";
+              break;
+            case EmailType.Canceled:
+              _msg = new CanceledShippingVendorTemplate();
+              _cause = "Shipment canceled: ";
+              break;
+          } //switch (_md.EmailType)
+          switch (_md.Role)
+          {
+            case ExternalRole.Vendor:
+            case ExternalRole.Forwarder:
+              _msg.PartnerTitle = _sp.VendorName.Title();
+              m_CarrierNotificationSendEmail_To = _sp.VendorName != null ? _sp.VendorName.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
+              break;
+            case ExternalRole.Escort:
+              _msg.PartnerTitle = _sp.SecurityEscortProvider.Title();
+              m_CarrierNotificationSendEmail_To = _sp.SecurityEscortProvider != null ? _sp.SecurityEscortProvider.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
+              break;
+            default:
+              break;
+          } //switch (_md.Role)
+          _msg.ShippingTitle = _sp.Title();
+          _msg.StartTime = _sp.StartTime.Value;
+          _msg.Subject = _sp.Title().Insert(0, _cause);
+          ShepherdRole _ccRole = _sp.IsOutbound.Value ? ShepherdRole.OutboundOwner : ShepherdRole.InboundOwner;
+          string _cc = DistributionList.GetEmail(_ccRole, EDC);
+          m_CarrierNotificationSendEmail_Subject1 = _sp.Title().Insert(0, _cause);
+          m_CarrierNotificationSendEmail_CC = _cc;
+          m_CarrierNotificationSendEmail_From = _cc;
+          m_CarrierNotificationSendEmail_Body = _msg.TransformText();
+        } //using
+      }
+      catch (Exception ex)
+      {
+        ReportException("", ex);
       }
     }
-    private void SendingEmailsReplicator_ChildCompleted(object sender, ReplicatorChildEventArgs e)
-    {
-
-    }
-    private void SendingEmailsReplicator_Completed(object sender, EventArgs e)
-    {
-
-    }
-    private void SendingEmailsReplicator_Initialized(object sender, EventArgs e)
-    { }
+    private void SendingEmailsReplicator_ChildCompleted(object sender, ReplicatorChildEventArgs e) { }
+    private void SendingEmailsReplicator_Completed(object sender, EventArgs e) { }
+    private void SendingEmailsReplicator_Initialized(object sender, EventArgs e) { }
 
     #region InitialChildData
     public static DependencyProperty SendingEmailsReplicator_InitialChildDataProperty = DependencyProperty.Register("SendingEmailsReplicator_InitialChildData", typeof(System.Collections.IList), typeof(CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine.ShippingStateMachine));
