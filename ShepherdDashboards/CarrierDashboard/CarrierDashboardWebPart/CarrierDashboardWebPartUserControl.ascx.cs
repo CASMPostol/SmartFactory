@@ -687,7 +687,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         Shipping _sppng = new Shipping()
         {
           IsOutbound = m_DashboardType == GlobalDefinitions.Roles.OutboundOwner,
-          State = Entities.State.Creation
+          State = Entities.State.Invalid,
+          Tytuł = "Creating new shippment"
         };
         if (m_ControlState.TimeSlotID.IsNullOrEmpty())
           _rsult.AddLabel(m_TimeSlotLabel.Text);
@@ -696,12 +697,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           UpdateShipping(_sppng, _rsult, _EDC);
           if (!_rsult.Valid)
             return _rsult;
-          _sppng.UpdateTitle();
           TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(_EDC.TimeSlot, m_ControlState.TimeSlotID);
           _sppng.SetupTiming(_newts, m_ControlState.TimeSlotIsDouble);
           _EDC.Shipping.InsertOnSubmit(_sppng);
           _EDC.SubmitChanges();
+          _sppng.UpdateTitle();
           m_ControlState.ShippingID = _sppng.Identyfikator.Value.ToString();
+          _sppng.State = State.Creation;
           _newts.MakeBooking(_sppng, m_ControlState.TimeSlotIsDouble);
           LoadDescription _ld = new LoadDescription()
           {
