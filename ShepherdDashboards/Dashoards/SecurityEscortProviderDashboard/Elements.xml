@@ -98,7 +98,7 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
-      <View List="Lists/AlarmsAndEventsList" BaseViewID="3" WebPartZoneID="AlarmsAndEvents" WebPartOrder="0">
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="5" WebPartZoneID="AlarmsAndEvents" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">

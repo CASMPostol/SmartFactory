@@ -86,7 +86,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Alarms And Events" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AlarmsAndEvents.aspx">
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Alarms And Events - Inbounds" DefaultView="False" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AlarmsAndEventsInbounds.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">16</RowLimit>
@@ -102,8 +102,14 @@
           <FieldRef Name="Editor"/>
         </ViewFields>
         <Query>
+          <Where>
+            <BeginsWith>
+              <FieldRef Name="AlarmsAndEventsShippingTitle" />
+              <Value Type="Text">I</Value>
+            </BeginsWith>
+          </Where>
           <OrderBy>
-            <FieldRef Name="Modified">
+            <FieldRef Name="Modified" Ascending="FALSE">
             </FieldRef>
           </OrderBy>
         </Query>
@@ -112,7 +118,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-        <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Alarms And Events - Partner" DefaultView="False" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AlarmsAndEventsPartners.aspx">
+        <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Alarms And Events - Partner - Inbounds" DefaultView="False" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AlarmsAndEventsPartnersInbounds.aspx">
           <Toolbar Type="None" />
           <XslLink Default="TRUE">main.xsl</XslLink>
           <RowLimit Paged="TRUE">16</RowLimit>
@@ -127,8 +133,19 @@
             <FieldRef Name="Editor"/>
           </ViewFields>
           <Query>
+            <Where>
+              <And>
+                <BeginsWith>
+                  <FieldRef Name="AlarmsAndEventsShippingTitle" />
+                  <Value Type="Text">I</Value>
+                </BeginsWith>
+                <IsNotNull>
+                  <FieldRef Name="AlarmsAndEventsList2PartnerTitle" />
+                </IsNotNull>
+              </And>
+            </Where>
             <OrderBy>
-              <FieldRef Name="Modified">
+              <FieldRef Name="Modified" Ascending="FALSE">
               </FieldRef>
             </OrderBy>
           </Query>
@@ -137,6 +154,74 @@
             <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
           </ParameterBindings>
         </View>
+      <View BaseViewID="4" Type="HTML" WebPartZoneID="Main" DisplayName="Alarms And Events - Outbounds" DefaultView="False" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AlarmsAndEventsOutbounds.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">16</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}" Name="AlarmPriority" />
+          <FieldRef ID="{3D6333C7-7065-49A1-9A22-074D9D33D9C3}" Name="AlarmsAndEventsShippingTitle" />
+          <FieldRef ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}" Name="AlarmAndEventDetails" />
+          <FieldRef ID="{177A27B7-A685-411B-950F-ED55740AD617}" Name="AlarmAndEventOwner" />
+          <FieldRef ID="{7F341C2D-FEBA-48BD-9D59-4BF410959229}" Name="AlarmsAndEventsList2PartnerTitle" />
+          <FieldRef Name="Modified"/>
+          <FieldRef Name="Editor"/>
+        </ViewFields>
+        <Query>
+          <Where>
+            <BeginsWith>
+              <FieldRef Name="AlarmsAndEventsShippingTitle" />
+              <Value Type="Text">O</Value>
+            </BeginsWith>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="5" Type="HTML" WebPartZoneID="Main" DisplayName="Alarms And Events - Partner - Outbounds" DefaultView="False" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AlarmsAndEventsPartnersOutbounds.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">16</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}" Name="AlarmPriority" />
+          <FieldRef ID="{3D6333C7-7065-49A1-9A22-074D9D33D9C3}" Name="AlarmsAndEventsShippingTitle" />
+          <FieldRef ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}" Name="AlarmAndEventDetails" />
+          <FieldRef ID="{177A27B7-A685-411B-950F-ED55740AD617}" Name="AlarmAndEventOwner" />
+          <FieldRef Name="Modified"/>
+          <FieldRef Name="Editor"/>
+        </ViewFields>
+        <Query>
+          <Where>
+            <And>
+              <BeginsWith>
+                <FieldRef Name="AlarmsAndEventsShippingTitle" />
+                <Value Type="Text">O</Value>
+              </BeginsWith>
+              <IsNotNull>
+                <FieldRef Name="AlarmsAndEventsList2PartnerTitle" />
+              </IsNotNull>
+            </And>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
     </Views>
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />

@@ -93,7 +93,7 @@
  </webParts>
  ]]>
       </View>
-      <View List="Lists/AlarmsAndEventsList" BaseViewID="2" WebPartZoneID="AlarmsAndEvents" WebPartOrder="0">
+      <View List="Lists/AlarmsAndEventsList" BaseViewID="4" WebPartZoneID="AlarmsAndEvents" WebPartOrder="0">
         <![CDATA[
  <webParts>
  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
