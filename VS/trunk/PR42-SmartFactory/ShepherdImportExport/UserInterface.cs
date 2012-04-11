@@ -78,93 +78,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
     }
 
     #region importing data
-    private void CreateTransportUnts(EntitiesDataContext _EDC, UpdateToolStripEvent _update)
-    {
-      _update(this, new ProgressChangedEventArgs(1, "CreateTransportUnts starting"));
-      for (int i = 0; i < 4; i++)
-      {
-        string _cn = String.Format("Unit Type {0}", i);
-        TransportUnitTypeTranspotUnit _cuntr = new TransportUnitTypeTranspotUnit() { Tytuł = _cn };
-        _update(this, new ProgressChangedEventArgs(1, String.Format("Insert {0}", _cn)));
-        _EDC.TransportUnitType.InsertOnSubmit(_cuntr);
-      }
-      _EDC.SubmitChanges();
-    }
-    private void CreateShippmentTypes(EntitiesDataContext _EDC, UpdateToolStripEvent _update)
-    {
-      _update(this, new ProgressChangedEventArgs(1, "CreateShippmentTypes starting"));
-      for (int i = 0; i < 4; i++)
-      {
-        string _cn = String.Format("Shippment Type {0}", i);
-        ShipmentTypeShipmentType _cuntr = new ShipmentTypeShipmentType() { Tytuł = _cn };
-        _update(this, new ProgressChangedEventArgs(1, String.Format("Insert {0}", _cn)));
-        _EDC.ShipmentType.InsertOnSubmit(_cuntr);
-      }
-      _EDC.SubmitChanges();
-    }
-    private void CreateCountries(EntitiesDataContext _EDC, UpdateToolStripEvent _update)
-    {
-      _update(this, new ProgressChangedEventArgs(1, "CreateCountries starting"));
-      short _ctidx = 0;
-      for (int i = 0; i < 10; i++)
-      {
-        string _cn = String.Format("Country {0}", i);
-        CountryClass _cuntr = new CountryClass() { Tytuł = _cn };
-        _EDC.Country.InsertOnSubmit(_cuntr);
-        _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _cn)));
-        _EDC.SubmitChanges();
-        CreateCities(_EDC, _cuntr, _update, ref _ctidx);
-      }
-    }
-    private void CreateCities(EntitiesDataContext _EDC, CountryClass _cuntr, UpdateToolStripEvent _update, ref short _ctidx)
-    {
-      _update(this, new ProgressChangedEventArgs(1, "CreateCities starting"));
-      for (int i = 0; i < 10; i++)
-      {
-        string _cn = String.Format("City {0}", _ctidx++);
-        CityType _cmm = new CityType() { Tytuł = _cn, CountryName = _cuntr };
-        _EDC.City.InsertOnSubmit(_cmm);
-        _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _cn)));
-        _EDC.SubmitChanges();
-      }
-    }
-    private void CreateCommodity(EntitiesDataContext _EDC, UpdateToolStripEvent _update)
-    {
-      _update(this, new ProgressChangedEventArgs(1, "CreateCommodity starting"));
-      short _spId = 0;
-      for (int i = 0; i < 3; i++)
-      {
-        string _cn = String.Format("Commodity {0}", i);
-        CommodityCommodity _cmm = new CommodityCommodity() { Tytuł = _cn };
-        _EDC.Commodity.InsertOnSubmit(_cmm);
-        _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _cn)));
-        _EDC.SubmitChanges();
-        CraeteWareHouse(_EDC, _cmm, ref _spId, _update);
-      }
-    }
-    private void CraeteWareHouse(EntitiesDataContext _EDC, CommodityCommodity _cmm, ref short _spId, UpdateToolStripEvent _update)
-    {
-      _update(this, new ProgressChangedEventArgs(1, "CraeteWareHouse starting"));
-      Warehouse _wrs = new Warehouse() { Commodity = _cmm, Tytuł = String.Format("Warehouse {0}", _cmm.Tytuł) };
-      _EDC.Warehouse.InsertOnSubmit(_wrs);
-      _EDC.SubmitChanges();
-      CreateShippingPoints(_EDC, _wrs, ref _spId, _update);
-    }
-    private void CreateShippingPoints(EntitiesDataContext _EDC, Warehouse _wrs, ref short _spId, UpdateToolStripEvent _update)
-    {
-      _update(this, new ProgressChangedEventArgs(1, "CreateShippingPoints starting"));
-      string _frmt = "ShippingPoint {0} at {1}";
-      ShippingPoint _sp = new ShippingPoint() { Description = _wrs.Tytuł + " Inbound", Direction = Direction.Inbound, Tytuł = String.Format(_frmt, _spId++, _wrs.Tytuł), Warehouse = _wrs };
-      _EDC.ShippingPoint.InsertOnSubmit(_sp);
-      CreateTimeSlots(_EDC, _sp, _update);
-      _sp = new ShippingPoint() { Description = _wrs.Tytuł + " Outbound", Direction = Direction.Outbound, Tytuł = String.Format(_frmt, _spId++, _wrs.Tytuł), Warehouse = _wrs };
-      _EDC.ShippingPoint.InsertOnSubmit(_sp);
-      CreateTimeSlots(_EDC, _sp, _update);
-      _sp = new ShippingPoint() { Description = _wrs.Tytuł + " BothDirections", Direction = Direction.BothDirections, Tytuł = String.Format(_frmt, _spId++, _wrs.Tytuł), Warehouse = _wrs };
-      _EDC.ShippingPoint.InsertOnSubmit(_sp);
-      _EDC.SubmitChanges();
-      CreateTimeSlots(_EDC, _sp, _update);
-    }
+
     private void CreateTimeSlots(EntitiesDataContext _EDC, ShippingPoint _sp, UpdateToolStripEvent _update)
     {
       _update(this, new ProgressChangedEventArgs(1, "CreateTimeSlots starting"));
@@ -188,71 +102,20 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       }
     }
 
-    private void CreatePartners(EntitiesDataContext _EDC, UpdateToolStripEvent _update)
+    private void CreatePartners(EntitiesDataContext _EDC, UpdateToolStripEvent _update, Partner _prt)
     {
       _update(this, new ProgressChangedEventArgs(1, "CreatePartners starting"));
-      ServiceType[] _stt = new ServiceType[] { ServiceType.Forwarder, ServiceType.SecurityEscortProvider, ServiceType.Vendor, ServiceType.VendorAndForwarder, };
-      string[] _pn = new string[] { "forwarder", "escort", "vendor", "VendorAndForwarder" };
       short _trailerId = 0;
       short _driverId = 0;
       short _truckId = 0;
       for (int i = 0; i <= 3; i++)
       {
-        string _nm = String.Format("Partner {0}", _pn[i]);
-        Partner _prt = new Partner() { Tytuł = _nm, ServiceType = _stt[i], ShepherdUserTitle = _pn[i] };
-        _EDC.Partner.InsertOnSubmit(_prt);
-        _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _nm)));
-        _EDC.SubmitChanges();
         CraeteTrucks(_EDC, _prt, ref _truckId, _update);
         CraeteDrivers(_EDC, _prt, ref _driverId, _update);
         if (_prt.ServiceType.Value != ServiceType.SecurityEscortProvider)
           CraeteTrailer(_EDC, _prt, ref _trailerId, _update);
-        if (_prt.ServiceType.Value == ServiceType.Forwarder)
-          CreateRouts(_EDC, _update, _prt);
-      }
-    }
-    private void CreateRouts(EntitiesDataContext _EDC, UpdateToolStripEvent _update, Partner _prt)
-    {
-      _update(this, new ProgressChangedEventArgs(1, "CreateRouts starting"));
-      List<CityType> _ctList = (from _ct in _EDC.City select _ct).ToList<CityType>();
-      Random _rdm = new Random(_ctList.Count);
-      foreach (CityType _ctItem in _ctList)
-        foreach (TransportUnitTypeTranspotUnit _utItem in from _ut in _EDC.TransportUnitType select _ut)
-          foreach (ShipmentTypeShipmentType _stItem in from _st in _EDC.ShipmentType select _st)
-          {
-            Route _rt = new Route()
-            {
-              Tytuł = String.Format("Forwarder {0} to {1} destination city", _prt.Tytuł, _ctItem.Tytuł),
-              CityName = _ctItem,
-              TransportUnitType = _utItem,
-              ShipmentType = _stItem,
-              VendorName = _prt
-            };
-            _EDC.Route.InsertOnSubmit(_rt);
-            _update(this, new ProgressChangedEventArgs(1, String.Format("Added {0}", _rt.Tytuł)));
-          }
-      _update(this, new ProgressChangedEventArgs(1, "CreateRouts SubmitChanges"));
-      _EDC.SubmitChanges();
-      _update(this, new ProgressChangedEventArgs(1, "DestinationMarket and MarketMarket starting"));
-      for (int _mi = 0; _mi < 3; _mi++)
-      {
-        string _tm = String.Format("Market {0}", _mi);
-        MarketMarket _mrkt = new MarketMarket() { Tytuł = _tm };
-        _EDC.Market.InsertOnSubmit(_mrkt);
-        _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _mrkt.Tytuł)));
         _EDC.SubmitChanges();
-        for (int _dmi = 0; _dmi < 3; _dmi++)
-        {
-          DestinationMarket _dm = new DestinationMarket()
-          {
-            Market = _mrkt,
-            CityName = _ctList[_rdm.Next(0, _ctList.Count - 1)],
-          };
-          _dm.Tytuł = String.Format("The {0} market available from the {1} city", _mrkt.Tytuł, _dm.CityName.Tytuł);
-          _EDC.DestinationMarket.InsertOnSubmit(_dm);
-        }
-        _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _mrkt.Tytuł)));
-        _EDC.SubmitChanges();
+        _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _prt.Tytuł)));
       }
     }
     private void CraeteTrucks(EntitiesDataContext _EDC, Partner _prt, ref short _truckId, UpdateToolStripEvent _update)
@@ -269,7 +132,6 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         Truck _trck = new Truck() { Tytuł = _tm, VehicleType = _vt, VendorName = _prt };
         _EDC.Truck.InsertOnSubmit(_trck);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _tm)));
-        _EDC.SubmitChanges();
       }
     }
     private void CraeteTrailer(EntitiesDataContext _EDC, Partner _prt, ref short _trailerId, UpdateToolStripEvent _update)
@@ -281,7 +143,6 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         Trailer _trck = new Trailer() { Tytuł = _tm, VendorName = _prt, };
         _EDC.Trailer.InsertOnSubmit(_trck);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _tm)));
-        _EDC.SubmitChanges();
       }
     }
     private void CraeteDrivers(EntitiesDataContext _EDC, Partner _prt, ref short _driverId, UpdateToolStripEvent _update)
@@ -293,24 +154,20 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         Driver _drv = new Driver() { Tytuł = _tm, VendorName = _prt, IdentityDocumentNumber = "IdentityDocumentNumber" };
         _EDC.Driver.InsertOnSubmit(_drv);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _tm)));
-        _EDC.SubmitChanges();
       }
     }
     #endregion
 
     #region EventHandlers
-    private void TimeSlotsCreateButton_Click(object sender, EventArgs e)
+    private void CreateDictionaries_Click(object sender, EventArgs e)
     {
       try
       {
         m_Stopwatch.Start();
         using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URLTextBox.Text.Trim()))
         {
-          CreateShippmentTypes(_EDC, UpdateToolStrip);
-          CreateTransportUnts(_EDC, UpdateToolStrip);
-          CreateCountries(_EDC, UpdateToolStrip);
-          CreateCommodity(_EDC, UpdateToolStrip);
-          CreatePartners(_EDC, UpdateToolStrip);
+          foreach (Partner _prt in _EDC.Partner)
+          CreatePartners(_EDC, UpdateToolStrip, _prt);
         }
         SetDone("Done");
       }
