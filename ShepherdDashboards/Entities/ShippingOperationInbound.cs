@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
           //_drv.Driver = null;
           //_2Delete.Add(_drv);
           //_EDC.SubmitChanges();
-        _2Delete.Add(_drv);
+          _2Delete.Add(_drv);
         }
       }
       _EDC.DriversTeam.DeleteAllOnSubmit(_2Delete);
@@ -97,7 +97,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         {
           if (_newTimeSlot == item.Identyfikator.Value) //consistency check 
           {
-            string _frmt = "ReleaseBooking tries to release the Time Slot ID = {0}, which has a wrong value of the field Occupied.";
+            string _frmt = "ReleaseBooking tries to release the Timeslot ID = {0}, which has a wrong value of the field Occupied.";
             throw new ApplicationException(String.Format(_frmt, item.Identyfikator.Value));
           }
           continue;
@@ -120,40 +120,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       }
       return true;
     }
-    internal void MakeBooking(TimeSlotTimeSlot _ts, bool _isDouble)
+    internal void SetupTiming(TimeSlotTimeSlot _ts, bool _isDouble)
     {
-      if (_ts.Occupied.Value == Entities.Occupied.Occupied0)
-        throw new ApplicationException("Time slot has been aleady reserved");
-      _ts.Occupied = Entities.Occupied.Occupied0;
-      _ts.ShippingIndex = this;
-      _ts.IsDouble = _isDouble;
-      //if (IsOutbound.Value)
-      //  _ts.Tytuł = String.Format("Outbound No. {0} to {1}", this.Tytuł, this.City == null ? "--not assigned--" : City.Tytuł);
-      //else
-      //  _ts.Tytuł = String.Format("Inbound No. {0} by {1}", this.Tytuł, this.VendorName == null ? "--not assigned--" : VendorName.Tytuł);
       this.StartTime = _ts.StartTime;
       this.EndTime = _ts.EndTime;
       this.Duration = Convert.ToDouble((_ts.EndTime.Value - _ts.StartTime.Value).TotalMinutes);
       this.Warehouse = _ts.GetWarehouse();
-      if (!_isDouble)
-      {
-        this.LoadingType = Entities.LoadingType.Pallet;
-        return;
-      }
-      this.LoadingType = Entities.LoadingType.Manual;
-      EntitySet<TimeSlot> _tslots = _ts.ShippingPoint.TimeSlot;
-      DateTime _tdy = _ts.StartTime.Value.Date;
-      List<TimeSlot> _avlblTmslts = (from _tsidx in _tslots
-                                     let _idx = _tsidx.StartTime.Value.Date
-                                     where _tsidx.Occupied.Value == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays(1)
-                                     orderby _tsidx.StartTime ascending
-                                     select _tsidx).ToList<TimeSlot>();
-      TimeSlot _next = _ts.FindAdjacent(_avlblTmslts);
-      _next.Occupied = Entities.Occupied.Occupied0;
-      _next.ShippingIndex = this;
-      _next.IsDouble = true;
-      this.EndTime = _next.EndTime;
-      this.Duration = Convert.ToDouble((_ts.EndTime.Value - _ts.EndTime.Value).TotalMinutes);
+      this.LoadingType = _isDouble ? Entities.LoadingType.Manual : Entities.LoadingType.Pallet;
     }
     internal void UpdateTitle()
     {

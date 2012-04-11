@@ -63,7 +63,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         return (
               from idx in _list
               where idx.Identyfikator == _index.Value
-              select idx).First();
+              select idx).FirstOrDefault();
       }
       catch (Exception)
       {
