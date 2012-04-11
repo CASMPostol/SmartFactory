@@ -176,7 +176,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         RouteID = String.Empty;
         CityID = String.Empty;
         SecurityCatalogID = String.Empty;
-        ShippingID = String.Empty;
         TimeSlotID = String.Empty;
         TimeSlotChanged = false;
       }
@@ -214,7 +213,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_TrailerConditionDropdown.Items.Add(new ListItem("3 - Poor", ((int)Entities.TrailerCondition._3).ToString()));
         m_TrailerConditionDropdown.Items.Add(new ListItem("4 - Good", ((int)Entities.TrailerCondition._4).ToString()));
         m_TrailerConditionDropdown.Items.Add(new ListItem("5 - Excellent", ((int)Entities.TrailerCondition._5Excellent).ToString()));
-        using (_EDC = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
         {
           m_TransportUnitTypeDropDownList.DataSource = from _idx in _EDC.TransportUnitType
                                                        orderby _idx.Tytuł ascending
@@ -265,18 +264,29 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       m_StateLiteral.Text = m_ControlState.InterfaceState.ToString();
       SetEnabled(m_ControlState.SetEnabled);
-      using (_EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+      if (m_ControlState.ShippingID.IsNullOrEmpty())
       {
-        Shipping _currentShipping = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_ControlState.ShippingID);
-        if (VendorFixed(_currentShipping))
-          m_AbortButton.Enabled = false;
-        if (!_currentShipping.IsEditable())
+        m_AbortButton.Enabled = false;
+        m_EditButton.Enabled = false;
+        m_AbortButton.Enabled = false;
+        m_CoordinatorPanel.Enabled = false;
+        m_CoordinatorEditCheckBox.Checked = false;
+      }
+      else
+      {
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
-          m_EditButton.Enabled = false;
-          m_AbortButton.Enabled = false;
-          m_CoordinatorPanel.Enabled = false;
-          m_CoordinatorEditCheckBox.Checked = false;
+          Shipping _currentShipping = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_ControlState.ShippingID);
+          if (VendorFixed(_currentShipping))
+            m_AbortButton.Enabled = false;
+          if (!_currentShipping.IsEditable())
+          {
+            m_EditButton.Enabled = false;
+            m_AbortButton.Enabled = false;
+            m_CoordinatorPanel.Enabled = false;
+            m_CoordinatorEditCheckBox.Checked = false;
 
+          }
         }
       }
       m_SecurityRequiredChecbox.Enabled = m_CoordinatorEditCheckBox.Checked;
@@ -381,7 +391,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       }
       protected override void ClearUserInterface()
       {
-        Parent.ClearUserInterface();
+        Parent.NewShippment();
       }
       protected override void SetEnabled(ControlsSet _buttons)
       {
@@ -425,7 +435,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (m_ControlState.ShippingID == _interconnectionData.ID)
         return;
-      ClearUserInterface();
       m_ControlState.ShippingID = _interconnectionData.ID;
       ShowShipping();
     }
@@ -439,13 +448,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return;
       try
       {
-        using (_EDC = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
         {
-          Shipping _CurrentShipping = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_ControlState.ShippingID);
+          Shipping _CurrentShipping = Element.FindAtIndex<Shipping>(_EDC.Shipping, m_ControlState.ShippingID);
           if (VendorFixed(_CurrentShipping))
           {
             ActionResult _rst = new ActionResult();
-            _rst.Add("It is too late to change the schedule");
+            _rst.AddMessage("It is too late to change the schedule");
             ShowActionResult(_rst);
             return;
           }
@@ -455,7 +464,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           m_ControlState.TimeSlotIsDouble = _interconnectionData.IsDouble;
           m_ControlState.TimeSlotChanged = true;
           Show(_cts, true, _interconnectionData.IsDouble);
-
         }
       }
       catch (Exception ex)
@@ -509,6 +517,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_SecurityEscortLabel.Text = String.Empty;
       m_ControlState.SecurityCatalogID = String.Empty;
     }
+    private void NewShippment()
+    {
+      ClearUserInterface();
+      m_ControlState.ShippingID = String.Empty;
+    }
     /// <summary>
     /// Clears the user interface.
     /// </summary>
@@ -553,7 +566,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         if (m_ControlState.ShippingID.IsNullOrEmpty())
           return _rsult;
-        using (_EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           Shipping _sppng = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_ControlState.ShippingID);
           SendShippingData(_sppng);
@@ -670,22 +683,26 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       try
       {
         if (m_DocumentTextBox.Text.IsNullOrEmpty())
-          _rsult.Add(m_DocumentLabel.Text);
+          _rsult.AddLabel(m_DocumentLabel.Text);
         Shipping _sppng = new Shipping()
         {
           IsOutbound = m_DashboardType == GlobalDefinitions.Roles.OutboundOwner,
           State = Entities.State.Creation
         };
         if (m_ControlState.TimeSlotID.IsNullOrEmpty())
-          _rsult.Add(m_TimeSlotLabel.Text);
-        using (_EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+          _rsult.AddLabel(m_TimeSlotLabel.Text);
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           UpdateShipping(_sppng, _rsult, _EDC);
           if (!_rsult.Valid)
             return _rsult;
-          _EDC.Shipping.InsertOnSubmit(_sppng);
           _sppng.UpdateTitle();
-          MakeBooking(_sppng, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble, _EDC);
+          TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(_EDC.TimeSlot, m_ControlState.TimeSlotID);
+          _sppng.SetupTiming(_newts, m_ControlState.TimeSlotIsDouble);
+          _EDC.Shipping.InsertOnSubmit(_sppng);
+          _EDC.SubmitChanges();
+          m_ControlState.ShippingID = _sppng.Identyfikator.Value.ToString();
+          _newts.MakeBooking(_sppng, m_ControlState.TimeSlotIsDouble);
           LoadDescription _ld = new LoadDescription()
           {
             Tytuł = m_DocumentTextBox.Text,
@@ -694,7 +711,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           };
           _EDC.LoadDescription.InsertOnSubmit(_ld);
           _EDC.SubmitChanges();
-          m_ControlState.ShippingID = _sppng.Identyfikator.Value.ToString();
         }
         SendShippingData(_sppng);
       }
@@ -710,7 +726,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       ActionResult _rst = new ActionResult();
       try
       {
-        using (_EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           Shipping _sppng = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_ControlState.ShippingID);
           UpdateShipping(_sppng, _rst, _EDC);
@@ -739,7 +755,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (_sppng == null)
       {
-        _rsult.Add("Shipping");
+        _rsult.AddLabel("Shipping");
         return;
       }
       _sppng.CancelationReason = m_CommentsTextBox.Text;
@@ -782,7 +798,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (m_ControlState.CityID.IsNullOrEmpty())
       {
-        _rsult.Add(m_CityHeaderLabel.Text);
+        _rsult.AddLabel(m_CityHeaderLabel.Text);
         return;
       }
       _sppng.City = Element.GetAtIndex(_EDC.City, m_ControlState.CityID);
@@ -804,16 +820,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return;
       if (m_ControlState.TimeSlotID.IsNullOrEmpty())
       {
-        _rslt.Add(m_TimeSlotLabel.Text);
+        _rslt.AddLabel(m_TimeSlotLabel.Text);
         return;
       }
       if (_shipping.ReleaseBooking(m_ControlState.TimeSlotID.String2Int()))
-        MakeBooking(_shipping, m_ControlState.TimeSlotID, m_ControlState.TimeSlotIsDouble, _EDC);
-    }
-    private void MakeBooking(Shipping _shipping, string _newTimeSlot, bool _isDouble, EntitiesDataContext _EDC)
-    {
-      TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(_EDC.TimeSlot, _newTimeSlot);
-      _shipping.MakeBooking(_newts, _isDouble);
+      {
+        TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(_EDC.TimeSlot, m_ControlState.TimeSlotID);
+        _shipping.SetupTiming(_newts, m_ControlState.TimeSlotIsDouble);
+        _newts.MakeBooking(_shipping, m_ControlState.TimeSlotIsDouble);
+      }
+      else
+        _rslt.AddMessage("Cannot release the previous booking.");
     }
     private void UpdateSecurityEscort(Shipping _sipping, EntitiesDataContext _EDC)
     {
@@ -831,7 +848,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (m_ControlState.PartnerID.IsNullOrEmpty())
       {
-        _rsult.Add(m_PartnerHeaderLabel.Text);
+        _rsult.AddLabel(m_PartnerHeaderLabel.Text);
         return;
       }
       if ((_sipping.VendorName != null) && (m_ControlState.PartnerID.String2Int() == _sipping.VendorName.Identyfikator.Value))
@@ -842,7 +859,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       try
       {
-        using (_EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           Shipping _sppng = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_ControlState.ShippingID);
           switch (_sppng.State.Value)
@@ -958,7 +975,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #region Reports
     private void ReportException(string _source, Exception ex)
     {
-      using (_EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+      using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
       {
         try
         {
@@ -1124,34 +1141,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private ControlState m_ControlState = new ControlState(null);
     private GlobalDefinitions.Roles m_DashboardType = GlobalDefinitions.Roles.None;
     private const StateMachineEngine.ControlsSet m_AllButtons = (StateMachineEngine.ControlsSet)int.MaxValue;
-    private EntitiesDataContext _EDC = null;
-    //private EntitiesDataContext EDC
-    //{
-    //  get
-    //  {
-    //    if (_EDC != null)
-    //      return _EDC;
-    //    _EDC = new EntitiesDataContext(SPContext.Current.Web.Url);
-    //    return _EDC;
-    //  }
-    //}
-    private Shipping m_CurrentShipping_Shipping;
-    //private Shipping CurrentShipping
-    //{
-    //  get
-    //  {
-    //    if (m_CurrentShipping_Shipping != null)
-    //      return m_CurrentShipping_Shipping;
-    //    if (m_ControlState.ShippingID.IsNullOrEmpty())
-    //    {
-    //      m_ControlState.Editable = false;
-    //      return null;
-    //    }
-    //    m_CurrentShipping_Shipping = Element.GetAtIndex<Shipping>(EDC.Shipping, m_ControlState.ShippingID);
-    //    m_ControlState.Editable = m_CurrentShipping_Shipping.IsEditable();
-    //    return m_CurrentShipping_Shipping;
-    //  }
-    //}
     private event InterconnectionDataTable<Shipping>.SetDataEventArg m_ShippintInterconnectionEvent;
     #endregion
 

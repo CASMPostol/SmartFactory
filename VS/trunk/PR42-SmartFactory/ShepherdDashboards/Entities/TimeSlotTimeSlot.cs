@@ -27,6 +27,33 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       throw new ApplicationException("Cannot find the time slot to make the couple.");
     }
     private const string m_ShippingNotFpundMessage = "Shipping slot is not selected";
+    internal void MakeBooking(Shipping _sp, bool _isDouble)
+    {
+      if (this.Occupied.Value == Entities.Occupied.Occupied0)
+        throw new ApplicationException("Time slot has been aleady reserved");
+      this.Occupied = Entities.Occupied.Occupied0;
+      this.ShippingIndex = _sp;
+      this.IsDouble = _isDouble;
+      //if (IsOutbound.Value)
+      //  _ts.Tytuł = String.Format("Outbound No. {0} to {1}", this.Tytuł, this.City == null ? "--not assigned--" : City.Tytuł);
+      //else
+      //  _ts.Tytuł = String.Format("Inbound No. {0} by {1}", this.Tytuł, this.VendorName == null ? "--not assigned--" : VendorName.Tytuł);
+      if (!_isDouble)
+        return;
+      EntitySet<TimeSlot> _tslots = this.ShippingPoint.TimeSlot;
+      DateTime _tdy = this.StartTime.Value.Date;
+      List<TimeSlot> _avlblTmslts = (from _tsidx in _tslots
+                                     let _idx = _tsidx.StartTime.Value.Date
+                                     where _tsidx.Occupied.Value == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays(1)
+                                     orderby _tsidx.StartTime ascending
+                                     select _tsidx).ToList<TimeSlot>();
+      TimeSlot _next = this.FindAdjacent(_avlblTmslts);
+      _next.Occupied = Entities.Occupied.Occupied0;
+      _next.ShippingIndex = _sp;
+      _next.IsDouble = true;
+      //this.EndTime = _next.EndTime;
+      //this.Duration = Convert.ToDouble((_ts.EndTime.Value - _ts.EndTime.Value).TotalMinutes);
+    }
   }
   public partial class TimeSlot
   {
