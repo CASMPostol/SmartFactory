@@ -863,6 +863,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             case State.WaitingForSecurityData:
             case State.Underway:
               _sppng.ReleaseBooking(null);
+              _sppng.State = State.Cancelation;
               break;
             case State.Completed:
             case State.Cancelation:

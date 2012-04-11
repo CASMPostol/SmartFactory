@@ -89,7 +89,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
       catch (Exception ex)
       {
-        ReportException("m_OnWorkflowItemChanged_Invoked", ex);
+        ReportException("m_MainLoopWhileActivity_ConditionEventHandler", ex);
       }
     }
     #endregion
@@ -100,16 +100,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       try
       {
         ActionResult _ar = new ActionResult();
-        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url) )
+        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
         {
           string _msg = "The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated.";
           ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
           m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
           ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None, EDC, _sp);
-          //if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value == State.Completed))
-          //  MakeShippingReport(_sp, EDC, _ar);
-          //if (_sp.State.Value == State.Completed || _sp.State.Value == State.Cancelation)
-          //  MakePerformanceReport(_sp, EDC, _ar);
+          if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value == State.Completed))
+            MakeShippingReport(_sp, EDC, _ar);
+          if (_sp.State.Value == State.Completed || _sp.State.Value == State.Cancelation)
+            MakePerformanceReport(_sp, EDC, _ar);
           EDC.SubmitChanges();
         }
         ReportActionResult(_ar);
