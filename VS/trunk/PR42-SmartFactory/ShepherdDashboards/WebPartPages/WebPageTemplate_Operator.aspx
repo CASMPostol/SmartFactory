@@ -47,17 +47,6 @@
                         </td>
                     </tr>
                 </table>
-                <hr />
-                <table border="0" width="100%">
-                    <tr>
-                        <td valign="top" width="100%" >
-                            <WebPartPages:WebpartZone
-                            ID="AlarmsAndEvents" runat="server"
-                            Title="AlarmsAndEvents Web Part Zone"
-                            FrameType="TitleBarOnly" />
-                        </td>
-                    </tr>
-                </table>
         </td>
     </table>
   </div>
