@@ -746,6 +746,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           Shipping _sppng = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_ControlState.ShippingID);
           UpdateShipping(_sppng, _rst, _EDC);
           UpdateTimeSlot(_sppng, _rst, _EDC.TimeSlot);
+          _sppng.CalculateState();
           _checkPoint = "UpdateTimeSlot";
           try
           {
