@@ -17,9 +17,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
     }
     internal const RequiredOperations CarrierOperations = Shipping.RequiredOperations.AddAlarm2Carrier | Shipping.RequiredOperations.SendEmail2Carrier;
     internal enum Distance { UpTo72h, UpTo24h, UpTo2h, VeryClose, Late }
-    internal RequiredOperations CalculateOperations2Do(bool _email, bool _alarm)
+    internal RequiredOperations CalculateOperations2Do(bool _email, bool _alarm, bool _TimeOutExpired)
     {
       RequiredOperations _ret = 0;
+      if (!_TimeOutExpired)
+        return _ret;
       RequiredOperations _cr = 0;
       RequiredOperations _escrt = 0;
       if (_alarm)

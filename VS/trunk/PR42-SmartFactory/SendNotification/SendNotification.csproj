@@ -109,6 +109,7 @@
     <Compile Include="Entities\DistributionList.cs" />
     <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />
+    <Compile Include="Entities\EntitiesDataContext.cs" />
     <Compile Include="Entities\Shipping.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Features\SendNotification\SendNotification.EventReceiver.cs">
