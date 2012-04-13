@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     {
         public virtual string TransformText()
         {
-            this.Write("\r\n  <p>\r\n    <b>Freight Purches Order:</b> ");
+            this.Write("\r\n  <p>\r\n    <b>Escort Purchase Order:</b> ");
             
             #line 3 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\SecurityEscortPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SPOFreightPO));
@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
             
             #line default
             #line hidden
-            this.Write("</p>\r\n  <p>\r\n    <b>Dispatch Date:</b> ");
+            this.Write("</p>\r\n  <p>\r\n    <b>Loading Date:</b> ");
             
             #line 9 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\SecurityEscortPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(SPODispatchDate));
@@ -60,7 +60,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
             
             #line default
             #line hidden
-            this.Write("</p>\r\n  <p>\r\n    <b>Freight Purchase Order document:</b> <a href=\"");
+            this.Write("</p>\r\n  <p>\r\n    <b>Escort Purchase Order document:</b> <a href=\"");
             
             #line 13 "C:\vs\Projects\SmartFactory\PR42-SmartFactory\SendNotification\WorkflowData\SecurityEscortPurchaseOrderTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Encodedabsurl));

@@ -33,8 +33,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
                          select idx).First();
         return new SecurityEscortPurchaseOrderTemplate()
         {
-          SPOFreightPO = _fpo.Title().NotAvailable(),
-          EmaiAddressTo = String.IsNullOrEmpty(_fpo.EMail) ? CommonDefinition.UnknownEmail : _fpo.EMail,
+          SPOFreightPO = _fpo.FreightPO.NotAvailable(),
+          EmaiAddressTo = _fpo.EMail.NotAvailable(),
           Encodedabsurl = new Uri((string)_item["EncodedAbsUrl"]),
           Modified = (DateTime)_item["Modified"],
           ModifiedBy = ((string)_item["Editor"]).NotAvailable(),
