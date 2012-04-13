@@ -110,10 +110,28 @@
     <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\EntitiesDataContext.cs" />
+    <Compile Include="Entities\EntitiesDataDictionary.cs" />
     <Compile Include="Entities\Shipping.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Features\SendNotification\SendNotification.EventReceiver.cs">
       <DependentUpon>SendNotification.feature</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDictionaries\Definitions.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Definitions.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDictionaries\ImportDictionaries.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImportDictionaries\ImportDictionaries.Designer.cs">
+      <DependentUpon>ImportDictionaries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDictionaries\Schema\PreliminaryDataRoute.cs">
+      <DependentUpon>PreliminaryDataRoute.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDictionaries\Schema\PreliminaryDataRoute.xsd.cs">
+      <DependentUpon>PreliminaryDataRoute.xsd</DependentUpon>
     </Compile>
     <Compile Include="OpenXMLHelpers.cs" />
     <Compile Include="ShippingStateMachine\MailData.cs" />
@@ -203,6 +221,22 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Parameters.xml</LastGenOutput>
     </None>
+    <None Include="ImportDictionaries\Definitions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Definitions.cs</LastGenOutput>
+    </None>
+    <None Include="ImportDictionaries\Elements.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Elements.xml</LastGenOutput>
+    </None>
+    <None Include="ImportDictionaries\Schema\PreliminaryDataRoute.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ImportDictionaries\Schema\Scripts\CreateCS.ps1" />
+    <None Include="ImportDictionaries\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8f1cd1f7-33c7-407c-a56a-90b735c05d3b}</SharePointProjectItemId>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="key.snk" />
     <None Include="Model.T4" />
     <None Include="SendEmail\SharePointProjectItem.spdata">
@@ -284,6 +318,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Parameters.tt</DependentUpon>
+    </Content>
+    <Content Include="ImportDictionaries\Elements.xml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Elements.tt</DependentUpon>
     </Content>
     <Content Include="SendEmail\Elements.xml">
       <SubType>Designer</SubType>
