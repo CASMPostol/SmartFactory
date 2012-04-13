@@ -132,6 +132,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       {
         DateTime _sd = m_Calendar.SelectedDate.Date;
         DateTime _strt = new DateTime(m_Calendar.VisibleDate.Year, m_Calendar.VisibleDate.Month, 1);
+        if (_strt < DateTime.Now)
+          _strt = DateTime.Now;
         DateTime _end = _strt.AddMonths(1);
         if (m_WarehouseDropDownList.SelectedValue.IsNullOrEmpty())
           return;
