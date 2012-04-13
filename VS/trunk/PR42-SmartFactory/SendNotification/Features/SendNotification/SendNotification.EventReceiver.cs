@@ -41,13 +41,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
           _state = "FreightPOLibraryName";
           NewSendEmailAssociation(CommonDefinition.EscortPOLibraryTitle, _web, _taskList, _historyList, POLibraryWorkflowAssociationData.SecurityPOAssociationData());
           _state = "EscortPOLibraryTitle";
-          NewCreatePOAssociation(CreatePO.CreatePO.WorkflowDescription, _web, _taskList, _historyList);
+          NewCreatePOAssociation(CreatePO.CreatePO.WorkflowDescription, _web, _taskList, _historyList, false);
           _state = "AddCreateFPOAssociation";
-          NewCreatePOAssociation(CreateSecurityPO1.CreateSecurityPO1.WorkflowDescription, _web, _taskList, _historyList);
+          NewCreatePOAssociation(CreateSecurityPO1.CreateSecurityPO1.WorkflowDescription, _web, _taskList, _historyList, false);
           _state = "AddCreateFPOAssociation";
-          NewCreatePOAssociation(CreateSealProtocol.CreateSealProtocol.WorkflowDescription, _web, _taskList, _historyList);
+          NewCreatePOAssociation(CreateSealProtocol.CreateSealProtocol.WorkflowDescription, _web, _taskList, _historyList, false);
           _state = "AddCreateFPOAssociation";
-          NewCreatePOAssociation(ShippingStateMachine.ShippingStateMachine.WorkflowDescription, _web, _taskList, _historyList);
+          NewCreatePOAssociation(ShippingStateMachine.ShippingStateMachine.WorkflowDescription, _web, _taskList, _historyList, true);
           _state = "ShippingStateMachine";
           NewWorkflowAssociation(CommonDefinition.ScheduleTemplateListTitle, AddTimeSlots.Definitions.WorkflowDescription, _web, _taskList, _historyList);
           _state = "ScheduleTemplateListTitle";
@@ -106,7 +106,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
       _wa.AssociationData = _wfData.Serialize(_wa);
       _web.Lists[_targetList].WorkflowAssociations.Add(_wa);
     }
-    private static void NewCreatePOAssociation(WorkflowDescription _dsc, SPWeb _web, SPList _taskList, SPList _historyList)
+    private static void NewCreatePOAssociation(WorkflowDescription _dsc, SPWeb _web, SPList _taskList, SPList _historyList, bool _autoStartCreate)
     {
       SPWorkflowTemplate _workflowTemplate = _web.WorkflowTemplates[_dsc.WorkflowId];
       // create workflow association
@@ -119,7 +119,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
       // configure workflow association and add to WorkflowAssociations collection
       _freightPOLibraryWorkflowAssociation.Description = _dsc.Description;
       _freightPOLibraryWorkflowAssociation.AllowManual = true;
-      _freightPOLibraryWorkflowAssociation.AutoStartCreate = false;
+      _freightPOLibraryWorkflowAssociation.AutoStartCreate = _autoStartCreate;
       _freightPOLibraryWorkflowAssociation.AutoStartChange = false;
       _freightPOLibraryWorkflowAssociation.AssociationData = _dsc.Name;
       _web.Lists[CommonDefinition.ShippingListTitle].WorkflowAssociations.Add(_freightPOLibraryWorkflowAssociation);

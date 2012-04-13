@@ -315,7 +315,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                   SetupTimeout(_timeDistance, _sp);
                   break;
                 case Shipping.Distance.Late:
-                  MakeDelayed(_sp, EDC);
+                  MakeDelayed(_sp, EDC, m_TimeOutReached);
                   break;
               }
               break;
@@ -337,7 +337,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                   RequestData(_timeDistance, _sp, Priority.High, EDC, m_TimeOutReached);
                   break;
                 case Shipping.Distance.Late:
-                  MakeDelayed(_sp, EDC);
+                  MakeDelayed(_sp, EDC, m_TimeOutReached);
                   break;
               }
               break;
