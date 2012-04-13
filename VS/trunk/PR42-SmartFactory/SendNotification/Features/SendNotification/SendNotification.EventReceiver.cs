@@ -100,7 +100,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
       // configure workflow association and add to WorkflowAssociations collection
       _wa.Description = "Send PO by email";
       _wa.AllowManual = true;
-      _wa.AutoStartCreate = false;
+      _wa.AutoStartCreate = true;
       _wa.AutoStartChange = false;
       // add workflow association data
       _wa.AssociationData = _wfData.Serialize(_wa);
