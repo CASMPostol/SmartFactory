@@ -257,7 +257,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           _sp.TotalQuantityInKU += _ld.GoodsQuantity.GetValueOrDefault(0);
         }
         string _na = "N/A?";
-        _sp.ForwarderOceanAir = _sp.Route == null ? _na : _sp.Route.CarrierTitle;
+        _sp.ForwarderOceanAir = _sp.Route == null ? _na : _sp.Route.Carrier.Title();
         _sp.EscortCostsCurrency = _sp.SecurityEscort == null ? null : _sp.SecurityEscort.Currency;
         _sp.TotalCostsPerKUCurrency = (from Currency _cu in EDC.Currency
                                        where !String.IsNullOrEmpty(_cu.Tytuł) && _cu.Tytuł.ToUpper().Contains(CommonDefinition.DefaultCurrency)

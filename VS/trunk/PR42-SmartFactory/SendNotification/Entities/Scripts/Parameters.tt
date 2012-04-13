@@ -2,8 +2,18 @@
 <#@ output extension=".xml" #>
 <?xml version="1.0" encoding="utf-8" ?>
 <Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
+  <List Name="<#= BusinessDescription_ListTitle #>">
+    <ContentType Name="BusinessDescription" Class="BusinessDescriptionClass" >
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
   <List Name="Transport Unit Type">
     <ContentType Name="TranspotUnit">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
+  <List Name="<#= Carrier_ListTitle #>">
+    <ContentType Name="CarrierType">
       <Column Name="Dummy"/>
     </ContentType>
   </List>
@@ -46,6 +56,22 @@
   <List Name="<#= ScheduleTemplate_ListTitle #>"></List>
   <List Name="<#= TimeSlotsTemplate_ListTitle #>"></List>
   <List Name="<#= ShippingPoint_ListTitle #>"></List>
+  <List Name="SAP Destination Plant">
+    <ContentType Name="<#= SAPDestinationPlant_ListTitle #>">
+      <Column Name="Dummy"/>
+    </ContentType>
+   </List>
+   <List Name="<#= ShipmentType_ListTitle #>">
+    <ContentType Name="ShipmentType">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
+    <List Name="<#= Market_ListTitle #>" >
+    <ContentType Name="Market">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
+  <List Name="<#= DestinationMarket_ListTitle #>" ></List>
   <ExcludeOtherLists/>
 </Web>
 <#@ include file = "..\..\Model.T4" #>

@@ -1,0 +1,22 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+using System;
+
+namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
+{
+  internal static class Definitions
+  {
+    internal const string ID = "<#=  ImportDictionaries_ID #>";
+    internal static Guid IDGuid = new Guid(ID);
+    internal const string Name = "<#= ImportDictionaries_Name #>";
+    internal const string Description = "<#= ImportDictionaries_Description #>";
+    internal static WorkflowDescription WorkflowDescription
+    {
+      get
+      {
+        return new WorkflowDescription(IDGuid, "Import Dictionaries", Description);
+      }
+    }
+  }
+}
+<#@ include file = "..\Model.T4" #>

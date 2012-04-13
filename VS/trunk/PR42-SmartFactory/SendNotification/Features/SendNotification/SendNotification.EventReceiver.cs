@@ -51,6 +51,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
           _state = "ShippingStateMachine";
           NewWorkflowAssociation(CommonDefinition.ScheduleTemplateListTitle, AddTimeSlots.Definitions.WorkflowDescription, _web, _taskList, _historyList);
           _state = "ScheduleTemplateListTitle";
+          NewWorkflowAssociation(CommonDefinition.DataImportLibraryTitle, ImportDictionaries.Definitions.WorkflowDescription, _web, _taskList, _historyList);
+          _state = "DataImportLibraryTitle";
         }
       }
       catch (Exception _ex)
@@ -72,6 +74,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Features
         {
           using (SPWeb site = siteCollection.RootWeb)
           {
+            RemoveWorkflowAssociation(site.Lists[CommonDefinition.DataImportLibraryTitle], ImportDictionaries.Definitions.IDGuid);
             RemoveWorkflowAssociation(site.Lists[CommonDefinition.ScheduleTemplateListTitle], AddTimeSlots.Definitions.IDGuid);
             RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], ShippingStateMachine.ShippingStateMachine.WorkflowId);
             RemoveWorkflowAssociation(site.Lists[CommonDefinition.ShippingListTitle], CreateSealProtocol.CreateSealProtocol.WorkflowId);

@@ -39,6 +39,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     {
       return String.IsNullOrEmpty(_value) ? "N/A" : _value;
     }
+    public static bool IsNullOrEmpty(this string _val)
+    {
+      return String.IsNullOrEmpty(_val);
+    }
     public static int Hour2Int(this StartHour _valu)
     {
       return _valu.ToString().ParseDashed();
@@ -58,6 +62,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     public static int ParseDashed(this string _val)
     {
       return Int16.Parse(_val.Replace("_", ""));
+    }
+    public static double? String2Double(this string _val)
+    {
+      double _res = 0;
+      if (double.TryParse(_val, out _res))
+        return _res;
+      else
+        return null;
     }
   }
 }

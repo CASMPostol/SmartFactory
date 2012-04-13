@@ -1,7 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
+  <List Name="Business Description">
+    <ContentType Name="BusinessDescription" Class="BusinessDescriptionClass" >
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
   <List Name="Transport Unit Type">
     <ContentType Name="TranspotUnit">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
+  <List Name="Carrier">
+    <ContentType Name="CarrierType">
       <Column Name="Dummy"/>
     </ContentType>
   </List>
@@ -44,5 +54,21 @@
   <List Name="Schedule Template"></List>
   <List Name="TimeSlots Template"></List>
   <List Name="Shipping Point"></List>
+  <List Name="SAP Destination Plant">
+    <ContentType Name="SAPDestinationPlant">
+      <Column Name="Dummy"/>
+    </ContentType>
+   </List>
+   <List Name="Shipment Type">
+    <ContentType Name="ShipmentType">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
+    <List Name="Market" >
+    <ContentType Name="Market">
+      <Column Name="Dummy"/>
+    </ContentType>
+  </List>
+  <List Name="Destination Market" ></List>
   <ExcludeOtherLists/>
 </Web>
