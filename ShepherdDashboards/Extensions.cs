@@ -4,6 +4,7 @@ using System.Web.UI.WebControls;
 using System.Collections.Generic;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using System.Linq;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
@@ -132,6 +133,42 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       }
       else
         _ddl.Items.Add(new ListItem(_Partner.Tytuł, _Partner.Identyfikator.Value.ToString()));
+    }
+    public static void ResolveChangeConflicts(this EntitiesDataContext _EDC, ActionResult _rsult)
+    {
+      string _cp = "Starting";
+      try
+      {
+        foreach (ObjectChangeConflict _itx in _EDC.ChangeConflicts)
+        {
+          _cp = "ObjectChangeConflict";
+          string _tmp = String.Format("Object: {0}", _itx.Object == null ? "null" : _itx.Object.ToString());
+          if (_itx.MemberConflicts != null)
+          {
+            string _ft = ", Conflicts: Member.Name={0}; CurrentValue={1}; DatabaseValue={2}; OriginalValue={3}";
+            String _chnges = String.Empty;
+            foreach (MemberChangeConflict _mid in _itx.MemberConflicts)
+            {
+              _chnges += String.Format(_ft,
+                _mid.Member == null ? "null" : _mid.Member.Name,
+                _mid.CurrentValue == null ? "null" : _mid.CurrentValue.ToString(),
+                _mid.DatabaseValue == null ? "null" : _mid.DatabaseValue.ToString(),
+                _mid.OriginalValue == null ? "null" : _mid.OriginalValue.ToString());
+            }
+            _tmp += _chnges;
+          }
+          else
+            _tmp += "; No member details";
+          _rsult.AddMessage(_tmp);
+          _cp = "AddMessage";
+          _itx.Resolve(RefreshMode.KeepCurrentValues);
+        } //foreach (ObjectChangeConflict
+      }
+      catch (Exception ex)
+      {
+        string _frmt = "The current operation has been interrupted in ResolveChangeConflicts at {0} by error {1}.";
+        throw new ApplicationException(String.Format(_frmt, _cp, ex.Message));
+      }
     }
     #endregion
 

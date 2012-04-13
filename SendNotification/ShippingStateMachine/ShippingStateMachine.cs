@@ -350,7 +350,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             default:
               SetupTimeout(TimeSpan.FromHours(5), _sp);
               break;
-          }
+          }// switch (_sp.State.Value)
           try
           {
             EDC.SubmitChanges();

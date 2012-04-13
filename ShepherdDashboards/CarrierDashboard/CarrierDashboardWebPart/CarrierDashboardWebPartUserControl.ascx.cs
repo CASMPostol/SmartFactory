@@ -667,6 +667,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private ActionResult CreateShipping()
     {
       ActionResult _rsult = new ActionResult();
+      string _checkPoint = "CreateShipping";
       try
       {
         if (m_DocumentTextBox.Text.IsNullOrEmpty())
@@ -687,6 +688,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(_EDC.TimeSlot, m_ControlState.TimeSlotID);
           _sppng.SetupTiming(_newts, m_ControlState.TimeSlotIsDouble);
           _EDC.Shipping.InsertOnSubmit(_sppng);
+          _checkPoint = "Shipping.InsertOnSubmit";
           _EDC.SubmitChanges();
           _sppng.UpdateTitle();
           m_ControlState.ShippingID = _sppng.Identyfikator.Value.ToString();
@@ -700,14 +702,25 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             Vendor = _sppng.VendorName
           };
           _EDC.LoadDescription.InsertOnSubmit(_ld);
-          _EDC.SubmitChanges();
+          _checkPoint = "_EDC.LoadDescription";
+          try
+          {
+            _EDC.SubmitChanges(ConflictMode.ContinueOnConflict);
+          }
+          catch (ChangeConflictException)
+          {
+            _checkPoint = "ChangeConflictException";
+            _EDC.ResolveChangeConflicts(_rsult);
+            _checkPoint = "ResolveChangeConflicts";
+            _EDC.SubmitChanges();
+          }
         }
         SendShippingData(_sppng);
       }
       catch (Exception ex)
       {
         _rsult.AddException(ex);
-        this.ReportException("CreateShipping", ex);
+        this.ReportException("CreateShipping at: " + _checkPoint, ex);
       }
       return _rsult;
     }
@@ -729,9 +742,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           }
           catch (ChangeConflictException)
           {
-            foreach (ObjectChangeConflict changedListItem in _EDC.ChangeConflicts)
-              changedListItem.Resolve(RefreshMode.KeepCurrentValues);
-            _checkPoint = "catch";
+            _checkPoint = "ChangeConflictException";
+            _EDC.ResolveChangeConflicts(_rst);
+            _checkPoint = "ResolveChangeConflicts";
             _EDC.SubmitChanges();
           }
         }

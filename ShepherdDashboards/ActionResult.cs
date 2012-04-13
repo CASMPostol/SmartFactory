@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
-  internal class ActionResult : List<string>
+  public class ActionResult : List<string>
   {
     #region public
 
