@@ -105,14 +105,22 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           string _msg = "The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated.";
           ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
           m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
-          ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None, EDC, _sp);
+          //ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None, EDC, _sp);
           if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value == State.Completed))
             MakeShippingReport(_sp, EDC, _ar);
           if (_sp.State.Value == State.Completed || _sp.State.Value == State.Cancelation)
             MakePerformanceReport(_sp, EDC, _ar);
-          EDC.SubmitChanges();
+          try
+          {
+            EDC.SubmitChanges(ConflictMode.ContinueOnConflict);
+          }
+          catch (ChangeConflictException)
+          {
+            EDC.ResolveChangeConflicts(_ar);
+            EDC.SubmitChanges();
+          }
         }
-        ReportActionResult(_ar);
+        _ar.ReportActionResult(m_OnWorkflowActivated_WorkflowProperties.Site.Url);
       }
       catch (Exception ex)
       {
@@ -143,24 +151,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       //    }
       //  }
       //}
-    }
-    private void ReportActionResult(ActionResult _ar)
-    {
-      if (_ar.Count == 0)
-        return;
-      try
-      {
-        using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
-        {
-          foreach (string _msg in _ar)
-          {
-            Anons _entry = new Anons() { Tytuł = "ReportActionResult", Treść = _msg, Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
-            EDC.EventLogList.InsertOnSubmit(_entry);
-          }
-          EDC.SubmitChanges();
-        }
-      }
-      catch (Exception) { }
     }
     private void MakePerformanceReport(ShippingShipping _sp, EntitiesDataContext EDC, ActionResult _result)
     {
@@ -216,7 +206,15 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               break;
           }
         }
-        EDC.SubmitChanges();
+        try
+        {
+          EDC.SubmitChanges();
+        }
+        catch (ChangeConflictException)
+        {
+          EDC.ResolveChangeConflicts(_result);
+          EDC.SubmitChanges();
+        }
       }
       catch (Exception ex)
       {
@@ -327,16 +325,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               switch (_sp.CalculateDistance(out _timeDistance))
               {
                 case Shipping.Distance.UpTo72h:
-                  RequestData(_timeDistance, _sp, Priority.Normal, EDC);
+                  RequestData(_timeDistance, _sp, Priority.Normal, EDC, m_TimeOutReached);
                   break;
                 case Shipping.Distance.UpTo24h:
-                  RequestData(_timeDistance, _sp, Priority.Warning, EDC);
+                  RequestData(_timeDistance, _sp, Priority.Warning, EDC, m_TimeOutReached);
                   break;
                 case Shipping.Distance.UpTo2h:
-                  RequestData(_timeDistance, _sp, Priority.Warning, EDC);
+                  RequestData(_timeDistance, _sp, Priority.Warning, EDC, m_TimeOutReached);
                   break;
                 case Shipping.Distance.VeryClose:
-                  RequestData(_timeDistance, _sp, Priority.High, EDC);
+                  RequestData(_timeDistance, _sp, Priority.High, EDC, m_TimeOutReached);
                   break;
                 case Shipping.Distance.Late:
                   MakeDelayed(_sp, EDC);
@@ -353,14 +351,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           }// switch (_sp.State.Value)
           try
           {
-            EDC.SubmitChanges();
+            EDC.SubmitChanges(ConflictMode.ContinueOnConflict);
           }
           catch (ChangeConflictException)
           {
-            foreach (ObjectChangeConflict changedListItem in EDC.ChangeConflicts)
-              changedListItem.Resolve(RefreshMode.OverwriteCurrentValues);
+            ActionResult _ar = new ActionResult();
+            EDC.ResolveChangeConflicts(_ar);
             EDC.SubmitChanges();
+            _ar.ReportActionResult(m_OnWorkflowActivated_WorkflowProperties.Site.Url);
           }
+          finally { m_TimeOutReached = false; }
         } //using (EntitiesDataContext EDC
       }
       catch (Exception _ex)
@@ -368,7 +368,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         ReportException("m_CalculateTimeoutCode_ExecuteCode", _ex);
       }
     }
-    private void RequestData(TimeSpan _delay, ShippingShipping _sp, Priority _pr, EntitiesDataContext EDC)
+    private bool m_TimeOutReached = false;
+    private void RequestData(TimeSpan _delay, ShippingShipping _sp, Priority _pr, EntitiesDataContext EDC, bool _TimeOutExpired)
     {
       string _frmt = "Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}.";
       _frmt = String.Format(_frmt, _delay, DateTime.Now + _delay);
@@ -376,15 +377,15 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       switch (_pr)
       {
         case Priority.Normal:
-          _ro = _sp.CalculateOperations2Do(false, true);
+          _ro = _sp.CalculateOperations2Do(false, true, _TimeOutExpired);
           _frmt.Insert(0, "Remainder; ");
           break;
         case Priority.High:
-          _ro = _sp.CalculateOperations2Do(true, true);
+          _ro = _sp.CalculateOperations2Do(true, true, _TimeOutExpired);
           _frmt.Insert(0, "Warnning ! ");
           break;
         case Priority.Warning:
-          _ro = _sp.CalculateOperations2Do(false, true);
+          _ro = _sp.CalculateOperations2Do(false, true, _TimeOutExpired);
           _frmt.Insert(0, "It is last call !!!");
           break;
         case Priority.None:
@@ -397,17 +398,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void MakeCanceled(ShippingShipping _sp, EntitiesDataContext EDC)
     {
       _sp.State = State.Canceled;
-      Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true);
+      Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true, true);
       string _frmt = "Wanning !! The Shipment has been cancelled by {0}";
       _frmt = String.Format(_frmt, _sp.ZmodyfikowanePrzez);
       SetupEnvironment(ShippingShipping.WatchTolerance, _ro, _sp, Priority.High, EDC, _frmt, EmailType.Canceled);
     }
-    private void MakeDelayed(ShippingShipping _sp, EntitiesDataContext EDC)
+    private void MakeDelayed(ShippingShipping _sp, EntitiesDataContext EDC, bool _TimeOutExpired)
     {
       _sp.State = State.Delayed;
       string _frmt = "Wanning !! The truck is late. Call the driver: {0}";
       _frmt = String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????");
-      Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true) & Shipping.CarrierOperations;
+      Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true, _TimeOutExpired) & Shipping.CarrierOperations;
       SetupEnvironment(ShippingShipping.WatchTolerance, _ro, _sp, Priority.High, EDC, _frmt, EmailType.Delayed);
     }
     private void SetupEnvironment(TimeSpan _delay, Shipping.RequiredOperations _operations, ShippingShipping _sp, Priority _prrty, EntitiesDataContext _EDC, string _logDescription, EmailType _etype)
@@ -468,6 +469,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void m_TimeOutLogToHistoryListActivity_MethodInvoking(object sender, EventArgs e)
     {
       m_TimeOutLogToHistoryListActivity_HistoryDescription = String.Format("Timeout expired at {0:g}", DateTime.Now);
+      m_TimeOutReached = true;
     }
     public String m_TimeOutLogToHistoryListActivity_HistoryDescription = default(System.String);
     #endregion

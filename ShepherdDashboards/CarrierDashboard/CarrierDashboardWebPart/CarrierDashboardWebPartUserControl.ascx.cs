@@ -692,7 +692,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           _EDC.SubmitChanges();
           _sppng.UpdateTitle();
           m_ControlState.ShippingID = _sppng.Identyfikator.Value.ToString();
-          _sppng.State = State.Creation;
           _newts.MakeBooking(_sppng, m_ControlState.TimeSlotIsDouble);
           LoadDescription _ld = new LoadDescription()
           {
@@ -703,6 +702,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           };
           _EDC.LoadDescription.InsertOnSubmit(_ld);
           _checkPoint = "_EDC.LoadDescription";
+          try
+          {
+            _EDC.SubmitChanges(ConflictMode.ContinueOnConflict);
+          }
+          catch (ChangeConflictException)
+          {
+            _checkPoint = "ChangeConflictException";
+            _EDC.ResolveChangeConflicts(_rsult);
+            _checkPoint = "ResolveChangeConflicts";
+            _EDC.SubmitChanges();
+          }
+          _sppng.CalculateState();
           try
           {
             _EDC.SubmitChanges(ConflictMode.ContinueOnConflict);
