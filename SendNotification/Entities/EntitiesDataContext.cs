@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 {
   public partial class EntitiesDataContext
   {
-    public void ResolveChangeConflicts(ActionResult _rsult)
+    internal void ResolveChangeConflicts(ActionResult _rsult)
     {
       string _cp = "Starting";
       try
