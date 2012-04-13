@@ -100,7 +100,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             m_ShowDocumentLabel(null);
             break;
           case GlobalDefinitions.Roles.InboundOwner:
-            m_VisibilityACL = _inbound | ButtonsSet.PartnerOn;
+            m_VisibilityACL = (_inbound ^ ButtonsSet.OperatorControlsOn) | ButtonsSet.PartnerOn;
             m_EditbilityACL = _inbound;
             m_ShowDocumentLabel = ShowDocumentLabelInboundVendor;
             m_ShowDocumentLabel(null);
