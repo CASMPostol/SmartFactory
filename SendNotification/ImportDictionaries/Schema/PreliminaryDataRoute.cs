@@ -28,11 +28,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries.Schema {
         
         private bool fillUpTimeSlotTemplatesField;
         
-        private bool fillUpTimeSlotTemplatesFieldSpecified;
-        
         private bool fillUpTimeSlotsField;
-        
-        private bool fillUpTimeSlotsFieldSpecified;
         
         private PreliminaryDataRoutePalletTypeRow[] palletTypeTableField;
         
@@ -52,7 +48,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries.Schema {
         
         private PreliminaryDataRouteRole[] distributionListField;
         
+        public PreliminaryDataRoute() {
+            this.testingDataField = true;
+            this.fillUpTimeSlotTemplatesField = true;
+            this.fillUpTimeSlotsField = false;
+        }
+        
         /// <uwagi/>
+        [System.ComponentModel.DefaultValueAttribute(true)]
         public bool TestingData {
             get {
                 return this.testingDataField;
@@ -63,6 +66,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries.Schema {
         }
         
         /// <uwagi/>
+        [System.ComponentModel.DefaultValueAttribute(true)]
         public bool FillUpTimeSlotTemplates {
             get {
                 return this.fillUpTimeSlotTemplatesField;
@@ -73,34 +77,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries.Schema {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool FillUpTimeSlotTemplatesSpecified {
-            get {
-                return this.fillUpTimeSlotTemplatesFieldSpecified;
-            }
-            set {
-                this.fillUpTimeSlotTemplatesFieldSpecified = value;
-            }
-        }
-        
-        /// <uwagi/>
+        [System.ComponentModel.DefaultValueAttribute(false)]
         public bool FillUpTimeSlots {
             get {
                 return this.fillUpTimeSlotsField;
             }
             set {
                 this.fillUpTimeSlotsField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool FillUpTimeSlotsSpecified {
-            get {
-                return this.fillUpTimeSlotsFieldSpecified;
-            }
-            set {
-                this.fillUpTimeSlotsFieldSpecified = value;
             }
         }
         

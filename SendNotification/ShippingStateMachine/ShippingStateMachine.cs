@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Workflow.Activities;
 using System.Workflow.ComponentModel;
 using CAS.SmartFactory.Shepherd.SendNotification.Entities;
 using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
-using Microsoft.SharePoint.Workflow;
-using System.Collections.Generic;
 using Microsoft.SharePoint.Linq;
+using Microsoft.SharePoint.Workflow;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 {

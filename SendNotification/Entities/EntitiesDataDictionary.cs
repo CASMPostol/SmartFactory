@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
 {
-  using Microsoft.SharePoint.Linq;
   using CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries.Schema;
+  using Microsoft.SharePoint.Linq;
 
   public class EntitiesDataDictionary : IDisposable
   {
@@ -37,17 +36,6 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
       _sp.Direction = ParseDirection(_shippingPoint.Direction);
       _sp.Warehouse = _wh;
     }
-    private Direction? ParseDirection(string p)
-    {
-      p = p.ToUpper();
-      if (p.Contains("OUTBOUND"))
-        return Direction.Outbound;
-      if (p.Contains("INBOUND"))
-        return Direction.Inbound;
-      if (p.Contains("BOTH"))
-        return Direction.BothDirections;
-      return null;
-    }
     internal void AddPartner(PreliminaryDataRoutePartnersRow _partner, bool _testData)
     {
       Partner _prtnr = Create<Partner>(m_EDC.Partner, m_Partner, _partner.Name, _testData);
@@ -70,7 +58,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
       string _sitf = "{0}\n{1}\n{2} {3}\n{4}";
       _fp.SendInvoiceTo = DummyName(String.Format(_sitf, item.Name2, item.Country_Region6, item.ZIP_Postal_Code4, item.City5, item.Address3), "SendInvoiceTo", _testData);
     }
-    public void AddRoute(PreliminaryDataRouteRoute _route, bool _testData)
+    internal void AddRoute(PreliminaryDataRouteRoute _route, bool _testData)
     {
 
       try
@@ -184,6 +172,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
     #region private
 
     #region helpers
+    private Direction? ParseDirection(string p)
+    {
+      p = p.ToUpper();
+      if (p.Contains("OUTBOUND"))
+        return Direction.Outbound;
+      if (p.Contains("INBOUND"))
+        return Direction.Inbound;
+      if (p.Contains("BOTH"))
+        return Direction.BothDirections;
+      return null;
+    }
     private ServiceType? ParseServiceType(string p)
     {
       p = p.ToUpper();
