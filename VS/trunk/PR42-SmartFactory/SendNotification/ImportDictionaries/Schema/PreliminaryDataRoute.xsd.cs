@@ -11,9 +11,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries.Schema
       XmlSerializer serializer = new XmlSerializer(typeof(PreliminaryDataRoute));
       return (PreliminaryDataRoute)serializer.Deserialize(documetStream);
     }
-    public void ImportData(PreliminaryDataRoute cnfg, string _URL, bool _testData)
+    public void ImportData(string _URL)
     {
-      using (Entities.EntitiesDataDictionary _dictionary = new EntitiesDataDictionary(_URL.Trim()))
+      using (Entities.EntitiesDataDictionary _dictionary = new EntitiesDataDictionary(_URL))
       {
         foreach (PreliminaryDataRouteCommodityRow _Commodity in this.CommodityTable)
         {
@@ -29,15 +29,15 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries.Schema
         }
         foreach (PreliminaryDataRoutePartnersRow _partner in this.PartnersTable)
         {
-          _dictionary.AddPartner(_partner, _testData);
+          _dictionary.AddPartner(_partner, TestingData);
         }
         foreach (PreliminaryDataRoutePayersRow _payer in this.PayersTable)
         {
-          _dictionary.AddFreightPayer(_payer, _testData);
+          _dictionary.AddFreightPayer(_payer, TestingData);
         }
         foreach (PreliminaryDataRouteRoute _rt in this.GlobalPricelist)
         {
-          _dictionary.AddRoute(_rt, _testData);
+          _dictionary.AddRoute(_rt, TestingData);
         }
         foreach (PreliminaryDataRouteMarket _market in this.MarketTable)
         {
@@ -45,7 +45,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries.Schema
         }
         foreach (PreliminaryDataRouteRole _role in this.DistributionList)
         {
-          _dictionary.AddRole(_role, _testData);
+          _dictionary.AddRole(_role, TestingData);
         }
       }
     }

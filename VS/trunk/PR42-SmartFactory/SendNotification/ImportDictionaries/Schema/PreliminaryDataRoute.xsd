@@ -9,9 +9,9 @@
   <xsd:element name="PreliminaryDataRoute">
     <xsd:complexType>
       <xsd:sequence minOccurs="1" maxOccurs="1">
-        <xsd:element name="TestingData" minOccurs="1" maxOccurs="1" type="xsd:boolean"></xsd:element>
-        <xsd:element name="FillUpTimeSlotTemplates" minOccurs="0" maxOccurs="1" nillable="true" type="xsd:boolean"/>
-        <xsd:element name="FillUpTimeSlots" minOccurs="0" maxOccurs="1" nillable="true" type="xsd:boolean"/>
+        <xsd:element name="TestingData" minOccurs="0" maxOccurs="1" type="xsd:boolean" default="true" ></xsd:element>
+        <xsd:element name="FillUpTimeSlotTemplates" minOccurs="0" maxOccurs="1" type="xsd:boolean" default="true"/>
+        <xsd:element name="FillUpTimeSlots" minOccurs="0" maxOccurs="1" type="xsd:boolean" default="false"/>
         <xsd:element nillable="true" name="PalletTypeTable">
           <xsd:complexType>
             <xsd:sequence minOccurs="0">
