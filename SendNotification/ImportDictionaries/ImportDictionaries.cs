@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
       }
     }
     public bool FillUpTimeSlots { get; set; }
-    public bool FillUpTimeSlotTemplates { get; set; } 
+    public bool FillUpTimeSlotTemplates { get; set; }
     #endregion
 
     #region TemplateCreation
@@ -59,9 +59,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
     {
       using (EntitiesDataContext _EDC = new EntitiesDataContext(workflowProperties.WebUrl))
         foreach (ShippingPoint _sp in from _ei in _EDC.ShippingPoint select _ei)
-          CreateTemplates(_EDC, _sp);
+          CreateTimeSlotTemplates(_EDC, _sp);
     }
-    private void CreateTemplates(EntitiesDataContext _EDC, ShippingPoint _sp)
+    private void CreateTimeSlotTemplates(EntitiesDataContext _EDC, ShippingPoint _sp)
     {
       Dictionary<StartHour, EndHour> _hours = new Dictionary<StartHour, EndHour>()
       {
@@ -74,7 +74,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
       ScheduleTemplate _schedule = new ScheduleTemplate() { ShippingPoint = _sp, Tytuł = _sp.Title() + " All day schedule." };
       _EDC.ScheduleTemplate.InsertOnSubmit(_schedule);
       _EDC.SubmitChanges();
-      foreach (Day _day in Enum.GetValues(typeof(Day)))
+      List<Day> _days = new List<Day>() { { Day.Friday }, { Day.Monday }, { Day.Saturday }, { Day.Sunday }, { Day.Thursday }, { Day.Tuesday }, { Day.Wednesday } }; 
+      foreach (Day _day in _days)
       {
         List<TimeSlotsTemplate> _ts = new List<TimeSlotsTemplate>();
         foreach (StartHour _sh in _hours.Keys)
