@@ -3,6 +3,9 @@ using System.ComponentModel;
 using System.IO;
 using System.Xml.Serialization;
 using CAS.SmartFactory.Deployment.Properties;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -17,9 +20,10 @@ namespace CAS.SmartFactory.Deployment
     /// </summary>
     public InstallationStateData()
     {
-      SiteCollectionCreated = false;
-      SiteCollectionSolutionsDeployed = false;
-      SiteCollectionFeturesActivated = false;
+      //TODO remove at cleanup.
+      //SiteCollectionCreated = false;
+      //SiteCollectionSolutionsDeployed = false;
+      //SiteCollectionFeturesActivated = false;
       FarmSolutionsDeployed = false;
       FarmFeaturesActivated = false;
     }
@@ -112,6 +116,16 @@ namespace CAS.SmartFactory.Deployment
       //TODO Add validation
       OwnerEmail = _text;
     }
+    internal SortedList<int, Solution> SolutionsToInstall
+    {
+      get
+      {
+        SortedList<int, Solution> _ret = new SortedList<int, Solution>();
+        foreach (Solution _sl in Solutions)
+          _ret.Add(_sl.Priority, _sl);
+        return _ret;
+      }
+    }
     #endregion
 
     #region Browsable public properties
@@ -131,36 +145,36 @@ namespace CAS.SmartFactory.Deployment
       get { return new Uri(XmlWebApplicationURL); }
       set { XmlWebApplicationURL = value.ToString(); }
     }
-    /// <summary>
-    /// Gets or sets the name of the site collection feture.
-    /// </summary>
-    /// <value>
-    /// The name of the site collection feture.
-    /// </value>
-    [Browsable(true)]
-    [ReadOnly(true)]
-    [Category("Solutions")]
-    [XmlIgnore()]
-    public Guid SiteCollectionFetureId
-    {
-      get { return XmlSiteCollectionFetureId.Parse(); }
-      set { XmlSiteCollectionFetureId = value.ToString(); }
-    }
-    /// <summary>
-    /// Gets or sets the name of the farm collection feture.
-    /// </summary>
-    /// <value>
-    /// The name of the farm collection feture.
-    /// </value>
-    [Browsable(true)]
-    [ReadOnly(true)]
-    [Category("Solutions")]
-    [XmlIgnore()]
-    public Guid FarmFetureId
-    {
-      get { return XmlFarmFetureId.Parse(); }
-      set { XmlFarmFetureId = value.ToString(); }
-    }
+    ///// <summary>
+    ///// Gets or sets the name of the site collection feture.
+    ///// </summary>
+    ///// <value>
+    ///// The name of the site collection feture.
+    ///// </value>
+    //[Browsable(true)]
+    //[ReadOnly(true)]
+    //[Category("Solutions")]
+    //[XmlIgnore()]
+    //public Guid SiteCollectionFetureId
+    //{
+    //  get { return XmlSiteCollectionFetureId.Parse(); }
+    //  set { XmlSiteCollectionFetureId = value.ToString(); }
+    //}
+    ///// <summary>
+    ///// Gets or sets the name of the farm collection feture.
+    ///// </summary>
+    ///// <value>
+    ///// The name of the farm collection feture.
+    ///// </value>
+    //[Browsable(true)]
+    //[ReadOnly(true)]
+    //[Category("Solutions")]
+    //[XmlIgnore()]
+    //public Guid FarmFetureId
+    //{
+    //  get { return XmlFarmFetureId.Parse(); }
+    //  set { XmlFarmFetureId = value.ToString(); }
+    //}
     /// <summary>
     /// Gets or sets the solution ID.
     /// </summary>
@@ -178,6 +192,41 @@ namespace CAS.SmartFactory.Deployment
       set { XmlSolutionID = value.ToString(); }
     }
     #endregion
-   
+
+  }
+  public partial class Solution
+  {
+    /// <summary>
+    /// Gets the definition scope.
+    /// </summary>
+    public SPFeatureDefinitionScope DefinitionScope
+    {
+      get
+      {
+        Microsoft.SharePoint.SPFeatureDefinitionScope _ret = Microsoft.SharePoint.SPFeatureDefinitionScope.None;
+        switch (FeatureDefinitionScope)
+        {
+          case FeatureDefinitionScope.None:
+            _ret = Microsoft.SharePoint.SPFeatureDefinitionScope.None;
+            break;
+          case FeatureDefinitionScope.Farm:
+            _ret = Microsoft.SharePoint.SPFeatureDefinitionScope.Farm;
+            break;
+          case FeatureDefinitionScope.Site:
+            _ret = Microsoft.SharePoint.SPFeatureDefinitionScope.Site;
+            break;
+          default:
+            throw new ApplicationException("DefinitionScope-wrong FeatureDefinitionScope");
+        }
+        return _ret;
+      }
+    }
+    /// <summary>
+    /// Gets the site collection feture id.
+    /// </summary>
+    internal Guid FetureGuid
+    {
+      get { return FetureId.Parse(); }
+    }
   }
 }

@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns="http://cas.eu/schemas/SharePoint/Deployment/ApplicationState.xsd"
-           targetNamespace="http://cas.eu/schemas/SharePoint/Deployment/ApplicationState.xsd" 
-           >
-  <xs:element name="InstallationStateData" nillable="true" type="InstallationStateData" />
+<xs:schema xmlns:tns="http://cas.eu/schemas/SharePoint/Deployment/2/ApplicationState.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/SharePoint/Deployment/2/ApplicationState.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="InstallationStateData" nillable="true" type="tns:InstallationStateData" />
   <xs:complexType name="InstallationStateData">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="SiteCollectionURL" type="xs:string" />
@@ -18,6 +15,29 @@
       <xs:element minOccurs="0" maxOccurs="1" name="XmlSiteCollectionFetureId" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="XmlFarmFetureId" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="XmlSolutionID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Solutions" type="tns:ArrayOfSolution" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="ArrayOfSolution">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Solution" nillable="false" type="tns:Solution" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Solution">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Priority" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FileName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FetureId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" default="false" name="Activated" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" default="false" name="Deployed" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FeatureDefinitionScope" type="tns:FeatureDefinitionScope" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="FeatureDefinitionScope">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Farm" />
+      <xs:enumeration value="Site" />
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
