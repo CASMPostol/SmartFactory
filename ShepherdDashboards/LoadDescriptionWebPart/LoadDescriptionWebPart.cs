@@ -16,9 +16,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     private LoadDescriptionWebPartUserControl m_AssociatedUserControl;
     protected override void CreateChildControls()
     {
-      m_AssociatedUserControl = (LoadDescriptionWebPartUserControl)Page.LoadControl(_ascxPath);
-      m_AssociatedUserControl.Role = Role;
-      Controls.Add(m_AssociatedUserControl);
+      string _phase = "Starting";
+      try
+      {
+        m_AssociatedUserControl = (LoadDescriptionWebPartUserControl)Page.LoadControl(_ascxPath);
+        _phase = "m_AssociatedUserControl";
+        m_AssociatedUserControl.Role = Role;
+        _phase = "m_AssociatedUserControl";
+        Controls.Add(m_AssociatedUserControl);
+      }
+      catch (Exception _ex)
+      {
+        string _frmt = "Cannot lod the user control at: {0} because : {1}";
+        Controls.Add(new LiteralControl(String.Format(_frmt, _phase, _ex.Message)));
+      }
     }
     protected override void OnPreRender(EventArgs e)
     {
