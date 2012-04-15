@@ -257,14 +257,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           _sp.TotalQuantityInKU += _ld.GoodsQuantity.GetValueOrDefault(0);
         }
         _sp.ForwarderOceanAir = _sp.Route == null ? String.Empty.NotAvailable() : _sp.Route.Carrier.Title();
-        _sp.EscortCostsCurrency = _sp.SecurityEscort == null ? null : _sp.SecurityEscort.Currency;
-        _sp.TotalCostsPerKUCurrency = (from Currency _cu in EDC.Currency
+        Currency _defCurrency = (from Currency _cu in EDC.Currency
                                        where !String.IsNullOrEmpty(_cu.Tytuł) && _cu.Tytuł.ToUpper().Contains(CommonDefinition.DefaultCurrency)
                                        select _cu).FirstOrDefault();
+        _sp.TotalCostsPerKUCurrency = _defCurrency;
         //Costs calculation
         if (_sp.Route != null)
         {
-          _sp.FreightCostsCurrency = _sp.Route.Currency;
+          _sp.FreightCostsCurrency = _defCurrency;
           if (_sp.Route.Currency != null)
             _sp.FreightCost = _sp.Route.TransportCosts * _sp.Route.Currency.ExchangeRate;
           _sp.Commodity = _sp.Route.Commodity.Title();
@@ -273,7 +273,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           _sp.DeliveryToCountry = _sp.Route.CityName == null ? String.Empty.NotAvailable() : _sp.Route.CityName.CountryName.Title();
         }
         if (_sp.SecurityEscort != null && _sp.SecurityEscort.Currency != null)
+        {
           _sp.SecurityEscortCost = _sp.SecurityEscort.SecurityCost * _sp.SecurityEscort.Currency.ExchangeRate;
+          _sp.EscortCostsCurrency = _defCurrency;
+        }
         double? _totalCost = default(double?);
         double _addCost = 0;
         if (_sp.AdditionalCostsCurrency != null)
