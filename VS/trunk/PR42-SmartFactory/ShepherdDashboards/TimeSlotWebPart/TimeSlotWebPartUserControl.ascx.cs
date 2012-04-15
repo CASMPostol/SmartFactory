@@ -84,7 +84,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
         m_Calendar.SelectionChanged += new EventHandler(m_SelectionChanged);
         m_Calendar.VisibleMonthChanged += new MonthChangedEventHandler(m_Calendar_VisibleMonthChanged);
         m_TimeSlotList.SelectedIndexChanged += new EventHandler(m_TimeSlotList_SelectedIndexChanged);
-
       }
       catch (Exception ex)
       {
