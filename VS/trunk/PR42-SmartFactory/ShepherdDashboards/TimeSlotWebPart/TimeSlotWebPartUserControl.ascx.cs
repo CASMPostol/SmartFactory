@@ -58,30 +58,38 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-      if (!IsPostBack)
+      try
       {
-        m_WarehouseDropDownList.DataSource = from _idx in m_EDC.Warehouse
-                                             orderby _idx.Tytuł ascending
-                                             select new { Title = _idx.Tytuł, ID = _idx.Identyfikator.Value };
-        m_WarehouseDropDownList.DataTextField = "Title";
-        m_WarehouseDropDownList.DataValueField = "ID";
-        m_WarehouseDropDownList.DataBind();
-        using (SPWeb currentWeb = SPControl.GetContextWeb(this.Context))
+        if (!IsPostBack)
         {
-          Partner _Partner = Partner.FindForUser(m_EDC, currentWeb.CurrentUser);
-          if (_Partner != null)
-            m_WarehouseDropDownList.Select(_Partner.Warehouse);
-          else
-            m_WarehouseDropDownList.SelectedIndex = 0;
+          m_WarehouseDropDownList.DataSource = from _idx in m_EDC.Warehouse
+                                               orderby _idx.Tytuł ascending
+                                               select new { Title = _idx.Tytuł, ID = _idx.Identyfikator.Value };
+          m_WarehouseDropDownList.DataTextField = "Title";
+          m_WarehouseDropDownList.DataValueField = "ID";
+          m_WarehouseDropDownList.DataBind();
+          using (SPWeb currentWeb = SPControl.GetContextWeb(this.Context))
+          {
+            Partner _Partner = Partner.FindForUser(m_EDC, currentWeb.CurrentUser);
+            if (_Partner != null)
+              m_WarehouseDropDownList.Select(_Partner.Warehouse);
+            else
+              m_WarehouseDropDownList.SelectedIndex = 0;
+          }
+          m_Calendar.VisibleDate = DateTime.Today;
+          m_Calendar.SelectedDate = DateTime.Today;
         }
-        m_Calendar.VisibleDate = DateTime.Today;
-        m_Calendar.SelectedDate = DateTime.Today;
+        m_InterconnectionDataTable_TimeSlotTimeSlot = new InterconnectionDataTable<TimeSlotTimeSlot>(typeof(TimeSlot).Name);
+        m_Calendar.DayRender += new DayRenderEventHandler(m_Calendar_DayRender);
+        m_Calendar.SelectionChanged += new EventHandler(m_SelectionChanged);
+        m_Calendar.VisibleMonthChanged += new MonthChangedEventHandler(m_Calendar_VisibleMonthChanged);
+        m_TimeSlotList.SelectedIndexChanged += new EventHandler(m_TimeSlotList_SelectedIndexChanged);
+
       }
-      m_InterconnectionDataTable_TimeSlotTimeSlot = new InterconnectionDataTable<TimeSlotTimeSlot>(typeof(TimeSlot).Name);
-      m_Calendar.DayRender += new DayRenderEventHandler(m_Calendar_DayRender);
-      m_Calendar.SelectionChanged += new EventHandler(m_SelectionChanged);
-      m_Calendar.VisibleMonthChanged += new MonthChangedEventHandler(m_Calendar_VisibleMonthChanged);
-      m_TimeSlotList.SelectedIndexChanged += new EventHandler(m_TimeSlotList_SelectedIndexChanged);
+      catch (Exception ex)
+      {
+        throw new ApplicationException("Page_Load exception: " + ex.Message, ex);
+      }
     }
     protected override void OnPreRender(EventArgs e)
     {
