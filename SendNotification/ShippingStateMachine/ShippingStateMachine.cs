@@ -52,7 +52,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         Details = _mssg,
         Owner = _sh.ZmodyfikowanePrzez,
         Priority = _priority,
-        //ShippingIndex = _sh,
+        ShippingIndex = _sh,
         VendorName = _principal,
         Tytuł = _sh.Title(),
       };
