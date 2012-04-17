@@ -135,23 +135,40 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     internal void CalculateState()
     {
-      int _seDrivers = 0;
-      int _crDrivers = 0;
-      foreach (var _dr in this.ShippingDriversTeam)
-        if (_dr.Driver.VendorName.ServiceType.Value == ServiceType.SecurityEscortProvider)
-          _seDrivers++;
-        else
-          _crDrivers++;
-      this.State = Entities.State.Creation;
-      if (_crDrivers > 0 && this.TruckCarRegistrationNumber != null)
+      switch (this.State.Value)
       {
-        if (this.SecurityEscort == null || (_seDrivers > 0 && this.SecurityEscortCarRegistrationNumber != null))
-          this.State = Entities.State.Confirmed;
-        else
-          this.State = Entities.State.WaitingForSecurityData;
+        case Entities.State.Confirmed:
+        case Entities.State.Creation:
+        case Entities.State.Delayed:
+        case Entities.State.WaitingForCarrierData:
+        case Entities.State.WaitingForSecurityData:
+        case Entities.State.Underway:
+          int _seDrivers = 0;
+          int _crDrivers = 0;
+          foreach (var _dr in this.ShippingDriversTeam)
+            if (_dr.Driver.VendorName.ServiceType.Value == ServiceType.SecurityEscortProvider)
+              _seDrivers++;
+            else
+              _crDrivers++;
+          this.State = Entities.State.Creation;
+          if (_crDrivers > 0 && this.TruckCarRegistrationNumber != null)
+          {
+            if (this.SecurityEscort == null || (_seDrivers > 0 && this.SecurityEscortCarRegistrationNumber != null))
+              this.State = Entities.State.Confirmed;
+            else
+              this.State = Entities.State.WaitingForSecurityData;
+          }
+          else if (this.SecurityEscort == null || (_seDrivers > 0 && this.SecurityEscortCarRegistrationNumber != null))
+            this.State = Entities.State.WaitingForCarrierData;
+          break;
+        case Entities.State.None:
+        case Entities.State.Invalid:
+        case Entities.State.Cancelation:
+        case Entities.State.Canceled:
+        case Entities.State.Completed:
+        default:
+          break;
       }
-      else if (this.SecurityEscort == null || (_seDrivers > 0 && this.SecurityEscortCarRegistrationNumber != null))
-        this.State = Entities.State.WaitingForCarrierData;
     }
     #endregion
 
