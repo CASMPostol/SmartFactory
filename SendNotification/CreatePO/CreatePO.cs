@@ -23,8 +23,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
     public SPWorkflowActivationProperties m_WorkflowProperties = new SPWorkflowActivationProperties();
     private void m_OnWorkflowActivated_Invoked(object sender, ExternalDataEventArgs e)
     {
-      using (SPSite _st = m_WorkflowProperties.Site)
-        _url = _st.Url;
+      _url = m_WorkflowProperties.Site.Url;
       m_LogAfterCreateToHistoryList_UserId1 = m_WorkflowProperties.OriginatorUser.ID;
     }
     private string _url = default(string);
@@ -44,6 +43,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
           Shipping _sp = (from idx in _EDC.Shipping
                           where idx.Identyfikator == m_WorkflowProperties.ItemId
                           select idx).First();
+          if (!_sp.IsOutbound.Value)
+          {
+            m_LogAfterCreateToHistoryList_HistoryDescription1 = "Document has been not created because it is not outbound shipment";
+            return;
+          }
           _stt = "Shipping";
           _spTitle = _sp.Tytuł;
           SPDocumentLibrary _lib = (SPDocumentLibrary)m_WorkflowProperties.Web.Lists[CommonDefinition.FreightPOLibraryTitle];
