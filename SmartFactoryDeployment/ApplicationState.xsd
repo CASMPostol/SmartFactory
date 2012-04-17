@@ -3,18 +3,11 @@
   <xs:element name="InstallationStateData" nillable="true" type="tns:InstallationStateData" />
   <xs:complexType name="InstallationStateData">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="SiteCollectionURL" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="OwnerLogin" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="OwnerEmail" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SiteCollectionURL" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="SiteCollectionCreated" type="xs:boolean" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SiteCollectionSolutionsDeployed" type="xs:boolean" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SiteCollectionFeturesActivated" type="xs:boolean" />
-      <xs:element minOccurs="1" maxOccurs="1" name="FarmSolutionsDeployed" type="xs:boolean" />
-      <xs:element minOccurs="1" maxOccurs="1" name="FarmFeaturesActivated" type="xs:boolean" />
       <xs:element minOccurs="0" maxOccurs="1" name="XmlWebApplicationURL" type="xs:anyURI" />
-      <xs:element minOccurs="0" maxOccurs="1" name="XmlSiteCollectionFetureId" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="XmlFarmFetureId" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="XmlSolutionID" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Solutions" type="tns:ArrayOfSolution" />
     </xs:sequence>
   </xs:complexType>
@@ -31,6 +24,7 @@
       <xs:element minOccurs="0" maxOccurs="1" default="false" name="Activated" type="xs:boolean" />
       <xs:element minOccurs="0" maxOccurs="1" default="false" name="Deployed" type="xs:boolean" />
       <xs:element minOccurs="1" maxOccurs="1" name="FeatureDefinitionScope" type="tns:FeatureDefinitionScope" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SolutionID" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="FeatureDefinitionScope">

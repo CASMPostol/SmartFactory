@@ -40,7 +40,6 @@ namespace CAS.SmartFactory.Deployment
         }
         else
           throw new ApplicationException(Resources.GettingAccess2LocalFarm);
-        FarmHelpers.GetWebApplication(m_InstallationStateData.WebApplicationURL);
         if (FarmHelpers.WebApplication != null)
         {
           _msg = String.Format(Resources.ApplicationFound, m_InstallationStateData.WebApplicationURL, FarmHelpers.WebApplication.Name, FarmHelpers.WebApplication.DisplayName);
@@ -59,26 +58,41 @@ namespace CAS.SmartFactory.Deployment
           m_SiteCollectionHelper = new SiteCollectionHelper(FarmHelpers.WebApplication, m_InstallationStateData.SiteCollectionURL);
           m_UninstallListBox.AddMessage(String.Format("The site collection at the Url={0} has been opened.", m_SiteCollectionHelper.SiteCollection.Url));
         }
-        try
+        FarmHelpers.GetWebApplication(m_InstallationStateData.WebApplicationURL);
+        foreach (var _solution in from _sidx in m_InstallationStateData.Solutions orderby _sidx.Priority descending select (_sidx))
         {
-          if (m_InstallationStateData.FarmFeaturesActivated && m_SiteCollectionHelper != null)
-            m_UninstallListBox.AddMessage(String.Format("Deactivating the feature {0}.", m_InstallationStateData.FarmFetureId));
-          m_SiteCollectionHelper.DeactivateFeature(m_InstallationStateData.FarmFetureId);
-        }
-        catch (Exception ex)
-        {
-          m_UninstallListBox.AddMessage(String.Format(Resources.LastOperationFailedWithError, ex.Message));
-        }
-        finally
-        {
-          m_InstallationStateData.FarmFeaturesActivated = false;
-        }
-
-        if (m_InstallationStateData.FarmSolutionsDeployed)
+          if (_solution.Activated)
+            try
+            {
+              m_UninstallListBox.AddMessage(String.Format("Deactivating the feature {0}.", _solution.FetureGuid));
+              m_SiteCollectionHelper.DeactivateFeature(_solution.FetureGuid);
+            }
+            catch (Exception ex)
+            {
+              m_UninstallListBox.AddMessage(String.Format(Resources.LastOperationFailedWithError, ex.Message));
+            }
+            finally
+            {
+              _solution.Activated = false;
+            }
           try
           {
-            m_UninstallListBox.AddMessage(String.Format("Retracing the solution {0}.", m_InstallationStateData.SolutionID));
-            FarmHelpers.RetrackSolution(m_InstallationStateData.SolutionID);
+            switch (_solution.FeatureDefinitionScope)
+            {
+              case FeatureDefinitionScope.Farm:
+                if (_solution.Deployed)
+                  m_UninstallListBox.AddMessage(String.Format("Retracing the solution {0}.", _solution.SolutionGuid));
+                FarmHelpers.RetrackSolution(_solution.SolutionGuid);
+                break;
+              case FeatureDefinitionScope.Site:
+                if (_solution.Deployed)
+                  m_UninstallListBox.AddMessage(String.Format("Retracking the solution {0}.", _solution.SolutionGuid));
+                //TODO retrack the solution .
+                break;
+              case FeatureDefinitionScope.None:
+              default:
+                break;
+            }
           }
           catch (Exception ex)
           {
@@ -86,35 +100,9 @@ namespace CAS.SmartFactory.Deployment
           }
           finally
           {
-            m_InstallationStateData.FarmSolutionsDeployed = false;
+            _solution.Deployed = false;
           }
-        try
-        {
-          if (m_InstallationStateData.SiteCollectionFeturesActivated && m_SiteCollectionHelper != null)
-            m_UninstallListBox.AddMessage(String.Format("Deactivating the feature {0}.", m_InstallationStateData.SiteCollectionFetureId));
-          m_SiteCollectionHelper.DeactivateFeature(m_InstallationStateData.SiteCollectionFetureId);
         }
-        catch (Exception ex)
-        {
-          m_UninstallListBox.AddMessage(String.Format(Resources.LastOperationFailedWithError, ex.Message));
-        }
-        finally
-        {
-          m_InstallationStateData.SiteCollectionFeturesActivated = false;
-        }
-        if (m_InstallationStateData.SiteCollectionSolutionsDeployed)
-          try
-          {
-            m_UninstallListBox.AddMessage(String.Format("Retracking the solution {0}.", m_InstallationStateData.SiteCollectionFetureId));
-          }
-          catch (Exception ex)
-          {
-            m_UninstallListBox.AddMessage(String.Format(Resources.LastOperationFailedWithError, ex.Message));
-          }
-          finally
-          {
-            m_InstallationStateData.SiteCollectionSolutionsDeployed = false;
-          }
         if (m_InstallationStateData.SiteCollectionCreated)
           try
           {
@@ -181,13 +169,13 @@ namespace CAS.SmartFactory.Deployment
         m_UninstallListBox.AddMessage(String.Format("Loading the application installation state from the file at: {0}", _file.FullName));
         m_InstallationStateData = InstallationStateData.Read(_file);
         m_InstalationStatePropertyGrid.SelectedObject = m_InstallationStateData;
-        if (
-          !m_InstallationStateData.FarmSolutionsDeployed &&
-          !m_InstallationStateData.FarmFeaturesActivated &&
-          !m_InstallationStateData.SiteCollectionCreated &&
-          !m_InstallationStateData.SiteCollectionFeturesActivated &&
-          !m_InstallationStateData.SiteCollectionSolutionsDeployed)
-          throw new ApplicationException("The software has been uninstalled.");
+        //if (
+        //  !m_InstallationStateData.FarmSolutionsDeployed &&
+        //  !m_InstallationStateData.FarmFeaturesActivated &&
+        //  !m_InstallationStateData.SiteCollectionCreated &&
+        //  !m_InstallationStateData.SiteCollectionFeturesActivated &&
+        //  !m_InstallationStateData.SiteCollectionSolutionsDeployed)
+        //throw new ApplicationException("The software has been uninstalled.");
         m_UninstallButton.Visible = true;
       }
       catch (Exception ex)

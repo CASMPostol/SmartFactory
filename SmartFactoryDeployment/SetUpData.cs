@@ -394,37 +394,33 @@ namespace CAS.SmartFactory.Deployment
             FileInfo _fi = GetFile(_sltn.FileName);
             m_InstallationProgresListBox.AddMessage(String.Format("Deploying solution: {0}", _fi.Name));
             SPUserSolution _solution = null;
+            SPFeatureDefinitionScope _scope = SPFeatureDefinitionScope.None;
             switch (_sltn.FeatureDefinitionScope)
             {
               case FeatureDefinitionScope.Farm:
-                //_fi = GetFile(Settings.Default.FarmSolutionFileName);
-                m_InstallationProgresListBox.AddMessage(String.Format("Deploying Solution : {0}", _fi.Name));
-                if (m_SiteCollectionHelper.SiteCollection == null)
-                  throw new ApplicationException(Resources.SiteCollectionNotExist);
                 Guid _solutionID;
                 m_InstallationProgresListBox.AddMessage("Waiting for completion .... ");
                 SPSolution _sol = FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, out _solutionID);
+                _scope = SPFeatureDefinitionScope.Farm;
                 m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed Name={0}, Deployed={1}, DeploymentState={2}, DisplayName={3} Status={4}", _sol.Name, _sol.Deployed, _sol.DeploymentState, _sol.DisplayName, _sol.Status));
-                m_ApplicationState.FarmSolutionsDeployed = true;
-                m_ApplicationState.SolutionID = _solutionID;
-                m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", _sltn.FetureGuid, m_SiteCollectionHelper.SiteCollection.Url));
-                SPFeature _ffeature = m_SiteCollectionHelper.ActivateFeature(_sltn.FetureGuid, Microsoft.SharePoint.SPFeatureDefinitionScope.Farm);
-                m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _ffeature.Definition.DisplayName));
-                m_ApplicationState.FarmFeaturesActivated = true;
+                _sltn.SolutionGuid = _solutionID;
                 break;
               case FeatureDefinitionScope.Site:
+                _scope = SPFeatureDefinitionScope.Farm;
                 _solution = m_SiteCollectionHelper.DeploySolution(_fi);
-                _sltn.Deployed = true;
                 m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed: {0}", _solution.Name));
-                m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", _sltn.FetureGuid, m_SiteCollectionHelper.SiteCollection.Url));
-                SPFeature _sfeature = m_SiteCollectionHelper.ActivateFeature(_sltn.FetureGuid, Microsoft.SharePoint.SPFeatureDefinitionScope.Site);
-                m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _sfeature.Definition.DisplayName));
-                _sltn.Activated = true;
                 break;
               case FeatureDefinitionScope.None:
               default:
                 throw new ApplicationException("Wrong FeatureDefinitionScope in the configuration file");
             }
+            _sltn.Deployed = true;
+            m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", _sltn.FetureGuid, m_SiteCollectionHelper.SiteCollection.Url));
+            SPFeature _ffeature = m_SiteCollectionHelper.ActivateFeature(_sltn.FetureGuid, _scope);
+            m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _ffeature.Definition.DisplayName));
+            SPFeature _sfeature = m_SiteCollectionHelper.ActivateFeature(_sltn.FetureGuid, _scope);
+            m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _sfeature.Definition.DisplayName));
+            _sltn.Activated = true;
           }
           SaveInstallationState();
           m_InstallationProgresListBox.AddMessage("Installation successfully completed");
