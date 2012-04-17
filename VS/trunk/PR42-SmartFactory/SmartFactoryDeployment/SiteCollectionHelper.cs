@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace CAS.SmartFactory.Deployment
 {
-  internal class SiteCollectionHelper: IDisposable
+  internal class SiteCollectionHelper : IDisposable
   {
     private SiteCollectionHelper(SPSite _siteCollection)
     {
@@ -59,6 +59,8 @@ namespace CAS.SmartFactory.Deployment
     {
       try
       {
+        if (SiteCollection == null)
+          throw new ApplicationException(Resources.SiteCollectionNotExist);
         SPDocumentLibrary solutionGallery = (SPDocumentLibrary)SiteCollection.GetCatalog(SPListTemplateType.SolutionCatalog);
         SPFile file = solutionGallery.RootFolder.Files.Add(_featuteFile.Name, _featuteFile.OpenRead(), true);
         return SiteCollection.Solutions.Add(file.Item.ID);

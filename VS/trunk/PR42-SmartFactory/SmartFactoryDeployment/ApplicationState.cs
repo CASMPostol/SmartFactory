@@ -24,41 +24,17 @@ namespace CAS.SmartFactory.Deployment {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="http://cas.eu/schemas/SharePoint/Deployment/2/ApplicationState.xsd", IsNullable=true)]
     public partial class InstallationStateData {
         
-        private string siteCollectionURLField;
-        
         private string ownerLoginField;
         
         private string ownerEmailField;
         
+        private string siteCollectionURLField;
+        
         private bool siteCollectionCreatedField;
-        
-        private bool siteCollectionSolutionsDeployedField;
-        
-        private bool siteCollectionFeturesActivatedField;
-        
-        private bool farmSolutionsDeployedField;
-        
-        private bool farmFeaturesActivatedField;
         
         private string xmlWebApplicationURLField;
         
-        private string xmlSiteCollectionFetureIdField;
-        
-        private string xmlFarmFetureIdField;
-        
-        private string xmlSolutionIDField;
-        
         private Solution[] solutionsField;
-        
-        /// <uwagi/>
-        public string SiteCollectionURL {
-            get {
-                return this.siteCollectionURLField;
-            }
-            set {
-                this.siteCollectionURLField = value;
-            }
-        }
         
         /// <uwagi/>
         public string OwnerLogin {
@@ -79,57 +55,24 @@ namespace CAS.SmartFactory.Deployment {
                 this.ownerEmailField = value;
             }
         }
-
-        /// <uwagi/>
-        public bool SiteCollectionCreated
-        {
-          get
-          {
-            return this.siteCollectionCreatedField;
-          }
-          set
-          {
-            this.siteCollectionCreatedField = value;
-          }
-        }
-        
-        ///// <uwagi/>
-        //public bool SiteCollectionSolutionsDeployed {
-        //    get {
-        //        return this.siteCollectionSolutionsDeployedField;
-        //    }
-        //    set {
-        //        this.siteCollectionSolutionsDeployedField = value;
-        //    }
-        //}
-        
-        ///// <uwagi/>
-        //public bool SiteCollectionFeturesActivated {
-        //    get {
-        //        return this.siteCollectionFeturesActivatedField;
-        //    }
-        //    set {
-        //        this.siteCollectionFeturesActivatedField = value;
-        //    }
-        //}
         
         /// <uwagi/>
-        public bool FarmSolutionsDeployed {
+        public string SiteCollectionURL {
             get {
-                return this.farmSolutionsDeployedField;
+                return this.siteCollectionURLField;
             }
             set {
-                this.farmSolutionsDeployedField = value;
+                this.siteCollectionURLField = value;
             }
         }
         
         /// <uwagi/>
-        public bool FarmFeaturesActivated {
+        public bool SiteCollectionCreated {
             get {
-                return this.farmFeaturesActivatedField;
+                return this.siteCollectionCreatedField;
             }
             set {
-                this.farmFeaturesActivatedField = value;
+                this.siteCollectionCreatedField = value;
             }
         }
         
@@ -141,36 +84,6 @@ namespace CAS.SmartFactory.Deployment {
             }
             set {
                 this.xmlWebApplicationURLField = value;
-            }
-        }
-        
-        ///// <uwagi/>
-        //public string XmlSiteCollectionFetureId {
-        //    get {
-        //        return this.xmlSiteCollectionFetureIdField;
-        //    }
-        //    set {
-        //        this.xmlSiteCollectionFetureIdField = value;
-        //    }
-        //}
-        
-        ///// <uwagi/>
-        //public string XmlFarmFetureId {
-        //    get {
-        //        return this.xmlFarmFetureIdField;
-        //    }
-        //    set {
-        //        this.xmlFarmFetureIdField = value;
-        //    }
-        //}
-        
-        /// <uwagi/>
-        public string XmlSolutionID {
-            get {
-                return this.xmlSolutionIDField;
-            }
-            set {
-                this.xmlSolutionIDField = value;
             }
         }
         
@@ -206,6 +119,11 @@ namespace CAS.SmartFactory.Deployment {
         
         private FeatureDefinitionScope featureDefinitionScopeField;
         
+        private string solutionIDField;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Solution"/> class.
+        /// </summary>
         public Solution() {
             this.activatedField = false;
             this.deployedField = false;
@@ -272,8 +190,16 @@ namespace CAS.SmartFactory.Deployment {
                 this.featureDefinitionScopeField = value;
             }
         }
-
-
+        
+        /// <uwagi/>
+        public string SolutionID {
+            get {
+                return this.solutionIDField;
+            }
+            set {
+                this.solutionIDField = value;
+            }
+        }
     }
     
     /// <uwagi/>

@@ -24,8 +24,8 @@ namespace CAS.SmartFactory.Deployment
       //SiteCollectionCreated = false;
       //SiteCollectionSolutionsDeployed = false;
       //SiteCollectionFeturesActivated = false;
-      FarmSolutionsDeployed = false;
-      FarmFeaturesActivated = false;
+      //FarmSolutionsDeployed = false;
+      //FarmFeaturesActivated = false;
     }
     #endregion
 
@@ -145,12 +145,7 @@ namespace CAS.SmartFactory.Deployment
       get { return new Uri(XmlWebApplicationURL); }
       set { XmlWebApplicationURL = value.ToString(); }
     }
-    ///// <summary>
-    ///// Gets or sets the name of the site collection feture.
-    ///// </summary>
-    ///// <value>
-    ///// The name of the site collection feture.
-    ///// </value>
+
     //[Browsable(true)]
     //[ReadOnly(true)]
     //[Category("Solutions")]
@@ -175,22 +170,12 @@ namespace CAS.SmartFactory.Deployment
     //  get { return XmlFarmFetureId.Parse(); }
     //  set { XmlFarmFetureId = value.ToString(); }
     //}
-    /// <summary>
-    /// Gets or sets the solution ID.
-    /// </summary>
-    /// <value>
-    /// The solution ID.
-    /// </value>
-    /// <remarks>Use the Id property to return the GUID for the solution.</remarks>
-    [Browsable(true)]
-    [ReadOnly(true)]
-    [Category("Installation")]
-    [XmlIgnore()]
-    public Guid SolutionID
-    {
-      get { return XmlSolutionID.Parse(); }
-      set { XmlSolutionID = value.ToString(); }
-    }
+
+    //[Browsable(true)]
+    //[ReadOnly(true)]
+    //[Category("Installation")]
+    //[XmlIgnore()]
+
     #endregion
 
   }
@@ -227,6 +212,18 @@ namespace CAS.SmartFactory.Deployment
     internal Guid FetureGuid
     {
       get { return FetureId.Parse(); }
+    }
+    /// <summary>
+    /// Gets the solution ID.
+    /// </summary>
+    /// <value>
+    /// The solution ID.
+    /// </value>
+    /// <remarks>Use the SolutionGuid property to return the GUID for the solution.</remarks>
+    public Guid SolutionGuid
+    {
+      get { return SolutionID.Parse(); }
+      set { SolutionID = value.ToString(); }
     }
   }
 }
