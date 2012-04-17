@@ -49,6 +49,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
           ShippingShipping _sp = (from idx in _EDC.Shipping
                                   where idx.Identyfikator == workflowProperties.ItemId
                                   select idx).First();
+          if (!_sp.IsOutbound.Value)
+          {
+            m_AfterCreationLogToHistoryList_HistoryDescription1 = "Document has not been created because it is not outbound shipment";
+            return;
+          }
           _stt = "Shipping";
           _spTitle = _sp.Tytuł;
           SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[CommonDefinition.SealProtocolLibraryTitle];

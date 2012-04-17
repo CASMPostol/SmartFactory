@@ -45,7 +45,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
                           select idx).First();
           if (!_sp.IsOutbound.Value)
           {
-            m_LogAfterCreateToHistoryList_HistoryDescription1 = "Document has been not created because it is not outbound shipment";
+            m_LogAfterCreateToHistoryList_HistoryDescription1 = "Document has not been created because it is not outbound shipment";
             return;
           }
           _stt = "Shipping";
