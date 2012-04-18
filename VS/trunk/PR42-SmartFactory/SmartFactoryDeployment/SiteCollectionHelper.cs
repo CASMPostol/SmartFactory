@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using CAS.SmartFactory.Deployment.Properties;
 using System.IO;
 using System.Threading;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -27,7 +28,7 @@ namespace CAS.SmartFactory.Deployment
           string _frmt = "The web application Name={0} does not contains the site collection at Url = {1}";
           throw new ApplicationException(String.Format(_frmt, FarmHelpers.WebApplication.Name, _Url));
         }
-      SiteCollection = _wapplication.Sites[_Url];
+        SiteCollection = _wapplication.Sites[_Url];
       }
       catch (Exception ex)
       {
@@ -90,8 +91,27 @@ namespace CAS.SmartFactory.Deployment
     }
     internal void RetracSolution(Guid _usGuid)
     {
-      SPUserSolution _us = SiteCollection.Solutions[_usGuid];
-      SiteCollection.Solutions.Remove(_us);
+      try
+      {
+        SetUpData.TraceEvent.TraceVerbose(90, "RetracSolution", String.Format("The solution {0} will be deleted from the SolutionCatalog", _usGuid));
+        SPUserSolution _us = SiteCollection.Solutions[_usGuid];
+        SiteCollection.Solutions.Remove(_us);
+        SPDocumentLibrary solutionGallery = (SPDocumentLibrary)SiteCollection.GetCatalog(SPListTemplateType.SolutionCatalog);
+        foreach (SPListItem _li in solutionGallery.Items)
+        {
+          if (_li.File.Name == _us.Name)
+          {
+            solutionGallery.Items.Delete(_li.ID);
+            SetUpData.TraceEvent.TraceInformation(90, "RetracSolution", String.Format("The solution {0} has been deleted from the SolutionCatalog", _us.Name));
+            return;
+          }
+        }
+        SetUpData.TraceEvent.TraceWarning(90, "RetracSolution", String.Format("The solution {0} has not been found in the SolutionCatalog", _us.Name));
+      }
+      catch (Exception ex)
+      {
+        throw new ApplicationException(String.Format(Resources.LastOperationFailed, ex.Message));
+      }
     }
     internal SPFeature ActivateFeature(Guid _feature, SPFeatureDefinitionScope _scope)
     {

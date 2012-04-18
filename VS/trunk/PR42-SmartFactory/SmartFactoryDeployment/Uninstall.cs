@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.Deployment
         m_UninstallListBox.AddMessage(String.Format("Trying to get access to the site collection at the Url = {0}", m_InstallationStateData.SiteCollectionURL));
         m_SiteCollectionHelper = new SiteCollectionHelper(FarmHelpers.WebApplication, m_InstallationStateData.SiteCollectionURL);
         m_UninstallListBox.AddMessage(String.Format("The site collection at the Url={0} has been opened.", m_SiteCollectionHelper.SiteCollection.Url));
-        foreach (var _solution in from _sidx in m_InstallationStateData.Solutions orderby _sidx.Priority descending select (_sidx))
+        foreach (Solution _solution in from _sidx in m_InstallationStateData.Solutions orderby _sidx.Priority descending select (_sidx))
         {
           if (_solution.Activated)
             try
@@ -65,19 +65,31 @@ namespace CAS.SmartFactory.Deployment
             {
               _solution.Activated = false;
             }
+          else
+          {
+            m_UninstallListBox.AddMessage(String.Format("Skiped, the solution {0} is not active.", _solution.SolutionID));
+          }
           try
           {
             switch (_solution.FeatureDefinitionScope)
             {
               case FeatureDefinitionScope.Farm:
                 if (_solution.Deployed)
+                {
                   m_UninstallListBox.AddMessage(String.Format("Retracing the solution {0}.", _solution.SolutionGuid));
-                FarmHelpers.RetrackSolution(_solution.SolutionGuid);
+                  FarmHelpers.RetrackSolution(_solution.SolutionGuid);
+                }
+                else
+                  m_UninstallListBox.AddMessage(String.Format("Retracing is kiped, the solution {0} is not deployed.", _solution.SolutionGuid));
                 break;
               case FeatureDefinitionScope.Site:
                 if (_solution.Deployed)
+                {
                   m_UninstallListBox.AddMessage(String.Format("Retracking the solution {0}.", _solution.SolutionGuid));
-                //TODO retrack the solution .
+                  m_SiteCollectionHelper.RetracSolution(_solution.SolutionGuid);
+                }
+                else
+                  m_UninstallListBox.AddMessage(String.Format("Retracing is skiped, the solution {0} is not deployed.", _solution.SolutionGuid));
                 break;
               case FeatureDefinitionScope.None:
               default:
