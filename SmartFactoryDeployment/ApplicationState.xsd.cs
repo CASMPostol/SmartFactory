@@ -170,7 +170,7 @@ namespace CAS.SmartFactory.Deployment
     /// <summary>
     /// Gets the definition scope.
     /// </summary>
-    public SPFeatureDefinitionScope DefinitionScope
+    public SPFeatureDefinitionScope SPFeatureDefinitionScope
     {
       get
       {

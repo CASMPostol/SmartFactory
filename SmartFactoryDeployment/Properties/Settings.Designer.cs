@@ -59,12 +59,15 @@ namespace CAS.SmartFactory.Deployment.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("200")]
-        public short FeatureActivationTimeOut {
+        public short SolutionDeploymentTimeOut {
             get {
-                return ((short)(this["FeatureActivationTimeOut"]));
+                return ((short)(this["SolutionDeploymentTimeOut"]));
+            }
+            set {
+                this["SolutionDeploymentTimeOut"] = value;
             }
         }
         
