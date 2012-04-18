@@ -24,10 +24,10 @@
       System.Windows.Forms.Label m_SiteURLLabel;
       System.Windows.Forms.Label m_label1;
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel2;
+      System.Windows.Forms.SplitContainer m_SplitContainer;
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel3;
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel4;
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel1;
-      System.Windows.Forms.SplitContainer m_SplitContainer;
       this.m_OwnerLoginTextBox = new System.Windows.Forms.TextBox();
       this.m_ApplicationURLTextBox = new System.Windows.Forms.TextBox();
       this.m_SiteUrlTextBox = new System.Windows.Forms.TextBox();
@@ -52,24 +52,30 @@
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       this.m_FinishedLabel = new System.Windows.Forms.Label();
       this.m_InstallationFinischedPropertyGrid = new System.Windows.Forms.PropertyGrid();
+      this.m_UninstallPanel = new System.Windows.Forms.TabPage();
+      this.m_UninstallUserControl = new CAS.SmartFactory.Deployment.Uninstall();
       this.m_PreviousButton = new System.Windows.Forms.Button();
       this.m_NextButton = new System.Windows.Forms.Button();
       this.m_CancelButton = new System.Windows.Forms.Button();
       this.m_TtoolTip = new System.Windows.Forms.ToolTip(this.components);
       this.m_OwnerEmailErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
       this.m_WebApplicationURLErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+      this.m_trace = new CAS.SmartFactory.Deployment.Controls.Tracing(this.components);
       m_ApplicationSetupTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
       m_ApplicationURL = new System.Windows.Forms.Label();
       m_OwnerEmailabel = new System.Windows.Forms.Label();
       m_SiteURLLabel = new System.Windows.Forms.Label();
       m_label1 = new System.Windows.Forms.Label();
       m_tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+      m_SplitContainer = new System.Windows.Forms.SplitContainer();
       m_tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
       m_tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
       m_tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-      m_SplitContainer = new System.Windows.Forms.SplitContainer();
       m_ApplicationSetupTableLayoutPanel.SuspendLayout();
       m_tableLayoutPanel2.SuspendLayout();
+      m_SplitContainer.Panel1.SuspendLayout();
+      m_SplitContainer.Panel2.SuspendLayout();
+      m_SplitContainer.SuspendLayout();
       m_tableLayoutPanel3.SuspendLayout();
       m_tableLayoutPanel4.SuspendLayout();
       m_tableLayoutPanel1.SuspendLayout();
@@ -80,11 +86,9 @@
       this.m_ManualSelectionPanel.SuspendLayout();
       this.m_FinischedPanel.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
+      this.m_UninstallPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.m_OwnerEmailErrorProvider)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.m_WebApplicationURLErrorProvider)).BeginInit();
-      m_SplitContainer.Panel1.SuspendLayout();
-      m_SplitContainer.Panel2.SuspendLayout();
-      m_SplitContainer.SuspendLayout();
       this.SuspendLayout();
       // 
       // m_ApplicationSetupTableLayoutPanel
@@ -232,12 +236,30 @@
       m_tableLayoutPanel2.Size = new System.Drawing.Size(597, 559);
       m_tableLayoutPanel2.TabIndex = 6;
       // 
+      // m_SplitContainer
+      // 
+      m_SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+      m_SplitContainer.Location = new System.Drawing.Point(3, 19);
+      m_SplitContainer.Name = "m_SplitContainer";
+      m_SplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+      // 
+      // m_SplitContainer.Panel1
+      // 
+      m_SplitContainer.Panel1.Controls.Add(this.m_ValidationPropertyGrid);
+      // 
+      // m_SplitContainer.Panel2
+      // 
+      m_SplitContainer.Panel2.Controls.Add(this.m_ValidationListBox);
+      m_SplitContainer.Size = new System.Drawing.Size(591, 537);
+      m_SplitContainer.SplitterDistance = 351;
+      m_SplitContainer.TabIndex = 8;
+      // 
       // m_ValidationPropertyGrid
       // 
       this.m_ValidationPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_ValidationPropertyGrid.Location = new System.Drawing.Point(0, 0);
       this.m_ValidationPropertyGrid.Name = "m_ValidationPropertyGrid";
-      this.m_ValidationPropertyGrid.Size = new System.Drawing.Size(591, 352);
+      this.m_ValidationPropertyGrid.Size = new System.Drawing.Size(591, 351);
       this.m_ValidationPropertyGrid.TabIndex = 7;
       this.m_TtoolTip.SetToolTip(this.m_ValidationPropertyGrid, "Installation parameters");
       // 
@@ -248,7 +270,7 @@
       this.m_ValidationListBox.ItemHeight = 16;
       this.m_ValidationListBox.Location = new System.Drawing.Point(0, 0);
       this.m_ValidationListBox.Name = "m_ValidationListBox";
-      this.m_ValidationListBox.Size = new System.Drawing.Size(591, 181);
+      this.m_ValidationListBox.Size = new System.Drawing.Size(591, 182);
       this.m_ValidationListBox.TabIndex = 0;
       // 
       // m_tableLayoutPanel3
@@ -398,6 +420,7 @@
       this.m_ContentTabControl.Controls.Add(this.m_ApplicationInstalationPanel);
       this.m_ContentTabControl.Controls.Add(this.m_ManualSelectionPanel);
       this.m_ContentTabControl.Controls.Add(this.m_FinischedPanel);
+      this.m_ContentTabControl.Controls.Add(this.m_UninstallPanel);
       this.m_ContentTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_ContentTabControl.Location = new System.Drawing.Point(3, 3);
       this.m_ContentTabControl.Name = "m_ContentTabControl";
@@ -492,6 +515,28 @@
       this.m_InstallationFinischedPropertyGrid.Size = new System.Drawing.Size(591, 537);
       this.m_InstallationFinischedPropertyGrid.TabIndex = 1;
       // 
+      // m_UninstallPanel
+      // 
+      this.m_UninstallPanel.Controls.Add(this.m_UninstallUserControl);
+      this.m_UninstallPanel.Location = new System.Drawing.Point(4, 25);
+      this.m_UninstallPanel.Name = "m_UninstallPanel";
+      this.m_UninstallPanel.Padding = new System.Windows.Forms.Padding(3);
+      this.m_UninstallPanel.Size = new System.Drawing.Size(603, 565);
+      this.m_UninstallPanel.TabIndex = 5;
+      this.m_UninstallPanel.Text = "Uninstall";
+      this.m_UninstallPanel.UseVisualStyleBackColor = true;
+      // 
+      // m_UninstallUserControl
+      // 
+      this.m_UninstallUserControl.BackColor = System.Drawing.SystemColors.AppWorkspace;
+      this.m_UninstallUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.m_UninstallUserControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+      this.m_UninstallUserControl.Location = new System.Drawing.Point(3, 3);
+      this.m_UninstallUserControl.Margin = new System.Windows.Forms.Padding(4);
+      this.m_UninstallUserControl.Name = "m_UninstallUserControl";
+      this.m_UninstallUserControl.Size = new System.Drawing.Size(597, 559);
+      this.m_UninstallUserControl.TabIndex = 0;
+      // 
       // m_PreviousButton
       // 
       this.m_PreviousButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -548,24 +593,6 @@
       // 
       this.m_WebApplicationURLErrorProvider.ContainerControl = this;
       // 
-      // m_SplitContainer
-      // 
-      m_SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-      m_SplitContainer.Location = new System.Drawing.Point(3, 19);
-      m_SplitContainer.Name = "m_SplitContainer";
-      m_SplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-      // 
-      // m_SplitContainer.Panel1
-      // 
-      m_SplitContainer.Panel1.Controls.Add(this.m_ValidationPropertyGrid);
-      // 
-      // m_SplitContainer.Panel2
-      // 
-      m_SplitContainer.Panel2.Controls.Add(this.m_ValidationListBox);
-      m_SplitContainer.Size = new System.Drawing.Size(591, 537);
-      m_SplitContainer.SplitterDistance = 352;
-      m_SplitContainer.TabIndex = 8;
-      // 
       // SetUpData
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -584,6 +611,9 @@
       m_ApplicationSetupTableLayoutPanel.PerformLayout();
       m_tableLayoutPanel2.ResumeLayout(false);
       m_tableLayoutPanel2.PerformLayout();
+      m_SplitContainer.Panel1.ResumeLayout(false);
+      m_SplitContainer.Panel2.ResumeLayout(false);
+      m_SplitContainer.ResumeLayout(false);
       m_tableLayoutPanel3.ResumeLayout(false);
       m_tableLayoutPanel3.PerformLayout();
       m_tableLayoutPanel4.ResumeLayout(false);
@@ -597,11 +627,9 @@
       this.m_FinischedPanel.ResumeLayout(false);
       this.tableLayoutPanel2.ResumeLayout(false);
       this.tableLayoutPanel2.PerformLayout();
+      this.m_UninstallPanel.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.m_OwnerEmailErrorProvider)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.m_WebApplicationURLErrorProvider)).EndInit();
-      m_SplitContainer.Panel1.ResumeLayout(false);
-      m_SplitContainer.Panel2.ResumeLayout(false);
-      m_SplitContainer.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -638,6 +666,9 @@
     private System.Windows.Forms.ProgressBar m_InstallationProgressBar;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     private System.Windows.Forms.PropertyGrid m_InstallationFinischedPropertyGrid;
+    private System.Windows.Forms.TabPage m_UninstallPanel;
+    private Uninstall m_UninstallUserControl;
+    private Controls.Tracing m_trace;
 
   }
 }

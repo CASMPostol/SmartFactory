@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using CAS.SmartFactory.Deployment.Properties;
 using Microsoft.SharePoint.Administration;
+using CAS.SmartFactory.Deployment.Controls;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -77,7 +78,7 @@ namespace CAS.SmartFactory.Deployment
             throw new ApplicationException(_tom);
           } //if
         }; //while (!_sol.Deployed)
-        SetUpData.TraceEvent.TraceVerbose(81, "DeploySolution", String.Format(Resources.DeploymentSuccess, _runTime.Elapsed));
+        Tracing.TraceEvent.TraceVerbose(81, "DeploySolution", String.Format(Resources.DeploymentSuccess, _runTime.Elapsed));
         return _sol;
       }
       catch (Exception ex)

@@ -5,10 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Windows.Forms;
+using CAS.Lib.RTLib.Processes;
+using CAS.SmartFactory.Deployment.Controls;
 using CAS.SmartFactory.Deployment.Properties;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
-using CAS.Lib.RTLib.Processes;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -23,7 +24,7 @@ namespace CAS.SmartFactory.Deployment
     /// </summary>
     public SetUpData()
     {
-      TraceEvent.TraceVerbose(26, "SetUpData", "Starting the application");
+      m_trace.Trace.TraceVerbose(26, "SetUpData", "Starting the application");
       InitializeComponent();
       Manual = Properties.Settings.Default.ManualMode;
     }
@@ -40,7 +41,8 @@ namespace CAS.SmartFactory.Deployment
       ManualSelection,
       InstalationDataConfirmation,
       ApplicationInstalation,
-      Finisched
+      Finisched,
+      Uninstall
     }
     private ProcessState m_State;
     private SiteCollectionHelper m_SiteCollectionHelper = null;
@@ -64,10 +66,9 @@ namespace CAS.SmartFactory.Deployment
         : base(LocalEvent.Exception)
       {
         Exception = _exception;
-        SetUpData.TraceEvent.TraceError(68, "StateMachineExceptionEventArgs", String.Format("The following error envountered: {0}.", _exception.Message));
+        Tracing.TraceEvent.TraceError(68, "StateMachineExceptionEventArgs", String.Format("The following error envountered: {0}.", _exception.Message));
       }
     }
-    internal static TraceEvent TraceEvent = new TraceEvent("SharePoint.Deployment");
     /// <summary>
     /// Gets or sets the state of the installation.
     /// </summary>
@@ -83,7 +84,7 @@ namespace CAS.SmartFactory.Deployment
       set
       {
         m_State = value;
-        TraceEvent.TraceVerbose(86, "State", String.Format("Entered the state: {0}.", value));
+        m_trace.Trace.TraceVerbose(86, "State", String.Format("Entered the state: {0}.", value));
         foreach (TabPage _page in m_ContentTabControl.TabPages)
           m_ContentTabControl.TabPages.Remove(_page);
         switch (value)
@@ -103,7 +104,11 @@ namespace CAS.SmartFactory.Deployment
           case ProcessState.Finisched:
             m_ContentTabControl.TabPages.Add(m_FinischedPanel);
             break;
+          case ProcessState.Uninstall:
+            m_ContentTabControl.TabPages.Add(m_UninstallPanel);
+            break;
           default:
+
             break;
         }
         //this.AutoSize = true;
@@ -260,6 +265,26 @@ namespace CAS.SmartFactory.Deployment
           switch (_event.Event)
           {
             case LocalEvent.Previous:
+            case LocalEvent.Next:
+            case LocalEvent.Cancel:
+            case LocalEvent.Exception:
+              break;
+            case LocalEvent.EnterState:
+              m_PreviousButton.Visible = false;
+              m_NextButton.Enabled = true;
+              m_NextButton.Text = Resources.FinishButtonText;
+              m_CancelButton.Visible = false;
+              Uninstall.UninstallUserControl.Uninstallation(m_ApplicationState);
+              break;
+            default:
+              break;
+          }
+          break;
+          #endregion
+        case ProcessState.Uninstall:
+          switch (_event.Event)
+          {
+            case LocalEvent.Previous:
               break;
             case LocalEvent.Next:
               break;
@@ -268,17 +293,13 @@ namespace CAS.SmartFactory.Deployment
             case LocalEvent.Exception:
               break;
             case LocalEvent.EnterState:
-              m_PreviousButton.Visible = false;
-              m_NextButton.Enabled = true;
-              m_NextButton.Text = Resources.FinishButtonText;
-              m_CancelButton.Visible = false;
               break;
             default:
               break;
           }
           break;
-          #endregion
         default:
+          throw new ApplicationException("StateMachine - wrong state");
           break;
       }
     }
@@ -532,7 +553,7 @@ namespace CAS.SmartFactory.Deployment
     {
       if (disposing)
       {
-        TraceEvent.TraceEventClose();
+        m_trace.Trace.TraceEventClose();
         if (m_SiteCollectionHelper != null)
           m_SiteCollectionHelper.Dispose();
         if (components != null)
@@ -546,7 +567,7 @@ namespace CAS.SmartFactory.Deployment
     private void m_ListBox_TextChanged(object sender, EventArgs e)
     {
       ListBox _lb = (ListBox)sender;
-      TraceEvent.TraceInformation(521, "SetUpData", _lb.Items[_lb.Items.Count - 1].ToString());
+      m_trace.Trace.TraceInformation(521, "SetUpData", _lb.Items[_lb.Items.Count - 1].ToString());
       m_InstallationProgressBar.Value++;
       m_InstallationProgressBar.Refresh();
     }

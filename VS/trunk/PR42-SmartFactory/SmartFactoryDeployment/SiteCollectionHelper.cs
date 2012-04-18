@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.SharePoint.Administration;
-using System.Security.Principal;
-using Microsoft.SharePoint;
-using System.Windows.Forms;
-using CAS.SmartFactory.Deployment.Properties;
 using System.IO;
+using System.Linq;
 using System.Threading;
-using Microsoft.SharePoint.Linq;
+using CAS.SmartFactory.Deployment.Controls;
+using CAS.SmartFactory.Deployment.Properties;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -93,7 +89,7 @@ namespace CAS.SmartFactory.Deployment
     {
       try
       {
-        SetUpData.TraceEvent.TraceVerbose(90, "RetracSolution", String.Format("The solution {0} will be deleted from the SolutionCatalog", _usGuid));
+        Tracing.TraceEvent.TraceVerbose(90, "RetracSolution", String.Format("The solution {0} will be deleted from the SolutionCatalog", _usGuid));
         SPUserSolution _us = SiteCollection.Solutions[_usGuid];
         SiteCollection.Solutions.Remove(_us);
         SPDocumentLibrary solutionGallery = (SPDocumentLibrary)SiteCollection.GetCatalog(SPListTemplateType.SolutionCatalog);
@@ -102,11 +98,11 @@ namespace CAS.SmartFactory.Deployment
           if (_li.File.Name == _us.Name)
           {
             solutionGallery.Items.Delete(_li.ID);
-            SetUpData.TraceEvent.TraceInformation(90, "RetracSolution", String.Format("The solution {0} has been deleted from the SolutionCatalog", _us.Name));
+            Tracing.TraceEvent.TraceInformation(90, "RetracSolution", String.Format("The solution {0} has been deleted from the SolutionCatalog", _us.Name));
             return;
           }
         }
-        SetUpData.TraceEvent.TraceWarning(90, "RetracSolution", String.Format("The solution {0} has not been found in the SolutionCatalog", _us.Name));
+        Tracing.TraceEvent.TraceWarning(90, "RetracSolution", String.Format("The solution {0} has not been found in the SolutionCatalog", _us.Name));
       }
       catch (Exception ex)
       {
@@ -134,12 +130,12 @@ namespace CAS.SmartFactory.Deployment
               _def = FarmHelpers.Farm.FeatureDefinitions.First(_fd => { return _feature == _fd.Id; });
               _tmsg = String.Format("Found the definition of the feature Id={0} at the Farm DisplayName={1}.", _feature, FarmHelpers.Farm.DisplayName);
             }
-            SetUpData.TraceEvent.TraceVerbose(90, "SiteCollectionHelper", _tmsg);
+            Tracing.TraceEvent.TraceVerbose(90, "SiteCollectionHelper", _tmsg);
             break;
           }
           catch (Exception) { }
           string _msg = String.Format("I cannot find definition for the feature Id = {0} at the site Url = {1} attempt {2} form 5.", _feature, SiteCollection.Url, _try++);
-          SetUpData.TraceEvent.TraceVerbose(95, "SiteCollectionHelper", _msg);
+          Tracing.TraceEvent.TraceVerbose(95, "SiteCollectionHelper", _msg);
           Thread.Sleep(1000);
         } while (_try < 5);
         return SiteCollection.Features.Add(_feature, false, _scope);
