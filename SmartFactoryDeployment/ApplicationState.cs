@@ -120,10 +120,7 @@ namespace CAS.SmartFactory.Deployment {
         private int priorityField;
         
         private string solutionIDField;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Solution"/> class.
-        /// </summary>
+        
         public Solution() {
             this.activatedField = false;
             this.deployedField = false;
@@ -219,6 +216,8 @@ namespace CAS.SmartFactory.Deployment {
         
         private FeatureScope scopeField;
         
+        private bool scopeFieldSpecified;
+        
         /// <uwagi/>
         public string DisplayName {
             get {
@@ -256,6 +255,17 @@ namespace CAS.SmartFactory.Deployment {
             }
             set {
                 this.scopeField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool ScopeSpecified {
+            get {
+                return this.scopeFieldSpecified;
+            }
+            set {
+                this.scopeFieldSpecified = value;
             }
         }
     }

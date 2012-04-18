@@ -20,8 +20,8 @@
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" default="false" name="Activated" type="xs:boolean" />
       <xs:element minOccurs="0" maxOccurs="1" default="false" name="Deployed" type="xs:boolean" />
-      <xs:element minOccurs="0" maxOccurs="1" name="FileName" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Fetures" type="tns:ArrayOfFeature" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FileName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Fetures" type="tns:ArrayOfFeature" />
       <xs:element minOccurs="1" maxOccurs="1" name="FeatureDefinitionScope" type="tns:FeatureDefinitionScope" />
       <xs:element minOccurs="1" maxOccurs="1" name="Priority" type="xs:int" />
       <xs:element minOccurs="0" maxOccurs="1" name="SolutionID" type="xs:string" />
@@ -37,7 +37,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="DisplayName" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="DefinitionId" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Version" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Scope" type="tns:FeatureScope" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Scope" type="tns:FeatureScope" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="FeatureDefinitionScope">
