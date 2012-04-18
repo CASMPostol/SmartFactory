@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using CAS.Lib.RTLib.Processes;
-using System.IO;
 using CAS.SmartFactory.Deployment.Properties;
 
 namespace CAS.SmartFactory.Deployment
@@ -40,6 +35,7 @@ namespace CAS.SmartFactory.Deployment
         }
         else
           throw new ApplicationException(Resources.GettingAccess2LocalFarm);
+        FarmHelpers.GetWebApplication(m_InstallationStateData.WebApplicationURL);
         if (FarmHelpers.WebApplication != null)
         {
           _msg = String.Format(Resources.ApplicationFound, m_InstallationStateData.WebApplicationURL, FarmHelpers.WebApplication.Name, FarmHelpers.WebApplication.DisplayName);
@@ -48,24 +44,18 @@ namespace CAS.SmartFactory.Deployment
         else
           throw new ApplicationException(String.Format(Resources.GettingAccess2ApplicationFailed, m_InstallationStateData.WebApplicationURL));
         m_UninstallListBox.AddMessage(String.Format("Trying to get access to the site collection at the Url = {0}", m_InstallationStateData.SiteCollectionURL));
-        if (!FarmHelpers.WebApplication.Sites.Names.Contains(m_InstallationStateData.SiteCollectionURL))
-        {
-          string _frmt = "The web application Name={0} does not contains the site collection at Url = {1}";
-          m_UninstallListBox.AddMessage(String.Format(_frmt, FarmHelpers.WebApplication.Name, m_InstallationStateData.SiteCollectionURL));
-        }
-        else
-        {
-          m_SiteCollectionHelper = new SiteCollectionHelper(FarmHelpers.WebApplication, m_InstallationStateData.SiteCollectionURL);
-          m_UninstallListBox.AddMessage(String.Format("The site collection at the Url={0} has been opened.", m_SiteCollectionHelper.SiteCollection.Url));
-        }
-        FarmHelpers.GetWebApplication(m_InstallationStateData.WebApplicationURL);
+        m_SiteCollectionHelper = new SiteCollectionHelper(FarmHelpers.WebApplication, m_InstallationStateData.SiteCollectionURL);
+        m_UninstallListBox.AddMessage(String.Format("The site collection at the Url={0} has been opened.", m_SiteCollectionHelper.SiteCollection.Url));
         foreach (var _solution in from _sidx in m_InstallationStateData.Solutions orderby _sidx.Priority descending select (_sidx))
         {
           if (_solution.Activated)
             try
             {
-              m_UninstallListBox.AddMessage(String.Format("Deactivating the feature {0}.", _solution.FetureGuid));
-              m_SiteCollectionHelper.DeactivateFeature(_solution.FetureGuid);
+              foreach (var _fix in _solution.Fetures)
+              {
+                m_UninstallListBox.AddMessage(String.Format("Deactivating the feature {0}.", _fix.DisplayName));
+                m_SiteCollectionHelper.DeactivateFeature(_fix.FetureGuid);
+              }
             }
             catch (Exception ex)
             {

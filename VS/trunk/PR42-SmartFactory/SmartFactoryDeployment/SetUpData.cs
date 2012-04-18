@@ -393,7 +393,6 @@ namespace CAS.SmartFactory.Deployment
           {
             FileInfo _fi = GetFile(_sltn.FileName);
             m_InstallationProgresListBox.AddMessage(String.Format("Deploying solution: {0}", _fi.Name));
-            SPUserSolution _solution = null;
             SPFeatureDefinitionScope _scope = SPFeatureDefinitionScope.None;
             switch (_sltn.FeatureDefinitionScope)
             {
@@ -402,12 +401,14 @@ namespace CAS.SmartFactory.Deployment
                 m_InstallationProgresListBox.AddMessage("Waiting for completion .... ");
                 SPSolution _sol = FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, out _solutionID);
                 _scope = SPFeatureDefinitionScope.Farm;
-                m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed Name={0}, Deployed={1}, DeploymentState={2}, DisplayName={3} Status={4}", _sol.Name, _sol.Deployed, _sol.DeploymentState, _sol.DisplayName, _sol.Status));
                 _sltn.SolutionGuid = _solutionID;
+                m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed Name={0}, Deployed={1}, DeploymentState={2}, DisplayName={3} Status={4}", _sol.Name, _sol.Deployed, _sol.DeploymentState, _sol.DisplayName, _sol.Status));
                 break;
               case FeatureDefinitionScope.Site:
                 _scope = SPFeatureDefinitionScope.Farm;
+                SPUserSolution _solution = null;
                 _solution = m_SiteCollectionHelper.DeploySolution(_fi);
+                _sltn.SolutionGuid = _solution.SolutionId;
                 m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed: {0}", _solution.Name));
                 break;
               case FeatureDefinitionScope.None:
@@ -415,11 +416,15 @@ namespace CAS.SmartFactory.Deployment
                 throw new ApplicationException("Wrong FeatureDefinitionScope in the configuration file");
             }
             _sltn.Deployed = true;
-            m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", _sltn.FetureGuid, m_SiteCollectionHelper.SiteCollection.Url));
-            SPFeature _ffeature = m_SiteCollectionHelper.ActivateFeature(_sltn.FetureGuid, _scope);
-            m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _ffeature.Definition.DisplayName));
-            SPFeature _sfeature = m_SiteCollectionHelper.ActivateFeature(_sltn.FetureGuid, _scope);
-            m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _sfeature.Definition.DisplayName));
+            foreach (Feature _fix in _sltn.Fetures)
+            {
+              m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", _fix.FetureGuid, m_SiteCollectionHelper.SiteCollection.Url));
+              SPFeature _ffeature = m_SiteCollectionHelper.ActivateFeature(_fix.FetureGuid, _scope);
+              m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _ffeature.Definition.DisplayName));
+              _fix.DisplayName = _ffeature.Definition.DisplayName;
+              _fix.Version = _ffeature.Version.ToString();
+              _fix.SPScope = _ffeature.Definition.Scope;
+            }
             _sltn.Activated = true;
           }
           SaveInstallationState();

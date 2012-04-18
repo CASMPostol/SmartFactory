@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Deployment
           string _frmt = "The web application Name={0} does not contains the site collection at Url = {1}";
           throw new ApplicationException(String.Format(_frmt, FarmHelpers.WebApplication.Name, _Url));
         }
-        SiteCollection = _wapplication.Sites[_Url];
+      SiteCollection = _wapplication.Sites[_Url];
       }
       catch (Exception ex)
       {
@@ -96,26 +96,31 @@ namespace CAS.SmartFactory.Deployment
     {
       try
       {
-        try
+        int _try = 0;
+        do
         {
-          SPFeatureDefinition _def;
-          string _tmsg = String.Empty;
-          if (_scope == SPFeatureDefinitionScope.Site)
+          try
           {
-            _def = SiteCollection.FeatureDefinitions.First(_fd => { return _feature == _fd.Id; });
-            _tmsg = String.Format("Found the definition of the feature Id={0} at the site Url={1} DisplayName={2}.", _feature, SiteCollection.Url, _def.DisplayName);
+            SPFeatureDefinition _def;
+            string _tmsg = String.Empty;
+            if (_scope == SPFeatureDefinitionScope.Site)
+            {
+              _def = SiteCollection.FeatureDefinitions.First(_fd => { return _feature == _fd.Id; });
+              _tmsg = String.Format("Found the definition of the feature Id={0} at the site Url={1} DisplayName={2}.", _feature, SiteCollection.Url, _def.DisplayName);
+            }
+            else
+            {
+              _def = FarmHelpers.Farm.FeatureDefinitions.First(_fd => { return _feature == _fd.Id; });
+              _tmsg = String.Format("Found the definition of the feature Id={0} at the Farm DisplayName={1}.", _feature, FarmHelpers.Farm.DisplayName);
+            }
+            SetUpData.TraceEvent.TraceVerbose(90, "SiteCollectionHelper", _tmsg);
+            break;
           }
-          else
-          {
-            _def = FarmHelpers.Farm.FeatureDefinitions.First(_fd => { return _feature == _fd.Id; });
-            _tmsg = String.Format("Found the definition of the feature Id={0} at the Farm DisplayName={1}.", _feature, FarmHelpers.Farm.DisplayName);
-          }
-          SetUpData.TraceEvent.TraceVerbose(90, "SiteCollectionHelper", _tmsg);
-          break;
-        }
-        catch (Exception) { }
-        string _msg = String.Format("I cannot find definition for the feature Id = {0} at the site Url = {1} attempt {2} form 5.", _feature, SiteCollection.Url, _try++);
-        SetUpData.TraceEvent.TraceVerbose(95, "SiteCollectionHelper", _msg);
+          catch (Exception) { }
+          string _msg = String.Format("I cannot find definition for the feature Id = {0} at the site Url = {1} attempt {2} form 5.", _feature, SiteCollection.Url, _try++);
+          SetUpData.TraceEvent.TraceVerbose(95, "SiteCollectionHelper", _msg);
+          Thread.Sleep(1000);
+        } while (_try < 5);
         return SiteCollection.Features.Add(_feature, false, _scope);
       }
       catch (Exception ex)

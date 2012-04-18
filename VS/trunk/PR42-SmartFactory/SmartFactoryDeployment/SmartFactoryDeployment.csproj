@@ -106,6 +106,7 @@
   <ItemGroup>
     <Content Include="Images\blok_danych_48_full.ico" />
     <Content Include="Images\Shepherd_50x50.ico" />
+    <Content Include="InstallationStateData.xml" />
     <Content Include="Shepherd_50x50.ico" />
     <None Include="app.config">
       <SubType>Designer</SubType>

@@ -1,41 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <InstallationStateData xmlns="http://cas.eu/schemas/SharePoint/Deployment/2/ApplicationState.xsd">
-  <SiteCollectionURL>SiteCollectionURL1</SiteCollectionURL>
   <OwnerLogin>OwnerLogin1</OwnerLogin>
   <OwnerEmail>OwnerEmail1</OwnerEmail>
+  <SiteCollectionURL>SiteCollectionURL1</SiteCollectionURL>
   <SiteCollectionCreated>true</SiteCollectionCreated>
-  <SiteCollectionSolutionsDeployed>true</SiteCollectionSolutionsDeployed>
-  <SiteCollectionFeturesActivated>true</SiteCollectionFeturesActivated>
-  <FarmSolutionsDeployed>true</FarmSolutionsDeployed>
-  <FarmFeaturesActivated>true</FarmFeaturesActivated>
   <XmlWebApplicationURL>http://uri1</XmlWebApplicationURL>
-  <XmlSiteCollectionFetureId>XmlSiteCollectionFetureId1</XmlSiteCollectionFetureId>
-  <XmlFarmFetureId>XmlFarmFetureId1</XmlFarmFetureId>
-  <XmlSolutionID>XmlSolutionID1</XmlSolutionID>
   <Solutions>
     <Solution>
-      <Priority>1</Priority>
-      <FileName>FileName1</FileName>
-      <FetureId>FetureId1</FetureId>
       <Activated>false</Activated>
       <Deployed>false</Deployed>
+      <FileName>FileName1</FileName>
+      <Fetures>
+        <Feature>
+          <DisplayName>DisplayName1</DisplayName>
+          <DefinitionId>DefinitionId1</DefinitionId>
+          <Version>Version1</Version>
+          <Scope>ScopeInvalid</Scope>
+        </Feature>
+        <Feature>
+          <DisplayName>DisplayName2</DisplayName>
+          <DefinitionId>DefinitionId2</DefinitionId>
+          <Version>Version2</Version>
+          <Scope>Farm</Scope>
+        </Feature>
+        <Feature>
+          <DisplayName>DisplayName3</DisplayName>
+          <DefinitionId>DefinitionId3</DefinitionId>
+          <Version>Version3</Version>
+          <Scope>WebApplication</Scope>
+        </Feature>
+      </Fetures>
       <FeatureDefinitionScope>None</FeatureDefinitionScope>
+      <Priority>1</Priority>
+      <SolutionID>SolutionID1</SolutionID>
     </Solution>
     <Solution>
-      <Priority>-2147483647</Priority>
-      <FileName>FileName2</FileName>
-      <FetureId>FetureId2</FetureId>
       <Activated>true</Activated>
       <Deployed>true</Deployed>
+      <FileName>FileName2</FileName>
+      <Fetures>
+        <Feature>
+          <DisplayName>DisplayName4</DisplayName>
+          <DefinitionId>DefinitionId4</DefinitionId>
+          <Version>Version4</Version>
+          <Scope>Site</Scope>
+        </Feature>
+        <Feature>
+          <DisplayName>DisplayName5</DisplayName>
+          <DefinitionId>DefinitionId5</DefinitionId>
+          <Version>Version5</Version>
+          <Scope>Web</Scope>
+        </Feature>
+        <Feature>
+          <DisplayName>DisplayName6</DisplayName>
+          <DefinitionId>DefinitionId6</DefinitionId>
+          <Version>Version6</Version>
+          <Scope>ScopeInvalid</Scope>
+        </Feature>
+      </Fetures>
       <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
+      <Priority>-2147483647</Priority>
+      <SolutionID>SolutionID2</SolutionID>
     </Solution>
     <Solution>
-      <Priority>2147483647</Priority>
-      <FileName>FileName3</FileName>
-      <FetureId>FetureId3</FetureId>
       <Activated>false</Activated>
       <Deployed>false</Deployed>
+      <FileName>FileName3</FileName>
+      <Fetures>
+        <Feature>
+          <DisplayName>DisplayName7</DisplayName>
+          <DefinitionId>DefinitionId7</DefinitionId>
+          <Version>Version7</Version>
+          <Scope>Farm</Scope>
+        </Feature>
+        <Feature>
+          <DisplayName>DisplayName8</DisplayName>
+          <DefinitionId>DefinitionId8</DefinitionId>
+          <Version>Version8</Version>
+          <Scope>WebApplication</Scope>
+        </Feature>
+        <Feature>
+          <DisplayName>DisplayName9</DisplayName>
+          <DefinitionId>DefinitionId9</DefinitionId>
+          <Version>Version9</Version>
+          <Scope>Site</Scope>
+        </Feature>
+      </Fetures>
       <FeatureDefinitionScope>Site</FeatureDefinitionScope>
+      <Priority>2147483647</Priority>
+      <SolutionID>SolutionID3</SolutionID>
     </Solution>
   </Solutions>
 </InstallationStateData>

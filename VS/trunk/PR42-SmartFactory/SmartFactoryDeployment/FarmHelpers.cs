@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.SharePoint.Administration;
-using CAS.SmartFactory.Deployment.Properties;
-using Microsoft.SharePoint;
-using System.Threading;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using CAS.SmartFactory.Deployment.Properties;
+using Microsoft.SharePoint.Administration;
 
 namespace CAS.SmartFactory.Deployment
 {
