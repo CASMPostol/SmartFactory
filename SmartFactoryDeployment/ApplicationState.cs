@@ -107,17 +107,17 @@ namespace CAS.SmartFactory.Deployment {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SharePoint/Deployment/2/ApplicationState.xsd")]
     public partial class Solution {
         
-        private int priorityField;
-        
-        private string fileNameField;
-        
-        private string fetureIdField;
-        
         private bool activatedField;
         
         private bool deployedField;
         
+        private string fileNameField;
+        
+        private Feature[] feturesField;
+        
         private FeatureDefinitionScope featureDefinitionScopeField;
+        
+        private int priorityField;
         
         private string solutionIDField;
 
@@ -127,36 +127,6 @@ namespace CAS.SmartFactory.Deployment {
         public Solution() {
             this.activatedField = false;
             this.deployedField = false;
-        }
-        
-        /// <uwagi/>
-        public int Priority {
-            get {
-                return this.priorityField;
-            }
-            set {
-                this.priorityField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public string FileName {
-            get {
-                return this.fileNameField;
-            }
-            set {
-                this.fileNameField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public string FetureId {
-            get {
-                return this.fetureIdField;
-            }
-            set {
-                this.fetureIdField = value;
-            }
         }
         
         /// <uwagi/>
@@ -182,12 +152,43 @@ namespace CAS.SmartFactory.Deployment {
         }
         
         /// <uwagi/>
+        public string FileName {
+            get {
+                return this.fileNameField;
+            }
+            set {
+                this.fileNameField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+        public Feature[] Fetures {
+            get {
+                return this.feturesField;
+            }
+            set {
+                this.feturesField = value;
+            }
+        }
+        
+        /// <uwagi/>
         public FeatureDefinitionScope FeatureDefinitionScope {
             get {
                 return this.featureDefinitionScopeField;
             }
             set {
                 this.featureDefinitionScopeField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public int Priority {
+            get {
+                return this.priorityField;
+            }
+            set {
+                this.priorityField = value;
             }
         }
         
@@ -200,6 +201,85 @@ namespace CAS.SmartFactory.Deployment {
                 this.solutionIDField = value;
             }
         }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SharePoint/Deployment/2/ApplicationState.xsd")]
+    public partial class Feature {
+        
+        private string displayNameField;
+        
+        private string definitionIdField;
+        
+        private string versionField;
+        
+        private FeatureScope scopeField;
+        
+        /// <uwagi/>
+        public string DisplayName {
+            get {
+                return this.displayNameField;
+            }
+            set {
+                this.displayNameField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string DefinitionId {
+            get {
+                return this.definitionIdField;
+            }
+            set {
+                this.definitionIdField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string Version {
+            get {
+                return this.versionField;
+            }
+            set {
+                this.versionField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public FeatureScope Scope {
+            get {
+                return this.scopeField;
+            }
+            set {
+                this.scopeField = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SharePoint/Deployment/2/ApplicationState.xsd")]
+    public enum FeatureScope {
+        
+        /// <uwagi/>
+        ScopeInvalid,
+        
+        /// <uwagi/>
+        Farm,
+        
+        /// <uwagi/>
+        WebApplication,
+        
+        /// <uwagi/>
+        Site,
+        
+        /// <uwagi/>
+        Web,
     }
     
     /// <uwagi/>

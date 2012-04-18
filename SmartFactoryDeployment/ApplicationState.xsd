@@ -13,18 +13,31 @@
   </xs:complexType>
   <xs:complexType name="ArrayOfSolution">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Solution" nillable="false" type="tns:Solution" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Solution" type="tns:Solution" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="Solution">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Priority" type="xs:int" />
-      <xs:element minOccurs="0" maxOccurs="1" name="FileName" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="FetureId" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" default="false" name="Activated" type="xs:boolean" />
       <xs:element minOccurs="0" maxOccurs="1" default="false" name="Deployed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FileName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Fetures" type="tns:ArrayOfFeature" />
       <xs:element minOccurs="1" maxOccurs="1" name="FeatureDefinitionScope" type="tns:FeatureDefinitionScope" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Priority" type="xs:int" />
       <xs:element minOccurs="0" maxOccurs="1" name="SolutionID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfFeature">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Feature" type="tns:Feature" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Feature">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DisplayName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DefinitionId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Version" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Scope" type="tns:FeatureScope" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="FeatureDefinitionScope">
@@ -32,6 +45,15 @@
       <xs:enumeration value="None" />
       <xs:enumeration value="Farm" />
       <xs:enumeration value="Site" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FeatureScope">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ScopeInvalid" />
+      <xs:enumeration value="Farm" />
+      <xs:enumeration value="WebApplication" />
+      <xs:enumeration value="Site" />
+      <xs:enumeration value="Web" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

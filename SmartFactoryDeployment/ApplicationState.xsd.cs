@@ -207,23 +207,57 @@ namespace CAS.SmartFactory.Deployment
       }
     }
     /// <summary>
-    /// Gets the site collection feture id.
-    /// </summary>
-    internal Guid FetureGuid
-    {
-      get { return FetureId.Parse(); }
-    }
-    /// <summary>
     /// Gets the solution ID.
     /// </summary>
     /// <value>
     /// The solution ID.
     /// </value>
     /// <remarks>Use the SolutionGuid property to return the GUID for the solution.</remarks>
-    public Guid SolutionGuid
+    internal Guid SolutionGuid
     {
       get { return SolutionID.Parse(); }
       set { SolutionID = value.ToString(); }
     }
+  }
+  public partial class Feature
+  {
+    /// <summary>
+    /// Gets the site collection feture id.
+    /// </summary>
+    public Guid FetureGuid
+    {
+      get { return this.DefinitionId.Parse(); }
+    }
+    /// <summary>
+    /// Sets the <see cref="Microsoft.SharePoint.SPFeatureScope"/> scope in the configuration file.
+    /// </summary>
+    /// <value>
+    /// The <see cref="Microsoft.SharePoint.SPFeatureScope"/> scope.
+    /// </value>
+    public Microsoft.SharePoint.SPFeatureScope SPScope
+    {
+      set
+      {
+        switch (value)
+        {
+          case SPFeatureScope.Farm:
+            this.Scope = FeatureScope.Farm;
+            break;
+          case SPFeatureScope.ScopeInvalid:
+            this.Scope = FeatureScope.ScopeInvalid;
+            break;
+          case SPFeatureScope.Site:
+            this.Scope = FeatureScope.Site;
+            break;
+          case SPFeatureScope.Web:
+            this.Scope = FeatureScope.Web;
+            break;
+          case SPFeatureScope.WebApplication:
+            this.Scope = FeatureScope.WebApplication;
+            break;
+        }
+      }
+    }
+
   }
 }
