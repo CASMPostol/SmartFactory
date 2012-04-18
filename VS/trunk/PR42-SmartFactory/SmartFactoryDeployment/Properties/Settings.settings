@@ -11,7 +11,7 @@
     <Setting Name="InstallationStateFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)">SmartFactoryInstallationState.cas.xml</Value>
     </Setting>
-    <Setting Name="FeatureActivationTimeOut" Type="System.Int16" Scope="Application">
+    <Setting Name="SolutionDeploymentTimeOut" Type="System.Int16" Scope="User">
       <Value Profile="(Default)">200</Value>
     </Setting>
     <Setting Name="InstallSwitch" Type="System.String" Scope="User">

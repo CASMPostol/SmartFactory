@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using CAS.SmartFactory.Deployment.Properties;
@@ -52,7 +53,8 @@ namespace CAS.SmartFactory.Deployment
         Collection<SPWebApplication> _collection = new Collection<SPWebApplication>();
         _collection.Add(_wa);
         _sol.Deploy(DateTime.Now, true, _collection, true);
-        int _round = 0;
+        Stopwatch _runTime = new Stopwatch();
+        _runTime.Start();
         while (!_sol.Deployed)
         {
           Thread.Sleep(200);
@@ -65,19 +67,18 @@ namespace CAS.SmartFactory.Deployment
           {
             _msg += String.Format(" JobStatus={0}", _sol.JobStatus);
           }
-          SetUpData.TraceEvent.TraceVerbose(62, "DeploySolution", _msg);
-          if (_round++ > Settings.Default.FeatureActivationTimeOut)
+          if (_runTime.Elapsed > new TimeSpan(0, 0, Settings.Default.SolutionDeploymentTimeOut)) 
           {
             string _tom = String.Format(Resources.DeplymentTimeout,
               _sol.DeploymentState,
-              _sol.Status, 
+              _sol.Status,
               _sol.LastOperationResult,
               _sol.LastOperationDetails);
-            throw new ApplicationException(Resources.DeplymentTimeout);
-          }
-        };
+            throw new ApplicationException(_tom);
+          } //if
+        }; //while (!_sol.Deployed)
+        SetUpData.TraceEvent.TraceVerbose(81, "DeploySolution", String.Format(Resources.DeploymentSuccess, _runTime.Elapsed));
         return _sol;
-        //Debug.Assert(_sol.JobStatus == SPRunningJobStatus.Succeeded, "Job status error");
       }
       catch (Exception ex)
       {

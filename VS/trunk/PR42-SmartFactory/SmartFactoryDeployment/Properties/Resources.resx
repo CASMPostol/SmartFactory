@@ -262,4 +262,7 @@ For example 'http://computer.domain:Port'</value>
   <data name="SoftwareIsNotInstalled" xml:space="preserve">
     <value>There is nothing to uninstall. The software has not been installed or was already removed from this server.</value>
   </data>
+  <data name="DeploymentSuccess" xml:space="preserve">
+    <value>The deployment finished successfully. Elapsed time: {0}.</value>
+  </data>
 </root>
