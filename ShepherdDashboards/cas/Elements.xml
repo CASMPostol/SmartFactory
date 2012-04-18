@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="cas" Url="_catalogs/masterpage">
+    <File Path="cas\cas.master" Url="cas.master" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" />
+  </Module>
+</Elements>
