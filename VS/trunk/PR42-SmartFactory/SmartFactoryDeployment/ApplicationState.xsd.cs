@@ -14,20 +14,6 @@ namespace CAS.SmartFactory.Deployment
   /// </summary>
   public partial class InstallationStateData
   {
-    #region ctor
-    /// <summary>
-    /// Initializes a new instance of the <see cref="InstallationStateData"/> class.
-    /// </summary>
-    public InstallationStateData()
-    {
-      //TODO remove at cleanup.
-      //SiteCollectionCreated = false;
-      //SiteCollectionSolutionsDeployed = false;
-      //SiteCollectionFeturesActivated = false;
-      //FarmSolutionsDeployed = false;
-      //FarmFeaturesActivated = false;
-    }
-    #endregion
 
     #region public
     internal void Save(System.IO.FileInfo _file)
