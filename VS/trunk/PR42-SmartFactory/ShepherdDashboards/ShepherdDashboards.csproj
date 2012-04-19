@@ -168,6 +168,9 @@
     <None Include="CarrierDashboard\TransportResources\TransportResources.webpart">
       <SubType>Designer</SubType>
     </None>
+    <None Include="cas\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0157e959-a1a4-410b-8051-5907691a1f0c}</SharePointProjectItemId>
+    </None>
     <None Include="CurrentUserWebPart\CurrentUserWebPart.webpart">
       <SubType>Designer</SubType>
     </None>
@@ -290,6 +293,8 @@
     <Content Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="cas\Elements.xml" />
+    <None Include="cas\cas.master" />
     <Content Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
