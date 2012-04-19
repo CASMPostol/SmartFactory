@@ -79,10 +79,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Definitions.tt</DependentUpon>
     </Compile>
-    <None Include="CommonDefinition.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CommonDefinition1.cs</LastGenOutput>
-    </None>
     <Compile Include="CommonDefinition1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -206,6 +202,10 @@
     </None>
     <None Include="AddTimeSlots\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5e3566c7-899f-4796-a630-06e991a4ea6b}</SharePointProjectItemId>
+    </None>
+    <None Include="CommonDefinition.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CommonDefinition1.cs</LastGenOutput>
     </None>
     <None Include="CreatePO\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2c449354-5fc5-47fe-a13f-84165a95e8c9}</SharePointProjectItemId>

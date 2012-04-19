@@ -101,7 +101,15 @@
     <Compile Include="Features\Dashboards\Dashboards.EventReceiver.cs">
       <DependentUpon>Dashboards.feature</DependentUpon>
     </Compile>
-    <Compile Include="GlobalDefinitions.cs" />
+    <None Include="GlobalDefinitions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GlobalDefinitions.cs</LastGenOutput>
+    </None>
+    <Compile Include="GlobalDefinitions.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalDefinitions.tt</DependentUpon>
+    </Compile>
     <Compile Include="GuardWebPart\GuardWebPart.cs" />
     <Compile Include="GuardWebPart\GuardWebPartUserControl.ascx.cs">
       <DependentUpon>GuardWebPartUserControl.ascx</DependentUpon>
@@ -257,6 +265,7 @@
     <None Include="LoadDescriptionWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6d76c6af-a40b-4323-8c68-0615939a0029}</SharePointProjectItemId>
     </None>
+    <None Include="Model.T4" />
     <None Include="Package\Package.package">
       <PackageId>{212689f5-f797-4a55-8d76-26e83b3a6e30}</PackageId>
     </None>
@@ -281,7 +290,9 @@
       <SharePointProjectItemId>{5a1c2296-d4cc-40fb-87ca-b81deda11661}</SharePointProjectItemId>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>

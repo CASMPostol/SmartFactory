@@ -300,7 +300,6 @@ namespace CAS.SmartFactory.Deployment
           break;
         default:
           throw new ApplicationException("StateMachine - wrong state");
-          break;
       }
     }
     private void InitSetupData()

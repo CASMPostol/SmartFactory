@@ -1,4 +1,5 @@
-﻿namespace CAS.SmartFactory.Shepherd.SendNotification
+﻿
+namespace CAS.SmartFactory.Shepherd.SendNotification
 {
   internal static class CommonDefinition
   {
@@ -17,3 +18,4 @@
     internal const string DefaultCurrency = "USD";
   }
 }
+
