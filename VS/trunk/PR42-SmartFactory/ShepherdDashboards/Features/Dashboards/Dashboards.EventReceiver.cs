@@ -21,42 +21,55 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
     #region public
     public override void FeatureActivated(SPFeatureReceiverProperties properties)
     {
-      SPSite site = (SPSite)properties.Feature.Parent;
-      if (site == null)
-        throw new ApplicationException("In FeatureActivated the Site is null");
-      SPWeb _root = site.RootWeb;
-      ReplaceMasterMage(site);
-      AddDocumentTemplates(_root, GlobalDefinitions.FreightPurchaseOrderTemplate, GlobalDefinitions.FreightPOLibraryTitle);
-      AddDocumentTemplates(_root, GlobalDefinitions.EscortPOLibraryTemplate, GlobalDefinitions.EscortPOLibraryTitle);
-      AddDocumentTemplates(_root, GlobalDefinitions.SealProtocolLibraryTemplate, GlobalDefinitions.SealProtocolLibraryTitle);
-      using (Entities.EntitiesDataContext _edc = new Entities.EntitiesDataContext(_root.Url))
+      string _cp = "Starting";
+      try
       {
-        Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated strating");
-        _root.Title = "Shepherd Home";
-        _root.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
-        _root.Update();
-        // create dropdown menu for custom site pages
-        Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
-        SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuInboundOwnerTitle, ProjectElementManagement.URLInboundOwner));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuViewInboundsTitle, ProjectElementManagement.URLViewInbounds));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuViewOutboundsTitle, ProjectElementManagement.URLViewOutbounds));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundOwnerTitle, ProjectElementManagement.URLOutboundOwner));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundCoordinatorTitle, ProjectElementManagement.URLOutboundCoordinator));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuForwarderTitle, ProjectElementManagement.URLForwarderDashboard));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityEscortProviderTitle, ProjectElementManagement.URLSecurityEscortProviderDashboard));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityGateTitle, ProjectElementManagement.URLGateDashboard));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOperatorTitle, ProjectElementManagement.URLOperator));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSupervisorTitle, ProjectElementManagement.URLSupervisor));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuDriversTitle, ProjectElementManagement.URLDrivers));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCarsTitle, ProjectElementManagement.URLCars));
-        _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuTrailersTitle, ProjectElementManagement.URLTrailers));
-        foreach (SPNavigationNode item in _topNav)
-          item.Update();
-        WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
-        //SPWeb site = (SPWeb)properties.Feature.Parent;
-        Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated finished");
+        SPSite site = (SPSite)properties.Feature.Parent;
+        if (site == null)
+          throw new ApplicationException("In FeatureActivated the Site is null");
+        SPWeb _root = site.RootWeb;
+        using (Entities.EntitiesDataContext _edc = new Entities.EntitiesDataContext(_root.Url))
+        {
+          Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated strating");
+          _cp = "ReplaceMasterMage";
+          ReplaceMasterMage(site);
+          Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "The master page has been replaced.");
+          _cp = "AddDocumentTemplates";
+          AddDocumentTemplates(_root, GlobalDefinitions.FreightPurchaseOrderTemplate, GlobalDefinitions.FreightPOLibraryTitle);
+          AddDocumentTemplates(_root, GlobalDefinitions.EscortPOLibraryTemplate, GlobalDefinitions.EscortPOLibraryTitle);
+          AddDocumentTemplates(_root, GlobalDefinitions.SealProtocolLibraryTemplate, GlobalDefinitions.SealProtocolLibraryTitle);
+          _cp = "_root.Title";
+          _root.Title = "Shepherd Home";
+          _root.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
+          _root.Update();
+          // create dropdown menu for custom site pages
+          Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
+          _cp = "SPNavigationNodeCollection";
+          SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuInboundOwnerTitle, ProjectElementManagement.URLInboundOwner));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuViewInboundsTitle, ProjectElementManagement.URLViewInbounds));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuViewOutboundsTitle, ProjectElementManagement.URLViewOutbounds));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundOwnerTitle, ProjectElementManagement.URLOutboundOwner));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOutboundCoordinatorTitle, ProjectElementManagement.URLOutboundCoordinator));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuForwarderTitle, ProjectElementManagement.URLForwarderDashboard));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityEscortProviderTitle, ProjectElementManagement.URLSecurityEscortProviderDashboard));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSecurityGateTitle, ProjectElementManagement.URLGateDashboard));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuOperatorTitle, ProjectElementManagement.URLOperator));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuSupervisorTitle, ProjectElementManagement.URLSupervisor));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuDriversTitle, ProjectElementManagement.URLDrivers));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuCarsTitle, ProjectElementManagement.URLCars));
+          _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuTrailersTitle, ProjectElementManagement.URLTrailers));
+          foreach (SPNavigationNode item in _topNav)
+            item.Update();
+          //WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
+          _cp = "Entities.Anons";
+          Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated finished");
+        }
+      }
+      catch (Exception ex)
+      {
+        throw new ApplicationException(String.Format("FeatureActivated exception at {0}: {1}", _cp, ex.Message));
       }
     }
     /// <summary>
@@ -75,50 +88,65 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         WebPartPages.ProjectElementManagement.RemovePages(_edc, _root);
         RemoveNavigationEntries(_root);
         DeleteWebParts(_edc, _root);
+        Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Reverting to default master page.");
+        RevertMasterPage(_site);
         Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Feature Deactivation finished.");
       }
-      RevertMasterPage(_site);
     }
     #endregion
 
     #region private
     private void ReplaceMasterMage(SPSite _siteCollection)
     {
-      SPWeb topLevelSite = _siteCollection.RootWeb;
-      // calculate relative path to site from Web Application root
-      string WebAppRelativePath = topLevelSite.ServerRelativeUrl;
-      if (!WebAppRelativePath.EndsWith("/"))
+      try
       {
-        WebAppRelativePath += "/";
+        SPWeb topLevelSite = _siteCollection.RootWeb;
+        // calculate relative path to site from Web Application root
+        string WebAppRelativePath = topLevelSite.ServerRelativeUrl;
+        if (!WebAppRelativePath.EndsWith("/"))
+        {
+          WebAppRelativePath += "/";
+        }
+        // enumerate through each site and apply branding
+        foreach (SPWeb site in _siteCollection.AllWebs)
+        {
+          site.MasterUrl = WebAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
+          site.CustomMasterUrl = WebAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
+          //site.AlternateCssUrl = WebAppRelativePath + "Style%20Library/Branding101/Styles.css";
+          //site.SiteLogoUrl = WebAppRelativePath + "Style%20Library/Branding101/Images/Logo.gif";
+          site.UIVersion = 4;
+          site.Update();
+        }
       }
-      // enumerate through each site and apply branding
-      foreach (SPWeb site in _siteCollection.AllWebs)
+      catch (Exception ex)
       {
-        site.MasterUrl = WebAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
-        site.CustomMasterUrl = WebAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
-        //site.AlternateCssUrl = WebAppRelativePath + "Style%20Library/Branding101/Styles.css";
-        //site.SiteLogoUrl = WebAppRelativePath + "Style%20Library/Branding101/Images/Logo.gif";
-        site.UIVersion = 4;
-        site.Update();
+        throw new ApplicationException(String.Format("ReplaceMasterMage exception: {0}", ex.Message));
       }
     }
     private void RevertMasterPage(SPSite siteCollection)
     {
-      SPWeb topLevelSite = siteCollection.RootWeb;
-      // calculate relative path of site from Web Application root
-      string WebAppRelativePath = topLevelSite.ServerRelativeUrl;
-      if (!WebAppRelativePath.EndsWith("/"))
+      try
       {
-        WebAppRelativePath += "/";
+        SPWeb topLevelSite = siteCollection.RootWeb;
+        // calculate relative path of site from Web Application root
+        string WebAppRelativePath = topLevelSite.ServerRelativeUrl;
+        if (!WebAppRelativePath.EndsWith("/"))
+        {
+          WebAppRelativePath += "/";
+        }
+        // enumerate through each site and remove custom branding
+        foreach (SPWeb site in siteCollection.AllWebs)
+        {
+          site.MasterUrl = WebAppRelativePath + "_catalogs/masterpage/v4.master";
+          site.CustomMasterUrl = WebAppRelativePath + "_catalogs/masterpage/v4.master";
+          //site.AlternateCssUrl = "";
+          //site.SiteLogoUrl = "";
+          site.Update();
+        }
       }
-      // enumerate through each site and remove custom branding
-      foreach (SPWeb site in siteCollection.AllWebs)
+      catch (Exception ex)
       {
-        site.MasterUrl = WebAppRelativePath + "_catalogs/masterpage/v4.master";
-        site.CustomMasterUrl = WebAppRelativePath + "_catalogs/masterpage/v4.master";
-        //site.AlternateCssUrl = "";
-        //site.SiteLogoUrl = "";
-        site.Update();
+        throw new ApplicationException(String.Format("RevertMasterPage exception: {0}", ex.Message));
       }
     }
     private static void AddDocumentTemplates(SPWeb _root, string templateUrl, string _strListName)
