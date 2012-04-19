@@ -1,5 +1,6 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
+
 namespace CAS.SmartFactory.Shepherd.SendNotification
 {
   internal static class CommonDefinition
@@ -19,4 +20,5 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     internal const string DefaultCurrency = "USD";
   }
 }
+
 <#@ include file = "Model.T4" #>
