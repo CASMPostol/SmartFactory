@@ -38,10 +38,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
           AddDocumentTemplates(_root, GlobalDefinitions.FreightPurchaseOrderTemplate, GlobalDefinitions.FreightPOLibraryTitle);
           AddDocumentTemplates(_root, GlobalDefinitions.EscortPOLibraryTemplate, GlobalDefinitions.EscortPOLibraryTitle);
           AddDocumentTemplates(_root, GlobalDefinitions.SealProtocolLibraryTemplate, GlobalDefinitions.SealProtocolLibraryTitle);
-          _cp = "_root.Title";
-          _root.Title = "Shepherd Home";
-          _root.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
-          _root.Update();
           // create dropdown menu for custom site pages
           Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
           _cp = "SPNavigationNodeCollection";
@@ -100,22 +96,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
     {
       try
       {
-        SPWeb topLevelSite = _siteCollection.RootWeb;
+        SPWeb _rootWeb = _siteCollection.RootWeb;
+        //_root.Update();
         // calculate relative path to site from Web Application root
-        string WebAppRelativePath = topLevelSite.ServerRelativeUrl;
-        if (!WebAppRelativePath.EndsWith("/"))
-        {
-          WebAppRelativePath += "/";
-        }
+        string _webAppRelativePath = _rootWeb.ServerRelativeUrl;
+        if (!_webAppRelativePath.EndsWith("/"))
+          _webAppRelativePath += "/";
         // enumerate through each site and apply branding
-        foreach (SPWeb site in _siteCollection.AllWebs)
+        foreach (SPWeb _webx in _siteCollection.AllWebs)
         {
-          site.MasterUrl = WebAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
-          site.CustomMasterUrl = WebAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
+          _webx.MasterUrl = _webAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
+          _webx.CustomMasterUrl = _webAppRelativePath + "_catalogs/masterpage/" + GlobalDefinitions.MasterPage;
           //site.AlternateCssUrl = WebAppRelativePath + "Style%20Library/Branding101/Styles.css";
           //site.SiteLogoUrl = WebAppRelativePath + "Style%20Library/Branding101/Images/Logo.gif";
-          site.UIVersion = 4;
-          site.Update();
+          _webx.Title = "Shepherd Home";
+          _webx.SiteLogoUrl = @"_layouts/images/ShepherdDashboards/Shepherd_50x50.png";
+          _webx.UIVersion = 4;
+          _webx.Update();
         }
       }
       catch (Exception ex)
