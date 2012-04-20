@@ -33,12 +33,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
           Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated strating");
           _cp = "ReplaceMasterMage";
           ReplaceMasterMage(site);
-          Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "The master page has been replaced.");
-          _cp = "AddDocumentTemplates";
-          AddDocumentTemplates(_root, GlobalDefinitions.FreightPurchaseOrderTemplate, GlobalDefinitions.FreightPOLibraryTitle);
-          AddDocumentTemplates(_root, GlobalDefinitions.EscortPOLibraryTemplate, GlobalDefinitions.EscortPOLibraryTitle);
-          AddDocumentTemplates(_root, GlobalDefinitions.SealProtocolLibraryTemplate, GlobalDefinitions.SealProtocolLibraryTitle);
-          // create dropdown menu for custom site pages
           Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
           _cp = "SPNavigationNodeCollection";
           SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
@@ -81,8 +75,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
       using (Entities.EntitiesDataContext _edc = new Entities.EntitiesDataContext(_root.Url))
       {
         Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Feature Deactivation starting.");
+        Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Removing pages.");
         WebPartPages.ProjectElementManagement.RemovePages(_edc, _root);
+        Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Removing Navigation Entries.");
         RemoveNavigationEntries(_root);
+        Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Starting deletion of web parts.");
         DeleteWebParts(_edc, _root);
         Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Reverting to default master page.");
         RevertMasterPage(_site);
