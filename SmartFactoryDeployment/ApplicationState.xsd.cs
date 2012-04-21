@@ -6,6 +6,7 @@ using CAS.SmartFactory.Deployment.Properties;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.SharePoint;
+using CAS.SmartFactory.Deployment.Controls;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -35,13 +36,15 @@ namespace CAS.SmartFactory.Deployment
       }
       catch (Exception ex)
       {
-        throw new ApplicationException(string.Format(Resources.SaveInstallationStateDataFailure, ex.Message));
+        throw new ApplicationException(string.Format(Resources.ConfigurationSaveInstallationStateDataFailure, ex.Message));
       }
     }
-    internal static InstallationStateData Read(System.IO.FileInfo _file)
+    internal static InstallationStateData Read()
     {
       try
       {
+        FileInfo _file = Extenshions.GetFileInfo();
+        Tracing.TraceEvent.TraceVerbose(49, "InstallationStateData.Read", String.Format("Loading the application installation state from the file at: {0}", _file.FullName));
         using (Stream _strm = _file.OpenRead())
         {
           XmlSerializer _srlzr = new XmlSerializer(typeof(InstallationStateData));
@@ -50,7 +53,9 @@ namespace CAS.SmartFactory.Deployment
       }
       catch (Exception ex)
       {
-        throw new ApplicationException(string.Format(Resources.ReadInstallationStateDataFailure, ex.Message));
+        string _msg = string.Format(Resources.ConfigurationReadInstallationStateDataFailure, ex.Message);
+        Tracing.TraceEvent.TraceError(56, "InstallationStateData.Read", ex.Message);
+        throw new ApplicationException(_msg);
       }
     }
     /// <summary>

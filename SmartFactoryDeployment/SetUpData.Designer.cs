@@ -30,7 +30,7 @@
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel1;
       this.m_OwnerLoginTextBox = new System.Windows.Forms.TextBox();
       this.m_ApplicationURLTextBox = new System.Windows.Forms.TextBox();
-      this.m_SiteUrlTextBox = new System.Windows.Forms.TextBox();
+      this.m_SiteCollectionUrlTextBox = new System.Windows.Forms.TextBox();
       this.m_OwnerEmailLabel = new System.Windows.Forms.Label();
       this.m_OwnerEmailTextBox = new System.Windows.Forms.TextBox();
       this.m_ValidationPropertyGrid = new System.Windows.Forms.PropertyGrid();
@@ -57,6 +57,7 @@
       this.m_PreviousButton = new System.Windows.Forms.Button();
       this.m_NextButton = new System.Windows.Forms.Button();
       this.m_CancelButton = new System.Windows.Forms.Button();
+      this.m_UninstallButton = new System.Windows.Forms.Button();
       this.m_TtoolTip = new System.Windows.Forms.ToolTip(this.components);
       this.m_OwnerEmailErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
       this.m_WebApplicationURLErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
@@ -101,11 +102,11 @@
       m_ApplicationSetupTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       m_ApplicationSetupTableLayoutPanel.Controls.Add(m_ApplicationURL, 0, 0);
       m_ApplicationSetupTableLayoutPanel.Controls.Add(m_OwnerEmailabel, 0, 2);
-      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_OwnerLoginTextBox, 1, 2);
-      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_ApplicationURLTextBox, 1, 0);
-      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_SiteUrlTextBox, 1, 1);
       m_ApplicationSetupTableLayoutPanel.Controls.Add(m_SiteURLLabel, 0, 1);
       m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_OwnerEmailLabel, 0, 3);
+      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_ApplicationURLTextBox, 1, 0);
+      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_SiteCollectionUrlTextBox, 1, 1);
+      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_OwnerLoginTextBox, 1, 2);
       m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_OwnerEmailTextBox, 1, 3);
       m_ApplicationSetupTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       m_ApplicationSetupTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
@@ -164,15 +165,15 @@
       this.m_ApplicationURLTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.m_ApplicationURLTextBox_Validating);
       this.m_ApplicationURLTextBox.Validated += new System.EventHandler(this.m_ApplicationURLTextBox_Validated);
       // 
-      // m_SiteUrlTextBox
+      // m_SiteCollectionUrlTextBox
       // 
-      this.m_SiteUrlTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_SiteUrlTextBox.Location = new System.Drawing.Point(145, 31);
-      this.m_SiteUrlTextBox.Name = "m_SiteUrlTextBox";
-      this.m_SiteUrlTextBox.Size = new System.Drawing.Size(429, 22);
-      this.m_SiteUrlTextBox.TabIndex = 6;
-      this.m_SiteUrlTextBox.Text = "sites/sf";
-      this.m_TtoolTip.SetToolTip(this.m_SiteUrlTextBox, resources.GetString("m_SiteUrlTextBox.ToolTip"));
+      this.m_SiteCollectionUrlTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.m_SiteCollectionUrlTextBox.Location = new System.Drawing.Point(145, 31);
+      this.m_SiteCollectionUrlTextBox.Name = "m_SiteCollectionUrlTextBox";
+      this.m_SiteCollectionUrlTextBox.Size = new System.Drawing.Size(429, 22);
+      this.m_SiteCollectionUrlTextBox.TabIndex = 6;
+      this.m_SiteCollectionUrlTextBox.Text = "sites/sf";
+      this.m_TtoolTip.SetToolTip(this.m_SiteCollectionUrlTextBox, resources.GetString("m_SiteCollectionUrlTextBox.ToolTip"));
       // 
       // m_SiteURLLabel
       // 
@@ -402,7 +403,8 @@
       m_tableLayoutPanel1.Controls.Add(this.m_ContentTabControl, 0, 0);
       m_tableLayoutPanel1.Controls.Add(this.m_PreviousButton, 0, 1);
       m_tableLayoutPanel1.Controls.Add(this.m_NextButton, 1, 1);
-      m_tableLayoutPanel1.Controls.Add(this.m_CancelButton, 2, 1);
+      m_tableLayoutPanel1.Controls.Add(this.m_CancelButton, 3, 1);
+      m_tableLayoutPanel1.Controls.Add(this.m_UninstallButton, 2, 1);
       m_tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       m_tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       m_tableLayoutPanel1.Name = "m_tableLayoutPanel1";
@@ -568,7 +570,7 @@
       // 
       this.m_CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.m_CancelButton.CausesValidation = false;
-      this.m_CancelButton.Location = new System.Drawing.Point(215, 603);
+      this.m_CancelButton.Location = new System.Drawing.Point(321, 603);
       this.m_CancelButton.MaximumSize = new System.Drawing.Size(0, 30);
       this.m_CancelButton.MinimumSize = new System.Drawing.Size(100, 30);
       this.m_CancelButton.Name = "m_CancelButton";
@@ -577,6 +579,19 @@
       this.m_CancelButton.Text = "CANCEL";
       this.m_CancelButton.UseVisualStyleBackColor = true;
       this.m_CancelButton.Click += new System.EventHandler(this.m_CancelButton_Click);
+      // 
+      // m_UninstallButton
+      // 
+      this.m_UninstallButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+      this.m_UninstallButton.Location = new System.Drawing.Point(215, 603);
+      this.m_UninstallButton.MaximumSize = new System.Drawing.Size(0, 30);
+      this.m_UninstallButton.MinimumSize = new System.Drawing.Size(100, 30);
+      this.m_UninstallButton.Name = "m_UninstallButton";
+      this.m_UninstallButton.Size = new System.Drawing.Size(100, 30);
+      this.m_UninstallButton.TabIndex = 8;
+      this.m_UninstallButton.Text = "Uninstall";
+      this.m_UninstallButton.UseVisualStyleBackColor = true;
+      this.m_UninstallButton.Click += new System.EventHandler(this.m_UninstallButton_Click);
       // 
       // m_TtoolTip
       // 
@@ -641,7 +656,7 @@
     private System.Windows.Forms.Button m_CancelButton;
     private System.Windows.Forms.ToolTip m_TtoolTip;
     private System.Windows.Forms.TextBox m_OwnerLoginTextBox;
-    private System.Windows.Forms.TextBox m_SiteUrlTextBox;
+    private System.Windows.Forms.TextBox m_SiteCollectionUrlTextBox;
     private System.Windows.Forms.Label m_OwnerEmailLabel;
     private System.Windows.Forms.ErrorProvider m_OwnerEmailErrorProvider;
     private System.Windows.Forms.TextBox m_OwnerEmailTextBox;
@@ -669,6 +684,7 @@
     private System.Windows.Forms.TabPage m_UninstallPanel;
     private Uninstall m_UninstallUserControl;
     private Controls.Tracing m_trace;
+    private System.Windows.Forms.Button m_UninstallButton;
 
   }
 }

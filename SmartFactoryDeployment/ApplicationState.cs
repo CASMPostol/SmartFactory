@@ -36,6 +36,10 @@ namespace CAS.SmartFactory.Deployment {
         
         private Solution[] solutionsField;
         
+        public InstallationStateData() {
+            this.siteCollectionCreatedField = false;
+        }
+        
         /// <uwagi/>
         public string OwnerLogin {
             get {
@@ -120,10 +124,7 @@ namespace CAS.SmartFactory.Deployment {
         private int priorityField;
         
         private string solutionIDField;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Solution"/> class.
-        /// </summary>
+        
         public Solution() {
             this.activatedField = false;
             this.deployedField = false;

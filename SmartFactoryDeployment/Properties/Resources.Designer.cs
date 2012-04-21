@@ -142,6 +142,24 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot read the installation state data. The operation finished with the error: {0}.
+        /// </summary>
+        internal static string ConfigurationReadInstallationStateDataFailure {
+            get {
+                return ResourceManager.GetString("ConfigurationReadInstallationStateDataFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot save the installation state data. The operation finished with the error: {0}.
+        /// </summary>
+        internal static string ConfigurationSaveInstallationStateDataFailure {
+            get {
+                return ResourceManager.GetString("ConfigurationSaveInstallationStateDataFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create site collection failed with error: {0}..
         /// </summary>
         internal static string CreateSiteCollectionFailed {
@@ -183,6 +201,15 @@ namespace CAS.SmartFactory.Deployment.Properties {
         internal static string DeplymentTimeout {
             get {
                 return ResourceManager.GetString("DeplymentTimeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Got access to the local server farm. Name ={0}, DisplayName={1}, Status={2}..
+        /// </summary>
+        internal static string FarmGotAccess {
+            get {
+                return ResourceManager.GetString("FarmGotAccess", resourceCulture);
             }
         }
         
@@ -255,15 +282,6 @@ namespace CAS.SmartFactory.Deployment.Properties {
         internal static string GetWebApplicationFfailed {
             get {
                 return ResourceManager.GetString("GetWebApplicationFfailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Got access to the local server farm. Name ={0}, DisplayName={1}, Status={2}..
-        /// </summary>
-        internal static string GotAccess2Farm {
-            get {
-                return ResourceManager.GetString("GotAccess2Farm", resourceCulture);
             }
         }
         
@@ -350,20 +368,20 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verify.
+        /// </summary>
+        internal static string NextButtonTextVerify {
+            get {
+                return ResourceManager.GetString("NextButtonTextVerify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;null reference&gt;.
         /// </summary>
         internal static string NullReference {
             get {
                 return ResourceManager.GetString("NullReference", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot read the installation state data. The operation finished with the error: {0}.
-        /// </summary>
-        internal static string ReadInstallationStateDataFailure {
-            get {
-                return ResourceManager.GetString("ReadInstallationStateDataFailure", resourceCulture);
             }
         }
         
@@ -382,15 +400,6 @@ namespace CAS.SmartFactory.Deployment.Properties {
         internal static string RetrackCaption {
             get {
                 return ResourceManager.GetString("RetrackCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot save the installation state data. The operation finished with the error: {0}.
-        /// </summary>
-        internal static string SaveInstallationStateDataFailure {
-            get {
-                return ResourceManager.GetString("SaveInstallationStateDataFailure", resourceCulture);
             }
         }
         

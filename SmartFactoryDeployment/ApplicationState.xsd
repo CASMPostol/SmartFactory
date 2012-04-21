@@ -6,7 +6,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="OwnerLogin" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="OwnerEmail" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="SiteCollectionURL" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="SiteCollectionCreated" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SiteCollectionCreated" default="false" type="xs:boolean" />
       <xs:element minOccurs="0" maxOccurs="1" name="XmlWebApplicationURL" type="xs:anyURI" />
       <xs:element minOccurs="0" maxOccurs="1" name="Solutions" type="tns:ArrayOfSolution" />
     </xs:sequence>

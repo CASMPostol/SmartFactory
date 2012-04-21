@@ -19,12 +19,7 @@ namespace CAS.SmartFactory.Deployment
     public Uninstall()
     {
       InitializeComponent();
-      if (UninstallUserControl != null)
-        new ApplicationException("Uninstall is singleton, but new object is created");
-      UninstallUserControl = this;
     }
-    internal static Uninstall UninstallUserControl { get; private set; }
-
     internal void Uninstallation(InstallationStateData m_ApplicationState)
     {
       const string _src = "Uninstall";
@@ -36,7 +31,7 @@ namespace CAS.SmartFactory.Deployment
         string _msg = string.Empty;
         if (FarmHelpers.Farm != null)
         {
-          _msg = String.Format(Resources.GotAccess2Farm, FarmHelpers.Farm.Name, FarmHelpers.Farm.DisplayName, FarmHelpers.Farm.Status);
+          _msg = String.Format(Resources.FarmGotAccess, FarmHelpers.Farm.Name, FarmHelpers.Farm.DisplayName, FarmHelpers.Farm.Status);
           m_UninstallListBox.AddMessage(_msg);
         }
         else
