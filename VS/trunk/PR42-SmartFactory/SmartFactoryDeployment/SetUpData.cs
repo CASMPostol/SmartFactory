@@ -24,8 +24,8 @@ namespace CAS.SmartFactory.Deployment
     /// </summary>
     public SetUpData()
     {
-      m_trace.Trace.TraceVerbose(26, "SetUpData", "Starting the application");
       InitializeComponent();
+      m_trace.Trace.TraceVerbose(26, "SetUpData", "Starting the application");
       Manual = Properties.Settings.Default.ManualMode;
     }
     internal bool Manual { get; set; }
@@ -37,10 +37,10 @@ namespace CAS.SmartFactory.Deployment
     /// </summary>
     private enum ProcessState
     {
-      ApplicationSetupDataDialog,
+      SetupDataDialog,
       ManualSelection,
-      InstalationDataConfirmation,
-      ApplicationInstalation,
+      Validation,
+      Installation,
       Finisched,
       Uninstall
     }
@@ -49,7 +49,7 @@ namespace CAS.SmartFactory.Deployment
     private InstallationStateData m_ApplicationState;
     private enum LocalEvent
     {
-      Previous, Next, Cancel, Exception, EnterState
+      Previous, Next, Cancel, Exception, EnterState, Uninstall
     }
     private class StateMachineEvenArgs : EventArgs
     {
@@ -89,16 +89,16 @@ namespace CAS.SmartFactory.Deployment
           m_ContentTabControl.TabPages.Remove(_page);
         switch (value)
         {
-          case ProcessState.ApplicationSetupDataDialog:
+          case ProcessState.SetupDataDialog:
             m_ContentTabControl.TabPages.Add(m_ApplicationSetupDataDialogPanel);
             break;
           case ProcessState.ManualSelection:
             m_ContentTabControl.TabPages.Add(m_ManualSelectionPanel);
             break;
-          case ProcessState.InstalationDataConfirmation:
+          case ProcessState.Validation:
             m_ContentTabControl.TabPages.Add(m_ValidationPanel);
             break;
-          case ProcessState.ApplicationInstalation:
+          case ProcessState.Installation:
             m_ContentTabControl.TabPages.Add(m_ApplicationInstalationPanel);
             break;
           case ProcessState.Finisched:
@@ -126,10 +126,13 @@ namespace CAS.SmartFactory.Deployment
           switch (_event.Event)
           {
             case LocalEvent.Previous:
-              State = ProcessState.ApplicationSetupDataDialog;
+              State = ProcessState.SetupDataDialog;
               break;
             case LocalEvent.Next:
               ExitlInstallation();
+              break;
+            case LocalEvent.Uninstall:
+              StateError();
               break;
             case LocalEvent.Cancel:
               StateError();
@@ -153,15 +156,23 @@ namespace CAS.SmartFactory.Deployment
           }
           break;
           #endregion
-        case ProcessState.ApplicationSetupDataDialog:
-          #region ApplicationSetupDataDialog
+        case ProcessState.SetupDataDialog:
+          #region SetupDataDialog
           switch (_event.Event)
           {
             case LocalEvent.Previous:
               StateError();
               break;
             case LocalEvent.Next:
-              State = ProcessState.InstalationDataConfirmation;
+              //TODO add validation to:
+              m_ApplicationState.GetUri(m_ApplicationURLTextBox.Text);
+              m_ApplicationState.GetSiteCollectionURL(m_SiteCollectionUrlTextBox.Text);
+              m_ApplicationState.GetOwnerLogin(m_OwnerLoginTextBox.Text);
+              m_ApplicationState.GetOwnerEmail(m_OwnerEmailTextBox.Text);
+              State = ProcessState.Validation;
+              break;
+            case LocalEvent.Uninstall:
+              StateError();
               break;
             case LocalEvent.Cancel:
               CancelInstallation();
@@ -169,6 +180,7 @@ namespace CAS.SmartFactory.Deployment
             case LocalEvent.Exception:
               break;
             case LocalEvent.EnterState:
+              m_UninstallButton.Visible = false;
               m_PreviousButton.Visible = false;
               m_NextButton.Enabled = true;
               m_NextButton.Text = Resources.NextButtonTextNext;
@@ -180,18 +192,21 @@ namespace CAS.SmartFactory.Deployment
           }
           break;
           #endregion
-        case ProcessState.InstalationDataConfirmation:
-          #region InstalationDataConfirmation
+        case ProcessState.Validation:
+          #region Validation
           switch (_event.Event)
           {
             case LocalEvent.Previous:
-              State = ProcessState.ApplicationSetupDataDialog;
+              State = ProcessState.SetupDataDialog;
               break;
             case LocalEvent.Next:
               if (Manual)
                 State = ProcessState.ManualSelection;
               else
-                State = ProcessState.ApplicationInstalation;
+                State = ProcessState.Installation;
+              break;
+            case LocalEvent.Uninstall:
+              State = ProcessState.Uninstall;
               break;
             case LocalEvent.Cancel:
               CancelInstallation();
@@ -200,29 +215,29 @@ namespace CAS.SmartFactory.Deployment
               break;
             case LocalEvent.EnterState:
               m_ValidationListBox.Items.Clear();
-              m_ApplicationState = new InstallationStateData();
               m_ValidationPropertyGrid.SelectedObject = m_ApplicationState;
               m_ValidationPropertyGrid.Text = Resources.InstallationProperties;
+              m_UninstallButton.Visible = true;
               m_PreviousButton.Visible = true;
-              m_NextButton.Visible = true;
-              m_NextButton.Enabled = false;
-              m_NextButton.Text = Resources.NextButtonTextInstall;
+              m_NextButton.Visible = false;
               m_CancelButton.Visible = true;
-              if (!CheckPrerequisites())
+              if (!VerifyPrerequisites())
               {
-                m_ApplicationState = null;
                 MessageBox.Show(Resources.CheckIinProcessFfailed, Resources.CheckIinProcessFfailedCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                m_NextButton.Text = Resources.NextButtonTextVerify;
               }
               else
-                m_NextButton.Enabled = true;
+                m_NextButton.Text = Resources.NextButtonTextInstall;
+              m_NextButton.Visible = true;
+              m_NextButton.Enabled = true;
               break;
             default:
               break;
           }
           break;
           #endregion
-        case ProcessState.ApplicationInstalation:
-          #region ApplicationInstalation
+        case ProcessState.Installation:
+          #region Installation
           switch (_event.Event)
           {
             case LocalEvent.Previous:
@@ -248,6 +263,7 @@ namespace CAS.SmartFactory.Deployment
               m_NextButton.Enabled = true;
               m_NextButton.Enabled = false;
               m_NextButton.Text = Resources.FinishButtonText;
+              m_UninstallButton.Visible = false;
               m_CancelButton.Visible = false;
               this.Refresh();
               Install();
@@ -273,8 +289,8 @@ namespace CAS.SmartFactory.Deployment
               m_PreviousButton.Visible = false;
               m_NextButton.Enabled = true;
               m_NextButton.Text = Resources.FinishButtonText;
+              m_UninstallButton.Visible = true;
               m_CancelButton.Visible = false;
-              Uninstall.UninstallUserControl.Uninstallation(m_ApplicationState);
               break;
             default:
               break;
@@ -282,22 +298,32 @@ namespace CAS.SmartFactory.Deployment
           break;
           #endregion
         case ProcessState.Uninstall:
+          #region Uninstall
           switch (_event.Event)
           {
             case LocalEvent.Previous:
+              StateError();
               break;
             case LocalEvent.Next:
+              ExitlInstallation();
               break;
             case LocalEvent.Cancel:
               break;
             case LocalEvent.Exception:
               break;
             case LocalEvent.EnterState:
+              m_PreviousButton.Visible = false;
+              m_NextButton.Enabled = true;
+              m_UninstallUserControl.Uninstallation(m_ApplicationState);
+              m_NextButton.Text = Resources.FinishButtonText;
+              m_UninstallButton.Visible = false;
+              m_CancelButton.Visible = false;
               break;
             default:
               break;
           }
           break;
+          #endregion
         default:
           throw new ApplicationException("StateMachine - wrong state");
       }
@@ -307,26 +333,29 @@ namespace CAS.SmartFactory.Deployment
       try
       {
         SPSecurity.RunWithElevatedPrivileges(delegate()
-        {
-          m_ApplicationURLTextBox.Text = Properties.Settings.Default.SiteCollectionURL;
-          m_ApplicationURLTextBox.Text = Uri.UriSchemeHttp + Uri.SchemeDelimiter + SPServer.Local.Address;
-        });
+          {
+            m_ApplicationURLTextBox.Text = Uri.UriSchemeHttp + Uri.SchemeDelimiter + SPServer.Local.Address;
+            m_SiteCollectionUrlTextBox.Text = Uri.UriSchemeHttp + Uri.SchemeDelimiter + Settings.Default.SiteCollectionURL + "." + SPServer.Local.Address;
+          }
+        );
       }
       catch (Exception)
       {
         m_ApplicationURLTextBox.Text = "http://server.domain " + Resources.CannotGetAccessToLocalServer;
+        m_SiteCollectionUrlTextBox.Text = String.Format("http://{0}.server.domain", Settings.Default.SiteCollectionURL);
       }
       try
       {
         WindowsIdentity _id = WindowsIdentity.GetCurrent();
         m_OwnerLoginTextBox.Text = _id.Name;
+        m_OwnerEmailLabel.Text = m_ApplicationState.OwnerEmail;
       }
       catch (Exception)
       {
         m_OwnerLoginTextBox.Text = @"domain\user";
       }
     }
-    private bool CheckPrerequisites()
+    private bool VerifyPrerequisites()
     {
       try
       {
@@ -334,20 +363,12 @@ namespace CAS.SmartFactory.Deployment
         {
           m_ValidationListBox.SelectedValueChanged += new EventHandler(this.m_ListBox_TextChanged);
           m_ValidationListBox.AddMessage(Resources.ValidationProcessStarting);
-          //TODO add validation to:
-          m_ApplicationState.GetUri(m_ApplicationURLTextBox.Text);
-          m_ApplicationState.GetSiteCollectionURL(m_SiteUrlTextBox.Text);
-          m_ApplicationState.GetOwnerLogin(m_OwnerLoginTextBox.Text);
-          m_ApplicationState.GetOwnerEmail(m_OwnerEmailTextBox.Text);
-          //TODO remove at cleanup
-          //m_ApplicationState.FarmFetureId = new Guid(Settings.Default.FarmFeatureGuid);
-          //m_ApplicationState.SiteCollectionFetureId = new Guid(Settings.Default.SiteCollectionFeatureGuid);
           m_ValidationPropertyGrid.Refresh();
           FarmHelpers.GetFarm();
           string _msg = string.Empty;
           if (FarmHelpers.Farm != null)
           {
-            _msg = String.Format(Resources.GotAccess2Farm, FarmHelpers.Farm.Name, FarmHelpers.Farm.DisplayName, FarmHelpers.Farm.Status);
+            _msg = String.Format(Resources.FarmGotAccess, FarmHelpers.Farm.Name, FarmHelpers.Farm.DisplayName, FarmHelpers.Farm.Status);
             m_ValidationListBox.AddMessage(_msg);
           }
           else
@@ -531,8 +552,25 @@ namespace CAS.SmartFactory.Deployment
     /// <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
     protected override void OnLoad(EventArgs e)
     {
-      State = ProcessState.ApplicationSetupDataDialog;
+      GetConfigurationData();
       base.OnLoad(e);
+    }
+    private void GetConfigurationData()
+    {
+      try
+      {
+        m_ApplicationState = InstallationStateData.Read();
+        if (m_ApplicationState.SiteCollectionCreated)
+          State = ProcessState.Validation;
+        else
+          State = ProcessState.SetupDataDialog;
+        StateMachine(new StateMachineEvenArgs(LocalEvent.EnterState));
+      }
+      catch (Exception ex)
+      {
+        string _msg = String.Format(Resources.ConfigurationReadInstallationStateDataFailure, ex.Message);
+        MessageBox.Show(_msg, Resources.RetrackCaption, MessageBoxButtons.OK, MessageBoxIcon.Question);
+      }
     }
     /// <summary>
     /// Raises the <see cref="E:System.Windows.Forms.Form.Closing"/> event.
@@ -609,6 +647,10 @@ namespace CAS.SmartFactory.Deployment
     private void m_NextButton_Click(object sender, EventArgs e)
     {
       StateMachine(new StateMachineEvenArgs(LocalEvent.Next));
+    }
+    private void m_UninstallButton_Click(object sender, EventArgs e)
+    {
+      StateMachine(new StateMachineEvenArgs(LocalEvent.Uninstall));
     }
     private void m_CreateWebCollectionButton_Click(object sender, EventArgs e)
     {

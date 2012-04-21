@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="SiteCollectionURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">sites/shr</Value>
+      <Value Profile="(Default)">shepherd</Value>
     </Setting>
     <Setting Name="ManualMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -13,12 +13,6 @@
     </Setting>
     <Setting Name="SolutionDeploymentTimeOut" Type="System.Int16" Scope="User">
       <Value Profile="(Default)">200</Value>
-    </Setting>
-    <Setting Name="InstallSwitch" Type="System.String" Scope="User">
-      <Value Profile="(Default)">/Install</Value>
-    </Setting>
-    <Setting Name="RetracSwitch" Type="System.String" Scope="User">
-      <Value Profile="(Default)">/Retrack</Value>
     </Setting>
   </Settings>
 </SettingsFile>

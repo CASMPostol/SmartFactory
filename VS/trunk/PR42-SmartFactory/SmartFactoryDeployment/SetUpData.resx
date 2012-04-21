@@ -129,6 +129,15 @@
   <metadata name="m_OwnerEmailabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <metadata name="m_SiteURLLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="m_SiteCollectionUrlTextBox.ToolTip" xml:space="preserve">
+    <value>Smart Factory site collection Url. 
+A string that contains the URL for the site collection. 
+For example, "Site_Name" or "sites/Site_Name".
+It may either be server-relative or absolute for typical sites..</value>
+  </data>
   <data name="m_OwnerLoginTextBox.ToolTip" xml:space="preserve">
     <value>Smart Factory site collection owner login.
 A string that contains the user name of the owner of the site collection.
@@ -136,15 +145,6 @@ For example, Domain\User.
 In Active Directory Domain Services account creation mode, the Pwner Login 
 must contain a value even if the value does not correspond to an actual user name.</value>
   </data>
-  <data name="m_SiteUrlTextBox.ToolTip" xml:space="preserve">
-    <value>Smart Factory site collection Url. 
-A string that contains the URL for the site collection. 
-For example, "Site_Name" or "sites/Site_Name".
-It may either be server-relative or absolute for typical sites..</value>
-  </data>
-  <metadata name="m_SiteURLLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <metadata name="m_label1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>

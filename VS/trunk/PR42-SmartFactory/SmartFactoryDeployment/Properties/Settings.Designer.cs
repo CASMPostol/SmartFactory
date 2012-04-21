@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("sites/shr")]
+        [global::System.Configuration.DefaultSettingValueAttribute("shepherd")]
         public string SiteCollectionURL {
             get {
                 return ((string)(this["SiteCollectionURL"]));
@@ -68,30 +68,6 @@ namespace CAS.SmartFactory.Deployment.Properties {
             }
             set {
                 this["SolutionDeploymentTimeOut"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/Install")]
-        public string InstallSwitch {
-            get {
-                return ((string)(this["InstallSwitch"]));
-            }
-            set {
-                this["InstallSwitch"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/Retrack")]
-        public string RetracSwitch {
-            get {
-                return ((string)(this["RetracSwitch"]));
-            }
-            set {
-                this["RetracSwitch"] = value;
             }
         }
     }
