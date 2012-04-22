@@ -22,30 +22,31 @@ namespace CAS.SmartFactory.Deployment
     internal void Uninstallation(InstallationStateData m_ApplicationState)
     {
       const string _src = "Uninstall";
+      m_StatePropertyGrid.SelectedObject = m_ApplicationState.Wrapper;
       try
       {
-        m_UninstallListBox.SelectedIndexChanged += new EventHandler(m_UninstallListBox_SelectedIndexChanged);
+        m_ProgresslListBox.SelectedIndexChanged += new EventHandler(m_UninstallListBox_SelectedIndexChanged);
         Tracing.TraceEvent.TraceVerbose(33, _src, "Uninstall starting.");
         FarmHelpers.GetFarm();
         string _msg = string.Empty;
         if (FarmHelpers.Farm != null)
         {
           _msg = String.Format(Resources.FarmGotAccess, FarmHelpers.Farm.Name, FarmHelpers.Farm.DisplayName, FarmHelpers.Farm.Status);
-          m_UninstallListBox.AddMessage(_msg);
+          m_ProgresslListBox.AddMessage(_msg);
         }
         else
           throw new ApplicationException(Resources.GettingAccess2LocalFarm);
-        FarmHelpers.GetWebApplication(m_ApplicationState.WebApplicationURL);
+        FarmHelpers.GetWebApplication(m_ApplicationState.WebApplicationUri);
         if (FarmHelpers.WebApplication != null)
         {
           _msg = String.Format(Resources.ApplicationFound, m_ApplicationState.WebApplicationURL, FarmHelpers.WebApplication.Name, FarmHelpers.WebApplication.DisplayName);
-          m_UninstallListBox.AddMessage(_msg);
+          m_ProgresslListBox.AddMessage(_msg);
         }
         else
           throw new ApplicationException(String.Format(Resources.GettingAccess2ApplicationFailed, m_ApplicationState.WebApplicationURL));
-        m_UninstallListBox.AddMessage(String.Format("Trying to get access to the site collection at the Url = {0}", m_ApplicationState.SiteCollectionURL));
+        m_ProgresslListBox.AddMessage(String.Format("Trying to get access to the site collection at the Url = {0}", m_ApplicationState.SiteCollectionURL));
         m_SiteCollectionHelper = new SiteCollectionHelper(FarmHelpers.WebApplication, m_ApplicationState.SiteCollectionURL);
-        m_UninstallListBox.AddMessage(String.Format("The site collection at the Url={0} has been opened.", m_SiteCollectionHelper.SiteCollection.Url));
+        m_ProgresslListBox.AddMessage(String.Format("The site collection at the Url={0} has been opened.", m_SiteCollectionHelper.SiteCollection.Url));
         foreach (Solution _solution in from _sidx in m_ApplicationState.Solutions orderby _sidx.Priority descending select (_sidx))
         {
           if (_solution.Activated)
@@ -53,13 +54,13 @@ namespace CAS.SmartFactory.Deployment
             {
               foreach (var _fix in _solution.Fetures)
               {
-                m_UninstallListBox.AddMessage(String.Format("Deactivating the feature {0}.", _fix.DisplayName));
+                m_ProgresslListBox.AddMessage(String.Format("Deactivating the feature {0}.", _fix.DisplayName));
                 m_SiteCollectionHelper.DeactivateFeature(_fix.FetureGuid);
               }
             }
             catch (Exception ex)
             {
-              m_UninstallListBox.AddMessage(String.Format(Resources.LastOperationFailedWithError, ex.Message));
+              m_ProgresslListBox.AddMessage(String.Format(Resources.LastOperationFailedWithError, ex.Message));
             }
             finally
             {
@@ -67,7 +68,7 @@ namespace CAS.SmartFactory.Deployment
             }
           else
           {
-            m_UninstallListBox.AddMessage(String.Format("Skiped, the solution {0} is not active.", _solution.SolutionID));
+            m_ProgresslListBox.AddMessage(String.Format("Skiped, the solution {0} is not active.", _solution.SolutionID));
           }
           try
           {
@@ -76,20 +77,20 @@ namespace CAS.SmartFactory.Deployment
               case FeatureDefinitionScope.Farm:
                 if (_solution.Deployed)
                 {
-                  m_UninstallListBox.AddMessage(String.Format("Retracing the solution {0}.", _solution.SolutionGuid));
+                  m_ProgresslListBox.AddMessage(String.Format("Retracing the solution {0}.", _solution.SolutionGuid));
                   FarmHelpers.RetrackSolution(_solution.SolutionGuid);
                 }
                 else
-                  m_UninstallListBox.AddMessage(String.Format("Retracing is kiped, the solution {0} is not deployed.", _solution.SolutionGuid));
+                  m_ProgresslListBox.AddMessage(String.Format("Retracing is kiped, the solution {0} is not deployed.", _solution.SolutionGuid));
                 break;
               case FeatureDefinitionScope.Site:
                 if (_solution.Deployed)
                 {
-                  m_UninstallListBox.AddMessage(String.Format("Retracking the solution {0}.", _solution.SolutionGuid));
+                  m_ProgresslListBox.AddMessage(String.Format("Retracking the solution {0}.", _solution.SolutionGuid));
                   m_SiteCollectionHelper.RetracSolution(_solution.SolutionGuid);
                 }
                 else
-                  m_UninstallListBox.AddMessage(String.Format("Retracing is skiped, the solution {0} is not deployed.", _solution.SolutionGuid));
+                  m_ProgresslListBox.AddMessage(String.Format("Retracing is skiped, the solution {0} is not deployed.", _solution.SolutionGuid));
                 break;
               case FeatureDefinitionScope.None:
               default:
@@ -98,7 +99,7 @@ namespace CAS.SmartFactory.Deployment
           }
           catch (Exception ex)
           {
-            m_UninstallListBox.AddMessage(String.Format(Resources.LastOperationFailedWithError, ex.Message));
+            m_ProgresslListBox.AddMessage(String.Format(Resources.LastOperationFailedWithError, ex.Message));
           }
           finally
           {
@@ -108,18 +109,18 @@ namespace CAS.SmartFactory.Deployment
         if (m_ApplicationState.SiteCollectionCreated)
           try
           {
-            m_UninstallListBox.AddMessage(String.Format("Deleting the site collection at Url = {0}.", m_ApplicationState.SiteCollectionURL));
+            m_ProgresslListBox.AddMessage(String.Format("Deleting the site collection at Url = {0}.", m_ApplicationState.SiteCollectionURL));
             SiteCollectionHelper.DeleteSiteCollection(FarmHelpers.WebApplication, m_ApplicationState.SiteCollectionURL);
           }
           catch (Exception ex)
           {
-            m_UninstallListBox.AddMessage(String.Format(Resources.LastOperationFailedWithError, ex.Message));
+            m_ProgresslListBox.AddMessage(String.Format(Resources.LastOperationFailedWithError, ex.Message));
           }
           finally
           {
             m_ApplicationState.SiteCollectionCreated = false;
           }
-        m_UninstallListBox.AddMessage("Uninstall finished.");
+        m_ProgresslListBox.AddMessage("Uninstall finished.");
         m_ApplicationState.Save(Extenshions.GetFileInfo());
       }
       catch (Exception ex)
@@ -131,8 +132,8 @@ namespace CAS.SmartFactory.Deployment
       }
       finally
       {
-        m_UninstallListBox.SelectedIndexChanged -= new EventHandler(m_UninstallListBox_SelectedIndexChanged);
-        m_InstalationStatePropertyGrid.Refresh();
+        m_ProgresslListBox.SelectedIndexChanged -= new EventHandler(m_UninstallListBox_SelectedIndexChanged);
+        m_StatePropertyGrid.Refresh();
       }
     }
     private SiteCollectionHelper m_SiteCollectionHelper;
@@ -162,20 +163,21 @@ namespace CAS.SmartFactory.Deployment
     /// <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
     protected override void OnLoad(EventArgs e)
     {
-      try
-      {
-        //FileInfo _file = Extenshions.GetFileInfo();
-        //m_UninstallListBox.AddMessage(String.Format("Loading the application installation state from the file at: {0}", _file.FullName));
-        //m_InstallationStateData = InstallationStateData.Read(_file);
-        //m_InstalationStatePropertyGrid.SelectedObject = m_InstallationStateData;
-      }
-      catch (Exception ex)
-      {
-        //m_UninstallListBox.AddMessage(Resources.SoftwareIsNotInstalled);
-        //Tracing.TraceEvent.TraceVerbose(162, "OnLoad", ex.Message);
-        //MessageBox.Show(Resources.SoftwareIsNotInstalled, Resources.RetrackCaption, MessageBoxButtons.OK, MessageBoxIcon.Question);
-      }
-      base.OnLoad(e);
+      //TODOD clenup - remove if not needed.
+      //try
+      //{
+      //  //FileInfo _file = Extenshions.GetFileInfo();
+      //  //m_UninstallListBox.AddMessage(String.Format("Loading the application installation state from the file at: {0}", _file.FullName));
+      //  //m_InstallationStateData = InstallationStateData.Read(_file);
+      //  //m_InstalationStatePropertyGrid.SelectedObject = m_InstallationStateData;
+      //}
+      //catch (Exception ex)
+      //{
+      //  //m_UninstallListBox.AddMessage(Resources.SoftwareIsNotInstalled);
+      //  //Tracing.TraceEvent.TraceVerbose(162, "OnLoad", ex.Message);
+      //  //MessageBox.Show(Resources.SoftwareIsNotInstalled, Resources.RetrackCaption, MessageBoxButtons.OK, MessageBoxIcon.Question);
+      //}
+      //base.OnLoad(e);
     }
 
   }

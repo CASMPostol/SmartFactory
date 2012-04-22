@@ -16,27 +16,27 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.m_UninstallListBox = new System.Windows.Forms.ListBox();
+      this.m_ProgresslListBox = new System.Windows.Forms.ListBox();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-      this.m_InstalationStatePropertyGrid = new System.Windows.Forms.PropertyGrid();
+      this.m_StatePropertyGrid = new System.Windows.Forms.PropertyGrid();
       this.tableLayoutPanel1.SuspendLayout();
       this.splitContainer1.Panel1.SuspendLayout();
       this.splitContainer1.Panel2.SuspendLayout();
       this.splitContainer1.SuspendLayout();
       this.SuspendLayout();
       // 
-      // m_UninstallListBox
+      // m_ProgresslListBox
       // 
-      this.m_UninstallListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_UninstallListBox.Enabled = false;
-      this.m_UninstallListBox.FormattingEnabled = true;
-      this.m_UninstallListBox.ItemHeight = 16;
-      this.m_UninstallListBox.Location = new System.Drawing.Point(0, 0);
-      this.m_UninstallListBox.Margin = new System.Windows.Forms.Padding(4);
-      this.m_UninstallListBox.Name = "m_UninstallListBox";
-      this.m_UninstallListBox.Size = new System.Drawing.Size(599, 216);
-      this.m_UninstallListBox.TabIndex = 0;
+      this.m_ProgresslListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.m_ProgresslListBox.Enabled = false;
+      this.m_ProgresslListBox.FormattingEnabled = true;
+      this.m_ProgresslListBox.ItemHeight = 16;
+      this.m_ProgresslListBox.Location = new System.Drawing.Point(0, 0);
+      this.m_ProgresslListBox.Margin = new System.Windows.Forms.Padding(4);
+      this.m_ProgresslListBox.Name = "m_ProgresslListBox";
+      this.m_ProgresslListBox.Size = new System.Drawing.Size(599, 216);
+      this.m_ProgresslListBox.TabIndex = 0;
       // 
       // tableLayoutPanel1
       // 
@@ -66,22 +66,22 @@
       // 
       // splitContainer1.Panel1
       // 
-      this.splitContainer1.Panel1.Controls.Add(this.m_InstalationStatePropertyGrid);
+      this.splitContainer1.Panel1.Controls.Add(this.m_StatePropertyGrid);
       // 
       // splitContainer1.Panel2
       // 
-      this.splitContainer1.Panel2.Controls.Add(this.m_UninstallListBox);
+      this.splitContainer1.Panel2.Controls.Add(this.m_ProgresslListBox);
       this.splitContainer1.Size = new System.Drawing.Size(599, 435);
       this.splitContainer1.SplitterDistance = 215;
       this.splitContainer1.TabIndex = 4;
       // 
-      // m_InstalationStatePropertyGrid
+      // m_StatePropertyGrid
       // 
-      this.m_InstalationStatePropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_InstalationStatePropertyGrid.Location = new System.Drawing.Point(0, 0);
-      this.m_InstalationStatePropertyGrid.Name = "m_InstalationStatePropertyGrid";
-      this.m_InstalationStatePropertyGrid.Size = new System.Drawing.Size(599, 215);
-      this.m_InstalationStatePropertyGrid.TabIndex = 3;
+      this.m_StatePropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.m_StatePropertyGrid.Location = new System.Drawing.Point(0, 0);
+      this.m_StatePropertyGrid.Name = "m_StatePropertyGrid";
+      this.m_StatePropertyGrid.Size = new System.Drawing.Size(599, 215);
+      this.m_StatePropertyGrid.TabIndex = 3;
       // 
       // Uninstall
       // 
@@ -103,10 +103,10 @@
 
     #endregion
 
-    private System.Windows.Forms.ListBox m_UninstallListBox;
+    private System.Windows.Forms.ListBox m_ProgresslListBox;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     private System.Windows.Forms.SplitContainer splitContainer1;
-    private System.Windows.Forms.PropertyGrid m_InstalationStatePropertyGrid;
+    private System.Windows.Forms.PropertyGrid m_StatePropertyGrid;
 
   }
 }
