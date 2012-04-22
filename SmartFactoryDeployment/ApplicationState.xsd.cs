@@ -170,6 +170,9 @@ namespace CAS.SmartFactory.Deployment
     #endregion
 
   }
+  /// <summary>
+  /// This class represents a SharePoint solution
+  /// </summary>
   public partial class Solution
   {
     /// <summary>
@@ -222,6 +225,9 @@ namespace CAS.SmartFactory.Deployment
       return _fi;
     }
   }
+  /// <summary>
+  ///  This class represents a SharePoint feature
+  /// </summary>
   public partial class Feature
   {
     /// <summary>
