@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Windows.Forms;
 using CAS.SmartFactory.Deployment.Controls;
+using CAS.SmartFactory.Deployment.Package;
 using CAS.SmartFactory.Deployment.Properties;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
