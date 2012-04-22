@@ -18,22 +18,15 @@
     {
       this.components = new System.ComponentModel.Container();
       System.Windows.Forms.TableLayoutPanel m_ApplicationSetupTableLayoutPanel;
-      System.Windows.Forms.Label m_ApplicationURL;
-      System.Windows.Forms.Label m_OwnerEmailabel;
-      System.Windows.Forms.Label m_SiteURLLabel;
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetUpData));
       System.Windows.Forms.Label m_label1;
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel2;
       System.Windows.Forms.SplitContainer m_SplitContainer;
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel3;
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel4;
       System.Windows.Forms.TableLayoutPanel m_tableLayoutPanel1;
-      this.m_OwnerEmailLabel = new System.Windows.Forms.Label();
-      this.m_ApplicationURLTextBox = new System.Windows.Forms.TextBox();
-      this.m_SiteCollectionUrlTextBox = new System.Windows.Forms.TextBox();
-      this.m_OwnerLoginTextBox = new System.Windows.Forms.TextBox();
-      this.m_OwnerEmailTextBox = new System.Windows.Forms.TextBox();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetUpData));
       this.m_SetupPropertyGrid = new System.Windows.Forms.PropertyGrid();
+      this.label1 = new System.Windows.Forms.Label();
       this.m_ValidationPropertyGrid = new System.Windows.Forms.PropertyGrid();
       this.m_ValidationListBox = new System.Windows.Forms.ListBox();
       this.m_InstallationInprogressLabel = new System.Windows.Forms.Label();
@@ -64,9 +57,6 @@
       this.m_WebApplicationURLErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
       this.m_trace = new CAS.SmartFactory.Deployment.Controls.Tracing(this.components);
       m_ApplicationSetupTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-      m_ApplicationURL = new System.Windows.Forms.Label();
-      m_OwnerEmailabel = new System.Windows.Forms.Label();
-      m_SiteURLLabel = new System.Windows.Forms.Label();
       m_label1 = new System.Windows.Forms.Label();
       m_tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       m_SplitContainer = new System.Windows.Forms.SplitContainer();
@@ -97,19 +87,11 @@
       // 
       m_ApplicationSetupTableLayoutPanel.AutoSize = true;
       m_ApplicationSetupTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-      m_ApplicationSetupTableLayoutPanel.ColumnCount = 3;
+      m_ApplicationSetupTableLayoutPanel.ColumnCount = 2;
       m_ApplicationSetupTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
       m_ApplicationSetupTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      m_ApplicationSetupTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      m_ApplicationSetupTableLayoutPanel.Controls.Add(m_ApplicationURL, 0, 0);
-      m_ApplicationSetupTableLayoutPanel.Controls.Add(m_OwnerEmailabel, 0, 2);
-      m_ApplicationSetupTableLayoutPanel.Controls.Add(m_SiteURLLabel, 0, 1);
-      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_OwnerEmailLabel, 0, 3);
-      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_ApplicationURLTextBox, 1, 0);
-      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_SiteCollectionUrlTextBox, 1, 1);
-      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_OwnerLoginTextBox, 1, 2);
-      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_OwnerEmailTextBox, 1, 3);
       m_ApplicationSetupTableLayoutPanel.Controls.Add(this.m_SetupPropertyGrid, 0, 4);
+      m_ApplicationSetupTableLayoutPanel.Controls.Add(this.label1, 0, 3);
       m_ApplicationSetupTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
       m_ApplicationSetupTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
       m_ApplicationSetupTableLayoutPanel.Name = "m_ApplicationSetupTableLayoutPanel";
@@ -122,106 +104,24 @@
       m_ApplicationSetupTableLayoutPanel.Size = new System.Drawing.Size(597, 559);
       m_ApplicationSetupTableLayoutPanel.TabIndex = 0;
       // 
-      // m_ApplicationURL
-      // 
-      m_ApplicationURL.AutoSize = true;
-      m_ApplicationURL.Dock = System.Windows.Forms.DockStyle.Fill;
-      m_ApplicationURL.Location = new System.Drawing.Point(3, 0);
-      m_ApplicationURL.Name = "m_ApplicationURL";
-      m_ApplicationURL.Size = new System.Drawing.Size(136, 28);
-      m_ApplicationURL.TabIndex = 0;
-      m_ApplicationURL.Text = "Web application URL";
-      m_ApplicationURL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.m_TtoolTip.SetToolTip(m_ApplicationURL, "\r\n\r\n");
-      // 
-      // m_OwnerEmailabel
-      // 
-      m_OwnerEmailabel.AutoSize = true;
-      m_OwnerEmailabel.Dock = System.Windows.Forms.DockStyle.Fill;
-      m_OwnerEmailabel.Location = new System.Drawing.Point(3, 56);
-      m_OwnerEmailabel.Name = "m_OwnerEmailabel";
-      m_OwnerEmailabel.Size = new System.Drawing.Size(136, 28);
-      m_OwnerEmailabel.TabIndex = 4;
-      m_OwnerEmailabel.Text = "Site owner login";
-      m_OwnerEmailabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // m_SiteURLLabel
-      // 
-      m_SiteURLLabel.AutoSize = true;
-      m_SiteURLLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-      m_SiteURLLabel.Location = new System.Drawing.Point(3, 28);
-      m_SiteURLLabel.Name = "m_SiteURLLabel";
-      m_SiteURLLabel.Size = new System.Drawing.Size(136, 28);
-      m_SiteURLLabel.TabIndex = 7;
-      m_SiteURLLabel.Text = "Site Url";
-      m_SiteURLLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // m_OwnerEmailLabel
-      // 
-      this.m_OwnerEmailLabel.AutoSize = true;
-      this.m_OwnerEmailLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_OwnerEmailLabel.Location = new System.Drawing.Point(3, 84);
-      this.m_OwnerEmailLabel.Name = "m_OwnerEmailLabel";
-      this.m_OwnerEmailLabel.Size = new System.Drawing.Size(136, 20);
-      this.m_OwnerEmailLabel.TabIndex = 8;
-      this.m_OwnerEmailLabel.Text = "Site owner email";
-      this.m_OwnerEmailLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // m_ApplicationURLTextBox
-      // 
-      this.m_ApplicationURLTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_ApplicationURLTextBox.Location = new System.Drawing.Point(145, 3);
-      this.m_ApplicationURLTextBox.Name = "m_ApplicationURLTextBox";
-      this.m_ApplicationURLTextBox.Size = new System.Drawing.Size(429, 22);
-      this.m_ApplicationURLTextBox.TabIndex = 1;
-      this.m_ApplicationURLTextBox.Text = "http://computer.domain";
-      this.m_TtoolTip.SetToolTip(this.m_ApplicationURLTextBox, "A string that specifies the URL of the Web application. \r\nFor example \'http://com" +
-        "puter.domain:Port\'.\r\n");
-      this.m_ApplicationURLTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.m_ApplicationURLTextBox_Validating);
-      this.m_ApplicationURLTextBox.Validated += new System.EventHandler(this.m_ApplicationURLTextBox_Validated);
-      // 
-      // m_SiteCollectionUrlTextBox
-      // 
-      this.m_SiteCollectionUrlTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_SiteCollectionUrlTextBox.Location = new System.Drawing.Point(145, 31);
-      this.m_SiteCollectionUrlTextBox.Name = "m_SiteCollectionUrlTextBox";
-      this.m_SiteCollectionUrlTextBox.Size = new System.Drawing.Size(429, 22);
-      this.m_SiteCollectionUrlTextBox.TabIndex = 6;
-      this.m_SiteCollectionUrlTextBox.Text = "sites/sf";
-      this.m_TtoolTip.SetToolTip(this.m_SiteCollectionUrlTextBox, resources.GetString("m_SiteCollectionUrlTextBox.ToolTip"));
-      // 
-      // m_OwnerLoginTextBox
-      // 
-      this.m_OwnerLoginTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_OwnerLoginTextBox.Location = new System.Drawing.Point(145, 59);
-      this.m_OwnerLoginTextBox.Name = "m_OwnerLoginTextBox";
-      this.m_OwnerLoginTextBox.Size = new System.Drawing.Size(429, 22);
-      this.m_OwnerLoginTextBox.TabIndex = 5;
-      this.m_TtoolTip.SetToolTip(this.m_OwnerLoginTextBox, resources.GetString("m_OwnerLoginTextBox.ToolTip"));
-      // 
-      // m_OwnerEmailTextBox
-      // 
-      this.m_OwnerEmailTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_OwnerEmailTextBox.Location = new System.Drawing.Point(145, 87);
-      this.m_OwnerEmailTextBox.Name = "m_OwnerEmailTextBox";
-      this.m_OwnerEmailTextBox.Size = new System.Drawing.Size(429, 22);
-      this.m_OwnerEmailTextBox.TabIndex = 9;
-      this.m_OwnerEmailTextBox.Text = "someone@example.com";
-      this.m_TtoolTip.SetToolTip(this.m_OwnerEmailTextBox, "Smart Factory site collection owner email address.\r\nA string that contains the e-" +
-        "mail address of the owner of the site collection.\r\nFor example someone@example.c" +
-        "om\r\n");
-      this.m_OwnerEmailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.m_OwnerEmailTextBox_Validating);
-      this.m_OwnerEmailTextBox.Validated += new System.EventHandler(this.m_OwnerEmailTextBox_Validated);
-      // 
       // m_SetupPropertyGrid
       // 
-      m_ApplicationSetupTableLayoutPanel.SetColumnSpan(this.m_SetupPropertyGrid, 3);
+      m_ApplicationSetupTableLayoutPanel.SetColumnSpan(this.m_SetupPropertyGrid, 2);
       this.m_SetupPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.m_SetupPropertyGrid.Location = new System.Drawing.Point(3, 107);
+      this.m_SetupPropertyGrid.Location = new System.Drawing.Point(3, 23);
       this.m_SetupPropertyGrid.Name = "m_SetupPropertyGrid";
-      this.m_SetupPropertyGrid.Size = new System.Drawing.Size(591, 449);
+      this.m_SetupPropertyGrid.Size = new System.Drawing.Size(591, 533);
       this.m_SetupPropertyGrid.TabIndex = 10;
       this.m_TtoolTip.SetToolTip(this.m_SetupPropertyGrid, "Installation parameters");
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(3, 0);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(161, 16);
+      this.label1.TabIndex = 11;
+      this.label1.Text = "Review the package data";
       // 
       // m_label1
       // 
@@ -264,7 +164,7 @@
       // 
       m_SplitContainer.Panel2.Controls.Add(this.m_ValidationListBox);
       m_SplitContainer.Size = new System.Drawing.Size(591, 537);
-      m_SplitContainer.SplitterDistance = 351;
+      m_SplitContainer.SplitterDistance = 350;
       m_SplitContainer.TabIndex = 8;
       // 
       // m_ValidationPropertyGrid
@@ -272,7 +172,7 @@
       this.m_ValidationPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_ValidationPropertyGrid.Location = new System.Drawing.Point(0, 0);
       this.m_ValidationPropertyGrid.Name = "m_ValidationPropertyGrid";
-      this.m_ValidationPropertyGrid.Size = new System.Drawing.Size(591, 351);
+      this.m_ValidationPropertyGrid.Size = new System.Drawing.Size(591, 350);
       this.m_ValidationPropertyGrid.TabIndex = 7;
       this.m_TtoolTip.SetToolTip(this.m_ValidationPropertyGrid, "Installation parameters");
       // 
@@ -283,7 +183,7 @@
       this.m_ValidationListBox.ItemHeight = 16;
       this.m_ValidationListBox.Location = new System.Drawing.Point(0, 0);
       this.m_ValidationListBox.Name = "m_ValidationListBox";
-      this.m_ValidationListBox.Size = new System.Drawing.Size(591, 182);
+      this.m_ValidationListBox.Size = new System.Drawing.Size(591, 183);
       this.m_ValidationListBox.TabIndex = 0;
       // 
       // m_tableLayoutPanel3
@@ -548,7 +448,7 @@
       this.m_UninstallUserControl.Location = new System.Drawing.Point(3, 3);
       this.m_UninstallUserControl.Margin = new System.Windows.Forms.Padding(4);
       this.m_UninstallUserControl.Name = "m_UninstallUserControl";
-      this.m_UninstallUserControl.Size = new System.Drawing.Size(597, 559);
+      this.m_UninstallUserControl.Size = new System.Drawing.Size(597, 562);
       this.m_UninstallUserControl.TabIndex = 0;
       // 
       // m_PreviousButton
@@ -663,15 +563,10 @@
 
     #endregion
 
-    private System.Windows.Forms.TextBox m_ApplicationURLTextBox;
     private System.Windows.Forms.Button m_NextButton;
     private System.Windows.Forms.Button m_CancelButton;
     private System.Windows.Forms.ToolTip m_TtoolTip;
-    private System.Windows.Forms.TextBox m_OwnerLoginTextBox;
-    private System.Windows.Forms.TextBox m_SiteCollectionUrlTextBox;
-    private System.Windows.Forms.Label m_OwnerEmailLabel;
     private System.Windows.Forms.ErrorProvider m_OwnerEmailErrorProvider;
-    private System.Windows.Forms.TextBox m_OwnerEmailTextBox;
     private System.Windows.Forms.ErrorProvider m_WebApplicationURLErrorProvider;
     private System.Windows.Forms.Button m_PreviousButton;
     private System.Windows.Forms.Button m_DeployActiwateWebsiteButton;
@@ -698,6 +593,7 @@
     private Controls.Tracing m_trace;
     private System.Windows.Forms.Button m_UninstallButton;
     private System.Windows.Forms.PropertyGrid m_SetupPropertyGrid;
+    private System.Windows.Forms.Label label1;
 
   }
 }

@@ -97,7 +97,7 @@ namespace CAS.SmartFactory.Deployment
         {
           if (_li.File.Name == _us.Name)
           {
-            solutionGallery.Items.Delete(_li.ID);
+            solutionGallery.Items.DeleteItemById(_li.ID);
             Tracing.TraceEvent.TraceInformation(90, "RetracSolution", String.Format("The solution {0} has been deleted from the SolutionCatalog", _us.Name));
             return;
           }

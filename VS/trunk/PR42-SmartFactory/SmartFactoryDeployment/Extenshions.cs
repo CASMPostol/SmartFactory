@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
 
 namespace CAS.SmartFactory.Deployment
 {
@@ -36,12 +30,6 @@ namespace CAS.SmartFactory.Deployment
         return Guid.Empty;
       return new Guid(_value);
     }
-    internal static FileInfo GetFileInfo()
-    {
-      string path = Path.Combine(
-        Path.GetDirectoryName(Assembly.GetCallingAssembly().Location), 
-        Properties.Settings.Default.InstallationStateFileName);
-      return new FileInfo(path);
-    }
+
   }
 }

@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 using CAS.SmartFactory.Deployment.Controls;
 using CAS.SmartFactory.Deployment.Properties;
 using Microsoft.SharePoint;
+using System.Reflection;
 
 namespace CAS.SmartFactory.Deployment.Package
 
@@ -17,10 +18,12 @@ namespace CAS.SmartFactory.Deployment.Package
   {
 
     #region public
-    internal void Save(System.IO.FileInfo _file)
+    internal void Save()
     {
       try
       {
+        FileInfo _file = GetFileInfo();
+        Tracing.TraceEvent.TraceInformation(25, "InstallationStateData.Save", String.Format("Saving installation details to the file {0}.", _file.FullName));
         if (_file.Exists)
         {
           _file.Attributes = 0;
@@ -43,7 +46,7 @@ namespace CAS.SmartFactory.Deployment.Package
     {
       try
       {
-        FileInfo _file = Extenshions.GetFileInfo();
+        FileInfo _file = GetFileInfo();
         Tracing.TraceEvent.TraceVerbose(49, "InstallationStateData.Read", String.Format("Loading the application installation state from the file at: {0}", _file.FullName));
         using (Stream _strm = _file.OpenRead())
         {
@@ -58,55 +61,6 @@ namespace CAS.SmartFactory.Deployment.Package
         throw new ApplicationException(_msg, ex);
       }
     }
-    /// <summary>
-    /// Initializes a new instance of the <see cref="InstallationStateData"/> class.
-    /// </summary>
-    internal static bool ValidateUrl(string _url, out Uri _auri, out string _errorMessage)
-    {
-      _auri = null;
-      _errorMessage = string.Empty;
-      if (!Uri.TryCreate(_url, UriKind.Absolute, out _auri))
-      {
-        _errorMessage = Resources.HTTPNotValid;
-        return false;
-      }
-      if (_auri.Scheme != Uri.UriSchemeHttp)
-      {
-        _errorMessage = Resources.UrlMustBeHttp;
-        return false;
-      }
-      return true;
-    }
-    /// <summary>
-    /// Gets the URI.
-    /// </summary>
-    /// <param name="_url">The _url.</param>
-    internal void GetUri(string _url)
-    {
-      string _errorMessage = String.Empty;
-      Uri _uri;
-      if (ValidateUrl(_url, out _uri, out _errorMessage))
-      {
-        WebApplicationUri = _uri;
-      }
-      else
-        throw new ApplicationException(_errorMessage);
-    }
-    internal void GetSiteCollectionURL(string _text)
-    {
-      //TODO add validation
-      SiteCollectionURL = _text;
-    }
-    internal void GetOwnerLogin(string _text)
-    {
-      //TODO Add validation
-      OwnerLogin = _text;
-    }
-    internal void GetOwnerEmail(string _text)
-    {
-      //TODO Add validation
-      OwnerEmail = _text;
-    }
     internal SortedList<int, Solution> SolutionsToInstall
     {
       get
@@ -117,9 +71,6 @@ namespace CAS.SmartFactory.Deployment.Package
         return _ret;
       }
     }
-    #endregion
-
-    #region Browsable public properties
     /// <summary>
     /// Gets or sets the web application URI.
     /// </summary>
@@ -127,48 +78,28 @@ namespace CAS.SmartFactory.Deployment.Package
     /// A <see cref="Uri"/> that contains the URL for the site collection, for example, Site_Name or sites/Site_Name.
     /// It may either be server-relative or absolute for typical sites.
     /// </value>
-    public Uri WebApplicationUri
+    internal Uri WebApplicationUri
     {
       get { return new Uri(WebApplicationURL); }
       set { WebApplicationURL = value.ToString(); }
     }
-
-    //[Browsable(true)]
-    //[ReadOnly(true)]
-    //[Category("Solutions")]
-    //[XmlIgnore()]
-    //public Guid SiteCollectionFetureId
-    //{
-    //  get { return XmlSiteCollectionFetureId.Parse(); }
-    //  set { XmlSiteCollectionFetureId = value.ToString(); }
-    //}
-    ///// <summary>
-    ///// Gets or sets the name of the farm collection feture.
-    ///// </summary>
-    ///// <value>
-    ///// The name of the farm collection feture.
-    ///// </value>
-    //[Browsable(true)]
-    //[ReadOnly(true)]
-    //[Category("Solutions")]
-    //[XmlIgnore()]
-    //public Guid FarmFetureId
-    //{
-    //  get { return XmlFarmFetureId.Parse(); }
-    //  set { XmlFarmFetureId = value.ToString(); }
-    //}
-
-    //[Browsable(true)]
-    //[ReadOnly(true)]
-    //[Category("Installation")]
-    //[XmlIgnore()]
     internal InstallationStateDataWrapper Wrapper { get { return new _stateData(this); } } 
     #endregion
+
+    #region private
+    private static FileInfo GetFileInfo()
+    {
+      string path = Path.Combine(
+        Path.GetDirectoryName(Assembly.GetCallingAssembly().Location), Properties.Settings.Default.InstallationStateFileName);
+      return new FileInfo(path);
+    }
     private class _stateData : InstallationStateDataWrapper
     {
-      public _stateData(InstallationStateData _parent):base(_parent)
-      {}
-    }
+      public _stateData(InstallationStateData _parent)
+        : base(_parent)
+      { }
+    } 
+    #endregion
 
   }
   /// <summary>
@@ -270,4 +201,5 @@ namespace CAS.SmartFactory.Deployment.Package
     }
 
   }
+
 }

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using Microsoft.SharePoint.Administration;
+using CAS.SmartFactory.Deployment.Properties;
+using CAS.SmartFactory.Deployment.Controls;
+using System.Security.Principal;
 
 namespace CAS.SmartFactory.Deployment.Package
 {
@@ -16,13 +20,22 @@ namespace CAS.SmartFactory.Deployment.Package
     /// <summary>
     /// Gets the owner login.
     /// </summary>
+    [Category("Site collection")]
+    [DisplayName("Site owner login")]
+    [Description(@"Smart Factory site collection owner login. A string that contains the user name of the owner of the site collection. For example, Domain\User. " +
+      "In Active Directory Domain Services account creation mode, the Pwner Login must contain a value even if the value does not correspond to an actual user name.")]
     public string OwnerLogin
     {
       get
       {
+        if (String.IsNullOrEmpty(State.OwnerLogin))
+        {
+          WindowsIdentity _id = WindowsIdentity.GetCurrent();
+          State.OwnerLogin = _id.Name;
+        }
         return State.OwnerLogin;
       }
-      internal set
+      set
       {
         State.OwnerLogin = value;
       }
@@ -33,15 +46,28 @@ namespace CAS.SmartFactory.Deployment.Package
     /// <value>
     /// The owner email.
     /// </value>
+    [Category("Site collection")]
+    [DisplayName("Site owner email")]
+    [Description(@"Site collection owner email address. A string that contains the e-mail address of the owner of the site collection. " +
+      "For example someone@example.com")]
     public string OwnerEmail
     {
       get
       {
+        if (String.IsNullOrEmpty(State.OwnerEmail))
+          State.OwnerEmail = "<someone>@example.com";
         return State.OwnerEmail;
       }
       set
       {
-        State.OwnerEmail = value;
+        string _errorMsg;
+        if (ValidEmailAddress(value, out _errorMsg))
+        {
+          State.OwnerEmail = value;
+          return;
+        }
+        // Set the ErrorProvider error with the text to display. 
+        throw new ArgumentException(_errorMsg);
       }
     }
     /// <summary>
@@ -50,6 +76,10 @@ namespace CAS.SmartFactory.Deployment.Package
     /// <value>
     /// The site collection URL.
     /// </value>
+    [Category("Site collection")]
+    [DisplayName("Site collection path")]
+    [Description("A String that contains the URL for the site collection, for example, Site_Name or sites/Site_Name." +
+      "It may either be server-relative or absolute for typical sites.")]
     public string SiteCollectionURL
     {
       get
@@ -67,6 +97,10 @@ namespace CAS.SmartFactory.Deployment.Package
     /// <value>
     /// 	<c>true</c> if site collection has been already created; otherwise, <c>false</c>.
     /// </value>
+    [Category("Site collection")]
+    [ReadOnly(true)]
+    [DisplayName("Site created")]
+    [Description("True if the site collection has been already created.")]
     public bool SiteCollectionCreated
     {
       get
@@ -87,28 +121,69 @@ namespace CAS.SmartFactory.Deployment.Package
     /// </value>
     [Browsable(true)]
     [Category("Application")]
-    [Description("")]
+    [Description("A string that specifies the URL of the Web application. For example 'http://computer.domain:Port'.")]
+    [DisplayName("Web application URL")]
+    [TypeConverter(typeof(UriTypeConverter))]
     public Uri WebApplicationURL
     {
       get
       {
-        return new Uri(State.WebApplicationURL);
+        if (String.IsNullOrEmpty(State.WebApplicationURL))
+        {
+          try
+          {
+            Uri _waurl = new Uri(Uri.UriSchemeHttp + Uri.SchemeDelimiter + SPServer.Local.Address);
+            State.WebApplicationURL = _waurl.ToString();
+            return _waurl;
+          }
+          catch (Exception) { }
+          Tracing.TraceEvent.TraceWarning(111, "WebApplicationURL", Resources.CannotGetAccessToLocalServer);
+          return new Uri(@"http://server.domain:12345/path");
+        }
+        else
+          return new Uri(State.WebApplicationURL);
       }
       set
       {
-        this.State.WebApplicationURL = value.ToString(); ;
+        this.State.WebApplicationURL = value.ToString();
       }
     }
     /// <summary>
     /// Gets the array of solutions.
     /// </summary>
-    [TypeConverter(typeof(ExpandableObjectConverter))]
-    public Solution[] Solutions
+    [TypeConverter(typeof(CollectionConverter))]
+    [Category("Content")]
+    [Description("Solutions included in this package. ")]
+    public List<Solution> Solutions
     {
       get
       {
-        return State.Solutions;
+        return State.Solutions.ToList();
       }
+    }
+    #endregion
+
+    #region Validating
+    private static bool ValidEmailAddress(string _emailAddress, out string _errorMessage)
+    {
+      // Confirm that the e-mail address string is not empty.
+      if (_emailAddress.Length == 0)
+      {
+        _errorMessage = "e-mail address is required.";
+        return false;
+      }
+      // Confirm that there is an "@" and a "." in the e-mail address, and in the correct order.
+      if (_emailAddress.IndexOf("@") > -1)
+      {
+        if (_emailAddress.IndexOf(".", _emailAddress.IndexOf("@")) > _emailAddress.IndexOf("@"))
+        {
+          _errorMessage = "";
+          return true;
+        }
+      }
+      _errorMessage = "e-mail address must be valid e-mail address format.\n" +
+         "For example 'someone@example.com' ";
+      return false;
     }
     #endregion
 

@@ -7,11 +7,11 @@ using Microsoft.SharePoint.Administration;
 
 namespace CAS.SmartFactory.Deployment
 {
-  class structure
-  {
-    public SPFarm SPFarm { get; set; }
-    public SPWebApplication SPWebApplication { get; private set; }
-  }
+  //class structure
+  //{
+  //  public SPFarm SPFarm { get; set; }
+  //  public SPWebApplication SPWebApplication { get; private set; }
+  //}
   static class Program
   {
 
