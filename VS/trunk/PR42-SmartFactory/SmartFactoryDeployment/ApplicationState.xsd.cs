@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.Deployment
       {
         string _msg = string.Format(Resources.ConfigurationReadInstallationStateDataFailure, ex.Message);
         Tracing.TraceEvent.TraceError(56, "InstallationStateData.Read", ex.Message);
-        throw new ApplicationException(_msg);
+        throw new ApplicationException(_msg, ex);
       }
     }
     /// <summary>
@@ -208,6 +208,18 @@ namespace CAS.SmartFactory.Deployment
     {
       get { return SolutionID.Parse(); }
       set { SolutionID = value.ToString(); }
+    }
+    /// <summary>
+    /// Get the Solution file info.
+    /// </summary>
+    /// <exception cref="FileNotFoundException">File not found.</exception>
+    /// <returns>Object of <see cref="FileInfo"/></returns>
+    internal FileInfo SolutionFileInfo()
+    {
+      FileInfo _fi = new FileInfo(this.FileName);
+      if (!_fi.Exists)
+        throw new FileNotFoundException(_fi.ToString());
+      return _fi;
     }
   }
   public partial class Feature

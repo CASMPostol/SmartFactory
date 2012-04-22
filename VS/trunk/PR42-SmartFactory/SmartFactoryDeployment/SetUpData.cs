@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Windows.Forms;
-using CAS.Lib.RTLib.Processes;
 using CAS.SmartFactory.Deployment.Controls;
 using CAS.SmartFactory.Deployment.Properties;
 using Microsoft.SharePoint;
@@ -27,6 +26,7 @@ namespace CAS.SmartFactory.Deployment
       InitializeComponent();
       m_trace.Trace.TraceVerbose(26, "SetUpData", "Starting the application");
       Manual = Properties.Settings.Default.ManualMode;
+      State = ProcessState.SetupDataDialog;
     }
     internal bool Manual { get; set; }
     #endregion
@@ -119,223 +119,272 @@ namespace CAS.SmartFactory.Deployment
     }
     private void StateMachine(StateMachineEvenArgs _event)
     {
-      switch (State)
+      bool _stay = false;
+      do
       {
-        case ProcessState.ManualSelection:
-          #region ManualSelection
-          switch (_event.Event)
+        try
+        {
+          switch (State)
           {
-            case LocalEvent.Previous:
-              State = ProcessState.SetupDataDialog;
-              break;
-            case LocalEvent.Next:
-              ExitlInstallation();
-              break;
-            case LocalEvent.Uninstall:
-              StateError();
-              break;
-            case LocalEvent.Cancel:
-              StateError();
-              break;
-            case LocalEvent.Exception:
-              Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
-              if (MessageBox.Show(
-                String.Format(Resources.LastOperationFailed, _eea.Message),
-                Resources.CaptionOperationFailure,
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK)
-                CancelInstallation();
-              break;
-            case LocalEvent.EnterState:
-              m_PreviousButton.Visible = true;
-              m_NextButton.Visible = true;
-              m_NextButton.Text = Resources.NextButtonTextEXIT;
-              m_CancelButton.Visible = false;
-              break;
-            default:
-              break;
-          }
-          break;
-          #endregion
-        case ProcessState.SetupDataDialog:
-          #region SetupDataDialog
-          switch (_event.Event)
-          {
-            case LocalEvent.Previous:
-              StateError();
-              break;
-            case LocalEvent.Next:
-              //TODO add validation to:
-              m_ApplicationState.GetUri(m_ApplicationURLTextBox.Text);
-              m_ApplicationState.GetSiteCollectionURL(m_SiteCollectionUrlTextBox.Text);
-              m_ApplicationState.GetOwnerLogin(m_OwnerLoginTextBox.Text);
-              m_ApplicationState.GetOwnerEmail(m_OwnerEmailTextBox.Text);
-              State = ProcessState.Validation;
-              break;
-            case LocalEvent.Uninstall:
-              StateError();
-              break;
-            case LocalEvent.Cancel:
-              CancelInstallation();
-              break;
-            case LocalEvent.Exception:
-              break;
-            case LocalEvent.EnterState:
-              m_UninstallButton.Visible = false;
-              m_PreviousButton.Visible = false;
-              m_NextButton.Enabled = true;
-              m_NextButton.Text = Resources.NextButtonTextNext;
-              m_CancelButton.Visible = true;
-              InitSetupData();
-              break;
-            default:
-              break;
-          }
-          break;
-          #endregion
-        case ProcessState.Validation:
-          #region Validation
-          switch (_event.Event)
-          {
-            case LocalEvent.Previous:
-              State = ProcessState.SetupDataDialog;
-              break;
-            case LocalEvent.Next:
-              if (Manual)
-                State = ProcessState.ManualSelection;
-              else
-                State = ProcessState.Installation;
-              break;
-            case LocalEvent.Uninstall:
-              State = ProcessState.Uninstall;
-              break;
-            case LocalEvent.Cancel:
-              CancelInstallation();
-              break;
-            case LocalEvent.Exception:
-              break;
-            case LocalEvent.EnterState:
-              m_ValidationListBox.Items.Clear();
-              m_ValidationPropertyGrid.SelectedObject = m_ApplicationState;
-              m_ValidationPropertyGrid.Text = Resources.InstallationProperties;
-              m_UninstallButton.Visible = true;
-              m_PreviousButton.Visible = true;
-              m_NextButton.Visible = false;
-              m_CancelButton.Visible = true;
-              if (!VerifyPrerequisites())
+            case ProcessState.ManualSelection:
+              #region ManualSelection
+              //TODO to be removed ot updated http://itrserver/Bugs/BugDetail.aspx?bid=3302
+              switch (_event.Event)
               {
-                MessageBox.Show(Resources.CheckIinProcessFfailed, Resources.CheckIinProcessFfailedCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                m_NextButton.Text = Resources.NextButtonTextVerify;
+                case LocalEvent.Previous:
+                  State = ProcessState.SetupDataDialog;
+                  break;
+                case LocalEvent.Next:
+                  ExitlInstallation( DialogResult.OK  );
+                  break;
+                case LocalEvent.Uninstall:
+                  StateError();
+                  break;
+                case LocalEvent.Cancel:
+                  StateError();
+                  break;
+                case LocalEvent.Exception:
+                  Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
+                  if (MessageBox.Show(
+                    String.Format(Resources.LastOperationFailed, _eea.Message),
+                    Resources.CaptionOperationFailure,
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK)
+                    CancelInstallation();
+                  break;
+                case LocalEvent.EnterState:
+                  m_PreviousButton.Visible = true;
+                  m_NextButton.Visible = true;
+                  m_NextButton.Text = Resources.NextButtonTextEXIT;
+                  m_CancelButton.Visible = false;
+                  break;
+                default:
+                  break;
               }
-              else
-                m_NextButton.Text = Resources.NextButtonTextInstall;
-              m_NextButton.Visible = true;
-              m_NextButton.Enabled = true;
               break;
+              #endregion
+            case ProcessState.SetupDataDialog:
+              #region SetupDataDialog
+              switch (_event.Event)
+              {
+                case LocalEvent.Previous:
+                  StateError();
+                  break;
+                case LocalEvent.Next:
+                  //TODO add validation to:
+                  m_ApplicationState.GetUri(m_ApplicationURLTextBox.Text);
+                  m_ApplicationState.GetSiteCollectionURL(m_SiteCollectionUrlTextBox.Text);
+                  m_ApplicationState.GetOwnerLogin(m_OwnerLoginTextBox.Text);
+                  m_ApplicationState.GetOwnerEmail(m_OwnerEmailTextBox.Text);
+                  State = ProcessState.Validation;
+                  break;
+                case LocalEvent.Uninstall:
+                  StateError();
+                  break;
+                case LocalEvent.Cancel:
+                  CancelInstallation();
+                  break;
+                case LocalEvent.Exception:
+                  Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
+                  MessageBox.Show(
+                    String.Format(Resources.InstalationAbortRollback, _eea.Message),
+                    Resources.CaptionOperationFailure,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  ExitlInstallation(DialogResult.Abort);
+                  break;
+                case LocalEvent.EnterState:
+                  m_UninstallButton.Visible = false;
+                  m_PreviousButton.Visible = false;
+                  m_NextButton.Enabled = true;
+                  m_NextButton.Text = Resources.NextButtonTextNext;
+                  m_CancelButton.Visible = true;
+                  InitSetupData();
+                  break;
+                default:
+                  break;
+              }
+              break;
+              #endregion
+            case ProcessState.Validation:
+              #region Validation
+              switch (_event.Event)
+              {
+                case LocalEvent.Previous:
+                  State = ProcessState.SetupDataDialog;
+                  break;
+                case LocalEvent.Next:
+                  if (Manual)
+                    State = ProcessState.ManualSelection;
+                  else
+                  {
+                    State = ProcessState.Installation;
+                  }
+                  break;
+                case LocalEvent.Uninstall:
+                  State = ProcessState.Uninstall;
+                  break;
+                case LocalEvent.Cancel:
+                  CancelInstallation();
+                  break;
+                case LocalEvent.Exception:
+                  Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
+                  MessageBox.Show(
+                    String.Format(Resources.InstalationAbortRollback, _eea.Message),
+                    Resources.CaptionOperationFailure,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  ExitlInstallation(DialogResult.Abort);
+                  break;
+                case LocalEvent.EnterState:
+                  m_ValidationListBox.Items.Clear();
+                  m_ValidationPropertyGrid.SelectedObject = m_ApplicationState;
+                  m_ValidationPropertyGrid.Text = Resources.InstallationProperties;
+                  m_PreviousButton.Visible = true;
+                  m_NextButton.Visible = true;
+                  m_NextButton.Text = Resources.NextButtonTextNext;
+                  m_CancelButton.Visible = true;
+                  if (!VerifyPrerequisites())
+                  {
+                    MessageBox.Show(Resources.CheckIinProcessFfailed, Resources.CheckIinProcessFfailedCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    m_NextButton.Enabled = false;
+                  }
+                  else
+                    m_NextButton.Text = Resources.NextButtonTextInstall;
+                  m_NextButton.Visible = true;
+                  m_NextButton.Enabled = true;
+
+                  if (m_ApplicationState.SiteCollectionCreated)
+                    m_UninstallButton.Visible = true;
+                  else
+                    m_UninstallButton.Visible = false;
+
+                  break;
+                default:
+                  break;
+              }
+              break;
+              #endregion
+            case ProcessState.Installation:
+              #region Installation
+              switch (_event.Event)
+              {
+                case LocalEvent.Previous:
+                  StateError();
+                  break;
+                case LocalEvent.Next:
+                  ExitlInstallation(DialogResult.Abort);
+                  break;
+                case LocalEvent.Cancel:
+                  StateError();
+                  break;
+                case LocalEvent.Exception:
+                  Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
+                  MessageBox.Show(
+                    String.Format(Resources.InstalationAbortRollback, _eea.Message),
+                    Resources.CaptionOperationFailure,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  State = ProcessState.Validation;
+                  break;
+                case LocalEvent.EnterState:
+                  m_InstallationProgresListBox.Items.Clear();
+                  m_PreviousButton.Visible = false;
+                  m_NextButton.Enabled = true;
+                  m_NextButton.Enabled = false;
+                  m_NextButton.Text = Resources.FinishButtonText;
+                  m_UninstallButton.Visible = false;
+                  m_CancelButton.Visible = false;
+                  this.Refresh();
+                  Install();
+                  m_NextButton.Enabled = true;
+                  m_InstallationProgressBar.Value = m_InstallationProgressBar.Maximum;
+                  m_InstallationProgresListBox.Enabled = true;
+                  break;
+                default:
+                  break;
+              }
+              break;
+              #endregion
+            case ProcessState.Finisched:
+              #region Finisched
+              switch (_event.Event)
+              {
+                case LocalEvent.Previous:
+                case LocalEvent.Next:
+                case LocalEvent.Cancel:
+                case LocalEvent.Exception:
+                  Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
+                  MessageBox.Show(
+                    String.Format(Resources.InstalationAbortRollback, _eea.Message),
+                    Resources.CaptionOperationFailure,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  ExitlInstallation(DialogResult.Abort);
+                  break;
+                case LocalEvent.EnterState:
+                  m_PreviousButton.Visible = false;
+                  m_NextButton.Enabled = true;
+                  m_NextButton.Text = Resources.FinishButtonText;
+                  m_UninstallButton.Visible = true;
+                  m_CancelButton.Visible = false;
+                  break;
+                default:
+                  break;
+              }
+              break;
+              #endregion
+            case ProcessState.Uninstall:
+              #region Uninstall
+              switch (_event.Event)
+              {
+                case LocalEvent.Previous:
+                  StateError();
+                  break;
+                case LocalEvent.Next:
+                  ExitlInstallation(DialogResult.Abort);
+                  break;
+                case LocalEvent.Cancel:
+                  break;
+                case LocalEvent.Exception:
+                  Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
+                  MessageBox.Show(
+                    String.Format(Resources.InstalationAbortRollback, _eea.Message),
+                    Resources.CaptionOperationFailure,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  State = ProcessState.Validation;
+                  break;
+                case LocalEvent.EnterState:
+                  m_PreviousButton.Visible = false;
+                  m_NextButton.Enabled = true;
+                  m_UninstallUserControl.Uninstallation(m_ApplicationState);
+                  m_NextButton.Text = Resources.FinishButtonText;
+                  m_UninstallButton.Visible = false;
+                  m_CancelButton.Visible = false;
+                  break;
+                default:
+                  break;
+              }
+              break;
+              #endregion
             default:
-              break;
+              throw new ApplicationException("StateMachine - wrong state");
           }
-          break;
-          #endregion
-        case ProcessState.Installation:
-          #region Installation
-          switch (_event.Event)
-          {
-            case LocalEvent.Previous:
-              StateError();
-              break;
-            case LocalEvent.Next:
-              ExitlInstallation();
-              break;
-            case LocalEvent.Cancel:
-              StateError();
-              break;
-            case LocalEvent.Exception:
-              Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
-              MessageBox.Show(
-                String.Format(Resources.InstalationAbortRollback, _eea.Message),
-                Resources.CaptionOperationFailure,
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-              CancelInstallation();
-              break;
-            case LocalEvent.EnterState:
-              m_InstallationProgresListBox.Items.Clear();
-              m_PreviousButton.Visible = false;
-              m_NextButton.Enabled = true;
-              m_NextButton.Enabled = false;
-              m_NextButton.Text = Resources.FinishButtonText;
-              m_UninstallButton.Visible = false;
-              m_CancelButton.Visible = false;
-              this.Refresh();
-              Install();
-              m_NextButton.Enabled = true;
-              m_InstallationProgressBar.Value = m_InstallationProgressBar.Maximum;
-              m_InstallationProgresListBox.Enabled = true;
-              break;
-            default:
-              break;
-          }
-          break;
-          #endregion
-        case ProcessState.Finisched:
-          #region Finisched
-          switch (_event.Event)
-          {
-            case LocalEvent.Previous:
-            case LocalEvent.Next:
-            case LocalEvent.Cancel:
-            case LocalEvent.Exception:
-              break;
-            case LocalEvent.EnterState:
-              m_PreviousButton.Visible = false;
-              m_NextButton.Enabled = true;
-              m_NextButton.Text = Resources.FinishButtonText;
-              m_UninstallButton.Visible = true;
-              m_CancelButton.Visible = false;
-              break;
-            default:
-              break;
-          }
-          break;
-          #endregion
-        case ProcessState.Uninstall:
-          #region Uninstall
-          switch (_event.Event)
-          {
-            case LocalEvent.Previous:
-              StateError();
-              break;
-            case LocalEvent.Next:
-              ExitlInstallation();
-              break;
-            case LocalEvent.Cancel:
-              break;
-            case LocalEvent.Exception:
-              break;
-            case LocalEvent.EnterState:
-              m_PreviousButton.Visible = false;
-              m_NextButton.Enabled = true;
-              m_UninstallUserControl.Uninstallation(m_ApplicationState);
-              m_NextButton.Text = Resources.FinishButtonText;
-              m_UninstallButton.Visible = false;
-              m_CancelButton.Visible = false;
-              break;
-            default:
-              break;
-          }
-          break;
-          #endregion
-        default:
-          throw new ApplicationException("StateMachine - wrong state");
-      }
+        }
+        catch (Exception ex)
+        {
+          _stay = true;
+          _event = new StateMachineExceptionEventArgs(ex);
+        }
+      } while (_stay);
     }
     private void InitSetupData()
     {
+      m_ApplicationState = InstallationStateData.Read();
+      m_SetupPropertyGrid.SelectedObject = m_ApplicationState;
+      //string _msg = String.Format(Resources.ConfigurationReadInstallationStateDataFailure, ex.Message);
+      //MessageBox.Show(_msg, Resources.RetrackCaption, MessageBoxButtons.OK, MessageBoxIcon.Question);
       try
       {
         SPSecurity.RunWithElevatedPrivileges(delegate()
           {
             m_ApplicationURLTextBox.Text = Uri.UriSchemeHttp + Uri.SchemeDelimiter + SPServer.Local.Address;
-            m_SiteCollectionUrlTextBox.Text = Uri.UriSchemeHttp + Uri.SchemeDelimiter + Settings.Default.SiteCollectionURL + "." + SPServer.Local.Address;
+            m_SiteCollectionUrlTextBox.Text = Uri.UriSchemeHttp + Uri.SchemeDelimiter + m_ApplicationState.SiteCollectionURL + "." + SPServer.Local.Address;
           }
         );
       }
@@ -346,8 +395,13 @@ namespace CAS.SmartFactory.Deployment
       }
       try
       {
-        WindowsIdentity _id = WindowsIdentity.GetCurrent();
-        m_OwnerLoginTextBox.Text = _id.Name;
+        if (String.IsNullOrEmpty(m_ApplicationState.OwnerLogin))
+        {
+          WindowsIdentity _id = WindowsIdentity.GetCurrent();
+          m_OwnerLoginTextBox.Text = _id.Name;
+        }
+        else
+          m_OwnerLoginTextBox.Text = m_ApplicationState.OwnerLogin; 
         m_OwnerEmailLabel.Text = m_ApplicationState.OwnerEmail;
       }
       catch (Exception)
@@ -432,7 +486,7 @@ namespace CAS.SmartFactory.Deployment
           m_InstallationProgresListBox.AddMessage("Site collection created");
           foreach (Solution _sltn in m_ApplicationState.SolutionsToInstall.Values)
           {
-            FileInfo _fi = GetFile(_sltn.FileName);
+            FileInfo _fi = _sltn.SolutionFileInfo();
             m_InstallationProgresListBox.AddMessage(String.Format("Deploying solution: {0}", _fi.Name));
             switch (_sltn.FeatureDefinitionScope)
             {
@@ -471,7 +525,6 @@ namespace CAS.SmartFactory.Deployment
       }
       catch (Exception ex)
       {
-        StateMachineExceptionEventArgs _smex = new StateMachineExceptionEventArgs(ex);
         try
         {
           SaveInstallationState();
@@ -480,8 +533,9 @@ namespace CAS.SmartFactory.Deployment
         {
           m_InstallationProgresListBox.AddMessage(_SaveEx.Message);
         }
-        m_InstallationProgresListBox.AddMessage("Installation completed with an error.");
-        this.StateMachine(_smex);
+        string _msg = String.Format(Resources.LastOperationFailedWithError, ex);
+        m_InstallationProgresListBox.AddMessage(_msg);
+        throw new ApplicationException(_msg, ex);
       }
       finally
       {
@@ -495,9 +549,9 @@ namespace CAS.SmartFactory.Deployment
       m_InstallationProgresListBox.AddMessage(String.Format("Saving installation details to the file {0}.", _file.FullName));
       m_ApplicationState.Save(_file);
     }
-    private void ExitlInstallation()
+    private void ExitlInstallation(DialogResult _res)
     {
-      this.DialogResult = System.Windows.Forms.DialogResult.OK;
+      this.DialogResult = _res;
       this.Close();
     }
     private void CancelInstallation()
@@ -515,13 +569,6 @@ namespace CAS.SmartFactory.Deployment
     private void StateError()
     {
       Debug.Assert(false, "State error");
-    }
-    private static FileInfo GetFile(string _fileName)
-    {
-      FileInfo _fi = new FileInfo(_fileName);
-      if (!_fi.Exists)
-        throw new FileNotFoundException(_fi.ToString());
-      return _fi;
     }
     private static bool ValidEmailAddress(string _emailAddress, out string _errorMessage)
     {
@@ -546,32 +593,6 @@ namespace CAS.SmartFactory.Deployment
     }
 
     #region base override
-    /// <summary>
-    /// Raises the <see cref="E:System.Windows.Forms.Form.Load"/> event.
-    /// </summary>
-    /// <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
-    protected override void OnLoad(EventArgs e)
-    {
-      GetConfigurationData();
-      base.OnLoad(e);
-    }
-    private void GetConfigurationData()
-    {
-      try
-      {
-        m_ApplicationState = InstallationStateData.Read();
-        if (m_ApplicationState.SiteCollectionCreated)
-          State = ProcessState.Validation;
-        else
-          State = ProcessState.SetupDataDialog;
-        StateMachine(new StateMachineEvenArgs(LocalEvent.EnterState));
-      }
-      catch (Exception ex)
-      {
-        string _msg = String.Format(Resources.ConfigurationReadInstallationStateDataFailure, ex.Message);
-        MessageBox.Show(_msg, Resources.RetrackCaption, MessageBoxButtons.OK, MessageBoxIcon.Question);
-      }
-    }
     /// <summary>
     /// Raises the <see cref="E:System.Windows.Forms.Form.Closing"/> event.
     /// </summary>
