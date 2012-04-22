@@ -87,7 +87,7 @@ namespace CAS.SmartFactory.Deployment.Package
       Uri _uri;
       if (ValidateUrl(_url, out _uri, out _errorMessage))
       {
-        WebApplicationURL = _uri;
+        WebApplicationUri = _uri;
       }
       else
         throw new ApplicationException(_errorMessage);
@@ -121,20 +121,16 @@ namespace CAS.SmartFactory.Deployment.Package
 
     #region Browsable public properties
     /// <summary>
-    /// Gets or sets the web application URL.
+    /// Gets or sets the web application URI.
     /// </summary>
     /// <value>
-    /// A String that contains the URL for the site collection, for example, Site_Name or sites/Site_Name. 
+    /// A <see cref="Uri"/> that contains the URL for the site collection, for example, Site_Name or sites/Site_Name.
     /// It may either be server-relative or absolute for typical sites.
     /// </value>
-    [Browsable(true)]
-    [ReadOnly(true)]
-    [Category("User")]
-    [XmlIgnore()]
-    public Uri WebApplicationURL
+    public Uri WebApplicationUri
     {
-      get { return new Uri(XmlWebApplicationURL); }
-      set { XmlWebApplicationURL = value.ToString(); }
+      get { return new Uri(WebApplicationURL); }
+      set { WebApplicationURL = value.ToString(); }
     }
 
     //[Browsable(true)]
@@ -166,8 +162,13 @@ namespace CAS.SmartFactory.Deployment.Package
     //[ReadOnly(true)]
     //[Category("Installation")]
     //[XmlIgnore()]
-
+    internal InstallationStateDataWrapper Wrapper { get { return new _stateData(this); } } 
     #endregion
+    private class _stateData : InstallationStateDataWrapper
+    {
+      public _stateData(InstallationStateData _parent):base(_parent)
+      {}
+    }
 
   }
   /// <summary>

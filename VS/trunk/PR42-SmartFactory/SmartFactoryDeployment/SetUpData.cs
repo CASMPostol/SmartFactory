@@ -136,7 +136,7 @@ namespace CAS.SmartFactory.Deployment
                   State = ProcessState.SetupDataDialog;
                   break;
                 case LocalEvent.Next:
-                  ExitlInstallation( DialogResult.OK  );
+                  ExitlInstallation(DialogResult.OK);
                   break;
                 case LocalEvent.Uninstall:
                   StateError();
@@ -236,7 +236,7 @@ namespace CAS.SmartFactory.Deployment
                   break;
                 case LocalEvent.EnterState:
                   m_ValidationListBox.Items.Clear();
-                  m_ValidationPropertyGrid.SelectedObject = m_ApplicationState;
+                  m_ValidationPropertyGrid.SelectedObject = m_ApplicationState.Wrapper;
                   m_ValidationPropertyGrid.Text = Resources.InstallationProperties;
                   m_PreviousButton.Visible = true;
                   m_NextButton.Visible = true;
@@ -377,7 +377,7 @@ namespace CAS.SmartFactory.Deployment
     private void InitSetupData()
     {
       m_ApplicationState = InstallationStateData.Read();
-      m_SetupPropertyGrid.SelectedObject = m_ApplicationState;
+      m_SetupPropertyGrid.SelectedObject = m_ApplicationState.Wrapper;
       //string _msg = String.Format(Resources.ConfigurationReadInstallationStateDataFailure, ex.Message);
       //MessageBox.Show(_msg, Resources.RetrackCaption, MessageBoxButtons.OK, MessageBoxIcon.Question);
       try
@@ -402,7 +402,7 @@ namespace CAS.SmartFactory.Deployment
           m_OwnerLoginTextBox.Text = _id.Name;
         }
         else
-          m_OwnerLoginTextBox.Text = m_ApplicationState.OwnerLogin; 
+          m_OwnerLoginTextBox.Text = m_ApplicationState.OwnerLogin;
         m_OwnerEmailLabel.Text = m_ApplicationState.OwnerEmail;
       }
       catch (Exception)
@@ -428,7 +428,7 @@ namespace CAS.SmartFactory.Deployment
           }
           else
             throw new ApplicationException(Resources.GettingAccess2LocalFarm);
-          FarmHelpers.GetWebApplication(m_ApplicationState.WebApplicationURL);
+          FarmHelpers.GetWebApplication(m_ApplicationState.WebApplicationUri);
           if (FarmHelpers.WebApplication != null)
           {
             _msg = String.Format(Resources.ApplicationFound, m_ApplicationState.WebApplicationURL, FarmHelpers.WebApplication.Name, FarmHelpers.WebApplication.DisplayName);
@@ -612,7 +612,6 @@ namespace CAS.SmartFactory.Deployment
     {
       if (disposing)
       {
-        m_trace.Trace.TraceEventClose();
         if (m_SiteCollectionHelper != null)
           m_SiteCollectionHelper.Dispose();
         if (components != null)

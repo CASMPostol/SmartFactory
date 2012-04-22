@@ -1,94 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <InstallationStateData xmlns="http://cas.eu/schemas/SharePoint/Deployment/2/ApplicationState.xsd">
-  <OwnerLogin>OwnerLogin1</OwnerLogin>
-  <OwnerEmail>OwnerEmail1</OwnerEmail>
-  <SiteCollectionURL>SiteCollectionURL1</SiteCollectionURL>
-  <SiteCollectionCreated>true</SiteCollectionCreated>
-  <XmlWebApplicationURL>http://uri1</XmlWebApplicationURL>
+  <OwnerLogin></OwnerLogin>
+  <OwnerEmail></OwnerEmail>
+  <SiteCollectionURL>Shepherd</SiteCollectionURL>
+  <SiteCollectionCreated>false</SiteCollectionCreated>
+  <WebApplicationURL></WebApplicationURL>
   <Solutions>
     <Solution>
       <Activated>false</Activated>
       <Deployed>false</Deployed>
-      <FileName>FileName1</FileName>
+      <FileName>Solutions\ShepherdWebsite.wsp</FileName>
       <Fetures>
         <Feature>
-          <DisplayName>DisplayName1</DisplayName>
-          <DefinitionId>DefinitionId1</DefinitionId>
-          <Version>Version1</Version>
-          <Scope>ScopeInvalid</Scope>
-        </Feature>
-        <Feature>
-          <DisplayName>DisplayName2</DisplayName>
-          <DefinitionId>DefinitionId2</DefinitionId>
-          <Version>Version2</Version>
-          <Scope>Farm</Scope>
-        </Feature>
-        <Feature>
-          <DisplayName>DisplayName3</DisplayName>
-          <DefinitionId>DefinitionId3</DefinitionId>
-          <Version>Version3</Version>
-          <Scope>WebApplication</Scope>
-        </Feature>
-      </Fetures>
-      <FeatureDefinitionScope>None</FeatureDefinitionScope>
-      <Priority>1</Priority>
-      <SolutionID>SolutionID1</SolutionID>
-    </Solution>
-    <Solution>
-      <Activated>true</Activated>
-      <Deployed>true</Deployed>
-      <FileName>FileName2</FileName>
-      <Fetures>
-        <Feature>
-          <DisplayName>DisplayName4</DisplayName>
-          <DefinitionId>DefinitionId4</DefinitionId>
-          <Version>Version4</Version>
-          <Scope>Site</Scope>
-        </Feature>
-        <Feature>
-          <DisplayName>DisplayName5</DisplayName>
-          <DefinitionId>DefinitionId5</DefinitionId>
-          <Version>Version5</Version>
-          <Scope>Web</Scope>
-        </Feature>
-        <Feature>
-          <DisplayName>DisplayName6</DisplayName>
-          <DefinitionId>DefinitionId6</DefinitionId>
-          <Version>Version6</Version>
-          <Scope>ScopeInvalid</Scope>
-        </Feature>
-      </Fetures>
-      <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
-      <Priority>-2147483647</Priority>
-      <SolutionID>SolutionID2</SolutionID>
-    </Solution>
-    <Solution>
-      <Activated>false</Activated>
-      <Deployed>false</Deployed>
-      <FileName>FileName3</FileName>
-      <Fetures>
-        <Feature>
-          <DisplayName>DisplayName7</DisplayName>
-          <DefinitionId>DefinitionId7</DefinitionId>
-          <Version>Version7</Version>
-          <Scope>Farm</Scope>
-        </Feature>
-        <Feature>
-          <DisplayName>DisplayName8</DisplayName>
-          <DefinitionId>DefinitionId8</DefinitionId>
-          <Version>Version8</Version>
-          <Scope>WebApplication</Scope>
-        </Feature>
-        <Feature>
-          <DisplayName>DisplayName9</DisplayName>
-          <DefinitionId>DefinitionId9</DefinitionId>
-          <Version>Version9</Version>
+          <DisplayName></DisplayName>
+          <DefinitionId>{693191fd-6a7a-4db6-ac8e-a3f747ddf439}</DefinitionId>
+          <Version></Version>
           <Scope>Site</Scope>
         </Feature>
       </Fetures>
       <FeatureDefinitionScope>Site</FeatureDefinitionScope>
-      <Priority>2147483647</Priority>
-      <SolutionID>SolutionID3</SolutionID>
+      <Priority>1</Priority>
+      <SolutionID></SolutionID>
+    </Solution>
+    <Solution>
+      <Activated>false</Activated>
+      <Deployed>false</Deployed>
+      <FileName>Solutions\ShepherdDashboards.wsp</FileName>
+      <Fetures>
+        <Feature>
+          <DisplayName></DisplayName>
+          <DefinitionId>{3d8f8cb5-f8bb-496a-b561-fb3d36e8d84d}</DefinitionId>
+          <Version></Version>
+          <Scope>Site</Scope>
+        </Feature>
+      </Fetures>
+      <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
+      <Priority>10</Priority>
+      <SolutionID></SolutionID>
+    </Solution>
+    <Solution>
+      <Activated>false</Activated>
+      <Deployed>false</Deployed>
+      <FileName>Solutions\SendNotification.wsp</FileName>
+      <Fetures>
+        <Feature>
+          <DisplayName></DisplayName>
+          <DefinitionId>{6473649e-0532-41e9-bd87-e9882dd16c76}</DefinitionId>
+          <Version></Version>
+          <Scope>Site</Scope>
+        </Feature>
+      </Fetures>
+      <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
+      <Priority>20</Priority>
+      <SolutionID></SolutionID>
     </Solution>
   </Solutions>
 </InstallationStateData>

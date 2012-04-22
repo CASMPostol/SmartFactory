@@ -32,7 +32,7 @@ namespace CAS.SmartFactory.Deployment.Package {
         
         private bool siteCollectionCreatedField;
         
-        private string xmlWebApplicationURLField;
+        private string webApplicationURLField;
         
         private Solution[] solutionsField;
         
@@ -82,12 +82,12 @@ namespace CAS.SmartFactory.Deployment.Package {
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlElementAttribute(DataType="anyURI")]
-        public string XmlWebApplicationURL {
+        public string WebApplicationURL {
             get {
-                return this.xmlWebApplicationURLField;
+                return this.webApplicationURLField;
             }
             set {
-                this.xmlWebApplicationURLField = value;
+                this.webApplicationURLField = value;
             }
         }
         
