@@ -144,6 +144,7 @@
     <Content Include="Solutions\ShepherdWebsite.wsp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Scripts\SignRelease.cmd" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
