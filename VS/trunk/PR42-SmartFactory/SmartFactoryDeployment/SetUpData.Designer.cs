@@ -215,11 +215,11 @@
       // 
       // m_SetupPropertyGrid
       // 
-      m_ApplicationSetupTableLayoutPanel.SetColumnSpan(this.m_SetupPropertyGrid, 2);
+      m_ApplicationSetupTableLayoutPanel.SetColumnSpan(this.m_SetupPropertyGrid, 3);
       this.m_SetupPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_SetupPropertyGrid.Location = new System.Drawing.Point(3, 107);
       this.m_SetupPropertyGrid.Name = "m_SetupPropertyGrid";
-      this.m_SetupPropertyGrid.Size = new System.Drawing.Size(571, 449);
+      this.m_SetupPropertyGrid.Size = new System.Drawing.Size(591, 449);
       this.m_SetupPropertyGrid.TabIndex = 10;
       this.m_TtoolTip.SetToolTip(this.m_SetupPropertyGrid, "Installation parameters");
       // 
