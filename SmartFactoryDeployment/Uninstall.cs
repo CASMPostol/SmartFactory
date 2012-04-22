@@ -1,10 +1,9 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using CAS.Lib.RTLib.Processes;
-using CAS.SmartFactory.Deployment.Properties;
 using CAS.SmartFactory.Deployment.Controls;
+using CAS.SmartFactory.Deployment.Package;
+using CAS.SmartFactory.Deployment.Properties;
 
 namespace CAS.SmartFactory.Deployment
 {

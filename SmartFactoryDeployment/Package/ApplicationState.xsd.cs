@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Xml.Serialization;
-using CAS.SmartFactory.Deployment.Properties;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.SharePoint;
 using CAS.SmartFactory.Deployment.Controls;
+using CAS.SmartFactory.Deployment.Properties;
+using Microsoft.SharePoint;
 
-namespace CAS.SmartFactory.Deployment
+namespace CAS.SmartFactory.Deployment.Package
+
 {
   /// <summary>
   /// Application State
