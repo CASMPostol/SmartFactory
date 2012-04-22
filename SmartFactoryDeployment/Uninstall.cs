@@ -121,10 +121,18 @@ namespace CAS.SmartFactory.Deployment
             m_ApplicationState.SiteCollectionCreated = false;
           }
         m_ProgresslListBox.AddMessage("Uninstall finished.");
-        m_ApplicationState.Save(Extenshions.GetFileInfo());
+        m_ApplicationState.Save();
       }
       catch (Exception ex)
       {
+        try
+        {
+          m_ApplicationState.Save();
+        }
+        catch (Exception _SaveEx)
+        {
+          m_ProgresslListBox.AddMessage(_SaveEx.Message);
+        }
         string _msg = String.Format(Resources.InstalationAbortRollback, ex.Message);
         MessageBox.Show(_msg, Resources.UninstallErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         Tracing.TraceEvent.TraceError(37, _src, String.Format("Uninstallation aborted with the error: {0}.", ex.Message));

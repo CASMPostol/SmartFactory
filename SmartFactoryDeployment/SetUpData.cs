@@ -120,9 +120,9 @@ namespace CAS.SmartFactory.Deployment
     }
     private void StateMachine(StateMachineEvenArgs _event)
     {
-      bool _stay = false;
       do
       {
+        bool _stay = false;
         try
         {
           switch (State)
@@ -171,11 +171,7 @@ namespace CAS.SmartFactory.Deployment
                   StateError();
                   break;
                 case LocalEvent.Next:
-                  //TODO add validation to:
-                  m_ApplicationState.GetUri(m_ApplicationURLTextBox.Text);
-                  m_ApplicationState.GetSiteCollectionURL(m_SiteCollectionUrlTextBox.Text);
-                  m_ApplicationState.GetOwnerLogin(m_OwnerLoginTextBox.Text);
-                  m_ApplicationState.GetOwnerEmail(m_OwnerEmailTextBox.Text);
+                  m_ApplicationState.Save();
                   State = ProcessState.Validation;
                   break;
                 case LocalEvent.Uninstall:
@@ -198,7 +194,8 @@ namespace CAS.SmartFactory.Deployment
                   m_NextButton.Enabled = true;
                   m_NextButton.Text = Resources.NextButtonTextNext;
                   m_CancelButton.Visible = true;
-                  InitSetupData();
+                  m_ApplicationState = InstallationStateData.Read();
+                  m_SetupPropertyGrid.SelectedObject = m_ApplicationState.Wrapper;
                   break;
                 default:
                   break;
@@ -213,6 +210,7 @@ namespace CAS.SmartFactory.Deployment
                   State = ProcessState.SetupDataDialog;
                   break;
                 case LocalEvent.Next:
+                  m_ApplicationState.Save();
                   if (Manual)
                     State = ProcessState.ManualSelection;
                   else
@@ -256,7 +254,6 @@ namespace CAS.SmartFactory.Deployment
                     m_UninstallButton.Visible = true;
                   else
                     m_UninstallButton.Visible = false;
-
                   break;
                 default:
                   break;
@@ -374,42 +371,6 @@ namespace CAS.SmartFactory.Deployment
         }
       } while (_stay);
     }
-    private void InitSetupData()
-    {
-      m_ApplicationState = InstallationStateData.Read();
-      m_SetupPropertyGrid.SelectedObject = m_ApplicationState.Wrapper;
-      //string _msg = String.Format(Resources.ConfigurationReadInstallationStateDataFailure, ex.Message);
-      //MessageBox.Show(_msg, Resources.RetrackCaption, MessageBoxButtons.OK, MessageBoxIcon.Question);
-      try
-      {
-        SPSecurity.RunWithElevatedPrivileges(delegate()
-          {
-            m_ApplicationURLTextBox.Text = Uri.UriSchemeHttp + Uri.SchemeDelimiter + SPServer.Local.Address;
-            m_SiteCollectionUrlTextBox.Text = Uri.UriSchemeHttp + Uri.SchemeDelimiter + m_ApplicationState.SiteCollectionURL + "." + SPServer.Local.Address;
-          }
-        );
-      }
-      catch (Exception)
-      {
-        m_ApplicationURLTextBox.Text = "http://server.domain " + Resources.CannotGetAccessToLocalServer;
-        m_SiteCollectionUrlTextBox.Text = String.Format("http://{0}.server.domain", Settings.Default.SiteCollectionURL);
-      }
-      try
-      {
-        if (String.IsNullOrEmpty(m_ApplicationState.OwnerLogin))
-        {
-          WindowsIdentity _id = WindowsIdentity.GetCurrent();
-          m_OwnerLoginTextBox.Text = _id.Name;
-        }
-        else
-          m_OwnerLoginTextBox.Text = m_ApplicationState.OwnerLogin;
-        m_OwnerEmailLabel.Text = m_ApplicationState.OwnerEmail;
-      }
-      catch (Exception)
-      {
-        m_OwnerLoginTextBox.Text = @"domain\user";
-      }
-    }
     private bool VerifyPrerequisites()
     {
       try
@@ -475,7 +436,7 @@ namespace CAS.SmartFactory.Deployment
         SPSecurity.RunWithElevatedPrivileges(delegate()
         {
           m_InstallationProgressBar.Minimum = 0;
-          m_InstallationProgressBar.Maximum = 18;
+          m_InstallationProgressBar.Maximum = 10;
           m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_ListBox_TextChanged);
           m_InstallationProgresListBox.AddMessage("Creating SPSite ... ");
           m_SiteCollectionHelper = SiteCollectionHelper.CreateSPSite(
@@ -520,7 +481,7 @@ namespace CAS.SmartFactory.Deployment
             }
             _sltn.Activated = true;
           }
-          SaveInstallationState();
+          m_ApplicationState.Save();
           m_InstallationProgresListBox.AddMessage("Installation successfully completed");
         });
       }
@@ -528,13 +489,13 @@ namespace CAS.SmartFactory.Deployment
       {
         try
         {
-          SaveInstallationState();
+          m_ApplicationState.Save();
         }
         catch (Exception _SaveEx)
         {
           m_InstallationProgresListBox.AddMessage(_SaveEx.Message);
         }
-        string _msg = String.Format(Resources.LastOperationFailedWithError, ex);
+        string _msg = String.Format(Resources.LastOperationFailedWithError, ex.Message);
         m_InstallationProgresListBox.AddMessage(_msg);
         throw new ApplicationException(_msg, ex);
       }
@@ -543,12 +504,6 @@ namespace CAS.SmartFactory.Deployment
         this.UseWaitCursor = false;
         m_InstallationProgresListBox.SelectedValueChanged -= new EventHandler(m_ListBox_TextChanged);
       }
-    }
-    private void SaveInstallationState()
-    {
-      FileInfo _file = new FileInfo(Settings.Default.InstallationStateFileName);
-      m_InstallationProgresListBox.AddMessage(String.Format("Saving installation details to the file {0}.", _file.FullName));
-      m_ApplicationState.Save(_file);
     }
     private void ExitlInstallation(DialogResult _res)
     {
@@ -571,28 +526,6 @@ namespace CAS.SmartFactory.Deployment
     {
       Debug.Assert(false, "State error");
     }
-    private static bool ValidEmailAddress(string _emailAddress, out string _errorMessage)
-    {
-      // Confirm that the e-mail address string is not empty.
-      if (_emailAddress.Length == 0)
-      {
-        _errorMessage = "e-mail address is required.";
-        return false;
-      }
-      // Confirm that there is an "@" and a "." in the e-mail address, and in the correct order.
-      if (_emailAddress.IndexOf("@") > -1)
-      {
-        if (_emailAddress.IndexOf(".", _emailAddress.IndexOf("@")) > _emailAddress.IndexOf("@"))
-        {
-          _errorMessage = "";
-          return true;
-        }
-      }
-      _errorMessage = "e-mail address must be valid e-mail address format.\n" +
-         "For example 'someone@example.com' ";
-      return false;
-    }
-
     #region base override
     /// <summary>
     /// Raises the <see cref="E:System.Windows.Forms.Form.Closing"/> event.
@@ -626,36 +559,10 @@ namespace CAS.SmartFactory.Deployment
     {
       ListBox _lb = (ListBox)sender;
       m_trace.Trace.TraceInformation(521, "SetUpData", _lb.Items[_lb.Items.Count - 1].ToString());
+      if (m_InstallationProgressBar.Value == m_InstallationProgressBar.Maximum)
+        m_InstallationProgressBar.Maximum *= 2;
       m_InstallationProgressBar.Value++;
       m_InstallationProgressBar.Refresh();
-    }
-    private void m_ApplicationURLTextBox_Validating(object sender, CancelEventArgs e)
-    {
-      Uri _auri = null;
-      string _errorMessage = String.Empty;
-      if (InstallationStateData.ValidateUrl(m_ApplicationURLTextBox.Text, out _auri, out _errorMessage))
-        m_WebApplicationURLErrorProvider.Clear();
-      else
-        m_WebApplicationURLErrorProvider.SetError(m_ApplicationURLTextBox, _errorMessage);
-    }
-    private void m_ApplicationURLTextBox_Validated(object sender, EventArgs e)
-    {
-    }
-    private void m_OwnerEmailTextBox_Validating(object sender, CancelEventArgs e)
-    {
-      string _errorMsg;
-      if (ValidEmailAddress(m_OwnerEmailTextBox.Text, out _errorMsg))
-      {
-        this.m_OwnerEmailErrorProvider.SetError(m_OwnerEmailTextBox, "");
-        return;
-      }
-      // Cancel the event and select the text to be corrected by the user.
-      m_OwnerEmailTextBox.Select(0, m_OwnerLoginTextBox.Text.Length);
-      // Set the ErrorProvider error with the text to display. 
-      this.m_OwnerEmailErrorProvider.SetError(m_OwnerEmailTextBox, _errorMsg);
-    }
-    private void m_OwnerEmailTextBox_Validated(object sender, EventArgs e)
-    {
     }
     private void m_CancelButton_Click(object sender, EventArgs e)
     {

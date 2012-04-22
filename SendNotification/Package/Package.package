@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="36d8c059-1711-4f6c-8aed-c4bea273805e" solutionId="36d8c059-1711-4f6c-8aed-c4bea273805e" resetWebServer="false" name="SendNotification" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="36d8c059-1711-4f6c-8aed-c4bea273805e" solutionId="36d8c059-1711-4f6c-8aed-c4bea273805e" resetWebServer="false" title="Shepherd workflows" description="Shepherd workflows collection package." name="SendNotification" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="6473649e-0532-41e9-bd87-e9882dd16c76" />
   </features>

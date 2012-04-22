@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <InstallationStateData xmlns="http://cas.eu/schemas/SharePoint/Deployment/2/ApplicationState.xsd">
   <OwnerLogin></OwnerLogin>
-  <OwnerEmail></OwnerEmail>
+  <OwnerEmail>someone@example.com</OwnerEmail>
   <SiteCollectionURL>Shepherd</SiteCollectionURL>
   <SiteCollectionCreated>false</SiteCollectionCreated>
   <WebApplicationURL></WebApplicationURL>

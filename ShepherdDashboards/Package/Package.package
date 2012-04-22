@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="212689f5-f797-4a55-8d76-26e83b3a6e30" solutionId="212689f5-f797-4a55-8d76-26e83b3a6e30" resetWebServer="false" name="ShepherdDashboards" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="212689f5-f797-4a55-8d76-26e83b3a6e30" solutionId="212689f5-f797-4a55-8d76-26e83b3a6e30" resetWebServer="false" title="Shepherd dashboards" description="Shepherd dashboards collection package" name="ShepherdDashboards" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="cf7dc489-0019-4684-9bb2-fde5b31efe5f" />
   </features>
