@@ -11,7 +11,7 @@ using System.Security;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("CAS Smart Factory")]
-[assembly: AssemblyCopyright("Copyright © CAS Company 2011")]
+[assembly: AssemblyCopyright("Copyright © CAS 2011")]
 [assembly: AssemblyTrademark("SmartFactory")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +33,6 @@ using System.Security;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.40.10.*")]
-[assembly: AssemblyFileVersion("1.40.10")]
+[assembly: AssemblyVersion("1.40.11.*")]
+[assembly: AssemblyFileVersion("1.40.11")]
 [assembly: AllowPartiallyTrustedCallers()]
