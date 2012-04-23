@@ -416,7 +416,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private LocalStateMachineEngine m_StateMachineEngine;
     #endregion
 
-
     #region Interconnection
     private void SetInterconnectionData(ShippingInterconnectionData _interconnectionData)
     {

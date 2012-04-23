@@ -459,7 +459,12 @@ namespace CAS.SmartFactory.Deployment
           m_SiteCollectionHelper = SiteCollectionHelper.CreateSPSite(
             FarmHelpers.WebApplication,
             m_ApplicationState.SiteCollectionURL,
+            m_ApplicationState.Title,
+            m_ApplicationState.Description,
+            m_ApplicationState.LCID,
+            m_ApplicationState.SiteTemplate,
             m_ApplicationState.OwnerLogin,
+            m_ApplicationState.OwnerName,
             m_ApplicationState.OwnerEmail);
           m_ApplicationState.SiteCollectionCreated = true;
           m_InstallationProgresListBox.AddMessage("Site collection created");
@@ -599,9 +604,14 @@ namespace CAS.SmartFactory.Deployment
       {
         SiteCollectionHelper.CreateSPSite(
           FarmHelpers.WebApplication,
-          m_ApplicationState.SiteCollectionURL,
-          m_ApplicationState.OwnerLogin,
-          m_ApplicationState.OwnerEmail);
+            m_ApplicationState.SiteCollectionURL,
+            m_ApplicationState.Title,
+            m_ApplicationState.Description,
+            m_ApplicationState.LCID,
+            m_ApplicationState.SiteTemplate,
+            m_ApplicationState.OwnerLogin,
+            m_ApplicationState.OwnerName,
+            m_ApplicationState.OwnerEmail);
         m_ApplicationState.SiteCollectionCreated = true;
       }
       catch (Exception ex)

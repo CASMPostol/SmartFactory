@@ -41,6 +41,31 @@ namespace CAS.SmartFactory.Deployment.Package
       }
     }
     /// <summary>
+    /// Gets or sets the name of the owner.
+    /// </summary>
+    /// <value>
+    /// The name of the owner.
+    /// </value>
+    [Category("Site collection")]
+    [DisplayName("Site owner name")]
+    [Description(@"A string that contains the display name of the owner of the site.")]
+    public string OwnerName
+    {
+      get
+      {
+        if (String.IsNullOrEmpty(State.OwnerName))
+        {
+          WindowsIdentity _id = WindowsIdentity.GetCurrent();
+          State.OwnerName = _id.Name;
+        }
+        return State.OwnerName;
+      }
+      set
+      {
+        State.OwnerName = value;
+      }
+    }
+    /// <summary>
     /// Gets or sets the owner email.
     /// </summary>
     /// <value>
@@ -146,6 +171,90 @@ namespace CAS.SmartFactory.Deployment.Package
       set
       {
         this.State.WebApplicationURL = value.ToString();
+      }
+    }
+    /// <summary>
+    /// Gets or sets the site template.
+    /// </summary>
+    /// <value>
+    /// The site template.
+    /// </value>
+    [Browsable(true)]
+    [Category("Site collection")]
+    [Description("A string that specifies the site definition or site template for the site object. Specify null to create a site without applying a template to it.")]
+    [DisplayName("Site Template")]
+    public string SiteTemplate
+    {
+      get
+      {
+        return State.SiteTemplate;
+      }
+      set
+      {
+        this.State.SiteTemplate = value;
+      }
+    }
+    /// <summary>
+    /// Gets or sets the LCID.
+    /// </summary>
+    /// <value>
+    /// The LCID - an unsigned 32-bit integer that specifies the LCID for the site object.
+    /// </value>
+    [Browsable(true)]
+    [Category("Site collection")]
+    [Description("An unsigned 32-bit integer that specifies the LCID for the site object.")]
+    [DisplayName("LCID")]
+    public uint LCID
+    {
+      get
+      {
+        return State.LCID;
+      }
+      set
+      {
+        State.LCID = value;
+      }
+    }
+    /// <summary>
+    /// Gets or sets the title.
+    /// </summary>
+    /// <value>
+    /// The title.
+    /// </value>
+    [Browsable(true)]
+    [Category("Site collection")]
+    [Description("A string that contains the title of the site object.")]
+    [DisplayName("Title")]
+    public string Title
+    {
+      get
+      {
+        return State.Title;
+      }
+      set
+      {
+        State.Title = value;
+      }
+    }
+    /// <summary>
+    /// Gets or sets the description.
+    /// </summary>
+    /// <value>
+    /// The description.
+    /// </value>
+    [Browsable(true)]
+    [Category("Site collection")]
+    [Description("A string that contains the description for the site object.")]
+    [DisplayName("Description")]
+    public string Description
+    {
+      get
+      {
+        return State.Description;
+      }
+      set
+      {
+        State.Description = value;
       }
     }
     /// <summary>
