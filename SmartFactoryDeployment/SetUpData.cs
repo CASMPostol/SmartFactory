@@ -453,10 +453,15 @@ namespace CAS.SmartFactory.Deployment
             switch (_sltn.FeatureDefinitionScope)
             {
               case FeatureDefinitionScope.Farm:
-                Guid _solutionID;
-                m_InstallationProgresListBox.AddMessage("Waiting for completion .... ");
-                SPSolution _sol = FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, out _solutionID);
-                _sltn.SolutionGuid = _solutionID;
+                TimeSpan _timeout= new TimeSpan(0, 0, Settings.Default.SolutionDeploymentTimeOut);
+                string _waitingForCompletion = String.Format("Waiting for completion .... It could take up to {0} s. ", _timeout);
+                m_InstallationProgresListBox.AddMessage(_waitingForCompletion);
+                SPSolution _sol = null;
+                if (_sltn.Global)
+                  _sol = FarmHelpers.DeploySolution(_fi, _timeout);
+                else
+                  _sol = FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, _timeout);
+                _sltn.SolutionGuid = _sol.Id;
                 m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed Name={0}, Deployed={1}, DeploymentState={2}, DisplayName={3} Status={4}", _sol.Name, _sol.Deployed, _sol.DeploymentState, _sol.DisplayName, _sol.Status));
                 break;
               case FeatureDefinitionScope.Site:

@@ -25,6 +25,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="FeatureDefinitionScope" type="tns:FeatureDefinitionScope" />
       <xs:element minOccurs="1" maxOccurs="1" name="Priority" type="xs:int" />
       <xs:element minOccurs="0" maxOccurs="1" name="SolutionID" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Global" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfFeature">

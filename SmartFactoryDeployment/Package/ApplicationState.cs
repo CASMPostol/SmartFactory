@@ -125,6 +125,8 @@ namespace CAS.SmartFactory.Deployment.Package {
         
         private string solutionIDField;
         
+        private bool globalField;
+        
         public Solution() {
             this.activatedField = false;
             this.deployedField = false;
@@ -200,6 +202,16 @@ namespace CAS.SmartFactory.Deployment.Package {
             }
             set {
                 this.solutionIDField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public bool Global {
+            get {
+                return this.globalField;
+            }
+            set {
+                this.globalField = value;
             }
         }
     }

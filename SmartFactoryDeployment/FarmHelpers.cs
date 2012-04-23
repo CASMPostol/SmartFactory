@@ -45,15 +45,24 @@ namespace CAS.SmartFactory.Deployment
     /// The farm.
     /// </value>
     internal static SPFarm Farm { get; set; }
-    internal static SPSolution DeploySolution(System.IO.FileInfo _fi, SPWebApplication _wa, out Guid _solutionId)
+    internal static SPSolution DeploySolution(System.IO.FileInfo _fi, TimeSpan _timeout)
+    {
+      return DeploySolution(_fi, null);
+    }
+    internal static SPSolution DeploySolution(System.IO.FileInfo _fi, SPWebApplication _wa, TimeSpan _timeout)
     {
       try
       {
         SPSolution _sol = Farm.Solutions.Add(_fi.FullName);
-        _solutionId = _sol.Id;
-        Collection<SPWebApplication> _collection = new Collection<SPWebApplication>();
-        _collection.Add(_wa);
-        _sol.Deploy(DateTime.Now, true, _collection, true);
+        if (_wa != null)
+        {
+          Collection<SPWebApplication> _collection = new Collection<SPWebApplication>();
+          _collection.Add(_wa);
+          _sol.Deploy(DateTime.Now, true, _collection, false);
+        }
+        else
+          _sol.Deploy(DateTime.Now, true, false);
+
         Stopwatch _runTime = new Stopwatch();
         _runTime.Start();
         while (!_sol.Deployed)
@@ -68,7 +77,7 @@ namespace CAS.SmartFactory.Deployment
           {
             _msg += String.Format(" JobStatus={0}", _sol.JobStatus);
           }
-          if (_runTime.Elapsed > new TimeSpan(0, 0, Settings.Default.SolutionDeploymentTimeOut)) 
+          if (_runTime.Elapsed > _timeout) 
           {
             string _tom = String.Format(Resources.DeplymentTimeout,
               _sol.DeploymentState,

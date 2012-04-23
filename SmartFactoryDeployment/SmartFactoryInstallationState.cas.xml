@@ -21,6 +21,7 @@
       <FeatureDefinitionScope>Site</FeatureDefinitionScope>
       <Priority>1</Priority>
       <SolutionID></SolutionID>
+      <Global>false</Global>
     </Solution>
     <Solution>
       <Activated>false</Activated>
@@ -37,6 +38,7 @@
       <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
       <Priority>10</Priority>
       <SolutionID></SolutionID>
+      <Global>false</Global>
     </Solution>
     <Solution>
       <Activated>false</Activated>
@@ -53,6 +55,7 @@
       <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
       <Priority>20</Priority>
       <SolutionID></SolutionID>
+      <Global>true</Global>
     </Solution>
   </Solutions>
 </InstallationStateData>
