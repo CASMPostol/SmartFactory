@@ -25,18 +25,6 @@ namespace CAS.SmartFactory.Deployment.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("shepherd")]
-        public string SiteCollectionURL {
-            get {
-                return ((string)(this["SiteCollectionURL"]));
-            }
-            set {
-                this["SiteCollectionURL"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool ManualMode {
             get {
