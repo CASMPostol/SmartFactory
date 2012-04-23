@@ -142,7 +142,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         case Entities.State.Delayed:
         case Entities.State.WaitingForCarrierData:
         case Entities.State.WaitingForSecurityData:
-        case Entities.State.Underway:
           int _seDrivers = 0;
           int _crDrivers = 0;
           foreach (var _dr in this.ShippingDriversTeam)
@@ -161,6 +160,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
           else if (this.SecurityEscort == null || (_seDrivers > 0 && this.SecurityEscortCarRegistrationNumber != null))
             this.State = Entities.State.WaitingForCarrierData;
           break;
+        case Entities.State.Underway:
         case Entities.State.None:
         case Entities.State.Invalid:
         case Entities.State.Cancelation:
