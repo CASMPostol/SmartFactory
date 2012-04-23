@@ -33,19 +33,36 @@ namespace CAS.SmartFactory.Deployment
     }
     internal static bool DeleteIfExist { get; set; }
     internal SPSite SiteCollection { get; private set; }
-    internal static SiteCollectionHelper CreateSPSite(SPWebApplication _wapplication, string _uri, string _owner, string _email)
+    /// <summary>
+    /// Creates an <see cref="Microsoft.SharePoint.SPSite"/> object in the collection based on the specified URL, title, description, locale identifier (LCID), and site
+    /// definition or site template, as well as on the user name, user display name, and e-mail address of the owner of the site collection.
+    /// </summary>
+    /// <param name="_wapplication">The _wapplication.</param>
+    /// <param name="siteUrl">A string that contains the server-relative URL for the site object (for example, Site_Name or sites/Site_Name).</param>
+    /// <param name="title">A string that contains the title of the site object.</param>
+    /// <param name="description">A string that contains the description for the site object.</param>
+    /// <param name="nLCID">An unsigned 32-bit integer that specifies the LCID for the site object.</param>
+    /// <param name="webTemplate">A string that specifies the site definition or site template for the site object. Specify null to create a site 
+    /// without applying a template to it. For a list of default site definitions.</param>
+    /// <param name="ownerLogin">A string that contains the user name of the owner of the site object (for example, Domain\User). In Active Directory Domain 
+    /// Services account creation mode, the strOwnerLogin parameter must contain a value even if the value does not correspond to an actual user name.</param>
+    /// <param name="ownerName">A string that contains the display name of the owner of the site object.</param>
+    /// <param name="ownerEmail">A string that contains the e-mail address of the owner of the site object.</param>
+    /// <returns>An <see cref="SiteCollectionHelper "/> </returns>
+    internal static SiteCollectionHelper CreateSPSite
+      (SPWebApplication _wapplication, string siteUrl, string title, string description, uint nLCID, string webTemplate, string ownerLogin, string ownerName, string ownerEmail)
     {
       try
       {
-        if (_wapplication.Sites.Names.Contains(_uri))
+        if (_wapplication.Sites.Names.Contains(siteUrl))
           if (DeleteIfExist)
-            _wapplication.Sites.Delete(_uri);
+            _wapplication.Sites.Delete(siteUrl);
           else
           {
-            return new SiteCollectionHelper(_wapplication.Sites[_uri]);
+            return new SiteCollectionHelper(_wapplication.Sites[siteUrl]);
           }
         //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3260
-        return new SiteCollectionHelper(_wapplication.Sites.Add(_uri, _owner, _email));
+        return new SiteCollectionHelper(_wapplication.Sites.Add( siteUrl,  title,  description,  nLCID,  webTemplate,  ownerLogin,  ownerName,  ownerEmail));
       }
       catch (Exception ex)
       {
@@ -146,11 +163,31 @@ namespace CAS.SmartFactory.Deployment
         throw new ApplicationException(_msg); ;
       }
     }
-    internal void DeactivateFeature(Guid _feature)
+    internal void DeactivateFeature(Guid _feature, SPFeatureDefinitionScope _scope)
     {
       try
       {
-        SiteCollection.Features.Remove(_feature, false);
+        try
+        {
+          SiteCollection.Features.Remove(_feature, false);
+          string _tmsg = String.Empty;
+          if (_scope == SPFeatureDefinitionScope.Site)
+          {
+            SiteCollection.FeatureDefinitions.Remove(_feature, true);
+            _tmsg = String.Format("Found the definition of the feature Id={0} at the site Url={1} DisplayName={2}.", _feature, SiteCollection.Url, _def.DisplayName);
+          }
+          else
+          {
+            FarmHelpers.Farm.FeatureDefinitions.Remove(_feature, true);
+            _tmsg = String.Format("Removed the definition of the feature Id={0} at the Farm DisplayName={1}.", _feature, FarmHelpers.Farm.DisplayName);
+          }
+          Tracing.TraceEvent.TraceVerbose(90, "SiteCollectionHelper", _tmsg);
+        }
+        catch (Exception _ex) 
+        {
+          string _msg = String.Format("I cannot remove definition for the feature Id = {0} at the site Url = {1} because {1}.", _feature, SiteCollection.Url, _ex);
+          Tracing.TraceEvent.TraceVerbose(95, "SiteCollectionHelper", _msg);
+        }
       }
       catch (Exception ex)
       {
