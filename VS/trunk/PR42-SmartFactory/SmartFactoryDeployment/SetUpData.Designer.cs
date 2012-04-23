@@ -101,7 +101,7 @@
       m_ApplicationSetupTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
       m_ApplicationSetupTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       m_ApplicationSetupTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      m_ApplicationSetupTableLayoutPanel.Size = new System.Drawing.Size(597, 559);
+      m_ApplicationSetupTableLayoutPanel.Size = new System.Drawing.Size(764, 485);
       m_ApplicationSetupTableLayoutPanel.TabIndex = 0;
       // 
       // m_SetupPropertyGrid
@@ -110,7 +110,7 @@
       this.m_SetupPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_SetupPropertyGrid.Location = new System.Drawing.Point(3, 23);
       this.m_SetupPropertyGrid.Name = "m_SetupPropertyGrid";
-      this.m_SetupPropertyGrid.Size = new System.Drawing.Size(591, 533);
+      this.m_SetupPropertyGrid.Size = new System.Drawing.Size(758, 533);
       this.m_SetupPropertyGrid.TabIndex = 10;
       this.m_TtoolTip.SetToolTip(this.m_SetupPropertyGrid, "Installation parameters");
       // 
@@ -180,6 +180,7 @@
       // 
       this.m_ValidationListBox.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_ValidationListBox.FormattingEnabled = true;
+      this.m_ValidationListBox.HorizontalScrollbar = true;
       this.m_ValidationListBox.ItemHeight = 16;
       this.m_ValidationListBox.Location = new System.Drawing.Point(0, 0);
       this.m_ValidationListBox.Name = "m_ValidationListBox";
@@ -200,7 +201,7 @@
       m_tableLayoutPanel3.RowCount = 2;
       m_tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
       m_tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      m_tableLayoutPanel3.Size = new System.Drawing.Size(597, 559);
+      m_tableLayoutPanel3.Size = new System.Drawing.Size(764, 485);
       m_tableLayoutPanel3.TabIndex = 1;
       // 
       // m_InstallationInprogressLabel
@@ -225,7 +226,7 @@
       this.m_InstallationProgresListBox.ItemHeight = 16;
       this.m_InstallationProgresListBox.Location = new System.Drawing.Point(3, 32);
       this.m_InstallationProgresListBox.Name = "m_InstallationProgresListBox";
-      this.m_InstallationProgresListBox.Size = new System.Drawing.Size(591, 516);
+      this.m_InstallationProgresListBox.Size = new System.Drawing.Size(758, 436);
       this.m_InstallationProgresListBox.TabIndex = 0;
       // 
       // m_InstallationProgressBar
@@ -233,7 +234,7 @@
       this.m_InstallationProgressBar.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_InstallationProgressBar.Location = new System.Drawing.Point(162, 3);
       this.m_InstallationProgressBar.Name = "m_InstallationProgressBar";
-      this.m_InstallationProgressBar.Size = new System.Drawing.Size(432, 23);
+      this.m_InstallationProgressBar.Size = new System.Drawing.Size(599, 23);
       this.m_InstallationProgressBar.TabIndex = 1;
       // 
       // m_tableLayoutPanel4
@@ -348,7 +349,7 @@
       this.m_ApplicationSetupDataDialogPanel.Location = new System.Drawing.Point(4, 25);
       this.m_ApplicationSetupDataDialogPanel.Name = "m_ApplicationSetupDataDialogPanel";
       this.m_ApplicationSetupDataDialogPanel.Padding = new System.Windows.Forms.Padding(3);
-      this.m_ApplicationSetupDataDialogPanel.Size = new System.Drawing.Size(603, 565);
+      this.m_ApplicationSetupDataDialogPanel.Size = new System.Drawing.Size(770, 491);
       this.m_ApplicationSetupDataDialogPanel.TabIndex = 1;
       this.m_ApplicationSetupDataDialogPanel.Text = "Setup";
       this.m_ApplicationSetupDataDialogPanel.UseVisualStyleBackColor = true;
@@ -370,7 +371,7 @@
       this.m_ApplicationInstalationPanel.Location = new System.Drawing.Point(4, 25);
       this.m_ApplicationInstalationPanel.Name = "m_ApplicationInstalationPanel";
       this.m_ApplicationInstalationPanel.Padding = new System.Windows.Forms.Padding(3);
-      this.m_ApplicationInstalationPanel.Size = new System.Drawing.Size(603, 565);
+      this.m_ApplicationInstalationPanel.Size = new System.Drawing.Size(770, 491);
       this.m_ApplicationInstalationPanel.TabIndex = 2;
       this.m_ApplicationInstalationPanel.Text = "Installation";
       this.m_ApplicationInstalationPanel.UseVisualStyleBackColor = true;
@@ -381,7 +382,7 @@
       this.m_ManualSelectionPanel.Location = new System.Drawing.Point(4, 25);
       this.m_ManualSelectionPanel.Name = "m_ManualSelectionPanel";
       this.m_ManualSelectionPanel.Padding = new System.Windows.Forms.Padding(3);
-      this.m_ManualSelectionPanel.Size = new System.Drawing.Size(603, 565);
+      this.m_ManualSelectionPanel.Size = new System.Drawing.Size(770, 491);
       this.m_ManualSelectionPanel.TabIndex = 3;
       this.m_ManualSelectionPanel.Text = "Manual Installation";
       this.m_ManualSelectionPanel.UseVisualStyleBackColor = true;
@@ -392,7 +393,7 @@
       this.m_FinischedPanel.Location = new System.Drawing.Point(4, 25);
       this.m_FinischedPanel.Name = "m_FinischedPanel";
       this.m_FinischedPanel.Padding = new System.Windows.Forms.Padding(3);
-      this.m_FinischedPanel.Size = new System.Drawing.Size(603, 565);
+      this.m_FinischedPanel.Size = new System.Drawing.Size(770, 491);
       this.m_FinischedPanel.TabIndex = 4;
       this.m_FinischedPanel.Text = "Completed";
       this.m_FinischedPanel.UseVisualStyleBackColor = true;
@@ -409,7 +410,7 @@
       this.tableLayoutPanel2.RowCount = 2;
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(597, 559);
+      this.tableLayoutPanel2.Size = new System.Drawing.Size(764, 485);
       this.tableLayoutPanel2.TabIndex = 8;
       // 
       // m_FinishedLabel
@@ -426,7 +427,7 @@
       this.m_InstallationFinischedPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_InstallationFinischedPropertyGrid.Location = new System.Drawing.Point(3, 19);
       this.m_InstallationFinischedPropertyGrid.Name = "m_InstallationFinischedPropertyGrid";
-      this.m_InstallationFinischedPropertyGrid.Size = new System.Drawing.Size(591, 537);
+      this.m_InstallationFinischedPropertyGrid.Size = new System.Drawing.Size(758, 463);
       this.m_InstallationFinischedPropertyGrid.TabIndex = 1;
       // 
       // m_UninstallPanel
@@ -435,7 +436,7 @@
       this.m_UninstallPanel.Location = new System.Drawing.Point(4, 25);
       this.m_UninstallPanel.Name = "m_UninstallPanel";
       this.m_UninstallPanel.Padding = new System.Windows.Forms.Padding(3);
-      this.m_UninstallPanel.Size = new System.Drawing.Size(603, 565);
+      this.m_UninstallPanel.Size = new System.Drawing.Size(770, 491);
       this.m_UninstallPanel.TabIndex = 5;
       this.m_UninstallPanel.Text = "Uninstall";
       this.m_UninstallPanel.UseVisualStyleBackColor = true;

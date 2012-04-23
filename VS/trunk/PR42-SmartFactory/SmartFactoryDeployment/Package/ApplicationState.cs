@@ -26,6 +26,8 @@ namespace CAS.SmartFactory.Deployment.Package {
         
         private string ownerLoginField;
         
+        private string ownerNameField;
+        
         private string ownerEmailField;
         
         private string siteCollectionURLField;
@@ -34,10 +36,22 @@ namespace CAS.SmartFactory.Deployment.Package {
         
         private string webApplicationURLField;
         
-        private Solution[] solutionsField;
+        private string siteTemplateField;
         
+        private uint lCIDField;
+        
+        private string titleField;
+        
+        private string descriptionField;
+        
+        private Solution[] solutionsField;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InstallationStateData"/> class.
+        /// </summary>
         public InstallationStateData() {
             this.siteCollectionCreatedField = false;
+            this.lCIDField = ((uint)(1033));
         }
         
         /// <uwagi/>
@@ -47,6 +61,16 @@ namespace CAS.SmartFactory.Deployment.Package {
             }
             set {
                 this.ownerLoginField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string OwnerName {
+            get {
+                return this.ownerNameField;
+            }
+            set {
+                this.ownerNameField = value;
             }
         }
         
@@ -92,6 +116,46 @@ namespace CAS.SmartFactory.Deployment.Package {
         }
         
         /// <uwagi/>
+        public string SiteTemplate {
+            get {
+                return this.siteTemplateField;
+            }
+            set {
+                this.siteTemplateField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public uint LCID {
+            get {
+                return this.lCIDField;
+            }
+            set {
+                this.lCIDField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string Title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <uwagi/>
         [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
         public Solution[] Solutions {
             get {
@@ -126,7 +190,10 @@ namespace CAS.SmartFactory.Deployment.Package {
         private string solutionIDField;
         
         private bool globalField;
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Solution"/> class.
+        /// </summary>
         public Solution() {
             this.activatedField = false;
             this.deployedField = false;
