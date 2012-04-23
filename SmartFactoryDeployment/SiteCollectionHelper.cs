@@ -174,7 +174,7 @@ namespace CAS.SmartFactory.Deployment
           if (_scope == SPFeatureDefinitionScope.Site)
           {
             SiteCollection.FeatureDefinitions.Remove(_feature, true);
-            _tmsg = String.Format("Found the definition of the feature Id={0} at the site Url={1}.", _feature, SiteCollection.Url);
+            _tmsg = String.Format("Removed the definition of the feature Id={0} at the site Url={1}.", _feature, SiteCollection.Url);
           }
           else
           {
