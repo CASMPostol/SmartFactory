@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.Deployment
               foreach (var _fix in _solution.Fetures)
               {
                 m_ProgresslListBox.AddMessage(String.Format("Deactivating the feature {0}.", _fix.DisplayName));
-                m_SiteCollectionHelper.DeactivateFeature(_fix.FetureGuid);
+                m_SiteCollectionHelper.DeactivateFeature(_fix.FetureGuid, _solution.SPFeatureDefinitionScope);
               }
             }
             catch (Exception ex)

@@ -167,25 +167,25 @@ namespace CAS.SmartFactory.Deployment
     {
       try
       {
+        SiteCollection.Features.Remove(_feature, false);
         try
         {
-          SiteCollection.Features.Remove(_feature, false);
           string _tmsg = String.Empty;
           if (_scope == SPFeatureDefinitionScope.Site)
           {
             SiteCollection.FeatureDefinitions.Remove(_feature, true);
-            _tmsg = String.Format("Found the definition of the feature Id={0} at the site Url={1} DisplayName={2}.", _feature, SiteCollection.Url, _def.DisplayName);
+            _tmsg = String.Format("Found the definition of the feature Id={0} at the site Url={1}.", _feature, SiteCollection.Url);
           }
           else
           {
             FarmHelpers.Farm.FeatureDefinitions.Remove(_feature, true);
             _tmsg = String.Format("Removed the definition of the feature Id={0} at the Farm DisplayName={1}.", _feature, FarmHelpers.Farm.DisplayName);
           }
-          Tracing.TraceEvent.TraceVerbose(90, "SiteCollectionHelper", _tmsg);
+          Tracing.TraceEvent.TraceVerbose(90, "SiteCollectionHelper.DeactivateFeature", _tmsg);
         }
         catch (Exception _ex) 
         {
-          string _msg = String.Format("I cannot remove definition for the feature Id = {0} at the site Url = {1} because {1}.", _feature, SiteCollection.Url, _ex);
+          string _msg = String.Format("I cannot remove definition for the feature Id = {0} at the site Url = {1} because {2}.", _feature, SiteCollection.Url, _ex.Message);
           Tracing.TraceEvent.TraceVerbose(95, "SiteCollectionHelper", _msg);
         }
       }
