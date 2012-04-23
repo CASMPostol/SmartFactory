@@ -267,7 +267,7 @@ namespace CAS.SmartFactory.Deployment
               switch (_event.Event)
               {
                 case LocalEvent.Previous:
-                  StateError();
+                  State = ProcessState.Validation;
                   break;
                 case LocalEvent.Next:
                   ExitlInstallation(DialogResult.Abort);
@@ -281,11 +281,10 @@ namespace CAS.SmartFactory.Deployment
                     String.Format(Resources.InstalationAbortRollback, _eea.Message),
                     Resources.CaptionOperationFailure,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                  State = ProcessState.Validation;
                   break;
                 case LocalEvent.EnterState:
                   m_InstallationProgresListBox.Items.Clear();
-                  m_PreviousButton.Visible = false;
+                  m_PreviousButton.Visible = true;
                   m_NextButton.Enabled = true;
                   m_NextButton.Enabled = false;
                   m_NextButton.Text = Resources.FinishButtonText;
@@ -337,9 +336,10 @@ namespace CAS.SmartFactory.Deployment
                   StateError();
                   break;
                 case LocalEvent.Next:
-                  ExitlInstallation(DialogResult.Abort);
+                  ExitlInstallation(DialogResult.OK);
                   break;
                 case LocalEvent.Cancel:
+                  StateError();
                   break;
                 case LocalEvent.Exception:
                   Exception _eea = ((StateMachineExceptionEventArgs)_event).Exception;
@@ -401,21 +401,34 @@ namespace CAS.SmartFactory.Deployment
           }
           else
             throw new ApplicationException(String.Format(Resources.GettingAccess2ApplicationFailed, m_ApplicationState.WebApplicationURL));
-          if (FarmHelpers.WebApplication.Sites.Names.Contains(m_ApplicationState.SiteCollectionURL))
+          bool _spsiteExist = FarmHelpers.WebApplication.Sites.Names.Contains(m_ApplicationState.SiteCollectionURL);
+          if (m_ApplicationState.SiteCollectionCreated)
           {
-            //SiteCollectionHelper.SiteCollection = FarmHelpers.WebApplication.Sites[m_ApplicationState.SiteCollectionURL];
-            string _ms = String.Format(Resources.SiteCollectionExist, m_ApplicationState.SiteCollectionURL);
-            SiteCollectionHelper.DeleteIfExist = MessageBox.Show(
-              _ms,
-              Resources.SiteCreation,
-              MessageBoxButtons.YesNo,
-              MessageBoxIcon.Question) != DialogResult.Yes;
-            if (SiteCollectionHelper.DeleteIfExist)
-              m_ValidationListBox.AddMessage(Resources.SiteExistAndDelete);
-            else
+            if (_spsiteExist)
               m_ValidationListBox.AddMessage(Resources.SiteExistAndReuse);
-            this.Refresh();
+            else
+            {
+              UriBuilder _spuri = new UriBuilder(m_ApplicationState.WebApplicationUri) { Path = m_ApplicationState.SiteCollectionURL };
+              string _siteNotExist = String.Format("Cannot get access to the installed site collection at URL = {0}", _spuri);
+              throw new ApplicationException(_siteNotExist);
+            }
           }
+          else
+            if (_spsiteExist)
+            {
+              //SiteCollectionHelper.SiteCollection = FarmHelpers.WebApplication.Sites[m_ApplicationState.SiteCollectionURL];
+              string _ms = String.Format(Resources.SiteCollectionExist, m_ApplicationState.SiteCollectionURL);
+              SiteCollectionHelper.DeleteIfExist = MessageBox.Show(
+                _ms,
+                Resources.SiteCreation,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) != DialogResult.Yes;
+              if (SiteCollectionHelper.DeleteIfExist)
+                m_ValidationListBox.AddMessage(Resources.SiteExistAndDelete);
+              else
+                m_ValidationListBox.AddMessage(Resources.SiteExistAndReuse);
+              this.Refresh();
+            }
           m_ValidationListBox.AddMessage(Resources.ValidationProcessSuccessfullyFinished);
           m_ValidationPropertyGrid.Refresh();
         });
@@ -516,6 +529,7 @@ namespace CAS.SmartFactory.Deployment
     }
     private void ExitlInstallation(DialogResult _res)
     {
+      Tracing.TraceEvent.TraceVerbose(532, "ExitlInstallation", string.Format("Closing the application with the result {0}", _res));
       this.DialogResult = _res;
       this.Close();
     }
@@ -536,16 +550,6 @@ namespace CAS.SmartFactory.Deployment
       Debug.Assert(false, "State error");
     }
     #region base override
-    /// <summary>
-    /// Raises the <see cref="E:System.Windows.Forms.Form.Closing"/> event.
-    /// </summary>
-    /// <param name="e">A <see cref="T:System.ComponentModel.CancelEventArgs"/> that contains the event data.</param>
-    protected override void OnClosing(CancelEventArgs e)
-    {
-      if (m_ApplicationState != null)
-        Settings.Default.SiteCollectionURL = m_ApplicationState.SiteCollectionURL;
-      base.OnClosing(e);
-    }
     /// <summary>
     /// Clean up any resources being used.
     /// </summary>

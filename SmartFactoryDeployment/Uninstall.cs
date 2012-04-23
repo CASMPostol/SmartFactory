@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.Deployment
         if (m_ApplicationState.SiteCollectionCreated)
           try
           {
-            m_ProgresslListBox.AddMessage(String.Format("Deleting the site collection at Url = {0}.", m_ApplicationState.SiteCollectionURL));
+            m_ProgresslListBox.AddMessage(String.Format("Deleting the site collection at path = {0}.", m_ApplicationState.SiteCollectionURL));
             SiteCollectionHelper.DeleteSiteCollection(FarmHelpers.WebApplication, m_ApplicationState.SiteCollectionURL);
           }
           catch (Exception ex)

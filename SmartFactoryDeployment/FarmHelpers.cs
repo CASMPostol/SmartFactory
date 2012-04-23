@@ -58,11 +58,10 @@ namespace CAS.SmartFactory.Deployment
         {
           Collection<SPWebApplication> _collection = new Collection<SPWebApplication>();
           _collection.Add(_wa);
-          _sol.Deploy(DateTime.Now, true, _collection, false);
+          _sol.Deploy(DateTime.Now, true, _collection, true);
         }
         else
           _sol.Deploy(DateTime.Now, true, false);
-
         Stopwatch _runTime = new Stopwatch();
         _runTime.Start();
         while (!_sol.Deployed)
@@ -77,6 +76,7 @@ namespace CAS.SmartFactory.Deployment
           {
             _msg += String.Format(" JobStatus={0}", _sol.JobStatus);
           }
+          Tracing.TraceEvent.TraceVerbose(80, "DeploySolution", _msg);
           if (_runTime.Elapsed > _timeout) 
           {
             string _tom = String.Format(Resources.DeplymentTimeout,

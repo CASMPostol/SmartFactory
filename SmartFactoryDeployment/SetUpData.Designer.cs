@@ -146,7 +146,7 @@
       m_tableLayoutPanel2.RowCount = 2;
       m_tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
       m_tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54.32781F));
-      m_tableLayoutPanel2.Size = new System.Drawing.Size(597, 559);
+      m_tableLayoutPanel2.Size = new System.Drawing.Size(764, 485);
       m_tableLayoutPanel2.TabIndex = 6;
       // 
       // m_SplitContainer
@@ -163,8 +163,8 @@
       // m_SplitContainer.Panel2
       // 
       m_SplitContainer.Panel2.Controls.Add(this.m_ValidationListBox);
-      m_SplitContainer.Size = new System.Drawing.Size(591, 537);
-      m_SplitContainer.SplitterDistance = 350;
+      m_SplitContainer.Size = new System.Drawing.Size(758, 463);
+      m_SplitContainer.SplitterDistance = 301;
       m_SplitContainer.TabIndex = 8;
       // 
       // m_ValidationPropertyGrid
@@ -172,7 +172,7 @@
       this.m_ValidationPropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
       this.m_ValidationPropertyGrid.Location = new System.Drawing.Point(0, 0);
       this.m_ValidationPropertyGrid.Name = "m_ValidationPropertyGrid";
-      this.m_ValidationPropertyGrid.Size = new System.Drawing.Size(591, 350);
+      this.m_ValidationPropertyGrid.Size = new System.Drawing.Size(758, 301);
       this.m_ValidationPropertyGrid.TabIndex = 7;
       this.m_TtoolTip.SetToolTip(this.m_ValidationPropertyGrid, "Installation parameters");
       // 
@@ -183,7 +183,7 @@
       this.m_ValidationListBox.ItemHeight = 16;
       this.m_ValidationListBox.Location = new System.Drawing.Point(0, 0);
       this.m_ValidationListBox.Name = "m_ValidationListBox";
-      this.m_ValidationListBox.Size = new System.Drawing.Size(591, 183);
+      this.m_ValidationListBox.Size = new System.Drawing.Size(758, 158);
       this.m_ValidationListBox.TabIndex = 0;
       // 
       // m_tableLayoutPanel3
@@ -323,7 +323,7 @@
       m_tableLayoutPanel1.RowCount = 2;
       m_tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       m_tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      m_tableLayoutPanel1.Size = new System.Drawing.Size(617, 636);
+      m_tableLayoutPanel1.Size = new System.Drawing.Size(784, 562);
       m_tableLayoutPanel1.TabIndex = 8;
       // 
       // m_ContentTabControl
@@ -339,7 +339,7 @@
       this.m_ContentTabControl.Location = new System.Drawing.Point(3, 3);
       this.m_ContentTabControl.Name = "m_ContentTabControl";
       this.m_ContentTabControl.SelectedIndex = 0;
-      this.m_ContentTabControl.Size = new System.Drawing.Size(611, 594);
+      this.m_ContentTabControl.Size = new System.Drawing.Size(778, 520);
       this.m_ContentTabControl.TabIndex = 7;
       // 
       // m_ApplicationSetupDataDialogPanel
@@ -359,7 +359,7 @@
       this.m_ValidationPanel.Location = new System.Drawing.Point(4, 25);
       this.m_ValidationPanel.Name = "m_ValidationPanel";
       this.m_ValidationPanel.Padding = new System.Windows.Forms.Padding(3);
-      this.m_ValidationPanel.Size = new System.Drawing.Size(603, 565);
+      this.m_ValidationPanel.Size = new System.Drawing.Size(770, 491);
       this.m_ValidationPanel.TabIndex = 0;
       this.m_ValidationPanel.Text = "Validation";
       this.m_ValidationPanel.UseVisualStyleBackColor = true;
@@ -455,7 +455,7 @@
       // 
       this.m_PreviousButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.m_PreviousButton.CausesValidation = false;
-      this.m_PreviousButton.Location = new System.Drawing.Point(3, 603);
+      this.m_PreviousButton.Location = new System.Drawing.Point(3, 529);
       this.m_PreviousButton.MaximumSize = new System.Drawing.Size(0, 30);
       this.m_PreviousButton.MinimumSize = new System.Drawing.Size(100, 30);
       this.m_PreviousButton.Name = "m_PreviousButton";
@@ -468,7 +468,7 @@
       // m_NextButton
       // 
       this.m_NextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.m_NextButton.Location = new System.Drawing.Point(109, 603);
+      this.m_NextButton.Location = new System.Drawing.Point(109, 529);
       this.m_NextButton.MaximumSize = new System.Drawing.Size(0, 30);
       this.m_NextButton.MinimumSize = new System.Drawing.Size(100, 30);
       this.m_NextButton.Name = "m_NextButton";
@@ -482,7 +482,7 @@
       // 
       this.m_CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
       this.m_CancelButton.CausesValidation = false;
-      this.m_CancelButton.Location = new System.Drawing.Point(321, 603);
+      this.m_CancelButton.Location = new System.Drawing.Point(321, 529);
       this.m_CancelButton.MaximumSize = new System.Drawing.Size(0, 30);
       this.m_CancelButton.MinimumSize = new System.Drawing.Size(100, 30);
       this.m_CancelButton.Name = "m_CancelButton";
@@ -495,7 +495,7 @@
       // m_UninstallButton
       // 
       this.m_UninstallButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-      this.m_UninstallButton.Location = new System.Drawing.Point(215, 603);
+      this.m_UninstallButton.Location = new System.Drawing.Point(215, 529);
       this.m_UninstallButton.MaximumSize = new System.Drawing.Size(0, 30);
       this.m_UninstallButton.MinimumSize = new System.Drawing.Size(100, 30);
       this.m_UninstallButton.Name = "m_UninstallButton";
@@ -524,11 +524,11 @@
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.BackColor = System.Drawing.Color.LemonChiffon;
-      this.ClientSize = new System.Drawing.Size(617, 636);
+      this.ClientSize = new System.Drawing.Size(784, 562);
       this.Controls.Add(m_tableLayoutPanel1);
       this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      this.MinimumSize = new System.Drawing.Size(500, 200);
+      this.MinimumSize = new System.Drawing.Size(800, 600);
       this.Name = "SetUpData";
       this.ShowInTaskbar = false;
       this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
