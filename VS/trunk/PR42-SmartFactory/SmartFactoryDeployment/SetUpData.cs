@@ -120,9 +120,11 @@ namespace CAS.SmartFactory.Deployment
     }
     private void StateMachine(StateMachineEvenArgs _event)
     {
+      bool _stay = false;
       do
+      #region do
       {
-        bool _stay = false;
+        _stay = false;
         try
         {
           switch (State)
@@ -369,7 +371,9 @@ namespace CAS.SmartFactory.Deployment
           _stay = true;
           _event = new StateMachineExceptionEventArgs(ex);
         }
-      } while (_stay);
+      }
+      #endregion
+      while (_stay);
     }
     private bool VerifyPrerequisites()
     {
@@ -453,7 +457,7 @@ namespace CAS.SmartFactory.Deployment
             switch (_sltn.FeatureDefinitionScope)
             {
               case FeatureDefinitionScope.Farm:
-                TimeSpan _timeout= new TimeSpan(0, 0, Settings.Default.SolutionDeploymentTimeOut);
+                TimeSpan _timeout = new TimeSpan(0, 0, Settings.Default.SolutionDeploymentTimeOut);
                 string _waitingForCompletion = String.Format("Waiting for completion .... It could take up to {0} s. ", _timeout);
                 m_InstallationProgresListBox.AddMessage(_waitingForCompletion);
                 SPSolution _sol = null;

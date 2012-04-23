@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.Deployment
     internal static SPFarm Farm { get; set; }
     internal static SPSolution DeploySolution(System.IO.FileInfo _fi, TimeSpan _timeout)
     {
-      return DeploySolution(_fi, null);
+      return DeploySolution(_fi, null, _timeout);
     }
     internal static SPSolution DeploySolution(System.IO.FileInfo _fi, SPWebApplication _wa, TimeSpan _timeout)
     {

@@ -188,6 +188,9 @@ namespace CAS.SmartFactory.Deployment.Package
     #endregion
 
     #region private
+    /// <summary>
+    /// Gets the state.
+    /// </summary>
     internal protected InstallationStateData State { get; private set; }
     internal InstallationStateDataWrapper(InstallationStateData _state)
     {
