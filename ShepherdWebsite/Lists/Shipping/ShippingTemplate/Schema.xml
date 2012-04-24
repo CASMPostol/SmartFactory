@@ -576,6 +576,7 @@
           </FieldRef>
           <FieldRef ID="{0C674E8B-70ED-4BCF-84C7-8942292E3954}" Name="StartTime" />
           <FieldRef ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}" Name="ShippingState" />
+          <FieldRef ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}" Name="DockNumber" />
           <FieldRef ID="{A55637EF-0C88-490E-BCAF-16215A28EA52}" Name="Shipping2City" />
           <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />
           <FieldRef ID="{E6381646-DB08-4C85-9A2F-59B931D98DBB}" Name="LoadingType" />
