@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.VisualWebPart" DefaultFile="DriversManagerUserControl.ascx" SupportedTrustLevels="FullTrust" SupportedDeploymentScopes="Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="DriversManager\" Type="ElementManifest" />
+    <ProjectItemFile Source="DriversManager.webpart" Target="DriversManager\" Type="ElementFile" />
+    <ProjectItemFile Source="DriversManagerUserControl.ascx" Target="CONTROLTEMPLATES\CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard\DriversManager\" Type="TemplateFile" />
+  </Files>
+  <SafeControls>
+    <SafeControl Name="SafeControlEntry1" Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager" TypeName="*" IsSafe="true" IsSafeAgainstScript="false" />
+  </SafeControls>
+</ProjectItem>
