@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.VisualWebPart" DefaultFile="TrailerManagerUserControl.ascx" SupportedTrustLevels="FullTrust" SupportedDeploymentScopes="Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="TrailerManager\" Type="ElementManifest" />
+    <ProjectItemFile Source="TrailerManager.webpart" Target="TrailerManager\" Type="ElementFile" />
+    <ProjectItemFile Source="TrailerManagerUserControl.ascx" Target="CONTROLTEMPLATES\CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard\TrailerManager\" Type="TemplateFile" />
+  </Files>
+  <SafeControls>
+    <SafeControl Name="SafeControlEntry1" Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager" TypeName="*" IsSafe="true" IsSafeAgainstScript="false" />
+  </SafeControls>
+</ProjectItem>
