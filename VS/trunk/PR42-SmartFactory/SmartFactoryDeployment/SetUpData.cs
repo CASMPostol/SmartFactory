@@ -450,67 +450,91 @@ namespace CAS.SmartFactory.Deployment
       this.UseWaitCursor = true;
       try
       {
-        SPSecurity.RunWithElevatedPrivileges(delegate()
+        m_InstallationProgressBar.Minimum = 0;
+        m_InstallationProgressBar.Maximum = 10;
+        m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_ListBox_TextChanged);
+        m_InstallationProgresListBox.AddMessage("Creating SPSite ... ");
+        m_SiteCollectionHelper = SiteCollectionHelper.CreateSPSite(
+          FarmHelpers.WebApplication,
+          m_ApplicationState.SiteCollectionURL,
+          m_ApplicationState.Title,
+          m_ApplicationState.Description,
+          m_ApplicationState.LCID,
+          m_ApplicationState.SiteTemplate,
+          m_ApplicationState.OwnerLogin,
+          m_ApplicationState.OwnerName,
+          m_ApplicationState.OwnerEmail);
+        m_ApplicationState.SiteCollectionCreated = true;
+        m_InstallationProgresListBox.AddMessage("Site collection created");
+        foreach (Solution _sltn in m_ApplicationState.SolutionsToInstall.Values)
         {
-          m_InstallationProgressBar.Minimum = 0;
-          m_InstallationProgressBar.Maximum = 10;
-          m_InstallationProgresListBox.SelectedValueChanged += new EventHandler(m_ListBox_TextChanged);
-          m_InstallationProgresListBox.AddMessage("Creating SPSite ... ");
-          m_SiteCollectionHelper = SiteCollectionHelper.CreateSPSite(
-            FarmHelpers.WebApplication,
-            m_ApplicationState.SiteCollectionURL,
-            m_ApplicationState.Title,
-            m_ApplicationState.Description,
-            m_ApplicationState.LCID,
-            m_ApplicationState.SiteTemplate,
-            m_ApplicationState.OwnerLogin,
-            m_ApplicationState.OwnerName,
-            m_ApplicationState.OwnerEmail);
-          m_ApplicationState.SiteCollectionCreated = true;
-          m_InstallationProgresListBox.AddMessage("Site collection created");
-          foreach (Solution _sltn in m_ApplicationState.SolutionsToInstall.Values)
+          FileInfo _fi = _sltn.SolutionFileInfo();
+          m_InstallationProgresListBox.AddMessage(String.Format("Deploying solution: {0}", _fi.Name));
+          switch (_sltn.FeatureDefinitionScope)
           {
-            FileInfo _fi = _sltn.SolutionFileInfo();
-            m_InstallationProgresListBox.AddMessage(String.Format("Deploying solution: {0}", _fi.Name));
-            switch (_sltn.FeatureDefinitionScope)
-            {
-              case FeatureDefinitionScope.Farm:
-                TimeSpan _timeout = new TimeSpan(0, 0, Settings.Default.SolutionDeploymentTimeOut);
-                string _waitingForCompletion = String.Format("Waiting for completion .... It could take up to {0} s. ", _timeout);
-                m_InstallationProgresListBox.AddMessage(_waitingForCompletion);
-                SPSolution _sol = null;
-                if (_sltn.Global)
-                  _sol = FarmHelpers.DeploySolution(_fi, _timeout);
-                else
-                  _sol = FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, _timeout);
-                _sltn.SolutionGuid = _sol.Id;
-                m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed Name={0}, Deployed={1}, DeploymentState={2}, DisplayName={3} Status={4}", _sol.Name, _sol.Deployed, _sol.DeploymentState, _sol.DisplayName, _sol.Status));
-                break;
-              case FeatureDefinitionScope.Site:
-                SPUserSolution _solution = null;
-                _solution = m_SiteCollectionHelper.DeploySolution(_fi);
-                _sltn.SolutionGuid = _solution.SolutionId;
-                m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed: {0}", _solution.Name));
-                break;
-              case FeatureDefinitionScope.None:
-              default:
-                throw new ApplicationException("Wrong FeatureDefinitionScope in the configuration file");
-            }
-            _sltn.Deployed = true;
-            foreach (Feature _fix in _sltn.Fetures)
-            {
-              m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", _fix.FetureGuid, m_SiteCollectionHelper.SiteCollection.Url));
-              SPFeature _ffeature = m_SiteCollectionHelper.ActivateFeature(_fix.FetureGuid, _sltn.SPFeatureDefinitionScope);
-              m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _ffeature.Definition.DisplayName));
-              _fix.DisplayName = _ffeature.Definition.DisplayName;
-              _fix.Version = _ffeature.Version.ToString();
-              _fix.SPScope = _ffeature.Definition.Scope;
-            }
-            _sltn.Activated = true;
+            case FeatureDefinitionScope.Farm:
+              TimeSpan _timeout = new TimeSpan(0, 0, Settings.Default.SolutionDeploymentTimeOut);
+              string _waitingForCompletion = String.Format("Waiting for completion .... It could take up to {0} s. ", _timeout);
+              m_InstallationProgresListBox.AddMessage(_waitingForCompletion);
+              SPSolution _sol = null;
+              if (_sltn.Global)
+                _sol = FarmHelpers.DeploySolution(_fi, _timeout);
+              else
+                _sol = FarmHelpers.DeploySolution(_fi, FarmHelpers.WebApplication, _timeout);
+              _sltn.SolutionGuid = _sol.Id;
+              m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed Name={0}, Deployed={1}, DeploymentState={2}, DisplayName={3} Status={4}", _sol.Name, _sol.Deployed, _sol.DeploymentState, _sol.DisplayName, _sol.Status));
+              break;
+            case FeatureDefinitionScope.Site:
+              SPUserSolution _solution = null;
+              _solution = m_SiteCollectionHelper.DeploySolution(_fi);
+              _sltn.SolutionGuid = _solution.SolutionId;
+              m_InstallationProgresListBox.AddMessage(String.Format("Solution deployed: {0}", _solution.Name));
+              break;
+            case FeatureDefinitionScope.None:
+            default:
+              throw new ApplicationException("Wrong FeatureDefinitionScope in the configuration file");
           }
-          m_ApplicationState.Save();
-          m_InstallationProgresListBox.AddMessage("Installation successfully completed");
-        });
+          _sltn.Deployed = true;
+          foreach (Feature _fix in _sltn.Fetures)
+          {
+            bool _repeat;
+            do
+            {
+              _repeat = false;
+              try
+              {
+                m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", _fix.FetureGuid, m_SiteCollectionHelper.SiteCollection.Url));
+                SPFeature _ffeature = m_SiteCollectionHelper.ActivateFeature(_fix.FetureGuid, _sltn.SPFeatureDefinitionScope);
+                m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _ffeature.Definition.DisplayName));
+                _fix.DisplayName = _ffeature.Definition.DisplayName;
+                _fix.Version = _ffeature.Version.ToString();
+                _fix.SPScope = _ffeature.Definition.Scope;
+              }
+              catch (Exception ex)
+              {
+                switch (MessageBox.Show(Resources.FeatureActivationFailureMBox, "Install ActivateFeature", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2))
+                {
+                  case DialogResult.Abort:
+                    throw ex;
+                  case DialogResult.Retry:
+                    _repeat = true;
+                    break;
+                  case DialogResult.Ignore:
+                  case DialogResult.No:
+                  case DialogResult.None:
+                  case DialogResult.OK:
+                  case DialogResult.Cancel:
+                  case DialogResult.Yes:
+                  default:
+                    break;
+                }
+              }
+            } while (_repeat);
+          }//foreach (Feature _fix in _sltn.Fetures)
+          _sltn.Activated = true;
+        } //foreach (Solution _sltn 
+        m_ApplicationState.Save();
+        m_InstallationProgresListBox.AddMessage("Product installation successfully completed");
       }
       catch (Exception ex)
       {

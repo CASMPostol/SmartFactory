@@ -232,6 +232,15 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The feature activation encountered some problems (see log file for details). Press Abort to abort the installation, Retry to try again (recommended), Ignore to skip activation of the feature and continue the installation process..
+        /// </summary>
+        internal static string FeatureActivationFailureMBox {
+            get {
+                return ResourceManager.GetString("FeatureActivationFailureMBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deactivation of the feature: {0} at site: {1} failed with the error {2}..
         /// </summary>
         internal static string FeatureDeactivationFailed {

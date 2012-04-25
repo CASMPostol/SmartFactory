@@ -268,4 +268,7 @@ For example 'http://computer.domain:Port'</value>
   <data name="NextButtonTextVerify" xml:space="preserve">
     <value>Verify</value>
   </data>
+  <data name="FeatureActivationFailureMBox" xml:space="preserve">
+    <value>The feature activation encountered some problems (see log file for details). Press Abort to abort the installation, Retry to try again (recommended), Ignore to skip activation of the feature and continue the installation process.</value>
+  </data>
 </root>
