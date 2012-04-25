@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.Deployment
             }
           else
           {
-            m_ProgresslListBox.AddMessage(String.Format("Skiped, the solution {0} is not active.", _solution.SolutionID));
+            m_ProgresslListBox.AddMessage(String.Format("Skiped the featurs dectivation step, because the solution {0} is not active.", _solution.SolutionID));
           }
           try
           {
@@ -81,7 +81,7 @@ namespace CAS.SmartFactory.Deployment
                   FarmHelpers.RetrackSolution(_solution.SolutionGuid);
                 }
                 else
-                  m_ProgresslListBox.AddMessage(String.Format("Retracing is kiped, the solution {0} is not deployed.", _solution.SolutionGuid));
+                  m_ProgresslListBox.AddMessage(String.Format("Retracing is skiped, the solution {0} is not deployed.", _solution.SolutionGuid));
                 break;
               case FeatureDefinitionScope.Site:
                 if (_solution.Deployed)
