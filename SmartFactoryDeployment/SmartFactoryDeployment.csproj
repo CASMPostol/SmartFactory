@@ -135,7 +135,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="SmartFactoryInstallationState.cas.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Solutions\ShepherdDashboards.wsp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

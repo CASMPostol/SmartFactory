@@ -62,7 +62,7 @@ namespace CAS.SmartFactory.Deployment
             return new SiteCollectionHelper(_wapplication.Sites[siteUrl]);
           }
         //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3260
-        return new SiteCollectionHelper(_wapplication.Sites.Add( siteUrl,  title,  description,  nLCID,  webTemplate,  ownerLogin,  ownerName,  ownerEmail));
+        return new SiteCollectionHelper(_wapplication.Sites.Add(siteUrl, title, description, nLCID, webTemplate, ownerLogin, ownerName, ownerEmail));
       }
       catch (Exception ex)
       {
@@ -160,7 +160,7 @@ namespace CAS.SmartFactory.Deployment
       catch (Exception ex)
       {
         string _msg = String.Format(Resources.FeatureActivationFailed, _feature, SiteCollection.Url, _scope, ex.Message);
-        throw new ApplicationException(_msg); ;
+        throw new ApplicationException("SiteCollectionHelper.ActivateFeature: " + _msg); ;
       }
     }
     internal void DeactivateFeature(Guid _feature, SPFeatureDefinitionScope _scope)
@@ -183,7 +183,7 @@ namespace CAS.SmartFactory.Deployment
           }
           Tracing.TraceEvent.TraceVerbose(90, "SiteCollectionHelper.DeactivateFeature", _tmsg);
         }
-        catch (Exception _ex) 
+        catch (Exception _ex)
         {
           string _msg = String.Format("I cannot remove definition for the feature Id = {0} at the site Url = {1} because {2}.", _feature, SiteCollection.Url, _ex.Message);
           Tracing.TraceEvent.TraceVerbose(95, "SiteCollectionHelper", _msg);
