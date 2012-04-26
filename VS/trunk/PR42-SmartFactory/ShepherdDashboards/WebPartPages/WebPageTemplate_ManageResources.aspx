@@ -31,6 +31,14 @@
         <tr>
                         <td width="100%" valign="top">
                         <WebPartPages:WebpartZone
+                        ID="ResourceManager" runat="server"
+                        Title="ResourceManager Web Part Zone"
+                        FrameType="TitleBarOnly" />
+                        </td>
+        </tr>
+        <tr>
+                        <td width="100%" valign="top">
+                        <WebPartPages:WebpartZone
                         ID="CurrentUser" runat="server"
                         Title="CurrentUser Web Part Zone"
                         FrameType="TitleBarOnly" />

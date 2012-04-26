@@ -66,7 +66,23 @@
       <DependentUpon>CarrierDashboardWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="CarrierDashboard\CarrierDashboardWebPart\StateMachineEngine.cs" />
+    <Compile Include="CarrierDashboard\DriversManager\DriversManager.cs" />
+    <Compile Include="CarrierDashboard\DriversManager\DriversManagerUserControl.ascx.cs">
+      <DependentUpon>DriversManagerUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarrierDashboard\DriversManager\DriversManagerUserControl.ascx.designer.cs">
+      <DependentUpon>DriversManagerUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="CarrierDashboard\InboundInterconnectionData.cs" />
+    <Compile Include="CarrierDashboard\TrailerManager\TrailerManager.cs" />
+    <Compile Include="CarrierDashboard\TrailerManager\TrailerManagerUserControl.ascx.cs">
+      <DependentUpon>TrailerManagerUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarrierDashboard\TrailerManager\TrailerManagerUserControl.ascx.designer.cs">
+      <DependentUpon>TrailerManagerUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="CarrierDashboard\TransportResources\TransportResources.cs" />
     <Compile Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx.cs">
       <DependentUpon>TransportResourcesUserControl.ascx</DependentUpon>
@@ -74,6 +90,14 @@
     </Compile>
     <Compile Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx.designer.cs">
       <DependentUpon>TransportResourcesUserControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CarrierDashboard\TruckManager\TruckManager.cs" />
+    <Compile Include="CarrierDashboard\TruckManager\TruckManagerUserControl.ascx.cs">
+      <DependentUpon>TruckManagerUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarrierDashboard\TruckManager\TruckManagerUserControl.ascx.designer.cs">
+      <DependentUpon>TruckManagerUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="CurrentUserWebPart\CurrentUserWebPart.cs" />
     <Compile Include="CurrentUserWebPart\CurrentUserWebPartUserControl.ascx.cs">
@@ -101,6 +125,18 @@
     <Compile Include="Features\Dashboards\Dashboards.EventReceiver.cs">
       <DependentUpon>Dashboards.feature</DependentUpon>
     </Compile>
+    <None Include="CarrierDashboard\DriversManager\DriversManager.webpart" />
+    <None Include="CarrierDashboard\DriversManager\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{76586792-a90c-411a-bde5-bbdc99f041a8}</SharePointProjectItemId>
+    </None>
+    <None Include="CarrierDashboard\TrailerManager\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0bd7a7b9-48a1-4ea1-ad8d-2734adfe128d}</SharePointProjectItemId>
+    </None>
+    <None Include="CarrierDashboard\TrailerManager\TrailerManager.webpart" />
+    <None Include="CarrierDashboard\TruckManager\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9ff9bfec-b1ae-4237-ad27-01a9d741aa91}</SharePointProjectItemId>
+    </None>
+    <None Include="CarrierDashboard\TruckManager\TruckManager.webpart" />
     <None Include="GlobalDefinitions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GlobalDefinitions.cs</LastGenOutput>
@@ -289,8 +325,20 @@
     <Content Include="CarrierDashboard\CarrierDashboardWebPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="CarrierDashboard\DriversManager\DriversManagerUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="CarrierDashboard\DriversManager\Elements.xml" />
+    <Content Include="CarrierDashboard\TrailerManager\Elements.xml" />
+    <Content Include="CarrierDashboard\TrailerManager\TrailerManagerUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="CarrierDashboard\TransportResources\Elements.xml" />
     <Content Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="CarrierDashboard\TruckManager\Elements.xml" />
+    <Content Include="CarrierDashboard\TruckManager\TruckManagerUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="cas\Elements.xml">
