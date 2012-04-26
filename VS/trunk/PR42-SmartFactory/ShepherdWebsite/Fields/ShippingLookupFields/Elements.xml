@@ -104,6 +104,19 @@
     />
   <Field
     Type="Lookup"
+    DisplayName="Phone Number"
+    List="Lists/DriverList"
+    ShowField="CellPhone"
+    FieldRef="ABE1FBCA-A3B4-4425-A819-80CD436CC98D"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Shepherd"
+    ID="{08DF96B6-1B66-483B-A35F-91C88ACA4A3B}"
+    Name="DriversTeamDriverCellPhone"
+    Overwrite="TRUE"
+  />
+  <Field
+    Type="Lookup"
     DisplayName="ID Number"
     List="Lists/DriverList"
     ShowField="IdentityDocumentNumber"

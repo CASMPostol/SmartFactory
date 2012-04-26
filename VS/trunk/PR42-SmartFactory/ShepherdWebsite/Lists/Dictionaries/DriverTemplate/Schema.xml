@@ -72,11 +72,11 @@
         </ParameterBindings>
       </View>
       <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Manage Drivers" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="ManageDrivers.aspx">
-        <Toolbar Type="Standard" />
+        <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">15</RowLimit>
         <ViewFields>
-          <FieldRef Name="LinkTitle">
+          <FieldRef Name="Title">
           </FieldRef>
           <FieldRef ID="{9889C906-2676-4309-A8C3-CE3F91D8A640}" Name="IdentityDocumentNumber" />
           <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />

@@ -79,11 +79,11 @@
         </ParameterBindings>
       </View>
       <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Manage Trucks" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="ManageTrucks.aspx">
-        <Toolbar Type="Standard" />
+        <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
-        <RowLimit Paged="TRUE">30</RowLimit>
+        <RowLimit Paged="TRUE">15</RowLimit>
         <ViewFields>
-          <FieldRef Name="LinkTitle">
+          <FieldRef Name="Title">
           </FieldRef>
           <FieldRef ID="{4521F780-1838-4A0A-B3B7-04997B3DEA37}" Name="VehicleType" />
           <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
