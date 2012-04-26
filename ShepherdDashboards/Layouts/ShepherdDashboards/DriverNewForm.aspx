@@ -86,6 +86,7 @@
     </wssuc:ButtonSection>
   </table>
   <asp:HiddenField ID="m_ItemID" runat="server" />
+
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">

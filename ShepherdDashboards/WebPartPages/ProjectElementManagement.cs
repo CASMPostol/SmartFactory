@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
     internal const string MenuOperatorTitle = "Operator";
     internal const string MenuSupervisorTitle = "Supervisor";
     internal const string MenuDriversTitle = "Drivers";
-    internal const string MenuCarsTitle = "Cars";
+    internal const string MenuTrucksTitle = "Trucks";
     internal const string MenuTrailersTitle = "Trailers";
     internal const string MenuViewInboundsTitle = "View Inbounds";
     internal const string MenuViewOutboundsTitle = "View Outbounds";
@@ -40,7 +40,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
     internal const string URLOperator = WebPartPagesFolder + "/OperatorDashboard.aspx";
     internal const string URLSupervisor = WebPartPagesFolder + "/SupervisorDashboard.aspx";
     internal const string URLDrivers = WebPartPagesFolder + "/ManageDriversDashboard.aspx";
-    internal const string URLCars = WebPartPagesFolder + "/ManageCarsDashboard.aspx";
+    internal const string URLTrucks = WebPartPagesFolder + "/ManageCarsDashboard.aspx";
     internal const string URLTrailers = WebPartPagesFolder + "/ManageTrailersDashboard.aspx";
     internal const string URLViewInbounds = WebPartPagesFolder + "/ViewInboundsDashboard.aspx";
     internal const string URLViewOutbounds = WebPartPagesFolder + "/ViewOutboundsDashboard.aspx";

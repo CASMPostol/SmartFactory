@@ -12,7 +12,7 @@
  </metaData>
  <data>
  <properties>
- <property name="Title" type="string">Cars</property>
+ <property name="Title" type="string">Trucks</property>
  <property name="TitleUrl" type="string">ManageTrailersDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
@@ -21,6 +21,23 @@
  </webParts>
  ]]>
       </View>
+      <AllUsersWebPart WebPartZoneID="ResourceManager" WebPartOrder="0">
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager.TruckManager, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Truck Manager</property>
+        <property name="Description" type="string">My Visual WebPart</property>
+         <property name="AllowConnect" type="bool">True</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
       <AllUsersWebPart WebPartZoneID="CurrentUser" WebPartOrder="0">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
