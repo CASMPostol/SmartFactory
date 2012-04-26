@@ -8,6 +8,7 @@
           <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
           <FieldRef ID="{ABE1FBCA-A3B4-4425-A819-80CD436CC98D}" Name="DriverTitle" />
           <FieldRef ID="{6A3FBFD2-0901-4813-AB9E-43D788572021}" Name="DriversTeamDriverID" />
+          <FieldRef ID="{08DF96B6-1B66-483B-A35F-91C88ACA4A3B}" Name="DriversTeamDriverCellPhone" />
           <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="ShippingIndex" />
         </FieldRefs>
         <XmlDocuments>
@@ -25,6 +26,7 @@
       <Field Name="DriverTitle" ID="{abe1fbca-a3b4-4425-a819-80cd436cc98d}" Type="Lookup" List="Lists/DriverList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Driver" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Name="ShippingIndex" ID="{837c9ee8-7f8f-4231-a620-f12b5e91f998}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
       <Field Type="Lookup" DisplayName="ID Number" List="Lists/DriverList" ShowField="IdentityDocumentNumber" FieldRef="ABE1FBCA-A3B4-4425-A819-80CD436CC98D" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{6A3FBFD2-0901-4813-AB9E-43D788572021}" Name="DriversTeamDriverID" Overwrite="TRUE" />
+      <Field Type="Lookup" DisplayName="Phone Number" List="Lists/DriverList" ShowField="CellPhone" FieldRef="ABE1FBCA-A3B4-4425-A819-80CD436CC98D" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{08DF96B6-1B66-483B-A35F-91C88ACA4A3B}" Name="DriversTeamDriverCellPhone" Overwrite="TRUE" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -56,6 +58,7 @@
           </FieldRef>
           <FieldRef ID="{ABE1FBCA-A3B4-4425-A819-80CD436CC98D}" Name="DriverTitle" />
           <FieldRef ID="{6A3FBFD2-0901-4813-AB9E-43D788572021}" Name="DriversTeamDriverID" />
+          <FieldRef ID="{08DF96B6-1B66-483B-A35F-91C88ACA4A3B}" Name="DriversTeamDriverCellPhone" />
           <FieldRef ID="{837C9EE8-7F8F-4231-A620-F12B5E91F998}" Name="ShippingIndex" />
         </ViewFields>
         <Query>
@@ -76,6 +79,7 @@
           <ViewFields>
             <FieldRef ID="{ABE1FBCA-A3B4-4425-A819-80CD436CC98D}" Name="DriverTitle" />
             <FieldRef ID="{6A3FBFD2-0901-4813-AB9E-43D788572021}" Name="DriversTeamDriverID" />
+            <FieldRef ID="{08DF96B6-1B66-483B-A35F-91C88ACA4A3B}" Name="DriversTeamDriverCellPhone" />
           </ViewFields>
           <Query>
             <OrderBy>
