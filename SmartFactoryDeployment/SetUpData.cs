@@ -512,6 +512,7 @@ namespace CAS.SmartFactory.Deployment
               }
               catch (Exception ex)
               {
+                //TODO add message about exception http://itrserver/Bugs/BugDetail.aspx?bid=3321
                 switch (MessageBox.Show(Resources.FeatureActivationFailureMBox, "Install ActivateFeature", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2))
                 {
                   case DialogResult.Abort:

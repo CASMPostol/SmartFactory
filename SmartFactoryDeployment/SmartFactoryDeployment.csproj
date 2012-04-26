@@ -136,6 +136,7 @@
     </None>
     <Content Include="SmartFactoryInstallationState.cas.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Solutions\ShepherdDashboards.wsp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
