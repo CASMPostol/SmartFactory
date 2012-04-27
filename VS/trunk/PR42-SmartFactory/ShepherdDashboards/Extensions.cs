@@ -49,25 +49,25 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     {
       return _val.HasValue ? string.Format(_format, _val.Value.ToString(CultureInfo.CurrentUICulture)) : String.Empty;
     }
-    /// <summary>
-    /// Labels the text property.
-    /// </summary>
-    /// <param name="_control">The _control.</param>
-    /// <param name="_val">The _val.</param>
-    /// <param name="_required">if set to <c>true</c> [_required].</param>
-    public static void LabelTextProperty(this Label _control, string _val, bool _required)
-    {
-      if (String.IsNullOrEmpty(_val))
-      {
-        _control.Text = " -- Select from list -- ";
-        _control.BackColor = _required ? _warrningBackColor : Color.DimGray;
-      }
-      else
-      {
-        _control.Text = _val.GetLocalizedString();
-        _control.BackColor = Color.Empty;
-      }
-    }
+    ///// <summary>
+    ///// Labels the text property.
+    ///// </summary>
+    ///// <param name="_control">The _control.</param>
+    ///// <param name="_val">The _val.</param>
+    ///// <param name="_required">if set to <c>true</c> [_required].</param>
+    //public static void LabelTextProperty(this Label _control, string _val, bool _required)
+    //{
+    //  if (String.IsNullOrEmpty(_val))
+    //  {
+    //    _control.Text = " -- Select from list -- ";
+    //    _control.BackColor = _required ? _warrningBackColor : Color.DimGray;
+    //  }
+    //  else
+    //  {
+    //    _control.Text = _val.GetLocalizedString();
+    //    _control.BackColor = Color.Empty;
+    //  }
+    //}
     /// <summary>
     /// Hiddens the field2 int.
     /// </summary>
@@ -90,7 +90,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     /// <param name="_required">if set to <c>true</c> the property is requires.</param>
     public static void TextBoxTextProperty(this TextBox _control, string _val, bool _required)
     {
-      _control.Text = _val.GetLocalizedString();
+      _control.Text = _val;
       if (String.IsNullOrEmpty(_val))
         _control.BackColor = _required ? _warrningBackColor : Color.Azure;
       else
