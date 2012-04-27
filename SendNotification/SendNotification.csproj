@@ -324,7 +324,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Elements.tt</DependentUpon>
     </Content>
-    <Content Include="ImportDictionaries\Schema\PreliminaryDataRoute.xml" />
+    <Content Include="ImportDictionaries\Schema\PreliminaryDataRoute.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SendEmail\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
