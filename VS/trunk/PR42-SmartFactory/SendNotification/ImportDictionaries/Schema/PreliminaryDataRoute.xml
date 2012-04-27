@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns1:PreliminaryDataRoute xmlns:ns1="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<ns1:PalletTypeTable>
+  <ns1:TestingData>false</ns1:TestingData>
+  <ns1:FillUpTimeSlotTemplates>true</ns1:FillUpTimeSlotTemplates>
+  <ns1:FillUpTimeSlots>false</ns1:FillUpTimeSlots>
+  <ns1:PalletTypeTable>
 		<ns1:PalletTypeRow>
 			<ns1:Title>INDUSTRIAL</ns1:Title>
 			<ns1:PalletSize>100/120</ns1:PalletSize>
