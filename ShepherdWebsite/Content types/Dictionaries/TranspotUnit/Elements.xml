@@ -3,7 +3,7 @@
   <ContentType ID="0x0100017ECA95BFABB941B9E7FE63643FCD7C"
              Name="TranspotUnit"
              Group="CAS Smart Factory Shepherd"
-             Description="Transpot Unit"
+             Description="$Resources:CASSmartFactoryShepherd,TranspotUnitTypeListCT"
              Overwrite="TRUE"
              Inherits="TRUE">
     <Folder TargetName="_cts/TranspotUnit" />

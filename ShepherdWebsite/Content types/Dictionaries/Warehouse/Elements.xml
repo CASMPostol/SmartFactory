@@ -3,7 +3,7 @@
   <ContentType ID="0x01001E57547208B49B46B4AA7CB4536B1A55"
              Name="Warehouse"
              Group="CAS Smart Factory"
-             Description="Warehouse"
+             Description="$Resources:CASSmartFactoryShepherd,WarehousesListCT"
              Overwrite="TRUE"
              Inherits="TRUE">
     <Folder TargetName="_cts/Warehouse" />

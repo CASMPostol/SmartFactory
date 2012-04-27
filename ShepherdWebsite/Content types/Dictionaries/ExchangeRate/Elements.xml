@@ -3,7 +3,7 @@
 	<ContentType ID="0x010049923F7BFE2A7C4696383638716569A9" 
                Name="ExchangeRate" 
                Group="CAS Smart Factory Shepherd" 
-               Description="Exchange Rate" 
+               Description="$Resources:CASSmartFactoryShepherd,ExchangeRateListCT" 
                Overwrite="TRUE" 
                Inherits="TRUE">
 		<Folder TargetName="_cts/ExchangeRate" />

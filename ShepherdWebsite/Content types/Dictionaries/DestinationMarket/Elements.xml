@@ -3,7 +3,7 @@
   <ContentType ID="0x01002cd380c2a0bc484caf14a0a71dadef4e"
                Name="DestinationMarket"
                Group="CAS Smart Factory Shepherd" 
-               Description="Destination Market - Markets associated with routs"
+               Description="$Resources:CASSmartFactoryShepherd,DestinationMarketListCT"
                Overwrite="TRUE" 
                Inherits="TRUE">
 		<Folder TargetName="_cts/DestinationMarket" />

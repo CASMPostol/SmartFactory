@@ -3,7 +3,7 @@
 	<ContentType ID="0x0100CB62286DE09CE54780611F275F43DB47" 
                Name="ShippingPoint" 
                Group="CAS Smart Factory Shepherd" 
-               Description="Shipping Point" 
+               Description="$Resources:CASSmartFactoryShepherd,ShippingPointListCT" 
                Overwrite="TRUE" 
                Inherits="TRUE">
 		<Folder TargetName="_cts/ShippingPoint" />

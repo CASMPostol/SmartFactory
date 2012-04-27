@@ -3,7 +3,7 @@
   <ContentType ID="0x010024c2d44b310a47edb90969b622490cf9"
                Name="Currency"
                Group="CAS Smart Factory Shepherd"
-               Description="Currency"
+               Description="$Resources:CASSmartFactoryShepherd,CurrencyListCT"
                Overwrite="TRUE"
                Inherits="TRUE">
     <Folder TargetName="_cts/Currency" />
