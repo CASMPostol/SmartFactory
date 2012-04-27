@@ -3,7 +3,7 @@
   <ContentType ID="0x01003c7ce387cdaea94b89feb3fc6264fb71"
              Name="CityType"
              Group="CAS Smart Factory"
-             Description="City collection"
+             Description="$Resources:CASSmartFactoryShepherd,CityListCT"
              Overwrite="TRUE"
              Inherits="TRUE">
     <Folder TargetName="_cts/City" />

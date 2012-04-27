@@ -3,7 +3,7 @@
   <ContentType ID="0x01004d883ad19a284d1f826ea7b4e70f0aca"
                Name="SecurityEscortCatalog"
                Group="CAS Smart Factory Shepherd"
-               Description="Security Escort Catalog"
+               Description="$Resources:CASSmartFactoryShepherd,SecurityEscortCatalogListCT"
                Inherits="TRUE"
                Overwrite="TRUE">
     <Folder TargetName="_cts/SecurityEscortCatalog" />

@@ -3,7 +3,7 @@
   <ContentType ID="0x0100121b8b770545430a8b59b62d84c02c38"
                Name="Route"
                Group="CAS Smart Factory Shepherd"
-               Description="Route"
+               Description="$Resources:CASSmartFactoryShepherd,RoutesListCT"
                Overwrite="TRUE"
                Inherits="TRUE">
     <Folder TargetName="_cts/Route" />

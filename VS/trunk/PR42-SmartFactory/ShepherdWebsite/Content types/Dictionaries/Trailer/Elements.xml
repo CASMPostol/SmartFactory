@@ -3,7 +3,7 @@
   <ContentType ID="0x01009ef7d9cee9664a48928ad8c8857ada95"
                Name="Trailer"
                Group="CAS Smart Factory Shepherd"
-               Description="Trailer"
+               Description="$Resources:CASSmartFactoryShepherd,TrailersListCT"
                Overwrite="TRUE"
                Inherits="TRUE">
     <Folder TargetName="_cts/Trailer" />

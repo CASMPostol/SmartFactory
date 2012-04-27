@@ -3,7 +3,7 @@
   <ContentType ID="0x0100ce031dc456c86c409854d818eda7e1f3"
              Name="CountryType"
              Group="CAS Smart Factory"
-             Description="Country"
+             Description="$Resources:CASSmartFactoryShepherd,CountryListCT"
              Overwrite="TRUE"
              Inherits="TRUE">
     <Folder TargetName="_cts/Country" />

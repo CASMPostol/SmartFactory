@@ -3,7 +3,7 @@
   <ContentType ID="0x01003a76ab24637a7541b0d982b65d5916ce" 
              Name="Commodity"
              Group="CAS Smart Factory"
-             Description="Commodity content type" 
+             Description="$Resources:CASSmartFactoryShepherd,CommodityListCT" 
              Overwrite="TRUE"
              Inherits="TRUE" >
     <Folder TargetName="_cts/Commodity" />

@@ -3,7 +3,7 @@
   <ContentType ID="0x01003e7761aef97a4c619f44d01b53a56568"
                Name="Truck"
                Group="CAS Smart Factory Shepherd"
-               Description="Truck"
+               Description="$Resources:CASSmartFactoryShepherd,TrucksListCT"
                Overwrite="TRUE"
                Inherits="FALSE">
     <Folder TargetName="_cts/Truck" />

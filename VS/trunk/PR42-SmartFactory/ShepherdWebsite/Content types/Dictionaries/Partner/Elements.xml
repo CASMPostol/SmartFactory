@@ -3,7 +3,7 @@
   <ContentType ID="0x010017a675502be747db9fb9dcb304429eef"
                Name="Partner"
                Group="CAS Smart Factory Shepherd"
-               Description="Partner"
+               Description="$Resources:CASSmartFactoryShepherd,PartnersListCT"
                Overwrite="TRUE"
                Inherits="True">
     <Folder TargetName="_cts/Partner" />

@@ -3,7 +3,7 @@
   <ContentType ID="0x0100b0982f01816047b1abff933b9f49b5db"
                Name="Driver"
                Group="CAS Smart Factory Shepherd"
-               Description="Driver"
+               Description="$Resources:CASSmartFactoryShepherd,DriversListCT"
                Overwrite="TRUE"
                Inherits="FALSE">
     <Folder TargetName="_cts/Driver" />

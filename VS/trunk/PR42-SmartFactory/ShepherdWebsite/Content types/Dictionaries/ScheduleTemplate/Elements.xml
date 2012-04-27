@@ -3,7 +3,7 @@
   <ContentType ID="0x010091765907174d4799b44c4df249630d28"
                Name="ScheduleTemplate"
                Group="CAS Smart Factory Shepherd Dictionaries"
-               Description="A schedule template is a predefined table of time slots."
+               Description="$Resources:CASSmartFactoryShepherd,ScheduleTemplateListCT"
                Inherits="TRUE"
                Overwrite="TRUE">
     <Folder TargetName="_cts/ScheduleTemplate" />

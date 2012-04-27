@@ -59,5 +59,302 @@ namespace ShepherdResources.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alarms And Events List Content Type.
+        /// </summary>
+        internal static string AlarmsAndEventsListCT {
+            get {
+                return ResourceManager.GetString("AlarmsAndEventsListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Description List Content Type.
+        /// </summary>
+        internal static string BusinessDescriptionListCT {
+            get {
+                return ResourceManager.GetString("BusinessDescriptionListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carrier Performance Report List Content Type.
+        /// </summary>
+        internal static string CarrierPerformanceReportListCT {
+            get {
+                return ResourceManager.GetString("CarrierPerformanceReportListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carriers List Content Type.
+        /// </summary>
+        internal static string CarriersListCT {
+            get {
+                return ResourceManager.GetString("CarriersListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City List Content Type.
+        /// </summary>
+        internal static string CityListCT {
+            get {
+                return ResourceManager.GetString("CityListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commodity List Content Type.
+        /// </summary>
+        internal static string CommodityListCT {
+            get {
+                return ResourceManager.GetString("CommodityListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country List Content Type.
+        /// </summary>
+        internal static string CountryListCT {
+            get {
+                return ResourceManager.GetString("CountryListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency List Content Type.
+        /// </summary>
+        internal static string CurrencyListCT {
+            get {
+                return ResourceManager.GetString("CurrencyListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Destination Market List Content Type.
+        /// </summary>
+        internal static string DestinationMarketListCT {
+            get {
+                return ResourceManager.GetString("DestinationMarketListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distribution List Content Type.
+        /// </summary>
+        internal static string DistributionListCT {
+            get {
+                return ResourceManager.GetString("DistributionListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drivers List Content Type.
+        /// </summary>
+        internal static string DriversListCT {
+            get {
+                return ResourceManager.GetString("DriversListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drivers Team List Content Type.
+        /// </summary>
+        internal static string DriversTeamListCT {
+            get {
+                return ResourceManager.GetString("DriversTeamListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Escort PO Library Content Type.
+        /// </summary>
+        internal static string EscortPOLibraryCT {
+            get {
+                return ResourceManager.GetString("EscortPOLibraryCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exchange Rate List Content Type.
+        /// </summary>
+        internal static string ExchangeRateListCT {
+            get {
+                return ResourceManager.GetString("ExchangeRateListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Freight PO Library Content Type.
+        /// </summary>
+        internal static string FreightPOLibraryCT {
+            get {
+                return ResourceManager.GetString("FreightPOLibraryCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Description List Content Type.
+        /// </summary>
+        internal static string LoadDescriptionListCT {
+            get {
+                return ResourceManager.GetString("LoadDescriptionListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partners List Content Type.
+        /// </summary>
+        internal static string PartnersListCT {
+            get {
+                return ResourceManager.GetString("PartnersListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Routes List Content Type.
+        /// </summary>
+        internal static string RoutesListCT {
+            get {
+                return ResourceManager.GetString("RoutesListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SAP Destination Plants Content Type.
+        /// </summary>
+        internal static string SAPDestinationPlantsListCT {
+            get {
+                return ResourceManager.GetString("SAPDestinationPlantsListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule Template List Content Type.
+        /// </summary>
+        internal static string ScheduleTemplateListCT {
+            get {
+                return ResourceManager.GetString("ScheduleTemplateListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security Escort Catalog List Content Type.
+        /// </summary>
+        internal static string SecurityEscortCatalogListCT {
+            get {
+                return ResourceManager.GetString("SecurityEscortCatalogListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security Seal Protocol Library Content Type.
+        /// </summary>
+        internal static string SecuritySealProtocolLibraryCT {
+            get {
+                return ResourceManager.GetString("SecuritySealProtocolLibraryCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shepherd Website Feature.
+        /// </summary>
+        internal static string ShepherdWebsiteFeature {
+            get {
+                return ResourceManager.GetString("ShepherdWebsiteFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains information model for Shepherd web application..
+        /// </summary>
+        internal static string ShepherdWebsiteFeatureDes {
+            get {
+                return ResourceManager.GetString("ShepherdWebsiteFeatureDes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipment Type List Content Type.
+        /// </summary>
+        internal static string ShipmentTypeListCT {
+            get {
+                return ResourceManager.GetString("ShipmentTypeListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping Point List Content Type.
+        /// </summary>
+        internal static string ShippingPointListCT {
+            get {
+                return ResourceManager.GetString("ShippingPointListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shippings List Content Type.
+        /// </summary>
+        internal static string ShippingsListCT {
+            get {
+                return ResourceManager.GetString("ShippingsListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TimeSlot List Content Type.
+        /// </summary>
+        internal static string TimeSlotListCT {
+            get {
+                return ResourceManager.GetString("TimeSlotListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Slot Template List Content Type.
+        /// </summary>
+        internal static string TimeSlotTemplateListCT {
+            get {
+                return ResourceManager.GetString("TimeSlotTemplateListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trailers List Content Type.
+        /// </summary>
+        internal static string TrailersListCT {
+            get {
+                return ResourceManager.GetString("TrailersListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transpot Unit Type List CT.
+        /// </summary>
+        internal static string TranspotUnitTypeListCT {
+            get {
+                return ResourceManager.GetString("TranspotUnitTypeListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trucks List Content Type.
+        /// </summary>
+        internal static string TrucksListCT {
+            get {
+                return ResourceManager.GetString("TrucksListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warehouses List Content Type.
+        /// </summary>
+        internal static string WarehousesListCT {
+            get {
+                return ResourceManager.GetString("WarehousesListCT", resourceCulture);
+            }
+        }
     }
 }

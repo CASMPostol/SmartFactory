@@ -3,7 +3,7 @@
   <ContentType ID="0x0101003147ba6cbb014b599bbdd72087081913"
                Name="FreightPO"
                Group="CAS Smart Factory Shepherd"
-               Description="Freight PO Library"
+               Description="$Resources:CASSmartFactoryShepherd,FreightPOLibraryCT"
                Overwrite="TRUE"
                Inherits="TRUE"
                >
