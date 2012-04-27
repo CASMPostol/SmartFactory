@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
+  /// <summary>
+  /// Action Result
+  /// </summary>
   public class ActionResult : List<string>
   {
     #region public
