@@ -30,6 +30,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     internal const string EscortPOLibraryTitle = "Escort PO Library";
     internal const string SealProtocolLibraryTitle = "Seal Protocol Library";
     internal const string MasterPage = "cas.master";
+    internal const string RootResourceFileName = "RootResourceFileName";
     public delegate void UpdateToolStripEvent(object obj, ProgressChangedEventArgs progres);
   }
 }

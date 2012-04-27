@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint.Linq;
+using System.Globalization;
+using Microsoft.SharePoint.Utilities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
@@ -23,24 +25,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     public static string ToString(this DateTime? _val, string _format)
     {
       return _val.HasValue ? string.Format(_format, _val.Value.ToString()) : String.Empty;
-    }
-    public static string ControlTextProperty(this string _val)
-    {
-      return String.IsNullOrEmpty(_val) ? " -- Select from list -- " : _val;
-    }
-    /// <summary>
-    /// Sets the text property of <see cref="TextBox "/> control.
-    /// </summary>
-    /// <param name="_control">The control.</param>
-    /// <param name="_val">The value.</param>
-    /// <param name="_required">if set to <c>true</c> the property is requires.</param>
-    public static void TextBoxTextProperty(this TextBox _control, string _val, bool _required)
-    {
-      _control.Text = _val;
-      if (String.IsNullOrEmpty(_val))
-        _control.BackColor = _required ? _warrningBackColor : Color.Azure;
-      else
-        _control.BackColor = Color.Empty;
     }
     public static void LabelTextProperty(this Label _control, string _val, bool _required)
     {
@@ -64,6 +48,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       }
       return null;
     }
+    /// <summary>
+    /// Sets the text property of <see cref="TextBox "/> control.
+    /// </summary>
+    /// <param name="_control">The control.</param>
+    /// <param name="_val">The value.</param>
+    /// <param name="_required">if set to <c>true</c> the property is requires.</param>
+    public static void TextBoxTextProperty(this TextBox _control, string _val, bool _required)
+    {
+      _control.Text = _val.GetLocalizedString();
+      if (String.IsNullOrEmpty(_val))
+        _control.BackColor = _required ? _warrningBackColor : Color.Azure;
+      else
+        _control.BackColor = Color.Empty;
+    }
     public static double? TextBox2Double(this TextBox _value, List<string> _errors)
     {
       string _trimed = _value.Text.Trim();
@@ -74,6 +72,17 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
         return _dv;
       _errors.Add(String.Format("Wrong value of {0}.", _value.Text));
       return null;
+    }
+
+    #region string
+    public static string GetLocalizedString(this string val)
+    {
+      string _frmt = "$Resources:{0}";
+      return SPUtility.GetLocalizedString(String.Format(_frmt, val), "Resources", m_LCID);
+    }
+    public static string ControlTextProperty(this string _val)
+    {
+      return String.IsNullOrEmpty(_val) ? " -- Select from list -- " : _val;
     }
     public static int? String2Int(this string _val)
     {
@@ -103,6 +112,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     {
       return String.IsNullOrEmpty(_val);
     }
+    #endregion
+
     public static void Select(this DropDownList _ddl, Element _row)
     {
       if (_row == null)
@@ -173,7 +184,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     #endregion
 
     #region private
-
+    private const uint m_LCID = (uint)CultureInfo.CurrentUICulture.LCID;
     private static Color _warrningBackColor = Color.MintCream;
     #endregion
   }
