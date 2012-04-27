@@ -776,7 +776,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Alarms And Events List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="AlarmsAndEvents", Id="0x010049AA7238FCE34BE18336F419AE924845")]
 	public partial class AlarmsAndEvents : Element {
@@ -907,7 +907,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Business Description List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BusienssDescription", Id="0x01004370601701A847C99F7609B048824AA9")]
 	public partial class BusienssDescription : Element {
@@ -1006,7 +1006,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Carriers List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CarrierType", Id="0x0100FB94BE01F9B0429F89E6A98EA44AA06E")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CarrierCarrierType))]
@@ -1024,7 +1024,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Carrier Performance Report List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CarrierPerformanceReport", Id="0x0100BB5037BBD6ED46B98AC227A358889AFA")]
 	public partial class CarrierPerformanceReport : Element {
@@ -1202,7 +1202,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// City List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CityType", Id="0x01003C7CE387CDAEA94B89FEB3FC6264FB71")]
 	public partial class CityType : Element {
@@ -1351,7 +1351,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Commodity List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Commodity", Id="0x01003A76AB24637A7541B0D982B65D5916CE")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CommodityCommodity))]
@@ -1369,7 +1369,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Country List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CountryType", Id="0x0100CE031DC456C86C409854D818EDA7E1F3")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CountryClass))]
@@ -1403,7 +1403,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Currency List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Currency", Id="0x010024C2D44B310A47EDB90969B622490CF9")]
 	public partial class Currency : Element {
@@ -1571,7 +1571,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Destination Market List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DestinationMarket", Id="0x01002CD380C2A0BC484CAF14A0A71DADEF4E")]
 	public partial class DestinationMarket : Element {
@@ -1648,7 +1648,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Distribution List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DistributionList", Id="0x01009EC30F7F369D427D825C9478610D3E58")]
 	public partial class DistributionList : Element {
@@ -1697,7 +1697,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Driver
+	/// Drivers List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Driver", Id="0x0100B0982F01816047B1ABFF933B9F49B5DB")]
 	public partial class Driver : Element {
@@ -1812,7 +1812,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Drivers Team
+	/// Drivers Team List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ShippingDriversTeam", Id="0x01000A5D8B5F3F67453882811C27556D5D30")]
 	public partial class ShippingDriversTeam : Element {
@@ -2035,7 +2035,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Load Description List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="LoadDescription", Id="0x0100F5C0C5AAA44E47B1A7CCFECEE1E8E94E")]
 	public partial class LoadDescription : Element {
@@ -2292,7 +2292,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Partners List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Partner", Id="0x010017A675502BE747DB9FB9DCB304429EEF")]
 	public partial class Partner : Element {
@@ -2688,7 +2688,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Routes List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Route", Id="0x0100121B8B770545430A8B59B62D84C02C38")]
 	public partial class Route : Element {
@@ -3162,7 +3162,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// SAP Destination Plants Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SAPDestinationPlant", Id="0x010091A84CFF2DF74C3B847A78E9F9D503D4")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SAPDestinationPlantSAPDestinationPlant))]
@@ -3180,7 +3180,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Schedule Template List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ScheduleTemplate", Id="0x010091765907174D4799B44C4DF249630D28")]
 	public partial class ScheduleTemplate : Element {
@@ -3263,7 +3263,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Security Escort Catalog List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SecurityEscortCatalog", Id="0x01004D883AD19A284D1F826EA7B4E70F0ACA")]
 	public partial class SecurityEscortCatalog : Element {
@@ -3510,7 +3510,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Shipment Type List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ShipmentType", Id="0x01009FC484DC88AC45AEBDFEEFEB856EFEE0")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShipmentTypeShipmentType))]
@@ -3528,7 +3528,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Shippings List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Shipping", Id="0x0100BBD0D4AB58624F5B900FECE61EEC2988")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingShipping))]
@@ -4539,7 +4539,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Shipping Point List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ShippingPoint", Id="0x0100CB62286DE09CE54780611F275F43DB47")]
 	public partial class ShippingPoint : Element {
@@ -4690,7 +4690,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// TimeSlotTemplate
+	/// Time Slot Template List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlotsTemplate", Id="0x0100E4381E17DE2049B895B5140F70D7C21C")]
 	public partial class TimeSlotsTemplate : Element {
@@ -4831,7 +4831,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Trailers List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Trailer", Id="0x01009EF7D9CEE9664A48928AD8C8857ADA95")]
 	public partial class Trailer : Element {
@@ -4930,7 +4930,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Transpot Unit Type List CT
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TranspotUnit", Id="0x0100017ECA95BFABB941B9E7FE63643FCD7C")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TransportUnitTypeTranspotUnit))]
@@ -4948,7 +4948,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Truck
+	/// Trucks List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Truck", Id="0x01003E7761AEF97A4C619F44D01B53A56568")]
 	public partial class Truck : Element {
@@ -5096,7 +5096,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Warehouses List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Warehouse", Id="0x01001E57547208B49B46B4AA7CB4536B1A55")]
 	public partial class Warehouse : Element {
@@ -5261,7 +5261,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy dokument.
+	/// Escort PO Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="EscortPO", Id="0x0101000276600256FA44439B3AA6A5221F14C4")]
 	public partial class EscortPO : Dokument {
@@ -5278,7 +5278,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private string _payerNIP;
 		
-		private System.Nullable<System.DateTime> _dispatchDate;
+		private System.Nullable<System.DateTime> _loadingDate;
 		
 		private System.Nullable<double> _escortCosts;
 		
@@ -5398,16 +5398,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SPODispatchDate", Storage="_dispatchDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> DispatchDate {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SPODispatchDate", Storage="_loadingDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> LoadingDate {
 			get {
-				return this._dispatchDate;
+				return this._loadingDate;
 			}
 			set {
-				if ((value != this._dispatchDate)) {
-					this.OnPropertyChanging("DispatchDate", this._dispatchDate);
-					this._dispatchDate = value;
-					this.OnPropertyChanged("DispatchDate");
+				if ((value != this._loadingDate)) {
+					this.OnPropertyChanging("LoadingDate", this._loadingDate);
+					this._loadingDate = value;
+					this.OnPropertyChanged("LoadingDate");
 				}
 			}
 		}
@@ -5567,7 +5567,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy dokument.
+	/// Freight PO Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="FreightPO", Id="0x0101003147BA6CBB014B599BBDD72087081913")]
 	public partial class FreightPO : Dokument {
@@ -5905,12 +5905,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy dokument.
+	/// Security Seal Protocol Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SealProtocol", Id="0x010100CCFCCB37046E4ED39C17D28FAE78ED47")]
 	public partial class SealProtocol : Dokument {
 		
-		private System.Nullable<System.DateTime> _dispatchDate;
+		private System.Nullable<System.DateTime> _loadingDate;
 		
 		private string _city;
 		
@@ -5960,16 +5960,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolDispatchDate", Storage="_dispatchDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> DispatchDate {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolDispatchDate", Storage="_loadingDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> LoadingDate {
 			get {
-				return this._dispatchDate;
+				return this._loadingDate;
 			}
 			set {
-				if ((value != this._dispatchDate)) {
-					this.OnPropertyChanging("DispatchDate", this._dispatchDate);
-					this._dispatchDate = value;
-					this.OnPropertyChanged("DispatchDate");
+				if ((value != this._loadingDate)) {
+					this.OnPropertyChanging("LoadingDate", this._loadingDate);
+					this._loadingDate = value;
+					this.OnPropertyChanged("LoadingDate");
 				}
 			}
 		}
@@ -6227,7 +6227,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 	}
 	
 	/// <summary>
-	/// Time Slot
+	/// TimeSlot List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlot", Id="0x0102008B8977AFA9104B18B4B25D7C06A4A3AA")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlotTimeSlot))]
