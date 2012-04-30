@@ -96,7 +96,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
           _stt = "SecurityEscortProvider";
           _epo.City = _sp.City.Title();
           _epo.Country = _sp.City == null ? String.Empty.NotAvailable() : _sp.City.CountryName.Title();
-          _epo.DispatchDate = _sp.StartTime;
+          _epo.LoadingDate = _sp.StartTime;
           _epo.EMail = _sp.VendorName == null ? String.Empty.NotAvailable() : _sp.VendorName.EMail.NotAvailable();
           _epo.Tytuł = String.Format("SECURITY ESCORT PURCHASE ORDER EPO-2{0, 5}", _epo.Identyfikator);
           _epo.WarehouseAddress = _sp.Warehouse == null ? String.Empty.NotAvailable() : _sp.Warehouse.WarehouseAddress.NotAvailable();
