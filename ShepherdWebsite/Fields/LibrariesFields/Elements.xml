@@ -5,266 +5,266 @@
     ID="{1ECB370E-6156-4E8D-B304-98B517980417}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Trailer No." />
+    DisplayName="$Resources:CASSmartFactoryShepherd,TrailerPlateNo" />
   <Field
     Name="SealProtocolTruckNo"
     ID="{AE8BE646-3E57-44DB-B910-6A94A3EC2A9F}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Truck No." />
+    DisplayName="$Resources:CASSmartFactoryShepherd,TruckPlateNo" />
   <Field
     Name="SealProtocolWarehouse"
     ID="{508CA972-F9CB-47DD-AE0B-50396003B51A}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Warehouse" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,Warehouse" />
   <Field
     Name="SealProtocolContainersNo"
     ID="{DF04156B-B301-4E48-B771-B8F1357DFB77}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Conainers No." />
+    DisplayName="$Resources:CASSmartFactoryShepherd,ConainersNo" />
   <Field
     Name="SealProtocolEscortCarNo"
     ID="{D6905D84-5B20-49F6-A4D8-6CA75C7259D5}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Escort Car No." />
+    DisplayName="$Resources:CASSmartFactoryShepherd,EscortPlateNo" />
   <Field
     Name="SealProtocolEscortPhone"
     ID="{C005239A-8472-4BCD-BAEC-66F904C06414}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Escort Phone" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,EscortPhone" />
   <Field
     Name="SealProtocol2ndEscort"
     ID="{FD582EC0-82F0-4194-89AF-FC9C601E3F8D}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="2nd Escort" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,SecondEscort" />
   <Field
     Name="SealProtocol1stEscort"
     ID="{831A0F50-3C7F-4A83-9D4E-16BB743F4C91}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="1st Escort" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,FirstEscort" />
   <Field
     Name="SealProtocolSecurityEscortProvider"
     ID="{D2B19CFA-88EF-405B-95F6-99D6462FEE9C}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Security Escort Provider" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,SecurityEscortProvider" />
   <Field
     Name="SealProtocolDriverPhone"
     ID="{41C9DC2A-E1F4-440C-B14B-5B3CB6B4C9CA}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Driver's phone" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,DriversPhone" />
   <Field
     Name="SealProtocol2ndDriver"
     ID="{264A670B-48E3-4DFF-B07E-4AC6CE93E243}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="2nd Driver" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,FirstDriver" />
   <Field
     Name="SealProtocol1stDriver"
     ID="{E6B0743C-9A7A-4E28-AFE1-9E72D92A1C42}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="1st Driver" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,SecondDriver" />
   <Field
     Name="SealProtocolForwarder"
     ID="{82A67390-7CF9-408A-9339-6E633E681367}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Forwarder" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,Forwarder" />
   <Field
     Name="SealProtocolCountry"
     ID="{CEC90104-61BA-4EA8-B61D-B25B18605A4A}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Country" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,Country" />
   <Field
     Name="SealProtocolCity"
     ID="{6958BFF5-474B-4385-A9AD-01D5C6E97316}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="City" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,City" />
   <Field
     Name="SecurityPOSentInvoiceToMultiline"
     ID="{9655FAD3-12BD-4059-AE3F-684F7BF420B6}"
     Type="Note"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Send invoice to" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,SendInvoiceTo" />
   <Field
     Name="SecurityPOCommodity"
     ID="{180D9CFC-48D8-4C83-8740-780D3A8882EF}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Commodity" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,Commodity" />
   <Field
     Name="SecurityPOCountry"
     ID="{096D79CF-26EA-4EBB-8DA9-2E67549509A6}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Country" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,Country" />
   <Field
     Name="SecurityPOCity"
     ID="{0E5465B4-D5E8-4C08-B381-FFD3055A7FA4}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="City" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,City" />
   <Field
     Name="SecurityPOEscortProvider"
     ID="{5E5625FC-BF90-4A4D-A559-064D2F9768A1}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Security Escort Provider" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,SecurityEscortProvider" />
   <Field
     Name="SecurityPOEscortCurrency"
     ID="{96187BDE-610A-4A59-A383-04F056E61E12}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Currency" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,Currency" />
   <Field
     Name="SecurityPOEscortCosts"
     ID="{CB112A6C-474D-4F05-A9A7-6C83DB76FC7C}"
     Type="Number"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Escort costs" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,EscortCosts" />
   <Field
     Name="SecurityPOEscortPayerNIP"
     ID="{35950BC8-95D5-452F-9295-25D135CB486D}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Payer NIP" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,PayerNIP" />
   <Field
     Name="SecurityPOEscortPayerCity"
     ID="{1A24AAFA-C962-4E14-A7DE-B1B23B920669}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Payer Cty" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,PayerCity" />
   <Field
     Name="SecurityPOEscortPayerZip"
     ID="{D4BEAF56-EA0C-4D14-9744-5D92F29D58EF}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Payer Zip code" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,PayerZipCode" />
   <Field
     Name="SecurityPOEscortPayerAddress"
     ID="{77E52EB7-532C-4017-AF84-DF69555F3D30}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Payer address" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,PayerAddress" />
   <Field
     Name="SecurityPOEscortPayerName"
     ID="{E37FD43A-5F6A-48C3-82CE-9D3EAC0ED4BA}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Payer name" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,PayerName" />
   <Field
     Name="FreightPOSendInvoiceToMultiline"
     ID="{D2E2CF31-D57C-46E2-85B2-46FED8468F86}"
     Type="Note"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Send invoice to" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,SendInvoiceTo" />
   <Field
     Name="FreightPOCommodity"
     ID="{F0B1923E-9A86-4C26-B598-D06F1DF24D20}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Commodity" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,Commodity" />
   <Field
     Name="FreightPOCountry"
     ID="{0979915B-32F8-4471-BB67-1BC009D206C3}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Country" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,Country" />
   <Field
     Name="FreightPOCity"
     ID="{97A6F037-B8B1-443B-9D02-8CF5A46BA5D1}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="City" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,City" />
   <Field
     Name="FreightPOForwarder"
     ID="{357CCA41-00F4-4227-8481-64B6B224288D}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Forwarder" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,Forwarder" />
   <Field
     Name="FreightPOCurrency"
     ID="{B7B28DB9-540D-4A2B-911F-710EDC1D7B03}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Currency" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,Currency" />
   <Field
     Name="FreightPOTransportCosts"
     ID="{B26EA2D9-6530-4751-B921-DAE24269C53E}"
     Type="Number"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Transport costs" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,TransportCost" />
   <Field
     Name="FreightPOTransportUnitType"
     ID="{3FDCFED4-50F3-4FDC-96BE-E24870E4C57B}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Transport Unit" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,TransportUnitType" />
   <Field
     Name="FreightPOPayerNIP"
     ID="{BD31CB3C-3ADB-4197-AC3F-D9228004008B}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Payer NIP" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,PayerNIP" />
   <Field
     Name="FreightPOPayerCity"
     ID="{6C572816-985F-45B0-B609-EB4E824FD2C7}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Payer city" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,PayerCity" />
   <Field
     Name="FreightPOPayerZip"
     ID="{0CA7CF92-40C1-4892-B689-0350874D686D}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Payer zip code" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,PayerZipCode" />
   <Field
     Name="FreightPOPayerAddress"
     ID="{2D6A14E8-2299-403A-8EB4-297F3F73AA34}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Payer address" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,PayerAddress" />
   <Field
     Name="FreightPOPayerName"
     ID="{686331B2-9DF3-4513-8B93-D549A1C6F943}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Payer name" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,PayerName" />
   <Field
     Name="SPOFreightPO"
     ID="{A2297425-2114-4FD6-A543-51AF45CE0F70}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Freight PO" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,FreightPO" />
   <Field
     Name="FPOFreightPO"
     ID="{B5B628BF-AFA7-4170-84CD-085CBED9509C}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Freight PO" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,FreightPO" />
   <Field
     Name="FPOWarehouseAddress"
     ID="{C8BAB435-1138-4241-A5A8-C2BBB11802F5}"
     Type="Note"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Warehouse address" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,WarehouseAddress" />
   <Field
     Name="SealProtocolDispatchDateActual"
     ID="{CA920A00-3978-4CA8-8329-D461CF5BB787}"
     Type="DateTime"
     Format="DateTime"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Actual Dispatch Date">
+    DisplayName="$Resources:CASSmartFactoryShepherd,ActualDispatchDate">
     <Default>[today]</Default>
   </Field>
   <Field
@@ -273,7 +273,7 @@
     Type="DateTime"
     Format="DateTime"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Loading Date">
+    DisplayName="$Resources:CASSmartFactoryShepherd,LoadingDate">
     <Default>[today]</Default>
   </Field>
   <Field
@@ -282,7 +282,7 @@
     Type="DateTime"
     Format="DateTime"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Loading Date">
+    DisplayName="$Resources:CASSmartFactoryShepherd,LoadingDate">
     <Default>[today]</Default>
   </Field>
   <Field
@@ -291,7 +291,7 @@
     Type="DateTime"
     Format="DateTime"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Dispatch Date">
+    DisplayName="$Resources:CASSmartFactoryShepherd,DispatchDate">
     <Default>[today]</Default>
   </Field>
   <Field
@@ -300,7 +300,7 @@
     Type="DateTime"
     Format="DateTime"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Loading Date">
+    DisplayName="$Resources:CASSmartFactoryShepherd,LoadingDate">
     <Default>[today]</Default>
   </Field>
 </Elements>
