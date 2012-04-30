@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
           _sprt.City = _sp.City.Title();
           _sprt.ConainersNo = _sp.ContainerNo.NotAvailable();
           _sprt.Country = _sp.City == null ? String.Empty : _sp.City.CountryName.Title();
-          _sprt.DispatchDate = _sp.StartTime;
+          _sprt.LoadingDate = _sp.StartTime;
           _sprt.DriverSPhone = _team[TeamMembers.DriverSPhone];
           _sprt.EscortCarNo = _team[TeamMembers.EscortCarNo];
           _sprt.EscortPhone = _team[TeamMembers.EscortPhone];
