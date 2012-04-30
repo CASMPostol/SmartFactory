@@ -228,6 +228,9 @@
   <data name="Address" xml:space="preserve">
     <value>Address</value>
   </data>
+  <data name="Awaiting" xml:space="preserve">
+    <value>Awaiting</value>
+  </data>
   <data name="BusinessDescription" xml:space="preserve">
     <value>Business description</value>
   </data>
@@ -252,14 +255,26 @@
   <data name="ConainersNo" xml:space="preserve">
     <value>Container no.</value>
   </data>
+  <data name="Consignee" xml:space="preserve">
+    <value>Consignee</value>
+  </data>
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>Currency</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="Day" xml:space="preserve">
     <value>Day</value>
+  </data>
+  <data name="DeliveryToCountry" xml:space="preserve">
+    <value>Delivery to country</value>
+  </data>
+  <data name="DepartureCity" xml:space="preserve">
+    <value>City of Departure</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -294,6 +309,9 @@
   <data name="EscortPlateNo" xml:space="preserve">
     <value>Escort car plate no.</value>
   </data>
+  <data name="EuroPalletsQuantity" xml:space="preserve">
+    <value>Euro Pallets Quantity</value>
+  </data>
   <data name="ExchangeRate" xml:space="preserve">
     <value>Exchange rate</value>
   </data>
@@ -308,6 +326,9 @@
   </data>
   <data name="ForwarderOceanAir" xml:space="preserve">
     <value>Forwarder ocean/air</value>
+  </data>
+  <data name="FreightCost" xml:space="preserve">
+    <value>Freight cost</value>
   </data>
   <data name="FreightPayer" xml:space="preserve">
     <value>Freight payer</value>
@@ -324,6 +345,9 @@
   <data name="Incoterm" xml:space="preserve">
     <value>Incoterm</value>
   </data>
+  <data name="InduPalletsQuantity" xml:space="preserve">
+    <value>Indu Pallets Quantity</value>
+  </data>
   <data name="LoadingDate" xml:space="preserve">
     <value>Loading date</value>
   </data>
@@ -339,8 +363,26 @@
   <data name="NIPVATNo" xml:space="preserve">
     <value>VAT No.</value>
   </data>
+  <data name="NumberTUDelayed" xml:space="preserve">
+    <value>Number TU delayed</value>
+  </data>
+  <data name="NumberTUDelayed1h" xml:space="preserve">
+    <value>Number TU delayed &gt;1 hour</value>
+  </data>
+  <data name="NumberTUNotDelivered" xml:space="preserve">
+    <value>Number TU not delivered / not showing up</value>
+  </data>
+  <data name="NumberTUOrdered" xml:space="preserve">
+    <value>Number TU ordered</value>
+  </data>
+  <data name="NumberTURejected" xml:space="preserve">
+    <value>Number TU rejected / bad quality</value>
+  </data>
   <data name="PalletSize" xml:space="preserve">
     <value>Pallet size</value>
+  </data>
+  <data name="PalletType" xml:space="preserve">
+    <value>Pallet type</value>
   </data>
   <data name="PayerAddress" xml:space="preserve">
     <value>Payer address</value>
@@ -362,6 +404,9 @@
   </data>
   <data name="Remark" xml:space="preserve">
     <value>Remark</value>
+  </data>
+  <data name="ReportPeriod" xml:space="preserve">
+    <value>Report period</value>
   </data>
   <data name="Route" xml:space="preserve">
     <value>Route</value>
@@ -390,6 +435,9 @@
   <data name="SecurityEscortProvider" xml:space="preserve">
     <value>Security escort provider</value>
   </data>
+  <data name="SecuritySealProtocol" xml:space="preserve">
+    <value>Security seal protocol</value>
+  </data>
   <data name="SendInvoiceTo" xml:space="preserve">
     <value>Send invoice to</value>
   </data>
@@ -413,6 +461,12 @@
   </data>
   <data name="StartMinute" xml:space="preserve">
     <value>Start minute</value>
+  </data>
+  <data name="TotalCostsPerKU" xml:space="preserve">
+    <value>Total costs per KU</value>
+  </data>
+  <data name="TotalQuantityKU" xml:space="preserve">
+    <value>Total quantity in KU</value>
   </data>
   <data name="TrailerPlateNo" xml:space="preserve">
     <value>Trailer plate no.</value>
