@@ -88,6 +88,15 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Awaiting.
+        /// </summary>
+        internal static string Awaiting {
+            get {
+                return ResourceManager.GetString("Awaiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Business description.
         /// </summary>
         internal static string BusinessDescription {
@@ -205,6 +214,15 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consignee.
+        /// </summary>
+        internal static string Consignee {
+            get {
+                return ResourceManager.GetString("Consignee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country.
         /// </summary>
         internal static string Country {
@@ -241,11 +259,38 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Day.
         /// </summary>
         internal static string Day {
             get {
                 return ResourceManager.GetString("Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery to country.
+        /// </summary>
+        internal static string DeliveryToCountry {
+            get {
+                return ResourceManager.GetString("DeliveryToCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City of Departure.
+        /// </summary>
+        internal static string DepartureCity {
+            get {
+                return ResourceManager.GetString("DepartureCity", resourceCulture);
             }
         }
         
@@ -403,6 +448,15 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Euro Pallets Quantity.
+        /// </summary>
+        internal static string EuroPalletsQuantity {
+            get {
+                return ResourceManager.GetString("EuroPalletsQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exchange rate.
         /// </summary>
         internal static string ExchangeRate {
@@ -453,6 +507,15 @@ namespace ShepherdResources.Resources {
         internal static string ForwarderOceanAir {
             get {
                 return ResourceManager.GetString("ForwarderOceanAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Freight cost.
+        /// </summary>
+        internal static string FreightCost {
+            get {
+                return ResourceManager.GetString("FreightCost", resourceCulture);
             }
         }
         
@@ -511,6 +574,15 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Indu Pallets Quantity.
+        /// </summary>
+        internal static string InduPalletsQuantity {
+            get {
+                return ResourceManager.GetString("InduPalletsQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Load Description List Content Type.
         /// </summary>
         internal static string LoadDescriptionListCT {
@@ -565,11 +637,65 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number TU delayed.
+        /// </summary>
+        internal static string NumberTUDelayed {
+            get {
+                return ResourceManager.GetString("NumberTUDelayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number TU delayed &gt;1 hour.
+        /// </summary>
+        internal static string NumberTUDelayed1h {
+            get {
+                return ResourceManager.GetString("NumberTUDelayed1h", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number TU not delivered / not showing up.
+        /// </summary>
+        internal static string NumberTUNotDelivered {
+            get {
+                return ResourceManager.GetString("NumberTUNotDelivered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number TU ordered.
+        /// </summary>
+        internal static string NumberTUOrdered {
+            get {
+                return ResourceManager.GetString("NumberTUOrdered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number TU rejected / bad quality.
+        /// </summary>
+        internal static string NumberTURejected {
+            get {
+                return ResourceManager.GetString("NumberTURejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pallet size.
         /// </summary>
         internal static string PalletSize {
             get {
                 return ResourceManager.GetString("PalletSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pallet type.
+        /// </summary>
+        internal static string PalletType {
+            get {
+                return ResourceManager.GetString("PalletType", resourceCulture);
             }
         }
         
@@ -651,6 +777,15 @@ namespace ShepherdResources.Resources {
         internal static string Remark {
             get {
                 return ResourceManager.GetString("Remark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report period.
+        /// </summary>
+        internal static string ReportPeriod {
+            get {
+                return ResourceManager.GetString("ReportPeriod", resourceCulture);
             }
         }
         
@@ -768,6 +903,15 @@ namespace ShepherdResources.Resources {
         internal static string SecurityEscortProvider {
             get {
                 return ResourceManager.GetString("SecurityEscortProvider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security seal protocol.
+        /// </summary>
+        internal static string SecuritySealProtocol {
+            get {
+                return ResourceManager.GetString("SecuritySealProtocol", resourceCulture);
             }
         }
         
@@ -912,6 +1056,24 @@ namespace ShepherdResources.Resources {
         internal static string TimeSlotTemplateListCT {
             get {
                 return ResourceManager.GetString("TimeSlotTemplateListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total costs per KU.
+        /// </summary>
+        internal static string TotalCostsPerKU {
+            get {
+                return ResourceManager.GetString("TotalCostsPerKU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total quantity in KU.
+        /// </summary>
+        internal static string TotalQuantityKU {
+            get {
+                return ResourceManager.GetString("TotalQuantityKU", resourceCulture);
             }
         }
         

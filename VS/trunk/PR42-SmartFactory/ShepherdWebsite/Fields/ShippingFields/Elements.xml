@@ -1,63 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
-    DisplayName="Report period"
+    DisplayName="$Resources:CASSmartFactoryShepherd,ReportPeriod"
     Name="ReportPeriod"
     Type="Text"
     ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Awaiting"
+    DisplayName="$Resources:CASSmartFactoryShepherd,Awaiting"
     Name="TruckAwaiting"
     Type="Boolean"
     ID="{4BC3C930-FBAD-4F1A-973F-13D191BEEF05}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Security escort cost"
+    DisplayName="$Resources:CASSmartFactoryShepherd,EscortCosts"
     Name="ShippingSecurityCost"
     Type="Number"
     ID="{4ECF951A-9E61-47E0-86A0-5465A8DD9D9D}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Freight cost"
+    DisplayName="$Resources:CASSmartFactoryShepherd,FreightCost"
     Name="ShippingFreightCost"
     Type="Number"
     ID="{F56B2E7B-E38C-42D2-B42F-9B35B639C923}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Commodity"
+    DisplayName="$Resources:CASSmartFactoryShepherd,Commodity"
     Name="ShippingCommodityTitle"
     Type="Text"
     ID="{9E0B8A63-C763-4D7E-9063-EF18EEB5170F}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Forwarder ocean/air"
+    DisplayName="$Resources:CASSmartFactoryShepherd,ForwarderOceanAir"
     Name="ShippingCarrierTitle"
     Type="Text"
     ID="{C47879D8-34F5-4D89-94ED-6EF88ED9F99D}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Departure City"
+    DisplayName="$Resources:CASSmartFactoryShepherd,DepartureCity"
     Name="ShippingRouteDepartureCity"
     Type="Text"
     ID="{F72EF978-BC6E-49CC-ABD9-0BE650D2A5F2}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Consignee"
+    DisplayName="$Resources:CASSmartFactoryShepherd,Consignee"
     Name="ShippingFreightPayerTitle"
     Type="Text"
     ID="{4EB31678-5914-4195-960C-833FDBAA0985}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Delivery to country"
+    DisplayName="$Resources:CASSmartFactoryShepherd,DeliveryToCountry"
     Name="ShippingCountryTitle"
     Type="Text"
     ID="{AF3CCE36-0E33-4C19-875D-87288AC9E2A0}"
@@ -65,42 +65,42 @@
     />
   <Field
     Name="TotalCostsPerKU"
-    DisplayName="Total costs per KU"
+    DisplayName="$Resources:CASSmartFactoryShepherd,TotalCostsPerKU"
     Type="Number"
     ID="{72FAC253-6C2E-474F-86C5-269D2DE5AA20}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="TotalQuantityKU"
-    DisplayName="Total Quantity in KU"
+    DisplayName="$Resources:CASSmartFactoryShepherd,TotalQuantityKU"
     Type="Number"
     ID="{77435F24-1DF2-4A77-934B-AEEBA52321BF}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="CarrierPerformanceReportNumberRejectedBadQuality"
-    DisplayName="Number TU rejected / bad quality"
+    DisplayName="$Resources:CASSmartFactoryShepherd,NumberTURejected"
     Type="Number"
     ID="{AE2CD0DB-CE66-46CA-862E-B9ACDD4A12F9}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="CarrierPerformanceReportNumberNotShowingUp"
-    DisplayName="Number TU not delivered / not showing up"
+    DisplayName="$Resources:CASSmartFactoryShepherd,NumberTUNotDelivered"
     Type="Number"
     ID="{95A6E00B-8194-4C7F-814A-6C44A1E524A4}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="CarrierPerformanceReportNumberDelayed1h"
-    DisplayName="Number TU delayed >1 hour"
+    DisplayName="$Resources:CASSmartFactoryShepherd,NumberTUDelayed1h"
     Type="Number"
     ID="{54900F14-6927-4794-A10A-055F20C7B0DE}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="CarrierPerformanceReportNumberDelayed"
-    DisplayName="Number TU delayed"
+    DisplayName="$Resources:CASSmartFactoryShepherd,NumberTUDelayed"
     Type="Number"
     ID="{B38ED1F3-802C-488B-8B2F-59303AD199CF}"
     Group="CAS Smart Factory Shepherd"
@@ -114,7 +114,7 @@
     />
   <Field
     Name="CarrierPerformanceReportNumberOrdered"
-    DisplayName="Number TU ordered"
+    DisplayName="$Resources:CASSmartFactoryShepherd,NumberTUOrdered"
     Type="Number"
     ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}"
     Group="CAS Smart Factory Shepherd"
@@ -125,26 +125,26 @@
     Type="DateTime"
     Format="DateOnly"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Date">
+    DisplayName="$Resources:CASSmartFactoryShepherd,Date">
     <Default>[today]</Default>
   </Field>
   <Field
     Name="InduPalletsQuantity"
-    DisplayName="Indu Pallets Quantity"
+    DisplayName="$Resources:CASSmartFactoryShepherd,InduPalletsQuantity"
     Type="Number"
     ID="{ADD1AA98-DA0F-469D-9DA5-4566BF2B6726}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="EuroPalletsQuantity"
-    DisplayName="Euro Pallets Quantity"
+    DisplayName="$Resources:CASSmartFactoryShepherd,EuroPalletsQuantity"
     Type="Number"
     ID="{C51BD4EF-DDEE-47DA-A3AB-09EDF7F729EC}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
    Type="Choice"
-   DisplayName="Pallet type"
+   DisplayName="$Resources:CASSmartFactoryShepherd,PalletType"
    ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}"
    Format="Dropdown"
    BaseType="Text"
