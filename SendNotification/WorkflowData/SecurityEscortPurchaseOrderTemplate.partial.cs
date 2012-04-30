@@ -42,7 +42,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
           SPO2CityTitle = _fpo.City.NotAvailable(),
           SPO2CommodityTitle = _fpo.Commodity.NotAvailable(),
           SPO2CountryTitle = _fpo.Country.NotAvailable(),
-          SPODispatchDate = _fpo.DispatchDate.GetValueOrDefault(DateTime.MaxValue),
+          SPODispatchDate = _fpo.LoadingDate.GetValueOrDefault(DateTime.MaxValue),
           FPO2WarehouseAddress = _fpo.WarehouseAddress.NotAvailable(),
         };
       }
