@@ -7,8 +7,8 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="110"
-        DisplayName="Escort PO Library Template"
-        Description="Escort PO Library Template"
+        DisplayName="$Resources:CASSmartFactoryShepherd,SecurityEscortPOLibrary"
+        Description="$Resources:CASSmartFactoryShepherd,SecurityEscortPOLibrary"
         Image="/_layouts/images/itdl.png"
         DocumentTemplate="121"/>
 </Elements>

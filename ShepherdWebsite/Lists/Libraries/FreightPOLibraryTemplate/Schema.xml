@@ -2,7 +2,13 @@
 <List EnableContentTypes="TRUE" VersioningEnabled="TRUE" xmlns:ows="Microsoft SharePoint" Title="FreightPOLibraryTemplate" Direction="$Resources:Direction;" Url="ShepherdWebsite-FreightPOLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0101003147ba6cbb014b599bbdd72087081913" Name="FreightPO" Group="CAS Smart Factory Shepherd" Description="Freight PO Library" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x0101003147ba6cbb014b599bbdd72087081913"
+              Name="FreightPO"
+              Group="CAS Smart Factory Shepherd"
+              Description="$Resources:CASSmartFactoryShepherd,FreightPOLibraryCT"
+              Overwrite="TRUE"
+              Inherits="TRUE"
+               >
         <Folder TargetName="FreightPO" />
         <FieldRefs>
           <FieldRef ID="{B5B628BF-AFA7-4170-84CD-085CBED9509C}" Name="FPOFreightPO" />

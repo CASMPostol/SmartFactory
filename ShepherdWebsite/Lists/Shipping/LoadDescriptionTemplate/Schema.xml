@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="LoadDescriptionTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-LoadDescriptionTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100f5c0c5aaa44e47b1a7ccfecee1e8e94e" Name="LoadDescription" Group="CAS Smart Factory Shepherd" Description="Load description" Overwrite="True" Inherits="True">
+      <ContentType ID="0x0100f5c0c5aaa44e47b1a7ccfecee1e8e94e"
+              Name="LoadDescription"
+              Group="CAS Smart Factory Shepherd"
+              Description="$Resources:CASSmartFactoryShepherd,LoadDescriptionListCT"
+              Overwrite="True"
+              Inherits="True">
         <Folder TargetName="_cts/LoadDescription" />
         <FieldRefs>
           <FieldRef ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Name="LoadDescription2ShippingIndex" />
@@ -29,24 +34,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="MarketTitle" ID="{44f4b458-2ea8-4b75-9546-80a495738f59}" Type="Lookup" List="Lists/MarketList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Market" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field DisplayName="Delivery Number" Name="DeliveryNumber" Type="Text" ID="{0701b3fa-7524-4eb7-b1e4-6c96dc3a993d}" Group="CAS Smart Factory Shepherd" />
-      <Field DisplayName="Goods Quantity" Name="GoodsQuantity" Type="Number" ID="{e7bfea15-e33c-4e18-8e55-b68d0b3a09d0}" Group="CAS Smart Factory Shepherd" />
-      <Field DisplayName="Number of pallets" Name="NumberOfPallets" Type="Number" ID="{ec642bdf-f692-42b9-aab6-90758df7ba20}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="LoadDescription2ShippingIndex" ID="{EE6CEE2D-161D-461A-BD11-01FF570752A3}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field DisplayName="CMR number" Name="CMRNumber" Type="Text" ID="{9BD4A74E-9645-488C-99EB-16EDD9912775}" Group="CAS Smart Factory Shepherd" />
-      <Field DisplayName="Invoice number"  Name="InvoiceNumber" Type="Text" ID="{53A5407C-8FA7-4945-9E22-6DDDE8DC9B4F}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="LoadDescription2Commodity" ID="{9CCE2D82-88D4-48FA-B319-359FFD72D0AA}" Type="Lookup" List="Lists/CommodityList"  ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Commodity" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Type="Choice" DisplayName="Pallet type" ID="{7E1E8C41-A1B8-4D79-8482-461C5F53BC10}" Format="Dropdown" BaseType="Text" Name="PalletType" Group="CAS Smart Factory Shepherd">
-        <Default>Euro</Default>
-        <CHOICES>
-          <CHOICE>Euro</CHOICE>
-          <CHOICE>Industrial</CHOICE>
-          <CHOICE>Other</CHOICE>
-        </CHOICES>
-      </Field>
-      <Field Type="Lookup" DisplayName="Shipping" List="Lists/ShippingList" ShowField="Title" FieldRef="EE6CEE2D-161D-461A-BD11-01FF570752A3" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" Group="CAS Smart Factory Shepherd" ID="{867E459C-C3CD-4B4D-9547-C4CB23C8A8CB}" Name="LoadDescriptionShippingTitle" Overwrite="TRUE" />
-      <Field Name="LoadDescription2PartnerTitle" ID="{E34A2F2D-9BDE-43CA-BFBA-80815EDC2416}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

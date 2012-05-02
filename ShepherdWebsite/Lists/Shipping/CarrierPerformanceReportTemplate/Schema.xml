@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="CarrierPerformanceReportTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-CarrierPerformanceReportTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100bb5037bbd6ed46b98ac227a358889afa" Name="CarrierPerformanceReport" Group="CAS Smart Factory Shepherd" Description="Carrier Performance Report" Overwrite="TRUE" Inherits="True">
+      <ContentType ID="0x0100bb5037bbd6ed46b98ac227a358889afa"
+              Name="CarrierPerformanceReport"
+              Group="CAS Smart Factory Shepherd"
+              Description="$Resources:CASSmartFactoryShepherd,CarrierPerformanceReportListCT"
+              Overwrite="TRUE"
+              Inherits="True">
         <Folder TargetName="_cts/CarrierPerformanceReport" />
         <FieldRefs>
           <FieldRef ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Name="ReportPeriod" />
@@ -27,18 +32,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field DisplayName="Report period" Name="ReportPeriod" Type="Text" ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="CarrierPerformanceReportNumberRejectedBadQuality" DisplayName="Number TU rejected / bad quality" Type="Number" ID="{ae2cd0db-ce66-46ca-862e-b9acdd4a12f9}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="CarrierPerformanceReportNumberNotShowingUp" DisplayName="Number TU not delivered / not showing up" Type="Number" ID="{95a6e00b-8194-4c7f-814a-6c44a1e524a4}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="CarrierPerformanceReportNumberDelayed1h" DisplayName="Number TU delayed &gt;1 hour" Type="Number" ID="{54900f14-6927-4794-a10a-055f20c7b0de}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="CarrierPerformanceReportNumberDelayed" DisplayName="Number TU delayed" Type="Number" ID="{b38ed1f3-802c-488b-8b2f-59303ad199cf}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="CarrierPerformanceReportNumberOnTime" DisplayName="Number TU on time" Type="Number" ID="{323d6e21-3fb8-4aef-a8da-f40abdb61e64}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="CarrierPerformanceReportNumberOrdered" DisplayName="Number TU ordered" Type="Number" ID="{2608b639-4dcb-42bf-b81c-f94f83b4132f}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="CarrierPerformanceReportDate" ID="{a8fb5e34-44ec-4f97-aad4-9bb3f2a81edc}" Type="DateTime" Format="DateOnly" Group="CAS Smart Factory Shepherd" DisplayName="Date">
-    <Default>[today]</Default>
-  </Field>
-      <Field Name="CarrierPerformanceReport2PartnerTitle" ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Carrier" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-    </Fields>
+   </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
         <Toolbar Type="Standard" />

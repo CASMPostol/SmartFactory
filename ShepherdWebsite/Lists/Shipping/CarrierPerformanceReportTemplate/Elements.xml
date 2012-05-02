@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="Carrier Performance Report Template"
-        Description="Carrier Performance Report List Definition"
+        DisplayName="$Resources:CASSmartFactoryShepherd,CarrierPerformanceReport"
+        Description="$Resources:CASSmartFactoryShepherd,CarrierPerformanceReportList"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

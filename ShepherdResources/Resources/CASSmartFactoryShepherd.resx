@@ -687,4 +687,49 @@
   <data name="WarehouseList" xml:space="preserve">
     <value>Warehouse list</value>
   </data>
+  <data name="AlarmsAndEvents" xml:space="preserve">
+    <value>Alarms and events</value>
+  </data>
+  <data name="AlarmsAndEventsList" xml:space="preserve">
+    <value>Alarms and events list</value>
+  </data>
+  <data name="CarrierPerformanceReport" xml:space="preserve">
+    <value>Carrier performance report</value>
+  </data>
+  <data name="CarrierPerformanceReportList" xml:space="preserve">
+    <value>Carrier performance report list</value>
+  </data>
+  <data name="DataImportLibrary" xml:space="preserve">
+    <value>Data import library</value>
+  </data>
+  <data name="DriversTeamList" xml:space="preserve">
+    <value>Drivers team list</value>
+  </data>
+  <data name="EventLog" xml:space="preserve">
+    <value>Event log</value>
+  </data>
+  <data name="EventLogList" xml:space="preserve">
+    <value>Event log list</value>
+  </data>
+  <data name="FreightPOLibrary" xml:space="preserve">
+    <value>Freight PO library</value>
+  </data>
+  <data name="LoadDescription" xml:space="preserve">
+    <value>Load description</value>
+  </data>
+  <data name="LoadDescriptionList" xml:space="preserve">
+    <value>Load description list</value>
+  </data>
+  <data name="SecurityEscortPOLibrary" xml:space="preserve">
+    <value>Security escort PO library</value>
+  </data>
+  <data name="SecuritySealProtocolLibrary" xml:space="preserve">
+    <value>Security seal protocol library</value>
+  </data>
+  <data name="Shippings" xml:space="preserve">
+    <value>Shippings</value>
+  </data>
+  <data name="ShippingsList" xml:space="preserve">
+    <value>Shippings list</value>
+  </data>
 </root>

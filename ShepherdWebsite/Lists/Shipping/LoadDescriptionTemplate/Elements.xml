@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="Load Description Template"
-        Description="Load Description List Definition"
+        DisplayName="$Resources:CASSmartFactoryShepherd,LoadDescription"
+        Description="$Resources:CASSmartFactoryShepherd,LoadDescriptionList"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

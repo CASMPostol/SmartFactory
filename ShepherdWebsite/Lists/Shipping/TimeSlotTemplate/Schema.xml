@@ -2,14 +2,19 @@
 <List xmlns:ows="Microsoft SharePoint" Title="TimeSlotTemplate" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-TimeSlotTemplate" EnableContentTypes="TRUE" MultipleTypes="TRUE" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0102008b8977afa9104b18b4b25d7c06a4a3aa" Name="TimeSlot" Group="CAS Smart Factory Shepherd" Description="Time Slot" Overwrite="True" Inherits="False">
-        <Folder TargetName="_cts/TimeSot" />
+      <ContentType ID="0x0102008b8977afa9104b18b4b25d7c06a4a3aa"
+              Name="TimeSlot"
+              Group="CAS Smart Factory Shepherd"
+              Description="$Resources:CASSmartFactoryShepherd,TimeSlotListCT"
+              Overwrite="True"
+              Inherits="False">
+        <Folder TargetName="_cts/TimeSlot" />
         <FieldRefs>
           <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
           <FieldRef ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Name="Location" Hidden="TRUE" />
           <FieldRef ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Name="EventDate" DisplayName="Start Time" Required="TRUE" Format="DateTime" />
           <FieldRef ID="{2684f9f2-54be-429f-ba06-76754fc056bf}" Name="EndDate" DisplayName="End Time" Required="TRUE" Format="DateTime" />
-          <FieldRef ID="{9da97a8a-1da5-4a77-98d3-4bc10456e700}" Name="Description" Hidden="TRUE" />
+          <FieldRef ID="{9da97a8a-1da5-4a77-98d3-4bc10456e700}" Name="Description"  Hidden="TRUE" />
           <FieldRef ID="{6df9bd52-550e-4a30-bc31-a4366832a87d}" Name="Category" Hidden="TRUE" />
           <FieldRef ID="{7d95d1f4-f5fd-4a70-90cd-b35abc9b5bc8}" Name="fAllDayEvent" Hidden="TRUE" />
           <FieldRef ID="{f2e63656-135e-4f1c-8fc2-ccbe74071901}" Name="fRecurrence" Hidden="TRUE" />
@@ -44,94 +49,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="Location" ID="{288f5f32-8462-4175-8f09-dd7ba29359a9}" Type="Text" DisplayName="$Resources:core,Location;" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Location"> </Field>
-      <Field Name="EventDate" ID="{64cd368d-2f95-4bfc-a1f9-8d4324ecb007}" Type="DateTime" DisplayName="$Resources:core,Start_Time;" Format="DateTime" Sealed="TRUE" Required="TRUE" FromBaseType="TRUE" Filterable="FALSE" FilterableNoRecurrence="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EventDate">
-        <Default>[today]</Default>
-        <FieldRefs>
-          <FieldRef Name="fAllDayEvent" RefType="AllDayEvent" />
-        </FieldRefs>
-      </Field>
-      <Field Name="EndDate" ID="{2684f9f2-54be-429f-ba06-76754fc056bf}" Type="DateTime" DisplayName="$Resources:core,End_Time;" Format="DateTime" Sealed="TRUE" Required="TRUE" Filterable="FALSE" FilterableNoRecurrence="TRUE" Indexed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EndDate">
-        <Default>[today]</Default>
-        <FieldRefs>
-          <FieldRef Name="fAllDayEvent" RefType="AllDayEvent" />
-        </FieldRefs>
-      </Field>
-      <Field Name="Description" ID="{9da97a8a-1da5-4a77-98d3-4bc10456e700}" Type="Note" RichText="TRUE" DisplayName="$Resources:core,Description;" Sortable="FALSE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Description"> </Field>
-      <Field Name="Category" ID="{6df9bd52-550e-4a30-bc31-a4366832a87d}" Type="Choice" DisplayName="$Resources:core,GBW_SR_Category_Field;" Format="Dropdown" FillInChoice="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Category">
-        <CHOICES>
-          <CHOICE>$Resources:core,GBW_SR_Category_Meeting;</CHOICE>
-          <CHOICE>$Resources:core,GBW_SR_Category_WorkHours;</CHOICE>
-          <CHOICE>$Resources:core,GBW_SR_Category_Business;</CHOICE>
-          <CHOICE>$Resources:core,GBW_SR_Category_Holiday;</CHOICE>
-          <CHOICE>$Resources:core,GBW_SR_Category_GetTogether;</CHOICE>
-          <CHOICE>$Resources:core,GBW_SR_Category_Gifts;</CHOICE>
-          <CHOICE>$Resources:core,GBW_SR_Category_Birthday;</CHOICE>
-          <CHOICE>$Resources:core,GBW_SR_Category_Anniversary;</CHOICE>
-        </CHOICES>
-      </Field>
-      <Field Name="fAllDayEvent" ID="{7d95d1f4-f5fd-4a70-90cd-b35abc9b5bc8}" Type="AllDayEvent" DisplaceOnUpgrade="TRUE" DisplayName="$Resources:core,All_Day_Event;" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="fAllDayEvent">
-        <FieldRefs>
-          <FieldRef Name="EventDate" RefType="StartDate" />
-          <FieldRef Name="EndDate" RefType="EndDate" />
-          <FieldRef Name="TimeZone" RefType="TimeZone" />
-          <FieldRef Name="XMLTZone" RefType="XMLTZone" />
-        </FieldRefs>
-      </Field>
-      <Field Name="fRecurrence" ID="{f2e63656-135e-4f1c-8fc2-ccbe74071901}" Type="Recurrence" DisplayName="$Resources:core,Recurrence;" DisplayImage="recur.gif" ExceptionImage="recurEx.gif" HeaderImage="recurrence.gif" ClassInfo="Icon" Title="$Resources:core,Recurrence;" Sealed="TRUE" NoEditFormBreak="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="fRecurrence">
-        <Default>FALSE</Default>
-        <FieldRefs>
-          <FieldRef Name="RecurrenceData" RefType="RecurData" />
-          <FieldRef Name="EventType" RefType="EventType" />
-          <FieldRef Name="UID" RefType="UID" />
-          <FieldRef Name="RecurrenceID" RefType="RecurrenceId" />
-          <FieldRef Name="EventCanceled" RefType="EventCancel" />
-          <FieldRef Name="EventDate" RefType="StartDate" />
-          <FieldRef Name="EndDate" RefType="EndDate" />
-          <FieldRef Name="Duration" RefType="Duration" />
-          <FieldRef Name="TimeZone" RefType="TimeZone" />
-          <FieldRef Name="XMLTZone" RefType="XMLTZone" />
-          <FieldRef Name="MasterSeriesItemID" RefType="MasterSeriesItemID" />
-          <FieldRef Name="WorkspaceLink" RefType="CPLink" />
-          <FieldRef Name="Workspace" RefType="LinkURL" />
-        </FieldRefs>
-      </Field>
-      <Field Name="WorkspaceLink" ID="{08fc65f9-48eb-4e99-bd61-5946c439e691}" Type="CrossProjectLink" Format="EventList" DisplayName="$Resources:core,Workspace;" DisplayImage="mtgicon.gif" HeaderImage="mtgicnhd.gif" ClassInfo="Icon" Title="$Resources:core,Meeting_Workspace;" Filterable="TRUE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkspaceLink">
-        <FieldRefs>
-          <FieldRef Name="Workspace" RefType="LinkURL" CreateURL="newMWS.aspx">$Resources:core,Calendar_MeetingWorkspaceField_Desc;</FieldRef>
-          <FieldRef Name="RecurrenceID" RefType="RecurrenceId" DisplayName="$Resources:core,Instance_ID;" />
-          <FieldRef Name="EventType" RefType="EventType" />
-          <FieldRef Name="UID" RefType="UID" />
-        </FieldRefs>
-      </Field>
-      <Field Name="EventType" ID="{5d1d4e76-091a-4e03-ae83-6a59847731c0}" Type="Integer" DisplayName="$Resources:core,Event_Type;" Sealed="TRUE" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EventType"> </Field>
-      <Field Name="UID" ID="{63055d04-01b5-48f3-9e1e-e564e7c6b23b}" Type="Guid" DisplayName="$Resources:core,UID;" Sealed="TRUE" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="UID"> </Field>
-      <Field Name="RecurrenceID" ID="{dfcc8fff-7c4c-45d6-94ed-14ce0719efef}" Type="DateTime" DisplayName="$Resources:core,Recurrence_ID;" CalType="1" Format="ISO8601Gregorian" Sealed="TRUE" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="RecurrenceID"></Field>
-      <Field Name="EventCanceled" ID="{b8bbe503-bb22-4237-8d9e-0587756a2176}" Type="Boolean" DisplayName="$Resources:core,Event_Canceled;" Sealed="TRUE" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="EventCanceled"> </Field>
-      <Field Name="Duration" ID="{4d54445d-1c84-4a6d-b8db-a51ded4e1acc}" Type="Integer" DisplayName="$Resources:core,Duration;" Hidden="TRUE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Duration"> </Field>
-      <Field Name="RecurrenceData" ID="{d12572d0-0a1e-4438-89b5-4d0430be7603}" Type="Note" DisplayName="$Resources:core,RecurrenceData;" Hidden="TRUE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="RecurrenceData"> </Field>
-      <Field Name="TimeZone" ID="{6cc1c612-748a-48d8-88f2-944f477f301b}" Type="Integer" DisplayName="$Resources:core,TimeZone;" Sealed="TRUE" Hidden="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="TimeZone"> </Field>
-      <Field Name="XMLTZone" ID="{c4b72ed6-45aa-4422-bff1-2b6750d30819}" Type="Note" DisplayName="$Resources:core,XMLTZone;" Hidden="TRUE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="XMLTZone"> </Field>
-      <Field Name="MasterSeriesItemID" ID="{9b2bed84-7769-40e3-9b1d-7954a4053834}" Type="Integer" DisplayName="$Resources:core,MasterSeriesItemID;" Sealed="TRUE" Hidden="TRUE" Indexed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="MasterSeriesItemID"> </Field>
-      <Field Name="Workspace" ID="{881eac4a-55a5-48b6-a28e-8329d7486120}" Type="URL" DisplayName="$Resources:core,WorkspaceUrl;" Hidden="TRUE" Sealed="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Workspace"> </Field>
-      <Field Name="TimeSlot2ShippingIndex" ID="{5EBA7A0A-270D-4F08-8DF5-422612615163}"  Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Index" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="TimeSlot2ShippingPointLookup" ID="{D8AE2368-2CC5-433B-9AA5-9980ADE3F145}"  Type="Lookup" List="Lists/ShippingPointList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Point" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="EntryTime" ID="{06F0C4D9-BDED-4A99-BF19-F6B1390E2A79}" Type="DateTime" Format="DateTime"  Group="CAS Smart Factory Shepherd" DisplayName="Actual Time">
-        <Default>[today]</Default>
-      </Field>
-      <Field Name="TimeSpan" ID="{1E155AF8-2CB2-43FC-9650-9C0BDD39CD88}" Type="Number" Group="CAS Smart Factory Shepherd" DisplayName="Actual Time Span" />
-      <Field Name="ExitTime" ID="{89F5EF1F-D79D-42B6-BD14-780B9D90A86A}" Type="DateTime" Format="TimeOnly" Group="CAS Smart Factory Shepherd" DisplayName="Time Span">
-        <Default>[today]</Default>
-      </Field>
-      <Field Type="Choice" DisplayName="Occupied" ID="{1A17B25C-CEEC-42BB-A17C-25B4CBD79FA2}" Format="Dropdown" BaseType="Text" Description="Occupied" Name="Occupied" Group="CAS Smart Factory Shepherd">
-        <Default>Free</Default>
-        <CHOICES>
-          <CHOICE>Free</CHOICE>
-          <CHOICE>Occupied</CHOICE>
-          <CHOICE>Delayed</CHOICE>
-        </CHOICES>
-      </Field>
-      <Field DisplayName="Is Double" Name="IsDouble" Type="Boolean" ID="{CC93BD06-3A21-440D-96FA-1916AE32F69F}" Group="CAS Smart Factory Shepherd" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" RecurrenceRowset="TRUE" TabularView="FALSE" MobileView="TRUE">

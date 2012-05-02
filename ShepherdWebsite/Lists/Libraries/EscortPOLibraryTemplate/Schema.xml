@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="EscortPOLibraryTemplate" Direction="$Resources:Direction;" Url="ShepherdWebsite-EscortPOLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0101000276600256fa44439b3aa6a5221f14c4" Name="EscortPO" Group="CAS Smart Factory Shepherd" Description="Escort PO Library" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x0101000276600256fa44439b3aa6a5221f14c4"
+                   Name="EscortPO"
+                   Group="CAS Smart Factory Shepherd"
+                   Description="$Resources:CASSmartFactoryShepherd,EscortPOLibraryCT"
+                   Overwrite="TRUE"
+                   Inherits="TRUE">
         <Folder TargetName="EscortPO" />
         <FieldRefs>
           <FieldRef ID="{A2297425-2114-4FD6-A543-51AF45CE0F70}" Name="SPOFreightPO" />
