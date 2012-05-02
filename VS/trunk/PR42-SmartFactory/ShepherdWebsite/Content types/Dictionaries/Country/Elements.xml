@@ -8,8 +8,8 @@
              Inherits="TRUE">
     <Folder TargetName="_cts/Country" />
     <FieldRefs>
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,Driver" />
       <FieldRef ID="{B51E2BEC-D8D7-458E-A89E-45DCB4EB1D79}" Name="CountryGroup" />
-      <FieldRef  Name="Dummy" ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}" Hidden="TRUE" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

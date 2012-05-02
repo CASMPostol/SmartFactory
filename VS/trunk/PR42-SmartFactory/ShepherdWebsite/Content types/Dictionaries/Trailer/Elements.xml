@@ -5,20 +5,20 @@
                Group="CAS Smart Factory Shepherd"
                Description="$Resources:CASSmartFactoryShepherd,TrailersListCT"
                Overwrite="TRUE"
-               Inherits="TRUE">
+               Inherits="FALSE">
     <Folder TargetName="_cts/Trailer" />
     <FieldRefs>
-      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,TrailerPlateNo" />
       <FieldRef ID="{C02DF427-580B-433C-8D42-E2CC4484E6F0}" Name="Trailer2PartnerTitle" />
       <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
     </FieldRefs>
     <XmlDocuments>
-      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
-        <FormUrls xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
-          <Display>_layouts/ShepherdDashboards/TrailerNewForm.aspx</Display>
-          <Edit>_layouts/ShepherdDashboards/TrailerNewForm.aspx</Edit>
-          <New>_layouts/ShepherdDashboards/TrailerNewForm.aspx</New>
-        </FormUrls>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+          <Display>ListForm</Display>
+          <Edit>ListForm</Edit>
+          <New>ListForm</New>
+        </FormTemplates>
       </XmlDocument>
     </XmlDocuments>
   </ContentType>

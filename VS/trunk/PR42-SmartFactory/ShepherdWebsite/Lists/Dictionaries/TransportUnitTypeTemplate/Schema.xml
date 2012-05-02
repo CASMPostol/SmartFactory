@@ -2,9 +2,16 @@
 <List xmlns:ows="Microsoft SharePoint" Title="TransportUnitTypeTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-TransportUnitTypeTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100017ECA95BFABB941B9E7FE63643FCD7C" Name="TranspotUnit" Group="CAS Smart Factory Shepherd" Description="Transpot Unit" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x0100017ECA95BFABB941B9E7FE63643FCD7C"
+                 Name="TranspotUnit"
+                 Group="CAS Smart Factory Shepherd"
+                 Description="$Resources:CASSmartFactoryShepherd,TranspotUnitTypeListCT"
+                 Overwrite="TRUE"
+                 Inherits="TRUE">
         <Folder TargetName="_cts/TranspotUnit" />
         <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,TransportUnitType" />
+          <FieldRef  Name="Dummy" ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}" Hidden="TRUE" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">

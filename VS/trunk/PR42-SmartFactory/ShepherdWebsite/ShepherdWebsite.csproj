@@ -84,9 +84,6 @@
     <None Include="Content types\Dictionaries\Driver\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2893f301-494b-4b50-b6e9-2408b93e7aca}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Dictionaries\ExchangeRate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{f72057a0-fe6d-4c8c-a897-02b2a773b39d}</SharePointProjectItemId>
-    </None>
     <None Include="Content types\Dictionaries\FreightPayer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{7197bb40-a7d2-42e8-ac65-9b965800ccfd}</SharePointProjectItemId>
     </None>
@@ -399,7 +396,6 @@
     <Content Include="Content types\Dictionaries\Driver\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Dictionaries\ExchangeRate\Elements.xml" />
     <Content Include="Content types\Dictionaries\FreightPayer\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -571,7 +567,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Dictionaries\WarehouseTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\WarehouseTemplate\WarehouseList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\WarehouseTemplate\WarehouseList\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\WarehouseTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>

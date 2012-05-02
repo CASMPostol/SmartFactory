@@ -2,14 +2,20 @@
 <List xmlns:ows="Microsoft SharePoint" Title="ShepherdWebsite - ScheduleTemplateTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-ScheduleTemplateTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x010091765907174d4799b44c4df249630d28" Name="ScheduleTemplate" Group="CAS Smart Factory Shepherd Dictionaries" Description="A schedule template is a predefined table of time slots." Inherits="TRUE" Version="0">
+      <ContentType ID="0x010091765907174d4799b44c4df249630d28"
+             Name="ScheduleTemplate"
+             Group="CAS Smart Factory Shepherd Dictionaries"
+             Description="$Resources:CASSmartFactoryShepherd,ScheduleTemplateListCT"
+             Inherits="TRUE"
+             Overwrite="FALSE">
+        <Folder TargetName="_cts/ScheduleTemplate" />
         <FieldRefs>
-          <FieldRef Name="ShippingPointLookupTitle" ID="{A0CC7498-1A74-4A7A-B88C-E9F1DAD514F2}" />
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,ScheduleTemplate" />
+          <FieldRef Name="ShippingPointLookupTitle" ID="{A0CC7498-1A74-4A7A-B88C-E9F1DAD514F2}"/>
         </FieldRefs>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="ShippingPointLookupTitle" ID="{A0CC7498-1A74-4A7A-B88C-E9F1DAD514F2}" Type="Lookup" List="Lists/ShippingPointList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Shipping Point" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

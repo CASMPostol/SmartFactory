@@ -23,7 +23,7 @@
     ID="{DF04156B-B301-4E48-B771-B8F1357DFB77}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="$Resources:CASSmartFactoryShepherd,ConainersNo" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,ContainersNo" />
   <Field
     Name="SealProtocolEscortCarNo"
     ID="{D6905D84-5B20-49F6-A4D8-6CA75C7259D5}"

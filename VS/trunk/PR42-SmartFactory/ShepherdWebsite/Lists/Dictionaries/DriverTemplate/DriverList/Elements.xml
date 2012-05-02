@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Driver"
+  <ListInstance Title="$Resources:CASSmartFactoryShepherd,Drivers"
                 OnQuickLaunch="TRUE"
                 TemplateType="10041"
                 Url="Lists/DriverList"
-                Description="Driver List Instance">
+                Description="$Resources:CASSmartFactoryShepherd,Drivers">
   </ListInstance>
 </Elements>

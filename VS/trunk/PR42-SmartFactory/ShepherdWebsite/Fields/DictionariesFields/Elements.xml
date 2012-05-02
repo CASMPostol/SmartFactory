@@ -292,7 +292,6 @@
     ID="{E6381646-DB08-4C85-9A2F-59B931D98DBB}"
     Format="Dropdown"
     BaseType="Text"
-    Description="Loading Type"
     Name="LoadingType"
     Group="CAS Smart Factory Shepherd">
     <Default>Pallet</Default>
@@ -396,7 +395,7 @@
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,IDNubmer"
+    DisplayName="$Resources:CASSmartFactoryShepherd,IDNumber"
     Name="IdentityDocumentNumber"
     Type="Text"
     ID="{9889C906-2676-4309-A8C3-CE3F91D8A640}"

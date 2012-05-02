@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="Truck List Template"
-        Description="Truck List Definition"
+        DisplayName="$Resources:CASSmartFactoryShepherd,Trucks"
+        Description="$Resources:CASSmartFactoryShepherd,TrucksList"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

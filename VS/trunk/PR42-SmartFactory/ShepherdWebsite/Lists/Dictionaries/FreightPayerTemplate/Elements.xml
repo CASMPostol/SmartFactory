@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="FreightPayerTemplate"
-        Description="Freight Payer List Definition"
+        DisplayName="$Resources:CASSmartFactoryShepherd,FreightPayer"
+        Description="$Resources:CASSmartFactoryShepherd,FreightPayerList"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

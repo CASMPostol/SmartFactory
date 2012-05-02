@@ -2,29 +2,31 @@
 <List EnableContentTypes="TRUE" xmlns:ows="Microsoft SharePoint" Title="DriverTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-DriverTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100b0982f01816047b1abff933b9f49b5db" Name="Driver" Group="CAS Smart Factory Shepherd" Description="Driver" Overwrite="TRUE" Inherits="FALSE">
+      <ContentType ID="0x0100b0982f01816047b1abff933b9f49b5db"
+                   Name="Driver"
+                   Group="CAS Smart Factory Shepherd"
+                   Description="$Resources:CASSmartFactoryShepherd,DriversListCT"
+                   Overwrite="TRUE"
+                   Inherits="FALSE">
         <Folder TargetName="_cts/Driver" />
         <FieldRefs>
-          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,Driver" />
           <FieldRef ID="{491CA972-C42C-4936-B8CD-D856E45B05EF}" Name="Driver2PartnerTitle" />
           <FieldRef ID="{9889C906-2676-4309-A8C3-CE3F91D8A640}" Name="IdentityDocumentNumber" />
           <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />
         </FieldRefs>
         <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
-            <FormUrls xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
-              <Display>_layouts/ShepherdDashboards/DriverNewForm.aspx</Display>
-              <Edit>_layouts/ShepherdDashboards/DriverNewForm.aspx</Edit>
-              <New>_layouts/ShepherdDashboards/DriverNewForm.aspx</New>
-            </FormUrls>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
           </XmlDocument>
         </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field DisplayName="Identity document number" Name="IdentityDocumentNumber" Type="Text" ID="{9889c906-2676-4309-a8c3-ce3f91d8a640}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="Driver2PartnerTitle" ID="{491ca972-c42c-4936-b8cd-d856e45b05ef}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="CellPhone" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Mobile_Phone;" Type="Text" IMEMode="inactive" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

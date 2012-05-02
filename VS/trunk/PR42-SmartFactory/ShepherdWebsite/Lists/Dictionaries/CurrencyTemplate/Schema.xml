@@ -2,9 +2,15 @@
 <List xmlns:ows="Microsoft SharePoint" Title="CurrencyTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-CurrencyTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x010024c2d44b310a47edb90969b622490cf9" Name="Currency" Group="CAS Smart Factory Shepherd" Description="Currency" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x010024c2d44b310a47edb90969b622490cf9"
+             Name="Currency"
+             Group="CAS Smart Factory Shepherd"
+             Description="$Resources:CASSmartFactoryShepherd,CurrencyListCT"
+             Overwrite="TRUE"
+             Inherits="FALSE">
         <Folder TargetName="_cts/Currency" />
         <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,Currency" />
           <FieldRef ID="{70F34CA9-C358-4798-BE5B-17C417FE5F38}" Name="ExchangeRate" />
         </FieldRefs>
         <XmlDocuments>
@@ -19,7 +25,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field DisplayName="Exchange Rate" Name="ExchangeRate" Type="Number" ID="{70f34ca9-c358-4798-be5b-17c417fe5f38}" Group="CAS Smart Factory Shepherd" Description="Exchange Rate" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
