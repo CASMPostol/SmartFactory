@@ -14,7 +14,7 @@
             <asp:Table ID="Row1" runat="server" CssClass="TableInside">
             <asp:TableRow>
             <asp:TableCell>
-                <asp:Label ID="Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label>
+                <asp:Label ID="Label4" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Shipping%>" CssClass="Label" Enabled="false"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:TextBox ID="m_ShippingTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
@@ -28,13 +28,13 @@
             <asp:Table ID="Row2" runat="server" CssClass="TableInside">
             <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Label runat="server" CssClass="Label" ID="Label1" Text="All drivers:"></asp:Label>
+                        <asp:Label runat="server" CssClass="Label" ID="Label1" Text="<%$Resources:CASSmartFactoryShepherd,AllDrivers%>"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
                         <asp:Label runat="server" CssClass="Label" ID="Label2" Text=""></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                        <asp:Label runat="server" CssClass="Label" ID="Label3" Text="Selected drivers:"></asp:Label>
+                        <asp:Label runat="server" CssClass="Label" ID="Label3" Text="<%$Resources:CASSmartFactoryShepherd,SelectedDrivers%>"></asp:Label>
             </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -42,9 +42,9 @@
                 <asp:ListBox ID="m_DriversListBox" runat="server" CssClass="ListBoxInside" Enabled="false"></asp:ListBox>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:Button ID="m_AddDriverButton" runat="server" Text=" >> " CssClass="Button_TR" Enabled="false"/>
+                <asp:Button ID="m_AddDriverButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,AddDrivers%>"" CssClass="Button_TR" Enabled="false"/>
                 <br /><br />
-                <asp:Button ID="m_RemoveDriverButton" runat="server" Text=" << " CssClass="Button_TR" Enabled="false"/>
+                <asp:Button ID="m_RemoveDriverButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,RemoveDrivers%>" CssClass="Button_TR" Enabled="false"/>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:ListBox ID="m_DriversTeamListBox" runat="server" CssClass="ListBoxInside" Enabled="false"></asp:ListBox>
@@ -58,7 +58,7 @@
         <asp:Table ID="Row3" runat="server" CssClass="TableInside">
             <asp:TableRow>
             <asp:TableCell>
-            <asp:Label ID="m_TruckHeaderLabel" runat="server" Text="Truck" CssClass="Label"></asp:Label>
+            <asp:Label ID="m_TruckHeaderLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Truck%>" CssClass="Label"></asp:Label>
         </asp:TableCell>
         <asp:TableCell>
             <asp:DropDownList ID="m_TruckDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack="true"></asp:DropDownList>
@@ -66,7 +66,7 @@
             </asp:TableRow>
             <asp:TableRow>
             <asp:TableCell>
-            <asp:Label ID="m_TrailerHeaderLabel" runat="server" Text="Trailer" CssClass="Label"></asp:Label>
+            <asp:Label ID="m_TrailerHeaderLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Trailer%>" CssClass="Label"></asp:Label>
         </asp:TableCell>
         <asp:TableCell>
             <asp:DropDownList ID="m_TrailerDropDown" runat="server" CssClass="DropDown" Enabled="false" AutoPostBack="true"></asp:DropDownList>

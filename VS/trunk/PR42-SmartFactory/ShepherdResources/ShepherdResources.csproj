@@ -56,6 +56,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CASSmartFactoryShepherd.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\CASSmartFactoryShepherd.pl-PL.Designer.cs">
+      <DependentUpon>CASSmartFactoryShepherd.pl-PL.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\CASSmartFactoryShepherd.en-US.Designer.cs">
+      <DependentUpon>CASSmartFactoryShepherd.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Features\Feature1\Feature1.feature">
@@ -82,6 +92,17 @@
     <Content Include="Resources\CASSmartFactoryShepherd.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CASSmartFactoryShepherd.Designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GlobalResources\CASSmartFactoryShepherd.resx" />
+    <Content Include="Resources\CASSmartFactoryShepherd.pl-PL.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CASSmartFactoryShepherd.pl-PL.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Resources\CASSmartFactoryShepherd.en-US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CASSmartFactoryShepherd.en-US.Designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
