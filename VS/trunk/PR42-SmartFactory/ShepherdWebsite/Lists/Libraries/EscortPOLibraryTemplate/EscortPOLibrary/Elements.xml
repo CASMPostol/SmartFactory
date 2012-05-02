@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Escort PO Library"
+  <ListInstance Title="$Resources:CASSmartFactoryShepherd,SecurityEscortPOLibrary"
                 OnQuickLaunch="TRUE"
                 TemplateType="10053"
                 Url="Lists/EscortPOLibrary"
-                Description="Escort PO Library Instance">
+                Description="$Resources:CASSmartFactoryShepherd,SecurityEscortPOLibrary">
   </ListInstance>
 </Elements>

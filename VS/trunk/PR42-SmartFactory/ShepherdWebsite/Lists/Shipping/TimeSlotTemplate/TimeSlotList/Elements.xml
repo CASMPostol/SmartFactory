@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="TimeSlot"
+  <ListInstance Title="$Resources:CASSmartFactoryShepherd,TimeSlotTemplate"
                 OnQuickLaunch="TRUE"
                 TemplateType="10007"
                 Url="Lists/TimeSlotList"
-                Description="TimeSLot List Instance">
+                Description="$Resources:CASSmartFactoryShepherd,TimeSlotTemplateList">
   </ListInstance>
 </Elements>

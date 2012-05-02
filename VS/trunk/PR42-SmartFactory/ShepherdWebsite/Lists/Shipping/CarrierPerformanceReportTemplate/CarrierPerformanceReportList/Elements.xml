@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Carrier Performance Report"
+  <ListInstance Title="$Resources:CASSmartFactoryShepherd,CarrierPerformanceReport"
                 OnQuickLaunch="TRUE"
                 TemplateType="10046"
                 Url="Lists/CarrierPerformanceReportList"
-                Description="Carrier Performance Report List Instance">
+                Description="$Resources:CASSmartFactoryShepherd,CarrierPerformanceReportList">
   </ListInstance>
 </Elements>

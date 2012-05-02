@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="SealProtocolLibraryTemplate" Direction="$Resources:Direction;" Url="ShepherdWebsite-SealProtocolLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x010100ccfccb37046e4ed39c17d28fae78ed47" Name="SealProtocol" Group="CAS Smart Factory Shepherd" Description="Security Seal Protocol Library" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x010100ccfccb37046e4ed39c17d28fae78ed47"
+                   Name="SealProtocol"
+                   Group="CAS Smart Factory Shepherd"
+                   Description="$Resources:CASSmartFactoryShepherd,SecuritySealProtocolLibraryCT"
+                   Overwrite="TRUE"
+                   Inherits="TRUE">
         <Folder TargetName="SealProtocol" />
         <FieldRefs>
           <FieldRef ID="{69CCC219-D59C-4D53-8713-D1EE23A03C01}" Name="SealProtocolDispatchDate" />

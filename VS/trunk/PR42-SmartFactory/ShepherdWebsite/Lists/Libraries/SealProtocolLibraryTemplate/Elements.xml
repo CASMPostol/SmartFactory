@@ -7,8 +7,8 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="110"
-        DisplayName="Seal Protocol Library Template"
-        Description="Seal Protocol Library Definition"
+        DisplayName="$Resources:CASSmartFactoryShepherd,SecuritySealProtocolLibrary"
+        Description="$Resources:CASSmartFactoryShepherd,SecuritySealProtocolLibrary"
         Image="/_layouts/images/itdl.png"
         DocumentTemplate="121"/>
 </Elements>

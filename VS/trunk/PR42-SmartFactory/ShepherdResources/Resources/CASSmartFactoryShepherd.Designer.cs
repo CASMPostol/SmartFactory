@@ -106,6 +106,24 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alarms and events.
+        /// </summary>
+        internal static string AlarmsAndEvents {
+            get {
+                return ResourceManager.GetString("AlarmsAndEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alarms and events list.
+        /// </summary>
+        internal static string AlarmsAndEventsList {
+            get {
+                return ResourceManager.GetString("AlarmsAndEventsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alarms And Events List Content Type.
         /// </summary>
         internal static string AlarmsAndEventsListCT {
@@ -174,6 +192,24 @@ namespace ShepherdResources.Resources {
         internal static string CarrierList {
             get {
                 return ResourceManager.GetString("CarrierList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carrier performance report.
+        /// </summary>
+        internal static string CarrierPerformanceReport {
+            get {
+                return ResourceManager.GetString("CarrierPerformanceReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Carrier performance report list.
+        /// </summary>
+        internal static string CarrierPerformanceReportList {
+            get {
+                return ResourceManager.GetString("CarrierPerformanceReportList", resourceCulture);
             }
         }
         
@@ -358,6 +394,15 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data import library.
+        /// </summary>
+        internal static string DataImportLibrary {
+            get {
+                return ResourceManager.GetString("DataImportLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         internal static string Date {
@@ -538,6 +583,15 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drivers team list.
+        /// </summary>
+        internal static string DriversTeamList {
+            get {
+                return ResourceManager.GetString("DriversTeamList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drivers Team List Content Type.
         /// </summary>
         internal static string DriversTeamListCT {
@@ -682,6 +736,24 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event log.
+        /// </summary>
+        internal static string EventLog {
+            get {
+                return ResourceManager.GetString("EventLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event log list.
+        /// </summary>
+        internal static string EventLogList {
+            get {
+                return ResourceManager.GetString("EventLogList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exchange rate.
         /// </summary>
         internal static string ExchangeRate {
@@ -799,6 +871,15 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Freight PO library.
+        /// </summary>
+        internal static string FreightPOLibrary {
+            get {
+                return ResourceManager.GetString("FreightPOLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Freight PO Library Content Type.
         /// </summary>
         internal static string FreightPOLibraryCT {
@@ -876,6 +957,24 @@ namespace ShepherdResources.Resources {
         internal static string IsOutbound {
             get {
                 return ResourceManager.GetString("IsOutbound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load description.
+        /// </summary>
+        internal static string LoadDescription {
+            get {
+                return ResourceManager.GetString("LoadDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load description list.
+        /// </summary>
+        internal static string LoadDescriptionList {
+            get {
+                return ResourceManager.GetString("LoadDescriptionList", resourceCulture);
             }
         }
         
@@ -1303,6 +1402,15 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Security escort PO library.
+        /// </summary>
+        internal static string SecurityEscortPOLibrary {
+            get {
+                return ResourceManager.GetString("SecurityEscortPOLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Security escort provider.
         /// </summary>
         internal static string SecurityEscortProvider {
@@ -1335,6 +1443,15 @@ namespace ShepherdResources.Resources {
         internal static string SecuritySealProtocol {
             get {
                 return ResourceManager.GetString("SecuritySealProtocol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security seal protocol library.
+        /// </summary>
+        internal static string SecuritySealProtocolLibrary {
+            get {
+                return ResourceManager.GetString("SecuritySealProtocolLibrary", resourceCulture);
             }
         }
         
@@ -1470,6 +1587,24 @@ namespace ShepherdResources.Resources {
         internal static string ShippingPointListCT {
             get {
                 return ResourceManager.GetString("ShippingPointListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shippings.
+        /// </summary>
+        internal static string Shippings {
+            get {
+                return ResourceManager.GetString("Shippings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shippings list.
+        /// </summary>
+        internal static string ShippingsList {
+            get {
+                return ResourceManager.GetString("ShippingsList", resourceCulture);
             }
         }
         

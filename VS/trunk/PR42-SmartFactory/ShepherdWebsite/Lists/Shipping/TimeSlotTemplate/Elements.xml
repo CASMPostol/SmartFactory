@@ -8,7 +8,7 @@
         FolderCreation="FALSE"
         SecurityBits="11"
         Sequence="340"
-        DisplayName="TimeSlot Template"
-        Description="TimeSlot List Definition"
+        DisplayName="$Resources:CASSmartFactoryShepherd,TimeSlotTemplate"
+        Description="$Resources:CASSmartFactoryShepherd,TimeSlotTemplateList"
         Image="/_layouts/images/itevent.png"/>
 </Elements>

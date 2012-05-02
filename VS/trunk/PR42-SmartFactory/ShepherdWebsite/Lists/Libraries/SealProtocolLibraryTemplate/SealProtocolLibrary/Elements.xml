@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Seal Protocol Library"
+  <ListInstance Title="$Resources:CASSmartFactoryShepherd,SecuritySealProtocolLibrary"
                 OnQuickLaunch="TRUE"
                 TemplateType="10054"
                 Url="Lists/SealProtocolLibrary"
-                Description="Seal Protocol Library Instance">
+                Description="$Resources:CASSmartFactoryShepherd,SecuritySealProtocolLibrary">
   </ListInstance>
 </Elements>
