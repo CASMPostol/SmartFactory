@@ -736,7 +736,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event log.
+        ///   Looks up a localized string similar to Event Log List.
         /// </summary>
         internal static string EventLog {
             get {

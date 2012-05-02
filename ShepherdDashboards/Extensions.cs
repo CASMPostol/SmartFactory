@@ -123,7 +123,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     public static string GetLocalizedString(this string val)
     {
       string _frmt = "$Resources:{0}";
-      return SPUtility.GetLocalizedString(String.Format(_frmt, val), "Resources", (uint)CultureInfo.CurrentUICulture.LCID);
+      return SPUtility.GetLocalizedString(String.Format(_frmt, val), GlobalDefinitions.RootResourceFileName, (uint)CultureInfo.CurrentUICulture.LCID);
     }
     /// <summary>
     /// Controls the text property.

@@ -1,4 +1,4 @@
 ﻿<#+
 string MasterPage = "cas.master";
-string RootResourceFileName = "CASSmartFactoryShepherd.resx";
+string RootResourceFileName = "CASSmartFactoryShepherd";
 #>
