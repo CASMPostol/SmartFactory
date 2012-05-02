@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="City"
+  <ListInstance Title="$Resources:CASSmartFactoryShepherd,City"
                 OnQuickLaunch="TRUE"
                 TemplateType="10029"
                 Url="Lists/CityList"
-                Description="City List Instance">
+                Description="$Resources:CASSmartFactoryShepherd,CityList">
   </ListInstance>
 </Elements>

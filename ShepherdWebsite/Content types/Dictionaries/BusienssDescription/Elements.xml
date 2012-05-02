@@ -5,9 +5,10 @@
                Group="CAS Smart Factory Shepherd"
              Description="$Resources:CASSmartFactoryShepherd,BusinessDescriptionListCT"
              Overwrite="TRUE"
-             Inherits="TRUE">
+             Inherits="FALSE">
     <Folder TargetName="_cts/BusinessDescription" />
     <FieldRefs>
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,BusinessDescription" />
       <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
     </FieldRefs>
     <XmlDocuments>

@@ -5,9 +5,10 @@
                Group="CAS Smart Factory Shepherd Dictionaries"
                Description="$Resources:CASSmartFactoryShepherd,ScheduleTemplateListCT"
                Inherits="TRUE"
-               Overwrite="TRUE">
+               Overwrite="FALSE">
     <Folder TargetName="_cts/ScheduleTemplate" />
     <FieldRefs>
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,ScheduleTemplate" />
       <FieldRef Name="ShippingPointLookupTitle" ID="{A0CC7498-1A74-4A7A-B88C-E9F1DAD514F2}"/>
     </FieldRefs>
   </ContentType>

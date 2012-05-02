@@ -2,9 +2,15 @@
 <List xmlns:ows="Microsoft SharePoint" Title="JTIPartnerTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-JTIPartnerTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x010017a675502be747db9fb9dcb304429eef" Name="Partner" Group="CAS Smart Factory Shepherd" Description="Partner" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x010017a675502be747db9fb9dcb304429eef"
+                   Name="Partner"
+                   Group="CAS Smart Factory Shepherd"
+                   Description="$Resources:CASSmartFactoryShepherd,PartnersListCT"
+                   Overwrite="TRUE"
+                   Inherits="FALSE">
         <Folder TargetName="_cts/Partner" />
         <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,Partner" />
           <FieldRef ID="{6483C7B1-BF97-409C-AE10-03B369E9D70F}" Name="ShepherdUser" />
           <FieldRef ID="{7A847280-FE50-471A-B399-1F7D7EF19DA3}" Name="VendorNumber" />
           <FieldRef ID="{6F534579-F010-432C-BE79-5AE3B369E7CF}" Name="ServiceType" />
@@ -25,23 +31,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Type="Choice" DisplayName="Service Type" ID="{6f534579-f010-432c-be79-5ae3b369e7cf}" Format="Dropdown" BaseType="Text" Description="Service" Name="ServiceType" Group="CAS Smart Factory Shepherd">
-    <Default>Vendor</Default>
-    <CHOICES>
-      <CHOICE>Vendor</CHOICE>
-      <CHOICE>Forwarder</CHOICE>
-      <CHOICE>Vendor and Forwarder</CHOICE>
-      <CHOICE>Security Escort Provider</CHOICE>
-    </CHOICES>
-  </Field>
-      <Field Type="User" DisplayName="Shepherd User" List="UserInfo" Required="TRUE" EnforceUniqueValues="FALSE" ShowField="Title" UserSelectionMode="PeopleOnly" UserSelectionScope="0" Group="CAS Smart Factory Shepherd" ID="{6483C7B1-BF97-409C-AE10-03B369E9D70F}" Name="ShepherdUser" Overwrite="TRUE"  />
-      <Field Name="WarehouseTitle" ID="{9f4acd7d-08dd-44cc-8fdd-ad18f67bd898}" Type="Lookup" List="Lists/WarehouseList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Warehouse" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field DisplayName="Vendor Number (from SAP)" Name="VendorNumber" Type="Text" ID="{7a847280-fe50-471a-b399-1f7d7ef19da3}" Group="CAS Smart Factory Shepherd" />
-      <Field ID="{fd630629-c165-4513-b43c-fdb16b86a14d}" Name="WorkPhone" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkPhone" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Business_Phone;" Type="Text" IMEMode="inactive" />
-      <Field ID="{9d1cacc8-f452-4bc1-a751-050595ad96e1}" Name="WorkFax" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="WorkFax" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Fax_Number;" Type="Text" IMEMode="inactive" />
-      <Field ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="CellPhone" Group="$Resources:core,Person_Event_Columns;" DisplayName="$Resources:core,Mobile_Phone;" Type="Text" IMEMode="inactive" />
-      <Field Name="Partner2WarehouseTitle" ID="{074A69F8-5CE5-407F-81CD-6E691DFB7214}" Type="Lookup" List="Lists/WarehouseList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Warehouse" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="EmailAddress" ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}" Type="Text" DisplayName="E-mail" Group="CAS Smart Factory Shepherd" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

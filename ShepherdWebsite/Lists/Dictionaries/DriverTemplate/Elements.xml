@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="Driver List Template"
-        Description="Driver List Definition"
+        DisplayName="$Resources:CASSmartFactoryShepherd,Drivers"
+        Description="$Resources:CASSmartFactoryShepherd,DriversList"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

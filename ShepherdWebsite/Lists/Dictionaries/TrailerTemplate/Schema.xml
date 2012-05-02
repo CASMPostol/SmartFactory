@@ -2,27 +2,30 @@
 <List xmlns:ows="Microsoft SharePoint" Title="TrailerTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-TrailerTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01009ef7d9cee9664a48928ad8c8857ada95" Name="Trailer" Group="CAS Smart Factory Shepherd" Description="Trailer" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01009ef7d9cee9664a48928ad8c8857ada95"
+              Name="Trailer"
+              Group="CAS Smart Factory Shepherd"
+              Description="$Resources:CASSmartFactoryShepherd,TrailersListCT"
+              Overwrite="TRUE"
+              Inherits="FALSE">
         <Folder TargetName="_cts/Trailer" />
         <FieldRefs>
-          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,TrailerPlateNo" />
           <FieldRef ID="{C02DF427-580B-433C-8D42-E2CC4484E6F0}" Name="Trailer2PartnerTitle" />
           <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
         </FieldRefs>
         <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
-            <FormUrls xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
-              <Display>_layouts/ShepherdDashboards/TrailerNewForm.aspx</Display>
-              <Edit>_layouts/ShepherdDashboards/TrailerNewForm.aspx</Edit>
-              <New>_layouts/ShepherdDashboards/TrailerNewForm.aspx</New>
-            </FormUrls>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
           </XmlDocument>
         </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field DisplayName="Comments" Name="AdditionalComments" Type="Text" ID="{cb92513d-35a8-4352-97f4-59d816c74c5a}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="Trailer2PartnerTitle" ID="{c02df427-580b-433c-8d42-e2cc4484e6f0}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

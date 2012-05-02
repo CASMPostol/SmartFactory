@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Currency"
+  <ListInstance Title="$Resources:CASSmartFactoryShepherd,Currency"
                 OnQuickLaunch="TRUE"
                 TemplateType="10034"
                 Url="Lists/CurrencyList"
-                Description="Currency List Instance">
+                Description="$Resources:CASSmartFactoryShepherd,CurrencyList">
   </ListInstance>
 </Elements>

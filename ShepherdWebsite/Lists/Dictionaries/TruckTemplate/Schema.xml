@@ -2,36 +2,31 @@
 <List EnableContentTypes="TRUE" xmlns:ows="Microsoft SharePoint" Title="TruckTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-TruckTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01003e7761aef97a4c619f44d01b53a56568" Name="Truck" Group="CAS Smart Factory Shepherd" Description="Truck" Overwrite="TRUE" Inherits="FALSE">
+      <ContentType ID="0x01003e7761aef97a4c619f44d01b53a56568"
+                   Name="Truck"
+                   Group="CAS Smart Factory Shepherd"
+                   Description="$Resources:CASSmartFactoryShepherd,TrucksListCT"
+                   Overwrite="TRUE"
+                   Inherits="FALSE">
         <Folder TargetName="_cts/Truck" />
         <FieldRefs>
-          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,TruckPlateNo" />
           <FieldRef ID="{E842EBA6-B4B3-48D1-BE6D-A6797F1F6C68}" Name="Truck2PartnerTitle" />
           <FieldRef ID="{4521F780-1838-4A0A-B3B7-04997B3DEA37}" Name="VehicleType" />
           <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
         </FieldRefs>
         <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
-            <FormUrls xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms/url">
-              <Display>_layouts/ShepherdDashboards/TruckNewForm.aspx</Display>
-              <Edit>_layouts/ShepherdDashboards/TruckNewForm.aspx</Edit>
-              <New>_layouts/ShepherdDashboards/TruckNewForm.aspx</New>
-            </FormUrls>
+          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
+              <Display>ListForm</Display>
+              <Edit>ListForm</Edit>
+              <New>ListForm</New>
+            </FormTemplates>
           </XmlDocument>
         </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Type="Choice" DisplayName="Vehicle Type" ID="{4521f780-1838-4a0a-b3b7-04997b3dea37}" Format="Dropdown" BaseType="Text" Name="VehicleType" Group="CAS Smart Factory Shepherd">
-    <Default>Truck</Default>
-    <CHOICES>
-      <CHOICE>Truck</CHOICE>
-      <CHOICE>Van</CHOICE>
-      <CHOICE>Security Escort Car</CHOICE>
-    </CHOICES>
-  </Field>
-      <Field DisplayName="Comments" Name="AdditionalComments" Type="Text" ID="{cb92513d-35a8-4352-97f4-59d816c74c5a}" Group="CAS Smart Factory Shepherd" />
-      <Field Name="Truck2PartnerTitle" ID="{e842eba6-b4b3-48d1-be6d-a6797f1f6c68}" Type="Lookup" List="Lists/JTIPartnerList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Vendor Name" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

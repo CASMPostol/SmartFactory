@@ -159,7 +159,7 @@
   </Field>
   <Field
    Type="Choice"
-   DisplayName="Priority"
+   DisplayName="$Resources:CASSmartFactoryShepherd,Priority"
    ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}"
    Format="Dropdown"
    BaseType="Text"
@@ -173,21 +173,21 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="Details"
+    DisplayName="$Resources:CASSmartFactoryShepherd,Details"
     Name="AlarmAndEventDetails"
     Type="Text"
     ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Owner"
+    DisplayName="$Resources:CASSmartFactoryShepherd,Owner"
     Name="AlarmAndEventOwner"
     Type="Text"
     ID="{177A27B7-A685-411B-950F-ED55740AD617}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Container No."
+    DisplayName="$Resources:CASSmartFactoryShepherd,ContainersNo"
     Name="ContainerNo"
     Type="Text"
     ID="{DF668BB4-81B5-4E6A-BBCB-44BD0F71F8C3}"
@@ -195,7 +195,7 @@
     />
   <Field
    Type="Choice"
-   DisplayName="Occupied"
+   DisplayName="$Resources:CASSmartFactoryShepherd,Occupied"
    ID="{1A17B25C-CEEC-42BB-A17C-25B4CBD79FA2}"
    Format="Dropdown"
    BaseType="Text"
@@ -210,35 +210,35 @@
       </CHOICES>
   </Field>
   <Field
-    DisplayName="Warehouse"
+    DisplayName="$Resources:CASSmartFactoryShepherd,Warehouse"
     Name="Warehouse"
     Type="Text"
     ID="{22C147E5-6F83-416A-A6BB-49342F642952}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Is Outbound"
+    DisplayName="$Resources:CASSmartFactoryShepherd,IsOutbound"
     Name="IsOutbound"
     Type="Boolean"
     ID="{DEBE4D8F-04DE-4A3B-AA59-320884A6E044}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Is Double"
+    DisplayName="$Resources:CASSmartFactoryShepherd,IsDouble"
     Name="IsDouble"
     Type="Boolean"
     ID="{CC93BD06-3A21-440D-96FA-1916AE32F69F}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="CMR number"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CMRNo"
     Name="CMRNumber"
     Type="Text"
     ID="{9BD4A74E-9645-488C-99EB-16EDD9912775}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Invoice number"
+    DisplayName="$Resources:CASSmartFactoryShepherd,InvoiceNo"
     Name="InvoiceNumber"
     Type="Text"
     ID="{53A5407C-8FA7-4945-9E22-6DDDE8DC9B4F}"
@@ -246,14 +246,14 @@
     />
   <Field
     Type="Text"
-    DisplayName="Dock number"
+    DisplayName="$Resources:CASSmartFactoryShepherd,DockNo"
     Name="DockNumber" 
     ID="{C7CD1BED-BB4C-403A-A056-3A787FC44D8D}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
    Type="Choice"
-   DisplayName="State"
+   DisplayName="$Resources:CASSmartFactoryShepherd,State"
    ID="{056E8E50-8EEC-4E4C-B16D-B748879D882F}"
    Format="Dropdown"
    BaseType="Text"
@@ -278,7 +278,7 @@
     Type="DateTime"
     Format="DateTime"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="Start Time">
+    DisplayName="$Resources:CASSmartFactoryShepherd,StartTime">
     <Default>[today]</Default>
   </Field>
   <Field
@@ -287,12 +287,12 @@
     Type="DateTime"
     Format="DateTime"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="End Time">
+    DisplayName="$Resources:CASSmartFactoryShepherd,EndTime">
     <Default>[today]</Default>
   </Field>
   <Field
     Name="ShippingDuration"
-    DisplayName="Duration"
+    DisplayName="$Resources:CASSmartFactoryShepherd,Duration"
     Type="Number"
     ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}"
     Group="CAS Smart Factory Shepherd"
@@ -301,32 +301,32 @@
     Name="AdditionalCosts"
     ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}"
     Type="Number"
-    DisplayName="Additional costs"
+    DisplayName="$Resources:CASSmartFactoryShepherd,AdditionalCosts"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Cancelation reason"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CancelationReason"
     Name="CancelationReason"
     Type="Text"
     ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Delivery Number"
+    DisplayName="$Resources:CASSmartFactoryShepherd,DeliveryNumber"
     Name="DeliveryNumber"
     Type="Text"
     ID="{0701B3FA-7524-4EB7-B1E4-6C96DC3A993D}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Goods Quantity"
+    DisplayName="$Resources:CASSmartFactoryShepherd,GoodsQuantity"
     Name="GoodsQuantity"
     Type="Number"
     ID="{E7BFEA15-E33C-4E18-8E55-B68D0B3A09D0}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="Number of pallets"
+    DisplayName="$Resources:CASSmartFactoryShepherd,NumberOfPallets"
     Name="NumberOfPallets"
     Type="Number"
     ID="{EC642BDF-F692-42B9-AAB6-90758DF7BA20}"
@@ -334,11 +334,10 @@
     />
   <Field
    Type="Choice"
-   DisplayName="Trailer Condition"
+   DisplayName="$Resources:CASSmartFactoryShepherd,TrailerCondition"
    ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}"
    Format="Dropdown"
    BaseType="Text"
-   Description="Trailer Condition"
    Name="TrailerCondition"
    Group="CAS Smart Factory Shepherd">
     <Default>5 - excellent</Default>
@@ -351,7 +350,7 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="Comments"
+    DisplayName="$Resources:CASSmartFactoryShepherd,TrailerComments"
     Name="TrailerConditionComments"
     Type="Note"
     ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}"
@@ -363,7 +362,7 @@
     Group="CAS Smart Factory Shepherd"
     Type="DateTime"
     Format="DateTime"
-    DisplayName="Entry Time">
+    DisplayName="$Resources:CASSmartFactoryShepherd,EntryTime">
     <Default>[today]</Default>
   </Field>
   <Field
@@ -371,7 +370,7 @@
     Name="TimeSpan"
     Group="CAS Smart Factory Shepherd"
     Type="Number"
-    DisplayName="Actual Time Span"
+    DisplayName="$Resources:CASSmartFactoryShepherd,ActualTimeSpan"
   />
   <Field
     ID="{89F5EF1F-D79D-42B6-BD14-780B9D90A86A}"
@@ -379,11 +378,11 @@
     Group="CAS Smart Factory Shepherd"
     Type="DateTime"
     Format="TimeOnly"
-    DisplayName="Exit Time">
+    DisplayName="$Resources:CASSmartFactoryShepherd,ExitTime">
     <Default>[today]</Default>
   </Field>
   <Field
-    DisplayName="Estimate Delivery Time"
+    DisplayName="$Resources:CASSmartFactoryShepherd,ETA"
     Name="EstimateDeliveryTime"
     Type="DateTime"
     Format="TimeOnly"

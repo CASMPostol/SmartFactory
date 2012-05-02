@@ -84,10 +84,6 @@
       <LastGenOutput>CASSmartFactoryShepherd.Designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="GlobalResources\CASSmartFactoryShepherd.resx" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
 </Project>

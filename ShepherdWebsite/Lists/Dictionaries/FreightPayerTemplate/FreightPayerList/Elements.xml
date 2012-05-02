@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Freight Payer"
+  <ListInstance Title="$Resources:CASSmartFactoryShepherd,FreightPayer"
                 OnQuickLaunch="TRUE"
                 TemplateType="10031"
                 Url="Lists/FreightPayerList"
-                Description="Freight Payer List Instance">
+                Description="$Resources:CASSmartFactoryShepherd,FreightPayerList">
   </ListInstance>
 </Elements>

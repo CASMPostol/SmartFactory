@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="Shipping Point"
-        Description="Shipping Point List Definition"
+        DisplayName="$Resources:CASSmartFactoryShepherd,ShippingPoint"
+        Description="$Resources:CASSmartFactoryShepherd,ShippingPointList"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

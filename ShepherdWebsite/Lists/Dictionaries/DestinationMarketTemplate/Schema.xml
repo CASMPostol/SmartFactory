@@ -2,9 +2,15 @@
 <List xmlns:ows="Microsoft SharePoint" Title="DestinationMarketTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/ShepherdWebsite-DestinationMarketTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01002cd380c2a0bc484caf14a0a71dadef4e" Name="DestinationMarket" Group="CAS Smart Factory Shepherd" Description="Destination Market - Markets associated with routs" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01002cd380c2a0bc484caf14a0a71dadef4e"
+             Name="DestinationMarket"
+             Group="CAS Smart Factory Shepherd"
+             Description="$Resources:CASSmartFactoryShepherd,DestinationMarketListCT"
+             Overwrite="TRUE"
+             Inherits="FALSE">
         <Folder TargetName="_cts/DestinationMarket" />
         <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
           <FieldRef ID="{6C009623-7E1E-4836-91DA-FC0B60961D48}" Name="DestinationMarket2CityTitle" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
         </FieldRefs>
@@ -20,8 +26,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="MarketTitle" ID="{44f4b458-2ea8-4b75-9546-80a495738f59}" Type="Lookup" List="Lists/MarketList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Market" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="DestinationMarket2CityTitle" ID="{6C009623-7E1E-4836-91DA-FC0B60961D48}" Type="Lookup" List="Lists/CityList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="City Name" Group="CAS Smart Factory" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -49,10 +53,6 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <FieldRef Name="Attachments">
-          </FieldRef>
-          <FieldRef Name="LinkTitle">
-          </FieldRef>
           <FieldRef ID="{6C009623-7E1E-4836-91DA-FC0B60961D48}" Name="DestinationMarket2CityTitle" />
           <FieldRef ID="{44F4B458-2EA8-4B75-9546-80A495738F59}" Name="MarketTitle" />
         </ViewFields>

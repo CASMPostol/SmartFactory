@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="Market Template"
-        Description="Market List Definition"
+        DisplayName="$Resources:CASSmartFactoryShepherd,Market"
+        Description="$Resources:CASSmartFactoryShepherd,MarketList"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

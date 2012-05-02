@@ -229,7 +229,7 @@
     <value>Address</value>
   </data>
   <data name="Awaiting" xml:space="preserve">
-    <value>Awaiting</value>
+    <value>Awaiting (yes/no)</value>
   </data>
   <data name="BusinessDescription" xml:space="preserve">
     <value>Business description</value>
@@ -252,7 +252,7 @@
   <data name="Company" xml:space="preserve">
     <value>Company</value>
   </data>
-  <data name="ConainersNo" xml:space="preserve">
+  <data name="ContainersNo" xml:space="preserve">
     <value>Container no.</value>
   </data>
   <data name="Consignee" xml:space="preserve">
@@ -491,5 +491,200 @@
   </data>
   <data name="WarehouseAddress" xml:space="preserve">
     <value>Warehouse address</value>
+  </data>
+  <data name="ActualTimeSpan" xml:space="preserve">
+    <value>Actual time span</value>
+  </data>
+  <data name="AdditionalCosts" xml:space="preserve">
+    <value>Additional costs</value>
+  </data>
+  <data name="AdditionalCostsCurrency" xml:space="preserve">
+    <value>Additional costs currency</value>
+  </data>
+  <data name="BusinessDescriptionList" xml:space="preserve">
+    <value>Business description list</value>
+  </data>
+  <data name="CancelationReason" xml:space="preserve">
+    <value>Cancelation reason</value>
+  </data>
+  <data name="CarrierList" xml:space="preserve">
+    <value>Carrier list</value>
+  </data>
+  <data name="CityList" xml:space="preserve">
+    <value>City list</value>
+  </data>
+  <data name="CMRNo" xml:space="preserve">
+    <value>CMR no.</value>
+  </data>
+  <data name="CommodityList" xml:space="preserve">
+    <value>Commodity lisy</value>
+  </data>
+  <data name="CountryList" xml:space="preserve">
+    <value>Country list</value>
+  </data>
+  <data name="CurrencyList" xml:space="preserve">
+    <value>Currency list</value>
+  </data>
+  <data name="DeliveryNumber" xml:space="preserve">
+    <value>Delivery no.</value>
+  </data>
+  <data name="DestinationMarket" xml:space="preserve">
+    <value>Destination market</value>
+  </data>
+  <data name="DestinationMarketList" xml:space="preserve">
+    <value>Destination market list</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="DockNo" xml:space="preserve">
+    <value>Dock no.</value>
+  </data>
+  <data name="Drivers" xml:space="preserve">
+    <value>Drivers</value>
+  </data>
+  <data name="DriversList" xml:space="preserve">
+    <value>Drivers list</value>
+  </data>
+  <data name="DriversTeam" xml:space="preserve">
+    <value>Drivers team</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>End time</value>
+  </data>
+  <data name="EntryTime" xml:space="preserve">
+    <value>Entry time</value>
+  </data>
+  <data name="EscortCostsCurrency" xml:space="preserve">
+    <value>Escort costs currency</value>
+  </data>
+  <data name="EscortID" xml:space="preserve">
+    <value>Escort route ID</value>
+  </data>
+  <data name="ETA" xml:space="preserve">
+    <value>ETA</value>
+  </data>
+  <data name="ExitTime" xml:space="preserve">
+    <value>Exit time</value>
+  </data>
+  <data name="FreightCostsCurrency" xml:space="preserve">
+    <value>Freight costs currency</value>
+  </data>
+  <data name="FreightPayerList" xml:space="preserve">
+    <value>Freight payer list</value>
+  </data>
+  <data name="FreightPayerNo" xml:space="preserve">
+    <value>Freight payer SAP no.</value>
+  </data>
+  <data name="GoodsQuantity" xml:space="preserve">
+    <value>Goods Qty.</value>
+  </data>
+  <data name="InvoiceNo" xml:space="preserve">
+    <value>Invoice no.</value>
+  </data>
+  <data name="IsDouble" xml:space="preserve">
+    <value>Double (yes/no)</value>
+  </data>
+  <data name="IsOutbound" xml:space="preserve">
+    <value>Outbound (yes/no)</value>
+  </data>
+  <data name="MarketList" xml:space="preserve">
+    <value>Market list</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="NumberOfPallets" xml:space="preserve">
+    <value>Number of pallets</value>
+  </data>
+  <data name="Occupied" xml:space="preserve">
+    <value>Occupied</value>
+  </data>
+  <data name="Owner" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="Partner" xml:space="preserve">
+    <value>Partner</value>
+  </data>
+  <data name="PartnerList" xml:space="preserve">
+    <value>Partner list</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Priority</value>
+  </data>
+  <data name="RouteID" xml:space="preserve">
+    <value>Route ID</value>
+  </data>
+  <data name="RouteList" xml:space="preserve">
+    <value>Route list</value>
+  </data>
+  <data name="SAPDestPlantList" xml:space="preserve">
+    <value>SAP dest plant list</value>
+  </data>
+  <data name="ScheduleTemplateList" xml:space="preserve">
+    <value>Schedule template list</value>
+  </data>
+  <data name="SecurityEscortRoute" xml:space="preserve">
+    <value>Security escort route</value>
+  </data>
+  <data name="SecurityEscortRouteList" xml:space="preserve">
+    <value>Security escort route list</value>
+  </data>
+  <data name="ShipmentTypeList" xml:space="preserve">
+    <value>Shipment type list</value>
+  </data>
+  <data name="Shipping" xml:space="preserve">
+    <value>Shipping</value>
+  </data>
+  <data name="ShippingID" xml:space="preserve">
+    <value>Shipping ID</value>
+  </data>
+  <data name="ShippingPointList" xml:space="preserve">
+    <value>Shipping point list</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start time</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="TimeSlotTemplate" xml:space="preserve">
+    <value>Time Slot template</value>
+  </data>
+  <data name="TimeSlotTemplateList" xml:space="preserve">
+    <value>Time Slot template list</value>
+  </data>
+  <data name="TotalCostsPerKUCurrency" xml:space="preserve">
+    <value>Total costs per KU currency</value>
+  </data>
+  <data name="TrailerComments" xml:space="preserve">
+    <value>Trailer comments</value>
+  </data>
+  <data name="TrailerCondition" xml:space="preserve">
+    <value>Trailer condition</value>
+  </data>
+  <data name="Trailers" xml:space="preserve">
+    <value>Trailers</value>
+  </data>
+  <data name="TrailersList" xml:space="preserve">
+    <value>Trailers list</value>
+  </data>
+  <data name="TransportUnitTypeList" xml:space="preserve">
+    <value>Transport unit type list</value>
+  </data>
+  <data name="Trucks" xml:space="preserve">
+    <value>Trucks</value>
+  </data>
+  <data name="TrucksList" xml:space="preserve">
+    <value>Truks list</value>
+  </data>
+  <data name="Vendor" xml:space="preserve">
+    <value>Vendor</value>
+  </data>
+  <data name="WarehouseList" xml:space="preserve">
+    <value>Warehouse list</value>
   </data>
 </root>
