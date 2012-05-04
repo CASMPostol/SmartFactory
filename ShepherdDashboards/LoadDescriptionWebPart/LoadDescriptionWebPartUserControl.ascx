@@ -22,7 +22,7 @@
     <asp:Table CssClass="TableInside" runat="server">
     <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label></asp:TableCell>
+              <asp:Label ID="m_Label4" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Shipping%>" CssClass="Label" Enabled="false"></asp:Label></asp:TableCell>
             <asp:TableCell>
               <asp:Label ID="m_ShippingLabel" runat="server" CssClass="Label"></asp:Label>
             </asp:TableCell>
@@ -34,7 +34,7 @@
         <asp:Table ID="_LoadDescriptionManager_CommonPart" CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_LoadDescriptionNumberLabel" runat="server" Text="PO No/Del" CssClass="Label"></asp:Label>
+              <asp:Label ID="m_LoadDescriptionNumberLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,PODelNo%>" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
               <asp:TextBox ID="m_LoadDescriptionNumberTextBox" runat="server" CssClass="TextBoxLD"></asp:TextBox>
@@ -42,7 +42,7 @@
           </asp:TableRow>
           <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_PalletTypesLabel" runat="server" Text="Pallet Type" CssClass="Label"></asp:Label>
+              <asp:Label ID="m_PalletTypesLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,PalletType%>" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
               <asp:DropDownList ID="m_PalletTypesDropDown" CssClass="DropDownLD" runat="server">
@@ -51,7 +51,7 @@
           </asp:TableRow>
           <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_NumberOfPalletsLabel" runat="server" Text="Pallets Qty." CssClass="Label"></asp:Label>
+              <asp:Label ID="m_NumberOfPalletsLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,PalletQty%>" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
               <asp:TextBox ID="m_NumberOfPalletsTextBox" runat="server" CssClass="TextBoxLD"></asp:TextBox>
@@ -59,7 +59,7 @@
           </asp:TableRow>
           <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_CommodityLabel" runat="server" Text="Commodity" CssClass="Label"></asp:Label>
+              <asp:Label ID="m_CommodityLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Commodity%>" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
               <asp:DropDownList ID="m_CommodityDropDown" runat="server" CssClass="DropDownLD">
@@ -73,7 +73,7 @@
           <asp:Table ID="m_OutboundControlsTable"  CssClass="TableInside" runat="server">
           <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_GoodsQuantityLabel" runat="server" Text="Goods Qty." CssClass="Label"></asp:Label>
+              <asp:Label ID="m_GoodsQuantityLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,GoodsQty%>" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
               <asp:TextBox ID="m_GoodsQuantityTextBox" runat="server" CssClass="TextBoxLD"></asp:TextBox>
@@ -81,7 +81,7 @@
           </asp:TableRow>
           <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_MarketLabel" runat="server" Text="Market" CssClass="Label"></asp:Label>
+              <asp:Label ID="m_MarketLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Market%>" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
               <asp:DropDownList ID="m_MarketDropDown" runat="server" CssClass="DropDownLD">
@@ -90,7 +90,7 @@
           </asp:TableRow>
           <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_CMRLabel" runat="server" Text="CMR No." CssClass="Label"></asp:Label>
+              <asp:Label ID="m_CMRLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,CMRNo%>" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
               <asp:TextBox ID="m_CMRTextBox" runat="server" CssClass="TextBoxLD"></asp:TextBox>
@@ -98,7 +98,7 @@
           </asp:TableRow>
           <asp:TableRow>
             <asp:TableCell>
-              <asp:Label ID="m_InvoiceLabel" runat="server" Text="Invoice No." CssClass="Label"></asp:Label>
+              <asp:Label ID="m_InvoiceLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,InvoiceNo%>" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
               <asp:TextBox ID="m_InvoiceTextBox" runat="server" CssClass="TextBoxLD"></asp:TextBox>
@@ -109,9 +109,9 @@
       </asp:TableCell>
     </asp:TableRow>
   </asp:Table>
-  <asp:Button ID="m_NewLoadDescriptionButton" runat="server" Text="Add new" CssClass="Button" />
-  <asp:Button ID="m_EditLoadDescriptionButton" runat="server" Text="Edit" CssClass="Button" />
-  <asp:Button ID="m_SaveLoadDescriptionButton" runat="server" Text="Save" CssClass="Button" />
-  <asp:Button ID="m_DeleteLoadDescriptionButton" runat="server" Text="Delete" CssClass="Button" />
-  <asp:Button ID="m_CancelLoadDescriptionButton" runat="server" Text="Cancel" CssClass="Button" />
+  <asp:Button ID="m_NewLoadDescriptionButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,AddNew%>" CssClass="Button" />
+  <asp:Button ID="m_EditLoadDescriptionButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Edit%>" CssClass="Button" />
+  <asp:Button ID="m_SaveLoadDescriptionButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Save%>" CssClass="Button" />
+  <asp:Button ID="m_DeleteLoadDescriptionButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Delete%>" CssClass="Button" />
+  <asp:Button ID="m_CancelLoadDescriptionButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Cancel%>" CssClass="Button" />
 </asp:Panel>

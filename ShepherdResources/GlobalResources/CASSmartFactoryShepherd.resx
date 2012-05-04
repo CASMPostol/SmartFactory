@@ -228,8 +228,14 @@
   <data name="Arrived" xml:space="preserve">
     <value>Arrived</value>
   </data>
+  <data name="CMRNo" xml:space="preserve">
+    <value>CMR no.</value>
+  </data>
   <data name="CommentsTrailerToolTip" xml:space="preserve">
     <value>Comment that will allow you to easily identify the trailer</value>
+  </data>
+  <data name="Commodity" xml:space="preserve">
+    <value>Commodity</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
@@ -243,20 +249,38 @@
   <data name="Enters" xml:space="preserve">
     <value>Enters</value>
   </data>
+  <data name="GoodsQty" xml:space="preserve">
+    <value>Goods Qty.</value>
+  </data>
   <data name="IDNumber" xml:space="preserve">
     <value>ID number</value>
   </data>
   <data name="IDNumberToolTip" xml:space="preserve">
     <value>Driver's identity document number</value>
   </data>
+  <data name="InvoiceNo" xml:space="preserve">
+    <value>Invoice no.</value>
+  </data>
   <data name="Leaves" xml:space="preserve">
     <value>Leaves</value>
+  </data>
+  <data name="Market" xml:space="preserve">
+    <value>Market</value>
   </data>
   <data name="Mobile" xml:space="preserve">
     <value>Mobile</value>
   </data>
   <data name="MobileToolTip" xml:space="preserve">
     <value>Driver's mobile phone number</value>
+  </data>
+  <data name="PalletQty" xml:space="preserve">
+    <value>Pallet Qty.</value>
+  </data>
+  <data name="PalletType" xml:space="preserve">
+    <value>Pallet type</value>
+  </data>
+  <data name="PODelNo" xml:space="preserve">
+    <value>PO / Del No.</value>
   </data>
   <data name="TrailerToolTip" xml:space="preserve">
     <value>Trailer's registration no.</value>
