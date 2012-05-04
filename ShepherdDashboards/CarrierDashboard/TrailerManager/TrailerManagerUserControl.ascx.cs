@@ -249,7 +249,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           if (m_ControlState.ItemID.IsNullOrEmpty())
-            return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: driver is not selected"), "Update");
+            return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: trailer is not selected"), "Update");
           Trailer _drv = Element.GetAtIndex<Trailer>(_EDC.Trailer, m_ControlState.ItemID);
           LocalStateMachineEngine.ActionResult _rr = Update(_drv);
           if (!_rr.ActionSucceeded)
@@ -274,7 +274,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     private LocalStateMachineEngine.ActionResult Create()
     {
       if (!m_ControlState.ItemID.IsNullOrEmpty())
-        return new LocalStateMachineEngine.ActionResult(new ApplicationException("Create error: a driver is selected"), "Create");
+        return new LocalStateMachineEngine.ActionResult(new ApplicationException("Create error: a trailer is selected"), "Create");
       try
       {
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
@@ -299,7 +299,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     private GenericStateMachineEngine<TrailerInterconnectionData>.ActionResult Delete()
     {
       if (m_ControlState.ItemID.IsNullOrEmpty())
-        return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: driver is not selected"), "Delete");
+        return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: trailer is not selected"), "Delete");
       try
       {
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
