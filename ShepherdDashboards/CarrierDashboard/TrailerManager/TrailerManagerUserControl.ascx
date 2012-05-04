@@ -12,7 +12,7 @@
 <asp:Table ID="m_TrailerManager" runat="server" CssClass="Table">
     <asp:TableRow>
         <asp:TableCell>
-            <asp:Label ID="m_TrailerNameLabel" runat="server" CssClass="Label" Text="Registration no." ToolTip="Trailer's registration no."></asp:Label>
+            <asp:Label ID="m_TrailerNameLabel" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryShepherd,TrailerPlateNo%>" ToolTip="<%$Resources:CASSmartFactoryShepherd,TrailerToolTip%>"></asp:Label>
         </asp:TableCell>
         <asp:TableCell>
             <asp:TextBox ID="m_TrailerTitle" runat="server" CssClass="TextBox"></asp:TextBox>
@@ -20,7 +20,7 @@
     </asp:TableRow>
     <asp:TableRow>
         <asp:TableCell>
-            <asp:Label ID="m_CommentsLabel" runat="server" CssClass="Label" Text="Comments" ToolTip="Comment that will allow you to easily identify the trailer"></asp:Label>
+            <asp:Label ID="m_CommentsLabel" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryShepherd,Comments%>" ToolTip="<%$Resources:CASSmartFactoryShepherd,CommentsTrailerToolTip%>"></asp:Label>
         </asp:TableCell>
         <asp:TableCell>
             <asp:TextBox ID="m_Comments" runat="server" CssClass="TextBox"></asp:TextBox>
@@ -28,9 +28,9 @@
     </asp:TableRow>
 </asp:Table>
 
-<asp:Button runat="server" CssClass="Button" Text="Add new" ID="m_AddNewButton" />
-<asp:Button runat="server" CssClass="Button" Text="Edit" ID="m_EditButton" />
-<asp:Button runat="server" CssClass="Button" Text="Save" ID="m_SaveButton" />
-<asp:Button runat="server" CssClass="Button" Text="Delete" ID="m_DeleteButton" />
-<asp:Button runat="server" CssClass="Button" Text="Cancel" ID="m_CancelButton" />
+<asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,AddNew%>" ID="m_AddNewButton" />
+<asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Edit%>" ID="m_EditButton" />
+<asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Save%>" ID="m_SaveButton" />
+<asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Delete%>" ID="m_DeleteButton" />
+<asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Cancel%>" ID="m_CancelButton" />
 </asp:Panel>

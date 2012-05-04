@@ -106,7 +106,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alarms and events.
+        ///   Looks up a localized string similar to Alarms &amp; Events.
         /// </summary>
         internal static string AlarmsAndEvents {
             get {
@@ -115,7 +115,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alarms and events list.
+        ///   Looks up a localized string similar to Alarms &amp; Events list.
         /// </summary>
         internal static string AlarmsAndEventsList {
             get {
@@ -124,7 +124,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alarms And Events List Content Type.
+        ///   Looks up a localized string similar to Alarms &amp; Events List Content Type.
         /// </summary>
         internal static string AlarmsAndEventsListCT {
             get {
@@ -268,7 +268,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CMR no..
+        ///   Looks up a localized string similar to CMR No..
         /// </summary>
         internal static string CMRNo {
             get {
@@ -295,7 +295,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Commodity lisy.
+        ///   Looks up a localized string similar to Commodity list.
         /// </summary>
         internal static string CommodityList {
             get {
@@ -331,7 +331,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Container no..
+        ///   Looks up a localized string similar to Container No..
         /// </summary>
         internal static string ContainersNo {
             get {
@@ -421,7 +421,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delivery no..
+        ///   Looks up a localized string similar to Delivery No..
         /// </summary>
         internal static string DeliveryNumber {
             get {
@@ -520,7 +520,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dock no..
+        ///   Looks up a localized string similar to Dock No..
         /// </summary>
         internal static string DockNo {
             get {
@@ -655,7 +655,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Escort costs.
+        ///   Looks up a localized string similar to Escort cost.
         /// </summary>
         internal static string EscortCosts {
             get {
@@ -664,7 +664,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Escort costs currency.
+        ///   Looks up a localized string similar to Escort cost currency.
         /// </summary>
         internal static string EscortCostsCurrency {
             get {
@@ -727,7 +727,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Euro Pallets Quantity.
+        ///   Looks up a localized string similar to Euro Pallets Qty..
         /// </summary>
         internal static string EuroPalletsQuantity {
             get {
@@ -754,7 +754,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exchange rate.
+        ///   Looks up a localized string similar to Exchange rate (to USD).
         /// </summary>
         internal static string ExchangeRate {
             get {
@@ -835,7 +835,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Freight payer.
+        ///   Looks up a localized string similar to Payer.
         /// </summary>
         internal static string FreightPayer {
             get {
@@ -844,7 +844,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Freight payer list.
+        ///   Looks up a localized string similar to Payer list.
         /// </summary>
         internal static string FreightPayerList {
             get {
@@ -853,7 +853,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Freight payer SAP no..
+        ///   Looks up a localized string similar to SAP Payer No..
         /// </summary>
         internal static string FreightPayerNo {
             get {
@@ -898,7 +898,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Group.
+        ///   Looks up a localized string similar to Area.
         /// </summary>
         internal static string Group {
             get {
@@ -916,7 +916,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incoterm.
+        ///   Looks up a localized string similar to Incoterms.
         /// </summary>
         internal static string Incoterm {
             get {
@@ -925,7 +925,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indu Pallets Quantity.
+        ///   Looks up a localized string similar to Indu Pallets Qty..
         /// </summary>
         internal static string InduPalletsQuantity {
             get {
@@ -934,7 +934,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invoice no..
+        ///   Looks up a localized string similar to Invoice No..
         /// </summary>
         internal static string InvoiceNo {
             get {
@@ -1051,7 +1051,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of pallets.
+        ///   Looks up a localized string similar to Pallet Qty..
         /// </summary>
         internal static string NumberOfPallets {
             get {
@@ -1168,7 +1168,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Payer address.
+        ///   Looks up a localized string similar to Payer Address.
         /// </summary>
         internal static string PayerAddress {
             get {
@@ -1294,7 +1294,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SAP Destination Plants Content Type.
+        ///   Looks up a localized string similar to SAP Destination Plant Content Type.
         /// </summary>
         internal static string SAPDestinationPlantsListCT {
             get {
@@ -1366,7 +1366,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Security cost.
+        ///   Looks up a localized string similar to Escort cost.
         /// </summary>
         internal static string SecurityCost {
             get {
@@ -1375,7 +1375,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Security escort.
+        ///   Looks up a localized string similar to escort.
         /// </summary>
         internal static string SecurityEscort {
             get {
@@ -1384,7 +1384,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Security Escort Catalog List Content Type.
+        ///   Looks up a localized string similar to Escort Catalog List Content Type.
         /// </summary>
         internal static string SecurityEscortCatalogListCT {
             get {
@@ -1393,7 +1393,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Security escort PO.
+        ///   Looks up a localized string similar to Escort PO.
         /// </summary>
         internal static string SecurityEscortPO {
             get {
@@ -1402,7 +1402,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Security escort PO library.
+        ///   Looks up a localized string similar to Escort PO library.
         /// </summary>
         internal static string SecurityEscortPOLibrary {
             get {
@@ -1411,7 +1411,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Security escort provider.
+        ///   Looks up a localized string similar to Escort provider.
         /// </summary>
         internal static string SecurityEscortProvider {
             get {
@@ -1420,7 +1420,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Security escort route.
+        ///   Looks up a localized string similar to Escort route.
         /// </summary>
         internal static string SecurityEscortRoute {
             get {
@@ -1429,7 +1429,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Security escort route list.
+        ///   Looks up a localized string similar to Escort route list.
         /// </summary>
         internal static string SecurityEscortRouteList {
             get {
@@ -1474,7 +1474,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Service type.
+        ///   Looks up a localized string similar to Partner type.
         /// </summary>
         internal static string ServiceType {
             get {
@@ -1546,7 +1546,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shipping.
+        ///   Looks up a localized string similar to Shipment.
         /// </summary>
         internal static string Shipping {
             get {
@@ -1555,7 +1555,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shipping ID.
+        ///   Looks up a localized string similar to Shipment ID.
         /// </summary>
         internal static string ShippingID {
             get {
@@ -1564,7 +1564,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ShippingPoint.
+        ///   Looks up a localized string similar to Shipping Point.
         /// </summary>
         internal static string ShippingPoint {
             get {
@@ -1591,7 +1591,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shippings.
+        ///   Looks up a localized string similar to Shipments.
         /// </summary>
         internal static string Shippings {
             get {
@@ -1600,7 +1600,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shippings list.
+        ///   Looks up a localized string similar to Shpments list.
         /// </summary>
         internal static string ShippingsList {
             get {
@@ -1654,7 +1654,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TimeSlot List Content Type.
+        ///   Looks up a localized string similar to Time Slot List Content Type.
         /// </summary>
         internal static string TimeSlotListCT {
             get {
@@ -1735,7 +1735,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trailer plate no..
+        ///   Looks up a localized string similar to Trailer plate No..
         /// </summary>
         internal static string TrailerPlateNo {
             get {
@@ -1744,7 +1744,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trailers.
+        ///   Looks up a localized string similar to Trailer.
         /// </summary>
         internal static string Trailers {
             get {
@@ -1753,7 +1753,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trailers list.
+        ///   Looks up a localized string similar to Trailer list.
         /// </summary>
         internal static string TrailersList {
             get {
@@ -1762,7 +1762,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trailers List Content Type.
+        ///   Looks up a localized string similar to Trailer List Content Type.
         /// </summary>
         internal static string TrailersListCT {
             get {
@@ -1780,7 +1780,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Transport unit type.
+        ///   Looks up a localized string similar to Transport unit.
         /// </summary>
         internal static string TransportUnitType {
             get {
@@ -1798,7 +1798,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Transpot Unit Type List CT.
+        ///   Looks up a localized string similar to Transpot Unit Type List Content Type.
         /// </summary>
         internal static string TranspotUnitTypeListCT {
             get {
@@ -1807,7 +1807,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Truck plate no..
+        ///   Looks up a localized string similar to Truck plate No..
         /// </summary>
         internal static string TruckPlateNo {
             get {
@@ -1816,7 +1816,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trucks.
+        ///   Looks up a localized string similar to Truck.
         /// </summary>
         internal static string Trucks {
             get {
@@ -1825,7 +1825,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Truks list.
+        ///   Looks up a localized string similar to Truck list.
         /// </summary>
         internal static string TrucksList {
             get {
@@ -1834,7 +1834,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trucks List Content Type.
+        ///   Looks up a localized string similar to Truck List Content Type.
         /// </summary>
         internal static string TrucksListCT {
             get {
