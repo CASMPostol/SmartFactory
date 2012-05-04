@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using System.Linq;
-using System.Collections.Generic;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
 {
@@ -33,7 +34,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     {
       #region state fields
       public string ItemID = String.Empty;
-      internal StateMachine.ControlsSet SetEnabled = 0;
+      public LocalStateMachineEngine.ControlsSet SetEnabled = 0;
       public LocalStateMachineEngine.InterfaceState InterfaceState = LocalStateMachineEngine.InterfaceState.ViewState;
       #endregion
 
@@ -64,7 +65,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     {
       try
       {
-
+        if (!IsPostBack)
+        {
+          m_StateMachineEngine.InitMahine();
+          m_VehicleType.Items.Add(new ListItem(VehicleType.SecurityEscortCar.ToString(), ((int)VehicleType.SecurityEscortCar).ToString()));
+          m_VehicleType.Items.Add(new ListItem(VehicleType.Truck.ToString(), ((int)VehicleType.Truck).ToString()) { Selected = true });
+          m_VehicleType.Items.Add(new ListItem(VehicleType.Van.ToString(), ((int)VehicleType.Van).ToString()));
+        }
+        m_CancelButton.Click += m_StateMachineEngine.CancelButton_Click;
+        m_AddNewButton.Click += m_StateMachineEngine.NewButton_Click;
+        m_DeleteButton.Click += m_StateMachineEngine.DeleteButton_Click;
+        m_EditButton.Click += m_StateMachineEngine.EditButton_Click;
+        m_SaveButton.Click += m_StateMachineEngine.SaveButton_Click;
       }
       catch (Exception _ex)
       {
@@ -101,6 +113,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
     protected override void OnPreRender(EventArgs e)
     {
+      SetEnabled(m_ControlState.SetEnabled);
+      if (m_ControlState.ItemID.IsNullOrEmpty())
+      {
+        m_EditButton.Enabled = false;
+        m_DeleteButton.Enabled = false;
+      }
       base.OnPreRender(e);
     }
     #endregion
@@ -117,9 +135,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
       #endregion
 
       #region abstract implementation
-      protected override StateMachine.ActionResult Show(TruckInterconnectionData _shipping)
+      protected override StateMachine.ActionResult Show(TruckInterconnectionData _id)
       {
-        return Parent.Show(_shipping);
+        return Parent.Show(_id);
       }
       protected override StateMachine.ActionResult Show()
       {
@@ -173,6 +191,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
 
       #region private
       private TruckManagerUserControl Parent { get; set; }
+      #endregion
+      #region internal
       internal void InitMahine(InterfaceState _ControlState)
       {
         Parent.m_ControlState.InterfaceState = _ControlState;
@@ -193,36 +213,137 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     #endregion
 
     #region state machine actions
-    private GenericStateMachineEngine<TruckInterconnectionData>.ActionResult Show(TruckInterconnectionData _shipping)
+    private LocalStateMachineEngine.ActionResult Show()
     {
-      throw new NotImplementedException();
+      if (m_ControlState.ItemID.IsNullOrEmpty())
+        return LocalStateMachineEngine.ActionResult.Success;
+      try
+      {
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+        {
+          Truck _drv = Element.GetAtIndex<Truck>(_EDC.Truck, m_ControlState.ItemID);
+          Show(_drv);
+        }
+      }
+      catch (Exception ex)
+      {
+        return new LocalStateMachineEngine.ActionResult(ex, "Show");
+      }
+      return LocalStateMachineEngine.ActionResult.Success;
     }
-    private GenericStateMachineEngine<TruckInterconnectionData>.ActionResult Show()
+    private LocalStateMachineEngine.ActionResult Show(TruckInterconnectionData _interconnectionData)
     {
-      throw new NotImplementedException();
+      if (m_ControlState.ItemID == _interconnectionData.ID)
+        return LocalStateMachineEngine.ActionResult.Success;
+      m_ControlState.ItemID = _interconnectionData.ID;
+      return Show();
     }
-    private GenericStateMachineEngine<TruckInterconnectionData>.ActionResult Update()
+    private void Show(Truck _item)
     {
-      throw new NotImplementedException();
+      m_TruckTitle.Text = _item.Tytuł;
+      string _id = ((int)_item.VehicleType.GetValueOrDefault(VehicleType.None)).ToString();
+      m_VehicleTypeSelect(_item.VehicleType.GetValueOrDefault(VehicleType.None));
+      m_Comments.Text = _item.Comments;
     }
-    private GenericStateMachineEngine<TruckInterconnectionData>.ActionResult Create()
+    private LocalStateMachineEngine.ActionResult Update()
     {
-      throw new NotImplementedException();
+
+      try
+      {
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+        {
+          if (m_ControlState.ItemID.IsNullOrEmpty())
+            return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: truck is not selected"), "Update");
+          Truck _drv = Element.GetAtIndex<Truck>(_EDC.Truck, m_ControlState.ItemID);
+          LocalStateMachineEngine.ActionResult _rr = Update(_drv);
+          if (!_rr.ActionSucceeded)
+            return _rr;
+          _EDC.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+        }
+      }
+      catch (Exception ex)
+      {
+        return new LocalStateMachineEngine.ActionResult(ex, "Update");
+      }
+      return LocalStateMachineEngine.ActionResult.Success;
     }
-    private GenericStateMachineEngine<TruckInterconnectionData>.ActionResult Delete()
+    private LocalStateMachineEngine.ActionResult Update(Truck _drv)
     {
-      throw new NotImplementedException();
+      _drv.Comments = m_Comments.Text;
+      if (m_TruckTitle.Text.IsNullOrEmpty())
+        return LocalStateMachineEngine.ActionResult.NotValidated(m_TruckNameLabel.Text + " must be provided.");
+      _drv.Tytuł = m_TruckTitle.Text;
+      if (m_VehicleType.SelectedIndex < 0)
+        return LocalStateMachineEngine.ActionResult.NotValidated(m_VehicleTypeLabel.Text + " must be provided.");
+      _drv.VehicleType = (VehicleType)m_VehicleType.SelectedValue.String2Int().GetValueOrDefault(0);
+      return LocalStateMachineEngine.ActionResult.Success;
+    }
+    private LocalStateMachineEngine.ActionResult Create()
+    {
+      if (!m_ControlState.ItemID.IsNullOrEmpty())
+        return new LocalStateMachineEngine.ActionResult(new ApplicationException("Create error: a truck is selected"), "Create");
+      try
+      {
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+        {
+          Partner _Partner = Partner.FindForUser(_EDC, SPContext.Current.Web.CurrentUser);
+          if (_Partner == null)
+            return LocalStateMachineEngine.ActionResult.NotValidated("Current user must be an external partner.");
+          Truck _drv = new Truck() { VendorName = _Partner };
+          LocalStateMachineEngine.ActionResult _rr = Update(_drv);
+          if (!_rr.ActionSucceeded)
+            return _rr;
+          _EDC.Truck.InsertOnSubmit(_drv);
+          _EDC.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+        }
+      }
+      catch (Exception ex)
+      {
+        return new LocalStateMachineEngine.ActionResult(ex, "Create");
+      }
+      return LocalStateMachineEngine.ActionResult.Success;
+    }
+    private LocalStateMachineEngine.ActionResult Delete()
+    {
+      if (m_ControlState.ItemID.IsNullOrEmpty())
+        return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: truck is not selected"), "Delete");
+      try
+      {
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+        {
+          Truck _itm = Element.GetAtIndex<Truck>(_EDC.Truck, m_ControlState.ItemID);
+          _EDC.Truck.RecycleOnSubmit(_itm);
+          _EDC.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+        }
+      }
+      catch (Exception ex)
+      {
+        return new LocalStateMachineEngine.ActionResult(ex, "Delete");
+      }
+      return LocalStateMachineEngine.ActionResult.Success;
     }
     private void ClearUserInterface()
     {
-      m_Comments.Text = String.Empty;
+      m_ControlState.ItemID = string.Empty;
+      m_VehicleTypeSelect(VehicleType.Truck);
       m_TruckTitle.Text = String.Empty;
-        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
-        {
-          m_VehicleType.DataSource = from _etx in _EDC.TransportUnitType orderby _etx.Tytuł ascending select new { Title = _etx.Tytuł, ID = _etx.Identyfikator };
-          m_VehicleType.DataTextField = "Title";
-          m_VehicleType.DataValueField = "ID";
-        }
+      m_Comments.Text = String.Empty;
+    }
+    private void m_VehicleTypeSelect(VehicleType _vt)
+    {
+      m_VehicleType.SelectedIndex = -1;
+      ListItem _li = m_VehicleType.Items.FindByText(_vt.ToString());
+      if (_li != null)
+        _li.Selected = true;
+    }
+    private void SetEnabled(LocalStateMachineEngine.ControlsSet _set)
+    {
+      m_SaveButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.SaveOn) != 0;
+      m_DeleteButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.DeleteOn) != 0;
+      m_CancelButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.CancelOn) != 0;
+      m_EditButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.EditOn) != 0;
+      m_AddNewButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.NewOn) != 0;
+      m_Panel.Enabled = m_SaveButton.Enabled;
     }
     private void ShowActionResult(LocalStateMachineEngine.ActionResult _rslt)
     {

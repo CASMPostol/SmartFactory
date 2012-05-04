@@ -5,7 +5,6 @@ using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
-using System.Web.UI;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
 {

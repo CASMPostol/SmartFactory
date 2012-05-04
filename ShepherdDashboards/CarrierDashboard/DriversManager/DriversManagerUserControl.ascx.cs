@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
     {
       #region state fields
       public string ItemID = String.Empty;
-      public StateMachine.ControlsSet SetEnabled = 0;
+      public LocalStateMachineEngine.ControlsSet SetEnabled = 0;
       public LocalStateMachineEngine.InterfaceState InterfaceState = LocalStateMachineEngine.InterfaceState.ViewState;
       #endregion
 
@@ -321,7 +321,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
       m_DriverMobileNo.Text = String.Empty;
       m_DriverTitle.Text = String.Empty;
     }
-    private void SetEnabled(GenericStateMachineEngine<DriverInterconnectionData>.ControlsSet _set)
+    private void SetEnabled(LocalStateMachineEngine.ControlsSet _set)
     {
       m_SaveButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.SaveOn) != 0;
       m_DeleteButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.DeleteOn) != 0;

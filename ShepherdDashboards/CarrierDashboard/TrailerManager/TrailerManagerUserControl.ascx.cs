@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI;
+using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
 {
@@ -30,11 +31,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     #endregion
 
     #region UserControl override
+    [Serializable]
     private class ControlState
     {
       #region state fields
       public string ItemID = String.Empty;
-      internal StateMachine.ControlsSet SetEnabled = 0;
+      public LocalStateMachineEngine.ControlsSet SetEnabled = 0;
       public LocalStateMachineEngine.InterfaceState InterfaceState = LocalStateMachineEngine.InterfaceState.ViewState;
       #endregion
 
@@ -65,7 +67,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     {
       try
       {
-
+        if (!IsPostBack)
+          m_StateMachineEngine.InitMahine();
+        m_CancelButton.Click += m_StateMachineEngine.CancelButton_Click;
+        m_AddNewButton.Click += m_StateMachineEngine.NewButton_Click;
+        m_DeleteButton.Click += m_StateMachineEngine.DeleteButton_Click;
+        m_EditButton.Click += m_StateMachineEngine.EditButton_Click;
+        m_SaveButton.Click += m_StateMachineEngine.SaveButton_Click;
       }
       catch (Exception _ex)
       {
@@ -102,6 +110,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
     protected override void OnPreRender(EventArgs e)
     {
+      SetEnabled(m_ControlState.SetEnabled);
+      if (m_ControlState.ItemID.IsNullOrEmpty())
+      {
+        m_EditButton.Enabled = false;
+        m_DeleteButton.Enabled = false;
+      }
       base.OnPreRender(e);
     }
     #endregion
@@ -118,9 +132,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
       #endregion
 
       #region abstract implementation
-      protected override StateMachine.ActionResult Show(TrailerInterconnectionData _shipping)
+      protected override StateMachine.ActionResult Show(TrailerInterconnectionData _id)
       {
-        return Parent.Show(_shipping);
+        return Parent.Show(_id);
       }
       protected override StateMachine.ActionResult Show()
       {
@@ -174,6 +188,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
 
       #region private
       private TrailerManagerUserControl Parent { get; set; }
+      #endregion
+
+      #region internal
       internal void InitMahine(InterfaceState _ControlState)
       {
         Parent.m_ControlState.InterfaceState = _ControlState;
@@ -194,32 +211,126 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     #endregion
 
     #region state machine actions
-    private  GenericStateMachineEngine<TrailerInterconnectionData>.ActionResult Show(TrailerInterconnectionData _shipping)
+    private LocalStateMachineEngine.ActionResult Show()
     {
-      throw new NotImplementedException();
+      if (m_ControlState.ItemID.IsNullOrEmpty())
+        return LocalStateMachineEngine.ActionResult.Success;
+      try
+      {
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+        {
+          Trailer _drv = Element.GetAtIndex<Trailer>(_EDC.Trailer, m_ControlState.ItemID);
+          Show(_drv);
+        }
+      }
+      catch (Exception ex)
+      {
+        return new LocalStateMachineEngine.ActionResult(ex, "Show");
+      }
+      return LocalStateMachineEngine.ActionResult.Success;
     }
-    private GenericStateMachineEngine<TrailerInterconnectionData>.ActionResult Show()
+    private LocalStateMachineEngine.ActionResult Show(TrailerInterconnectionData _interconnectionData)
     {
-      throw new NotImplementedException();
+      if (m_ControlState.ItemID == _interconnectionData.ID)
+        return LocalStateMachineEngine.ActionResult.Success;
+      m_ControlState.ItemID = _interconnectionData.ID;
+      return Show();
     }
-    private GenericStateMachineEngine<TrailerInterconnectionData>.ActionResult Update()
+    private void Show(Trailer _drv)
     {
-      throw new NotImplementedException();
+      m_TrailerTitle.Text = _drv.Tytuł;
+      m_Comments.Text = _drv.Comments;
     }
-    private GenericStateMachineEngine<TrailerInterconnectionData>.ActionResult Create()
+    private LocalStateMachineEngine.ActionResult Update()
     {
-      throw new NotImplementedException();
+
+      try
+      {
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+        {
+          if (m_ControlState.ItemID.IsNullOrEmpty())
+            return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: driver is not selected"), "Update");
+          Trailer _drv = Element.GetAtIndex<Trailer>(_EDC.Trailer, m_ControlState.ItemID);
+          LocalStateMachineEngine.ActionResult _rr = Update(_drv);
+          if (!_rr.ActionSucceeded)
+            return _rr;
+          _EDC.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+        }
+      }
+      catch (Exception ex)
+      {
+        return new LocalStateMachineEngine.ActionResult(ex, "Update");
+      }
+      return LocalStateMachineEngine.ActionResult.Success;
+    }
+    private LocalStateMachineEngine.ActionResult Update(Trailer _itm)
+    {
+      _itm.Comments = m_Comments.Text;
+      if (m_TrailerTitle.Text.IsNullOrEmpty())
+        return LocalStateMachineEngine.ActionResult.NotValidated(m_TrailerNameLabel.Text + " must be provided.");
+      _itm.Tytuł = m_TrailerTitle.Text;
+      return LocalStateMachineEngine.ActionResult.Success;
+    }
+    private LocalStateMachineEngine.ActionResult Create()
+    {
+      if (!m_ControlState.ItemID.IsNullOrEmpty())
+        return new LocalStateMachineEngine.ActionResult(new ApplicationException("Create error: a driver is selected"), "Create");
+      try
+      {
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+        {
+          Partner _Partner = Partner.FindForUser(_EDC, SPContext.Current.Web.CurrentUser);
+          if (_Partner == null)
+            return LocalStateMachineEngine.ActionResult.NotValidated("Current user must be an external partner.");
+          Trailer _drv = new Trailer() { VendorName = _Partner };
+          LocalStateMachineEngine.ActionResult _rr = Update(_drv);
+          if (!_rr.ActionSucceeded)
+            return _rr;
+          _EDC.Trailer.InsertOnSubmit(_drv);
+          _EDC.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+        }
+      }
+      catch (Exception ex)
+      {
+        return new LocalStateMachineEngine.ActionResult(ex, "Create");
+      }
+      return LocalStateMachineEngine.ActionResult.Success;
     }
     private GenericStateMachineEngine<TrailerInterconnectionData>.ActionResult Delete()
     {
-      throw new NotImplementedException();
+      if (m_ControlState.ItemID.IsNullOrEmpty())
+        return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: driver is not selected"), "Delete");
+      try
+      {
+        using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+        {
+          Trailer _drv = Element.GetAtIndex<Trailer>(_EDC.Trailer, m_ControlState.ItemID);
+          _EDC.Trailer.RecycleOnSubmit(_drv);
+          _EDC.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+        }
+      }
+      catch (Exception ex)
+      {
+        return new LocalStateMachineEngine.ActionResult(ex, "Delete");
+      }
+      return LocalStateMachineEngine.ActionResult.Success;
     }
     private void ClearUserInterface()
     {
-      m_Comments.Text = String.Empty;
+      m_ControlState.ItemID = string.Empty;
       m_TrailerTitle.Text = String.Empty;
+      m_Comments.Text = String.Empty;
     }
-    internal void ShowActionResult(LocalStateMachineEngine.ActionResult _rslt)
+    private void SetEnabled(LocalStateMachineEngine.ControlsSet _set)
+    {
+      m_SaveButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.SaveOn) != 0;
+      m_DeleteButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.DeleteOn) != 0;
+      m_CancelButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.CancelOn) != 0;
+      m_EditButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.EditOn) != 0;
+      m_AddNewButton.Enabled = (_set & LocalStateMachineEngine.ControlsSet.NewOn) != 0;
+      m_Panel.Enabled = m_SaveButton.Enabled;
+    }
+    private void ShowActionResult(LocalStateMachineEngine.ActionResult _rslt)
     {
       if (_rslt.ActionSucceeded)
         return;
