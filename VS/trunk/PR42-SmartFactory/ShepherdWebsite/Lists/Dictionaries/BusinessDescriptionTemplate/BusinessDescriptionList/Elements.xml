@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="$Resources:CASSmartFactoryShepherd,BusinessDescription"
+  <ListInstance Title="Business Description"
                 OnQuickLaunch="TRUE"
                 TemplateType="10051"
                 Url="Lists/BusinessDescriptionList"

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="$Resources:CASSmartFactoryShepherd,DriversTeam"
+  <ListInstance Title="Drivers Team"
                 OnQuickLaunch="TRUE"
                 TemplateType="10002"
                 Url="Lists/ShippingDriversTeamList"
