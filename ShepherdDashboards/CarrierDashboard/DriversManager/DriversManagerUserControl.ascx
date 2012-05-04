@@ -12,7 +12,7 @@
 <asp:Table ID="m_DriverManager" runat="server" CssClass="Table">
     <asp:TableRow>
         <asp:TableCell>
-            <asp:Label ID="m_DriverNameLabel" runat="server" CssClass="Label" Text="Name and surename" ToolTip="Driver's name and surename"></asp:Label>
+            <asp:Label ID="m_DriverNameLabel" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryShepherd,Driver%>" ToolTip="<%$Resources:CASSmartFactoryShepherd,DriverToolTip%>"></asp:Label>
         </asp:TableCell>
         <asp:TableCell>
             <asp:TextBox ID="m_DriverTitle" runat="server" CssClass="TextBox"></asp:TextBox>
@@ -20,7 +20,7 @@
     </asp:TableRow>
     <asp:TableRow>
         <asp:TableCell>
-            <asp:Label ID="m_IDNumberLabel" runat="server" CssClass="Label" Text="Identity Document no." ToolTip="Driver's identity document number"></asp:Label>
+            <asp:Label ID="m_IDNumberLabel" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryShepherd,IDNumber%>" ToolTip="<%$Resources:CASSmartFactoryShepherd,IDNumberToolTip%>"></asp:Label>
         </asp:TableCell>
         <asp:TableCell>
             <asp:TextBox ID="m_DriverIDNumber" runat="server" CssClass="TextBox"></asp:TextBox>
@@ -28,16 +28,16 @@
     </asp:TableRow>
     <asp:TableRow>
         <asp:TableCell>
-            <asp:Label ID="m_MobilePhoneNo" runat="server" CssClass="Label" Text="Mobile no." ToolTip="Driver's mobile phone number"></asp:Label>
+            <asp:Label ID="m_MobilePhoneNo" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryShepherd,Mobile%>" ToolTip="<%$Resources:CASSmartFactoryShepherd,MobileToolTip%>"></asp:Label>
         </asp:TableCell>
         <asp:TableCell>
             <asp:TextBox ID="m_DriverMobileNo" runat="server" CssClass="TextBox"></asp:TextBox>
         </asp:TableCell>
     </asp:TableRow>
 </asp:Table>
-<asp:Button runat="server" CssClass="Button" Text="Add new" ID="m_AddNewButton" />
-<asp:Button runat="server" CssClass="Button" Text="Edit" ID="m_EditButton" />
-<asp:Button runat="server" CssClass="Button" Text="Save" ID="m_SaveButton" />
-<asp:Button runat="server" CssClass="Button" Text="Delete" ID="m_DeleteButton" />
-<asp:Button runat="server" CssClass="Button" Text="Cancel" ID="m_CancelButton" />
+<asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,AddNew%>" ID="m_AddNewButton" />
+<asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Edit%>" ID="m_EditButton" />
+<asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Save%>" ID="m_SaveButton" />
+<asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Delete%>" ID="m_DeleteButton" />
+<asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryShepherd,Cancel%>" ID="m_CancelButton" />
 </asp:Panel>
