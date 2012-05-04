@@ -252,4 +252,19 @@
   <data name="TrailerToolTip" xml:space="preserve">
     <value>Trailer's registration no.</value>
   </data>
+  <data name="TruckCommentsToolTip" xml:space="preserve">
+    <value>Comment that will allow you to easily identify the vehicle</value>
+  </data>
+  <data name="TruckPlateNo" xml:space="preserve">
+    <value>Truck plate No.</value>
+  </data>
+  <data name="TruckPlateNoToolTip" xml:space="preserve">
+    <value>Truck's registration no.</value>
+  </data>
+  <data name="VehicleType" xml:space="preserve">
+    <value>Vehicle type</value>
+  </data>
+  <data name="VehicleTypeToolTip" xml:space="preserve">
+    <value>Please select vehicle type: truck, van, security escort car.</value>
+  </data>
 </root>
