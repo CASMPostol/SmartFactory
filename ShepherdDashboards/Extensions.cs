@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint.Linq;
 using Microsoft.SharePoint.Utilities;
+using System.Web.UI;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
@@ -174,6 +175,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     }
     #endregion
 
+    #region DropDownList
     /// <summary>
     /// Selects the specified _DDL.
     /// </summary>
@@ -222,6 +224,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       else
         _ddl.Items.Add(new ListItem(_Partner.Tytuł, _Partner.Identyfikator.Value.ToString()));
     }
+    #endregion
+
     /// <summary>
     /// Resolves the change conflicts.
     /// </summary>

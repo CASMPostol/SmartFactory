@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
-using System.Web.UI.WebControls;
+using Microsoft.SharePoint;
 
-namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
+namespace CAS.SmartFactory.Shepherd.Dashboards
 {
-  internal abstract class StateMachineEngine
+  internal abstract class GenericStateMachineEngine<InterconnectionDataType>
+    where InterconnectionDataType : InterconnectionData<InterconnectionDataType>
   {
     #region public
-    public StateMachineEngine() { }
+    public GenericStateMachineEngine() { }
     [Flags]
     internal enum ControlsSet
     {
@@ -23,8 +21,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     internal class ActionResult
     {
       #region public
-      internal ActionResult(Exception _excptn)
+      internal ActionResult(Exception _excptn, string _src)
       {
+        _excptn.Source += " at " + _src;
         ActionException = _excptn;
         LastActionResult = Result.Exception;
       }
@@ -33,7 +32,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       internal Exception ActionException { get; private set; }
       internal bool ActionSucceeded { get { return LastActionResult == Result.Success; } }
       internal static ActionResult Success { get { return new ActionResult(Result.Success); } }
-      internal static ActionResult NotValidated { get { return new ActionResult(Result.NotValidated); } }
+      internal static ActionResult NotValidated(string _msg) 
+      {
+        return new ActionResult(Result.NotValidated) { ActionException = new ApplicationException(_msg) };  
+      }
       #endregion
 
       #region private
@@ -44,24 +46,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       #endregion
     }
 
-    #region Connection call back
-    internal void NewDataEventHandler(object sender, ShippingInterconnectionData _InterconnectionData)
-    {
-      switch (CurrentMachineState)
-      {
-        case InterfaceState.ViewState:
-          ShowShipping(_InterconnectionData);
-          break;
-        case InterfaceState.EditState:
-        case InterfaceState.NewState:
-          break;
-        default:
-          SMError(InterfaceEvent.NewData);
-          break;
-      }
-    }
-    #endregion
-
     #region Event Handlers
     internal void NewButton_Click(object sender, EventArgs e)
     {
@@ -69,6 +53,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       {
         case InterfaceState.ViewState:
           CurrentMachineState = InterfaceState.NewState;
+          ClearUserInterface();
           break;
         case InterfaceState.EditState:
         case InterfaceState.NewState:
@@ -89,9 +74,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
               CurrentMachineState = InterfaceState.ViewState;
               break;
             case ActionResult.Result.NotValidated:
-              break;
             case ActionResult.Result.Exception:
-              ExceptionCatched("Update action", _ur.ActionException.Message);
+              ShowActionResult(_ur);
               break;
           }
           break;
@@ -103,11 +87,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
               CurrentMachineState = InterfaceState.ViewState;
               break;
             case ActionResult.Result.NotValidated:
+              ShowActionResult(_cr);
               break;
             case ActionResult.Result.Exception:
               ClearUserInterface();
+              ShowActionResult(_cr);
               CurrentMachineState = InterfaceState.ViewState;
-              ExceptionCatched("Create action", _cr.ActionException.Message);
               break;
             default:
               break;
@@ -125,7 +110,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       {
         case InterfaceState.NewState:
         case InterfaceState.EditState:
-          ShowShipping();
+          Show();
           CurrentMachineState = InterfaceState.ViewState;
           break;
         case InterfaceState.ViewState:
@@ -157,11 +142,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           switch (_dr.LastActionResult)
           {
             case ActionResult.Result.Success:
+              ClearUserInterface();
               break;
             case ActionResult.Result.NotValidated:
-              break;
             case ActionResult.Result.Exception:
-              ExceptionCatched("Create action", _dr.ActionException.Message);
+              ShowActionResult(_dr);
               break;
           }
           break;
@@ -172,18 +157,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           break;
       }
     }
-    internal void LoadDescriptionGridView_SelectedIndexChanged(object sender, EventArgs e)
+    #endregion
+
+    #region Connection call back
+    internal void NewDataEventHandler(object sender, InterconnectionDataType _InterconnectionData)
     {
       switch (CurrentMachineState)
       {
         case InterfaceState.ViewState:
-          GridView _gw = (GridView)sender;
-          ShowLoadDescription(_gw.SelectedDataKey);
+          Show(_InterconnectionData);
           break;
         case InterfaceState.EditState:
         case InterfaceState.NewState:
+          break;
         default:
-          SMError(InterfaceEvent.EditClick);
+          SMError(InterfaceEvent.NewData);
           break;
       }
     }
@@ -194,16 +182,25 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     #region private
 
     #region Actions
-    protected abstract ActionResult ShowShipping(ShippingInterconnectionData _shipping);
-    protected abstract ActionResult ShowShipping();
-    protected abstract ActionResult ShowLoadDescription(DataKey dataKey);
+    protected abstract ActionResult Show(InterconnectionDataType _shipping);
+    protected abstract ActionResult Show();
     protected abstract ActionResult Update();
     protected abstract ActionResult Create();
     protected abstract ActionResult Delete();
     protected abstract void ClearUserInterface();
     protected abstract void SetEnabled(ControlsSet _buttons);
     protected abstract void SMError(InterfaceEvent interfaceEvent);
-    protected abstract void ExceptionCatched(string _source, string _message);
+    protected virtual void ShowActionResult(ActionResult _rslt)
+    {
+      if (_rslt.LastActionResult != ActionResult.Result.Exception)
+        return;
+      Entities.Anons _entry = new Anons(_rslt.ActionException.Source, _rslt.ActionException.Message);
+      using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
+      {
+        _EDC.EventLogList.InsertOnSubmit(_entry);
+        _EDC.SubmitChanges();
+      }
+    }
     #endregion
 
     protected abstract InterfaceState CurrentMachineState { get; set; }
@@ -219,11 +216,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
           break;
         case InterfaceState.NewState:
           SetEnabled(ControlsSet.CancelOn | ControlsSet.SaveOn | ControlsSet.EditModeOn);
-          ClearUserInterface();
           break;
       }
     }
-
     #endregion
   }
 }

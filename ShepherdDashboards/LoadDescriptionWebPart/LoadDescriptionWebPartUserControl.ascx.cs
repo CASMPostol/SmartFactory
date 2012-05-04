@@ -15,6 +15,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
   public partial class LoadDescriptionWebPartUserControl : UserControl
   {
     #region public
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LoadDescriptionWebPartUserControl"/> class.
+    /// </summary>
     public LoadDescriptionWebPartUserControl()
     {
       m_StateMachineEngine = new LocalStateMachineEngine(this);
@@ -470,7 +473,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_LoadDescriptionGridView.DataBind();
       m_LoadDescriptionGridView.SelectedIndex = -1;
     }
-    internal void ClearUserInterface()
+    private void ClearUserInterface()
     {
       ClearUserInterface(CurrentShipping == null ? false : CurrentShipping.IsOutbound.Value);
     }

@@ -74,7 +74,9 @@
     <Compile Include="CarrierDashboard\DriversManager\DriversManagerUserControl.ascx.designer.cs">
       <DependentUpon>DriversManagerUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CarrierDashboard\DriversManager\StateMachine.cs" />
     <Compile Include="CarrierDashboard\InboundInterconnectionData.cs" />
+    <Compile Include="CarrierDashboard\TrailerManager\StateMachine.cs" />
     <Compile Include="CarrierDashboard\TrailerManager\TrailerManager.cs" />
     <Compile Include="CarrierDashboard\TrailerManager\TrailerManagerUserControl.ascx.cs">
       <DependentUpon>TrailerManagerUserControl.ascx</DependentUpon>
@@ -91,6 +93,7 @@
     <Compile Include="CarrierDashboard\TransportResources\TransportResourcesUserControl.ascx.designer.cs">
       <DependentUpon>TransportResourcesUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CarrierDashboard\TruckManager\StateMachine.cs" />
     <Compile Include="CarrierDashboard\TruckManager\TruckManager.cs" />
     <Compile Include="CarrierDashboard\TruckManager\TruckManagerUserControl.ascx.cs">
       <DependentUpon>TruckManagerUserControl.ascx</DependentUpon>
@@ -184,6 +187,7 @@
     </Compile>
     <Compile Include="LoadDescriptionWebPart\StateMachineEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GenericStateMachineEngine.cs" />
     <Compile Include="TimeSlotWebPart\TimeSlotWebPart.cs" />
     <Compile Include="TimeSlotWebPart\TimeSlotWebPartUserControl.ascx.cs">
       <DependentUpon>TimeSlotWebPartUserControl.ascx</DependentUpon>
