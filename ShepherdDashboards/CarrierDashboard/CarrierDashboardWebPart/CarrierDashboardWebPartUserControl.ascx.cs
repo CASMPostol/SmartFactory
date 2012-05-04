@@ -1149,8 +1149,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region variables
-    private string m_LabetTextLike_PurchaseOrder = "PO_No".GetLocalizedString();
-    private string m_LabetTextLike_DeliveryNo = "Delivery_No".GetLocalizedString();
+    private string m_LabetTextLike_PurchaseOrder = "PO_No";//.GetLocalizedString();
+    private string m_LabetTextLike_DeliveryNo = "DeliveryNumber".GetLocalizedString();
     private const string m_LabetTextLike_Vendor = "Vendor";
     private const string m_LabetTextLike_SecurityEscort = "Security Escort";
     private const string m_LabetTextLike_ShippingNo = "Shipping No";

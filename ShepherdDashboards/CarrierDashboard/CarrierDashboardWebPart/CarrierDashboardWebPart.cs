@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.Shepherd.Dashboards.Entities;
-
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
   /// <summary>

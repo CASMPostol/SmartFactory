@@ -42,7 +42,7 @@
                 <asp:ListBox ID="m_DriversListBox" runat="server" CssClass="ListBoxInside" Enabled="false"></asp:ListBox>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:Button ID="m_AddDriverButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,AddDrivers%>"" CssClass="Button_TR" Enabled="false"/>
+                <asp:Button ID="m_AddDriverButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,AddDrivers%>" CssClass="Button_TR" Enabled="false"/>
                 <br /><br />
                 <asp:Button ID="m_RemoveDriverButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,RemoveDrivers%>" CssClass="Button_TR" Enabled="false"/>
             </asp:TableCell>

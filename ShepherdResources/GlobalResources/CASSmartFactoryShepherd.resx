@@ -303,4 +303,7 @@
   <data name="VehicleTypeToolTip" xml:space="preserve">
     <value>Please select vehicle type: truck, van, security escort car.</value>
   </data>
+  <data name="TrailerPlateNo" xml:space="preserve">
+    <value>Trailer plate no.</value>
+  </data>
 </root>
