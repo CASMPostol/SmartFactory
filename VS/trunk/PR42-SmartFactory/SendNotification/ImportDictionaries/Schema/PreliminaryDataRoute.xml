@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns1:PreliminaryDataRoute xmlns:ns1="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <ns1:TestingData>false</ns1:TestingData>
+  <ns1:TestingData>true</ns1:TestingData>
   <ns1:FillUpTimeSlotTemplates>true</ns1:FillUpTimeSlotTemplates>
   <ns1:FillUpTimeSlots>false</ns1:FillUpTimeSlots>
   <ns1:PalletTypeTable>
