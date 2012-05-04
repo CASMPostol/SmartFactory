@@ -193,7 +193,7 @@
     <value>--  Select a vendor from vendors table --</value>
   </data>
   <data name="Shipping" xml:space="preserve">
-    <value>Shipping</value>
+    <value>Shipping No.</value>
   </data>
   <data name="TimeSlot" xml:space="preserve">
     <value>Time slot</value>
@@ -225,6 +225,9 @@
   <data name="WarehouseToolTip" xml:space="preserve">
     <value>Select a Warehouse and next a Time Slot from the calendar to schedule the shipping.</value>
   </data>
+  <data name="Arrived" xml:space="preserve">
+    <value>Arrived</value>
+  </data>
   <data name="CommentsTrailerToolTip" xml:space="preserve">
     <value>Comment that will allow you to easily identify the trailer</value>
   </data>
@@ -237,11 +240,17 @@
   <data name="DriverToolTip" xml:space="preserve">
     <value>Driver's name and surename</value>
   </data>
+  <data name="Enters" xml:space="preserve">
+    <value>Enters</value>
+  </data>
   <data name="IDNumber" xml:space="preserve">
     <value>ID number</value>
   </data>
   <data name="IDNumberToolTip" xml:space="preserve">
     <value>Driver's identity document number</value>
+  </data>
+  <data name="Leaves" xml:space="preserve">
+    <value>Leaves</value>
   </data>
   <data name="Mobile" xml:space="preserve">
     <value>Mobile</value>
@@ -260,6 +269,9 @@
   </data>
   <data name="TruckPlateNoToolTip" xml:space="preserve">
     <value>Truck's registration no.</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Undo</value>
   </data>
   <data name="VehicleType" xml:space="preserve">
     <value>Vehicle type</value>

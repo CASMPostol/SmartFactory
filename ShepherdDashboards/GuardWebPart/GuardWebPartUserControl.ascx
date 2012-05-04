@@ -14,15 +14,15 @@
   <asp:Table ID="_GuardTable" runat="server" CssClass="Table">
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_Label4" runat="server" Text="Shipping" CssClass="Label" Enabled="false"></asp:Label>
+        <asp:Label ID="m_Label4" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Shipping%>" CssClass="Label" Enabled="false"></asp:Label>
       </asp:TableCell>
       <asp:TableCell>
         <asp:Label ID="m_ShippingLabel" runat="server" CssClass="Label"></asp:Label>
       </asp:TableCell>
     </asp:TableRow>
   </asp:Table>
-  <asp:Button ID="m_EnteredButton" runat="server" Text="Enters" CssClass="Button" />
-  <asp:Button ID="m_LeftButton" runat="server" Text="Leaves" CssClass="Button" />
-  <asp:Button ID="m_ArrivedButton" runat="server" Text="Arrived" CssClass="Button" />
-  <asp:Button ID="m_UnDoButton" runat="server" Text="Undo" CssClass="Button" />
+  <asp:Button ID="m_EnteredButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Shipping%>" CssClass="Button" />
+  <asp:Button ID="m_LeftButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Leaves%>" CssClass="Button" />
+  <asp:Button ID="m_ArrivedButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Arrived%>" CssClass="Button" />
+  <asp:Button ID="m_UnDoButton" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Undo%>" CssClass="Button" />
 </asp:Panel>
