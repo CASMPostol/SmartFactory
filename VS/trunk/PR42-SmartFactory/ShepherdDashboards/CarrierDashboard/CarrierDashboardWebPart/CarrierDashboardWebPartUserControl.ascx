@@ -72,11 +72,11 @@
     <asp:TableRow>
       <asp:TableCell ColumnSpan="2">
         <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryShepherd,RouteEscortEditing%>"
-          ToolTip="<%$Resources:CASSmartFactoryShepherd,RouteEscortEditingToolTip%>" ID="m_CoordinatorPanel">
+         ToolTip="<%$Resources:CASSmartFactoryShepherd,RouteEscortEditingToolTip%>" ID="m_CoordinatorPanel">
           <asp:Table runat="server">
             <asp:TableRow>
               <asp:TableCell>
-                <asp:Label ID="Edit" CssClass="Label" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,EditRouteEscort%>"></asp:Label>
+                <asp:Label ID="Edit" CssClass="Label" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,EditRouteEscort%>" ></asp:Label>
                 <asp:CheckBox runat="server" TextAlign="Left" ToolTip="<%$Resources:CASSmartFactoryShepherd,EditRouteEscortToolTip%>" AutoPostBack="True" ID="m_CoordinatorEditCheckBox" />
               </asp:TableCell>
               <asp:TableCell>
@@ -129,10 +129,9 @@
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label Text="<%$Resources:CASSmartFactoryShepherd,TrailerComments%>" ID="m_TrailerConditionCommentsLabel" runat="server" CssClass="Label"></asp:Label>
+        <asp:Label Text="<%$Resources:CASSmartFactoryShepherd,TrailerComments%>" ID="m_TrailerConditionCommentsLabel" ToolTip="<%$Resources:CASSmartFactoryShepherd,TrailerCommentsToolTip%>" runat="server" CssClass="Label"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <asp:TextBox ID="m_TrailerConditionCommentsTextBox" TextMode="Multiline" Height="60" CssClass="TextBox"
-          ToolTip="<%$Resources:CASSmartFactoryShepherd,TrailerCommentsToolTip%>" runat="server"></asp:TextBox>
+        <asp:TextBox ID="m_TrailerConditionCommentsTextBox" TextMode="Multiline" Height="60" CssClass="TextBox" runat="server"></asp:TextBox>
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
