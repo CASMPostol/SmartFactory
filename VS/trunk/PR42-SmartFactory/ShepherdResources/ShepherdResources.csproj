@@ -68,7 +68,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\Feature1\Feature1.feature">
+    <None Include="Features\ShepherdResources\ShepherdResources.feature">
       <FeatureId>{2318b8be-6ea4-4f02-bae4-24233c4a39e0}</FeatureId>
     </None>
     <None Include="GlobalResources\SharePointProjectItem.spdata">
@@ -86,8 +86,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
+    <Content Include="Features\ShepherdResources\ShepherdResources.Template.xml">
+      <DependentUpon>ShepherdResources.feature</DependentUpon>
     </Content>
     <Content Include="Resources\CASSmartFactoryShepherd.resx">
       <Generator>ResXFileCodeGenerator</Generator>
