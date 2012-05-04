@@ -25,14 +25,14 @@
     </asp:TableCell>
     <asp:TableCell runat="server">
       <asp:ListBox CssClass="DashboardTimeSlotList" ID="m_TimeSlotList" runat="server"
-        AutoPostBack="true" ToolTip="Available Time Slots" Rows="12"></asp:ListBox>
+        AutoPostBack="true" ToolTip="<%$Resources:CASSmartFactoryShepherd,AvailableTimeSlotsToolTip%>" Rows="12"></asp:ListBox>
     </asp:TableCell>
   </asp:TableRow>
   <asp:TableRow>
     <asp:TableCell>
       <asp:Panel ID="m_DoubleTimeSlotsPanel" runat="server">
         <asp:CheckBox ID="m_ShowDoubleTimeSlots" runat="server" CssClass="CheckBox" AutoPostBack="true" />
-        <asp:Label ID="Label1" runat="server" Text="Show double timeslots only" CssClass="Label"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,ShowDoubleTimeslots%>" CssClass="Label"></asp:Label>
       </asp:Panel>
     </asp:TableCell>
   </asp:TableRow>

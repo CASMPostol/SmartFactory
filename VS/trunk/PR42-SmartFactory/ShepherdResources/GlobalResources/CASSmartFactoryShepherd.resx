@@ -306,4 +306,10 @@
   <data name="TrailerPlateNo" xml:space="preserve">
     <value>Trailer plate no.</value>
   </data>
+  <data name="AvailableTimeSlotsToolTip" xml:space="preserve">
+    <value>Available Time Slots</value>
+  </data>
+  <data name="ShowDoubleTimeslots" xml:space="preserve">
+    <value>Show double timeslots only</value>
+  </data>
 </root>
