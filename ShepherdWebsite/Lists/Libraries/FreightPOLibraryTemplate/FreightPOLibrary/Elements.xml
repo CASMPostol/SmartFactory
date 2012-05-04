@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="$Resources:CASSmartFactoryShepherd,FreightPOLibrary"
+  <ListInstance Title="Freight PO Library"
                 OnQuickLaunch="TRUE"
                 TemplateType="10052"
                 Url="Lists/FreightPOLibrary"

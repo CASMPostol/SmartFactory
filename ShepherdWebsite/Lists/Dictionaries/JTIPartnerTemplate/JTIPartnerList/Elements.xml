@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="$Resources:CASSmartFactoryShepherd,Partner"
+  <ListInstance Title="Partner"
                 OnQuickLaunch="TRUE"
                 TemplateType="10047"
                 Url="Lists/JTIPartnerList"

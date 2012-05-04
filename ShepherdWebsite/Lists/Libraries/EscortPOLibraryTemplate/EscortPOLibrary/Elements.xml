@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="$Resources:CASSmartFactoryShepherd,SecurityEscortPOLibrary"
+  <ListInstance Title="Escort PO Library"
                 OnQuickLaunch="TRUE"
                 TemplateType="10053"
                 Url="Lists/EscortPOLibrary"
