@@ -671,27 +671,35 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         if (m_DocumentTextBox.Text.IsNullOrEmpty())
           _rsult.AddLabel(m_DocumentLabel.Text);
-        Shipping _sppng = new Shipping()
-        {
-          IsOutbound = m_DashboardType == GlobalDefinitions.Roles.OutboundOwner,
-          State = Entities.State.Invalid,
-          Tytuł = "Creating new shippment"
-        };
         if (m_ControlState.TimeSlotID.IsNullOrEmpty())
           _rsult.AddLabel(m_TimeSlotLabel.Text);
+        if (!_rsult.Valid)
+          return _rsult;
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
+          TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(_EDC.TimeSlot, m_ControlState.TimeSlotID);
+          _checkPoint = "Element GetAtIndex";
+          Shipping _sppng = new Shipping()
+          {
+            IsOutbound = m_DashboardType == GlobalDefinitions.Roles.OutboundOwner,
+            State = Entities.State.Invalid,
+            Tytuł = "Creating new shippment"
+          };
+          _sppng.SetupTiming(_newts, m_ControlState.TimeSlotIsDouble);
+          _checkPoint = "SetupTiming";
           UpdateShipping(_sppng, _rsult, _EDC);
           if (!_rsult.Valid)
             return _rsult;
-          TimeSlotTimeSlot _newts = Element.GetAtIndex<TimeSlotTimeSlot>(_EDC.TimeSlot, m_ControlState.TimeSlotID);
-          _sppng.SetupTiming(_newts, m_ControlState.TimeSlotIsDouble);
+          List<TimeSlotTimeSlot> _Tss = _newts.MakeBooking(null, m_ControlState.TimeSlotIsDouble);
+          _EDC.SubmitChanges();
+          _checkPoint = "SubmitChanges";
           _EDC.Shipping.InsertOnSubmit(_sppng);
           _checkPoint = "Shipping.InsertOnSubmit";
           _EDC.SubmitChanges();
+          foreach (TimeSlotTimeSlot _tsx in _Tss)
+            _tsx.ShippingIndex = _sppng;
           _sppng.UpdateTitle();
           m_ControlState.ShippingID = _sppng.Identyfikator.Value.ToString();
-          _newts.MakeBooking(_sppng, m_ControlState.TimeSlotIsDouble);
           LoadDescription _ld = new LoadDescription()
           {
             Tytuł = m_DocumentTextBox.Text,
@@ -724,8 +732,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             _checkPoint = "ResolveChangeConflicts";
             _EDC.SubmitChanges();
           }
+          SendShippingData(_sppng);
         }
-        SendShippingData(_sppng);
       }
       catch (Exception ex)
       {

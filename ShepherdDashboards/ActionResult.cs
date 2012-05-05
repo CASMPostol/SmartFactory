@@ -10,6 +10,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
   {
     #region public
 
+    /// <summary>
+    /// Gets a value indicating whether this <see cref="ActionResult"/> is valid.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if no error encountered.; otherwise, <c>false</c>.
+    /// </value>
     internal bool Valid { get { return this.Count == 0; } }
     internal void AddException(Exception _excptn)
     {

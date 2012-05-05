@@ -17,7 +17,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         throw new ApplicationException("Warehouse not found");
       return this.ShippingPoint.Warehouse;
     }
-    internal TimeSlot FindAdjacent(List<TimeSlot> _avlblTmslts)
+    internal TimeSlotTimeSlot FindAdjacent(List<TimeSlotTimeSlot> _avlblTmslts)
     {
       for (int _i = 0; _i < _avlblTmslts.Count; _i++)
       {
@@ -27,10 +27,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       throw new ApplicationException("Cannot find the time slot to make the couple.");
     }
     private const string m_ShippingNotFpundMessage = "Shipping slot is not selected";
-    internal void MakeBooking(Shipping _sp, bool _isDouble)
+    internal List<TimeSlotTimeSlot> MakeBooking(Shipping _sp, bool _isDouble)
     {
       if (this.Occupied.Value == Entities.Occupied.Occupied0)
         throw new ApplicationException("Time slot has been aleady reserved");
+      List<TimeSlotTimeSlot> _ret = new List<TimeSlotTimeSlot>();
+      _ret.Add(this);
       this.Occupied = Entities.Occupied.Occupied0;
       this.ShippingIndex = _sp;
       this.IsDouble = _isDouble;
@@ -39,20 +41,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       //else
       //  _ts.Tytuł = String.Format("Inbound No. {0} by {1}", this.Tytuł, this.VendorName == null ? "--not assigned--" : VendorName.Tytuł);
       if (!_isDouble)
-        return;
+        return _ret;
       EntitySet<TimeSlot> _tslots = this.ShippingPoint.TimeSlot;
       DateTime _tdy = this.StartTime.Value.Date;
-      List<TimeSlot> _avlblTmslts = (from _tsidx in _tslots
-                                     let _idx = _tsidx.StartTime.Value.Date
-                                     where _tsidx.Occupied.Value == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays(1)
-                                     orderby _tsidx.StartTime ascending
-                                     select _tsidx).ToList<TimeSlot>();
-      TimeSlot _next = this.FindAdjacent(_avlblTmslts);
+      List<TimeSlotTimeSlot> _avlblTmslts = (from _tsidx in _tslots
+                                             let _idx = _tsidx.StartTime.Value.Date
+                                             where _tsidx.Occupied.Value == Entities.Occupied.Free && _idx >= _tdy && _idx <= _tdy.AddDays(1)
+                                             orderby _tsidx.StartTime ascending
+                                             select _tsidx).Cast<TimeSlotTimeSlot>().ToList<TimeSlotTimeSlot>();
+      TimeSlotTimeSlot _next = this.FindAdjacent(_avlblTmslts);
+      _ret.Add(_next);
       _next.Occupied = Entities.Occupied.Occupied0;
       _next.ShippingIndex = _sp;
       _next.IsDouble = true;
       //this.EndTime = _next.EndTime;
       //this.Duration = Convert.ToDouble((_ts.EndTime.Value - _ts.EndTime.Value).TotalMinutes);
+      return _ret;
     }
   }
   public partial class TimeSlot
