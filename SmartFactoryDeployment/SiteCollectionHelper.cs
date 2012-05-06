@@ -61,7 +61,6 @@ namespace CAS.SmartFactory.Deployment
           {
             return new SiteCollectionHelper(_wapplication.Sites[siteUrl]);
           }
-        //TODO http://itrserver/Bugs/BugDetail.aspx?bid=3260
         return new SiteCollectionHelper(_wapplication.Sites.Add(siteUrl, title, description, nLCID, webTemplate, ownerLogin, ownerName, ownerEmail));
       }
       catch (Exception ex)
