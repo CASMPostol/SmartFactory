@@ -226,7 +226,7 @@
     <value>Faktyczna data wysyłki</value>
   </data>
 	<data name="Address" xml:space="preserve">
-    <value>Address</value>
+    <value>Adres</value>
   </data>
 	<data name="Awaiting" xml:space="preserve">
     <value>Oczekuje (tak/nie)</value>
