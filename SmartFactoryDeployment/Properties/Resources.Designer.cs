@@ -232,7 +232,7 @@ namespace CAS.SmartFactory.Deployment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The feature activation encountered some problems (see log file for details). Press Abort to abort the installation, Retry to try again (recommended), Ignore to skip activation of the feature and continue the installation process..
+        ///   Looks up a localized string similar to The feature activation encountered some problems: {0}. Press Abort to abort the installation, Retry to try again (recommended), Ignore to skip activation of the feature and continue the installation process..
         /// </summary>
         internal static string FeatureActivationFailureMBox {
             get {

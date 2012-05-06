@@ -512,8 +512,9 @@ namespace CAS.SmartFactory.Deployment
               }
               catch (Exception ex)
               {
-                //TODO add message about exception http://itrserver/Bugs/BugDetail.aspx?bid=3321
-                switch (MessageBox.Show(Resources.FeatureActivationFailureMBox, "Install ActivateFeature", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2))
+                string _msg = String.Format(Resources.FeatureActivationFailureMBox, ex.Message);
+                Tracing.TraceEvent.TraceError(516, "SetUpData.Install", _msg);
+                switch (MessageBox.Show(_msg, "Install ActivateFeature", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2))
                 {
                   case DialogResult.Abort:
                     throw ex;
