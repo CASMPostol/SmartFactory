@@ -157,6 +157,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       try
       {
         DateTime _sDate = _sp.StartTime.Value.Date;
+        if (_sp.VendorName == null)
+          throw new ApplicationException("Shipping does not has associated partner - the report is aborted.");
         CarrierPerformanceReport _rprt = (from _rx in _sp.VendorName.CarrierPerformanceReport
                                           where _rx.Date.Value == _sDate
                                           select _rx).FirstOrDefault();
