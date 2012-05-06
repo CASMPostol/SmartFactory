@@ -165,28 +165,5 @@ namespace CAS.SmartFactory.Deployment
       }
       base.Dispose(disposing);
     }
-    /// <summary>
-    /// Raises the <see cref="E:System.Windows.Forms.Form.Load"/> event.
-    /// </summary>
-    /// <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
-    protected override void OnLoad(EventArgs e)
-    {
-      //TODOD clenup - remove if not needed.
-      //try
-      //{
-      //  //FileInfo _file = Extenshions.GetFileInfo();
-      //  //m_UninstallListBox.AddMessage(String.Format("Loading the application installation state from the file at: {0}", _file.FullName));
-      //  //m_InstallationStateData = InstallationStateData.Read(_file);
-      //  //m_InstalationStatePropertyGrid.SelectedObject = m_InstallationStateData;
-      //}
-      //catch (Exception ex)
-      //{
-      //  //m_UninstallListBox.AddMessage(Resources.SoftwareIsNotInstalled);
-      //  //Tracing.TraceEvent.TraceVerbose(162, "OnLoad", ex.Message);
-      //  //MessageBox.Show(Resources.SoftwareIsNotInstalled, Resources.RetrackCaption, MessageBoxButtons.OK, MessageBoxIcon.Question);
-      //}
-      //base.OnLoad(e);
-    }
-
   }
 }
