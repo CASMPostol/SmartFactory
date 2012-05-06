@@ -18,6 +18,23 @@
     <Solution>
       <Activated>false</Activated>
       <Deployed>false</Deployed>
+      <FileName>Solutions\ShepherdResources.wsp</FileName>
+      <Fetures>
+        <Feature>
+          <DisplayName></DisplayName>
+          <DefinitionId>{899e02c4-64ce-4e2d-b211-9153cf1bc4ac}</DefinitionId>
+          <Version></Version>
+          <Scope>Site</Scope>
+        </Feature>
+      </Fetures>
+      <FeatureDefinitionScope>Site</FeatureDefinitionScope>
+      <Priority>1</Priority>
+      <SolutionID></SolutionID>
+      <Global>false</Global>
+    </Solution>
+    <Solution>
+      <Activated>false</Activated>
+      <Deployed>false</Deployed>
       <FileName>Solutions\ShepherdWebsite.wsp</FileName>
       <Fetures>
         <Feature>
@@ -28,7 +45,7 @@
         </Feature>
       </Fetures>
       <FeatureDefinitionScope>Site</FeatureDefinitionScope>
-      <Priority>1</Priority>
+      <Priority>5</Priority>
       <SolutionID></SolutionID>
       <Global>false</Global>
     </Solution>
