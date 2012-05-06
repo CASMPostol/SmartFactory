@@ -25,9 +25,10 @@
           <DefinitionId>{899e02c4-64ce-4e2d-b211-9153cf1bc4ac}</DefinitionId>
           <Version></Version>
           <Scope>Site</Scope>
+          <AutoActivate>false</AutoActivate>
         </Feature>
       </Fetures>
-      <FeatureDefinitionScope>Site</FeatureDefinitionScope>
+      <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
       <Priority>1</Priority>
       <SolutionID></SolutionID>
       <Global>false</Global>
@@ -42,6 +43,7 @@
           <DefinitionId>{693191fd-6a7a-4db6-ac8e-a3f747ddf439}</DefinitionId>
           <Version></Version>
           <Scope>Site</Scope>
+          <AutoActivate>false</AutoActivate>
         </Feature>
       </Fetures>
       <FeatureDefinitionScope>Site</FeatureDefinitionScope>
@@ -59,6 +61,7 @@
           <DefinitionId>{3d8f8cb5-f8bb-496a-b561-fb3d36e8d84d}</DefinitionId>
           <Version></Version>
           <Scope>Site</Scope>
+          <AutoActivate>false</AutoActivate>
         </Feature>
       </Fetures>
       <FeatureDefinitionScope>Farm</FeatureDefinitionScope>
@@ -76,6 +79,7 @@
           <DefinitionId>{6473649e-0532-41e9-bd87-e9882dd16c76}</DefinitionId>
           <Version></Version>
           <Scope>Site</Scope>
+          <AutoActivate>false</AutoActivate>
         </Feature>
       </Fetures>
       <FeatureDefinitionScope>Farm</FeatureDefinitionScope>

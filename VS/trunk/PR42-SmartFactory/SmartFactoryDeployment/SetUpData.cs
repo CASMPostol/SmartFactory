@@ -501,6 +501,11 @@ namespace CAS.SmartFactory.Deployment
               _repeat = false;
               try
               {
+                if (!_fix.AutoActivate)
+                {
+                  m_InstallationProgresListBox.AddMessage(String.Format("Skipping activation of the feature: {0} at: {1} because tha activation si set false", _fix.FetureGuid, m_SiteCollectionHelper.SiteCollection.Url));
+                  break;
+                }
                 m_InstallationProgresListBox.AddMessage(String.Format("Activating Feature: {0} at: {1}", _fix.FetureGuid, m_SiteCollectionHelper.SiteCollection.Url));
                 SPFeature _ffeature = m_SiteCollectionHelper.ActivateFeature(_fix.FetureGuid, _sltn.SPFeatureDefinitionScope);
                 m_InstallationProgresListBox.AddMessage(String.Format("Feature activated : {0}", _ffeature.Definition.DisplayName));
