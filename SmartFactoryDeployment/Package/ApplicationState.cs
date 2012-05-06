@@ -45,10 +45,7 @@ namespace CAS.SmartFactory.Deployment.Package {
         private string descriptionField;
         
         private Solution[] solutionsField;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InstallationStateData"/> class.
-        /// </summary>
+        
         public InstallationStateData() {
             this.siteCollectionCreatedField = false;
             this.lCIDField = ((uint)(1033));
@@ -190,10 +187,7 @@ namespace CAS.SmartFactory.Deployment.Package {
         private string solutionIDField;
         
         private bool globalField;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Solution"/> class.
-        /// </summary>
+        
         public Solution() {
             this.activatedField = false;
             this.deployedField = false;
@@ -301,6 +295,12 @@ namespace CAS.SmartFactory.Deployment.Package {
         
         private bool scopeFieldSpecified;
         
+        private bool autoActivateField;
+        
+        public Feature() {
+            this.autoActivateField = true;
+        }
+        
         /// <uwagi/>
         public string DisplayName {
             get {
@@ -349,6 +349,17 @@ namespace CAS.SmartFactory.Deployment.Package {
             }
             set {
                 this.scopeFieldSpecified = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.ComponentModel.DefaultValueAttribute(true)]
+        public bool AutoActivate {
+            get {
+                return this.autoActivateField;
+            }
+            set {
+                this.autoActivateField = value;
             }
         }
     }
