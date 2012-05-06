@@ -1,9 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Security.Principal;
 using System.Windows.Forms;
 using CAS.SmartFactory.Deployment.Controls;
 using CAS.SmartFactory.Deployment.Package;
