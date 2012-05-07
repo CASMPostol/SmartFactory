@@ -3,7 +3,7 @@
   <ContentType ID="0x0102008b8977afa9104b18b4b25d7c06a4a3aa"
                Name="TimeSlot"
                Group="CAS Smart Factory Shepherd"
-               Description="$Resources:CASSmartFactoryShepherd,TimeSlotListCT"
+               Description="Time Slot List CT"
                Overwrite="True"
                Inherits="False">
     <Folder TargetName="_cts/TimeSlot" />
