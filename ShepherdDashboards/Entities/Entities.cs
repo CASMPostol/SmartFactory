@@ -777,7 +777,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AlarmAndEventDetails", Storage="_details", FieldType="Text")]
-		public string Details {
+        public string AlarmAndEventDetails
+        {
 			get {
 				return this._details;
 			}
@@ -791,7 +792,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AlarmAndEventOwner", Storage="_owner", FieldType="Text")]
-		public string Owner {
+		public string AlarmAndEventOwner {
 			get {
 				return this._owner;
 			}
@@ -805,7 +806,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AlarmPriority", Storage="_priority", FieldType="Choice")]
-		public System.Nullable<Priority> Priority {
+        public System.Nullable<Priority> AlarmPriority
+        {
 			get {
 				return this._priority;
 			}
@@ -819,7 +821,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public Shipping ShippingIndex {
+        public Shipping AlarmsAndEventsList2ShippingIndex
+        {
 			get {
 				return this._shippingIndex.GetEntity();
 			}
@@ -829,7 +832,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner VendorName {
+        public Partner AlarmsAndEventsList2PartnerTitle
+        {
 			get {
 				return this._vendorName.GetEntity();
 			}
@@ -904,7 +908,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AdditionalComments", Storage="_comments", FieldType="Text")]
-		public string Comments {
+        public string AdditionalComments
+        {
 			get {
 				return this._comments;
 			}
@@ -918,7 +923,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2BusinessDescriptionTitle", Storage="_route", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Route")]
-		public Microsoft.SharePoint.Linq.EntitySet<Route> Route {
+        public Microsoft.SharePoint.Linq.EntitySet<Route> Route2BusinessDescriptionTitle
+        {
 			get {
 				return this._route;
 			}
@@ -947,10 +953,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.BusinessDescription = this;
+              e.Item.Route2BusinessDescriptionTitle = this;
 			}
 			else {
-				e.Item.BusinessDescription = null;
+              e.Item.Route2BusinessDescriptionTitle = null;
 			}
 		}
 		
@@ -964,10 +970,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnSecurityEscortCatalogSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.BusinessDescription = this;
+              e.Item.SecurityEscortCatalog2BusinessDescriptionTitle = this;
 			}
 			else {
-				e.Item.BusinessDescription = null;
+              e.Item.SecurityEscortCatalog2BusinessDescriptionTitle = null;
 			}
 		}
 	}
@@ -1114,10 +1120,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CityName = this;
+              e.Item.Route2CityTitle = this;
 			}
 			else {
-				e.Item.CityName = null;
+              e.Item.Route2CityTitle = null;
 			}
 		}
 		
@@ -2333,10 +2339,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnAlarmsAndEventsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.VendorName = this;
+              e.Item.AlarmsAndEventsList2PartnerTitle = this;
 			}
 			else {
-				e.Item.VendorName = null;
+              e.Item.AlarmsAndEventsList2PartnerTitle = null;
 			}
 		}
 		
@@ -2582,7 +2588,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DeparturePort", Storage="_portOfDeparture", FieldType="Text")]
-		public string PortOfDeparture {
+        public string DeparturePort
+        {
 			get {
 				return this._portOfDeparture;
 			}
@@ -2596,7 +2603,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DepartureCity", Storage="_cityOfDeparture", FieldType="Text")]
-		public string CityOfDeparture {
+        public string DepartureCity
+        {
 			get {
 				return this._cityOfDeparture;
 			}
@@ -2624,7 +2632,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GoodsHandlingPO", Storage="_freightPO", FieldType="Text")]
-		public string FreightPO {
+        public string GoodsHandlingPO
+        {
 			get {
 				return this._freightPO;
 			}
@@ -2638,7 +2647,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2CityTitle", Storage="_cityName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
-		public CityType CityName {
+        public CityType Route2CityTitle
+        {
 			get {
 				return this._cityName.GetEntity();
 			}
@@ -2648,7 +2658,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2BusinessDescriptionTitle", Storage="_businessDescription", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Business Description")]
-		public BusienssDescription BusinessDescription {
+        public BusienssDescription Route2BusinessDescriptionTitle
+        {
 			get {
 				return this._businessDescription.GetEntity();
 			}
@@ -2658,7 +2669,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShipmentTypeTitle", Storage="_shipmentType", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipment Type")]
-		public ShipmentTypeShipmentType ShipmentType {
+        public ShipmentTypeShipmentType ShipmentTypeTitle
+        {
 			get {
 				return this._shipmentType.GetEntity();
 			}
@@ -2668,7 +2680,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FreightPayerTitle", Storage="_freightPayer", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Freight Payer")]
-		public FreightPayer FreightPayer {
+        public FreightPayer FreightPayerTitle
+        {
 			get {
 				return this._freightPayer.GetEntity();
 			}
@@ -2678,7 +2691,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2Commodity", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
-		public CommodityCommodity Commodity {
+        public CommodityCommodity Route2Commodity
+        {
 			get {
 				return this._commodity.GetEntity();
 			}
@@ -2688,7 +2702,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SAPDestinationPlantTitle", Storage="_sAPDestinationPlant", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAP Destination Plant")]
-		public SAPDestinationPlantSAPDestinationPlant SAPDestinationPlant {
+        public SAPDestinationPlantSAPDestinationPlant SAPDestinationPlantTitle
+        {
 			get {
 				return this._sAPDestinationPlant.GetEntity();
 			}
@@ -2698,7 +2713,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner VendorName {
+        public Partner PartnerTitle
+        {
 			get {
 				return this._vendorName.GetEntity();
 			}
@@ -2708,7 +2724,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierTitle", Storage="_carrier", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Carrier")]
-		public CarrierCarrierType Carrier {
+        public CarrierCarrierType CarrierTitle
+        {
 			get {
 				return this._carrier.GetEntity();
 			}
@@ -2718,7 +2735,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TransportUnitTypeTitle", Storage="_transportUnitType", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Transport Unit Type")]
-		public TransportUnitTypeTranspotUnit TransportUnitType {
+        public TransportUnitTypeTranspotUnit TransportUnitTypeTitle
+        {
 			get {
 				return this._transportUnitType.GetEntity();
 			}
@@ -2728,7 +2746,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CurrencyTitle", Storage="_currency", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Currency")]
-		public Currency Currency {
+        public Currency CurrencyTitle
+        {
 			get {
 				return this._currency.GetEntity();
 			}
@@ -2738,7 +2757,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2RouteTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping2RouteTitle
+        {
 			get {
 				return this._shipping;
 			}
@@ -2774,10 +2794,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnBusinessDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<BusienssDescription> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Route.Add(this);
+              e.Item.Route2BusinessDescriptionTitle.Add(this);
 			}
 			else {
-				e.Item.Route.Remove(this);
+              e.Item.Route2BusinessDescriptionTitle.Remove(this);
 			}
 		}
 		
@@ -2958,7 +2978,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingPointLookupTitle", Storage="_shippingPoint", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping Point")]
-		public ShippingPoint ShippingPoint {
+        public ShippingPoint ShippingPointLookupTitle
+        {
 			get {
 				return this._shippingPoint.GetEntity();
 			}
@@ -3115,7 +3136,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalog2BusinessDescriptionTitle", Storage="_businessDescription", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Business Description")]
-		public BusienssDescription BusinessDescription {
+        public BusienssDescription SecurityEscortCatalog2BusinessDescriptionTitle
+        {
 			get {
 				return this._businessDescription.GetEntity();
 			}
@@ -3125,7 +3147,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FreightPayerTitle", Storage="_freightPayer", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Freight Payer")]
-		public FreightPayer FreightPayer {
+        public FreightPayer FreightPayerTitle
+        {
 			get {
 				return this._freightPayer.GetEntity();
 			}
@@ -3135,7 +3158,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner VendorName {
+        public Partner PartnerTitle
+        {
 			get {
 				return this._vendorName.GetEntity();
 			}
@@ -3145,7 +3169,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CurrencyTitle", Storage="_currency", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Currency")]
-		public Currency Currency {
+        public Currency CurrencyTitle
+        {
 			get {
 				return this._currency.GetEntity();
 			}
@@ -3155,7 +3180,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> SecurityEscortCatalogTitle
+        {
 			get {
 				return this._shipping;
 			}
@@ -4050,10 +4076,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnAlarmsAndEventsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingIndex = this;
+              e.Item.AlarmsAndEventsList2ShippingIndex = this;
 			}
 			else {
-				e.Item.ShippingIndex = null;
+              e.Item.AlarmsAndEventsList2ShippingIndex = null;
 			}
 		}
 		
@@ -4214,10 +4240,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping.Add(this);
+              e.Item.Shipping2RouteTitle.Add(this);
 			}
 			else {
-				e.Item.Shipping.Remove(this);
+              e.Item.Shipping2RouteTitle.Remove(this);
 			}
 		}
 		
@@ -4484,10 +4510,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnScheduleTemplateSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingPoint = this;
+              e.Item.ShippingPointLookupTitle = this;
 			}
 			else {
-				e.Item.ShippingPoint = null;
+              e.Item.ShippingPointLookupTitle = null;
 			}
 		}
 		
@@ -5902,10 +5928,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Carrier = this;
+              e.Item.CarrierTitle = this;
 			}
 			else {
-				e.Item.Carrier = null;
+              e.Item.CarrierTitle = null;
 			}
 		}
 	}
@@ -6017,10 +6043,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Commodity = this;
+              e.Item.Route2Commodity = this;
 			}
 			else {
-				e.Item.Commodity = null;
+              e.Item.Route2Commodity = null;
 			}
 		}
 		
@@ -6199,10 +6225,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SAPDestinationPlant = this;
+              e.Item.SAPDestinationPlantTitle = this;
 			}
 			else {
-				e.Item.SAPDestinationPlant = null;
+              e.Item.SAPDestinationPlantTitle = null;
 			}
 		}
 	}
@@ -6265,10 +6291,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShipmentType = this;
+              e.Item.ShipmentTypeTitle = this;
 			}
 			else {
-				e.Item.ShipmentType = null;
+              e.Item.ShipmentTypeTitle = null;
 			}
 		}
 	}
@@ -6347,10 +6373,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TransportUnitType = this;
+              e.Item.TransportUnitTypeTitle = this;
 			}
 			else {
-				e.Item.TransportUnitType = null;
+              e.Item.TransportUnitTypeTitle = null;
 			}
 		}
 		
