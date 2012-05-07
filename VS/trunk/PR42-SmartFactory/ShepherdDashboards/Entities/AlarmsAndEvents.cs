@@ -20,8 +20,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     public AlarmsAndEvents(string _title, Partner _partner, Shipping _shippingIndex)
     {
       Tytuł = _title;
-      this.VendorName = _partner;
-      this.ShippingIndex = _shippingIndex;
+      this.AlarmsAndEventsList2PartnerTitle = _partner;
+      this.AlarmsAndEventsList2ShippingIndex = _shippingIndex;
     }
     /// <summary>
     /// Writes an entry with the given message text and application-defined event identifier to the event log list.

@@ -1096,7 +1096,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.ViewState:
         case InterfaceState.EditState:
-          m_DocumentTextBox.Text = _shppng.Route != null ? _shppng.Route.FreightPO : "";
+          m_DocumentTextBox.Text = _shppng.Route != null ? _shppng.Route.GoodsHandlingPO : "";
           break;
         case InterfaceState.NewState:
         default:

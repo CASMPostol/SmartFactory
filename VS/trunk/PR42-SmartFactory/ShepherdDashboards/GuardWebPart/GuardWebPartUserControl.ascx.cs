@@ -152,8 +152,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     {
       Entities.AlarmsAndEvents _ae = new Entities.AlarmsAndEvents()
       {
-        ShippingIndex = _shipping,
-        VendorName = _shipping.VendorName,
+        AlarmsAndEventsList2ShippingIndex = _shipping,
+        AlarmsAndEventsList2PartnerTitle = _shipping.VendorName,
         Tytuł = _msg,
       };
       EDC.AlarmsAndEvents.InsertOnSubmit(_ae);

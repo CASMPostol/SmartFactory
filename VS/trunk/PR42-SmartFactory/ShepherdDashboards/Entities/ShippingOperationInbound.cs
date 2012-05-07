@@ -23,8 +23,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         this.VendorName = null;
         return;
       }
-      this.BusinessDescription = Route.BusinessDescription == null ? String.Empty : Route.BusinessDescription.Tytuł;
-      this.VendorName = Route.VendorName;
+      this.BusinessDescription = Route.Route2BusinessDescriptionTitle == null ? String.Empty : Route.Route2BusinessDescriptionTitle.Tytuł;
+      this.VendorName = Route.PartnerTitle;
     }
     internal void ChangeEscort(SecurityEscortCatalog _nr, EntitiesDataContext _EDC)
     {
@@ -40,7 +40,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         return;
       }
       this.SecurityEscort = _nr;
-      this.SecurityEscortProvider = _nr == null ? null : _nr.VendorName;
+      this.SecurityEscortProvider = _nr == null ? null : _nr.PartnerTitle;
     }
     private void RemoveDrivers(EntitiesDataContext _EDC, Partner _prtne)
     {

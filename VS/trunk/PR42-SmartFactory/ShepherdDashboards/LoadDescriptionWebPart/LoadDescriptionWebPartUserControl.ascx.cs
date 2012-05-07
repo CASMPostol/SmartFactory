@@ -517,8 +517,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     {
       Entities.AlarmsAndEvents _ae = new Entities.AlarmsAndEvents()
       {
-        ShippingIndex = CurrentShipping,
-        VendorName = CurrentShipping.VendorName,
+        AlarmsAndEventsList2ShippingIndex = CurrentShipping,
+        AlarmsAndEventsList2PartnerTitle = CurrentShipping.VendorName,
         Tytuł = _msg,
       };
       m_EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
