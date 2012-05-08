@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List EnableContentTypes="TRUE" VersioningEnabled="TRUE" xmlns:ows="Microsoft SharePoint" Title="FreightPOLibraryTemplate" Direction="$Resources:Direction;" Url="ShepherdWebsite-FreightPOLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List VersioningEnabled="TRUE" xmlns:ows="Microsoft SharePoint" Title="FreightPOLibraryTemplate" Direction="$Resources:Direction;" Url="ShepherdWebsite-FreightPOLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
       <ContentType ID="0x0101003147ba6cbb014b599bbdd72087081913"

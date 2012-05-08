@@ -5,7 +5,7 @@
              Group="CAS Smart Factory Shepherd"
              Description="$Resources:CASSmartFactoryShepherd,TranspotUnitTypeListCT"
              Overwrite="TRUE"
-             Inherits="TRUE">
+             Inherits="FALSE">
     <Folder TargetName="_cts/TranspotUnit" />
     <FieldRefs>
       <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,TransportUnitType" />
