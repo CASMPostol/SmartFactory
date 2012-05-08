@@ -44,10 +44,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
           TimeSlotsInitiationData _data = TimeSlotsInitiationData.Deserialize(workflowProperties.InitiationData);
           StartLogToHistory_HistoryDescription = String.Format("Starting applayin the template. From: {0}, Weeks: {1}", _data.StartDate, _data.Duration);
           ScheduleTemplate _tmpl = Element.GetAtIndex<ScheduleTemplate>(_EDC.ScheduleTemplate, workflowProperties.ItemId);
-          if (_tmpl.ShippingPoint == null)
+          if (_tmpl.ShippingPointLookupTitle == null)
             throw new ApplicationException("Template does not have Shipingpoint assigned");
-          var _src = from _tst in _tmpl.TimeSlotsTemplate
-                     group _tst by _tst.Day.Value;
+          var _src = from _tst in _tmpl.ScheduleTemplateTitle
+                     group _tst by _tst.TimeSlotsTemplateDay.Value;
           Dictionary<Day, IGrouping<Day, TimeSlotsTemplate>> _dys = _src.ToDictionary(x => x.Key);
           Dictionary<DayOfWeek, Day> _tt = new Dictionary<DayOfWeek, Day>() { { DayOfWeek.Friday, Day.Friday}, 
                                                                               { DayOfWeek.Monday, Day.Monday },
@@ -66,18 +66,18 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
               {
                 foreach (var _item in _dys[_dayOfWeek])
                 {
-                  DateTime _strt = CreateDateTime(_data, _item.StartHour.Value.Hour2Int(), _item.StartMinute.Value.Minute2Int());
-                  DateTime _end = CreateDateTime(_data, _item.EndHour.Value.Hour2Int(), _item.StartMinute.Value.Minute2Int());
+                    DateTime _strt = CreateDateTime(_data, _item.TimeSlotsTemplateStartHour.Value.Hour2Int(), _item.TimeSlotsTemplateStartMinute.Value.Minute2Int());
+                    DateTime _end = CreateDateTime(_data, _item.TimeSlotsTemplateEndHour.Value.Hour2Int(), _item.TimeSlotsTemplateStartMinute.Value.Minute2Int());
                   TimeSlotTimeSlot _nts = new TimeSlotTimeSlot()
                   {
                     StartTime = _strt,
                     EndTime = _end,
-                    ShippingPoint = _tmpl.ShippingPoint,
+                    TimeSlot2ShippingPointLookup = _tmpl.ShippingPointLookupTitle,
                     EntryTime = _strt,
                     ExitTime = _end,
                     Occupied = Occupied.Free,
                     IsDouble = false,
-                    ActualTimeSpan = (_end - _strt).TotalMinutes
+                    TimeSpan = (_end - _strt).TotalMinutes
                   };
                   _EDC.TimeSlot.InsertOnSubmit(_nts);
                   m_TimeSlotsCounter++;

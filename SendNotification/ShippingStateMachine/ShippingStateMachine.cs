@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
         {
           string _tmplt = "The current operation has been interrupted by error {0}.";
-          Anons _entry = new Anons() { Tytuł = _source, Treść = String.Format(_tmplt, ex.Message), Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
+          Anons _entry = new Anons() { Tytuł = _source, Body = String.Format(_tmplt, ex.Message), Expires = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
           EDC.EventLogList.InsertOnSubmit(_entry);
           EDC.SubmitChanges();
         }
@@ -37,10 +37,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         case ServiceType.Vendor:
         case ServiceType.Forwarder:
         case ServiceType.VendorAndForwarder:
-          _principal = _sh.VendorName;
+            _principal = _sh.PartnerTitle;
           break;
         case ServiceType.SecurityEscortProvider:
-          _principal = _sh.SecurityEscortProvider;
+          _principal = _sh.ShippingOperationOutband2PartnerTitle;
           break;
         case ServiceType.None:
         case ServiceType.Invalid:
@@ -49,11 +49,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       }
       Entities.AlarmsAndEvents _ae = new AlarmsAndEvents()
       {
-        Details = _mssg,
-        Owner = _sh.ZmodyfikowanePrzez,
-        Priority = _priority,
-        ShippingIndex = _sh,
-        VendorName = _principal,
+        AlarmAndEventDetails = _mssg,
+        AlarmAndEventOwner = _sh.ZmodyfikowanePrzez,
+        AlarmPriority = _priority,
+        AlarmsAndEventsList2ShippingIndex = _sh,
+        AlarmsAndEventsList2PartnerTitle = _principal,
         Tytuł = _sh.Title(),
       };
       EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
@@ -84,7 +84,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url) { ObjectTrackingEnabled = false })
         {
           ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
-          e.Result = !(_sp.State.HasValue && (_sp.State.Value == State.Completed || _sp.State.Value == State.Canceled));
+          e.Result = !(_sp.ShippingState.HasValue && (_sp.ShippingState.Value == State.Completed || _sp.ShippingState.Value == State.Canceled));
         }
       }
       catch (Exception ex)
@@ -104,11 +104,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         {
           string _msg = "The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated.";
           ShippingShipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
-          m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.State, _sp.ZmodyfikowanePrzez);
+          m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.ShippingState, _sp.ZmodyfikowanePrzez);
           //ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, Priority.Normal, ServiceType.None, EDC, _sp);
-          if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.State.Value == State.Completed))
+          if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.ShippingState.Value == State.Completed))
             MakeShippingReport(_sp, EDC, _ar);
-          if (_sp.State.Value == State.Completed || _sp.State.Value == State.Cancelation)
+          if (_sp.ShippingState.Value == State.Completed || _sp.ShippingState.Value == State.Cancelation)
             MakePerformanceReport(_sp, EDC, _ar);
           try
           {
@@ -157,38 +157,38 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       try
       {
         DateTime _sDate = _sp.StartTime.Value.Date;
-        if (_sp.VendorName == null)
+        if (_sp.PartnerTitle == null)
           throw new ApplicationException("Shipping does not has associated partner - the report is aborted.");
-        CarrierPerformanceReport _rprt = (from _rx in _sp.VendorName.CarrierPerformanceReport
-                                          where _rx.Date.Value == _sDate
+        CarrierPerformanceReport _rprt = (from _rx in _sp.PartnerTitle.CarrierPerformanceReport2PartnerTitle
+                                          where _rx.CarrierPerformanceReportDate.Value == _sDate
                                           select _rx).FirstOrDefault();
         if (_rprt == null)
         {
           _rprt = new CarrierPerformanceReport()
           {
-            Date = _sp.StartTime.Value.Date,
-            Carrier = _sp.VendorName,
-            Tytuł = _sp.VendorName.Title(),
-            NumberTUDelayed = 0,
-            NumberTUDelayed1Hour = 0,
-            NumberTUNotDeliveredNotShowingUp = 0,
-            NumberTUOnTime = 0,
-            NumberTUOrdered = 0,
-            NumberTURejectedBadQuality = 0,
+            CarrierPerformanceReportDate = _sp.StartTime.Value.Date,
+            CarrierPerformanceReport2PartnerTitle = _sp.PartnerTitle,
+            Tytuł = _sp.PartnerTitle.Title(),
+            CarrierPerformanceReportNumberDelayed = 0,
+            CarrierPerformanceReportNumberDelayed1h = 0,
+            CarrierPerformanceReportNumberNotShowingUp = 0,
+            CarrierPerformanceReportNumberOnTime = 0,
+            CarrierPerformanceReportNumberOrdered = 0,
+            CarrierPerformanceReportNumberRejectedBadQuality = 0,
             ReportPeriod = _sp.StartTime.Value.ToMonthString()
           };
           EDC.CarrierPerformanceReport.InsertOnSubmit(_rprt);
         }
-        _rprt.NumberTUOrdered++;
-        _rprt.NumberTUNotDeliveredNotShowingUp += (from _ts in _sp.TimeSlot
+        _rprt.CarrierPerformanceReportNumberOrdered++;
+        _rprt.CarrierPerformanceReportNumberNotShowingUp += (from _ts in _sp.TimeSlot
                                                    where _ts.Occupied.Value == Occupied.Delayed
                                                    select new { }).Count();
-        if (_sp.State.Value == State.Cancelation)
-          _rprt.NumberTUNotDeliveredNotShowingUp++;
+        if (_sp.ShippingState.Value == State.Cancelation)
+            _rprt.CarrierPerformanceReportNumberNotShowingUp++;
         else
         {
           if (_sp.TrailerCondition.GetValueOrDefault(TrailerCondition.None) == TrailerCondition._1Unexceptable)
-            _rprt.NumberTURejectedBadQuality++;
+              _rprt.CarrierPerformanceReportNumberRejectedBadQuality++;
           var _Start = (from _tsx in _sp.TimeSlot
                         where _tsx.Occupied.Value == Occupied.Occupied0
                         orderby _tsx.StartTime ascending
@@ -198,13 +198,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           switch (CalculateDelay(_sp.StartTime.Value - _Start.Start))
           {
             case Delay.JustInTime:
-              _rprt.NumberTUOnTime++;
+                  _rprt.CarrierPerformanceReportNumberOnTime++;
               break;
             case Delay.Delayed:
-              _rprt.NumberTUDelayed++;
+              _rprt.CarrierPerformanceReportNumberDelayed++;
               break;
             case Delay.VeryLate:
-              _rprt.NumberTUDelayed1Hour++;
+              _rprt.CarrierPerformanceReportNumberDelayed1h++;
               break;
           }
         }
@@ -258,32 +258,32 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           }
           _sp.TotalQuantityInKU += _ld.GoodsQuantity.GetValueOrDefault(0);
         }
-        _sp.ForwarderOceanAir = _sp.Route == null ? String.Empty.NotAvailable() : _sp.Route.Carrier.Title();
+        _sp.ShippingCarrierTitle = _sp.Shipping2RouteTitle == null ? String.Empty.NotAvailable() : _sp.Shipping2RouteTitle.CarrierTitle.Title();
         Currency _defCurrency = (from Currency _cu in EDC.Currency
                                        where !String.IsNullOrEmpty(_cu.Tytuł) && _cu.Tytuł.ToUpper().Contains(CommonDefinition.DefaultCurrency)
                                        select _cu).FirstOrDefault();
-        _sp.TotalCostsPerKUCurrency = _defCurrency;
+        _sp.Shipping2CurrencyForTotalCostsPerKU = _defCurrency;
         //Costs calculation
-        if (_sp.Route != null)
+        if (_sp.Shipping2RouteTitle != null)
         {
-          _sp.FreightCostsCurrency = _defCurrency;
-          if (_sp.Route.Currency != null)
-            _sp.FreightCost = _sp.Route.TransportCosts * _sp.Route.Currency.ExchangeRate;
-          _sp.Commodity = _sp.Route.Commodity.Title();
-          _sp.Consignee = _sp.Route.FreightPayer == null ? String.Empty.NotAvailable() : _sp.Route.FreightPayer.Title();
-          _sp.DepartureCity = _sp.Route.CityOfDeparture;
-          _sp.DeliveryToCountry = _sp.Route.CityName == null ? String.Empty.NotAvailable() : _sp.Route.CityName.CountryName.Title();
+            _sp.Shipping2CurrencyForFreight = _defCurrency;
+          if (_sp.Shipping2RouteTitle.CurrencyTitle != null)
+              _sp.ShippingFreightCost = _sp.Shipping2RouteTitle.TransportCosts * _sp.Shipping2RouteTitle.CurrencyTitle.ExchangeRate;
+          _sp.ShippingCommodityTitle = _sp.Shipping2RouteTitle.Route2Commodity.Title();
+          _sp.ShippingFreightPayerTitle = _sp.Shipping2RouteTitle.FreightPayerTitle == null ? String.Empty.NotAvailable() : _sp.Shipping2RouteTitle.FreightPayerTitle.Title();
+          _sp.ShippingRouteDepartureCity = _sp.Shipping2RouteTitle.DepartureCity;
+          _sp.ShippingCountryTitle = _sp.Shipping2RouteTitle.Route2CityTitle == null ? String.Empty.NotAvailable() : _sp.Shipping2RouteTitle.Route2CityTitle.CountryTitle.Title();
         }
-        if (_sp.SecurityEscort != null && _sp.SecurityEscort.Currency != null)
+        if (_sp.SecurityEscortCatalogTitle != null && _sp.SecurityEscortCatalogTitle.CurrencyTitle != null)
         {
-          _sp.SecurityEscortCost = _sp.SecurityEscort.SecurityCost * _sp.SecurityEscort.Currency.ExchangeRate;
-          _sp.EscortCostsCurrency = _defCurrency;
+            _sp.SecurityEscortCost = _sp.SecurityEscortCatalogTitle.SecurityCost * _sp.SecurityEscortCatalogTitle.CurrencyTitle.ExchangeRate;
+            _sp.Shipping2CurrencyForEscort = _defCurrency;
         }
         double? _totalCost = default(double?);
         double _addCost = 0;
-        if (_sp.AdditionalCostsCurrency != null)
-          _addCost = (_sp.AdditionalCosts * _sp.AdditionalCostsCurrency.ExchangeRate).GetValueOrDefault(0);
-        _totalCost = _sp.FreightCost.GetValueOrDefault(0) + _sp.SecurityEscortCost.GetValueOrDefault(0) + _addCost;
+        if (_sp.Shipping2CurrencyForAdditionalCosts != null)
+            _addCost = (_sp.AdditionalCosts * _sp.Shipping2CurrencyForAdditionalCosts.ExchangeRate).GetValueOrDefault(0);
+        _totalCost = _sp.ShippingFreightCost.GetValueOrDefault(0) + _sp.SecurityEscortCost.GetValueOrDefault(0) + _addCost;
         _sp.TotalCostsPerKU = _sp.TotalQuantityInKU.HasValue && _sp.TotalQuantityInKU.Value > 1 ? _totalCost / _sp.TotalQuantityInKU.Value : new Nullable<double>();
         _sp.ReportPeriod = _sp.StartTime.Value.ToMonthString();
       }
@@ -307,7 +307,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         {
           ShippingShipping _sp = Element.GetAtIndex<ShippingShipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
           TimeSpan _timeDistance;
-          switch (_sp.State.Value)
+          switch (_sp.ShippingState.Value)
           {
             case State.Confirmed:
               switch (_sp.CalculateDistance(out _timeDistance))
@@ -401,7 +401,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void MakeCanceled(ShippingShipping _sp, EntitiesDataContext EDC)
     {
-      _sp.State = State.Canceled;
+        _sp.ShippingState = State.Canceled;
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true, true);
       string _frmt = "Wanning !! The Shipment has been cancelled by {0}";
       _frmt = String.Format(_frmt, _sp.ZmodyfikowanePrzez);
@@ -409,9 +409,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void MakeDelayed(ShippingShipping _sp, EntitiesDataContext EDC, bool _TimeOutExpired)
     {
-      _sp.State = State.Delayed;
+        _sp.ShippingState = State.Delayed;
       string _frmt = "Wanning !! The truck is late. Call the driver: {0}";
-      _frmt = String.Format(_frmt, _sp.VendorName != null ? _sp.VendorName.NumerTelefonuKomórkowego : " ?????");
+      _frmt = String.Format(_frmt, _sp.PartnerTitle != null ? _sp.PartnerTitle.CellPhone : " ?????");
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true, _TimeOutExpired) & Shipping.CarrierOperations;
       SetupEnvironment(ShippingShipping.WatchTolerance, _ro, _sp, Priority.High, EDC, _frmt, EmailType.Delayed);
     }
@@ -453,7 +453,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       m_TimeOutDelay_TimeoutDuration = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
       string _lm = "New timeout at: {0} is set up for the shipment {1} at state {2}";
-      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, DateTime.Now + m_TimeOutDelay_TimeoutDuration, _sp.Title(), _sp.State.Value);
+      m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, DateTime.Now + m_TimeOutDelay_TimeoutDuration, _sp.Title(), _sp.ShippingState.Value);
     }
     public String m_CalculateTimeoutLogToHistoryList_HistoryDescription = default(System.String);
     #endregion
@@ -495,7 +495,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
             case EmailType.Delayed:
               _msg = new DelayedShippingVendorTemplate()
              {
-               TruckTitle = _sp.TruckCarRegistrationNumber.Title(),
+                 TruckTitle = _sp.TruckTitle.Title(),
              };
               _cause = "Shipment delayed: ";
               break;
@@ -523,12 +523,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           {
             case ExternalRole.Vendor:
             case ExternalRole.Forwarder:
-              _msg.PartnerTitle = _sp.VendorName.Title();
-              m_CarrierNotificationSendEmail_To = _sp.VendorName != null ? _sp.VendorName.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
+                _msg.PartnerTitle = _sp.PartnerTitle.Title();
+                m_CarrierNotificationSendEmail_To = _sp.PartnerTitle != null ? _sp.PartnerTitle.EmailAddress.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
               break;
             case ExternalRole.Escort:
-              _msg.PartnerTitle = _sp.SecurityEscortProvider.Title();
-              m_CarrierNotificationSendEmail_To = _sp.SecurityEscortProvider != null ? _sp.SecurityEscortProvider.EMail.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
+              _msg.PartnerTitle = _sp.ShippingOperationOutband2PartnerTitle.Title();
+              m_CarrierNotificationSendEmail_To = _sp.ShippingOperationOutband2PartnerTitle != null ? _sp.ShippingOperationOutband2PartnerTitle.EmailAddress.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
               break;
             default:
               break;

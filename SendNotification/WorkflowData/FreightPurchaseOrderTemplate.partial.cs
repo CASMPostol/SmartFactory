@@ -29,18 +29,18 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
                           select idx).First();
         return new FreightPurchaseOrderTemplate()
         {
-          EmaiAddressTo = String.IsNullOrEmpty(_fpo.EMail) ? CommonDefinition.UnknownEmail : _fpo.EMail,
+            EmaiAddressTo = String.IsNullOrEmpty(_fpo.EmailAddress) ? CommonDefinition.UnknownEmail : _fpo.EmailAddress,
           Encodedabsurl = new Uri((string)_item["EncodedAbsUrl"]),
           Modified = (DateTime)_item["Modified"],
           ModifiedBy = (string)_item["Editor"],
           DocumentName = _item.File.Name,
-          FPO2CityTitle = _fpo.City.NotAvailable(),
-          FPO2CommodityTitle = _fpo.Commodity.NotAvailable(),
-          FPO2CountryTitle = _fpo.Country.NotAvailable(),
-          FPO2RouteGoodsHandlingPO = _fpo.FreightPO0.NotAvailable(),
-          FPO2TransportUnitTypeTitle = _fpo.TransportUnit,
-          FPOLoadingDate = _fpo.LoadingDate.GetValueOrDefault(DateTime.MaxValue),
-          FPO2WarehouseAddress = _fpo.WarehouseAddress.NotAvailable()
+          FPO2CityTitle = _fpo.FreightPOCity.NotAvailable(),
+          FPO2CommodityTitle = _fpo.FreightPOCommodity.NotAvailable(),
+          FPO2CountryTitle = _fpo.FreightPOCountry.NotAvailable(),
+          FPO2RouteGoodsHandlingPO = _fpo.FPOFreightPO.NotAvailable(),
+          FPO2TransportUnitTypeTitle = _fpo.FreightPOTransportUnitType,
+          FPOLoadingDate = _fpo.FPOLoadingDate.GetValueOrDefault(DateTime.MaxValue),
+          FPO2WarehouseAddress = _fpo.FPOWarehouseAddress.NotAvailable()
         };
       }
       catch (Exception ex)

@@ -538,7 +538,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FileLeafRef", Storage="_nazwa", Required=true, FieldType="File")]
-		public string Nazwa {
+        public string FileLeafRef
+        {
 			get {
 				return this._nazwa;
 			}
@@ -552,7 +553,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Modified_x0020_By", Storage="_dokumentZmodyfikowanyPrzez", ReadOnly=true, FieldType="Text")]
-		public string DokumentZmodyfikowanyPrzez {
+        public string Modified_x0020_By
+        {
 			get {
 				return this._dokumentZmodyfikowanyPrzez;
 			}
@@ -566,7 +568,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Created_x0020_By", Storage="_dokumentUtworzonyPrzez", ReadOnly=true, FieldType="Text")]
-		public string DokumentUtworzonyPrzez {
+        public string Created_x0020_By
+        {
 			get {
 				return this._dokumentUtworzonyPrzez;
 			}
@@ -601,7 +604,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Body", Storage="_treść", FieldType="Note")]
-		public string Treść {
+        public string Body
+        {
 			get {
 				return this._treść;
 			}
@@ -615,7 +619,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Expires", Storage="_wygasa", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> Wygasa {
+        public System.Nullable<System.DateTime> Expires
+        {
 			get {
 				return this._wygasa;
 			}
@@ -663,7 +668,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Location", Storage="_lokalizacja", FieldType="Text")]
-		public virtual string Lokalizacja {
+        public virtual string Location
+        {
 			get {
 				return this._lokalizacja;
 			}
@@ -705,7 +711,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Comments", Storage="_description", FieldType="Note")]
-		public virtual string Description {
+        public virtual string Comments
+        {
 			get {
 				return this._description;
 			}
@@ -719,7 +726,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="fAllDayEvent", Storage="_wydarzenieCałodzienne", FieldType="AllDayEvent")]
-		public virtual System.Nullable<bool> WydarzenieCałodzienne {
+        public virtual System.Nullable<bool> fAllDayEvent
+        {
 			get {
 				return this._wydarzenieCałodzienne;
 			}
@@ -733,7 +741,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="fRecurrence", Storage="_cykl", FieldType="Recurrence")]
-		public virtual System.Nullable<bool> Cykl {
+        public virtual System.Nullable<bool> fRecurrence
+        {
 			get {
 				return this._cykl;
 			}
@@ -747,7 +756,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WorkspaceLink", Storage="_obszarRoboczy", FieldType="CrossProjectLink")]
-		public virtual System.Nullable<bool> ObszarRoboczy {
+        public virtual System.Nullable<bool> WorkspaceLink
+        {
 			get {
 				return this._obszarRoboczy;
 			}
@@ -761,7 +771,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Category", Storage="_kategoria", FieldType="Choice")]
-		public virtual System.Nullable<Kategoria> Kategoria {
+        public virtual System.Nullable<Kategoria> Category
+        {
 			get {
 				return this._kategoria;
 			}
@@ -810,7 +821,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AlarmAndEventDetails", Storage="_details", FieldType="Text")]
-		public string Details {
+        public string AlarmAndEventDetails
+        {
 			get {
 				return this._details;
 			}
@@ -824,7 +836,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AlarmAndEventOwner", Storage="_owner", FieldType="Text")]
-		public string Owner {
+        public string AlarmAndEventOwner
+        {
 			get {
 				return this._owner;
 			}
@@ -838,7 +851,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AlarmPriority", Storage="_priority", FieldType="Choice")]
-		public System.Nullable<Priority> Priority {
+        public System.Nullable<Priority> AlarmPriority
+        {
 			get {
 				return this._priority;
 			}
@@ -852,7 +866,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public ShippingShipping ShippingIndex {
+        public ShippingShipping AlarmsAndEventsList2ShippingIndex
+        {
 			get {
 				return this._shippingIndex.GetEntity();
 			}
@@ -862,7 +877,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner VendorName {
+        public Partner AlarmsAndEventsList2PartnerTitle
+        {
 			get {
 				return this._vendorName.GetEntity();
 			}
@@ -898,10 +914,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnVendorNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.AlarmsAndEvents.Add(this);
+                e.Item.AlarmsAndEventsList2PartnerTitle.Add(this);
 			}
 			else {
-				e.Item.AlarmsAndEvents.Remove(this);
+                e.Item.AlarmsAndEventsList2PartnerTitle.Remove(this);
 			}
 		}
 	}
@@ -937,7 +953,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AdditionalComments", Storage="_comments", FieldType="Text")]
-		public string Comments {
+        public string AdditionalComments
+        {
 			get {
 				return this._comments;
 			}
@@ -951,7 +968,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2BusinessDescriptionTitle", Storage="_route", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Route")]
-		public Microsoft.SharePoint.Linq.EntitySet<Route> Route {
+        public Microsoft.SharePoint.Linq.EntitySet<Route> Route2BusinessDescriptionTitle
+        {
 			get {
 				return this._route;
 			}
@@ -961,7 +979,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalog2BusinessDescriptionTitle", Storage="_securityEscortCatalog", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Security Escort Route")]
-		public Microsoft.SharePoint.Linq.EntitySet<SecurityEscortCatalog> SecurityEscortCatalog {
+        public Microsoft.SharePoint.Linq.EntitySet<SecurityEscortCatalog> SecurityEscortCatalog2BusinessDescriptionTitle
+        {
 			get {
 				return this._securityEscortCatalog;
 			}
@@ -980,10 +999,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.BusinessDescription = this;
+                e.Item.Route2BusinessDescriptionTitle = this;
 			}
 			else {
-				e.Item.BusinessDescription = null;
+                e.Item.Route2BusinessDescriptionTitle = null;
 			}
 		}
 		
@@ -997,10 +1016,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnSecurityEscortCatalogSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.BusinessDescription = this;
+                e.Item.SecurityEscortCatalog2BusinessDescriptionTitle = this;
 			}
 			else {
-				e.Item.BusinessDescription = null;
+                e.Item.SecurityEscortCatalog2BusinessDescriptionTitle = null;
 			}
 		}
 	}
@@ -1076,7 +1095,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportDate", Storage="_date", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> Date {
+        public System.Nullable<System.DateTime> CarrierPerformanceReportDate
+        {
 			get {
 				return this._date;
 			}
@@ -1090,7 +1110,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOrdered", Storage="_numberTUOrdered", FieldType="Number")]
-		public System.Nullable<double> NumberTUOrdered {
+        public System.Nullable<double> CarrierPerformanceReportNumberOrdered
+        {
 			get {
 				return this._numberTUOrdered;
 			}
@@ -1104,7 +1125,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOnTime", Storage="_numberTUOnTime", FieldType="Number")]
-		public System.Nullable<double> NumberTUOnTime {
+        public System.Nullable<double> CarrierPerformanceReportNumberOnTime
+        {
 			get {
 				return this._numberTUOnTime;
 			}
@@ -1118,7 +1140,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDelayed", Storage="_numberTUDelayed", FieldType="Number")]
-		public System.Nullable<double> NumberTUDelayed {
+        public System.Nullable<double> CarrierPerformanceReportNumberDelayed
+        {
 			get {
 				return this._numberTUDelayed;
 			}
@@ -1132,7 +1155,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDelayed1h", Storage="_numberTUDelayed1Hour", FieldType="Number")]
-		public System.Nullable<double> NumberTUDelayed1Hour {
+        public System.Nullable<double> CarrierPerformanceReportNumberDelayed1h
+        {
 			get {
 				return this._numberTUDelayed1Hour;
 			}
@@ -1146,7 +1170,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberNotShowingUp", Storage="_numberTUNotDeliveredNotShowingUp", FieldType="Number")]
-		public System.Nullable<double> NumberTUNotDeliveredNotShowingUp {
+        public System.Nullable<double> CarrierPerformanceReportNumberNotShowingUp
+        {
 			get {
 				return this._numberTUNotDeliveredNotShowingUp;
 			}
@@ -1160,7 +1185,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberRejectedBadQuality", Storage="_numberTURejectedBadQuality", FieldType="Number")]
-		public System.Nullable<double> NumberTURejectedBadQuality {
+        public System.Nullable<double> CarrierPerformanceReportNumberRejectedBadQuality
+        {
 			get {
 				return this._numberTURejectedBadQuality;
 			}
@@ -1174,7 +1200,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierPerformanceReport2PartnerTitle", Storage="_carrier", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner Carrier {
+        public Partner CarrierPerformanceReport2PartnerTitle
+        {
 			get {
 				return this._carrier.GetEntity();
 			}
@@ -1193,10 +1220,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnCarrierSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CarrierPerformanceReport.Add(this);
+                e.Item.CarrierPerformanceReport2PartnerTitle.Add(this);
 			}
 			else {
-				e.Item.CarrierPerformanceReport.Remove(this);
+                e.Item.CarrierPerformanceReport2PartnerTitle.Remove(this);
 			}
 		}
 	}
@@ -1242,7 +1269,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CountryTitle", Storage="_countryName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Country")]
-		public CountryClass CountryName {
+        public CountryClass CountryTitle
+        {
 			get {
 				return this._countryName.GetEntity();
 			}
@@ -1252,7 +1280,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="DestinationMarket2CityTitle", Storage="_destinationMarket", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Destination Market")]
-		public Microsoft.SharePoint.Linq.EntitySet<DestinationMarket> DestinationMarket {
+        public Microsoft.SharePoint.Linq.EntitySet<DestinationMarket> DestinationMarket2CityTitle
+        {
 			get {
 				return this._destinationMarket;
 			}
@@ -1262,7 +1291,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2CityTitle", Storage="_route", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Route")]
-		public Microsoft.SharePoint.Linq.EntitySet<Route> Route {
+        public Microsoft.SharePoint.Linq.EntitySet<Route> Route2CityTitle
+        {
 			get {
 				return this._route;
 			}
@@ -1272,7 +1302,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2City", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping2City
+        {
 			get {
 				return this._shipping;
 			}
@@ -1308,10 +1339,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnDestinationMarketSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DestinationMarket> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CityName = this;
+                e.Item.DestinationMarket2CityTitle = this;
 			}
 			else {
-				e.Item.CityName = null;
+                e.Item.DestinationMarket2CityTitle = null;
 			}
 		}
 		
@@ -1325,10 +1356,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CityName = this;
+                e.Item.Route2CityTitle = this;
 			}
 			else {
-				e.Item.CityName = null;
+                e.Item.Route2CityTitle = null;
 			}
 		}
 		
@@ -1342,10 +1373,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.City = this;
+                e.Item.Shipping2City = this;
 			}
 			else {
-				e.Item.City = null;
+                e.Item.Shipping2City = null;
 			}
 		}
 	}
@@ -1388,7 +1419,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CountryGroup", Storage="_group", FieldType="Text")]
-		public string Group {
+        public string CountryGroup
+        {
 			get {
 				return this._group;
 			}
@@ -1462,7 +1494,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2CurrencyForAdditionalCosts", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping2CurrencyForAdditionalCosts
+        {
 			get {
 				return this._shipping;
 			}
@@ -1472,7 +1505,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2CurrencyForFreight", Storage="_shipping0", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping0 {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping2CurrencyForFreight
+        {
 			get {
 				return this._shipping0;
 			}
@@ -1492,7 +1526,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2CurrencyForTotalCostsPerKU", Storage="_shipping2", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping2 {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping2CurrencyForTotalCostsPerKU
+        {
 			get {
 				return this._shipping2;
 			}
@@ -1511,10 +1546,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.AdditionalCostsCurrency = this;
+                e.Item.Shipping2CurrencyForAdditionalCosts = this;
 			}
 			else {
-				e.Item.AdditionalCostsCurrency = null;
+                e.Item.Shipping2CurrencyForAdditionalCosts = null;
 			}
 		}
 		
@@ -1528,10 +1563,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShipping0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.FreightCostsCurrency = this;
+                e.Item.Shipping2CurrencyForFreight = this;
 			}
 			else {
-				e.Item.FreightCostsCurrency = null;
+                e.Item.Shipping2CurrencyForFreight = null;
 			}
 		}
 		
@@ -1545,10 +1580,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShipping1Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.EscortCostsCurrency = this;
+                e.Item.Shipping2CurrencyForEscort = this;
 			}
 			else {
-				e.Item.EscortCostsCurrency = null;
+                e.Item.Shipping2CurrencyForEscort = null;
 			}
 		}
 		
@@ -1562,10 +1597,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShipping2Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TotalCostsPerKUCurrency = this;
+                e.Item.Shipping2CurrencyForTotalCostsPerKU = this;
 			}
 			else {
-				e.Item.TotalCostsPerKUCurrency = null;
+                e.Item.Shipping2CurrencyForTotalCostsPerKU = null;
 			}
 		}
 	}
@@ -1599,7 +1634,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="DestinationMarket2CityTitle", Storage="_cityName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
-		public CityType CityName {
+        public CityType DestinationMarket2CityTitle
+        {
 			get {
 				return this._cityName.GetEntity();
 			}
@@ -1609,7 +1645,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="MarketTitle", Storage="_market", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Market")]
-		public MarketMarket Market {
+        public MarketMarket MarketTitle
+        {
 			get {
 				return this._market.GetEntity();
 			}
@@ -1628,10 +1665,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnCityNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.DestinationMarket.Add(this);
+                e.Item.DestinationMarket2CityTitle.Add(this);
 			}
 			else {
-				e.Item.DestinationMarket.Remove(this);
+                e.Item.DestinationMarket2CityTitle.Remove(this);
 			}
 		}
 		
@@ -1668,7 +1705,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EmailAddress", Storage="_eMail", FieldType="Text")]
-		public string EMail {
+        public string EmailAddress
+        {
 			get {
 				return this._eMail;
 			}
@@ -1743,7 +1781,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CellPhone", Storage="_numerTelefonuKomórkowego", FieldType="Text")]
-		public string NumerTelefonuKomórkowego {
+        public string CellPhone
+        {
 			get {
 				return this._numerTelefonuKomórkowego;
 			}
@@ -1757,7 +1796,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Driver2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner VendorName {
+        public Partner Driver2PartnerTitle
+        {
 			get {
 				return this._vendorName.GetEntity();
 			}
@@ -1767,7 +1807,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="DriverTitle", Storage="_shippingDriversTeam", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Drivers Team")]
-		public Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam> ShippingDriversTeam {
+        public Microsoft.SharePoint.Linq.EntitySet<ShippingDriversTeam> DriverTitle
+        {
 			get {
 				return this._shippingDriversTeam;
 			}
@@ -1786,10 +1827,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnVendorNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Driver.Add(this);
+                e.Item.Driver2PartnerTitle.Add(this);
 			}
 			else {
-				e.Item.Driver.Remove(this);
+                e.Item.Driver2PartnerTitle.Remove(this);
 			}
 		}
 		
@@ -1803,10 +1844,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingDriversTeamSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingDriversTeam> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Driver = this;
+                e.Item.DriverTitle = this;
 			}
 			else {
-				e.Item.Driver = null;
+                e.Item.DriverTitle = null;
 			}
 		}
 	}
@@ -1851,7 +1892,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="DriverTitle", Storage="_driver", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Driver")]
-		public Driver Driver {
+        public Driver DriverTitle
+        {
 			get {
 				return this._driver.GetEntity();
 			}
@@ -1880,10 +1922,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnDriverSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Driver> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingDriversTeam.Add(this);
+                e.Item.DriverTitle.Add(this);
 			}
 			else {
-				e.Item.ShippingDriversTeam.Remove(this);
+                e.Item.DriverTitle.Remove(this);
 			}
 		}
 		
@@ -1936,7 +1978,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PayerName", Storage="_company", FieldType="Text")]
-		public string Company {
+        public string PayerName
+        {
 			get {
 				return this._company;
 			}
@@ -1950,7 +1993,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CompanyAddress", Storage="_address", FieldType="Text")]
-		public string Address {
+        public string CompanyAddress
+        {
 			get {
 				return this._address;
 			}
@@ -1964,7 +2008,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WorkZip", Storage="_kodPocztowy", FieldType="Text")]
-		public string KodPocztowy {
+        public string WorkZip
+        {
 			get {
 				return this._kodPocztowy;
 			}
@@ -1978,7 +2023,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WorkCity", Storage="_miasto", FieldType="Text")]
-		public string Miasto {
+        public string WorkCity
+        {
 			get {
 				return this._miasto;
 			}
@@ -1992,7 +2038,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WorkCountry", Storage="_krajRegion", FieldType="Text")]
-		public string KrajRegion {
+        public string WorkCountry
+        {
 			get {
 				return this._krajRegion;
 			}
@@ -2006,7 +2053,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NIP", Storage="_nIPVATNo", FieldType="Text")]
-		public string NIPVATNo {
+        public string NIP
+        {
 			get {
 				return this._nIPVATNo;
 			}
@@ -2020,7 +2068,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SendInvoiceToMultiline", Storage="_sendInvoiceTo", FieldType="Note")]
-		public string SendInvoiceTo {
+        public string SendInvoiceToMultiline
+        {
 			get {
 				return this._sendInvoiceTo;
 			}
@@ -2171,7 +2220,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public ShippingShipping ShippingIndex {
+        public ShippingShipping LoadDescription2ShippingIndex
+        {
 			get {
 				return this._shippingIndex.GetEntity();
 			}
@@ -2181,7 +2231,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2PartnerTitle", Storage="_vendor", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner Vendor {
+        public Partner LoadDescription2PartnerTitle
+        {
 			get {
 				return this._vendor.GetEntity();
 			}
@@ -2191,7 +2242,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="MarketTitle", Storage="_market", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Market")]
-		public MarketMarket Market {
+        public MarketMarket MarketTitle
+        {
 			get {
 				return this._market.GetEntity();
 			}
@@ -2201,7 +2253,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2Commodity", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
-		public CommodityCommodity Commodity {
+        public CommodityCommodity LoadDescription2Commodity
+        {
 			get {
 				return this._commodity.GetEntity();
 			}
@@ -2237,10 +2290,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnVendorSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.LoadDescription.Add(this);
+                e.Item.LoadDescription2PartnerTitle.Add(this);
 			}
 			else {
-				e.Item.LoadDescription.Remove(this);
+                e.Item.LoadDescription2PartnerTitle.Remove(this);
 			}
 		}
 		
@@ -2370,7 +2423,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VendorNumber", Storage="_vendorNumberFromSAP", FieldType="Text")]
-		public string VendorNumberFromSAP {
+        public string VendorNumber
+        {
 			get {
 				return this._vendorNumberFromSAP;
 			}
@@ -2384,7 +2438,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EmailAddress", Storage="_eMail", FieldType="Text")]
-		public string EMail {
+        public string EmailAddress
+        {
 			get {
 				return this._eMail;
 			}
@@ -2398,7 +2453,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WorkPhone", Storage="_telefonSłużbowy", FieldType="Text")]
-		public string TelefonSłużbowy {
+        public string WorkPhone
+        {
 			get {
 				return this._telefonSłużbowy;
 			}
@@ -2412,7 +2468,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CellPhone", Storage="_numerTelefonuKomórkowego", FieldType="Text")]
-		public string NumerTelefonuKomórkowego {
+        public string CellPhone
+        {
 			get {
 				return this._numerTelefonuKomórkowego;
 			}
@@ -2443,7 +2500,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="AlarmsAndEventsList2PartnerTitle", Storage="_alarmsAndEvents", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Alarms And Events")]
-		public Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> AlarmsAndEvents {
+        public Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> AlarmsAndEventsList2PartnerTitle
+        {
 			get {
 				return this._alarmsAndEvents;
 			}
@@ -2453,7 +2511,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierPerformanceReport2PartnerTitle", Storage="_carrierPerformanceReport", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Carrier Performance Report")]
-		public Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport> CarrierPerformanceReport {
+        public Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport> CarrierPerformanceReport2PartnerTitle
+        {
 			get {
 				return this._carrierPerformanceReport;
 			}
@@ -2463,7 +2522,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Driver2PartnerTitle", Storage="_driver", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Driver")]
-		public Microsoft.SharePoint.Linq.EntitySet<Driver> Driver {
+        public Microsoft.SharePoint.Linq.EntitySet<Driver> Driver2PartnerTitle
+        {
 			get {
 				return this._driver;
 			}
@@ -2473,7 +2533,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="LoadDescription2PartnerTitle", Storage="_loadDescription", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Load Description")]
-		public Microsoft.SharePoint.Linq.EntitySet<LoadDescription> LoadDescription {
+        public Microsoft.SharePoint.Linq.EntitySet<LoadDescription> LoadDescription2PartnerTitle
+        {
 			get {
 				return this._loadDescription;
 			}
@@ -2483,7 +2544,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShepherdUser", Storage="_shepherdUserIdentyfikator", Required=true, FieldType="User", IsLookupId=true)]
-		public System.Nullable<int> ShepherdUserIdentyfikator {
+        public System.Nullable<int> ShepherdUser
+        {
 			get {
 				return this._shepherdUserIdentyfikator;
 			}
@@ -2511,7 +2573,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Partner2WarehouseTitle", Storage="_warehouse", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Warehouse")]
-		public Warehouse Warehouse {
+        public Warehouse Partner2WarehouseTitle
+        {
 			get {
 				return this._warehouse.GetEntity();
 			}
@@ -2521,7 +2584,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2PartnerTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> ShippingOperationOutband2PartnerTitle
+        {
 			get {
 				return this._shipping;
 			}
@@ -2531,7 +2595,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Trailer2PartnerTitle", Storage="_trailer", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Trailer")]
-		public Microsoft.SharePoint.Linq.EntitySet<Trailer> Trailer {
+        public Microsoft.SharePoint.Linq.EntitySet<Trailer> Trailer2PartnerTitle
+        {
 			get {
 				return this._trailer;
 			}
@@ -2541,7 +2606,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Truck2PartnerTitle", Storage="_truck", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Truck")]
-		public Microsoft.SharePoint.Linq.EntitySet<Truck> Truck {
+        public Microsoft.SharePoint.Linq.EntitySet<Truck> Truck2PartnerTitle
+        {
 			get {
 				return this._truck;
 			}
@@ -2560,10 +2626,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnAlarmsAndEventsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.VendorName = this;
+                e.Item.AlarmsAndEventsList2PartnerTitle = this;
 			}
 			else {
-				e.Item.VendorName = null;
+                e.Item.AlarmsAndEventsList2PartnerTitle = null;
 			}
 		}
 		
@@ -2577,10 +2643,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnCarrierPerformanceReportSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierPerformanceReport> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Carrier = this;
+                e.Item.CarrierPerformanceReport2PartnerTitle = this;
 			}
 			else {
-				e.Item.Carrier = null;
+                e.Item.CarrierPerformanceReport2PartnerTitle = null;
 			}
 		}
 		
@@ -2594,10 +2660,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnDriverSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Driver> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.VendorName = this;
+                e.Item.Driver2PartnerTitle = this;
 			}
 			else {
-				e.Item.VendorName = null;
+                e.Item.Driver2PartnerTitle = null;
 			}
 		}
 		
@@ -2611,10 +2677,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Vendor = this;
+                e.Item.LoadDescription2PartnerTitle = this;
 			}
 			else {
-				e.Item.Vendor = null;
+                e.Item.LoadDescription2PartnerTitle = null;
 			}
 		}
 		
@@ -2628,10 +2694,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Partner.Add(this);
+                e.Item.Partner2WarehouseTitle.Add(this);
 			}
 			else {
-				e.Item.Partner.Remove(this);
+                e.Item.Partner2WarehouseTitle.Remove(this);
 			}
 		}
 		
@@ -2645,10 +2711,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SecurityEscortProvider = this;
+                e.Item.ShippingOperationOutband2PartnerTitle = this;
 			}
 			else {
-				e.Item.SecurityEscortProvider = null;
+                e.Item.ShippingOperationOutband2PartnerTitle = null;
 			}
 		}
 		
@@ -2662,10 +2728,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnTrailerSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.VendorName = this;
+                e.Item.Trailer2PartnerTitle = this;
 			}
 			else {
-				e.Item.VendorName = null;
+                e.Item.Trailer2PartnerTitle = null;
 			}
 		}
 		
@@ -2679,10 +2745,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnTruckSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.VendorName = this;
+                e.Item.Truck2PartnerTitle = this;
 			}
 			else {
-				e.Item.VendorName = null;
+                e.Item.Truck2PartnerTitle = null;
 			}
 		}
 	}
@@ -2826,7 +2892,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DeparturePort", Storage="_portOfDeparture", FieldType="Text")]
-		public string PortOfDeparture {
+        public string DeparturePort
+        {
 			get {
 				return this._portOfDeparture;
 			}
@@ -2840,7 +2907,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DepartureCity", Storage="_cityOfDeparture", FieldType="Text")]
-		public string CityOfDeparture {
+        public string DepartureCity
+        {
 			get {
 				return this._cityOfDeparture;
 			}
@@ -2868,7 +2936,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GoodsHandlingPO", Storage="_freightPO", FieldType="Text")]
-		public string FreightPO {
+        public string GoodsHandlingPO
+        {
 			get {
 				return this._freightPO;
 			}
@@ -2882,7 +2951,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2CityTitle", Storage="_cityName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
-		public CityType CityName {
+        public CityType Route2CityTitle
+        {
 			get {
 				return this._cityName.GetEntity();
 			}
@@ -2892,7 +2962,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2BusinessDescriptionTitle", Storage="_businessDescription", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Business Description")]
-		public BusienssDescription BusinessDescription {
+        public BusienssDescription Route2BusinessDescriptionTitle
+        {
 			get {
 				return this._businessDescription.GetEntity();
 			}
@@ -2902,7 +2973,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShipmentTypeTitle", Storage="_shipmentType", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipment Type")]
-		public ShipmentTypeShipmentType ShipmentType {
+        public ShipmentTypeShipmentType ShipmentTypeTitle
+        {
 			get {
 				return this._shipmentType.GetEntity();
 			}
@@ -2912,7 +2984,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FreightPayerTitle", Storage="_freightPayer", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Freight Payer")]
-		public FreightPayer FreightPayer {
+        public FreightPayer FreightPayerTitle
+        {
 			get {
 				return this._freightPayer.GetEntity();
 			}
@@ -2922,7 +2995,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Route2Commodity", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
-		public CommodityCommodity Commodity {
+        public CommodityCommodity Route2Commodity
+        {
 			get {
 				return this._commodity.GetEntity();
 			}
@@ -2932,7 +3006,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SAPDestinationPlantTitle", Storage="_sAPDestinationPlant", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAP Destination Plant")]
-		public SAPDestinationPlantSAPDestinationPlant SAPDestinationPlant {
+        public SAPDestinationPlantSAPDestinationPlant SAPDestinationPlantTitle
+        {
 			get {
 				return this._sAPDestinationPlant.GetEntity();
 			}
@@ -2942,7 +3017,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner VendorName {
+        public Partner PartnerTitle
+        {
 			get {
 				return this._vendorName.GetEntity();
 			}
@@ -2952,7 +3028,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierTitle", Storage="_carrier", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Carrier")]
-		public CarrierCarrierType Carrier {
+        public CarrierCarrierType CarrierTitle
+        {
 			get {
 				return this._carrier.GetEntity();
 			}
@@ -2962,7 +3039,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TransportUnitTypeTitle", Storage="_transportUnitType", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Transport Unit Type")]
-		public TransportUnitTypeTranspotUnit TransportUnitType {
+        public TransportUnitTypeTranspotUnit TransportUnitTypeTitle
+        {
 			get {
 				return this._transportUnitType.GetEntity();
 			}
@@ -2972,7 +3050,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CurrencyTitle", Storage="_currency", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Currency")]
-		public Currency Currency {
+        public Currency CurrencyTitle
+        {
 			get {
 				return this._currency.GetEntity();
 			}
@@ -2982,7 +3061,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2RouteTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping2RouteTitle
+        {
 			get {
 				return this._shipping;
 			}
@@ -3001,10 +3081,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnCityNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Route.Add(this);
+                e.Item.Route2CityTitle.Add(this);
 			}
 			else {
-				e.Item.Route.Remove(this);
+                e.Item.Route2CityTitle.Remove(this);
 			}
 		}
 		
@@ -3018,10 +3098,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnBusinessDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<BusienssDescription> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Route.Add(this);
+                e.Item.Route2BusinessDescriptionTitle.Add(this);
 			}
 			else {
-				e.Item.Route.Remove(this);
+                e.Item.Route2BusinessDescriptionTitle.Remove(this);
 			}
 		}
 		
@@ -3153,10 +3233,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Route = this;
+                e.Item.Shipping2RouteTitle = this;
 			}
 			else {
-				e.Item.Route = null;
+                e.Item.Shipping2RouteTitle = null;
 			}
 		}
 	}
@@ -3208,7 +3288,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingPointLookupTitle", Storage="_shippingPoint", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping Point")]
-		public ShippingPoint ShippingPoint {
+        public ShippingPoint ShippingPointLookupTitle
+        {
 			get {
 				return this._shippingPoint.GetEntity();
 			}
@@ -3218,7 +3299,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ScheduleTemplateTitle", Storage="_timeSlotsTemplate", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="TimeSlots Template")]
-		public Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate> TimeSlotsTemplate {
+        public Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate> ScheduleTemplateTitle
+        {
 			get {
 				return this._timeSlotsTemplate;
 			}
@@ -3237,10 +3319,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingPointSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ScheduleTemplate.Add(this);
+                e.Item.ShippingPointLookupTitle.Add(this);
 			}
 			else {
-				e.Item.ScheduleTemplate.Remove(this);
+                e.Item.ShippingPointLookupTitle.Remove(this);
 			}
 		}
 		
@@ -3254,10 +3336,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnTimeSlotsTemplateSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ScheduleTemplateShepherd = this;
+                e.Item.ScheduleTemplateTitle = this;
 			}
 			else {
-				e.Item.ScheduleTemplateShepherd = null;
+                e.Item.ScheduleTemplateTitle = null;
 			}
 		}
 	}
@@ -3392,7 +3474,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalog2BusinessDescriptionTitle", Storage="_businessDescription", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Business Description")]
-		public BusienssDescription BusinessDescription {
+        public BusienssDescription SecurityEscortCatalog2BusinessDescriptionTitle
+        {
 			get {
 				return this._businessDescription.GetEntity();
 			}
@@ -3402,7 +3485,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="FreightPayerTitle", Storage="_freightPayer", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Freight Payer")]
-		public FreightPayer FreightPayer {
+        public FreightPayer FreightPayerTitle
+        {
 			get {
 				return this._freightPayer.GetEntity();
 			}
@@ -3412,7 +3496,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner VendorName {
+        public Partner PartnerTitle
+        {
 			get {
 				return this._vendorName.GetEntity();
 			}
@@ -3422,7 +3507,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CurrencyTitle", Storage="_currency", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Currency")]
-		public Currency Currency {
+        public Currency CurrencyTitle
+        {
 			get {
 				return this._currency.GetEntity();
 			}
@@ -3432,7 +3518,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> SecurityEscortCatalogTitle
+        {
 			get {
 				return this._shipping;
 			}
@@ -3451,10 +3538,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnBusinessDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<BusienssDescription> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SecurityEscortCatalog.Add(this);
+                e.Item.SecurityEscortCatalog2BusinessDescriptionTitle.Add(this);
 			}
 			else {
-				e.Item.SecurityEscortCatalog.Remove(this);
+                e.Item.SecurityEscortCatalog2BusinessDescriptionTitle.Remove(this);
 			}
 		}
 		
@@ -3501,10 +3588,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SecurityEscort = this;
+                e.Item.SecurityEscortCatalogTitle = this;
 			}
 			else {
-				e.Item.SecurityEscort = null;
+                e.Item.SecurityEscortCatalogTitle = null;
 			}
 		}
 	}
@@ -3757,7 +3844,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingDuration", Storage="_duration", FieldType="Number")]
-		public System.Nullable<double> Duration {
+        public System.Nullable<double> ShippingDuration
+        {
 			get {
 				return this._duration;
 			}
@@ -3841,7 +3929,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TruckAwaiting", Storage="_awaiting", FieldType="Boolean")]
-		public System.Nullable<bool> Awaiting {
+        public System.Nullable<bool> TruckAwaiting
+        {
 			get {
 				return this._awaiting;
 			}
@@ -3855,7 +3944,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TrailerConditionComments", Storage="_comments", FieldType="Note")]
-		public string Comments {
+        public string TrailerConditionComments
+        {
 			get {
 				return this._comments;
 			}
@@ -3883,7 +3973,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingCountryTitle", Storage="_deliveryToCountry", FieldType="Text")]
-		public string DeliveryToCountry {
+        public string ShippingCountryTitle
+        {
 			get {
 				return this._deliveryToCountry;
 			}
@@ -3897,7 +3988,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingFreightPayerTitle", Storage="_consignee", FieldType="Text")]
-		public string Consignee {
+        public string ShippingFreightPayerTitle
+        {
 			get {
 				return this._consignee;
 			}
@@ -3939,7 +4031,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingRouteDepartureCity", Storage="_departureCity", FieldType="Text")]
-		public string DepartureCity {
+        public string ShippingRouteDepartureCity
+        {
 			get {
 				return this._departureCity;
 			}
@@ -3953,7 +4046,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingCarrierTitle", Storage="_forwarderOceanAir", FieldType="Text")]
-		public string ForwarderOceanAir {
+        public string ShippingCarrierTitle
+        {
 			get {
 				return this._forwarderOceanAir;
 			}
@@ -3967,7 +4061,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingCommodityTitle", Storage="_commodity", FieldType="Text")]
-		public string Commodity {
+        public string ShippingCommodityTitle
+        {
 			get {
 				return this._commodity;
 			}
@@ -3995,7 +4090,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingFreightCost", Storage="_freightCost", FieldType="Number")]
-		public System.Nullable<double> FreightCost {
+        public System.Nullable<double> ShippingFreightCost
+        {
 			get {
 				return this._freightCost;
 			}
@@ -4037,7 +4133,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingState", Storage="_state", FieldType="Choice")]
-		public System.Nullable<State> State {
+        public System.Nullable<State> ShippingState
+        {
 			get {
 				return this._state;
 			}
@@ -4085,7 +4182,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner VendorName {
+        public Partner PartnerTitle
+        {
 			get {
 				return this._vendorName.GetEntity();
 			}
@@ -4095,7 +4193,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2WarehouseTitle", Storage="_warehouse", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Warehouse")]
-		public Warehouse Warehouse {
+        public Warehouse Shipping2WarehouseTitle
+        {
 			get {
 				return this._warehouse.GetEntity();
 			}
@@ -4105,7 +4204,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TruckTitle", Storage="_truckCarRegistrationNumber", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Truck")]
-		public Truck TruckCarRegistrationNumber {
+        public Truck TruckTitle
+        {
 			get {
 				return this._truckCarRegistrationNumber.GetEntity();
 			}
@@ -4115,7 +4215,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerTitle", Storage="_trailerRegistrationNumber", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Trailer")]
-		public Trailer TrailerRegistrationNumber {
+        public Trailer TrailerTitle
+        {
 			get {
 				return this._trailerRegistrationNumber.GetEntity();
 			}
@@ -4125,7 +4226,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2PartnerTitle", Storage="_securityEscortProvider", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner SecurityEscortProvider {
+        public Partner ShippingOperationOutband2PartnerTitle
+        {
 			get {
 				return this._securityEscortProvider.GetEntity();
 			}
@@ -4135,7 +4237,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_securitySealProtocol", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Seal Protocol Library")]
-		public SealProtocol SecuritySealProtocol {
+        public SealProtocol SecuritySealProtocolIndex
+        {
 			get {
 				return this._securitySealProtocol.GetEntity();
 			}
@@ -4145,7 +4248,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecurityEscortCatalogTitle", Storage="_securityEscort", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Security Escort Route")]
-		public SecurityEscortCatalog SecurityEscort {
+        public SecurityEscortCatalog SecurityEscortCatalogTitle
+        {
 			get {
 				return this._securityEscort.GetEntity();
 			}
@@ -4155,7 +4259,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2TruckTitle", Storage="_securityEscortCarRegistrationNumber", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Truck")]
-		public Truck SecurityEscortCarRegistrationNumber {
+        public Truck ShippingOperationOutband2TruckTitle
+        {
 			get {
 				return this._securityEscortCarRegistrationNumber.GetEntity();
 			}
@@ -4165,7 +4270,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2RouteTitle", Storage="_route", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Route")]
-		public Route Route {
+        public Route Shipping2RouteTitle
+        {
 			get {
 				return this._route.GetEntity();
 			}
@@ -4175,7 +4281,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2City", Storage="_city", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="City")]
-		public CityType City {
+        public CityType Shipping2City
+        {
 			get {
 				return this._city.GetEntity();
 			}
@@ -4185,7 +4292,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2TransportUnitType", Storage="_transportUnit", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Transport Unit Type")]
-		public TransportUnitTypeTranspotUnit TransportUnit {
+        public TransportUnitTypeTranspotUnit Shipping2TransportUnitType
+        {
 			get {
 				return this._transportUnit.GetEntity();
 			}
@@ -4195,7 +4303,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2CurrencyForAdditionalCosts", Storage="_additionalCostsCurrency", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Currency")]
-		public Currency AdditionalCostsCurrency {
+        public Currency Shipping2CurrencyForAdditionalCosts
+        {
 			get {
 				return this._additionalCostsCurrency.GetEntity();
 			}
@@ -4205,7 +4314,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2FreightPOIndex", Storage="_freightPO", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Freight PO Library")]
-		public FreightPO FreightPO {
+        public FreightPO Shipping2FreightPOIndex
+        {
 			get {
 				return this._freightPO.GetEntity();
 			}
@@ -4215,7 +4325,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2EscortPOIndex", Storage="_escortPO", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Escort PO Library")]
-		public EscortPO EscortPO {
+        public EscortPO Shipping2EscortPOIndex
+        {
 			get {
 				return this._escortPO.GetEntity();
 			}
@@ -4225,7 +4336,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2CurrencyForFreight", Storage="_freightCostsCurrency", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Currency")]
-		public Currency FreightCostsCurrency {
+        public Currency Shipping2CurrencyForFreight
+        {
 			get {
 				return this._freightCostsCurrency.GetEntity();
 			}
@@ -4235,7 +4347,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2CurrencyForEscort", Storage="_escortCostsCurrency", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Currency")]
-		public Currency EscortCostsCurrency {
+        public Currency Shipping2CurrencyForEscort
+        {
 			get {
 				return this._escortCostsCurrency.GetEntity();
 			}
@@ -4245,7 +4358,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2CurrencyForTotalCostsPerKU", Storage="_totalCostsPerKUCurrency", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Currency")]
-		public Currency TotalCostsPerKUCurrency {
+        public Currency Shipping2CurrencyForTotalCostsPerKU
+        {
 			get {
 				return this._totalCostsPerKUCurrency.GetEntity();
 			}
@@ -4292,10 +4406,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnTruckCarRegistrationNumberSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping.Add(this);
+                e.Item.TruckTitle.Add(this);
 			}
 			else {
-				e.Item.Shipping.Remove(this);
+                e.Item.TruckTitle.Remove(this);
 			}
 		}
 		
@@ -4309,10 +4423,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnTrailerRegistrationNumberSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Trailer> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping.Add(this);
+                e.Item.TrailerTitle.Add(this);
 			}
 			else {
-				e.Item.Shipping.Remove(this);
+                e.Item.TrailerTitle.Remove(this);
 			}
 		}
 		
@@ -4326,10 +4440,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnSecurityEscortProviderSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping.Add(this);
+                e.Item.ShippingOperationOutband2PartnerTitle.Add(this);
 			}
 			else {
-				e.Item.Shipping.Remove(this);
+                e.Item.ShippingOperationOutband2PartnerTitle.Remove(this);
 			}
 		}
 		
@@ -4360,10 +4474,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnSecurityEscortSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping.Add(this);
+                e.Item.SecurityEscortCatalogTitle.Add(this);
 			}
 			else {
-				e.Item.Shipping.Remove(this);
+                e.Item.SecurityEscortCatalogTitle.Remove(this);
 			}
 		}
 		
@@ -4377,10 +4491,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnSecurityEscortCarRegistrationNumberSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Truck> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping0.Add(this);
+                e.Item.ShippingOperationOutband2TruckTitle.Add(this);
 			}
 			else {
-				e.Item.Shipping0.Remove(this);
+                e.Item.ShippingOperationOutband2TruckTitle.Remove(this);
 			}
 		}
 		
@@ -4394,10 +4508,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping.Add(this);
+                e.Item.Shipping2RouteTitle.Add(this);
 			}
 			else {
-				e.Item.Shipping.Remove(this);
+                e.Item.Shipping2RouteTitle.Remove(this);
 			}
 		}
 		
@@ -4411,10 +4525,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnCitySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping.Add(this);
+                e.Item.Shipping2City.Add(this);
 			}
 			else {
-				e.Item.Shipping.Remove(this);
+                e.Item.Shipping2City.Remove(this);
 			}
 		}
 		
@@ -4445,10 +4559,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnAdditionalCostsCurrencySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping.Add(this);
+                e.Item.Shipping2CurrencyForAdditionalCosts.Add(this);
 			}
 			else {
-				e.Item.Shipping.Remove(this);
+                e.Item.Shipping2CurrencyForAdditionalCosts.Remove(this);
 			}
 		}
 		
@@ -4496,10 +4610,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnFreightCostsCurrencySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping0.Add(this);
+                e.Item.Shipping2CurrencyForFreight.Add(this);
 			}
 			else {
-				e.Item.Shipping0.Remove(this);
+                e.Item.Shipping2CurrencyForFreight.Remove(this);
 			}
 		}
 		
@@ -4530,10 +4644,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnTotalCostsPerKUCurrencySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Currency> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping2.Add(this);
+                e.Item.Shipping2CurrencyForTotalCostsPerKU.Add(this);
 			}
 			else {
-				e.Item.Shipping2.Remove(this);
+                e.Item.Shipping2CurrencyForTotalCostsPerKU.Remove(this);
 			}
 		}
 	}
@@ -4577,7 +4691,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingPointDescription", Storage="_description", FieldType="Text")]
-		public string Description {
+        public string ShippingPointDescription
+        {
 			get {
 				return this._description;
 			}
@@ -4608,7 +4723,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingPointLookupTitle", Storage="_scheduleTemplate", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Schedule Template")]
-		public Microsoft.SharePoint.Linq.EntitySet<ScheduleTemplate> ScheduleTemplate {
+        public Microsoft.SharePoint.Linq.EntitySet<ScheduleTemplate> ShippingPointLookupTitle
+        {
 			get {
 				return this._scheduleTemplate;
 			}
@@ -4618,7 +4734,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="WarehouseTitle", Storage="_warehouse", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Warehouse")]
-		public Warehouse Warehouse {
+        public Warehouse WarehouseTitle
+        {
 			get {
 				return this._warehouse.GetEntity();
 			}
@@ -4628,7 +4745,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_timeSlot", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="TimeSlot")]
-		public Microsoft.SharePoint.Linq.EntitySet<TimeSlot> TimeSlot {
+        public Microsoft.SharePoint.Linq.EntitySet<TimeSlot> TimeSlot2ShippingPointLookup
+        {
 			get {
 				return this._timeSlot;
 			}
@@ -4647,10 +4765,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnScheduleTemplateSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingPoint = this;
+                e.Item.ShippingPointLookupTitle = this;
 			}
 			else {
-				e.Item.ShippingPoint = null;
+                e.Item.ShippingPointLookupTitle = null;
 			}
 		}
 		
@@ -4681,10 +4799,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnTimeSlotSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingPoint = this;
+                e.Item.TimeSlot2ShippingPointLookup = this;
 			}
 			else {
-				e.Item.ShippingPoint = null;
+                e.Item.TimeSlot2ShippingPointLookup = null;
 			}
 		}
 	}
@@ -4733,7 +4851,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateDay", Storage="_day", FieldType="Choice")]
-		public System.Nullable<Day> Day {
+        public System.Nullable<Day> TimeSlotsTemplateDay
+        {
 			get {
 				return this._day;
 			}
@@ -4747,7 +4866,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateStartHour", Storage="_startHour", FieldType="Choice")]
-		public System.Nullable<StartHour> StartHour {
+        public System.Nullable<StartHour> TimeSlotsTemplateStartHour
+        {
 			get {
 				return this._startHour;
 			}
@@ -4761,7 +4881,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateStartMinute", Storage="_startMinute", FieldType="Choice")]
-		public System.Nullable<StartMinute> StartMinute {
+        public System.Nullable<StartMinute> TimeSlotsTemplateStartMinute
+        {
 			get {
 				return this._startMinute;
 			}
@@ -4775,7 +4896,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateEndHour", Storage="_endHour", FieldType="Choice")]
-		public System.Nullable<EndHour> EndHour {
+        public System.Nullable<EndHour> TimeSlotsTemplateEndHour
+        {
 			get {
 				return this._endHour;
 			}
@@ -4789,7 +4911,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateEndMinute", Storage="_endMinute", FieldType="Choice")]
-		public System.Nullable<EndMinute> EndMinute {
+        public System.Nullable<EndMinute> TimeSlotsTemplateEndMinute
+        {
 			get {
 				return this._endMinute;
 			}
@@ -4803,7 +4926,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ScheduleTemplateTitle", Storage="_scheduleTemplateShepherd", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Schedule Template")]
-		public ScheduleTemplate ScheduleTemplateShepherd {
+        public ScheduleTemplate ScheduleTemplateTitle
+        {
 			get {
 				return this._scheduleTemplateShepherd.GetEntity();
 			}
@@ -4822,10 +4946,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnScheduleTemplateShepherdSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TimeSlotsTemplate.Add(this);
+                e.Item.ScheduleTemplateTitle.Add(this);
 			}
 			else {
-				e.Item.TimeSlotsTemplate.Remove(this);
+                e.Item.ScheduleTemplateTitle.Remove(this);
 			}
 		}
 	}
@@ -4861,7 +4985,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AdditionalComments", Storage="_comments", FieldType="Text")]
-		public string Comments {
+        public string AdditionalComments
+        {
 			get {
 				return this._comments;
 			}
@@ -4875,7 +5000,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TrailerTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> TrailerTitle
+        {
 			get {
 				return this._shipping;
 			}
@@ -4885,7 +5011,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Trailer2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner VendorName {
+        public Partner Trailer2PartnerTitle
+        {
 			get {
 				return this._vendorName.GetEntity();
 			}
@@ -4904,10 +5031,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TrailerRegistrationNumber = this;
+                e.Item.TrailerTitle = this;
 			}
 			else {
-				e.Item.TrailerRegistrationNumber = null;
+                e.Item.TrailerTitle = null;
 			}
 		}
 		
@@ -4921,10 +5048,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnVendorNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Trailer.Add(this);
+                e.Item.Trailer2PartnerTitle.Add(this);
 			}
 			else {
-				e.Item.Trailer.Remove(this);
+                e.Item.Trailer2PartnerTitle.Remove(this);
 			}
 		}
 	}
@@ -4986,7 +5113,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AdditionalComments", Storage="_comments", FieldType="Text")]
-		public string Comments {
+        public string AdditionalComments
+        {
 			get {
 				return this._comments;
 			}
@@ -5014,7 +5142,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TruckTitle", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> TruckTitle
+        {
 			get {
 				return this._shipping;
 			}
@@ -5024,7 +5153,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShippingOperationOutband2TruckTitle", Storage="_shipping0", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping0 {
+        public Microsoft.SharePoint.Linq.EntitySet<Shipping> ShippingOperationOutband2TruckTitle
+        {
 			get {
 				return this._shipping0;
 			}
@@ -5034,7 +5164,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Truck2PartnerTitle", Storage="_vendorName", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner VendorName {
+        public Partner Truck2PartnerTitle
+        {
 			get {
 				return this._vendorName.GetEntity();
 			}
@@ -5053,10 +5184,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TruckCarRegistrationNumber = this;
+                e.Item.TruckTitle = this;
 			}
 			else {
-				e.Item.TruckCarRegistrationNumber = null;
+                e.Item.TruckTitle = null;
 			}
 		}
 		
@@ -5070,10 +5201,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShipping0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SecurityEscortCarRegistrationNumber = this;
+                e.Item.ShippingOperationOutband2TruckTitle = this;
 			}
 			else {
-				e.Item.SecurityEscortCarRegistrationNumber = null;
+                e.Item.ShippingOperationOutband2TruckTitle = null;
 			}
 		}
 		
@@ -5087,10 +5218,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnVendorNameSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Truck.Add(this);
+                e.Item.Truck2PartnerTitle.Add(this);
 			}
 			else {
-				e.Item.Truck.Remove(this);
+                e.Item.Truck2PartnerTitle.Remove(this);
 			}
 		}
 	}
@@ -5152,7 +5283,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Partner2WarehouseTitle", Storage="_partner", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Partner")]
-		public Microsoft.SharePoint.Linq.EntitySet<Partner> Partner {
+        public Microsoft.SharePoint.Linq.EntitySet<Partner> Partner2WarehouseTitle
+        {
 			get {
 				return this._partner;
 			}
@@ -5182,7 +5314,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CommodityTitle", Storage="_commodity", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Commodity")]
-		public CommodityCommodity Commodity {
+        public CommodityCommodity CommodityTitle
+        {
 			get {
 				return this._commodity.GetEntity();
 			}
@@ -5201,10 +5334,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnPartnerSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Warehouse = this;
+                e.Item.Partner2WarehouseTitle = this;
 			}
 			else {
-				e.Item.Warehouse = null;
+                e.Item.Partner2WarehouseTitle = null;
 			}
 		}
 		
@@ -5218,10 +5351,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Warehouse = this;
+                e.Item.Shipping2WarehouseTitle = this;
 			}
 			else {
-				e.Item.Warehouse = null;
+                e.Item.Shipping2WarehouseTitle = null;
 			}
 		}
 		
@@ -5235,10 +5368,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingPointSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Warehouse = this;
+                e.Item.WarehouseTitle = this;
 			}
 			else {
-				e.Item.Warehouse = null;
+                e.Item.WarehouseTitle = null;
 			}
 		}
 		
@@ -5315,7 +5448,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SPOFreightPO", Storage="_freightPO", FieldType="Text")]
-		public string FreightPO {
+        public string SPOFreightPO
+        {
 			get {
 				return this._freightPO;
 			}
@@ -5329,7 +5463,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOEscortPayerName", Storage="_payerName", FieldType="Text")]
-		public string PayerName {
+        public string SecurityPOEscortPayerName
+        {
 			get {
 				return this._payerName;
 			}
@@ -5343,7 +5478,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOEscortPayerAddress", Storage="_payerAddress", FieldType="Text")]
-		public string PayerAddress {
+        public string SecurityPOEscortPayerAddress
+        {
 			get {
 				return this._payerAddress;
 			}
@@ -5357,7 +5493,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOEscortPayerZip", Storage="_payerZipCode", FieldType="Text")]
-		public string PayerZipCode {
+        public string SecurityPOEscortPayerZip
+        {
 			get {
 				return this._payerZipCode;
 			}
@@ -5371,7 +5508,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOEscortPayerCity", Storage="_payerCty", FieldType="Text")]
-		public string PayerCty {
+        public string SecurityPOEscortPayerCity
+        {
 			get {
 				return this._payerCty;
 			}
@@ -5385,7 +5523,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOEscortPayerNIP", Storage="_payerNIP", FieldType="Text")]
-		public string PayerNIP {
+        public string SecurityPOEscortPayerNIP
+        {
 			get {
 				return this._payerNIP;
 			}
@@ -5399,7 +5538,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SPODispatchDate", Storage="_loadingDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> LoadingDate {
+        public System.Nullable<System.DateTime> SPODispatchDate
+        {
 			get {
 				return this._loadingDate;
 			}
@@ -5413,7 +5553,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOEscortCosts", Storage="_escortCosts", FieldType="Number")]
-		public System.Nullable<double> EscortCosts {
+        public System.Nullable<double> SecurityPOEscortCosts
+        {
 			get {
 				return this._escortCosts;
 			}
@@ -5427,7 +5568,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOEscortCurrency", Storage="_currency", FieldType="Text")]
-		public string Currency {
+        public string SecurityPOEscortCurrency
+        {
 			get {
 				return this._currency;
 			}
@@ -5441,7 +5583,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOEscortProvider", Storage="_securityEscortProvider", FieldType="Text")]
-		public string SecurityEscortProvider {
+        public string SecurityPOEscortProvider
+        {
 			get {
 				return this._securityEscortProvider;
 			}
@@ -5455,7 +5598,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOCity", Storage="_city", FieldType="Text")]
-		public string City {
+        public string SecurityPOCity
+        {
 			get {
 				return this._city;
 			}
@@ -5469,7 +5613,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOCountry", Storage="_country", FieldType="Text")]
-		public string Country {
+        public string SecurityPOCountry
+        {
 			get {
 				return this._country;
 			}
@@ -5483,7 +5628,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOCommodity", Storage="_commodity", FieldType="Text")]
-		public string Commodity {
+        public string SecurityPOCommodity
+        {
 			get {
 				return this._commodity;
 			}
@@ -5497,7 +5643,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecurityPOSentInvoiceToMultiline", Storage="_sendInvoiceTo", FieldType="Note")]
-		public string SendInvoiceTo {
+        public string SecurityPOSentInvoiceToMultiline
+        {
 			get {
 				return this._sendInvoiceTo;
 			}
@@ -5511,7 +5658,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EmailAddress", Storage="_eMail", FieldType="Text")]
-		public string EMail {
+        public string EmailAddress
+        {
 			get {
 				return this._eMail;
 			}
@@ -5525,7 +5673,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOWarehouseAddress", Storage="_warehouseAddress", FieldType="Note")]
-		public string WarehouseAddress {
+        public string FPOWarehouseAddress
+        {
 			get {
 				return this._warehouseAddress;
 			}
@@ -5558,10 +5707,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.EscortPO = this;
+                e.Item.Shipping2EscortPOIndex = this;
 			}
 			else {
-				e.Item.EscortPO = null;
+                e.Item.Shipping2EscortPOIndex = null;
 			}
 		}
 	}
@@ -5625,7 +5774,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOFreightPO", Storage="_freightPO0", FieldType="Text")]
-		public string FreightPO0 {
+        public string FPOFreightPO
+        {
 			get {
 				return this._freightPO0;
 			}
@@ -5639,7 +5789,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOPayerName", Storage="_payerName", FieldType="Text")]
-		public string PayerName {
+        public string FreightPOPayerName
+        {
 			get {
 				return this._payerName;
 			}
@@ -5653,7 +5804,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOPayerAddress", Storage="_payerAddress", FieldType="Text")]
-		public string PayerAddress {
+        public string FreightPOPayerAddress
+        {
 			get {
 				return this._payerAddress;
 			}
@@ -5667,7 +5819,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOPayerZip", Storage="_payerZipCode", FieldType="Text")]
-		public string PayerZipCode {
+        public string FreightPOPayerZip
+        {
 			get {
 				return this._payerZipCode;
 			}
@@ -5681,7 +5834,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOPayerCity", Storage="_payerCity", FieldType="Text")]
-		public string PayerCity {
+        public string FreightPOPayerCity
+        {
 			get {
 				return this._payerCity;
 			}
@@ -5695,7 +5849,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOPayerNIP", Storage="_payerNIP", FieldType="Text")]
-		public string PayerNIP {
+        public string FreightPOPayerNIP
+        {
 			get {
 				return this._payerNIP;
 			}
@@ -5709,7 +5864,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOLoadingDate", Storage="_loadingDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> LoadingDate {
+        public System.Nullable<System.DateTime> FPOLoadingDate
+        {
 			get {
 				return this._loadingDate;
 			}
@@ -5723,7 +5879,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPODispatchDate", Storage="_dispatchDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> DispatchDate {
+        public System.Nullable<System.DateTime> FPODispatchDate
+        {
 			get {
 				return this._dispatchDate;
 			}
@@ -5737,7 +5894,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOTransportUnitType", Storage="_transportUnit", FieldType="Text")]
-		public string TransportUnit {
+        public string FreightPOTransportUnitType
+        {
 			get {
 				return this._transportUnit;
 			}
@@ -5751,7 +5909,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOTransportCosts", Storage="_transportCosts", FieldType="Number")]
-		public System.Nullable<double> TransportCosts {
+        public System.Nullable<double> FreightPOTransportCosts
+        {
 			get {
 				return this._transportCosts;
 			}
@@ -5765,7 +5924,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOCurrency", Storage="_currency", FieldType="Text")]
-		public string Currency {
+        public string FreightPOCurrency
+        {
 			get {
 				return this._currency;
 			}
@@ -5779,7 +5939,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOForwarder", Storage="_forwarder", FieldType="Text")]
-		public string Forwarder {
+        public string FreightPOForwarder
+        {
 			get {
 				return this._forwarder;
 			}
@@ -5793,7 +5954,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOCity", Storage="_city", FieldType="Text")]
-		public string City {
+        public string FreightPOCity
+        {
 			get {
 				return this._city;
 			}
@@ -5807,7 +5969,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOCountry", Storage="_country", FieldType="Text")]
-		public string Country {
+        public string FreightPOCountry
+        {
 			get {
 				return this._country;
 			}
@@ -5821,7 +5984,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOCommodity", Storage="_commodity", FieldType="Text")]
-		public string Commodity {
+        public string FreightPOCommodity
+        {
 			get {
 				return this._commodity;
 			}
@@ -5835,7 +5999,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FreightPOSendInvoiceToMultiline", Storage="_sendInvoiceTo", FieldType="Note")]
-		public string SendInvoiceTo {
+        public string FreightPOSendInvoiceToMultiline
+        {
 			get {
 				return this._sendInvoiceTo;
 			}
@@ -5849,7 +6014,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EmailAddress", Storage="_eMail", FieldType="Text")]
-		public string EMail {
+        public string EmailAddress
+        {
 			get {
 				return this._eMail;
 			}
@@ -5863,7 +6029,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FPOWarehouseAddress", Storage="_warehouseAddress", FieldType="Note")]
-		public string WarehouseAddress {
+        public string FPOWarehouseAddress
+        {
 			get {
 				return this._warehouseAddress;
 			}
@@ -5896,10 +6063,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.FreightPO = this;
+                e.Item.Shipping2FreightPOIndex = this;
 			}
 			else {
-				e.Item.FreightPO = null;
+                e.Item.Shipping2FreightPOIndex = null;
 			}
 		}
 	}
@@ -5961,7 +6128,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolDispatchDate", Storage="_loadingDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> LoadingDate {
+        public System.Nullable<System.DateTime> SealProtocolDispatchDate
+        {
 			get {
 				return this._loadingDate;
 			}
@@ -5975,7 +6143,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolCity", Storage="_city", FieldType="Text")]
-		public string City {
+        public string SealProtocolCity
+        {
 			get {
 				return this._city;
 			}
@@ -5989,7 +6158,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolCountry", Storage="_country", FieldType="Text")]
-		public string Country {
+        public string SealProtocolCountry
+        {
 			get {
 				return this._country;
 			}
@@ -6003,7 +6173,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolForwarder", Storage="_forwarder", FieldType="Text")]
-		public string Forwarder {
+        public string SealProtocolForwarder
+        {
 			get {
 				return this._forwarder;
 			}
@@ -6017,7 +6188,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol1stDriver", Storage="__1stDriver", FieldType="Text")]
-		public string _1stDriver {
+        public string SealProtocol1stDriver
+        {
 			get {
 				return this.@__1stDriver;
 			}
@@ -6031,7 +6203,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2ndDriver", Storage="__2ndDriver", FieldType="Text")]
-		public string _2ndDriver {
+        public string SealProtocol2ndDriver
+        {
 			get {
 				return this.@__2ndDriver;
 			}
@@ -6045,7 +6218,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolDriverPhone", Storage="_driverSPhone", FieldType="Text")]
-		public string DriverSPhone {
+        public string SealProtocolDriverPhone
+        {
 			get {
 				return this._driverSPhone;
 			}
@@ -6059,7 +6233,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolSecurityEscortProvider", Storage="_securityEscortProvider", FieldType="Text")]
-		public string SecurityEscortProvider {
+        public string SealProtocolSecurityEscortProvider
+        {
 			get {
 				return this._securityEscortProvider;
 			}
@@ -6073,7 +6248,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol1stEscort", Storage="__1stEscort", FieldType="Text")]
-		public string _1stEscort {
+        public string SealProtocol1stEscort
+        {
 			get {
 				return this.@__1stEscort;
 			}
@@ -6087,7 +6263,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocol2ndEscort", Storage="__2ndEscort", FieldType="Text")]
-		public string _2ndEscort {
+        public string SealProtocol2ndEscort
+        {
 			get {
 				return this.@__2ndEscort;
 			}
@@ -6101,7 +6278,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolEscortPhone", Storage="_escortPhone", FieldType="Text")]
-		public string EscortPhone {
+        public string SealProtocolEscortPhone
+        {
 			get {
 				return this._escortPhone;
 			}
@@ -6115,7 +6293,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolEscortCarNo", Storage="_escortCarNo", FieldType="Text")]
-		public string EscortCarNo {
+        public string SealProtocolEscortCarNo
+        {
 			get {
 				return this._escortCarNo;
 			}
@@ -6129,7 +6308,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolContainersNo", Storage="_conainersNo", FieldType="Text")]
-		public string ConainersNo {
+        public string SealProtocolContainersNo
+        {
 			get {
 				return this._conainersNo;
 			}
@@ -6143,7 +6323,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolDispatchDateActual", Storage="_actualDispatchDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> ActualDispatchDate {
+        public System.Nullable<System.DateTime> SealProtocolDispatchDateActual
+        {
 			get {
 				return this._actualDispatchDate;
 			}
@@ -6157,7 +6338,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolWarehouse", Storage="_warehouse", FieldType="Text")]
-		public string Warehouse {
+        public string SealProtocolWarehouse
+        {
 			get {
 				return this._warehouse;
 			}
@@ -6171,7 +6353,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolTruckNo", Storage="_truckNo", FieldType="Text")]
-		public string TruckNo {
+        public string SealProtocolTruckNo
+        {
 			get {
 				return this._truckNo;
 			}
@@ -6185,7 +6368,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolTrailerNo", Storage="_trailerNo", FieldType="Text")]
-		public string TrailerNo {
+        public string SealProtocolTrailerNo
+        {
 			get {
 				return this._trailerNo;
 			}
@@ -6218,10 +6402,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SecuritySealProtocol = this;
+                e.Item.SecuritySealProtocolIndex = this;
 			}
 			else {
-				e.Item.SecuritySealProtocol = null;
+                e.Item.SecuritySealProtocolIndex = null;
 			}
 		}
 	}
@@ -6280,7 +6464,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSpan", Storage="_actualTimeSpan", FieldType="Number")]
-		public System.Nullable<double> ActualTimeSpan {
+        public System.Nullable<double> TimeSpan
+        {
 			get {
 				return this._actualTimeSpan;
 			}
@@ -6334,7 +6519,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
 		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Lokalizacja {
+        public override string Location
+        {
 			get {
 				throw new System.InvalidOperationException("Pole Location zostało usunięte z typu zawartości TimeSlot.");
 			}
@@ -6345,7 +6531,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
 		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Description {
+        public override string Comments
+        {
 			get {
 				throw new System.InvalidOperationException("Pole Comments zostało usunięte z typu zawartości TimeSlot.");
 			}
@@ -6356,7 +6543,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
 		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<bool> WydarzenieCałodzienne {
+        public override System.Nullable<bool> fAllDayEvent
+        {
 			get {
 				throw new System.InvalidOperationException("Pole fAllDayEvent zostało usunięte z typu zawartości TimeSlot.");
 			}
@@ -6367,7 +6555,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
 		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<bool> Cykl {
+        public override System.Nullable<bool> fRecurrence
+        {
 			get {
 				throw new System.InvalidOperationException("Pole fRecurrence zostało usunięte z typu zawartości TimeSlot.");
 			}
@@ -6378,7 +6567,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
 		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<bool> ObszarRoboczy {
+        public override System.Nullable<bool> WorkspaceLink
+        {
 			get {
 				throw new System.InvalidOperationException("Pole WorkspaceLink zostało usunięte z typu zawartości TimeSlot.");
 			}
@@ -6406,7 +6596,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
 		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<Kategoria> Kategoria {
+        public override System.Nullable<Kategoria> Category
+        {
 			get {
 				throw new System.InvalidOperationException("Pole Category zostało usunięte z typu zawartości TimeSlot.");
 			}
@@ -6416,7 +6607,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingIndex", Storage="_shippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public ShippingShipping ShippingIndex {
+        public ShippingShipping TimeSlot2ShippingIndex
+        {
 			get {
 				return this._shippingIndex.GetEntity();
 			}
@@ -6426,7 +6618,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_shippingPoint", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping Point")]
-		public ShippingPoint ShippingPoint {
+        public ShippingPoint TimeSlot2ShippingPointLookup
+        {
 			get {
 				return this._shippingPoint.GetEntity();
 			}
@@ -6462,10 +6655,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingPointSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TimeSlot.Add(this);
+                e.Item.TimeSlot2ShippingPointLookup.Add(this);
 			}
 			else {
-				e.Item.TimeSlot.Remove(this);
+                e.Item.TimeSlot2ShippingPointLookup.Remove(this);
 			}
 		}
 	}
@@ -6528,10 +6721,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Carrier = this;
+                e.Item.CarrierTitle = this;
 			}
 			else {
-				e.Item.Carrier = null;
+                e.Item.CarrierTitle = null;
 			}
 		}
 	}
@@ -6626,10 +6819,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Commodity = this;
+                e.Item.LoadDescription2Commodity = this;
 			}
 			else {
-				e.Item.Commodity = null;
+                e.Item.LoadDescription2Commodity = null;
 			}
 		}
 		
@@ -6643,10 +6836,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Commodity = this;
+                e.Item.Route2Commodity = this;
 			}
 			else {
-				e.Item.Commodity = null;
+                e.Item.Route2Commodity = null;
 			}
 		}
 		
@@ -6660,10 +6853,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnWarehouseSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Commodity = this;
+                e.Item.CommodityTitle = this;
 			}
 			else {
-				e.Item.Commodity = null;
+                e.Item.CommodityTitle = null;
 			}
 		}
 	}
@@ -6726,10 +6919,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnCityTypeSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CountryName = this;
+                e.Item.CountryTitle = this;
 			}
 			else {
-				e.Item.CountryName = null;
+                e.Item.CountryTitle = null;
 			}
 		}
 	}
@@ -6825,10 +7018,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SAPDestinationPlant = this;
+                e.Item.SAPDestinationPlantTitle = this;
 			}
 			else {
-				e.Item.SAPDestinationPlant = null;
+                e.Item.SAPDestinationPlantTitle = null;
 			}
 		}
 	}
@@ -6891,10 +7084,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShipmentType = this;
+                e.Item.ShipmentTypeTitle = this;
 			}
 			else {
-				e.Item.ShipmentType = null;
+                e.Item.ShipmentTypeTitle = null;
 			}
 		}
 	}
@@ -6946,7 +7139,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Modified", Storage="_zmodyfikowane", ReadOnly=true, FieldType="DateTime")]
-		public System.Nullable<System.DateTime> Zmodyfikowane {
+        public System.Nullable<System.DateTime> Modified
+        {
 			get {
 				return this._zmodyfikowane;
 			}
@@ -7000,7 +7194,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Editor", Storage="_zmodyfikowanePrzezIdentyfikator", ReadOnly=true, FieldType="User", IsLookupId=true)]
-		public System.Nullable<int> ZmodyfikowanePrzezIdentyfikator {
+        public System.Nullable<int> Editor
+        {
 			get {
 				return this._zmodyfikowanePrzezIdentyfikator;
 			}
@@ -7037,10 +7232,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnAlarmsAndEventsSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingIndex = this;
+                e.Item.AlarmsAndEventsList2ShippingIndex = this;
 			}
 			else {
-				e.Item.ShippingIndex = null;
+                e.Item.AlarmsAndEventsList2ShippingIndex = null;
 			}
 		}
 		
@@ -7071,10 +7266,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnLoadDescriptionSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingIndex = this;
+                e.Item.LoadDescription2ShippingIndex = this;
 			}
 			else {
-				e.Item.ShippingIndex = null;
+                e.Item.LoadDescription2ShippingIndex = null;
 			}
 		}
 		
@@ -7088,10 +7283,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnTimeSlotSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlot> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.ShippingIndex = this;
+                e.Item.TimeSlot2ShippingIndex = this;
 			}
 			else {
-				e.Item.ShippingIndex = null;
+                e.Item.TimeSlot2ShippingIndex = null;
 			}
 		}
 	}
@@ -7170,10 +7365,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TransportUnitType = this;
+                e.Item.TransportUnitTypeTitle = this;
 			}
 			else {
-				e.Item.TransportUnitType = null;
+                e.Item.TransportUnitTypeTitle = null;
 			}
 		}
 		
@@ -7187,10 +7382,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities {
 		
 		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TransportUnit = this;
+                e.Item.Shipping2TransportUnitType = this;
 			}
 			else {
-				e.Item.TransportUnit = null;
+                e.Item.Shipping2TransportUnitType = null;
 			}
 		}
 	}
