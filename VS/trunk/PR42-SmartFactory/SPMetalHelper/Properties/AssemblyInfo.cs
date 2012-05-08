@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("Smart Factory")]
-[assembly: AssemblyCopyright("Copyright © CAS 2011")]
+[assembly: AssemblyCopyright("Copyright © CAS 2012")]
 [assembly: AssemblyTrademark("Smart Factory")]
 [assembly: AssemblyCulture("")]
 
