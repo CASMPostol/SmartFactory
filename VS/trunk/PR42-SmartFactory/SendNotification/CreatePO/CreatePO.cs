@@ -62,36 +62,36 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
                             where idx.Identyfikator == _docId
                             select idx).First();
           _stt = "FreightPO";
-          if (_sp.Route != null)
+          if (_sp.Shipping2RouteTitle != null)
           {
-            Route _rt = _sp.Route;
-            _fpo.TransportCosts = _rt.TransportCosts.GetValueOrDefault(0.0);
-            _fpo.TransportUnit = _sp.TransportUnit.Title();
-            _fpo.Commodity = _rt.Commodity.Title();
-            _fpo.Currency = _rt.Currency.Title();
-            _fpo.FreightPO0 = _rt.FreightPO.NotAvailable();
+              Route _rt = _sp.Shipping2RouteTitle;
+            _fpo.FreightPOTransportCosts = _rt.TransportCosts.GetValueOrDefault(0.0);
+            _fpo.FreightPOTransportUnitType = _sp.Shipping2TransportUnitType.Title();
+            _fpo.FreightPOCommodity = _rt.Route2Commodity.Title();
+            _fpo.FreightPOCurrency = _rt.CurrencyTitle.Title();
+            _fpo.FPOFreightPO = _rt.GoodsHandlingPO.NotAvailable();
             _stt = "FreightPO0";
-            if (_rt.FreightPayer != null)
+            if (_rt.FreightPayerTitle != null)
             {
-              _fpo.PayerAddress = _rt.FreightPayer != null ? _rt.FreightPayer.Address : String.Empty.NotAvailable();
-              _fpo.PayerNIP = _rt.FreightPayer.NIPVATNo.NotAvailable();
-              _fpo.PayerName = _rt.FreightPayer.Title();
-              _fpo.SendInvoiceTo = _rt.FreightPayer.SendInvoiceTo.NotAvailable();
-              _fpo.PayerZipCode = _rt.FreightPayer.KodPocztowy.NotAvailable();
-              _fpo.PayerCity = _rt.FreightPayer.Miasto.NotAvailable();
+                _fpo.FreightPOPayerAddress = _rt.FreightPayerTitle != null ? _rt.FreightPayerTitle.CompanyAddress : String.Empty.NotAvailable();
+                _fpo.FreightPOPayerNIP = _rt.FreightPayerTitle.NIP.NotAvailable();
+                _fpo.FreightPOPayerName = _rt.FreightPayerTitle.Title();
+                _fpo.FreightPOSendInvoiceToMultiline = _rt.FreightPayerTitle.SendInvoiceToMultiline.NotAvailable();
+                _fpo.FreightPOPayerZip = _rt.FreightPayerTitle.WorkZip.NotAvailable();
+                _fpo.FreightPOPayerCity = _rt.FreightPayerTitle.WorkCity.NotAvailable();
             }
           }
           _stt = "Route";
-          _fpo.Forwarder = _sp.VendorName.Title();
-          _fpo.City = _sp.City.Title();
-          _fpo.Country = _sp.City == null ? String.Empty.NotAvailable() : _sp.City.CountryName.Title();
-          _fpo.DispatchDate = _sp.EndTime;
-          _fpo.EMail = _sp.VendorName == null ? String.Empty.NotAvailable() : _sp.VendorName.EMail.NotAvailable();
-          _fpo.LoadingDate = _sp.StartTime;
+          _fpo.FreightPOForwarder = _sp.PartnerTitle.Title();
+          _fpo.FreightPOCity = _sp.Shipping2City.Title();
+          _fpo.FreightPOCountry = _sp.Shipping2City == null ? String.Empty.NotAvailable() : _sp.Shipping2City.CountryTitle.Title();
+          _fpo.FPODispatchDate = _sp.EndTime;
+          _fpo.EmailAddress = _sp.PartnerTitle == null ? String.Empty.NotAvailable() : _sp.PartnerTitle.EmailAddress.NotAvailable();
+          _fpo.FPOLoadingDate = _sp.StartTime;
           _fpo.Tytuł = String.Format("FREIGHT PURCHASE ORDER FPO-1{0, 5}", _fpo.Identyfikator.Value);
-          _fpo.WarehouseAddress = _sp.Warehouse == null ? String.Empty.NotAvailable() : _sp.Warehouse.WarehouseAddress.NotAvailable();
+          _fpo.FPOWarehouseAddress = _sp.Shipping2WarehouseTitle == null ? String.Empty.NotAvailable() : _sp.Shipping2WarehouseTitle.WarehouseAddress.NotAvailable();
           _stt = "WarehouseAddress ";
-          _sp.FreightPO = _fpo;
+          _sp.Shipping2FreightPOIndex = _fpo;
           _EDC.SubmitChanges();
         };
         _stt = "SubmitChanges";

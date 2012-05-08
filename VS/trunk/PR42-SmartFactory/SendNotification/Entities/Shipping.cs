@@ -26,19 +26,19 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
       RequiredOperations _escrt = 0;
       if (_alarm)
       {
-        if (this.VendorName != null)
+          if (this.PartnerTitle != null)
           _cr = RequiredOperations.AddAlarm2Carrier;
-        if (this.SecurityEscortProvider != null)
+          if (this.ShippingOperationOutband2PartnerTitle != null)
           _escrt = RequiredOperations.AddAlarm2Escort;
       }
       if (_email)
       {
-        if (this.VendorName != null)
+          if (this.PartnerTitle != null)
           _cr |= RequiredOperations.SendEmail2Carrier;
-        if (this.SecurityEscortProvider != null)
+          if (this.ShippingOperationOutband2PartnerTitle != null)
           _escrt |= RequiredOperations.SendEmail2Escort;
       }
-      switch (this.State.Value)
+      switch (this.ShippingState.Value)
       {
         case Entities.State.WaitingForCarrierData:
           _ret = _cr;

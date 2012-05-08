@@ -11,11 +11,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
     {
       var _ccdl = (from _ccx in _EDC.DistributionList
                    where _ccx.ShepherdRole.GetValueOrDefault(Entities.ShepherdRole.Invalid) == _ccRole
-                   select new { Email = _ccx.EMail }).FirstOrDefault();
+                   select new { Email = _ccx.EmailAddress }).FirstOrDefault();
       if (_ccdl == null || String.IsNullOrEmpty(_ccdl.Email))
         _ccdl = (from _ccx in _EDC.DistributionList
                  where _ccx.ShepherdRole.GetValueOrDefault(Entities.ShepherdRole.Invalid) == Entities.ShepherdRole.Administrator
-                 select new { Email = _ccx.EMail }).FirstOrDefault();
+                 select new { Email = _ccx.EmailAddress }).FirstOrDefault();
       return _ccdl == null ? CommonDefinition.UnknownEmail : _ccdl.Email.UnknownIfEmpty();
     }
   }

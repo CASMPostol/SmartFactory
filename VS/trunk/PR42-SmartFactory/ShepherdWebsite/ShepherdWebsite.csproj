@@ -503,7 +503,9 @@
     <Content Include="Lists\Dictionaries\DistributionListTemplate\DistributionListInstance\Elements.xml" />
     <Content Include="Lists\Dictionaries\DistributionListTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\DriverTemplate\Elements.xml" />
-    <Content Include="Lists\Dictionaries\DriverTemplate\DriverList\Elements.xml" />
+    <Content Include="Lists\Dictionaries\DriverTemplate\DriverList\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\DriverTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\FreightPayerTemplate\FreightPayerList\Elements.xml" />

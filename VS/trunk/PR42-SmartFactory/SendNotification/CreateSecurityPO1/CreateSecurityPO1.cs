@@ -72,36 +72,36 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
                            where idx.Identyfikator == _docId
                            select idx).First();
           _stt = "EscortPO";
-          if (_sp.Route != null)
+          if (_sp.Shipping2RouteTitle != null)
           {
-            _epo.Commodity = _sp.Route.Commodity.Title();
-            if (_sp.Route.FreightPayer != null)
+              _epo.SecurityPOCommodity = _sp.Shipping2RouteTitle.Route2Commodity.Title();
+              if (_sp.Shipping2RouteTitle.FreightPayerTitle != null)
             {
-              _epo.PayerAddress = _sp.Route.FreightPayer != null ? _sp.Route.FreightPayer.Address : String.Empty.NotAvailable();
-              _epo.PayerCty = _sp.Route.FreightPayer.Miasto.NotAvailable();
-              _epo.PayerName = _sp.Route.FreightPayer.Title();
-              _epo.PayerNIP = _sp.Route.FreightPayer.NIPVATNo.NotAvailable();
-              _epo.PayerZipCode = _sp.Route.FreightPayer.KodPocztowy.NotAvailable();
-              _epo.SendInvoiceTo = _sp.Route.FreightPayer.SendInvoiceTo.NotAvailable();
+                _epo.SecurityPOEscortPayerAddress = _sp.Shipping2RouteTitle.FreightPayerTitle != null ? _sp.Shipping2RouteTitle.FreightPayerTitle.CompanyAddress : String.Empty.NotAvailable();
+                _epo.SecurityPOEscortPayerCity = _sp.Shipping2RouteTitle.FreightPayerTitle.WorkCity.NotAvailable();
+                _epo.SecurityPOEscortPayerName = _sp.Shipping2RouteTitle.FreightPayerTitle.Title();
+                _epo.SecurityPOEscortPayerNIP = _sp.Shipping2RouteTitle.FreightPayerTitle.NIP.NotAvailable();
+                _epo.SecurityPOEscortPayerZip = _sp.Shipping2RouteTitle.FreightPayerTitle.WorkZip.NotAvailable();
+                _epo.SecurityPOSentInvoiceToMultiline = _sp.Shipping2RouteTitle.FreightPayerTitle.SendInvoiceToMultiline.NotAvailable();
             }
           }
           _stt = "SendInvoiceTo";
-          if (_sp.SecurityEscortProvider != null)
+          if (_sp.ShippingOperationOutband2PartnerTitle != null)
           {
-            _epo.Currency = _sp.SecurityEscort.Currency.Title();
-            _epo.EscortCosts = _sp.SecurityEscort.SecurityCost;
-            _epo.FreightPO = _sp.SecurityEscort.SecurityEscortPO;
-            _epo.SecurityEscortProvider = _sp.SecurityEscortProvider.Title();
+              _epo.SecurityPOEscortCurrency = _sp.SecurityEscortCatalogTitle.CurrencyTitle.Title();
+              _epo.SecurityPOEscortCosts = _sp.SecurityEscortCatalogTitle.SecurityCost;
+              _epo.SPOFreightPO = _sp.SecurityEscortCatalogTitle.SecurityEscortPO;
+              _epo.SecurityPOEscortProvider = _sp.ShippingOperationOutband2PartnerTitle.Title();
           }
           _stt = "SecurityEscortProvider";
-          _epo.City = _sp.City.Title();
-          _epo.Country = _sp.City == null ? String.Empty.NotAvailable() : _sp.City.CountryName.Title();
-          _epo.LoadingDate = _sp.StartTime;
-          _epo.EMail = _sp.VendorName == null ? String.Empty.NotAvailable() : _sp.VendorName.EMail.NotAvailable();
+          _epo.SecurityPOCity = _sp.Shipping2City.Title();
+          _epo.SecurityPOCountry = _sp.Shipping2City == null ? String.Empty.NotAvailable() : _sp.Shipping2City.CountryTitle.Title();
+          _epo.SPODispatchDate = _sp.StartTime;
+          _epo.EmailAddress = _sp.PartnerTitle == null ? String.Empty.NotAvailable() : _sp.PartnerTitle.EmailAddress.NotAvailable();
           _epo.Tytuł = String.Format("SECURITY ESCORT PURCHASE ORDER EPO-2{0, 5}", _epo.Identyfikator);
-          _epo.WarehouseAddress = _sp.Warehouse == null ? String.Empty.NotAvailable() : _sp.Warehouse.WarehouseAddress.NotAvailable();
+          _epo.FPOWarehouseAddress = _sp.Shipping2WarehouseTitle == null ? String.Empty.NotAvailable() : _sp.Shipping2WarehouseTitle.WarehouseAddress.NotAvailable();
           _stt = "WarehouseAddress";
-          _sp.EscortPO = _epo;
+          _sp.Shipping2EscortPOIndex = _epo;
           _EDC.SubmitChanges();
         }
         _stt = "SubmitChanges";

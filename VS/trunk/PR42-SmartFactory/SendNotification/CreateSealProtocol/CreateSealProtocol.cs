@@ -68,25 +68,25 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
                                 where idx.Identyfikator == _docId
                                 select idx).First();
           Dictionary<TeamMembers, string> _team = GetTeamData(_sp);
-          _sprt._1stDriver = _team[TeamMembers._1stDriver];
-          _sprt._2ndDriver = _team[TeamMembers._2ndDriver];
-          _sprt._1stEscort = _team[TeamMembers._1stEscort];
-          _sprt._2ndEscort = _team[TeamMembers._2ndEscort];
-          _sprt.ActualDispatchDate = _sp.StartTime;
-          _sprt.City = _sp.City.Title();
-          _sprt.ConainersNo = _sp.ContainerNo.NotAvailable();
-          _sprt.Country = _sp.City == null ? String.Empty : _sp.City.CountryName.Title();
-          _sprt.LoadingDate = _sp.StartTime;
-          _sprt.DriverSPhone = _team[TeamMembers.DriverSPhone];
-          _sprt.EscortCarNo = _team[TeamMembers.EscortCarNo];
-          _sprt.EscortPhone = _team[TeamMembers.EscortPhone];
-          _sprt.Forwarder = _sp.VendorName.Title();
-          _sprt.SecurityEscortProvider = _sp.SecurityEscortProvider.Title();
-          _sp.SecuritySealProtocol = _sprt;
-          _sprt.TrailerNo = _team[TeamMembers.TrailerNo];
-          _sprt.TruckNo = _team[TeamMembers.TruckNo];
+          _sprt.SealProtocol1stDriver = _team[TeamMembers._1stDriver];
+          _sprt.SealProtocol2ndDriver = _team[TeamMembers._2ndDriver];
+          _sprt.SealProtocol1stEscort = _team[TeamMembers._1stEscort];
+          _sprt.SealProtocol2ndEscort = _team[TeamMembers._2ndEscort];
+          _sprt.SealProtocolDispatchDateActual = _sp.StartTime;
+          _sprt.SealProtocolCity = _sp.Shipping2City.Title();
+          _sprt.SealProtocolContainersNo = _sp.ContainerNo.NotAvailable();
+          _sprt.SealProtocolCountry = _sp.Shipping2City == null ? String.Empty : _sp.Shipping2City.CountryTitle.Title();
+          _sprt.SealProtocolDispatchDate = _sp.StartTime;
+          _sprt.SealProtocolDriverPhone = _team[TeamMembers.DriverSPhone];
+          _sprt.SealProtocolEscortCarNo = _team[TeamMembers.EscortCarNo];
+          _sprt.SealProtocolEscortPhone = _team[TeamMembers.EscortPhone];
+          _sprt.SealProtocolForwarder = _sp.PartnerTitle.Title();
+          _sprt.SealProtocolSecurityEscortProvider = _sp.ShippingOperationOutband2PartnerTitle.Title();
+          _sp.SecuritySealProtocolIndex = _sprt;
+          _sprt.SealProtocolTrailerNo = _team[TeamMembers.TrailerNo];
+          _sprt.SealProtocolTruckNo = _team[TeamMembers.TruckNo];
           _sprt.Tytuł = String.Format("Security Seal & Signature Protocol SSP-3{0, 5}", _sprt.Identyfikator);
-          _sprt.Warehouse = _sp.Warehouse == null ? String.Empty.NotAvailable() : _sp.Warehouse.WarehouseAddress.NotAvailable();
+          _sprt.SealProtocolWarehouse = _sp.Shipping2WarehouseTitle == null ? String.Empty.NotAvailable() : _sp.Shipping2WarehouseTitle.WarehouseAddress.NotAvailable();
           _stt = "WarehouseAddress ";
           _EDC.SubmitChanges();
         }
@@ -109,35 +109,35 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
       _ret.Add(TeamMembers._2ndEscort, String.Empty.NotAvailable());
       _ret.Add(TeamMembers.DriverSPhone, String.Empty.NotAvailable());
       _ret.Add(TeamMembers.EscortPhone, String.Empty.NotAvailable());
-      _ret.Add(TeamMembers.EscortCarNo, _sp.SecurityEscortCarRegistrationNumber.Title());
-      _ret.Add(TeamMembers.TrailerNo, _sp.TrailerRegistrationNumber.Title());
-      _ret.Add(TeamMembers.TruckNo, _sp.TruckCarRegistrationNumber.Title());
+      _ret.Add(TeamMembers.EscortCarNo, _sp.ShippingOperationOutband2TruckTitle.Title());
+      _ret.Add(TeamMembers.TrailerNo, _sp.TrailerTitle.Title());
+      _ret.Add(TeamMembers.TruckNo, _sp.TruckTitle.Title());
       TeamMembers _cd = TeamMembers._1stDriver;
       TeamMembers _cse = TeamMembers._1stEscort;
       foreach (ShippingDriversTeam _std in _sp.ShippingDriversTeam)
       {
-        if (_std.Driver == null)
+          if (_std.DriverTitle == null)
           continue;
-        if (_std.Driver.VendorName.ServiceType.Value != ServiceType.SecurityEscortProvider)
+          if (_std.DriverTitle.Driver2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider)
         {
-          _ret[_cd] = _std.Driver.Title();
+            _ret[_cd] = _std.DriverTitle.Title();
           if (_cd == TeamMembers._1stDriver)
           {
             _cd = TeamMembers._2ndDriver;
-            _ret[TeamMembers.DriverSPhone] = _std.Driver != null ? _std.Driver.NumerTelefonuKomórkowego.NotAvailable() : String.Empty.NotAvailable();
+            _ret[TeamMembers.DriverSPhone] = _std.DriverTitle != null ? _std.DriverTitle.CellPhone.NotAvailable() : String.Empty.NotAvailable();
           }
         }
-        else if (_std.Driver.VendorName.ServiceType.Value == ServiceType.SecurityEscortProvider)
+          else if (_std.DriverTitle.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider)
         {
-          _ret[_cse] = _std.Driver.Title();
+            _ret[_cse] = _std.DriverTitle.Title();
           if (_cse == TeamMembers._1stEscort)
           {
             _cse = TeamMembers._2ndEscort;
-            _ret[TeamMembers.EscortPhone] = _std.Driver != null ? _std.Driver.NumerTelefonuKomórkowego.NotAvailable() : String.Empty.NotAvailable();
+            _ret[TeamMembers.EscortPhone] = _std.DriverTitle != null ? _std.DriverTitle.CellPhone.NotAvailable() : String.Empty.NotAvailable();
           }
         }
         else
-          new ApplicationException(String.Format("Wrong ServiceType = {0}", _std.Driver.VendorName.ServiceType.Value));
+              new ApplicationException(String.Format("Wrong ServiceType = {0}", _std.DriverTitle.Driver2PartnerTitle.ServiceType.Value));
       }
       return _ret;
     }

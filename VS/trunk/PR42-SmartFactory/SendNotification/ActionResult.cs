@@ -24,7 +24,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
         {
           foreach (string _msg in this)
           {
-            Anons _entry = new Anons() { Tytuł = "ReportActionResult", Treść = _msg, Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
+              Anons _entry = new Anons() { Tytuł = "ReportActionResult", Body = _msg, Expires = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
             EDC.EventLogList.InsertOnSubmit(_entry);
           }
           EDC.SubmitChanges();

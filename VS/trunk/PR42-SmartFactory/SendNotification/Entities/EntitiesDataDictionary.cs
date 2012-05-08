@@ -26,37 +26,37 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
     {
       CommodityCommodity _commodity = GetOrAdd<CommodityCommodity>(m_EDC.Commodity, m_CommodityCommodity, _warehouse.Commodity, false);
       Warehouse _wh = Create<Warehouse>(m_EDC.Warehouse, m_Warehouse, _warehouse.Title, false);
-      _wh.Commodity = _commodity;
+      _wh.CommodityTitle = _commodity;
     }
     internal void AddShippingPoint(PreliminaryDataRouteShippingPointRow _shippingPoint)
     {
       Warehouse _wh = GetOrAdd<Warehouse>(m_EDC.Warehouse, m_Warehouse, _shippingPoint.Warehouse, false);
       ShippingPoint _sp = Create<ShippingPoint>(m_EDC.ShippingPoint, m_ShippingPoint, _shippingPoint.Title, false);
-      _sp.Description = _shippingPoint.Description;
+      _sp.ShippingPointDescription = _shippingPoint.Description;
       _sp.Direction = ParseDirection(_shippingPoint.Direction);
-      _sp.Warehouse = _wh;
+      _sp.WarehouseTitle = _wh;
     }
     internal void AddPartner(PreliminaryDataRoutePartnersRow _partner, bool _testData)
     {
       Partner _prtnr = Create<Partner>(m_EDC.Partner, m_Partner, _partner.Name, _testData);
-      _prtnr.EMail = DummyEmail(_partner.E_Mail, "AdresEMail", _testData);
-      _prtnr.NumerTelefonuKomórkowego = DummyName(_partner.Mobile, "Mobile", _testData); ;
+      _prtnr.EmailAddress = DummyEmail(_partner.E_Mail, "AdresEMail", _testData);
+      _prtnr.CellPhone = DummyName(_partner.Mobile, "Mobile", _testData); ;
       _prtnr.ServiceType = ParseServiceType(_partner.ServiceType);
-      _prtnr.TelefonSłużbowy = DummyName(_partner.BusinessPhone, "BusinessPhone", _testData); ;
-      _prtnr.VendorNumberFromSAP = DummyName(_partner.NumberFromSAP, "NumberFromSAP", _testData); ;
-      _prtnr.Warehouse = GetOrAdd<Warehouse>(m_EDC.Warehouse, m_Warehouse, _partner.Warehouse, false);
+      _prtnr.WorkPhone = DummyName(_partner.BusinessPhone, "BusinessPhone", _testData); ;
+      _prtnr.VendorNumber = DummyName(_partner.NumberFromSAP, "NumberFromSAP", _testData); ;
+      _prtnr.Partner2WarehouseTitle = GetOrAdd<Warehouse>(m_EDC.Warehouse, m_Warehouse, _partner.Warehouse, false);
     }
     internal void AddFreightPayer(PreliminaryDataRoutePayersRow item, bool _testData)
     {
       FreightPayer _fp = Create<FreightPayer>(m_EDC.FreightPayer, m_FreightPayer, item.Freight_Payer__I_C__MainLeg, _testData);
-      _fp.Address = DummyName(item.Address, "Address", _testData);
-      _fp.Company = DummyName(item.Name, "Company", _testData);
-      _fp.KodPocztowy = item.ZIP_Postal_Code;
-      _fp.KrajRegion = item.Country_Region;
-      _fp.Miasto = item.City;
-      _fp.NIPVATNo = DummyName(item.NIP___VAT_No, "NIPVATNo", _testData);
+      _fp.CompanyAddress = DummyName(item.Address, "Address", _testData);
+      _fp.PayerName = DummyName(item.Name, "Company", _testData);
+      _fp.WorkZip = item.ZIP_Postal_Code;
+      _fp.WorkCountry = item.Country_Region;
+      _fp.WorkCity = item.City;
+      _fp.NIP = DummyName(item.NIP___VAT_No, "NIPVATNo", _testData);
       string _sitf = "{0}\n{1}\n{2} {3}\n{4}";
-      _fp.SendInvoiceTo = DummyName(String.Format(_sitf, item.Name2, item.Country_Region6, item.ZIP_Postal_Code4, item.City5, item.Address3), "SendInvoiceTo", _testData);
+      _fp.SendInvoiceToMultiline = DummyName(String.Format(_sitf, item.Name2, item.Country_Region6, item.ZIP_Postal_Code4, item.City5, item.Address3), "SendInvoiceTo", _testData);
     }
     internal void AddRoute(PreliminaryDataRouteRoute _route, bool _testData)
     {
@@ -81,23 +81,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
           case ServiceType.Forwarder:
             Route _rt = new Route()
             {
-              BusinessDescription = _busnessDscrptn,
-              Carrier = _CarrierCarrierType,
-              CityName = _CityType,
-              CityOfDeparture = _route.Dept_City,
-              Currency = _Currency,
-              FreightPayer = _freightPayer,
-              FreightPO = _route.PO_NUMBER,
+                Route2BusinessDescriptionTitle = _busnessDscrptn,
+                CarrierTitle = _CarrierCarrierType,
+              Route2CityTitle = _CityType,
+              DepartureCity = _route.Dept_City,
+              CurrencyTitle = _Currency,
+              FreightPayerTitle = _freightPayer,
+              GoodsHandlingPO = _route.PO_NUMBER,
               MaterialMaster = _sku,
-              PortOfDeparture = _route.Port_of_Dept,
+              DeparturePort = _route.Port_of_Dept,
               RemarkMM = _route.Remarks,
-              SAPDestinationPlant = _SAPDestinationPlant,
-              ShipmentType = _ShipmentType,
+              SAPDestinationPlantTitle = _SAPDestinationPlant,
+              ShipmentTypeTitle = _ShipmentType,
               Tytuł = _title,
               TransportCosts = _testData ? 4567.8 : _route.Total_Cost_per_UoM.String2Double(),
-              TransportUnitType = _TransportUnitTypeTranspotUnit,
-              VendorName = _prtnr,
-              Commodity = _cmdty,
+              TransportUnitTypeTitle = _TransportUnitTypeTranspotUnit,
+              PartnerTitle = _prtnr,
+              Route2Commodity = _cmdty,
               Incoterm = _route.Selling_Incoterm
             };
             m_EDC.Route.InsertOnSubmit(_rt);
@@ -105,16 +105,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
           case ServiceType.SecurityEscortProvider:
             SecurityEscortCatalog _sec = new SecurityEscortCatalog()
             {
-              BusinessDescription = _busnessDscrptn,
-              Currency = _Currency,
+              SecurityEscortCatalog2BusinessDescriptionTitle = _busnessDscrptn,
+              CurrencyTitle = _Currency,
               EscortDestination = _route.Dest_City,
-              FreightPayer = _freightPayer,
+              FreightPayerTitle = _freightPayer,
               MaterialMaster = _sku,
               RemarkMM = _route.Remarks,
               SecurityCost = _testData ? 345.6 : _route.Total_Cost_per_UoM.String2Double(),
               SecurityEscortPO = _route.PO_NUMBER,
               Tytuł = _title,
-              VendorName = _prtnr
+              PartnerTitle = _prtnr
             };
             m_EDC.SecurityEscortRoute.InsertOnSubmit(_sec);
             break;
@@ -144,8 +144,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
         DestinationMarket _DestinationMarket = new DestinationMarket()
           {
             Tytuł = _dstName,
-            CityName = _CityType,
-            Market = _mrkt
+            DestinationMarket2CityTitle = _CityType,
+            MarketTitle = _mrkt
           };
         m_EDC.DestinationMarket.InsertOnSubmit(_DestinationMarket);
         m_EDC.SubmitChanges();
@@ -159,7 +159,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
     internal void AddRole(PreliminaryDataRouteRole _role, bool _testData)
     {
       DistributionList _dl = Create<DistributionList>(m_EDC.DistributionList, m_DistributionList, _role.Title, false);
-      _dl.EMail = DummyEmail(_role.E_mail, "AddressEmail", _testData);
+      _dl.EmailAddress = DummyEmail(_role.E_mail, "AddressEmail", _testData);
       try
       {
         _dl.ShepherdRole = (ShepherdRole)Enum.Parse(typeof(ShepherdRole), _role.Shepherd_Role, true);
@@ -244,12 +244,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.Entities
     private CityType GetOrAddCity(string _city, string _country, string _area)
     {
       CountryClass _countryClass = GetOrAdd(m_EDC.Country, m_CountryClass, _country, false);
-      if (_countryClass.Group.IsNullOrEmpty() && !_area.IsNullOrEmpty())
-        _countryClass.Group = _area;
+      if (_countryClass.CountryGroup.IsNullOrEmpty() && !_area.IsNullOrEmpty())
+          _countryClass.CountryGroup = _area;
       if (m_CityType.ContainsKey(_city))
         return m_CityType[_city];
       CityType _prtnr = Create<CityType>(m_EDC.City, m_CityType, _city, false);
-      _prtnr.CountryName = _countryClass;
+      _prtnr.CountryTitle = _countryClass;
       return _prtnr;
     }
     private EntitiesDataContext m_EDC;

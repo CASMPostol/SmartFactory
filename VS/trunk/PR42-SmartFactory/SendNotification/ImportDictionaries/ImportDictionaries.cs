@@ -71,7 +71,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
         {StartHour._15, EndHour._16}, {StartHour._16, EndHour._17}, {StartHour._17, EndHour._18}, {StartHour._18, EndHour._19}, {StartHour._19, EndHour._20},
         {StartHour._20, EndHour._21}, {StartHour._21, EndHour._22}, {StartHour._22, EndHour._23}, {StartHour._23, EndHour._0}
       };
-      ScheduleTemplate _schedule = new ScheduleTemplate() { ShippingPoint = _sp, Tytuł = _sp.Title() + " All day schedule." };
+      ScheduleTemplate _schedule = new ScheduleTemplate() { ShippingPointLookupTitle = _sp, Tytuł = _sp.Title() + " All day schedule." };
       _EDC.ScheduleTemplate.InsertOnSubmit(_schedule);
       _EDC.SubmitChanges();
       List<Day> _days = new List<Day>() { { Day.Friday }, { Day.Monday }, { Day.Saturday }, { Day.Sunday }, { Day.Thursday }, { Day.Tuesday }, { Day.Wednesday } }; 
@@ -79,7 +79,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
       {
         List<TimeSlotsTemplate> _ts = new List<TimeSlotsTemplate>();
         foreach (StartHour _sh in _hours.Keys)
-          _ts.Add(new TimeSlotsTemplate() { Day = _day, EndHour = _hours[_sh], EndMinute = EndMinute._0, StartHour = _sh, StartMinute = StartMinute._0, ScheduleTemplateShepherd = _schedule });
+            _ts.Add(new TimeSlotsTemplate() { TimeSlotsTemplateDay = _day, TimeSlotsTemplateEndHour = _hours[_sh], TimeSlotsTemplateEndMinute = EndMinute._0, TimeSlotsTemplateStartHour = _sh, TimeSlotsTemplateStartMinute = StartMinute._0, ScheduleTemplateTitle = _schedule });
         _EDC.TimeSlotsTemplate.InsertAllOnSubmit(_ts);
         _EDC.SubmitChanges();
       }

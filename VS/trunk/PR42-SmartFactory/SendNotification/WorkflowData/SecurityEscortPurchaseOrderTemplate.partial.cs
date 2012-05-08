@@ -33,17 +33,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
                          select idx).First();
         return new SecurityEscortPurchaseOrderTemplate()
         {
-          SPOFreightPO = _fpo.FreightPO.NotAvailable(),
-          EmaiAddressTo = _fpo.EMail.NotAvailable(),
+          SPOFreightPO = _fpo.SPOFreightPO.NotAvailable(),
+          EmaiAddressTo = _fpo.EmailAddress.NotAvailable(),
           Encodedabsurl = new Uri((string)_item["EncodedAbsUrl"]),
           Modified = (DateTime)_item["Modified"],
           ModifiedBy = ((string)_item["Editor"]).NotAvailable(),
           DocumentName = _item.File.Name.NotAvailable(),
-          SPO2CityTitle = _fpo.City.NotAvailable(),
-          SPO2CommodityTitle = _fpo.Commodity.NotAvailable(),
-          SPO2CountryTitle = _fpo.Country.NotAvailable(),
-          SPODispatchDate = _fpo.LoadingDate.GetValueOrDefault(DateTime.MaxValue),
-          FPO2WarehouseAddress = _fpo.WarehouseAddress.NotAvailable(),
+          SPO2CityTitle = _fpo.SecurityPOCity.NotAvailable(),
+          SPO2CommodityTitle = _fpo.SecurityPOCommodity.NotAvailable(),
+          SPO2CountryTitle = _fpo.SecurityPOCountry.NotAvailable(),
+          SPODispatchDate = _fpo.SPODispatchDate.GetValueOrDefault(DateTime.MaxValue),
+          FPO2WarehouseAddress = _fpo.FPOWarehouseAddress.NotAvailable(),
         };
       }
       catch (Exception ex)
