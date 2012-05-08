@@ -13,7 +13,7 @@
           <FieldRef ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}" Name="AlarmAndEventDetails" />
           <FieldRef ID="{3D6333C7-7065-49A1-9A22-074D9D33D9C3}" Name="AlarmsAndEventsShippingTitle" />
           <FieldRef ID="{177A27B7-A685-411B-950F-ED55740AD617}" Name="AlarmAndEventOwner" />
-          <FieldRef ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}" Name="AlarmsAndEventsList2ShippingIndex" />
+          <FieldRef ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}" Name="AlarmsAndEventsList2Shipping" />
           <FieldRef ID="{7F341C2D-FEBA-48BD-9D59-4BF410959229}" Name="AlarmsAndEventsList2PartnerTitle" />
           <FieldRef ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}" Name="AlarmPriority" />
         </FieldRefs>
@@ -63,7 +63,7 @@
           <FieldRef ID="{C5675E7B-A91F-4F33-BB47-1330DD7B60AF}" Name="AlarmAndEventDetails" />
           <FieldRef ID="{3D6333C7-7065-49A1-9A22-074D9D33D9C3}" Name="AlarmsAndEventsShippingTitle" />
           <FieldRef ID="{177A27B7-A685-411B-950F-ED55740AD617}" Name="AlarmAndEventOwner" />
-          <FieldRef ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}" Name="AlarmsAndEventsList2ShippingIndex" />
+          <FieldRef ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}" Name="AlarmsAndEventsList2Shipping" />
           <FieldRef ID="{7F341C2D-FEBA-48BD-9D59-4BF410959229}" Name="AlarmsAndEventsList2PartnerTitle" />
           <FieldRef ID="{A219CC46-E197-4BA3-80A8-89C36B5A2263}" Name="AlarmPriority" />
         </ViewFields>
