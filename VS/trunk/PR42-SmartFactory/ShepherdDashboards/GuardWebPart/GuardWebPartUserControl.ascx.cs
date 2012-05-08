@@ -152,8 +152,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     {
       Entities.AlarmsAndEvents _ae = new Entities.AlarmsAndEvents()
       {
-        AlarmsAndEventsList2ShippingIndex = _shipping,
-        AlarmsAndEventsList2PartnerTitle = _shipping.VendorName,
+        AlarmsAndEventsList2Shipping = _shipping,
+        AlarmsAndEventsList2PartnerTitle = _shipping.PartnerTitle,
         Tytuł = _msg,
       };
       EDC.AlarmsAndEvents.InsertOnSubmit(_ae);
@@ -167,10 +167,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
       {
         if (CurrentShipping == null)
           return;
-        switch (CurrentShipping.State.Value)
+        switch (CurrentShipping.ShippingState.Value)
         {
-          case State.Underway:
-            TimeSlot _ts = (from _tsidx in CurrentShipping.TimeSlot
+          case ShippingState.Underway:
+            TimeSlotTimeSlot _ts = (TimeSlotTimeSlot) (from _tsidx in CurrentShipping.TimeSlot
                             where _tsidx.Occupied.Value == Occupied.Occupied0
                             orderby _tsidx.StartTime ascending
                             select _tsidx).FirstOrDefault();
@@ -178,21 +178,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
               break;
             CurrentShipping.StartTime = _ts.StartTime;
             CurrentShipping.EndTime = _ts.EndTime;
-            CurrentShipping.Duration = _ts.Duration();
+            CurrentShipping.ShippingDuration = _ts.Duration();
             CurrentShipping.CalculateState();
-            CurrentShipping.Awaiting = false;
+            CurrentShipping.TruckAwaiting = false;
             EDC.SubmitChanges();
             break;
-          case State.Confirmed:
-          case State.Creation:
-          case State.Delayed:
-          case State.WaitingForCarrierData:
-          case State.WaitingForSecurityData:
-          case State.None:
-          case State.Invalid:
-          case State.Canceled:
-          case State.Cancelation:
-          case State.Completed:
+          case ShippingState.Confirmed:
+          case ShippingState.Creation:
+          case ShippingState.Delayed:
+          case ShippingState.WaitingForCarrierData:
+          case ShippingState.WaitingForSecurityData:
+          case ShippingState.None:
+          case ShippingState.Invalid:
+          case ShippingState.Canceled:
+          case ShippingState.Cancelation:
+          case ShippingState.Completed:
           default:
             break;
         }
@@ -208,23 +208,23 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
       {
         if (CurrentShipping == null)
           return;
-        switch (CurrentShipping.State.Value)
+        switch (CurrentShipping.ShippingState.Value)
         {
-          case State.Confirmed:
-          case State.Creation:
-          case State.Delayed:
-          case State.WaitingForCarrierData:
-          case State.WaitingForSecurityData:
-            if (CurrentShipping.Awaiting.GetValueOrDefault(false))
+          case ShippingState.Confirmed:
+          case ShippingState.Creation:
+          case ShippingState.Delayed:
+          case ShippingState.WaitingForCarrierData:
+          case ShippingState.WaitingForSecurityData:
+            if (CurrentShipping.TruckAwaiting.GetValueOrDefault(false))
               return;
-            CurrentShipping.Awaiting = true;
+            CurrentShipping.TruckAwaiting = true;
             EDC.SubmitChanges();
             break;
-          case State.Underway:
-          case State.None:
-          case State.Invalid:
-          case State.Canceled:
-          case State.Completed:
+          case ShippingState.Underway:
+          case ShippingState.None:
+          case ShippingState.Invalid:
+          case ShippingState.Canceled:
+          case ShippingState.Completed:
           default:
             break;
         }
@@ -240,24 +240,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
       {
         if (CurrentShipping == null)
           return;
-        switch (CurrentShipping.State.Value)
+        switch (CurrentShipping.ShippingState.Value)
         {
-          case State.Underway:
+          case ShippingState.Underway:
             CurrentShipping.EndTime = DateTime.Now;
-            CurrentShipping.State = State.Completed;
-            CurrentShipping.Duration = (CurrentShipping.EndTime.Value - CurrentShipping.StartTime.Value).TotalMinutes;
+            CurrentShipping.ShippingState = ShippingState.Completed;
+            CurrentShipping.ShippingDuration = (CurrentShipping.EndTime.Value - CurrentShipping.StartTime.Value).TotalMinutes;
             EDC.SubmitChanges();
             break;
-          case State.Confirmed:
-          case State.Creation:
-          case State.Delayed:
-          case State.WaitingForCarrierData:
-          case State.WaitingForSecurityData:
-          case State.None:
-          case State.Invalid:
-          case State.Canceled:
-          case State.Completed:
-          case State.Cancelation:
+          case ShippingState.Confirmed:
+          case ShippingState.Creation:
+          case ShippingState.Delayed:
+          case ShippingState.WaitingForCarrierData:
+          case ShippingState.WaitingForSecurityData:
+          case ShippingState.None:
+          case ShippingState.Invalid:
+          case ShippingState.Canceled:
+          case ShippingState.Completed:
+          case ShippingState.Cancelation:
           default:
             break;
         }
@@ -273,24 +273,24 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
       {
         if (CurrentShipping == null)
           return;
-        switch (CurrentShipping.State.Value)
+        switch (CurrentShipping.ShippingState.Value)
         {
-          case State.Confirmed:
-          case State.Creation:
-          case State.Delayed:
-          case State.WaitingForCarrierData:
-          case State.WaitingForSecurityData:
+          case ShippingState.Confirmed:
+          case ShippingState.Creation:
+          case ShippingState.Delayed:
+          case ShippingState.WaitingForCarrierData:
+          case ShippingState.WaitingForSecurityData:
             CurrentShipping.StartTime = DateTime.Now;
-            CurrentShipping.State = State.Underway;
-            CurrentShipping.Awaiting = true;
+            CurrentShipping.ShippingState = ShippingState.Underway;
+            CurrentShipping.TruckAwaiting = true;
             EDC.SubmitChanges();
             break;
-          case State.Underway:
-          case State.None:
-          case State.Invalid:
-          case State.Canceled:
-          case State.Completed:
-          case State.Cancelation:
+          case ShippingState.Underway:
+          case ShippingState.None:
+          case ShippingState.Invalid:
+          case ShippingState.Canceled:
+          case ShippingState.Completed:
+          case ShippingState.Cancelation:
           default:
             break;
         }

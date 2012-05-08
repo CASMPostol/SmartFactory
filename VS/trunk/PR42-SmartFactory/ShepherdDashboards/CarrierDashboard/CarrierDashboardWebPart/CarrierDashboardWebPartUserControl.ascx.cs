@@ -572,14 +572,14 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           if (_sppng.IsOutbound.Value)
           {
             m_EstimateDeliveryTimeDateTimeControl.SelectedDate = _sppng.EstimateDeliveryTime.HasValue ? _sppng.EstimateDeliveryTime.Value : DateTime.Now;
-            Show(_sppng.Route);
-            Show(_sppng.SecurityEscort);
-            Show(_sppng.TransportUnit);
-            Show(_sppng.City);
+            Show(_sppng.Shipping2RouteTitle);
+            Show(_sppng.SecurityEscortCatalogTitle);
+            Show(_sppng.Shipping2TransportUnitType);
+            Show(_sppng.Shipping2City);
           }
           else
           {
-            Show(_sppng.VendorName);
+            Show(_sppng.PartnerTitle);
           }
 
         }
@@ -598,7 +598,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       if (m_DockNumberTextBox.Visible)
         m_DockNumberTextBox.Text = _sppng.DockNumber;
       if (m_TrailerConditionCommentsTextBox.Visible)
-        m_TrailerConditionCommentsTextBox.Text = _sppng.Comments;
+        m_TrailerConditionCommentsTextBox.Text = _sppng.TrailerConditionComments;
     }
     private void Show(TimeSlotTimeSlot _cts, bool _isEditable, bool _isDouble)
     {
@@ -682,7 +682,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           Shipping _sppng = new Shipping()
           {
             IsOutbound = m_DashboardType == GlobalDefinitions.Roles.OutboundOwner,
-            State = Entities.State.Invalid,
+            ShippingState = Entities.ShippingState.Invalid,
             Tytuł = "Creating new shippment"
           };
           _sppng.SetupTiming(_newts, m_ControlState.TimeSlotIsDouble);
@@ -697,15 +697,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           _checkPoint = "Shipping.InsertOnSubmit";
           _EDC.SubmitChanges();
           foreach (TimeSlotTimeSlot _tsx in _Tss)
-            _tsx.ShippingIndex = _sppng;
+            _tsx.TimeSlot2ShippingIndex = _sppng;
           _sppng.UpdateTitle();
           m_ControlState.ShippingID = _sppng.Identyfikator.Value.ToString();
           LoadDescription _ld = new LoadDescription()
           {
             Tytuł = m_DocumentTextBox.Text,
             DeliveryNumber = m_DocumentTextBox.Text,
-            ShippingIndex = _sppng,
-            Vendor = _sppng.VendorName
+            LoadDescription2ShippingIndex = _sppng,
+            LoadDescription2PartnerTitle = _sppng.PartnerTitle
           };
           _EDC.LoadDescription.InsertOnSubmit(_ld);
           _checkPoint = "_EDC.LoadDescription";
@@ -802,7 +802,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private void UpdateOperatorPanel(Shipping _sppng)
     {
       if (m_TrailerConditionCommentsTextBox.Enabled)
-        _sppng.Comments = m_TrailerConditionCommentsTextBox.Text;
+        _sppng.TrailerConditionComments = m_TrailerConditionCommentsTextBox.Text;
       if (m_TrailerConditionDropdown.Enabled && m_TrailerConditionDropdown.SelectedIndex > 0)
         _sppng.TrailerCondition = (TrailerCondition)m_TrailerConditionDropdown.SelectedValue.String2Int().Value;
       else
@@ -826,7 +826,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _rsult.AddLabel(m_CityHeaderLabel.Text);
         return;
       }
-      _sppng.City = Element.GetAtIndex(_EDC.City, m_ControlState.CityID);
+      _sppng.Shipping2City = Element.GetAtIndex(_EDC.City, m_ControlState.CityID);
     }
     private void UpdateTransportUnitType(Shipping _sppng, EntitiesDataContext _EDC)
     {
@@ -834,10 +834,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         return;
       if (m_TransportUnitTypeDropDownList.SelectedIndex < 0)
       {
-        _sppng.TransportUnit = null;
+        _sppng.Shipping2TransportUnitType = null;
         return;
       }
-      _sppng.TransportUnit = Element.GetAtIndex(_EDC.TransportUnitType, m_TransportUnitTypeDropDownList.SelectedValue);
+      _sppng.Shipping2TransportUnitType = Element.GetAtIndex(_EDC.TransportUnitType, m_TransportUnitTypeDropDownList.SelectedValue);
     }
     private void UpdateTimeSlot(Shipping _shipping, ActionResult _rslt, EntityList<TimeSlotTimeSlot> _tsel)
     {
@@ -876,9 +876,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _rsult.AddLabel(m_PartnerHeaderLabel.Text);
         return;
       }
-      if ((_sipping.VendorName != null) && (m_ControlState.PartnerID.String2Int() == _sipping.VendorName.Identyfikator.Value))
+      if ((_sipping.PartnerTitle != null) && (m_ControlState.PartnerID.String2Int() == _sipping.PartnerTitle.Identyfikator.Value))
         return;
-      _sipping.VendorName = Element.GetAtIndex(_EDC.Partner, m_ControlState.PartnerID);
+      _sipping.PartnerTitle = Element.GetAtIndex(_EDC.Partner, m_ControlState.PartnerID);
     }
     private void CancelShipping()
     {
@@ -887,22 +887,22 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           Shipping _sppng = Element.GetAtIndex<Shipping>(_EDC.Shipping, m_ControlState.ShippingID);
-          switch (_sppng.State.Value)
+          switch (_sppng.ShippingState.Value)
           {
-            case State.Confirmed:
-            case State.None:
-            case State.Invalid:
-            case State.Creation:
-            case State.Delayed:
-            case State.WaitingForCarrierData:
-            case State.WaitingForSecurityData:
-            case State.Underway:
+            case ShippingState.Confirmed:
+            case ShippingState.None:
+            case ShippingState.Invalid:
+            case ShippingState.Creation:
+            case ShippingState.Delayed:
+            case ShippingState.WaitingForCarrierData:
+            case ShippingState.WaitingForSecurityData:
+            case ShippingState.Underway:
               _sppng.ReleaseBooking(null);
-              _sppng.State = State.Cancelation;
+              _sppng.ShippingState = ShippingState.Cancelation;
               break;
-            case State.Completed:
-            case State.Cancelation:
-            case State.Canceled:
+            case ShippingState.Completed:
+            case ShippingState.Cancelation:
+            case ShippingState.Canceled:
             default:
               break;
           }
@@ -1096,7 +1096,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.ViewState:
         case InterfaceState.EditState:
-          m_DocumentTextBox.Text = _shppng.Route != null ? _shppng.Route.GoodsHandlingPO : "";
+          m_DocumentTextBox.Text = _shppng.Shipping2RouteTitle != null ? _shppng.Shipping2RouteTitle.GoodsHandlingPO : "";
           break;
         case InterfaceState.NewState:
         default:
@@ -1123,7 +1123,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         case InterfaceState.ViewState:
         case InterfaceState.EditState:
-          m_DocumentTextBox.Text = _shppng.SecurityEscort != null ? _shppng.SecurityEscort.SecurityEscortPO : "";
+          m_DocumentTextBox.Text = _shppng.SecurityEscortCatalogTitle != null ? _shppng.SecurityEscortCatalogTitle.SecurityEscrotPO : "";
           break;
         case InterfaceState.NewState:
         default:

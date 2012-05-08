@@ -243,7 +243,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
       m_TruckTitle.Text = _item.Tytuł;
       string _id = ((int)_item.VehicleType.GetValueOrDefault(VehicleType.None)).ToString();
       m_VehicleTypeSelect(_item.VehicleType.GetValueOrDefault(VehicleType.None));
-      m_Comments.Text = _item.Comments;
+      m_Comments.Text = _item.AdditionalComments;
     }
     private LocalStateMachineEngine.ActionResult Update()
     {
@@ -269,7 +269,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     }
     private LocalStateMachineEngine.ActionResult Update(Truck _drv)
     {
-      _drv.Comments = m_Comments.Text;
+      _drv.AdditionalComments = m_Comments.Text;
       if (m_TruckTitle.Text.IsNullOrEmpty())
         return LocalStateMachineEngine.ActionResult.NotValidated(m_TruckNameLabel.Text + " must be provided.");
       _drv.Tytuł = m_TruckTitle.Text;
@@ -289,7 +289,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
           Partner _Partner = Partner.FindForUser(_EDC, SPContext.Current.Web.CurrentUser);
           if (_Partner == null)
             return LocalStateMachineEngine.ActionResult.NotValidated("Current user must be an external partner.");
-          Truck _drv = new Truck() { VendorName = _Partner };
+          Truck _drv = new Truck() { Truck2PartnerTitle = _Partner };
           LocalStateMachineEngine.ActionResult _rr = Update(_drv);
           if (!_rr.ActionSucceeded)
             return _rr;

@@ -20,12 +20,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
         {
           _drv = Element.GetAtIndex<Driver>(EDC.Driver, m_ItemID.Value);
           m_DriverIDNumber.Text = _drv.IdentityDocumentNumber;
-          m_DriverMobileNo.Text = _drv.NumerTelefonuKomórkowego;
+          m_DriverMobileNo.Text = _drv.CellPhone;
           m_DriverTitle.Text = _drv.Tytuł;
         }
         Partner _Partner = Partner.FindForUser(EDC, SPContext.Current.Web.CurrentUser);
         if (_Partner == null)
-          m_PartnerTitle.AddPartner(true, _drv == null ? null : _drv.VendorName, EDC);
+          m_PartnerTitle.AddPartner(true, _drv == null ? null : _drv.Driver2PartnerTitle, EDC);
         else
           m_PartnerTitle.AddPartner(false, _Partner, EDC);
       }
@@ -66,9 +66,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
         else
           _nd = Element.GetAtIndex<Driver>(EDC.Driver, m_ItemID.Value);
         _nd.IdentityDocumentNumber = this.m_DriverIDNumber.Text;
-        _nd.NumerTelefonuKomórkowego = this.m_DriverMobileNo.Text;
+        _nd.CellPhone = this.m_DriverMobileNo.Text;
         _nd.Tytuł = m_DriverTitle.Text;
-        _nd.VendorName = _prtn;
+        _nd.Driver2PartnerTitle = _prtn;
         EDC.SubmitChanges();
         SPUtility.Redirect(Request.Params["Source"], SPRedirectFlags.Default, HttpContext.Current);
       }

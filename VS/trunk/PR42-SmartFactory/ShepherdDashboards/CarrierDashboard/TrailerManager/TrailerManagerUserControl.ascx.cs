@@ -239,7 +239,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     private void Show(Trailer _drv)
     {
       m_TrailerTitle.Text = _drv.Tytuł;
-      m_Comments.Text = _drv.Comments;
+      m_Comments.Text = _drv.AdditionalComments;
     }
     private LocalStateMachineEngine.ActionResult Update()
     {
@@ -265,7 +265,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     }
     private LocalStateMachineEngine.ActionResult Update(Trailer _itm)
     {
-      _itm.Comments = m_Comments.Text;
+      _itm.AdditionalComments = m_Comments.Text;
       if (m_TrailerTitle.Text.IsNullOrEmpty())
         return LocalStateMachineEngine.ActionResult.NotValidated(m_TrailerNameLabel.Text + " must be provided.");
       _itm.Tytuł = m_TrailerTitle.Text;
@@ -282,7 +282,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
           Partner _Partner = Partner.FindForUser(_EDC, SPContext.Current.Web.CurrentUser);
           if (_Partner == null)
             return LocalStateMachineEngine.ActionResult.NotValidated("Current user must be an external partner.");
-          Trailer _drv = new Trailer() { VendorName = _Partner };
+          Trailer _drv = new Trailer() { Trailer2PartnerTitle = _Partner };
           LocalStateMachineEngine.ActionResult _rr = Update(_drv);
           if (!_rr.ActionSucceeded)
             return _rr;

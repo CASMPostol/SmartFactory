@@ -236,7 +236,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
     private void Show(Driver _drv)
     {
       m_DriverIDNumber.Text = _drv.IdentityDocumentNumber;
-      m_DriverMobileNo.Text = _drv.NumerTelefonuKomórkowego;
+      m_DriverMobileNo.Text = _drv.CellPhone;
       m_DriverTitle.Text = _drv.Tytuł;
     }
     private LocalStateMachineEngine.ActionResult Update()
@@ -264,7 +264,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
     private LocalStateMachineEngine.ActionResult Update(Driver _drv)
     {
       _drv.IdentityDocumentNumber = m_DriverIDNumber.Text;
-      _drv.NumerTelefonuKomórkowego = m_DriverMobileNo.Text;
+      _drv.CellPhone = m_DriverMobileNo.Text;
       if (m_DriverTitle.Text.IsNullOrEmpty())
         return LocalStateMachineEngine.ActionResult.NotValidated(m_DriverNameLabel.Text + " must be provided.");
       _drv.Tytuł = m_DriverTitle.Text;
@@ -281,7 +281,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
           Partner _Partner = Partner.FindForUser(_EDC, SPContext.Current.Web.CurrentUser);
           if (_Partner == null)
             return LocalStateMachineEngine.ActionResult.NotValidated("Current user must be an external partner.");
-          Driver _drv = new Driver() { VendorName = _Partner };
+          Driver _drv = new Driver() { Driver2PartnerTitle = _Partner };
           LocalStateMachineEngine.ActionResult _rr = Update(_drv);
           if (!_rr.ActionSucceeded)
             return _rr;

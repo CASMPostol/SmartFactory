@@ -25,13 +25,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
           if (!m_ItemID.Value.IsNullOrEmpty())
           {
             _drv = Element.GetAtIndex<Truck>(EDC.Truck, m_ItemID.Value);
-            m_Comments.Text = _drv.Comments;
+            m_Comments.Text = _drv.AdditionalComments;
             m_TruckTitle.Text = _drv.Tytuł;
             m_VehicleType.Select((int)_drv.VehicleType.GetValueOrDefault(0));
           }
           Partner _Partner = Partner.FindForUser(EDC, SPContext.Current.Web.CurrentUser);
           if (_Partner == null)
-            m_PartnerTitle.AddPartner(true, _drv == null ? null : _drv.VendorName, EDC);
+            m_PartnerTitle.AddPartner(true, _drv == null ? null : _drv.Truck2PartnerTitle, EDC);
           else
             m_PartnerTitle.AddPartner(false, _Partner, EDC);
         }
@@ -79,10 +79,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
         }
         else
           _nd = Element.GetAtIndex<Truck>(EDC.Truck, m_ItemID.Value);
-        _nd.Comments = this.m_Comments.Text;
+        _nd.AdditionalComments = this.m_Comments.Text;
         _nd.Tytuł = this.m_TruckTitle.Text;
         _nd.VehicleType = (VehicleType)m_VehicleType.SelectedValue.String2Int().Value;
-        _nd.VendorName = _prtn;
+        _nd.Truck2PartnerTitle = _prtn;
         EDC.SubmitChanges();
         SPUtility.Redirect(Request.Params["Source"], SPRedirectFlags.Default, HttpContext.Current);
       }
