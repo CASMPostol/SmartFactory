@@ -18,7 +18,7 @@
     ReadOnly="False"
     />
   <Field
-    Name="Shipping2CurrencyForTotalCostsPerKU"
+    Name="Shipping2Currency4CostsPerKU"
     ID="{EEAE731E-40E4-4C16-B620-E747A8A6675A}"
     Type="Lookup"
     List="Lists/CurrencyList"
@@ -69,7 +69,7 @@
     ReadOnly="False"
     />
   <Field
-    Name="Shipping2CurrencyForAdditionalCosts"
+    Name="Shipping2Currency4AddCosts"
     ID="{2294100C-D521-4B8B-BC56-F8CD71583E22}"
     Type="Lookup"
     List="Lists/CurrencyList"
@@ -163,7 +163,7 @@
     ReadOnly="False"
     />
   <Field
-    Name="ShippingOperationOutband2PartnerTitle"
+    Name="Shipping2PartnerTitle"
     ID="{2CEB1781-878F-46E5-9DF5-432463ABD971}"
     Type="Lookup"
     List="Lists/JTIPartnerList"
@@ -180,7 +180,7 @@
     ReadOnly="False"
     />
   <Field
-    Name="ShippingOperationOutband2TruckTitle"
+    Name="Shipping2TruckTitle"
     ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}"
     Type="Lookup"
     List="Lists/TruckList"
