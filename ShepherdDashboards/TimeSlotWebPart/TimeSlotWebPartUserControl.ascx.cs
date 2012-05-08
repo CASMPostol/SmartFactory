@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           {
             Partner _Partner = Partner.FindForUser(m_EDC, currentWeb.CurrentUser);
             if (_Partner != null)
-              m_WarehouseDropDownList.Select(_Partner.Warehouse);
+              m_WarehouseDropDownList.Select(_Partner.Partner2WarehouseTitle);
             else
               m_WarehouseDropDownList.SelectedIndex = 0;
           }

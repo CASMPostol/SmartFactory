@@ -338,10 +338,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         ClearUserInterface(_sppng.IsOutbound.Value);
         m_ShippingLabel.Text = _sppng.Tytuł;
         m_ControlState.IsEditable = _sppng.IsEditable();
-        if (m_MarketDropDown.Visible && _sppng.City != null)
+        if (m_MarketDropDown.Visible && _sppng.Shipping2City != null)
         {
-          m_MarketDropDown.DataSource = from DestinationMarket _idx in _sppng.City.DestinationMarket
-                                        let _mkr = _idx.Market
+          m_MarketDropDown.DataSource = from DestinationMarket _idx in _sppng.Shipping2City.DestinationMarket
+                                        let _mkr = _idx.MarketTitle
                                         orderby _mkr.Tytuł ascending
                                         select new { Label = _mkr.Tytuł, Index = _mkr.Identyfikator.Value };
           m_MarketDropDown.DataTextField = "Label";
@@ -362,13 +362,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       try
       {
         LoadDescription _ld = new LoadDescription();
-        _ld.ShippingIndex = CurrentShipping;
+        _ld.LoadDescription2ShippingIndex = CurrentShipping;
         List<string> _ve = new List<string>();
         StateMachineEngine.ActionResult _res = Update(_ld, _ve);
         if (_res.ActionSucceeded)
         {
           ReportAlert("LoadDescription created");
-          _ld.Vendor = CurrentShipping.VendorName;
+          _ld.LoadDescription2PartnerTitle = CurrentShipping.PartnerTitle;
           m_EDC.LoadDescription.InsertOnSubmit(_ld);
           m_EDC.SubmitChanges();
           m_ControlState.LoadDescriptionID = _ld.Identyfikator.Value.ToString();
@@ -427,11 +427,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_ControlState.LoadDescriptionID = _dataKey.Value.ToString();
       LoadDescription _ld = Element.GetAtIndex<LoadDescription>(m_EDC.LoadDescription, m_ControlState.LoadDescriptionID);
       m_CMRTextBox.Text = _ld.CMRNumber;
-      m_CommodityDropDown.Select(_ld.Commodity);
+      m_CommodityDropDown.Select(_ld.LoadDescription2Commodity);
       m_LoadDescriptionNumberTextBox.Text = _ld.DeliveryNumber;
       m_GoodsQuantityTextBox.Text = _ld.GoodsQuantity.HasValue ? _ld.GoodsQuantity.ToString() : String.Empty;
       m_InvoiceTextBox.Text = _ld.InvoiceNumber;
-      m_MarketDropDown.Select(_ld.Market);
+      m_MarketDropDown.Select(_ld.MarketTitle);
       m_NumberOfPalletsTextBox.Text = _ld.NumberOfPallets.HasValue ? _ld.NumberOfPallets.Value.ToString() : String.Empty;
       m_PalletTypesDropDown.Select((int)_ld.PalletType);
     }
@@ -440,11 +440,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       try
       {
         _ld.CMRNumber = m_CMRTextBox.Text;
-        _ld.Commodity = Element.FindAtIndex<CommodityCommodity>(m_EDC.Commodity, m_CommodityDropDown.SelectedValue);
+        _ld.LoadDescription2Commodity = Element.FindAtIndex<Commodity>(m_EDC.Commodity, m_CommodityDropDown.SelectedValue);
         _ld.DeliveryNumber = m_LoadDescriptionNumberTextBox.Text;
         _ld.GoodsQuantity = m_GoodsQuantityTextBox.TextBox2Double(_ve);
         _ld.InvoiceNumber = m_InvoiceTextBox.Text;
-        _ld.Market = Element.FindAtIndex<MarketMarket>(m_EDC.Market, m_MarketDropDown.SelectedValue);
+        _ld.MarketTitle = Element.FindAtIndex<Market>(m_EDC.Market, m_MarketDropDown.SelectedValue);
         _ld.NumberOfPallets = m_NumberOfPalletsTextBox.TextBox2Double(_ve);
         _ld.PalletType = (PalletType)m_PalletTypesDropDown.SelectedValue.String2Int().Value;
         _ld.Tytuł = _ld.DeliveryNumber;
@@ -466,8 +466,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
                                                DeliveryNumber = _ldidx.DeliveryNumber,
                                                PalletTypes = _ldidx.PalletType.HasValue ? _ldidx.PalletType.Value : PalletType.Other,
                                                NumberOfPallets = _ldidx.NumberOfPallets,
-                                               Commodity = _ldidx.Commodity == null ? String.Empty : _ldidx.Commodity.Tytuł,
-                                               MarketTitle = _ldidx.Market == null ? String.Empty : _ldidx.Market.Tytuł,
+                                               Commodity = _ldidx.LoadDescription2Commodity == null ? String.Empty : _ldidx.LoadDescription2Commodity.Tytuł,
+                                               MarketTitle = _ldidx.MarketTitle == null ? String.Empty : _ldidx.MarketTitle.Tytuł,
                                                ID = _ldidx.Identyfikator.Value
                                              };
       m_LoadDescriptionGridView.DataBind();
@@ -517,8 +517,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     {
       Entities.AlarmsAndEvents _ae = new Entities.AlarmsAndEvents()
       {
-        AlarmsAndEventsList2ShippingIndex = CurrentShipping,
-        AlarmsAndEventsList2PartnerTitle = CurrentShipping.VendorName,
+        AlarmsAndEventsList2Shipping = CurrentShipping,
+        AlarmsAndEventsList2PartnerTitle = CurrentShipping.PartnerTitle,
         Tytuł = _msg,
       };
       m_EDC.AlarmsAndEvents.InsertOnSubmit(_ae);

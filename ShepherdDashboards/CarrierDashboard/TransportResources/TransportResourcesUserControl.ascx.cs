@@ -92,15 +92,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       if (m_ControlState.ShippingIdx.IsNullOrEmpty())
         return;
       Shipping _Shipping = Element.GetAtIndex<Shipping>(edc.Shipping, m_ControlState.ShippingIdx);
-      Partner _prtn = Role == TransportResources.RolesSet.Carrier ? _Shipping.VendorName : _Shipping.SecurityEscortProvider;
+      Partner _prtn = Role == TransportResources.RolesSet.Carrier ? _Shipping.PartnerTitle : _Shipping.Shipping2PartnerTitle;
       if (_prtn == null)
         return; ;
       Dictionary<int, Driver> _drivers = _prtn.Driver.ToDictionary(x => x.Identyfikator.Value);
       foreach (ShippingDriversTeam item in from idx in _Shipping.ShippingDriversTeam select idx)
       {
-        Driver _driver = item.Driver;
-        if ((Role == TransportResources.RolesSet.SecurityEscort && _driver.VendorName.ServiceType.Value != ServiceType.SecurityEscortProvider) ||
-           (Role == TransportResources.RolesSet.Carrier && _driver.VendorName.ServiceType.Value == ServiceType.SecurityEscortProvider))
+        Driver _driver = item.DriverTitle;
+        if ((Role == TransportResources.RolesSet.SecurityEscort && _driver.Driver2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider) ||
+           (Role == TransportResources.RolesSet.Carrier && _driver.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider))
           continue;
         m_DriversTeamListBox.Items.Add(new ListItem(_driver.Tytuł, item.Identyfikator.Value.ToString()));
         _drivers.Remove(_driver.Identyfikator.Value);
@@ -111,18 +111,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       m_TruckDropDown.Items.Add(new ListItem());
       foreach (Truck _item in _prtn.Truck)
       {
-        if ((Role == TransportResources.RolesSet.SecurityEscort && _item.VendorName.ServiceType.Value != ServiceType.SecurityEscortProvider) ||
-          (Role == TransportResources.RolesSet.Carrier && _item.VendorName.ServiceType.Value == ServiceType.SecurityEscortProvider))
+        if ((Role == TransportResources.RolesSet.SecurityEscort && _item.Truck2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider) ||
+          (Role == TransportResources.RolesSet.Carrier && _item.Truck2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider))
           continue;
         ListItem _li = new ListItem(_item.Tytuł, _item.Identyfikator.Value.ToString());
         m_TruckDropDown.Items.Add(_li);
         if (Role == TransportResources.RolesSet.SecurityEscort)
         {
-          if (_Shipping.SecurityEscortCarRegistrationNumber == _item)
+          if (_Shipping.Shipping2TruckTitle == _item)
             _li.Selected = true;
         }
         else
-          if (_Shipping.TruckCarRegistrationNumber == _item)
+          if (_Shipping.TruckTitle == _item)
             _li.Selected = true;
       }
       m_TrailerDropDown.Items.Add(new ListItem());
@@ -130,7 +130,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       {
         ListItem _li = new ListItem(item.Tytuł, item.Identyfikator.Value.ToString());
         m_TrailerDropDown.Items.Add(_li);
-        if (_Shipping.TrailerRegistrationNumber == item)
+        if (_Shipping.TrailerTitle == item)
           _li.Selected = true;
       }
       SetButtons(true);
@@ -167,7 +167,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         {
           ShippingDriversTeam _cd = Element.GetAtIndex<ShippingDriversTeam>(edc.DriversTeam, _sel.Value);
           Shipping _sh = _cd.ShippingIndex;
-          _cd.Driver = null;
+          _cd.DriverTitle = null;
           _cd.ShippingIndex = null;
           edc.DriversTeam.DeleteOnSubmit(_cd);
           edc.SubmitChanges();
@@ -192,7 +192,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         {
           ShippingDriversTeam _cd = new ShippingDriversTeam()
             {
-              Driver = Element.GetAtIndex<Driver>(edc.Driver, _sel.Value),
+              DriverTitle = Element.GetAtIndex<Driver>(edc.Driver, _sel.Value),
               ShippingIndex = Element.GetAtIndex(edc.Shipping, m_ControlState.ShippingIdx)
             };
           edc.DriversTeam.InsertOnSubmit(_cd);
@@ -219,16 +219,16 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
           Shipping _sh = Element.GetAtIndex<Shipping>(edc.Shipping, m_ControlState.ShippingIdx);
           if (String.IsNullOrEmpty(_li.Value))
             if (Role == TransportResources.RolesSet.Carrier)
-              _sh.TruckCarRegistrationNumber = null;
+              _sh.TruckTitle = null;
             else
-              _sh.SecurityEscortCarRegistrationNumber = null;
+              _sh.Shipping2TruckTitle = null;
           else
           {
             Truck _ct = Element.GetAtIndex<Truck>(edc.Truck, _li.Value);
             if (Role == TransportResources.RolesSet.Carrier)
-              _sh.TruckCarRegistrationNumber = _ct;
+              _sh.TruckTitle = _ct;
             else
-              _sh.SecurityEscortCarRegistrationNumber = _ct;
+              _sh.Shipping2TruckTitle = _ct;
           }
           _sh.CalculateState();
           edc.SubmitChanges();
@@ -250,9 +250,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         {
           Shipping _sh = Element.GetAtIndex<Shipping>(edc.Shipping, m_ControlState.ShippingIdx);
           if (String.IsNullOrEmpty(_li.Value))
-            _sh.TrailerRegistrationNumber = null;
+            _sh.TrailerTitle = null;
           else
-            _sh.TrailerRegistrationNumber = Element.GetAtIndex<Trailer>(edc.Trailer, _li.Value);
+            _sh.TrailerTitle = Element.GetAtIndex<Trailer>(edc.Trailer, _li.Value);
           _sh.CalculateState();
           edc.SubmitChanges();
         }

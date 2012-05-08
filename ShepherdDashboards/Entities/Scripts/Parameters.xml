@@ -1,27 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
-
-
-  <List Name="Business Description">
-    <ContentType Name="BusinessDescription" Class="BusinessDescriptionClass" >
-      <Column Name="Dummy"/>
-    </ContentType>
-  </List>
-  <List Name="Carrier">
-    <ContentType Name="CarrierType">
-      <Column Name="Dummy"/>
-    </ContentType>
-  </List>
-  <List Name="Country" >
-    <ContentType Name="CountryType" Class="CountryClass">
-      <!--<Column Name="Dummy"/>-->
-    </ContentType>
-  </List>
-  <List Name="City"></List>
+  <List Name="Business Description"/>
+  <List Name="Carrier" />
+  <List Name="Country" />
+  <List Name="City" />
   <List Name="Commodity">
-    <ContentType Name="Commodity">
+    <!--<ContentType Name="Commodity">
       <Column Name="Dummy"/>
-    </ContentType>
+    </ContentType>-->
   </List>
   <List Name="Currency" ></List>
   <List Name="Destination Market" ></List>
@@ -29,30 +15,30 @@
   <List Name="Freight Payer"></List>
   <List Name="Partner" ></List>
   <List Name="Market" >
-    <ContentType Name="Market">
+    <!--<ContentType Name="Market">
       <Column Name="Dummy"/>
-    </ContentType>
+    </ContentType>-->
   </List>
   <List Name="Route"></List>
   <List Name="SAP Destination Plant">
-    <ContentType Name="SAPDestinationPlant">
+    <!--<ContentType Name="SAPDestinationPlant">
       <Column Name="Dummy"/>
-    </ContentType>
+    </ContentType>-->
   </List>
   <List Name="Schedule Template"></List>
   <List Name="Security Escort Route"></List>
   <List Name="Shipment Type">
-    <ContentType Name="ShipmentType">
+    <!--<ContentType Name="ShipmentType">
       <Column Name="Dummy"/>
-    </ContentType>
+    </ContentType>-->
   </List>
   <List Name="Shipping Point"></List>
   <List Name="TimeSlot Templates"></List>
   <List Name="Trailer"></List>
   <List Name="Transport Unit Type">
-    <ContentType Name="TranspotUnit">
+    <!--<ContentType Name="TranspotUnit">
       <Column Name="Dummy"/>
-    </ContentType>
+    </ContentType>-->
   </List>
   <List Name="Truck"></List>
   <List Name="Warehouse"></List>
@@ -63,7 +49,7 @@
   <List Name="Security Escort PO Number"></List>
   <List Name="Drivers Team"></List>
   <List Name="Shipping"></List>
-  <List Name="TimeSlot"></List>
+  <List Name="Time Slot"></List>
   <List Name="Trailer Condition"></List>
   <List Name="Freight PO Library"/>
   <List Name="Escort PO Library"/>
@@ -154,17 +140,17 @@
     <Column Name="AdditionalComments" Member="AdditionalComments" />
   </ContentType>
   <ContentType Name="AlarmsAndEvents" Class="AlarmsAndEvents">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="AlarmAndEventDetails" Member="AlarmAndEventDetails" />
     <Column Name="AlarmsAndEventsShippingTitle" Member="AlarmsAndEventsShippingTitle" />
     <Column Name="AlarmAndEventOwner" Member="AlarmAndEventOwner" />
-    <Column Name="AlarmsAndEventsList2ShippingIndex" Member="AlarmsAndEventsList2ShippingIndex" />
+    <Column Name="AlarmsAndEventsList2Shipping" Member="AlarmsAndEventsList2Shipping" />
     <Column Name="AlarmsAndEventsList2PartnerTitle" Member="AlarmsAndEventsList2PartnerTitle" />
     <Column Name="AlarmPriority" Member="AlarmPriority" />
   </ContentType>
   <ContentType Name="SecurityEscortCatalog" Class="SecurityEscortCatalog">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="SecurityEscortCatalog2BusinessDescriptionTitle" Member="SecurityEscortCatalog2BusinessDescriptionTitle" />
     <Column Name="EscortDestination" Member="EscortDestination" />
@@ -177,7 +163,7 @@
     <Column Name="SecurityEscrotPO" Member="SecurityEscrotPO" />
   </ContentType>
   <ContentType Name="ScheduleTemplate" Class="ScheduleTemplate">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="ShippingPointLookupTitle" Member="ShippingPointLookupTitle" />
   </ContentType>
@@ -185,7 +171,7 @@
     <Column Name="Title" Member="Title" />
   </ContentType>
   <ContentType Name="DistributionList" Class="DistributionList">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="EmailAddress" Member="EmailAddress" />
     <Column Name="ShepherdRole" Member="ShepherdRole" />
@@ -231,11 +217,11 @@
     <Column Name="TrailerTitle" Member="TrailerTitle" />
     <Column Name="CancelationReason" Member="CancelationReason" />
     <Column Name="BusinessDescription" Member="BusinessDescription" />
-    <Column Name="ShippingOperationOutband2PartnerTitle" Member="ShippingOperationOutband2PartnerTitle" />
+    <Column Name="Shipping2PartnerTitle" Member="Shipping2PartnerTitle" />
     <Column Name="SecuritySealProtocolIndex" Member="SecuritySealProtocolIndex" />
     <Column Name="SecurityEscortCatalogTitle" Member="SecurityEscortCatalogTitle" />
     <Column Name="Shipping2EscortID" Member="Shipping2EscortID" />
-    <Column Name="ShippingOperationOutband2TruckTitle" Member="ShippingOperationOutband2TruckTitle" />
+    <Column Name="Shipping2TruckTitle" Member="Shipping2TruckTitle" />
     <Column Name="EstimateDeliveryTime" Member="EstimateDeliveryTime" />
     <Column Name="Shipping2RouteTitle" Member="Shipping2RouteTitle" />
     <Column Name="Shipping2RouteID" Member="Shipping2RouteID" />
@@ -243,7 +229,7 @@
     <Column Name="Shipping2TransportUnitType" Member="Shipping2TransportUnitType" />
     <Column Name="LoadingType" Member="LoadingType" />
     <Column Name="AdditionalCosts" Member="AdditionalCosts" />
-    <Column Name="Shipping2CurrencyForAdditionalCosts" Member="Shipping2CurrencyForAdditionalCosts" />
+    <Column Name="Shipping2Currency4AddCosts" Member="Shipping2Currency4AddCosts" />
     <Column Name="IsOutbound" Member="IsOutbound" />
     <Column Name="TruckAwaiting" Member="TruckAwaiting" />
     <Column Name="Shipping2FreightPOIndex" Member="Shipping2FreightPOIndex" />
@@ -264,7 +250,7 @@
     <Column Name="ShippingSecurityCost" Member="ShippingSecurityCost" />
     <Column Name="Shipping2CurrencyForEscort" Member="Shipping2CurrencyForEscort" />
     <Column Name="TotalCostsPerKU" Member="TotalCostsPerKU" />
-    <Column Name="Shipping2CurrencyForTotalCostsPerKU" Member="Shipping2CurrencyForTotalCostsPerKU" />
+    <Column Name="Shipping2Currency4CostsPerKU" Member="Shipping2Currency4CostsPerKU" />
   </ContentType>
   <ContentType Name="ShippingPoint" Class="ShippingPoint">
     <Column Name="Title" Member="Title" />
@@ -273,7 +259,7 @@
     <Column Name="ShippingPointDescription" Member="ShippingPointDescription" />
   </ContentType>
   <ContentType Name="CountryType" Class="CountryType">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="CountryGroup" Member="CountryGroup" />
   </ContentType>
@@ -286,7 +272,7 @@
     <Column Name="TimeSlotsTemplateEndMinute" Member="TimeSlotsTemplateEndMinute" />
   </ContentType>
   <ContentType Name="LoadDescription" Class="LoadDescription">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="LoadDescription2ShippingIndex" Member="LoadDescription2ShippingIndex" />
     <Column Name="LoadDescriptionShippingTitle" Member="LoadDescriptionShippingTitle" />
@@ -327,7 +313,7 @@
     <Column Name="FPOWarehouseAddress" Member="FPOWarehouseAddress" />
   </ContentType>
   <ContentType Name="FreightPO" Class="FreightPO">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
@@ -386,6 +372,4 @@
     <Column Name="Occupied" Member="Occupied" />
     <Column Name="IsDouble" Member="IsDouble" />
   </ContentType>
-
-  <!--<ContentType Name="CommodityType" Class="Commodity"/>-->
 </Web>

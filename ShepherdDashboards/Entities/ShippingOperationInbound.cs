@@ -10,37 +10,37 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     #region private
     internal void ChangeRout(Route _nr, EntitiesDataContext _EDC)
     {
-      if (this.Route == _nr)
+      if (this.Shipping2RouteTitle == _nr)
         return;
-      this.TrailerRegistrationNumber = null;
-      this.TruckCarRegistrationNumber = null;
+      this.TrailerTitle = null;
+      this.TruckTitle = null;
       _EDC.SubmitChanges();
-      RemoveDrivers(_EDC, this.VendorName);
-      this.Route = _nr;
+      RemoveDrivers(_EDC, this.PartnerTitle);
+      this.Shipping2RouteTitle = _nr;
       if (_nr == null)
       {
         this.BusinessDescription = String.Empty;
-        this.VendorName = null;
+        this.PartnerTitle = null;
         return;
       }
-      this.BusinessDescription = Route.Route2BusinessDescriptionTitle == null ? String.Empty : Route.Route2BusinessDescriptionTitle.Tytuł;
-      this.VendorName = Route.PartnerTitle;
+      this.BusinessDescription = Shipping2RouteTitle.Route2BusinessDescriptionTitle == null ? String.Empty : Shipping2RouteTitle.Route2BusinessDescriptionTitle.Tytuł;
+      this.PartnerTitle = Shipping2RouteTitle.PartnerTitle;
     }
     internal void ChangeEscort(SecurityEscortCatalog _nr, EntitiesDataContext _EDC)
     {
-      if (this.SecurityEscort == _nr)
+      if (this.SecurityEscortCatalogTitle == _nr)
         return;
-      this.SecurityEscortCarRegistrationNumber = null;
+      this.Shipping2TruckTitle = null;
       _EDC.SubmitChanges();
-      RemoveDrivers(_EDC, this.SecurityEscortProvider);
-      this.SecurityEscort = _nr;
+      RemoveDrivers(_EDC, this.Shipping2PartnerTitle);
+      this.SecurityEscortCatalogTitle = _nr;
       if (_nr == null)
       {
-        this.SecurityEscortProvider = null;
+        this.Shipping2PartnerTitle = null;
         return;
       }
-      this.SecurityEscort = _nr;
-      this.SecurityEscortProvider = _nr == null ? null : _nr.PartnerTitle;
+      this.SecurityEscortCatalogTitle = _nr;
+      this.Shipping2PartnerTitle = _nr == null ? null : _nr.PartnerTitle;
     }
     private void RemoveDrivers(EntitiesDataContext _EDC, Partner _prtne)
     {
@@ -49,8 +49,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
       List<ShippingDriversTeam> _2Delete = new List<ShippingDriversTeam>();
       foreach (ShippingDriversTeam _drv in this.ShippingDriversTeam)
       {
-        if (_prtne == _drv.Driver.VendorName)
+        if (_prtne == _drv.DriverTitle.Driver2PartnerTitle)
         {
+          //TODO clenup the code
           //_drv.ShippingIndex = null;
           //_drv.Driver = null;
           //_2Delete.Add(_drv);
@@ -63,21 +64,21 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     internal bool IsEditable()
     {
-      switch (this.State.Value)
+      switch (this.ShippingState.Value)
       {
-        case Entities.State.Canceled:
-        case Entities.State.Completed:
-        case Entities.State.Cancelation:
+        case Entities.ShippingState.Canceled:
+        case Entities.ShippingState.Completed:
+        case Entities.ShippingState.Cancelation:
           return false;
-        case Entities.State.Confirmed:
-        case Entities.State.Creation:
-        case Entities.State.Delayed:
-        case Entities.State.WaitingForCarrierData:
-        case Entities.State.WaitingForSecurityData:
-        case Entities.State.Underway:
+        case Entities.ShippingState.Confirmed:
+        case Entities.ShippingState.Creation:
+        case Entities.ShippingState.Delayed:
+        case Entities.ShippingState.WaitingForCarrierData:
+        case Entities.ShippingState.WaitingForSecurityData:
+        case Entities.ShippingState.Underway:
           return true;
-        case Entities.State.Invalid:
-        case Entities.State.None:
+        case Entities.ShippingState.Invalid:
+        case Entities.ShippingState.None:
         default:
           throw new ApplicationException("Wrong Shipping state");
       }
@@ -114,7 +115,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         else
         {
           item.Occupied = Entities.Occupied.Free;
-          item.ShippingIndex = null;
+          item.TimeSlot2ShippingIndex = null;
           item.IsDouble = false;
         }
       }
@@ -124,8 +125,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       this.StartTime = _ts.StartTime;
       this.EndTime = _ts.EndTime;
-      this.Duration = Convert.ToDouble((_ts.EndTime.Value - _ts.StartTime.Value).TotalMinutes);
-      this.Warehouse = _ts.GetWarehouse();
+      this.ShippingDuration = Convert.ToDouble((_ts.EndTime.Value - _ts.StartTime.Value).TotalMinutes);
+      this.Shipping2WarehouseTitle = _ts.GetWarehouse();
       this.LoadingType = _isDouble ? Entities.LoadingType.Manual : Entities.LoadingType.Pallet;
     }
     internal void UpdateTitle()
@@ -135,37 +136,37 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     }
     internal void CalculateState()
     {
-      switch (this.State.Value)
+      switch (this.ShippingState.Value)
       {
-        case Entities.State.Confirmed:
-        case Entities.State.Creation:
-        case Entities.State.Delayed:
-        case Entities.State.WaitingForCarrierData:
-        case Entities.State.WaitingForSecurityData:
+        case Entities.ShippingState.Confirmed:
+        case Entities.ShippingState.Creation:
+        case Entities.ShippingState.Delayed:
+        case Entities.ShippingState.WaitingForCarrierData:
+        case Entities.ShippingState.WaitingForSecurityData:
           int _seDrivers = 0;
           int _crDrivers = 0;
           foreach (var _dr in this.ShippingDriversTeam)
-            if (_dr.Driver.VendorName.ServiceType.Value == ServiceType.SecurityEscortProvider)
+            if (_dr.DriverTitle.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider)
               _seDrivers++;
             else
               _crDrivers++;
-          this.State = Entities.State.Creation;
-          if (_crDrivers > 0 && this.TruckCarRegistrationNumber != null)
+          this.ShippingState = Entities.ShippingState.Creation;
+          if (_crDrivers > 0 && this.TruckTitle != null)
           {
-            if (this.SecurityEscort == null || (_seDrivers > 0 && this.SecurityEscortCarRegistrationNumber != null))
-              this.State = Entities.State.Confirmed;
+            if (this.SecurityEscortCatalogTitle == null || (_seDrivers > 0 && this.Shipping2TruckTitle != null))
+              this.ShippingState = Entities.ShippingState.Confirmed;
             else
-              this.State = Entities.State.WaitingForSecurityData;
+              this.ShippingState = Entities.ShippingState.WaitingForSecurityData;
           }
-          else if (this.SecurityEscort == null || (_seDrivers > 0 && this.SecurityEscortCarRegistrationNumber != null))
-            this.State = Entities.State.WaitingForCarrierData;
+          else if (this.SecurityEscortCatalogTitle == null || (_seDrivers > 0 && this.Shipping2TruckTitle != null))
+            this.ShippingState = Entities.ShippingState.WaitingForCarrierData;
           break;
-        case Entities.State.Underway:
-        case Entities.State.None:
-        case Entities.State.Invalid:
-        case Entities.State.Cancelation:
-        case Entities.State.Canceled:
-        case Entities.State.Completed:
+        case Entities.ShippingState.Underway:
+        case Entities.ShippingState.None:
+        case Entities.ShippingState.Invalid:
+        case Entities.ShippingState.Cancelation:
+        case Entities.ShippingState.Canceled:
+        case Entities.ShippingState.Completed:
         default:
           break;
       }

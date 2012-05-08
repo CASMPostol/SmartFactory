@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
     {
       Tytuł = _title;
       this.AlarmsAndEventsList2PartnerTitle = _partner;
-      this.AlarmsAndEventsList2ShippingIndex = _shippingIndex;
+      this.AlarmsAndEventsList2Shipping = _shippingIndex;
     }
     /// <summary>
     /// Writes an entry with the given message text and application-defined event identifier to the event log list.
