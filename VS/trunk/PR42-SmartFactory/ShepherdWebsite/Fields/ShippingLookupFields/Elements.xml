@@ -274,7 +274,7 @@
     Overwrite="TRUE"
   />
   <Field
-    Name="AlarmsAndEventsList2ShippingIndex"
+    Name="AlarmsAndEventsList2Shipping"
     ID="{907B59C1-8DC8-477B-BF68-2C79A0354990}"
     Type="Lookup"
     List="Lists/ShippingList"
