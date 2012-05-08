@@ -25,10 +25,19 @@ namespace CAS.SmartFactory.SPMetalHelper.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://casmp/sites/s41")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://casmp/sites/s42")]
         public string URL {
             get {
                 return ((string)(this["URL"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Parameters.xml")]
+        public string FileName {
+            get {
+                return ((string)(this["FileName"]));
             }
         }
     }
