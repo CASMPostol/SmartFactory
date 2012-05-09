@@ -56,6 +56,15 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SPMetalHelper\Entities\Entities.cs">
+      <Link>Includes\Entities.cs</Link>
+    </Compile>
+    <Compile Include="..\SPMetalHelper\Entities\Entities.partial.cs">
+      <Link>Includes\Entities.partial.cs</Link>
+    </Compile>
+    <Compile Include="..\SPMetalHelper\Extensions.cs">
+      <Link>Includes\Extensions.cs</Link>
+    </Compile>
     <Compile Include="ActionResult.cs" />
     <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPart.cs" />
     <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx.cs">
@@ -114,15 +123,6 @@
     <Compile Include="CurrentUserWebPart\UserDescriptor.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Entities\AlarmsAndEvents.cs" />
-    <Compile Include="Entities\Anons.cs" />
-    <Compile Include="Entities\CityType.cs" />
-    <Compile Include="Entities\Element.cs" />
-    <Compile Include="Entities\Entities.cs" />
-    <Compile Include="Entities\EntitiesDataContext.cs" />
-    <Compile Include="Entities\Partner.cs" />
-    <Compile Include="Entities\ShippingOperationInbound.cs" />
-    <Compile Include="Entities\TimeSlotTimeSlot.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Features\Dashboards\Dashboards.EventReceiver.cs">
       <DependentUpon>Dashboards.feature</DependentUpon>
@@ -268,8 +268,6 @@
     <None Include="DefaultPage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{707849e5-4a82-4f9b-b735-62f93ff92970}</SharePointProjectItemId>
     </None>
-    <None Include="Entities\Entities.cd" />
-    <None Include="Entities\Scripts\GetEntities.ps1" />
     <None Include="Features\Dashboards\Dashboards.feature">
       <FeatureId>{cf7dc489-0019-4684-9bb2-fde5b31efe5f}</FeatureId>
     </None>
@@ -374,9 +372,6 @@
     <Content Include="Dashoards\ViewInboundsDashboard\Elements.xml" />
     <Content Include="Dashoards\ViewOutboundsDashboard\Elements.xml" />
     <Content Include="DefaultPage\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Entities\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Features\Dashboards\Dashboards.Template.xml">

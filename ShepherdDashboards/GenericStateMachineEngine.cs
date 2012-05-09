@@ -1,6 +1,6 @@
 ﻿using System;
 using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.SPMetalHelper.Entities;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
@@ -194,7 +194,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     {
       if (_rslt.LastActionResult != ActionResult.Result.Exception)
         return;
-      Entities.Anons _entry = new Anons(_rslt.ActionException.Source, _rslt.ActionException.Message);
+      Anons _entry = new Anons(_rslt.ActionException.Source, _rslt.ActionException.Message);
       using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
       {
         _EDC.EventLogList.InsertOnSubmit(_entry);

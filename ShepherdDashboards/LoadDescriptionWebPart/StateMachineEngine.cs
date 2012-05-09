@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using System.Web.UI.WebControls;
+using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
 {

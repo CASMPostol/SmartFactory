@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.SPMetalHelper.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
 

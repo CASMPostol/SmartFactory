@@ -1,12 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Microsoft.SharePoint;
-using Microsoft.SharePoint.WebControls;
-using System.Data;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
 using Microsoft.SharePoint.WebPartPages;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart

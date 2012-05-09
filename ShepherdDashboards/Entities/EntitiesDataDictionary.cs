@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
 {
   using UpdateToolStripEvent = CAS.SmartFactory.Shepherd.Dashboards.GlobalDefinitions.UpdateToolStripEvent;
-  using Microsoft.SharePoint.Linq;
 
   public class EntitiesDataDictionary : IDisposable
   {
@@ -209,6 +209,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Entities
         return ServiceType.Forwarder;
     }
     #endregion
+
     #region data management
     private type Create<type>(EntityList<type> _EDC, Dictionary<string, type> _dictionary, string _key, bool _testData)
       where type : Element, new()

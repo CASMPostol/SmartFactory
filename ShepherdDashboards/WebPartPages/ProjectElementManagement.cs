@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.SharePoint;
 using System.Web.UI.WebControls.WebParts;
-using SPLimitedWebPartManager = Microsoft.SharePoint.WebPartPages.SPLimitedWebPartManager;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.SPMetalHelper.Entities;
+using Microsoft.SharePoint;
 
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
 {
+  using SPLimitedWebPartManager = Microsoft.SharePoint.WebPartPages.SPLimitedWebPartManager;
+
   internal class ProjectElementManagement
   {
     //Menu entries
@@ -77,12 +77,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
           StringBuilder _names = new StringBuilder();
           _dict.Keys.ToList<string>().ForEach(name => _names.Append(name + ", "));
           string _msg = String.Format("Setup connections failed in Phase={0}, Count={1}, First={2}, Ex={3}", _phase, _dict.Count, _names.ToString(), ex.Message);
-          Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceSetupConnections, _msg);
+          Anons.WriteEntry(_edc, m_SourceClass + m_SourceSetupConnections, _msg);
           //throw new ApplicationException(_msg);
         }
       Anons.WriteEntry(_edc, m_SourceClass + m_SourceSetupConnections, "Setup connections finished");
     }
-    internal static void RemovePages(Entities.EntitiesDataContext _edc, SPWeb _root)
+    internal static void RemovePages(EntitiesDataContext _edc, SPWeb _root)
     {
       Anons.WriteEntry(_edc, m_SourceClass + m_SourceRemovePages, "Remove Pages starting");
       try

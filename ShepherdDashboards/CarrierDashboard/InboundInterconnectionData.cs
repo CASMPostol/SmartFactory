@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.SPMetalHelper.Entities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard
 {

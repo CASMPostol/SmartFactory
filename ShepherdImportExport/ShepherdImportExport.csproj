@@ -157,9 +157,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ShepherdDashboards\ShepherdDashboards.csproj">
-      <Project>{9298A609-7978-4256-8151-C5EBDC2E496E}</Project>
-      <Name>ShepherdDashboards</Name>
+    <ProjectReference Include="..\SPMetalHelper\SPMetalHelper.csproj">
+      <Project>{64707CAF-17D6-4F45-9AB5-64B7D946095F}</Project>
+      <Name>SPMetalHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

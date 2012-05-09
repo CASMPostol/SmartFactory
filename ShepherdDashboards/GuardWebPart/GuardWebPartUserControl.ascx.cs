@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.SPMetalHelper.Entities;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
@@ -144,13 +144,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
     private void ReportException(string _source, Exception _ex)
     {
       string _tmplt = "The current operation has been interrupted by error {0}.";
-      Entities.Anons _entry = new Anons(_source, String.Format(_tmplt, _ex.Message));
+      Anons _entry = new Anons(_source, String.Format(_tmplt, _ex.Message));
       EDC.EventLogList.InsertOnSubmit(_entry);
       EDC.SubmitChanges();
     }
     private void ReportAlert(Shipping _shipping, string _msg)
     {
-      Entities.AlarmsAndEvents _ae = new Entities.AlarmsAndEvents()
+      AlarmsAndEvents _ae = new AlarmsAndEvents()
       {
         AlarmsAndEventsList2Shipping = _shipping,
         AlarmsAndEventsList2PartnerTitle = _shipping.PartnerTitle,

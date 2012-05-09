@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using CAS.SmartFactory.Shepherd.Dashboards.WebPartPages;
+using CAS.SmartFactory.SPMetalHelper.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Navigation;
-using System.Collections.Generic;
-using CAS.SmartFactory.Shepherd.Dashboards.WebPartPages;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
 {
@@ -28,12 +29,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         if (site == null)
           throw new ApplicationException("In FeatureActivated the Site is null");
         SPWeb _root = site.RootWeb;
-        using (Entities.EntitiesDataContext _edc = new Entities.EntitiesDataContext(_root.Url))
+        using (EntitiesDataContext _edc = new EntitiesDataContext(_root.Url))
         {
-          Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated strating");
+          Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated strating");
           _cp = "ReplaceMasterMage";
           ReplaceMasterMage(site);
-          Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
+          Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "Navigation setup starting");
           _cp = "SPNavigationNodeCollection";
           SPNavigationNodeCollection _topNav = _root.Navigation.TopNavigationBar;
           _topNav.AddAsLast(new SPNavigationNode(ProjectElementManagement.MenuVendorTitle, ProjectElementManagement.URLVendorDashboard));
@@ -54,7 +55,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
             item.Update();
           //WebPartPages.ProjectElementManagement.SetupConnections(_edc, _root);
           _cp = "Entities.Anons";
-          Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated finished");
+          Anons.WriteEntry(_edc, m_SourceClass + m_SourceFeatureActivated, "FeatureActivated finished");
         }
       }
       catch (Exception ex)
@@ -72,18 +73,18 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
       SPWeb _root = _site.RootWeb;
       if (_site == null)
         throw new ApplicationException("FeatureDeactivating cannot get access to the Web");
-      using (Entities.EntitiesDataContext _edc = new Entities.EntitiesDataContext(_root.Url))
+      using (EntitiesDataContext _edc = new EntitiesDataContext(_root.Url))
       {
-        Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Feature Deactivation starting.");
-        Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Removing pages.");
+        Anons.WriteEntry(_edc, "FeatureDeactivating", "Feature Deactivation starting.");
+        Anons.WriteEntry(_edc, "FeatureDeactivating", "Removing pages.");
         WebPartPages.ProjectElementManagement.RemovePages(_edc, _root);
-        Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Removing Navigation Entries.");
+        Anons.WriteEntry(_edc, "FeatureDeactivating", "Removing Navigation Entries.");
         RemoveNavigationEntries(_root);
-        Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Starting deletion of web parts.");
+        Anons.WriteEntry(_edc, "FeatureDeactivating", "Starting deletion of web parts.");
         DeleteWebParts(_edc, _root);
-        Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Reverting to default master page.");
+        Anons.WriteEntry(_edc, "FeatureDeactivating", "Reverting to default master page.");
         RevertMasterPage(_site);
-        Entities.Anons.WriteEntry(_edc, "FeatureDeactivating", "Feature Deactivation finished.");
+        Anons.WriteEntry(_edc, "FeatureDeactivating", "Feature Deactivation finished.");
       }
     }
     #endregion
@@ -162,15 +163,15 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
         throw new ApplicationException("Cannot remove navigation entries: " + ex.Message);
       }
     }
-    private static void DeleteWebParts(Entities.EntitiesDataContext _edc, SPWeb _root)
+    private static void DeleteWebParts(EntitiesDataContext _edc, SPWeb _root)
     {
-      Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts strating");
+      Anons.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts strating");
       try
       {
         SPList _wpl = _root.GetCatalog(SPListTemplateType.WebPartCatalog);
         List<SPFile> _filesToDelete = new List<SPFile>();
         // figure out which Web Part template files need to be deleted
-        Entities.Anons.WriteEntry
+        Anons.WriteEntry
         (
           _edc, m_SourceClass + m_SourceDeleteWebParts,
           String.Format("Processing of the WebPartCatalog containing {0} items starting ", _wpl.ItemCount)
@@ -181,7 +182,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
           if (_delete)
             _filesToDelete.Add(_li.File);
           string _mess = String.Format("Title: {0}, Name: {1}, File name: {2}, deleted: {3}", _li.Title, _li.Name, _li.File.Name, _delete);
-          Entities.Anons.WriteEntry(_edc, "Processing Web Part", _mess);
+          Anons.WriteEntry(_edc, "Processing Web Part", _mess);
         }
         // delete Web Part template files
         foreach (SPFile file in _filesToDelete)
@@ -189,9 +190,9 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Features.Dashboards
       }
       catch (Exception ex)
       {
-        Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts finished with exception: " + ex.Message);
+        Anons.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts finished with exception: " + ex.Message);
       }
-      Entities.Anons.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts finished");
+      Anons.WriteEntry(_edc, m_SourceClass + m_SourceDeleteWebParts, "Delete Web Parts finished");
     }
     private const string m_SourceClass = "DashboardsEventReceiver.";
     private const string m_SourceDeleteWebParts = "DeleteWebParts";
