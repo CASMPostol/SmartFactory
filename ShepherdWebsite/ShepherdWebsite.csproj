@@ -387,7 +387,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\Commodity\Elements.xml" />
-    <Content Include="Content types\Dictionaries\Country\Elements.xml" />
+    <Content Include="Content types\Dictionaries\Country\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\Currency\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
