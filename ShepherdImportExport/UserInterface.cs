@@ -45,7 +45,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       base.Dispose(disposing);
     }
     private Stopwatch m_Stopwatch = new Stopwatch();
-    
+    //TODO Add to ImportData to monitor import flow.
     private void UpdateToolStrip(object obj, ProgressChangedEventArgs progres)
     {
       m_ToolStripStatusLabel.Text = (string)progres.UserState;
