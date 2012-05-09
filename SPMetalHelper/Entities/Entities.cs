@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.SPMetalHelper.Entities {
+namespace CAS.SmartFactory.Shepherd.Entities {
 	using System;
 	
 	
