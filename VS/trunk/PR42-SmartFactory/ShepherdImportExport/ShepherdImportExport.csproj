@@ -86,6 +86,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SPMetalHelper\Entities\Entities.cs">
+      <Link>Includes\Entities.cs</Link>
+    </Compile>
+    <Compile Include="..\SPMetalHelper\Entities\Entities.partial.cs">
+      <Link>Includes\Entities.partial.cs</Link>
+    </Compile>
+    <Compile Include="..\SPMetalHelper\Entities\EntitiesDataDictionary.cs">
+      <Link>Includes\EntitiesDataDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\SPMetalHelper\ImportDataModel\ImportDataModelShepherd.cs">
+      <Link>Includes\ImportDataModelShepherd.cs</Link>
+    </Compile>
+    <Compile Include="..\SPMetalHelper\ImportDataModel\ImportDataModelShepherd.xsd.cs">
+      <Link>Includes\ImportDataModelShepherd.xsd.cs</Link>
+    </Compile>
     <Compile Include="FileDialog.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -100,10 +115,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XML\PreliminaryData.cs" />
-    <Compile Include="XML\PreliminaryData.xsd.cs">
-      <DependentUpon>PreliminaryData.xsd</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="FileDialog.resx">
       <DependentUpon>FileDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,10 +145,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="XML\PreliminaryData.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="XML\Scripts\CreateCS.ps1" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -155,12 +162,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SPMetalHelper\SPMetalHelper.csproj">
-      <Project>{64707CAF-17D6-4F45-9AB5-64B7D946095F}</Project>
-      <Name>SPMetalHelper</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
