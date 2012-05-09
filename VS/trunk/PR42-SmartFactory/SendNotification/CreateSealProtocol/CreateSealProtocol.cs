@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Workflow.Activities;
-using CAS.SmartFactory.Shepherd.SendNotification.Entities;
+using CAS.SmartFactory.Shepherd.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 using System.Collections.Generic;
@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
         _stt = "using";
         using (EntitiesDataContext _EDC = new EntitiesDataContext(_url))
         {
-          ShippingShipping _sp = (from idx in _EDC.Shipping
+          Shipping  _sp = (from idx in _EDC.Shipping
                                   where idx.Identyfikator == workflowProperties.ItemId
                                   select idx).First();
           if (!_sp.IsOutbound.Value)
@@ -81,8 +81,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
           _sprt.SealProtocolEscortCarNo = _team[TeamMembers.EscortCarNo];
           _sprt.SealProtocolEscortPhone = _team[TeamMembers.EscortPhone];
           _sprt.SealProtocolForwarder = _sp.PartnerTitle.Title();
-          _sprt.SealProtocolSecurityEscortProvider = _sp.ShippingOperationOutband2PartnerTitle.Title();
-          _sp.SecuritySealProtocolIndex = _sprt;
+          _sprt.SealProtocolSecurityEscortProvider = _sp.Shipping2PartnerTitle.Title();
+          _sp.SecuritySealProtocolIndexIdentyfikator = _sprt;
           _sprt.SealProtocolTrailerNo = _team[TeamMembers.TrailerNo];
           _sprt.SealProtocolTruckNo = _team[TeamMembers.TruckNo];
           _sprt.Tytuł = String.Format("Security Seal & Signature Protocol SSP-3{0, 5}", _sprt.Identyfikator);
@@ -100,7 +100,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
         m_AfterCreationLogToHistoryList_HistoryDescription1 = string.Format(_frmt, _stt, _ex.Message);
       }
     }
-    private Dictionary<TeamMembers, string> GetTeamData(ShippingShipping _sp)
+    private Dictionary<TeamMembers, string> GetTeamData(Shipping _sp)
     {
       Dictionary<TeamMembers, string> _ret = new Dictionary<TeamMembers, string>();
       _ret.Add(TeamMembers._1stDriver, String.Empty.NotAvailable());
@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
       _ret.Add(TeamMembers._2ndEscort, String.Empty.NotAvailable());
       _ret.Add(TeamMembers.DriverSPhone, String.Empty.NotAvailable());
       _ret.Add(TeamMembers.EscortPhone, String.Empty.NotAvailable());
-      _ret.Add(TeamMembers.EscortCarNo, _sp.ShippingOperationOutband2TruckTitle.Title());
+      _ret.Add(TeamMembers.EscortCarNo, _sp.Shipping2TruckTitle.Title());
       _ret.Add(TeamMembers.TrailerNo, _sp.TrailerTitle.Title());
       _ret.Add(TeamMembers.TruckNo, _sp.TruckTitle.Title());
       TeamMembers _cd = TeamMembers._1stDriver;

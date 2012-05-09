@@ -60,6 +60,21 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SPMetalHelper\Entities\Entities.cs">
+      <Link>Includes\Entities.cs</Link>
+    </Compile>
+    <Compile Include="..\SPMetalHelper\Entities\Entities.partial.cs">
+      <Link>Includes\Entities.partial.cs</Link>
+    </Compile>
+    <Compile Include="..\SPMetalHelper\Entities\EntitiesDataDictionary.cs">
+      <Link>Includes\EntitiesDataDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\SPMetalHelper\ImportDataModel\ImportDataModelShepherd.cs">
+      <Link>Includes\ImportDataModelShepherd.cs</Link>
+    </Compile>
+    <Compile Include="..\SPMetalHelper\ImportDataModel\ImportDataModelShepherd.xsd.cs">
+      <Link>Includes\ImportDataModelShepherd.xsd.cs</Link>
+    </Compile>
     <Compile Include="ActionResult.cs" />
     <Compile Include="AddTimeSlots\AddTimeSlots.cs">
       <SubType>Component</SubType>
@@ -102,12 +117,6 @@
     <Compile Include="CreateSecurityPO1\CreateSecurityPO1.Designer.cs">
       <DependentUpon>CreateSecurityPO1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entities\DistributionList.cs" />
-    <Compile Include="Entities\Element.cs" />
-    <Compile Include="Entities\Entities.cs" />
-    <Compile Include="Entities\EntitiesDataContext.cs" />
-    <Compile Include="Entities\EntitiesDataDictionary.cs" />
-    <Compile Include="Entities\Shipping.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Features\SendNotification\SendNotification.EventReceiver.cs">
       <DependentUpon>SendNotification.feature</DependentUpon>
@@ -122,12 +131,6 @@
     </Compile>
     <Compile Include="ImportDictionaries\ImportDictionaries.Designer.cs">
       <DependentUpon>ImportDictionaries.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ImportDictionaries\Schema\PreliminaryDataRoute.cs">
-      <DependentUpon>PreliminaryDataRoute.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="ImportDictionaries\Schema\PreliminaryDataRoute.xsd.cs">
-      <DependentUpon>PreliminaryDataRoute.xsd</DependentUpon>
     </Compile>
     <Compile Include="OpenXMLHelpers.cs" />
     <Compile Include="ShippingStateMachine\MailData.cs" />
@@ -216,11 +219,6 @@
     <None Include="CreateSecurityPO1\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{38cea048-1e1a-4e41-8780-7fc16d1f17c0}</SharePointProjectItemId>
     </None>
-    <None Include="Entities\Scripts\GetEntities.ps1" />
-    <None Include="Entities\Scripts\Parameters.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Parameters.xml</LastGenOutput>
-    </None>
     <None Include="ImportDictionaries\Definitions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Definitions.cs</LastGenOutput>
@@ -229,10 +227,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Elements.xml</LastGenOutput>
     </None>
-    <None Include="ImportDictionaries\Schema\PreliminaryDataRoute.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ImportDictionaries\Schema\Scripts\CreateCS.ps1" />
     <None Include="ImportDictionaries\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8f1cd1f7-33c7-407c-a56a-90b735c05d3b}</SharePointProjectItemId>
       <SubType>Designer</SubType>
@@ -314,18 +308,10 @@
     <Content Include="CreatePO\Elements.xml" />
     <Content Include="CreateSealProtocol\Elements.xml" />
     <Content Include="CreateSecurityPO1\Elements.xml" />
-    <Content Include="Entities\Scripts\Parameters.xml">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Parameters.tt</DependentUpon>
-    </Content>
     <Content Include="ImportDictionaries\Elements.xml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Elements.tt</DependentUpon>
-    </Content>
-    <Content Include="ImportDictionaries\Schema\PreliminaryDataRoute.xml">
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="SendEmail\Elements.xml">
       <SubType>Designer</SubType>

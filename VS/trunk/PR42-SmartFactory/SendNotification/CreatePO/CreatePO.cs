@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Workflow.Activities;
-using CAS.SmartFactory.Shepherd.SendNotification.Entities;
+using CAS.SmartFactory.Shepherd.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 

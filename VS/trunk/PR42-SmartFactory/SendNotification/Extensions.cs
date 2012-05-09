@@ -1,5 +1,5 @@
 ﻿using System;
-using CAS.SmartFactory.Shepherd.SendNotification.Entities;
+using CAS.SmartFactory.Shepherd.Entities;
 using System.Web.UI.WebControls;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification
@@ -14,10 +14,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     {
       return _val == null ? "N/A" : _val.Tytuł;
     }
-    public static string UnknownIfEmpty(this String _val)
-    {
-      return String.IsNullOrEmpty(_val) ? CommonDefinition.UnknownEmail : _val;
-    }
+
     public static string ToMonthString(this DateTime _dateTime)
     {
       return new DateTime(_dateTime.Year, _dateTime.Month, 1).ToShortDateString();
