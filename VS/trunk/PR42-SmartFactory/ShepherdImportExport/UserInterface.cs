@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using CAS.SmartFactory.SPMetalHelper.Entities;
+using CAS.SmartFactory.Shepherd.Entities;
 using CAS.SmartFactory.Shepherd.ImportDataModel;
 
 namespace CAS.SmartFactory.Shepherd.ImportExport
