@@ -6,7 +6,7 @@ using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
 using System.Globalization;
 
-namespace CAS.SmartFactory.SPMetalHelper.Entities
+namespace CAS.SmartFactory.Shepherd.Entities
 {
   /// <summary>
   /// Extends the EntitiesDataContext class

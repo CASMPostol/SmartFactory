@@ -4,7 +4,7 @@ using System.Linq;
 using CAS.SmartFactory.Shepherd.ImportDataModel;
 using Microsoft.SharePoint.Linq;
 
-namespace CAS.SmartFactory.SPMetalHelper.Entities
+namespace CAS.SmartFactory.Shepherd.Entities
 {
 
   public class EntitiesDataDictionary : IDisposable
