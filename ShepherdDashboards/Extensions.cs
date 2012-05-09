@@ -4,10 +4,9 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Web.UI.WebControls;
+using CAS.SmartFactory.Shepherd.Entities;
 using Microsoft.SharePoint.Linq;
 using Microsoft.SharePoint.Utilities;
-using System.Web.UI;
-using CAS.SmartFactory.SPMetalHelper.Entities;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards
 {
