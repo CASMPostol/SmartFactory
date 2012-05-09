@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.SPMetalHelper.Entities;
+using CAS.SmartFactory.Shepherd.Entities;
 using Microsoft.SharePoint;
 
 

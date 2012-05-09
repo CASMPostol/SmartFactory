@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Data;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.SPMetalHelper.Entities;
+using CAS.SmartFactory.Shepherd.Entities;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CurrentUserWebPart

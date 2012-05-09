@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CAS.SmartFactory.SPMetalHelper.Entities;
+using CAS.SmartFactory.Shepherd.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 

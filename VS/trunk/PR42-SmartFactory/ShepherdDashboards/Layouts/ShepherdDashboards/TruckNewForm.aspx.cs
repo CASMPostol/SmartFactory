@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.UI.WebControls;
-using CAS.SmartFactory.SPMetalHelper.Entities;
+using CAS.SmartFactory.Shepherd.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
