@@ -62,9 +62,6 @@
     <Compile Include="..\SPMetalHelper\Entities\Entities.partial.cs">
       <Link>Includes\Entities.partial.cs</Link>
     </Compile>
-    <Compile Include="..\SPMetalHelper\Extensions.cs">
-      <Link>Includes\Extensions.cs</Link>
-    </Compile>
     <Compile Include="ActionResult.cs" />
     <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPart.cs" />
     <Compile Include="CarrierDashboard\CarrierDashboardWebPart\CarrierDashboardWebPartUserControl.ascx.cs">
