@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
+using CAS.SmartFactory.Shepherd.Entities;
 
 namespace CAS.SmartFactory.Shepherd.ImportDataModel
 {
