@@ -143,7 +143,7 @@ namespace CAS.SmartFactory.SPMetalHelper.Entities
         string _dstName = String.Format("{0} in {1}", _CityType.Tytuł, _mrkt.Tytuł);
         DestinationMarket _DestinationMarket = new DestinationMarket()
           {
-            Tytuł = _dstName,
+            //Tytuł = _dstName,
             DestinationMarket2CityTitle = _CityType,
             MarketTitle = _mrkt
           };
