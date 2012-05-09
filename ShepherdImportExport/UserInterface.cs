@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using CAS.SmartFactory.SPMetalHelper.Entities;
+using CAS.SmartFactory.Shepherd.ImportDataModel;
 
 namespace CAS.SmartFactory.Shepherd.ImportExport
 {
@@ -44,6 +45,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       base.Dispose(disposing);
     }
     private Stopwatch m_Stopwatch = new Stopwatch();
+    
     private void UpdateToolStrip(object obj, ProgressChangedEventArgs progres)
     {
       m_ToolStripStatusLabel.Text = (string)progres.UserState;
@@ -210,7 +212,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
           UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Reading xml file"));
           PreliminaryDataRoute _cnfg = PreliminaryDataRoute.ImportDocument(strm);
           UpdateToolStrip(this, new ProgressChangedEventArgs(1, "Importing Data"));
-          _cnfg.ImportData(_cnfg, m_URLTextBox.Text.Trim(), UpdateToolStrip, m_TestDataCheckBox.Checked);
+          _cnfg.ImportData(m_URLTextBox.Text.Trim());
           SetDone("Done");
         }
       }
