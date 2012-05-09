@@ -5,13 +5,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using CAS.SmartFactory.Shepherd.ImportExport.XML;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.SPMetalHelper.Entities;
 
 namespace CAS.SmartFactory.Shepherd.ImportExport
 {
-  using UpdateToolStripEvent = CAS.SmartFactory.Shepherd.Dashboards.GlobalDefinitions.UpdateToolStripEvent;
-  using CAS.SmartFactory.Shepherd.Dashboards.Schemas;
+  public delegate void UpdateToolStripEvent(object obj, ProgressChangedEventArgs progres);
+
+  /// <summary>
+  /// User Interface
+  /// </summary>
   public partial class UserInterface : Form
   {
     public UserInterface()
@@ -94,7 +96,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         {
           DateTime _bgn = _dy + TimeSpan.FromHours(_indx);
           DateTime _end = _bgn + TimeSpan.FromHours(1);
-          _ts.Add(new TimeSlotTimeSlot() { EntryTime = _bgn, EndTime = _end, ExitTime = _end, Occupied = Occupied.Free , ShippingPoint = _sp, StartTime = _bgn });
+          _ts.Add(new TimeSlotTimeSlot() { EntryTime = _bgn, EndTime = _end, ExitTime = _end, Occupied = Occupied.Free, TimeSlot2ShippingPointLookup = _sp, StartTime = _bgn });
           _update(this, new ProgressChangedEventArgs(1, _bgn.ToShortDateString()));
         }
         _EDC.TimeSlot.InsertAllOnSubmit(_ts);
@@ -129,7 +131,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       for (int i = 0; i < 2; i++)
       {
         string _tm = String.Format("Truck {0}", _truckId++);
-        Truck _trck = new Truck() { Tytuł = _tm, VehicleType = _vt, VendorName = _prt };
+        Truck _trck = new Truck() { Tytuł = _tm, VehicleType = _vt, Truck2PartnerTitle = _prt };
         _EDC.Truck.InsertOnSubmit(_trck);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _tm)));
       }
@@ -140,7 +142,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       for (int i = 0; i < 2; i++)
       {
         string _tm = String.Format("Trailer {0}", _trailerId++);
-        Trailer _trck = new Trailer() { Tytuł = _tm, VendorName = _prt, };
+        Trailer _trck = new Trailer() { Tytuł = _tm, Trailer2PartnerTitle = _prt, };
         _EDC.Trailer.InsertOnSubmit(_trck);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _tm)));
       }
@@ -151,7 +153,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
       for (int i = 0; i < 2; i++)
       {
         string _tm = String.Format("Driver {0}", _driverId++);
-        Driver _drv = new Driver() { Tytuł = _tm, VendorName = _prt, IdentityDocumentNumber = "IdentityDocumentNumber" };
+        Driver _drv = new Driver() { Tytuł = _tm, Driver2PartnerTitle = _prt, IdentityDocumentNumber = "IdentityDocumentNumber" };
         _EDC.Driver.InsertOnSubmit(_drv);
         _update(this, new ProgressChangedEventArgs(1, String.Format("SubmitChanges for {0}", _tm)));
       }
@@ -167,7 +169,7 @@ namespace CAS.SmartFactory.Shepherd.ImportExport
         using (EntitiesDataContext _EDC = new EntitiesDataContext(m_URLTextBox.Text.Trim()))
         {
           foreach (Partner _prt in _EDC.Partner)
-          CreatePartners(_EDC, UpdateToolStrip, _prt);
+            CreatePartners(_EDC, UpdateToolStrip, _prt);
         }
         SetDone("Done");
       }

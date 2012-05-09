@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.SPMetalHelper.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
 
@@ -13,7 +13,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 {
   using ButtonsSet = StateMachineEngine.ControlsSet;
   using InterfaceState = StateMachineEngine.InterfaceState;
-  using System.Diagnostics;
 
   /// <summary>
   /// Carrier Dashboard WebPart UserControl
@@ -208,11 +207,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         SetVisible(m_AllButtons);
         m_StateMachineEngine.InitMahine();
         m_TrailerConditionDropdown.Items.Add(new ListItem(" -- Select trailer condition  --", "-1") { Selected = true });
-        m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Unacceptable", ((int)Entities.TrailerCondition._1Unexceptable).ToString()));
-        m_TrailerConditionDropdown.Items.Add(new ListItem("2 - Bad", ((int)Entities.TrailerCondition._2).ToString()));
-        m_TrailerConditionDropdown.Items.Add(new ListItem("3 - Poor", ((int)Entities.TrailerCondition._3).ToString()));
-        m_TrailerConditionDropdown.Items.Add(new ListItem("4 - Good", ((int)Entities.TrailerCondition._4).ToString()));
-        m_TrailerConditionDropdown.Items.Add(new ListItem("5 - Excellent", ((int)Entities.TrailerCondition._5Excellent).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Unacceptable", ((int)TrailerCondition._1Unexceptable).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("2 - Bad", ((int)TrailerCondition._2).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("3 - Poor", ((int)TrailerCondition._3).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("4 - Good", ((int)TrailerCondition._4).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("5 - Excellent", ((int)TrailerCondition._5Excellent).ToString()));
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
         {
           m_TransportUnitTypeDropDownList.DataSource = from _idx in _EDC.TransportUnitType
@@ -682,7 +681,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           Shipping _sppng = new Shipping()
           {
             IsOutbound = m_DashboardType == GlobalDefinitions.Roles.OutboundOwner,
-            ShippingState = Entities.ShippingState.Invalid,
+            ShippingState = ShippingState.Invalid,
             Tytuł = "Creating new shippment"
           };
           _sppng.SetupTiming(_newts, m_ControlState.TimeSlotIsDouble);
@@ -1006,7 +1005,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           string _tmplt = "The current operation has been interrupted by error {0}.";
-          Entities.Anons _entry = new Anons(_source, String.Format(_tmplt, ex.Message));
+          Anons _entry = new Anons(_source, String.Format(_tmplt, ex.Message));
           _EDC.EventLogList.InsertOnSubmit(_entry);
           _EDC.SubmitChanges();
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.SPMetalHelper.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
 
@@ -352,6 +352,5 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
       this.Controls.Add(new LiteralControl(String.Format(GlobalDefinitions.ErrorMessageFormat, _rslt.ActionException.Message)));
     }
     #endregion
-
   }
 }

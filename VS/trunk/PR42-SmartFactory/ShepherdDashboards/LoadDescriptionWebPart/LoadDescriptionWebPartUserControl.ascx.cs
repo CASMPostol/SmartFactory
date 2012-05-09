@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using System.Collections.Generic;
 using CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard;
-using System.Linq;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.SPMetalHelper.Entities;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
@@ -255,7 +255,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       }
       protected override void ExceptionCatched(string _source, string _message)
       {
-        Entities.Anons _entry = new Anons(_source, _message);
+        Anons _entry = new Anons(_source, _message);
         Parent.m_EDC.EventLogList.InsertOnSubmit(_entry);
         Parent.m_EDC.SubmitChanges();
       }
@@ -515,7 +515,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
     }
     private void ReportAlert(string _msg)
     {
-      Entities.AlarmsAndEvents _ae = new Entities.AlarmsAndEvents()
+      AlarmsAndEvents _ae = new AlarmsAndEvents()
       {
         AlarmsAndEventsList2Shipping = CurrentShipping,
         AlarmsAndEventsList2PartnerTitle = CurrentShipping.PartnerTitle,

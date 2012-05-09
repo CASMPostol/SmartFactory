@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.SPMetalHelper.Entities;
 using Microsoft.SharePoint;
-using System.Linq;
 using Microsoft.SharePoint.WebControls;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
@@ -112,7 +112,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       }
       catch (Exception ex)
       {
-        Entities.Anons.WriteEntry(m_EDC, "TimeSlotList_SelectedIndexChanged", ex.Message);
+        Anons.WriteEntry(m_EDC, "TimeSlotList_SelectedIndexChanged", ex.Message);
       }
     }
     private void m_Calendar_VisibleMonthChanged(object sender, MonthChangedEventArgs e) { }
@@ -151,7 +151,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
           if (_spoint.Direction != _direction && _spoint.Direction != Direction.BothDirections)
             continue;
           List<TimeSlot> _avlblTmslts = (from _tsidx in _spoint.TimeSlot
-                                         where _tsidx.Occupied.Value == Entities.Occupied.Free && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
+                                         where _tsidx.Occupied.Value == Occupied.Free && _tsidx.StartTime >= _strt && _tsidx.StartTime < _end
                                          orderby _tsidx.StartTime ascending
                                          select _tsidx).ToList<TimeSlot>();
           if (m_ShowDoubleTimeSlots.Checked)

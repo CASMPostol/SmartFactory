@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.UI.WebControls;
-using CAS.SmartFactory.Shepherd.Dashboards.Entities;
+using CAS.SmartFactory.SPMetalHelper.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
@@ -74,7 +74,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
         Truck _nd = null;
         if (m_ItemID.Value.IsNullOrEmpty())
         {
-          _nd = new Entities.Truck();
+          _nd = new Truck();
           EDC.Truck.InsertOnSubmit(_nd);
         }
         else
@@ -112,7 +112,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.Layouts.ShepherdDashboards
     private void ReportException(string _source, Exception ex)
     {
       string _tmplt = "The current operation has been interrupted by error {0}.";
-      Entities.Anons _entry = new Anons(_source, String.Format(_tmplt, ex.Message));
+      Anons _entry = new Anons(_source, String.Format(_tmplt, ex.Message));
       EDC.EventLogList.InsertOnSubmit(_entry);
       EDC.SubmitChanges();
     }
