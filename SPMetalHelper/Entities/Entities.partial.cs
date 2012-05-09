@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
+using System.Globalization;
 
 namespace CAS.SmartFactory.SPMetalHelper.Entities
 {
