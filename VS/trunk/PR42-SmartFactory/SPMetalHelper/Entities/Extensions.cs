@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace CAS.SmartFactory.SPMetalHelper
+namespace CAS.SmartFactory.SPMetalHelper2
 {
   /// <summary>
   /// Extensions
