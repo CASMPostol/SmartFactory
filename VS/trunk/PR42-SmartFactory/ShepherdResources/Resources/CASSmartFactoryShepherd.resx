@@ -732,4 +732,7 @@
   <data name="ShippingsList" xml:space="preserve">
     <value>Shipments list</value>
   </data>
+  <data name="ShippingNumber" xml:space="preserve">
+    <value>Shipping no.</value>
+  </data>
 </root>
