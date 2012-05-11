@@ -177,7 +177,7 @@
     <Column Name="CellPhone" Member="CellPhone" />
   </ContentType>
   <ContentType Name="CarrierPerformanceReport" Class="CarrierPerformanceReport">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="ReportPeriod" Member="ReportPeriod" />
     <Column Name="CPRDate" Member="CPRDate" />
