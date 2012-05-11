@@ -1,59 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
-  <List Name="Business Description"/>
+  <List Name=" Data Import Library" />
+  <List Name="Alarms And Events" />
+  <List Name="Business Description" />
   <List Name="Carrier" />
-  <List Name="Country" />
+  <List Name="Carrier Performance Report" />
   <List Name="City" />
-  <List Name="Commodity">
-    <!--<ContentType Name="Commodity">
-      <Column Name="Dummy"/>
-    </ContentType>-->
-  </List>
-  <List Name="Currency" ></List>
-  <List Name="Destination Market" ></List>
-  <List Name="Driver"></List>
-  <List Name="Freight Payer"></List>
-  <List Name="Partner" ></List>
-  <List Name="Market" >
-    <!--<ContentType Name="Market">
-      <Column Name="Dummy"/>
-    </ContentType>-->
-  </List>
-  <List Name="Route"></List>
-  <List Name="SAP Destination Plant">
-    <!--<ContentType Name="SAPDestinationPlant">
-      <Column Name="Dummy"/>
-    </ContentType>-->
-  </List>
-  <List Name="Schedule Template"></List>
-  <List Name="Security Escort Route"></List>
-  <List Name="Shipment Type">
-    <!--<ContentType Name="ShipmentType">
-      <Column Name="Dummy"/>
-    </ContentType>-->
-  </List>
-  <List Name="Shipping Point"></List>
-  <List Name="TimeSlot Templates"></List>
-  <List Name="Trailer"></List>
-  <List Name="Transport Unit Type">
-    <!--<ContentType Name="TranspotUnit">
-      <Column Name="Dummy"/>
-    </ContentType>-->
-  </List>
-  <List Name="Truck"></List>
-  <List Name="Warehouse"></List>
-  <List Name="Event Log List"/>
-  <List Name="Security Seal Protocol"/>
-  <List Name="Alarms And Events"></List>
-  <List Name="Load Description"></List>
-  <List Name="Security Escort PO Number"></List>
-  <List Name="Drivers Team"></List>
-  <List Name="Shipping"></List>
-  <List Name="Time Slot"></List>
-  <List Name="Trailer Condition"></List>
-  <List Name="Freight PO Library"/>
-  <List Name="Escort PO Library"/>
+  <List Name="Commodity" />
+  <List Name="Country" />
+  <List Name="Currency" />
+  <List Name="Destination Market" />
   <List Name="Distribution List" />
+  <List Name="Driver" />
+  <List Name="Drivers Team" />
+  <List Name="Escort PO Library" />
+  <List Name="Event Log List" />
+  <List Name="Freight Payer" />
+  <List Name="Freight PO Library" />
+  <!--<List Name="Galeria szablonów list" />-->
+  <List Name="Load Description" />
+  <List Name="Market" />
+  <!--<List Name="Galeria stron wzorcowych" />-->
+  <List Name="Partner" />
+  <List Name="Route" />
+  <List Name="SAP Destination Plant" />
+  <List Name="Schedule Template" />
+  <List Name="Seal Protocol Library" />
+  <List Name="Security Escort Route" />
+  <List Name="Shipment Type" />
+  <List Name="Shipping" />
+  <List Name="Shipping Point" />
+  <!--<List Name="Galeria rozwiązań" />-->
+  <List Name="Biblioteka stylów" />
+  <!--<List Name="Galeria motywów" />-->
+  <List Name="Time Slot" />
+  <List Name="TimeSlots Template" />
+  <List Name="Trailer" />
+  <List Name="Transport Unit Type" />
+  <List Name="Truck" />
+  <List Name="Lista informacji o użytkowniku" />
+  <List Name="Warehouse" />
+  <!--<List Name="Galeria składników Web Part" />-->
   <ExcludeOtherLists/>
   <ContentType Name="TranspotUnit" Class="TranspotUnit">
     <Column Name="ContentType" Member="ContentType" />

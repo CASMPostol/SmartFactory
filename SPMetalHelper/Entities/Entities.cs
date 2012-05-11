@@ -24,6 +24,16 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		/// <summary>
+		/// Data import library
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name=" Data Import Library")]
+		public Microsoft.SharePoint.Linq.EntityList<Dokument> DataImportLibrary {
+			get {
+				return this.GetList<Dokument>(" Data Import Library");
+			}
+		}
+		
+		/// <summary>
 		/// Lista Alarmy & Zdarzenia
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Alarms And Events")]
@@ -50,6 +60,16 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		public Microsoft.SharePoint.Linq.EntityList<CarrierType> Carrier {
 			get {
 				return this.GetList<CarrierType>("Carrier");
+			}
+		}
+		
+		/// <summary>
+		/// Lista Raport skuteczności przewoźnika
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Carrier Performance Report")]
+		public Microsoft.SharePoint.Linq.EntityList<CarrierPerformanceReportCarrierPerformanceReport> CarrierPerformanceReport {
+			get {
+				return this.GetList<CarrierPerformanceReportCarrierPerformanceReport>("Carrier Performance Report");
 			}
 		}
 		
@@ -234,6 +254,16 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		/// <summary>
+		/// Biblioteka Protokół zabezpieczeń - plomb
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Seal Protocol Library")]
+		public Microsoft.SharePoint.Linq.EntityList<SealProtocolLibrarySealProtocol> SealProtocolLibrary {
+			get {
+				return this.GetList<SealProtocolLibrarySealProtocol>("Seal Protocol Library");
+			}
+		}
+		
+		/// <summary>
 		/// Lista Trasa eskorty
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Security Escort Route")]
@@ -274,12 +304,32 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		/// <summary>
+		/// Biblioteka stylów umożliwia przechowywanie arkuszy stylów (na przykład plików CSS czy XSL). Arkusze stylów w tej galerii są dostępne do użytku przez tę witrynę i jej podwitryny.
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Biblioteka stylów")]
+		public Microsoft.SharePoint.Linq.EntityList<Dokument> BibliotekaStylów {
+			get {
+				return this.GetList<Dokument>("Biblioteka stylów");
+			}
+		}
+		
+		/// <summary>
 		/// Lista Szablon okna czasowego
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Time Slot")]
 		public Microsoft.SharePoint.Linq.EntityList<TimeSlotTimeSlot> TimeSlot {
 			get {
 				return this.GetList<TimeSlotTimeSlot>("Time Slot");
+			}
+		}
+		
+		/// <summary>
+		/// Lista Szablon okna czasowego
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="TimeSlots Template")]
+		public Microsoft.SharePoint.Linq.EntityList<TimeSlotsTemplate> TimeSlotsTemplate {
+			get {
+				return this.GetList<TimeSlotsTemplate>("TimeSlots Template");
 			}
 		}
 		
@@ -322,15 +372,27 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 				return this.GetList<Warehouse>("Warehouse");
 			}
 		}
+		
+		/// <summary>
+		/// Wszystkie osoby.
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Lista informacji o użytkowniku")]
+		public Microsoft.SharePoint.Linq.EntityList<Element> ListaInformacjiOUżytkowniku {
+			get {
+				return this.GetList<Element>("Lista informacji o użytkowniku");
+			}
+		}
 	}
 	
 	/// <summary>
 	/// Utwórz nowy element listy.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Element", Id="0x01")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Dokument))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(AlarmsAndEvents))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BusienssDescription))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CarrierType))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CarrierPerformanceReport))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CityType))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Commodity))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CountryType))]
@@ -339,7 +401,6 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DistributionList))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Driver))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingDriversTeam))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Dokument))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Anons))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(FreightPayer))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(LoadDescription))]
@@ -353,12 +414,14 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Shipping))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ShippingPoint))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Wydarzenie))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlotsTemplate))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Trailer))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TranspotUnit))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Truck))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Warehouse))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CarrierPerformanceReport))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlotsTemplate))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Person))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SharePointGroup))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DomainGroup))]
 	public partial class Element : Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging {
 		
 		private System.Nullable<int> _identyfikator;
@@ -745,6 +808,400 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 	}
 	
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Person", Id="0x010A")]
+	public partial class Person : Element {
+		
+		private string _konto;
+		
+		private string _adresEMail;
+		
+		private string _numerTelefonuKomórkowego;
+		
+		private string _informacjeOAutorze;
+		
+		private System.Nullable<bool> _jestAdministratoremWitryny;
+		
+		private System.Nullable<bool> _usunięte;
+		
+		private string _obraz;
+		
+		private string _dział;
+		
+		private string _stanowisko;
+		
+		private string _adresSIP;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public Person() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Name", Storage="_konto", ReadOnly=true, FieldType="Text")]
+		public string Konto {
+			get {
+				return this._konto;
+			}
+			set {
+				if ((value != this._konto)) {
+					this.OnPropertyChanging("Konto", this._konto);
+					this._konto = value;
+					this.OnPropertyChanged("Konto");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EMail", Storage="_adresEMail", FieldType="Text")]
+		public string AdresEMail {
+			get {
+				return this._adresEMail;
+			}
+			set {
+				if ((value != this._adresEMail)) {
+					this.OnPropertyChanging("AdresEMail", this._adresEMail);
+					this._adresEMail = value;
+					this.OnPropertyChanged("AdresEMail");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="MobilePhone", Storage="_numerTelefonuKomórkowego", FieldType="Text")]
+		public string NumerTelefonuKomórkowego {
+			get {
+				return this._numerTelefonuKomórkowego;
+			}
+			set {
+				if ((value != this._numerTelefonuKomórkowego)) {
+					this.OnPropertyChanging("NumerTelefonuKomórkowego", this._numerTelefonuKomórkowego);
+					this._numerTelefonuKomórkowego = value;
+					this.OnPropertyChanged("NumerTelefonuKomórkowego");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Notes", Storage="_informacjeOAutorze", FieldType="Note")]
+		public string InformacjeOAutorze {
+			get {
+				return this._informacjeOAutorze;
+			}
+			set {
+				if ((value != this._informacjeOAutorze)) {
+					this.OnPropertyChanging("InformacjeOAutorze", this._informacjeOAutorze);
+					this._informacjeOAutorze = value;
+					this.OnPropertyChanged("InformacjeOAutorze");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IsSiteAdmin", Storage="_jestAdministratoremWitryny", ReadOnly=true, FieldType="Boolean")]
+		public System.Nullable<bool> JestAdministratoremWitryny {
+			get {
+				return this._jestAdministratoremWitryny;
+			}
+			set {
+				if ((value != this._jestAdministratoremWitryny)) {
+					this.OnPropertyChanging("JestAdministratoremWitryny", this._jestAdministratoremWitryny);
+					this._jestAdministratoremWitryny = value;
+					this.OnPropertyChanged("JestAdministratoremWitryny");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Deleted", Storage="_usunięte", ReadOnly=true, FieldType="Boolean")]
+		public System.Nullable<bool> Usunięte {
+			get {
+				return this._usunięte;
+			}
+			set {
+				if ((value != this._usunięte)) {
+					this.OnPropertyChanging("Usunięte", this._usunięte);
+					this._usunięte = value;
+					this.OnPropertyChanged("Usunięte");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Picture", Storage="_obraz", FieldType="Url")]
+		public string Obraz {
+			get {
+				return this._obraz;
+			}
+			set {
+				if ((value != this._obraz)) {
+					this.OnPropertyChanging("Obraz", this._obraz);
+					this._obraz = value;
+					this.OnPropertyChanged("Obraz");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Department", Storage="_dział", FieldType="Text")]
+		public string Dział {
+			get {
+				return this._dział;
+			}
+			set {
+				if ((value != this._dział)) {
+					this.OnPropertyChanging("Dział", this._dział);
+					this._dział = value;
+					this.OnPropertyChanged("Dział");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="JobTitle", Storage="_stanowisko", FieldType="Text")]
+		public string Stanowisko {
+			get {
+				return this._stanowisko;
+			}
+			set {
+				if ((value != this._stanowisko)) {
+					this.OnPropertyChanging("Stanowisko", this._stanowisko);
+					this._stanowisko = value;
+					this.OnPropertyChanged("Stanowisko");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SipAddress", Storage="_adresSIP", FieldType="Text")]
+		public string AdresSIP {
+			get {
+				return this._adresSIP;
+			}
+			set {
+				if ((value != this._adresSIP)) {
+					this.OnPropertyChanging("AdresSIP", this._adresSIP);
+					this._adresSIP = value;
+					this.OnPropertyChanged("AdresSIP");
+				}
+			}
+		}
+	}
+	
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SharePointGroup", Id="0x010B")]
+	public partial class SharePointGroup : Element {
+		
+		private string _konto;
+		
+		private string _adresEMail;
+		
+		private string _informacjeOAutorze;
+		
+		private string _obraz;
+		
+		private string _adresSIP;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SharePointGroup() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Name", Storage="_konto", ReadOnly=true, FieldType="Text")]
+		public string Konto {
+			get {
+				return this._konto;
+			}
+			set {
+				if ((value != this._konto)) {
+					this.OnPropertyChanging("Konto", this._konto);
+					this._konto = value;
+					this.OnPropertyChanged("Konto");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EMail", Storage="_adresEMail", FieldType="Text")]
+		public string AdresEMail {
+			get {
+				return this._adresEMail;
+			}
+			set {
+				if ((value != this._adresEMail)) {
+					this.OnPropertyChanging("AdresEMail", this._adresEMail);
+					this._adresEMail = value;
+					this.OnPropertyChanged("AdresEMail");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Notes", Storage="_informacjeOAutorze", FieldType="Note")]
+		public string InformacjeOAutorze {
+			get {
+				return this._informacjeOAutorze;
+			}
+			set {
+				if ((value != this._informacjeOAutorze)) {
+					this.OnPropertyChanging("InformacjeOAutorze", this._informacjeOAutorze);
+					this._informacjeOAutorze = value;
+					this.OnPropertyChanged("InformacjeOAutorze");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Picture", Storage="_obraz", FieldType="Url")]
+		public string Obraz {
+			get {
+				return this._obraz;
+			}
+			set {
+				if ((value != this._obraz)) {
+					this.OnPropertyChanging("Obraz", this._obraz);
+					this._obraz = value;
+					this.OnPropertyChanged("Obraz");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SipAddress", Storage="_adresSIP", FieldType="Text")]
+		public string AdresSIP {
+			get {
+				return this._adresSIP;
+			}
+			set {
+				if ((value != this._adresSIP)) {
+					this.OnPropertyChanging("AdresSIP", this._adresSIP);
+					this._adresSIP = value;
+					this.OnPropertyChanged("AdresSIP");
+				}
+			}
+		}
+	}
+	
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DomainGroup", Id="0x010C")]
+	public partial class DomainGroup : Element {
+		
+		private string _konto;
+		
+		private string _adresEMail;
+		
+		private string _informacjeOAutorze;
+		
+		private System.Nullable<bool> _jestAdministratoremWitryny;
+		
+		private System.Nullable<bool> _usunięte;
+		
+		private string _obraz;
+		
+		private string _adresSIP;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public DomainGroup() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Name", Storage="_konto", ReadOnly=true, FieldType="Text")]
+		public string Konto {
+			get {
+				return this._konto;
+			}
+			set {
+				if ((value != this._konto)) {
+					this.OnPropertyChanging("Konto", this._konto);
+					this._konto = value;
+					this.OnPropertyChanged("Konto");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EMail", Storage="_adresEMail", FieldType="Text")]
+		public string AdresEMail {
+			get {
+				return this._adresEMail;
+			}
+			set {
+				if ((value != this._adresEMail)) {
+					this.OnPropertyChanging("AdresEMail", this._adresEMail);
+					this._adresEMail = value;
+					this.OnPropertyChanged("AdresEMail");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Notes", Storage="_informacjeOAutorze", FieldType="Note")]
+		public string InformacjeOAutorze {
+			get {
+				return this._informacjeOAutorze;
+			}
+			set {
+				if ((value != this._informacjeOAutorze)) {
+					this.OnPropertyChanging("InformacjeOAutorze", this._informacjeOAutorze);
+					this._informacjeOAutorze = value;
+					this.OnPropertyChanged("InformacjeOAutorze");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IsSiteAdmin", Storage="_jestAdministratoremWitryny", ReadOnly=true, FieldType="Boolean")]
+		public System.Nullable<bool> JestAdministratoremWitryny {
+			get {
+				return this._jestAdministratoremWitryny;
+			}
+			set {
+				if ((value != this._jestAdministratoremWitryny)) {
+					this.OnPropertyChanging("JestAdministratoremWitryny", this._jestAdministratoremWitryny);
+					this._jestAdministratoremWitryny = value;
+					this.OnPropertyChanged("JestAdministratoremWitryny");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Deleted", Storage="_usunięte", ReadOnly=true, FieldType="Boolean")]
+		public System.Nullable<bool> Usunięte {
+			get {
+				return this._usunięte;
+			}
+			set {
+				if ((value != this._usunięte)) {
+					this.OnPropertyChanging("Usunięte", this._usunięte);
+					this._usunięte = value;
+					this.OnPropertyChanged("Usunięte");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Picture", Storage="_obraz", FieldType="Url")]
+		public string Obraz {
+			get {
+				return this._obraz;
+			}
+			set {
+				if ((value != this._obraz)) {
+					this.OnPropertyChanging("Obraz", this._obraz);
+					this._obraz = value;
+					this.OnPropertyChanged("Obraz");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SipAddress", Storage="_adresSIP", FieldType="Text")]
+		public string AdresSIP {
+			get {
+				return this._adresSIP;
+			}
+			set {
+				if ((value != this._adresSIP)) {
+					this.OnPropertyChanging("AdresSIP", this._adresSIP);
+					this._adresSIP = value;
+					this.OnPropertyChanged("AdresSIP");
+				}
+			}
+		}
+	}
+	
 	/// <summary>
 	/// Content type listy Alarmy & Zdarzenia
 	/// </summary>
@@ -1021,6 +1478,201 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 			else {
 				e.Item.CarrierTitle = null;
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Content type listy  Raport skuteczności przewoźnika
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CarrierPerformanceReport", Id="0x0100BB5037BBD6ED46B98AC227A358889AFA")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CarrierPerformanceReportCarrierPerformanceReport))]
+	public partial class CarrierPerformanceReport : Element {
+		
+		private string _contentType;
+		
+		private string _reportPeriod;
+		
+		private System.Nullable<System.DateTime> _carrierPerformanceReportDate;
+		
+		protected System.Nullable<double> _carrierPerformanceReportNumberOrdered;
+		
+		protected System.Nullable<double> _carrierPerformanceReportNumberOnTime;
+		
+		protected System.Nullable<double> _carrierPerformanceReportNumberDelayed;
+		
+		protected System.Nullable<double> _carrierPerformanceReportNumberDelayed1h;
+		
+		protected System.Nullable<double> _carrierPerformanceReportNumberNotShowingUp;
+		
+		protected System.Nullable<double> _carrierPerformanceReportNumberRejectedBadQuality;
+		
+		protected Microsoft.SharePoint.Linq.EntityRef<Partner> _carrierPerformanceReport2PartnerTitle;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public CarrierPerformanceReport() {
+			this._carrierPerformanceReport2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
+			this._carrierPerformanceReport2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnCarrierPerformanceReport2PartnerTitleSync);
+			this._carrierPerformanceReport2PartnerTitle.OnChanged += new System.EventHandler(this.OnCarrierPerformanceReport2PartnerTitleChanged);
+			this._carrierPerformanceReport2PartnerTitle.OnChanging += new System.EventHandler(this.OnCarrierPerformanceReport2PartnerTitleChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
+		public virtual string ContentType {
+			get {
+				return this._contentType;
+			}
+			set {
+				if ((value != this._contentType)) {
+					this.OnPropertyChanging("ContentType", this._contentType);
+					this._contentType = value;
+					this.OnPropertyChanged("ContentType");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ReportPeriod", Storage="_reportPeriod", FieldType="Text")]
+		public string ReportPeriod {
+			get {
+				return this._reportPeriod;
+			}
+			set {
+				if ((value != this._reportPeriod)) {
+					this.OnPropertyChanging("ReportPeriod", this._reportPeriod);
+					this._reportPeriod = value;
+					this.OnPropertyChanged("ReportPeriod");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportDate", Storage="_carrierPerformanceReportDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> CarrierPerformanceReportDate {
+			get {
+				return this._carrierPerformanceReportDate;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportDate)) {
+					this.OnPropertyChanging("CarrierPerformanceReportDate", this._carrierPerformanceReportDate);
+					this._carrierPerformanceReportDate = value;
+					this.OnPropertyChanged("CarrierPerformanceReportDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOrdered", Storage="_carrierPerformanceReportNumberOrdered", FieldType="Number")]
+		public virtual System.Nullable<double> CarrierPerformanceReportNumberOrdered {
+			get {
+				return this._carrierPerformanceReportNumberOrdered;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberOrdered)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberOrdered", this._carrierPerformanceReportNumberOrdered);
+					this._carrierPerformanceReportNumberOrdered = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberOrdered");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOnTime", Storage="_carrierPerformanceReportNumberOnTime", FieldType="Number")]
+		public virtual System.Nullable<double> CarrierPerformanceReportNumberOnTime {
+			get {
+				return this._carrierPerformanceReportNumberOnTime;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberOnTime)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberOnTime", this._carrierPerformanceReportNumberOnTime);
+					this._carrierPerformanceReportNumberOnTime = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberOnTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDelayed", Storage="_carrierPerformanceReportNumberDelayed", FieldType="Number")]
+		public virtual System.Nullable<double> CarrierPerformanceReportNumberDelayed {
+			get {
+				return this._carrierPerformanceReportNumberDelayed;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberDelayed)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberDelayed", this._carrierPerformanceReportNumberDelayed);
+					this._carrierPerformanceReportNumberDelayed = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberDelayed");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDelayed1h", Storage="_carrierPerformanceReportNumberDelayed1h", FieldType="Number")]
+		public virtual System.Nullable<double> CarrierPerformanceReportNumberDelayed1h {
+			get {
+				return this._carrierPerformanceReportNumberDelayed1h;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberDelayed1h)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberDelayed1h", this._carrierPerformanceReportNumberDelayed1h);
+					this._carrierPerformanceReportNumberDelayed1h = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberDelayed1h");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberNotShowingUp", Storage="_carrierPerformanceReportNumberNotShowingUp", FieldType="Number")]
+		public virtual System.Nullable<double> CarrierPerformanceReportNumberNotShowingUp {
+			get {
+				return this._carrierPerformanceReportNumberNotShowingUp;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberNotShowingUp)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberNotShowingUp", this._carrierPerformanceReportNumberNotShowingUp);
+					this._carrierPerformanceReportNumberNotShowingUp = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberNotShowingUp");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberRejectedBadQuality", Storage="_carrierPerformanceReportNumberRejectedBadQuality", FieldType="Number")]
+		public virtual System.Nullable<double> CarrierPerformanceReportNumberRejectedBadQuality {
+			get {
+				return this._carrierPerformanceReportNumberRejectedBadQuality;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberRejectedBadQuality)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberRejectedBadQuality", this._carrierPerformanceReportNumberRejectedBadQuality);
+					this._carrierPerformanceReportNumberRejectedBadQuality = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberRejectedBadQuality");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierPerformanceReport2PartnerTitle", Storage="_carrierPerformanceReport2PartnerTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
+		public virtual Partner CarrierPerformanceReport2PartnerTitle {
+			get {
+				return this._carrierPerformanceReport2PartnerTitle.GetEntity();
+			}
+			set {
+				this._carrierPerformanceReport2PartnerTitle.SetEntity(value);
+			}
+		}
+		
+		private void OnCarrierPerformanceReport2PartnerTitleChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CarrierPerformanceReport2PartnerTitle", this._carrierPerformanceReport2PartnerTitle.Clone());
+		}
+		
+		private void OnCarrierPerformanceReport2PartnerTitleChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CarrierPerformanceReport2PartnerTitle");
+		}
+		
+		private void OnCarrierPerformanceReport2PartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CarrierPerformanceReport.Add(this);
+			}
+			else {
+				e.Item.CarrierPerformanceReport.Remove(this);
 			}
 		}
 	}
@@ -2273,13 +2925,13 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<AlarmsAndEvents> _alarmsAndEvents;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport> _carrierPerformanceReport;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<Driver> _driver;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
 		
-		private System.Nullable<int> _shepherdUserIdentyfikator;
-		
-		private string _shepherdUserTitle;
+		private Microsoft.SharePoint.Linq.EntityRef<Element> _shepherdUser;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Warehouse> _partner2WarehouseTitle;
 		
@@ -2300,6 +2952,10 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this._alarmsAndEvents.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<AlarmsAndEvents>>(this.OnAlarmsAndEventsSync);
 			this._alarmsAndEvents.OnChanged += new System.EventHandler(this.OnAlarmsAndEventsChanged);
 			this._alarmsAndEvents.OnChanging += new System.EventHandler(this.OnAlarmsAndEventsChanging);
+			this._carrierPerformanceReport = new Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport>();
+			this._carrierPerformanceReport.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierPerformanceReport>>(this.OnCarrierPerformanceReportSync);
+			this._carrierPerformanceReport.OnChanged += new System.EventHandler(this.OnCarrierPerformanceReportChanged);
+			this._carrierPerformanceReport.OnChanging += new System.EventHandler(this.OnCarrierPerformanceReportChanging);
 			this._driver = new Microsoft.SharePoint.Linq.EntitySet<Driver>();
 			this._driver.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Driver>>(this.OnDriverSync);
 			this._driver.OnChanged += new System.EventHandler(this.OnDriverChanged);
@@ -2308,6 +2964,10 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>(this.OnLoadDescriptionSync);
 			this._loadDescription.OnChanged += new System.EventHandler(this.OnLoadDescriptionChanged);
 			this._loadDescription.OnChanging += new System.EventHandler(this.OnLoadDescriptionChanging);
+			this._shepherdUser = new Microsoft.SharePoint.Linq.EntityRef<Element>();
+			this._shepherdUser.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Element>>(this.OnShepherdUserSync);
+			this._shepherdUser.OnChanged += new System.EventHandler(this.OnShepherdUserChanged);
+			this._shepherdUser.OnChanging += new System.EventHandler(this.OnShepherdUserChanging);
 			this._partner2WarehouseTitle = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
 			this._partner2WarehouseTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnPartner2WarehouseTitleSync);
 			this._partner2WarehouseTitle.OnChanged += new System.EventHandler(this.OnPartner2WarehouseTitleChanged);
@@ -2407,6 +3067,16 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierPerformanceReport2PartnerTitle", Storage="_carrierPerformanceReport", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Carrier Performance Report")]
+		public Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport> CarrierPerformanceReport {
+			get {
+				return this._carrierPerformanceReport;
+			}
+			set {
+				this._carrierPerformanceReport.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Driver2PartnerTitle", Storage="_driver", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Driver")]
 		public Microsoft.SharePoint.Linq.EntitySet<Driver> Driver {
 			get {
@@ -2427,31 +3097,13 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShepherdUser", Storage="_shepherdUserIdentyfikator", Required=true, FieldType="User", IsLookupId=true)]
-		public System.Nullable<int> ShepherdUserIdentyfikator {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShepherdUser", Storage="_shepherdUser", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Lista informacji o użytkowniku")]
+		public Element ShepherdUser {
 			get {
-				return this._shepherdUserIdentyfikator;
+				return this._shepherdUser.GetEntity();
 			}
 			set {
-				if ((value != this._shepherdUserIdentyfikator)) {
-					this.OnPropertyChanging("ShepherdUserIdentyfikator", this._shepherdUserIdentyfikator);
-					this._shepherdUserIdentyfikator = value;
-					this.OnPropertyChanged("ShepherdUserIdentyfikator");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShepherdUser", Storage="_shepherdUserTitle", ReadOnly=true, FieldType="User", IsLookupValue=true)]
-		public string ShepherdUserTitle {
-			get {
-				return this._shepherdUserTitle;
-			}
-			set {
-				if ((value != this._shepherdUserTitle)) {
-					this.OnPropertyChanging("ShepherdUserTitle", this._shepherdUserTitle);
-					this._shepherdUserTitle = value;
-					this.OnPropertyChanged("ShepherdUserTitle");
-				}
+				this._shepherdUser.SetEntity(value);
 			}
 		}
 		
@@ -2512,6 +3164,23 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 		}
 		
+		private void OnCarrierPerformanceReportChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CarrierPerformanceReport", this._carrierPerformanceReport.Clone());
+		}
+		
+		private void OnCarrierPerformanceReportChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CarrierPerformanceReport");
+		}
+		
+		private void OnCarrierPerformanceReportSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierPerformanceReport> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CarrierPerformanceReport2PartnerTitle = this;
+			}
+			else {
+				e.Item.CarrierPerformanceReport2PartnerTitle = null;
+			}
+		}
+		
 		private void OnDriverChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Driver", this._driver.Clone());
 		}
@@ -2544,6 +3213,17 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			else {
 				e.Item.LoadDescription2PartnerTitle = null;
 			}
+		}
+		
+		private void OnShepherdUserChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ShepherdUser", this._shepherdUser.Clone());
+		}
+		
+		private void OnShepherdUserChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ShepherdUser");
+		}
+		
+		private void OnShepherdUserSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Element> e) {
 		}
 		
 		private void OnPartner2WarehouseTitleChanging(object sender, System.EventArgs e) {
@@ -3147,6 +3827,8 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _shippingPointLookupTitle;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate> _timeSlotsTemplate;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -3158,6 +3840,10 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this._shippingPointLookupTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnShippingPointLookupTitleSync);
 			this._shippingPointLookupTitle.OnChanged += new System.EventHandler(this.OnShippingPointLookupTitleChanged);
 			this._shippingPointLookupTitle.OnChanging += new System.EventHandler(this.OnShippingPointLookupTitleChanging);
+			this._timeSlotsTemplate = new Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate>();
+			this._timeSlotsTemplate.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate>>(this.OnTimeSlotsTemplateSync);
+			this._timeSlotsTemplate.OnChanged += new System.EventHandler(this.OnTimeSlotsTemplateChanged);
+			this._timeSlotsTemplate.OnChanging += new System.EventHandler(this.OnTimeSlotsTemplateChanging);
 			this.OnCreated();
 		}
 		
@@ -3168,6 +3854,16 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 			set {
 				this._shippingPointLookupTitle.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ScheduleTemplateTitle", Storage="_timeSlotsTemplate", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="TimeSlots Template")]
+		public Microsoft.SharePoint.Linq.EntitySet<TimeSlotsTemplate> TimeSlotsTemplate {
+			get {
+				return this._timeSlotsTemplate;
+			}
+			set {
+				this._timeSlotsTemplate.Assign(value);
 			}
 		}
 		
@@ -3185,6 +3881,23 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 			else {
 				e.Item.ScheduleTemplate.Remove(this);
+			}
+		}
+		
+		private void OnTimeSlotsTemplateChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TimeSlotsTemplate", this._timeSlotsTemplate.Clone());
+		}
+		
+		private void OnTimeSlotsTemplateChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TimeSlotsTemplate");
+		}
+		
+		private void OnTimeSlotsTemplateSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TimeSlotsTemplate> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ScheduleTemplateTitle = this;
+			}
+			else {
+				e.Item.ScheduleTemplateTitle = null;
 			}
 		}
 	}
@@ -3559,7 +4272,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _shipping2PartnerTitle;
 		
-		private System.Nullable<int> _securitySealProtocolIndexIdentyfikator;
+		private Microsoft.SharePoint.Linq.EntityRef<SealProtocolLibrarySealProtocol> _securitySealProtocolIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog> _securityEscortCatalogTitle;
 		
@@ -3624,6 +4337,10 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this._shipping2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnShipping2PartnerTitleSync);
 			this._shipping2PartnerTitle.OnChanged += new System.EventHandler(this.OnShipping2PartnerTitleChanged);
 			this._shipping2PartnerTitle.OnChanging += new System.EventHandler(this.OnShipping2PartnerTitleChanging);
+			this._securitySealProtocolIndex = new Microsoft.SharePoint.Linq.EntityRef<SealProtocolLibrarySealProtocol>();
+			this._securitySealProtocolIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocolLibrarySealProtocol>>(this.OnSecuritySealProtocolIndexSync);
+			this._securitySealProtocolIndex.OnChanged += new System.EventHandler(this.OnSecuritySealProtocolIndexChanged);
+			this._securitySealProtocolIndex.OnChanging += new System.EventHandler(this.OnSecuritySealProtocolIndexChanging);
 			this._securityEscortCatalogTitle = new Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog>();
 			this._securityEscortCatalogTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SecurityEscortCatalog>>(this.OnSecurityEscortCatalogTitleSync);
 			this._securityEscortCatalogTitle.OnChanged += new System.EventHandler(this.OnSecurityEscortCatalogTitleChanged);
@@ -4133,17 +4850,13 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SecuritySealProtocolIndex", Storage="_securitySealProtocolIndexIdentyfikator", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> SecuritySealProtocolIndexIdentyfikator {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_securitySealProtocolIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Seal Protocol Library")]
+		public SealProtocolLibrarySealProtocol SecuritySealProtocolIndex {
 			get {
-				return this._securitySealProtocolIndexIdentyfikator;
+				return this._securitySealProtocolIndex.GetEntity();
 			}
 			set {
-				if ((value != this._securitySealProtocolIndexIdentyfikator)) {
-					this.OnPropertyChanging("SecuritySealProtocolIndexIdentyfikator", this._securitySealProtocolIndexIdentyfikator);
-					this._securitySealProtocolIndexIdentyfikator = value;
-					this.OnPropertyChanged("SecuritySealProtocolIndexIdentyfikator");
-				}
+				this._securitySealProtocolIndex.SetEntity(value);
 			}
 		}
 		
@@ -4389,6 +5102,23 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		private void OnShipping2PartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping.Add(this);
+			}
+			else {
+				e.Item.Shipping.Remove(this);
+			}
+		}
+		
+		private void OnSecuritySealProtocolIndexChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SecuritySealProtocolIndex", this._securitySealProtocolIndex.Clone());
+		}
+		
+		private void OnSecuritySealProtocolIndexChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SecuritySealProtocolIndex");
+		}
+		
+		private void OnSecuritySealProtocolIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocolLibrarySealProtocol> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Shipping.Add(this);
 			}
@@ -4749,6 +5479,147 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 			else {
 				e.Item.TimeSlot2ShippingPointLookup = null;
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Time Slot Template List Content Type
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlotsTemplate", Id="0x0100E4381E17DE2049B895B5140F70D7C21C")]
+	public partial class TimeSlotsTemplate : Element {
+		
+		private System.Nullable<TimeSlotsTemplateDay> _timeSlotsTemplateDay;
+		
+		private System.Nullable<TimeSlotsTemplateStartHour> _timeSlotsTemplateStartHour;
+		
+		private System.Nullable<TimeSlotsTemplateStartMinute> _timeSlotsTemplateStartMinute;
+		
+		private System.Nullable<TimeSlotsTemplateEndHour> _timeSlotsTemplateEndHour;
+		
+		private System.Nullable<TimeSlotsTemplateEndMinute> _timeSlotsTemplateEndMinute;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<ScheduleTemplate> _scheduleTemplateTitle;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public TimeSlotsTemplate() {
+			this._scheduleTemplateTitle = new Microsoft.SharePoint.Linq.EntityRef<ScheduleTemplate>();
+			this._scheduleTemplateTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate>>(this.OnScheduleTemplateTitleSync);
+			this._scheduleTemplateTitle.OnChanged += new System.EventHandler(this.OnScheduleTemplateTitleChanged);
+			this._scheduleTemplateTitle.OnChanging += new System.EventHandler(this.OnScheduleTemplateTitleChanging);
+			this.OnCreated();
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlotsTemplate.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlotsTemplate.");
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateDay", Storage="_timeSlotsTemplateDay", FieldType="Choice")]
+		public System.Nullable<TimeSlotsTemplateDay> TimeSlotsTemplateDay {
+			get {
+				return this._timeSlotsTemplateDay;
+			}
+			set {
+				if ((value != this._timeSlotsTemplateDay)) {
+					this.OnPropertyChanging("TimeSlotsTemplateDay", this._timeSlotsTemplateDay);
+					this._timeSlotsTemplateDay = value;
+					this.OnPropertyChanged("TimeSlotsTemplateDay");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateStartHour", Storage="_timeSlotsTemplateStartHour", FieldType="Choice")]
+		public System.Nullable<TimeSlotsTemplateStartHour> TimeSlotsTemplateStartHour {
+			get {
+				return this._timeSlotsTemplateStartHour;
+			}
+			set {
+				if ((value != this._timeSlotsTemplateStartHour)) {
+					this.OnPropertyChanging("TimeSlotsTemplateStartHour", this._timeSlotsTemplateStartHour);
+					this._timeSlotsTemplateStartHour = value;
+					this.OnPropertyChanged("TimeSlotsTemplateStartHour");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateStartMinute", Storage="_timeSlotsTemplateStartMinute", FieldType="Choice")]
+		public System.Nullable<TimeSlotsTemplateStartMinute> TimeSlotsTemplateStartMinute {
+			get {
+				return this._timeSlotsTemplateStartMinute;
+			}
+			set {
+				if ((value != this._timeSlotsTemplateStartMinute)) {
+					this.OnPropertyChanging("TimeSlotsTemplateStartMinute", this._timeSlotsTemplateStartMinute);
+					this._timeSlotsTemplateStartMinute = value;
+					this.OnPropertyChanged("TimeSlotsTemplateStartMinute");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateEndHour", Storage="_timeSlotsTemplateEndHour", FieldType="Choice")]
+		public System.Nullable<TimeSlotsTemplateEndHour> TimeSlotsTemplateEndHour {
+			get {
+				return this._timeSlotsTemplateEndHour;
+			}
+			set {
+				if ((value != this._timeSlotsTemplateEndHour)) {
+					this.OnPropertyChanging("TimeSlotsTemplateEndHour", this._timeSlotsTemplateEndHour);
+					this._timeSlotsTemplateEndHour = value;
+					this.OnPropertyChanged("TimeSlotsTemplateEndHour");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateEndMinute", Storage="_timeSlotsTemplateEndMinute", FieldType="Choice")]
+		public System.Nullable<TimeSlotsTemplateEndMinute> TimeSlotsTemplateEndMinute {
+			get {
+				return this._timeSlotsTemplateEndMinute;
+			}
+			set {
+				if ((value != this._timeSlotsTemplateEndMinute)) {
+					this.OnPropertyChanging("TimeSlotsTemplateEndMinute", this._timeSlotsTemplateEndMinute);
+					this._timeSlotsTemplateEndMinute = value;
+					this.OnPropertyChanged("TimeSlotsTemplateEndMinute");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ScheduleTemplateTitle", Storage="_scheduleTemplateTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Schedule Template")]
+		public ScheduleTemplate ScheduleTemplateTitle {
+			get {
+				return this._scheduleTemplateTitle.GetEntity();
+			}
+			set {
+				this._scheduleTemplateTitle.SetEntity(value);
+			}
+		}
+		
+		private void OnScheduleTemplateTitleChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ScheduleTemplateTitle", this._scheduleTemplateTitle.Clone());
+		}
+		
+		private void OnScheduleTemplateTitleChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ScheduleTemplateTitle");
+		}
+		
+		private void OnScheduleTemplateTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TimeSlotsTemplate.Add(this);
+			}
+			else {
+				e.Item.TimeSlotsTemplate.Remove(this);
 			}
 		}
 	}
@@ -5196,329 +6067,6 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			else {
 				e.Item.Warehouse.Remove(this);
 			}
-		}
-	}
-	
-	/// <summary>
-	/// Content type listy  Raport skuteczności przewoźnika
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CarrierPerformanceReport", Id="0x0100BB5037BBD6ED46B98AC227A358889AFA")]
-	public partial class CarrierPerformanceReport : Element {
-		
-		private string _contentType;
-		
-		private string _reportPeriod;
-		
-		private System.Nullable<System.DateTime> _carrierPerformanceReportDate;
-		
-		private System.Nullable<double> _carrierPerformanceReportNumberOrdered;
-		
-		private System.Nullable<double> _carrierPerformanceReportNumberOnTime;
-		
-		private System.Nullable<double> _carrierPerformanceReportNumberDelayed;
-		
-		private System.Nullable<double> _carrierPerformanceReportNumberDelayed1h;
-		
-		private System.Nullable<double> _carrierPerformanceReportNumberNotShowingUp;
-		
-		private System.Nullable<double> _carrierPerformanceReportNumberRejectedBadQuality;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Partner> _carrierPerformanceReport2PartnerTitle;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public CarrierPerformanceReport() {
-			this._carrierPerformanceReport2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-			this._carrierPerformanceReport2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnCarrierPerformanceReport2PartnerTitleSync);
-			this._carrierPerformanceReport2PartnerTitle.OnChanged += new System.EventHandler(this.OnCarrierPerformanceReport2PartnerTitleChanged);
-			this._carrierPerformanceReport2PartnerTitle.OnChanging += new System.EventHandler(this.OnCarrierPerformanceReport2PartnerTitleChanging);
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ReportPeriod", Storage="_reportPeriod", FieldType="Text")]
-		public string ReportPeriod {
-			get {
-				return this._reportPeriod;
-			}
-			set {
-				if ((value != this._reportPeriod)) {
-					this.OnPropertyChanging("ReportPeriod", this._reportPeriod);
-					this._reportPeriod = value;
-					this.OnPropertyChanged("ReportPeriod");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportDate", Storage="_carrierPerformanceReportDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> CarrierPerformanceReportDate {
-			get {
-				return this._carrierPerformanceReportDate;
-			}
-			set {
-				if ((value != this._carrierPerformanceReportDate)) {
-					this.OnPropertyChanging("CarrierPerformanceReportDate", this._carrierPerformanceReportDate);
-					this._carrierPerformanceReportDate = value;
-					this.OnPropertyChanged("CarrierPerformanceReportDate");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOrdered", Storage="_carrierPerformanceReportNumberOrdered", FieldType="Number")]
-		public System.Nullable<double> CarrierPerformanceReportNumberOrdered {
-			get {
-				return this._carrierPerformanceReportNumberOrdered;
-			}
-			set {
-				if ((value != this._carrierPerformanceReportNumberOrdered)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberOrdered", this._carrierPerformanceReportNumberOrdered);
-					this._carrierPerformanceReportNumberOrdered = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberOrdered");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOnTime", Storage="_carrierPerformanceReportNumberOnTime", FieldType="Number")]
-		public System.Nullable<double> CarrierPerformanceReportNumberOnTime {
-			get {
-				return this._carrierPerformanceReportNumberOnTime;
-			}
-			set {
-				if ((value != this._carrierPerformanceReportNumberOnTime)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberOnTime", this._carrierPerformanceReportNumberOnTime);
-					this._carrierPerformanceReportNumberOnTime = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberOnTime");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDelayed", Storage="_carrierPerformanceReportNumberDelayed", FieldType="Number")]
-		public System.Nullable<double> CarrierPerformanceReportNumberDelayed {
-			get {
-				return this._carrierPerformanceReportNumberDelayed;
-			}
-			set {
-				if ((value != this._carrierPerformanceReportNumberDelayed)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberDelayed", this._carrierPerformanceReportNumberDelayed);
-					this._carrierPerformanceReportNumberDelayed = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberDelayed");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDelayed1h", Storage="_carrierPerformanceReportNumberDelayed1h", FieldType="Number")]
-		public System.Nullable<double> CarrierPerformanceReportNumberDelayed1h {
-			get {
-				return this._carrierPerformanceReportNumberDelayed1h;
-			}
-			set {
-				if ((value != this._carrierPerformanceReportNumberDelayed1h)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberDelayed1h", this._carrierPerformanceReportNumberDelayed1h);
-					this._carrierPerformanceReportNumberDelayed1h = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberDelayed1h");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberNotShowingUp", Storage="_carrierPerformanceReportNumberNotShowingUp", FieldType="Number")]
-		public System.Nullable<double> CarrierPerformanceReportNumberNotShowingUp {
-			get {
-				return this._carrierPerformanceReportNumberNotShowingUp;
-			}
-			set {
-				if ((value != this._carrierPerformanceReportNumberNotShowingUp)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberNotShowingUp", this._carrierPerformanceReportNumberNotShowingUp);
-					this._carrierPerformanceReportNumberNotShowingUp = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberNotShowingUp");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberRejectedBadQuality", Storage="_carrierPerformanceReportNumberRejectedBadQuality", FieldType="Number")]
-		public System.Nullable<double> CarrierPerformanceReportNumberRejectedBadQuality {
-			get {
-				return this._carrierPerformanceReportNumberRejectedBadQuality;
-			}
-			set {
-				if ((value != this._carrierPerformanceReportNumberRejectedBadQuality)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberRejectedBadQuality", this._carrierPerformanceReportNumberRejectedBadQuality);
-					this._carrierPerformanceReportNumberRejectedBadQuality = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberRejectedBadQuality");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierPerformanceReport2PartnerTitle", Storage="_carrierPerformanceReport2PartnerTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public Partner CarrierPerformanceReport2PartnerTitle {
-			get {
-				return this._carrierPerformanceReport2PartnerTitle.GetEntity();
-			}
-			set {
-				this._carrierPerformanceReport2PartnerTitle.SetEntity(value);
-			}
-		}
-		
-		private void OnCarrierPerformanceReport2PartnerTitleChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("CarrierPerformanceReport2PartnerTitle", this._carrierPerformanceReport2PartnerTitle.Clone());
-		}
-		
-		private void OnCarrierPerformanceReport2PartnerTitleChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("CarrierPerformanceReport2PartnerTitle");
-		}
-		
-		private void OnCarrierPerformanceReport2PartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
-		}
-	}
-	
-	/// <summary>
-	/// Time Slot Template List Content Type
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlotsTemplate", Id="0x0100E4381E17DE2049B895B5140F70D7C21C")]
-	public partial class TimeSlotsTemplate : Element {
-		
-		private System.Nullable<TimeSlotsTemplateDay> _timeSlotsTemplateDay;
-		
-		private System.Nullable<TimeSlotsTemplateStartHour> _timeSlotsTemplateStartHour;
-		
-		private System.Nullable<TimeSlotsTemplateStartMinute> _timeSlotsTemplateStartMinute;
-		
-		private System.Nullable<TimeSlotsTemplateEndHour> _timeSlotsTemplateEndHour;
-		
-		private System.Nullable<TimeSlotsTemplateEndMinute> _timeSlotsTemplateEndMinute;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<ScheduleTemplate> _scheduleTemplateTitle;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public TimeSlotsTemplate() {
-			this._scheduleTemplateTitle = new Microsoft.SharePoint.Linq.EntityRef<ScheduleTemplate>();
-			this._scheduleTemplateTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate>>(this.OnScheduleTemplateTitleSync);
-			this._scheduleTemplateTitle.OnChanged += new System.EventHandler(this.OnScheduleTemplateTitleChanged);
-			this._scheduleTemplateTitle.OnChanging += new System.EventHandler(this.OnScheduleTemplateTitleChanging);
-			this.OnCreated();
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Tytuł {
-			get {
-				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlotsTemplate.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlotsTemplate.");
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateDay", Storage="_timeSlotsTemplateDay", FieldType="Choice")]
-		public System.Nullable<TimeSlotsTemplateDay> TimeSlotsTemplateDay {
-			get {
-				return this._timeSlotsTemplateDay;
-			}
-			set {
-				if ((value != this._timeSlotsTemplateDay)) {
-					this.OnPropertyChanging("TimeSlotsTemplateDay", this._timeSlotsTemplateDay);
-					this._timeSlotsTemplateDay = value;
-					this.OnPropertyChanged("TimeSlotsTemplateDay");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateStartHour", Storage="_timeSlotsTemplateStartHour", FieldType="Choice")]
-		public System.Nullable<TimeSlotsTemplateStartHour> TimeSlotsTemplateStartHour {
-			get {
-				return this._timeSlotsTemplateStartHour;
-			}
-			set {
-				if ((value != this._timeSlotsTemplateStartHour)) {
-					this.OnPropertyChanging("TimeSlotsTemplateStartHour", this._timeSlotsTemplateStartHour);
-					this._timeSlotsTemplateStartHour = value;
-					this.OnPropertyChanged("TimeSlotsTemplateStartHour");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateStartMinute", Storage="_timeSlotsTemplateStartMinute", FieldType="Choice")]
-		public System.Nullable<TimeSlotsTemplateStartMinute> TimeSlotsTemplateStartMinute {
-			get {
-				return this._timeSlotsTemplateStartMinute;
-			}
-			set {
-				if ((value != this._timeSlotsTemplateStartMinute)) {
-					this.OnPropertyChanging("TimeSlotsTemplateStartMinute", this._timeSlotsTemplateStartMinute);
-					this._timeSlotsTemplateStartMinute = value;
-					this.OnPropertyChanged("TimeSlotsTemplateStartMinute");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateEndHour", Storage="_timeSlotsTemplateEndHour", FieldType="Choice")]
-		public System.Nullable<TimeSlotsTemplateEndHour> TimeSlotsTemplateEndHour {
-			get {
-				return this._timeSlotsTemplateEndHour;
-			}
-			set {
-				if ((value != this._timeSlotsTemplateEndHour)) {
-					this.OnPropertyChanging("TimeSlotsTemplateEndHour", this._timeSlotsTemplateEndHour);
-					this._timeSlotsTemplateEndHour = value;
-					this.OnPropertyChanged("TimeSlotsTemplateEndHour");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSlotsTemplateEndMinute", Storage="_timeSlotsTemplateEndMinute", FieldType="Choice")]
-		public System.Nullable<TimeSlotsTemplateEndMinute> TimeSlotsTemplateEndMinute {
-			get {
-				return this._timeSlotsTemplateEndMinute;
-			}
-			set {
-				if ((value != this._timeSlotsTemplateEndMinute)) {
-					this.OnPropertyChanging("TimeSlotsTemplateEndMinute", this._timeSlotsTemplateEndMinute);
-					this._timeSlotsTemplateEndMinute = value;
-					this.OnPropertyChanged("TimeSlotsTemplateEndMinute");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ScheduleTemplateTitle", Storage="_scheduleTemplateTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Schedule Template")]
-		public ScheduleTemplate ScheduleTemplateTitle {
-			get {
-				return this._scheduleTemplateTitle.GetEntity();
-			}
-			set {
-				this._scheduleTemplateTitle.SetEntity(value);
-			}
-		}
-		
-		private void OnScheduleTemplateTitleChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ScheduleTemplateTitle", this._scheduleTemplateTitle.Clone());
-		}
-		
-		private void OnScheduleTemplateTitleChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ScheduleTemplateTitle");
-		}
-		
-		private void OnScheduleTemplateTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ScheduleTemplate> e) {
 		}
 	}
 	
@@ -6151,253 +6699,10 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 	}
 	
 	/// <summary>
-	/// Time Slot List CT
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlot", Id="0x0102008B8977AFA9104B18B4B25D7C06A4A3AA")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlotTimeSlot))]
-	public partial class TimeSlot : Wydarzenie {
-		
-		private System.Nullable<System.DateTime> _entryTime;
-		
-		private System.Nullable<double> _timeSpan;
-		
-		private System.Nullable<System.DateTime> _exitTime;
-		
-		private System.Nullable<bool> _isDouble;
-		
-		private System.Nullable<Occupied> _occupied;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _timeSlot2ShippingIndex;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _timeSlot2ShippingPointLookup;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public TimeSlot() {
-			this._timeSlot2ShippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
-			this._timeSlot2ShippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnTimeSlot2ShippingIndexSync);
-			this._timeSlot2ShippingIndex.OnChanged += new System.EventHandler(this.OnTimeSlot2ShippingIndexChanged);
-			this._timeSlot2ShippingIndex.OnChanging += new System.EventHandler(this.OnTimeSlot2ShippingIndexChanging);
-			this._timeSlot2ShippingPointLookup = new Microsoft.SharePoint.Linq.EntityRef<ShippingPoint>();
-			this._timeSlot2ShippingPointLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnTimeSlot2ShippingPointLookupSync);
-			this._timeSlot2ShippingPointLookup.OnChanged += new System.EventHandler(this.OnTimeSlot2ShippingPointLookupChanged);
-			this._timeSlot2ShippingPointLookup.OnChanging += new System.EventHandler(this.OnTimeSlot2ShippingPointLookupChanging);
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EntryTime", Storage="_entryTime", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> EntryTime {
-			get {
-				return this._entryTime;
-			}
-			set {
-				if ((value != this._entryTime)) {
-					this.OnPropertyChanging("EntryTime", this._entryTime);
-					this._entryTime = value;
-					this.OnPropertyChanged("EntryTime");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSpan", Storage="_timeSpan", FieldType="Number")]
-		public System.Nullable<double> TimeSpan {
-			get {
-				return this._timeSpan;
-			}
-			set {
-				if ((value != this._timeSpan)) {
-					this.OnPropertyChanging("TimeSpan", this._timeSpan);
-					this._timeSpan = value;
-					this.OnPropertyChanged("TimeSpan");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ExitTime", Storage="_exitTime", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> ExitTime {
-			get {
-				return this._exitTime;
-			}
-			set {
-				if ((value != this._exitTime)) {
-					this.OnPropertyChanging("ExitTime", this._exitTime);
-					this._exitTime = value;
-					this.OnPropertyChanged("ExitTime");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IsDouble", Storage="_isDouble", FieldType="Boolean")]
-		public System.Nullable<bool> IsDouble {
-			get {
-				return this._isDouble;
-			}
-			set {
-				if ((value != this._isDouble)) {
-					this.OnPropertyChanging("IsDouble", this._isDouble);
-					this._isDouble = value;
-					this.OnPropertyChanged("IsDouble");
-				}
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Tytuł {
-			get {
-				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlot.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlot.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Lokalizacja {
-			get {
-				throw new System.InvalidOperationException("Pole Location zostało usunięte z typu zawartości TimeSlot.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Location zostało usunięte z typu zawartości TimeSlot.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Description {
-			get {
-				throw new System.InvalidOperationException("Pole Comments zostało usunięte z typu zawartości TimeSlot.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Comments zostało usunięte z typu zawartości TimeSlot.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<bool> WydarzenieCałodzienne {
-			get {
-				throw new System.InvalidOperationException("Pole fAllDayEvent zostało usunięte z typu zawartości TimeSlot.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole fAllDayEvent zostało usunięte z typu zawartości TimeSlot.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<bool> Cykl {
-			get {
-				throw new System.InvalidOperationException("Pole fRecurrence zostało usunięte z typu zawartości TimeSlot.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole fRecurrence zostało usunięte z typu zawartości TimeSlot.");
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<bool> ObszarRoboczy {
-			get {
-				throw new System.InvalidOperationException("Pole WorkspaceLink zostało usunięte z typu zawartości TimeSlot.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole WorkspaceLink zostało usunięte z typu zawartości TimeSlot.");
-			}
-		}
-		
-		/// <summary>
-		/// Occupied
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Occupied", Storage="_occupied", FieldType="Choice")]
-		public System.Nullable<Occupied> Occupied {
-			get {
-				return this._occupied;
-			}
-			set {
-				if ((value != this._occupied)) {
-					this.OnPropertyChanging("Occupied", this._occupied);
-					this._occupied = value;
-					this.OnPropertyChanged("Occupied");
-				}
-			}
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<Kategoria> Kategoria {
-			get {
-				throw new System.InvalidOperationException("Pole Category zostało usunięte z typu zawartości TimeSlot.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Category zostało usunięte z typu zawartości TimeSlot.");
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingIndex", Storage="_timeSlot2ShippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
-		public Shipping TimeSlot2ShippingIndex {
-			get {
-				return this._timeSlot2ShippingIndex.GetEntity();
-			}
-			set {
-				this._timeSlot2ShippingIndex.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_timeSlot2ShippingPointLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping Point")]
-		public ShippingPoint TimeSlot2ShippingPointLookup {
-			get {
-				return this._timeSlot2ShippingPointLookup.GetEntity();
-			}
-			set {
-				this._timeSlot2ShippingPointLookup.SetEntity(value);
-			}
-		}
-		
-		private void OnTimeSlot2ShippingIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("TimeSlot2ShippingIndex", this._timeSlot2ShippingIndex.Clone());
-		}
-		
-		private void OnTimeSlot2ShippingIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("TimeSlot2ShippingIndex");
-		}
-		
-		private void OnTimeSlot2ShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TimeSlot.Add(this);
-			}
-			else {
-				e.Item.TimeSlot.Remove(this);
-			}
-		}
-		
-		private void OnTimeSlot2ShippingPointLookupChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("TimeSlot2ShippingPointLookup", this._timeSlot2ShippingPointLookup.Clone());
-		}
-		
-		private void OnTimeSlot2ShippingPointLookupChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("TimeSlot2ShippingPointLookup");
-		}
-		
-		private void OnTimeSlot2ShippingPointLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TimeSlot.Add(this);
-			}
-			else {
-				e.Item.TimeSlot.Remove(this);
-			}
-		}
-	}
-	
-	/// <summary>
 	/// Content type biblioteki Protokół zabezpieczeń - plomb
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SealProtocol", Id="0x010100CCFCCB37046E4ED39C17D28FAE78ED47")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SealProtocolLibrarySealProtocol))]
 	public partial class SealProtocol : Dokument {
 		
 		private string _contentType;
@@ -6447,7 +6752,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public string ContentType {
+		public virtual string ContentType {
 			get {
 				return this._contentType;
 			}
@@ -6700,6 +7005,372 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 	}
 	
 	/// <summary>
+	/// Time Slot List CT
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TimeSlot", Id="0x0102008B8977AFA9104B18B4B25D7C06A4A3AA")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TimeSlotTimeSlot))]
+	public partial class TimeSlot : Wydarzenie {
+		
+		private System.Nullable<System.DateTime> _entryTime;
+		
+		private System.Nullable<double> _timeSpan;
+		
+		private System.Nullable<System.DateTime> _exitTime;
+		
+		private System.Nullable<bool> _isDouble;
+		
+		private System.Nullable<Occupied> _occupied;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Shipping> _timeSlot2ShippingIndex;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<ShippingPoint> _timeSlot2ShippingPointLookup;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public TimeSlot() {
+			this._timeSlot2ShippingIndex = new Microsoft.SharePoint.Linq.EntityRef<Shipping>();
+			this._timeSlot2ShippingIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnTimeSlot2ShippingIndexSync);
+			this._timeSlot2ShippingIndex.OnChanged += new System.EventHandler(this.OnTimeSlot2ShippingIndexChanged);
+			this._timeSlot2ShippingIndex.OnChanging += new System.EventHandler(this.OnTimeSlot2ShippingIndexChanging);
+			this._timeSlot2ShippingPointLookup = new Microsoft.SharePoint.Linq.EntityRef<ShippingPoint>();
+			this._timeSlot2ShippingPointLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint>>(this.OnTimeSlot2ShippingPointLookupSync);
+			this._timeSlot2ShippingPointLookup.OnChanged += new System.EventHandler(this.OnTimeSlot2ShippingPointLookupChanged);
+			this._timeSlot2ShippingPointLookup.OnChanging += new System.EventHandler(this.OnTimeSlot2ShippingPointLookupChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EntryTime", Storage="_entryTime", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> EntryTime {
+			get {
+				return this._entryTime;
+			}
+			set {
+				if ((value != this._entryTime)) {
+					this.OnPropertyChanging("EntryTime", this._entryTime);
+					this._entryTime = value;
+					this.OnPropertyChanged("EntryTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TimeSpan", Storage="_timeSpan", FieldType="Number")]
+		public System.Nullable<double> TimeSpan {
+			get {
+				return this._timeSpan;
+			}
+			set {
+				if ((value != this._timeSpan)) {
+					this.OnPropertyChanging("TimeSpan", this._timeSpan);
+					this._timeSpan = value;
+					this.OnPropertyChanged("TimeSpan");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ExitTime", Storage="_exitTime", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> ExitTime {
+			get {
+				return this._exitTime;
+			}
+			set {
+				if ((value != this._exitTime)) {
+					this.OnPropertyChanging("ExitTime", this._exitTime);
+					this._exitTime = value;
+					this.OnPropertyChanged("ExitTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IsDouble", Storage="_isDouble", FieldType="Boolean")]
+		public System.Nullable<bool> IsDouble {
+			get {
+				return this._isDouble;
+			}
+			set {
+				if ((value != this._isDouble)) {
+					this.OnPropertyChanging("IsDouble", this._isDouble);
+					this._isDouble = value;
+					this.OnPropertyChanged("IsDouble");
+				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Tytuł {
+			get {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Lokalizacja {
+			get {
+				throw new System.InvalidOperationException("Pole Location zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Location zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Description {
+			get {
+				throw new System.InvalidOperationException("Pole Comments zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Comments zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override System.Nullable<bool> WydarzenieCałodzienne {
+			get {
+				throw new System.InvalidOperationException("Pole fAllDayEvent zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole fAllDayEvent zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override System.Nullable<bool> Cykl {
+			get {
+				throw new System.InvalidOperationException("Pole fRecurrence zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole fRecurrence zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override System.Nullable<bool> ObszarRoboczy {
+			get {
+				throw new System.InvalidOperationException("Pole WorkspaceLink zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole WorkspaceLink zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		/// <summary>
+		/// Occupied
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Occupied", Storage="_occupied", FieldType="Choice")]
+		public System.Nullable<Occupied> Occupied {
+			get {
+				return this._occupied;
+			}
+			set {
+				if ((value != this._occupied)) {
+					this.OnPropertyChanging("Occupied", this._occupied);
+					this._occupied = value;
+					this.OnPropertyChanged("Occupied");
+				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override System.Nullable<Kategoria> Kategoria {
+			get {
+				throw new System.InvalidOperationException("Pole Category zostało usunięte z typu zawartości TimeSlot.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Category zostało usunięte z typu zawartości TimeSlot.");
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingIndex", Storage="_timeSlot2ShippingIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping")]
+		public Shipping TimeSlot2ShippingIndex {
+			get {
+				return this._timeSlot2ShippingIndex.GetEntity();
+			}
+			set {
+				this._timeSlot2ShippingIndex.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TimeSlot2ShippingPointLookup", Storage="_timeSlot2ShippingPointLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Shipping Point")]
+		public ShippingPoint TimeSlot2ShippingPointLookup {
+			get {
+				return this._timeSlot2ShippingPointLookup.GetEntity();
+			}
+			set {
+				this._timeSlot2ShippingPointLookup.SetEntity(value);
+			}
+		}
+		
+		private void OnTimeSlot2ShippingIndexChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TimeSlot2ShippingIndex", this._timeSlot2ShippingIndex.Clone());
+		}
+		
+		private void OnTimeSlot2ShippingIndexChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TimeSlot2ShippingIndex");
+		}
+		
+		private void OnTimeSlot2ShippingIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TimeSlot.Add(this);
+			}
+			else {
+				e.Item.TimeSlot.Remove(this);
+			}
+		}
+		
+		private void OnTimeSlot2ShippingPointLookupChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("TimeSlot2ShippingPointLookup", this._timeSlot2ShippingPointLookup.Clone());
+		}
+		
+		private void OnTimeSlot2ShippingPointLookupChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("TimeSlot2ShippingPointLookup");
+		}
+		
+		private void OnTimeSlot2ShippingPointLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<ShippingPoint> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TimeSlot.Add(this);
+			}
+			else {
+				e.Item.TimeSlot.Remove(this);
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Content type listy  Raport skuteczności przewoźnika
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CarrierPerformanceReport", Id="0x0100BB5037BBD6ED46B98AC227A358889AFA", List="Carrier Performance Report")]
+	public partial class CarrierPerformanceReportCarrierPerformanceReport : CarrierPerformanceReport {
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public CarrierPerformanceReportCarrierPerformanceReport() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOr", Storage="_carrierPerformanceReportNumberOrdered", FieldType="Number")]
+		public override System.Nullable<double> CarrierPerformanceReportNumberOrdered {
+			get {
+				return this._carrierPerformanceReportNumberOrdered;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberOrdered)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberOrdered", this._carrierPerformanceReportNumberOrdered);
+					this._carrierPerformanceReportNumberOrdered = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberOrdered");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOn", Storage="_carrierPerformanceReportNumberOnTime", FieldType="Number")]
+		public override System.Nullable<double> CarrierPerformanceReportNumberOnTime {
+			get {
+				return this._carrierPerformanceReportNumberOnTime;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberOnTime)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberOnTime", this._carrierPerformanceReportNumberOnTime);
+					this._carrierPerformanceReportNumberOnTime = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberOnTime");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDe", Storage="_carrierPerformanceReportNumberDelayed", FieldType="Number")]
+		public override System.Nullable<double> CarrierPerformanceReportNumberDelayed {
+			get {
+				return this._carrierPerformanceReportNumberDelayed;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberDelayed)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberDelayed", this._carrierPerformanceReportNumberDelayed);
+					this._carrierPerformanceReportNumberDelayed = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberDelayed");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDe0", Storage="_carrierPerformanceReportNumberDelayed1h", FieldType="Number")]
+		public override System.Nullable<double> CarrierPerformanceReportNumberDelayed1h {
+			get {
+				return this._carrierPerformanceReportNumberDelayed1h;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberDelayed1h)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberDelayed1h", this._carrierPerformanceReportNumberDelayed1h);
+					this._carrierPerformanceReportNumberDelayed1h = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberDelayed1h");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberNo", Storage="_carrierPerformanceReportNumberNotShowingUp", FieldType="Number")]
+		public override System.Nullable<double> CarrierPerformanceReportNumberNotShowingUp {
+			get {
+				return this._carrierPerformanceReportNumberNotShowingUp;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberNotShowingUp)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberNotShowingUp", this._carrierPerformanceReportNumberNotShowingUp);
+					this._carrierPerformanceReportNumberNotShowingUp = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberNotShowingUp");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberRe", Storage="_carrierPerformanceReportNumberRejectedBadQuality", FieldType="Number")]
+		public override System.Nullable<double> CarrierPerformanceReportNumberRejectedBadQuality {
+			get {
+				return this._carrierPerformanceReportNumberRejectedBadQuality;
+			}
+			set {
+				if ((value != this._carrierPerformanceReportNumberRejectedBadQuality)) {
+					this.OnPropertyChanging("CarrierPerformanceReportNumberRejectedBadQuality", this._carrierPerformanceReportNumberRejectedBadQuality);
+					this._carrierPerformanceReportNumberRejectedBadQuality = value;
+					this.OnPropertyChanged("CarrierPerformanceReportNumberRejectedBadQuality");
+				}
+			}
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string ContentType {
+			get {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CarrierPerformanceReport.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CarrierPerformanceReport.");
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierPerformanceReport2Partner", Storage="_carrierPerformanceReport2PartnerTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
+		public override Partner CarrierPerformanceReport2PartnerTitle {
+			get {
+				return this._carrierPerformanceReport2PartnerTitle.GetEntity();
+			}
+			set {
+				this._carrierPerformanceReport2PartnerTitle.SetEntity(value);
+			}
+		}
+	}
+	
+	/// <summary>
 	/// Content type listy Jednostka transportowa
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TranspotUnit", Id="0x0100017ECA95BFABB941B9E7FE63643FCD7C", List="Transport Unit Type")]
@@ -6850,6 +7521,67 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 			else {
 				e.Item.Shipping2EscortPOIndex = null;
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Content type biblioteki Protokół zabezpieczeń - plomb
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SealProtocol", Id="0x010100CCFCCB37046E4ED39C17D28FAE78ED47", List="Seal Protocol Library")]
+	public partial class SealProtocolLibrarySealProtocol : SealProtocol {
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public SealProtocolLibrarySealProtocol() {
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
+			this.OnCreated();
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string ContentType {
+			get {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości SealProtocol.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości SealProtocol.");
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+			get {
+				return this._shipping;
+			}
+			set {
+				this._shipping.Assign(value);
+			}
+		}
+		
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
+		}
+		
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
+		}
+		
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SecuritySealProtocolIndex = this;
+			}
+			else {
+				e.Item.SecuritySealProtocolIndex = null;
 			}
 		}
 	}
@@ -7063,22 +7795,6 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Both directions")]
 		BothDirections = 8,
-	}
-	
-	public enum VehicleType : int {
-		
-		None = 0,
-		
-		Invalid = 1,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Truck")]
-		Truck = 2,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Van")]
-		Van = 4,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Security Escort Car")]
-		SecurityEscortCar = 8,
 	}
 	
 	public enum TimeSlotsTemplateDay : int {
@@ -7303,6 +8019,22 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="45")]
 		_45 = 16,
+	}
+	
+	public enum VehicleType : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Truck")]
+		Truck = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Van")]
+		Van = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Security Escort Car")]
+		SecurityEscortCar = 8,
 	}
 	
 	public enum Occupied : int {
