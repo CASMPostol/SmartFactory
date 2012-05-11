@@ -1110,9 +1110,9 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		public CarrierPerformanceReport() {
 			this._carrierPerformanceReport2PartnerTitle = new Microsoft.SharePoint.Linq.EntityRef<Partner>();
-			this._carrierPerformanceReport2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnCarrierPerformanceReport2PartnerTitleSync);
-			this._carrierPerformanceReport2PartnerTitle.OnChanged += new System.EventHandler(this.OnCarrierPerformanceReport2PartnerTitleChanged);
-			this._carrierPerformanceReport2PartnerTitle.OnChanging += new System.EventHandler(this.OnCarrierPerformanceReport2PartnerTitleChanging);
+			this._carrierPerformanceReport2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnCPR2PartnerTitleSync);
+			this._carrierPerformanceReport2PartnerTitle.OnChanged += new System.EventHandler(this.OnCPR2PartnerTitleChanged);
+			this._carrierPerformanceReport2PartnerTitle.OnChanging += new System.EventHandler(this.OnCPR2PartnerTitleChanging);
 			this.OnCreated();
 		}
 		
@@ -1144,106 +1144,106 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportDate", Storage="_carrierPerformanceReportDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> CarrierPerformanceReportDate {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CPRDate", Storage="_carrierPerformanceReportDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> CPRDate {
 			get {
 				return this._carrierPerformanceReportDate;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportDate)) {
-					this.OnPropertyChanging("CarrierPerformanceReportDate", this._carrierPerformanceReportDate);
+					this.OnPropertyChanging("CPRDate", this._carrierPerformanceReportDate);
 					this._carrierPerformanceReportDate = value;
-					this.OnPropertyChanged("CarrierPerformanceReportDate");
+					this.OnPropertyChanged("CPRDate");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOrdered", Storage="_carrierPerformanceReportNumberOrdered", FieldType="Number")]
-		public virtual System.Nullable<double> CarrierPerformanceReportNumberOrdered {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CPRNumberOrdered", Storage="_carrierPerformanceReportNumberOrdered", FieldType="Number")]
+		public virtual System.Nullable<double> CPRNumberOrdered {
 			get {
 				return this._carrierPerformanceReportNumberOrdered;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberOrdered)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberOrdered", this._carrierPerformanceReportNumberOrdered);
+					this.OnPropertyChanging("CPRNumberOrdered", this._carrierPerformanceReportNumberOrdered);
 					this._carrierPerformanceReportNumberOrdered = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberOrdered");
+					this.OnPropertyChanged("CPRNumberOrdered");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOnTime", Storage="_carrierPerformanceReportNumberOnTime", FieldType="Number")]
-		public virtual System.Nullable<double> CarrierPerformanceReportNumberOnTime {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CPRNumberOnTime", Storage="_carrierPerformanceReportNumberOnTime", FieldType="Number")]
+		public virtual System.Nullable<double> CPRNumberOnTime {
 			get {
 				return this._carrierPerformanceReportNumberOnTime;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberOnTime)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberOnTime", this._carrierPerformanceReportNumberOnTime);
+					this.OnPropertyChanging("CPRNumberOnTime", this._carrierPerformanceReportNumberOnTime);
 					this._carrierPerformanceReportNumberOnTime = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberOnTime");
+					this.OnPropertyChanged("CPRNumberOnTime");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDelayed", Storage="_carrierPerformanceReportNumberDelayed", FieldType="Number")]
-		public virtual System.Nullable<double> CarrierPerformanceReportNumberDelayed {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CPRNumberDelayed", Storage="_carrierPerformanceReportNumberDelayed", FieldType="Number")]
+		public virtual System.Nullable<double> CPRNumberDelayed {
 			get {
 				return this._carrierPerformanceReportNumberDelayed;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberDelayed)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberDelayed", this._carrierPerformanceReportNumberDelayed);
+					this.OnPropertyChanging("CPRNumberDelayed", this._carrierPerformanceReportNumberDelayed);
 					this._carrierPerformanceReportNumberDelayed = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberDelayed");
+					this.OnPropertyChanged("CPRNumberDelayed");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDelayed1h", Storage="_carrierPerformanceReportNumberDelayed1h", FieldType="Number")]
-		public virtual System.Nullable<double> CarrierPerformanceReportNumberDelayed1h {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CPRNumberDelayed1h", Storage="_carrierPerformanceReportNumberDelayed1h", FieldType="Number")]
+		public virtual System.Nullable<double> CPRNumberDelayed1h {
 			get {
 				return this._carrierPerformanceReportNumberDelayed1h;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberDelayed1h)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberDelayed1h", this._carrierPerformanceReportNumberDelayed1h);
+					this.OnPropertyChanging("CPRNumberDelayed1h", this._carrierPerformanceReportNumberDelayed1h);
 					this._carrierPerformanceReportNumberDelayed1h = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberDelayed1h");
+					this.OnPropertyChanged("CPRNumberDelayed1h");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberNotShowingUp", Storage="_carrierPerformanceReportNumberNotShowingUp", FieldType="Number")]
-		public virtual System.Nullable<double> CarrierPerformanceReportNumberNotShowingUp {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CPRNumberNotShowingUp", Storage="_carrierPerformanceReportNumberNotShowingUp", FieldType="Number")]
+		public virtual System.Nullable<double> CPRNumberNotShowingUp {
 			get {
 				return this._carrierPerformanceReportNumberNotShowingUp;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberNotShowingUp)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberNotShowingUp", this._carrierPerformanceReportNumberNotShowingUp);
+					this.OnPropertyChanging("CPRNumberNotShowingUp", this._carrierPerformanceReportNumberNotShowingUp);
 					this._carrierPerformanceReportNumberNotShowingUp = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberNotShowingUp");
+					this.OnPropertyChanged("CPRNumberNotShowingUp");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberRejectedBadQuality", Storage="_carrierPerformanceReportNumberRejectedBadQuality", FieldType="Number")]
-		public virtual System.Nullable<double> CarrierPerformanceReportNumberRejectedBadQuality {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CPRNumberRejectedBadQuality", Storage="_carrierPerformanceReportNumberRejectedBadQuality", FieldType="Number")]
+		public virtual System.Nullable<double> CPRNumberRejectedBadQuality {
 			get {
 				return this._carrierPerformanceReportNumberRejectedBadQuality;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberRejectedBadQuality)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberRejectedBadQuality", this._carrierPerformanceReportNumberRejectedBadQuality);
+					this.OnPropertyChanging("CPRNumberRejectedBadQuality", this._carrierPerformanceReportNumberRejectedBadQuality);
 					this._carrierPerformanceReportNumberRejectedBadQuality = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberRejectedBadQuality");
+					this.OnPropertyChanged("CPRNumberRejectedBadQuality");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierPerformanceReport2PartnerTitle", Storage="_carrierPerformanceReport2PartnerTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public virtual Partner CarrierPerformanceReport2PartnerTitle {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CPR2PartnerTitle", Storage="_carrierPerformanceReport2PartnerTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
+		public virtual Partner CPR2PartnerTitle {
 			get {
 				return this._carrierPerformanceReport2PartnerTitle.GetEntity();
 			}
@@ -1252,15 +1252,15 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 		}
 		
-		private void OnCarrierPerformanceReport2PartnerTitleChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("CarrierPerformanceReport2PartnerTitle", this._carrierPerformanceReport2PartnerTitle.Clone());
+		private void OnCPR2PartnerTitleChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CPR2PartnerTitle", this._carrierPerformanceReport2PartnerTitle.Clone());
 		}
 		
-		private void OnCarrierPerformanceReport2PartnerTitleChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("CarrierPerformanceReport2PartnerTitle");
+		private void OnCPR2PartnerTitleChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CPR2PartnerTitle");
 		}
 		
-		private void OnCarrierPerformanceReport2PartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
+		private void OnCPR2PartnerTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.CarrierPerformanceReport.Add(this);
 			}
@@ -2658,7 +2658,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierPerformanceReport2PartnerTitle", Storage="_carrierPerformanceReport", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Carrier Performance Report")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CPR2PartnerTitle", Storage="_carrierPerformanceReport", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Carrier Performance Report")]
 		public Microsoft.SharePoint.Linq.EntitySet<CarrierPerformanceReport> CarrierPerformanceReport {
 			get {
 				return this._carrierPerformanceReport;
@@ -2783,10 +2783,10 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private void OnCarrierPerformanceReportSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierPerformanceReport> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CarrierPerformanceReport2PartnerTitle = this;
+				e.Item.CPR2PartnerTitle = this;
 			}
 			else {
-				e.Item.CarrierPerformanceReport2PartnerTitle = null;
+				e.Item.CPR2PartnerTitle = null;
 			}
 		}
 		
@@ -6976,85 +6976,85 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOr", Storage="_carrierPerformanceReportNumberOrdered", FieldType="Number")]
-		public override System.Nullable<double> CarrierPerformanceReportNumberOrdered {
+		public override System.Nullable<double> CPRNumberOrdered {
 			get {
 				return this._carrierPerformanceReportNumberOrdered;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberOrdered)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberOrdered", this._carrierPerformanceReportNumberOrdered);
+					this.OnPropertyChanging("CPRNumberOrdered", this._carrierPerformanceReportNumberOrdered);
 					this._carrierPerformanceReportNumberOrdered = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberOrdered");
+					this.OnPropertyChanged("CPRNumberOrdered");
 				}
 			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberOn", Storage="_carrierPerformanceReportNumberOnTime", FieldType="Number")]
-		public override System.Nullable<double> CarrierPerformanceReportNumberOnTime {
+		public override System.Nullable<double> CPRNumberOnTime {
 			get {
 				return this._carrierPerformanceReportNumberOnTime;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberOnTime)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberOnTime", this._carrierPerformanceReportNumberOnTime);
+					this.OnPropertyChanging("CPRNumberOnTime", this._carrierPerformanceReportNumberOnTime);
 					this._carrierPerformanceReportNumberOnTime = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberOnTime");
+					this.OnPropertyChanged("CPRNumberOnTime");
 				}
 			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDe", Storage="_carrierPerformanceReportNumberDelayed", FieldType="Number")]
-		public override System.Nullable<double> CarrierPerformanceReportNumberDelayed {
+		public override System.Nullable<double> CPRNumberDelayed {
 			get {
 				return this._carrierPerformanceReportNumberDelayed;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberDelayed)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberDelayed", this._carrierPerformanceReportNumberDelayed);
+					this.OnPropertyChanging("CPRNumberDelayed", this._carrierPerformanceReportNumberDelayed);
 					this._carrierPerformanceReportNumberDelayed = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberDelayed");
+					this.OnPropertyChanged("CPRNumberDelayed");
 				}
 			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberDe0", Storage="_carrierPerformanceReportNumberDelayed1h", FieldType="Number")]
-		public override System.Nullable<double> CarrierPerformanceReportNumberDelayed1h {
+		public override System.Nullable<double> CPRNumberDelayed1h {
 			get {
 				return this._carrierPerformanceReportNumberDelayed1h;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberDelayed1h)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberDelayed1h", this._carrierPerformanceReportNumberDelayed1h);
+					this.OnPropertyChanging("CPRNumberDelayed1h", this._carrierPerformanceReportNumberDelayed1h);
 					this._carrierPerformanceReportNumberDelayed1h = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberDelayed1h");
+					this.OnPropertyChanged("CPRNumberDelayed1h");
 				}
 			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberNo", Storage="_carrierPerformanceReportNumberNotShowingUp", FieldType="Number")]
-		public override System.Nullable<double> CarrierPerformanceReportNumberNotShowingUp {
+		public override System.Nullable<double> CPRNumberNotShowingUp {
 			get {
 				return this._carrierPerformanceReportNumberNotShowingUp;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberNotShowingUp)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberNotShowingUp", this._carrierPerformanceReportNumberNotShowingUp);
+					this.OnPropertyChanging("CPRNumberNotShowingUp", this._carrierPerformanceReportNumberNotShowingUp);
 					this._carrierPerformanceReportNumberNotShowingUp = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberNotShowingUp");
+					this.OnPropertyChanged("CPRNumberNotShowingUp");
 				}
 			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CarrierPerformanceReportNumberRe", Storage="_carrierPerformanceReportNumberRejectedBadQuality", FieldType="Number")]
-		public override System.Nullable<double> CarrierPerformanceReportNumberRejectedBadQuality {
+		public override System.Nullable<double> CPRNumberRejectedBadQuality {
 			get {
 				return this._carrierPerformanceReportNumberRejectedBadQuality;
 			}
 			set {
 				if ((value != this._carrierPerformanceReportNumberRejectedBadQuality)) {
-					this.OnPropertyChanging("CarrierPerformanceReportNumberRejectedBadQuality", this._carrierPerformanceReportNumberRejectedBadQuality);
+					this.OnPropertyChanging("CPRNumberRejectedBadQuality", this._carrierPerformanceReportNumberRejectedBadQuality);
 					this._carrierPerformanceReportNumberRejectedBadQuality = value;
-					this.OnPropertyChanged("CarrierPerformanceReportNumberRejectedBadQuality");
+					this.OnPropertyChanged("CPRNumberRejectedBadQuality");
 				}
 			}
 		}
@@ -7071,7 +7071,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CarrierPerformanceReport2Partner", Storage="_carrierPerformanceReport2PartnerTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Partner")]
-		public override Partner CarrierPerformanceReport2PartnerTitle {
+		public override Partner CPR2PartnerTitle {
 			get {
 				return this._carrierPerformanceReport2PartnerTitle.GetEntity();
 			}
