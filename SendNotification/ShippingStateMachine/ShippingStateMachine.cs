@@ -183,7 +183,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         _rprt.CPRNumberNotShowingUp += (from _ts in _sp.TimeSlot
                                                              where _ts.Occupied.Value == Occupied.Delayed
                                                              select new { }).Count();
-        if (_sp.ShippingState.Value == State.Cancelation)
+        if (_sp.ShippingState.Value == ShippingState.Cancelation)
           _rprt.CPRNumberNotShowingUp++;
         else
         {
@@ -305,7 +305,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         this.SendingEmailsReplicator_InitialChildData = null;
         using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
         {
-          Shipping _sp = Element.GetAtIndex<Shipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
+          Shipping _sp = Element.GetAtIndex<Shipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId.ToString());
           TimeSpan _timeDistance;
           switch (_sp.ShippingState.Value)
           {

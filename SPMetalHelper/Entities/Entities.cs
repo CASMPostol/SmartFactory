@@ -257,9 +257,9 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		/// Biblioteka Protokół zabezpieczeń - plomb
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Seal Protocol Library")]
-		public Microsoft.SharePoint.Linq.EntityList<SealProtocolLibrarySealProtocol> SealProtocolLibrary {
+		public Microsoft.SharePoint.Linq.EntityList<SealProtocol> SealProtocolLibrary {
 			get {
-				return this.GetList<SealProtocolLibrarySealProtocol>("Seal Protocol Library");
+				return this.GetList<SealProtocol>("Seal Protocol Library");
 			}
 		}
 		
@@ -3855,7 +3855,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Partner> _shipping2PartnerTitle;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<SealProtocolLibrarySealProtocol> _securitySealProtocolIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<SealProtocol> _securitySealProtocolIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog> _securityEscortCatalogTitle;
 		
@@ -3924,8 +3924,8 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this._shipping2PartnerTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Partner>>(this.OnShipping2PartnerTitleSync);
 			this._shipping2PartnerTitle.OnChanged += new System.EventHandler(this.OnShipping2PartnerTitleChanged);
 			this._shipping2PartnerTitle.OnChanging += new System.EventHandler(this.OnShipping2PartnerTitleChanging);
-			this._securitySealProtocolIndex = new Microsoft.SharePoint.Linq.EntityRef<SealProtocolLibrarySealProtocol>();
-			this._securitySealProtocolIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocolLibrarySealProtocol>>(this.OnSecuritySealProtocolIndexSync);
+			this._securitySealProtocolIndex = new Microsoft.SharePoint.Linq.EntityRef<SealProtocol>();
+			this._securitySealProtocolIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocol>>(this.OnSecuritySealProtocolIndexSync);
 			this._securitySealProtocolIndex.OnChanged += new System.EventHandler(this.OnSecuritySealProtocolIndexChanged);
 			this._securitySealProtocolIndex.OnChanging += new System.EventHandler(this.OnSecuritySealProtocolIndexChanging);
 			this._securityEscortCatalogTitle = new Microsoft.SharePoint.Linq.EntityRef<SecurityEscortCatalog>();
@@ -4452,7 +4452,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_securitySealProtocolIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Seal Protocol Library")]
-		public SealProtocolLibrarySealProtocol SecuritySealProtocolIndex {
+		public SealProtocol SecuritySealProtocolIndex {
 			get {
 				return this._securitySealProtocolIndex.GetEntity();
 			}
@@ -4747,7 +4747,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this.OnPropertyChanged("SecuritySealProtocolIndex");
 		}
 		
-		private void OnSecuritySealProtocolIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocolLibrarySealProtocol> e) {
+		private void OnSecuritySealProtocolIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SealProtocol> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Shipping.Add(this);
 			}
@@ -6396,10 +6396,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 	/// Content type biblioteki Protokół zabezpieczeń - plomb
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SealProtocol", Id="0x010100CCFCCB37046E4ED39C17D28FAE78ED47")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SealProtocolLibrarySealProtocol))]
 	public partial class SealProtocol : Dokument {
-		
-		private string _contentType;
 		
 		private System.Nullable<System.DateTime> _sealProtocolDispatchDate;
 		
@@ -6435,6 +6432,8 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private string _sealProtocolTrailerNo;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -6442,21 +6441,11 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		#endregion
 		
 		public SealProtocol() {
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public virtual string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SealProtocolDispatchDate", Storage="_sealProtocolDispatchDate", FieldType="DateTime")]
@@ -6694,6 +6683,33 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 					this._sealProtocolTrailerNo = value;
 					this.OnPropertyChanged("SealProtocolTrailerNo");
 				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+			get {
+				return this._shipping;
+			}
+			set {
+				this._shipping.Assign(value);
+			}
+		}
+		
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
+		}
+		
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
+		}
+		
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SecuritySealProtocolIndex = this;
+			}
+			else {
+				e.Item.SecuritySealProtocolIndex = null;
 			}
 		}
 	}
@@ -6938,67 +6954,6 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 			else {
 				e.Item.TimeSlot.Remove(this);
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Content type biblioteki Protokół zabezpieczeń - plomb
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SealProtocol", Id="0x010100CCFCCB37046E4ED39C17D28FAE78ED47", List="Seal Protocol Library")]
-	public partial class SealProtocolLibrarySealProtocol : SealProtocol {
-		
-		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public SealProtocolLibrarySealProtocol() {
-			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
-			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
-			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
-			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
-			this.OnCreated();
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string ContentType {
-			get {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości SealProtocol.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości SealProtocol.");
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SecuritySealProtocolIndex", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
-			get {
-				return this._shipping;
-			}
-			set {
-				this._shipping.Assign(value);
-			}
-		}
-		
-		private void OnShippingChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Shipping", this._shipping.Clone());
-		}
-		
-		private void OnShippingChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Shipping");
-		}
-		
-		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SecuritySealProtocolIndex = this;
-			}
-			else {
-				e.Item.SecuritySealProtocolIndex = null;
 			}
 		}
 	}
