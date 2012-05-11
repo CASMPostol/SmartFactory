@@ -11,14 +11,14 @@
         <Folder TargetName="_cts/CarrierPerformanceReport" />
         <FieldRefs>
           <FieldRef ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Name="ReportPeriod" />
-          <FieldRef ID="{A8FB5E34-44EC-4F97-AAD4-9BB3F2A81EDC}" Name="CarrierPerformanceReportDate" />
-          <FieldRef ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Name="CarrierPerformanceReport2PartnerTitle" />
-          <FieldRef ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}" Name="CarrierPerformanceReportNumberOrdered" />
-          <FieldRef ID="{323D6E21-3FB8-4AEF-A8DA-F40ABDB61E64}" Name="CarrierPerformanceReportNumberOnTime" />
-          <FieldRef ID="{B38ED1F3-802C-488B-8B2F-59303AD199CF}" Name="CarrierPerformanceReportNumberDelayed" />
-          <FieldRef ID="{54900F14-6927-4794-A10A-055F20C7B0DE}" Name="CarrierPerformanceReportNumberDelayed1h" />
-          <FieldRef ID="{95A6E00B-8194-4C7F-814A-6C44A1E524A4}" Name="CarrierPerformanceReportNumberNotShowingUp" />
-          <FieldRef ID="{AE2CD0DB-CE66-46CA-862E-B9ACDD4A12F9}" Name="CarrierPerformanceReportNumberRejectedBadQuality" />
+          <FieldRef ID="{A8FB5E34-44EC-4F97-AAD4-9BB3F2A81EDC}" Name="CPRDate" />
+          <FieldRef ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Name="CPR2PartnerTitle" />
+          <FieldRef ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}" Name="CPRNumberOrdered" />
+          <FieldRef ID="{323D6E21-3FB8-4AEF-A8DA-F40ABDB61E64}" Name="CPRNumberOnTime" />
+          <FieldRef ID="{B38ED1F3-802C-488B-8B2F-59303AD199CF}" Name="CPRNumberDelayed" />
+          <FieldRef ID="{54900F14-6927-4794-A10A-055F20C7B0DE}" Name="CPRNumberDelayed1h" />
+          <FieldRef ID="{95A6E00B-8194-4C7F-814A-6C44A1E524A4}" Name="CPRNumberNotShowingUp" />
+          <FieldRef ID="{AE2CD0DB-CE66-46CA-862E-B9ACDD4A12F9}" Name="CPRNumberRejectedBadQuality" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -60,14 +60,14 @@
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
           <FieldRef ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Name="ReportPeriod" />
-          <FieldRef ID="{A8FB5E34-44EC-4F97-AAD4-9BB3F2A81EDC}" Name="CarrierPerformanceReportDate" />
-          <FieldRef ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Name="CarrierPerformanceReport2PartnerTitle" />
-          <FieldRef ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}" Name="CarrierPerformanceReportNumberOrdered" />
-          <FieldRef ID="{323D6E21-3FB8-4AEF-A8DA-F40ABDB61E64}" Name="CarrierPerformanceReportNumberOnTime" />
-          <FieldRef ID="{B38ED1F3-802C-488B-8B2F-59303AD199CF}" Name="CarrierPerformanceReportNumberDelayed" />
-          <FieldRef ID="{54900F14-6927-4794-A10A-055F20C7B0DE}" Name="CarrierPerformanceReportNumberDelayed1h" />
-          <FieldRef ID="{95A6E00B-8194-4C7F-814A-6C44A1E524A4}" Name="CarrierPerformanceReportNumberNotShowingUp" />
-          <FieldRef ID="{AE2CD0DB-CE66-46CA-862E-B9ACDD4A12F9}" Name="CarrierPerformanceReportNumberRejectedBadQuality" />
+          <FieldRef ID="{A8FB5E34-44EC-4F97-AAD4-9BB3F2A81EDC}" Name="CPRDate" />
+          <FieldRef ID="{B0478144-A2FE-49D0-A42A-2E7317DE70DE}" Name="CPR2PartnerTitle" />
+          <FieldRef ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}" Name="CPRNumberOrdered" />
+          <FieldRef ID="{323D6E21-3FB8-4AEF-A8DA-F40ABDB61E64}" Name="CPRNumberOnTime" />
+          <FieldRef ID="{B38ED1F3-802C-488B-8B2F-59303AD199CF}" Name="CPRNumberDelayed" />
+          <FieldRef ID="{54900F14-6927-4794-A10A-055F20C7B0DE}" Name="CPRNumberDelayed1h" />
+          <FieldRef ID="{95A6E00B-8194-4C7F-814A-6C44A1E524A4}" Name="CPRNumberNotShowingUp" />
+          <FieldRef ID="{AE2CD0DB-CE66-46CA-862E-B9ACDD4A12F9}" Name="CPRNumberRejectedBadQuality" />
         </ViewFields>
         <Query>
           <OrderBy>

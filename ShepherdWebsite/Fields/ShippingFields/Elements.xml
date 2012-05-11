@@ -78,49 +78,49 @@
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    Name="CarrierPerformanceReportNumberRejectedBadQuality"
+    Name="CPRNumberRejectedBadQuality"
     DisplayName="$Resources:CASSmartFactoryShepherd,NumberTURejected"
     Type="Number"
     ID="{AE2CD0DB-CE66-46CA-862E-B9ACDD4A12F9}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    Name="CarrierPerformanceReportNumberNotShowingUp"
+    Name="CPRNumberNotShowingUp"
     DisplayName="$Resources:CASSmartFactoryShepherd,NumberTUNotDelivered"
     Type="Number"
     ID="{95A6E00B-8194-4C7F-814A-6C44A1E524A4}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    Name="CarrierPerformanceReportNumberDelayed1h"
+    Name="CPRNumberDelayed1h"
     DisplayName="$Resources:CASSmartFactoryShepherd,NumberTUDelayed1h"
     Type="Number"
     ID="{54900F14-6927-4794-A10A-055F20C7B0DE}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    Name="CarrierPerformanceReportNumberDelayed"
+    Name="CPRNumberDelayed"
     DisplayName="$Resources:CASSmartFactoryShepherd,NumberTUDelayed"
     Type="Number"
     ID="{B38ED1F3-802C-488B-8B2F-59303AD199CF}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    Name="CarrierPerformanceReportNumberOnTime"
+    Name="CPRNumberOnTime"
     DisplayName="Number TU on time"
     Type="Number"
     ID="{323D6E21-3FB8-4AEF-A8DA-F40ABDB61E64}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    Name="CarrierPerformanceReportNumberOrdered"
+    Name="CPRNumberOrdered"
     DisplayName="$Resources:CASSmartFactoryShepherd,NumberTUOrdered"
     Type="Number"
     ID="{2608B639-4DCB-42BF-B81C-F94F83B4132F}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    Name="CarrierPerformanceReportDate"
+    Name="CPRDate"
     ID="{A8FB5E34-44EC-4F97-AAD4-9BB3F2A81EDC}"
     Type="DateTime"
     Format="DateOnly"

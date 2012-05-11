@@ -180,14 +180,14 @@
     <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
     <Column Name="ReportPeriod" Member="ReportPeriod" />
-    <Column Name="CarrierPerformanceReportDate" Member="CarrierPerformanceReportDate" />
-    <Column Name="CarrierPerformanceReport2PartnerTitle" Member="CarrierPerformanceReport2PartnerTitle" />
-    <Column Name="CarrierPerformanceReportNumberOrdered" Member="CarrierPerformanceReportNumberOrdered" />
-    <Column Name="CarrierPerformanceReportNumberOnTime" Member="CarrierPerformanceReportNumberOnTime" />
-    <Column Name="CarrierPerformanceReportNumberDelayed" Member="CarrierPerformanceReportNumberDelayed" />
-    <Column Name="CarrierPerformanceReportNumberDelayed1h" Member="CarrierPerformanceReportNumberDelayed1h" />
-    <Column Name="CarrierPerformanceReportNumberNotShowingUp" Member="CarrierPerformanceReportNumberNotShowingUp" />
-    <Column Name="CarrierPerformanceReportNumberRejectedBadQuality" Member="CarrierPerformanceReportNumberRejectedBadQuality" />
+    <Column Name="CPRDate" Member="CPRDate" />
+    <Column Name="CPR2PartnerTitle" Member="CPR2PartnerTitle" />
+    <Column Name="CPRNumberOrdered" Member="CPRNumberOrdered" />
+    <Column Name="CPRNumberOnTime" Member="CPRNumberOnTime" />
+    <Column Name="CPRNumberDelayed" Member="CPRNumberDelayed" />
+    <Column Name="CPRNumberDelayed1h" Member="CPRNumberDelayed1h" />
+    <Column Name="CPRNumberNotShowingUp" Member="CPRNumberNotShowingUp" />
+    <Column Name="CPRNumberRejectedBadQuality" Member="CPRNumberRejectedBadQuality" />
   </ContentType>
   <ContentType Name="Shipping" Class="Shipping">
     <Column Name="Title" Member="Title" />

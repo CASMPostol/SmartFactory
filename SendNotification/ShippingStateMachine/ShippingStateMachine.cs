@@ -50,7 +50,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       Entities.AlarmsAndEvents _ae = new AlarmsAndEvents()
       {
         AlarmAndEventDetails = _mssg,
-        AlarmAndEventOwner = _sh.ZmodyfikowanePrzez,
+        AlarmAndEventOwner = _sh.Editor,
         AlarmPriority = _priority,
         AlarmsAndEventsList2Shipping = _sh,
         AlarmsAndEventsList2PartnerTitle = _principal,
@@ -108,7 +108,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           //ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, AlarmPriority.Normal, ServiceType.None, EDC, _sp);
           if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.ShippingState.Value == ShippingState.Completed))
             MakeShippingReport(_sp, EDC, _ar);
-          if (_sp.ShippingState.Value == State.Completed || _sp.ShippingState.Value == ShippingState.Cancelation)
+          if (_sp.ShippingState.Value == ShippingState.Completed || _sp.ShippingState.Value == ShippingState.Cancelation)
             MakePerformanceReport(_sp, EDC, _ar);
           try
           {
@@ -159,36 +159,36 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         DateTime _sDate = _sp.StartTime.Value.Date;
         if (_sp.PartnerTitle == null)
           throw new ApplicationException("Shipping does not has associated partner - the report is aborted.");
-        CarrierPerformanceReport _rprt = (from _rx in _sp.PartnerTitle.CarrierPerformanceReport2PartnerTitle
-                                          where _rx.CarrierPerformanceReportDate.Value == _sDate
+        CarrierPerformanceReport _rprt = (from _rx in _sp.PartnerTitle.CarrierPerformanceReport
+                                          where _rx.CPRDate.Value == _sDate
                                           select _rx).FirstOrDefault();
         if (_rprt == null)
         {
           _rprt = new CarrierPerformanceReport()
           {
-            CarrierPerformanceReportDate = _sp.StartTime.Value.Date,
-            CarrierPerformanceReport2PartnerTitle = _sp.PartnerTitle,
+            CPRDate = _sp.StartTime.Value.Date,
+            CPR2PartnerTitle = _sp.PartnerTitle,
             Tytuł = _sp.PartnerTitle.Title(),
-            CarrierPerformanceReportNumberDelayed = 0,
-            CarrierPerformanceReportNumberDelayed1h = 0,
-            CarrierPerformanceReportNumberNotShowingUp = 0,
-            CarrierPerformanceReportNumberOnTime = 0,
-            CarrierPerformanceReportNumberOrdered = 0,
-            CarrierPerformanceReportNumberRejectedBadQuality = 0,
+            CPRNumberDelayed = 0,
+            CPRNumberDelayed1h = 0,
+            CPRNumberNotShowingUp = 0,
+            CPRNumberOnTime = 0,
+            CPRNumberOrdered = 0,
+            CPRNumberRejectedBadQuality = 0,
             ReportPeriod = _sp.StartTime.Value.ToMonthString()
           };
           EDC.CarrierPerformanceReport.InsertOnSubmit(_rprt);
         }
-        _rprt.CarrierPerformanceReportNumberOrdered++;
-        _rprt.CarrierPerformanceReportNumberNotShowingUp += (from _ts in _sp.TimeSlot
+        _rprt.CPRNumberOrdered++;
+        _rprt.CPRNumberNotShowingUp += (from _ts in _sp.TimeSlot
                                                              where _ts.Occupied.Value == Occupied.Delayed
                                                              select new { }).Count();
         if (_sp.ShippingState.Value == State.Cancelation)
-          _rprt.CarrierPerformanceReportNumberNotShowingUp++;
+          _rprt.CPRNumberNotShowingUp++;
         else
         {
           if (_sp.TrailerCondition.GetValueOrDefault(TrailerCondition.None) == TrailerCondition._1Unexceptable)
-            _rprt.CarrierPerformanceReportNumberRejectedBadQuality++;
+            _rprt.CPRNumberRejectedBadQuality++;
           var _Start = (from _tsx in _sp.TimeSlot
                         where _tsx.Occupied.Value == Occupied.Occupied0
                         orderby _tsx.StartTime ascending
@@ -198,13 +198,13 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           switch (CalculateDelay(_sp.StartTime.Value - _Start.Start))
           {
             case Delay.JustInTime:
-              _rprt.CarrierPerformanceReportNumberOnTime++;
+              _rprt.CPRNumberOnTime++;
               break;
             case Delay.Delayed:
-              _rprt.CarrierPerformanceReportNumberDelayed++;
+              _rprt.CPRNumberDelayed++;
               break;
             case Delay.VeryLate:
-              _rprt.CarrierPerformanceReportNumberDelayed1h++;
+              _rprt.CPRNumberDelayed1h++;
               break;
           }
         }
@@ -404,7 +404,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       _sp.ShippingState = ShippingState.Canceled;
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true, true);
       string _frmt = "Wanning !! The Shipment has been cancelled by {0}";
-      _frmt = String.Format(_frmt, _sp.ZmodyfikowanePrzez);
+      _frmt = String.Format(_frmt, _sp.Editor);
       SetupEnvironment(Shipping.WatchTolerance, _ro, _sp, AlarmPriority.High, EDC, _frmt, EmailType.Canceled);
     }
     private void MakeDelayed(Shipping _sp, EntitiesDataContext EDC, bool _TimeOutExpired)
