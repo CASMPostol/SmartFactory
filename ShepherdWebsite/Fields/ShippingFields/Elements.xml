@@ -268,7 +268,7 @@
       <CHOICE>Creation</CHOICE>
       <CHOICE>Delayed</CHOICE>
       <CHOICE>WaitingForCarrierData</CHOICE>
-      <CHOICE>WaitingForSecurityData</CHOICE>
+      <CHOICE>WaitingForConfirmation</CHOICE>
       <CHOICE>Underway</CHOICE>
     </CHOICES>
   </Field>
