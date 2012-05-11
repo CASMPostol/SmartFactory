@@ -1156,11 +1156,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     #endregion
 
     #region variables
-    private string m_LabetTextLike_PurchaseOrder = "PONumber".GetLocalizedString();
+    private string m_LabetTextLike_PurchaseOrder = "PO_No".GetLocalizedString();
     private string m_LabetTextLike_DeliveryNo = "DeliveryNumber".GetLocalizedString();
-    private const string m_LabetTextLike_Vendor = "Vendor";
-    private const string m_LabetTextLike_SecurityEscort = "Security Escort";
-    private const string m_LabetTextLike_ShippingNo = "Shipping No";
+    private string m_LabetTextLike_Vendor = "Vendor".GetLocalizedString();
+    private string m_LabetTextLike_SecurityEscort = "SecurityEscort".GetLocalizedString();
+    private string m_LabetTextLike_ShippingNo = "ShippingNumber".GetLocalizedString();
     private ButtonsSet m_VisibilityACL;
     private ButtonsSet m_EditbilityACL;
     private ControlState m_ControlState = new ControlState(null);

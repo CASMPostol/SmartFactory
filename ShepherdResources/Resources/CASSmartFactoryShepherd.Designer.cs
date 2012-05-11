@@ -1375,7 +1375,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to escort.
+        ///   Looks up a localized string similar to Escort.
         /// </summary>
         internal static string SecurityEscort {
             get {
@@ -1510,7 +1510,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contains information model for Shepherd web application..
+        ///   Looks up a localized string similar to Contains information model for Shepherd web application.
         /// </summary>
         internal static string ShepherdWebsiteFeatureDes {
             get {
@@ -1564,6 +1564,15 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shipping no..
+        /// </summary>
+        internal static string ShippingNumber {
+            get {
+                return ResourceManager.GetString("ShippingNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shipping Point.
         /// </summary>
         internal static string ShippingPoint {
@@ -1600,7 +1609,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shpments list.
+        ///   Looks up a localized string similar to Shipments list.
         /// </summary>
         internal static string ShippingsList {
             get {
@@ -1609,7 +1618,7 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shippings List Content Type.
+        ///   Looks up a localized string similar to Shipments List Content Type.
         /// </summary>
         internal static string ShippingsListCT {
             get {
