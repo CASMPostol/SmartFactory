@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace CAS.SmartFactory.SPMetalHelper.XSD
+namespace CAS.SmartFactory.SPMetalHelper.SPMetalParameters
 {
   public partial class PRWeb
   {

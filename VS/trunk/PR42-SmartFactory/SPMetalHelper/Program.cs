@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using Microsoft.SharePoint.Administration;
 using Microsoft.SharePoint;
 using System.Security.Principal;
-using CAS.SmartFactory.SPMetalHelper.XSD;
+using CAS.SmartFactory.SPMetalHelper.SPMetalParameters;
 using System.IO;
 
 namespace CAS.SmartFactory.SPMetalHelper

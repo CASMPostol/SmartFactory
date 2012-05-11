@@ -86,6 +86,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SPMetalParameters\SPMetalParameters.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="SPMetalParameters\SPMetalParameters.xsd.cs">
+      <SubType>code</SubType>
+    </Compile>
+    <None Include="..\Solution Items\SPMetalParameters.xsd">
+      <Link>SPMetalParameters\SPMetalParameters.xsd</Link>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="app.config" />
     <None Include="Entities\Entities.cd" />
     <None Include="Entities\Scripts\GetEntities.ps1" />
