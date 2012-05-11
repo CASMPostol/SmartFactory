@@ -75,12 +75,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
             }
           }
           _stt = "SendInvoiceTo";
-          if (_sp.ShippingOperationOutband2PartnerTitle != null)
+          if (_sp.Shipping2PartnerTitle != null)
           {
               _epo.SecurityPOEscortCurrency = _sp.SecurityEscortCatalogTitle.CurrencyTitle.Title();
               _epo.SecurityPOEscortCosts = _sp.SecurityEscortCatalogTitle.SecurityCost;
-              _epo.SPOFreightPO = _sp.SecurityEscortCatalogTitle.SecurityEscortPO;
-              _epo.SecurityPOEscortProvider = _sp.ShippingOperationOutband2PartnerTitle.Title();
+              _epo.SPOFreightPO = _sp.SecurityEscortCatalogTitle.SecurityEscrotPO;
+              _epo.SecurityPOEscortProvider = _sp.Shipping2PartnerTitle.Title();
           }
           _stt = "SecurityEscortProvider";
           _epo.SecurityPOCity = _sp.Shipping2City.Title();

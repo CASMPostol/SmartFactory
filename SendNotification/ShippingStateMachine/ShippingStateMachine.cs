@@ -40,7 +40,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           _principal = _sh.PartnerTitle;
           break;
         case ServiceType.SecurityEscortProvider:
-          _principal = _sh.ShippingOperationOutband2PartnerTitle;
+          _principal = _sh.Shipping2PartnerTitle;
           break;
         case ServiceType.None:
         case ServiceType.Invalid:
@@ -52,7 +52,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         AlarmAndEventDetails = _mssg,
         AlarmAndEventOwner = _sh.ZmodyfikowanePrzez,
         AlarmPriority = _priority,
-        AlarmsAndEventsList2ShippingIndex = _sh,
+        AlarmsAndEventsList2Shipping = _sh,
         AlarmsAndEventsList2PartnerTitle = _principal,
         Tytuł = _sh.Title(),
       };
@@ -83,8 +83,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       {
         using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url) { ObjectTrackingEnabled = false })
         {
-          Shipping _sp = Element.GetAtIndex<Shipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId);
-          e.Result = !(_sp.ShippingState.HasValue && (_sp.ShippingState.Value == State.Completed || _sp.ShippingState.Value == State.Canceled));
+          Shipping _sp = Element.GetAtIndex<Shipping>(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.ItemId.ToString());
+          e.Result = !(_sp.ShippingState.HasValue && (_sp.ShippingState.Value == ShippingState.Completed || _sp.ShippingState.Value == ShippingState.Canceled));
         }
       }
       catch (Exception ex)
@@ -103,7 +103,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
         {
           string _msg = "The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated.";
-          Shipping  _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID);
+          Shipping  _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID.ToString());
           m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.ShippingState, _sp.Modified);
           //ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, AlarmPriority.Normal, ServiceType.None, EDC, _sp);
           if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.ShippingState.Value == ShippingState.Completed))
@@ -309,7 +309,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           TimeSpan _timeDistance;
           switch (_sp.ShippingState.Value)
           {
-            case State.Confirmed:
+            case ShippingState.Confirmed:
               switch (_sp.CalculateDistance(out _timeDistance))
               {
                 case Shipping.Distance.UpTo72h:
@@ -323,9 +323,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                   break;
               }
               break;
-            case State.WaitingForCarrierData:
-            case State.WaitingForSecurityData:
-            case State.Creation:
+            case ShippingState.WaitingForCarrierData:
+            case ShippingState.WaitingForSecurityData:
+            case ShippingState.Creation:
               switch (_sp.CalculateDistance(out _timeDistance))
               {
                 case Shipping.Distance.UpTo72h:
@@ -345,10 +345,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                   break;
               }
               break;
-            case State.Cancelation:
+            case ShippingState.Cancelation:
               MakeCanceled(_sp, EDC);
               break;
-            case State.Underway:
+            case ShippingState.Underway:
             default:
               SetupTimeout(TimeSpan.FromHours(5), _sp);
               break;
@@ -409,7 +409,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     }
     private void MakeDelayed(Shipping _sp, EntitiesDataContext EDC, bool _TimeOutExpired)
     {
-      _sp.ShippingState = State.Delayed;
+      _sp.ShippingState = ShippingState.Delayed;
       string _frmt = "Wanning !! The truck is late. Call the driver: {0}";
       _frmt = String.Format(_frmt, _sp.PartnerTitle != null ? _sp.PartnerTitle.CellPhone : " ?????");
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true, _TimeOutExpired) & Shipping.CarrierOperations;
@@ -487,7 +487,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 
         using (EntitiesDataContext EDC = new EntitiesDataContext(_md.URL) { ObjectTrackingEnabled = false })
         {
-          Shipping _sp = Element.GetAtIndex<Shipping>(EDC.Shipping, _md.ShippmentID);
+          Shipping _sp = Element.GetAtIndex<Shipping>(EDC.Shipping, _md.ShippmentID.ToString());
           IEmailGrnerator _msg = default(IEmailGrnerator);
           string _cause = default(string);
           switch (_md.EmailType)
@@ -527,8 +527,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               m_CarrierNotificationSendEmail_To = _sp.PartnerTitle != null ? _sp.PartnerTitle.EmailAddress.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
               break;
             case ExternalRole.Escort:
-              _msg.PartnerTitle = _sp.ShippingOperationOutband2PartnerTitle.Title();
-              m_CarrierNotificationSendEmail_To = _sp.ShippingOperationOutband2PartnerTitle != null ? _sp.ShippingOperationOutband2PartnerTitle.EmailAddress.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
+              _msg.PartnerTitle = _sp.Shipping2PartnerTitle.Title();
+              m_CarrierNotificationSendEmail_To = _sp.Shipping2PartnerTitle != null ? _sp.Shipping2PartnerTitle.EmailAddress.UnknownIfEmpty() : CommonDefinition.UnknownEmail;
               break;
             default:
               break;

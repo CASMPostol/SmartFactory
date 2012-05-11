@@ -279,7 +279,7 @@
     <Column Name="Title" Member="Title" />
   </ContentType>
   <ContentType Name="EscortPO" Class="EscortPO">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
