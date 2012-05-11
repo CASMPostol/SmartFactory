@@ -4,6 +4,6 @@ $env:path += "; C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\x64\"
 $cpath = get-location
 Write-host Processing
 set-location ..\
-xsd.exe ..\..\Schemas\SPMetalParameters.xsd /N:CAS.SmartFactory.SPMetalHelper.XSD /c  |write-host
+xsd.exe ..\..\Solution Items\SPMetalParameters.xsd /N:CAS.SmartFactory.SPMetalHelper.SPMetalParameters /c  |write-host
 set-location $cpath
 Write-host Done...
