@@ -28,6 +28,13 @@ namespace CAS.SmartFactory.SPMetalHelper
         using (SPWeb _wb = site.RootWeb)
         {
           List<PRContentType> _cts = new List<PRContentType>();
+          List<PRList> _lists = new List<PRList>();
+          foreach (SPList _lix in _wb.Lists)
+          {
+            PRList _nlist = new PRList() { Name = _lix.Title };
+            _lists.Add(_nlist);
+          }
+
           foreach (SPContentType _contentType in _wb.AvailableContentTypes)
           {
             if (!_contentType.Group.Contains("CAS"))
@@ -57,11 +64,12 @@ namespace CAS.SmartFactory.SPMetalHelper
           {
             AccessModifier = PRAccessModifier.Internal,
             Class = "EntitiesDataContext",
-            ContentType = _cts.ToArray()
+            ContentType = _cts.ToArray(),
+            List = _lists.ToArray()
           };
         }
       }
-      using (Stream _str = new FileInfo(Properties.Settings.Default.FileName).Create() )
+      using (Stream _str = new FileInfo(Properties.Settings.Default.FileName).Create())
         PRWeb.ImportDocument(_str, _web);
     }
   }
