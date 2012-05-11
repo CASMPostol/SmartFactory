@@ -52,23 +52,23 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
     }
     private void CreateTimeSlotTemplates(EntitiesDataContext _EDC, ShippingPoint _sp)
     {
-      Dictionary<StartHour, EndHour> _hours = new Dictionary<StartHour, EndHour>()
+      Dictionary<TimeSlotsTemplateStartHour, TimeSlotsTemplateEndHour> _hours = new Dictionary<TimeSlotsTemplateStartHour, TimeSlotsTemplateEndHour>()
       {
-        {StartHour._0, EndHour._1}, {StartHour._1, EndHour._2}, {StartHour._2, EndHour._3}, {StartHour._3, EndHour._4}, {StartHour._4, EndHour._5},
-        {StartHour._5, EndHour._6}, {StartHour._6, EndHour._7}, {StartHour._7, EndHour._8}, {StartHour._8, EndHour._9}, {StartHour._9, EndHour._10},
-        {StartHour._10, EndHour._11}, {StartHour._11, EndHour._12}, {StartHour._12, EndHour._13}, {StartHour._13, EndHour._14}, {StartHour._14, EndHour._15},
-        {StartHour._15, EndHour._16}, {StartHour._16, EndHour._17}, {StartHour._17, EndHour._18}, {StartHour._18, EndHour._19}, {StartHour._19, EndHour._20},
-        {StartHour._20, EndHour._21}, {StartHour._21, EndHour._22}, {StartHour._22, EndHour._23}, {StartHour._23, EndHour._0}
+        {TimeSlotsTemplateStartHour._0, TimeSlotsTemplateEndHour._1}, {TimeSlotsTemplateStartHour._1, TimeSlotsTemplateEndHour._2}, {TimeSlotsTemplateStartHour._2, TimeSlotsTemplateEndHour._3}, {TimeSlotsTemplateStartHour._3, TimeSlotsTemplateEndHour._4}, {TimeSlotsTemplateStartHour._4, TimeSlotsTemplateEndHour._5},
+        {TimeSlotsTemplateStartHour._5, TimeSlotsTemplateEndHour._6}, {TimeSlotsTemplateStartHour._6, TimeSlotsTemplateEndHour._7}, {TimeSlotsTemplateStartHour._7, TimeSlotsTemplateEndHour._8}, {TimeSlotsTemplateStartHour._8, TimeSlotsTemplateEndHour._9}, {TimeSlotsTemplateStartHour._9, TimeSlotsTemplateEndHour._10},
+        {TimeSlotsTemplateStartHour._10, TimeSlotsTemplateEndHour._11}, {TimeSlotsTemplateStartHour._11, TimeSlotsTemplateEndHour._12}, {TimeSlotsTemplateStartHour._12, TimeSlotsTemplateEndHour._13}, {TimeSlotsTemplateStartHour._13, TimeSlotsTemplateEndHour._14}, {TimeSlotsTemplateStartHour._14, TimeSlotsTemplateEndHour._15},
+        {TimeSlotsTemplateStartHour._15, TimeSlotsTemplateEndHour._16}, {TimeSlotsTemplateStartHour._16, TimeSlotsTemplateEndHour._17}, {TimeSlotsTemplateStartHour._17, TimeSlotsTemplateEndHour._18}, {TimeSlotsTemplateStartHour._18, TimeSlotsTemplateEndHour._19}, {TimeSlotsTemplateStartHour._19, TimeSlotsTemplateEndHour._20},
+        {TimeSlotsTemplateStartHour._20, TimeSlotsTemplateEndHour._21}, {TimeSlotsTemplateStartHour._21, TimeSlotsTemplateEndHour._22}, {TimeSlotsTemplateStartHour._22, TimeSlotsTemplateEndHour._23}, {TimeSlotsTemplateStartHour._23, TimeSlotsTemplateEndHour._0}
       };
       ScheduleTemplate _schedule = new ScheduleTemplate() { ShippingPointLookupTitle = _sp, Tytuł = _sp.Title() + " All day schedule." };
       _EDC.ScheduleTemplate.InsertOnSubmit(_schedule);
       _EDC.SubmitChanges();
-      List<Day> _days = new List<Day>() { { Day.Friday }, { Day.Monday }, { Day.Saturday }, { Day.Sunday }, { Day.Thursday }, { Day.Tuesday }, { Day.Wednesday } }; 
-      foreach (Day _day in _days)
+      List<TimeSlotsTemplateDay > _days = new List<TimeSlotsTemplateDay>() { { TimeSlotsTemplateDay.Friday }, { TimeSlotsTemplateDay.Monday }, { TimeSlotsTemplateDay.Saturday }, { TimeSlotsTemplateDay.Sunday }, { TimeSlotsTemplateDay.Thursday }, { TimeSlotsTemplateDay.Tuesday }, { TimeSlotsTemplateDay.Wednesday } }; 
+      foreach (TimeSlotsTemplateDay _day in _days)
       {
         List<TimeSlotsTemplate> _ts = new List<TimeSlotsTemplate>();
-        foreach (StartHour _sh in _hours.Keys)
-            _ts.Add(new TimeSlotsTemplate() { TimeSlotsTemplateDay = _day, TimeSlotsTemplateEndHour = _hours[_sh], TimeSlotsTemplateEndMinute = EndMinute._0, TimeSlotsTemplateStartHour = _sh, TimeSlotsTemplateStartMinute = StartMinute._0, ScheduleTemplateTitle = _schedule });
+        foreach (TimeSlotsTemplateStartHour _sh in _hours.Keys)
+            _ts.Add(new TimeSlotsTemplate() { TimeSlotsTemplateDay = _day, TimeSlotsTemplateEndHour = _hours[_sh], TimeSlotsTemplateEndMinute = EndMinute._0, TimeSlotsTemplateStartHour = _sh, TimeSlotsTemplateStartMinute = TimeSlotsTemplateStartMinute._0, ScheduleTemplateTitle = _schedule });
         _EDC.TimeSlotsTemplate.InsertAllOnSubmit(_ts);
         _EDC.SubmitChanges();
       }

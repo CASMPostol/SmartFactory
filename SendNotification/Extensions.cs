@@ -40,19 +40,19 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     {
       return String.IsNullOrEmpty(_val);
     }
-    public static int Hour2Int(this StartHour _valu)
+    public static int Hour2Int(this TimeSlotsTemplateStartHour _valu)
     {
       return _valu.ToString().ParseDashed();
     }
-    public static int Hour2Int(this EndHour _valu)
+    public static int Hour2Int(this TimeSlotsTemplateEndHour _valu)
     {
       return _valu.ToString().ParseDashed();
     }
-    public static int Minute2Int(this StartMinute _valu)
+    public static int Minute2Int(this TimeSlotsTemplateStartMinute _valu)
     {
       return _valu.ToString().ParseDashed();
     }
-    public static int Minute2Int(this EndMinute _valu)
+    public static int Minute2Int(this TimeSlotsTemplateEndMinute _valu)
     {
       return _valu.ToString().ParseDashed();
     }
