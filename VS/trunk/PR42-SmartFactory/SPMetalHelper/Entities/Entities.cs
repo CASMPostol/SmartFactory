@@ -157,9 +157,9 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		/// Biblioteka Zlecenie eskorty
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Escort PO Library")]
-		public Microsoft.SharePoint.Linq.EntityList<EscortPOLibraryEscortPO> EscortPOLibrary {
+		public Microsoft.SharePoint.Linq.EntityList<EscortPO> EscortPOLibrary {
 			get {
-				return this.GetList<EscortPOLibraryEscortPO>("Escort PO Library");
+				return this.GetList<EscortPO>("Escort PO Library");
 			}
 		}
 		
@@ -3886,7 +3886,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<FreightPO> _shipping2FreightPOIndex;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<EscortPOLibraryEscortPO> _shipping2EscortPOIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<EscortPO> _shipping2EscortPOIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Currency> _shipping2CurrencyForFreight;
 		
@@ -3967,8 +3967,8 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this._shipping2FreightPOIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<FreightPO>>(this.OnShipping2FreightPOIndexSync);
 			this._shipping2FreightPOIndex.OnChanged += new System.EventHandler(this.OnShipping2FreightPOIndexChanged);
 			this._shipping2FreightPOIndex.OnChanging += new System.EventHandler(this.OnShipping2FreightPOIndexChanging);
-			this._shipping2EscortPOIndex = new Microsoft.SharePoint.Linq.EntityRef<EscortPOLibraryEscortPO>();
-			this._shipping2EscortPOIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<EscortPOLibraryEscortPO>>(this.OnShipping2EscortPOIndexSync);
+			this._shipping2EscortPOIndex = new Microsoft.SharePoint.Linq.EntityRef<EscortPO>();
+			this._shipping2EscortPOIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<EscortPO>>(this.OnShipping2EscortPOIndexSync);
 			this._shipping2EscortPOIndex.OnChanged += new System.EventHandler(this.OnShipping2EscortPOIndexChanged);
 			this._shipping2EscortPOIndex.OnChanging += new System.EventHandler(this.OnShipping2EscortPOIndexChanging);
 			this._shipping2CurrencyForFreight = new Microsoft.SharePoint.Linq.EntityRef<Currency>();
@@ -4529,7 +4529,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2EscortPOIndex", Storage="_shipping2EscortPOIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Escort PO Library")]
-		public EscortPOLibraryEscortPO Shipping2EscortPOIndex {
+		public EscortPO Shipping2EscortPOIndex {
 			get {
 				return this._shipping2EscortPOIndex.GetEntity();
 			}
@@ -4852,7 +4852,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this.OnPropertyChanged("Shipping2EscortPOIndex");
 		}
 		
-		private void OnShipping2EscortPOIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<EscortPOLibraryEscortPO> e) {
+		private void OnShipping2EscortPOIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<EscortPO> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Shipping.Add(this);
 			}
@@ -5672,10 +5672,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 	/// Content type biblioteki Zlecenie eskorty
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="EscortPO", Id="0x0101000276600256FA44439B3AA6A5221F14C4")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(EscortPOLibraryEscortPO))]
 	public partial class EscortPO : Dokument {
-		
-		private string _contentType;
 		
 		private string _sPOFreightPO;
 		
@@ -5709,6 +5706,8 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private string _fPOWarehouseAddress;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -5716,21 +5715,11 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		#endregion
 		
 		public EscortPO() {
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public virtual string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SPOFreightPO", Storage="_sPOFreightPO", FieldType="Text")]
@@ -5954,6 +5943,33 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 					this._fPOWarehouseAddress = value;
 					this.OnPropertyChanged("FPOWarehouseAddress");
 				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2EscortPOIndex", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+			get {
+				return this._shipping;
+			}
+			set {
+				this._shipping.Assign(value);
+			}
+		}
+		
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
+		}
+		
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
+		}
+		
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping2EscortPOIndex = this;
+			}
+			else {
+				e.Item.Shipping2EscortPOIndex = null;
 			}
 		}
 	}
@@ -7058,67 +7074,6 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 			else {
 				e.Item.Shipping2TransportUnitType = null;
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Content type biblioteki Zlecenie eskorty
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="EscortPO", Id="0x0101000276600256FA44439B3AA6A5221F14C4", List="Escort PO Library")]
-	public partial class EscortPOLibraryEscortPO : EscortPO {
-		
-		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public EscortPOLibraryEscortPO() {
-			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
-			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
-			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
-			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
-			this.OnCreated();
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string ContentType {
-			get {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości EscortPO.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości EscortPO.");
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2EscortPOIndex", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
-			get {
-				return this._shipping;
-			}
-			set {
-				this._shipping.Assign(value);
-			}
-		}
-		
-		private void OnShippingChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Shipping", this._shipping.Clone());
-		}
-		
-		private void OnShippingChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Shipping");
-		}
-		
-		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping2EscortPOIndex = this;
-			}
-			else {
-				e.Item.Shipping2EscortPOIndex = null;
 			}
 		}
 	}

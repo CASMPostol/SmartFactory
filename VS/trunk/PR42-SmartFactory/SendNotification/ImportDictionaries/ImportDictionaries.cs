@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ImportDictionaries
       {
         List<TimeSlotsTemplate> _ts = new List<TimeSlotsTemplate>();
         foreach (TimeSlotsTemplateStartHour _sh in _hours.Keys)
-            _ts.Add(new TimeSlotsTemplate() { TimeSlotsTemplateDay = _day, TimeSlotsTemplateEndHour = _hours[_sh], TimeSlotsTemplateEndMinute = EndMinute._0, TimeSlotsTemplateStartHour = _sh, TimeSlotsTemplateStartMinute = TimeSlotsTemplateStartMinute._0, ScheduleTemplateTitle = _schedule });
+            _ts.Add(new TimeSlotsTemplate() { TimeSlotsTemplateDay = _day, TimeSlotsTemplateEndHour = _hours[_sh], TimeSlotsTemplateEndMinute = TimeSlotsTemplateEndMinute, TimeSlotsTemplateStartHour = _sh, TimeSlotsTemplateStartMinute = TimeSlotsTemplateStartMinute._0, ScheduleTemplateTitle = _schedule });
         _EDC.TimeSlotsTemplate.InsertAllOnSubmit(_ts);
         _EDC.SubmitChanges();
       }
