@@ -48,20 +48,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
             throw new ApplicationException("Template does not have Shipingpoint assigned");
           var _src = from _tst in _tmpl.ScheduleTemplateTitle
                      group _tst by _tst.TimeSlotsTemplateDay.Value;
-          Dictionary<Day, IGrouping<Day, TimeSlotsTemplate>> _dys = _src.ToDictionary(x => x.Key);
-          Dictionary<DayOfWeek, Day> _tt = new Dictionary<DayOfWeek, Day>() { { DayOfWeek.Friday, Day.Friday}, 
-                                                                              { DayOfWeek.Monday, Day.Monday },
-                                                                              { DayOfWeek.Saturday, Day.Saturday},
-                                                                              { DayOfWeek.Sunday, Day.Sunday},
-                                                                              { DayOfWeek.Thursday, Day.Thursday},
-                                                                              { DayOfWeek.Tuesday, Day.Tuesday},
-                                                                              { DayOfWeek.Wednesday, Day.Wednesday},
+          Dictionary<TimeSlotsTemplateDay, IGrouping<TimeSlotsTemplateDay, TimeSlotsTemplate>> _dys = _src.ToDictionary(x => x.Key);
+          Dictionary<DayOfWeek, TimeSlotsTemplateDay> _tt = new Dictionary<DayOfWeek, TimeSlotsTemplateDay>() { { DayOfWeek.Friday, TimeSlotsTemplateDay.Friday}, 
+                                                                              { DayOfWeek.Monday, TimeSlotsTemplateDay.Monday },
+                                                                              { DayOfWeek.Saturday, TimeSlotsTemplateDay.Saturday},
+                                                                              { DayOfWeek.Sunday, TimeSlotsTemplateDay.Sunday},
+                                                                              { DayOfWeek.Thursday, TimeSlotsTemplateDay.Thursday},
+                                                                              { DayOfWeek.Tuesday, TimeSlotsTemplateDay.Tuesday},
+                                                                              { DayOfWeek.Wednesday, TimeSlotsTemplateDay.Wednesday},
                                                                             };
           for (int _week = 0; _week < _data.Duration; _week++)
           {
             for (int _dayIdx = 0; _dayIdx < 7; _dayIdx++)
             {
-              Day _dayOfWeek = _tt[_data.StartDate.DayOfWeek];
+              TimeSlotsTemplateDay _dayOfWeek = _tt[_data.StartDate.DayOfWeek];
               if (_dys.ContainsKey(_dayOfWeek))
               {
                 foreach (var _item in _dys[_dayOfWeek])
@@ -109,6 +109,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
       FinischLogToHistory_HistoryDescription2 = String.Format("The template has been applied and {0} timeslots created", m_TimeSlotsCounter);
     }
     #endregion
+
     #region FaultHandlerLog
     public String FaultHandlerLogToHistory_HistoryDescription = default(System.String);
     private void FaultHandlerLogToHistory_MethodInvoking(object sender, EventArgs e)

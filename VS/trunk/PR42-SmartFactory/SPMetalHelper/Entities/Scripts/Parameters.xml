@@ -38,7 +38,7 @@
   <List Name="Trailer" />
   <List Name="Transport Unit Type" />
   <List Name="Truck" />
-  <List Name="Lista informacji o użytkowniku" />
+  <!--<List Name="Lista informacji o użytkowniku" />-->
   <List Name="Warehouse" />
   <!--<List Name="Galeria składników Web Part" />-->
   <ExcludeOtherLists/>

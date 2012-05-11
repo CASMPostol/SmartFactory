@@ -372,16 +372,6 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 				return this.GetList<Warehouse>("Warehouse");
 			}
 		}
-		
-		/// <summary>
-		/// Wszystkie osoby.
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="Lista informacji o użytkowniku")]
-		public Microsoft.SharePoint.Linq.EntityList<Element> ListaInformacjiOUżytkowniku {
-			get {
-				return this.GetList<Element>("Lista informacji o użytkowniku");
-			}
-		}
 	}
 	
 	/// <summary>
@@ -419,9 +409,6 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TranspotUnit))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Truck))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Warehouse))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Person))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SharePointGroup))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DomainGroup))]
 	public partial class Element : Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging {
 		
 		private System.Nullable<int> _identyfikator;
@@ -803,400 +790,6 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 					this.OnPropertyChanging("Kategoria", this._kategoria);
 					this._kategoria = value;
 					this.OnPropertyChanged("Kategoria");
-				}
-			}
-		}
-	}
-	
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Person", Id="0x010A")]
-	public partial class Person : Element {
-		
-		private string _konto;
-		
-		private string _adresEMail;
-		
-		private string _numerTelefonuKomórkowego;
-		
-		private string _informacjeOAutorze;
-		
-		private System.Nullable<bool> _jestAdministratoremWitryny;
-		
-		private System.Nullable<bool> _usunięte;
-		
-		private string _obraz;
-		
-		private string _dział;
-		
-		private string _stanowisko;
-		
-		private string _adresSIP;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public Person() {
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Name", Storage="_konto", ReadOnly=true, FieldType="Text")]
-		public string Konto {
-			get {
-				return this._konto;
-			}
-			set {
-				if ((value != this._konto)) {
-					this.OnPropertyChanging("Konto", this._konto);
-					this._konto = value;
-					this.OnPropertyChanged("Konto");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EMail", Storage="_adresEMail", FieldType="Text")]
-		public string AdresEMail {
-			get {
-				return this._adresEMail;
-			}
-			set {
-				if ((value != this._adresEMail)) {
-					this.OnPropertyChanging("AdresEMail", this._adresEMail);
-					this._adresEMail = value;
-					this.OnPropertyChanged("AdresEMail");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="MobilePhone", Storage="_numerTelefonuKomórkowego", FieldType="Text")]
-		public string NumerTelefonuKomórkowego {
-			get {
-				return this._numerTelefonuKomórkowego;
-			}
-			set {
-				if ((value != this._numerTelefonuKomórkowego)) {
-					this.OnPropertyChanging("NumerTelefonuKomórkowego", this._numerTelefonuKomórkowego);
-					this._numerTelefonuKomórkowego = value;
-					this.OnPropertyChanged("NumerTelefonuKomórkowego");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Notes", Storage="_informacjeOAutorze", FieldType="Note")]
-		public string InformacjeOAutorze {
-			get {
-				return this._informacjeOAutorze;
-			}
-			set {
-				if ((value != this._informacjeOAutorze)) {
-					this.OnPropertyChanging("InformacjeOAutorze", this._informacjeOAutorze);
-					this._informacjeOAutorze = value;
-					this.OnPropertyChanged("InformacjeOAutorze");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IsSiteAdmin", Storage="_jestAdministratoremWitryny", ReadOnly=true, FieldType="Boolean")]
-		public System.Nullable<bool> JestAdministratoremWitryny {
-			get {
-				return this._jestAdministratoremWitryny;
-			}
-			set {
-				if ((value != this._jestAdministratoremWitryny)) {
-					this.OnPropertyChanging("JestAdministratoremWitryny", this._jestAdministratoremWitryny);
-					this._jestAdministratoremWitryny = value;
-					this.OnPropertyChanged("JestAdministratoremWitryny");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Deleted", Storage="_usunięte", ReadOnly=true, FieldType="Boolean")]
-		public System.Nullable<bool> Usunięte {
-			get {
-				return this._usunięte;
-			}
-			set {
-				if ((value != this._usunięte)) {
-					this.OnPropertyChanging("Usunięte", this._usunięte);
-					this._usunięte = value;
-					this.OnPropertyChanged("Usunięte");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Picture", Storage="_obraz", FieldType="Url")]
-		public string Obraz {
-			get {
-				return this._obraz;
-			}
-			set {
-				if ((value != this._obraz)) {
-					this.OnPropertyChanging("Obraz", this._obraz);
-					this._obraz = value;
-					this.OnPropertyChanged("Obraz");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Department", Storage="_dział", FieldType="Text")]
-		public string Dział {
-			get {
-				return this._dział;
-			}
-			set {
-				if ((value != this._dział)) {
-					this.OnPropertyChanging("Dział", this._dział);
-					this._dział = value;
-					this.OnPropertyChanged("Dział");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="JobTitle", Storage="_stanowisko", FieldType="Text")]
-		public string Stanowisko {
-			get {
-				return this._stanowisko;
-			}
-			set {
-				if ((value != this._stanowisko)) {
-					this.OnPropertyChanging("Stanowisko", this._stanowisko);
-					this._stanowisko = value;
-					this.OnPropertyChanged("Stanowisko");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SipAddress", Storage="_adresSIP", FieldType="Text")]
-		public string AdresSIP {
-			get {
-				return this._adresSIP;
-			}
-			set {
-				if ((value != this._adresSIP)) {
-					this.OnPropertyChanging("AdresSIP", this._adresSIP);
-					this._adresSIP = value;
-					this.OnPropertyChanged("AdresSIP");
-				}
-			}
-		}
-	}
-	
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SharePointGroup", Id="0x010B")]
-	public partial class SharePointGroup : Element {
-		
-		private string _konto;
-		
-		private string _adresEMail;
-		
-		private string _informacjeOAutorze;
-		
-		private string _obraz;
-		
-		private string _adresSIP;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public SharePointGroup() {
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Name", Storage="_konto", ReadOnly=true, FieldType="Text")]
-		public string Konto {
-			get {
-				return this._konto;
-			}
-			set {
-				if ((value != this._konto)) {
-					this.OnPropertyChanging("Konto", this._konto);
-					this._konto = value;
-					this.OnPropertyChanged("Konto");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EMail", Storage="_adresEMail", FieldType="Text")]
-		public string AdresEMail {
-			get {
-				return this._adresEMail;
-			}
-			set {
-				if ((value != this._adresEMail)) {
-					this.OnPropertyChanging("AdresEMail", this._adresEMail);
-					this._adresEMail = value;
-					this.OnPropertyChanged("AdresEMail");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Notes", Storage="_informacjeOAutorze", FieldType="Note")]
-		public string InformacjeOAutorze {
-			get {
-				return this._informacjeOAutorze;
-			}
-			set {
-				if ((value != this._informacjeOAutorze)) {
-					this.OnPropertyChanging("InformacjeOAutorze", this._informacjeOAutorze);
-					this._informacjeOAutorze = value;
-					this.OnPropertyChanged("InformacjeOAutorze");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Picture", Storage="_obraz", FieldType="Url")]
-		public string Obraz {
-			get {
-				return this._obraz;
-			}
-			set {
-				if ((value != this._obraz)) {
-					this.OnPropertyChanging("Obraz", this._obraz);
-					this._obraz = value;
-					this.OnPropertyChanged("Obraz");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SipAddress", Storage="_adresSIP", FieldType="Text")]
-		public string AdresSIP {
-			get {
-				return this._adresSIP;
-			}
-			set {
-				if ((value != this._adresSIP)) {
-					this.OnPropertyChanging("AdresSIP", this._adresSIP);
-					this._adresSIP = value;
-					this.OnPropertyChanged("AdresSIP");
-				}
-			}
-		}
-	}
-	
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DomainGroup", Id="0x010C")]
-	public partial class DomainGroup : Element {
-		
-		private string _konto;
-		
-		private string _adresEMail;
-		
-		private string _informacjeOAutorze;
-		
-		private System.Nullable<bool> _jestAdministratoremWitryny;
-		
-		private System.Nullable<bool> _usunięte;
-		
-		private string _obraz;
-		
-		private string _adresSIP;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public DomainGroup() {
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Name", Storage="_konto", ReadOnly=true, FieldType="Text")]
-		public string Konto {
-			get {
-				return this._konto;
-			}
-			set {
-				if ((value != this._konto)) {
-					this.OnPropertyChanging("Konto", this._konto);
-					this._konto = value;
-					this.OnPropertyChanged("Konto");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EMail", Storage="_adresEMail", FieldType="Text")]
-		public string AdresEMail {
-			get {
-				return this._adresEMail;
-			}
-			set {
-				if ((value != this._adresEMail)) {
-					this.OnPropertyChanging("AdresEMail", this._adresEMail);
-					this._adresEMail = value;
-					this.OnPropertyChanged("AdresEMail");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Notes", Storage="_informacjeOAutorze", FieldType="Note")]
-		public string InformacjeOAutorze {
-			get {
-				return this._informacjeOAutorze;
-			}
-			set {
-				if ((value != this._informacjeOAutorze)) {
-					this.OnPropertyChanging("InformacjeOAutorze", this._informacjeOAutorze);
-					this._informacjeOAutorze = value;
-					this.OnPropertyChanged("InformacjeOAutorze");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IsSiteAdmin", Storage="_jestAdministratoremWitryny", ReadOnly=true, FieldType="Boolean")]
-		public System.Nullable<bool> JestAdministratoremWitryny {
-			get {
-				return this._jestAdministratoremWitryny;
-			}
-			set {
-				if ((value != this._jestAdministratoremWitryny)) {
-					this.OnPropertyChanging("JestAdministratoremWitryny", this._jestAdministratoremWitryny);
-					this._jestAdministratoremWitryny = value;
-					this.OnPropertyChanged("JestAdministratoremWitryny");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Deleted", Storage="_usunięte", ReadOnly=true, FieldType="Boolean")]
-		public System.Nullable<bool> Usunięte {
-			get {
-				return this._usunięte;
-			}
-			set {
-				if ((value != this._usunięte)) {
-					this.OnPropertyChanging("Usunięte", this._usunięte);
-					this._usunięte = value;
-					this.OnPropertyChanged("Usunięte");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Picture", Storage="_obraz", FieldType="Url")]
-		public string Obraz {
-			get {
-				return this._obraz;
-			}
-			set {
-				if ((value != this._obraz)) {
-					this.OnPropertyChanging("Obraz", this._obraz);
-					this._obraz = value;
-					this.OnPropertyChanged("Obraz");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SipAddress", Storage="_adresSIP", FieldType="Text")]
-		public string AdresSIP {
-			get {
-				return this._adresSIP;
-			}
-			set {
-				if ((value != this._adresSIP)) {
-					this.OnPropertyChanging("AdresSIP", this._adresSIP);
-					this._adresSIP = value;
-					this.OnPropertyChanged("AdresSIP");
 				}
 			}
 		}
@@ -2931,7 +2524,9 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<LoadDescription> _loadDescription;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Element> _shepherdUser;
+		private System.Nullable<int> _shepherdUserIdentyfikator;
+		
+		private string _shepherdUserTitle;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Warehouse> _partner2WarehouseTitle;
 		
@@ -2964,10 +2559,6 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this._loadDescription.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<LoadDescription>>(this.OnLoadDescriptionSync);
 			this._loadDescription.OnChanged += new System.EventHandler(this.OnLoadDescriptionChanged);
 			this._loadDescription.OnChanging += new System.EventHandler(this.OnLoadDescriptionChanging);
-			this._shepherdUser = new Microsoft.SharePoint.Linq.EntityRef<Element>();
-			this._shepherdUser.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Element>>(this.OnShepherdUserSync);
-			this._shepherdUser.OnChanged += new System.EventHandler(this.OnShepherdUserChanged);
-			this._shepherdUser.OnChanging += new System.EventHandler(this.OnShepherdUserChanging);
 			this._partner2WarehouseTitle = new Microsoft.SharePoint.Linq.EntityRef<Warehouse>();
 			this._partner2WarehouseTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Warehouse>>(this.OnPartner2WarehouseTitleSync);
 			this._partner2WarehouseTitle.OnChanged += new System.EventHandler(this.OnPartner2WarehouseTitleChanged);
@@ -3097,13 +2688,31 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ShepherdUser", Storage="_shepherdUser", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Lista informacji o użytkowniku")]
-		public Element ShepherdUser {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShepherdUser", Storage="_shepherdUserIdentyfikator", Required=true, FieldType="User", IsLookupId=true)]
+		public System.Nullable<int> ShepherdUserIdentyfikator {
 			get {
-				return this._shepherdUser.GetEntity();
+				return this._shepherdUserIdentyfikator;
 			}
 			set {
-				this._shepherdUser.SetEntity(value);
+				if ((value != this._shepherdUserIdentyfikator)) {
+					this.OnPropertyChanging("ShepherdUserIdentyfikator", this._shepherdUserIdentyfikator);
+					this._shepherdUserIdentyfikator = value;
+					this.OnPropertyChanged("ShepherdUserIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShepherdUser", Storage="_shepherdUserTitle", ReadOnly=true, FieldType="User", IsLookupValue=true)]
+		public string ShepherdUserTitle {
+			get {
+				return this._shepherdUserTitle;
+			}
+			set {
+				if ((value != this._shepherdUserTitle)) {
+					this.OnPropertyChanging("ShepherdUserTitle", this._shepherdUserTitle);
+					this._shepherdUserTitle = value;
+					this.OnPropertyChanged("ShepherdUserTitle");
+				}
 			}
 		}
 		
@@ -3213,17 +2822,6 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			else {
 				e.Item.LoadDescription2PartnerTitle = null;
 			}
-		}
-		
-		private void OnShepherdUserChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ShepherdUser", this._shepherdUser.Clone());
-		}
-		
-		private void OnShepherdUserChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ShepherdUser");
-		}
-		
-		private void OnShepherdUserSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Element> e) {
 		}
 		
 		private void OnPartner2WarehouseTitleChanging(object sender, System.EventArgs e) {
