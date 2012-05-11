@@ -82,7 +82,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
           _sprt.SealProtocolEscortPhone = _team[TeamMembers.EscortPhone];
           _sprt.SealProtocolForwarder = _sp.PartnerTitle.Title();
           _sprt.SealProtocolSecurityEscortProvider = _sp.Shipping2PartnerTitle.Title();
-          _sp.SecuritySealProtocolIndexIdentyfikator = _sprt;
+          _sp.SecuritySealProtocolIndex = _sprt;
           _sprt.SealProtocolTrailerNo = _team[TeamMembers.TrailerNo];
           _sprt.SealProtocolTruckNo = _team[TeamMembers.TruckNo];
           _sprt.Tytuł = String.Format("Security Seal & Signature Protocol SSP-3{0, 5}", _sprt.Identyfikator);
