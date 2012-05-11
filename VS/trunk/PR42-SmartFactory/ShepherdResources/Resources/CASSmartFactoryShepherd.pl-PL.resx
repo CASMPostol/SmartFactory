@@ -118,109 +118,109 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="AlarmsAndEventsListCT" xml:space="preserve">
-    <value>Content type listy Alarmy &amp; Zdarzenia</value>
+    <value>Typ zawartości listy Alarmy &amp; Zdarzenia</value>
   </data>
 	<data name="BusinessDescriptionListCT" xml:space="preserve">
-    <value>Content type listy Opis</value>
+    <value>Typ zawartości  listy Opis</value>
   </data>
 	<data name="CarrierPerformanceReportListCT" xml:space="preserve">
-    <value>Content type listy  Raport skuteczności przewoźnika</value>
+    <value>Typ zawartości  listy  Raport skuteczności przewoźnika</value>
   </data>
 	<data name="CarriersListCT" xml:space="preserve">
-    <value>Content type listy Przewoźnik</value>
+    <value>Typ zawartości  listy Przewoźnik</value>
   </data>
 	<data name="CityListCT" xml:space="preserve">
-    <value>Content type listy Miasto</value>
+    <value>Typ zawartości  listy Miasto</value>
   </data>
 	<data name="CommodityListCT" xml:space="preserve">
-    <value>Content type listy Towar</value>
+    <value>Typ zawartości  listy Towar</value>
   </data>
 	<data name="CountryListCT" xml:space="preserve">
-    <value>Content type listy Państwo</value>
+    <value>Typ zawartości listy Państwo</value>
   </data>
 	<data name="CurrencyListCT" xml:space="preserve">
-    <value>Content type listy Waluta</value>
+    <value>Typ zawartości listy Waluta</value>
   </data>
 	<data name="DestinationMarketListCT" xml:space="preserve">
-    <value>Content type listy Rynek przeznaczenia</value>
+    <value>Typ zawartości listy Rynek docelowy</value>
   </data>
 	<data name="DistributionListCT" xml:space="preserve">
-    <value>Content type listy dystrybucyjnej</value>
+    <value>Typ zawartości listy dystrybucyjnej</value>
   </data>
 	<data name="DriversListCT" xml:space="preserve">
-    <value>Content type listy Kierowcy</value>
+    <value>Typ zawartości  listy Kierowcy</value>
   </data>
 	<data name="DriversTeamListCT" xml:space="preserve">
-    <value>Content type listy Zespół kierowców</value>
+    <value>Typ zawartości listy Zespół kierowców</value>
   </data>
 	<data name="EndMinute" xml:space="preserve">
     <value>Minuta zakończenia</value>
   </data>
 	<data name="EscortPOLibraryCT" xml:space="preserve">
-    <value>Content type biblioteki Zlecenie eskorty</value>
+    <value>Typ zawartości biblioteki Zlecenie eskorty</value>
   </data>
 	<data name="ExchangeRateListCT" xml:space="preserve">
-    <value>Content type listy Kurs wymiany</value>
+    <value>Typ zawartości listy Kurs wymiany</value>
   </data>
 	<data name="FreightPOLibraryCT" xml:space="preserve">
-    <value>Content type biblioteki Zlecenia spedycyjne</value>
+    <value>Typ zawartości biblioteki Zlecenia spedycyjne</value>
   </data>
 	<data name="LoadDescriptionListCT" xml:space="preserve">
-    <value>Content type listy Opis ładunku</value>
+    <value>Typ zawartości listy Opis ładunku</value>
   </data>
 	<data name="PartnersListCT" xml:space="preserve">
-    <value>Content type listy Partner</value>
+    <value>Typ zawartości listy Partner</value>
   </data>
 	<data name="PO_No" xml:space="preserve">
     <value>Zamówienie nr</value>
   </data>
 	<data name="RoutesListCT" xml:space="preserve">
-    <value>Content type listy Trasa</value>
+    <value>Typ zawartości listy Trasa</value>
   </data>
 	<data name="SAPDestinationPlantsListCT" xml:space="preserve">
-    <value>Content type listy SAP fabryka docelowa</value>
+    <value>Typ zawartości listy SAP fabryka docelowa</value>
   </data>
 	<data name="ScheduleTemplateListCT" xml:space="preserve">
-    <value>Schedule Template List Content Type</value>
+    <value>Typ zawartości listy Szablon harmonogramu</value>
   </data>
 	<data name="SecurityEscortCatalogListCT" xml:space="preserve">
-    <value>Security Escort Catalog List Content Type</value>
+    <value>Typ zawartości listy Katalog eskorty</value>
   </data>
 	<data name="SecuritySealProtocolLibraryCT" xml:space="preserve">
-    <value>Content type biblioteki Protokół zabezpieczeń - plomb</value>
+    <value>Typ zawartości biblioteki Protokół zabezpieczeń - plomb</value>
   </data>
 	<data name="ShepherdWebsiteFeature" xml:space="preserve">
     <value>Shepherd Website Feature</value>
   </data>
 	<data name="ShepherdWebsiteFeatureDes" xml:space="preserve">
-    <value>Contains information model for Shepherd web application.</value>
+    <value>Zawieras model informacyjny dla aplikacji internetowej Shepherd</value>
   </data>
 	<data name="ShipmentTypeListCT" xml:space="preserve">
-    <value>Content type listy Forma transportu</value>
+    <value>Typ zawartości listy Forma transportu</value>
   </data>
 	<data name="ShippingPointListCT" xml:space="preserve">
-    <value>Content type listy Punkt dostawy</value>
+    <value>Typ zawartości listy Punkt dostawy/wysyłki</value>
   </data>
 	<data name="ShippingsListCT" xml:space="preserve">
-    <value>Content type listy Operacje</value>
+    <value>Typ zawartości listy Operacje</value>
   </data>
 	<data name="TimeSlotListCT" xml:space="preserve">
-    <value>Content Type listy Okno czasowe</value>
+    <value>Typ zawartości listy Okno czasowe</value>
   </data>
 	<data name="TimeSlotTemplateListCT" xml:space="preserve">
-    <value>Content type listy Szablon okna czasowego</value>
+    <value>Typ zawartości listy Szablon okna czasowego</value>
   </data>
 	<data name="TrailersListCT" xml:space="preserve">
-    <value>Content type listy Naczepa</value>
+    <value>Typ zawartości listy Naczepa</value>
   </data>
 	<data name="TranspotUnitTypeListCT" xml:space="preserve">
-    <value>Content type listy Jednostka transportowa</value>
+    <value>Typ zawartości listy Jednostka transportowa</value>
   </data>
 	<data name="TrucksListCT" xml:space="preserve">
-    <value>Content type listy Samochód dostawczy</value>
+    <value>Typ zawartości listy Samochód dostawczy</value>
   </data>
 	<data name="WarehousesListCT" xml:space="preserve">
-    <value>Content type listy Magazyn</value>
+    <value>Typ zawartości listy Magazyn</value>
   </data>
 	<data name="ActualDispatchDate" xml:space="preserve">
     <value>Faktyczna data wysyłki</value>
@@ -289,7 +289,7 @@
     <value>Kierowca</value>
   </data>
 	<data name="DriversPhone" xml:space="preserve">
-    <value>Nr tel. kierowców</value>
+    <value>Nr tel. kierowcy</value>
   </data>
 	<data name="Email" xml:space="preserve">
     <value>E-mail</value>
@@ -370,7 +370,7 @@
     <value>Jedn. opóźnione &gt;1 godz.</value>
   </data>
 	<data name="NumberTUNotDelivered" xml:space="preserve">
-    <value>Jedn. nie dostarczone</value>
+    <value>Jedn. niedostarczone</value>
   </data>
 	<data name="NumberTUOrdered" xml:space="preserve">
     <value>Jedn. zamówione</value>
@@ -427,7 +427,7 @@
     <value>Security cost</value>
   </data>
 	<data name="SecurityEscort" xml:space="preserve">
-    <value>Security escort</value>
+    <value>Eskorta</value>
   </data>
 	<data name="SecurityEscortPO" xml:space="preserve">
     <value>Zlecenie eskorty</value>
@@ -454,7 +454,7 @@
     <value>Forma transportu</value>
   </data>
 	<data name="ShippingPoint" xml:space="preserve">
-    <value>Punkt dostawy</value>
+    <value>Punkt dostawy/wysyłki</value>
   </data>
 	<data name="StartHour" xml:space="preserve">
     <value>Godzina rozpoczęcia</value>
@@ -463,10 +463,10 @@
     <value>Minuta rozpoczęcia</value>
   </data>
 	<data name="TotalCostsPerKU" xml:space="preserve">
-    <value>Łaczny koszt na KU</value>
+    <value>Łączny koszt na KU</value>
   </data>
 	<data name="TotalQuantityKU" xml:space="preserve">
-    <value>Łaczna ilość w KU</value>
+    <value>Łączna ilość w KU</value>
   </data>
 	<data name="TrailerPlateNo" xml:space="preserve">
     <value>Nr rej. naczepy</value>
@@ -505,7 +505,7 @@
     <value>Lista Opis</value>
   </data>
 	<data name="CancelationReason" xml:space="preserve">
-    <value>Cancelation reason</value>
+    <value>Przyczyna anulowania</value>
   </data>
 	<data name="CarrierList" xml:space="preserve">
     <value>Lista Przewoźnik</value>
@@ -529,10 +529,10 @@
     <value>Wydanie nr</value>
   </data>
 	<data name="DestinationMarket" xml:space="preserve">
-    <value>Rynek przeznaczenia</value>
+    <value>Rynek docelowy</value>
   </data>
 	<data name="DestinationMarketList" xml:space="preserve">
-    <value>Lista Rynek przeznaczenia</value>
+    <value>Lista Rynek docelowy</value>
   </data>
 	<data name="Details" xml:space="preserve">
     <value>Szczegóły</value>
@@ -601,7 +601,7 @@
     <value>Ilość palet</value>
   </data>
 	<data name="Occupied" xml:space="preserve">
-    <value>Wykorzystany</value>
+    <value>Zajęty</value>
   </data>
 	<data name="Owner" xml:space="preserve">
     <value>Właściciel</value>
@@ -643,7 +643,7 @@
     <value>ID operacji</value>
   </data>
 	<data name="ShippingPointList" xml:space="preserve">
-    <value>Lista Punkt dostawy</value>
+    <value>Lista Punkt dostawy/wysyłki</value>
   </data>
 	<data name="StartTime" xml:space="preserve">
     <value>Czas rozpoczęcia</value>
@@ -658,7 +658,7 @@
     <value>Lista Szablon okna czasowego</value>
   </data>
 	<data name="TotalCostsPerKUCurrency" xml:space="preserve">
-    <value>Waluta łacznego kosztu na KU</value>
+    <value>Waluta łącznego kosztu na KU</value>
   </data>
 	<data name="TrailerComments" xml:space="preserve">
     <value>Uwagi naczepa</value>
@@ -700,7 +700,7 @@
     <value>Lista Raport skuteczności przewoźnika</value>
   </data>
 	<data name="DataImportLibrary" xml:space="preserve">
-    <value>Data import library</value>
+    <value>Biblioteka Import danych</value>
   </data>
 	<data name="DriversTeamList" xml:space="preserve">
     <value>Lista Zespół kierowców</value>
