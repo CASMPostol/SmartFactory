@@ -193,7 +193,7 @@
     <value>Shepherd Website Feature</value>
   </data>
   <data name="ShepherdWebsiteFeatureDes" xml:space="preserve">
-    <value>Contains information model for Shepherd web application.</value>
+    <value>Contains information model for Shepherd web application</value>
   </data>
   <data name="ShipmentTypeListCT" xml:space="preserve">
     <value>Shipment Type List Content Type</value>
@@ -202,7 +202,7 @@
     <value>Shipping Point List Content Type</value>
   </data>
   <data name="ShippingsListCT" xml:space="preserve">
-    <value>Shippings List Content Type</value>
+    <value>Shipments List Content Type</value>
   </data>
   <data name="TimeSlotListCT" xml:space="preserve">
     <value>Time Slot List Content Type</value>
@@ -427,7 +427,7 @@
     <value>Escort cost</value>
   </data>
   <data name="SecurityEscort" xml:space="preserve">
-    <value>escort</value>
+    <value>Escort</value>
   </data>
   <data name="SecurityEscortPO" xml:space="preserve">
     <value>Escort PO</value>
@@ -730,6 +730,6 @@
     <value>Shipments</value>
   </data>
   <data name="ShippingsList" xml:space="preserve">
-    <value>Shpments list</value>
+    <value>Shipments list</value>
   </data>
 </root>
