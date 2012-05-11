@@ -86,8 +86,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="XSD\SPMetalParameters.xsd.cs" />
-    <Compile Include="XSD\SPMetalParameters.cs" />
     <None Include="app.config" />
     <None Include="Entities\Entities.cd" />
     <None Include="Entities\Scripts\GetEntities.ps1" />
@@ -99,10 +97,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="ImportDataModel\Scripts\CreateCS.ps1" />
-    <None Include="XSD\Scripts\CreateCs.ps1" />
-    <None Include="XSD\SPMetalParameters.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="SPMetalParameters\Scripts\CreateCs.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entities\Scripts\Parameters.xml">
