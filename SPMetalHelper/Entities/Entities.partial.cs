@@ -367,7 +367,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
         case Entities.ShippingState.Creation:
         case Entities.ShippingState.Delayed:
         case Entities.ShippingState.WaitingForCarrierData:
-        case Entities.ShippingState.WaitingForSecurityData:
+        case Entities.ShippingState.WaitingForConfirmation:
         case Entities.ShippingState.Underway:
           return true;
         case Entities.ShippingState.Invalid:
@@ -435,7 +435,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
         case Entities.ShippingState.Creation:
         case Entities.ShippingState.Delayed:
         case Entities.ShippingState.WaitingForCarrierData:
-        case Entities.ShippingState.WaitingForSecurityData:
+        case Entities.ShippingState.WaitingForConfirmation:
           int _seDrivers = 0;
           int _crDrivers = 0;
           foreach (var _dr in this.ShippingDriversTeam)
@@ -449,7 +449,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
             if (this.SecurityEscortCatalogTitle == null || (_seDrivers > 0 && this.Shipping2TruckTitle != null))
               this.ShippingState = Entities.ShippingState.Confirmed;
             else
-              this.ShippingState = Entities.ShippingState.WaitingForSecurityData;
+              this.ShippingState = Entities.ShippingState.WaitingForConfirmation;
           }
           else if (this.SecurityEscortCatalogTitle == null || (_seDrivers > 0 && this.Shipping2TruckTitle != null))
             this.ShippingState = Entities.ShippingState.WaitingForCarrierData;
@@ -500,7 +500,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
         case Entities.ShippingState.WaitingForCarrierData:
           _ret = _cr;
           break;
-        case Entities.ShippingState.WaitingForSecurityData:
+        case Entities.ShippingState.WaitingForConfirmation:
           _ret = _escrt;
           break;
         default:

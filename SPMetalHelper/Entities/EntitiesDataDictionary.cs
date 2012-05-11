@@ -70,7 +70,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
         Currency _Currency = GetOrAdd<Currency>(m_EDC.Currency, m_Currency, _route.Currency, false);
         ShipmentType _ShipmentType = GetOrAdd<ShipmentType>(m_EDC.ShipmentType, m_ShipmentType, _route.ShipmentType, false);
         CarrierType _CarrierCarrierType = GetOrAdd<CarrierType>(m_EDC.Carrier, m_CarrierCarrierType, _route.Carrier, false);
-        TransportUnitTypeTranspotUnit _TransportUnitTypeTranspotUnit = GetOrAdd<TransportUnitTypeTranspotUnit>(m_EDC.TransportUnitType, m_TransportUnitTypeTranspotUnit, _route.Equipment_Type__UoM, false);
+        TranspotUnit _TranspotUnit = GetOrAdd<TranspotUnit>(m_EDC.TransportUnitType, m_TranspotUnit, _route.Equipment_Type__UoM, false);
         SAPDestinationPlant _SAPDestinationPlant = GetOrAdd<SAPDestinationPlant>(m_EDC.SAPDestinationPlant, m_SAPDestinationPlant, _route.SAP_Dest_Plant, false);
         BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>(m_EDC.BusinessDescription, m_BusinessDescription, _route.Business_description, false);
         Commodity _cmdty = GetOrAdd<Commodity>(m_EDC.Commodity, m_CommodityCommodity, _route.Commodity, false);
@@ -95,7 +95,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
               ShipmentTypeTitle = _ShipmentType,
               Tytuł = _title,
               TransportCosts = _testData ? 4567.8 : _route.Total_Cost_per_UoM.String2Double(),
-              TransportUnitTypeTitle = _TransportUnitTypeTranspotUnit,
+              TransportUnitTypeTitle = _TranspotUnit,
               PartnerTitle = _prtnr,
               Route2Commodity = _cmdty,
               Incoterm = _route.Selling_Incoterm
@@ -273,7 +273,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
     private Dictionary<string, Currency> m_Currency = new Dictionary<string, Currency>();
     private Dictionary<string, ShipmentType> m_ShipmentType = new Dictionary<string, ShipmentType>();
     private Dictionary<string, CarrierType> m_CarrierCarrierType = new Dictionary<string, CarrierType>();
-    private Dictionary<string, TransportUnitTypeTranspotUnit> m_TransportUnitTypeTranspotUnit = new Dictionary<string, TransportUnitTypeTranspotUnit>();
+    private Dictionary<string, TranspotUnit> m_TranspotUnit = new Dictionary<string, TranspotUnit>();
     private Dictionary<string, SAPDestinationPlant> m_SAPDestinationPlant = new Dictionary<string, SAPDestinationPlant>();
     private Dictionary<string, Market> m_MarketMarket = new Dictionary<string, Market>();
     private Dictionary<string, Warehouse> m_Warehouse = new Dictionary<string, Warehouse>();

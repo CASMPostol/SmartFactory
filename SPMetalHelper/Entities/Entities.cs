@@ -347,9 +347,9 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		/// Lista Jednostka transportowa
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Transport Unit Type")]
-		public Microsoft.SharePoint.Linq.EntityList<TransportUnitTypeTranspotUnit> TransportUnitType {
+		public Microsoft.SharePoint.Linq.EntityList<TranspotUnit> TransportUnitType {
 			get {
-				return this.GetList<TransportUnitTypeTranspotUnit>("Transport Unit Type");
+				return this.GetList<TranspotUnit>("Transport Unit Type");
 			}
 		}
 		
@@ -1536,7 +1536,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 	}
 	
 	/// <summary>
-	/// Content type listy Państwo
+	/// Country List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CountryType", Id="0x0100CE031DC456C86C409854D818EDA7E1F3")]
 	public partial class CountryType : Element {
@@ -2929,7 +2929,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CarrierType> _carrierTitle;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<TransportUnitTypeTranspotUnit> _transportUnitTypeTitle;
+		private Microsoft.SharePoint.Linq.EntityRef<TranspotUnit> _transportUnitTypeTitle;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Currency> _currencyTitle;
 		
@@ -2974,8 +2974,8 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this._carrierTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CarrierType>>(this.OnCarrierTitleSync);
 			this._carrierTitle.OnChanged += new System.EventHandler(this.OnCarrierTitleChanged);
 			this._carrierTitle.OnChanging += new System.EventHandler(this.OnCarrierTitleChanging);
-			this._transportUnitTypeTitle = new Microsoft.SharePoint.Linq.EntityRef<TransportUnitTypeTranspotUnit>();
-			this._transportUnitTypeTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TransportUnitTypeTranspotUnit>>(this.OnTransportUnitTypeTitleSync);
+			this._transportUnitTypeTitle = new Microsoft.SharePoint.Linq.EntityRef<TranspotUnit>();
+			this._transportUnitTypeTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TranspotUnit>>(this.OnTransportUnitTypeTitleSync);
 			this._transportUnitTypeTitle.OnChanged += new System.EventHandler(this.OnTransportUnitTypeTitleChanged);
 			this._transportUnitTypeTitle.OnChanging += new System.EventHandler(this.OnTransportUnitTypeTitleChanging);
 			this._currencyTitle = new Microsoft.SharePoint.Linq.EntityRef<Currency>();
@@ -3168,7 +3168,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TransportUnitTypeTitle", Storage="_transportUnitTypeTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Transport Unit Type")]
-		public TransportUnitTypeTranspotUnit TransportUnitTypeTitle {
+		public TranspotUnit TransportUnitTypeTitle {
 			get {
 				return this._transportUnitTypeTitle.GetEntity();
 			}
@@ -3329,7 +3329,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this.OnPropertyChanged("TransportUnitTypeTitle");
 		}
 		
-		private void OnTransportUnitTypeTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TransportUnitTypeTranspotUnit> e) {
+		private void OnTransportUnitTypeTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TranspotUnit> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Route.Add(this);
 			}
@@ -3848,6 +3848,8 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private System.Nullable<double> _totalCostsPerKU;
 		
+		private System.Nullable<System.DateTime> _modified;
+		
 		private System.Nullable<ShippingState> _shippingState;
 		
 		private System.Nullable<LoadingType> _loadingType;
@@ -3880,7 +3882,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CityType> _shipping2City;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<TransportUnitTypeTranspotUnit> _shipping2TransportUnitType;
+		private Microsoft.SharePoint.Linq.EntityRef<TranspotUnit> _shipping2TransportUnitType;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Currency> _shipping2Currency4AddCosts;
 		
@@ -3893,6 +3895,10 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		private Microsoft.SharePoint.Linq.EntityRef<Currency> _shipping2CurrencyForEscort;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Currency> _shipping2Currency4CostsPerKU;
+		
+		private System.Nullable<int> _editorIdentyfikator;
+		
+		private string _editor;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<TimeSlot> _timeSlot;
 		
@@ -3955,8 +3961,8 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this._shipping2City.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CityType>>(this.OnShipping2CitySync);
 			this._shipping2City.OnChanged += new System.EventHandler(this.OnShipping2CityChanged);
 			this._shipping2City.OnChanging += new System.EventHandler(this.OnShipping2CityChanging);
-			this._shipping2TransportUnitType = new Microsoft.SharePoint.Linq.EntityRef<TransportUnitTypeTranspotUnit>();
-			this._shipping2TransportUnitType.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TransportUnitTypeTranspotUnit>>(this.OnShipping2TransportUnitTypeSync);
+			this._shipping2TransportUnitType = new Microsoft.SharePoint.Linq.EntityRef<TranspotUnit>();
+			this._shipping2TransportUnitType.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TranspotUnit>>(this.OnShipping2TransportUnitTypeSync);
 			this._shipping2TransportUnitType.OnChanged += new System.EventHandler(this.OnShipping2TransportUnitTypeChanged);
 			this._shipping2TransportUnitType.OnChanging += new System.EventHandler(this.OnShipping2TransportUnitTypeChanging);
 			this._shipping2Currency4AddCosts = new Microsoft.SharePoint.Linq.EntityRef<Currency>();
@@ -4326,6 +4332,20 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Modified", Storage="_modified", ReadOnly=true, FieldType="DateTime")]
+		public System.Nullable<System.DateTime> Modified {
+			get {
+				return this._modified;
+			}
+			set {
+				if ((value != this._modified)) {
+					this.OnPropertyChanging("Modified", this._modified);
+					this._modified = value;
+					this.OnPropertyChanged("Modified");
+				}
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ShippingState", Storage="_shippingState", FieldType="Choice")]
 		public System.Nullable<ShippingState> ShippingState {
 			get {
@@ -4499,7 +4519,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2TransportUnitType", Storage="_shipping2TransportUnitType", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Transport Unit Type")]
-		public TransportUnitTypeTranspotUnit Shipping2TransportUnitType {
+		public TranspotUnit Shipping2TransportUnitType {
 			get {
 				return this._shipping2TransportUnitType.GetEntity();
 			}
@@ -4565,6 +4585,34 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			}
 			set {
 				this._shipping2Currency4CostsPerKU.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Editor", Storage="_editorIdentyfikator", ReadOnly=true, FieldType="User", IsLookupId=true)]
+		public System.Nullable<int> EditorIdentyfikator {
+			get {
+				return this._editorIdentyfikator;
+			}
+			set {
+				if ((value != this._editorIdentyfikator)) {
+					this.OnPropertyChanging("EditorIdentyfikator", this._editorIdentyfikator);
+					this._editorIdentyfikator = value;
+					this.OnPropertyChanged("EditorIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Editor", Storage="_editor", ReadOnly=true, FieldType="User", IsLookupValue=true)]
+		public string Editor {
+			get {
+				return this._editor;
+			}
+			set {
+				if ((value != this._editor)) {
+					this.OnPropertyChanging("Editor", this._editor);
+					this._editor = value;
+					this.OnPropertyChanged("Editor");
+				}
 			}
 		}
 		
@@ -4801,7 +4849,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 			this.OnPropertyChanged("Shipping2TransportUnitType");
 		}
 		
-		private void OnShipping2TransportUnitTypeSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TransportUnitTypeTranspotUnit> e) {
+		private void OnShipping2TransportUnitTypeSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<TranspotUnit> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Shipping.Add(this);
 			}
@@ -5322,13 +5370,14 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 	}
 	
 	/// <summary>
-	/// Content type listy Jednostka transportowa
+	/// Transpot Unit Type List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TranspotUnit", Id="0x0100017ECA95BFABB941B9E7FE63643FCD7C")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TransportUnitTypeTranspotUnit))]
 	public partial class TranspotUnit : Element {
 		
-		private string _contentType;
+		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -5337,20 +5386,68 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		#endregion
 		
 		public TranspotUnit() {
+			this._route = new Microsoft.SharePoint.Linq.EntitySet<Route>();
+			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
+			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
+			this._route.OnChanging += new System.EventHandler(this.OnRouteChanging);
+			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
+			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
+			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
+			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public virtual string ContentType {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TransportUnitTypeTitle", Storage="_route", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Route")]
+		public Microsoft.SharePoint.Linq.EntitySet<Route> Route {
 			get {
-				return this._contentType;
+				return this._route;
 			}
 			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
+				this._route.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2TransportUnitType", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
+		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
+			get {
+				return this._shipping;
+			}
+			set {
+				this._shipping.Assign(value);
+			}
+		}
+		
+		private void OnRouteChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Route", this._route.Clone());
+		}
+		
+		private void OnRouteChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Route");
+		}
+		
+		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.TransportUnitTypeTitle = this;
+			}
+			else {
+				e.Item.TransportUnitTypeTitle = null;
+			}
+		}
+		
+		private void OnShippingChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Shipping", this._shipping.Clone());
+		}
+		
+		private void OnShippingChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Shipping");
+		}
+		
+		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Shipping2TransportUnitType = this;
+			}
+			else {
+				e.Item.Shipping2TransportUnitType = null;
 			}
 		}
 	}
@@ -6985,100 +7082,6 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 	}
 	
 	/// <summary>
-	/// Content type listy Jednostka transportowa
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TranspotUnit", Id="0x0100017ECA95BFABB941B9E7FE63643FCD7C", List="Transport Unit Type")]
-	public partial class TransportUnitTypeTranspotUnit : TranspotUnit {
-		
-		private Microsoft.SharePoint.Linq.EntitySet<Route> _route;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<Shipping> _shipping;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public TransportUnitTypeTranspotUnit() {
-			this._route = new Microsoft.SharePoint.Linq.EntitySet<Route>();
-			this._route.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route>>(this.OnRouteSync);
-			this._route.OnChanged += new System.EventHandler(this.OnRouteChanged);
-			this._route.OnChanging += new System.EventHandler(this.OnRouteChanging);
-			this._shipping = new Microsoft.SharePoint.Linq.EntitySet<Shipping>();
-			this._shipping.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping>>(this.OnShippingSync);
-			this._shipping.OnChanged += new System.EventHandler(this.OnShippingChanged);
-			this._shipping.OnChanging += new System.EventHandler(this.OnShippingChanging);
-			this.OnCreated();
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string ContentType {
-			get {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości TranspotUnit.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości TranspotUnit.");
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="TransportUnitTypeTitle", Storage="_route", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Route")]
-		public Microsoft.SharePoint.Linq.EntitySet<Route> Route {
-			get {
-				return this._route;
-			}
-			set {
-				this._route.Assign(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Shipping2TransportUnitType", Storage="_shipping", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Shipping")]
-		public Microsoft.SharePoint.Linq.EntitySet<Shipping> Shipping {
-			get {
-				return this._shipping;
-			}
-			set {
-				this._shipping.Assign(value);
-			}
-		}
-		
-		private void OnRouteChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Route", this._route.Clone());
-		}
-		
-		private void OnRouteChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Route");
-		}
-		
-		private void OnRouteSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Route> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.TransportUnitTypeTitle = this;
-			}
-			else {
-				e.Item.TransportUnitTypeTitle = null;
-			}
-		}
-		
-		private void OnShippingChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Shipping", this._shipping.Clone());
-		}
-		
-		private void OnShippingChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Shipping");
-		}
-		
-		private void OnShippingSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Shipping> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Shipping2TransportUnitType = this;
-			}
-			else {
-				e.Item.Shipping2TransportUnitType = null;
-			}
-		}
-	}
-	
-	/// <summary>
 	/// Content type biblioteki Protokół zabezpieczeń - plomb
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SealProtocol", Id="0x010100CCFCCB37046E4ED39C17D28FAE78ED47", List="Seal Protocol Library")]
@@ -7292,8 +7295,8 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="WaitingForCarrierData")]
 		WaitingForCarrierData = 128,
 		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="WaitingForSecurityData")]
-		WaitingForSecurityData = 256,
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="WaitingForConfirmation")]
+		WaitingForConfirmation = 256,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Underway")]
 		Underway = 512,
