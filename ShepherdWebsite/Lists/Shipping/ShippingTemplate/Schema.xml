@@ -57,6 +57,8 @@
           <FieldRef ID="{5AAF6163-D537-4B00-BBEB-6AB56D2FAFF0}" Name="Shipping2CurrencyForEscort" />
           <FieldRef ID="{72FAC253-6C2E-474F-86C5-269D2DE5AA20}" Name="TotalCostsPerKU" />
           <FieldRef ID="{EEAE731E-40E4-4C16-B620-E747A8A6675A}" Name="Shipping2Currency4CostsPerKU" />
+          <FieldRef ID="{28cf69c5-fa48-462a-b5cd-27b6f9d2bd5f}" Name="Modified" />
+          <FieldRef ID="{d31655d1-1d5b-4511-95a1-7a09e9b75bf2}" Name="Editor" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
