@@ -43,7 +43,6 @@
   <!--<List Name="Galeria składników Web Part" />-->
   <ExcludeOtherLists/>
   <ContentType Name="TranspotUnit" Class="TranspotUnit">
-    <Column Name="ContentType" Member="ContentType" />
     <Column Name="Title" Member="Title" />
   </ContentType>
   <ContentType Name="Market" Class="Market">
@@ -191,8 +190,6 @@
     <Column Name="CarrierPerformanceReportNumberRejectedBadQuality" Member="CarrierPerformanceReportNumberRejectedBadQuality" />
   </ContentType>
   <ContentType Name="Shipping" Class="Shipping">
-    <!--Added manually -->
-    <Column Name="Modified" Member="Modified"/>
     <Column Name="Title" Member="Title" />
     <Column Name="ReportPeriod" Member="ReportPeriod" />
     <Column Name="PartnerTitle" Member="PartnerTitle" />
@@ -240,6 +237,8 @@
     <Column Name="Shipping2CurrencyForEscort" Member="Shipping2CurrencyForEscort" />
     <Column Name="TotalCostsPerKU" Member="TotalCostsPerKU" />
     <Column Name="Shipping2Currency4CostsPerKU" Member="Shipping2Currency4CostsPerKU" />
+    <Column Name="Modified" Member="Modified" />
+    <Column Name="Editor" Member="Editor" />
   </ContentType>
   <ContentType Name="ShippingPoint" Class="ShippingPoint">
     <Column Name="Title" Member="Title" />

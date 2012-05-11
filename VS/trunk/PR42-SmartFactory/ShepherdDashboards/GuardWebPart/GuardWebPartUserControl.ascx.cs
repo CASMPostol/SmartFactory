@@ -188,7 +188,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case ShippingState.Creation:
           case ShippingState.Delayed:
           case ShippingState.WaitingForCarrierData:
-          case ShippingState.WaitingForSecurityData:
+          case ShippingState.WaitingForConfirmation:
           case ShippingState.None:
           case ShippingState.Invalid:
           case ShippingState.Canceled:
@@ -215,7 +215,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case ShippingState.Creation:
           case ShippingState.Delayed:
           case ShippingState.WaitingForCarrierData:
-          case ShippingState.WaitingForSecurityData:
+          case ShippingState.WaitingForConfirmation:
             if (CurrentShipping.TruckAwaiting.GetValueOrDefault(false))
               return;
             CurrentShipping.TruckAwaiting = true;
@@ -253,7 +253,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case ShippingState.Creation:
           case ShippingState.Delayed:
           case ShippingState.WaitingForCarrierData:
-          case ShippingState.WaitingForSecurityData:
+          case ShippingState.WaitingForConfirmation:
           case ShippingState.None:
           case ShippingState.Invalid:
           case ShippingState.Canceled:
@@ -280,7 +280,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
           case ShippingState.Creation:
           case ShippingState.Delayed:
           case ShippingState.WaitingForCarrierData:
-          case ShippingState.WaitingForSecurityData:
+          case ShippingState.WaitingForConfirmation:
             CurrentShipping.StartTime = DateTime.Now;
             CurrentShipping.ShippingState = ShippingState.Underway;
             CurrentShipping.TruckAwaiting = true;

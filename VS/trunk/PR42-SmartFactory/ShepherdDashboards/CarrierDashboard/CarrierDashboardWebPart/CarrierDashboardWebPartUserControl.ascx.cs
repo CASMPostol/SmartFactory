@@ -641,7 +641,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       m_ControlState.SecurityCatalogID = _security.Identyfikator.IntToString();
       m_SecurityRequiredChecbox.Checked = true;
     }
-    private void Show(TransportUnitTypeTranspotUnit _unitType)
+    private void Show(TranspotUnit _unitType)
     {
       if (_unitType == null)
         return;
@@ -894,7 +894,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
             case ShippingState.Creation:
             case ShippingState.Delayed:
             case ShippingState.WaitingForCarrierData:
-            case ShippingState.WaitingForSecurityData:
+            case ShippingState.WaitingForConfirmation:
             case ShippingState.Underway:
               _sppng.ReleaseBooking(null);
               _sppng.ShippingState = ShippingState.Cancelation;

@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
         {
           string _tmplt = "The current operation has been interrupted by error {0}.";
-          Anons _entry = new Anons() { Tytuł = _source, Body = String.Format(_tmplt, ex.Message), Expires = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
+          Anons _entry = new Anons() { Tytuł = _source, Treść = String.Format(_tmplt, ex.Message), Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
           EDC.EventLogList.InsertOnSubmit(_entry);
           EDC.SubmitChanges();
         }
@@ -324,7 +324,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
               }
               break;
             case ShippingState.WaitingForCarrierData:
-            case ShippingState.WaitingForSecurityData:
+            case ShippingState.WaitingForConfirmation:
             case ShippingState.Creation:
               switch (_sp.CalculateDistance(out _timeDistance))
               {
