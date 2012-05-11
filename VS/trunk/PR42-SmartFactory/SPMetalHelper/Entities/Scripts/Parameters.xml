@@ -204,6 +204,8 @@
     <Column Name="CarrierPerformanceReportNumberRejectedBadQuality" Member="CarrierPerformanceReportNumberRejectedBadQuality" />
   </ContentType>
   <ContentType Name="Shipping" Class="Shipping">
+    <!--Added manually -->
+    <Column Name="Modified" Member="Modified"/>
     <Column Name="Title" Member="Title" />
     <Column Name="ReportPeriod" Member="ReportPeriod" />
     <Column Name="PartnerTitle" Member="PartnerTitle" />
