@@ -234,9 +234,27 @@ namespace ShepherdResources.Resources {
         /// <summary>
         ///   Looks up a localized string similar to End minute ().
         /// </summary>
-        internal static string CASSFSEndMinute {
+        internal static string CASSFS02EndMinute {
             get {
-                return ResourceManager.GetString("CASSFSEndMinute", resourceCulture);
+                return ResourceManager.GetString("CASSFS02EndMinute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule Template List Content Type.
+        /// </summary>
+        internal static string CASSFS02ScheduleTemplateListCT {
+            get {
+                return ResourceManager.GetString("CASSFS02ScheduleTemplateListCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shipping Point.
+        /// </summary>
+        internal static string CASSFS02ShippingPoint {
+            get {
+                return ResourceManager.GetString("CASSFS02ShippingPoint", resourceCulture);
             }
         }
         
@@ -246,15 +264,6 @@ namespace ShepherdResources.Resources {
         internal static string CASSmartFactoryShepherdGroup {
             get {
                 return ResourceManager.GetString("CASSmartFactoryShepherdGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Schedule Template List Content Type.
-        /// </summary>
-        internal static string CASSMSScheduleTemplateListCT {
-            get {
-                return ResourceManager.GetString("CASSMSScheduleTemplateListCT", resourceCulture);
             }
         }
         
@@ -1578,15 +1587,6 @@ namespace ShepherdResources.Resources {
         internal static string ShippingNumber {
             get {
                 return ResourceManager.GetString("ShippingNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Shipping Point.
-        /// </summary>
-        internal static string ShippingPoint {
-            get {
-                return ResourceManager.GetString("ShippingPoint", resourceCulture);
             }
         }
         

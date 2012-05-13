@@ -117,7 +117,7 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-  <data name="CASSFSEndMinute" xml:space="preserve">
+  <data name="CASSFS02EndMinute" xml:space="preserve">
     <value>End minute ()</value>
   </data>
 	<data name="AlarmsAndEventsListCT" xml:space="preserve">
@@ -180,7 +180,7 @@
 	<data name="SAPDestinationPlantsListCT" xml:space="preserve">
     <value>SAP Destination Plant Content Type</value>
   </data>
-	<data name="CASSMSScheduleTemplateListCT" xml:space="preserve">
+	<data name="CASSFS02ScheduleTemplateListCT" xml:space="preserve">
     <value>Schedule Template List Content Type</value>
   </data>
 	<data name="SecurityEscortCatalogListCT" xml:space="preserve">
@@ -453,7 +453,7 @@
 	<data name="ShipmentType" xml:space="preserve">
     <value>Shipment type</value>
   </data>
-	<data name="ShippingPoint" xml:space="preserve">
+	<data name="CASSFS02ShippingPoint" xml:space="preserve">
     <value>Shipping Point</value>
   </data>
 	<data name="StartHour" xml:space="preserve">

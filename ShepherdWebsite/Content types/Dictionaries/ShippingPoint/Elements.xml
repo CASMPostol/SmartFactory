@@ -8,7 +8,7 @@
                Inherits="FALSE">
 		<Folder TargetName="_cts/ShippingPoint" />
 		<FieldRefs>
-      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,ShippingPoint" />
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CASSFS02ShippingPoint" />
 			<FieldRef ID="{da96b8f0-d0f6-471b-a24d-27cff679cbba}" Name="Direction" />
       <FieldRef ID="{9F4ACD7D-08DD-44CC-8FDD-AD18F67BD898}" Name="WarehouseTitle" />
       <FieldRef ID="{6B96ECFD-6D52-43BE-8FB3-DE80AB77E732}" Name="ShippingPointDescription" />

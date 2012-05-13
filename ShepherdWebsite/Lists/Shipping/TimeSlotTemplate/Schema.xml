@@ -158,7 +158,7 @@
         <Default>[today]</Default>
       </Field>
       <Field Name="TimeSlot2ShippingIndex" ID="{5eba7a0a-270d-4f08-8df5-422612615163}" Type="Lookup" List="Lists/ShippingList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="$Resources:CASSmartFactoryShepherd,ShippingID" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="TimeSlot2ShippingPointLookup" ID="{d8ae2368-2cc5-433b-9aa5-9980ade3f145}" Type="Lookup" List="Lists/ShippingPointList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="$Resources:CASSmartFactoryShepherd,ShippingPoint" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="TimeSlot2ShippingPointLookup" ID="{d8ae2368-2cc5-433b-9aa5-9980ade3f145}" Type="Lookup" List="Lists/ShippingPointList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="$Resources:CASSmartFactoryShepherd,CASSFS02ShippingPoint" Group="CAS Smart Factory Shepherd" Required="False" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" RecurrenceRowset="TRUE" TabularView="FALSE" MobileView="TRUE">
