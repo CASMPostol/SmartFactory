@@ -414,7 +414,7 @@
 	<data name="SAPDestPlant" xml:space="preserve">
     <value>SAP dest plant</value>
   </data>
-	<data name="ScheduleTemplate" xml:space="preserve">
+	<data name="CASSFS02ScheduleTemplate" xml:space="preserve">
     <value>Schedule template</value>
   </data>
 	<data name="SecondDriver" xml:space="preserve">
