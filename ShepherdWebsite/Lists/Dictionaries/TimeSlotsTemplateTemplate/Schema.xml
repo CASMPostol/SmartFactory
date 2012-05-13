@@ -25,7 +25,7 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Type="Choice" DisplayName="End minute" ID="{f1d9414f-f7c2-4229-a090-f2ed2258bf3c}" Format="Dropdown" BaseType="Text" Name="TimeSlotsTemplateEndMinute" Group="CAS Smart Factory Shepherd">
+      <Field Type="Choice" DisplayName="$Resources:CASSmartFactoryShepherd,CASSFSEndMinute" ID="{F1D9414F-F7C2-4229-A090-F2ED2258BF3C}" Format="Dropdown" BaseType="Text" Name="TimeSlotsTemplateEndMinute" >
     <Default>0</Default>
     <CHOICES>
       <CHOICE>0</CHOICE>
