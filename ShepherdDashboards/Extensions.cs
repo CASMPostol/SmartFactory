@@ -127,8 +127,8 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     }
     public static string GetLocalizationExpresion(this string val)
     {
-      string _frmt = "$Resources:CASSmartFactoryShepherdCode,{0}";
-      return String.Format(_frmt, val);
+      string _frmt = "$Resources:{0},{1}";
+      return String.Format(_frmt, GlobalDefinitions.RootResourceFileName, val);
     }
     /// <summary>
     /// Controls the text property.
