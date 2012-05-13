@@ -125,6 +125,11 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       string _frmt = "$Resources:{0}";
       return SPUtility.GetLocalizedString(String.Format(_frmt, val), GlobalDefinitions.RootResourceFileName, (uint)CultureInfo.CurrentUICulture.LCID);
     }
+    public static string GetLocalizationExpresion(this string val)
+    {
+      string _frmt = "$Resources:CASSmartFactoryShepherdCode,{0}";
+      return String.Format(_frmt, val);
+    }
     /// <summary>
     /// Controls the text property.
     /// </summary>
