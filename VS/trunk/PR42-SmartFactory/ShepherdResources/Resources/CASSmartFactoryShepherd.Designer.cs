@@ -241,6 +241,15 @@ namespace ShepherdResources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Schedule template.
+        /// </summary>
+        internal static string CASSFS02ScheduleTemplate {
+            get {
+                return ResourceManager.GetString("CASSFS02ScheduleTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Schedule Template List Content Type.
         /// </summary>
         internal static string CASSFS02ScheduleTemplateListCT {
@@ -1344,15 +1353,6 @@ namespace ShepherdResources.Resources {
         internal static string SAPDestPlantList {
             get {
                 return ResourceManager.GetString("SAPDestPlantList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Schedule template.
-        /// </summary>
-        internal static string ScheduleTemplate {
-            get {
-                return ResourceManager.GetString("ScheduleTemplate", resourceCulture);
             }
         }
         

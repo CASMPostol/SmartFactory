@@ -113,7 +113,7 @@
       <CHOICE>Sunday</CHOICE>
     </CHOICES>
   </Field>
-      <Field Name="ScheduleTemplateTitle" ID="{bfa0d483-0643-4e54-8aed-b0170a8e0091}" Type="Lookup" List="Lists/ScheduleTemplateList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Schedule Template Shepherd" Group="CAS Smart Factory" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field Name="ScheduleTemplateTitle" ID="{bfa0d483-0643-4e54-8aed-b0170a8e0091}" Type="Lookup" List="Lists/ScheduleTemplateList" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="$Resources:CASSmartFactoryShepherd,CASSFS02ScheduleTemplate" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
