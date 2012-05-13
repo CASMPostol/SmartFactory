@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
     Type="Choice"
-    DisplayName="$Resources:CASSmartFactoryShepherd,CASSFSEndMinute"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CASSFS02EndMinute"
     ID="{F1D9414F-F7C2-4229-A090-F2ED2258BF3C}"
     Format="Dropdown"
     BaseType="Text"
@@ -10,7 +10,7 @@
     Group="$Resources:CASSmartFactoryShepherd,CASSmartFactoryShepherdGroup"
     DisplaceOnUpgrade="True" 
     Overwrite="True" 
-    Description="$Resources:CASSmartFactoryShepherd,CASSFSEndMinute"
+    Description="$Resources:CASSmartFactoryShepherd,CASSFS02EndMinute"
     >
     <Default>0</Default>
     <CHOICES>
