@@ -139,4 +139,61 @@
 	<data name="Trailers" xml:space="preserve">
 		<value>Trailers</value>
 	</data>
+	<data name="PO_No" xml:space="preserve">
+		<value>Numer PO</value>
+	</data>
+	<data name="DeliveryNumber" xml:space="preserve">
+		<value>Delivery No.</value>
+	</data>
+	<data name="ShippingNumber" xml:space="preserve">
+		<value>Shipping no.</value>
+	</data>
+	<data name="ReportExceptionTemplate" xml:space="preserve">
+		<value>The current operation has been interrupted by error {0}.</value>
+	</data>
+	<data name="UpdateTimeSlotreleaseBookinProblem" xml:space="preserve">
+		<value>Cannot release the previous booking.</value>
+	</data>
+	<data name="Shipping" xml:space="preserve">
+		<value>Shipping</value>
+	</data>
+	<data name="ShowSelectTimeSlot" xml:space="preserve">
+		<value>-- Select Time Slot --</value>
+	</data>
+	<data name="ShowShippingLocked" xml:space="preserve">
+		<value>-- Shipping locked --</value>
+	</data>
+	<data name="SetInterconnectionDataTimeSlotInUse" xml:space="preserve">
+		<value>Time slot is in use but it is selected as free.</value>
+	</data>
+	<data name="SetInterconnectionDataItIsTooLate" xml:space="preserve">
+		<value>It is too late to change the schedule</value>
+	</data>
+	<data name="TrailerConditionDropdownSelect" xml:space="preserve">
+		<value> -- Select trailer condition  --</value>
+	</data>
+	<data name="TrailerConditionDropdownUnacceptable" xml:space="preserve">
+		<value>1 - Unacceptable</value>
+	</data>
+	<data name="TrailerConditionDropdownBad" xml:space="preserve">
+		<value>2 - Bad</value>
+	</data>
+	<data name="TrailerConditionDropdownPoor" xml:space="preserve">
+		<value>3 - Poor</value>
+	</data>
+	<data name="TrailerConditionDropdownGood" xml:space="preserve">
+		<value>4 - Good</value>
+	</data>
+	<data name="TrailerConditionDropdownExcellent" xml:space="preserve">
+		<value>5 - Excellent</value>
+	</data>
+	<data name="InterfaceStateViewState" xml:space="preserve">
+		<value>View</value>
+	</data>
+	<data name="InterfaceStateEditState" xml:space="preserve">
+		<value>Edit</value>
+	</data>
+	<data name="InterfaceStateNewState" xml:space="preserve">
+		<value>New</value>
+	</data>
 </root>

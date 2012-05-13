@@ -104,13 +104,13 @@
 		<value>InboundOwner pl</value>
 	</data>
 	<data name="Vendor" xml:space="preserve">
-		<value>Vendor p</value>
+		<value>Dostawca</value>
 	</data>
 	<data name="Forwarder" xml:space="preserve">
 		<value>Forwarder p</value>
 	</data>
 	<data name="Escort" xml:space="preserve">
-		<value>Escort p</value>
+		<value>Eskorta</value>
 	</data>
 	<data name="Gate" xml:space="preserve">
 		<value>Gate p</value>
@@ -138,5 +138,62 @@
 	</data>
 	<data name="Trailers" xml:space="preserve">
 		<value>Trailers p</value>
+	</data>
+	<data name="PO_No" xml:space="preserve">
+		<value>Zamówienie nr</value>
+	</data>
+	<data name="DeliveryNumber" xml:space="preserve">
+		<value>Wydanie nr</value>
+	</data>
+	<data name="ShippingNumber" xml:space="preserve">
+		<value>Operacja nr</value>
+	</data>
+	<data name="ReportExceptionTemplate" xml:space="preserve">
+		<value>The current operation has been interrupted by error {0}. p</value>
+	</data>
+	<data name="UpdateTimeSlotreleaseBookinProblem" xml:space="preserve">
+		<value>Cannot release the previous booking. p</value>
+	</data>
+	<data name="Shipping" xml:space="preserve">
+		<value>Shipping p</value>
+	</data>
+	<data name="ShowSelectTimeSlot" xml:space="preserve">
+		<value>-- Select Time Slot -- p</value>
+	</data>
+	<data name="ShowShippingLocked" xml:space="preserve">
+		<value>-- Shipping locked -- p</value>
+	</data>
+	<data name="SetInterconnectionDataTimeSlotInUse" xml:space="preserve">
+		<value>Time slot is in use but it is selected as free.p</value>
+	</data>
+	<data name="SetInterconnectionDataItIsTooLate" xml:space="preserve">
+		<value>It is too late to change the schedule p</value>
+	</data>
+	<data name="TrailerConditionDropdownSelect" xml:space="preserve">
+		<value> -- Select trailer condition  --  p</value>
+	</data>
+	<data name="TrailerConditionDropdownUnacceptable" xml:space="preserve">
+		<value>1 - Unacceptable p</value>
+	</data>
+	<data name="TrailerConditionDropdownBad" xml:space="preserve">
+		<value>2 - Bad p</value>
+	</data>
+	<data name="TrailerConditionDropdownPoor" xml:space="preserve">
+		<value>3 - Poor p</value>
+	</data>
+	<data name="TrailerConditionDropdownGood" xml:space="preserve">
+		<value>4 - Good p</value>
+	</data>
+	<data name="TrailerConditionDropdownExcellent" xml:space="preserve">
+		<value>5 - Excellent p</value>
+	</data>
+	<data name="InterfaceStateViewState" xml:space="preserve">
+		<value>Widok</value>
+	</data>
+	<data name="InterfaceStateEditState" xml:space="preserve">
+		<value>Edzcja</value>
+	</data>
+	<data name="InterfaceStateNewState" xml:space="preserve">
+		<value>Nowy</value>
 	</data>
 </root>

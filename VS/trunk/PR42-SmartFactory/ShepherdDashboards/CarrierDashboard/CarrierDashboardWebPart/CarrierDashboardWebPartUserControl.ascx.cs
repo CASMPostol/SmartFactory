@@ -13,6 +13,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
 {
   using ButtonsSet = StateMachineEngine.ControlsSet;
   using InterfaceState = StateMachineEngine.InterfaceState;
+  using System.Globalization;
 
   /// <summary>
   /// Carrier Dashboard WebPart UserControl
@@ -206,12 +207,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         SetVisible(m_AllButtons);
         m_StateMachineEngine.InitMahine();
-        m_TrailerConditionDropdown.Items.Add(new ListItem(" -- Select trailer condition  --", "-1") { Selected = true });
-        m_TrailerConditionDropdown.Items.Add(new ListItem("1 - Unacceptable", ((int)TrailerCondition._1Unexceptable).ToString()));
-        m_TrailerConditionDropdown.Items.Add(new ListItem("2 - Bad", ((int)TrailerCondition._2).ToString()));
-        m_TrailerConditionDropdown.Items.Add(new ListItem("3 - Poor", ((int)TrailerCondition._3).ToString()));
-        m_TrailerConditionDropdown.Items.Add(new ListItem("4 - Good", ((int)TrailerCondition._4).ToString()));
-        m_TrailerConditionDropdown.Items.Add(new ListItem("5 - Excellent", ((int)TrailerCondition._5Excellent).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownSelect".GetLocalizedString(), "-1") { Selected = true });
+        m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownUnacceptable".GetLocalizedString(), ((int)TrailerCondition._1Unexceptable).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownBad".GetLocalizedString(), ((int)TrailerCondition._2).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownPoor".GetLocalizedString(), ((int)TrailerCondition._3).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownGood".GetLocalizedString(), ((int)TrailerCondition._4).ToString()));
+        m_TrailerConditionDropdown.Items.Add(new ListItem("TrailerConditionDropdownExcellent".GetLocalizedString(), ((int)TrailerCondition._5Excellent).ToString()));
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url) { ObjectTrackingEnabled = false })
         {
           m_TransportUnitTypeDropDownList.DataSource = from _idx in _EDC.TransportUnitType
@@ -261,7 +262,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
     protected override void OnPreRender(EventArgs e)
     {
-      m_StateLiteral.Text = m_ControlState.InterfaceState.ToString();
+      m_StateLiteral.Text =("InterfaceState" + m_ControlState.InterfaceState.ToString()).GetLocalizedString();
       SetEnabled(m_ControlState.SetEnabled);
       if (m_ControlState.ShippingID.IsNullOrEmpty())
       {
@@ -327,7 +328,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           EnterState();
         }
       }
-
       #endregion
 
       #region abstract implementation
@@ -439,12 +439,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           if (VendorFixed(_CurrentShipping))
           {
             ActionResult _rst = new ActionResult();
-            _rst.AddMessage("It is too late to change the schedule");
+            _rst.AddMessage("SetInterconnectionDataItIsTooLate".GetLocalizedString()); 
             ShowActionResult(_rst);
             return;
           }
           TimeSlotTimeSlot _cts = Element.GetAtIndex(_EDC.TimeSlot, _interconnectionData.ID);
-          Debug.Assert(_cts.Occupied.Value == Occupied.Free, "Time slot is in use but it is selected as free.");
+          Debug.Assert(_cts.Occupied.Value == Occupied.Free, "SetInterconnectionDataTimeSlotInUse".GetLocalizedString());
           m_ControlState.TimeSlotID = _interconnectionData.ID;
           m_ControlState.TimeSlotIsDouble = _interconnectionData.IsDouble;
           m_ControlState.TimeSlotChanged = true;
@@ -603,10 +603,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (_cts == null)
       {
-        m_TimeSlotTextBox.Text = _isEditable ? "-- Select Time Slot --" : "-- Shipping locked --";
+        m_TimeSlotTextBox.Text = _isEditable ? "ShowSelectTimeSlot".GetLocalizedString() : "ShowShippingLocked".GetLocalizedString();
         return;
       }
-      m_TimeSlotTextBox.Text = String.Format("{0:g}{1}{2}", _cts.StartTime, _isEditable ? "" : "!", _isDouble ? "x2" : "");
+      m_TimeSlotTextBox.Text = String.Format("{0}{1}{2}", _cts.StartTime.Value.ToString(CultureInfo.CurrentUICulture), _isEditable ? "" : " ! ", _isDouble ? "x2" : "");
       Warehouse _wrs = _cts.GetWarehouse();
       m_WarehouseLabel.Text = _wrs.Tytuł;
     }
@@ -779,7 +779,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     {
       if (_sppng == null)
       {
-        _rsult.AddLabel("Shipping");
+        _rsult.AddLabel("Shipping".GetLocalizedString());
         return;
       }
       _sppng.CancelationReason = m_CommentsTextBox.Text;
@@ -854,7 +854,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         _newts.MakeBooking(_shipping, m_ControlState.TimeSlotIsDouble);
       }
       else
-        _rslt.AddMessage("Cannot release the previous booking.");
+        _rslt.AddMessage("UpdateTimeSlotreleaseBookinProblem".GetLocalizedString());
     }
     private void UpdateSecurityEscort(Shipping _sipping, EntitiesDataContext _EDC)
     {
@@ -1004,7 +1004,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
       {
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
-          string _tmplt = "The current operation has been interrupted by error {0}.";
+          string _tmplt = "ReportExceptionTemplate".GetLocalizedString();
           Anons _entry = new Anons(_source, String.Format(_tmplt, ex.Message));
           _EDC.EventLogList.InsertOnSubmit(_entry);
           _EDC.SubmitChanges();
@@ -1159,7 +1159,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     private string m_LabetTextLike_PurchaseOrder = "PO_No".GetLocalizedString();
     private string m_LabetTextLike_DeliveryNo = "DeliveryNumber".GetLocalizedString();
     private string m_LabetTextLike_Vendor = "Vendor".GetLocalizedString();
-    private string m_LabetTextLike_SecurityEscort = "SecurityEscort".GetLocalizedString();
+    private string m_LabetTextLike_SecurityEscort = "Escort".GetLocalizedString();
     private string m_LabetTextLike_ShippingNo = "ShippingNumber".GetLocalizedString();
     private ButtonsSet m_VisibilityACL;
     private ButtonsSet m_EditbilityACL;
