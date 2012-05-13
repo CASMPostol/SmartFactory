@@ -101,6 +101,7 @@
     </None>
     <None Include="Content types\Dictionaries\ScheduleTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8284706c-e072-4566-bfef-a533885f764c}</SharePointProjectItemId>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Content types\Dictionaries\SecurityEscortCatalog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3fdd0749-a50e-4de8-82b1-9edd2f9bcf14}</SharePointProjectItemId>
@@ -409,7 +410,9 @@
     <Content Include="Content types\Dictionaries\SAPDestinationPlant\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Dictionaries\ScheduleTemplate\Elements.xml" />
+    <Content Include="Content types\Dictionaries\ScheduleTemplate\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\SecurityEscortCatalog\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -639,7 +642,9 @@
     <Content Include="Lists\Shipping\TimeSlotTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\Shipping\TimeSlotTemplate\TimeSlotList\Elements.xml" />
+    <Content Include="Lists\Shipping\TimeSlotTemplate\TimeSlotList\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />

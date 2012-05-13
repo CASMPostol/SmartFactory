@@ -3,7 +3,7 @@
   <ContentType ID="0x010091765907174d4799b44c4df249630d28"
                Name="ScheduleTemplate"
                Group="CAS Smart Factory Shepherd Dictionaries"
-               Description="$Resources:CASSmartFactoryShepherd,ScheduleTemplateListCT"
+               Description="$Resources:CASSmartFactoryShepherd,CASSMSScheduleTemplateListCT"
                Inherits="TRUE"
                Overwrite="FALSE">
     <Folder TargetName="_cts/ScheduleTemplate" />

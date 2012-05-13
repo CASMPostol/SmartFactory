@@ -93,6 +93,7 @@
     <Content Include="Resources\CASSmartFactoryShepherd.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CASSmartFactoryShepherd.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -100,10 +101,12 @@
     <Content Include="Resources\CASSmartFactoryShepherd.pl-PL.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CASSmartFactoryShepherd.pl-PL.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Resources\CASSmartFactoryShepherd.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CASSmartFactoryShepherd.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
