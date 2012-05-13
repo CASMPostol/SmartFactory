@@ -97,7 +97,46 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-	<data name="TestTag" xml:space="preserve">
-		<value>pl</value>
+	<data name="OutboundOwner" xml:space="preserve">
+		<value>OutboundOwner pl</value>
+	</data>
+	<data name="InboundOwner" xml:space="preserve">
+		<value>InboundOwner pl</value>
+	</data>
+	<data name="Vendor" xml:space="preserve">
+		<value>Vendor p</value>
+	</data>
+	<data name="Forwarder" xml:space="preserve">
+		<value>Forwarder p</value>
+	</data>
+	<data name="Escort" xml:space="preserve">
+		<value>Escort p</value>
+	</data>
+	<data name="Gate" xml:space="preserve">
+		<value>Gate p</value>
+	</data>
+	<data name="OutboundCoordinator" xml:space="preserve">
+		<value>OutboundCoordinator p</value>
+	</data>
+	<data name="Operator" xml:space="preserve">
+		<value>Operator p</value>
+	</data>
+	<data name="Supervisor" xml:space="preserve">
+		<value>Supervisor p</value>
+	</data>
+	<data name="Drivers" xml:space="preserve">
+		<value>Drivers p</value>
+	</data>
+	<data name="Trucks" xml:space="preserve">
+		<value>Trucks p</value>
+	</data>
+	<data name="ViewInbounds" xml:space="preserve">
+		<value>ViewInbounds p</value>
+	</data>
+	<data name="ViewOutbounds" xml:space="preserve">
+		<value>ViewOutbounds p</value>
+	</data>
+	<data name="Trailers" xml:space="preserve">
+		<value>Trailers p</value>
 	</data>
 </root>

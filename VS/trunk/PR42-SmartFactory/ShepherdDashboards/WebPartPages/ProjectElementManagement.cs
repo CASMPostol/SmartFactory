@@ -13,20 +13,20 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.WebPartPages
   internal class ProjectElementManagement
   {
     //Menu entries
-    internal const string MenuOutboundOwnerTitle = "Outbound Owner";
-    internal const string MenuInboundOwnerTitle = "Inbound Owner";
-    internal const string MenuVendorTitle = "Vendor";
-    internal const string MenuForwarderTitle = "Forwarder";
-    internal const string MenuSecurityEscortProviderTitle = "Escort";
-    internal const string MenuSecurityGateTitle = "Gate";
-    internal const string MenuOutboundCoordinatorTitle = "Outbound Coordinator";
-    internal const string MenuOperatorTitle = "Operator";
-    internal const string MenuSupervisorTitle = "Supervisor";
-    internal const string MenuDriversTitle = "Drivers";
-    internal const string MenuTrucksTitle = "Trucks";
-    internal const string MenuTrailersTitle = "Trailers";
-    internal const string MenuViewInboundsTitle = "View Inbounds";
-    internal const string MenuViewOutboundsTitle = "View Outbounds";
+    internal static string MenuOutboundOwnerTitle = "OutboundOwner".GetLocalizationExpresion();
+    internal static string MenuInboundOwnerTitle = "InboundOwner".GetLocalizationExpresion();
+    internal static string MenuVendorTitle = "Vendor".GetLocalizationExpresion();
+    internal static string MenuForwarderTitle = "Forwarder".GetLocalizationExpresion();
+    internal static string MenuSecurityEscortProviderTitle = "Escort".GetLocalizationExpresion();
+    internal static string MenuSecurityGateTitle = "Gate".GetLocalizationExpresion();
+    internal static string MenuOutboundCoordinatorTitle = "OutboundCoordinator".GetLocalizationExpresion();
+    internal static string MenuOperatorTitle = "Operator".GetLocalizationExpresion();
+    internal static string MenuSupervisorTitle = "Supervisor".GetLocalizationExpresion();
+    internal static string MenuDriversTitle = "Drivers".GetLocalizationExpresion();
+    internal static string MenuTrucksTitle = "Trucks".GetLocalizationExpresion();
+    internal static string MenuTrailersTitle = "Trailers".GetLocalizationExpresion();
+    internal static string MenuViewInboundsTitle = "ViewInbounds".GetLocalizationExpresion();
+    internal static string MenuViewOutboundsTitle = "ViewOutbounds".GetLocalizationExpresion();
 
     //Webpages
     internal const string WebPartPagesFolder = "WebPartPages";
