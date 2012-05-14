@@ -12,7 +12,7 @@
  </metaData>
  <data>
  <properties>
- <property name="Title" type="string">Load Description - outbound</property>
+ <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,LoadDescriptionOutbound</property>
  <property name="TitleUrl" type="string">CoordinatorDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
@@ -31,7 +31,7 @@
  </metaData>
  <data>
  <properties>
- <property name="Title" type="string">Outbounds</property>
+ <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,Shippings</property>
  <property name="TitleUrl" type="string">ViewOutboundsDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>

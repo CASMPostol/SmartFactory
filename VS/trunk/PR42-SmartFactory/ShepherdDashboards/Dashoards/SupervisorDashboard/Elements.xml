@@ -12,7 +12,7 @@
  </metaData>
  <data>
  <properties>
- <property name="Title" type="string">Shippings</property>
+ <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,Shippings</property>
  <property name="TitleUrl" type="string">SupervisorDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
@@ -30,7 +30,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Shipping Manager</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,ShipmentManager</property>
         <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
         <property name="ID" type="string">CarrierDashboardWebPart</property>
         <property name="Role" >Supervisor</property>
@@ -48,7 +48,7 @@
                     </metaData>
                     <data>
                       <properties>
-                        <property name="Title" type="string">Time Slots</property>
+                        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,TimeSlots</property>
                         <property name="Description" type="string">Allows to select Time Slot for planed shipping.</property>
                         <property name="SimpleTimeSlotList" type="bool">true</property>
                          <property name="Role" >Supervisor</property>
@@ -66,7 +66,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Load Manager</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,LoadManager</property>
         <property name="Description" type="string">My Visual WebPart</property>
         <property name="Role">Supervisor</property>
       </properties>
@@ -83,7 +83,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Forwarder Resources Manager</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,TRM</property>
         <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
         <property name="ID" type="string">WPTransportResources</property>
       </properties>
