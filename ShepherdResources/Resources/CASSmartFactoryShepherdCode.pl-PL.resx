@@ -229,4 +229,10 @@
 	<data name="DeleteDriverNotSelected" xml:space="preserve">
 		<value>Delete error: driver is not selected p</value>
 	</data>
+	<data name="UpdateTruckNotSelected" xml:space="preserve">
+		<value>Update error: truck is not selected p</value>
+	</data>
+	<data name="DeleteTruckNotSelected" xml:space="preserve">
+		<value>Delete error: truck is not selected p</value>
+	</data>
 </root>
