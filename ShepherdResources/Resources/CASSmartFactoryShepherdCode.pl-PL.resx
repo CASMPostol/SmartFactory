@@ -98,46 +98,46 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="OutboundOwner" xml:space="preserve">
-		<value>OutboundOwner pl</value>
+		<value>Właściciel wysyłek</value>
 	</data>
 	<data name="InboundOwner" xml:space="preserve">
-		<value>InboundOwner pl</value>
+		<value>Właściciel dostaw</value>
 	</data>
 	<data name="Vendor" xml:space="preserve">
 		<value>Dostawca</value>
 	</data>
 	<data name="Forwarder" xml:space="preserve">
-		<value>Forwarder p</value>
+		<value>Spedytor</value>
 	</data>
 	<data name="Escort" xml:space="preserve">
 		<value>Eskorta</value>
 	</data>
 	<data name="Gate" xml:space="preserve">
-		<value>Gate p</value>
+		<value>Brama</value>
 	</data>
 	<data name="OutboundCoordinator" xml:space="preserve">
-		<value>OutboundCoordinator p</value>
+		<value>Koordynator wysyłek</value>
 	</data>
 	<data name="Operator" xml:space="preserve">
-		<value>Operator p</value>
+		<value>Operator</value>
 	</data>
 	<data name="Supervisor" xml:space="preserve">
-		<value>Supervisor p</value>
+		<value>Nadzorca</value>
 	</data>
 	<data name="Drivers" xml:space="preserve">
-		<value>Drivers p</value>
+		<value>Kierowcy</value>
 	</data>
 	<data name="Trucks" xml:space="preserve">
-		<value>Trucks p</value>
+		<value>Samochody</value>
 	</data>
 	<data name="ViewInbounds" xml:space="preserve">
-		<value>ViewInbounds p</value>
+		<value>Dostawy - podgląd</value>
 	</data>
 	<data name="ViewOutbounds" xml:space="preserve">
-		<value>ViewOutbounds p</value>
+		<value>Wysyłki - podgląd</value>
 	</data>
 	<data name="Trailers" xml:space="preserve">
-		<value>Trailers p</value>
+		<value>Naczepy</value>
 	</data>
 	<data name="PO_No" xml:space="preserve">
 		<value>Zamówienie nr</value>
@@ -149,49 +149,49 @@
 		<value>Operacja nr</value>
 	</data>
 	<data name="ReportExceptionTemplate" xml:space="preserve">
-		<value>The current operation has been interrupted by error {0}. p</value>
+		<value>Bieżąca operacja została przerwana przez błąd {0}.</value>
 	</data>
 	<data name="UpdateTimeSlotreleaseBookinProblem" xml:space="preserve">
-		<value>Cannot release the previous booking. p</value>
+		<value>Nie można zwolnić poprzedniej rezerwacji.</value>
 	</data>
 	<data name="Shipping" xml:space="preserve">
-		<value>Shipping p</value>
+		<value>Operacja</value>
 	</data>
 	<data name="ShowSelectTimeSlot" xml:space="preserve">
-		<value>-- Select Time Slot -- p</value>
+		<value>-- Wybierz okno czasowe --</value>
 	</data>
 	<data name="ShowShippingLocked" xml:space="preserve">
-		<value>-- Shipping locked -- p</value>
+		<value>-- Operacja zablokowana --</value>
 	</data>
 	<data name="SetInterconnectionDataTimeSlotInUse" xml:space="preserve">
-		<value>Time slot is in use but it is selected as free.p</value>
+		<value>Time slot is in use but it is selected as free. (Okno czasowe jest w użyciu, ale jest wybrane jako wolne)</value>
 	</data>
 	<data name="SetInterconnectionDataItIsTooLate" xml:space="preserve">
-		<value>It is too late to change the schedule p</value>
+		<value>Jest zbyt późno, by zmienić harmonogram.</value>
 	</data>
 	<data name="TrailerConditionDropdownSelect" xml:space="preserve">
-		<value> -- Select trailer condition  --  p</value>
+		<value> -- Wybierz stan naczepy --</value>
 	</data>
 	<data name="TrailerConditionDropdownUnacceptable" xml:space="preserve">
-		<value>1 - Unacceptable p</value>
+		<value>1 - Niedopuszczalny</value>
 	</data>
 	<data name="TrailerConditionDropdownBad" xml:space="preserve">
-		<value>2 - Bad p</value>
+		<value>2 - Zły</value>
 	</data>
 	<data name="TrailerConditionDropdownPoor" xml:space="preserve">
-		<value>3 - Poor p</value>
+		<value>3 - Słaby</value>
 	</data>
 	<data name="TrailerConditionDropdownGood" xml:space="preserve">
-		<value>4 - Good p</value>
+		<value>4 - Dobry</value>
 	</data>
 	<data name="TrailerConditionDropdownExcellent" xml:space="preserve">
-		<value>5 - Excellent p</value>
+		<value>5 - Bardzo dobry</value>
 	</data>
 	<data name="InterfaceStateViewState" xml:space="preserve">
 		<value>Widok</value>
 	</data>
 	<data name="InterfaceStateEditState" xml:space="preserve">
-		<value>Edzcja</value>
+		<value>Edycja</value>
 	</data>
 	<data name="InterfaceStateNewState" xml:space="preserve">
 		<value>Nowy</value>

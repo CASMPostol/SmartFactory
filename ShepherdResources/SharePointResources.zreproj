@@ -18,9 +18,9 @@
   </configuration>
   <fileGroups>
     <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="f1acd7f9-16ad-4221-8e47-188d63ac006b">
-      <file filePath="Resources\CASSmartFactoryShepherd.resx" absoluteFilePath="C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherd.resx" uniqueID="a9d0e145-1dc0-4441-8ed8-11f436a8b5ae" />
-      <file filePath="Resources\CASSmartFactoryShepherd.en-US.resx" absoluteFilePath="C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherd.en-US.resx" uniqueID="eeaeedfe-549f-4192-bcf0-723660141a85" />
-      <file filePath="Resources\CASSmartFactoryShepherd.pl-PL.resx" absoluteFilePath="C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherd.pl-PL.resx" uniqueID="dac38c58-41a1-4d8f-a4ed-73e0f990b079" />
+      <file filePath="Resources\CASSmartFactoryShepherd.resx" absoluteFilePath="C:\ShepherdResources\Resources\CASSmartFactoryShepherd.resx" uniqueID="a9d0e145-1dc0-4441-8ed8-11f436a8b5ae" />
+      <file filePath="Resources\CASSmartFactoryShepherd.en-US.resx" absoluteFilePath="C:\ShepherdResources\Resources\CASSmartFactoryShepherd.en-US.resx" uniqueID="eeaeedfe-549f-4192-bcf0-723660141a85" />
+      <file filePath="Resources\CASSmartFactoryShepherd.pl-PL.resx" absoluteFilePath="C:\ShepherdResources\Resources\CASSmartFactoryShepherd.pl-PL.resx" uniqueID="dac38c58-41a1-4d8f-a4ed-73e0f990b079" />
       <remarks>
       </remarks>
     </fileGroup>
