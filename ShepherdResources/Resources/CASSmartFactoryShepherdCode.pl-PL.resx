@@ -211,4 +211,22 @@
 	<data name="TrailerDropDownErrorMessage" xml:space="preserve">
 		<value>Truck selection error: {0} p</value>
 	</data>
+	<data name="UpdatetrailerNotSelected" xml:space="preserve">
+		<value>Update error: trailer is not selected p</value>
+	</data>
+	<data name="CreateuserMustBeExternalPartner" xml:space="preserve">
+		<value>Current user must be an external partner.p</value>
+	</data>
+	<data name="DeletetrailerIsNotSelected" xml:space="preserve">
+		<value>Delete error: trailer is not selected p</value>
+	</data>
+	<data name="MustBeProvided" xml:space="preserve">
+		<value> must be provided. p</value>
+	</data>
+	<data name="UpdateDriverNotSelected" xml:space="preserve">
+		<value>Update error: driver is not selected p</value>
+	</data>
+	<data name="DeleteDriverNotSelected" xml:space="preserve">
+		<value>Delete error: driver is not selected p</value>
+	</data>
 </root>
