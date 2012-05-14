@@ -249,7 +249,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           if (m_ControlState.ItemID.IsNullOrEmpty())
-            return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: trailer is not selected"), "Update");
+            return new LocalStateMachineEngine.ActionResult(new ApplicationException("UpdatetrailerNotSelected".GetLocalizedString()), "Update");
           Trailer _drv = Element.GetAtIndex<Trailer>(_EDC.Trailer, m_ControlState.ItemID);
           LocalStateMachineEngine.ActionResult _rr = Update(_drv);
           if (!_rr.ActionSucceeded)
@@ -267,7 +267,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     {
       _itm.AdditionalComments = m_Comments.Text;
       if (m_TrailerTitle.Text.IsNullOrEmpty())
-        return LocalStateMachineEngine.ActionResult.NotValidated(m_TrailerNameLabel.Text + " must be provided.");
+        return LocalStateMachineEngine.ActionResult.NotValidated(m_TrailerNameLabel.Text + "MustBeProvided".GetLocalizedString());
       _itm.Tytuł = m_TrailerTitle.Text;
       return LocalStateMachineEngine.ActionResult.Success;
     }
@@ -281,7 +281,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
         {
           Partner _Partner = Partner.FindForUser(_EDC, SPContext.Current.Web.CurrentUser);
           if (_Partner == null)
-            return LocalStateMachineEngine.ActionResult.NotValidated("Current user must be an external partner.");
+            return LocalStateMachineEngine.ActionResult.NotValidated("CreateuserMustBeExternalPartner".GetLocalizedString());
           Trailer _drv = new Trailer() { Trailer2PartnerTitle = _Partner };
           LocalStateMachineEngine.ActionResult _rr = Update(_drv);
           if (!_rr.ActionSucceeded)
@@ -299,7 +299,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TrailerManager
     private GenericStateMachineEngine<TrailerInterconnectionData>.ActionResult Delete()
     {
       if (m_ControlState.ItemID.IsNullOrEmpty())
-        return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: trailer is not selected"), "Delete");
+        return new LocalStateMachineEngine.ActionResult(new ApplicationException("DeletetrailerIsNotSelected".GetLocalizedString()), "Delete");
       try
       {
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
