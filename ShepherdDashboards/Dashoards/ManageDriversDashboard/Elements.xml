@@ -12,7 +12,7 @@
  </metaData>
  <data>
  <properties>
- <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,DriversList</property>
+ <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_DriversList</property>
  <property name="TitleUrl" type="string">ManageDriversDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
@@ -30,7 +30,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,DriversManager</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_DriversManager</property>
         <property name="Description" type="string">My Visual WebPart</property>
       </properties>
     </data>

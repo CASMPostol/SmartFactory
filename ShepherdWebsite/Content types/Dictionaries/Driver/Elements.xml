@@ -3,12 +3,12 @@
   <ContentType ID="0x0100b0982f01816047b1abff933b9f49b5db"
                Name="Driver"
                Group="CAS Smart Factory Shepherd"
-               Description="$Resources:CASSmartFactoryShepherd,DriversListCT"
+               Description="$Resources:CASSmartFactoryShepherd,CAS_DriversListCT"
                Overwrite="TRUE"
                Inherits="FALSE">
     <Folder TargetName="_cts/Driver" />
     <FieldRefs>
-      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,Driver" />
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Driver" />
       <FieldRef ID="{491CA972-C42C-4936-B8CD-D856E45B05EF}" Name="Driver2PartnerTitle" />
       <FieldRef ID="{9889C906-2676-4309-A8C3-CE3F91D8A640}" Name="IdentityDocumentNumber" />
       <FieldRef ID="{2a464df1-44c1-4851-949d-fcd270f0ccf2}" Name="CellPhone" />

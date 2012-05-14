@@ -3,12 +3,12 @@
   <ContentType ID="0x01004370601701a847c99f7609b048824aa9"
                Name="BusienssDescription"
                Group="CAS Smart Factory Shepherd"
-             Description="$Resources:CASSmartFactoryShepherd,BusinessDescriptionListCT"
+             Description="$Resources:CASSmartFactoryShepherd,CAS_BusinessDescriptionListCT"
              Overwrite="TRUE"
              Inherits="FALSE">
     <Folder TargetName="_cts/BusinessDescription" />
     <FieldRefs>
-      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,BusinessDescription" />
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CAS_BusinessDescription" />
       <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
     </FieldRefs>
     <XmlDocuments>

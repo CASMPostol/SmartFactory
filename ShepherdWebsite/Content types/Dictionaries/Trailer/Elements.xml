@@ -3,12 +3,12 @@
   <ContentType ID="0x01009ef7d9cee9664a48928ad8c8857ada95"
                Name="Trailer"
                Group="CAS Smart Factory Shepherd"
-               Description="$Resources:CASSmartFactoryShepherd,TrailersListCT"
+               Description="$Resources:CASSmartFactoryShepherd,CAS_TrailersListCT"
                Overwrite="TRUE"
                Inherits="FALSE">
     <Folder TargetName="_cts/Trailer" />
     <FieldRefs>
-      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,TrailerPlateNo" />
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CAS_TrailerPlateNo" />
       <FieldRef ID="{C02DF427-580B-433C-8D42-E2CC4484E6F0}" Name="Trailer2PartnerTitle" />
       <FieldRef ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}" Name="AdditionalComments" />
     </FieldRefs>
