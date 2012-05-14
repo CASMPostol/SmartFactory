@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10005"
                 Url="Lists/LoadDescriptionList"
-                Description="$Resources:CASSmartFactoryShepherd,LoadDescriptionList">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_LoadDescriptionList">
   </ListInstance>
 </Elements>

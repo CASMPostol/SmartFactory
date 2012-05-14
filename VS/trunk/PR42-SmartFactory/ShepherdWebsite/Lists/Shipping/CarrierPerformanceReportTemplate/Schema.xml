@@ -5,7 +5,7 @@
       <ContentType ID="0x0100bb5037bbd6ed46b98ac227a358889afa"
               Name="CarrierPerformanceReport"
               Group="CAS Smart Factory Shepherd"
-              Description="$Resources:CASSmartFactoryShepherd,CarrierPerformanceReportListCT"
+              Description="$Resources:CASSmartFactoryShepherd,CAS_CarrierPerformanceReportListCT"
               Overwrite="TRUE"
               Inherits="True">
         <Folder TargetName="_cts/CarrierPerformanceReport" />

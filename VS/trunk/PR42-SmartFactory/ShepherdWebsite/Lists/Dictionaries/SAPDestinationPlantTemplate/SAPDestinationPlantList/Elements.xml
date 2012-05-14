@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10044"
                 Url="Lists/SAPDestinationPlantList"
-                Description="$Resources:CASSmartFactoryShepherd,SAPDestPlantList">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_SAPDestPlantList">
   </ListInstance>
 </Elements>

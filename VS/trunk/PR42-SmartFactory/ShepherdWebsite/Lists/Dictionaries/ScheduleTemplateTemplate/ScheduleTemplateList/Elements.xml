@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10000"
                 Url="Lists/ScheduleTemplateList"
-                Description="$Resources:CASSmartFactoryShepherd,ScheduleTemplateList">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_ScheduleTemplateList">
   </ListInstance>
 </Elements>

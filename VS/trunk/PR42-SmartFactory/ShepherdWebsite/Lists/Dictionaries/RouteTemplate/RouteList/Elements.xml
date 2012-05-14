@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10045"
                 Url="Lists/RouteList"
-                Description="$Resources:CASSmartFactoryShepherd,RouteList">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_RouteList">
   </ListInstance>
 </Elements>

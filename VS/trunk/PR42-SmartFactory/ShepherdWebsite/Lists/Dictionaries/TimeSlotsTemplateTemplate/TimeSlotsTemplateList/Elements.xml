@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10050"
                 Url="Lists/TimeSlotsTemplateList"
-                Description="$Resources:CASSmartFactoryShepherd,TimeSlotTemplateList">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_TimeSlotTemplateList">
   </ListInstance>
 </Elements>

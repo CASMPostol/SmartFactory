@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10001"
                 Url="Lists/AlarmsAndEventsList"
-                Description="$Resources:CASSmartFactoryShepherd,AlarmsAndEventsList">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_AlarmsAndEventsList">
   </ListInstance>
 </Elements>

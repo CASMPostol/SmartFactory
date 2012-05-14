@@ -5,7 +5,7 @@
       <ContentType ID="0x0101000276600256fa44439b3aa6a5221f14c4"
                    Name="EscortPO"
                    Group="CAS Smart Factory Shepherd"
-                   Description="$Resources:CASSmartFactoryShepherd,EscortPOLibraryCT"
+                   Description="$Resources:CASSmartFactoryShepherd,CAS_EscortPOLibraryCT"
                    Overwrite="TRUE"
                    Inherits="TRUE">
         <Folder TargetName="EscortPO" />

@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10052"
                 Url="Lists/FreightPOLibrary"
-                Description="$Resources:CASSmartFactoryShepherd,FreightPOLibrary">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_FreightPOLibrary">
   </ListInstance>
 </Elements>

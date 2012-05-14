@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="$Resources:CASSmartFactoryShepherd,Drivers"
-        Description="$Resources:CASSmartFactoryShepherd,DriversList"
+        DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Drivers"
+        Description="$Resources:CASSmartFactoryShepherd,CAS_DriversList"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

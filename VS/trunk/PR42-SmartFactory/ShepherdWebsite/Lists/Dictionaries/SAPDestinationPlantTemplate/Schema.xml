@@ -5,12 +5,12 @@
       <ContentType ID="0x010091a84cff2df74c3b847a78e9f9d503d4"
                    Name="SAPDestinationPlant"
                    Group="CAS Smart Factory Shepherd"
-                   Description="$Resources:CASSmartFactoryShepherd,SAPDestinationPlantsListCT"
+                   Description="$Resources:CASSmartFactoryShepherd,CAS_SAPDestinationPlantsListCT"
                    Overwrite="TRUE"
                    Inherits="FALSE">
         <Folder TargetName="_cts/SAPDestinationPlantCT" />
         <FieldRefs>
-          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,SAPDestPlant" />
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CAS_SAPDestPlant" />
           <FieldRef  Name="Dummy" ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}" Hidden="TRUE" />
         </FieldRefs>
         <XmlDocuments>

@@ -7,8 +7,8 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="110"
-        DisplayName="$Resources:CASSmartFactoryShepherd,SecuritySealProtocolLibrary"
-        Description="$Resources:CASSmartFactoryShepherd,SecuritySealProtocolLibrary"
+        DisplayName="$Resources:CASSmartFactoryShepherd,CAS_SecuritySealProtocolLibrary"
+        Description="$Resources:CASSmartFactoryShepherd,CAS_SecuritySealProtocolLibrary"
         Image="/_layouts/images/itdl.png"
         DocumentTemplate="121"/>
 </Elements>

@@ -5,12 +5,12 @@
       <ContentType ID="0x0100bbd0d4ab58624f5b900fece61eec2988"
                    Name="Shipping"
                    Group="CAS Smart Factory Shepherd"
-                   Description="$Resources:CASSmartFactoryShepherd,ShippingsListCT"
+                   Description="$Resources:CASSmartFactoryShepherd,CAS_ShippingsListCT"
                    Overwrite="TRUE"
                    Inherits="FALSE">
         <Folder TargetName="_cts/Shipping" />
         <FieldRefs>
-          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,Shipping" />
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Shipping" />
           <FieldRef ID="{4C11FA1B-CEFC-4005-8194-F8FF071901B2}" Name="ReportPeriod" />
           <FieldRef ID="{C7CA4AA6-8399-4714-A4A4-42145FABA936}" Name="PartnerTitle" />
           <FieldRef ID="{810E3EA1-438F-484A-B88B-914C6C4915BB}" Name="Shipping2WarehouseTitle" />

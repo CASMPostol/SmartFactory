@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10040"
                 Url="Lists/ShippingPointList"
-                Description="$Resources:CASSmartFactoryShepherd,ShippingPointList">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_ShippingPointList">
   </ListInstance>
 </Elements>

@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10041"
                 Url="Lists/DriverList"
-                Description="$Resources:CASSmartFactoryShepherd,Drivers">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_Drivers">
   </ListInstance>
 </Elements>

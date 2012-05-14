@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10053"
                 Url="Lists/EscortPOLibrary"
-                Description="$Resources:CASSmartFactoryShepherd,SecurityEscortPOLibrary">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_SecurityEscortPOLibrary">
   </ListInstance>
 </Elements>

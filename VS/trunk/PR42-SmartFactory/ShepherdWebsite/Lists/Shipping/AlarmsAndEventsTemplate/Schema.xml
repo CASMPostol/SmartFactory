@@ -5,7 +5,7 @@
       <ContentType ID="0x010049aa7238fce34be18336f419ae924845"
                    Name="AlarmsAndEvents"
                    Group="CAS Smart Factory Shepherd"
-                   Description="$Resources:CASSmartFactoryShepherd,AlarmsAndEventsListCT"
+                   Description="$Resources:CASSmartFactoryShepherd,CAS_AlarmsAndEventsListCT"
                    Overwrite="True"
                    Inherits="True">
         <Folder TargetName="_cts/AlarmsAndEvents" />

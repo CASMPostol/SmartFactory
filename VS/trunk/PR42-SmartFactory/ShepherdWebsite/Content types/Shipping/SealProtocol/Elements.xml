@@ -3,7 +3,7 @@
   <ContentType ID="0x010100ccfccb37046e4ed39c17d28fae78ed47"
                Name="SealProtocol"
                Group="CAS Smart Factory Shepherd"
-               Description="$Resources:CASSmartFactoryShepherd,SecuritySealProtocolLibraryCT"
+               Description="$Resources:CASSmartFactoryShepherd,CAS_SecuritySealProtocolLibraryCT"
                Overwrite="TRUE"
                Inherits="TRUE">
     <Folder TargetName="SealProtocol" />
