@@ -241,13 +241,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
     }
     private LocalStateMachineEngine.ActionResult Update()
     {
-
       try
       {
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
         {
           if (m_ControlState.ItemID.IsNullOrEmpty())
-            return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: driver is not selected"), "Update");
+            return new LocalStateMachineEngine.ActionResult(new ApplicationException("UpdateDriverNotSelected".GetLocalizedString()), "Update");
           Driver _drv = Element.GetAtIndex<Driver>(_EDC.Driver, m_ControlState.ItemID);
           LocalStateMachineEngine.ActionResult _rr = Update(_drv);
           if (!_rr.ActionSucceeded)
@@ -266,7 +265,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
       _drv.IdentityDocumentNumber = m_DriverIDNumber.Text;
       _drv.CellPhone = m_DriverMobileNo.Text;
       if (m_DriverTitle.Text.IsNullOrEmpty())
-        return LocalStateMachineEngine.ActionResult.NotValidated(m_DriverNameLabel.Text + " must be provided.");
+        return LocalStateMachineEngine.ActionResult.NotValidated(m_DriverNameLabel.Text + "MustBeProvided".GetLocalizedString());
       _drv.Tytuł = m_DriverTitle.Text;
       return LocalStateMachineEngine.ActionResult.Success;
     }
@@ -280,7 +279,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
         {
           Partner _Partner = Partner.FindForUser(_EDC, SPContext.Current.Web.CurrentUser);
           if (_Partner == null)
-            return LocalStateMachineEngine.ActionResult.NotValidated("Current user must be an external partner.");
+            return LocalStateMachineEngine.ActionResult.NotValidated("CreateuserMustBeExternalPartner".GetLocalizedString());
           Driver _drv = new Driver() { Driver2PartnerTitle = _Partner };
           LocalStateMachineEngine.ActionResult _rr = Update(_drv);
           if (!_rr.ActionSucceeded)
@@ -298,7 +297,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.DriversManager
     private GenericStateMachineEngine<DriverInterconnectionData>.ActionResult Delete()
     {
       if (m_ControlState.ItemID.IsNullOrEmpty())
-        return new LocalStateMachineEngine.ActionResult(new ApplicationException("Update error: driver is not selected"), "Delete");
+        return new LocalStateMachineEngine.ActionResult(new ApplicationException("DeleteDriverNotSelected".GetLocalizedString()), "Delete");
       try
       {
         using (EntitiesDataContext _EDC = new EntitiesDataContext(SPContext.Current.Web.Url))
