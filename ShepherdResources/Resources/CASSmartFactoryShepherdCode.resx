@@ -196,4 +196,19 @@
 	<data name="InterfaceStateNewState" xml:space="preserve">
 		<value>New</value>
 	</data>
+	<data name="NewDataEventHandlerErrorMesage" xml:space="preserve">
+		<value>User interface update error for shipping {0} with message: {1}</value>
+	</data>
+	<data name="RemoveDriverButtonErrorMessage" xml:space="preserve">
+		<value>Remove driver error: {0}</value>
+	</data>
+	<data name="AddDriverButtonErrorMessage" xml:space="preserve">
+		<value>Add driver error: {0}</value>
+	</data>
+	<data name="TruckDropDownErrorMessage" xml:space="preserve">
+		<value>Truck selection error: {0}</value>
+	</data>
+	<data name="TrailerDropDownErrorMessage" xml:space="preserve">
+		<value>Truck selection error: {0}</value>
+	</data>
 </root>

@@ -164,7 +164,7 @@
 		<value>-- Operacja zablokowana --</value>
 	</data>
 	<data name="SetInterconnectionDataTimeSlotInUse" xml:space="preserve">
-		<value>Time slot is in use but it is selected as free. (Okno czasowe jest w użyciu, ale jest wybrane jako wolne)</value>
+		<value>Okno czasowe jest w użyciu, ale jest wybrane jako wolne.</value>
 	</data>
 	<data name="SetInterconnectionDataItIsTooLate" xml:space="preserve">
 		<value>Jest zbyt późno, by zmienić harmonogram.</value>
@@ -195,5 +195,20 @@
 	</data>
 	<data name="InterfaceStateNewState" xml:space="preserve">
 		<value>Nowy</value>
+	</data>
+	<data name="NewDataEventHandlerErrorMesage" xml:space="preserve">
+		<value>User interface update error for shipping {0} with message: {1} p</value>
+	</data>
+	<data name="RemoveDriverButtonErrorMessage" xml:space="preserve">
+		<value>Remove driver error: {0} p</value>
+	</data>
+	<data name="AddDriverButtonErrorMessage" xml:space="preserve">
+		<value>Add driver error: {0} p</value>
+	</data>
+	<data name="TruckDropDownErrorMessage" xml:space="preserve">
+		<value>Truck selection error: {0} p</value>
+	</data>
+	<data name="TrailerDropDownErrorMessage" xml:space="preserve">
+		<value>Truck selection error: {0} p</value>
 	</data>
 </root>

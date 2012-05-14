@@ -11,7 +11,7 @@
 &lt;/XtraSerializer&gt;</globalSetting>
     <globalSetting name="projectMruItems">&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;items&gt;&lt;item type="2" checksum="2270574675" /&gt;&lt;/items&gt;</globalSetting>
     <userSetting name="mpostol@HQ.filesInitialDir">C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources</userSetting>
-    <userSetting name="mpostol@HQ.FindText">ShepherdWebsiteFeature</userSetting>
+    <userSetting name="mpostol@HQ.FindText">ShippingNumber</userSetting>
     <userSetting name="mpostol@HQ.RecentFiles">C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherd.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherd.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherd.pl-PL.resx</userSetting>
     <userSetting name="bwojciechowski@HQ.FindText">
     </userSetting>
