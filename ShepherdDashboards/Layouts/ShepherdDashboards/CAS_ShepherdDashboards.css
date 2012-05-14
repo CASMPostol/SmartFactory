@@ -29,7 +29,7 @@
     background-image:url(/_layouts/images/ShepherdDashboards/button_background.jpg);
     background-color:#FFFFFF;
     font-family:Verdana;
-    font-size:10pt; 
+    font-size:8pt; 
 }
 .Button_TR
 {
@@ -44,7 +44,7 @@
     background-image:url(/_layouts/images/ShepherdDashboards/button_background.jpg);
     background-color:#FFFFFF;
     font-family:Verdana;
-    font-size:10pt; 
+    font-size:8pt; 
 }
 .Table
 {
@@ -60,9 +60,9 @@
 }
 .Label
 {
-    font-size:10pt;
+    font-size:8pt;
     font-family:Verdana;
-    color:#3D3D3D;
+    color:#6d6f72;
 }
 .DropDown
 {
@@ -81,7 +81,7 @@
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
-    font-size:10pt;
+    font-size:8pt;
     width:200px;
 }
 .ListBox
@@ -91,7 +91,7 @@
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
-    font-size:10pt;
+    font-size:8pt;
 }
 .ListBoxInside
 {
@@ -100,7 +100,7 @@
     border-style:solid;
     background-color:#FFFFFF;
     font-family:Verdana;
-    font-size:10pt;
+    font-size:8pt;
     width:200px;
 }
 /* TimeSlot Callendar Part */

@@ -89,7 +89,7 @@
     ID="{6958BFF5-474B-4385-A9AD-01D5C6E97316}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="$Resources:CASSmartFactoryShepherd,City" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,CASSFCity" />
   <Field
     Name="SecurityPOSentInvoiceToMultiline"
     ID="{9655FAD3-12BD-4059-AE3F-684F7BF420B6}"
@@ -113,7 +113,7 @@
     ID="{0E5465B4-D5E8-4C08-B381-FFD3055A7FA4}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="$Resources:CASSmartFactoryShepherd,City" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,CASSFCity" />
   <Field
     Name="SecurityPOEscortProvider"
     ID="{5E5625FC-BF90-4A4D-A559-064D2F9768A1}"
@@ -185,7 +185,7 @@
     ID="{97A6F037-B8B1-443B-9D02-8CF5A46BA5D1}"
     Type="Text"
     Group="CAS Smart Factory Shepherd"
-    DisplayName="$Resources:CASSmartFactoryShepherd,City" />
+    DisplayName="$Resources:CASSmartFactoryShepherd,CASSFCity" />
   <Field
     Name="FreightPOForwarder"
     ID="{357CCA41-00F4-4227-8481-64B6B224288D}"

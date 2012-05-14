@@ -10,7 +10,7 @@
                  Inherits="FALSE">
         <Folder TargetName="_cts/City" />
         <FieldRefs>
-          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,City" />
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CASSFCity" />
           <FieldRef ID="{C4CAE2DF-1DE3-43A3-9500-02091BDADA6E}" Name="CountryTitle" />
           <FieldRef ID="{B978ADBB-D6AC-465E-9604-7798FD06A4F1}" Name="CountryGroupTitle" />
         </FieldRefs>

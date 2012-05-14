@@ -154,7 +154,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="$Resources:CASSmartFactoryShepherd,City"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CASSFCity"
     Group="CAS Smart Factory Shepherd"
     Required="False"
     Hidden="False"

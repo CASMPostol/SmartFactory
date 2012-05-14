@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,683 +59,737 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
   <data name="CASSFS02EndMinute" xml:space="preserve">
     <value>Minuta zakończenia</value>
   </data>
   <data name="AlarmsAndEventsListCT" xml:space="preserve">
     <value>Typ zawartości listy Alarmy &amp; Zdarzenia</value>
   </data>
-	<data name="BusinessDescriptionListCT" xml:space="preserve">
+  <data name="BusinessDescriptionListCT" xml:space="preserve">
     <value>Typ zawartości  listy Opis</value>
   </data>
-	<data name="CarrierPerformanceReportListCT" xml:space="preserve">
+  <data name="CarrierPerformanceReportListCT" xml:space="preserve">
     <value>Typ zawartości  listy  Raport skuteczności przewoźnika</value>
   </data>
-	<data name="CarriersListCT" xml:space="preserve">
+  <data name="CarriersListCT" xml:space="preserve">
     <value>Typ zawartości  listy Przewoźnik</value>
   </data>
-	<data name="CityListCT" xml:space="preserve">
+  <data name="CityListCT" xml:space="preserve">
     <value>Typ zawartości  listy Miasto</value>
   </data>
-	<data name="CommodityListCT" xml:space="preserve">
+  <data name="CommodityListCT" xml:space="preserve">
     <value>Typ zawartości  listy Towar</value>
   </data>
-	<data name="CountryListCT" xml:space="preserve">
+  <data name="CountryListCT" xml:space="preserve">
     <value>Typ zawartości listy Państwo</value>
   </data>
-	<data name="CurrencyListCT" xml:space="preserve">
+  <data name="CurrencyListCT" xml:space="preserve">
     <value>Typ zawartości listy Waluta</value>
   </data>
-	<data name="DestinationMarketListCT" xml:space="preserve">
+  <data name="DestinationMarketListCT" xml:space="preserve">
     <value>Typ zawartości listy Rynek docelowy</value>
   </data>
-	<data name="DistributionListCT" xml:space="preserve">
+  <data name="DistributionListCT" xml:space="preserve">
     <value>Typ zawartości listy dystrybucyjnej</value>
   </data>
-	<data name="DriversListCT" xml:space="preserve">
+  <data name="DriversListCT" xml:space="preserve">
     <value>Typ zawartości  listy Kierowcy</value>
   </data>
-	<data name="DriversTeamListCT" xml:space="preserve">
+  <data name="DriversTeamListCT" xml:space="preserve">
     <value>Typ zawartości listy Zespół kierowców</value>
   </data>
-	<data name="EscortPOLibraryCT" xml:space="preserve">
+  <data name="EscortPOLibraryCT" xml:space="preserve">
     <value>Typ zawartości biblioteki Zlecenie eskorty</value>
   </data>
-	<data name="ExchangeRateListCT" xml:space="preserve">
+  <data name="ExchangeRateListCT" xml:space="preserve">
     <value>Typ zawartości listy Kurs wymiany</value>
   </data>
-	<data name="FreightPOLibraryCT" xml:space="preserve">
+  <data name="FreightPOLibraryCT" xml:space="preserve">
     <value>Typ zawartości biblioteki Zlecenia spedycyjne</value>
   </data>
-	<data name="LoadDescriptionListCT" xml:space="preserve">
+  <data name="LoadDescriptionListCT" xml:space="preserve">
     <value>Typ zawartości listy Opis ładunku</value>
   </data>
-	<data name="PartnersListCT" xml:space="preserve">
+  <data name="PartnersListCT" xml:space="preserve">
     <value>Typ zawartości listy Partner</value>
   </data>
-	<data name="PO_No" xml:space="preserve">
+  <data name="PO_No" xml:space="preserve">
     <value>Zamówienie nr</value>
   </data>
-	<data name="RoutesListCT" xml:space="preserve">
+  <data name="RoutesListCT" xml:space="preserve">
     <value>Typ zawartości listy Trasa</value>
   </data>
-	<data name="SAPDestinationPlantsListCT" xml:space="preserve">
+  <data name="SAPDestinationPlantsListCT" xml:space="preserve">
     <value>Typ zawartości listy SAP fabryka docelowa</value>
   </data>
-	<data name="CASSFS02ScheduleTemplateListCT" xml:space="preserve">
+  <data name="CASSFS02ScheduleTemplateListCT" xml:space="preserve">
     <value>Typ zawartości listy Szablon harmonogramu</value>
   </data>
-	<data name="SecurityEscortCatalogListCT" xml:space="preserve">
+  <data name="SecurityEscortCatalogListCT" xml:space="preserve">
     <value>Typ zawartości listy Katalog eskorty</value>
   </data>
-	<data name="SecuritySealProtocolLibraryCT" xml:space="preserve">
+  <data name="SecuritySealProtocolLibraryCT" xml:space="preserve">
     <value>Typ zawartości biblioteki Protokół zabezpieczeń - plomb</value>
   </data>
-	<data name="ShepherdWebsiteFeature" xml:space="preserve">
+  <data name="ShepherdWebsiteFeature" xml:space="preserve">
     <value>Shepherd - funkcja zbioru wirtryn</value>
   </data>
-	<data name="ShepherdWebsiteFeatureDes" xml:space="preserve">
+  <data name="ShepherdWebsiteFeatureDes" xml:space="preserve">
     <value>Zawieras model informacyjny dla aplikacji internetowej Shepherd</value>
   </data>
-	<data name="ShipmentTypeListCT" xml:space="preserve">
+  <data name="ShipmentTypeListCT" xml:space="preserve">
     <value>Typ zawartości listy Forma transportu</value>
   </data>
-	<data name="ShippingPointListCT" xml:space="preserve">
+  <data name="ShippingPointListCT" xml:space="preserve">
     <value>Typ zawartości listy Punkt dostawy/wysyłki</value>
   </data>
-	<data name="ShippingsListCT" xml:space="preserve">
+  <data name="ShippingsListCT" xml:space="preserve">
     <value>Typ zawartości listy Operacje</value>
   </data>
-	<data name="TimeSlotListCT" xml:space="preserve">
+  <data name="TimeSlotListCT" xml:space="preserve">
     <value>Typ zawartości listy Okno czasowe</value>
   </data>
-	<data name="TimeSlotTemplateListCT" xml:space="preserve">
+  <data name="TimeSlotTemplateListCT" xml:space="preserve">
     <value>Typ zawartości listy Szablon okna czasowego</value>
   </data>
-	<data name="TrailersListCT" xml:space="preserve">
+  <data name="TrailersListCT" xml:space="preserve">
     <value>Typ zawartości listy Naczepa</value>
   </data>
-	<data name="TranspotUnitTypeListCT" xml:space="preserve">
+  <data name="TranspotUnitTypeListCT" xml:space="preserve">
     <value>Typ zawartości listy Jednostka transportowa</value>
   </data>
-	<data name="TrucksListCT" xml:space="preserve">
+  <data name="TrucksListCT" xml:space="preserve">
     <value>Typ zawartości listy Samochód dostawczy</value>
   </data>
-	<data name="WarehousesListCT" xml:space="preserve">
+  <data name="WarehousesListCT" xml:space="preserve">
     <value>Typ zawartości listy Magazyn</value>
   </data>
-	<data name="ActualDispatchDate" xml:space="preserve">
+  <data name="ActualDispatchDate" xml:space="preserve">
     <value>Faktyczna data wysyłki</value>
   </data>
-	<data name="Address" xml:space="preserve">
+  <data name="Address" xml:space="preserve">
     <value>Adres</value>
   </data>
-	<data name="Awaiting" xml:space="preserve">
+  <data name="Awaiting" xml:space="preserve">
     <value>Oczekuje (tak/nie)</value>
   </data>
-	<data name="BusinessDescription" xml:space="preserve">
+  <data name="BusinessDescription" xml:space="preserve">
     <value>Opis</value>
   </data>
-	<data name="Carrier" xml:space="preserve">
+  <data name="Carrier" xml:space="preserve">
     <value>Przewoźnik</value>
   </data>
-	<data name="City" xml:space="preserve">
+  <data name="CASSFCity" xml:space="preserve">
     <value>Miasto</value>
   </data>
-	<data name="CityOfDeparture" xml:space="preserve">
+  <data name="CityOfDeparture" xml:space="preserve">
     <value>Miasto wysyłki</value>
   </data>
-	<data name="Comments" xml:space="preserve">
+  <data name="Comments" xml:space="preserve">
     <value>Uwagi</value>
   </data>
-	<data name="Commodity" xml:space="preserve">
+  <data name="Commodity" xml:space="preserve">
     <value>Towar</value>
   </data>
-	<data name="Company" xml:space="preserve">
+  <data name="Company" xml:space="preserve">
     <value>Firma</value>
   </data>
-	<data name="ContainersNo" xml:space="preserve">
+  <data name="ContainersNo" xml:space="preserve">
     <value>Kontener nr</value>
   </data>
-	<data name="Consignee" xml:space="preserve">
+  <data name="Consignee" xml:space="preserve">
     <value>Odbiorca</value>
   </data>
-	<data name="Country" xml:space="preserve">
+  <data name="Country" xml:space="preserve">
     <value>Państwo</value>
   </data>
-	<data name="Currency" xml:space="preserve">
+  <data name="Currency" xml:space="preserve">
     <value>Waluta</value>
   </data>
-	<data name="Date" xml:space="preserve">
+  <data name="Date" xml:space="preserve">
     <value>Data</value>
   </data>
-	<data name="Day" xml:space="preserve">
+  <data name="Day" xml:space="preserve">
     <value>Dzień</value>
   </data>
-	<data name="DeliveryToCountry" xml:space="preserve">
+  <data name="DeliveryToCountry" xml:space="preserve">
     <value>Dostawa do kraju</value>
   </data>
-	<data name="DepartureCity" xml:space="preserve">
+  <data name="DepartureCity" xml:space="preserve">
     <value>Miasto wysyłki</value>
   </data>
-	<data name="Description" xml:space="preserve">
+  <data name="Description" xml:space="preserve">
     <value>Opis</value>
   </data>
-	<data name="Direction" xml:space="preserve">
+  <data name="Direction" xml:space="preserve">
     <value>Kierunek</value>
   </data>
-	<data name="DispatchDate" xml:space="preserve">
+  <data name="DispatchDate" xml:space="preserve">
     <value>Data wysyłki</value>
   </data>
-	<data name="Driver" xml:space="preserve">
+  <data name="Driver" xml:space="preserve">
     <value>Kierowca</value>
   </data>
-	<data name="DriversPhone" xml:space="preserve">
+  <data name="DriversPhone" xml:space="preserve">
     <value>Nr tel. kierowcy</value>
   </data>
-	<data name="Email" xml:space="preserve">
+  <data name="Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
-	<data name="EndHour" xml:space="preserve">
+  <data name="EndHour" xml:space="preserve">
     <value>Godzina zakończenia</value>
   </data>
-	<data name="EscortCosts" xml:space="preserve">
+  <data name="EscortCosts" xml:space="preserve">
     <value>Koszt eskorty</value>
   </data>
-	<data name="EscortDestination" xml:space="preserve">
+  <data name="EscortDestination" xml:space="preserve">
     <value>Miejsce docelowe eskorty</value>
   </data>
-	<data name="EscortPhone" xml:space="preserve">
+  <data name="EscortPhone" xml:space="preserve">
     <value>Nr tel. eskorty</value>
   </data>
-	<data name="EscortPlateNo" xml:space="preserve">
+  <data name="EscortPlateNo" xml:space="preserve">
     <value>Nr rej. samochodu eskorty</value>
   </data>
-	<data name="EuroPalletsQuantity" xml:space="preserve">
+  <data name="EuroPalletsQuantity" xml:space="preserve">
     <value>Ilość palet Euro</value>
   </data>
-	<data name="ExchangeRate" xml:space="preserve">
+  <data name="ExchangeRate" xml:space="preserve">
     <value>Kurs wymiany (do USD)</value>
   </data>
-	<data name="FirstDriver" xml:space="preserve">
+  <data name="FirstDriver" xml:space="preserve">
     <value>Kierowca nr 1</value>
   </data>
-	<data name="FirstEscort" xml:space="preserve">
+  <data name="FirstEscort" xml:space="preserve">
     <value>Ochroniarz nr 1</value>
   </data>
-	<data name="Forwarder" xml:space="preserve">
+  <data name="Forwarder" xml:space="preserve">
     <value>Spedytor</value>
   </data>
-	<data name="ForwarderOceanAir" xml:space="preserve">
+  <data name="ForwarderOceanAir" xml:space="preserve">
     <value>Spedytor morski/lotniczy</value>
   </data>
-	<data name="FreightCost" xml:space="preserve">
+  <data name="FreightCost" xml:space="preserve">
     <value>Fracht</value>
   </data>
-	<data name="FreightPayer" xml:space="preserve">
+  <data name="FreightPayer" xml:space="preserve">
     <value>Płatnik</value>
   </data>
-	<data name="FreightPO" xml:space="preserve">
+  <data name="FreightPO" xml:space="preserve">
     <value>Zlecenie spedycyjne</value>
   </data>
-	<data name="Group" xml:space="preserve">
+  <data name="Group" xml:space="preserve">
     <value>Rejon</value>
   </data>
-	<data name="IDNumber" xml:space="preserve">
+  <data name="IDNumber" xml:space="preserve">
     <value>Dokument nr</value>
   </data>
-	<data name="Incoterm" xml:space="preserve">
+  <data name="Incoterm" xml:space="preserve">
     <value>Incoterms</value>
   </data>
-	<data name="InduPalletsQuantity" xml:space="preserve">
+  <data name="InduPalletsQuantity" xml:space="preserve">
     <value>Ilość palet INDU</value>
   </data>
-	<data name="LoadingDate" xml:space="preserve">
+  <data name="LoadingDate" xml:space="preserve">
     <value>Data załadunku</value>
   </data>
-	<data name="LoadingType" xml:space="preserve">
+  <data name="LoadingType" xml:space="preserve">
     <value>Rodzaj załadunku</value>
   </data>
-	<data name="Market" xml:space="preserve">
+  <data name="Market" xml:space="preserve">
     <value>Rynek</value>
   </data>
-	<data name="MaterialMaster" xml:space="preserve">
+  <data name="MaterialMaster" xml:space="preserve">
     <value>Material master</value>
   </data>
-	<data name="NIPVATNo" xml:space="preserve">
+  <data name="NIPVATNo" xml:space="preserve">
     <value>NIP</value>
   </data>
-	<data name="NumberTUDelayed" xml:space="preserve">
+  <data name="NumberTUDelayed" xml:space="preserve">
     <value>Jedn. opóźnione</value>
   </data>
-	<data name="NumberTUDelayed1h" xml:space="preserve">
+  <data name="NumberTUDelayed1h" xml:space="preserve">
     <value>Jedn. opóźnione &gt;1 godz.</value>
   </data>
-	<data name="NumberTUNotDelivered" xml:space="preserve">
+  <data name="NumberTUNotDelivered" xml:space="preserve">
     <value>Jedn. niedostarczone</value>
   </data>
-	<data name="NumberTUOrdered" xml:space="preserve">
+  <data name="NumberTUOrdered" xml:space="preserve">
     <value>Jedn. zamówione</value>
   </data>
-	<data name="NumberTURejected" xml:space="preserve">
+  <data name="NumberTURejected" xml:space="preserve">
     <value>Jedn. odrzucone / zła jakość</value>
   </data>
-	<data name="PalletSize" xml:space="preserve">
+  <data name="PalletSize" xml:space="preserve">
     <value>Rozmiar palet</value>
   </data>
-	<data name="PalletType" xml:space="preserve">
+  <data name="PalletType" xml:space="preserve">
     <value>Rodzaj palet</value>
   </data>
-	<data name="PayerAddress" xml:space="preserve">
+  <data name="PayerAddress" xml:space="preserve">
     <value>Adres płatnika</value>
   </data>
-	<data name="PayerCity" xml:space="preserve">
+  <data name="PayerCity" xml:space="preserve">
     <value>Miasto płatnika</value>
   </data>
-	<data name="PayerName" xml:space="preserve">
+  <data name="PayerName" xml:space="preserve">
     <value>Nazwa płatnika</value>
   </data>
-	<data name="PayerNIP" xml:space="preserve">
+  <data name="PayerNIP" xml:space="preserve">
     <value>NIP płatnika</value>
   </data>
-	<data name="PayerZipCode" xml:space="preserve">
+  <data name="PayerZipCode" xml:space="preserve">
     <value>Kod płatnika</value>
   </data>
-	<data name="PortOfDeparture" xml:space="preserve">
+  <data name="PortOfDeparture" xml:space="preserve">
     <value>Port wysyłki</value>
   </data>
-	<data name="Remark" xml:space="preserve">
+  <data name="Remark" xml:space="preserve">
     <value>Uwaga</value>
   </data>
-	<data name="ReportPeriod" xml:space="preserve">
+  <data name="ReportPeriod" xml:space="preserve">
     <value>Okres raportu</value>
   </data>
-	<data name="Route" xml:space="preserve">
+  <data name="Route" xml:space="preserve">
     <value>Trasa</value>
   </data>
-	<data name="SAPDestPlant" xml:space="preserve">
+  <data name="SAPDestPlant" xml:space="preserve">
     <value>SAP fabryka docelowa</value>
   </data>
-	<data name="CASSFS02ScheduleTemplate" xml:space="preserve">
+  <data name="CASSFS02ScheduleTemplate" xml:space="preserve">
     <value>Szablon harmonogramu</value>
   </data>
-	<data name="SecondDriver" xml:space="preserve">
+  <data name="SecondDriver" xml:space="preserve">
     <value>Kierowca nr 2</value>
   </data>
-	<data name="SecondEscort" xml:space="preserve">
+  <data name="SecondEscort" xml:space="preserve">
     <value>Ochroniarz nr 2</value>
   </data>
-	<data name="SecurityCost" xml:space="preserve">
+  <data name="SecurityCost" xml:space="preserve">
     <value>Security cost</value>
   </data>
-	<data name="SecurityEscort" xml:space="preserve">
+  <data name="SecurityEscort" xml:space="preserve">
     <value>Eskorta</value>
   </data>
-	<data name="SecurityEscortPO" xml:space="preserve">
+  <data name="SecurityEscortPO" xml:space="preserve">
     <value>Zlecenie eskorty</value>
   </data>
-	<data name="SecurityEscortProvider" xml:space="preserve">
+  <data name="SecurityEscortProvider" xml:space="preserve">
     <value>Dostawca escorty</value>
   </data>
-	<data name="SecuritySealProtocol" xml:space="preserve">
+  <data name="SecuritySealProtocol" xml:space="preserve">
     <value>Protokół zabezpieczeń - plomb</value>
   </data>
-	<data name="SendInvoiceTo" xml:space="preserve">
+  <data name="SendInvoiceTo" xml:space="preserve">
     <value>Miejsce wysyłki faktury</value>
   </data>
-	<data name="ServiceType" xml:space="preserve">
+  <data name="ServiceType" xml:space="preserve">
     <value>Rodzaj partnera</value>
   </data>
-	<data name="ShepherdRole" xml:space="preserve">
+  <data name="ShepherdRole" xml:space="preserve">
     <value>Shepherd - role</value>
   </data>
-	<data name="ShepherdUser" xml:space="preserve">
+  <data name="ShepherdUser" xml:space="preserve">
     <value>Shepherd - użytkownicy</value>
   </data>
-	<data name="ShipmentType" xml:space="preserve">
+  <data name="ShipmentType" xml:space="preserve">
     <value>Forma transportu</value>
   </data>
-	<data name="CASSFS02ShippingPoint" xml:space="preserve">
+  <data name="CASSFS02ShippingPoint" xml:space="preserve">
     <value>Punkt dostawy/wysyłki</value>
   </data>
-	<data name="StartHour" xml:space="preserve">
+  <data name="StartHour" xml:space="preserve">
     <value>Godzina rozpoczęcia</value>
   </data>
-	<data name="StartMinute" xml:space="preserve">
+  <data name="StartMinute" xml:space="preserve">
     <value>Minuta rozpoczęcia</value>
   </data>
-	<data name="TotalCostsPerKU" xml:space="preserve">
+  <data name="TotalCostsPerKU" xml:space="preserve">
     <value>Łączny koszt na KU</value>
   </data>
-	<data name="TotalQuantityKU" xml:space="preserve">
+  <data name="TotalQuantityKU" xml:space="preserve">
     <value>Łączna ilość w KU</value>
   </data>
-	<data name="TrailerPlateNo" xml:space="preserve">
+  <data name="TrailerPlateNo" xml:space="preserve">
     <value>Nr rej. naczepy</value>
   </data>
-	<data name="TransportCost" xml:space="preserve">
+  <data name="TransportCost" xml:space="preserve">
     <value>Koszt transportu</value>
   </data>
-	<data name="TransportUnitType" xml:space="preserve">
+  <data name="TransportUnitType" xml:space="preserve">
     <value>Jednostka transportowa</value>
   </data>
-	<data name="TruckPlateNo" xml:space="preserve">
+  <data name="TruckPlateNo" xml:space="preserve">
     <value>Nr rej. samochodu dostawczego</value>
   </data>
-	<data name="VehicleType" xml:space="preserve">
+  <data name="VehicleType" xml:space="preserve">
     <value>Rodzaj pojazdu</value>
   </data>
-	<data name="VendorNumber" xml:space="preserve">
+  <data name="VendorNumber" xml:space="preserve">
     <value>Nr SAP partnera</value>
   </data>
-	<data name="Warehouse" xml:space="preserve">
+  <data name="Warehouse" xml:space="preserve">
     <value>Magazyn</value>
   </data>
-	<data name="WarehouseAddress" xml:space="preserve">
+  <data name="WarehouseAddress" xml:space="preserve">
     <value>Adres magazynu</value>
   </data>
-	<data name="ActualTimeSpan" xml:space="preserve">
+  <data name="ActualTimeSpan" xml:space="preserve">
     <value>Faktyczny przedział czasowy</value>
   </data>
-	<data name="AdditionalCosts" xml:space="preserve">
+  <data name="AdditionalCosts" xml:space="preserve">
     <value>Koszty dodatkowe</value>
   </data>
-	<data name="AdditionalCostsCurrency" xml:space="preserve">
+  <data name="AdditionalCostsCurrency" xml:space="preserve">
     <value>Waluta kosztów dodatkowych</value>
   </data>
-	<data name="BusinessDescriptionList" xml:space="preserve">
+  <data name="BusinessDescriptionList" xml:space="preserve">
     <value>Lista Opis</value>
   </data>
-	<data name="CancelationReason" xml:space="preserve">
+  <data name="CancelationReason" xml:space="preserve">
     <value>Przyczyna anulowania</value>
   </data>
-	<data name="CarrierList" xml:space="preserve">
+  <data name="CarrierList" xml:space="preserve">
     <value>Lista Przewoźnik</value>
   </data>
-	<data name="CityList" xml:space="preserve">
+  <data name="CityList" xml:space="preserve">
     <value>Lista Miasto</value>
   </data>
-	<data name="CMRNo" xml:space="preserve">
+  <data name="CMRNo" xml:space="preserve">
     <value>CMR nr</value>
   </data>
-	<data name="CommodityList" xml:space="preserve">
+  <data name="CommodityList" xml:space="preserve">
     <value>Lista Towar</value>
   </data>
-	<data name="CountryList" xml:space="preserve">
+  <data name="CountryList" xml:space="preserve">
     <value>Lista Państwo</value>
   </data>
-	<data name="CurrencyList" xml:space="preserve">
+  <data name="CurrencyList" xml:space="preserve">
     <value>Lista Waluta</value>
   </data>
-	<data name="DeliveryNumber" xml:space="preserve">
+  <data name="DeliveryNumber" xml:space="preserve">
     <value>Wydanie nr</value>
   </data>
-	<data name="DestinationMarket" xml:space="preserve">
+  <data name="DestinationMarket" xml:space="preserve">
     <value>Rynek docelowy</value>
   </data>
-	<data name="DestinationMarketList" xml:space="preserve">
+  <data name="DestinationMarketList" xml:space="preserve">
     <value>Lista Rynek docelowy</value>
   </data>
-	<data name="Details" xml:space="preserve">
+  <data name="Details" xml:space="preserve">
     <value>Szczegóły</value>
   </data>
-	<data name="DockNo" xml:space="preserve">
+  <data name="DockNo" xml:space="preserve">
     <value>Rampa nr</value>
   </data>
-	<data name="Drivers" xml:space="preserve">
+  <data name="Drivers" xml:space="preserve">
     <value>Kierowcy</value>
   </data>
-	<data name="DriversList" xml:space="preserve">
+  <data name="DriversList" xml:space="preserve">
     <value>Lista Kierowcy</value>
   </data>
-	<data name="DriversTeam" xml:space="preserve">
+  <data name="DriversTeam" xml:space="preserve">
     <value>Zespół kierowców</value>
   </data>
-	<data name="Duration" xml:space="preserve">
+  <data name="Duration" xml:space="preserve">
     <value>Czas trwania</value>
   </data>
-	<data name="EndTime" xml:space="preserve">
+  <data name="EndTime" xml:space="preserve">
     <value>Czas zakończenia</value>
   </data>
-	<data name="EntryTime" xml:space="preserve">
+  <data name="EntryTime" xml:space="preserve">
     <value>Czas wjazdu</value>
   </data>
-	<data name="EscortCostsCurrency" xml:space="preserve">
+  <data name="EscortCostsCurrency" xml:space="preserve">
     <value>Waluta kosztu eskorty</value>
   </data>
-	<data name="EscortID" xml:space="preserve">
+  <data name="EscortID" xml:space="preserve">
     <value>ID trasy eskorty</value>
   </data>
-	<data name="ETA" xml:space="preserve">
+  <data name="ETA" xml:space="preserve">
     <value>ETA</value>
   </data>
-	<data name="ExitTime" xml:space="preserve">
+  <data name="ExitTime" xml:space="preserve">
     <value>Czas wyjazdu</value>
   </data>
-	<data name="FreightCostsCurrency" xml:space="preserve">
+  <data name="FreightCostsCurrency" xml:space="preserve">
     <value>Waluta frachtu</value>
   </data>
-	<data name="FreightPayerList" xml:space="preserve">
+  <data name="FreightPayerList" xml:space="preserve">
     <value>Lista Płatnik</value>
   </data>
-	<data name="FreightPayerNo" xml:space="preserve">
+  <data name="FreightPayerNo" xml:space="preserve">
     <value>Nr SAP płatnika</value>
   </data>
-	<data name="GoodsQuantity" xml:space="preserve">
+  <data name="GoodsQuantity" xml:space="preserve">
     <value>Ilość towaru</value>
   </data>
-	<data name="InvoiceNo" xml:space="preserve">
+  <data name="InvoiceNo" xml:space="preserve">
     <value>Faktura nr</value>
   </data>
-	<data name="IsDouble" xml:space="preserve">
+  <data name="IsDouble" xml:space="preserve">
     <value>Podwójny (tak/nie)</value>
   </data>
-	<data name="IsOutbound" xml:space="preserve">
+  <data name="IsOutbound" xml:space="preserve">
     <value>Wysyłka (tak/nie)</value>
   </data>
-	<data name="MarketList" xml:space="preserve">
+  <data name="MarketList" xml:space="preserve">
     <value>Lista Rynek</value>
   </data>
-	<data name="Mobile" xml:space="preserve">
+  <data name="Mobile" xml:space="preserve">
     <value>Tel. kom.</value>
   </data>
-	<data name="NumberOfPallets" xml:space="preserve">
+  <data name="NumberOfPallets" xml:space="preserve">
     <value>Ilość palet</value>
   </data>
-	<data name="Occupied" xml:space="preserve">
+  <data name="Occupied" xml:space="preserve">
     <value>Zajęty</value>
   </data>
-	<data name="Owner" xml:space="preserve">
+  <data name="Owner" xml:space="preserve">
     <value>Właściciel</value>
   </data>
-	<data name="Partner" xml:space="preserve">
+  <data name="Partner" xml:space="preserve">
     <value>Partner</value>
   </data>
-	<data name="PartnerList" xml:space="preserve">
+  <data name="PartnerList" xml:space="preserve">
     <value>Lista Partner</value>
   </data>
-	<data name="Priority" xml:space="preserve">
+  <data name="Priority" xml:space="preserve">
     <value>Priorytet</value>
   </data>
-	<data name="RouteID" xml:space="preserve">
+  <data name="RouteID" xml:space="preserve">
     <value>ID trasy</value>
   </data>
-	<data name="RouteList" xml:space="preserve">
+  <data name="RouteList" xml:space="preserve">
     <value>Lista Trasa</value>
   </data>
-	<data name="SAPDestPlantList" xml:space="preserve">
+  <data name="SAPDestPlantList" xml:space="preserve">
     <value>Lista SAP fabryka docelowa</value>
   </data>
-	<data name="ScheduleTemplateList" xml:space="preserve">
+  <data name="ScheduleTemplateList" xml:space="preserve">
     <value>Lista Szablon harmonogramu</value>
   </data>
-	<data name="SecurityEscortRoute" xml:space="preserve">
+  <data name="SecurityEscortRoute" xml:space="preserve">
     <value>Trasa eskorty</value>
   </data>
-	<data name="SecurityEscortRouteList" xml:space="preserve">
+  <data name="SecurityEscortRouteList" xml:space="preserve">
     <value>Lista Trasa eskorty</value>
   </data>
-	<data name="ShipmentTypeList" xml:space="preserve">
+  <data name="ShipmentTypeList" xml:space="preserve">
     <value>Lista Forma transportu</value>
   </data>
-	<data name="Shipping" xml:space="preserve">
+  <data name="Shipping" xml:space="preserve">
     <value>Operacja</value>
   </data>
-	<data name="ShippingID" xml:space="preserve">
+  <data name="ShippingID" xml:space="preserve">
     <value>ID operacji</value>
   </data>
-	<data name="ShippingPointList" xml:space="preserve">
+  <data name="ShippingPointList" xml:space="preserve">
     <value>Lista Punkt dostawy/wysyłki</value>
   </data>
-	<data name="StartTime" xml:space="preserve">
+  <data name="StartTime" xml:space="preserve">
     <value>Czas rozpoczęcia</value>
   </data>
-	<data name="State" xml:space="preserve">
+  <data name="State" xml:space="preserve">
     <value>Status</value>
   </data>
-	<data name="TimeSlotTemplate" xml:space="preserve">
+  <data name="TimeSlotTemplate" xml:space="preserve">
     <value>Szablon okna czasowego</value>
   </data>
-	<data name="TimeSlotTemplateList" xml:space="preserve">
+  <data name="TimeSlotTemplateList" xml:space="preserve">
     <value>Lista Szablon okna czasowego</value>
   </data>
-	<data name="TotalCostsPerKUCurrency" xml:space="preserve">
+  <data name="TotalCostsPerKUCurrency" xml:space="preserve">
     <value>Waluta łącznego kosztu na KU</value>
   </data>
-	<data name="TrailerComments" xml:space="preserve">
+  <data name="TrailerComments" xml:space="preserve">
     <value>Uwagi naczepa</value>
   </data>
-	<data name="TrailerCondition" xml:space="preserve">
+  <data name="TrailerCondition" xml:space="preserve">
     <value>Stan naczepy</value>
   </data>
-	<data name="Trailers" xml:space="preserve">
+  <data name="Trailers" xml:space="preserve">
     <value>Naczepa</value>
   </data>
-	<data name="TrailersList" xml:space="preserve">
+  <data name="TrailersList" xml:space="preserve">
     <value>Lista Naczepa</value>
   </data>
-	<data name="TransportUnitTypeList" xml:space="preserve">
+  <data name="TransportUnitTypeList" xml:space="preserve">
     <value>Lista Jednostka transportowa</value>
   </data>
-	<data name="Trucks" xml:space="preserve">
+  <data name="Trucks" xml:space="preserve">
     <value>Samochód dostawczy</value>
   </data>
-	<data name="TrucksList" xml:space="preserve">
+  <data name="TrucksList" xml:space="preserve">
     <value>Lista Samochód dostawczy</value>
   </data>
-	<data name="Vendor" xml:space="preserve">
+  <data name="Vendor" xml:space="preserve">
     <value>Dostawca</value>
   </data>
-	<data name="WarehouseList" xml:space="preserve">
+  <data name="WarehouseList" xml:space="preserve">
     <value>Lista Magazyn</value>
   </data>
-	<data name="AlarmsAndEvents" xml:space="preserve">
+  <data name="AlarmsAndEvents" xml:space="preserve">
     <value>Alarmy &amp; Zdarzenia</value>
   </data>
-	<data name="AlarmsAndEventsList" xml:space="preserve">
+  <data name="AlarmsAndEventsList" xml:space="preserve">
     <value>Lista Alarmy &amp; Zdarzenia</value>
   </data>
-	<data name="CarrierPerformanceReport" xml:space="preserve">
+  <data name="CarrierPerformanceReport" xml:space="preserve">
     <value>Raport skuteczności przewoźnika</value>
   </data>
-	<data name="CarrierPerformanceReportList" xml:space="preserve">
+  <data name="CarrierPerformanceReportList" xml:space="preserve">
     <value>Lista Raport skuteczności przewoźnika</value>
   </data>
-	<data name="DataImportLibrary" xml:space="preserve">
+  <data name="DataImportLibrary" xml:space="preserve">
     <value>Biblioteka Import danych</value>
   </data>
-	<data name="DriversTeamList" xml:space="preserve">
+  <data name="DriversTeamList" xml:space="preserve">
     <value>Lista Zespół kierowców</value>
   </data>
-	<data name="EventLog" xml:space="preserve">
+  <data name="EventLog" xml:space="preserve">
     <value>Dziennik zdarzeń</value>
   </data>
-	<data name="EventLogList" xml:space="preserve">
+  <data name="EventLogList" xml:space="preserve">
     <value>Lista Dziennik zdarzeń</value>
   </data>
-	<data name="FreightPOLibrary" xml:space="preserve">
+  <data name="FreightPOLibrary" xml:space="preserve">
     <value>Biblioteka Zlecenia spedycyjne</value>
   </data>
-	<data name="LoadDescription" xml:space="preserve">
+  <data name="LoadDescription" xml:space="preserve">
     <value>Opis ładunku</value>
   </data>
-	<data name="LoadDescriptionList" xml:space="preserve">
+  <data name="LoadDescriptionList" xml:space="preserve">
     <value>Lista Opis ładunku</value>
   </data>
-	<data name="SecurityEscortPOLibrary" xml:space="preserve">
+  <data name="SecurityEscortPOLibrary" xml:space="preserve">
     <value>Biblioteka Zlecenie eskorty</value>
   </data>
-	<data name="SecuritySealProtocolLibrary" xml:space="preserve">
+  <data name="SecuritySealProtocolLibrary" xml:space="preserve">
     <value>Biblioteka Protokół zabezpieczeń - plomb</value>
   </data>
-	<data name="Shippings" xml:space="preserve">
+  <data name="Shippings" xml:space="preserve">
     <value>Operacje</value>
   </data>
-	<data name="ShippingsList" xml:space="preserve">
+  <data name="ShippingsList" xml:space="preserve">
     <value>Lista Operacje</value>
   </data>
-	<data name="ShippingNumber" xml:space="preserve">
+  <data name="ShippingNumber" xml:space="preserve">
     <value>Shipping no.</value>
   </data>
-	<data name="CASSmartFactoryShepherdGroup" xml:space="preserve">
-		<value>CAS Smart Factory Shepherd - kolumny</value>
-	</data>
+  <data name="CASSmartFactoryShepherdGroup" xml:space="preserve">
+    <value>CAS Smart Factory Shepherd - kolumny</value>
+  </data>
+  <data name="AvailableEscort" xml:space="preserve">
+    <value>Dostępna eskorta</value>
+  </data>
+  <data name="AvailableRoutes" xml:space="preserve">
+    <value>Dostępne trasy</value>
+  </data>
+  <data name="DestinationCity" xml:space="preserve">
+    <value>Miejsce przeznaczenia</value>
+  </data>
+  <data name="DriversAndEscort" xml:space="preserve">
+    <value>Kierowcy i eskorta</value>
+  </data>
+  <data name="DriversManager" xml:space="preserve">
+    <value>Drivers kierowców</value>
+  </data>
+  <data name="ERM" xml:space="preserve">
+    <value>Panel zasobów eskorty</value>
+  </data>
+  <data name="GuardManager" xml:space="preserve">
+    <value>Panel ochrony</value>
+  </data>
+  <data name="LoadDescriptionInbound" xml:space="preserve">
+    <value>Opis ładunku - dostawa</value>
+  </data>
+  <data name="LoadDescriptionOutbound" xml:space="preserve">
+    <value>Opis ładunku - wysyłka</value>
+  </data>
+  <data name="LoadManager" xml:space="preserve">
+    <value>Panel ładunku</value>
+  </data>
+  <data name="RouteDetails" xml:space="preserve">
+    <value>Szczegóły trasy</value>
+  </data>
+  <data name="SecurityEscortRouteDetails" xml:space="preserve">
+    <value>Szczegóły trasy eskorty</value>
+  </data>
+  <data name="ShipmentManager" xml:space="preserve">
+    <value>Panel operacji</value>
+  </data>
+  <data name="TimeSlots" xml:space="preserve">
+    <value>Okna czasowe</value>
+  </data>
+  <data name="TrailerManager" xml:space="preserve">
+    <value>Panel naczep</value>
+  </data>
+  <data name="TRM" xml:space="preserve">
+    <value>Panel zasobów transportowych</value>
+  </data>
+  <data name="TruckManager" xml:space="preserve">
+    <value>Panel samochodów ciężarowych</value>
+  </data>
+  <data name="Vendors" xml:space="preserve">
+    <value>Dostawcy</value>
+  </data>
 </root>
