@@ -71,9 +71,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-Supervisor Dashboard
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Supervisor%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-Supervisor Dashboard
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Supervisor%>" />
 </asp:Content>

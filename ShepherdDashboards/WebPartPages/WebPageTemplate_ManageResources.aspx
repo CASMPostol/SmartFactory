@@ -50,9 +50,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-Manage Resources
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,ManageResources%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-Manage Resources
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,ManageResources%>" />
 </asp:Content>

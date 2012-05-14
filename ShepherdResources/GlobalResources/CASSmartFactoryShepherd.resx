@@ -312,4 +312,40 @@
   <data name="ShowDoubleTimeslots" xml:space="preserve">
     <value>Show double timeslots only</value>
   </data>
+  <data name="Escort" xml:space="preserve">
+    <value>Escort</value>
+  </data>
+  <data name="Forwarder" xml:space="preserve">
+    <value>Forwarder</value>
+  </data>
+  <data name="Gate" xml:space="preserve">
+    <value>Gate</value>
+  </data>
+  <data name="InboundOwner" xml:space="preserve">
+    <value>Inbound owner</value>
+  </data>
+  <data name="ManageResources" xml:space="preserve">
+    <value>Manage resources</value>
+  </data>
+  <data name="Operator" xml:space="preserve">
+    <value>Operator</value>
+  </data>
+  <data name="OutboundCoordinator" xml:space="preserve">
+    <value>Outbound coordinator</value>
+  </data>
+  <data name="OutboundOwner" xml:space="preserve">
+    <value>Outbound owner</value>
+  </data>
+  <data name="Supervisor" xml:space="preserve">
+    <value>Supervisor</value>
+  </data>
+  <data name="Vendor" xml:space="preserve">
+    <value>Vendor</value>
+  </data>
+  <data name="ViewInbounds" xml:space="preserve">
+    <value>View inbounds</value>
+  </data>
+  <data name="ViewOutbounds" xml:space="preserve">
+    <value>View outbounds</value>
+  </data>
 </root>

@@ -104,9 +104,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-Inbound Owner Dashboard
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,InboundOwner%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-Inbound Owner Dashboard
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,InboundOwner%>" />
 </asp:Content>
