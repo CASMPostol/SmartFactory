@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       {
         m_TrailerDropDown.Visible = false;
         m_TrailerHeaderLabel.Visible = false;
-        m_TruckHeaderLabel.Text = "Car";
+        m_TruckHeaderLabel.Text = "Trucks".GetLocalizedString();
       }
       m_AddDriverButton.Click += new EventHandler(m_AddDriverButton_Click);
       m_RemoveDriverButton.Click += new EventHandler(m_RemoveDriverButton_Click);
@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       }
       catch (Exception ex)
       {
-        string _frmt = "User interface update error for shipping {0} with message: {1}";
+        string _frmt = "NewDataEventHandlerErrorMesage".GetLocalizedString();
         this.Controls.Add(new LiteralControl(String.Format(_frmt, m_ControlState.ShippingIdx, ex.Message)));
       }
     }
@@ -178,7 +178,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       }
       catch (Exception ex)
       {
-        SignalException("m_RemoveDriverButton_Click", "Remove driver error: {0}", ex);
+        SignalException("m_RemoveDriverButton_Click", "RemoveDriverButtonErrorMessage".GetLocalizedString(), ex);
       }
     }
     private void m_AddDriverButton_Click(object sender, EventArgs e)
@@ -204,7 +204,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       }
       catch (Exception ex)
       {
-        SignalException("m_AddDriverButton_Click", "Add driver error: {0}", ex);
+        SignalException("m_AddDriverButton_Click", "AddDriverButtonErrorMessage".GetLocalizedString(), ex);
       }
     }
     private void m_TruckDropDown_SelectedIndexChanged(object sender, EventArgs e)
@@ -235,7 +235,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         }
         catch (Exception _ex)
         {
-          SignalException("m_TruckDropDown_SelectedIndexChanged", "Truck selection error: {0}", _ex);
+          SignalException("m_TruckDropDown_SelectedIndexChanged", "TruckDropDownErrorMessage".GetLocalizedString(), _ex);
         }
       }
     }
@@ -258,7 +258,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
         }
         catch (Exception _ex)
         {
-          SignalException("m_TrailerDropDown_SelectedIndexChanged", "Truck selection error: {0}", _ex);
+          SignalException("m_TrailerDropDown_SelectedIndexChanged", "TrailerDropDownErrorMessage".GetLocalizedString(), _ex);
         }
       }
     }
