@@ -78,9 +78,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-Forwarder Dashboard
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Forwarder%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-Forwarder Dashboard
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Forwarder%>" />
 </asp:Content>

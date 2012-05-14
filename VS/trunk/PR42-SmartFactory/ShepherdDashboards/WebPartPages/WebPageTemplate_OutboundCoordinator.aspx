@@ -118,9 +118,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-Outbound Coordinator Dashboard
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,OutboundCoordinator%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-Outbound Coordinator Dashboard
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,OutboundCoordinator%>" />
 </asp:Content>

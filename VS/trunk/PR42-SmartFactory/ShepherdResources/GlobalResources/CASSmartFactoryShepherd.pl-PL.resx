@@ -312,4 +312,40 @@
   <data name="ShowDoubleTimeslots" xml:space="preserve">
     <value>Pokaż podwójne okna czasowe</value>
   </data>
+  <data name="Escort" xml:space="preserve">
+    <value>Eskorta</value>
+  </data>
+  <data name="Forwarder" xml:space="preserve">
+    <value>Spedytor</value>
+  </data>
+  <data name="Gate" xml:space="preserve">
+    <value>Brama</value>
+  </data>
+  <data name="InboundOwner" xml:space="preserve">
+    <value>Właściciel dostaw</value>
+  </data>
+  <data name="ManageResources" xml:space="preserve">
+    <value>Zarządzanie zasobami</value>
+  </data>
+  <data name="Operator" xml:space="preserve">
+    <value>Operator</value>
+  </data>
+  <data name="OutboundCoordinator" xml:space="preserve">
+    <value>Koordynator wysyłek</value>
+  </data>
+  <data name="OutboundOwner" xml:space="preserve">
+    <value>Właściciel wysyłek</value>
+  </data>
+  <data name="Supervisor" xml:space="preserve">
+    <value>Nadzorca</value>
+  </data>
+  <data name="Vendor" xml:space="preserve">
+    <value>Dostawca</value>
+  </data>
+  <data name="ViewInbounds" xml:space="preserve">
+    <value>Dostawy - podgląd</value>
+  </data>
+  <data name="ViewOutbounds" xml:space="preserve">
+    <value>Wysyłki - podgląd</value>
+  </data>
 </root>

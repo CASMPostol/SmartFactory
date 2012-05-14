@@ -40,9 +40,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-View all inbounds
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,ViewInbounds%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-View all inbounds
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,ViewInbounds%>" />
 </asp:Content>

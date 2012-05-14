@@ -54,9 +54,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-Gate Dashboard
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Gate%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-Gate Dashboard
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Gate%>" />
 </asp:Content>
