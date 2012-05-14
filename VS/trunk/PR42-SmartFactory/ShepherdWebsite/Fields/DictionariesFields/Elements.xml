@@ -2,15 +2,14 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
     Type="Choice"
-    DisplayName="$Resources:CASSmartFactoryShepherd,CASSFS02EndMinute"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_EndMinute"
     ID="{F1D9414F-F7C2-4229-A090-F2ED2258BF3C}"
     Format="Dropdown"
     BaseType="Text"
     Name="TimeSlotsTemplateEndMinute"
-    Group="$Resources:CASSmartFactoryShepherd,CASSmartFactoryShepherdGroup"
+    Group="CAS Smart Factory Shepherd"
     DisplaceOnUpgrade="True" 
-    Overwrite="True" 
-    Description="$Resources:CASSmartFactoryShepherd,CASSFS02EndMinute"
+    Overwrite="True"
     >
     <Default>0</Default>
     <CHOICES>
@@ -22,7 +21,7 @@
   </Field>
   <Field
     Type="Choice"
-    DisplayName="$Resources:CASSmartFactoryShepherd,EndHour"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_EndHour"
     ID="{C86DF691-C23D-4CEB-BE18-64F11F3799DE}"
     Format="Dropdown"
     BaseType="Text"
@@ -58,7 +57,7 @@
   </Field>
   <Field
     Type="Choice"
-    DisplayName="$Resources:CASSmartFactoryShepherd,StartMinute"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_StartMinute"
     ID="{2217F6E2-E799-4A4A-BFF4-7DF186EA59BC}"
     Format="Dropdown"
     BaseType="Text"
@@ -74,7 +73,7 @@
   </Field>
   <Field
     Type="Choice"
-    DisplayName="$Resources:CASSmartFactoryShepherd,StartHour"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_StartHour"
     ID="{F68EEED7-A54A-4BBE-A4F6-C39C03A08FFC}"
     Format="Dropdown"
     BaseType="Text"
@@ -110,7 +109,7 @@
   </Field>
   <Field
     Type="Choice"
-    DisplayName="$Resources:CASSmartFactoryShepherd,Day"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Day"
     ID="{4393284E-7070-419C-8E48-EE509BD12654}"
     Format="Dropdown"
     BaseType="Text"
@@ -129,7 +128,7 @@
   </Field>
   <Field
     Type="Choice"
-    DisplayName="$Resources:CASSmartFactoryShepherd,ShepherdRole"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_ShepherdRole"
     ID="{8A0AFE8D-8D20-4326-9D4C-E53A14CC99AF}"
     Format="Dropdown"
     BaseType="Text"
@@ -150,81 +149,81 @@
     Name="EmailAddress"
     ID="{DAD5B7C3-9258-4F12-97C3-61A503C19F4E}"
     Type="Text"
-    DisplayName="$Resources:CASSmartFactoryShepherd,Email"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Email"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="WarehouseAddress"
     ID="{0DAF2E3B-539C-4161-B681-5E114936E515}"
     Type="Note"
-    DisplayName="$Resources:CASSmartFactoryShepherd,WarehouseAddress"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_WarehouseAddress"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="Incoterm"
     ID="{0D2CDADE-3D21-4C8C-97D9-0D162026EB3F}"
     Type="Text"
-    DisplayName="$Resources:CASSmartFactoryShepherd,Incoterm"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Incoterm"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="DeparturePort"
     ID="{1FAB0F15-07FF-4936-BFC8-4B66A325B7AA}"
     Type="Text"
-    DisplayName="$Resources:CASSmartFactoryShepherd,PortOfDeparture"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_PortOfDeparture"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="DepartureCity"
     ID="{4A6E4695-21D5-4060-941D-66709C5EB0D8}"
     Type="Text"
-    DisplayName="$Resources:CASSmartFactoryShepherd,CityOfDeparture"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_CityOfDeparture"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="SendInvoiceToMultiline"
     ID="{6D1FB660-86D4-48A2-92AE-91C4773A29EF}"
     Type="Note"
-    DisplayName="$Resources:CASSmartFactoryShepherd,SendInvoiceTo"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_SendInvoiceTo"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="PayerName"
     ID="{654389E7-36DA-4528-AEC7-E6BB99634022}"
     Type="Text"
-    DisplayName="$Resources:CASSmartFactoryShepherd,Company"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Company"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="EscortDestination"
     ID="{4E19EC40-3A94-453E-ABEA-4DCBE1BF8ECD}"
     Type="Text"
-    DisplayName="$Resources:CASSmartFactoryShepherd,EscortDestination"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_EscortDestination"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="BusinessDescription"
     ID="{17041C4C-ED3C-4DEE-8609-FE769EAFD8F0}"
     Type="Text"
-    DisplayName="$Resources:CASSmartFactoryShepherd,BusinessDescription"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_BusinessDescription"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="SecurityEscrotPO"
     ID="{DBCFB052-FB4A-46C1-B72E-BB92F9825142}"
     Type="Text"
-    DisplayName="$Resources:CASSmartFactoryShepherd,SecurityEscortPO"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_SecurityEscortPO"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
     Name="GoodsHandlingPO"
     ID="{EF1921F3-FD4A-4DC0-BB8F-5F5B95BFAC12}"
     Type="Text"
-    DisplayName="$Resources:CASSmartFactoryShepherd,FreightPO"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_FreightPO"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,Group"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Group"
     Name="CountryGroup"
     Type="Text"
     ID="{B51E2BEC-D8D7-458E-A89E-45DCB4EB1D79}"
@@ -241,7 +240,7 @@
     />
   <Field 
     Type="User" 
-    DisplayName="$Resources:CASSmartFactoryShepherd,ShepherdUser" 
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_ShepherdUser" 
     List="UserInfo" 
     Required="TRUE" 
     EnforceUniqueValues="FALSE" 
@@ -254,7 +253,7 @@
     Overwrite="TRUE"  />
   <Field
     Type="Choice"
-    DisplayName="$Resources:CASSmartFactoryShepherd,Direction"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Direction"
     ID="{DA96B8F0-D0F6-471B-A24D-27CFF679CBBA}"
     Format="Dropdown"
     BaseType="Text"
@@ -269,7 +268,7 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,ExchangeRate"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_ExchangeRate"
     Name="ExchangeRate"
     Type="Number"
     ID="{70F34CA9-C358-4798-BE5B-17C417FE5F38}"
@@ -277,14 +276,14 @@
     Description="Exchange Rate"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,MaterialMaster"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_MaterialMaster"
     Name="MaterialMaster"
     Type="Text"
     ID="{7BE8C54A-009F-436D-80C3-2E13A3F4A514}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,IDNumber"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_IDNumber"
     Name="IDNumber"
     Type="Text"
     ID="{49526B8B-F8B8-47E6-8BF5-A3A30F630EC0}"
@@ -292,7 +291,7 @@
     />
   <Field
     Type="Choice"
-    DisplayName="$Resources:CASSmartFactoryShepherd,LoadingType"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_LoadingType"
     ID="{E6381646-DB08-4C85-9A2F-59B931D98DBB}"
     Format="Dropdown"
     BaseType="Text"
@@ -305,14 +304,14 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,SecurityCost"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_SecurityCost"
     Name="SecurityCost"
     Type="Number"
     ID="{D73A3F7D-6892-4A46-90EE-39BEB668944A}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field Type="Choice"
-         DisplayName="$Resources:CASSmartFactoryShepherd,ServiceType"
+         DisplayName="$Resources:CASSmartFactoryShepherd,CAS_ServiceType"
          ID="{6F534579-F010-432C-BE79-5AE3B369E7CF}"
          Format="Dropdown"
          BaseType="Text"
@@ -328,7 +327,7 @@
   </Field>
   <Field
     Type="Choice"
-    DisplayName="$Resources:CASSmartFactoryShepherd,ShipmentType"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_ShipmentType"
     ID="{CDF9A8E8-73B5-411E-B68D-664F7176E5F5}"
     Format="Dropdown"
     BaseType="Text"
@@ -342,7 +341,7 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,TransportCost"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_TransportCost"
     Name="TransportCost"
     Type="Number"
     ID="{19ED35FB-080E-444A-BF71-6BAA4D9C3B54}"
@@ -350,7 +349,7 @@
     />
   <Field
     Type="Choice"
-    DisplayName="$Resources:CASSmartFactoryShepherd,VehicleType"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_VehicleType"
     ID="{4521F780-1838-4A0A-B3B7-04997B3DEA37}"
     Format="Dropdown"
     BaseType="Text"
@@ -364,63 +363,63 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,Address"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Address"
     Name="CompanyAddress"
     Type="Text"
     ID="{E0BCC826-1F93-4156-8FC1-7F4506234DFA}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,NIPVATNo"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_NIPVATNo"
     Name="NIP"
     Type="Text"
     ID="{DC0E5632-A487-412B-AA3E-4CC025116C28}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,VendorNumber"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_VendorNumber"
     Name="VendorNumber"
     Type="Text"
     ID="{7A847280-FE50-471A-B399-1F7D7EF19DA3}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,Description"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Description"
     Name="ShippingPointDescription"
     Type="Text"
     ID="{6B96ECFD-6D52-43BE-8FB3-DE80AB77E732}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,Comments"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Comments"
     Name="AdditionalComments"
     Type="Text"
     ID="{CB92513D-35A8-4352-97F4-59D816C74C5A}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,IDNumber"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_IDNumber"
     Name="IdentityDocumentNumber"
     Type="Text"
     ID="{9889C906-2676-4309-A8C3-CE3F91D8A640}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,Remark"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Remark"
     Name="RemarkMM"
     Type="Text"
     ID="{40088770-43E3-441B-9973-D3B093DC131C}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,TransportCost"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_TransportCost"
     Name="TransportCosts"
     Type="Number"
     ID="{3D76E122-FD59-46A6-BA25-38AEBB4AF138}"
     Group="CAS Smart Factory Shepherd"
     />
   <Field
-    DisplayName="$Resources:CASSmartFactoryShepherd,PalletSize"
+    DisplayName="$Resources:CASSmartFactoryShepherd,CAS_PalletSize"
     Name="PalletSize"
     Type="Text"
     ID="{F1E0E6E5-DABC-4654-AA8C-4AA52B475896}"
