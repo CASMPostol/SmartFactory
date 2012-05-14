@@ -235,4 +235,40 @@
 	<data name="DeleteTruckNotSelected" xml:space="preserve">
 		<value>Delete error: truck is not selected p</value>
 	</data>
+	<data name="Loads" xml:space="preserve">
+		<value>Loads p</value>
+	</data>
+	<data name="LoadDescriptionGridViewPalletType" xml:space="preserve">
+		<value>Pallet type P</value>
+	</data>
+	<data name="LoadDescriptionGridViewPalletsQty" xml:space="preserve">
+		<value>Pallets Qty. P</value>
+	</data>
+	<data name="LoadDescriptionGridViewCommodity" xml:space="preserve">
+		<value>Commodity P</value>
+	</data>
+	<data name="DeliveryNumberBoundFieldHeaderText" xml:space="preserve">
+		<value>PO/Delivery No</value>
+	</data>
+	<data name="MarketTitleBoundFieldHeaderText" xml:space="preserve">
+		<value>Market</value>
+	</data>
+	<data name="DeliveryNumberBoundFieldHeaderTextOut" xml:space="preserve">
+		<value>Delivery No. p</value>
+	</data>
+	<data name="DeliveryNumberBoundFieldHeaderTextIn" xml:space="preserve">
+		<value>PO No. p</value>
+	</data>
+	<data name="UpdateLoadingErrorMessage" xml:space="preserve">
+		<value>Cannot update the loading because of error: {0} p</value>
+	</data>
+	<data name="PalletTypeEuro" xml:space="preserve">
+		<value>Pallet Type Euro p</value>
+	</data>
+	<data name="PalletTypeIndustrial" xml:space="preserve">
+		<value>Pallet Type Industrial p</value>
+	</data>
+	<data name="PalletTypeOther" xml:space="preserve">
+		<value>Pallet Type Other p</value>
+	</data>
 </root>
