@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="$Resources:CASSmartFactoryShepherd,FreightPayer"
-        Description="$Resources:CASSmartFactoryShepherd,FreightPayerList"
+        DisplayName="$Resources:CASSmartFactoryShepherd,CAS_FreightPayer"
+        Description="$Resources:CASSmartFactoryShepherd,CAS_FreightPayerList"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

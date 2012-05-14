@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10046"
                 Url="Lists/CarrierPerformanceReportList"
-                Description="$Resources:CASSmartFactoryShepherd,CarrierPerformanceReportList">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_CarrierPerformanceReportList">
   </ListInstance>
 </Elements>

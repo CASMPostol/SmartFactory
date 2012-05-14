@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10034"
                 Url="Lists/CurrencyList"
-                Description="$Resources:CASSmartFactoryShepherd,CurrencyList">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_CurrencyList">
   </ListInstance>
 </Elements>

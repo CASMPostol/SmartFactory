@@ -7,8 +7,8 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="110"
-        DisplayName="$Resources:CASSmartFactoryShepherd,SecurityEscortPOLibrary"
-        Description="$Resources:CASSmartFactoryShepherd,SecurityEscortPOLibrary"
+        DisplayName="$Resources:CASSmartFactoryShepherd,CAS_SecurityEscortPOLibrary"
+        Description="$Resources:CASSmartFactoryShepherd,CAS_SecurityEscortPOLibrary"
         Image="/_layouts/images/itdl.png"
         DocumentTemplate="121"/>
 </Elements>

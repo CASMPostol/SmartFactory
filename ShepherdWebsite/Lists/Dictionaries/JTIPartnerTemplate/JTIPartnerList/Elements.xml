@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10047"
                 Url="Lists/JTIPartnerList"
-                Description="$Resources:CASSmartFactoryShepherd,Partner">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_Partner">
   </ListInstance>
 </Elements>

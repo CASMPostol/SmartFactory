@@ -5,6 +5,6 @@
                 TemplateType="101"
                 FeatureId="00bfea71-e717-4e80-aa17-d0c71b360101"
                 Url="Lists/DataImportLibrary"
-                Description="$Resources:CASSmartFactoryShepherd,DataImportLibrary">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_DataImportLibrary">
   </ListInstance>
 </Elements>

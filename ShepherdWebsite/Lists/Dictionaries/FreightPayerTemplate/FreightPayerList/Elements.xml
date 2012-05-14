@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10031"
                 Url="Lists/FreightPayerList"
-                Description="$Resources:CASSmartFactoryShepherd,FreightPayerList">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_FreightPayerList">
   </ListInstance>
 </Elements>

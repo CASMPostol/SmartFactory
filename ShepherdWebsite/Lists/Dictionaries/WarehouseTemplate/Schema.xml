@@ -5,12 +5,12 @@
       <ContentType ID="0x01001E57547208B49B46B4AA7CB4536B1A55"
                  Name="Warehouse"
                  Group="CAS Smart Factory"
-                 Description="$Resources:CASSmartFactoryShepherd,WarehousesListCT"
+                 Description="$Resources:CASSmartFactoryShepherd,CAS_WarehousesListCT"
                  Overwrite="TRUE"
                  Inherits="FALSE">
         <Folder TargetName="_cts/Warehouse" />
         <FieldRefs>
-          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,Warehouse" />
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Warehouse" />
           <FieldRef ID="{612E92FE-DAEF-4E47-9750-C1C7397E120B}" Name="CommodityTitle" />
           <FieldRef ID="{0DAF2E3B-539C-4161-B681-5E114936E515}" Name="WarehouseAddress" />
         </FieldRefs>

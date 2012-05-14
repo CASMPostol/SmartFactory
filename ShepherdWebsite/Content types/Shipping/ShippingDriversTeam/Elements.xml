@@ -3,7 +3,7 @@
   <ContentType ID="0x01000a5d8b5f3f67453882811c27556d5d30"
                Name="ShippingDriversTeam"
                Group="CAS Smart Factory Shepherd"
-               Description="$Resources:CASSmartFactoryShepherd,DriversTeamListCT"
+               Description="$Resources:CASSmartFactoryShepherd,CAS_DriversTeamListCT"
                Overwrite="True"
                Inherits="False">
     <Folder TargetName="_cts/ShippingDriversTeam" />

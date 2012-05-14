@@ -5,6 +5,6 @@
                 TemplateType="104"
                 FeatureId="00bfea71-d1ce-42de-9c63-a44004ce0104"
                 Url="Lists/EventLog"
-                Description="$Resources:CASSmartFactoryShepherd,EventLogList">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_EventLogList">
   </ListInstance>
 </Elements>

@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="$Resources:CASSmartFactoryShepherd,Shippings"
-        Description="$Resources:CASSmartFactoryShepherd,ShippingsList"
+        DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Shippings"
+        Description="$Resources:CASSmartFactoryShepherd,CAS_ShippingsList"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="$Resources:CASSmartFactoryShepherd,Market"
-        Description="$Resources:CASSmartFactoryShepherd,MarketList"
+        DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Market"
+        Description="$Resources:CASSmartFactoryShepherd,CAS_MarketList"
         Image="/_layouts/images/itgen.png"/>
 </Elements>

@@ -4,6 +4,6 @@
                 OnQuickLaunch="TRUE"
                 TemplateType="10054"
                 Url="Lists/SealProtocolLibrary"
-                Description="$Resources:CASSmartFactoryShepherd,SecuritySealProtocolLibrary">
+                Description="$Resources:CASSmartFactoryShepherd,CAS_SecuritySealProtocolLibrary">
   </ListInstance>
 </Elements>

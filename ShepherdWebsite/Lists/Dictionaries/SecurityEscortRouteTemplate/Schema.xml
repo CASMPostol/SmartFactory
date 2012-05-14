@@ -5,12 +5,12 @@
       <ContentType ID="0x01004d883ad19a284d1f826ea7b4e70f0aca"
                    Name="SecurityEscortCatalog"
                    Group="CAS Smart Factory Shepherd"
-                   Description="$Resources:CASSmartFactoryShepherd,SecurityEscortCatalogListCT"
+                   Description="$Resources:CASSmartFactoryShepherd,CAS_SecurityEscortCatalogListCT"
                    Inherits="TRUE"
                    Overwrite="FALSE">
         <Folder TargetName="_cts/SecurityEscortCatalog" />
         <FieldRefs>
-          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,SecurityEscortRoute" />
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CAS_SecurityEscortRoute" />
           <FieldRef ID="{40070CB4-6ED0-4024-9269-70DAC8932C42}" Name="SecurityEscortCatalog2BusinessDescriptionTitle" />
           <FieldRef ID="{4E19EC40-3A94-453E-ABEA-4DCBE1BF8ECD}" Name="EscortDestination" />
           <FieldRef ID="{40088770-43E3-441B-9973-D3B093DC131C}" Name="RemarkMM" />

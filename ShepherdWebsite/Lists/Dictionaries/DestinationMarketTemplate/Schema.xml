@@ -5,7 +5,7 @@
       <ContentType ID="0x01002cd380c2a0bc484caf14a0a71dadef4e"
              Name="DestinationMarket"
              Group="CAS Smart Factory Shepherd"
-             Description="$Resources:CASSmartFactoryShepherd,DestinationMarketListCT"
+             Description="$Resources:CASSmartFactoryShepherd,CAS_DestinationMarketListCT"
              Overwrite="TRUE"
              Inherits="FALSE">
         <Folder TargetName="_cts/DestinationMarket" />
