@@ -3,12 +3,12 @@
   <ContentType ID="0x0100fb94be01f9b0429f89e6a98ea44aa06e"
                Name="CarrierType"
                Group="CAS Smart Factory Shepherd"
-               Description="$Resources:CASSmartFactoryShepherd,CarriersListCT"
+               Description="$Resources:CASSmartFactoryShepherd,CAS_CarriersListCT"
                Overwrite="TRUE"
                Inherits="FALSE">
     <Folder TargetName="_cts/Carrier" />
     <FieldRefs>
-      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,Carrier" />
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Carrier" />
       <FieldRef  Name="Dummy" ID="{B41945C7-78CF-46E8-916F-2A65C9DCCE7D}" Hidden="TRUE" />
     </FieldRefs>
     <XmlDocuments>

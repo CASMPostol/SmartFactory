@@ -12,7 +12,7 @@
  </metaData>
  <data>
  <properties>
- <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,Shippings</property>
+ <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_Shippings</property>
  <property name="TitleUrl" type="string">ForwarderDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
@@ -31,7 +31,7 @@
  </metaData>
  <data>
  <properties>
- <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,RouteDetails</property>
+ <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_RouteDetails</property>
  <property name="TitleUrl" type="string">ForwarderDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
@@ -49,7 +49,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,ShipmentManager</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_ShipmentManager</property>
         <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
         <property name="ID" type="string">CarrierDashboardWebPart</property>
         <property name="Role">Forwarder</property>
@@ -67,7 +67,7 @@
     </metaData>n
     <data>
       <properties>
-        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,TRM</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_TRM</property>
         <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
         <property name="ID" type="string">WPTransportResources</property>
       </properties>
@@ -106,7 +106,7 @@
  </metaData>
  <data>
  <properties>
- <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,AlarmsAndEvents</property>
+ <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_AlarmsAndEvents</property>
  <property name="TitleUrl" type="string">ForwarderDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>

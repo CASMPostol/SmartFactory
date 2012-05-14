@@ -3,12 +3,12 @@
   <ContentType ID="0x0100121b8b770545430a8b59b62d84c02c38"
                Name="Route"
                Group="CAS Smart Factory Shepherd"
-               Description="$Resources:CASSmartFactoryShepherd,RoutesListCT"
+               Description="$Resources:CASSmartFactoryShepherd,CAS_RoutesListCT"
                Overwrite="TRUE"
                Inherits="FALSE">
     <Folder TargetName="_cts/Route" />
     <FieldRefs>
-      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,Route" />
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Route" />
       <FieldRef ID="{BB08CEE0-9699-44AD-84ED-BB32ABB382D5}" Name="Route2CityTitle" />
       <FieldRef ID="{90F7C0EF-1035-4E4E-9CB5-F1CC5293605D}" Name="Route2BusinessDescriptionTitle" />
       <FieldRef ID="{A673B418-E331-448A-AC32-CD58D861015D}" Name="ShipmentTypeTitle" />

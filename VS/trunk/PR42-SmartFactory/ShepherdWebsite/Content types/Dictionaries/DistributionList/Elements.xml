@@ -3,7 +3,7 @@
   <ContentType ID="0x01009ec30f7f369d427d825c9478610d3e58"
                Name="DistributionList"
                Group="CAS Smart Factory Shepherd"
-             Description="$Resources:CASSmartFactoryShepherd,DistributionListCT"
+             Description="$Resources:CASSmartFactoryShepherd,CAS_DistributionListCT"
              Overwrite="TRUE"
              Inherits="TRUE">
     <Folder TargetName="_cts/DistributionList" />

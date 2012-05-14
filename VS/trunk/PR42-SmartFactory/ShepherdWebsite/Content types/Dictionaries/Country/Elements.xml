@@ -3,12 +3,12 @@
   <ContentType ID="0x0100ce031dc456c86c409854d818eda7e1f3"
              Name="CountryType"
              Group="CAS Smart Factory"
-             Description="$Resources:CASSmartFactoryShepherd,CountryListCT"
+             Description="$Resources:CASSmartFactoryShepherd,CAS_CountryListCT"
              Overwrite="TRUE"
              Inherits="FALSE">
     <Folder TargetName="_cts/Country" />
     <FieldRefs>
-      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,Country" />
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Country" />
       <FieldRef ID="{B51E2BEC-D8D7-458E-A89E-45DCB4EB1D79}" Name="CountryGroup" />
     </FieldRefs>
     <XmlDocuments>
