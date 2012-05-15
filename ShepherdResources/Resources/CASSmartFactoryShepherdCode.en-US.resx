@@ -337,4 +337,7 @@
 	<data name="ESCORTPONFileName" xml:space="preserve">
 		<value>ESCORT PO No {0}.docx</value>
 	</data>
+	<data name="SealProtocolFileName" xml:space="preserve">
+		<value>Seal Protocol No {0}.docx</value>
+	</data>
 </root>
