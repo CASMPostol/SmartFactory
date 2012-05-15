@@ -271,7 +271,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TruckManager
     {
       _drv.AdditionalComments = m_Comments.Text;
       if (m_TruckTitle.Text.IsNullOrEmpty())
-        return LocalStateMachineEngine.ActionResult.NotValidated(m_TruckNameLabel.Text + " must be provided.");
+        return LocalStateMachineEngine.ActionResult.NotValidated(m_TruckNameLabel.Text + "MustBeProvided".GetLocalizedString());
       _drv.Tytuł = m_TruckTitle.Text;
       if (m_VehicleType.SelectedIndex < 0)
         return LocalStateMachineEngine.ActionResult.NotValidated(m_VehicleTypeLabel.Text + "MustBeProvided".GetLocalizedString());
