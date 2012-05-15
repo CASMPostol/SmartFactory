@@ -224,6 +224,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
         m_TransportUnitTypeDropDownList.DataBind();
         m_TransportUnitTypeDropDownList.SelectedIndex = 0;
       }
+      m_EstimateDeliveryTimeDateTimeControl.LocaleId = CultureInfo.CurrentUICulture.LCID;
       m_SaveButton.Click += new EventHandler(m_StateMachineEngine.SaveButton_Click);
       m_NewShippingButton.Click += new EventHandler(m_StateMachineEngine.NewShippingButton_Click);
       m_CancelButton.Click += new EventHandler(m_StateMachineEngine.CancelButton_Click);
@@ -262,7 +263,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
     protected override void OnPreRender(EventArgs e)
     {
-      m_StateLiteral.Text =("InterfaceState" + m_ControlState.InterfaceState.ToString()).GetLocalizedString();
+      m_StateLiteral.Text = ("InterfaceState" + m_ControlState.InterfaceState.ToString()).GetLocalizedString();
       SetEnabled(m_ControlState.SetEnabled);
       if (m_ControlState.ShippingID.IsNullOrEmpty())
       {
@@ -439,7 +440,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           if (VendorFixed(_CurrentShipping))
           {
             ActionResult _rst = new ActionResult();
-            _rst.AddMessage("SetInterconnectionDataItIsTooLate".GetLocalizedString()); 
+            _rst.AddMessage("SetInterconnectionDataItIsTooLate".GetLocalizedString());
             ShowActionResult(_rst);
             return;
           }
