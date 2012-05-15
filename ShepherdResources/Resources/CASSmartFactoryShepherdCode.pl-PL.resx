@@ -149,7 +149,7 @@
 		<value>Operacja nr</value>
 	</data>
 	<data name="ReportExceptionTemplate" xml:space="preserve">
-		<value>Bieżąca operacja została przerwana przez błąd {0}.</value>
+		<value>Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}.</value>
 	</data>
 	<data name="UpdateTimeSlotreleaseBookinProblem" xml:space="preserve">
 		<value>Nie można zwolnić poprzedniej rezerwacji.</value>
@@ -197,7 +197,7 @@
 		<value>Nowy</value>
 	</data>
 	<data name="NewDataEventHandlerErrorMesage" xml:space="preserve">
-		<value>User interface update error for shipping {0} with message: {1} p</value>
+		<value>User interface update error for shipping {0} with message: {1}. p</value>
 	</data>
 	<data name="RemoveDriverButtonErrorMessage" xml:space="preserve">
 		<value>Remove driver error: {0} p</value>
@@ -282,5 +282,41 @@
 	</data>
 	<data name="SelectFromList" xml:space="preserve">
 		<value> -- Select from list --  p</value>
+	</data>
+	<data name="NotApplicable" xml:space="preserve">
+		<value>N/A p</value>
+	</data>
+	<data name="ShipmentModified" xml:space="preserve">
+		<value>The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated. p</value>
+	</data>
+	<data name="ShippingAssociatedPartner" xml:space="preserve">
+		<value>Shipping does not has associated partner - the report is aborted. p</value>
+	</data>
+	<data name="MakePerformanceReportDataInconsistent" xml:space="preserve">
+		<value>Data is inconsistent - there is no timeslot allocated to the Shipment. p</value>
+	</data>
+	<data name="Remainder" xml:space="preserve">
+		<value>Remainder p</value>
+	</data>
+	<data name="Warnning" xml:space="preserve">
+		<value>Warnning !  p</value>
+	</data>
+	<data name="LastCall" xml:space="preserve">
+		<value>It is last call !!! p</value>
+	</data>
+	<data name="ShipmentCancelled" xml:space="preserve">
+		<value>Wanning !! The Shipment has been cancelled by {0} p</value>
+	</data>
+	<data name="TruckLateCallDriver" xml:space="preserve">
+		<value>Wanning !! The truck is late. Call the driver: {0} p</value>
+	</data>
+	<data name="NewImeoutForShipment" xml:space="preserve">
+		<value>New timeout at: {0} is set up for the shipment {1} at state {2}. p</value>
+	</data>
+	<data name="TimeoutExpired" xml:space="preserve">
+		<value>Timeout expired at {0:g} p</value>
+	</data>
+	<data name="ShipmentDelayed" xml:space="preserve">
+		<value>Shipment delayed:  p</value>
 	</data>
 </root>

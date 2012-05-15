@@ -197,7 +197,7 @@
 		<value>New</value>
 	</data>
 	<data name="NewDataEventHandlerErrorMesage" xml:space="preserve">
-		<value>User interface update error for shipping {0} with message: {1}</value>
+		<value>User interface update error for shipping {0} with message: {1}.</value>
 	</data>
 	<data name="RemoveDriverButtonErrorMessage" xml:space="preserve">
 		<value>Remove driver error: {0}</value>
@@ -282,5 +282,44 @@
 	</data>
 	<data name="SelectFromList" xml:space="preserve">
 		<value> -- Select from list -- </value>
+	</data>
+	<data name="NotApplicable" xml:space="preserve">
+		<value>N/A</value>
+	</data>
+	<data name="ShipmentModified" xml:space="preserve">
+		<value>The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated.</value>
+	</data>
+	<data name="ShippingAssociatedPartner" xml:space="preserve">
+		<value>Shipping does not has associated partner - the report is aborted.</value>
+	</data>
+	<data name="MakePerformanceReportDataInconsistent" xml:space="preserve">
+		<value>Data is inconsistent - there is no timeslot allocated to the Shipment.</value>
+	</data>
+	<data name="RequestDataTrucktrailerDrivers" xml:space="preserve">
+		<value>Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}.</value>
+	</data>
+	<data name="Remainder" xml:space="preserve">
+		<value>Remainder</value>
+	</data>
+	<data name="Warnning" xml:space="preserve">
+		<value>Warnning ! </value>
+	</data>
+	<data name="LastCall" xml:space="preserve">
+		<value>It is last call !!!</value>
+	</data>
+	<data name="ShipmentCancelled" xml:space="preserve">
+		<value>Wanning !! The Shipment has been cancelled by {0}</value>
+	</data>
+	<data name="TruckLateCallDriver" xml:space="preserve">
+		<value>Wanning !! The truck is late. Call the driver: {0}</value>
+	</data>
+	<data name="NewImeoutForShipment" xml:space="preserve">
+		<value>New timeout at: {0} is set up for the shipment {1} at state {2}.</value>
+	</data>
+	<data name="TimeoutExpired" xml:space="preserve">
+		<value>Timeout expired at {0:g}</value>
+	</data>
+	<data name="ShipmentDelayed" xml:space="preserve">
+		<value>Shipment delayed: </value>
 	</data>
 </root>
