@@ -140,7 +140,7 @@
 		<value>Trailers</value>
 	</data>
 	<data name="PO_No" xml:space="preserve">
-		<value>Numer PO</value>
+		<value>PO No.</value>
 	</data>
 	<data name="DeliveryNumber" xml:space="preserve">
 		<value>Delivery No.</value>
@@ -149,10 +149,10 @@
 		<value>Shipment No.</value>
 	</data>
 	<data name="ReportExceptionTemplate" xml:space="preserve">
-		<value>The current operation has been interrupted by error {0}.</value>
+		<value>The current operation has been interrupted by error {0}</value>
 	</data>
 	<data name="UpdateTimeSlotreleaseBookinProblem" xml:space="preserve">
-		<value>Cannot release the previous booking.</value>
+		<value>Cannot release the previous booking</value>
 	</data>
 	<data name="Shipping" xml:space="preserve">
 		<value>Shipment</value>
@@ -164,10 +164,10 @@
 		<value>-- Shipment locked --</value>
 	</data>
 	<data name="SetInterconnectionDataTimeSlotInUse" xml:space="preserve">
-		<value>Time slot is in use but it is selected as free.</value>
+		<value>Time slot is in use but it is selected as free</value>
 	</data>
 	<data name="SetInterconnectionDataItIsTooLate" xml:space="preserve">
-		<value>It is too late to change the schedule.</value>
+		<value>It is too late to change the schedule</value>
 	</data>
 	<data name="TrailerConditionDropdownSelect" xml:space="preserve">
 		<value> -- Select trailer condition  --</value>
@@ -197,7 +197,7 @@
 		<value>New</value>
 	</data>
 	<data name="NewDataEventHandlerErrorMesage" xml:space="preserve">
-		<value>User interface update error for shipping {0} with message: {1}.</value>
+		<value>User interface update error for shipment {0} with message: {1}</value>
 	</data>
 	<data name="RemoveDriverButtonErrorMessage" xml:space="preserve">
 		<value>Remove driver error: {0}</value>
@@ -209,19 +209,19 @@
 		<value>Truck selection error: {0}</value>
 	</data>
 	<data name="TrailerDropDownErrorMessage" xml:space="preserve">
-		<value>Truck selection error: {0}</value>
+		<value>Trailer selection error: {0}</value>
 	</data>
 	<data name="UpdatetrailerNotSelected" xml:space="preserve">
 		<value>Update error: trailer is not selected</value>
 	</data>
 	<data name="CreateuserMustBeExternalPartner" xml:space="preserve">
-		<value>Current user must be an external partner.</value>
+		<value>Current user must be an external partner</value>
 	</data>
 	<data name="DeletetrailerIsNotSelected" xml:space="preserve">
 		<value>Delete error: trailer is not selected</value>
 	</data>
 	<data name="MustBeProvided" xml:space="preserve">
-		<value>-must be provided.</value>
+		<value>- must be provided</value>
 	</data>
 	<data name="UpdateDriverNotSelected" xml:space="preserve">
 		<value>Update error: driver is not selected</value>
@@ -242,13 +242,13 @@
 		<value>Pallet type</value>
 	</data>
 	<data name="LoadDescriptionGridViewPalletsQty" xml:space="preserve">
-		<value>Pallets Qty.</value>
+		<value>Pallet Qty.</value>
 	</data>
 	<data name="LoadDescriptionGridViewCommodity" xml:space="preserve">
 		<value>Commodity</value>
 	</data>
 	<data name="DeliveryNumberBoundFieldHeaderText" xml:space="preserve">
-		<value>PO/Delivery No</value>
+		<value>PO/Delivery No.</value>
 	</data>
 	<data name="MarketTitleBoundFieldHeaderText" xml:space="preserve">
 		<value>Market</value>
@@ -263,13 +263,13 @@
 		<value>Cannot update the loading because of error: {0}</value>
 	</data>
 	<data name="PalletTypeEuro" xml:space="preserve">
-		<value>PalletType Euro</value>
+		<value>Euro Type Pallet</value>
 	</data>
 	<data name="PalletTypeIndustrial" xml:space="preserve">
-		<value>Pallet Type Industrial</value>
+		<value>Industrial Type Pallet </value>
 	</data>
 	<data name="PalletTypeOther" xml:space="preserve">
-		<value>Pallet Type Other</value>
+		<value>Other Type Pallet</value>
 	</data>
 	<data name="CannotDisplayTimeSlots" xml:space="preserve">
 		<value>Cannot display time slots because: </value>
@@ -278,7 +278,7 @@
 		<value>{0:HH:mm}</value>
 	</data>
 	<data name="WrongValue" xml:space="preserve">
-		<value>Wrong value of {0}.</value>
+		<value>Wrong value of {0}</value>
 	</data>
 	<data name="SelectFromList" xml:space="preserve">
 		<value> -- Select from list -- </value>
@@ -287,34 +287,34 @@
 		<value>N/A</value>
 	</data>
 	<data name="ShipmentModified" xml:space="preserve">
-		<value>The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated.</value>
+		<value>The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated</value>
 	</data>
 	<data name="ShippingAssociatedPartner" xml:space="preserve">
-		<value>Shipping does not has associated partner - the report is aborted.</value>
+		<value>Shipment does not has associated partner - the report is aborted</value>
 	</data>
 	<data name="MakePerformanceReportDataInconsistent" xml:space="preserve">
-		<value>Data is inconsistent - there is no timeslot allocated to the Shipment.</value>
+		<value>Data is inconsistent - there is no time slot allocated to the Shipment</value>
 	</data>
 	<data name="RequestDataTrucktrailerDrivers" xml:space="preserve">
-		<value>Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}.</value>
+		<value>Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}</value>
 	</data>
 	<data name="Remainder" xml:space="preserve">
-		<value>Remainder</value>
+		<value>Reminder</value>
 	</data>
 	<data name="Warnning" xml:space="preserve">
-		<value>Warnning ! </value>
+		<value>Warning ! </value>
 	</data>
 	<data name="LastCall" xml:space="preserve">
 		<value>It is last call !!!</value>
 	</data>
 	<data name="ShipmentCancelled" xml:space="preserve">
-		<value>Wanning !! The Shipment has been cancelled by {0}</value>
+		<value>Warning !!! The Shipment has been cancelled by {0}</value>
 	</data>
 	<data name="TruckLateCallDriver" xml:space="preserve">
-		<value>Wanning !! The truck is late. Call the driver: {0}</value>
+		<value>Warning !! The truck is late. Call the driver: {0}</value>
 	</data>
 	<data name="NewImeoutForShipment" xml:space="preserve">
-		<value>New timeout at: {0} is set up for the shipment {1} at state {2}.</value>
+		<value>New timeout at: {0} is set up for the shipment {1} at state {2}</value>
 	</data>
 	<data name="TimeoutExpired" xml:space="preserve">
 		<value>Timeout expired at {0:g}</value>
@@ -329,10 +329,10 @@
 		<value>Shipment canceled: </value>
 	</data>
 	<data name="SendingWarningMessage" xml:space="preserve">
-		<value>Sending {4} warning message To: {0}, CC: {1}, From: {2}, Subject: {3}.</value>
+		<value>Sending {4} warning message To: {0}, CC: {1}, From: {2}, Subject: {3}</value>
 	</data>
 	<data name="AssertionCarrierFailedToEmpty" xml:space="preserve">
-		<value>Assertion Carrier failed: To is empty.</value>
+		<value>Assertion Carrier failed: To is empty</value>
 	</data>
 	<data name="ESCORTPONFileName" xml:space="preserve">
 		<value>ESCORT PO No {0}.docx</value>
