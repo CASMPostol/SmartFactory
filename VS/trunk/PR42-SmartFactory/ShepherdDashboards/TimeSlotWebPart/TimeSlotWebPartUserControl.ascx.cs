@@ -181,7 +181,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       }
       catch (Exception ex)
       {
-        this.Controls.Add(new LiteralControl("Cannot display time slots because; " + ex.Message));
+        this.Controls.Add(new LiteralControl("CannotDisplayTimeSlots" + ex.Message));
       }
     }
     private void AddToAvailable(TimeSlot _cts)
@@ -196,11 +196,10 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       if (m_TimeSlotSelection)
         return;
       m_TimeSlotList.Items.Clear();
-      string _dtFormat = "{0:HH:mm}";
       HashSet<string> _labels2Display = new HashSet<string>();
       foreach (TimeSlot _item in _avlblTmslts.OrderBy<TimeSlot, DateTime>(x => x.StartTime.Value))
       {
-        string _label = String.Format(_dtFormat, _item.StartTime.Value);
+        string _label = String.Format("FormatHourMinutesę".GetLocalizedString(), _item.StartTime.Value);
         if (_labels2Display.Contains(_label))
           continue;
         _labels2Display.Add(_label);
