@@ -340,4 +340,7 @@
 	<data name="SealProtocolFileName" xml:space="preserve">
 		<value>Seal Protocol No {0}.docx</value>
 	</data>
+	<data name="FREIGHTPOFileName" xml:space="preserve">
+		<value>FREIGHT PO No {0}.docx</value>
+	</data>
 </root>
