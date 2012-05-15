@@ -559,7 +559,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboard
           TimeSlotTimeSlot _timeSlot = null;
           try
           {
-            _timeSlot = (TimeSlotTimeSlot)(from _ts in _sppng.TimeSlot orderby _ts.StartTime ascending select _ts).First();
+            _timeSlot = (TimeSlotTimeSlot)(from _ts in _sppng.TimeSlot where _ts.Occupied.GetValueOrDefault(Occupied.Free) == Occupied.Occupied0 orderby _ts.StartTime ascending select _ts).First();
             m_ControlState.TimeSlotID = _timeSlot.Identyfikator.IntToString();
             m_ControlState.TimeSlotChanged = false;
           }
