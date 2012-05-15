@@ -1,6 +1,8 @@
 ﻿using System;
-using CAS.SmartFactory.Shepherd.Entities;
+using System.Globalization;
 using System.Web.UI.WebControls;
+using CAS.SmartFactory.Shepherd.Entities;
+using Microsoft.SharePoint.Utilities;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification
 {
@@ -12,9 +14,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     }
     public static string Title(this Element _val)
     {
-      return _val == null ? "N/A" : _val.Tytuł;
+      return _val == null ? "NotApplicable".GetLocalizedString() : _val.Tytuł;
     }
-
     public static string ToMonthString(this DateTime _dateTime)
     {
       return new DateTime(_dateTime.Year, _dateTime.Month, 1).ToShortDateString();
@@ -34,7 +35,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
     }
     public static string NotAvailable(this string _value)
     {
-      return String.IsNullOrEmpty(_value) ? "N/A" : _value;
+      return String.IsNullOrEmpty(_value) ? "NotApplicable".GetLocalizedString() : _value;
     }
     public static bool IsNullOrEmpty(this string _val)
     {
@@ -68,5 +69,21 @@ namespace CAS.SmartFactory.Shepherd.SendNotification
       else
         return null;
     }
+    /// <summary>
+    /// Gets the localized string.
+    /// </summary>
+    /// <param name="val">The val.</param>
+    /// <returns></returns>
+    public static string GetLocalizedString(this string val)
+    {
+      string _frmt = "$Resources:{0}";
+      return SPUtility.GetLocalizedString(String.Format(_frmt, val), RootResourceFileName, (uint)CultureInfo.CurrentUICulture.LCID);
+    }
+    public static string GetLocalizationExpresion(this string val)
+    {
+      string _frmt = "$Resources:{0},{1}";
+      return String.Format(_frmt, RootResourceFileName, val);
+    }
+    internal const string RootResourceFileName = "CASSmartFactoryShepherdCode";
   }
 }

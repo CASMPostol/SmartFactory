@@ -21,8 +21,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       {
         using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
         {
-          string _tmplt = "The current operation has been interrupted by error {0}.";
-          Anons _entry = new Anons() { Tytuł = _source, Treść = String.Format(_tmplt, ex.Message), Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
+          Anons _entry = new Anons() { Tytuł = _source, Treść = String.Format("ReportExceptionTemplate".GetLocalizedString(), ex.Message), Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
           EDC.EventLogList.InsertOnSubmit(_entry);
           EDC.SubmitChanges();
         }
@@ -102,9 +101,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         ActionResult _ar = new ActionResult();
         using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
         {
-          string _msg = "The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated.";
-          Shipping  _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID.ToString());
-          m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format(_msg, _sp.ShippingState, _sp.Modified);
+          Shipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID.ToString());
+          m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format("ShipmentModified".GetLocalizedString(), _sp.ShippingState, _sp.Modified);
           //ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, AlarmPriority.Normal, ServiceType.None, EDC, _sp);
           if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.ShippingState.Value == ShippingState.Completed))
             MakeShippingReport(_sp, EDC, _ar);
@@ -158,7 +156,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       {
         DateTime _sDate = _sp.StartTime.Value.Date;
         if (_sp.PartnerTitle == null)
-          throw new ApplicationException("Shipping does not has associated partner - the report is aborted.");
+          throw new ApplicationException("ShippingAssociatedPartner".GetLocalizedString());
         CarrierPerformanceReport _rprt = (from _rx in _sp.PartnerTitle.CarrierPerformanceReport
                                           where _rx.CPRDate.Value == _sDate
                                           select _rx).FirstOrDefault();
@@ -181,8 +179,8 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         }
         _rprt.CPRNumberOrdered++;
         _rprt.CPRNumberNotShowingUp += (from _ts in _sp.TimeSlot
-                                                             where _ts.Occupied.Value == Occupied.Delayed
-                                                             select new { }).Count();
+                                        where _ts.Occupied.Value == Occupied.Delayed
+                                        select new { }).Count();
         if (_sp.ShippingState.Value == ShippingState.Cancelation)
           _rprt.CPRNumberNotShowingUp++;
         else
@@ -194,7 +192,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                         orderby _tsx.StartTime ascending
                         select new { Start = _tsx.StartTime.Value }).FirstOrDefault();
           if (_Start == null)
-            throw new ApplicationException("Data is inconsistent - there is no timeslot allocated to the Shipment.");
+            throw new ApplicationException("MakePerformanceReportDataInconsistent".GetLocalizedString());
           switch (CalculateDelay(_sp.StartTime.Value - _Start.Start))
           {
             case Delay.JustInTime:
@@ -375,22 +373,22 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private bool m_TimeOutReached = false;
     private void RequestData(TimeSpan _delay, Shipping _sp, AlarmPriority _pr, EntitiesDataContext EDC, bool _TimeOutExpired)
     {
-      string _frmt = "Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}.";
+      string _frmt = "RequestDataTrucktrailerDrivers".GetLocalizedString();
       _frmt = String.Format(_frmt, _delay, DateTime.Now + _delay);
       Shipping.RequiredOperations _ro = 0;
       switch (_pr)
       {
         case AlarmPriority.Normal:
           _ro = _sp.CalculateOperations2Do(false, true, _TimeOutExpired);
-          _frmt.Insert(0, "Remainder; ");
+          _frmt.Insert(0, "Remainder".GetLocalizedString());
           break;
         case AlarmPriority.High:
           _ro = _sp.CalculateOperations2Do(true, true, _TimeOutExpired);
-          _frmt.Insert(0, "Warnning ! ");
+          _frmt.Insert(0, "Warnning".GetLocalizedString());
           break;
         case AlarmPriority.Warning:
           _ro = _sp.CalculateOperations2Do(false, true, _TimeOutExpired);
-          _frmt.Insert(0, "It is last call !!!");
+          _frmt.Insert(0, "LastCall".GetLocalizedString());
           break;
         case AlarmPriority.None:
         case AlarmPriority.Invalid:
@@ -403,14 +401,14 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     {
       _sp.ShippingState = ShippingState.Canceled;
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true, true);
-      string _frmt = "Wanning !! The Shipment has been cancelled by {0}";
+      string _frmt = "ShipmentCancelled".GetLocalizedString();
       _frmt = String.Format(_frmt, _sp.Editor);
       SetupEnvironment(Shipping.WatchTolerance, _ro, _sp, AlarmPriority.High, EDC, _frmt, EmailType.Canceled);
     }
     private void MakeDelayed(Shipping _sp, EntitiesDataContext EDC, bool _TimeOutExpired)
     {
       _sp.ShippingState = ShippingState.Delayed;
-      string _frmt = "Wanning !! The truck is late. Call the driver: {0}";
+      string _frmt = "TruckLateCallDriver".GetLocalizedString();
       _frmt = String.Format(_frmt, _sp.PartnerTitle != null ? _sp.PartnerTitle.CellPhone : " ?????");
       Shipping.RequiredOperations _ro = _sp.CalculateOperations2Do(true, true, _TimeOutExpired) & Shipping.CarrierOperations;
       SetupEnvironment(Shipping.WatchTolerance, _ro, _sp, AlarmPriority.High, EDC, _frmt, EmailType.Delayed);
@@ -452,7 +450,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void SetupTimeout(TimeSpan _delay, Shipping _sp)
     {
       m_TimeOutDelay_TimeoutDuration = new TimeSpan(0, Convert.ToInt32(_delay.TotalMinutes), 0);
-      string _lm = "New timeout at: {0} is set up for the shipment {1} at state {2}";
+      string _lm = "NewImeoutForShipment".GetLocalizedString();
       m_CalculateTimeoutLogToHistoryList_HistoryDescription = String.Format(_lm, DateTime.Now + m_TimeOutDelay_TimeoutDuration, _sp.Title(), _sp.ShippingState.Value);
     }
     public String m_CalculateTimeoutLogToHistoryList_HistoryDescription = default(System.String);
@@ -472,7 +470,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     #region TimeOutLogToHistoryList
     private void m_TimeOutLogToHistoryListActivity_MethodInvoking(object sender, EventArgs e)
     {
-      m_TimeOutLogToHistoryListActivity_HistoryDescription = String.Format("Timeout expired at {0:g}", DateTime.Now);
+      m_TimeOutLogToHistoryListActivity_HistoryDescription = String.Format("TimeoutExpired".GetLocalizedString(), DateTime.Now);
       m_TimeOutReached = true;
     }
     public String m_TimeOutLogToHistoryListActivity_HistoryDescription = default(System.String);
@@ -497,7 +495,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
              {
                TruckTitle = _sp.TruckTitle.Title(),
              };
-              _cause = "Shipment delayed: ";
+              _cause = "ShipmentDelayed".GetLocalizedString();
               break;
             case EmailType.RequestData:
               switch (_md.Role)
@@ -512,11 +510,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
                 default:
                   break;
               }
-              _cause = "Data request for shipment: ";
+              _cause = "DataRequestShipment".GetLocalizedString();
               break;
             case EmailType.Canceled:
               _msg = new CanceledShippingVendorTemplate();
-              _cause = "Shipment canceled: ";
+              _cause = "ShipmentCanceled".GetLocalizedString();
               break;
           } //switch (_md.EmailType)
           switch (_md.Role)
@@ -575,6 +573,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
 
     #region LogToHistoryList
     private const string m_CarrierNotificationSendEmailFormat = "Sending {4} warning message To: {0}, CC: {1}, From: {2}, Subject: {3}";
+    //private static string m_CarrierNotificationSendEmailFormat = "SendingWarningMessage".GetLocalizedString();
     public String m_CarrierNotificationSendEmailLogToHistoryList_HistoryDescription = default(System.String);
     private void m_CarrierNotificationSendEmailLogToHistoryList_MethodInvoking(object sender, EventArgs e)
     {
@@ -587,7 +586,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
     private void m_CarrierNotificationSendEmail_MethodInvoking(object sender, EventArgs e)
     {
       if (String.IsNullOrEmpty(m_CarrierNotificationSendEmail_To))
-        throw new ApplicationException("Assertion Carrier failed: To is empty");
+        throw new ApplicationException("AssertionCarrierFailedToEmpty".GetLocalizedString());
     }
     public String m_CarrierNotificationSendEmail_Body = default(System.String);
     public String m_CarrierNotificationSendEmail_CC = default(System.String);
