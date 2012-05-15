@@ -19,12 +19,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     internal bool Valid { get { return this.Count == 0; } }
     internal void AddException(Exception _excptn)
     {
-      string _msg = String.Format("The operation interrupted by error {0}.", _excptn.Message);
+      string _msg = String.Format("ReportExceptionTemplate".GetLocalizedString(), _excptn.Message);
       base.Add(String.Format(GlobalDefinitions.ErrorMessageFormat, _msg));
     }
     public void AddLabel(string _source)
     {
-      string _msg = String.Format("{0} must be provided.", _source);
+      string _msg = _source + "MustBeProvided".GetLocalizedString();
       base.Add(String.Format(GlobalDefinitions.ErrorMessageFormat, _msg));
     }
     public void AddMessage(string _message)
