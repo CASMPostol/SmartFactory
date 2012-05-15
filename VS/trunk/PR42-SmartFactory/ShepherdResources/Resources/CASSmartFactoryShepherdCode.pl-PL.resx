@@ -340,4 +340,7 @@
 	<data name="RequestDataTrucktrailerDrivers" xml:space="preserve">
 		<value>Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}. p</value>
 	</data>
+	<data name="FREIGHTPOFileName" xml:space="preserve">
+		<value>FREIGHT PO No {0}.docx</value>
+	</data>
 </root>
