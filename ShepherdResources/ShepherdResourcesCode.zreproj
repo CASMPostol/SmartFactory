@@ -31,7 +31,7 @@
     <globalSetting name="AddNewFileGroupForm.baseFileNameTextEdit.Text">
     </globalSetting>
     <userSetting name="mpostol@HQ.filesInitialDir">C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources</userSetting>
-    <userSetting name="mpostol@HQ.FindText">Select</userSetting>
+    <userSetting name="mpostol@HQ.FindText">SendingWarningMessage</userSetting>
     <userSetting name="mpostol@HQ.RecentFiles">C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.pl-PL.resx</userSetting>
     <userSetting name="akubiak@HQ.FindText">
     </userSetting>

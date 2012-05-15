@@ -52,7 +52,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
           SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[CommonDefinition.EscortPOLibraryTitle];
           _stt = "SPDocumentLibrary";
           SPFile _teml = workflowProperties.Web.GetFile(_lib.DocumentTemplateUrl);
-          string _fname = String.Format("ESCORT PO No {0}.docx", _sp.Identyfikator.ToString());
+          string _fname = String.Format("ESCORTPONFileName".GetLocalizedString(), _sp.Identyfikator.ToString());
           SPFile _docFile = OpenXMLHelpers.AddDocument2Collection(_teml, _lib.RootFolder.Files, _fname);
           _newFileName = _docFile.Name;
           _stt = "_doc";
