@@ -149,7 +149,7 @@
 		<value>Operacja nr</value>
 	</data>
 	<data name="ReportExceptionTemplate" xml:space="preserve">
-		<value>Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}.</value>
+		<value>The current operation has been interrupted by error {0}.</value>
 	</data>
 	<data name="UpdateTimeSlotreleaseBookinProblem" xml:space="preserve">
 		<value>Nie można zwolnić poprzedniej rezerwacji.</value>
@@ -333,5 +333,11 @@
 	</data>
 	<data name="ESCORTPONFileName" xml:space="preserve">
 		<value>ESCORT PO No {0}.docx</value>
+	</data>
+	<data name="SealProtocolFileName" xml:space="preserve">
+		<value>Seal Protocol No {0}.docx</value>
+	</data>
+	<data name="RequestDataTrucktrailerDrivers" xml:space="preserve">
+		<value>Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}. p</value>
 	</data>
 </root>

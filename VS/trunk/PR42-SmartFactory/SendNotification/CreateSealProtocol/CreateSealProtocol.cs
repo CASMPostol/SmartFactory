@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Workflow.Activities;
 using CAS.SmartFactory.Shepherd.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
-using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
 {
@@ -46,9 +46,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
         _stt = "using";
         using (EntitiesDataContext _EDC = new EntitiesDataContext(_url))
         {
-          Shipping  _sp = (from idx in _EDC.Shipping
-                                  where idx.Identyfikator == workflowProperties.ItemId
-                                  select idx).First();
+          Shipping _sp = (from idx in _EDC.Shipping
+                          where idx.Identyfikator == workflowProperties.ItemId
+                          select idx).First();
           if (!_sp.IsOutbound.Value)
           {
             m_AfterCreationLogToHistoryList_HistoryDescription1 = "Document has not been created because it is not outbound shipment";
@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
           SPDocumentLibrary _lib = (SPDocumentLibrary)workflowProperties.Web.Lists[CommonDefinition.SealProtocolLibraryTitle];
           _stt = "SPDocumentLibrary";
           SPFile _teml = workflowProperties.Web.GetFile(_lib.DocumentTemplateUrl);
-          string _fname = String.Format("Seal Protocol No {0}.docx", _sp.Identyfikator.ToString());
+          string _fname = String.Format("SealProtocolFileName".GetLocalizedString(), _sp.Identyfikator.ToString());
           SPFile _docFile = OpenXMLHelpers.AddDocument2Collection(_teml, _lib.RootFolder.Files, _fname);
           _newFileName = _docFile.Name;
           _stt = "_doc";
@@ -116,20 +116,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
       TeamMembers _cse = TeamMembers._1stEscort;
       foreach (ShippingDriversTeam _std in _sp.ShippingDriversTeam)
       {
-          if (_std.DriverTitle == null)
+        if (_std.DriverTitle == null)
           continue;
-          if (_std.DriverTitle.Driver2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider)
+        if (_std.DriverTitle.Driver2PartnerTitle.ServiceType.Value != ServiceType.SecurityEscortProvider)
         {
-            _ret[_cd] = _std.DriverTitle.Title();
+          _ret[_cd] = _std.DriverTitle.Title();
           if (_cd == TeamMembers._1stDriver)
           {
             _cd = TeamMembers._2ndDriver;
             _ret[TeamMembers.DriverSPhone] = _std.DriverTitle != null ? _std.DriverTitle.CellPhone.NotAvailable() : String.Empty.NotAvailable();
           }
         }
-          else if (_std.DriverTitle.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider)
+        else if (_std.DriverTitle.Driver2PartnerTitle.ServiceType.Value == ServiceType.SecurityEscortProvider)
         {
-            _ret[_cse] = _std.DriverTitle.Title();
+          _ret[_cse] = _std.DriverTitle.Title();
           if (_cse == TeamMembers._1stEscort)
           {
             _cse = TeamMembers._2ndEscort;
@@ -137,7 +137,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSealProtocol
           }
         }
         else
-              new ApplicationException(String.Format("Wrong ServiceType = {0}", _std.DriverTitle.Driver2PartnerTitle.ServiceType.Value));
+          new ApplicationException(String.Format("Wrong ServiceType = {0}", _std.DriverTitle.Driver2PartnerTitle.ServiceType.Value));
       }
       return _ret;
     }
