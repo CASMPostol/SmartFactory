@@ -221,7 +221,7 @@
 		<value>Delete error: trailer is not selected</value>
 	</data>
 	<data name="MustBeProvided" xml:space="preserve">
-		<value> must be provided.</value>
+		<value>-must be provided.</value>
 	</data>
 	<data name="UpdateDriverNotSelected" xml:space="preserve">
 		<value>Update error: driver is not selected</value>
@@ -276,5 +276,11 @@
 	</data>
 	<data name="FormatHourMinutes" xml:space="preserve">
 		<value>{0:HH:mm}</value>
+	</data>
+	<data name="WrongValue" xml:space="preserve">
+		<value>Wrong value of {0}.</value>
+	</data>
+	<data name="SelectFromList" xml:space="preserve">
+		<value> -- Select from list -- </value>
 	</data>
 </root>

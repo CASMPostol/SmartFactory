@@ -110,7 +110,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
       double _dv;
       if (Double.TryParse(_trimed, NumberStyles.Any, CultureInfo.CurrentUICulture, out _dv))
         return _dv;
-      _errors.Add(String.Format("Wrong value of {0}.", _value.Text));
+      _errors.Add(String.Format("WrongValue".GetLocalizedString(), _value.Text));
       return null;
     }
 
@@ -137,7 +137,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards
     /// <returns></returns>
     public static string ControlTextProperty(this string _val)
     {
-      return String.IsNullOrEmpty(_val) ? " -- Select from list -- " : _val;
+      return String.IsNullOrEmpty(_val) ? "SelectFromList".GetLocalizedString() : _val;
     }
     /// <summary>
     /// String2s the int.
