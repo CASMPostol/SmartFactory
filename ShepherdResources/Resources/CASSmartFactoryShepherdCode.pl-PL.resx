@@ -271,4 +271,10 @@
 	<data name="PalletTypeOther" xml:space="preserve">
 		<value>Pallet Type Other p</value>
 	</data>
+	<data name="CannotDisplayTimeSlots" xml:space="preserve">
+		<value>Cannot display time slots because: p</value>
+	</data>
+	<data name="FormatHourMinutes" xml:space="preserve">
+		<value>{0:HH:mm}</value>
+	</data>
 </root>
