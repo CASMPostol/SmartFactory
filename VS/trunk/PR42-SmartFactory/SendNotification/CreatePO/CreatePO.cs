@@ -53,7 +53,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
           SPDocumentLibrary _lib = (SPDocumentLibrary)m_WorkflowProperties.Web.Lists[CommonDefinition.FreightPOLibraryTitle];
           _stt = "SPDocumentLibrary";
           SPFile _teml = m_WorkflowProperties.Web.GetFile(_lib.DocumentTemplateUrl);
-          string _fname = String.Format("FREIGHT PO No {0}.docx", _sp.Identyfikator.ToString());
+          string _fname = String.Format("FREIGHTPOFileName".GetLocalizedString(), _sp.Identyfikator.ToString());
           SPFile _docFile = OpenXMLHelpers.AddDocument2Collection(_teml, _lib.RootFolder.Files, _fname);
           _newFileName = _docFile.Name;
           _stt = "_doc";
