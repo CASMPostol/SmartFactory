@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
+using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
 using Microsoft.SharePoint.Workflow;
-using Microsoft.SharePoint.Utilities;
-using CAS.SmartFactory.Shepherd.SendNotification.WorkflowData;
 
 namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
 {
@@ -82,7 +75,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.AddTimeSlots
       }
       catch (Exception)
       {
-        SPUtility.TransferToErrorPage(SPHttpUtility.UrlKeyValueEncode("Failed to read Request Parameters"));
+        SPUtility.TransferToErrorPage("Failed to read Request Parameters");
       }
     }
 
