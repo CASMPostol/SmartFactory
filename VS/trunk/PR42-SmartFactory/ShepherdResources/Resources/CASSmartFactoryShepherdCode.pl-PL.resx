@@ -319,4 +319,19 @@
 	<data name="ShipmentDelayed" xml:space="preserve">
 		<value>Shipment delayed:  p</value>
 	</data>
+	<data name="DataRequestShipment" xml:space="preserve">
+		<value>Data request for shipment:  p</value>
+	</data>
+	<data name="ShipmentCanceled" xml:space="preserve">
+		<value>Shipment canceled:  p</value>
+	</data>
+	<data name="SendingWarningMessage" xml:space="preserve">
+		<value>Sending {4} warning message To: {0}, CC: {1}, From: {2}, Subject: {3}. p</value>
+	</data>
+	<data name="AssertionCarrierFailedToEmpty" xml:space="preserve">
+		<value>Assertion Carrier failed: To is empty. p</value>
+	</data>
+	<data name="ESCORTPONFileName" xml:space="preserve">
+		<value>ESCORT PO No {0}.docx</value>
+	</data>
 </root>
