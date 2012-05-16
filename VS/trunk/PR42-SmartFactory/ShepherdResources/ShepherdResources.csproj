@@ -70,6 +70,9 @@
     <None Include="Resources\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{177fcce8-b946-46d9-96d5-88e3de0b93b1}</SharePointProjectItemId>
     </None>
+    <None Include="SharePointResources.zreproj" />
+    <None Include="ShepherdResourcesASPX.zreproj" />
+    <None Include="ShepherdResourcesCode.zreproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\ShepherdResources\ShepherdResources.Template.xml">
