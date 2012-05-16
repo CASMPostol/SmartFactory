@@ -158,7 +158,7 @@
 		<value>Shipment</value>
 	</data>
 	<data name="ShowSelectTimeSlot" xml:space="preserve">
-		<value>-- Select Time Slot --</value>
+		<value>-- Select time slot --</value>
 	</data>
 	<data name="ShowShippingLocked" xml:space="preserve">
 		<value>-- Shipment locked --</value>
@@ -263,13 +263,13 @@
 		<value>Cannot update the loading because of error: {0}</value>
 	</data>
 	<data name="PalletTypeEuro" xml:space="preserve">
-		<value>Pallet type: Euro </value>
+		<value>Euro </value>
 	</data>
 	<data name="PalletTypeIndustrial" xml:space="preserve">
-		<value>Pallet type: Industrial </value>
+		<value>Industrial</value>
 	</data>
 	<data name="PalletTypeOther" xml:space="preserve">
-		<value>Pallet type: Other</value>
+		<value>Other</value>
 	</data>
 	<data name="CannotDisplayTimeSlots" xml:space="preserve">
 		<value>Cannot display time slots because: </value>
@@ -293,7 +293,7 @@
 		<value>Shipment does not has associated partner - the report is aborted</value>
 	</data>
 	<data name="MakePerformanceReportDataInconsistent" xml:space="preserve">
-		<value>Data is inconsistent - there is no time slot allocated to the Shipment</value>
+		<value>Data is inconsistent - there is no time slot allocated to the shipment</value>
 	</data>
 	<data name="RequestDataTrucktrailerDrivers" xml:space="preserve">
 		<value>Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}</value>
@@ -302,7 +302,7 @@
 		<value>Reminder</value>
 	</data>
 	<data name="Warnning" xml:space="preserve">
-		<value>Warning ! </value>
+		<value>Warning !!!</value>
 	</data>
 	<data name="LastCall" xml:space="preserve">
 		<value>It is last call !!!</value>
@@ -311,7 +311,7 @@
 		<value>Warning !!! The Shipment has been cancelled by {0}</value>
 	</data>
 	<data name="TruckLateCallDriver" xml:space="preserve">
-		<value>Warning !! The truck is late. Call the driver: {0}</value>
+		<value>Warning !!! The truck is late. Call the driver: {0}</value>
 	</data>
 	<data name="NewImeoutForShipment" xml:space="preserve">
 		<value>New timeout at: {0} is set up for the shipment {1} at state {2}</value>
@@ -342,5 +342,8 @@
 	</data>
 	<data name="FREIGHTPOFileName" xml:space="preserve">
 		<value>FREIGHT PO No {0}.docx</value>
+	</data>
+	<data name="Cars" xml:space="preserve">
+		<value>Car</value>
 	</data>
 </root>

@@ -263,13 +263,13 @@
 		<value>Nie można zaktualizować załadunku z powodu błędu: {0}</value>
 	</data>
 	<data name="PalletTypeEuro" xml:space="preserve">
-		<value>Rodzaj palet: Euro</value>
+		<value>europalety</value>
 	</data>
 	<data name="PalletTypeIndustrial" xml:space="preserve">
-		<value>Rodzaj palet: Industrial</value>
+		<value>przemysłowe</value>
 	</data>
 	<data name="PalletTypeOther" xml:space="preserve">
-		<value>Rodzaj palet:  inne</value>
+		<value>inne</value>
 	</data>
 	<data name="CannotDisplayTimeSlots" xml:space="preserve">
 		<value>Nie można wyświetlić okien czasowych, ponieważ: </value>
@@ -299,7 +299,7 @@
 		<value>Przypomnienie</value>
 	</data>
 	<data name="Warnning" xml:space="preserve">
-		<value>Ostrzeżenie !</value>
+		<value>Ostrzeżenie !!!</value>
 	</data>
 	<data name="LastCall" xml:space="preserve">
 		<value>Ostatnie wezwanie !!!</value>
@@ -308,7 +308,7 @@
 		<value>Ostrzeżenie !!! Operacja została anulowana przez {0}.</value>
 	</data>
 	<data name="TruckLateCallDriver" xml:space="preserve">
-		<value>Ostrzeżenie !! Ciężarówka jest opóźniona. Skontaktuj się z kierowcą: {0}</value>
+		<value>Ostrzeżenie !!! Ciężarówka jest opóźniona. Skontaktuj się z kierowcą: {0}</value>
 	</data>
 	<data name="NewImeoutForShipment" xml:space="preserve">
 		<value>Zadano nowy limit czasowyna: {0} dla operacji {1} w stanie {2}</value>
@@ -342,5 +342,8 @@
 	</data>
 	<data name="FREIGHTPOFileName" xml:space="preserve">
 		<value>FREIGHT PO No {0}.docx</value>
+	</data>
+	<data name="Cars" xml:space="preserve">
+		<value>Samochód</value>
 	</data>
 </root>
