@@ -181,7 +181,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.GuardWebPart
             CurrentShipping.ShippingDuration = _ts.Duration();
             CurrentShipping.ShippingState = ShippingState.Creation;
             CurrentShipping.CalculateState();
-            CurrentShipping.TruckAwaiting = false;
             EDC.SubmitChanges();
             break;
           case ShippingState.Confirmed:
