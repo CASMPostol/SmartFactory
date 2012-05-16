@@ -75,7 +75,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreatePO
             {
                 _fpo.FreightPOPayerAddress = _rt.FreightPayerTitle != null ? _rt.FreightPayerTitle.CompanyAddress : String.Empty.NotAvailable();
                 _fpo.FreightPOPayerNIP = _rt.FreightPayerTitle.NIP.NotAvailable();
-                _fpo.FreightPOPayerName = _rt.FreightPayerTitle.Title();
+                _fpo.FreightPOPayerName = _rt.FreightPayerTitle.PayerName.NotAvailable();
                 _fpo.FreightPOSendInvoiceToMultiline = _rt.FreightPayerTitle.SendInvoiceToMultiline.NotAvailable();
                 _fpo.FreightPOPayerZip = _rt.FreightPayerTitle.WorkZip.NotAvailable();
                 _fpo.FreightPOPayerCity = _rt.FreightPayerTitle.WorkCity.NotAvailable();
