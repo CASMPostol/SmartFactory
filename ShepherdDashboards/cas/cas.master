@@ -623,6 +623,12 @@
 						<asp:ContentPlaceHolder id="PlaceHolderBodyRightMargin" runat="server">
 						</asp:ContentPlaceHolder>
 					</div>
+                     <asp:ContentPlaceHolder id="CASFooter" runat="server">
+                        <hr />
+                        <center>
+                        <asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,FooterText%>" /> - <a href="http://www.cas.eu" target="_blank">www.CAS.eu</a>
+                        </center>
+	                </asp:ContentPlaceHolder>
 				</div>
 			</div>
 			<SharePoint:DeveloperDashboard runat="server"/>
@@ -636,5 +642,6 @@
   </form>
   <asp:ContentPlaceHolder id="PlaceHolderUtilityContent" runat="server"/>
 	<SharePoint:WarnOnUnsupportedBrowsers runat="server"/>
+   
 </body>
 </html>
