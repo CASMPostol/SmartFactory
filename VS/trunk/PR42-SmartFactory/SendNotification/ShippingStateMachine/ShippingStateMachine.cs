@@ -384,11 +384,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
           break;
         case AlarmPriority.High:
           _ro = _sp.CalculateOperations2Do(true, true, _TimeOutExpired);
-          _frmt.Insert(0, "Warnning".GetLocalizedString());
+          _frmt.Insert(0, "LastCall".GetLocalizedString());
           break;
         case AlarmPriority.Warning:
           _ro = _sp.CalculateOperations2Do(false, true, _TimeOutExpired);
-          _frmt.Insert(0, "LastCall".GetLocalizedString());
+          _frmt.Insert(0, "Warnning".GetLocalizedString());
           break;
         case AlarmPriority.None:
         case AlarmPriority.Invalid:
