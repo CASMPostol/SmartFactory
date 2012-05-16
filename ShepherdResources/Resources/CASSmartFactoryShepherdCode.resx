@@ -263,13 +263,13 @@
 		<value>Cannot update the loading because of error: {0}</value>
 	</data>
 	<data name="PalletTypeEuro" xml:space="preserve">
-		<value>Euro Type Pallet</value>
+		<value>Pallet type: Euro </value>
 	</data>
 	<data name="PalletTypeIndustrial" xml:space="preserve">
-		<value>Industrial Type Pallet </value>
+		<value>Pallet type: Industrial </value>
 	</data>
 	<data name="PalletTypeOther" xml:space="preserve">
-		<value>Other Type Pallet</value>
+		<value>Pallet type: Other</value>
 	</data>
 	<data name="CannotDisplayTimeSlots" xml:space="preserve">
 		<value>Cannot display time slots because: </value>
@@ -287,7 +287,7 @@
 		<value>N/A</value>
 	</data>
 	<data name="ShipmentModified" xml:space="preserve">
-		<value>The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated</value>
+		<value>The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated.</value>
 	</data>
 	<data name="ShippingAssociatedPartner" xml:space="preserve">
 		<value>Shipment does not has associated partner - the report is aborted</value>
