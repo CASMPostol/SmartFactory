@@ -102,7 +102,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
         using (EntitiesDataContext EDC = new EntitiesDataContext(m_OnWorkflowActivated_WorkflowProperties.Site.Url))
         {
           Shipping _sp = Element.GetAtIndex(EDC.Shipping, m_OnWorkflowActivated_WorkflowProperties.Item.ID.ToString());
-          m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format("ShipmentModified".GetLocalizedString(), _sp.ShippingState, _sp.Modified);
+          m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription = string.Format("ShipmentModified".GetLocalizedString(), _sp.ShippingState, _sp.Editor);
           //ReportAlarmsAndEvents(m_OnWorkflowItemChangedLogToHistoryList_HistoryDescription, AlarmPriority.Normal, ServiceType.None, EDC, _sp);
           if (_sp.IsOutbound.GetValueOrDefault(false) && (_sp.ShippingState.Value == ShippingState.Completed))
             MakeShippingReport(_sp, EDC, _ar);
