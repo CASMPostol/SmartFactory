@@ -11,7 +11,7 @@
 	<meta name="ProgId" content="SharePoint.WebPartPage.Document" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="CollaborationServer" content="SharePoint Team Web Site" />
-<link href="/_layouts/ShepherdDashboards/CAS_ShepherdDashboards.css" rel="stylesheet" type="text/css" />
+<link href="/_layouts/ShepherdDashboards/CAS_ShepherdDefault.css" rel="stylesheet" type="text/css" />
 <link href="/_layouts/ShepherdDashboards/CAS_ShepherdLayouts.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
