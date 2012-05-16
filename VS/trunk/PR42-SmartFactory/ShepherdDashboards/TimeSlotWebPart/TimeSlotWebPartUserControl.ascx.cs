@@ -199,7 +199,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.TimeSlotWebPart
       HashSet<string> _labels2Display = new HashSet<string>();
       foreach (TimeSlot _item in _avlblTmslts.OrderBy<TimeSlot, DateTime>(x => x.StartTime.Value))
       {
-        string _label = String.Format("FormatHourMinutesę".GetLocalizedString(), _item.StartTime.Value);
+        string _label = String.Format("FormatHourMinutes".GetLocalizedString(), _item.StartTime.Value);
         if (_labels2Display.Contains(_label))
           continue;
         _labels2Display.Add(_label);
