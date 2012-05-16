@@ -348,4 +348,34 @@
   <data name="ViewOutbounds" xml:space="preserve">
     <value>View outbounds</value>
   </data>
+  <data name="CreateTimeSlots" xml:space="preserve">
+    <value>Create time slots</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="DurationDes" xml:space="preserve">
+    <value>Please select for how many weeks you want to create timeslots</value>
+  </data>
+  <data name="SelectDay" xml:space="preserve">
+    <value>Select day</value>
+  </data>
+  <data name="SelectDayDes" xml:space="preserve">
+    <value>Please select a day from which you want to begin timeslots creation</value>
+  </data>
+  <data name="SelectMonth" xml:space="preserve">
+    <value>Select month</value>
+  </data>
+  <data name="SelectMonthDes" xml:space="preserve">
+    <value>Please select a month from which you want to begin timeslots creation</value>
+  </data>
+  <data name="SelectYear" xml:space="preserve">
+    <value>Select year</value>
+  </data>
+  <data name="SelectYearDes" xml:space="preserve">
+    <value>Please select a year from which you want to begin timeslots creation</value>
+  </data>
+  <data name="StartWorkflow" xml:space="preserve">
+    <value>Start workflow</value>
+  </data>
 </root>

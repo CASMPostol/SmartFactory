@@ -78,21 +78,21 @@
     <Content Include="Features\ShepherdResources\ShepherdResources.Template.xml">
       <DependentUpon>ShepherdResources.feature</DependentUpon>
     </Content>
-    <Content Include="Resources\CASSmartFactoryShepherd.resx">
+    <None Include="Resources\CASSmartFactoryShepherd.resx">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GlobalResources\CASSmartFactoryShepherd.resx" />
-    <Content Include="Resources\CASSmartFactoryShepherd.pl-PL.resx">
+    <EmbeddedResource Include="GlobalResources\CASSmartFactoryShepherd.resx" />
+    <None Include="Resources\CASSmartFactoryShepherd.pl-PL.resx">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Resources\CASSmartFactoryShepherd.en-US.resx">
+    </None>
+    <None Include="Resources\CASSmartFactoryShepherd.en-US.resx">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GlobalResources\CASSmartFactoryShepherd.en-US.resx" />
+    <EmbeddedResource Include="GlobalResources\CASSmartFactoryShepherd.en-US.resx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GlobalResources\CASSmartFactoryShepherd.pl-PL.resx" />
