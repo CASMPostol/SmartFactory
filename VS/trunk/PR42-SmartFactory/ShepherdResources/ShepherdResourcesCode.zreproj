@@ -31,7 +31,7 @@
     <globalSetting name="AddNewFileGroupForm.baseFileNameTextEdit.Text">
     </globalSetting>
     <userSetting name="mpostol@HQ.filesInitialDir">C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources</userSetting>
-    <userSetting name="mpostol@HQ.FindText">SendingWarningMessage</userSetting>
+    <userSetting name="mpostol@HQ.FindText">**</userSetting>
     <userSetting name="mpostol@HQ.RecentFiles">C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.pl-PL.resx</userSetting>
     <userSetting name="akubiak@HQ.FindText">
     </userSetting>
@@ -44,9 +44,9 @@
   </configuration>
   <fileGroups>
     <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="08fc0970-eca3-44bc-850e-f47625582c3b">
-      <file filePath="Resources\CASSmartFactoryShepherdCode.resx" absoluteFilePath="C:\ShepherdResources\Resources\CASSmartFactoryShepherdCode.resx" uniqueID="496c00b0-a485-459b-b136-884912c7636c" />
-      <file filePath="Resources\CASSmartFactoryShepherdCode.en-US.resx" absoluteFilePath="C:\ShepherdResources\Resources\CASSmartFactoryShepherdCode.en-US.resx" uniqueID="70a99f45-303d-45c2-902e-bcf96bba24c8" />
-      <file filePath="Resources\CASSmartFactoryShepherdCode.pl-PL.resx" absoluteFilePath="C:\ShepherdResources\Resources\CASSmartFactoryShepherdCode.pl-PL.resx" uniqueID="e40f3baf-b74c-4c5a-b70f-4c44558356bb" />
+      <file filePath="Resources\CASSmartFactoryShepherdCode.resx" absoluteFilePath="C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.resx" uniqueID="496c00b0-a485-459b-b136-884912c7636c" />
+      <file filePath="Resources\CASSmartFactoryShepherdCode.en-US.resx" absoluteFilePath="C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.en-US.resx" uniqueID="70a99f45-303d-45c2-902e-bcf96bba24c8" />
+      <file filePath="Resources\CASSmartFactoryShepherdCode.pl-PL.resx" absoluteFilePath="C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.pl-PL.resx" uniqueID="e40f3baf-b74c-4c5a-b70f-4c44558356bb" />
       <remarks>
       </remarks>
     </fileGroup>

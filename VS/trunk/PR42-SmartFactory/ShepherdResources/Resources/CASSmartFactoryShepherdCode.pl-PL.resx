@@ -221,7 +221,7 @@
 		<value>Usuń błąd: naczepa nie została wybrana</value>
 	</data>
 	<data name="MustBeProvided" xml:space="preserve">
-		<value>- musi być dostarczone ***** należy wypełnić/uzupełnić</value>
+		<value>- należy uzupełnić</value>
 	</data>
 	<data name="UpdateDriverNotSelected" xml:space="preserve">
 		<value>Błąd aktualizacji: kierowca nie został wybrany</value>
@@ -263,16 +263,16 @@
 		<value>Nie można zaktualizować załadunku z powodu błędu: {0}</value>
 	</data>
 	<data name="PalletTypeEuro" xml:space="preserve">
-		<value>Rodzaj palet - euro *******</value>
+		<value>Rodzaj palet: Euro</value>
 	</data>
 	<data name="PalletTypeIndustrial" xml:space="preserve">
-		<value>Rodzaj palet - przemysłowe *******</value>
+		<value>Rodzaj palet: Industrial</value>
 	</data>
 	<data name="PalletTypeOther" xml:space="preserve">
-		<value>Rodzaj palet - inne *******</value>
+		<value>Rodzaj palet:  inne</value>
 	</data>
 	<data name="CannotDisplayTimeSlots" xml:space="preserve">
-		<value>Nie można wyświetlić okien czasowych, ponieważ:</value>
+		<value>Nie można wyświetlić okien czasowych, ponieważ: </value>
 	</data>
 	<data name="FormatHourMinutes" xml:space="preserve">
 		<value>{0:HH:mm}</value>
@@ -287,13 +287,13 @@
 		<value>nie dotyczy</value>
 	</data>
 	<data name="ShipmentModified" xml:space="preserve">
-		<value>Operacja przy aktualnym statusie (stanie ******  {0} została zmodyfikowana przez {1} i harmonogram zostanie zaktualizowany</value>
+		<value>Operacja przy aktualnym w stanie {0} została zmodyfikowana przez {1} i harmonogram zostanie zaktualizowany.</value>
 	</data>
 	<data name="ShippingAssociatedPartner" xml:space="preserve">
 		<value>Z operacją nie jest skojarzony partner - raport zostaje przerwany</value>
 	</data>
 	<data name="MakePerformanceReportDataInconsistent" xml:space="preserve">
-		<value>Dane są niespójne - okno czasowe nie zostało przypisane do operacji.</value>
+		<value>Dane są niespójne - okno czasowe nie zostało przypisane do operacji</value>
 	</data>
 	<data name="Remainder" xml:space="preserve">
 		<value>Przypomnienie</value>
@@ -305,25 +305,25 @@
 		<value>Ostatnie wezwanie !!!</value>
 	</data>
 	<data name="ShipmentCancelled" xml:space="preserve">
-		<value>Ostrzeżenie !!! Operacja została anulowana przez {0}</value>
+		<value>Ostrzeżenie !!! Operacja została anulowana przez {0}.</value>
 	</data>
 	<data name="TruckLateCallDriver" xml:space="preserve">
 		<value>Ostrzeżenie !! Ciężarówka jest opóźniona. Skontaktuj się z kierowcą: {0}</value>
 	</data>
 	<data name="NewImeoutForShipment" xml:space="preserve">
-		<value>Zadano nowy limit czasowyna: {0} dla operacji {1} ******* przy statusie/w stanie {2}</value>
+		<value>Zadano nowy limit czasowyna: {0} dla operacji {1} w stanie {2}</value>
 	</data>
 	<data name="TimeoutExpired" xml:space="preserve">
 		<value>Limit czasu upłynął o {0:g}</value>
 	</data>
 	<data name="ShipmentDelayed" xml:space="preserve">
-		<value>Operacja opóźniona: *************</value>
+		<value>Operacja opóźniona: </value>
 	</data>
 	<data name="DataRequestShipment" xml:space="preserve">
-		<value>Żądanie danych do operacji:</value>
+		<value>Żądanie danych do operacji: </value>
 	</data>
 	<data name="ShipmentCanceled" xml:space="preserve">
-		<value>Operacja anulowana: **************</value>
+		<value>Operacja anulowana: </value>
 	</data>
 	<data name="SendingWarningMessage" xml:space="preserve">
 		<value>Wysyłanie  komunikatu ostrzegawczego {4} Do: {0}, DW: {1}, Od: {2}, Temat: {3}</value>
@@ -338,7 +338,7 @@
 		<value>Seal Protocol No {0}.docx</value>
 	</data>
 	<data name="RequestDataTrucktrailerDrivers" xml:space="preserve">
-		<value>Uzupełnić szczegółowe informacje dot. samochodu, naczepy i kierowców w {0} min. do {1:g}</value>
+		<value>Uzupełnić szczegółowe informacje dot. samochodu, naczepy i kierowców w ciągu {0} min. do {1:g}</value>
 	</data>
 	<data name="FREIGHTPOFileName" xml:space="preserve">
 		<value>FREIGHT PO No {0}.docx</value>
