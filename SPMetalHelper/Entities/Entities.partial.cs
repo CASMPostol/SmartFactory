@@ -483,16 +483,16 @@ namespace CAS.SmartFactory.Shepherd.Entities
       RequiredOperations _escrt = 0;
       if (_alarm)
       {
-          if (this.PartnerTitle != null)
+        if (this.PartnerTitle != null)
           _cr = RequiredOperations.AddAlarm2Carrier;
-          if (this.Shipping2PartnerTitle != null)
+        if (this.Shipping2PartnerTitle != null)
           _escrt = RequiredOperations.AddAlarm2Escort;
       }
       if (_email)
       {
-          if (this.PartnerTitle != null)
+        if (this.PartnerTitle != null)
           _cr |= RequiredOperations.SendEmail2Carrier;
-          if (this.Shipping2PartnerTitle != null)
+        if (this.Shipping2PartnerTitle != null)
           _escrt |= RequiredOperations.SendEmail2Escort;
       }
       switch (this.ShippingState.Value)
