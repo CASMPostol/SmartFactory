@@ -33,9 +33,9 @@
 <asp:Content ID="Main" ContentPlaceHolderID="PlaceHolderMain" runat="server">
 
 <table border="0" cellspacing="0" cellpadding="0" class="ms-propertysheet">
-    <wssuc:InputFormSection ID="InputFormSection1" Title="Select year" Description="Please select a year from which you want to begin timeslots creation"
+    <wssuc:InputFormSection ID="InputFormSection1" Title="<%$Resources:CASSmartFactoryShepherd,SelectYear%>" Description="<%$Resources:CASSmartFactoryShepherd,SelectYearDes%>"
       runat="server">
-      <template_description>Please a select year from which you want to begin timeslots creation</template_description>
+      <template_description><asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,SelectYearDes%>" /></template_description>
       <template_inputformcontrols>
 				<tr valign="top">
 					<td class="ms-authoringcontrols" width="10">&#160;</td>
@@ -45,9 +45,9 @@
 				</tr>
 			</template_inputformcontrols>
     </wssuc:InputFormSection>
-    <wssuc:InputFormSection ID="InputFormSection2" Title="Select month" Description="Please select a month from which you want to begin timeslots creation"
+    <wssuc:InputFormSection ID="InputFormSection2" Title="<%$Resources:CASSmartFactoryShepherd,SelectMonth%>" Description="<%$Resources:CASSmartFactoryShepherd,SelectMonthDes%>"
       runat="server">
-      <template_description>Please select a month from which you want to begin timeslots creation</template_description>
+      <template_description><asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,SelectMonthDes%>" /></template_description>
       <template_inputformcontrols>
 				<tr valign="top">
 					<td class="ms-authoringcontrols" width="10">&#160;</td>
@@ -57,9 +57,9 @@
 				</tr>
 			</template_inputformcontrols>
     </wssuc:InputFormSection>
-    <wssuc:InputFormSection ID="InputFormSection3" Title="Select day" Description="Please select a day from which you want to begin timeslots creation"
+    <wssuc:InputFormSection ID="InputFormSection3" Title="<%$Resources:CASSmartFactoryShepherd,SelectDay%>" Description="<%$Resources:CASSmartFactoryShepherd,SelectDayDes%>"
       runat="server">
-      <template_description>Please select a day from which you want to begin timeslots creation</template_description>
+      <template_description><asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,SelectDayDes%>" /></template_description>
       <template_inputformcontrols>
 				<tr valign="top">
 					<td class="ms-authoringcontrols" width="10">&#160;</td>
@@ -69,9 +69,9 @@
 				</tr>
 			</template_inputformcontrols>
     </wssuc:InputFormSection>
-    <wssuc:InputFormSection ID="InputFormSection4" Title="Duration" Description="Please select for how many weeks you want to create timeslots"
+    <wssuc:InputFormSection ID="InputFormSection4" Title="<%$Resources:CASSmartFactoryShepherd,Duration%>" Description="<%$Resources:CASSmartFactoryShepherd,DurationDes%>"
       runat="server">
-      <template_description>Please select for how many weeks you want to create timeslots</template_description>
+      <template_description><asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,DurationDes%>" /></template_description>
       <template_inputformcontrols>
 				<tr valign="top">
 					<td class="ms-authoringcontrols" width="10">&#160;</td>
@@ -84,8 +84,8 @@
     <wssuc:ButtonSection ID="ButtonSection" runat="server" ShowStandardCancelButton="false">
       <template_buttons>
       <asp:PlaceHolder ID="PlaceHolder1" runat="server">                
-        <asp:Button OnClick="StartWorkflow_Click" class="ms-ButtonHeightWidth" runat="server" Text="Start Workflow" ID="StartWorkFlow" />
-        <asp:Button OnClick="Cancel_Click" class="ms-ButtonHeightWidth" runat="server" Text="Cancel" ID="Cancel"  />
+        <asp:Button OnClick="StartWorkflow_Click" class="ms-ButtonHeightWidth" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,StartWorkflow%>" ID="StartWorkFlow" />
+        <asp:Button OnClick="Cancel_Click" class="ms-ButtonHeightWidth" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,Cancel%>" ID="Cancel"  />
       </asp:PlaceHolder>
       </template_buttons>
     </wssuc:ButtonSection>
@@ -94,9 +94,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-    Add TimeSlots
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,CreateTimeSlots%>" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" runat="server" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea">
-    Add TimeSlots
+<asp:Literal runat="server" Text="<%$Resources:CASSmartFactoryShepherd,CreateTimeSlots%>" />
 </asp:Content>

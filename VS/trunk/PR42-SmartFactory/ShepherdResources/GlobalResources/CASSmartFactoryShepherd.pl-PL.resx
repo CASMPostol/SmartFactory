@@ -348,4 +348,34 @@
   <data name="ViewOutbounds" xml:space="preserve">
     <value>Wysyłki - podgląd</value>
   </data>
+  <data name="CreateTimeSlots" xml:space="preserve">
+    <value>Utwórz okna czasowe</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="DurationDes" xml:space="preserve">
+    <value>Please select for how many weeks you want to create timeslots</value>
+  </data>
+  <data name="SelectDay" xml:space="preserve">
+    <value>Wybierz dzień</value>
+  </data>
+  <data name="SelectDayDes" xml:space="preserve">
+    <value>Please select a day from which you want to begin timeslots creation</value>
+  </data>
+  <data name="SelectMonth" xml:space="preserve">
+    <value>Wybierz miesiąc</value>
+  </data>
+  <data name="SelectMonthDes" xml:space="preserve">
+    <value>Please select a month from which you want to begin timeslots creation</value>
+  </data>
+  <data name="SelectYear" xml:space="preserve">
+    <value>Wybierz rok</value>
+  </data>
+  <data name="SelectYearDes" xml:space="preserve">
+    <value>Please select a year from which you want to begin timeslots creation</value>
+  </data>
+  <data name="StartWorkflow" xml:space="preserve">
+    <value>Rozpocznij</value>
+  </data>
 </root>
