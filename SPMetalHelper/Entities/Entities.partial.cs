@@ -483,8 +483,10 @@ namespace CAS.SmartFactory.Shepherd.Entities
       RequiredOperations _escrt = 0;
       if (_alarm)
       {
+        //Carrier
         if (this.PartnerTitle != null)
           _cr = RequiredOperations.AddAlarm2Carrier;
+        //Escort
         if (this.Shipping2PartnerTitle != null)
           _escrt = RequiredOperations.AddAlarm2Escort;
       }
