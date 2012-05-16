@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.TransportResourc
       {
         m_TrailerDropDown.Visible = false;
         m_TrailerHeaderLabel.Visible = false;
-        m_TruckHeaderLabel.Text = "Trucks".GetLocalizedString();
+        m_TruckHeaderLabel.Text = "Cars".GetLocalizedString();
       }
       m_AddDriverButton.Click += new EventHandler(m_AddDriverButton_Click);
       m_RemoveDriverButton.Click += new EventHandler(m_RemoveDriverButton_Click);
