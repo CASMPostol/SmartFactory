@@ -7,8 +7,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Transport Resources Management</property>
-        <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_TRM</property>
         <property name="ID" type="string">WPTransportResources</property>
       </properties>
     </data>

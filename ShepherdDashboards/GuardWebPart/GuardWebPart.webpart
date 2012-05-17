@@ -7,8 +7,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">GuardWebPart</property>
-        <property name="Description" type="string">My Visual WebPart</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_Guard Manager</property>
       </properties>
     </data>
   </webPart>

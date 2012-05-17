@@ -7,8 +7,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">DriversManager</property>
-        <property name="Description" type="string">My Visual WebPart</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_DriversManager</property>
       </properties>
     </data>
   </webPart>

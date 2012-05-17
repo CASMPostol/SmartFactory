@@ -32,7 +32,6 @@
  <data>
  <properties>
  <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_RouteDetails</property>
- <property name="TitleUrl" type="string">SecurityEscortProviderDashboard.aspx</property>
  <property name="AllowConnect" type="bool">True</property>
  </properties>
  </data>
@@ -69,7 +68,6 @@
     <data>
       <properties>
         <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_ERM</property>
-        <property name="Provides functionality to manage divers crew and select transport equipment (truck/trailer combination)." type="string"></property>
         <property name="ID" type="string">WPTransportResources</property>
         <property name="Role">SecurityEscort</property>
       </properties>
@@ -87,7 +85,6 @@
     <data>
       <properties>
         <property name="Title" type="string">Current User</property>
-        <property name="Description" type="string">Provides information about current user and his affiliation.</property>
         <property name="AllowZoneChange" type="bool">True</property>
         <property name="AllowConnect" type="bool">True</property>
         <property name="ID" type="string">CDCurrentUser</property>

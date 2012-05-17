@@ -31,7 +31,6 @@
     <data>
       <properties>
         <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_TrailerManager</property>
-        <property name="Description" type="string">My Visual WebPart</property>
       </properties>
     </data>
   </webPart>
@@ -48,7 +47,6 @@
     <data>
       <properties>
         <property name="Title" type="string">Current User</property>
-        <property name="Description" type="string">Provides information about current user and his affiliation.</property>
         <property name="AllowZoneChange" type="bool">True</property>
         <property name="AllowConnect" type="bool">True</property>
         <property name="ID" type="string">CDCurrentUser</property>

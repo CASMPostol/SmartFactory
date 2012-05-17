@@ -31,7 +31,6 @@
     <data>
       <properties>
         <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_ShipmentManager</property>
-        <property name="Description" type="string">This web part is a dedicated user interface for the user category Goods Handling.</property>
         <property name="ID" type="string">CarrierDashboardWebPart</property>
         <property name="Role" >Operator</property>
       </properties>
@@ -49,7 +48,6 @@
     <data>
       <properties>
         <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_LoadManager</property>
-        <property name="Description" type="string">My Visual WebPart</property>
         <property name="Role">Operator</property>
       </properties>
     </data>
