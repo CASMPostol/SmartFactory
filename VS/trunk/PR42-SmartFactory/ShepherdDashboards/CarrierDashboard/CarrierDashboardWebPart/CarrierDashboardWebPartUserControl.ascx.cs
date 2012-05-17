@@ -11,9 +11,9 @@ using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.Dashboards.CarrierDashboard.CarrierDashboardWebPart
 {
+  using System.Globalization;
   using ButtonsSet = StateMachineEngine.ControlsSet;
   using InterfaceState = StateMachineEngine.InterfaceState;
-  using System.Globalization;
 
   /// <summary>
   /// Carrier Dashboard WebPart UserControl
