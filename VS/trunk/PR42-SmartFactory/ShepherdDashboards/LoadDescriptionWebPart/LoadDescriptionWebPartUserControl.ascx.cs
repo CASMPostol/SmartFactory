@@ -62,7 +62,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       #region state fields
       public string ShippingID = String.Empty;
       public string LoadDescriptionID = String.Empty;
-      public bool IsEditable = true;
       internal StateMachineEngine.ControlsSet SetEnabled = 0;
       public InterfaceState InterfaceState = InterfaceState.ViewState;
       #endregion
@@ -337,7 +336,6 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       {
         ClearUserInterface(_sppng.IsOutbound.Value);
         m_ShippingLabel.Text = _sppng.Tytuł;
-        m_ControlState.IsEditable = _sppng.IsEditable();
         if (m_MarketDropDown.Visible && _sppng.Shipping2City != null)
         {
           m_MarketDropDown.DataSource = from DestinationMarket _idx in _sppng.Shipping2City.DestinationMarket
@@ -409,12 +407,12 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
         LoadDescription _ld = Element.GetAtIndex<LoadDescription>(m_EDC.LoadDescription, m_ControlState.LoadDescriptionID);
         List<string> _ve = new List<string>();
         StateMachineEngine.ActionResult _res = Update(_ld, _ve);
-        //if (_res.ActionSucceeded)
-        //{
-        //  ReportAlert("LoadDescription updated");
-        //  m_EDC.SubmitChanges();
-        //  InitLoadDescriptionGridView(CurrentShipping);
-        //}
+        if (_res.ActionSucceeded)
+        {
+          //ReportAlert("LoadDescription updated");
+          m_EDC.SubmitChanges();
+          InitLoadDescriptionGridView(CurrentShipping);
+        }
         return _res;
       }
       catch (Exception ex)
@@ -510,7 +508,7 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       m_SaveLoadDescriptionButton.Enabled = (_set & StateMachineEngine.ControlsSet.SaveOn) != 0;
       m_DeleteLoadDescriptionButton.Enabled = (_set & StateMachineEngine.ControlsSet.DeleteOn) != 0;
       m_CancelLoadDescriptionButton.Enabled = (_set & StateMachineEngine.ControlsSet.CancelOn) != 0;
-      m_EditLoadDescriptionButton.Enabled = ((_set & StateMachineEngine.ControlsSet.EditOn) != 0) && m_ControlState.IsEditable;
+      m_EditLoadDescriptionButton.Enabled = ((_set & StateMachineEngine.ControlsSet.EditOn) != 0);
       m_NewLoadDescriptionButton.Enabled = (_set & StateMachineEngine.ControlsSet.NewOn) != 0;
     }
     private void ReportAlert(string _msg)
