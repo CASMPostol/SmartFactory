@@ -7,8 +7,8 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Shipping Manager</property>
-        <property name="Description" type="string">Shipping Manager Web Part - provides functionality to create and modify shipping.</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryShepherd,CAS_ShipmentManager</property>
+        <property name="Description" type="string"></property>
         <property name="ID" type="string">CarrierDashboardWebPart</property>
       </properties>
     </data>

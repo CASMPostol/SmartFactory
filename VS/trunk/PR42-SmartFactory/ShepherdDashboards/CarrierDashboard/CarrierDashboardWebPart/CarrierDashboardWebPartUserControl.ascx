@@ -26,10 +26,10 @@
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
-        <asp:Label ID="m_TimeSlotLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,TimeSlot%>" CssClass="Label"></asp:Label>
+        <asp:Label ID="m_TimeSlotLabel" runat="server" Text="<%$Resources:CASSmartFactoryShepherd,TimeSlot%>" CssClass="Label"
+         ToolTip="<%$Resources:CASSmartFactoryShepherd,TimeSlotToolTip%>"></asp:Label>
       </asp:TableCell><asp:TableCell>
-        <asp:Label ID="m_TimeSlotTextBox" runat="server" ToolTip="<%$Resources:CASSmartFactoryShepherd,TimeSlotToolTip%>"
-          CssClass="Label" Enabled="false"></asp:Label>
+        <asp:Label ID="m_TimeSlotTextBox" runat="server" CssClass="Label" Enabled="false"></asp:Label>
       </asp:TableCell></asp:TableRow>
     <asp:TableRow>
       <asp:TableCell>
