@@ -30,9 +30,9 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
         using (EntitiesDataContext _EDC = new EntitiesDataContext(m_WorkflowProperties.Site.Url))
         {
           if (_activationData.Carrier)
-            _emailBodyObject = FreightPurchaseOrderTemplate.CreateEmailMessage(m_WorkflowProperties.ItemId, m_WorkflowProperties.Item, _EDC);
+            _emailBodyObject = FreightPurchaseOrderTemplate.CreateEmailMessage(m_WorkflowProperties.Item, _EDC);
           else
-            _emailBodyObject = SecurityEscortPurchaseOrderTemplate.CreateEmailMessage(m_WorkflowProperties.ItemId, m_WorkflowProperties.Item, _EDC);
+            _emailBodyObject = SecurityEscortPurchaseOrderTemplate.CreateEmailMessage(m_WorkflowProperties.Item, _EDC);
           m_sendEmail1_CC = DistributionList.GetEmail(ShepherdRole.Coordinator, _EDC);
         }
         m_sendEmail1_From = m_WorkflowProperties.OriginatorEmail;

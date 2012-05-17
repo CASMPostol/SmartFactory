@@ -18,16 +18,16 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     public Uri Encodedabsurl { get; set; }
     public string DocumentName { get; set; }
     public string FPO2WarehouseAddress { get; set; }
-    internal static IPurchaseOrderTemplate CreateEmailMessage(int _itemId, SPListItem _item, EntitiesDataContext _EDC)
+    internal static IPurchaseOrderTemplate CreateEmailMessage(SPListItem _item, EntitiesDataContext _EDC)
     {
       try
       {
         FreightPO _fpo = (from idx in _EDC.FreightPOLibrary
-                          where idx.Identyfikator == _itemId
+                          where idx.Identyfikator == _item.ID
                           select idx).First();
         return new FreightPurchaseOrderTemplate()
         {
-            EmaiAddressTo = String.IsNullOrEmpty(_fpo.EmailAddress) ? CommonDefinition.UnknownEmail : _fpo.EmailAddress,
+          EmaiAddressTo = String.IsNullOrEmpty(_fpo.EmailAddress) ? CommonDefinition.UnknownEmail : _fpo.EmailAddress,
           Encodedabsurl = new Uri((string)_item["EncodedAbsUrl"]),
           Modified = (DateTime)_item["Modified"],
           ModifiedBy = (string)_item["Editor"],
@@ -49,11 +49,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     }
 
     #region IPurchaseOrderTemplate
-    public string EmaiAddressTo{get; set;}
-    public string PartnerTitle{get; set;}
-    public string Subject{get; set;}
-    public DateTime StartTime{get; set;}
-    public string ShippingTitle{get; set;}
+    public string EmaiAddressTo { get; set; }
+    public string PartnerTitle { get; set; }
+    public string Subject { get; set; }
+    public DateTime StartTime { get; set; }
+    public string ShippingTitle { get; set; }
     #endregion
   }
 }

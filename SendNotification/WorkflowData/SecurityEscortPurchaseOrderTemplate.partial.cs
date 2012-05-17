@@ -24,12 +24,12 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     public string DocumentName { get; set; }
     public DateTime Modified { get; set; }
     public string ModifiedBy { get; set; }
-    internal static IPurchaseOrderTemplate CreateEmailMessage(int _itemId, SPListItem _item, EntitiesDataContext _EDC)
+    internal static IPurchaseOrderTemplate CreateEmailMessage(SPListItem _item, EntitiesDataContext _EDC)
     {
       try
       {
         EscortPO _fpo = (from idx in _EDC.EscortPOLibrary
-                         where idx.Identyfikator == _itemId
+                         where idx.Identyfikator == _item.ID
                          select idx).First();
         return new SecurityEscortPurchaseOrderTemplate()
         {
