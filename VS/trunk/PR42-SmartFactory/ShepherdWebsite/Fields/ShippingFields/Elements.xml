@@ -18,6 +18,7 @@
     DisplayName="$Resources:CASSmartFactoryShepherd,CAS_EscortCosts"
     Name="ShippingSecurityCost"
     Type="Number"
+    Decimals="2"
     ID="{4ECF951A-9E61-47E0-86A0-5465A8DD9D9D}"
     Group="CAS Smart Factory Shepherd"
     />
@@ -25,6 +26,7 @@
     DisplayName="$Resources:CASSmartFactoryShepherd,CAS_FreightCost"
     Name="ShippingFreightCost"
     Type="Number"
+    Decimals="2"
     ID="{F56B2E7B-E38C-42D2-B42F-9B35B639C923}"
     Group="CAS Smart Factory Shepherd"
     />
@@ -67,6 +69,7 @@
     Name="TotalCostsPerKU"
     DisplayName="$Resources:CASSmartFactoryShepherd,CAS_TotalCostsPerKU"
     Type="Number"
+    Decimals="2"
     ID="{72FAC253-6C2E-474F-86C5-269D2DE5AA20}"
     Group="CAS Smart Factory Shepherd"
     />
@@ -74,6 +77,7 @@
     Name="TotalQuantityKU"
     DisplayName="$Resources:CASSmartFactoryShepherd,CAS_TotalQuantityKU"
     Type="Number"
+    Decimals="2"
     ID="{77435F24-1DF2-4A77-934B-AEEBA52321BF}"
     Group="CAS Smart Factory Shepherd"
     />
@@ -294,6 +298,7 @@
     Name="ShippingDuration"
     DisplayName="$Resources:CASSmartFactoryShepherd,CAS_Duration"
     Type="Number"
+    Decimals="2"
     ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}"
     Group="CAS Smart Factory Shepherd"
     />
@@ -301,6 +306,7 @@
     Name="AdditionalCosts"
     ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryShepherd,CAS_AdditionalCosts"
     Group="CAS Smart Factory Shepherd"
     />
