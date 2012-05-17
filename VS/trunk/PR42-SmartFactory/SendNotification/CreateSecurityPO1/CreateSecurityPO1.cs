@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.CreateSecurityPO1
             {
                 _epo.SecurityPOEscortPayerAddress = _sp.Shipping2RouteTitle.FreightPayerTitle != null ? _sp.Shipping2RouteTitle.FreightPayerTitle.CompanyAddress : String.Empty.NotAvailable();
                 _epo.SecurityPOEscortPayerCity = _sp.Shipping2RouteTitle.FreightPayerTitle.WorkCity.NotAvailable();
-                _epo.SecurityPOEscortPayerName = _sp.Shipping2RouteTitle.FreightPayerTitle.Title();
+                _epo.SecurityPOEscortPayerName = _sp.Shipping2RouteTitle.FreightPayerTitle.PayerName.NotAvailable();
                 _epo.SecurityPOEscortPayerNIP = _sp.Shipping2RouteTitle.FreightPayerTitle.NIP.NotAvailable();
                 _epo.SecurityPOEscortPayerZip = _sp.Shipping2RouteTitle.FreightPayerTitle.WorkZip.NotAvailable();
                 _epo.SecurityPOSentInvoiceToMultiline = _sp.Shipping2RouteTitle.FreightPayerTitle.SendInvoiceToMultiline.NotAvailable();
