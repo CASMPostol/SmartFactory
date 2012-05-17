@@ -682,7 +682,7 @@
     <value>Lista Samochód dostawczy</value>
   </data>
 	<data name="CAS_Vendor" xml:space="preserve">
-    <value>Dostawca</value>
+    <value>Partner</value>
   </data>
 	<data name="CAS_WarehouseList" xml:space="preserve">
     <value>Lista Magazyn</value>

@@ -772,7 +772,7 @@
     <value>Route details</value>
   </data>
 	<data name="CAS_SecurityEscortRouteDetails" xml:space="preserve">
-    <value>Escort route details</value>
+    <value>Escort details</value>
   </data>
 	<data name="CAS_ShipmentManager" xml:space="preserve">
     <value>Shipment manager</value>

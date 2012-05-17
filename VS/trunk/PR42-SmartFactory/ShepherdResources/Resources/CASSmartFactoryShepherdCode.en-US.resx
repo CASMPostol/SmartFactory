@@ -308,7 +308,7 @@
 		<value>It is last call !!!</value>
 	</data>
 	<data name="ShipmentCancelled" xml:space="preserve">
-		<value>Warning !!! The Shipment has been cancelled by {0}</value>
+		<value>Warning !!! The Shipment has been canceled by {0}</value>
 	</data>
 	<data name="TruckLateCallDriver" xml:space="preserve">
 		<value>Warning !!! The truck is late. Call the driver: {0}</value>
