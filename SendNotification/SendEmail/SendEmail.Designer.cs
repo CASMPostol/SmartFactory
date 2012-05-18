@@ -38,13 +38,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
       System.Workflow.ComponentModel.ActivityBind activitybind9 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind10 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind11 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.ComponentModel.ActivityBind activitybind13 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind12 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind13 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind15 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind14 = new System.Workflow.ComponentModel.ActivityBind();
       this._OnFaultLogToHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_FaultHandlerActivity = new System.Workflow.ComponentModel.FaultHandlerActivity();
       this.m_faultHandlersActivity = new System.Workflow.ComponentModel.FaultHandlersActivity();
       this.m_logToHistoryListActivity = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_sendEmail = new Microsoft.SharePoint.WorkflowActions.SendEmail();
+      this.m_DelayActivity = new System.Workflow.Activities.DelayActivity();
+      this.m_StartSendingEmailLogToHistory = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.m_onWorkflowActivated = new Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated();
       // 
       // _OnFaultLogToHistoryListActivity
@@ -121,8 +125,31 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
       this.m_sendEmail.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.FromProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind9)));
       this.m_sendEmail.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.SubjectProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind10)));
       this.m_sendEmail.SetBinding(Microsoft.SharePoint.WorkflowActions.SendEmail.ToProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind11)));
-      activitybind13.Name = "SendEmail";
-      activitybind13.Path = "workflowId";
+      // 
+      // m_DelayActivity
+      // 
+      this.m_DelayActivity.Description = "Delay to allow user complete the item creation and stop sending email if required" +
+          ".";
+      this.m_DelayActivity.Name = "m_DelayActivity";
+      this.m_DelayActivity.TimeoutDuration = System.TimeSpan.Parse("00:05:00");
+      // 
+      // m_StartSendingEmailLogToHistory
+      // 
+      this.m_StartSendingEmailLogToHistory.Description = "Log message informing abou this activity";
+      this.m_StartSendingEmailLogToHistory.Duration = System.TimeSpan.Parse("-10675199.02:48:05.4775808");
+      this.m_StartSendingEmailLogToHistory.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+      this.m_StartSendingEmailLogToHistory.HistoryDescription = "Start sending the email. The email will be sent in couple of minutes. Cancel the " +
+          "workflow to prevent sending the email.";
+      activitybind12.Name = "SendEmail";
+      activitybind12.Path = "m_logToHistoryListActivity1_HistoryOutcome";
+      this.m_StartSendingEmailLogToHistory.Name = "m_StartSendingEmailLogToHistory";
+      this.m_StartSendingEmailLogToHistory.OtherData = "";
+      activitybind13.Name = "m_onWorkflowActivated";
+      activitybind13.Path = "WorkflowProperties.OriginatorUser.ID";
+      this.m_StartSendingEmailLogToHistory.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind13)));
+      this.m_StartSendingEmailLogToHistory.SetBinding(Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind12)));
+      activitybind15.Name = "SendEmail";
+      activitybind15.Path = "workflowId";
       // 
       // m_onWorkflowActivated
       // 
@@ -130,15 +157,17 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
       this.m_onWorkflowActivated.Description = "Send email workflow.\r\n";
       this.m_onWorkflowActivated.EventName = "OnWorkflowActivated";
       this.m_onWorkflowActivated.Name = "m_onWorkflowActivated";
-      activitybind12.Name = "SendEmail";
-      activitybind12.Path = "m_WorkflowProperties";
+      activitybind14.Name = "SendEmail";
+      activitybind14.Path = "m_WorkflowProperties";
       this.m_onWorkflowActivated.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>(this.m_onWorkflowActivated_Invoked);
-      this.m_onWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind13)));
-      this.m_onWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind12)));
+      this.m_onWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind15)));
+      this.m_onWorkflowActivated.SetBinding(Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ((System.Workflow.ComponentModel.ActivityBind)(activitybind14)));
       // 
       // SendEmail
       // 
       this.Activities.Add(this.m_onWorkflowActivated);
+      this.Activities.Add(this.m_StartSendingEmailLogToHistory);
+      this.Activities.Add(this.m_DelayActivity);
       this.Activities.Add(this.m_sendEmail);
       this.Activities.Add(this.m_logToHistoryListActivity);
       this.Activities.Add(this.m_faultHandlersActivity);
@@ -148,6 +177,10 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
     }
 
     #endregion
+
+    private DelayActivity m_DelayActivity;
+
+    private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity m_StartSendingEmailLogToHistory;
 
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity _OnFaultLogToHistoryListActivity;
 
@@ -160,6 +193,11 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.SendEmail
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity m_logToHistoryListActivity;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated m_onWorkflowActivated;
+
+
+
+
+
 
 
 
