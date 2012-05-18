@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
           FPO2RouteGoodsHandlingPO = ((string)_item["FPOFreightPO"]).NotAvailable(),
           FPO2TransportUnitTypeTitle = (string)_item["FreightPOTransportUnitType"],
           FPOLoadingDate = ((Nullable<DateTime>)_item["FPOLoadingDate"]).GetValueOrDefault(DateTime.MaxValue),
-          FPO2WarehouseAddress = _item["FPOWarehouseAddress"].ToString().NotAvailable()
+          FPO2WarehouseAddress = _item["FPOWarehouseAddress"] == null ? String.Empty.NotAvailable() : _item["FPOWarehouseAddress"].ToString().NotAvailable()
         };
       }
       catch (Exception ex)
