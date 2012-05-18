@@ -19,25 +19,20 @@
       <FieldRef ID="{A826B26E-82DB-45D0-B078-F69CEBB1ED05}" Name="ShippingDuration" />
       <FieldRef ID="{C50E99DF-7169-4CF1-A771-47B371F6D3FE}" Name="TruckTitle" />
       <FieldRef ID="{79166D3D-149D-4423-9A81-C74B4137F13C}" Name="TrailerTitle" />
+      <FieldRef ID="{5347194E-CED0-405F-8132-A0CA93DE3995}" Name="Shipping2RouteTitle" />
+      <FieldRef ID="{A1A55CF7-B4D2-4484-AC20-43CCA444E813}" Name="Shipping2RouteID" />    
       <FieldRef ID="{D48E22D6-37CA-41F9-9CC9-92FABA6E908D}" Name="CancelationReason" />
       <FieldRef ID="{17041C4C-ED3C-4DEE-8609-FE769EAFD8F0}" Name="BusinessDescription" />
       <FieldRef ID="{2CEB1781-878F-46E5-9DF5-432463ABD971}" Name="Shipping2PartnerTitle" />
-      <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
       <FieldRef ID="{5D320C1B-8D60-4540-842A-E1B8B20168B8}" Name="SecurityEscortCatalogTitle" />
       <FieldRef ID="{AFE465EA-1E7C-48BA-A0FA-32F7932819B3}" Name="Shipping2EscortID" />
       <FieldRef ID="{F9223C12-0AF1-48F7-9EDC-EABAD2EAD7C2}" Name="Shipping2TruckTitle" />
       <FieldRef ID="{D16186F4-7C94-4D44-886F-8CB076B5CC59}" Name="EstimateDeliveryTime" />
-      <FieldRef ID="{5347194E-CED0-405F-8132-A0CA93DE3995}" Name="Shipping2RouteTitle" />
-      <FieldRef ID="{A1A55CF7-B4D2-4484-AC20-43CCA444E813}" Name="Shipping2RouteID" />
       <FieldRef ID="{A55637EF-0C88-490E-BCAF-16215A28EA52}" Name="Shipping2City" />
       <FieldRef ID="{6EBCDD27-6E5A-4BFB-ACE6-96F6D2D75F98}" Name="Shipping2TransportUnitType" />
       <FieldRef ID="{E6381646-DB08-4C85-9A2F-59B931D98DBB}" Name="LoadingType"/>
-      <FieldRef ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}" Name="AdditionalCosts" />
-      <FieldRef ID="{2294100C-D521-4B8B-BC56-F8CD71583E22}" Name="Shipping2Currency4AddCosts" />
       <FieldRef ID="{DEBE4D8F-04DE-4A3B-AA59-320884A6E044}" Name="IsOutbound" />
       <FieldRef ID="{4BC3C930-FBAD-4F1A-973F-13D191BEEF05}" Name="TruckAwaiting" />
-      <FieldRef ID="{FF299D34-A04A-4507-82E7-EF325CC6797E}" Name="Shipping2FreightPOIndex" />
-      <FieldRef ID="{045419D2-8EDB-4989-A2B8-650A8EF7C16C}" Name="Shipping2EscortPOIndex" />
       <FieldRef ID="{F3DC8106-9485-4B80-BED5-B399F9546CAB}" Name="TrailerCondition" />
       <FieldRef ID="{D28631E5-D7A6-46D4-B2C2-73140CE72704}" Name="TrailerConditionComments" />
       <FieldRef ID="{DF668BB4-81B5-4E6A-BBCB-44BD0F71F8C3}" Name="ContainerNo" />
@@ -49,12 +44,17 @@
       <FieldRef ID="{C47879D8-34F5-4D89-94ED-6EF88ED9F99D}" Name="ShippingCarrierTitle" />
       <FieldRef ID="{9E0B8A63-C763-4D7E-9063-EF18EEB5170F}" Name="ShippingCommodityTitle" />
       <FieldRef ID="{77435F24-1DF2-4A77-934B-AEEBA52321BF}" Name="TotalQuantityKU" />
+      <FieldRef ID="{4268ACD0-80D6-4E4C-A8F4-6CB55813F7A8}" Name="AdditionalCosts" />
+      <FieldRef ID="{2294100C-D521-4B8B-BC56-F8CD71583E22}" Name="Shipping2Currency4AddCosts" />
       <FieldRef ID="{F56B2E7B-E38C-42D2-B42F-9B35B639C923}" Name="ShippingFreightCost" />
       <FieldRef ID="{DDCD7887-5687-40A8-8E25-58AFA4C0F640}" Name="Shipping2CurrencyForFreight" />
       <FieldRef ID="{4ECF951A-9E61-47E0-86A0-5465A8DD9D9D}" Name="ShippingSecurityCost" />
       <FieldRef ID="{5AAF6163-D537-4B00-BBEB-6AB56D2FAFF0}" Name="Shipping2CurrencyForEscort" />
       <FieldRef ID="{72FAC253-6C2E-474F-86C5-269D2DE5AA20}" Name="TotalCostsPerKU" />
       <FieldRef ID="{EEAE731E-40E4-4C16-B620-E747A8A6675A}" Name="Shipping2Currency4CostsPerKU" />
+      <FieldRef ID="{FF299D34-A04A-4507-82E7-EF325CC6797E}" Name="Shipping2FreightPOIndex" />
+      <FieldRef ID="{045419D2-8EDB-4989-A2B8-650A8EF7C16C}" Name="Shipping2EscortPOIndex" />
+      <FieldRef ID="{2B8EAACF-37C5-42DC-AC55-B3DADD464AB5}" Name="SecuritySealProtocolIndex" />
       <FieldRef ID="{28cf69c5-fa48-462a-b5cd-27b6f9d2bd5f}" Name="Modified" />
       <FieldRef ID="{d31655d1-1d5b-4511-95a1-7a09e9b75bf2}" Name="Editor" />
     </FieldRefs>
