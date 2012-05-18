@@ -49,7 +49,7 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.ShippingStateMachine
       Entities.AlarmsAndEvents _ae = new AlarmsAndEvents()
       {
         AlarmAndEventDetails = _mssg,
-        AlarmAndEventOwner = _sh.Editor,
+        AlarmAndEventOwner = _principal.ShepherdUserTitle,
         AlarmPriority = _priority,
         AlarmsAndEventsList2Shipping = _sh,
         AlarmsAndEventsList2PartnerTitle = _principal,
