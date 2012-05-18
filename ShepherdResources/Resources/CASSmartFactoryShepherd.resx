@@ -682,7 +682,7 @@
     <value>Truck list</value>
   </data>
 	<data name="CAS_Vendor" xml:space="preserve">
-    <value>Vendor</value>
+    <value>Partner</value>
   </data>
 	<data name="CAS_WarehouseList" xml:space="preserve">
     <value>Warehouse list</value>
