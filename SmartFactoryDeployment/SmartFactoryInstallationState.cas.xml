@@ -18,7 +18,7 @@
     <Solution>
       <Activated>false</Activated>
       <Deployed>false</Deployed>
-      <FileName>Solutions\ShepherdResources.wsp</FileName>
+      <FileName>Solutions\CASShepherdResources.wsp</FileName>
       <Fetures>
         <Feature>
           <DisplayName></DisplayName>
@@ -36,7 +36,7 @@
     <Solution>
       <Activated>false</Activated>
       <Deployed>false</Deployed>
-      <FileName>Solutions\ShepherdWebsite.wsp</FileName>
+      <FileName>Solutions\CASShepherdWebsite.wsp</FileName>
       <Fetures>
         <Feature>
           <DisplayName></DisplayName>
@@ -54,7 +54,7 @@
     <Solution>
       <Activated>false</Activated>
       <Deployed>false</Deployed>
-      <FileName>Solutions\ShepherdDashboards.wsp</FileName>
+      <FileName>Solutions\CASShepherdDashboards.wsp</FileName>
       <Fetures>
         <Feature>
           <DisplayName></DisplayName>
@@ -72,7 +72,7 @@
     <Solution>
       <Activated>false</Activated>
       <Deployed>false</Deployed>
-      <FileName>Solutions\SendNotification.wsp</FileName>
+      <FileName>Solutions\CASShepherdWorkflows.wsp</FileName>
       <Fetures>
         <Feature>
           <DisplayName></DisplayName>
