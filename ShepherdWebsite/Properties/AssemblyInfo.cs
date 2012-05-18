@@ -6,12 +6,12 @@ using System.Security;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CAS Shepherd Website")]
+[assembly: AssemblyTitle("CAS Shepherd Website Content")]
 [assembly: AssemblyDescription("CAS Smart Factory Shepherd Application Website Contenet")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("CAS Smart Factory")]
-[assembly: AssemblyCopyright("Copyright © CAS 2011")]
+[assembly: AssemblyCopyright("Copyright © CAS 2012")]
 [assembly: AssemblyTrademark("SmartFactory")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +33,6 @@ using System.Security;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.40.12.*")]
-[assembly: AssemblyFileVersion("1.40.12")]
+[assembly: AssemblyVersion("1.50.00.*")]
+[assembly: AssemblyFileVersion("1.50.00")]
 [assembly: AllowPartiallyTrustedCallers()]
