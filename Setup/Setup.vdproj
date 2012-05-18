@@ -135,6 +135,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_475AE0EF08EB2BC6FD173F60243972DD"
+        "OwnerKey" = "8:_086D0F343FB44B8A813AB1ED1983F30C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_475AE0EF08EB2BC6FD173F60243972DD"
+        "OwnerKey" = "8:_F6274BD22EE194EB13CAC0630C97E42A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4C67E0CA70F9C8A1A785906EA7E7E74E"
         "OwnerKey" = "8:_086D0F343FB44B8A813AB1ED1983F30C"
         "MsmSig" = "8:_UNDEFINED"
@@ -309,6 +321,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F6274BD22EE194EB13CAC0630C97E42A"
+        "OwnerKey" = "8:_086D0F343FB44B8A813AB1ED1983F30C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DBD2A4EA92FAAB3914AFD81029D98D8E"
         "MsmSig" = "8:_UNDEFINED"
@@ -395,6 +413,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_086D0F343FB44B8A813AB1ED1983F30C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F6274BD22EE194EB13CAC0630C97E42A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_475AE0EF08EB2BC6FD173F60243972DD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -626,6 +656,11 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_17CB6D1184D6BA44C9076A758D8D03C5"
+                    {
+                    "Name" = "8:Microsoft.Web.CommandUI.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Microsoft.Web.CommandUI.dll"
             "TargetName" = "8:"
@@ -652,6 +687,11 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SharePoint.Security, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_2F2269942EC01AB8B05FC340B096C274"
+                    {
+                    "Name" = "8:Microsoft.SharePoint.Security.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Microsoft.SharePoint.Security.dll"
             "TargetName" = "8:"
@@ -784,6 +824,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_475AE0EF08EB2BC6FD173F60243972DD"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CAS.CodeProtect, Version=4.0.2.19526, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_475AE0EF08EB2BC6FD173F60243972DD"
+                    {
+                    "Name" = "8:CAS.CodeProtect.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CAS.CodeProtect.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E108D391945D465A97E70B7CD568263E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4C67E0CA70F9C8A1A785906EA7E7E74E"
             {
             "AssemblyRegister" = "3:1"
@@ -884,6 +955,11 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_77839AE90DABB378A344C6A1B1F458BF"
+                    {
+                    "Name" = "8:Microsoft.SharePoint.Linq.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Microsoft.SharePoint.Linq.dll"
             "TargetName" = "8:"
@@ -941,6 +1017,11 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SharePoint.Search, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=AMD64"
                 "ScatterAssemblies"
                 {
+                    "_A2B5DF89019D7E607635C8F024FB116D"
+                    {
+                    "Name" = "8:Microsoft.SharePoint.Search.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Microsoft.SharePoint.Search.dll"
             "TargetName" = "8:"
@@ -1193,6 +1274,11 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_F202C5E17AF47AA621A4B9B0827BF272"
+                    {
+                    "Name" = "8:Microsoft.SharePoint.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Microsoft.SharePoint.dll"
             "TargetName" = "8:"
@@ -1209,6 +1295,37 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F6274BD22EE194EB13CAC0630C97E42A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CAS.RTLibComm, Version=4.0.2.19545, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F6274BD22EE194EB13CAC0630C97E42A"
+                    {
+                    "Name" = "8:CAS.RTLibComm.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CAS.RTLibComm.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E108D391945D465A97E70B7CD568263E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -1289,9 +1406,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Smart Factory"
+        "ProductName" = "8:CAS Smart Factory"
         "ProductCode" = "8:{74D63AA4-86DA-45AF-970E-BFFBA740BCCD}"
-        "PackageCode" = "8:{C65E5987-6182-4C3C-9CE7-4C085F88DA00}"
+        "PackageCode" = "8:{A296F4B9-77FC-4A3F-9C08-3C4B2177F5D8}"
         "UpgradeCode" = "8:{49725F07-CD3D-4395-B6F8-B10BB9191215}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1831,7 +1948,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_086D0F343FB44B8A813AB1ED1983F30C"
             {
-            "SourcePath" = "8:..\\SmartFactoryDeployment\\obj\\Debug\\CAS.SmartFactoryDeployment.exe"
+            "SourcePath" = "8:..\\SmartFactoryDeployment\\obj\\Release\\CAS.SmartFactoryDeployment.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_E108D391945D465A97E70B7CD568263E"
