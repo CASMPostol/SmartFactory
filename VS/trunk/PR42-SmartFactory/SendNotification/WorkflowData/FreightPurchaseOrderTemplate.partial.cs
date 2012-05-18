@@ -22,23 +22,20 @@ namespace CAS.SmartFactory.Shepherd.SendNotification.WorkflowData
     {
       try
       {
-        FreightPO _fpo = (from idx in _EDC.FreightPOLibrary
-                          where idx.Identyfikator == _item.ID
-                          select idx).First();
         return new FreightPurchaseOrderTemplate()
         {
-          EmaiAddressTo = String.IsNullOrEmpty(_fpo.EmailAddress) ? CommonDefinition.UnknownEmail : _fpo.EmailAddress,
+          EmaiAddressTo = String.IsNullOrEmpty((string)_item["EmailAddress"]) ? CommonDefinition.UnknownEmail : (string)_item["EmailAddress"],
           Encodedabsurl = new Uri((string)_item["EncodedAbsUrl"]),
           Modified = (DateTime)_item["Modified"],
           ModifiedBy = (string)_item["Editor"],
           DocumentName = _item.File.Name,
-          FPO2CityTitle = _fpo.FreightPOCity.NotAvailable(),
-          FPO2CommodityTitle = _fpo.FreightPOCommodity.NotAvailable(),
-          FPO2CountryTitle = _fpo.FreightPOCountry.NotAvailable(),
-          FPO2RouteGoodsHandlingPO = _fpo.FPOFreightPO.NotAvailable(),
-          FPO2TransportUnitTypeTitle = _fpo.FreightPOTransportUnitType,
-          FPOLoadingDate = _fpo.FPOLoadingDate.GetValueOrDefault(DateTime.MaxValue),
-          FPO2WarehouseAddress = _fpo.FPOWarehouseAddress.NotAvailable()
+          FPO2CityTitle = ((string)_item["FreightPOCity"]).NotAvailable(),
+          FPO2CommodityTitle = ((string)_item["FreightPOCommodity"]).NotAvailable(),
+          FPO2CountryTitle = ((string)_item["FreightPOCountry"]).NotAvailable(),
+          FPO2RouteGoodsHandlingPO = ((string)_item["FPOFreightPO"]).NotAvailable(),
+          FPO2TransportUnitTypeTitle = (string)_item["FreightPOTransportUnitType"],
+          FPOLoadingDate = ((Nullable<DateTime>)_item["FPOLoadingDate"]).GetValueOrDefault(DateTime.MaxValue),
+          FPO2WarehouseAddress = _item["FPOWarehouseAddress"].ToString().NotAvailable()
         };
       }
       catch (Exception ex)
