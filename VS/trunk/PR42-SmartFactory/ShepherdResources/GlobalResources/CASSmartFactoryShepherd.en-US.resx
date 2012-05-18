@@ -247,7 +247,7 @@
     <value>Driver's name and surname</value>
   </data>
 	<data name="Enters" xml:space="preserve">
-    <value>Enters</value>
+    <value>Entered</value>
   </data>
 	<data name="GoodsQty" xml:space="preserve">
     <value>Goods Qty.</value>
@@ -262,7 +262,7 @@
     <value>Invoice No.</value>
   </data>
 	<data name="Leaves" xml:space="preserve">
-    <value>Leaves</value>
+    <value>Exited</value>
   </data>
 	<data name="Market" xml:space="preserve">
     <value>Market</value>
