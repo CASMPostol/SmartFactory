@@ -2,7 +2,7 @@
 <InstallationStateData xmlns="http://cas.eu/schemas/SharePoint/Deployment/2/ApplicationState.xsd">
   <OwnerLogin></OwnerLogin>
   <OwnerEmail>someone@example.com</OwnerEmail>
-  <SiteCollectionURL>Shepherd</SiteCollectionURL>
+  <SiteCollectionURL>sites/Shepherd</SiteCollectionURL>
   <SiteCollectionCreated>false</SiteCollectionCreated>
   <WebApplicationURL></WebApplicationURL>
   <!--
@@ -12,7 +12,7 @@
   -->
   <SiteTemplate>CMSPUBLISHING#0</SiteTemplate>
   <LCID>1033</LCID>
-  <Title>Shepherd 1.4</Title>
+  <Title>Shepherd 1.5</Title>
   <Description>Shepherd is designed to simplify inbound/outbound management in the factory to gain maximum benefits.</Description>
   <Solutions>
     <Solution>

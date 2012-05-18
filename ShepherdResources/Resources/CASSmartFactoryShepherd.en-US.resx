@@ -190,7 +190,7 @@
     <value>Security Seal Protocol Library Content Type</value>
   </data>
 	<data name="CAS_ShepherdWebsiteFeature" xml:space="preserve">
-    <value>Shepherd Website Feature</value>
+    <value>CAS Shepherd Website </value>
   </data>
 	<data name="CAS_ShepherdWebsiteFeatureDes" xml:space="preserve">
     <value>Contains information model for Shepherd web application.</value>

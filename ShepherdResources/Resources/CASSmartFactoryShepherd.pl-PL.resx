@@ -190,7 +190,7 @@
     <value>Typ zawartości biblioteki Protokół zabezpieczeń - plomb</value>
   </data>
 	<data name="CAS_ShepherdWebsiteFeature" xml:space="preserve">
-    <value>Shepherd - funkcja zbioru wirtryn</value>
+    <value>CAS Shepherd Website</value>
   </data>
 	<data name="CAS_ShepherdWebsiteFeatureDes" xml:space="preserve">
     <value>Zawieras model informacyjny dla aplikacji internetowej Shepherd</value>
