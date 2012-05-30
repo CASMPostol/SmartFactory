@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by RSzwarga (Systemy Komputerowe Glowka SA) -->
+<xs:schema targetNamespace="http://www.mf.gov.pl/xsd/ECS/DTI.AcceptDocument_v1-0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.mf.gov.pl/xsd/ECS/DTI.AcceptDocument_v1-0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="AcceptDocument">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Document">
+          <xs:complexType>
+            <xs:attribute name="contentDocument" type="xs:base64Binary" use="required">
+              <xs:annotation>
+                <xs:documentation source="rule">R2</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Attachment" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="description" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="70" />
+                  <xs:minLength value="1" />
+                  <xs:whiteSpace value="collapse" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="contentDocument" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:base64Binary" />
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="tin" use="required">
+        <xs:annotation>
+          <xs:documentation source="rule">R1</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="17" />
+            <xs:whiteSpace value="collapse" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

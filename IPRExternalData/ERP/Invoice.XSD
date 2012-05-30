@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding="utf-8"?>
+<xs:schema xmlns="http://cas.eu/schemas/jti/ipr/Invoice.xsd"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://cas.eu/schemas/jti/ipr/Invoice.xsd"
+			elementFormDefault="qualified">
+  <xs:element name="Invoice" nillable="true">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="Item">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="1" maxOccurs="1" name="Bill_doc" type="xs:decimal" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Item" nillable="true" type="xs:decimal" />
+              <xs:element minOccurs="0" maxOccurs="1" name="HgLvIt" nillable="true" type="xs:decimal" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Billed_quantity" type="xs:decimal" />
+              <xs:element minOccurs="0" maxOccurs="1" name="SU" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Bill_qty_in_SKU" nillable="true" type="xs:decimal" />
+              <xs:element minOccurs="1" maxOccurs="1" name="BUn" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Ref_doc" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="RefItm" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="PrCat" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Sales_doc" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Item2" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Sales_doc__has_resulted_from_r" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Material" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="ItCa" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Created_on" type="xs:date" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Time" nillable="true" type="xs:time" />
+              <xs:element minOccurs="1" maxOccurs="1" name="SLoc" nillable="true" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Ship_to" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

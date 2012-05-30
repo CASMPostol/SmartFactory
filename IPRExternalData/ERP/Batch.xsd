@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://cas.eu/schemas/jti/ipr/Batch.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/jti/ipr/Batch.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Batch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="Material">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="1" name="Material_description" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Material" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="material_group" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Stor__Loc" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:decimal" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Mvmt_Type" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="1" name="MB_TCODE" type="xs:string" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Quantity_calculated" type="xs:decimal" />
+              <xs:element minOccurs="1" maxOccurs="1" name="Quantity_calculated_without_scrapping_pe" type="xs:decimal" />
+              <xs:element minOccurs="0" maxOccurs="1" name="Unit" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="1" maxOccurs="1" name="Status" type="tns:BatchStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="BatchStatus">
+    <xs:annotation>
+      <xs:documentation>
+         Final: if the production of the goods is finished
+         Intermediate: if the production is still in progress but a selected part of the goods must be delivered or handled in a different way
+         Progress: if the production is still in progress but it is needed to generate a BalanceSheet.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Final" />
+      <xs:enumeration value="Intermediate" />
+      <xs:enumeration value="Progress" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

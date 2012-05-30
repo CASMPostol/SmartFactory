@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.mf.gov.pl/xsd/ECS/DTI.GetDocuments_v1-0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.mf.gov.pl/xsd/ECS/DTI.GetDocuments_v1-0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="GetDocuments">
+    <xs:complexType>
+      <xs:attribute name="tin" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="17" />
+            <xs:minLength value="1" />
+            <xs:whiteSpace value="collapse" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="traderPost" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:length value="2" />
+            <xs:whiteSpace value="collapse" />
+            <xs:pattern value="[A-Z0-9]*" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
