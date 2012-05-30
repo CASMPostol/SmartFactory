@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.mf.gov.pl/xsd/ECS/DTI.GetAcceptDocumentStatusResult_v1-0.xsd" xmlns="http://www.mf.gov.pl/xsd/ECS/DTI.GetAcceptDocumentStatusResult_v1-0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation source="doc">Wynik wywołania operacji "getAcceptDocumentStatus".</xs:documentation>
+	</xs:annotation>
+	<xs:element name="GetAccepDocumentStatusResult">
+		<xs:annotation>
+			<xs:documentation source="doc">Element główny.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Document" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="doc" xml:lang="pl">Element grupujący informacje dotyczące dokumentu XML zawierającego wynik  wysłania dokumentu do PWK.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="contentDocument" type="xs:base64Binary" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Zawartość dokumentu (PWK1/PWK2) zakodowana w base64.</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="resultCode" use="required">
+				<xs:annotation>
+					<xs:documentation source="doc">Wynik (kod) wykonania operacji: "0" - brak dokumentu do pobrania - dokument nie jest jeszcze dostępny (nie udało się jeszcze wykonać operacji w PWK), lub nie jest już dostępny (dokumenty są dostępne tylko przez pewien okres czasu), "1" - zwrócono wynik wykonania operacji w PWK. Kody błędów (wartości ujemne) - patrz rozdział "Kody wyników wykonania operacji".</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:totalDigits value="3"/>
+						<xs:fractionDigits value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="resultDescription" use="optional">
+				<xs:annotation>
+					<xs:documentation source="doc">Opis do kodu wyniku wykonania operacji (patrz rozdział "Kody wyników wykonania operacji").</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1024"/>
+						<xs:whiteSpace value="collapse"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

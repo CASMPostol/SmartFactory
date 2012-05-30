@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by RSzwarga (Systemy Komputerowe Glowka SA) -->
+<xs:schema targetNamespace="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/PODw2r0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.krakow.uc.gov.pl/Celina/CLN-XML/xsd/PODw2r0.xsd" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd" />
+  <xs:element name="POD">
+    <xs:annotation>
+      <xs:documentation source="rule">-</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="PowiadomienieODlugu">
+          <xs:annotation>
+            <xs:documentation source="rule">-</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UC">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="UCZgloszenia" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">1</xs:documentation>
+                      <xs:documentation source="rule">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="8" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Podmiot">
+                <xs:annotation>
+                  <xs:documentation source="rule">-</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="TIN" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="17" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Decyzja" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="PozId" use="required">
+                    <xs:annotation>
+                      <xs:documentation source="list">-</xs:documentation>
+                      <xs:documentation source="rule">G4</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="2" />
+                        <xs:fractionDigits value="0" />
+                        <xs:minExclusive value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Nr" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="40" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Data" type="xs:date" use="required">
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="KwotaDlugu">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Oplata" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="PozId" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="2" />
+                              <xs:fractionDigits value="0" />
+                              <xs:minExclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Typ" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">14</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="3" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Kwota" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                              <xs:totalDigits value="15" />
+                              <xs:fractionDigits value="2" />
+                              <xs:minInclusive value="0" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="MP" use="required">
+                          <xs:annotation>
+                            <xs:documentation source="list">6</xs:documentation>
+                            <xs:documentation source="rule">-</xs:documentation>
+                          </xs:annotation>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:length value="1" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="DodatkowaKwotaZabezpieczenia" use="optional">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="15" />
+                        <xs:fractionDigits value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Informacja" use="optional">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1024" />
+                        <xs:whiteSpace value="collapse" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Towar" minOccurs="0" maxOccurs="999">
+                <xs:complexType>
+                  <xs:attribute name="PozId" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="4" />
+                        <xs:fractionDigits value="0" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KodTowarowy" use="optional">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="8" />
+                        <xs:pattern value="\d{1,}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="KodTaric" use="optional">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:length value="2" />
+                        <xs:pattern value="\d{2}" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="NrWlasny" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="30" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="NrCelina" use="required">
+              <xs:annotation>
+                <xs:documentation source="list">-</xs:documentation>
+                <xs:documentation source="rule">-</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="40" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="DataPrzyjecia" type="xs:dateTime" use="optional">
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="ds:Signature" minOccurs="0" />
+      </xs:sequence>
+      <xs:attribute name="NrWlasny" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="40" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="DataUtworzenia" type="xs:dateTime" use="required">
+      </xs:attribute>
+      <xs:attribute name="EmailPodmiotu" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="35" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

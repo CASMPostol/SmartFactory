@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.mf.gov.pl/xsd/ECS/IEST2_v1-0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.mf.gov.pl/xsd/ECS/IEST2_v1-0.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:element name="IEST2">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Odpowiedz">
+					<xs:annotation>
+						<xs:documentation source="doc">Odpwoiedz na zapytanie o stan obsługi.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:element name="Blad">
+								<xs:annotation>
+									<xs:documentation source="doc">Błąd. Przesyłany, jeżeli komunikatu z zapytaniem został niepoprawnie zbudowany lub nieodnaleziono dokumentu o podanym MRN.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="OpisBledu" use="required">
+										<xs:annotation>
+											<xs:documentation source="doc">Opis błędu.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="100"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>																	
+							</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="MRN" use="required">
+							<xs:annotation>
+								<xs:documentation source="doc">Numer ewidencyjny deklaracji.(Numer ewidencyjny [MRN] składa się z 18 znaków o następującej konstrukcji: rrPL999999P999999k
+								gdzie:
+								- rr to dwie ostatnie cyfry roku, w którym nadano numer ewidencyjny
+								- PL999999 to identyfikator urzędu celnego, w którym nadano numer ewidencyjny
+								- I to znak "P" dla rozróżnienia od innych numerów ewidencyjnych o analogicznej konstrukcji
+								- 999999 to kolejny numer ewidencyjny zgłoszenia nadany w urzędzie celnym o podanym identyfikatorze w danym roku
+								- k to cyfra kontrolna obliczana według algorytmu)
+								przykład: 08PL351010P0000016.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="18"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="status" use="optional">
+							<xs:annotation>
+								<xs:documentation source="doc">Status obsługi zgłoszenia/deklaracji celnej.</xs:documentation>
+								<xs:documentation source="rule">-</xs:documentation>
+								<xs:documentation source="list">313</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="50"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
