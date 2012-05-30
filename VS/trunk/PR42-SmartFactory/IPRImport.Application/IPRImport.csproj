@@ -105,13 +105,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IPR\CAS.SmartFactory.IPR.csproj">
-      <Project>{C4D9BBC4-C123-4AAB-B1E6-9906B7B51BC6}</Project>
-      <Name>CAS.SmartFactory.IPR</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XML\CAS.SmartFactory.XML.csproj">
+    <ProjectReference Include="..\IPRExternalData\IPRExternalData.csproj">
       <Project>{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}</Project>
-      <Name>CAS.SmartFactory.XML</Name>
+      <Name>IPRExternalData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IPRWorkflow\IPRWorkflows.csproj">
+      <Project>{C4D9BBC4-C123-4AAB-B1E6-9906B7B51BC6}</Project>
+      <Name>IPRWorkflows</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
