@@ -43,6 +43,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
@@ -167,12 +169,29 @@
     <None Include="Features\IPRData\IPRData.feature">
       <FeatureId>{f7642b3b-52e4-47c6-89f9-b0eb3120a5a2}</FeatureId>
     </None>
-    <None Include="Fields\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{80dc7039-dc4f-452d-9b57-b127478f1444}</SharePointProjectItemId>
+    <None Include="Field\CustomsFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b7dd3fef-45de-4c3a-a4ea-ea4ae9baab5c}</SharePointProjectItemId>
     </None>
-    <None Include="IPRCustomsFields\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{44333795-3705-41bb-b281-78660212521f}</SharePointProjectItemId>
-      <SubType>Designer</SubType>
+    <None Include="Field\CustomsLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{75c68259-841b-42c9-995e-b8b02d99dd26}</SharePointProjectItemId>
+    </None>
+    <None Include="Field\DictionariesFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a85eb94e-a8f1-4a48-83ff-83eb2211f5bb}</SharePointProjectItemId>
+    </None>
+    <None Include="Field\DictionariesLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e485f920-482e-4f5a-90a4-1a3a788f90d0}</SharePointProjectItemId>
+    </None>
+    <None Include="Field\IPRFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{dee062a7-a5ab-4865-9f42-35acbe9b7517}</SharePointProjectItemId>
+    </None>
+    <None Include="Field\IPRLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{31df2520-1c92-4440-85a8-7eb9a6ad8a0b}</SharePointProjectItemId>
+    </None>
+    <None Include="Field\ReportsFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{03cc6c41-fc55-41ee-a9c1-447bb712c2b7}</SharePointProjectItemId>
+    </None>
+    <None Include="Field\ReportsLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{deaf1d98-e781-4e00-9810-d5f91935e3c7}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
     <None Include="Lists\ActivityLog\SharePointProjectItem.spdata">
@@ -271,12 +290,6 @@
     <None Include="Lists\Dictionaries\CutfillerCoefficientTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{91d2e3c6-cba3-4c7d-a731-1ba1bbac128a}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Dictionaries\DictionariesFields\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{d25beffd-bec8-43c2-a9c0-1fa4e2b47e63}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Dictionaries\DictionariesLookupFields\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{a258c419-589e-4ba3-bef7-ede514dbc4bd}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Dictionaries\DustTemplate\DustList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f78043b4-9d06-40e9-a5df-d36edb2adefc}</SharePointProjectItemId>
     </None>
@@ -329,14 +342,8 @@
     <None Include="Lists\DisposalTemlate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1262eb21-6b5b-422d-a06a-ea0da998d51d}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\IPRFields\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{677801eb-b35c-41d8-b869-09579ad0e752}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\IPRLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9c8f2898-e1f2-4d5f-9998-321391e553b9}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\IPRLookupFields\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{b35b575f-21b9-4906-aaae-e6b178e43e71}</SharePointProjectItemId>
     </None>
     <None Include="Lists\IPRTemplate\IPRList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ce08fa6c-05cc-4f86-8c44-c946df0a290f}</SharePointProjectItemId>
@@ -380,13 +387,6 @@
     </None>
     <None Include="Lists\Reports\JSOXTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2cde74b2-965b-4029-b8e6-8fcf2ed7b261}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Reports\ReportsFields\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{b45358fb-838f-48a7-bdc1-4e4c4fb6d24a}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Reports\ReportsLookupFields\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{0b4c2c16-6812-4194-a976-7bcc45a1f3a4}</SharePointProjectItemId>
-      <SubType>Designer</SubType>
     </None>
     <None Include="Lists\Reports\StockEntryTemplate\StockEntryList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b0f81a09-4068-4c16-849d-de875f1f045c}</SharePointProjectItemId>
@@ -495,12 +495,16 @@
     <Content Include="Features\IPRData\IPRData.Template.xml">
       <DependentUpon>IPRData.feature</DependentUpon>
     </Content>
-    <Content Include="Fields\Elements.xml">
+    <Content Include="Field\CustomsFields\Elements.xml" />
+    <Content Include="Field\CustomsLookupFields\Elements.xml" />
+    <Content Include="Field\DictionariesFields\Elements.xml" />
+    <Content Include="Field\DictionariesLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="IPRCustomsFields\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Field\IPRFields\Elements.xml" />
+    <Content Include="Field\IPRLookupFields\Elements.xml" />
+    <Content Include="Field\ReportsFields\Elements.xml" />
+    <Content Include="Field\ReportsLookupFields\Elements.xml" />
     <Content Include="Lists\ActivityLog\Elements.xml" />
     <Content Include="Lists\BatchLibrary\Elements.xml" />
     <Content Include="Lists\BatchTemplate\Elements.xml">
@@ -565,12 +569,6 @@
     <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\CutfillerCoefficientList\Elements.xml" />
     <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\Schema.xml" />
-    <Content Include="Lists\Dictionaries\DictionariesFields\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Lists\Dictionaries\DictionariesLookupFields\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Lists\Dictionaries\DustTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\DustTemplate\DustList\Elements.xml" />
     <Content Include="Lists\Dictionaries\DustTemplate\Schema.xml" />
@@ -600,9 +598,7 @@
     <Content Include="Lists\DisposalTemlate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\IPRFields\Elements.xml" />
     <Content Include="Lists\IPRLibrary\Elements.xml" />
-    <Content Include="Lists\IPRLookupFields\Elements.xml" />
     <Content Include="Lists\IPRTemplate\Elements.xml" />
     <Content Include="Lists\IPRTemplate\IPRList\Elements.xml" />
     <Content Include="Lists\IPRTemplate\Schema.xml" />
@@ -629,12 +625,6 @@
     <Content Include="Lists\Reports\JSOXTemplate\Elements.xml" />
     <Content Include="Lists\Reports\JSOXTemplate\JSOXList\Elements.xml" />
     <Content Include="Lists\Reports\JSOXTemplate\Schema.xml" />
-    <Content Include="Lists\Reports\ReportsFields\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Lists\Reports\ReportsLookupFields\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Lists\Reports\StockEntryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\StockEntryTemplate\StockEntryList\Elements.xml" />
     <Content Include="Lists\Reports\StockEntryTemplate\Schema.xml" />

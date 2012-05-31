@@ -63,7 +63,7 @@
     DisplayName="Productivity rate - max"
     Group="CAS Smart Factory IPR Dictionaries"
     />
-  <Field 
+  <Field
     ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}"
     Name="ValidFromDate"
     Group="CAS Smart Factory IPR Dictionaries"
