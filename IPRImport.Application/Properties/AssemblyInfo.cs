@@ -10,9 +10,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Server site management functions")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
-[assembly: AssemblyProduct("CAS Smart Factory")]
-[assembly: AssemblyCopyright("Copyright © CAS 2011")]
-[assembly: AssemblyTrademark("SmartFactory")]
+[assembly: AssemblyProduct("Smart Factory")]
+[assembly: AssemblyCopyright("Copyright (c) CAS 2012")]
+[assembly: AssemblyTrademark("Smart Factory")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -33,5 +33,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.*")]
-[assembly: AssemblyFileVersion("1.0.0")]
+[assembly: AssemblyVersion("1.0.60.*")]
+[assembly: AssemblyFileVersion("1.0.60")]
+
