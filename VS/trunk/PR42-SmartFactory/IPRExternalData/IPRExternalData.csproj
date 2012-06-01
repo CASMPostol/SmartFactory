@@ -125,6 +125,11 @@
     </Compile>
     <Compile Include="ERP\Stock.partial.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
     <None Include="cas.snk" />
     <None Include="ClassDiagram1.cd" />
     <None Include="Customs\CELINA\CLNBw2r0.xsd">
@@ -360,6 +365,10 @@
     <None Include="ERP\Stock.XSD">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\AssemblyInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImputDataError.cs" />
@@ -370,7 +379,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
-    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
