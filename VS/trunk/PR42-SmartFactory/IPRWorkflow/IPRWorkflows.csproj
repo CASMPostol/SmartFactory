@@ -85,7 +85,6 @@
     <Compile Include="ListsEventsHandlers\Customs\SADImportXML\SADImportXML.cs" />
     <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUEventHandlers.cs" />
     <Compile Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\StockLibraryEventReceiver.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ListsEventsHandlers\Customs\SADImportXML\SharePointProjectItem.spdata">
@@ -140,6 +139,9 @@
       <Project>{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}</Project>
       <Name>IPRExternalData</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
