@@ -306,14 +306,14 @@
     ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}"
     Format="Dropdown"
     BaseType="Text"
-    Description="Clearing Type"
+    Description="Winding-up"
     Name="ClearingType"
     Group="CAS Smart Factory IPR"
     CanToggleHidden="TRUE">
-    <Default>l. czesciowa</Default>
+    <Default>Partial winding-up</Default>
     <CHOICES>
-      <CHOICE>l. czesciowa</CHOICE>
-      <CHOICE>l. calkowita</CHOICE>
+      <CHOICE>Partial winding-up</CHOICE>
+      <CHOICE>Total winding-up</CHOICE>
     </CHOICES>
   </Field>
   <Field
