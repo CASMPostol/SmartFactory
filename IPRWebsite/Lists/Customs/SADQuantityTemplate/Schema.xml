@@ -8,7 +8,7 @@
           <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />
           <FieldRef ID="{db454782-449a-4ec5-b0cd-55a7d7af3428}" Name="NetMass" />
           <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
-          <FieldRef ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" />
+          <FieldRef ID="{49EDD335-1478-4207-B2F2-F004344890AF}" Name="SADQuantity2SADGoodID" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -22,10 +22,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="SADGoodIndex" ID="{bbff74f2-1503-450c-9014-ddc91d868c3f}" Type="Lookup" List="Lists/SADGoodList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SAD Good lookup" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field DisplayName="Item No" Name="ItemNo" Type="Number" ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Group="CAS Smart Factory IPR Customs" Description="PozID" />
-      <Field DisplayName="Net mass" Name="NetMass" Type="Number" ID="{db454782-449a-4ec5-b0cd-55a7d7af3428}" Group="CAS Smart Factory IPR Customs" Description="Net mass" />
-      <Field DisplayName="Units" Name="Units" Type="Text" ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Group="CAS Smart Factory IPR Customs" Description="j.m." />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
