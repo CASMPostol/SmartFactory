@@ -223,4 +223,11 @@
     ID="{F6AA27B5-972F-432A-B637-BF726D701168}"
     Group="CAS Smart Factory IPR Customs"
     />
+  <Field
+    DisplayName="Procedure code"
+    Name="ProcedureCode"
+    Type="Text"
+    ID="{0F8D4217-D9F2-4065-8F0D-04E727B3C24B}"
+    Group="CAS Smart Factory IPR Customs"
+    />
 </Elements>

@@ -9,6 +9,7 @@
           <FieldRef ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}" Name="ReferenceNumber" />
           <FieldRef ID="{CE7B596A-FE29-4F30-A0F2-043CB359B599}" Name="Status" />
           <FieldRef ID="{109482BF-107F-44C3-9CD8-6AC9C1FAB851}" Name="SADConsignmentLibraryIndex" />
+          <FieldRef ID="{0F8D4217-D9F2-4065-8F0D-04E727B3C24B}" Name="ProcedureCode" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -22,10 +23,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field DisplayName="DocumentNo" Name="DocumentNo" Type="Text" ID="{7e9d625d-14fa-4626-9412-14bcd2bce8e6}" Group="CAS Smart Factory IPR" Description="DocumentNo" />
-      <Field Name="ReferenceNumber" ID="{8c9856b8-0ed9-42e8-99a2-9c58aa31810e}" Type="Text" DisplayName="Reference Number" AuthoringInfo="SAD Document Reference Number - box 7." Group="CAS Smart Factory IPR Customs" Indexed="True" Description="SAD Document Reference Number - box 7." Required="False" />
-      <Field Name="SADConsignmentLibraryIndex" ID="{109482bf-107f-44c3-9cd8-6ac9c1fab851}" Type="Lookup" List="Lists/SADConsignmentLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SAD Consignment Library lookup" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field DisplayName="Status" Name="Status" Type="Boolean" ID="{ce7b596a-fe29-4f30-a0f2-043cb359b599}" Group="CAS Smart Factory IPR Customs" Description="Status" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
