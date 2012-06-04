@@ -7,7 +7,7 @@
         <FieldRefs>
           <FieldRef ID="{2a582f5b-99c0-4982-bf9b-ed88ed65f46d}" Name="Type" />
           <FieldRef ID="{1A8DEAD6-163D-45BB-B278-E946F49C071B}" Name="Amount" />
-          <FieldRef ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" />
+          <FieldRef ID="{D3A23FBE-A497-4019-B7B9-58130DDEABC9}" Name="SADDuties2SADGoodID" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -21,9 +21,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" Type="Lookup" List="Lists/SADGoodList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SAD Good index" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field DisplayName="Type" Name="Type" Type="Text" ID="{2a582f5b-99c0-4982-bf9b-ed88ed65f46d}" Group="CAS Smart Factory IPR Customs" Description="Type" />
-      <Field DisplayName="Amount" Name="Amount" Type="Number" ID="{1a8dead6-163d-45bb-b278-e946f49c071b}" Group="CAS Smart Factory IPR Customs" Description="Amount" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

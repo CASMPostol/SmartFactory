@@ -10,7 +10,7 @@
     <FieldRefs>
       <FieldRef ID="{db36ba74-4c91-4793-9ab2-a48ce633ccbe}" Name="Code" />
       <FieldRef ID="{12104636-b615-4f4e-a0b9-23158b9adad8}" Name="Number" />
-      <FieldRef ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" />
+      <FieldRef ID="{50EF804E-B80E-45DA-8CCB-C07C856AF94A}" Name="SADRequiredDoc2SADGoodID" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
