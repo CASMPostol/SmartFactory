@@ -43,54 +43,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="Currency" ID="{91f0305a-9f13-468a-85ca-1ae1c859dbd7}" Type="Text" DisplayName="Currency" Group="CAS Smart Factory IPR Customs" AuthoringInfo="Box 22 first part" />
-      <Field DisplayName="PCN tariff code" Name="PCNTariffCode" Type="Text" ID="{4e14f686-584a-4ee8-9784-4b7aa4dcd1e7}" Group="CAS Smart Factory IPR Customs" Description="Kod taryfy PCN" />
-      <Field Name="ClearenceIndex" ID="{c5fa63a7-dc74-4b2f-94eb-ae877dbcccef}" Type="Lookup" List="Lists/ClearenceList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Clearence List lookup" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="PCNCodeIndex" ID="{24fb05b0-2dd8-4ddc-b6ec-f6721d9f385e}" Type="Lookup" List="Lists/PCNCodeList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="PCNCode lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field DisplayName="No." Name="No" Type="Number" ID="{661ec112-f8f2-4cda-88b4-a822f5099ca2}" Group="CAS Smart Factory IPR" Description="No." />
-      <Field DisplayName="SAD Document No." Name="SADDOcumentNo" Type="Text" ID="{e94071cd-b982-45cf-9e1f-a28d4c0b0fc1}" Group="CAS Smart Factory IPR" Description="SAD Document No." />
-      <Field DisplayName="IPR Document No." Name="IPRDocumentNo" Type="Text" ID="{4b9400b7-9a5d-4e55-84bf-7b609cf963f2}" Group="CAS Smart Factory IPR" Description="IPR Document No." />
-      <Field DisplayName="Settled quantity" Name="SettledQuantity" Type="Number" ID="{333ab237-93fb-4910-b2fc-9a08a08643da}" Group="CAS Smart Factory IPR" Description="Settled quantity" />
-      <Field DisplayName="Disposal Status" Name="DisposalStatus" Type="Text" ID="{51e5b961-8234-4009-81c0-c6059298044f}" Group="CAS Smart Factory IPR" Description="Disposal Status" />
-      <Field DisplayName="Customs Status" Name="CustomsStatus" Type="Text" ID="{298f8dd7-97d6-4fe0-8a1f-08621bcf807a}" Group="CAS Smart Factory IPR" Description="Customs Status" />
-      <Field DisplayName="FG SKU" Name="FGSKU" Type="Text" ID="{334b6ab1-43cd-408a-aab7-fc37f343b299}" Group="CAS Smart Factory IPR" Description="FG SKU" />
-      <Field DisplayName="FG Batch" Name="FGBatch" Type="Text" ID="{ba69b356-48ef-4519-849c-9eae8b6d6ec0}" Group="CAS Smart Factory IPR" Description="FG Batch" />
-      <Field DisplayName="Duty per settled amount" Name="DutyPerSettledAmount" Type="Text" ID="{9b890369-b6cc-403e-a921-f9e686ef094c}" Group="CAS Smart Factory IPR" Description="Duty per settled amount" />
-      <Field DisplayName="VAT per settled amount" Name="VATPerSettledAmount" Type="Text" ID="{6aa3ab04-1dc6-4e5a-8602-bc0b06f9386a}" Group="CAS Smart Factory IPR" Description="VAT per settled amount" />
-      <Field ResultType="Number" LCID="1045" Format="DateTime" Description="Duty and VAT" DisplayName="Duty and VAT" Type="Calculated" ID="{e7d69ae8-aeac-4a9f-a597-87a7957950b8}" Name="DutyAndVAT" Group="CAS Smart Factory IPR" ReadOnly="TRUE">
-    <Formula>=DutyPerSettledAmount+VATPerSettledAmount</Formula>
-    <FormulaDisplayNames>=DutyPerSettledAmount+VATPerSettledAmount</FormulaDisplayNames>
-    <FieldRefs>
-      <FieldRef Name="DutyPerSettledAmount" />
-      <FieldRef Name="VATPerSettledAmount" />
-    </FieldRefs>
-  </Field>
-      <Field DisplayName="Tobacco Value" Name="TobaccoValue" Type="Number" ID="{3f511117-ae6f-40ff-801c-c8765d68e86d}" Group="CAS Smart Factory IPR" Description="Tobacco Value" />
-      <Field DisplayName="Remaining quantity" Name="RemainingQuantity" Type="Text" ID="{0e24a674-1fe7-4c77-9106-387e12417644}" Group="CAS Smart Factory IPR" Description="Remaining quantity" />
-      <Field DisplayName="Customs Procedure" Name="CustomsProcedure" Type="Text" ID="{561ef73a-ddb8-4b66-badb-540c80cd83e6}" Group="CAS Smart Factory IPR" Description="CustomsProcedure" />
-      <Field Name="BatchIndex" ID="{6b3af163-c404-433f-9801-047c12b9ee42}" Type="Lookup" List="Lists/BatchList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Batch lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="IPRIndex" ID="{47cb6ebb-bc67-466f-ba7f-b89e1e31f5be}" Type="Lookup" List="Lists/IPRList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="IPR lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="SADDate" ID="{1cbc328d-a936-4125-a6c6-a2e0e956d250}" Type="Text" DisplayName="SAD Date" Group="CAS Smart Factory IPR Reports" />
-      <Field Name="InvoiceNo" ID="{d41c0f0b-a4a9-4d19-bd42-78d3de4a22ec}" Type="Text" DisplayName="Invoice No." Group="CAS Smart Factory IPR Reports" />
-      <Field Type="Choice" DisplayName="Compensation Good" ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Format="Dropdown" BaseType="Text" Description="Compensation Good" Name="CompensationGood" Group="CAS Smart Factory IPR Reports" CanToggleHidden="TRUE">
-        <Default>tytoń</Default>
-        <CHOICES>
-          <CHOICE>tytoń</CHOICE>
-          <CHOICE>krajanka</CHOICE>
-          <CHOICE>papierosy</CHOICE>
-          <CHOICE>pył tytoiowy</CHOICE>
-          <CHOICE>odpad tytoniowy</CHOICE>
-          <CHOICE>kartony</CHOICE>
-        </CHOICES>
-      </Field>
-      <Field Name="JSOXCustomsSummaryIndex" ID="{6e87dac8-1b60-4246-97e1-9d0dc221f268}" Type="Lookup" List="Lists/JSOXCustomsSummaryList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="JSOX Customs Summary List lookup" Group="CAS Smart Factory IPR Reports" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Type="Choice" DisplayName="Clearing Type" ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Format="Dropdown" BaseType="Text" Description="Clearing Type" Name="ClearingType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
-        <Default>l. czesciowa</Default>
-        <CHOICES>
-          <CHOICE>l. czesciowa</CHOICE>
-          <CHOICE>l. calkowita</CHOICE>
-        </CHOICES>
-      </Field>
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
