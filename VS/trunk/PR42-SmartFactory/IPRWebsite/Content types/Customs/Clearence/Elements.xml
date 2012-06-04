@@ -12,6 +12,7 @@
       <FieldRef ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}" Name="ReferenceNumber" />
       <FieldRef ID="{CE7B596A-FE29-4F30-A0F2-043CB359B599}" Name="Status" />
       <FieldRef ID="{109482BF-107F-44C3-9CD8-6AC9C1FAB851}" Name="SADConsignmentLibraryIndex" />
+      <FieldRef ID="{0F8D4217-D9F2-4065-8F0D-04E727B3C24B}" Name="ProcedureCode" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
