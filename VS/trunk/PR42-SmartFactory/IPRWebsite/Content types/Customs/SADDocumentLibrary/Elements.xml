@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x010100328e0519b5bf46e7823ce6bcb82e1afa"
+               Name="SADDocumentLibrary"
+               Group="CAS Smart Factory IPR Customs"
+               Description="SAD Document Library"
+               Inherits="TRUE"
+               Overwrite="TRUE">
+    <Folder TargetName="_cts/SADDocumentLibrary" />
+    <FieldRefs>
+      <FieldRef ID="{89422377-9695-4FC8-88C2-B6FECC24E4D4}" Name="SADDocumentLibraryOK" />
+      <FieldRef ID="{F6AA27B5-972F-432A-B637-BF726D701168}" Name="SADDocumentLibraryComments" />
+    </FieldRefs>
+  </ContentType>
+</Elements>
