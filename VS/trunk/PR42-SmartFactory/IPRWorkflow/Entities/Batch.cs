@@ -79,13 +79,13 @@ namespace CAS.SmartFactory.IPR.Entities
         throw new IPRDataConsistencyException(m_Source, String.Format(m_LookupFailedMessage, index), ex);
       }
     }
-    internal Disposal[] GetDisposals(EntitiesDataContext edc)
+    internal DisposalDisposal[] GetDisposals(EntitiesDataContext edc)
     {
       var disposals =
           from idx in edc.Disposal
           where this.Identyfikator == idx.BatchLookup.Identyfikator
           select idx;
-      return disposals.ToArray<Disposal>();
+      return disposals.ToArray<DisposalDisposal>();
     }
     #endregion
 
