@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="CTFUsageMax"
+    Name="CTFUsageMax"
+    Type="Number"
+    ID="{3C49CFB3-CCA3-4574-AE30-D422B8DA1C58}"
+    Group="CAS Smart Factory IPR Dictionaries"
+    />
+  <Field
+    DisplayName="CTFUsageMin"
+    Name="CTFUsageMin"
+    Type="Number"
+    ID="{8AEDEE2D-AD68-43C8-9340-D078B73FE1AF}"
+    Group="CAS Smart Factory IPR Dictionaries"
+    />
+  <Field
     Name="ConsentPeriod"
     ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}"
     Type="Number"
