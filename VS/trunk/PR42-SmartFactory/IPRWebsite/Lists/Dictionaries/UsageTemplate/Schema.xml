@@ -8,6 +8,8 @@
           <FieldRef ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}" Name="FormatIndex" />
           <FieldRef ID="{a5854e29-ef45-49d8-8cf8-8c5c91f1c0c6}" Name="UsageMin" />
           <FieldRef ID="{1d56fc71-6866-4a9f-a9c9-629e91b54ae1}" Name="UsageMax" />
+          <FieldRef ID="{8AEDEE2D-AD68-43C8-9340-D078B73FE1AF}" Name="CTFUsageMin" />
+          <FieldRef ID="{3C49CFB3-CCA3-4574-AE30-D422B8DA1C58}" Name="CTFUsageMax" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -21,9 +23,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field DisplayName="UsageMax" Name="UsageMax" Type="Number" ID="{1d56fc71-6866-4a9f-a9c9-629e91b54ae1}" Group="CAS Smart Factory IPR" Description="UsageMax" />
-      <Field DisplayName="UsageMin" Name="UsageMin" Type="Number" ID="{a5854e29-ef45-49d8-8cf8-8c5c91f1c0c6}" Group="CAS Smart Factory IPR" Description="UsageMin" />
-      <Field Name="FormatIndex" ID="{54fe0a48-e3c8-4e8f-bc10-a1c4935ea8d0}" Type="Lookup" List="Lists/Formatist" ShowField="Title" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Format lookup" Group="CAS Smart Factory IPR Dictionaries" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
