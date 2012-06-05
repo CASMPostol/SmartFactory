@@ -616,7 +616,6 @@ namespace CAS.SmartFactory.Shepherd.Entities
   public static class Extensions
   {
     #region public
-
     /// <summary>
     /// Convert int to string.
     /// </summary>
