@@ -525,7 +525,9 @@
     </Content>
     <Content Include="Lists\Customs\ClearenceTemplate\Elements.xml" />
     <Content Include="Lists\Customs\ClearenceTemplate\ClearenceList\Elements.xml" />
-    <Content Include="Lists\Customs\ClearenceTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\ClearenceTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\InvoiceContentTemplate\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceContentTemplate\InvoiceContentList\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceContentTemplate\Schema.xml" />
