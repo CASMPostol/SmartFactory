@@ -2,10 +2,9 @@
 <List xmlns:ows="Microsoft SharePoint" Title="ConsentTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-ConsentTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100A7FE6CFCCADBB7409C1F0FA102B9C573" Name="Consent" Group="CAS Smart Factory IPR Dictionaries" Description="Consent" Overwrite="TRUE" Inherits="True">
+      <ContentType ID="0x0100A7FE6CFCCADBB7409C1F0FA102B9C573" Name="Consent" Group="CAS Smart Factory IPR Dictionaries" Description="Consent" Overwrite="TRUE" Inherits="TRUE">
         <Folder TargetName="_cts/Consent" />
         <FieldRefs>
-          <FieldRef ID="{7e356924-ecc1-4ae2-b5af-4501388062d8}" Name="ConsentNo" />
           <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />
           <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
           <FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />
@@ -24,16 +23,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="ConsentPeriod" ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}" Type="Number" DisplayName="Consent period" Group="CAS Smart Factory IPR Dictionaries" />
-      <Field DisplayName="ConsentNo" Name="ConsentNo" Type="Text" ID="{7e356924-ecc1-4ae2-b5af-4501388062d8}" Group="CAS Smart Factory IPR" Description="ConsentNo" />
-      <Field Name="ProductivityRateMin" ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Type="Number" Percentage="TRUE" Min="0" Max="5" DisplayName="Productivity rate - min" Group="CAS Smart Factory IPR Dictionaries" />
-      <Field Name="ProductivityRateMax" ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}" Type="Number" Percentage="TRUE" Min="0" Max="5" DisplayName="Productivity rate - max" Group="CAS Smart Factory IPR Dictionaries" />
-      <Field ID="{7bf919f9-500d-4584-a5ac-ac03d705d2b1}" Name="ValidFromDate" Group="CAS Smart Factory IPR Dictionaries" Type="DateTime" Format="DateOnly" DisplayName="Valid from date">
-    <Default>[today]</Default>
-  </Field>
-      <Field ID="{05a2c176-9a58-449d-b2e6-84f3c5b32307}" Name="ValidToDate" Group="CAS Smart Factory IPR Dictionaries" Type="DateTime" Format="DateOnly" DisplayName="Valid to date">
-    <Default>[today]</Default>
-  </Field>
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -63,7 +52,8 @@
         <ViewFields>
           <FieldRef Name="Attachments">
           </FieldRef>
-          <FieldRef ID="{7e356924-ecc1-4ae2-b5af-4501388062d8}" Name="ConsentNo" />
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
           <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />
           <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
           <FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />

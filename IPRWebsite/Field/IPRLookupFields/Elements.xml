@@ -1,6 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="IPR2ConsentTitle"
+    ID="{B666BBEE-46EC-4E0D-B782-68BC5E9B561A}"
+    Type="Lookup"
+    List="Lists/ConsentList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Consent No"
+    Group="CAS Smart Factory IPR"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Type="Lookup"
+    DisplayName="Productivity rate min"
+    List="Lists/ConsentList"
+    ShowField="ProductivityRateMin"
+    FieldRef="B666BBEE-46EC-4E0D-B782-68BC5E9B561A"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Shepherd"
+    ID="{D5CA1825-4BB9-4F31-96E3-DFFB4E4E55AD}"
+    Name="ConsentProductivityRateMin"
+    Overwrite="TRUE"
+  />
+  <Field
+    Type="Lookup"
+    DisplayName="Productivity rate max"
+    List="Lists/ConsentList"
+    ShowField="ProductivityRateMax"
+    FieldRef="B666BBEE-46EC-4E0D-B782-68BC5E9B561A"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory Shepherd"
+    ID="{E7D6F0BE-C2CA-41E0-9258-749510A9AFA5}"
+    Name="ConsentProductivityRateMax"
+    Overwrite="TRUE"
+  />
+  <Field
     Name="IPRLibraryIndex"
     ID="{787756CE-4DEB-46DB-B092-BAED5DBAFA86}"
     Type="Lookup"
