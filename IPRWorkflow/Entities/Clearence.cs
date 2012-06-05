@@ -29,7 +29,7 @@ namespace CAS.SmartFactory.IPR.Entities
                 DocumentNo = String.Empty,
                 ReferenceNumber = _sad.ReferenceNumber,
                 SADConsignmentLibraryLookup = null,
-                ProcedureCode = _cpc,
+                ProcedureCode = String.Format("{0,2}XX", (int)_cpc),
                 Status = false,
                 Tytuł = String.Format("SAD Ref: {0}", _sad.ReferenceNumber)
               };
@@ -57,7 +57,7 @@ namespace CAS.SmartFactory.IPR.Entities
           _ret = FimdClearence(_edc, _sad.ReferenceNumber);
           _ret.DocumentNo = _sad.DocumentNumber;
           SADDocumentType _startingDocument = _ret.GetSADDocument();
-          switch (_ret.ProcedureCode.Value)
+          switch (_ret.ProcedureCode.RequestedProcedure())
           {
             case CustomsProcedureCodes.FreeCirculation:
               ReleaseForFreeCirculation(_edc, _startingDocument);
@@ -101,7 +101,5 @@ namespace CAS.SmartFactory.IPR.Entities
       //TODO NotImplementedException
       throw new NotImplementedException();
     }
-    //TODO must be removed:  [pr4-3396] Add column ProcedureCode of string to Clearance: http://itrserver/Bugs/BugDetail.aspx?bid=3396
-    public CustomsProcedureCodes? ProcedureCode { get; set; }
   }
 }
