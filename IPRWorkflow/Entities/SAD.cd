@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAS.SmartFactory.IPR.Entities.SADDocumentType">
+    <Position X="7.25" Y="3.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="SADDocumentLibraryLookup" Type="CAS.SmartFactory.IPR.Entities.Dokument">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-2.669" Y="0.141" Height="0.182" Width="2.455" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAKAAAQAEAAAAAIAQAEAACAACCQAAEABiAAKkEAAIAA=</HashCode>
+      <FileName>Entities\Entities.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SADDocumentLibraryLookup" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="SADGood" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.Dokument">
+    <Position X="7.25" Y="6.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgBAAAAAAAAAAAAQAEBAAAQACAAAAAAAABwAAAAAAA=</HashCode>
+      <FileName>Entities\Dokument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.SADGood">
+    <Position X="10.75" Y="3.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AABAAAgBAEAQAhAwQAEAACAQgCAACABACAgAAAAQAAA=</HashCode>
+      <FileName>Entities\Entities.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SADDocumentLookup" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.SADDuties">
+    <Position X="14.25" Y="6.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="SADGoodLookup" Type="CAS.SmartFactory.IPR.Entities.SADGood" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.25" Y="7.956" />
+        <Point X="12.375" Y="7.956" />
+        <Point X="12.375" Y="6.213" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.68" Y="1.225" Height="0.182" Width="1.514" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAQAEAAACAACAAAAAAAQBAAAQACCQ=</HashCode>
+      <FileName>Entities\Entities.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SADGoodLookup" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.SADPackage">
+    <Position X="14.25" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="SADGoodLookup" Type="CAS.SmartFactory.IPR.Entities.SADGood" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.25" Y="1.472" />
+        <Point X="12.25" Y="1.472" />
+        <Point X="12.25" Y="3.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.992" Y="1.683" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAQQAEQAAAAACAACAAAAAAAAAQACCQ=</HashCode>
+      <FileName>Entities\Entities.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SADGoodLookup" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.SADQuantity">
+    <Position X="14.25" Y="2.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="SADGoodLookup" Type="CAS.SmartFactory.IPR.Entities.SADGood" FixedToPoint="true">
+      <Path>
+        <Point X="14.25" Y="3.792" />
+        <Point X="12.75" Y="3.792" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQQAEAAAAAACAACAAAUAAAAAQACCY=</HashCode>
+      <FileName>Entities\Entities.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SADGoodLookup" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.SADRequiredDocuments">
+    <Position X="14.25" Y="4.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="SADGoodLookup" Type="CAS.SmartFactory.IPR.Entities.SADGood" FixedToPoint="true">
+      <Path>
+        <Point X="14.25" Y="5.776" />
+        <Point X="12.75" Y="5.776" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQEEgAAAAACAAAAAAAAAAAARgCCQ=</HashCode>
+      <FileName>Entities\Entities.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SADGoodLookup" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.IPR">
+    <Position X="0.5" Y="1.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>KFIAiyCQAAAQAMmFZAEIESSACCBQIkAcyhkoIR6QUAQ=</HashCode>
+      <FileName>Entities\Entities.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ClearenceListLookup" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.Clearence">
+    <Position X="4.5" Y="1.25" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="SADConsignmentLibraryLookup" Type="CAS.SmartFactory.IPR.Entities.Dokument">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.579" Y="3.841" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEAACCAUAQAACABCQAEAAAAAACAAEEAAAAAIAAACoAA=</HashCode>
+      <FileName>Entities\Clearence.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SADConsignmentLibraryLookup" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

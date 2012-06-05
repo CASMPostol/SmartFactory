@@ -502,6 +502,7 @@
     </Content>
     <Content Include="Features\IPRData\IPRData.Template.xml">
       <DependentUpon>IPRData.feature</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Field\CustomsFields\Elements.xml" />
     <Content Include="Field\CustomsLookupFields\Elements.xml" />

@@ -49,7 +49,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
         Anons.WriteEntry(edc, m_Title, message);
         edc.SubmitChanges();
         InvoiceXml document = InvoiceXml.ImportDocument(stream);
-        Dokument entry = Dokument.GetEntity(listIndex, edc.InvoiceLibrary);
+        Dokument entry = Element.GetAtIndex<Dokument>(edc.InvoiceLibrary, listIndex);
         Invoice.GetXmlContent(document, edc, entry);
         Anons.WriteEntry(edc, m_Title, "Import of the stock message finished");
         edc.SubmitChanges();

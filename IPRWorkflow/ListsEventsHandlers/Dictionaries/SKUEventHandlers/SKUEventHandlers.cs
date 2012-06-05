@@ -52,7 +52,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
         String message = String.Format("Import of the SKU message {0} starting.", listIndex);
         Anons.WriteEntry(edc, m_Title, message);
         SKUXml xml = SKUXml.ImportDocument(stream);
-        Dokument entry = Dokument.GetEntity(listIndex, edc.SKULibrary);
+        Dokument entry = Element.GetAtIndex<Dokument>(edc.SKULibrary, listIndex);
         SKUCommonPart.GetXmlContent(xml, edc, entry, progressChanged);
         progressChanged(null, new ProgressChangedEventArgs(1, "Submiting Changes"));
         edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);

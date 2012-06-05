@@ -53,8 +53,11 @@ namespace CAS.SmartFactory.IPR.Customs
             edc.ActivityLog.InsertOnSubmit(mess);
             edc.SubmitChanges();
             CustomsDocument document = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
-            Dokument entry = Dokument.GetEntity(properties.ListItem.ID, edc.SADDocumentLibrary);
-            GetSADDocument(document, edc, entry);
+            SADDocumentLib entry = Element.GetAtIndex <SADDocumentLib>(edc.SADDocumentLibrary, properties.ListItem.ID );
+            SADDocumentType _sad = GetSADDocument(document, edc, entry);
+            edc.SubmitChanges();
+            Clearence _clrnc = Clearence.Associate(edc, document.MessageRootName(), _sad);
+            //TODO _sad.xxxxxx = _clrnc; [pr4-3395] http://itrserver/Bugs/BugDetail.aspx?bid=3395 SADDocumentType does not have lookup column to Clearence
             edc.SubmitChanges();
           }
         }
@@ -80,7 +83,7 @@ namespace CAS.SmartFactory.IPR.Customs
         }
       base.ItemAdded(properties);
     }
-    private static void GetSADDocument(CustomsDocument document, EntitiesDataContext edc, Dokument lookup)
+    private static SADDocumentType GetSADDocument(CustomsDocument document, EntitiesDataContext edc, SADDocumentLib lookup)
     {
       SADDocumentType newRow = new SADDocumentType()
       {
@@ -95,6 +98,7 @@ namespace CAS.SmartFactory.IPR.Customs
       };
       GetSADGood(document.GetSADGood(), edc, newRow);
       edc.SADDocument.InsertOnSubmit(newRow);
+      return newRow;
     }
     private static void GetSADGood(GoodDescription[] document, EntitiesDataContext edc, SADDocumentType lookup)
     {
@@ -132,7 +136,7 @@ namespace CAS.SmartFactory.IPR.Customs
       {
         SADDuties newRow = new SADDuties()
         {
-          SADGoodLookup = lookup,
+          SADGoodID = lookup,
           Tytuł = String.Format("{0}: {1}", duty.GetType(), duty.GetAmount()),
           Amount = duty.GetAmount(),
           Type = duty.GetDutyType()
@@ -152,7 +156,7 @@ namespace CAS.SmartFactory.IPR.Customs
       {
         SADPackage newRow = new SADPackage()
         {
-          SADGoodLookup = entry,
+          SADGoodID = entry,
           Tytuł = String.Format("{0}: {1}", package.GetItemNo(), package.GetPackage()),
           ItemNo = package.GetItemNo(),
           Package = package.GetPackage()
@@ -172,7 +176,7 @@ namespace CAS.SmartFactory.IPR.Customs
       {
         SADQuantity newRow = new SADQuantity()
         {
-          SADGoodLookup = entry,
+          SADGoodID = entry,
           Tytuł = String.Format("{0}: {1}", quantity.GetNetMass(), quantity.GetUnits()),
           ItemNo = quantity.GetItemNo(),
           NetMass = quantity.GetNetMass(),
@@ -193,7 +197,7 @@ namespace CAS.SmartFactory.IPR.Customs
       {
         SADRequiredDocuments newRow = new SADRequiredDocuments()
         {
-          SADGoodLookup = entry,
+          SADGoodID = entry,
           Tytuł = String.Format("{0}: {1}", requiredDocument.GetCode(), requiredDocument.GetNumber()),
           Code = requiredDocument.GetCode(),
           Number = requiredDocument.GetNumber()
