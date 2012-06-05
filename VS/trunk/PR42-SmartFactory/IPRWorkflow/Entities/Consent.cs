@@ -26,5 +26,9 @@ namespace CAS.SmartFactory.IPR.Entities
       };
       edc.Consent.InsertAllOnSubmit(list);
     }
+    internal static Consent Lookup(EntitiesDataContext _edc, string _consentNo)
+    {
+      return (from _cidx in _edc.Consent where _cidx.ConsentNo.Trim().Equals(_consentNo.Trim()) orderby _cidx.Wersja descending select _cidx).First();
+    }
   }
 }

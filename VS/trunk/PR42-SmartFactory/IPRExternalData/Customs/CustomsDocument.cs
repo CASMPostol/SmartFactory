@@ -37,13 +37,49 @@ namespace CAS.SmartFactory.xml.Customs
     }
 
     #region public abstract
+    /// <summary>
+    /// Document Type - rrot element
+    /// </summary>
+    public enum DocumentType { SAD, IE529, CLNE, PZC }
+    /// <summary>
+    /// Gets the SAD good.
+    /// </summary>
+    /// <returns></returns>
     public abstract GoodDescription[] GetSADGood();
+    /// <summary>
+    /// Gets the reference number.
+    /// </summary>
+    /// <returns></returns>
     public abstract string GetReferenceNumber();
-    public abstract string MessageRootName();
+    /// <summary>
+    /// The name of the root message.
+    /// </summary>
+    /// <returns></returns>
+    public abstract DocumentType MessageRootName();
+    /// <summary>
+    /// Gets the currency.
+    /// </summary>
+    /// <returns></returns>
     public abstract string GetCurrency();
+    /// <summary>
+    /// Gets the customs debt date.
+    /// </summary>
+    /// <returns></returns>
     public abstract DateTime? GetCustomsDebtDate();
+    /// <summary>
+    /// Gets the document number.
+    /// </summary>
+    /// <returns></returns>
     public abstract string GetDocumentNumber();
+    /// <summary>
+    /// Gets the exchange rate.
+    /// </summary>
+    /// <returns></returns>
     public abstract double? GetExchangeRate();
+    /// <summary>
+    /// Gets the gross mass.
+    /// </summary>
+    /// <returns></returns>
     public abstract double? GetGrossMass();
     #endregion
 

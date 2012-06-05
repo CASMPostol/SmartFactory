@@ -83,7 +83,9 @@
     <Compile Include="Customs\CELINA\SADZgloszenieTowarIloscTowaru.cs" />
     <Compile Include="Customs\CELINA\SADZgloszenieTowarOpakowanie.cs" />
     <Compile Include="Customs\CELINA\SADZgloszenieTowarOplata.cs" />
+    <Compile Include="Customs\CustomsDataException.cs" />
     <Compile Include="Customs\CustomsDocument.cs" />
+    <Compile Include="Customs\CustomsProcedureCodes.cs" />
     <Compile Include="Customs\DutiesDescription.cs" />
     <Compile Include="Customs\ECS\IE529.ext.cs" />
     <Compile Include="Customs\ECS\IE529ZwolnienieTowar.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Customs\ECS\IE529ZwolnienieTowarOpakowanie.cs" />
     <Compile Include="Customs\ECS\IE529ZwolnienieTowarOplata.cs" />
     <Compile Include="Customs\ECS\IE529_v1-0_xmldsig-core-schema.cs" />
+    <Compile Include="Customs\Extensions.cs" />
     <Compile Include="Customs\GoodDescription.cs" />
     <Compile Include="Customs\PackageDescription.cs" />
     <Compile Include="Customs\QuantityDescription.cs" />
@@ -377,9 +380,7 @@
     <Reference Include="System" />
     <Reference Include="System.XML" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

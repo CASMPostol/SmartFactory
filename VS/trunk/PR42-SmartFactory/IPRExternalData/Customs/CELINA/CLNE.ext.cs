@@ -11,9 +11,9 @@ namespace CAS.SmartFactory.xml.Customs.CLNE
         return null;
       return this.Przyjecie.NrWlasny;
     }
-    public override string MessageRootName()
+    public override DocumentType MessageRootName()
     {
-      return "CLNE";
+      return DocumentType.CLNE;
     }
     public override GoodDescription[] GetSADGood()
     {

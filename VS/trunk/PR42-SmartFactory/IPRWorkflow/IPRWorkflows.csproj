@@ -53,12 +53,15 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SPMetalHelper\Extensions.cs">
+      <Link>Extensions.cs</Link>
+    </Compile>
     <Compile Include="Entities\Anons.cs" />
     <Compile Include="Entities\Batch.cs" />
+    <Compile Include="Entities\Clearence.cs" />
     <Compile Include="Entities\Consent.cs" />
     <Compile Include="Entities\CustomsUnion.cs" />
     <Compile Include="Entities\CutfillerCoefficient.cs" />
-    <Compile Include="Entities\Dokument.cs" />
     <Compile Include="Entities\Dust.cs" />
     <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Entities.cs" />
@@ -67,8 +70,11 @@
     <Compile Include="Entities\Format.cs" />
     <Compile Include="Entities\Invoice.cs" />
     <Compile Include="Entities\InvoiceContent.cs" />
+    <Compile Include="Entities\IPR.cs" />
     <Compile Include="Entities\Material.cs" />
     <Compile Include="Entities\PCNCode.cs" />
+    <Compile Include="Entities\SADDocumentType.cs" />
+    <Compile Include="Entities\SADGood.cs" />
     <Compile Include="Entities\SHMenthol.cs" />
     <Compile Include="Entities\SKUCigarette.cs" />
     <Compile Include="Entities\SKUCommonPart.cs" />
@@ -92,6 +98,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Entities\SAD.cd" />
     <None Include="ListsEventsHandlers\Customs\SADImportXML\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{32323fbc-d26b-4398-b3d0-963410cce328}</SharePointProjectItemId>
     </None>
