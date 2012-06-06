@@ -9,26 +9,29 @@ namespace CAS.SmartFactory.IPR.Entities
   {
     internal static void CreateIPRAccount(EntitiesDataContext _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType)
     {
-      Consent _consent = Consent.Lookup(_edc, _document.GetConsentNo());
       IPRData _iprdata = new IPRData(_document, _messageType);
+      Consent _cnsnt = Consent.Lookup(_edc, _iprdata.Consent); 
       IPRIPR _ipr = new IPRIPR()
       {
+        Batch = _iprdata.Batch,
         Cartons = _iprdata.Cartons,
         ClearenceListLookup = _nc,
         ClosingDate = new Nullable<DateTime>(),
-        ConsentLookup = _consent,
-        ConsentNo = _consent,  //TODO replace by secondary lookup  http://itrserver/Bugs/BugDetail.aspx?bid=3392
+        ConsentLookup = null, //TODO is to be removed.  http://itrserver/Bugs/BugDetail.aspx?bid=3392
+        ConsentNo = _cnsnt, 
         Currency = _document.Currency,
         CustomsDebtDate = _document.CustomsDebtDate,
         DocumentNo = _nc.DocumentNo,
         Duty = _iprdata.Duty,
         DutyName = _iprdata.DutyName,
         DutyPerUnit = _iprdata.DutyPerUnit,
-        GrossMass = _iprdata.GrossMass,
+        GrossMass = _iprdata.GrossMass, 
         InvoiceNo = _iprdata.InvoiceNo,
         NetMass = _iprdata.NetMass,
         No = 1,
-        OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_consent.ConsentPeriod.Value) * 30, 0, 0),
+        OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0),  
+        PCNTariffCode = _iprdata.PCNTariffCode,
+        SKU = _iprdata.SKU,
         TobaccoName = _iprdata.TobaccoName,
         Tytuł = "-- creating -- ",
         UnitPrice = _iprdata.UnitPrice,
@@ -112,15 +115,13 @@ namespace CAS.SmartFactory.IPR.Entities
         if (_tnm.Success && _tnm.Groups.Count == 1)
           GradeName = _tnm.Captures[1].Value;
         else
-          TobaccoName = UnrecognizedName;
+          GradeName = UnrecognizedName;
         _tnm = Regex.Match(FirstSADGood.GoodsDescription, @"(?<=\WSKU:)\W*\b(\d*)", RegexOptions.IgnoreCase);
-        string SKU = String.Empty;
         if (_tnm.Success && _tnm.Groups.Count == 1)
           SKU = _tnm.Captures[1].Value;
         else
           SKU = UnrecognizedName;
         _tnm = Regex.Match(FirstSADGood.GoodsDescription, @"(?<=\WBatch:)\W*\b(\d*)", RegexOptions.IgnoreCase);
-        string Batch = String.Empty;
         if (_tnm.Success && _tnm.Groups.Count == 1)
           Batch = _tnm.Captures[1].Value;
         else
@@ -134,10 +135,16 @@ namespace CAS.SmartFactory.IPR.Entities
         FirstSADGood = _document.SADGood.First();
         AnalizeGood(_document, _messageType);
         AnalizeDutyAndVAT();
-        InvoiceNo = (
+        this.InvoiceNo = (
                         from _dx in FirstSADGood.SADRequiredDocuments
                         let CustomsProcedureCode = _dx.Code.ToUpper()
                         where CustomsProcedureCode.Contains("N380") || CustomsProcedureCode.Contains("N935")
+                        select new { Number = _dx.Number }
+                     ).First().Number;
+        this.Consent = (
+                        from _dx in FirstSADGood.SADRequiredDocuments
+                        let CustomsProcedureCode = _dx.Code.ToUpper()
+                        where CustomsProcedureCode.Contains("1PG1") || CustomsProcedureCode.Contains("C601")
                         select new { Number = _dx.Number }
                      ).First().Number;
         AnalizeGoodsDescription();
@@ -146,6 +153,7 @@ namespace CAS.SmartFactory.IPR.Entities
 
       #region public
       public double Cartons { get; private set; }
+      public string Consent { get; private set; }
       public double Duty { get; private set; }
       public string DutyName { get; private set; }
       public double DutyPerUnit { get; private set; }
@@ -158,6 +166,9 @@ namespace CAS.SmartFactory.IPR.Entities
       public string VATName { get; private set; }
       public double VAT { get; private set; }
       public double VATPerUnit { get; private set; }
+      public string Batch { get; private set; }
+      public string PCNTariffCode { get { return FirstSADGood.PCNTariffCode; } }
+      public string SKU { get; private set; }
       #endregion
     }
   }

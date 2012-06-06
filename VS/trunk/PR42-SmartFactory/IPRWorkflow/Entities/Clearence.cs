@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         case CustomsDocument.DocumentType.SAD:
         case CustomsDocument.DocumentType.PZC:
-          CustomsProcedureCodes _cpc = _sad.GetCustomsProcedureCodes();
+          CustomsProcedureCodes _cpc = _sad.SADGood.First().Procedure.RequestedProcedure();
           switch (_cpc)
           {
             case CustomsProcedureCodes.FreeCirculation:
