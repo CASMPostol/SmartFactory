@@ -23,11 +23,6 @@ namespace CAS.SmartFactory.IPR.Entities
       //TODOD NotImplementedException
       throw new NotImplementedException();
     }
-    internal double? GetCartons()
-    {
-      //TODO NotImplementedException
-      throw new NotImplementedException();
-    }
     internal double? CalculateGrossMass()
     {
       //TODO NotImplementedException

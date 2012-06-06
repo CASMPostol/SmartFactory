@@ -8,10 +8,10 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class Clearence
   {
-    internal static Clearence Associate(EntitiesDataContext _edc, CustomsDocument.DocumentType _documentType, SADDocumentType _sad)
+    internal static Clearence Associate(EntitiesDataContext _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad)
     {
       Clearence _ret = default(Clearence);
-      switch (_documentType)
+      switch (_messageType)
       {
         case CustomsDocument.DocumentType.SAD:
         case CustomsDocument.DocumentType.PZC:
@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.IPR.Entities
           {
             case CustomsProcedureCodes.FreeCirculation:
               _ret = FimdClearence(_edc, _sad.ReferenceNumber);
-              if (_documentType == CustomsDocument.DocumentType.PZC)
+              if (_messageType == CustomsDocument.DocumentType.PZC)
                 ReleaseForFreeCirculation(_edc, _sad);
               break;
             case CustomsProcedureCodes.InwardProcessing:
@@ -34,14 +34,14 @@ namespace CAS.SmartFactory.IPR.Entities
                 Tytuł = String.Format("SAD Ref: {0}", _sad.ReferenceNumber)
               };
               _edc.Clearence.InsertOnSubmit(_ret);
-              if (_documentType == CustomsDocument.DocumentType.PZC)
-                IPR.CreateIPRAccount(_edc, _sad, _ret);
+              if (_messageType == CustomsDocument.DocumentType.PZC)
+                IPR.CreateIPRAccount(_edc, _sad, _ret, CustomsDocument.DocumentType.PZC);
               break;
             case CustomsProcedureCodes.NoProcedure:
             case CustomsProcedureCodes.ReExport:
             case CustomsProcedureCodes.CustomsWarehousingProcedure:
             default:
-              throw new CustomsDataException("Clearence.Associate", string.Format("Unexpected procedure code for the {0} message", _documentType));
+              throw new CustomsDataException("Clearence.Associate", string.Format("Unexpected procedure code for the {0} message", _messageType));
           }
           break;
         case CustomsDocument.DocumentType.IE529:
@@ -50,7 +50,7 @@ namespace CAS.SmartFactory.IPR.Entities
           {
             if (_sg.Procedure.RequestedProcedure() != CustomsProcedureCodes.ReExport)
               throw new CustomsDataException("Clearence.Create", String.Format("IE529 contains invalid customs procedure {0}", _sg.Tytuł));
-            ReExportOfGoods(_edc, _documentType, _sg);
+            ReExportOfGoods(_edc, _messageType, _sg);
           }
           break;
         case CustomsDocument.DocumentType.CLNE:
@@ -63,7 +63,7 @@ namespace CAS.SmartFactory.IPR.Entities
               ReleaseForFreeCirculation(_edc, _startingDocument);
               break;
             case CustomsProcedureCodes.InwardProcessing:
-              IPR.CreateIPRAccount(_edc, _startingDocument, _ret);
+              IPR.CreateIPRAccount(_edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD);
               break;
             case CustomsProcedureCodes.ReExport:
             case CustomsProcedureCodes.NoProcedure:
@@ -77,7 +77,6 @@ namespace CAS.SmartFactory.IPR.Entities
       }//switch (_documentType
       return _ret;
     }
-
     /// <summary>
     /// Gets the SAD document.
     /// </summary>
