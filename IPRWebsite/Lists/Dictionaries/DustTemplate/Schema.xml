@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="DustTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-DustTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List xmlns:ows="Microsoft SharePoint" VersioningEnabled="TRUE" Title="DustTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-DustTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
       <ContentType ID="0x0100E2A6EE8469AA524286812782556DFFF0" Name="Dust" Group="CAS Smart Factory IPR Dictionaries" Overwrite="TRUE" Inherits="TRUE" Description="Dust">
