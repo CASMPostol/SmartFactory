@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="SHMentholTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-SHMentholTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List xmlns:ows="Microsoft SharePoint" VersioningEnabled="TRUE" Title="SHMentholTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-SHMentholTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
       <ContentType ID="0x010029964D9D2D53F84CB1083741C40FA8D1" Name="SHMenthol" Group="CAS Smart Factory IPR Dictionaries" Description="It contains a table of entries describing all the coefficients of menthol usage in cigarettes, including the date of their validity." Overwrite="TRUE" Inherits="TRUE">
