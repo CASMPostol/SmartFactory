@@ -11,13 +11,13 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       Consent _consent = Consent.Lookup(_edc, _document.GetConsentNo());
       IPRData _iprdata = new IPRData(_document, _messageType);
-      IPR _ipr = new IPR()
+      IPRIPR _ipr = new IPRIPR()
       {
         Cartons = _iprdata.Cartons,
         ClearenceListLookup = _nc,
         ClosingDate = new Nullable<DateTime>(),
         ConsentLookup = _consent,
-        ConsentNo = default(string),  //TODO replace by secondary lookup  http://itrserver/Bugs/BugDetail.aspx?bid=3392
+        ConsentNo = _consent,  //TODO replace by secondary lookup  http://itrserver/Bugs/BugDetail.aspx?bid=3392
         Currency = _document.Currency,
         CustomsDebtDate = _document.CustomsDebtDate,
         DocumentNo = _nc.DocumentNo,
@@ -29,8 +29,6 @@ namespace CAS.SmartFactory.IPR.Entities
         NetMass = _iprdata.NetMass,
         No = 1,
         OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_consent.ConsentPeriod.Value) * 30, 0, 0),
-        ProductivityRateMax = _consent.ProductivityRateMax,
-        ProductivityRateMin = _consent.ProductivityRateMax,
         TobaccoName = _iprdata.TobaccoName,
         Tytuł = "-- creating -- ",
         UnitPrice = _iprdata.UnitPrice,

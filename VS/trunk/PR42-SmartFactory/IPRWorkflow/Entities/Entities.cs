@@ -177,9 +177,9 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// IPR List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="IPR")]
-		public Microsoft.SharePoint.Linq.EntityList<IPR> IPR {
+		public Microsoft.SharePoint.Linq.EntityList<IPRIPR> IPR {
 			get {
-				return this.GetList<IPR>("IPR");
+				return this.GetList<IPRIPR>("IPR");
 			}
 		}
 		
@@ -1746,12 +1746,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 	}
 	
 	/// <summary>
-	/// Consent
+	/// Utwórz nowy element listy.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Consent", Id="0x0100A7FE6CFCCADBB7409C1F0FA102B9C573")]
 	public partial class Consent : Element {
-		
-		private string _consentNo;
 		
 		private System.Nullable<System.DateTime> _validFromDate;
 		
@@ -1765,6 +1763,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<IPR> _iPR;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<IPR> _iPR0;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1776,24 +1776,11 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this._iPR.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPRSync);
 			this._iPR.OnChanged += new System.EventHandler(this.OnIPRChanged);
 			this._iPR.OnChanging += new System.EventHandler(this.OnIPRChanging);
+			this._iPR0 = new Microsoft.SharePoint.Linq.EntitySet<IPR>();
+			this._iPR0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPR0Sync);
+			this._iPR0.OnChanged += new System.EventHandler(this.OnIPR0Changed);
+			this._iPR0.OnChanging += new System.EventHandler(this.OnIPR0Changing);
 			this.OnCreated();
-		}
-		
-		/// <summary>
-		/// ConsentNo
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ConsentNo", Storage="_consentNo", FieldType="Text")]
-		public string ConsentNo {
-			get {
-				return this._consentNo;
-			}
-			set {
-				if ((value != this._consentNo)) {
-					this.OnPropertyChanging("ConsentNo", this._consentNo);
-					this._consentNo = value;
-					this.OnPropertyChanged("ConsentNo");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ValidFromDate", Storage="_validFromDate", FieldType="DateTime")]
@@ -1866,24 +1853,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Tytuł {
-			get {
-				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Consent.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości Consent.");
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ConsentIndex", Storage="_iPR", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="IPR")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPR2ConsentTitle", Storage="_iPR", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="IPR")]
 		public Microsoft.SharePoint.Linq.EntitySet<IPR> IPR {
 			get {
 				return this._iPR;
 			}
 			set {
 				this._iPR.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ConsentIndex", Storage="_iPR0", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="IPR")]
+		public Microsoft.SharePoint.Linq.EntitySet<IPR> IPR0 {
+			get {
+				return this._iPR0;
+			}
+			set {
+				this._iPR0.Assign(value);
 			}
 		}
 		
@@ -1896,6 +1882,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		private void OnIPRSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.ConsentNo = this;
+			}
+			else {
+				e.Item.ConsentNo = null;
+			}
+		}
+		
+		private void OnIPR0Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("IPR0", this._iPR0.Clone());
+		}
+		
+		private void OnIPR0Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("IPR0");
+		}
+		
+		private void OnIPR0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.ConsentLookup = this;
 			}
@@ -2124,7 +2127,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Batch> _batchLookup;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<IPR> _iPRLookup;
+		private Microsoft.SharePoint.Linq.EntityRef<IPRIPR> _iPRLookup;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2149,8 +2152,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this._batchLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch>>(this.OnBatchLookupSync);
 			this._batchLookup.OnChanged += new System.EventHandler(this.OnBatchLookupChanged);
 			this._batchLookup.OnChanging += new System.EventHandler(this.OnBatchLookupChanging);
-			this._iPRLookup = new Microsoft.SharePoint.Linq.EntityRef<IPR>();
-			this._iPRLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPRLookupSync);
+			this._iPRLookup = new Microsoft.SharePoint.Linq.EntityRef<IPRIPR>();
+			this._iPRLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPRIPR>>(this.OnIPRLookupSync);
 			this._iPRLookup.OnChanged += new System.EventHandler(this.OnIPRLookupChanged);
 			this._iPRLookup.OnChanging += new System.EventHandler(this.OnIPRLookupChanging);
 			this.OnCreated();
@@ -2528,7 +2531,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPRIndex", Storage="_iPRLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="IPR")]
-		public IPR IPRLookup {
+		public IPRIPR IPRLookup {
 			get {
 				return this._iPRLookup.GetEntity();
 			}
@@ -2601,7 +2604,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this.OnPropertyChanged("IPRLookup");
 		}
 		
-		private void OnIPRLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR> e) {
+		private void OnIPRLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPRIPR> e) {
 		}
 	}
 	
@@ -3077,19 +3080,14 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// Utwórz nowy element listy.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="IPR", Id="0x0100BB872D605E9F0F49B05D98D6A01655F8")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(IPRIPR))]
 	public partial class IPR : Element {
-		
-		private string _consentNo;
 		
 		private string _documentNo;
 		
 		private System.Nullable<System.DateTime> _customsDebtDate;
 		
 		private System.Nullable<System.DateTime> _oGLValidTo;
-		
-		private System.Nullable<double> _productivityRateMin;
-		
-		private System.Nullable<double> _productivityRateMax;
 		
 		private System.Nullable<double> _no;
 		
@@ -3123,6 +3121,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<System.DateTime> _closingDate;
 		
+		private Microsoft.SharePoint.Linq.EntityRef<Consent> _consentNo;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<JSOX> _jSOXListLookup;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Consent> _consentLookup;
@@ -3138,6 +3138,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		#endregion
 		
 		public IPR() {
+			this._consentNo = new Microsoft.SharePoint.Linq.EntityRef<Consent>();
+			this._consentNo.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent>>(this.OnConsentNoSync);
+			this._consentNo.OnChanged += new System.EventHandler(this.OnConsentNoChanged);
+			this._consentNo.OnChanging += new System.EventHandler(this.OnConsentNoChanging);
 			this._jSOXListLookup = new Microsoft.SharePoint.Linq.EntityRef<JSOX>();
 			this._jSOXListLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOX>>(this.OnJSOXListLookupSync);
 			this._jSOXListLookup.OnChanged += new System.EventHandler(this.OnJSOXListLookupChanged);
@@ -3155,23 +3159,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this._iPRLibraryLookup.OnChanged += new System.EventHandler(this.OnIPRLibraryLookupChanged);
 			this._iPRLibraryLookup.OnChanging += new System.EventHandler(this.OnIPRLibraryLookupChanging);
 			this.OnCreated();
-		}
-		
-		/// <summary>
-		/// ConsentNo
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ConsentNo", Storage="_consentNo", FieldType="Text")]
-		public string ConsentNo {
-			get {
-				return this._consentNo;
-			}
-			set {
-				if ((value != this._consentNo)) {
-					this.OnPropertyChanging("ConsentNo", this._consentNo);
-					this._consentNo = value;
-					this.OnPropertyChanged("ConsentNo");
-				}
-			}
 		}
 		
 		/// <summary>
@@ -3215,34 +3202,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("OGLValidTo", this._oGLValidTo);
 					this._oGLValidTo = value;
 					this.OnPropertyChanged("OGLValidTo");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductivityRateMin", Storage="_productivityRateMin", FieldType="Number")]
-		public System.Nullable<double> ProductivityRateMin {
-			get {
-				return this._productivityRateMin;
-			}
-			set {
-				if ((value != this._productivityRateMin)) {
-					this.OnPropertyChanging("ProductivityRateMin", this._productivityRateMin);
-					this._productivityRateMin = value;
-					this.OnPropertyChanged("ProductivityRateMin");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductivityRateMax", Storage="_productivityRateMax", FieldType="Number")]
-		public System.Nullable<double> ProductivityRateMax {
-			get {
-				return this._productivityRateMax;
-			}
-			set {
-				if ((value != this._productivityRateMax)) {
-					this.OnPropertyChanging("ProductivityRateMax", this._productivityRateMax);
-					this._productivityRateMax = value;
-					this.OnPropertyChanged("ProductivityRateMax");
 				}
 			}
 		}
@@ -3319,7 +3278,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// Duty per unit
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyPerUnit", Storage="_dutyPerUnit", ReadOnly=true, IsCalculated=true, FieldType="Number")]
-		public System.Nullable<double> DutyPerUnit {
+		public virtual System.Nullable<double> DutyPerUnit {
 			get {
 				return this._dutyPerUnit;
 			}
@@ -3370,7 +3329,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// VAT per unit
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VATPerUnit", Storage="_vATPerUnit", ReadOnly=true, IsCalculated=true, FieldType="Number")]
-		public System.Nullable<double> VATPerUnit {
+		public virtual System.Nullable<double> VATPerUnit {
 			get {
 				return this._vATPerUnit;
 			}
@@ -3480,7 +3439,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// Unit price
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="UnitPrice", Storage="_unitPrice", ReadOnly=true, IsCalculated=true, FieldType="Number")]
-		public System.Nullable<double> UnitPrice {
+		public virtual System.Nullable<double> UnitPrice {
 			get {
 				return this._unitPrice;
 			}
@@ -3504,6 +3463,16 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this._closingDate = value;
 					this.OnPropertyChanged("ClosingDate");
 				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPR2ConsentTitle", Storage="_consentNo", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Consent")]
+		public Consent ConsentNo {
+			get {
+				return this._consentNo.GetEntity();
+			}
+			set {
+				this._consentNo.SetEntity(value);
 			}
 		}
 		
@@ -3547,6 +3516,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
+		private void OnConsentNoChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ConsentNo", this._consentNo.Clone());
+		}
+		
+		private void OnConsentNoChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ConsentNo");
+		}
+		
+		private void OnConsentNoSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.IPR.Add(this);
+			}
+			else {
+				e.Item.IPR.Remove(this);
+			}
+		}
+		
 		private void OnJSOXListLookupChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("JSOXListLookup", this._jSOXListLookup.Clone());
 		}
@@ -3568,10 +3554,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private void OnConsentLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.IPR.Add(this);
+				e.Item.IPR0.Add(this);
 			}
 			else {
-				e.Item.IPR.Remove(this);
+				e.Item.IPR0.Remove(this);
 			}
 		}
 		
@@ -5678,6 +5664,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<double> _usageMax;
 		
+		private System.Nullable<double> _cTFUsageMin;
+		
+		private System.Nullable<double> _cTFUsageMax;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<Batch> _batch;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Format> _formatLookup;
@@ -5730,6 +5720,34 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("UsageMax", this._usageMax);
 					this._usageMax = value;
 					this.OnPropertyChanged("UsageMax");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CTFUsageMin", Storage="_cTFUsageMin", FieldType="Number")]
+		public System.Nullable<double> CTFUsageMin {
+			get {
+				return this._cTFUsageMin;
+			}
+			set {
+				if ((value != this._cTFUsageMin)) {
+					this.OnPropertyChanging("CTFUsageMin", this._cTFUsageMin);
+					this._cTFUsageMin = value;
+					this.OnPropertyChanged("CTFUsageMin");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CTFUsageMax", Storage="_cTFUsageMax", FieldType="Number")]
+		public System.Nullable<double> CTFUsageMax {
+			get {
+				return this._cTFUsageMax;
+			}
+			set {
+				if ((value != this._cTFUsageMax)) {
+					this.OnPropertyChanging("CTFUsageMax", this._cTFUsageMax);
+					this._cTFUsageMax = value;
+					this.OnPropertyChanged("CTFUsageMax");
 				}
 			}
 		}
@@ -6186,6 +6204,65 @@ namespace CAS.SmartFactory.IPR.Entities {
 	}
 	
 	/// <summary>
+	/// IPR List
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="IPR", Id="0x0100BB872D605E9F0F49B05D98D6A01655F8", List="IPR")]
+	public partial class IPRIPR : IPR {
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public IPRIPR() {
+			this.OnCreated();
+		}
+		
+		/// <summary>
+		/// Duty per unit
+		/// </summary>
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override System.Nullable<double> DutyPerUnit {
+			get {
+				throw new System.InvalidOperationException("Pole DutyPerUnit zostało usunięte z typu zawartości IPR.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole DutyPerUnit zostało usunięte z typu zawartości IPR.");
+			}
+		}
+		
+		/// <summary>
+		/// VAT per unit
+		/// </summary>
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override System.Nullable<double> VATPerUnit {
+			get {
+				throw new System.InvalidOperationException("Pole VATPerUnit zostało usunięte z typu zawartości IPR.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole VATPerUnit zostało usunięte z typu zawartości IPR.");
+			}
+		}
+		
+		/// <summary>
+		/// Unit price
+		/// </summary>
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override System.Nullable<double> UnitPrice {
+			get {
+				throw new System.InvalidOperationException("Pole UnitPrice zostało usunięte z typu zawartości IPR.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole UnitPrice zostało usunięte z typu zawartości IPR.");
+			}
+		}
+	}
+	
+	/// <summary>
 	/// JSOX Summary content type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXSummary", Id="0x0100BC0DDC1827F346ED911D777504830C520093C91F91096944EAA9091C44F55FA587")]
@@ -6197,7 +6274,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<JSOX> _jSOXListLookup;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<IPR> _iPRLookup;
+		private Microsoft.SharePoint.Linq.EntityRef<IPRIPR> _iPRLookup;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -6210,8 +6287,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this._jSOXListLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOX>>(this.OnJSOXListLookupSync);
 			this._jSOXListLookup.OnChanged += new System.EventHandler(this.OnJSOXListLookupChanged);
 			this._jSOXListLookup.OnChanging += new System.EventHandler(this.OnJSOXListLookupChanging);
-			this._iPRLookup = new Microsoft.SharePoint.Linq.EntityRef<IPR>();
-			this._iPRLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPRLookupSync);
+			this._iPRLookup = new Microsoft.SharePoint.Linq.EntityRef<IPRIPR>();
+			this._iPRLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPRIPR>>(this.OnIPRLookupSync);
 			this._iPRLookup.OnChanged += new System.EventHandler(this.OnIPRLookupChanged);
 			this._iPRLookup.OnChanging += new System.EventHandler(this.OnIPRLookupChanging);
 			this.OnCreated();
@@ -6256,7 +6333,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPRIndex", Storage="_iPRLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="IPR")]
-		public IPR IPRLookup {
+		public IPRIPR IPRLookup {
 			get {
 				return this._iPRLookup.GetEntity();
 			}
@@ -6284,7 +6361,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this.OnPropertyChanged("IPRLookup");
 		}
 		
-		private void OnIPRLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR> e) {
+		private void OnIPRLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPRIPR> e) {
 		}
 	}
 	
