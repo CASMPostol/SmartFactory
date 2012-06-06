@@ -6,16 +6,24 @@
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
+    <AssociationLine Name="SADDocumentLibraryLookup" Type="CAS.SmartFactory.IPR.Entities.SADDocumentLib">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-2.065" Y="0.152" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>RCOAACQAFABAAAIAQFEAgCAACCQQAEARiAAKkEAAIAA=</HashCode>
+      <HashCode>RCKAAAQAEAAAAAIAQBEAgCAACCQQAEABiAAKkEAAIAA=</HashCode>
       <FileName>Entities\Entities.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SADDocumentLibraryLookup" />
+    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="SADGood" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CAS.SmartFactory.IPR.Entities.Dokument">
-    <Position X="7.25" Y="6.5" Width="2.5" />
+    <Position X="5" Y="6.5" Width="2.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
@@ -47,8 +55,8 @@
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="SADDuties" />
-      <Property Name="SADQuantity" />
       <Property Name="SADPackage" />
+      <Property Name="SADQuantity" />
       <Property Name="SADRequiredDocuments" />
     </ShowAsCollectionAssociation>
   </Class>
@@ -132,7 +140,7 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>KFIAiyCQAAAQAMmFZAEIESSACCBQIkAcyhkoIR6QUAQ=</HashCode>
+      <HashCode>KFIAiySQAAAQAMmFZAEIESSACCBSIkAcyhsgIRqQQAQ=</HashCode>
       <FileName>Entities\Entities.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -147,7 +155,12 @@
     </Compartments>
     <AssociationLine Name="SADConsignmentLibraryLookup" Type="CAS.SmartFactory.IPR.Entities.Dokument">
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="1.957" Y="3.445" Height="0.182" Width="2.292" />
+        <Position X="3.445" Y="1.957" Height="0.182" Width="2.292" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="SADDocumentType" Type="CAS.SmartFactory.IPR.Entities.SADDocumentType">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.339" Y="1.195" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -160,6 +173,13 @@
     <ShowAsCollectionAssociation>
       <Property Name="SADDocumentType" />
     </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CAS.SmartFactory.IPR.Entities.SADDocumentLib" Collapsed="true">
+    <Position X="8.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAFAAAAAAEQAEAAAAAACAAECAAAAABAAAAIEA=</HashCode>
+      <FileName>Entities\Entities.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
