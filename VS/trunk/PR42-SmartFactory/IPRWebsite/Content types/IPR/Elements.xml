@@ -16,6 +16,9 @@
       <FieldRef ID="{4D811640-9BD7-4E6D-B081-08B84B6C8123}" Name="OGLValidTo" />
       <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
       <FieldRef ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}" Name="TobaccoName" />
+      <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+      <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
+      <FieldRef ID="{4e14f686-584a-4ee8-9784-4b7aa4dcd1e7}" Name="PCNTariffCode" />
       <FieldRef ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}" Name="DutyName" />
       <FieldRef ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}" Name="Duty" />
       <FieldRef ID="{D0177FD6-5A37-483C-9BA8-9EED9493F16C}" Name="DutyPerUnit" />
@@ -31,7 +34,6 @@
       <FieldRef ID="{D387B1F7-9EE5-4880-A059-BABC25D25596}" Name="UnitPrice" />
       <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
       <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
-      <FieldRef ID="{BFF3BF37-6B79-400A-932B-CC75D61E79DA}" Name="ConsentIndex" />
       <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
       <FieldRef ID="{787756CE-4DEB-46DB-B092-BAED5DBAFA86}" Name="IPRLibraryIndex" />
 		</FieldRefs>

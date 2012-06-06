@@ -606,7 +606,9 @@
     <Content Include="Lists\Dictionaries\SKUTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\UsageList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\UsageTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\UsageTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\WasteTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\WasteTemplate\WasteList\Elements.xml" />
     <Content Include="Lists\Dictionaries\WasteTemplate\Schema.xml" />
