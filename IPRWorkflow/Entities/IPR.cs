@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using CAS.SmartFactory.xml.Customs;
 using System.Text.RegularExpressions;
+using CAS.SmartFactory.xml.Customs;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
@@ -29,12 +27,12 @@ namespace CAS.SmartFactory.IPR.Entities
         GrossMass = _iprdata.GrossMass,
         InvoiceNo = _iprdata.InvoiceNo,
         NetMass = _iprdata.NetMass,
-        No = default(double), //TODO  [pr4-3394] Not clear how to evaluate some IPR colummns http://itrserver/Bugs/BugDetail.aspx?bid=3394
+        No = 1,
         OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_consent.ConsentPeriod.Value) * 30, 0, 0),
         ProductivityRateMax = _consent.ProductivityRateMax,
         ProductivityRateMin = _consent.ProductivityRateMax,
         TobaccoName = _iprdata.TobaccoName,
-        Tytuł = _iprdata.Title,
+        Tytuł = "-- creating -- ",
         UnitPrice = _iprdata.UnitPrice,
         Value = _iprdata.Value,
         VATName = _iprdata.VATName,
@@ -43,13 +41,16 @@ namespace CAS.SmartFactory.IPR.Entities
       };
       _edc.IPR.InsertOnSubmit(_ipr);
       _edc.SubmitChanges();
+      _ipr.Tytuł = String.Format("IPR-{0:D4}{1:D6}", DateTime.Today.Year, _ipr.Identyfikator);
+      _edc.SubmitChanges();
     }
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>
-    internal class IPRData
+    private class IPRData
     {
-      public SADGood FirstSADGood { get; private set; }
+      #region private
+      private SADGood FirstSADGood { get; set; }
       private void AnalizeGood(SADDocumentType _document, CustomsDocument.DocumentType _messageType)
       {
         SADPackage _packagex = FirstSADGood.SADPackage.First();
@@ -96,20 +97,11 @@ namespace CAS.SmartFactory.IPR.Entities
         }
         DutyPerUnit = Duty / NetMass;
         VATPerUnit = VAT / NetMass;
-        Value = FirstSADGood.TotalAmountInvoiced.Value; 
+        Value = FirstSADGood.TotalAmountInvoiced.Value;
         UnitPrice = Value / NetMass;
       }
-      public IPRData(SADDocumentType _document, CustomsDocument.DocumentType _messageType)
+      private void AnalizeGoodsDescription()
       {
-        FirstSADGood = _document.SADGood.First();
-        AnalizeGood(_document, _messageType);
-        AnalizeDutyAndVAT();
-        InvoiceNo = (
-                        from _dx in FirstSADGood.SADRequiredDocuments
-                        let CustomsProcedureCode = _dx.Code.ToUpper()
-                        where CustomsProcedureCode.Contains("N380") || CustomsProcedureCode.Contains("N935")
-                        select new { Number = _dx.Number }
-                     ).First().Number;
         Match _tnm = Regex.Match(FirstSADGood.GoodsDescription, @"\b(.*)\s+(?=GRADE:)", RegexOptions.IgnoreCase);
         const string UnrecognizedName = "-- unrecognized name --";
         if (_tnm.Success && _tnm.Groups.Count == 1)
@@ -136,20 +128,39 @@ namespace CAS.SmartFactory.IPR.Entities
         else
           Batch = UnrecognizedName;
       }
+      #endregion
+
+      #region cretor
+      public IPRData(SADDocumentType _document, CustomsDocument.DocumentType _messageType)
+      {
+        FirstSADGood = _document.SADGood.First();
+        AnalizeGood(_document, _messageType);
+        AnalizeDutyAndVAT();
+        InvoiceNo = (
+                        from _dx in FirstSADGood.SADRequiredDocuments
+                        let CustomsProcedureCode = _dx.Code.ToUpper()
+                        where CustomsProcedureCode.Contains("N380") || CustomsProcedureCode.Contains("N935")
+                        select new { Number = _dx.Number }
+                     ).First().Number;
+        AnalizeGoodsDescription();
+      }
+      #endregion
+
+      #region public
       public double Cartons { get; private set; }
-      public double Duty { get; private set; } // TODO   http://itrserver/Bugs/BugDetail.aspx?bid=3393
+      public double Duty { get; private set; }
       public string DutyName { get; private set; }
       public double DutyPerUnit { get; private set; }
       public double GrossMass { get; private set; }
       public string InvoiceNo { get; private set; }
       public double NetMass { get; private set; }
       public string TobaccoName { get; private set; }
-      public string Title { get; private set; }
       public double UnitPrice { get; private set; }
       public double Value { get; private set; }
       public string VATName { get; private set; }
       public double VAT { get; private set; }
       public double VATPerUnit { get; private set; }
+      #endregion
     }
   }
 }
