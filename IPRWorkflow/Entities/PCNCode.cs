@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CAS.SmartFactory.xml.Dictionaries;
 
 namespace CAS.SmartFactory.IPR.Entities
@@ -22,6 +21,21 @@ namespace CAS.SmartFactory.IPR.Entities
         list.Add(pcn);
       };
       edc.PCNCode.InsertAllOnSubmit(list);
+    }
+    internal static PCNCode AddOrGet(EntitiesDataContext _edc, string _code)
+    {
+      PCNCode _pcncode = (from _pcnx in _edc.PCNCode where _code.Trim().Contains(_pcnx.ProductCodeNumber) select _pcnx).FirstOrDefault();
+      if (_pcncode == null)
+      {
+        _pcncode = new PCNCode()
+          {
+            CompensationGood = Entities.CompensationGood.Tytoń,
+            ProductCodeNumber = _code,
+            Tytuł = String.Format("{0} {1}", Entities.CompensationGood.Tytoń, _code)
+          };
+        _edc.PCNCode.InsertOnSubmit(_pcncode);
+      }
+      return _pcncode;
     }
   }
 }

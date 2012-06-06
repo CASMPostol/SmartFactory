@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CAS.SmartFactory.xml.Customs;
 
 namespace CAS.SmartFactory.IPR.Entities
@@ -24,14 +22,15 @@ namespace CAS.SmartFactory.IPR.Entities
                 ReleaseForFreeCirculation(_edc, _sad);
               break;
             case CustomsProcedureCodes.InwardProcessing:
+              string _procedureCode = String.Format("{0:D2}XX", (int)_cpc);
               _ret = new Clearence()
               {
-                DocumentNo = String.Empty,
+                DocumentNo = _sad.DocumentNumber,
                 ReferenceNumber = _sad.ReferenceNumber,
                 SADConsignmentLibraryLookup = null,
-                ProcedureCode = String.Format("{0,2}XX", (int)_cpc),
+                ProcedureCode = _procedureCode,
                 Status = false,
-                Tytuł = String.Format("SAD Ref: {0}", _sad.ReferenceNumber)
+                Tytuł = String.Format("Procedure {0} Ref: {1}", _procedureCode, _sad.ReferenceNumber)
               };
               _edc.Clearence.InsertOnSubmit(_ret);
               if (_messageType == CustomsDocument.DocumentType.PZC)
@@ -56,7 +55,7 @@ namespace CAS.SmartFactory.IPR.Entities
         case CustomsDocument.DocumentType.CLNE:
           _ret = FimdClearence(_edc, _sad.ReferenceNumber);
           _ret.DocumentNo = _sad.DocumentNumber;
-          SADDocumentType _startingDocument = _ret.GetSADDocument();
+          SADDocumentType _startingDocument = _ret.SADDocumentType.First<SADDocumentType>();
           switch (_ret.ProcedureCode.RequestedProcedure())
           {
             case CustomsProcedureCodes.FreeCirculation:
@@ -77,18 +76,9 @@ namespace CAS.SmartFactory.IPR.Entities
       }//switch (_documentType
       return _ret;
     }
-    /// <summary>
-    /// Gets the SAD document.
-    /// </summary>
-    /// <returns></returns>
-    private SADDocumentType GetSADDocument()
+    private static Clearence FimdClearence(EntitiesDataContext _edc, string _referenceNumber)
     {
-      //TODO NotImplementedException
-      throw new NotImplementedException();
-    }
-    private static Clearence FimdClearence(EntitiesDataContext _edc, string p)
-    {
-      throw new NotImplementedException();
+      return (from _cx in _edc.Clearence where _referenceNumber.Contains(_cx.ReferenceNumber) select _cx).First<Clearence>();
     }
     private static void ReExportOfGoods(EntitiesDataContext _edc, CustomsDocument.DocumentType _documentType, SADGood _sg)
     {

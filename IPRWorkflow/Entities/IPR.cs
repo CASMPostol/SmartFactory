@@ -10,7 +10,8 @@ namespace CAS.SmartFactory.IPR.Entities
     internal static void CreateIPRAccount(EntitiesDataContext _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType)
     {
       IPRData _iprdata = new IPRData(_document, _messageType);
-      Consent _cnsnt = Consent.Lookup(_edc, _iprdata.Consent); 
+      Consent _cnsnt = Consent.Lookup(_edc, _iprdata.Consent);
+      PCNCode _pcn = PCNCode.AddOrGet(_edc, _iprdata.PCNTariffCode);
       IPRIPR _ipr = new IPRIPR()
       {
         Batch = _iprdata.Batch,
@@ -25,12 +26,13 @@ namespace CAS.SmartFactory.IPR.Entities
         Duty = _iprdata.Duty,
         DutyName = _iprdata.DutyName,
         DutyPerUnit = _iprdata.DutyPerUnit,
+        //TODO GradeName = _iprdata.GradeName, - (old name:"type") column must be added.
         GrossMass = _iprdata.GrossMass, 
         InvoiceNo = _iprdata.InvoiceNo,
         NetMass = _iprdata.NetMass,
         No = 1,
-        OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0),  
-        PCNTariffCode = _iprdata.PCNTariffCode,
+        OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0),
+        PCNTariffCode = _iprdata.PCNTariffCode, //TODO - intialize column from GoodsDescription [pr4-3398] List: IPR - columns should be updated http://itrserver/Bugs/BugDetail.aspx?bid=3398
         SKU = _iprdata.SKU,
         TobaccoName = _iprdata.TobaccoName,
         Tytuł = "-- creating -- ",
@@ -109,9 +111,7 @@ namespace CAS.SmartFactory.IPR.Entities
           TobaccoName = _tnm.Captures[1].Value;
         else
           TobaccoName = UnrecognizedName;
-        //TODO - intialize column from GoodsDescription [pr4-3398] List: IPR - columns should be updated http://itrserver/Bugs/BugDetail.aspx?bid=3398
         _tnm = Regex.Match(FirstSADGood.GoodsDescription, @"(?<=\WGRADE:)\W*\b(\w*)", RegexOptions.IgnoreCase);
-        string GradeName = String.Empty;
         if (_tnm.Success && _tnm.Groups.Count == 1)
           GradeName = _tnm.Captures[1].Value;
         else
@@ -130,7 +130,7 @@ namespace CAS.SmartFactory.IPR.Entities
       #endregion
 
       #region cretor
-      public IPRData(SADDocumentType _document, CustomsDocument.DocumentType _messageType)
+      internal IPRData(SADDocumentType _document, CustomsDocument.DocumentType _messageType)
       {
         FirstSADGood = _document.SADGood.First();
         AnalizeGood(_document, _messageType);
@@ -152,23 +152,24 @@ namespace CAS.SmartFactory.IPR.Entities
       #endregion
 
       #region public
-      public double Cartons { get; private set; }
-      public string Consent { get; private set; }
-      public double Duty { get; private set; }
-      public string DutyName { get; private set; }
-      public double DutyPerUnit { get; private set; }
-      public double GrossMass { get; private set; }
-      public string InvoiceNo { get; private set; }
-      public double NetMass { get; private set; }
-      public string TobaccoName { get; private set; }
-      public double UnitPrice { get; private set; }
-      public double Value { get; private set; }
-      public string VATName { get; private set; }
-      public double VAT { get; private set; }
-      public double VATPerUnit { get; private set; }
-      public string Batch { get; private set; }
-      public string PCNTariffCode { get { return FirstSADGood.PCNTariffCode; } }
-      public string SKU { get; private set; }
+      internal double Cartons { get; private set; }
+      internal string Consent { get; private set; }
+      internal double Duty { get; private set; }
+      internal string DutyName { get; private set; }
+      internal double DutyPerUnit { get; private set; }
+      internal string GradeName { get; private set; }
+      internal double GrossMass { get; private set; }
+      internal string InvoiceNo { get; private set; }
+      internal double NetMass { get; private set; }
+      internal string TobaccoName { get; private set; }
+      internal double UnitPrice { get; private set; }
+      internal double Value { get; private set; }
+      internal string VATName { get; private set; }
+      internal double VAT { get; private set; }
+      internal double VATPerUnit { get; private set; }
+      internal string Batch { get; private set; }
+      internal string PCNTariffCode { get { return FirstSADGood.PCNTariffCode; } }
+      internal string SKU { get; private set; }
       #endregion
     }
   }
