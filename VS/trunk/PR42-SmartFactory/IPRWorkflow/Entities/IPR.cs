@@ -107,10 +107,10 @@ namespace CAS.SmartFactory.IPR.Entities
         InvoiceNo = (
                         from _dx in FirstSADGood.SADRequiredDocuments
                         let CustomsProcedureCode = _dx.Code.ToUpper()
-                        where CustomsProcedureCode.Contains("'N380") || CustomsProcedureCode.Contains("N935")
+                        where CustomsProcedureCode.Contains("N380") || CustomsProcedureCode.Contains("N935")
                         select new { Number = _dx.Number }
                      ).First().Number;
-        Match _tnm = Regex.Match(FirstSADGood.GoodsDescription, @"", RegexOptions.IgnoreCase);
+        Match _tnm = Regex.Match(FirstSADGood.GoodsDescription, @"\b(.*)\s+(?=GRADE:)", RegexOptions.IgnoreCase);
         const string UnrecognizedName = "-- unrecognized name --";
         if (_tnm.Success && _tnm.Groups.Count == 1)
           TobaccoName = _tnm.Captures[1].Value;
