@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CAS.SmartFactory.xml.Dictionaries;
 
 namespace CAS.SmartFactory.IPR.Entities
@@ -15,7 +13,6 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         Consent cns = new Consent
         {
-          ConsentNo = item.ConsentNo,
           ProductivityRateMax = item.ProductivityRateMax,
           ProductivityRateMin = item.ProductivityRateMin,
           ValidFromDate = item.ValidFromDate,
@@ -28,7 +25,7 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     internal static Consent Lookup(EntitiesDataContext _edc, string _consentNo)
     {
-      return (from _cidx in _edc.Consent where _cidx.ConsentNo.Trim().Equals(_consentNo.Trim()) orderby _cidx.Wersja descending select _cidx).First();
+      return (from _cidx in _edc.Consent where _cidx.Tytuł.Trim().Equals(_consentNo.Trim()) orderby _cidx.Wersja descending select _cidx).First();
     }
   }
 }
