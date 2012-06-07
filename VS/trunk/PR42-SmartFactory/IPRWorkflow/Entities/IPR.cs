@@ -18,7 +18,6 @@ namespace CAS.SmartFactory.IPR.Entities
         Cartons = _iprdata.Cartons,
         ClearenceListLookup = _nc,
         ClosingDate = new Nullable<DateTime>(),
-        ConsentLookup = null, //TODO is to be removed.  http://itrserver/Bugs/BugDetail.aspx?bid=3392
         ConsentNo = _cnsnt, 
         Currency = _document.Currency,
         CustomsDebtDate = _document.CustomsDebtDate,
