@@ -44,13 +44,7 @@ namespace CAS.SmartFactory.IPR.Entities
           }
           break;
         case CustomsDocument.DocumentType.IE529:
-          _ret = FimdClearence(_edc, _sad.ReferenceNumber);
-          foreach (SADGood _sg in _sad.SADGood)
-          {
-            if (_sg.Procedure.RequestedProcedure() != CustomsProcedureCodes.ReExport)
-              throw new CustomsDataException("Clearence.Create", String.Format("IE529 contains invalid customs procedure {0}", _sg.Tytuł));
-            ReExportOfGoods(_edc, _messageType, _sg);
-          }
+          _sad.ReExportOfGoods(_edc, _messageType );
           break;
         case CustomsDocument.DocumentType.CLNE:
           _ret = FimdClearence(_edc, _sad.ReferenceNumber);
@@ -59,7 +53,7 @@ namespace CAS.SmartFactory.IPR.Entities
           switch (_ret.ProcedureCode.RequestedProcedure())
           {
             case CustomsProcedureCodes.FreeCirculation:
-              ReleaseForFreeCirculation(_edc, _startingDocument);
+              _startingDocument.ReleaseForFreeCirculation(_edc);
               break;
             case CustomsProcedureCodes.InwardProcessing:
               IPR.CreateIPRAccount(_edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD);
@@ -76,19 +70,11 @@ namespace CAS.SmartFactory.IPR.Entities
       }//switch (_documentType
       return _ret;
     }
+
     private static Clearence FimdClearence(EntitiesDataContext _edc, string _referenceNumber)
     {
       return (from _cx in _edc.Clearence where _referenceNumber.Contains(_cx.ReferenceNumber) select _cx).First<Clearence>();
     }
-    private static void ReExportOfGoods(EntitiesDataContext _edc, CustomsDocument.DocumentType _documentType, SADGood _sg)
-    {
-      //TODO NotImplementedException
-      throw new NotImplementedException();
-    }
-    private static void ReleaseForFreeCirculation(EntitiesDataContext _edc, SADDocumentType _sd)
-    {
-      //TODO NotImplementedException
-      throw new NotImplementedException();
-    }
+
   }
 }
