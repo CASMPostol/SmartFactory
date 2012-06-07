@@ -57,7 +57,7 @@ namespace CAS.SmartFactory.IPR.Customs
             SADDocumentType _sad = GetSADDocument(document, edc, entry);
             edc.SubmitChanges();
             Clearence _clrnc = Clearence.Associate(edc, document.MessageRootName(), _sad);
-            //TODO _sad.xxxxxx = _clrnc; [pr4-3395] http://itrserver/Bugs/BugDetail.aspx?bid=3395 SADDocumentType does not have lookup column to Clearence
+            _sad.ClearenceID = _clrnc;
             edc.SubmitChanges();
           }
         }

@@ -19,7 +19,7 @@ namespace CAS.SmartFactory.IPR.Entities
             case CustomsProcedureCodes.FreeCirculation:
               _ret = FimdClearence(_edc, _sad.ReferenceNumber);
               if (_messageType == CustomsDocument.DocumentType.PZC)
-                ReleaseForFreeCirculation(_edc, _sad);
+                _sad.ReleaseForFreeCirculation(_edc);
               break;
             case CustomsProcedureCodes.InwardProcessing:
               string _procedureCode = String.Format("{0:D2}XX", (int)_cpc);
@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.Entities
           }
           break;
         case CustomsDocument.DocumentType.IE529:
-          _sad.ReExportOfGoods(_edc, _messageType );
+          _sad.ReExportOfGoods(_edc, _messageType);
           break;
         case CustomsDocument.DocumentType.CLNE:
           _ret = FimdClearence(_edc, _sad.ReferenceNumber);
@@ -70,11 +70,9 @@ namespace CAS.SmartFactory.IPR.Entities
       }//switch (_documentType
       return _ret;
     }
-
     private static Clearence FimdClearence(EntitiesDataContext _edc, string _referenceNumber)
     {
       return (from _cx in _edc.Clearence where _referenceNumber.Contains(_cx.ReferenceNumber) select _cx).First<Clearence>();
     }
-
   }
 }

@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.IPR.Entities
         throw new NotImplementedException();
       }
     }
-    internal static void ReleaseForFreeCirculation(EntitiesDataContext _edc)
+    internal void ReleaseForFreeCirculation(EntitiesDataContext _edc)
     {
       //TODO NotImplementedException
       throw new NotImplementedException();
