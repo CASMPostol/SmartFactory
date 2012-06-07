@@ -30,6 +30,7 @@ namespace CAS.SmartFactory.IPR.Entities
     #region private
     private Clearence FimdClearence(EntitiesDataContext _edc)
     {
+      //TODO NotImplementedException
       throw new NotImplementedException();
     }
     #endregion

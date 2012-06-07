@@ -30,7 +30,11 @@ namespace CAS.SmartFactory.IPR.Entities
         return CompensationGood.Invalid;
       }
     }
-    //TODO Must be implemented http://itrserver/Bugs/BugDetail.aspx?bid=2909
+    /// <summary>
+    /// Gets the top most document lookup.
+    /// </summary>
+    /// <param name="library">The library.</param>
+    /// <returns></returns>
     public static Dokument GetTopMostDocumentLookup(this  EntityList<Dokument> library)
     {
       try
