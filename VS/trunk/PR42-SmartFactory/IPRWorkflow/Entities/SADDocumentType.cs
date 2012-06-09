@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CAS.SmartFactory.xml.Customs;
 
 namespace CAS.SmartFactory.IPR.Entities
@@ -16,14 +13,14 @@ namespace CAS.SmartFactory.IPR.Entities
       foreach (SADGood _sg in SADGood)
       {
         if (_sg.Procedure.RequestedProcedure() != CustomsProcedureCodes.ReExport)
-          throw new CustomsDataException("Clearence.Create", String.Format("IE529 contains invalid customs procedure {0}", _sg.Tytuł));
+          throw new IPRDataConsistencyException("Clearence.Create", String.Format("IE529 contains invalid customs procedure {0}", _sg.Tytuł), null);
         throw new NotImplementedException();
       }
     }
     internal void ReleaseForFreeCirculation(EntitiesDataContext _edc)
     {
       //TODO NotImplementedException
-      throw new NotImplementedException();
+      throw new NotImplementedException() { Source = "ReleaseForFreeCirculation"};
     } 
     #endregion
 
@@ -31,7 +28,7 @@ namespace CAS.SmartFactory.IPR.Entities
     private Clearence FimdClearence(EntitiesDataContext _edc)
     {
       //TODO NotImplementedException
-      throw new NotImplementedException();
+      throw new NotImplementedException() { Source = "FimdClearence" };
     }
     #endregion
   }

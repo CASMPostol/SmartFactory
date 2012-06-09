@@ -56,6 +56,7 @@
     <Compile Include="..\SPMetalHelper\Extensions.cs">
       <Link>Extensions.cs</Link>
     </Compile>
+    <Compile Include="CommonDefinition.cs" />
     <Compile Include="Entities\Anons.cs" />
     <Compile Include="Entities\Batch.cs" />
     <Compile Include="Entities\Clearence.cs" />
