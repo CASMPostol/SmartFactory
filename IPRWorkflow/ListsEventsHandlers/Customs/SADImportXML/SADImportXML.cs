@@ -28,7 +28,9 @@ namespace CAS.SmartFactory.IPR.Customs
     /// </param>
     public override void ItemAdded(SPItemEventProperties properties)
     {
-      if (properties.List.Title.Contains("SAD"))
+      if (properties.List.Title.Contains(CommonDefinition.SADDocumentLibrary))
+      {
+        string _at = "beginning";
         try
         {
           this.EventFiringEnabled = false;
@@ -52,12 +54,18 @@ namespace CAS.SmartFactory.IPR.Customs
             };
             edc.ActivityLog.InsertOnSubmit(mess);
             edc.SubmitChanges();
+            _at = "ImportDocument";
             CustomsDocument document = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
-            SADDocumentLib entry = Element.GetAtIndex <SADDocumentLib>(edc.SADDocumentLibrary, properties.ListItem.ID );
+            _at = "GetAtIndex";
+            SADDocumentLib entry = Element.GetAtIndex<SADDocumentLib>(edc.SADDocumentLibrary, properties.ListItem.ID);
+            _at = "GetSADDocument";
             SADDocumentType _sad = GetSADDocument(document, edc, entry);
+            _at = "SubmitChanges #1";
             edc.SubmitChanges();
+            _at = "Clearence.Associate";
             Clearence _clrnc = Clearence.Associate(edc, document.MessageRootName(), _sad);
             _sad.ClearenceID = _clrnc;
+            _at = "SubmitChanges #1";
             edc.SubmitChanges();
           }
         }
@@ -71,16 +79,24 @@ namespace CAS.SmartFactory.IPR.Customs
             return;
           }
           SPListItem item = log.AddItem();
-          item["Title"] = "Customs document import error";
-          item["Body"] = ex.Message;
+          string _pattern = "XML import error at {0}.";
+          if (ex is CustomsDataException)
+            _pattern = "XML import error at {0}.";
+          if (ex is IPRDataConsistencyException)
+            _pattern = "SAD analyses error at {0}.";
+          else
+            _pattern = "ItemAdded error at {0}.";
+          item["Title"] = String.Format(_pattern, _at);
+          item["Body"] =  String.Format("Source= {0}; Message={1]", ex.Source, ex.Message);
           item.UpdateOverwriteVersion();
-          properties.ListItem["Name"] = properties.ListItem["Name"] + ": Import Error !!";
-          properties.ListItem.UpdateOverwriteVersion();
+          properties.AfterProperties["Name"] = properties.AfterProperties["Name"] + ": Import Error !!";
+          //properties.ListItem.UpdateOverwriteVersion();
         }
         finally
         {
           this.EventFiringEnabled = true;
         }
+      }
       base.ItemAdded(properties);
     }
     private static SADDocumentType GetSADDocument(CustomsDocument document, EntitiesDataContext edc, SADDocumentLib lookup)
