@@ -23,6 +23,7 @@
       <FieldRef ID="{E00CB825-5594-485D-A232-4DE70F99A939}" Name="Dust" />
       <FieldRef ID="{41BDDA92-4D8D-4B1F-8C60-1D3B7AEA6B98}" Name="Waste" />
       <FieldRef ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}" Name="Tobacco" />
+      <FieldRef ID="{762353C4-D601-4461-84FA-EB26F7E314C2}" Name="SHMenthol" />
       <FieldRef ID="{38CE0A4D-208F-4F49-A344-11728F5B659D}" Name="BatchLibraryIndex" />
       <FieldRef ID="{43E20C54-3704-4F77-B755-EF45465F4AB2}" Name="CutfillerCoefficientIndex" />
       <FieldRef ID="{7F22FEC8-C867-49E5-B166-28D4454DE7D7}" Name="SKUIndex" />
