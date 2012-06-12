@@ -31,22 +31,22 @@ namespace CAS.SmartFactory.IPR.Entities
           DocumentNo = _nc.DocumentNo,
           Duty = _iprdata.Duty,
           DutyName = _iprdata.DutyName,
-          // DutyPerUnit = _iprdata.DutyPerUnit, [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
+          //TODO DutyPerUnit = _iprdata.DutyPerUnit, [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
           //TODO GradeName = _iprdata.GradeName, - (old name:"type") column must be added.
           GrossMass = _iprdata.GrossMass,
           InvoiceNo = _iprdata.InvoiceNo,
           NetMass = _iprdata.NetMass,
           No = 1,
           OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0, 0), //TODO [pr4-3408] Calculation of the OGLValidTo column http://itrserver/Bugs/BugDetail.aspx?bid=3408
-          PCNTariffCode = _iprdata.PCNTariffCode, //TODO - intialize column from GoodsDescription [pr4-3398] List: IPR - columns should be updated http://itrserver/Bugs/BugDetail.aspx?bid=3398
+          PCNTariffCode = _iprdata.PCNTariffCode,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
           Tytuł = "-- creating -- ",
-          // UnitPrice = _iprdata.UnitPrice, [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
+          //TODO UnitPrice = _iprdata.UnitPrice, [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
           Value = _iprdata.Value,
           VATName = _iprdata.VATName,
           VAT = _iprdata.VAT,
-          // VATPerUnit = _iprdata.VATPerUnit [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
+          //TODO VATPerUnit = _iprdata.VATPerUnit [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
         };
         _at = "new InsertOnSubmit";
         _edc.IPR.InsertOnSubmit(_ipr);
