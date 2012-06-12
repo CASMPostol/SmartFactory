@@ -113,8 +113,8 @@ namespace CAS.SmartFactory.IPR.Entities
           VATName = string.Empty;
           foreach (SADDuties _duty in FirstSADGood.SADDuties)
           {
-            _at = "switch " + _duty.Tytuł;
-            switch (_duty.Tytuł)
+            _at = "switch " + _duty.Type;
+            switch (_duty.Type)
             {
               //Duty
               case "A10":
@@ -122,7 +122,7 @@ namespace CAS.SmartFactory.IPR.Entities
               case "A20":
                 Duty += _duty.Amount.Value;
                 _at = "DutyName";
-                DutyName += String.Format("{0}={1:F2}; ", _duty.Tytuł, _duty.Amount.Value);
+                DutyName += String.Format("{0}={1:F2}; ", _duty.Type, _duty.Amount.Value);
                 break;
               //VAT
               case "B00":
@@ -130,7 +130,7 @@ namespace CAS.SmartFactory.IPR.Entities
               case "B20":
                 VAT += _duty.Amount.Value;
                 _at = "VATName";
-                VATName += String.Format("{0}={1:F2}; ", _duty.Tytuł, _duty.Amount.Value);
+                VATName += String.Format("{0}={1:F2}; ", _duty.Type, _duty.Amount.Value);
                 break;
               default:
                 break;
