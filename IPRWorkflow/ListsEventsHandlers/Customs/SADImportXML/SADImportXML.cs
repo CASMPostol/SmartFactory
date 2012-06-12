@@ -154,11 +154,12 @@ namespace CAS.SmartFactory.IPR.Customs
       {
         foreach (GoodDescription _doc in document)
         {
+          string _description = _doc.GetDescription().SPValidSubstring();
           SADGood newRow = new SADGood()
           {
             SADDocumentLookup = lookup,
-            Tytuł = String.Format("{0}: {1}", "PCNCode"/*i.GetDescription()*/, _doc.GetPCNTariffCode()),
-            GoodsDescription = _doc.GetDescription().SPValidSubstring(),
+            Tytuł = String.Format("{0}: {1}", _description.GetFirstCapture(CommonDefinition.GoodsDescriptionTobaccoNamePattern), _doc.GetPCNTariffCode()),
+            GoodsDescription = _description,
             PCNTariffCode = _doc.GetPCNTariffCode(),
             GrossMass = _doc.GetGrossMass(),
             Procedure = _doc.GetProcedure(),

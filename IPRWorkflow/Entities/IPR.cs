@@ -158,7 +158,7 @@ namespace CAS.SmartFactory.IPR.Entities
         try
         {
           _at = "TobaccoName";
-          TobaccoName = _GoodsDescription.GetFirstCapture(@"\b(.*)(?=\sGRADE:)");
+          TobaccoName = _GoodsDescription.GetFirstCapture(CommonDefinition.GoodsDescriptionTobaccoNamePattern);
           _at = "GradeName";
           GradeName = _GoodsDescription.GetFirstCapture(@"(?<=\WGRADE:)\W*\b(\w*)");
           _at = "SKU";

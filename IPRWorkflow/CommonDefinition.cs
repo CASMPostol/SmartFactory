@@ -8,5 +8,7 @@ namespace CAS.SmartFactory.IPR
   internal class CommonDefinition
   {
     internal const string SADDocumentLibrary = "SAD Document Library";
+    internal const string GoodsDescriptionTobaccoNamePattern = @"\b(.*)(?=\sGRADE:)";
+
   }
 }
