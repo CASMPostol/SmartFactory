@@ -54,10 +54,13 @@ namespace CAS.SmartFactory.IPR.Customs
             };
             edc.ActivityLog.InsertOnSubmit(mess);
             edc.SubmitChanges();
-            _at = "ImportDocument";
-            CustomsDocument _message = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
             _at = "GetAtIndex";
             SADDocumentLib entry = Element.GetAtIndex<SADDocumentLib>(edc.SADDocumentLibrary, properties.ListItem.ID);
+            entry.OK = false;
+            entry.Comments = "Item adding error";
+            _at = "ImportDocument";
+            edc.SubmitChanges();
+            CustomsDocument _message = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
             _at = "GetSADDocument";
             SADDocumentType _sad = GetSADDocument(_message, edc, entry);
             _at = "SubmitChanges #1";
@@ -76,7 +79,6 @@ namespace CAS.SmartFactory.IPR.Customs
         {
           SPWeb web = properties.Web;
           SPList log = web.Lists.TryGetList("Activity Log");
-          string _comments = String.Empty;
           if (log == null)
           {
             EventLog.WriteEntry("CAS.SmartFActory", "Cannot open \"Activity Log\" list", EventLogEntryType.Error, 114);
@@ -88,28 +90,20 @@ namespace CAS.SmartFactory.IPR.Customs
           {
             _pattern = "XML import error at {0}.";
             _at = ((CustomsDataException)ex).Source;
-            _comments = "XML import error";
           }
           if (ex is IPRDataConsistencyException)
           {
             IPRDataConsistencyException _iprex = ex as IPRDataConsistencyException;
             _pattern = "SAD analyses error at {0}.";
             _at = _iprex.Source;
-            _comments = _iprex.Comments;
           }
           else
           {
             _pattern = "ItemAdded error at {0}.";
-            _comments = "Item adding error";
           }
           item["Title"] = String.Format(_pattern, _at);
           item["Body"] = String.Format("Source= {0}; Message={1}", ex.Source, ex.Message);
           item.UpdateOverwriteVersion();
-          //TODO  [pr4-3403] SADImportXML.cs - after exception the list item is not updated http://itrserver/Bugs/BugDetail.aspx?bid=3403
-          //properties.AfterProperties["Name"] = properties.AfterProperties["Name"] + ": Import Error !!";
-          //properties.AfterProperties["SADDocumentLibraryComments"] = _comments;
-          //properties.AfterProperties["SADDocumentLibraryOK"] = false;
-          //properties.ListItem.UpdateOverwriteVersion();
         }
         finally
         {
