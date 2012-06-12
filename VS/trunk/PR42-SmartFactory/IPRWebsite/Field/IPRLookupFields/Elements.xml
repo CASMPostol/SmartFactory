@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="IPR2PCNTariffCodeTitle"
+    ID="{3283979A-65A9-4979-B915-9D25113784D3}"
+    Type="Lookup"
+    List="Lists/PCNCodeList"
+    ShowField="Title"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="PCN tariff code"
+    Group="CAS Smart Factory IPR"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="IPR2ConsentTitle"
     ID="{B666BBEE-46EC-4E0D-B782-68BC5E9B561A}"
     Type="Lookup"
