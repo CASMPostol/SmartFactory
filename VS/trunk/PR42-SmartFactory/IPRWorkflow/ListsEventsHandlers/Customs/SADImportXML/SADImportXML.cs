@@ -105,6 +105,7 @@ namespace CAS.SmartFactory.IPR.Customs
           item["Title"] = String.Format(_pattern, _at);
           item["Body"] = String.Format("Source= {0}; Message={1}", ex.Source, ex.Message);
           item.UpdateOverwriteVersion();
+          //TODO  [pr4-3403] SADImportXML.cs - after exception the list item is not updated http://itrserver/Bugs/BugDetail.aspx?bid=3403
           //properties.AfterProperties["Name"] = properties.AfterProperties["Name"] + ": Import Error !!";
           //properties.AfterProperties["SADDocumentLibraryComments"] = _comments;
           //properties.AfterProperties["SADDocumentLibraryOK"] = false;

@@ -151,36 +151,20 @@ namespace CAS.SmartFactory.IPR.Entities
           throw new IPRDataConsistencyException(_src, _ex.Message, _ex, _src);
         }
       }
-      private void AnalizeGoodsDescription()
+      const string UnrecognizedName = "-- unrecognized name --";
+      private void AnalizeGoodsDescription(string _GoodsDescription)
       {
         string _at = "Started";
         try
         {
           _at = "TobaccoName";
-          Match _tnm = Regex.Match(FirstSADGood.GoodsDescription, @"\b(.*)\s+(?=GRADE:)", RegexOptions.IgnoreCase);
-          const string UnrecognizedName = "-- unrecognized name --";
-          if (_tnm.Success && _tnm.Groups.Count == 1)
-            TobaccoName = _tnm.Captures[1].Value;
-          else
-            TobaccoName = UnrecognizedName;
+          TobaccoName = _GoodsDescription.GetFirstCapture(@"\b(.*)(?=\sGRADE:)");
           _at = "GradeName";
-          _tnm = Regex.Match(FirstSADGood.GoodsDescription, @"(?<=\WGRADE:)\W*\b(\w*)", RegexOptions.IgnoreCase);
-          if (_tnm.Success && _tnm.Groups.Count == 1)
-            GradeName = _tnm.Captures[1].Value;
-          else
-            GradeName = UnrecognizedName;
+          GradeName = _GoodsDescription.GetFirstCapture(@"(?<=\WGRADE:)\W*\b(\w*)");
           _at = "SKU";
-          _tnm = Regex.Match(FirstSADGood.GoodsDescription, @"(?<=\WSKU:)\W*\b(\d*)", RegexOptions.IgnoreCase);
-          if (_tnm.Success && _tnm.Groups.Count == 1)
-            SKU = _tnm.Captures[1].Value;
-          else
-            SKU = UnrecognizedName;
+          SKU = _GoodsDescription.GetFirstCapture(@"(?<=\WSKU:)\W*\b(\d*)");
           _at = "Batch";
-          _tnm = Regex.Match(FirstSADGood.GoodsDescription, @"(?<=\WBatch:)\W*\b(\d*)", RegexOptions.IgnoreCase);
-          if (_tnm.Success && _tnm.Groups.Count == 1)
-            Batch = _tnm.Captures[1].Value;
-          else
-            Batch = UnrecognizedName;
+          Batch = _GoodsDescription.GetFirstCapture(@"(?<=\WBatch:)\W*\b(\d*)");
         }
         catch (Exception _ex)
         {
@@ -188,6 +172,7 @@ namespace CAS.SmartFactory.IPR.Entities
           throw new IPRDataConsistencyException(_src, _ex.Message, _ex, _src);
         }
       }
+
       #endregion
 
       #region cretor
@@ -213,7 +198,7 @@ namespace CAS.SmartFactory.IPR.Entities
                           where CustomsProcedureCode.Contains("1PG1") || CustomsProcedureCode.Contains("C601")
                           select new { Number = _dx.Number }
                        ).First().Number;
-          AnalizeGoodsDescription();
+          AnalizeGoodsDescription(FirstSADGood.GoodsDescription);
 
         }
         catch (IPRDataConsistencyException es)
