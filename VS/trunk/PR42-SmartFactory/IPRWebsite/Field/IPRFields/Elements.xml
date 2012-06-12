@@ -392,59 +392,29 @@
     <Default>[today]</Default>
   </Field>
   <Field
-    ResultType="Number"
-    LCID="1045"
-    Format="DateTime"
-    Description="Duty per unit"
     DisplayName="Duty per unit"
-    Type="Calculated"
-    ID="{D0177FD6-5A37-483C-9BA8-9EED9493F16C}"
-    Name="DutyPerUnit"
+    Name="IPRDutyPerUnit"
+    Decimals="2"
+    Type="Number"
+    ID="{0F0388EF-3847-4795-BDE8-CA338B55CDAC}"
     Group="CAS Smart Factory IPR"
-    ReadOnly="TRUE">
-    <Formula>=Duty/NetMass</Formula>
-    <FormulaDisplayNames>=DUTY/NetMass</FormulaDisplayNames>
-    <FieldRefs>
-      <FieldRef Name="Duty" />
-      <FieldRef Name="NetMass" />
-    </FieldRefs>
-  </Field>
+    />
   <Field
-    ResultType="Number"
-    LCID="1045"
-    Format="DateTime"
-    Description="VAT per unit"
     DisplayName="VAT per unit"
-    Type="Calculated"
-    ID="{29466F7A-3E6E-4B25-A93E-3590AE7863A7}"
-    Name="VATPerUnit"
+    Name="IPRVATPerUnit"
+    Decimals="2"
+    Type="Number"
+    ID="{6D2D089E-CA30-4875-AE10-D1A86A5C4EF1}"
     Group="CAS Smart Factory IPR"
-    ReadOnly="TRUE">
-    <Formula>=VAT/NetMass</Formula>
-    <FormulaDisplayNames>=VAT/NetMass</FormulaDisplayNames>
-    <FieldRefs>
-      <FieldRef Name="VAT" />
-      <FieldRef Name="NetMass" />
-    </FieldRefs>
-  </Field>
+    />
   <Field
-    ResultType="Number"
-    LCID="1045"
-    Format="DateTime"
-    Description="Unit price"
     DisplayName="Unit price"
-    Type="Calculated"
-    ID="{D387B1F7-9EE5-4880-A059-BABC25D25596}"
-    Name="UnitPrice"
+    Name="IPRUnitPrice"
+    Decimals="2"
+    Type="Number"
+    ID="{AEB25DE4-D291-4EAC-B397-8FF3E387A609}"
     Group="CAS Smart Factory IPR"
-    ReadOnly="TRUE">
-    <Formula>=Value/NetMass</Formula>
-    <FormulaDisplayNames>=Value/NetMass</FormulaDisplayNames>
-    <FieldRefs>
-      <FieldRef Name="Value" />
-      <FieldRef Name="NetMass" />
-    </FieldRefs>
-  </Field>
+    />
   <Field
   DisplayName="FG Quantity"
   Name="FGQuantity"

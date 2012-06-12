@@ -17,17 +17,17 @@
           <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
           <FieldRef ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}" Name="DutyName" />
           <FieldRef ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}" Name="Duty" />
-          <FieldRef ID="{D0177FD6-5A37-483C-9BA8-9EED9493F16C}" Name="DutyPerUnit" />
+          <FieldRef ID="{0F0388EF-3847-4795-BDE8-CA338B55CDAC}" Name="IPRDutyPerUnit" />
           <FieldRef ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}" Name="VATName" />
           <FieldRef ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Name="VAT"/>
-          <FieldRef ID="{29466F7A-3E6E-4B25-A93E-3590AE7863A7}" Name="VATPerUnit" />
+          <FieldRef ID="{6D2D089E-CA30-4875-AE10-D1A86A5C4EF1}" Name="IPRVATPerUnit" />
           <FieldRef ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}" Name="NetMass" />
           <FieldRef ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" Name="GrossMass" />
           <FieldRef ID="{EC985ABA-7AA4-4603-86E6-904837CF0F77}" Name="Cartons" />
           <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
           <FieldRef ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}" Name="Value" />
           <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
-          <FieldRef ID="{D387B1F7-9EE5-4880-A059-BABC25D25596}" Name="UnitPrice" />
+          <FieldRef ID="{AEB25DE4-D291-4EAC-B397-8FF3E387A609}" Name="IPRUnitPrice" />
           <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
           <FieldRef ID="{3283979A-65A9-4979-B915-9D25113784D3}" Name="IPR2PCNTariffCodeTitle" />
           <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
@@ -89,17 +89,17 @@
           <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
           <FieldRef ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}" Name="DutyName" />
           <FieldRef ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}" Name="Duty" />
-          <FieldRef ID="{D0177FD6-5A37-483C-9BA8-9EED9493F16C}" Name="DutyPerUnit" />
+          <FieldRef ID="{0F0388EF-3847-4795-BDE8-CA338B55CDAC}" Name="IPRDutyPerUnit" />
           <FieldRef ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}" Name="VATName" />
           <FieldRef ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Name="VAT"/>
-          <FieldRef ID="{29466F7A-3E6E-4B25-A93E-3590AE7863A7}" Name="VATPerUnit" />
+          <FieldRef ID="{6D2D089E-CA30-4875-AE10-D1A86A5C4EF1}" Name="IPRVATPerUnit" />
           <FieldRef ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}" Name="NetMass" />
           <FieldRef ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" Name="GrossMass" />
           <FieldRef ID="{EC985ABA-7AA4-4603-86E6-904837CF0F77}" Name="Cartons" />
           <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
           <FieldRef ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}" Name="Value" />
           <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
-          <FieldRef ID="{D387B1F7-9EE5-4880-A059-BABC25D25596}" Name="UnitPrice" />
+          <FieldRef ID="{AEB25DE4-D291-4EAC-B397-8FF3E387A609}" Name="IPRUnitPrice" />
           <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
           <FieldRef ID="{3283979A-65A9-4979-B915-9D25113784D3}" Name="IPR2PCNTariffCodeTitle" />
           <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
