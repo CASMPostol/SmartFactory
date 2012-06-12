@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.IPR.Entities
           NetMass = _iprdata.NetMass,
           No = 1,
           OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0, 0), //TODO [pr4-3408] Calculation of the OGLValidTo column http://itrserver/Bugs/BugDetail.aspx?bid=3408
-          PCNTariffCode = _iprdata.PCNTariffCode,
+          PCNTariffCode = _pcn,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
           Tytuł = "-- creating -- ",

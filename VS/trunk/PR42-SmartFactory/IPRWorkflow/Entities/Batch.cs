@@ -104,7 +104,9 @@ namespace CAS.SmartFactory.IPR.Entities
       SKULookup = SKUCommonPart.GetLookup(edc, fg.Product.SKU);
       CutfillerCoefficientLookup = CutfillerCoefficient.GetLookup(edc);
       DustLookup = Entities.Dust.GetLookup(ProductType.Value, edc);
-      SHMentholLookup = SHMenthol.GetLookup(ProductType.Value, edc);
+      SHMentholLookup = Entities.SHMenthol.GetLookup(ProductType.Value, edc);
+      //TODO  [pr4-2941] Batch: Add Sh menthol column http://itrserver/Bugs/BugDetail.aspx?bid=2941
+      //this.SHMenthol = 
       UsageLookup = Usage.GetLookup(SKULookup.FormatLookup, edc);
       WasteLookup = Entities.Waste.GetLookup(ProductType.Value, edc);
       CalculatedOveruse = fg.ProcessDisposals();

@@ -1100,6 +1100,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<double> _tobacco;
 		
+		private System.Nullable<double> _sHMenthol;
+		
 		private System.Nullable<ProductType> _productType;
 		
 		private System.Nullable<BatchStatus> _batchStatus;
@@ -1373,6 +1375,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("Tobacco", this._tobacco);
 					this._tobacco = value;
 					this.OnPropertyChanged("Tobacco");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// SHMenthol
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SHMenthol", Storage="_sHMenthol", FieldType="Number")]
+		public System.Nullable<double> SHMenthol {
+			get {
+				return this._sHMenthol;
+			}
+			set {
+				if ((value != this._sHMenthol)) {
+					this.OnPropertyChanging("SHMenthol", this._sHMenthol);
+					this._sHMenthol = value;
+					this.OnPropertyChanged("SHMenthol");
 				}
 			}
 		}
@@ -3064,8 +3083,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _batch;
 		
-		private string _pCNTariffCode;
-		
 		private string _dutyName;
 		
 		private System.Nullable<double> _duty;
@@ -3096,6 +3113,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Consent> _consentNo;
 		
+		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _pCNTariffCode;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<JSOX> _jSOXListLookup;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceListLookup;
@@ -3113,6 +3132,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this._consentNo.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent>>(this.OnConsentNoSync);
 			this._consentNo.OnChanged += new System.EventHandler(this.OnConsentNoChanged);
 			this._consentNo.OnChanging += new System.EventHandler(this.OnConsentNoChanging);
+			this._pCNTariffCode = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
+			this._pCNTariffCode.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnPCNTariffCodeSync);
+			this._pCNTariffCode.OnChanged += new System.EventHandler(this.OnPCNTariffCodeChanged);
+			this._pCNTariffCode.OnChanging += new System.EventHandler(this.OnPCNTariffCodeChanging);
 			this._jSOXListLookup = new Microsoft.SharePoint.Linq.EntityRef<JSOX>();
 			this._jSOXListLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOX>>(this.OnJSOXListLookupSync);
 			this._jSOXListLookup.OnChanged += new System.EventHandler(this.OnJSOXListLookupChanged);
@@ -3237,23 +3260,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("Batch", this._batch);
 					this._batch = value;
 					this.OnPropertyChanged("Batch");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Kod taryfy PCN
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PCNTariffCode", Storage="_pCNTariffCode", FieldType="Text")]
-		public string PCNTariffCode {
-			get {
-				return this._pCNTariffCode;
-			}
-			set {
-				if ((value != this._pCNTariffCode)) {
-					this.OnPropertyChanging("PCNTariffCode", this._pCNTariffCode);
-					this._pCNTariffCode = value;
-					this.OnPropertyChanged("PCNTariffCode");
 				}
 			}
 		}
@@ -3494,6 +3500,16 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPR2PCNTariffCodeTitle", Storage="_pCNTariffCode", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
+		public PCNCode PCNTariffCode {
+			get {
+				return this._pCNTariffCode.GetEntity();
+			}
+			set {
+				this._pCNTariffCode.SetEntity(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="JSOXIndex", Storage="_jSOXListLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JSOX")]
 		public JSOX JSOXListLookup {
 			get {
@@ -3533,6 +3549,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		private void OnConsentNoSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.IPR.Add(this);
+			}
+			else {
+				e.Item.IPR.Remove(this);
+			}
+		}
+		
+		private void OnPCNTariffCodeChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("PCNTariffCode", this._pCNTariffCode.Clone());
+		}
+		
+		private void OnPCNTariffCodeChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("PCNTariffCode");
+		}
+		
+		private void OnPCNTariffCodeSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.IPR.Add(this);
 			}
@@ -4038,6 +4071,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<IPR> _iPR;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -4049,6 +4084,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this._disposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposalSync);
 			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
 			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
+			this._iPR = new Microsoft.SharePoint.Linq.EntitySet<IPR>();
+			this._iPR.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPRSync);
+			this._iPR.OnChanged += new System.EventHandler(this.OnIPRChanged);
+			this._iPR.OnChanging += new System.EventHandler(this.OnIPRChanging);
 			this.OnCreated();
 		}
 		
@@ -4096,6 +4135,16 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPR2PCNTariffCodeTitle", Storage="_iPR", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="IPR")]
+		public Microsoft.SharePoint.Linq.EntitySet<IPR> IPR {
+			get {
+				return this._iPR;
+			}
+			set {
+				this._iPR.Assign(value);
+			}
+		}
+		
 		private void OnDisposalChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("Disposal", this._disposal.Clone());
 		}
@@ -4110,6 +4159,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 			else {
 				e.Item.PCNCodeLookup = null;
+			}
+		}
+		
+		private void OnIPRChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("IPR", this._iPR.Clone());
+		}
+		
+		private void OnIPRChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("IPR");
+		}
+		
+		private void OnIPRSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.PCNTariffCode = this;
+			}
+			else {
+				e.Item.PCNTariffCode = null;
 			}
 		}
 	}
