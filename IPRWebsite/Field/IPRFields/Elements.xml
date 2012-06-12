@@ -392,6 +392,13 @@
     <Default>[today]</Default>
   </Field>
   <Field
+    DisplayName="Grade"
+    Name="Grade"
+    Type="Text"
+    ID="{01F8D41D-F043-4C23-8D7E-FA7BDAC4B8A0}"
+    Group="CAS Smart Factory IPR"
+    />
+  <Field
     DisplayName="Duty per unit"
     Name="IPRDutyPerUnit"
     Decimals="2"
