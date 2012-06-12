@@ -16,7 +16,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       catch (Exception ex)
       {
-        throw new IPRDataConsistencyException(m_Source, m_Message, ex);
+        throw new IPRDataConsistencyException(m_Source, m_Message, ex, "SHMenthol lookup error");
       }
     }
     internal static void ImportData(ConfigurationSHMentholItem[] configuration, EntitiesDataContext edc)

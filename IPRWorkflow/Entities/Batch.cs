@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       catch (Exception ex)
       {
-        throw new IPRDataConsistencyException(m_Source, String.Format(m_LookupFailedMessage, index), ex);
+        throw new IPRDataConsistencyException(m_Source, String.Format(m_LookupFailedMessage, index), ex, "Cannot find batch");
       }
     }
     internal DisposalDisposal[] GetDisposals(EntitiesDataContext edc)

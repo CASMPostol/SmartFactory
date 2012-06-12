@@ -31,7 +31,7 @@ namespace CAS.SmartFactory.IPR.Entities
           DocumentNo = _nc.DocumentNo,
           Duty = _iprdata.Duty,
           DutyName = _iprdata.DutyName,
-          DutyPerUnit = _iprdata.DutyPerUnit,
+          // DutyPerUnit = _iprdata.DutyPerUnit, [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
           //TODO GradeName = _iprdata.GradeName, - (old name:"type") column must be added.
           GrossMass = _iprdata.GrossMass,
           InvoiceNo = _iprdata.InvoiceNo,
@@ -42,11 +42,11 @@ namespace CAS.SmartFactory.IPR.Entities
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
           Tytuł = "-- creating -- ",
-          UnitPrice = _iprdata.UnitPrice,
+          // UnitPrice = _iprdata.UnitPrice, [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
           Value = _iprdata.Value,
           VATName = _iprdata.VATName,
           VAT = _iprdata.VAT,
-          VATPerUnit = _iprdata.VATPerUnit
+          // VATPerUnit = _iprdata.VATPerUnit [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
         };
         _at = "new InsertOnSubmit";
         _edc.IPR.InsertOnSubmit(_ipr);
@@ -63,7 +63,7 @@ namespace CAS.SmartFactory.IPR.Entities
       catch (Exception _ex)
       {
         string _src = String.Format("CreateIPRAccount method error at {0}", _at);
-        throw new IPRDataConsistencyException(_src, _ex.Message, _ex);
+        throw new IPRDataConsistencyException(_src, _ex.Message, _ex, "IPR account creation error");
       }
     }
     /// <summary>
@@ -85,7 +85,7 @@ namespace CAS.SmartFactory.IPR.Entities
           else if (_messageType == CustomsDocument.DocumentType.PZC)
             GrossMass = _document.GrossMass.HasValue ? _document.GrossMass.Value : FirstSADGood.GrossMass.Value;
           else
-            throw new IPRDataConsistencyException("IPRData.GetCartons", String.Format("Unexpected message {0} message", _messageType), null);
+            throw new IPRDataConsistencyException("IPRData.GetCartons", String.Format("Unexpected message {0} message", _messageType), null, "Unexpected message");
           _at = "SADQuantity";
           SADQuantity _quantity = FirstSADGood.SADQuantity.First();
           _at = "NetMass";
@@ -99,7 +99,7 @@ namespace CAS.SmartFactory.IPR.Entities
         catch (Exception _ex)
         {
           string _src = String.Format("AnalizeGood error at {0}", _at);
-          throw new IPRDataConsistencyException(_src, _ex.Message, _ex);
+          throw new IPRDataConsistencyException(_src, _ex.Message, _ex, _src);
         }
       }
       private void AnalizeDutyAndVAT()
@@ -148,7 +148,7 @@ namespace CAS.SmartFactory.IPR.Entities
         catch (Exception _ex)
         {
           string _src = String.Format("AnalizeDutyAndVAT error at {0}", _at);
-          throw new IPRDataConsistencyException(_src, _ex.Message, _ex);
+          throw new IPRDataConsistencyException(_src, _ex.Message, _ex, _src);
         }
       }
       private void AnalizeGoodsDescription()
@@ -181,12 +181,11 @@ namespace CAS.SmartFactory.IPR.Entities
             Batch = _tnm.Captures[1].Value;
           else
             Batch = UnrecognizedName;
-
         }
         catch (Exception _ex)
         {
-          string _src = String.Format("AnalizeDutyAndVAT error at {0}", _at);
-          throw new IPRDataConsistencyException(_src, _ex.Message, _ex);
+          string _src = String.Format("AnalizeGoodsDescription error at {0}", _at);
+          throw new IPRDataConsistencyException(_src, _ex.Message, _ex, _src);
         }
       }
       #endregion
@@ -224,7 +223,7 @@ namespace CAS.SmartFactory.IPR.Entities
         catch (Exception _ex)
         {
           string _src = String.Format("IPRData creator error at {0}", _at);
-          throw new IPRDataConsistencyException(_src, _ex.Message, _ex);
+          throw new IPRDataConsistencyException(_src, _ex.Message, _ex, _src);
         }
       }
       #endregion

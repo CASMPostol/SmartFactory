@@ -6,7 +6,7 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class Clearence
   {
-    internal static Clearence Associate(EntitiesDataContext _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad)
+    internal static Clearence Associate(EntitiesDataContext _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, out string _comments)
     {
       Clearence _ret = default(Clearence);
       string _at = "started";
@@ -24,7 +24,12 @@ namespace CAS.SmartFactory.IPR.Entities
                 _at = "FimdClearence";
                 _ret = FimdClearence(_edc, _sad.ReferenceNumber);
                 if (_messageType == CustomsDocument.DocumentType.PZC)
+                {
                   _sad.ReleaseForFreeCirculation(_edc);
+                  _comments = "Released for free circulation";
+                }
+                else
+                  _comments = "Document added";
                 break;
               case CustomsProcedureCodes.InwardProcessing:
                 _at = "_procedureCode";
@@ -42,17 +47,23 @@ namespace CAS.SmartFactory.IPR.Entities
                 _at = "InsertOnSubmit";
                 _edc.Clearence.InsertOnSubmit(_ret);
                 if (_messageType == CustomsDocument.DocumentType.PZC)
+                {
                   IPR.CreateIPRAccount(_edc, _sad, _ret, CustomsDocument.DocumentType.PZC);
+                  _comments = "IPR account created";
+                }
+                else
+                  _comments = "Document added";
                 break;
               case CustomsProcedureCodes.NoProcedure:
               case CustomsProcedureCodes.ReExport:
               case CustomsProcedureCodes.CustomsWarehousingProcedure:
               default:
-                throw new IPRDataConsistencyException("Clearence.Associate", string.Format("Unexpected procedure code for the {0} message", _messageType), null);
+                throw new IPRDataConsistencyException("Clearence.Associate", string.Format("Unexpected procedure code for the {0} message", _messageType), null, _wrongProcedure);
             }
             break;
           case CustomsDocument.DocumentType.IE529:
             _sad.ReExportOfGoods(_edc, _messageType);
+            _comments = "Reexport of goods";
             break;
           case CustomsDocument.DocumentType.CLNE:
             _at = "FimdClearence";
@@ -65,19 +76,21 @@ namespace CAS.SmartFactory.IPR.Entities
             {
               case CustomsProcedureCodes.FreeCirculation:
                 _startingDocument.ReleaseForFreeCirculation(_edc);
+                _comments = "Released for free circulation";
                 break;
               case CustomsProcedureCodes.InwardProcessing:
                 IPR.CreateIPRAccount(_edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD);
+                _comments = "IPR account created";
                 break;
               case CustomsProcedureCodes.ReExport:
               case CustomsProcedureCodes.NoProcedure:
               case CustomsProcedureCodes.CustomsWarehousingProcedure:
               default:
-                throw new IPRDataConsistencyException("Clearence.Associate", "Unexpected procedure code for CLNE message", null);
+                throw new IPRDataConsistencyException("Clearence.Associate", "Unexpected procedure code for CLNE message", null, _wrongProcedure);
             }
             break;
           default:
-            break;
+            throw new IPRDataConsistencyException("Clearence.Associate", "Unexpected message type.", null, "Unexpected message type.");
         }//switch (_documentType
       }
       catch (IPRDataConsistencyException _iorex)
@@ -87,7 +100,7 @@ namespace CAS.SmartFactory.IPR.Entities
       catch (Exception _ex)
       {
         string _src = String.Format("Clearence analyses error at {0}", _at);
-        throw new IPRDataConsistencyException(_src, _ex.Message, _ex);
+        throw new IPRDataConsistencyException(_src, _ex.Message, _ex, _src);
       }
       return _ret;
     }
@@ -95,5 +108,6 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       return (from _cx in _edc.Clearence where _referenceNumber.Contains(_cx.ReferenceNumber) select _cx).First<Clearence>();
     }
+    private const string _wrongProcedure = "Wrong customs procedure";
   }
 }

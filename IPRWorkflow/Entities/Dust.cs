@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       catch (Exception ex)
       {
-        throw new IPRDataConsistencyException(m_Source, m_Message, ex);
+        throw new IPRDataConsistencyException(m_Source, m_Message, ex, "Cannot find Dust");
       }
     }
     internal static void ImportData(ConfigurationDustItem[] configuration, EntitiesDataContext edc)

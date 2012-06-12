@@ -40,7 +40,7 @@ namespace CAS.SmartFactory.IPR.Entities
         }
       }
       if (errors)
-        throw new IPRDataConsistencyException(m_Source, m_AbortMessage, null);
+        throw new IPRDataConsistencyException(m_Source, m_AbortMessage, null, "Stock import error");
       if (stockEntities.Count > 0)
         edc.StockEntry.InsertAllOnSubmit(stockEntities);
     }

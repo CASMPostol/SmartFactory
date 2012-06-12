@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.IPR.Entities
       foreach (SADGood _sg in SADGood)
       {
         if (_sg.Procedure.RequestedProcedure() != CustomsProcedureCodes.ReExport)
-          throw new IPRDataConsistencyException("Clearence.Create", String.Format("IE529 contains invalid customs procedure {0}", _sg.Tytuł), null);
+          throw new IPRDataConsistencyException("Clearence.Create", String.Format("IE529 contains invalid customs procedure {0}", _sg.Tytuł), null, "Wrong customs procedure.");
         throw new NotImplementedException();
       }
     }

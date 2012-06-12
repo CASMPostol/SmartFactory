@@ -56,10 +56,10 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         return this.Values;
       }
-      internal void CheckCosistence()
+      internal void CheckConsistence()
       {
         if (Product == null)
-          throw new IPRDataConsistencyException("Processing disposals", "Unrecognized finisched good", null);
+          throw new IPRDataConsistencyException("Processing disposals", "Unrecognized finisched good", null, "CheckConsistence error");
       }
     }
     internal static SummaryContentInfo GetXmlContent(BatchMaterialXml[] xml, EntitiesDataContext edc, ProgressChangedEventHandler progressChanged)
@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.IPR.Entities
         progressChanged(null, new ProgressChangedEventArgs(1, String.Format("SKU={0}", newMaterial.SKU)));
         itemsList.Add(newMaterial);
       }
-      itemsList.CheckCosistence();
+      itemsList.CheckConsistence();
       return itemsList;
     }
     internal SKUCommonPart SKULookup { get; set; }
