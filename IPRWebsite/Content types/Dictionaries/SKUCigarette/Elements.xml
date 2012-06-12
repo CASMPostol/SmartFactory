@@ -13,6 +13,7 @@
       <FieldRef ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}" Name="CigaretteLenght" />
       <FieldRef ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}" Name="FilterLenght" />
       <FieldRef ID="{FEF25D85-B84C-4E2E-B5AD-21970B6351F5}" Name="PrimeMarket" />
+      <FieldRef ID="{8E757B00-B79F-4B4F-A510-485635AEA6C0}" Name="MentholMaterial" />
       <FieldRef ID="{97EE3235-0816-43E7-AB77-AF9D4E040DF1}" Name="Menthol" />
     </FieldRefs>
     <XmlDocuments>
