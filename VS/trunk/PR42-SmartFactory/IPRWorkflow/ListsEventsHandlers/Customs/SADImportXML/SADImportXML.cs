@@ -37,16 +37,7 @@ namespace CAS.SmartFactory.IPR.Customs
           using (EntitiesDataContext edc = new EntitiesDataContext(properties.WebUrl))
           {
             if (properties.ListItem.File == null)
-            {
-              Anons log = new Anons()
-              {
-                Tytuł = m_Title,
-                Treść = "Import of a SAD declaration message failed because the file is empty."
-              };
-              edc.ActivityLog.InsertOnSubmit(log);
-              edc.SubmitChanges();
-              return;
-            }
+              throw new IPRDataConsistencyException("ItemAdded", "Import of a SAD declaration message failed because the file is empty.", null, "There is no file");
             Anons mess = new Anons()
             {
               Tytuł = m_Title,
