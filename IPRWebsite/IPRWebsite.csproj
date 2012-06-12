@@ -474,7 +474,9 @@
     <Content Include="Content types\Disposal\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\IPR\Elements.xml" />
+    <Content Include="Content types\IPR\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Material\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -510,7 +512,9 @@
     <Content Include="Field\DictionariesLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Field\IPRFields\Elements.xml" />
+    <Content Include="Field\IPRFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Field\IPRLookupFields\Elements.xml" />
     <Content Include="Field\ReportsFields\Elements.xml" />
     <Content Include="Field\ReportsLookupFields\Elements.xml" />
@@ -620,7 +624,9 @@
     <Content Include="Lists\IPRLibrary\Elements.xml" />
     <Content Include="Lists\IPRTemplate\Elements.xml" />
     <Content Include="Lists\IPRTemplate\IPRList\Elements.xml" />
-    <Content Include="Lists\IPRTemplate\Schema.xml" />
+    <Content Include="Lists\IPRTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\MaterialTemplate\Elements.xml" />
     <Content Include="Lists\MaterialTemplate\MaterialList\Elements.xml" />
     <Content Include="Lists\MaterialTemplate\Schema.xml">
