@@ -16,7 +16,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       catch (Exception ex)
       {
-        throw new IPRDataConsistencyException(m_Source, String.Format(m_Message, format), ex);
+        throw new IPRDataConsistencyException(m_Source, String.Format(m_Message, format), ex, "Usage lookup error");
       }
     }
     internal static void ImportData(ConfigurationUsageItem[] configuration, EntitiesDataContext edc)

@@ -1,0 +1,8 @@
+C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRWorkflowsUnitTests\obj\Release\ResolveAssemblyReference.cache
+C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRWorkflowsUnitTests\bin\Release\IPRWorkflowsUnitTests.dll
+C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRWorkflowsUnitTests\bin\Release\IPRWorkflowsUnitTests.pdb
+C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRWorkflowsUnitTests\bin\Release\CAS.SmartFactory.IPR.dll
+C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRWorkflowsUnitTests\bin\Release\Microsoft.Sharepoint.Sandbox.dll
+C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRWorkflowsUnitTests\bin\Release\CAS.SmartFactory.IPR.pdb
+C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRWorkflowsUnitTests\obj\Release\IPRWorkflowsUnitTests.dll
+C:\vs\Projects\SmartFactory\PR42-SmartFactory\IPRWorkflowsUnitTests\obj\Release\IPRWorkflowsUnitTests.pdb

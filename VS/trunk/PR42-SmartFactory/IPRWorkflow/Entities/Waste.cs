@@ -17,7 +17,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       catch (Exception ex)
       {
-        throw new IPRDataConsistencyException(m_Source, String.Format(m_Message, type), ex);
+        throw new IPRDataConsistencyException(m_Source, String.Format(m_Message, type), ex, "Waste lookup error");
       }
     }
     internal static void ImportData(ConfigurationWasteItem[] configuration, EntitiesDataContext edc)

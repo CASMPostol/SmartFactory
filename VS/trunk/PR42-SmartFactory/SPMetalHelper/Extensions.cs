@@ -84,6 +84,22 @@ namespace CAS.SmartFactory
     {
       return String.IsNullOrEmpty(_val);
     }
+    public static string SPValidSubstring(this string _value)
+    {
+      string _goodsDescription = Microsoft.SharePoint.Utilities.SPStringUtility.RemoveControlChars(_value);
+      int _gdl = _goodsDescription.Length;
+      do
+      {
+        _goodsDescription = _goodsDescription.Replace("  ", " ");
+        if (_gdl == _goodsDescription.Length)
+          break;
+        _gdl = _goodsDescription.Length;
+      } while (true);
+      int SPStringMAxLength = 250;
+      if (_gdl >= SPStringMAxLength)
+        _goodsDescription = _goodsDescription.Remove(SPStringMAxLength);
+      return _goodsDescription;
+    }
     #endregion
   }
 }

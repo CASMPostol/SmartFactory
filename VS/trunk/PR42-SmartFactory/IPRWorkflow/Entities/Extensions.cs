@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.Entities
       catch (Exception ex)
       {
         string msg = "Cannot find a library";
-        throw new IPRDataConsistencyException("Extensions - GetTopMostDocumentLookup", msg, ex);
+        throw new IPRDataConsistencyException("Extensions - GetTopMostDocumentLookup", msg, ex, "Dokument lookup error");
       }
     }
   }

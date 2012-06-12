@@ -55,17 +55,20 @@ namespace CAS.SmartFactory.IPR.Customs
             edc.ActivityLog.InsertOnSubmit(mess);
             edc.SubmitChanges();
             _at = "ImportDocument";
-            CustomsDocument document = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
+            CustomsDocument _message = CustomsDocument.ImportDocument(properties.ListItem.File.OpenBinaryStream());
             _at = "GetAtIndex";
             SADDocumentLib entry = Element.GetAtIndex<SADDocumentLib>(edc.SADDocumentLibrary, properties.ListItem.ID);
             _at = "GetSADDocument";
-            SADDocumentType _sad = GetSADDocument(document, edc, entry);
+            SADDocumentType _sad = GetSADDocument(_message, edc, entry);
             _at = "SubmitChanges #1";
             edc.SubmitChanges();
             _at = "Clearence.Associate";
-            Clearence _clrnc = Clearence.Associate(edc, document.MessageRootName(), _sad);
+            string _comments = "OK";
+            Clearence _clrnc = Clearence.Associate(edc, _message.MessageRootName(), _sad, out _comments);
             _sad.ClearenceID = _clrnc;
-            _at = "SubmitChanges #1";
+            entry.OK = true;
+            entry.Comments = _comments;
+            _at = "SubmitChanges #2";
             edc.SubmitChanges();
           }
         }
@@ -73,6 +76,7 @@ namespace CAS.SmartFactory.IPR.Customs
         {
           SPWeb web = properties.Web;
           SPList log = web.Lists.TryGetList("Activity Log");
+          string _comments = String.Empty;
           if (log == null)
           {
             EventLog.WriteEntry("CAS.SmartFActory", "Cannot open \"Activity Log\" list", EventLogEntryType.Error, 114);
@@ -81,15 +85,29 @@ namespace CAS.SmartFactory.IPR.Customs
           SPListItem item = log.AddItem();
           string _pattern = "XML import error at {0}.";
           if (ex is CustomsDataException)
+          {
             _pattern = "XML import error at {0}.";
+            _at = ((CustomsDataException)ex).Source;
+            _comments = "XML import error";
+          }
           if (ex is IPRDataConsistencyException)
+          {
+            IPRDataConsistencyException _iprex = ex as IPRDataConsistencyException;
             _pattern = "SAD analyses error at {0}.";
+            _at = _iprex.Source;
+            _comments = _iprex.Comments;
+          }
           else
+          {
             _pattern = "ItemAdded error at {0}.";
+            _comments = "Item adding error";
+          }
           item["Title"] = String.Format(_pattern, _at);
-          item["Body"] =  String.Format("Source= {0}; Message={1]", ex.Source, ex.Message);
+          item["Body"] = String.Format("Source= {0}; Message={1}", ex.Source, ex.Message);
           item.UpdateOverwriteVersion();
-          properties.AfterProperties["Name"] = properties.AfterProperties["Name"] + ": Import Error !!";
+          //properties.AfterProperties["Name"] = properties.AfterProperties["Name"] + ": Import Error !!";
+          //properties.AfterProperties["SADDocumentLibraryComments"] = _comments;
+          //properties.AfterProperties["SADDocumentLibraryOK"] = false;
           //properties.ListItem.UpdateOverwriteVersion();
         }
         finally
@@ -101,128 +119,176 @@ namespace CAS.SmartFactory.IPR.Customs
     }
     private static SADDocumentType GetSADDocument(CustomsDocument document, EntitiesDataContext edc, SADDocumentLib lookup)
     {
-      SADDocumentType newRow = new SADDocumentType()
+      try
       {
-        SADDocumentLibraryLookup = lookup,
-        Tytuł = String.Format("{0}: {1} / {2}", document.MessageRootName(), document.GetDocumentNumber(), document.GetReferenceNumber()),
-        Currency = document.GetCurrency(),
-        CustomsDebtDate = document.GetCustomsDebtDate(),
-        DocumentNumber = document.GetDocumentNumber(),
-        ExchangeRate = document.GetExchangeRate(),
-        GrossMass = document.GetGrossMass(),
-        ReferenceNumber = document.GetReferenceNumber()
-      };
-      GetSADGood(document.GetSADGood(), edc, newRow);
-      edc.SADDocument.InsertOnSubmit(newRow);
-      return newRow;
+        SADDocumentType newRow = new SADDocumentType()
+          {
+            SADDocumentLibraryLookup = lookup,
+            Tytuł = String.Format("{0}: {1} / {2}", document.MessageRootName(), document.GetDocumentNumber(), document.GetReferenceNumber()),
+            Currency = document.GetCurrency(),
+            CustomsDebtDate = document.GetCustomsDebtDate(),
+            DocumentNumber = document.GetDocumentNumber(),
+            ExchangeRate = document.GetExchangeRate(),
+            GrossMass = document.GetGrossMass(),
+            ReferenceNumber = document.GetReferenceNumber()
+          };
+        edc.SADDocument.InsertOnSubmit(newRow);
+        GetSADGood(document.GetSADGood(), edc, newRow);
+        return newRow;
+      }
+      catch (IPRDataConsistencyException _ex)
+      {
+        throw _ex;
+      }
+      catch (Exception ex)
+      {
+        throw new IPRDataConsistencyException("SADDocumentType", ex.Message, ex, "SAD main part analysis problem");
+      }
     }
     private static void GetSADGood(GoodDescription[] document, EntitiesDataContext edc, SADDocumentType lookup)
     {
       if (document.NullOrEmpty<GoodDescription>())
         return;
-      List<SADGood> rows = new List<SADGood>();
-      foreach (GoodDescription i in document)
+      try
       {
-        SADGood newRow = new SADGood()
+        foreach (GoodDescription _doc in document)
         {
-          SADDocumentLookup = lookup,
-          Tytuł = String.Format("{0}: {1}", i.GetDescription(), i.GetPCNTariffCode()),
-          GoodsDescription = i.GetDescription(),
-          PCNTariffCode = i.GetPCNTariffCode(),
-          GrossMass = i.GetGrossMass(),
-          Procedure = i.GetProcedure(),
-          TotalAmountInvoiced = i.GetTotalAmountInvoiced(),
-          ItemNo = i.GetItemNo()
-        };
-        rows.Add(newRow);
-        GetSADDuties(i.GetSADDuties(), edc, newRow);
-        GetSADPackage(i.GetSADPackage(), edc, newRow);
-        GetSADQuantity(i.GetSADQuantity(), edc, newRow);
-        GetSADRequiredDocuments(i.GetSADRequiredDocuments(), edc, newRow);
+          SADGood newRow = new SADGood()
+          {
+            SADDocumentLookup = lookup,
+            Tytuł = String.Format("{0}: {1}", "PCNCode"/*i.GetDescription()*/, _doc.GetPCNTariffCode()),
+            GoodsDescription = _doc.GetDescription().SPValidSubstring(),
+            PCNTariffCode = _doc.GetPCNTariffCode(),
+            GrossMass = _doc.GetGrossMass(),
+            Procedure = _doc.GetProcedure(),
+            TotalAmountInvoiced = _doc.GetTotalAmountInvoiced(),
+            ItemNo = _doc.GetItemNo()
+          };
+          edc.SADGood.InsertOnSubmit(newRow);
+          edc.SubmitChanges();
+          GetSADDuties(_doc.GetSADDuties(), edc, newRow);
+          GetSADPackage(_doc.GetSADPackage(), edc, newRow);
+          GetSADQuantity(_doc.GetSADQuantity(), edc, newRow);
+          GetSADRequiredDocuments(_doc.GetSADRequiredDocuments(), edc, newRow);
+        }
       }
-      if (rows.Count == 0) return;
-      edc.SADGood.InsertAllOnSubmit(rows);
+      catch (IPRDataConsistencyException _ex)
+      {
+        throw _ex;
+      }
+      catch (Exception ex)
+      {
+        throw new IPRDataConsistencyException("GetSADGood", ex.Message, ex, "Goods analysis problem");
+      }
     }
     private static void GetSADDuties(DutiesDescription[] document, EntitiesDataContext edc, SADGood lookup)
     {
       if (document.NullOrEmpty<DutiesDescription>())
         return;
       List<SADDuties> rows = new List<SADDuties>();
-      foreach (DutiesDescription duty in document)
+      try
       {
-        SADDuties newRow = new SADDuties()
+        foreach (DutiesDescription duty in document)
         {
-          SADGoodID = lookup,
-          Tytuł = String.Format("{0}: {1}", duty.GetType(), duty.GetAmount()),
-          Amount = duty.GetAmount(),
-          Type = duty.GetDutyType()
-        };
-        rows.Add(newRow);
+          SADDuties newRow = new SADDuties()
+          {
+            SADGoodID = lookup,
+            Tytuł = String.Format("{0}: {1}", duty.GetType(), duty.GetAmount()),
+            Amount = duty.GetAmount(),
+            Type = duty.GetDutyType()
+          };
+          rows.Add(newRow);
+        }
+        if (rows.Count == 0) return;
+        edc.SADDuties.InsertAllOnSubmit(rows);
+        edc.SubmitChanges();
       }
-      if (rows.Count == 0)
-        return;
-      edc.SADDuties.InsertAllOnSubmit(rows);
+      catch (Exception ex)
+      {
+        throw new IPRDataConsistencyException("GetSADDuties", ex.Message, ex, "Duties analysis problem");
+      }
     }
     private static void GetSADPackage(PackageDescription[] document, EntitiesDataContext edc, SADGood entry)
     {
-      if (document.NullOrEmpty<PackageDescription>())
-        return;
-      List<SADPackage> rows = new List<SADPackage>();
-      foreach (PackageDescription package in document)
+      try
       {
-        SADPackage newRow = new SADPackage()
+        if (document.NullOrEmpty<PackageDescription>())
+          return;
+        List<SADPackage> rows = new List<SADPackage>();
+        foreach (PackageDescription package in document)
         {
-          SADGoodID = entry,
-          Tytuł = String.Format("{0}: {1}", package.GetItemNo(), package.GetPackage()),
-          ItemNo = package.GetItemNo(),
-          Package = package.GetPackage()
-        };
-        rows.Add(newRow);
+          SADPackage newRow = new SADPackage()
+          {
+            SADGoodID = entry,
+            Tytuł = String.Format("{0}: {1}", package.GetItemNo(), package.GetPackage()),
+            ItemNo = package.GetItemNo(),
+            Package = package.GetPackage()
+          };
+          rows.Add(newRow);
+        }
+        if (rows.Count == 0) return;
+        edc.SADPackage.InsertAllOnSubmit(rows);
+        edc.SubmitChanges();
       }
-      if (rows.Count == 0)
-        return;
-      edc.SADPackage.InsertAllOnSubmit(rows);
+      catch (Exception ex)
+      {
+        throw new IPRDataConsistencyException("GetSADPackage", ex.Message, ex, "Packages analysis problem");
+      }
     }
     private static void GetSADQuantity(QuantityDescription[] document, EntitiesDataContext edc, SADGood entry)
     {
       if (document.NullOrEmpty<QuantityDescription>())
         return;
       List<SADQuantity> rows = new List<SADQuantity>();
-      foreach (QuantityDescription quantity in document)
+      try
       {
-        SADQuantity newRow = new SADQuantity()
+        foreach (QuantityDescription quantity in document)
         {
-          SADGoodID = entry,
-          Tytuł = String.Format("{0}: {1}", quantity.GetNetMass(), quantity.GetUnits()),
-          ItemNo = quantity.GetItemNo(),
-          NetMass = quantity.GetNetMass(),
-          Units = quantity.GetUnits()
-        };
-        rows.Add(newRow);
+          SADQuantity newRow = new SADQuantity()
+          {
+            SADGoodID = entry,
+            Tytuł = String.Format("{0}: {1}", quantity.GetNetMass(), quantity.GetUnits()),
+            ItemNo = quantity.GetItemNo(),
+            NetMass = quantity.GetNetMass(),
+            Units = quantity.GetUnits()
+          };
+          rows.Add(newRow);
+        }
+        if (rows.Count == 0) return;
+        edc.SADQuantity.InsertAllOnSubmit(rows);
+        edc.SubmitChanges();
       }
-      if (rows.Count == 0)
-        return;
-      edc.SADQuantity.InsertAllOnSubmit(rows);
+      catch (Exception ex)
+      {
+        throw new IPRDataConsistencyException("GetSADQuantity", ex.Message, ex, "Quantity analysis problem");
+      }
     }
     private static void GetSADRequiredDocuments(RequiredDocumentsDescription[] document, EntitiesDataContext edc, SADGood entry)
     {
-      if (document.NullOrEmpty<RequiredDocumentsDescription>())
-        return;
-      List<SADRequiredDocuments> rows = new List<SADRequiredDocuments>();
-      foreach (RequiredDocumentsDescription requiredDocument in document)
+      try
       {
-        SADRequiredDocuments newRow = new SADRequiredDocuments()
+        if (document.NullOrEmpty<RequiredDocumentsDescription>())
+          return;
+        List<SADRequiredDocuments> rows = new List<SADRequiredDocuments>();
+        foreach (RequiredDocumentsDescription requiredDocument in document)
         {
-          SADGoodID = entry,
-          Tytuł = String.Format("{0}: {1}", requiredDocument.GetCode(), requiredDocument.GetNumber()),
-          Code = requiredDocument.GetCode(),
-          Number = requiredDocument.GetNumber()
-        };
-        rows.Add(newRow);
+          SADRequiredDocuments newRow = new SADRequiredDocuments()
+          {
+            SADGoodID = entry,
+            Tytuł = String.Format("{0}: {1}", requiredDocument.GetCode(), requiredDocument.GetNumber()),
+            Code = requiredDocument.GetCode(),
+            Number = requiredDocument.GetNumber()
+          };
+          rows.Add(newRow);
+        }
+        if (rows.Count == 0) return;
+        edc.SADRequiredDocuments.InsertAllOnSubmit(rows);
+        edc.SubmitChanges();
       }
-      if (rows.Count == 0)
-        return;
-      edc.SADRequiredDocuments.InsertAllOnSubmit(rows);
+      catch (Exception ex)
+      {
+        throw new IPRDataConsistencyException("GetSADRequiredDocuments", ex.Message, ex, "Required documents analysis problem");
+      }
     }
     private const string m_Title = "SAD Document Import";
   }

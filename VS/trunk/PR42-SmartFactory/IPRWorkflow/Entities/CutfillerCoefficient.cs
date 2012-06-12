@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       catch (System.Exception ex)
       {
-        throw new IPRDataConsistencyException(m_Source, m_Message, ex);
+        throw new IPRDataConsistencyException(m_Source, m_Message, ex, "CutfillerCoefficient lookup error");
       }
     }
     internal static void ImportData(ConfigurationCutfillerCoefficientItem[] configuration, EntitiesDataContext edc)

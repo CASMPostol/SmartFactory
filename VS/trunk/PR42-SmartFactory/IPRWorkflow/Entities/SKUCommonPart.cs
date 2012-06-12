@@ -51,7 +51,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       catch (Exception ex)
       {
-        throw new IPRDataConsistencyException(m_Source, String.Format(m_Message, index), ex);
+        throw new IPRDataConsistencyException(m_Source, String.Format(m_Message, index), ex, "SKU lookup error");
       }
     }
     internal static void GetXmlContent
