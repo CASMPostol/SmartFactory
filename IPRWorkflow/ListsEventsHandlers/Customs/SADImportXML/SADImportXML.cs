@@ -194,7 +194,7 @@ namespace CAS.SmartFactory.IPR.Customs
           SADDuties newRow = new SADDuties()
           {
             SADGoodID = lookup,
-            Tytuł = String.Format("{0}: {1}", duty.GetType(), duty.GetAmount()),
+            Tytuł = String.Format("{0}: {1}", duty.GetDutyType(), duty.GetAmount()),
             Amount = duty.GetAmount(),
             Type = duty.GetDutyType()
           };
