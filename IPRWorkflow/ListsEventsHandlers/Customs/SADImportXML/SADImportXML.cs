@@ -57,8 +57,21 @@ namespace CAS.SmartFactory.IPR.Customs
             _at = "SubmitChanges #1";
             edc.SubmitChanges();
             _at = "Clearence.Associate";
-            string _comments = "OK";
-            Clearence _clrnc = Clearence.Associate(edc, _message.MessageRootName(), _sad, out _comments);
+            string _comments = String.Empty;
+            Clearence _clrnc = null;
+            try
+            {
+              _clrnc = Clearence.Associate(edc, _message.MessageRootName(), _sad, out _comments);
+            }
+            catch (Exception ex)
+            {
+              throw ex;
+            }
+            finally
+            {
+              entry.Comments = _comments;
+              edc.SubmitChanges();
+            }
             _sad.ClearenceID = _clrnc;
             entry.OK = true;
             entry.Comments = _comments;

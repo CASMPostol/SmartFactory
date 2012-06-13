@@ -7,16 +7,20 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class IPR
   {
-    internal static void CreateIPRAccount(EntitiesDataContext _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType)
+    internal static void CreateIPRAccount(EntitiesDataContext _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType, out string _comments)
     {
       string _at = "started";
+      _comments = "IPR account creation error";
       try
       {
         _at = "newIPRData";
+        _comments = "Inconsistent or incomplete data to create IPR account";
         IPRData _iprdata = new IPRData(_document, _messageType);
         _at = "Consent.Lookup";
+        _comments = "Consent lookup filed";
         Consent _cnsnt = Consent.Lookup(_edc, _iprdata.Consent);
         _at = "PCNCode.AddOrGet";
+        _comments = "PCN lookup filed";
         PCNCode _pcn = PCNCode.AddOrGet(_edc, _iprdata.PCNTariffCode);
         _at = "new IPRIPR";
         IPR _ipr = new IPR()
@@ -66,6 +70,7 @@ namespace CAS.SmartFactory.IPR.Entities
         string _src = String.Format("CreateIPRAccount method error at {0}", _at);
         throw new IPRDataConsistencyException(_src, _ex.Message, _ex, "IPR account creation error");
       }
+      _comments = "IPR account created";
     }
     /// <summary>
     /// Contains calculated data required to create IPR account
