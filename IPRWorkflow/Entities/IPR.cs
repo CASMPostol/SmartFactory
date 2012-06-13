@@ -19,7 +19,7 @@ namespace CAS.SmartFactory.IPR.Entities
         _at = "PCNCode.AddOrGet";
         PCNCode _pcn = PCNCode.AddOrGet(_edc, _iprdata.PCNTariffCode);
         _at = "new IPRIPR";
-        IPRIPR _ipr = new IPRIPR()
+        IPR _ipr = new IPR()
         {
           Batch = _iprdata.Batch,
           Cartons = _iprdata.Cartons,
@@ -31,22 +31,23 @@ namespace CAS.SmartFactory.IPR.Entities
           DocumentNo = _nc.DocumentNo,
           Duty = _iprdata.Duty,
           DutyName = _iprdata.DutyName,
-          //TODO DutyPerUnit = _iprdata.DutyPerUnit, [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
-          //TODO GradeName = _iprdata.GradeName, - (old name:"type") column must be added.
+          DutyPerUnit = _iprdata.DutyPerUnit,
+          Grade = _iprdata.GradeName, 
           GrossMass = _iprdata.GrossMass,
           InvoiceNo = _iprdata.InvoiceNo,
           NetMass = _iprdata.NetMass,
           No = 1,
-          OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0, 0), //TODO [pr4-3408] Calculation of the OGLValidTo column http://itrserver/Bugs/BugDetail.aspx?bid=3408
+          //TODO [pr4-3408] Calculation of the OGLValidTo column http://itrserver/Bugs/BugDetail.aspx?bid=3408
+          OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0, 0), 
           PCNTariffCode = _pcn,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
           Tytuł = "-- creating -- ",
-          //TODO UnitPrice = _iprdata.UnitPrice, [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
+          UnitPrice = _iprdata.UnitPrice, 
           Value = _iprdata.Value,
           VATName = _iprdata.VATName,
           VAT = _iprdata.VAT,
-          //TODO VATPerUnit = _iprdata.VATPerUnit [pr4-3400] IPR List - some columns are removed http://itrserver/Bugs/BugDetail.aspx?bid=3400
+          VATPerUnit = _iprdata.VATPerUnit 
         };
         _at = "new InsertOnSubmit";
         _edc.IPR.InsertOnSubmit(_ipr);
