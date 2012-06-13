@@ -58,12 +58,12 @@
     Description="TBD"
     />
   <Field
-    DisplayName="Type"
-    Name="Type"
+    DisplayName="Duty type"
+    Name="DutyType"
     Type="Text"
-    ID="{2A582F5B-99C0-4982-BF9B-ED88ED65F46D}"
+    ID="{6EA6E99D-21C1-4527-8D92-C3DF4060485A}"
     Group="CAS Smart Factory IPR Customs"
-    Description="Type"
+    Description="Duty type"
     />
   <Field
     DisplayName="Amount"
