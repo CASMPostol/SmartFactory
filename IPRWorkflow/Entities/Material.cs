@@ -31,11 +31,11 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         Material ce = null;
         if (value.ProductType == Entities.ProductType.IPRTobacco || value.ProductType == Entities.ProductType.Tobacco)
-          TotalTobacco = TotalTobacco + value.TobaccoQuantity.GetValueOrDefault(0);
+          TotalTobacco += value.TobaccoQuantity.GetValueOrDefault(0);
         if (this.TryGetValue(value.GetKey(), out ce))
         {
-          ce.FGQuantity = ce.FGQuantity + value.FGQuantity;
-          ce.TobaccoQuantity = ce.TobaccoQuantity + value.TobaccoQuantity;
+          ce.FGQuantity += value.FGQuantity;
+          ce.TobaccoQuantity += value.TobaccoQuantity;
         }
         else
         {
