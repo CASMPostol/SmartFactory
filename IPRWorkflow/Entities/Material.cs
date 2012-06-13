@@ -14,12 +14,6 @@ namespace CAS.SmartFactory.IPR.Entities
       public SummaryContentInfo() { }
       public Material Product { get; private set; }
       public double TotalTobacco { get; private set; }
-      internal void InsertAllOnSubmit(EntitiesDataContext edc, Batch parent)
-      {
-        foreach (var item in Values)
-          item.BatchLookup = parent;
-        edc.Material.InsertAllOnSubmit(GeContentEnumerator());
-      }
       /// <summary>
       /// Adds an element with the specified key and value into the System.Collections.Generic.SortedList<TKey,TValue>.
       /// </summary>
@@ -46,11 +40,11 @@ namespace CAS.SmartFactory.IPR.Entities
           base.Add(value.GetKey(), value);
         }
       }
-      internal double ProcessDisposals()
+      internal void ProcessDisposals(EntitiesDataContext _edc, Batch _parent)
       {
-        Debug.Assert(Product != null, "Summary content info has unassigned Product property");
+        InsertAllOnSubmit(_edc, _parent);
         //TODO to be implemented: http://itrserver/Bugs/BugDetail.aspx?bid=2869
-        return 0;
+        Debug.Assert(Product != null, "Summary content info has unassigned Product property");
       }
       internal IEnumerable<Material> GeContentEnumerator()
       {
@@ -61,7 +55,13 @@ namespace CAS.SmartFactory.IPR.Entities
         if (Product == null)
           throw new IPRDataConsistencyException("Processing disposals", "Unrecognized finisched good", null, "CheckConsistence error");
       }
-    }
+      private void InsertAllOnSubmit(EntitiesDataContext edc, Batch parent)
+      {
+        foreach (var item in Values)
+          item.BatchLookup = parent;
+        edc.Material.InsertAllOnSubmit(GeContentEnumerator());
+      }
+    } //SummaryContentInfo
     internal static SummaryContentInfo GetXmlContent(BatchMaterialXml[] xml, EntitiesDataContext edc, ProgressChangedEventHandler progressChanged)
     {
       SummaryContentInfo itemsList = new SummaryContentInfo();
