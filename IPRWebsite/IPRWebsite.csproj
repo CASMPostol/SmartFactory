@@ -607,7 +607,9 @@
     </Content>
     <Content Include="Lists\Dictionaries\SKUTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\SKUTemplate\SKUList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\SKUTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\SKUTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\UsageTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\UsageList\Elements.xml" />
     <Content Include="Lists\Dictionaries\UsageTemplate\Schema.xml">
