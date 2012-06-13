@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.IPR.Entities
         return;
       if (!IPRType.GetValueOrDefault(false))
         return;
-      BatchLookup = Entities.Batch.GetOrCreateLookup(edc, this.Batch);
+      BatchLookup = Entities.Batch.GetOrCreatePreliminary(edc, this.Batch);
     }
     private const string m_Source = "Stock Entry";
     private const string m_WrongProductTypeMessage = "I cannot recognize product type of the stock entry SKU: {0} in location: {1}";
