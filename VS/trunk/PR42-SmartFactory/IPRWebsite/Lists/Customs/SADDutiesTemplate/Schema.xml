@@ -5,7 +5,7 @@
       <ContentType ID="0x0100307F2A8F2886D24FBF3393F84E0E616B" Name="SADDuties" Group="CAS Smart Factory IPR Customs" Description="SADDuties" Inherits="TRUE" Overwrite="TRUE" Version="100000">
         <Folder TargetName="_cts/SADDuties" />
         <FieldRefs>
-          <FieldRef ID="{2a582f5b-99c0-4982-bf9b-ed88ed65f46d}" Name="Type" />
+          <FieldRef ID="{6EA6E99D-21C1-4527-8D92-C3DF4060485A}" Name="DutyType" />
           <FieldRef ID="{1A8DEAD6-163D-45BB-B278-E946F49C071B}" Name="Amount" />
           <FieldRef ID="{D3A23FBE-A497-4019-B7B9-58130DDEABC9}" Name="SADDuties2SADGoodID" />
         </FieldRefs>
@@ -29,7 +29,7 @@
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
           <FieldRef Name="LinkTitleNoMenu"></FieldRef>
-          <FieldRef ID="{2a582f5b-99c0-4982-bf9b-ed88ed65f46d}" Name="Type" />
+          <FieldRef ID="{6EA6E99D-21C1-4527-8D92-C3DF4060485A}" Name="DutyType" />
           <FieldRef ID="{1A8DEAD6-163D-45BB-B278-E946F49C071B}" Name="Amount" />
           <FieldRef ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" Name="SADDocumentIndex" />
         </ViewFields>
@@ -52,7 +52,7 @@
         <ViewFields>
           <FieldRef Name="Attachments"/>
           <FieldRef Name="LinkTitle"/>
-          <FieldRef ID="{2a582f5b-99c0-4982-bf9b-ed88ed65f46d}" Name="Type" />
+          <FieldRef ID="{6EA6E99D-21C1-4527-8D92-C3DF4060485A}" Name="DutyType" />
           <FieldRef ID="{1A8DEAD6-163D-45BB-B278-E946F49C071B}" Name="Amount" />
           <FieldRef ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" />
         </ViewFields>
