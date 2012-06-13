@@ -492,7 +492,7 @@
     Type="Number"
     ID="{E00CB825-5594-485D-A232-4DE70F99A939}"
     Group="CAS Smart Factory IPR"
-    Description="Dust"
+    Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/dust"
     />
   <Field
     DisplayName="Waste"
@@ -500,7 +500,7 @@
     Type="Number"
     ID="{41BDDA92-4D8D-4B1F-8C60-1D3B7AEA6B98}"
     Group="CAS Smart Factory IPR"
-    Description="Waste"
+    Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/waste"
     />
   <Field
     DisplayName="SH Menthol"
@@ -508,7 +508,7 @@
     Type="Number"
     ID="{762353C4-D601-4461-84FA-EB26F7E314C2}"
     Group="CAS Smart Factory IPR"
-    Description="SHMenthol"
+    Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/SHMenthol"
     />
   <Field
     DisplayName="Tobacco"
@@ -516,7 +516,7 @@
     Type="Number"
     ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}"
     Group="CAS Smart Factory IPR"
-    Description="Tobacco"
+    Description="(Material Quantity-Material Quantity Previous)-kolumna'overuse'-kolumna'dust'-kolumna'waste'-kolumna'shmenthol'"
     />
   <Field
     DisplayName="Product ID"
