@@ -106,7 +106,7 @@ namespace CAS.SmartFactory.IPR.Entities
       WasteLookup = Entities.Waste.GetLookup(ProductType.Value, edc);
       //processing
       //TODO  [pr4-2869] Batch.ProcessDisposals must be implemented http://itrserver/Bugs/BugDetail.aspx?bid=2869
-      this.CalculatedOveruse = 0;
+      this.CalculatedOveruse = GetOveruse(MaterialQuantity, FGQuantity, UsageLookup.CTFUsageMax, UsageLookup.CTFUsageMin);
       this.Dust = 0;
       this.FGQuantityAvailable = 0;
       this.FGQuantityBlocked = 0;
@@ -117,6 +117,16 @@ namespace CAS.SmartFactory.IPR.Entities
       this.SHMenthol = 0;
       this.Waste = 0;
       fg.ProcessDisposals(edc, this);
+    }
+    private static double GetOveruse(double? _materialQuantity, double? _fGQuantity, double? _ctfUsageMax, double? _ctfUsageMin)
+    {
+      double _ret = (_fGQuantity * _ctfUsageMax - _materialQuantity).GetValueOrDefault(0);
+      if (_ret > 0)
+        return _ret;
+      _ret = (_materialQuantity - _fGQuantity * _ctfUsageMin).GetValueOrDefault(0);
+      if (_ret > 0)
+        return _ret;
+      return 0;
     }
     private static BatchStatus GetBatchStatus(xml.erp.BatchStatus batchStatus)
     {
