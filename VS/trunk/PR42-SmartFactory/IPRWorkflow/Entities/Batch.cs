@@ -1,7 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using BatchXml = CAS.SmartFactory.xml.erp.Batch;
-using System.ComponentModel;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
@@ -31,7 +31,7 @@ namespace CAS.SmartFactory.IPR.Entities
         batch = new Batch();
         edc.Batch.InsertOnSubmit(batch);
       }
-      batch.BatchProcessing(xml, edc, fg, parent);
+      batch.BatchProcessing(GetBatchStatus(xml.Status), edc, fg, parent);
     }
     /// <summary>
     /// Gets or creates lookup.
@@ -90,10 +90,10 @@ namespace CAS.SmartFactory.IPR.Entities
     #endregion
 
     #region private
-    private void BatchProcessing(BatchXml xml, EntitiesDataContext edc, Material.SummaryContentInfo fg, Dokument parent)
+    private void BatchProcessing(BatchStatus _status, EntitiesDataContext edc, Material.SummaryContentInfo fg, Dokument parent)
     {
       this.BatchLibraryLookup = parent;
-      this.BatchStatus = GetBatchStatus(xml.Status);
+      this.BatchStatus = _status;
       Batch0 = fg.Product.Batch;
       SKU = fg.Product.SKU;
       Tytuł = String.Format("SKU: {0}; Batch: {1}", SKU, Batch0);
@@ -105,11 +105,19 @@ namespace CAS.SmartFactory.IPR.Entities
       CutfillerCoefficientLookup = CutfillerCoefficient.GetLookup(edc);
       DustLookup = Entities.Dust.GetLookup(ProductType.Value, edc);
       SHMentholLookup = Entities.SHMenthol.GetLookup(ProductType.Value, edc);
-      //TODO  [pr4-2941] Batch: Add Sh menthol column http://itrserver/Bugs/BugDetail.aspx?bid=2941
-      //this.SHMenthol = 
       UsageLookup = Usage.GetLookup(SKULookup.FormatLookup, edc);
       WasteLookup = Entities.Waste.GetLookup(ProductType.Value, edc);
-      CalculatedOveruse = fg.ProcessDisposals();
+      //TODO  [pr4-2869] Batch.ProcessDisposals must be implemented http://itrserver/Bugs/BugDetail.aspx?bid=2869
+      this.CalculatedOveruse = fg.ProcessDisposals();
+      this.Dust = 0;
+      this.FGQuantityAvailable = 0;
+      this.FGQuantityBlocked = 0;
+      this.FGQuantityPrevious = 0;
+      this.MaterialQuantityPrevious = 0;
+      this.Overuse = 0;
+      this.Tobacco = 0;
+      this.SHMenthol = 0;
+      this.Waste = 0;
       fg.InsertAllOnSubmit(edc, this);
     }
     private static BatchStatus GetBatchStatus(xml.erp.BatchStatus batchStatus)

@@ -81,7 +81,7 @@ namespace CAS.SmartFactory.IPR.Customs
         }
         catch (Exception ex)
         {
-          SPWeb web = properties.Web;
+          SPWeb web = properties.Web; //TODO [pr4-3412] SPWeb and SPSite correct use; http://itrserver/Bugs/BugDetail.aspx?bid=3412
           SPList log = web.Lists.TryGetList("Activity Log");
           if (log == null)
           {

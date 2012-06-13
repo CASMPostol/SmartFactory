@@ -19,23 +19,39 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <param name="properties">Contains properties for asynchronous list item event handlers.</param>
     public override void ItemAdded(SPItemEventProperties properties)
     {
-      if (!properties.List.Title.Contains("Batch Library"))
-        return;
-      this.EventFiringEnabled = false;
-      //if (properties.ListItem.File == null)
-      //{
-      //  Anons.WriteEntry(edc, m_Title, "Import of a batch xml message failed because the file is empty.");
-      //  return;
-      //}
-      ImportBatchFromXml(
-        properties.ListItem.File.OpenBinaryStream(),
-        properties.WebUrl,
-        properties.ListItem.ID,
-        properties.ListItem.File.ToString(),
-        (object obj, ProgressChangedEventArgs progres) => { return; });
-      this.EventFiringEnabled = true;
+      try
+      {
+        if (!properties.List.Title.Contains("Batch Library"))
+          throw new IPRDataConsistencyException(m_Title, "Wrong library name", null, "Wrong library name");
+        this.EventFiringEnabled = false;
+        ImportBatchFromXml(
+          properties.ListItem.File.OpenBinaryStream(),
+          properties.WebUrl,
+          properties.ListItem.ID,
+          properties.ListItem.File.ToString(),
+          (object obj, ProgressChangedEventArgs progres) => { return; });
+      }
+      catch (Exception _ex)
+      {
+        using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(properties.WebUrl))
+        {
+          Anons.WriteEntry(_edc, _ex.Message, _ex.Message);
+        }
+      }
+      finally
+      {
+        this.EventFiringEnabled = true;
+      }
       base.ItemAdded(properties);
     }
+    /// <summary>
+    /// Imports the batch from XML.
+    /// </summary>
+    /// <param name="stream">The stream.</param>
+    /// <param name="url">The URL.</param>
+    /// <param name="listIndex">Index of the list.</param>
+    /// <param name="fileName">Name of the file.</param>
+    /// <param name="progressChanged">The progress changed delegate <see cref="ProgressChangedEventHandler"/>.</param>
     public static void ImportBatchFromXml(Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged)
     {
       EntitiesDataContext edc = null;
