@@ -10,6 +10,7 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       Clearence _ret = default(Clearence);
       string _at = "started";
+      _comments = "Clearance association error";
       try
       {
         switch (_messageType)
@@ -25,8 +26,7 @@ namespace CAS.SmartFactory.IPR.Entities
                 _ret = FimdClearence(_edc, _sad.ReferenceNumber);
                 if (_messageType == CustomsDocument.DocumentType.PZC)
                 {
-                  _sad.ReleaseForFreeCirculation(_edc);
-                  _comments = "Released for free circulation";
+                  _sad.ReleaseForFreeCirculation(_edc, out _comments);
                 }
                 else
                   _comments = "Document added";
@@ -48,8 +48,7 @@ namespace CAS.SmartFactory.IPR.Entities
                 _edc.Clearence.InsertOnSubmit(_ret);
                 if (_messageType == CustomsDocument.DocumentType.PZC)
                 {
-                  IPR.CreateIPRAccount(_edc, _sad, _ret, CustomsDocument.DocumentType.PZC);
-                  _comments = "IPR account created";
+                  IPR.CreateIPRAccount(_edc, _sad, _ret, CustomsDocument.DocumentType.PZC, out _comments);
                 }
                 else
                   _comments = "Document added";
@@ -59,9 +58,10 @@ namespace CAS.SmartFactory.IPR.Entities
               case CustomsProcedureCodes.CustomsWarehousingProcedure:
               default:
                 throw new IPRDataConsistencyException("Clearence.Associate", string.Format("Unexpected procedure code for the {0} message", _messageType), null, _wrongProcedure);
-            }
+            } //switch (_customsProcedureCodes)
             break;
           case CustomsDocument.DocumentType.IE529:
+            _comments = "Reexport of goods failed";
             _sad.ReExportOfGoods(_edc, _messageType);
             _comments = "Reexport of goods";
             break;
@@ -75,12 +75,10 @@ namespace CAS.SmartFactory.IPR.Entities
             switch (_ret.ProcedureCode.RequestedProcedure())
             {
               case CustomsProcedureCodes.FreeCirculation:
-                _startingDocument.ReleaseForFreeCirculation(_edc);
-                _comments = "Released for free circulation";
+                _startingDocument.ReleaseForFreeCirculation(_edc, out _comments);
                 break;
               case CustomsProcedureCodes.InwardProcessing:
-                IPR.CreateIPRAccount(_edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD);
-                _comments = "IPR account created";
+                IPR.CreateIPRAccount(_edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD, out _comments);
                 break;
               case CustomsProcedureCodes.ReExport:
               case CustomsProcedureCodes.NoProcedure:
