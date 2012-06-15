@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using BatchMaterialXml = CAS.SmartFactory.xml.erp.BatchMaterial;
 
 namespace CAS.SmartFactory.IPR.Entities
@@ -9,6 +10,9 @@ namespace CAS.SmartFactory.IPR.Entities
   public partial class Material
   {
     #region public
+    /// <summary>
+    /// Contains all materials sorted using the following key: SKU,Batch,Location. <see cref="GetKey"/>
+    /// </summary>
     internal class SummaryContentInfo : SortedList<string, Material>
     {
       public SummaryContentInfo() { }
@@ -40,11 +44,16 @@ namespace CAS.SmartFactory.IPR.Entities
           base.Add(value.GetKey(), value);
         }
       }
-      internal void ProcessDisposals(EntitiesDataContext _edc, Batch _parent)
+      internal void ProcessDisposals(EntitiesDataContext _edc, Batch _parent, double _overusageCoefficient )
       {
+         if ( Product == null)
+        throw new IPRDataConsistencyException("Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized.");
         InsertAllOnSubmit(_edc, _parent);
+        foreach (Material _midx in this.Values)
+        {
+          List<IPR> _accounts = (from IPR _iprx in _edc.IPR orderby _iprx.Identyfikator descending select _iprx).ToList<IPR>();
+        }
         //TODO to be implemented: http://itrserver/Bugs/BugDetail.aspx?bid=2869
-        Debug.Assert(Product != null, "Summary content info has unassigned Product property");
       }
       internal IEnumerable<Material> GeContentEnumerator()
       {
@@ -97,7 +106,7 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     private string GetKey()
     {
-      return String.Format(keyForam, SKU, Batch, Location);
+      return String.Format(m_keyForam, SKU, Batch, Location);
     }
     private void GetProductType(EntitiesDataContext edc)
     {
@@ -106,7 +115,7 @@ namespace CAS.SmartFactory.IPR.Entities
       this.SKULookup = product.skuLookup;
       this.IPRMaterial = product.IPRMaterial;
     }
-    private const string keyForam = "{0}:{1}:{2}";
+    private const string m_keyForam = "{0}:{1}:{2}";
     #endregion
   }
 }
