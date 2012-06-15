@@ -1329,7 +1329,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// Dust
+		/// (Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/dust
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Dust", Storage="_dust", FieldType="Number")]
 		public System.Nullable<double> Dust {
@@ -1346,7 +1346,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// Waste
+		/// (Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/waste
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Waste", Storage="_waste", FieldType="Number")]
 		public System.Nullable<double> Waste {
@@ -1363,7 +1363,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// Tobacco
+		/// (Material Quantity-Material Quantity Previous)-kolumna'overuse'-kolumna'dust'-kolumna'waste'-kolumna'shmenthol'
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Tobacco", Storage="_tobacco", FieldType="Number")]
 		public System.Nullable<double> Tobacco {
@@ -1380,7 +1380,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// SHMenthol
+		/// (Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/SHMenthol
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SHMenthol", Storage="_sHMenthol", FieldType="Number")]
 		public System.Nullable<double> SHMenthol {
@@ -3112,6 +3112,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<System.DateTime> _closingDate;
 		
+		private System.Nullable<double> _accountBalance;
+		
+		private System.Nullable<bool> _accountClosed;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<Consent> _consentNo;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _pCNTariffCode;
@@ -3492,6 +3496,34 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("ClosingDate", this._closingDate);
 					this._closingDate = value;
 					this.OnPropertyChanged("ClosingDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AccountBalance", Storage="_accountBalance", Required=true, FieldType="Number")]
+		public System.Nullable<double> AccountBalance {
+			get {
+				return this._accountBalance;
+			}
+			set {
+				if ((value != this._accountBalance)) {
+					this.OnPropertyChanging("AccountBalance", this._accountBalance);
+					this._accountBalance = value;
+					this.OnPropertyChanged("AccountBalance");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AccountClosed", Storage="_accountClosed", Required=true, FieldType="Boolean")]
+		public System.Nullable<bool> AccountClosed {
+			get {
+				return this._accountClosed;
+			}
+			set {
+				if ((value != this._accountClosed)) {
+					this.OnPropertyChanging("AccountClosed", this._accountClosed);
+					this._accountClosed = value;
+					this.OnPropertyChanged("AccountClosed");
 				}
 			}
 		}
@@ -4407,7 +4439,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDuties", Id="0x0100307F2A8F2886D24FBF3393F84E0E616B")]
 	public partial class SADDuties : Element {
 		
-		private string _type;
+		private string _dutyType;
 		
 		private System.Nullable<double> _amount;
 		
@@ -4428,18 +4460,18 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// Type
+		/// Duty type
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Type", Storage="_type", FieldType="Text")]
-		public string Type {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyType", Storage="_dutyType", FieldType="Text")]
+		public string DutyType {
 			get {
-				return this._type;
+				return this._dutyType;
 			}
 			set {
-				if ((value != this._type)) {
-					this.OnPropertyChanging("Type", this._type);
-					this._type = value;
-					this.OnPropertyChanged("Type");
+				if ((value != this._dutyType)) {
+					this.OnPropertyChanging("DutyType", this._dutyType);
+					this._dutyType = value;
+					this.OnPropertyChanged("DutyType");
 				}
 			}
 		}
