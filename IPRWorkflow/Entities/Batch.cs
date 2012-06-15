@@ -107,25 +107,26 @@ namespace CAS.SmartFactory.IPR.Entities
       //processing
       //TODO  [pr4-2869] Batch.ProcessDisposals must be implemented http://itrserver/Bugs/BugDetail.aspx?bid=2869
       this.CalculatedOveruse = GetOveruse(MaterialQuantity, FGQuantity, UsageLookup.CTFUsageMax, UsageLookup.CTFUsageMin);
-      this.Dust = 0;
-      this.FGQuantityAvailable = 0;
+      this.Dust = MaterialQuantity * DustLookup.DustRatio;
+      this.FGQuantityAvailable = FGQuantity;
       this.FGQuantityBlocked = 0;
       this.FGQuantityPrevious = 0;
       this.MaterialQuantityPrevious = 0;
-      this.Overuse = 0;
-      this.Tobacco = 0;
-      this.SHMenthol = 0;
-      this.Waste = 0;
+      this.Overuse = MaterialQuantity / FGQuantity; // Usage in kg / kUnit
+      this.SHMenthol = MaterialQuantity * SHMentholLookup.SHMentholRatio;
+      this.Waste = MaterialQuantity * WasteLookup.WasteRatio;
+      double OverusageInKg = CalculatedOveruse.GetValueOrDefault(0) > 0 ? MaterialQuantity.Value * CalculatedOveruse.Value : 0;
+      this.Tobacco = MaterialQuantity - SHMenthol - Waste - Dust - OverusageInKg ;
       fg.ProcessDisposals(edc, this);
     }
     private static double GetOveruse(double? _materialQuantity, double? _fGQuantity, double? _ctfUsageMax, double? _ctfUsageMin)
     {
-      double _ret = (_fGQuantity * _ctfUsageMax - _materialQuantity).GetValueOrDefault(0);
+      double _ret = (_materialQuantity - _fGQuantity * _ctfUsageMax).GetValueOrDefault(0);
       if (_ret > 0)
-        return _ret;
-      _ret = (_materialQuantity - _fGQuantity * _ctfUsageMin).GetValueOrDefault(0);
-      if (_ret > 0)
-        return _ret;
+        return _ret / _materialQuantity.Value; // Overusage
+      _ret = (_materialQuantity - _fGQuantity * _ctfUsageMin ).GetValueOrDefault(0);
+      if (_ret < 0)
+        return _ret / _materialQuantity.Value; //Underusage
       return 0;
     }
     private static BatchStatus GetBatchStatus(xml.erp.BatchStatus batchStatus)
