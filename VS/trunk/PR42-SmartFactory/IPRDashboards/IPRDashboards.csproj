@@ -54,6 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Dashboards\ExportDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d926c02c-50db-49dd-b790-563ff8388cad}</SharePointProjectItemId>
+    </None>
     <None Include="DefaultPage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{381b2056-7a88-4fde-890c-c99f8a5b037e}</SharePointProjectItemId>
     </None>
@@ -78,10 +81,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dashboards\" />
     <Folder Include="Webparts\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dashboards\ExportDashboard\Elements.xml" />
     <Content Include="DefaultPage\Elements.xml" />
     <Content Include="DefaultPage\DefaultTemplate.aspx" />
     <Content Include="Features\IPRDashboards\IPRDashboards.Template.xml">
