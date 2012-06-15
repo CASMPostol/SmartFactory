@@ -195,7 +195,7 @@ namespace CAS.SmartFactory.IPR.Customs
             SADGoodID = lookup,
             Tytuł = String.Format("{0}: {1}", duty.GetDutyType(), duty.GetAmount()),
             Amount = duty.GetAmount(),
-            Type = duty.GetDutyType()
+            DutyType = duty.GetDutyType()
           };
           rows.Add(newRow);
         }
