@@ -6,6 +6,7 @@
   Type="Boolean"
   ID="{2291900F-0EE8-4A1D-9FA1-92F8DB60AF41}"
   Group="CAS Smart Factory IPR"
+  Required="TRUE"
     />
   <Field
   DisplayName="Account balance"
@@ -13,6 +14,7 @@
   Type="Number"
   ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}"
   Group="CAS Smart Factory IPR"
+  Required="TRUE"
     />
   <Field
   DisplayName="MaterialDescription"
