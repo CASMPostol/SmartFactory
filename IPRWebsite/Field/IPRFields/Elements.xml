@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+  DisplayName="Account closed"
+  Name="AccountClosed"
+  Type="Boolean"
+  ID="{2291900F-0EE8-4A1D-9FA1-92F8DB60AF41}"
+  Group="CAS Smart Factory IPR"
+    />
+  <Field
   DisplayName="Account balance"
   Name="AccountBalance"
   Type="Number"
