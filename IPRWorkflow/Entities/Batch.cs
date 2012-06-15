@@ -117,8 +117,16 @@ namespace CAS.SmartFactory.IPR.Entities
       this.Waste = MaterialQuantity * WasteLookup.WasteRatio;
       double OverusageInKg = CalculatedOveruse.GetValueOrDefault(0) > 0 ? MaterialQuantity.Value * CalculatedOveruse.Value : 0;
       this.Tobacco = MaterialQuantity - SHMenthol - Waste - Dust - OverusageInKg ;
-      fg.ProcessDisposals(edc, this);
+      fg.ProcessDisposals(edc, this, CalculatedOveruse.Value > 0 ? CalculatedOveruse.Value : 0);
     }
+    /// <summary>
+    /// Gets the overuse as the ratio of overused tobacco divided by totaly usage of tobacco.
+    /// </summary>
+    /// <param name="_materialQuantity">The _material quantity.</param>
+    /// <param name="_fGQuantity">The finished goods quantity.</param>
+    /// <param name="_ctfUsageMax">The cutfiller usage max.</param>
+    /// <param name="_ctfUsageMin">The cutfiller usage min.</param>
+    /// <returns></returns>
     private static double GetOveruse(double? _materialQuantity, double? _fGQuantity, double? _ctfUsageMax, double? _ctfUsageMin)
     {
       double _ret = (_materialQuantity - _fGQuantity * _ctfUsageMax).GetValueOrDefault(0);
