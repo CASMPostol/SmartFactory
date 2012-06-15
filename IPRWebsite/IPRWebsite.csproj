@@ -61,6 +61,9 @@
     <None Include="Content types\Customs\InvoiceContent\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{82659c79-17e9-4c17-aa69-29c3e6f8d7d1}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Customs\InvoiceLib\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{af417bcd-ea59-4d63-9af1-50fe89c7cd81}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Customs\Invoice\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0c33e275-a7da-4393-86c5-7955dd7643ef}</SharePointProjectItemId>
     </None>
@@ -218,6 +221,12 @@
     </None>
     <None Include="Lists\Customs\InvoiceContentTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b40fddee-1715-45ae-806c-d4fbaae9b68f}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\InvoiceLibraryTemplate\InvoiceLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ef795ea8-93c1-4c01-8638-0fbdf2daca60}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\InvoiceLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3af8e441-6abb-47cf-9907-e0bc77892c71}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Customs\InvoiceTemplate\InvoiceList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{08493c17-2055-4494-84bc-f64c8ec2b02e}</SharePointProjectItemId>
@@ -428,7 +437,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Customs\InvoiceContent\Elements.xml" />
-    <Content Include="Content types\Customs\Invoice\Elements.xml" />
+    <Content Include="Content types\Customs\InvoiceLib\Elements.xml" />
+    <Content Include="Content types\Customs\Invoice\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Customs\SADDocumentLib\Elements.xml" />
     <Content Include="Content types\Customs\SADDocumentType\Elements.xml">
       <SubType>Designer</SubType>
@@ -534,6 +546,13 @@
     <Content Include="Lists\Customs\InvoiceContentTemplate\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceContentTemplate\InvoiceContentList\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceContentTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\InvoiceLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\Customs\InvoiceLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\InvoiceLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\Customs\InvoiceLibraryTemplate\InvoiceLibrary\Elements.xml" />
+    <Content Include="Lists\Customs\InvoiceLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\Customs\InvoiceLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\InvoiceLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Customs\InvoiceTemplate\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceTemplate\InvoiceList\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceTemplate\Schema.xml" />

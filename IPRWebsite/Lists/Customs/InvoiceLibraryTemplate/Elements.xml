@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ListTemplate
+        Name="InvoiceLibraryTemplate"
+        Type="10029"
+        BaseType="1"
+        OnQuickLaunch="TRUE"
+        SecurityBits="11"
+        Sequence="110"
+        DisplayName="Invoice Library Template"
+        Description="Invoice Library Definition"
+        Image="/_layouts/images/itdl.png"
+        DocumentTemplate="121"/>
+</Elements>

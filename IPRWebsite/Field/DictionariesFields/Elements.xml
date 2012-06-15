@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="Dummy"
+    ID="{EE5449C9-839E-434F-8EBB-9AC9CE843FF9}"
+    Type="Text"
+    DisplayName="Dummy"
+    Group="CAS Smart Factory IPR"
+    />
+  <Field
     DisplayName="Menthol material"
     Name="MentholMaterial"
     Type="Boolean"
