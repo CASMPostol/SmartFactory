@@ -14,8 +14,6 @@
 <link href="/_layouts/IPRDashboards/CAS_IPRDefault.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderId="PlaceHolderLeftNavBar" runat="server"></asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderId="PlaceHolderMain" runat="server">
   <div id="Body" >
     <h1>Welcome to IPR!</h1>
