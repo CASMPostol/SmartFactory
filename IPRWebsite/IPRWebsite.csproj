@@ -219,9 +219,6 @@
     <None Include="Lists\Customs\InvoiceContentTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b40fddee-1715-45ae-806c-d4fbaae9b68f}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Customs\InvoiceLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{21222733-6ae2-4044-a32c-8cb936f57d8b}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Customs\InvoiceTemplate\InvoiceList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{08493c17-2055-4494-84bc-f64c8ec2b02e}</SharePointProjectItemId>
     </None>
@@ -537,7 +534,6 @@
     <Content Include="Lists\Customs\InvoiceContentTemplate\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceContentTemplate\InvoiceContentList\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceContentTemplate\Schema.xml" />
-    <Content Include="Lists\Customs\InvoiceLibrary\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceTemplate\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceTemplate\InvoiceList\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceTemplate\Schema.xml" />
