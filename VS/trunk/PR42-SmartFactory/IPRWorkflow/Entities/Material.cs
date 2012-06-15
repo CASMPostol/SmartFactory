@@ -44,10 +44,10 @@ namespace CAS.SmartFactory.IPR.Entities
           base.Add(value.GetKey(), value);
         }
       }
-      internal void ProcessDisposals(EntitiesDataContext _edc, Batch _parent, double _overusageCoefficient )
+      internal void ProcessDisposals(EntitiesDataContext _edc, Batch _parent, double _overusageCoefficient)
       {
-         if ( Product == null)
-        throw new IPRDataConsistencyException("Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized.");
+        if (Product == null)
+          throw new IPRDataConsistencyException("Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized.");
         InsertAllOnSubmit(_edc, _parent);
         foreach (Material _midx in this.Values)
         {

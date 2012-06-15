@@ -25,10 +25,12 @@ namespace CAS.SmartFactory.IPR.Entities
         _at = "new IPRIPR";
         IPR _ipr = new IPR()
         {
+          AccountClosed = false, 
+          AccountBalance = _iprdata.NetMass,
           Batch = _iprdata.Batch,
           Cartons = _iprdata.Cartons,
           ClearenceListLookup = _nc,
-          ClosingDate = new Nullable<DateTime>(),
+          ClosingDate = new Nullable<DateTime>(), 
           ConsentNo = _cnsnt,
           Currency = _document.Currency,
           CustomsDebtDate = _document.CustomsDebtDate,
@@ -119,8 +121,8 @@ namespace CAS.SmartFactory.IPR.Entities
           VATName = string.Empty;
           foreach (SADDuties _duty in FirstSADGood.SADDuties)
           {
-            _at = "switch " + _duty.Type;
-            switch (_duty.Type)
+            _at = "switch " + _duty.DutyType;
+            switch (_duty.DutyType)
             {
               //Duty
               case "A10":
@@ -128,7 +130,7 @@ namespace CAS.SmartFactory.IPR.Entities
               case "A20":
                 Duty += _duty.Amount.Value;
                 _at = "DutyName";
-                DutyName += String.Format("{0}={1:F2}; ", _duty.Type, _duty.Amount.Value);
+                DutyName += String.Format("{0}={1:F2}; ", _duty.DutyType, _duty.Amount.Value);
                 break;
               //VAT
               case "B00":
@@ -136,7 +138,7 @@ namespace CAS.SmartFactory.IPR.Entities
               case "B20":
                 VAT += _duty.Amount.Value;
                 _at = "VATName";
-                VATName += String.Format("{0}={1:F2}; ", _duty.Type, _duty.Amount.Value);
+                VATName += String.Format("{0}={1:F2}; ", _duty.DutyType, _duty.Amount.Value);
                 break;
               default:
                 break;
