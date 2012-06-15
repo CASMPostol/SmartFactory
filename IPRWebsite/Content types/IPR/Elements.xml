@@ -33,6 +33,7 @@
       <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
       <FieldRef ID="{AEB25DE4-D291-4EAC-B397-8FF3E387A609}" Name="IPRUnitPrice" />
       <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
+      <FieldRef ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}" Name="AccountBalance" />
       <FieldRef ID="{3283979A-65A9-4979-B915-9D25113784D3}" Name="IPR2PCNTariffCodeTitle" />
       <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
       <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />

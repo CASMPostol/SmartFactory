@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+  DisplayName="Account balance"
+  Name="AccountBalance"
+  Type="Number"
+  ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}"
+  Group="CAS Smart Factory IPR"
+    />
+  <Field
   DisplayName="MaterialDescription"
   Name="MaterialDescription"
   Type="Text"
