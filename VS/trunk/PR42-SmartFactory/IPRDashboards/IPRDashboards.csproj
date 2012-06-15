@@ -88,6 +88,7 @@
       <DependentUpon>IPRDashboards.feature</DependentUpon>
     </Content>
     <Content Include="Images\IPRDashboards\button_background.jpg" />
+    <Content Include="Images\IPRDashboards\FeatureLogo32x32.gif" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRDashboards.css" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRDefault.css" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRLayouts.css" />
