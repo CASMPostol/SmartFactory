@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="InvoiceLibrary"
+                OnQuickLaunch="TRUE"
+                TemplateType="10029"
+                Url="Lists/InvoiceLibrary"
+                Description="Invoice Library Instance">
+  </ListInstance>
+</Elements>
