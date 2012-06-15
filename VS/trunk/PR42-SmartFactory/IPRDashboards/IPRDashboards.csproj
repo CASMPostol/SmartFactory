@@ -72,8 +72,14 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="WebPartPages\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1bf15ec9-d51c-4227-a75e-9961ace65cf0}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Dashboards\" />
+    <Folder Include="Webparts\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="DefaultPage\Elements.xml" />
     <Content Include="DefaultPage\DefaultTemplate.aspx" />
@@ -84,6 +90,8 @@
     <Content Include="Layouts\IPRDashboards\CAS_IPRDashboards.css" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRDefault.css" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRLayouts.css" />
+    <Content Include="WebPartPages\Elements.xml" />
+    <Content Include="WebPartPages\WebPageTemplate_Export.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
