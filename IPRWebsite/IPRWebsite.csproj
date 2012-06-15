@@ -437,11 +437,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Customs\InvoiceContent\Elements.xml" />
-    <Content Include="Content types\Customs\InvoiceLib\Elements.xml" />
+    <Content Include="Content types\Customs\InvoiceLib\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Customs\Invoice\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Customs\SADDocumentLib\Elements.xml" />
+    <Content Include="Content types\Customs\SADDocumentLib\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Customs\SADDocumentType\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -519,7 +523,9 @@
     <Content Include="Field\CustomsLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Field\DictionariesFields\Elements.xml" />
+    <Content Include="Field\DictionariesFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Field\DictionariesLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
