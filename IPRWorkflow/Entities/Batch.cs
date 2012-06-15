@@ -19,7 +19,7 @@ namespace CAS.SmartFactory.IPR.Entities
     /// <param name="parent">The entry.</param>
     internal static void GetXmlContent(BatchXml xml, EntitiesDataContext edc, Dokument parent, ProgressChangedEventHandler progressChanged)
     {
-      Material.SummaryContentInfo fg = Material.GetXmlContent(xml.Material, edc, progressChanged);
+      Material.SummaryContentInfo fg = new Material.SummaryContentInfo(xml.Material, edc, progressChanged);
       Batch batch =
           (from idx in edc.Batch where idx.Batch0.Contains(fg.Product.Batch) && idx.BatchStatus.Value == Entities.BatchStatus.Preliminary select idx).FirstOrDefault();
       if (batch == null)
@@ -107,17 +107,19 @@ namespace CAS.SmartFactory.IPR.Entities
       //processing
       //TODO  [pr4-2869] Batch.ProcessDisposals must be implemented http://itrserver/Bugs/BugDetail.aspx?bid=2869
       this.CalculatedOveruse = GetOveruse(MaterialQuantity, FGQuantity, UsageLookup.CTFUsageMax, UsageLookup.CTFUsageMin);
-      this.Dust = MaterialQuantity * DustLookup.DustRatio;
       this.FGQuantityAvailable = FGQuantity;
       this.FGQuantityBlocked = 0;
       this.FGQuantityPrevious = 0;
       this.MaterialQuantityPrevious = 0;
       this.Overuse = MaterialQuantity / FGQuantity; // Usage in kg / kUnit
-      this.SHMenthol = MaterialQuantity * SHMentholLookup.SHMentholRatio;
-      this.Waste = MaterialQuantity * WasteLookup.WasteRatio;
-      double OverusageInKg = CalculatedOveruse.GetValueOrDefault(0) > 0 ? MaterialQuantity.Value * CalculatedOveruse.Value : 0;
-      this.Tobacco = MaterialQuantity - SHMenthol - Waste - Dust - OverusageInKg ;
-      fg.ProcessDisposals(edc, this, CalculatedOveruse.Value > 0 ? CalculatedOveruse.Value : 0);
+      Material.CalculatedDisposals _cd = new Material.CalculatedDisposals
+        (MaterialQuantity.Value, DustLookup.DustRatio.Value, SHMentholLookup.SHMentholRatio.Value, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0));
+      this.Dust = _cd.Dust;
+      this.SHMenthol = _cd.SHMenthol;
+      this.Waste = _cd.Waste;
+      this.Tobacco = _cd.Tobacco;
+      fg.ProcessDisposals
+        (edc, this, DustLookup.DustRatio.Value, SHMentholLookup.SHMentholRatio.Value, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0));
     }
     /// <summary>
     /// Gets the overuse as the ratio of overused tobacco divided by totaly usage of tobacco.
@@ -132,7 +134,7 @@ namespace CAS.SmartFactory.IPR.Entities
       double _ret = (_materialQuantity - _fGQuantity * _ctfUsageMax).GetValueOrDefault(0);
       if (_ret > 0)
         return _ret / _materialQuantity.Value; // Overusage
-      _ret = (_materialQuantity - _fGQuantity * _ctfUsageMin ).GetValueOrDefault(0);
+      _ret = (_materialQuantity - _fGQuantity * _ctfUsageMin).GetValueOrDefault(0);
       if (_ret < 0)
         return _ret / _materialQuantity.Value; //Underusage
       return 0;
