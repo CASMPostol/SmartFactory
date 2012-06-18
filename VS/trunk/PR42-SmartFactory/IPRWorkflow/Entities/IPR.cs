@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using CAS.SmartFactory.xml.Customs;
+using System.Collections.Generic;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
@@ -25,12 +25,12 @@ namespace CAS.SmartFactory.IPR.Entities
         _at = "new IPRIPR";
         IPR _ipr = new IPR()
         {
-          AccountClosed = false, 
+          AccountClosed = false,
           AccountBalance = _iprdata.NetMass,
           Batch = _iprdata.Batch,
           Cartons = _iprdata.Cartons,
           ClearenceListLookup = _nc,
-          ClosingDate = new Nullable<DateTime>(), 
+          ClosingDate = new Nullable<DateTime>(),
           ConsentNo = _cnsnt,
           Currency = _document.Currency,
           CustomsDebtDate = _document.CustomsDebtDate,
@@ -38,22 +38,22 @@ namespace CAS.SmartFactory.IPR.Entities
           Duty = _iprdata.Duty,
           DutyName = _iprdata.DutyName,
           DutyPerUnit = _iprdata.DutyPerUnit,
-          Grade = _iprdata.GradeName, 
+          Grade = _iprdata.GradeName,
           GrossMass = _iprdata.GrossMass,
           InvoiceNo = _iprdata.InvoiceNo,
           NetMass = _iprdata.NetMass,
           No = 1,
           //TODO [pr4-3408] Calculation of the OGLValidTo column http://itrserver/Bugs/BugDetail.aspx?bid=3408
-          OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0, 0), 
+          OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0, 0),
           PCNTariffCode = _pcn,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
           Tytuł = "-- creating -- ",
-          UnitPrice = _iprdata.UnitPrice, 
+          UnitPrice = _iprdata.UnitPrice,
           Value = _iprdata.Value,
           VATName = _iprdata.VATName,
           VAT = _iprdata.VAT,
-          VATPerUnit = _iprdata.VATPerUnit 
+          VATPerUnit = _iprdata.VATPerUnit
         };
         _at = "new InsertOnSubmit";
         _edc.IPR.InsertOnSubmit(_ipr);
@@ -77,6 +77,48 @@ namespace CAS.SmartFactory.IPR.Entities
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>
+    internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
+    internal void AddDisposal(EntitiesDataContext _edc, KeyValuePair<DisposalEnum, double> _item, Batch _batch)
+    {
+      Entities.CompensationGood _typeOfDisposal = default(Entities.CompensationGood);
+      switch (_item.Key)
+      {
+        case DisposalEnum.Dust:
+          _typeOfDisposal = CompensationGood.PyłTytoiowy;
+          break;
+        case DisposalEnum.SHMenthol:
+          _typeOfDisposal = CompensationGood.Tytoń;
+          break;
+        case DisposalEnum.Waste:
+          _typeOfDisposal = CompensationGood.OdpadTytoniowy;
+          break;
+        case DisposalEnum.OverusageInKg:
+          _typeOfDisposal = CompensationGood.Tytoń;
+          break;
+        case DisposalEnum.Tobacco:
+          _typeOfDisposal = CompensationGood.Papierosy;
+          break;
+      }
+      Disposal _nd = new Disposal()
+      {
+        BatchLookup = _batch,
+        ClearingType = Entities.ClearingType.PartialWindingUp,
+        CompensationGood = _typeOfDisposal
+        //TODO 
+      };
+    }
+    internal static IPR FindIPRAccount(EntitiesDataContext _edc, string _batch, double _requested)
+    {
+      try
+      {
+        return (from IPR _iprx in _edc.IPR where (!_iprx.AccountClosed.Value && _iprx.Batch.Contains(_batch) && _iprx.AccountBalance >= _requested) orderby _iprx.Identyfikator descending select _iprx).First<IPR>();
+      }
+      catch (Exception ex)
+      {
+        string _mssg = "Cannot find nay IPR  to dispose the tobacco: {0} kg, batch:{1}";
+        throw new IPRDataConsistencyException("Material.FindIPRAccount", String.Format(_mssg, _requested, _batch), ex, "IPR unrecognized account");
+      }
+    }
     private class IPRData
     {
       #region private
@@ -159,7 +201,7 @@ namespace CAS.SmartFactory.IPR.Entities
           throw new IPRDataConsistencyException(_src, _ex.Message, _ex, _src);
         }
       }
-      const string UnrecognizedName = "-- unrecognized name --";
+      private const string UnrecognizedName = "-- unrecognized name --";
       private void AnalizeGoodsDescription(string _GoodsDescription)
       {
         string _at = "Started";
@@ -180,7 +222,6 @@ namespace CAS.SmartFactory.IPR.Entities
           throw new IPRDataConsistencyException(_src, _ex.Message, _ex, _src);
         }
       }
-
       #endregion
 
       #region cretor
