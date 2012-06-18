@@ -112,14 +112,15 @@ namespace CAS.SmartFactory.IPR.Entities
       this.FGQuantityPrevious = 0;
       this.MaterialQuantityPrevious = 0;
       this.Overuse = MaterialQuantity / FGQuantity; // Usage in kg / kUnit
-      Material.CalculatedDisposals _cd = new Material.CalculatedDisposals
-        (MaterialQuantity.Value, DustLookup.DustRatio.Value, SHMentholLookup.SHMentholRatio.Value, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0));
-      this.Dust = _cd.Dust;
-      this.SHMenthol = _cd.SHMenthol;
-      this.Waste = _cd.Waste;
-      this.Tobacco = _cd.Tobacco;
+      double _shmcf = SKULookup.IPRMaterial.Value ? SHMentholLookup.SHMentholRatio.Value : 0;
+      Material.DisposalsAnalisis _cd = new Material.DisposalsAnalisis
+        (MaterialQuantity.Value, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0));
+      this.Dust = _cd[IPR.DisposalEnum.Dust];
+      this.SHMenthol = _cd[IPR.DisposalEnum.SHMenthol];
+      this.Waste = _cd[IPR.DisposalEnum.Waste];
+      this.Tobacco = _cd[IPR.DisposalEnum.Tobacco];
       fg.ProcessDisposals
-        (edc, this, DustLookup.DustRatio.Value, SHMentholLookup.SHMentholRatio.Value, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0));
+        (edc, this, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0));
     }
     /// <summary>
     /// Gets the overuse as the ratio of overused tobacco divided by totaly usage of tobacco.

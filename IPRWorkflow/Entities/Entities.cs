@@ -3644,7 +3644,9 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private void OnIPRLibraryLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
 		}
-	}
+
+
+    }
 	
 	/// <summary>
 	/// Utwórz nowy element listy.

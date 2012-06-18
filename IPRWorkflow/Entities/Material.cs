@@ -48,22 +48,37 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         if (Product == null)
           throw new IPRDataConsistencyException("Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized.");
-        InsertAllOnSubmit(_edc, _parent);
         foreach (Material _midx in this.Values)
         {
           if (_midx.ProductType.Value != Entities.ProductType.IPRTobacco)
             continue;
-          List<IPR> _accounts = (from IPR _iprx in _edc.IPR where !_iprx.AccountClosed.Value && _iprx.Batch.Contains(_parent.Batch0) orderby _iprx.Identyfikator descending select _iprx).ToList<IPR>();
-          if (_accounts.Count == 0)
-          {
-            string _mssg = "Cannot find nay IPR account to dispose the tobacco: {0}, SKU: {1}, batch:{2}";
-            throw new IPRDataConsistencyException("Material.ProcessDisposals", String.Format(_mssg, _parent.Tytuł, _parent.SKU, _parent.Batch0), null, "IPR unrecognized account");
-          }
-          CalculatedDisposals _dspsls = new CalculatedDisposals(_midx.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient);
+          double _requested = 0;
+          DisposalsAnalisis _dspsls = new DisposalsAnalisis(_midx.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient);
           int idx = 0;
+          foreach (var _item in _dspsls)
+          {
+            switch (_item.Key)
+            {
+              case IPR.DisposalEnum.Dust:
+                IPR _account = IPR.FindIPRAccount(_edc, _parent.Batch0, _item.Value);
+                _account.AddDisposal(_edc, _item, _parent);
+                break;
+              case IPR.DisposalEnum.SHMenthol:
+                break;
+              case IPR.DisposalEnum.Waste:
+                break;
+              case IPR.DisposalEnum.OverusageInKg:
+                break;
+              case IPR.DisposalEnum.Tobacco:
+                break;
+              default:
+                break;
+            }
+          }
         }
         //TODO to be implemented: http://itrserver/Bugs/BugDetail.aspx?bid=2869
       }
+
       internal IEnumerable<Material> GeContentEnumerator()
       {
         return this.Values;
@@ -95,21 +110,16 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       #endregion
     } //SummaryContentInfo
-    internal class CalculatedDisposals
+    internal class DisposalsAnalisis : SortedList<IPR.DisposalEnum, double>
     {
-      internal CalculatedDisposals(double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage)
+      internal DisposalsAnalisis(double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage)
       {
-        this.Dust = _material * _dustRatio;
-        this.SHMenthol = _material * _shMentholRatio;
-        this.Waste = _material * _wasteRatio;
-        this.OverusageInKg = _overusage > 0 ? _material * _overusage : 0;
-        this.Tobacco = _material - SHMenthol - Waste - Dust - OverusageInKg;
+        this[IPR.DisposalEnum.Dust] = _material * _dustRatio;
+        this[IPR.DisposalEnum.SHMenthol] = _material * _shMentholRatio;
+        this[IPR.DisposalEnum.Waste] = _material * _wasteRatio;
+        this[IPR.DisposalEnum.OverusageInKg] = _overusage > 0 ? _material * _overusage : 0;
+        this[IPR.DisposalEnum.Tobacco] = _material - this[IPR.DisposalEnum.SHMenthol] - this[IPR.DisposalEnum.Waste] - this[IPR.DisposalEnum.Dust] - this[IPR.DisposalEnum.OverusageInKg];
       }
-      internal double Dust { get; private set; }
-      internal double SHMenthol { get; private set; }
-      internal double Waste { get; private set; }
-      internal double OverusageInKg { get; private set; }
-      internal double Tobacco { get; private set; }
     }
     internal SKUCommonPart SKULookup { get; set; }
     internal bool IPRMaterial { get; set; }
