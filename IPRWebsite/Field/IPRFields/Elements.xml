@@ -651,7 +651,8 @@
   <Field
     DisplayName="Remaining quantity"
     Name="RemainingQuantity"
-    Type="Text"
+    Type="Number"
+    Decimals="5"
     ID="{0E24A674-1FE7-4C77-9106-387E12417644}"
     Group="CAS Smart Factory IPR"
     Description="Remaining quantity"
