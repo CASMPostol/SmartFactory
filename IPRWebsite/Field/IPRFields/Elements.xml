@@ -609,7 +609,7 @@
   <Field
     DisplayName="Duty per settled amount"
     Name="DutyPerSettledAmount"
-    Type="Text"
+    Type="Number"
     ID="{9B890369-B6CC-403E-A921-F9E686EF094C}"
     Group="CAS Smart Factory IPR"
     Description="Duty per settled amount"
@@ -617,7 +617,7 @@
   <Field
     DisplayName="VAT per settled amount"
     Name="VATPerSettledAmount"
-    Type="Text"
+    Type="Number"
     ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}"
     Group="CAS Smart Factory IPR"
     Description="VAT per settled amount"
