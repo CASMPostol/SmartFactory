@@ -13,8 +13,8 @@
           <FieldRef ID="{333AB237-93FB-4910-B2FC-9A08A08643DA}" Name="SettledQuantity" />
           <FieldRef ID="{51E5B961-8234-4009-81C0-C6059298044F}" Name="DisposalStatus" />
           <FieldRef ID="{298F8DD7-97D6-4FE0-8A1F-08621BCF807A}" Name="CustomsStatus" />
-          <FieldRef ID="{334B6AB1-43CD-408A-AAB7-FC37F343B299}" Name="FGSKU" />
-          <FieldRef ID="{BA69B356-48EF-4519-849C-9EAE8B6D6EC0}" Name="FGBatch" />
+          <FieldRef ID="{D627706D-419D-4C96-8B2E-3D5A2A9DF09F}" Name="Disposal2BatchSKU_sec"/>
+          <FieldRef ID="{646992B5-B37B-40B0-8035-91A15A42E088}" Name="Disposal2BatchBatch_sec" />
           <FieldRef ID="{9B890369-B6CC-403E-A921-F9E686EF094C}" Name="DutyPerSettledAmount" />
           <FieldRef ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}" Name="VATPerSettledAmount" />
           <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />
@@ -82,8 +82,8 @@
           <FieldRef ID="{333AB237-93FB-4910-B2FC-9A08A08643DA}" Name="SettledQuantity" />
           <FieldRef ID="{51E5B961-8234-4009-81C0-C6059298044F}" Name="DisposalStatus" />
           <FieldRef ID="{298F8DD7-97D6-4FE0-8A1F-08621BCF807A}" Name="CustomsStatus" />
-          <FieldRef ID="{334B6AB1-43CD-408A-AAB7-FC37F343B299}" Name="FGSKU" />
-          <FieldRef ID="{BA69B356-48EF-4519-849C-9EAE8B6D6EC0}" Name="FGBatch" />
+          <FieldRef ID="{D627706D-419D-4C96-8B2E-3D5A2A9DF09F}" Name="Disposal2BatchSKU_sec"/>
+          <FieldRef ID="{646992B5-B37B-40B0-8035-91A15A42E088}" Name="Disposal2BatchBatch_sec" />
           <FieldRef ID="{9B890369-B6CC-403E-A921-F9E686EF094C}" Name="DutyPerSettledAmount" />
           <FieldRef ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}" Name="VATPerSettledAmount" />
           <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />

@@ -532,7 +532,9 @@
     <Content Include="Field\IPRFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Field\IPRLookupFields\Elements.xml" />
+    <Content Include="Field\IPRLookupFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Field\ReportsFields\Elements.xml" />
     <Content Include="Field\ReportsLookupFields\Elements.xml" />
     <Content Include="Lists\ActivityLog\Elements.xml" />

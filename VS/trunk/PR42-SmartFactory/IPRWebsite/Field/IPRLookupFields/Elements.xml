@@ -2,6 +2,32 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
     Type="Lookup"
+    DisplayName="FG SKU"
+    List="Lists/BatchList"
+    ShowField="SKU"
+    FieldRef="6B3AF163-C404-433F-9801-047C12B9EE42"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory IPR"
+    ID="{D627706D-419D-4C96-8B2E-3D5A2A9DF09F}"
+    Name="Disposal2BatchSKU_sec"
+    Overwrite="TRUE"
+  />
+  <Field
+    Type="Lookup"
+    DisplayName="FG Batch"
+    List="Lists/BatchList"
+    ShowField="Batch"
+    FieldRef="6B3AF163-C404-433F-9801-047C12B9EE42"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory IPR"
+    ID="{646992B5-B37B-40B0-8035-91A15A42E088}"
+    Name="Disposal2BatchBatch_sec"
+    Overwrite="TRUE"
+  />
+  <Field
+    Type="Lookup"
     DisplayName="Currency"
     List="Lists/IPRList"
     ShowField="Currency"
