@@ -141,7 +141,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entities\Scripts\Parameters.xml" />
+    <Content Include="Entities\Scripts\Parameters.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ListsEventsHandlers\BatchEventReceiver\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

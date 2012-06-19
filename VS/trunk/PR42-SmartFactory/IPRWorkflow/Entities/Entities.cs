@@ -164,12 +164,12 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// Invoice files collection
+		/// Invoice Library Instance
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="Invoice Library")]
-		public Microsoft.SharePoint.Linq.EntityList<Dokument> InvoiceLibrary {
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="InvoiceLibrary")]
+		public Microsoft.SharePoint.Linq.EntityList<InvoiceLibraryInvoiceLib> InvoiceLibrary {
 			get {
-				return this.GetList<Dokument>("Invoice Library");
+				return this.GetList<InvoiceLibraryInvoiceLib>("InvoiceLibrary");
 			}
 		}
 		
@@ -645,6 +645,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// Utwórz nowy dokument.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Dokument", Id="0x0101")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(InvoiceLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentLib))]
 	public partial class Dokument : Element {
 		
@@ -2069,7 +2070,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _sADDocumentNo;
 		
-		private string _sADDate;
+		private System.Nullable<System.DateTime> _sADDate;
 		
 		private string _invoiceNo;
 		
@@ -2081,31 +2082,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _customsStatus;
 		
-		private string _fGSKU;
+		private System.Nullable<double> _dutyPerSettledAmount;
 		
-		private string _fGBatch;
-		
-		private string _dutyPerSettledAmount;
-		
-		private string _vATPerSettledAmount;
+		private System.Nullable<double> _vATPerSettledAmount;
 		
 		private System.Nullable<double> _dutyAndVAT;
 		
 		private System.Nullable<double> _tobaccoValue;
 		
-		private string _currency;
-		
-		private string _remainingQuantity;
+		private System.Nullable<double> _remainingQuantity;
 		
 		private string _customsProcedure;
 		
 		private string _pCNTariffCode;
 		
-		private System.Nullable<CompensationGood> _compensationGood;
-		
 		private System.Nullable<ClearingType> _clearingType;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _pCNCodeLookup;
+		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _compensationGood;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceListLookup;
 		
@@ -2122,10 +2115,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		#endregion
 		
 		public Disposal() {
-			this._pCNCodeLookup = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
-			this._pCNCodeLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnPCNCodeLookupSync);
-			this._pCNCodeLookup.OnChanged += new System.EventHandler(this.OnPCNCodeLookupChanged);
-			this._pCNCodeLookup.OnChanging += new System.EventHandler(this.OnPCNCodeLookupChanging);
+			this._compensationGood = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
+			this._compensationGood.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnCompensationGoodSync);
+			this._compensationGood.OnChanged += new System.EventHandler(this.OnCompensationGoodChanged);
+			this._compensationGood.OnChanging += new System.EventHandler(this.OnCompensationGoodChanging);
 			this._clearenceListLookup = new Microsoft.SharePoint.Linq.EntityRef<Clearence>();
 			this._clearenceListLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnClearenceListLookupSync);
 			this._clearenceListLookup.OnChanged += new System.EventHandler(this.OnClearenceListLookupChanged);
@@ -2179,8 +2172,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SADDate", Storage="_sADDate", FieldType="Text")]
-		public string SADDate {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SADDate", Storage="_sADDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> SADDate {
 			get {
 				return this._sADDate;
 			}
@@ -2276,44 +2269,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// FG SKU
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FGSKU", Storage="_fGSKU", FieldType="Text")]
-		public string FGSKU {
-			get {
-				return this._fGSKU;
-			}
-			set {
-				if ((value != this._fGSKU)) {
-					this.OnPropertyChanging("FGSKU", this._fGSKU);
-					this._fGSKU = value;
-					this.OnPropertyChanged("FGSKU");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// FG Batch
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FGBatch", Storage="_fGBatch", FieldType="Text")]
-		public string FGBatch {
-			get {
-				return this._fGBatch;
-			}
-			set {
-				if ((value != this._fGBatch)) {
-					this.OnPropertyChanging("FGBatch", this._fGBatch);
-					this._fGBatch = value;
-					this.OnPropertyChanged("FGBatch");
-				}
-			}
-		}
-		
-		/// <summary>
 		/// Duty per settled amount
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyPerSettledAmount", Storage="_dutyPerSettledAmount", FieldType="Text")]
-		public string DutyPerSettledAmount {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyPerSettledAmount", Storage="_dutyPerSettledAmount", FieldType="Number")]
+		public System.Nullable<double> DutyPerSettledAmount {
 			get {
 				return this._dutyPerSettledAmount;
 			}
@@ -2329,8 +2288,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// <summary>
 		/// VAT per settled amount
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VATPerSettledAmount", Storage="_vATPerSettledAmount", FieldType="Text")]
-		public string VATPerSettledAmount {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VATPerSettledAmount", Storage="_vATPerSettledAmount", FieldType="Number")]
+		public System.Nullable<double> VATPerSettledAmount {
 			get {
 				return this._vATPerSettledAmount;
 			}
@@ -2377,25 +2336,11 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Currency", Storage="_currency", FieldType="Text")]
-		public string Currency {
-			get {
-				return this._currency;
-			}
-			set {
-				if ((value != this._currency)) {
-					this.OnPropertyChanging("Currency", this._currency);
-					this._currency = value;
-					this.OnPropertyChanged("Currency");
-				}
-			}
-		}
-		
 		/// <summary>
 		/// Remaining quantity
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="RemainingQuantity", Storage="_remainingQuantity", FieldType="Text")]
-		public string RemainingQuantity {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="RemainingQuantity", Storage="_remainingQuantity", FieldType="Number")]
+		public System.Nullable<double> RemainingQuantity {
 			get {
 				return this._remainingQuantity;
 			}
@@ -2443,23 +2388,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// Compensation Good
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CompensationGood", Storage="_compensationGood", FieldType="Choice")]
-		public System.Nullable<CompensationGood> CompensationGood {
-			get {
-				return this._compensationGood;
-			}
-			set {
-				if ((value != this._compensationGood)) {
-					this.OnPropertyChanging("CompensationGood", this._compensationGood);
-					this._compensationGood = value;
-					this.OnPropertyChanged("CompensationGood");
-				}
-			}
-		}
-		
-		/// <summary>
 		/// Winding-up
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ClearingType", Storage="_clearingType", FieldType="Choice")]
@@ -2476,13 +2404,13 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PCNCodeIndex", Storage="_pCNCodeLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
-		public PCNCode PCNCodeLookup {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2PCNCompensationGood", Storage="_compensationGood", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
+		public PCNCode CompensationGood {
 			get {
-				return this._pCNCodeLookup.GetEntity();
+				return this._compensationGood.GetEntity();
 			}
 			set {
-				this._pCNCodeLookup.SetEntity(value);
+				this._compensationGood.SetEntity(value);
 			}
 		}
 		
@@ -2526,15 +2454,15 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		private void OnPCNCodeLookupChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("PCNCodeLookup", this._pCNCodeLookup.Clone());
+		private void OnCompensationGoodChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CompensationGood", this._compensationGood.Clone());
 		}
 		
-		private void OnPCNCodeLookupChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("PCNCodeLookup");
+		private void OnCompensationGoodChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CompensationGood");
 		}
 		
-		private void OnPCNCodeLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
+		private void OnCompensationGoodSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Disposal.Add(this);
 			}
@@ -2756,7 +2684,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _billDoc;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _invoiceLibraryLookup;
+		private Microsoft.SharePoint.Linq.EntityRef<InvoiceLibraryInvoiceLib> _invoiceLibraryLookup;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceListLookup;
 		
@@ -2769,8 +2697,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		#endregion
 		
 		public Invoice() {
-			this._invoiceLibraryLookup = new Microsoft.SharePoint.Linq.EntityRef<Dokument>();
-			this._invoiceLibraryLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnInvoiceLibraryLookupSync);
+			this._invoiceLibraryLookup = new Microsoft.SharePoint.Linq.EntityRef<InvoiceLibraryInvoiceLib>();
+			this._invoiceLibraryLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceLibraryInvoiceLib>>(this.OnInvoiceLibraryLookupSync);
 			this._invoiceLibraryLookup.OnChanged += new System.EventHandler(this.OnInvoiceLibraryLookupChanged);
 			this._invoiceLibraryLookup.OnChanging += new System.EventHandler(this.OnInvoiceLibraryLookupChanging);
 			this._clearenceListLookup = new Microsoft.SharePoint.Linq.EntityRef<Clearence>();
@@ -2801,8 +2729,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceLibraryIndex", Storage="_invoiceLibraryLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Invoice Library")]
-		public Dokument InvoiceLibraryLookup {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceLibraryIndex", Storage="_invoiceLibraryLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="InvoiceLibrary")]
+		public InvoiceLibraryInvoiceLib InvoiceLibraryLookup {
 			get {
 				return this._invoiceLibraryLookup.GetEntity();
 			}
@@ -2839,7 +2767,13 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this.OnPropertyChanged("InvoiceLibraryLookup");
 		}
 		
-		private void OnInvoiceLibraryLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
+		private void OnInvoiceLibraryLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceLibraryInvoiceLib> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Invoice.Add(this);
+			}
+			else {
+				e.Item.Invoice.Remove(this);
+			}
 		}
 		
 		private void OnClearenceListLookupChanging(object sender, System.EventArgs e) {
@@ -3644,9 +3578,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private void OnIPRLibraryLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
 		}
-
-
-    }
+	}
 	
 	/// <summary>
 	/// Utwórz nowy element listy.
@@ -3700,7 +3632,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _exportOrFreeCirculationSAD;
 		
-		private string _sADDate;
+		private System.Nullable<System.DateTime> _sADDate;
 		
 		private string _invoiceNo;
 		
@@ -3748,8 +3680,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SADDate", Storage="_sADDate", FieldType="Text")]
-		public string SADDate {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SADDate", Storage="_sADDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> SADDate {
 			get {
 				return this._sADDate;
 			}
@@ -4165,7 +4097,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="PCNCodeIndex", Storage="_disposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Disposal")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2PCNCompensationGood", Storage="_disposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Disposal")]
 		public Microsoft.SharePoint.Linq.EntitySet<Disposal> Disposal {
 			get {
 				return this._disposal;
@@ -4195,10 +4127,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private void OnDisposalSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.PCNCodeLookup = this;
+				e.Item.CompensationGood = this;
 			}
 			else {
-				e.Item.PCNCodeLookup = null;
+				e.Item.CompensationGood = null;
 			}
 		}
 		
@@ -6066,6 +5998,40 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// <summary>
 	/// Utwórz nowy dokument.
 	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="InvoiceLib", Id="0x0101003054E4EBB5DE4C6391CA389A60DCD926")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(InvoiceLibraryInvoiceLib))]
+	public partial class InvoiceLib : Dokument {
+		
+		private string _dummy;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public InvoiceLib() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Dummy", Storage="_dummy", FieldType="Text")]
+		public virtual string Dummy {
+			get {
+				return this._dummy;
+			}
+			set {
+				if ((value != this._dummy)) {
+					this.OnPropertyChanging("Dummy", this._dummy);
+					this._dummy = value;
+					this.OnPropertyChanged("Dummy");
+				}
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy dokument.
+	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADDocumentLib", Id="0x010100475F601A85C84D02B51F765E42311C86")]
 	public partial class SADDocumentLib : Dokument {
 		
@@ -6590,6 +6556,67 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 	}
 	
+	/// <summary>
+	/// Invoice Document Library
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="InvoiceLib", Id="0x0101003054E4EBB5DE4C6391CA389A60DCD926", List="InvoiceLibrary")]
+	public partial class InvoiceLibraryInvoiceLib : InvoiceLib {
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Invoice> _invoice;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public InvoiceLibraryInvoiceLib() {
+			this._invoice = new Microsoft.SharePoint.Linq.EntitySet<Invoice>();
+			this._invoice.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Invoice>>(this.OnInvoiceSync);
+			this._invoice.OnChanged += new System.EventHandler(this.OnInvoiceChanged);
+			this._invoice.OnChanging += new System.EventHandler(this.OnInvoiceChanging);
+			this.OnCreated();
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string Dummy {
+			get {
+				throw new System.InvalidOperationException("Pole Dummy zostało usunięte z typu zawartości InvoiceLib.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole Dummy zostało usunięte z typu zawartości InvoiceLib.");
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceLibraryIndex", Storage="_invoice", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Invoice")]
+		public Microsoft.SharePoint.Linq.EntitySet<Invoice> Invoice {
+			get {
+				return this._invoice;
+			}
+			set {
+				this._invoice.Assign(value);
+			}
+		}
+		
+		private void OnInvoiceChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Invoice", this._invoice.Clone());
+		}
+		
+		private void OnInvoiceChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Invoice");
+		}
+		
+		private void OnInvoiceSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Invoice> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.InvoiceLibraryLookup = this;
+			}
+			else {
+				e.Item.InvoiceLibraryLookup = null;
+			}
+		}
+	}
+	
 	public enum ProductType : int {
 		
 		None = 0,
@@ -6631,6 +6658,19 @@ namespace CAS.SmartFactory.IPR.Entities {
 		Final = 16,
 	}
 	
+	public enum ClearingType : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Partial winding-up")]
+		PartialWindingUp = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Total winding-up")]
+		TotalWindingUp = 4,
+	}
+	
 	public enum CompensationGood : int {
 		
 		None = 0,
@@ -6654,18 +6694,5 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="kartony")]
 		Kartony = 64,
-	}
-	
-	public enum ClearingType : int {
-		
-		None = 0,
-		
-		Invalid = 1,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Partial winding-up")]
-		PartialWindingUp = 2,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Total winding-up")]
-		TotalWindingUp = 4,
 	}
 }

@@ -14,13 +14,13 @@ namespace CAS.SmartFactory.IPR.Entities
   /// </summary>
   public partial class Invoice
   {
-    internal static void GetXmlContent(InvoiceXml xml, EntitiesDataContext edc, Dokument entry)
+    internal static void GetXmlContent(InvoiceXml xml, EntitiesDataContext edc, InvoiceLibraryInvoiceLib entry)
     {
       Invoice newInvoice = new Invoice(entry);
       newInvoice.BillDoc = Entities.InvoiceContent.GetXmlContent(xml.Item, edc, newInvoice);
       edc.Invoice.InsertOnSubmit(newInvoice);
     }
-    private Invoice(Dokument entry)
+    private Invoice(InvoiceLibraryInvoiceLib entry)
       : this()
     {
       InvoiceLibraryLookup = entry;
