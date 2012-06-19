@@ -22,7 +22,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       try
       {
         if (!properties.List.Title.Contains("Batch Library"))
-          throw new IPRDataConsistencyException(m_Title, "Wrong library name", null, "Wrong library name");
+        {
+          //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
+          base.ItemAdded(properties);
+          return;
+          //throw new IPRDataConsistencyException(m_Title, "Wrong library name", null, "Wrong library name");
+        }
         this.EventFiringEnabled = false;
         ImportBatchFromXml(
           properties.ListItem.File.OpenBinaryStream(),

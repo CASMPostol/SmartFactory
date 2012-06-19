@@ -1,11 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Web Class="Entities" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
-  <List Name="Instructors" Member="Instructors">
-    <ContentType Name="Contact" Class="Instructor">
-      <Column Name="FullName" Member="FullName"/>
-      <ExcludeOtherColumns/>
-    </ContentType>
+<Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
+  <List Name="InvoiceLibrary" Member="InvoiceLibrary">
   </List>
-  <List Name="Modules" Member="Modules" />
-  <ExcludeOtherLists/>
+  <ContentType Name="InvoiceLib" Class="InvoiceLib">
+    <Column Name="Dummy"/>
+  </ContentType>
 </Web>

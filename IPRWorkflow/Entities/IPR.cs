@@ -80,25 +80,25 @@ namespace CAS.SmartFactory.IPR.Entities
     internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
     internal void AddDisposal(EntitiesDataContext _edc, KeyValuePair<DisposalEnum, double> _item, Batch _batch)
     {
-      Entities.CompensationGood _typeOfDisposal = default(Entities.CompensationGood);
-      switch (_item.Key)
-      {
-        case DisposalEnum.Dust:
-          _typeOfDisposal = CompensationGood.PyłTytoiowy;
-          break;
-        case DisposalEnum.SHMenthol:
-          _typeOfDisposal = CompensationGood.Tytoń;
-          break;
-        case DisposalEnum.Waste:
-          _typeOfDisposal = CompensationGood.OdpadTytoniowy;
-          break;
-        case DisposalEnum.OverusageInKg:
-          _typeOfDisposal = CompensationGood.Tytoń;
-          break;
-        case DisposalEnum.Tobacco:
-          _typeOfDisposal = CompensationGood.Papierosy;
-          break;
-      }
+      //Entities.PCNCode _typeOfDisposal = default(Entities.PCNCode);
+      //switch (_item.Key)
+      //{
+      //  case DisposalEnum.Dust:
+      //    _typeOfDisposal = PCNCode.PyłTytoiowy;
+      //    break;
+      //  case DisposalEnum.SHMenthol:
+      //    _typeOfDisposal = CompensationGood.Tytoń;
+      //    break;
+      //  case DisposalEnum.Waste:
+      //    _typeOfDisposal = CompensationGood.OdpadTytoniowy;
+      //    break;
+      //  case DisposalEnum.OverusageInKg:
+      //    _typeOfDisposal = CompensationGood.Tytoń;
+      //    break;
+      //  case DisposalEnum.Tobacco:
+      //    _typeOfDisposal = CompensationGood.Papierosy;
+      //    break;
+      //}
       Disposal _nd = new Disposal()
       {
         BatchLookup = _batch,
@@ -106,29 +106,25 @@ namespace CAS.SmartFactory.IPR.Entities
         ClearingType = Entities.ClearingType.PartialWindingUp,
         CustomsStatus = "", //[pr4-3427] Disposal - CustomsStatus change the type from string to enum. - http://itrserver/Bugs/BugDetail.aspx?bid=3427
         CustomsProcedure = "N/A",
-        Currency = "N/A",
         DisposalStatus = "N/A", //[pr4-3427] Disposal - CustomsStatus change the type from string to enum. - http://itrserver/Bugs/BugDetail.aspx?bid=3427
         DutyAndVAT = null,
-        DutyPerSettledAmount = "N/A",
+        DutyPerSettledAmount = null,
         //[pr4-3431] Disposal Batch and FGSKU wrong type - must be secondary lookup.  http://itrserver/Bugs/BugDetail.aspx?bid=3431 
-        FGBatch = "N/A",
-        FGSKU = "N/A",
         InvoiceNo = "N/A",
         IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
         IPRLookup = null, //?? 
         //  [pr4-3428] Disposal CompensationGood - wrong type http://itrserver/Bugs/BugDetail.aspx?bid=3428
-        PCNCodeLookup = null,
-        CompensationGood = _typeOfDisposal,
+        CompensationGood = default(Entities.PCNCode),
         PCNTariffCode = "n/a",
-        VATPerSettledAmount = "N/A", 
+        VATPerSettledAmount = null,
         JSOXCustomsSummaryListLookup = null,
-         No = 0, //TODO sequence number - must be calculated
-        RemainingQuantity = "0", //TODO must be calculated [pr4-3433] Disposal RemainingQuantity change type to double, http://itrserver/Bugs/BugDetail.aspx?bid=3433
-        SADDate = "N/A", //TODO [pr4-3434] Disposal SADDate - change type to DateTime  http://itrserver/Bugs/BugDetail.aspx?bid=3434
-         SADDocumentNo = "N/A",
-          SettledQuantity = _item.Value,
+        No = 0, //TODO sequence number - must be calculated
+        RemainingQuantity = 0, //TODO must be calculated [pr4-3433] Disposal RemainingQuantity change type to double, http://itrserver/Bugs/BugDetail.aspx?bid=3433
+        SADDate = null, //TODO [pr4-3434] Disposal SADDate - change type to DateTime  http://itrserver/Bugs/BugDetail.aspx?bid=3434
+        SADDocumentNo = "N/A",
+        SettledQuantity = _item.Value,
         TobaccoValue = 0, //TODO _item.Value * IPRLookup.Valu/  IPRLookup.Net Mass
-         
+
       };
     }
     internal static IPR FindIPRAccount(EntitiesDataContext _edc, string _batch, double _requested)
