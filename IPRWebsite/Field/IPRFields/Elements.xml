@@ -591,22 +591,6 @@
     Description="Customs Status"
     />
   <Field
-    DisplayName="FG SKU"
-    Name="FGSKU"
-    Type="Text"
-    ID="{334B6AB1-43CD-408A-AAB7-FC37F343B299}"
-    Group="CAS Smart Factory IPR"
-    Description="FG SKU"
-    />
-  <Field
-    DisplayName="FG Batch"
-    Name="FGBatch"
-    Type="Text"
-    ID="{BA69B356-48EF-4519-849C-9EAE8B6D6EC0}"
-    Group="CAS Smart Factory IPR"
-    Description="FG Batch"
-    />
-  <Field
     DisplayName="Duty per settled amount"
     Name="DutyPerSettledAmount"
     Type="Number"
