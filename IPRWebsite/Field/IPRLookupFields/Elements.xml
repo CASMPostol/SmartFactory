@@ -1,6 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Type="Lookup"
+    DisplayName="Currency"
+    List="Lists/IPRList"
+    ShowField="Currency"
+    FieldRef="47CB6EBB-BC67-466F-BA7F-B89E1E31F5BE"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory IPR"
+    ID="{1D6BC072-6075-4E21-9271-B19B52F96D1C}"
+    Name="Disposal2IPRCurrency_sec"
+    Overwrite="TRUE"
+  />
+  <Field
     Name="Disposal2PCNCompensationGood"
     ID="{E37AAFAA-E628-49A1-8447-D1C3D61C945F}"
     Type="Lookup"
