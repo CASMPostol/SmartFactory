@@ -17,7 +17,8 @@ namespace CAS.SmartFactory.IPR.Entities
           ProductivityRateMin = item.ProductivityRateMin,
           ValidFromDate = item.ValidFromDate,
           ValidToDate = item.ValidToDate,
-          ConsentPeriod = item.ConsentPeriod 
+          ConsentPeriod = item.ConsentPeriod,
+          Tytuł = item.ConsentNo
         };
         list.Add(cns);
       };
