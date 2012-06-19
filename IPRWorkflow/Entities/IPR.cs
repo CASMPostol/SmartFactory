@@ -117,7 +117,7 @@ namespace CAS.SmartFactory.IPR.Entities
         VATPerSettledAmount = null,
         JSOXCustomsSummaryListLookup = null,
         No = 0, //TODO sequence number - must be calculated
-        RemainingQuantity = 0, //TODO must be calculated [pr4-3433] Disposal RemainingQuantity change type to double, http://itrserver/Bugs/BugDetail.aspx?bid=3433
+        RemainingQuantity = 0,
         SADDate = default(DateTime), 
         SADDocumentNo = "N/A",
         SettledQuantity = _item.Value,
