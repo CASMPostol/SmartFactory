@@ -25,7 +25,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
     public override void ItemAdded(SPItemEventProperties properties)
     {
       if (!properties.List.Title.Contains("SKU"))
+      {
+        //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
+        base.ItemAdded(properties);
         return;
+      }
       //TODo remove or implement
       //if (properties.ListItem.File == null)
       //{

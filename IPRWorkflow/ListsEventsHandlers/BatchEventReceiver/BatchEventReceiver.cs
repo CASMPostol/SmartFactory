@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       {
         using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(properties.WebUrl))
         {
-          Anons.WriteEntry(_edc, _ex.Message, _ex.Message);
+          Anons.WriteEntry(_edc, _ex.Source, _ex.Message);
         }
       }
       finally

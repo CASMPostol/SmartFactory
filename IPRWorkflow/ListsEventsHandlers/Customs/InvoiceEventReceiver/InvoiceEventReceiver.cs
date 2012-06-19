@@ -21,7 +21,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     public override void ItemAdded(SPItemEventProperties properties)
     {
       if (!properties.List.Title.Contains("Invoice"))
+      {
+        //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
+        base.ItemAdded(properties);
         return;
+      }
       this.EventFiringEnabled = false;
       //if (properties.ListItem.File == null)
       //{
