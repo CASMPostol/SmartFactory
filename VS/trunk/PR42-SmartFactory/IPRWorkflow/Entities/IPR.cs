@@ -99,7 +99,8 @@ namespace CAS.SmartFactory.IPR.Entities
       //    _typeOfDisposal = CompensationGood.Papierosy;
       //    break;
       //}
-      Disposal _nd = new Disposal()
+      int _position = 0; //TODO this.DisposalDisposal.Count(); [pr4-3437] No reverse lookup from IPR to Disposal http://itrserver/Bugs/BugDetail.aspx?bid=3437
+      DisposalDisposal _newDisposal = new DisposalDisposal()
       {
         BatchLookup = _batch,
         ClearenceListLookup = null,
@@ -107,23 +108,23 @@ namespace CAS.SmartFactory.IPR.Entities
         CustomsStatus = "", //[pr4-3427] Disposal - CustomsStatus change the type from string to enum. - http://itrserver/Bugs/BugDetail.aspx?bid=3427
         CustomsProcedure = "N/A",
         DisposalStatus = "N/A", //[pr4-3427] Disposal - CustomsStatus change the type from string to enum. - http://itrserver/Bugs/BugDetail.aspx?bid=3427
-        DutyAndVAT = default(double),
-        DutyPerSettledAmount = default(double),
+        DutyAndVAT = new Nullable<double>(),
+        DutyPerSettledAmount = new Nullable<double>(),
         InvoiceNo = "N/A",
         IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
-        IPRLookup = null, //?? 
+        IPRLookup = this, 
         CompensationGood = default(Entities.PCNCode),
         PCNTariffCode = "n/a", //  [pr4-3428] Disposal CompensationGood - wrong type http://itrserver/Bugs/BugDetail.aspx?bid=3428
         VATPerSettledAmount = null,
         JSOXCustomsSummaryListLookup = null,
-        No = 0, //TODO sequence number - must be calculated
+        No = _position,
         RemainingQuantity = 0,
-        SADDate = default(DateTime), 
+        SADDate = new Nullable<DateTime>(), 
         SADDocumentNo = "N/A",
         SettledQuantity = _item.Value,
-        TobaccoValue = 0, //TODO _item.Value * IPRLookup.Valu/  IPRLookup.Net Mass
-
+        TobaccoValue = _item.Value * this.Value / this.NetMass
       };
+      _edc.Disposal.InsertOnSubmit(_newDisposal);
     }
     internal static IPR FindIPRAccount(EntitiesDataContext _edc, string _batch, double _requested)
     {
