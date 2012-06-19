@@ -557,7 +557,9 @@
     <Content Include="Lists\Customs\InvoiceLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\Customs\InvoiceLibraryTemplate\InvoiceLibrary\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceLibraryTemplate\Repair.aspx" />
-    <Content Include="Lists\Customs\InvoiceLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\InvoiceLibraryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\InvoiceLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Customs\InvoiceTemplate\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceTemplate\InvoiceList\Elements.xml" />
