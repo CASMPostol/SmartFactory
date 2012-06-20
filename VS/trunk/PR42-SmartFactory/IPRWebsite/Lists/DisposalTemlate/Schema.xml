@@ -22,7 +22,6 @@
           <FieldRef ID="{1D6BC072-6075-4E21-9271-B19B52F96D1C}" Name="Disposal2IPRCurrency_sec" />
           <FieldRef ID="{0E24A674-1FE7-4C77-9106-387E12417644}" Name="RemainingQuantity" />
           <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
-          <FieldRef ID="{4E14F686-584A-4EE8-9784-4B7AA4DCD1E7}" Name="PCNTariffCode" />
           <FieldRef ID="{E37AAFAA-E628-49A1-8447-D1C3D61C945F}" Name="Disposal2PCNCompensationGood" />
           <FieldRef ID="{03524E3C-0A1F-4FFD-9AA5-154BDF15922B}" Name="Disposal2PCNPCN_sec" />
           <FieldRef ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Name="ClearingType" />
@@ -91,7 +90,6 @@
           <FieldRef ID="{1D6BC072-6075-4E21-9271-B19B52F96D1C}" Name="Disposal2IPRCurrency_sec" />
           <FieldRef ID="{0E24A674-1FE7-4C77-9106-387E12417644}" Name="RemainingQuantity" />
           <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
-          <FieldRef ID="{4E14F686-584A-4EE8-9784-4B7AA4DCD1E7}" Name="PCNTariffCode" />
           <FieldRef ID="{E37AAFAA-E628-49A1-8447-D1C3D61C945F}" Name="Disposal2PCNCompensationGood" />
           <FieldRef ID="{03524E3C-0A1F-4FFD-9AA5-154BDF15922B}" Name="Disposal2PCNPCN_sec" />
           <FieldRef ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Name="ClearingType" />
