@@ -250,7 +250,7 @@
           </OrderBy>
         </Query>
       </View>
-      <View BaseViewID="10" Type="HTML" WebPartZoneID="Main" DisplayName="Export - invoices" DefaultView="TRUE" MobileView="True" MobileDefaultView="True" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Export_Invoices.aspx">
+      <View BaseViewID="10" Type="HTML" WebPartZoneID="Main" DisplayName="Export - invoices" DefaultView="FALSE" MobileView="True" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/dlicon.png" Url="Forms/Export_Invoices.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">15</RowLimit>
