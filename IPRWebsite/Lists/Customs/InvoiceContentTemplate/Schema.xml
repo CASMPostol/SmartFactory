@@ -26,23 +26,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field DisplayName="Batch" Name="Batch" Type="Text" ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Group="CAS Smart Factory IPR" Description="Batch" />
-      <Field Type="Choice" DisplayName="ProductType" ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Format="Dropdown" BaseType="Text" Description="Material Type" Name="ProductType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
-    <Default>Cigarette</Default>
-    <CHOICES>
-      <CHOICE>Cutfiller</CHOICE>
-      <CHOICE>Cigarette</CHOICE>
-      <CHOICE>Tobacco</CHOICE>
-      <CHOICE>IPRTobacco</CHOICE>
-      <CHOICE>Other</CHOICE>
-    </CHOICES>
-  </Field>
-      <Field DisplayName="Quantity" Name="Quantity" Type="Number" ID="{85512a2c-c60c-400e-aa53-94ed8fbef321}" Group="CAS Smart Factory IPR" Description="Quantity" />
-      <Field DisplayName="Item No" Name="ItemNo" Type="Number" ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Group="CAS Smart Factory IPR Customs" Description="PozID" />
-      <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="CAS Smart Factory IPR Customs" Description="SKU" />
-      <Field DisplayName="Units" Name="Units" Type="Text" ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Group="CAS Smart Factory IPR Customs" Description="j.m." />
-      <Field Name="InvoiceIndex" ID="{33cb339c-ca0f-409f-9790-37207a855756}" Type="Lookup" List="Lists/InvoiceList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Invoice lookup" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="BatchIndex" ID="{6b3af163-c404-433f-9801-047c12b9ee42}" Type="Lookup" List="Lists/BatchList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Batch lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -94,7 +77,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Export - invoice content" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Export_Invoice_Content.aspx">
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Export - invoice content" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSe" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Export_Invoice_Content.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">10</RowLimit>

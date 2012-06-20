@@ -106,7 +106,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Export - batch" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Export_Batch.aspx">
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Export - batch" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSe" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Export_Batch.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">15</RowLimit>
