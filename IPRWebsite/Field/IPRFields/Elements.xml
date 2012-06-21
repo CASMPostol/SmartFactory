@@ -577,19 +577,45 @@
   <Field
     DisplayName="Disposal Status"
     Name="DisposalStatus"
-    Type="Text"
+    Type="Choice"
+    BaseType="Text"
+    CanToggleHidden="TRUE"
     ID="{51E5B961-8234-4009-81C0-C6059298044F}"
     Group="CAS Smart Factory IPR"
-    Description="Disposal Status"
-    />
+    Description="Disposal Status">
+    <Default>Dust</Default>
+    <CHOICES>
+      <CHOICE>Dust</CHOICE>
+      <CHOICE>SH Menthol</CHOICE>
+      <CHOICE>Waste</CHOICE>
+      <CHOICE>Overuse</CHOICE>
+      <CHOICE>Tobacco in cigaretes warehouse</CHOICE>
+      <CHOICE>Tobacco in cigaretes exported</CHOICE>
+      <CHOICE>Tobacco in cigaretes destination EU</CHOICE>
+      <CHOICE>Tobacco in cigaretes production</CHOICE>
+      <CHOICE>Tobacco in cutfiller warehouse</CHOICE>
+      <CHOICE>Tobacco in cutfiller exported</CHOICE>
+      <CHOICE>Tobacco in cutfiller destination EU</CHOICE>
+      <CHOICE>Tobacco in cutfiller production</CHOICE>
+    </CHOICES>
+  </Field>
   <Field
     DisplayName="Customs Status"
     Name="CustomsStatus"
-    Type="Text"
+    Type="Choice"
+    Format="Dropdown"
+    BaseType="Text"
+    CanToggleHidden="TRUE"
     ID="{298F8DD7-97D6-4FE0-8A1F-08621BCF807A}"
     Group="CAS Smart Factory IPR"
-    Description="Customs Status"
-    />
+    Description="Customs Status">
+    <Default>Not started</Default>
+    <CHOICES>
+      <CHOICE>Not started</CHOICE>
+      <CHOICE>Started</CHOICE>
+      <CHOICE>Finished</CHOICE>
+    </CHOICES>
+  </Field>
   <Field
     DisplayName="Duty per settled amount"
     Name="DutyPerSettledAmount"
