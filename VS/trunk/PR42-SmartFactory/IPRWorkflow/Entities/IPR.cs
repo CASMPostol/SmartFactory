@@ -43,7 +43,6 @@ namespace CAS.SmartFactory.IPR.Entities
           InvoiceNo = _iprdata.InvoiceNo,
           NetMass = _iprdata.NetMass,
           No = 1,
-          //TODO [pr4-3408] Calculation of the OGLValidTo column http://itrserver/Bugs/BugDetail.aspx?bid=3408
           OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0, 0),
           PCNTariffCode = _pcn,
           SKU = _iprdata.SKU,
