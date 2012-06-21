@@ -42,7 +42,6 @@ namespace CAS.SmartFactory.IPR.Entities
           GrossMass = _iprdata.GrossMass,
           InvoiceNo = _iprdata.InvoiceNo,
           NetMass = _iprdata.NetMass,
-          No = 1,
           OGLValidTo = _customsDebtDate + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0, 0),
           PCNTariffCode = _pcn,
           SKU = _iprdata.SKU,
@@ -79,39 +78,39 @@ namespace CAS.SmartFactory.IPR.Entities
     internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
     internal void AddDisposal(EntitiesDataContext _edc, KeyValuePair<DisposalEnum, double> _item, Batch _batch)
     {
-      //Entities.PCNCode _typeOfDisposal = default(Entities.PCNCode);
-      //switch (_item.Key)
-      //{
-      //  case DisposalEnum.Dust:
-      //    _typeOfDisposal = PCNCode.PyłTytoiowy;
-      //    break;
-      //  case DisposalEnum.SHMenthol:
-      //    _typeOfDisposal = CompensationGood.Tytoń;
-      //    break;
-      //  case DisposalEnum.Waste:
-      //    _typeOfDisposal = CompensationGood.OdpadTytoniowy;
-      //    break;
-      //  case DisposalEnum.OverusageInKg:
-      //    _typeOfDisposal = CompensationGood.Tytoń;
-      //    break;
-      //  case DisposalEnum.Tobacco:
-      //    _typeOfDisposal = CompensationGood.Papierosy;
-      //    break;
-      //}
+      Entities.DisposalStatus _typeOfDisposal = default(Entities.DisposalStatus);
+      switch (_item.Key)
+      {
+        case DisposalEnum.Dust:
+          _typeOfDisposal = Entities.DisposalStatus.Dust;
+          break;
+        case DisposalEnum.SHMenthol:
+          _typeOfDisposal = Entities.DisposalStatus.SHMenthol;
+          break;
+        case DisposalEnum.Waste:
+          _typeOfDisposal = Entities.DisposalStatus.Waste;
+          break;
+        case DisposalEnum.OverusageInKg:
+          _typeOfDisposal = Entities.DisposalStatus.TobaccoInCigaretesDestinationEU;
+          break;
+        case DisposalEnum.Tobacco:
+          _typeOfDisposal = Entities.DisposalStatus.TobaccoInCigaretesExported;
+          break;
+      }
       int _position = 0; //TODO this.DisposalDisposal.Count(); [pr4-3437] No reverse lookup from IPR to Disposal http://itrserver/Bugs/BugDetail.aspx?bid=3437
       DisposalDisposal _newDisposal = new DisposalDisposal()
       {
         BatchLookup = _batch,
         ClearenceListLookup = null,
         ClearingType = Entities.ClearingType.PartialWindingUp,
-        CustomsStatus = "", //[pr4-3427] Disposal - CustomsStatus change the type from string to enum. - http://itrserver/Bugs/BugDetail.aspx?bid=3427
+        CustomsStatus = Entities.CustomsStatus.NotStarted,
         CustomsProcedure = "N/A",
-        DisposalStatus = "N/A", //[pr4-3427] Disposal - CustomsStatus change the type from string to enum. - http://itrserver/Bugs/BugDetail.aspx?bid=3427
+        DisposalStatus = _typeOfDisposal,
         DutyAndVAT = new Nullable<double>(),
         DutyPerSettledAmount = new Nullable<double>(),
         InvoiceNo = "N/A",
         IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
-        IPRLookup = this,
+        IPRID = this,
         CompensationGood = default(Entities.PCNCode),
         VATPerSettledAmount = null,
         JSOXCustomsSummaryListLookup = null,

@@ -2078,10 +2078,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<double> _settledQuantity;
 		
-		private string _disposalStatus;
-		
-		private string _customsStatus;
-		
 		private System.Nullable<double> _dutyPerSettledAmount;
 		
 		private System.Nullable<double> _vATPerSettledAmount;
@@ -2094,6 +2090,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _customsProcedure;
 		
+		private System.Nullable<DisposalStatus> _disposalStatus;
+		
+		private System.Nullable<CustomsStatus> _customsStatus;
+		
 		private System.Nullable<ClearingType> _clearingType;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _compensationGood;
@@ -2104,7 +2104,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Batch> _batchLookup;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<IPR> _iPRLookup;
+		private Microsoft.SharePoint.Linq.EntityRef<IPR> _iPRID;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2129,10 +2129,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this._batchLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch>>(this.OnBatchLookupSync);
 			this._batchLookup.OnChanged += new System.EventHandler(this.OnBatchLookupChanged);
 			this._batchLookup.OnChanging += new System.EventHandler(this.OnBatchLookupChanging);
-			this._iPRLookup = new Microsoft.SharePoint.Linq.EntityRef<IPR>();
-			this._iPRLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPRLookupSync);
-			this._iPRLookup.OnChanged += new System.EventHandler(this.OnIPRLookupChanged);
-			this._iPRLookup.OnChanging += new System.EventHandler(this.OnIPRLookupChanging);
+			this._iPRID = new Microsoft.SharePoint.Linq.EntityRef<IPR>();
+			this._iPRID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPRIDSync);
+			this._iPRID.OnChanged += new System.EventHandler(this.OnIPRIDChanged);
+			this._iPRID.OnChanging += new System.EventHandler(this.OnIPRIDChanging);
 			this.OnCreated();
 		}
 		
@@ -2228,40 +2228,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("SettledQuantity", this._settledQuantity);
 					this._settledQuantity = value;
 					this.OnPropertyChanged("SettledQuantity");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Disposal Status
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DisposalStatus", Storage="_disposalStatus", FieldType="Text")]
-		public string DisposalStatus {
-			get {
-				return this._disposalStatus;
-			}
-			set {
-				if ((value != this._disposalStatus)) {
-					this.OnPropertyChanging("DisposalStatus", this._disposalStatus);
-					this._disposalStatus = value;
-					this.OnPropertyChanged("DisposalStatus");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Customs Status
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsStatus", Storage="_customsStatus", FieldType="Text")]
-		public string CustomsStatus {
-			get {
-				return this._customsStatus;
-			}
-			set {
-				if ((value != this._customsStatus)) {
-					this.OnPropertyChanging("CustomsStatus", this._customsStatus);
-					this._customsStatus = value;
-					this.OnPropertyChanged("CustomsStatus");
 				}
 			}
 		}
@@ -2369,6 +2335,40 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
+		/// Disposal Status
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DisposalStatus", Storage="_disposalStatus", FieldType="Choice")]
+		public System.Nullable<DisposalStatus> DisposalStatus {
+			get {
+				return this._disposalStatus;
+			}
+			set {
+				if ((value != this._disposalStatus)) {
+					this.OnPropertyChanging("DisposalStatus", this._disposalStatus);
+					this._disposalStatus = value;
+					this.OnPropertyChanged("DisposalStatus");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Customs Status
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsStatus", Storage="_customsStatus", FieldType="Choice")]
+		public System.Nullable<CustomsStatus> CustomsStatus {
+			get {
+				return this._customsStatus;
+			}
+			set {
+				if ((value != this._customsStatus)) {
+					this.OnPropertyChanging("CustomsStatus", this._customsStatus);
+					this._customsStatus = value;
+					this.OnPropertyChanged("CustomsStatus");
+				}
+			}
+		}
+		
+		/// <summary>
 		/// Winding-up
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ClearingType", Storage="_clearingType", FieldType="Choice")]
@@ -2425,13 +2425,13 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPRIndex", Storage="_iPRLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="IPR")]
-		public IPR IPRLookup {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2IPRIndex", Storage="_iPRID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="IPR")]
+		public IPR IPRID {
 			get {
-				return this._iPRLookup.GetEntity();
+				return this._iPRID.GetEntity();
 			}
 			set {
-				this._iPRLookup.SetEntity(value);
+				this._iPRID.SetEntity(value);
 			}
 		}
 		
@@ -2491,15 +2491,21 @@ namespace CAS.SmartFactory.IPR.Entities {
 		private void OnBatchLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch> e) {
 		}
 		
-		private void OnIPRLookupChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("IPRLookup", this._iPRLookup.Clone());
+		private void OnIPRIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("IPRID", this._iPRID.Clone());
 		}
 		
-		private void OnIPRLookupChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("IPRLookup");
+		private void OnIPRIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("IPRID");
 		}
 		
-		private void OnIPRLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR> e) {
+		private void OnIPRIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Disposal.Add(this);
+			}
+			else {
+				e.Item.Disposal.Remove(this);
+			}
 		}
 	}
 	
@@ -2989,8 +2995,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<System.DateTime> _oGLValidTo;
 		
-		private System.Nullable<double> _no;
-		
 		private string _tobaccoName;
 		
 		private string _grade;
@@ -3031,6 +3035,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<bool> _accountClosed;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<Consent> _consentNo;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _pCNTariffCode;
@@ -3041,6 +3047,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _iPRLibraryLookup;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<JSOXSummary> _jSOXSummary;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -3048,6 +3056,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		#endregion
 		
 		public IPR() {
+			this._disposal = new Microsoft.SharePoint.Linq.EntitySet<Disposal>();
+			this._disposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposalSync);
+			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
+			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
 			this._consentNo = new Microsoft.SharePoint.Linq.EntityRef<Consent>();
 			this._consentNo.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent>>(this.OnConsentNoSync);
 			this._consentNo.OnChanged += new System.EventHandler(this.OnConsentNoChanged);
@@ -3068,6 +3080,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this._iPRLibraryLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnIPRLibraryLookupSync);
 			this._iPRLibraryLookup.OnChanged += new System.EventHandler(this.OnIPRLibraryLookupChanged);
 			this._iPRLibraryLookup.OnChanging += new System.EventHandler(this.OnIPRLibraryLookupChanging);
+			this._jSOXSummary = new Microsoft.SharePoint.Linq.EntitySet<JSOXSummary>();
+			this._jSOXSummary.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXSummary>>(this.OnJSOXSummarySync);
+			this._jSOXSummary.OnChanged += new System.EventHandler(this.OnJSOXSummaryChanged);
+			this._jSOXSummary.OnChanging += new System.EventHandler(this.OnJSOXSummaryChanging);
 			this.OnCreated();
 		}
 		
@@ -3112,23 +3128,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("OGLValidTo", this._oGLValidTo);
 					this._oGLValidTo = value;
 					this.OnPropertyChanged("OGLValidTo");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// No.
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="No", Storage="_no", FieldType="Number")]
-		public System.Nullable<double> No {
-			get {
-				return this._no;
-			}
-			set {
-				if ((value != this._no)) {
-					this.OnPropertyChanging("No", this._no);
-					this._no = value;
-					this.OnPropertyChanged("No");
 				}
 			}
 		}
@@ -3443,6 +3442,16 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2IPRIndex", Storage="_disposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Disposal")]
+		public Microsoft.SharePoint.Linq.EntitySet<Disposal> Disposal {
+			get {
+				return this._disposal;
+			}
+			set {
+				this._disposal.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPR2ConsentTitle", Storage="_consentNo", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Consent")]
 		public Consent ConsentNo {
 			get {
@@ -3490,6 +3499,33 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 			set {
 				this._iPRLibraryLookup.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPRIndex", Storage="_jSOXSummary", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="JSOX Summary")]
+		public Microsoft.SharePoint.Linq.EntitySet<JSOXSummary> JSOXSummary {
+			get {
+				return this._jSOXSummary;
+			}
+			set {
+				this._jSOXSummary.Assign(value);
+			}
+		}
+		
+		private void OnDisposalChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Disposal", this._disposal.Clone());
+		}
+		
+		private void OnDisposalChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Disposal");
+		}
+		
+		private void OnDisposalSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.IPRID = this;
+			}
+			else {
+				e.Item.IPRID = null;
 			}
 		}
 		
@@ -3558,6 +3594,23 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		private void OnIPRLibraryLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
+		}
+		
+		private void OnJSOXSummaryChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("JSOXSummary", this._jSOXSummary.Clone());
+		}
+		
+		private void OnJSOXSummaryChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("JSOXSummary");
+		}
+		
+		private void OnJSOXSummarySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXSummary> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.IPRLookup = this;
+			}
+			else {
+				e.Item.IPRLookup = null;
+			}
 		}
 	}
 	
@@ -6347,6 +6400,12 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		private void OnIPRLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.JSOXSummary.Add(this);
+			}
+			else {
+				e.Item.JSOXSummary.Remove(this);
+			}
 		}
 	}
 	
@@ -6637,6 +6696,65 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Final")]
 		Final = 16,
+	}
+	
+	public enum DisposalStatus : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Dust")]
+		Dust = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="SH Menthol")]
+		SHMenthol = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Waste")]
+		Waste = 8,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Overuse")]
+		Overuse = 16,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cigaretes warehouse")]
+		TobaccoInCigaretesWarehouse = 32,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cigaretes exported")]
+		TobaccoInCigaretesExported = 64,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cigaretes destination EU")]
+		TobaccoInCigaretesDestinationEU = 128,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cigaretes production")]
+		TobaccoInCigaretesProduction = 256,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cutfiller warehouse")]
+		TobaccoInCutfillerWarehouse = 512,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cutfiller exported")]
+		TobaccoInCutfillerExported = 1024,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cutfiller destination EU")]
+		TobaccoInCutfillerDestinationEU = 2048,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cutfiller production")]
+		TobaccoInCutfillerProduction = 4096,
+	}
+	
+	public enum CustomsStatus : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Not started")]
+		NotStarted = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Started")]
+		Started = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Finished")]
+		Finished = 8,
 	}
 	
 	public enum ClearingType : int {
