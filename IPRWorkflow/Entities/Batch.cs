@@ -105,13 +105,12 @@ namespace CAS.SmartFactory.IPR.Entities
       UsageLookup = Usage.GetLookup(SKULookup.FormatLookup, edc);
       WasteLookup = Entities.Waste.GetLookup(ProductType.Value, edc);
       //processing
-      //TODO  [pr4-2869] Batch.ProcessDisposals must be implemented http://itrserver/Bugs/BugDetail.aspx?bid=2869
-      this.CalculatedOveruse = GetOveruse(MaterialQuantity, FGQuantity, UsageLookup.CTFUsageMax, UsageLookup.CTFUsageMin);
+      this.CalculatedOveruse = GetOverusage(MaterialQuantity, FGQuantity, UsageLookup.CTFUsageMax, UsageLookup.CTFUsageMin);
       this.FGQuantityAvailable = FGQuantity;
       this.FGQuantityBlocked = 0;
-      this.FGQuantityPrevious = 0;
+      this.FGQuantityPrevious = 0; //TODO [pr4-3421] Intermediate batches processing http://itrserver/Bugs/BugDetail.aspx?bid=3421
       this.MaterialQuantityPrevious = 0;
-      this.Overuse = MaterialQuantity / FGQuantity; // Usage in kg / kUnit
+      this.Overuse = MaterialQuantity / FGQuantity * 1000; // Usage in kg / kUnit
       double _shmcf = SKULookup.IPRMaterial.Value ? SHMentholLookup.SHMentholRatio.Value : 0;
       Material.DisposalsAnalisis _cd = new Material.DisposalsAnalisis
         (MaterialQuantity.Value, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0));
@@ -129,12 +128,12 @@ namespace CAS.SmartFactory.IPR.Entities
     /// <param name="_ctfUsageMax">The cutfiller usage max.</param>
     /// <param name="_ctfUsageMin">The cutfiller usage min.</param>
     /// <returns></returns>
-    private static double GetOveruse(double? _materialQuantity, double? _fGQuantity, double? _ctfUsageMax, double? _ctfUsageMin)
+    private static double GetOverusage(double? _materialQuantity, double? _fGQuantity, double? _ctfUsageMax, double? _ctfUsageMin)
     {
-      double _ret = (_materialQuantity - _fGQuantity * _ctfUsageMax).GetValueOrDefault(0);
+      double _ret = (_materialQuantity - _fGQuantity * _ctfUsageMax / 1000).GetValueOrDefault(0);
       if (_ret > 0)
         return _ret / _materialQuantity.Value; // Overusage
-      _ret = (_materialQuantity - _fGQuantity * _ctfUsageMin).GetValueOrDefault(0);
+      _ret = (_materialQuantity - _fGQuantity * _ctfUsageMin / 1000).GetValueOrDefault(0);
       if (_ret < 0)
         return _ret / _materialQuantity.Value; //Underusage
       return 0;
