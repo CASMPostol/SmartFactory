@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class IPR
   {
-    internal static void CreateIPRAccount(EntitiesDataContext _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType, out string _comments)
+    internal static void CreateIPRAccount(EntitiesDataContext _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType, DateTime _customsDebtDate, out string _comments)
     {
       string _at = "started";
       _comments = "IPR account creation error";
@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.IPR.Entities
           ClosingDate = new Nullable<DateTime>(),
           ConsentNo = _cnsnt,
           Currency = _document.Currency,
-          CustomsDebtDate = _document.CustomsDebtDate,
+          CustomsDebtDate = _customsDebtDate,
           DocumentNo = _nc.DocumentNo,
           Duty = _iprdata.Duty,
           DutyName = _iprdata.DutyName,
@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.IPR.Entities
           InvoiceNo = _iprdata.InvoiceNo,
           NetMass = _iprdata.NetMass,
           No = 1,
-          OGLValidTo = _document.CustomsDebtDate.Value + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0, 0),
+          OGLValidTo = _customsDebtDate + new TimeSpan(Convert.ToInt32(_cnsnt.ConsentPeriod.Value) * 30, 0, 0, 0),
           PCNTariffCode = _pcn,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
@@ -111,13 +111,13 @@ namespace CAS.SmartFactory.IPR.Entities
         DutyPerSettledAmount = new Nullable<double>(),
         InvoiceNo = "N/A",
         IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
-        IPRLookup = this, 
+        IPRLookup = this,
         CompensationGood = default(Entities.PCNCode),
         VATPerSettledAmount = null,
         JSOXCustomsSummaryListLookup = null,
         No = _position,
         RemainingQuantity = 0,
-        SADDate = new Nullable<DateTime>(), 
+        SADDate = new Nullable<DateTime>(),
         SADDocumentNo = "N/A",
         SettledQuantity = _item.Value,
         TobaccoValue = _item.Value * this.Value / this.NetMass

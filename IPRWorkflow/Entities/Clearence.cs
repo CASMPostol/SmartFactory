@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.IPR.Entities
                 _edc.Clearence.InsertOnSubmit(_ret);
                 if (_messageType == CustomsDocument.DocumentType.PZC)
                 {
-                  IPR.CreateIPRAccount(_edc, _sad, _ret, CustomsDocument.DocumentType.PZC, out _comments);
+                  IPR.CreateIPRAccount(_edc, _sad, _ret, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments);
                 }
                 else
                   _comments = "Document added";
@@ -78,7 +78,7 @@ namespace CAS.SmartFactory.IPR.Entities
                 _startingDocument.ReleaseForFreeCirculation(_edc, out _comments);
                 break;
               case CustomsProcedureCodes.InwardProcessing:
-                IPR.CreateIPRAccount(_edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD, out _comments);
+                IPR.CreateIPRAccount(_edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD, _sad.CustomsDebtDate.Value, out _comments);
                 break;
               case CustomsProcedureCodes.ReExport:
               case CustomsProcedureCodes.NoProcedure:
