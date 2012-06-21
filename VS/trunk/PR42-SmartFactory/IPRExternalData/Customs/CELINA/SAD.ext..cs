@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.xml.Customs.SAD
     /// <returns></returns>
     public override DateTime? GetCustomsDebtDate()
     {
-      return null;
+      return new Nullable<DateTime>();
     }
     /// <summary>
     /// Gets the document number.
