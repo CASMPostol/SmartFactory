@@ -119,8 +119,7 @@ namespace CAS.SmartFactory.IPR.Entities
       this.SHMenthol = _cd[IPR.DisposalEnum.SHMenthol];
       this.Waste = _cd[IPR.DisposalEnum.Waste];
       this.Tobacco = _cd[IPR.DisposalEnum.Tobacco];
-      fg.ProcessDisposals
-        (edc, this, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0));
+      fg.ProcessDisposals(edc, this, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0));
     }
     /// <summary>
     /// Gets the overuse as the ratio of overused tobacco divided by totaly usage of tobacco.
