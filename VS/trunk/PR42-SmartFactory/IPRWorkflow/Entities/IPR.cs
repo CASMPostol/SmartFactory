@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.IPR.Entities
           Batch = _iprdata.Batch,
           Cartons = _iprdata.Cartons,
           ClearenceListLookup = _nc,
-          ClosingDate = new Nullable<DateTime>(),
+          //ClosingDate = new Nullable<DateTime>(),
           ConsentNo = _cnsnt,
           Currency = _document.Currency,
           CustomsDebtDate = _customsDebtDate,
