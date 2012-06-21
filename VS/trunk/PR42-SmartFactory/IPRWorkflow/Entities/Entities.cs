@@ -2094,8 +2094,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private string _customsProcedure;
 		
-		private string _pCNTariffCode;
-		
 		private System.Nullable<ClearingType> _clearingType;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _compensationGood;
@@ -2366,23 +2364,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 					this.OnPropertyChanging("CustomsProcedure", this._customsProcedure);
 					this._customsProcedure = value;
 					this.OnPropertyChanged("CustomsProcedure");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Kod taryfy PCN
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PCNTariffCode", Storage="_pCNTariffCode", FieldType="Text")]
-		public string PCNTariffCode {
-			get {
-				return this._pCNTariffCode;
-			}
-			set {
-				if ((value != this._pCNTariffCode)) {
-					this.OnPropertyChanging("PCNTariffCode", this._pCNTariffCode);
-					this._pCNTariffCode = value;
-					this.OnPropertyChanged("PCNTariffCode");
 				}
 			}
 		}

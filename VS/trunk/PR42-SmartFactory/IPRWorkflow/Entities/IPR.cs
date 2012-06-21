@@ -114,7 +114,6 @@ namespace CAS.SmartFactory.IPR.Entities
         IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
         IPRLookup = this, 
         CompensationGood = default(Entities.PCNCode),
-        PCNTariffCode = "n/a", //  [pr4-3428] Disposal CompensationGood - wrong type http://itrserver/Bugs/BugDetail.aspx?bid=3428
         VATPerSettledAmount = null,
         JSOXCustomsSummaryListLookup = null,
         No = _position,

@@ -52,33 +52,16 @@ namespace CAS.SmartFactory.IPR.Entities
         {
           if (_midx.ProductType.Value != Entities.ProductType.IPRTobacco)
             continue;
-          double _requested = 0;
           DisposalsAnalisis _dspsls = new DisposalsAnalisis(_midx.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient);
-          int idx = 0;
           foreach (var _item in _dspsls)
           {
-            switch (_item.Key)
-            {
-              case IPR.DisposalEnum.Dust:
-                IPR _account = IPR.FindIPRAccount(_edc, _parent.Batch0, _item.Value);
-                _account.AddDisposal(_edc, _item, _parent);
-                break;
-              case IPR.DisposalEnum.SHMenthol:
-                break;
-              case IPR.DisposalEnum.Waste:
-                break;
-              case IPR.DisposalEnum.OverusageInKg:
-                break;
-              case IPR.DisposalEnum.Tobacco:
-                break;
-              default:
-                break;
-            }
+            IPR _account = IPR.FindIPRAccount(_edc, _parent.Batch0, _item.Value);
+            _account.AddDisposal(_edc, _item, _parent);
           }
+          _edc.SubmitChanges();
         }
         //TODO to be implemented: http://itrserver/Bugs/BugDetail.aspx?bid=2869
       }
-
       internal IEnumerable<Material> GeContentEnumerator()
       {
         return this.Values;
