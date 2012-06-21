@@ -60,7 +60,6 @@ namespace CAS.SmartFactory.IPR.Entities
           }
           _edc.SubmitChanges();
         }
-        //TODO to be implemented: http://itrserver/Bugs/BugDetail.aspx?bid=2869
       }
       internal IEnumerable<Material> GeContentEnumerator()
       {
