@@ -55,8 +55,15 @@ namespace CAS.SmartFactory.IPR.Entities
           DisposalsAnalisis _dspsls = new DisposalsAnalisis(_midx.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient);
           foreach (var _item in _dspsls)
           {
-            IPR _account = IPR.FindIPRAccount(_edc, _midx.Batch, _item.Value);
-            _account.AddDisposal(_edc, _item, _parent);
+            try
+            {
+              IPR _account = IPR.FindIPRAccount(_edc, _midx.Batch, _item.Value);
+              _account.AddDisposal(_edc, _item, _parent);
+            }
+            catch (IPRDataConsistencyException _ex) 
+            {
+              _ex.Add2Log(_edc);
+            }
           }
           _edc.SubmitChanges();
         }
