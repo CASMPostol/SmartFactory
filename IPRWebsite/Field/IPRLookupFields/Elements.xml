@@ -87,11 +87,11 @@
     Overwrite="TRUE"
   />
   <Field
-    Name="IPR2PCNTariffCodeTitle"
-    ID="{3283979A-65A9-4979-B915-9D25113784D3}"
+    Name="IPR2PCNPCN"
+    ID="{FDFA2B02-4073-4A29-B694-4CF4001A5357}"
     Type="Lookup"
     List="Lists/PCNCodeList"
-    ShowField="Title"
+    ShowField="ProductCodeNumber"
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
