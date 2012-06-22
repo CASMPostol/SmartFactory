@@ -48,6 +48,7 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         if (Product == null)
           throw new IPRDataConsistencyException("Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized.");
+        InsertAllOnSubmit(_edc, _parent);
         foreach (Material _midx in this.Values)
         {
           if (_midx.ProductType.Value != Entities.ProductType.IPRTobacco)
