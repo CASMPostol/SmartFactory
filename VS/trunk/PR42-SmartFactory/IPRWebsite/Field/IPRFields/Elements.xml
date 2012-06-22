@@ -633,23 +633,14 @@
     Description="VAT per settled amount"
     />
   <Field
-    ResultType="Number"
-    LCID="1045"
-    Format="DateTime"
     Description="Duty and VAT"
     DisplayName="Duty and VAT"
-    Type="Calculated"
+    Decimals="2"
+    Type="Number"
     ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}"
     Name="DutyAndVAT"
     Group="CAS Smart Factory IPR"
-    ReadOnly="TRUE">
-    <Formula>=DutyPerSettledAmount+VATPerSettledAmount</Formula>
-    <FormulaDisplayNames>=DutyPerSettledAmount+VATPerSettledAmount</FormulaDisplayNames>
-    <FieldRefs>
-      <FieldRef Name="DutyPerSettledAmount" />
-      <FieldRef Name="VATPerSettledAmount" />
-    </FieldRefs>
-  </Field>
+    />
   <Field
     DisplayName="Tobacco Value"
     Name="TobaccoValue"
