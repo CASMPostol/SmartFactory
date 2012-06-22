@@ -3462,7 +3462,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPR2PCNTariffCodeTitle", Storage="_pCNTariffCode", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPR2PCNPCN", Storage="_pCNTariffCode", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
 		public PCNCode PCNTariffCode {
 			get {
 				return this._pCNTariffCode.GetEntity();
@@ -4141,7 +4141,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPR2PCNTariffCodeTitle", Storage="_iPR", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="IPR")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPR2PCNPCN", Storage="_iPR", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="IPR")]
 		public Microsoft.SharePoint.Linq.EntitySet<IPR> IPR {
 			get {
 				return this._iPR;
