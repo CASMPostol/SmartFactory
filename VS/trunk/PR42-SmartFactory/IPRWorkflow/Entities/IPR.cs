@@ -78,50 +78,64 @@ namespace CAS.SmartFactory.IPR.Entities
     internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
     internal void AddDisposal(EntitiesDataContext _edc, KeyValuePair<DisposalEnum, double> _item, Batch _batch)
     {
-      Entities.DisposalStatus _typeOfDisposal = default(Entities.DisposalStatus);
-      switch (_item.Key)
+      try
       {
-        case DisposalEnum.Dust:
-          _typeOfDisposal = Entities.DisposalStatus.Dust;
-          break;
-        case DisposalEnum.SHMenthol:
-          _typeOfDisposal = Entities.DisposalStatus.SHMenthol;
-          break;
-        case DisposalEnum.Waste:
-          _typeOfDisposal = Entities.DisposalStatus.Waste;
-          break;
-        case DisposalEnum.OverusageInKg:
-          _typeOfDisposal = Entities.DisposalStatus.TobaccoInCigaretesDestinationEU;
-          break;
-        case DisposalEnum.Tobacco:
-          _typeOfDisposal = Entities.DisposalStatus.TobaccoInCigaretesExported;
-          break;
+        Entities.DisposalStatus _typeOfDisposal = default(Entities.DisposalStatus);
+        switch (_item.Key)
+        {
+          case DisposalEnum.Dust:
+            _typeOfDisposal = Entities.DisposalStatus.Dust;
+            break;
+          case DisposalEnum.SHMenthol:
+            _typeOfDisposal = Entities.DisposalStatus.SHMenthol;
+            break;
+          case DisposalEnum.Waste:
+            _typeOfDisposal = Entities.DisposalStatus.Waste;
+            break;
+          case DisposalEnum.OverusageInKg:
+            _typeOfDisposal = Entities.DisposalStatus.TobaccoInCigaretesDestinationEU;
+            break;
+          case DisposalEnum.Tobacco:
+            _typeOfDisposal = Entities.DisposalStatus.TobaccoInCigaretesExported;
+            break;
+        }
+        int _position = 0; //TODO this.DisposalDisposal.Count(); [pr4-3437] No reverse lookup from IPR to Disposal http://itrserver/Bugs/BugDetail.aspx?bid=3437
+        DisposalDisposal _newDisposal = new DisposalDisposal()
+        {
+          BatchLookup = _batch,
+          ClearenceListLookup = null,
+          ClearingType = Entities.ClearingType.PartialWindingUp,
+          CustomsStatus = Entities.CustomsStatus.NotStarted,
+          CustomsProcedure = "N/A",
+          DisposalStatus = _typeOfDisposal,
+          DutyAndVAT = new Nullable<double>(),
+          DutyPerSettledAmount = new Nullable<double>(),
+          InvoiceNo = "N/A",
+          IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
+          IPRID = this,
+          CompensationGood = default(Entities.PCNCode),
+          VATPerSettledAmount = null,
+          JSOXCustomsSummaryListLookup = null,
+          No = _position,
+          RemainingQuantity = 0,
+          SADDate = new Nullable<DateTime>(),
+          SADDocumentNo = "N/A",
+          SettledQuantity = _item.Value,
+          TobaccoValue = _item.Value * this.Value / this.NetMass
+        };
+        _edc.Disposal.InsertOnSubmit(_newDisposal);
       }
-      int _position = 0; //TODO this.DisposalDisposal.Count(); [pr4-3437] No reverse lookup from IPR to Disposal http://itrserver/Bugs/BugDetail.aspx?bid=3437
-      DisposalDisposal _newDisposal = new DisposalDisposal()
+      catch (Exception _ex)
       {
-        BatchLookup = _batch,
-        ClearenceListLookup = null,
-        ClearingType = Entities.ClearingType.PartialWindingUp,
-        CustomsStatus = Entities.CustomsStatus.NotStarted,
-        CustomsProcedure = "N/A",
-        DisposalStatus = _typeOfDisposal,
-        DutyAndVAT = new Nullable<double>(),
-        DutyPerSettledAmount = new Nullable<double>(),
-        InvoiceNo = "N/A",
-        IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
-        IPRID = this,
-        CompensationGood = default(Entities.PCNCode),
-        VATPerSettledAmount = null,
-        JSOXCustomsSummaryListLookup = null,
-        No = _position,
-        RemainingQuantity = 0,
-        SADDate = new Nullable<DateTime>(),
-        SADDocumentNo = "N/A",
-        SettledQuantity = _item.Value,
-        TobaccoValue = _item.Value * this.Value / this.NetMass
-      };
-      _edc.Disposal.InsertOnSubmit(_newDisposal);
+        string _msg = String.Format
+          (
+            "Disposal for batch= {0} of type={1} at account=={2} creation failed because of error: " + _ex.Message,
+            _batch.Tytuł,
+            _item.Key,
+            this.Tytuł
+          );
+        throw new IPRDataConsistencyException("IPR.AddDisposal", _ex.Message, _ex, "Disposal creation failed");
+      }
     }
     internal static IPR FindIPRAccount(EntitiesDataContext _edc, string _batch, double _requested)
     {
