@@ -145,7 +145,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       catch (Exception ex)
       {
-        string _mssg = "Cannot find nay IPR  to dispose the tobacco: {0} kg, batch:{1}";
+        string _mssg = "Cannot find any IPR account to dispose the tobacco: {0} kg, batch:{1}";
         throw new IPRDataConsistencyException("Material.FindIPRAccount", String.Format(_mssg, _requested, _batch), ex, "IPR unrecognized account");
       }
     }

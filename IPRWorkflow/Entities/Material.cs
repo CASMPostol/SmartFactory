@@ -49,16 +49,18 @@ namespace CAS.SmartFactory.IPR.Entities
         if (Product == null)
           throw new IPRDataConsistencyException("Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized.");
         InsertAllOnSubmit(_edc, _parent);
-        foreach (Material _midx in this.Values)
+        foreach (Material _materialInBatch in this.Values)
         {
-          if (_midx.ProductType.Value != Entities.ProductType.IPRTobacco)
+          if (_materialInBatch.ProductType.Value != Entities.ProductType.IPRTobacco)
             continue;
-          DisposalsAnalisis _dspsls = new DisposalsAnalisis(_midx.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient);
+          DisposalsAnalisis _dspsls = new DisposalsAnalisis(_materialInBatch.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient);
           foreach (var _item in _dspsls)
           {
             try
             {
-              IPR _account = IPR.FindIPRAccount(_edc, _midx.Batch, _item.Value);
+              if (_item.Key == IPR.DisposalEnum.SHMenthol && _item.Value <= 0)
+                continue;
+              IPR _account = IPR.FindIPRAccount(_edc, _materialInBatch.Batch, _item.Value);
               _account.AddDisposal(_edc, _item, _parent);
             }
             catch (IPRDataConsistencyException _ex) 
