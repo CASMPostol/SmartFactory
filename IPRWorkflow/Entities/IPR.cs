@@ -272,14 +272,22 @@ namespace CAS.SmartFactory.IPR.Entities
                           select new { Number = _dx.Number }
                        ).First().Number;
           _at = "Consent";
-          this.Consent = (
-                          from _dx in FirstSADGood.SADRequiredDocuments
-                          let CustomsProcedureCode = _dx.Code.ToUpper()
-                          where CustomsProcedureCode.Contains("1PG1") || CustomsProcedureCode.Contains("C601")
-                          select new { Number = _dx.Number }
-                       ).First().Number;
-          AnalizeGoodsDescription(FirstSADGood.GoodsDescription);
+          try
+          {
+            this.Consent = (
+                    from _dx in FirstSADGood.SADRequiredDocuments
+                    let CustomsProcedureCode = _dx.Code.ToUpper()
+                    where CustomsProcedureCode.Contains("1PG1") || CustomsProcedureCode.Contains("C601")
+                    select new { Number = _dx.Number }
+                 ).First().Number.ToUpper();
 
+          }
+          catch (Exception _ex)
+          {
+            string _src = String.Format("IPR.IPRData creator", _at);
+            throw new IPRDataConsistencyException(_src, "There is not attached any consent document with code = 1PG1/C601", _ex, _src);
+          } 
+          AnalizeGoodsDescription(FirstSADGood.GoodsDescription);
         }
         catch (IPRDataConsistencyException es)
         {
@@ -287,7 +295,7 @@ namespace CAS.SmartFactory.IPR.Entities
         }
         catch (Exception _ex)
         {
-          string _src = String.Format("IPRData creator error at {0}", _at);
+          string _src = String.Format("IPR.IPRData creator error at {0}", _at);
           throw new IPRDataConsistencyException(_src, _ex.Message, _ex, _src);
         }
       }
