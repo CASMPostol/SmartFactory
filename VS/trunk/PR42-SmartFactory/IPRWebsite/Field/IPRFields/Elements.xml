@@ -552,7 +552,7 @@
     />
   <Field
     DisplayName="SAD Document No."
-    Name="SADDOcumentNo"
+    Name="SADDocumentNo"
     Type="Text"
     ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}"
     Group="CAS Smart Factory IPR"
