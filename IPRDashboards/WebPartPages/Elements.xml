@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="WebPartPages">
-    <File Path="WebPartPages\WebPageTemplate_Export.aspx" Url="WebPartPages/WebPageTemplate_Export.aspx" />
-  </Module>
+  <File Path="WebPartPages\WebPageTemplate_IPRBook.aspx" Url="WebPartPages/WebPageTemplate_IPRBook.aspx" />
+  <File Path="WebPartPages\WebPageTemplate_Export.aspx" Url="WebPartPages/WebPageTemplate_Export.aspx" />
+</Module>
 </Elements>
