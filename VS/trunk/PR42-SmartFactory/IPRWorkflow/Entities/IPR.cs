@@ -94,7 +94,7 @@ namespace CAS.SmartFactory.IPR.Entities
             _typeOfDisposal = Entities.DisposalStatus.Waste;
             break;
           case DisposalEnum.OverusageInKg:
-            _typeOfDisposal = Entities.DisposalStatus.TobaccoInCigaretesDestinationEU;
+            _typeOfDisposal = Entities.DisposalStatus.Overuse;
             break;
           case DisposalEnum.Tobacco:
             _typeOfDisposal = Entities.DisposalStatus.TobaccoInCigaretesExported;

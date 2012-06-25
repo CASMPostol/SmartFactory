@@ -58,7 +58,7 @@ namespace CAS.SmartFactory.IPR.Entities
           {
             try
             {
-              if (_item.Key == IPR.DisposalEnum.SHMenthol && _item.Value <= 0)
+              if (_item.Value <= 0 && (_item.Key == IPR.DisposalEnum.SHMenthol || _item.Key == IPR.DisposalEnum.OverusageInKg ))
                 continue;
               IPR _account = IPR.FindIPRAccount(_edc, _materialInBatch.Batch, _item.Value);
               _account.AddDisposal(_edc, _item, _parent);
