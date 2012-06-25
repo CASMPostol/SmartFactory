@@ -67,6 +67,9 @@
     <None Include="Dashboards\ExportDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d926c02c-50db-49dd-b790-563ff8388cad}</SharePointProjectItemId>
     </None>
+    <None Include="Dashboards\IPRBookDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e7488a06-3c0f-4341-8b90-bd4be0001672}</SharePointProjectItemId>
+    </None>
     <None Include="DefaultPage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{381b2056-7a88-4fde-890c-c99f8a5b037e}</SharePointProjectItemId>
     </None>
@@ -99,6 +102,7 @@
     <Content Include="Dashboards\ExportDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Dashboards\IPRBookDashboard\Elements.xml" />
     <Content Include="DefaultPage\Elements.xml" />
     <Content Include="DefaultPage\DefaultTemplate.aspx" />
     <Content Include="Features\IPRDashboards\IPRDashboards.Template.xml">
@@ -111,6 +115,7 @@
     <Content Include="Layouts\IPRDashboards\CAS_IPRLayouts.css" />
     <Content Include="WebPartPages\Elements.xml" />
     <Content Include="WebPartPages\WebPageTemplate_Export.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_IPRBook.aspx" />
     <Content Include="Webparts\ExportWebPart\Elements.xml" />
     <Content Include="Webparts\ExportWebPart\ExportWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
