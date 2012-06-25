@@ -63,6 +63,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       catch (IPRDataConsistencyException _ex)
       {
+        _ex.Message.Insert(0, String.Format("Message={0}, Reference={1}; ", _messageType, _document.ReferenceNumber));
         throw _ex;
       }
       catch (Exception _ex)
