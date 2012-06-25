@@ -117,9 +117,9 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// Disposal List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Disposal")]
-		public Microsoft.SharePoint.Linq.EntityList<DisposalDisposal> Disposal {
+		public Microsoft.SharePoint.Linq.EntityList<Disposal> Disposal {
 			get {
-				return this.GetList<DisposalDisposal>("Disposal");
+				return this.GetList<Disposal>("Disposal");
 			}
 		}
 		
@@ -2063,7 +2063,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// Utwórz nowy element listy.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Disposal", Id="0x01000FAE27B30BF7FC46886DA88A4D425DEF")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DisposalDisposal))]
 	public partial class Disposal : Element {
 		
 		private System.Nullable<double> _no;
@@ -2269,8 +2268,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// <summary>
 		/// Duty and VAT
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyAndVAT", Storage="_dutyAndVAT", ReadOnly=true, IsCalculated=true, FieldType="Number")]
-		public virtual System.Nullable<double> DutyAndVAT {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyAndVAT", Storage="_dutyAndVAT", FieldType="Number")]
+		public System.Nullable<double> DutyAndVAT {
 			get {
 				return this._dutyAndVAT;
 			}
@@ -6266,37 +6265,6 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		private void OnBalanceLibraryLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
-		}
-	}
-	
-	/// <summary>
-	/// IPR: Disposals List
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Disposal", Id="0x01000FAE27B30BF7FC46886DA88A4D425DEF", List="Disposal")]
-	public partial class DisposalDisposal : Disposal {
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public DisposalDisposal() {
-			this.OnCreated();
-		}
-		
-		/// <summary>
-		/// Duty and VAT
-		/// </summary>
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override System.Nullable<double> DutyAndVAT {
-			get {
-				throw new System.InvalidOperationException("Pole DutyAndVAT zostało usunięte z typu zawartości Disposal.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole DutyAndVAT zostało usunięte z typu zawartości Disposal.");
-			}
 		}
 	}
 	
