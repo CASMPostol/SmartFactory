@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CAS.SmartFactory.xml.Customs;
-using System.Collections.Generic;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
@@ -77,7 +77,7 @@ namespace CAS.SmartFactory.IPR.Entities
     /// Contains calculated data required to create IPR account
     /// </summary>
     internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
-    internal void AddDisposal(EntitiesDataContext _edc, KeyValuePair<DisposalEnum, double> _item, Batch _batch)
+    internal void AddDisposal(EntitiesDataContext _edc, ref KeyValuePair<DisposalEnum, double> _item, Batch _batch)
     {
       try
       {
@@ -101,6 +101,9 @@ namespace CAS.SmartFactory.IPR.Entities
             break;
         }
         int _position = 0; //TODO this.DisposalDisposal.Count(); [pr4-3437] No reverse lookup from IPR to Disposal http://itrserver/Bugs/BugDetail.aspx?bid=3437
+        double _toDispose = Math.Min(_item.Value, this.AccountBalance.Value);
+        this.AccountBalance -= _toDispose;
+        _item = new KeyValuePair<DisposalEnum, double>(_item.Key, _item.Value - _toDispose);
         Disposal _newDisposal = new Disposal()
         {
           BatchLookup = _batch,
@@ -118,11 +121,11 @@ namespace CAS.SmartFactory.IPR.Entities
           VATPerSettledAmount = null,
           JSOXCustomsSummaryListLookup = null,
           No = _position,
-          RemainingQuantity = 0,
+          RemainingQuantity = this.AccountBalance,
           SADDate = new Nullable<DateTime>(),
           SADDocumentNo = "N/A",
-          SettledQuantity = _item.Value,
-          TobaccoValue = _item.Value * this.Value / this.NetMass
+          SettledQuantity = _toDispose,
+          TobaccoValue = _item.Value * _toDispose * this.Value / this.NetMass
         };
         _edc.Disposal.InsertOnSubmit(_newDisposal);
       }
@@ -138,16 +141,16 @@ namespace CAS.SmartFactory.IPR.Entities
         throw new IPRDataConsistencyException("IPR.AddDisposal", _ex.Message, _ex, "Disposal creation failed");
       }
     }
-    internal static IPR FindIPRAccount(EntitiesDataContext _edc, string _batch, double _requested)
+    internal static IPR FindIPRAccount(EntitiesDataContext _edc, string _batch)
     {
       try
       {
-        return (from IPR _iprx in _edc.IPR where (!_iprx.AccountClosed.Value && _iprx.Batch.Contains(_batch) && _iprx.AccountBalance >= _requested) orderby _iprx.Identyfikator descending select _iprx).First<IPR>();
+        return (from IPR _iprx in _edc.IPR where (!_iprx.AccountClosed.Value && _iprx.Batch.Contains(_batch)) orderby _iprx.Identyfikator descending select _iprx).First<IPR>();
       }
       catch (Exception ex)
       {
-        string _mssg = "Cannot find any IPR account to dispose the tobacco: {0} kg, batch:{1}";
-        throw new IPRDataConsistencyException("Material.FindIPRAccount", String.Format(_mssg, _requested, _batch), ex, "IPR unrecognized account");
+        string _mssg = "Cannot find any IPR account to dispose the tobacco: batch:{0}";
+        throw new IPRDataConsistencyException("Material.FindIPRAccount", String.Format(_mssg, _batch), ex, "IPR unrecognized account");
       }
     }
     private class IPRData
@@ -286,7 +289,7 @@ namespace CAS.SmartFactory.IPR.Entities
           {
             string _src = String.Format("IPR.IPRData creator", _at);
             throw new IPRDataConsistencyException(_src, "There is not attached any consent document with code = 1PG1/C601", _ex, _src);
-          } 
+          }
           AnalizeGoodsDescription(FirstSADGood.GoodsDescription);
         }
         catch (IPRDataConsistencyException es)
