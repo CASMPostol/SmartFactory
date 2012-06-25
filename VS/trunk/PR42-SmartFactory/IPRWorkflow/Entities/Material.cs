@@ -54,16 +54,21 @@ namespace CAS.SmartFactory.IPR.Entities
           if (_materialInBatch.ProductType.Value != Entities.ProductType.IPRTobacco)
             continue;
           DisposalsAnalisis _dspsls = new DisposalsAnalisis(_materialInBatch.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient);
-          foreach (var _item in _dspsls)
+          foreach (KeyValuePair<IPR.DisposalEnum, double> _item in _dspsls)
           {
             try
             {
-              if (_item.Value <= 0 && (_item.Key == IPR.DisposalEnum.SHMenthol || _item.Key == IPR.DisposalEnum.OverusageInKg ))
+              if (_item.Value <= 0 && (_item.Key == IPR.DisposalEnum.SHMenthol || _item.Key == IPR.DisposalEnum.OverusageInKg))
                 continue;
-              IPR _account = IPR.FindIPRAccount(_edc, _materialInBatch.Batch, _item.Value);
-              _account.AddDisposal(_edc, _item, _parent);
+              KeyValuePair<IPR.DisposalEnum, double> _cv = _item;
+              do
+              {
+                IPR _account = IPR.FindIPRAccount(_edc, _materialInBatch.Batch);
+                _account.AddDisposal(_edc, ref _cv, _parent);
+              }
+              while (_cv.Value != 0);
             }
-            catch (IPRDataConsistencyException _ex) 
+            catch (IPRDataConsistencyException _ex)
             {
               _ex.Add2Log(_edc);
             }
