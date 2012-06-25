@@ -2155,7 +2155,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		/// <summary>
 		/// SAD Document No.
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SADDOcumentNo", Storage="_sADDocumentNo", FieldType="Text")]
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SADDocumentNo", Storage="_sADDocumentNo", FieldType="Text")]
 		public string SADDocumentNo {
 			get {
 				return this._sADDocumentNo;
