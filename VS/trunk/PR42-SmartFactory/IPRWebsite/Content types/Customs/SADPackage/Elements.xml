@@ -5,8 +5,7 @@
                Group="CAS Smart Factory IPR Customs"
                Description="SADPackage"
                Inherits="TRUE"
-               Overwrite="TRUE"
-               Version="100000">
+               Overwrite="TRUE">
     <Folder TargetName="_cts/SADPackage" />
     <FieldRefs>
       <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />

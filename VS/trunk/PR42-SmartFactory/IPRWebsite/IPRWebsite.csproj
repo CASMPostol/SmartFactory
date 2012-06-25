@@ -464,7 +464,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Dictionaries\CustomsUnion\Elements.xml" />
-    <Content Include="Content types\Dictionaries\CutfillerCoefficient\Elements.xml" />
+    <Content Include="Content types\Dictionaries\CutfillerCoefficient\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\Dust\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -535,7 +537,9 @@
     <Content Include="Field\IPRLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Field\ReportsFields\Elements.xml" />
+    <Content Include="Field\ReportsFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Field\ReportsLookupFields\Elements.xml" />
     <Content Include="Lists\ActivityLog\Elements.xml" />
     <Content Include="Lists\BatchLibrary\Elements.xml" />

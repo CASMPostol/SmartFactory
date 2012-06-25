@@ -5,8 +5,7 @@
                Group="CAS Smart Factory IPR Customs"
                Description="SADDuties"
                Inherits="TRUE"
-               Overwrite="TRUE"
-               Version="100000">
+               Overwrite="TRUE">
     <Folder TargetName="_cts/SADDuties" />
     <FieldRefs>
       <FieldRef ID="{6EA6E99D-21C1-4527-8D92-C3DF4060485A}" Name="DutyType" />

@@ -31,7 +31,7 @@
           <FieldRef Name="LinkTitleNoMenu"></FieldRef>
           <FieldRef ID="{6EA6E99D-21C1-4527-8D92-C3DF4060485A}" Name="DutyType" />
           <FieldRef ID="{1A8DEAD6-163D-45BB-B278-E946F49C071B}" Name="Amount" />
-          <FieldRef ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" Name="SADDocumentIndex" />
+          <FieldRef ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" Name="SADDuties2SADGoodID" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -54,7 +54,7 @@
           <FieldRef Name="LinkTitle"/>
           <FieldRef ID="{6EA6E99D-21C1-4527-8D92-C3DF4060485A}" Name="DutyType" />
           <FieldRef ID="{1A8DEAD6-163D-45BB-B278-E946F49C071B}" Name="Amount" />
-          <FieldRef ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" />
+          <FieldRef ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADDuties2SADGoodID" />
         </ViewFields>
         <Query>
           <OrderBy>
