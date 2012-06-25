@@ -101,7 +101,7 @@ namespace CAS.SmartFactory.IPR.Entities
             break;
         }
         int _position = 0; //TODO this.DisposalDisposal.Count(); [pr4-3437] No reverse lookup from IPR to Disposal http://itrserver/Bugs/BugDetail.aspx?bid=3437
-        DisposalDisposal _newDisposal = new DisposalDisposal()
+        Disposal _newDisposal = new Disposal()
         {
           BatchLookup = _batch,
           ClearenceListLookup = null,
