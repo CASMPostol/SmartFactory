@@ -2,7 +2,7 @@
 <List xmlns:ows="Microsoft SharePoint" Title="SADPackageTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-SADPackageTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01007F42F9669FE35A41801B017E1D69C7D9" Name="SADPackage" Group="CAS Smart Factory IPR Customs" Description="SADPackage" Inherits="TRUE" Overwrite="TRUE" Version="100000">
+      <ContentType ID="0x01007F42F9669FE35A41801B017E1D69C7D9" Name="SADPackage" Group="CAS Smart Factory IPR Customs" Description="SADPackage" Inherits="TRUE" Overwrite="TRUE">
         <Folder TargetName="_cts/SADPackage" />
         <FieldRefs>
           <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />
@@ -52,7 +52,7 @@
           <FieldRef Name="LinkTitle"/>
           <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />
           <FieldRef ID="{218a57ca-6aad-4c08-8b14-7bb92323cb68}" Name="Package" />
-          <FieldRef ID="{BBFF74F2-1503-450C-9014-DDC91D868C3F}" Name="SADGoodIndex" />
+          <FieldRef ID="{A9DDA134-42DC-4407-8515-624362E986CC}" Name="SADPackage2SADGoodID" />
         </ViewFields>
         <Query>
           <OrderBy>
