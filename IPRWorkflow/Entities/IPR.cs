@@ -7,6 +7,7 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class IPR
   {
+    internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
     internal static void CreateIPRAccount(EntitiesDataContext _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType, DateTime _customsDebtDate, out string _comments)
     {
       string _at = "started";
@@ -73,10 +74,21 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       _comments = "IPR account created";
     }
+    internal static IPR FindIPRAccount(EntitiesDataContext _edc, string _batch)
+    {
+      try
+      {
+        return (from IPR _iprx in _edc.IPR where (!_iprx.AccountClosed.Value && _iprx.Batch.Contains(_batch)) orderby _iprx.Identyfikator descending select _iprx).First<IPR>();
+      }
+      catch (Exception ex)
+      {
+        string _mssg = "Cannot find any IPR account to dispose the tobacco: batch:{0}";
+        throw new IPRDataConsistencyException("Material.FindIPRAccount", String.Format(_mssg, _batch), ex, "IPR unrecognized account");
+      }
+    }
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>
-    internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
     internal void AddDisposal(EntitiesDataContext _edc, ref KeyValuePair<DisposalEnum, double> _item, Batch _batch)
     {
       try
@@ -139,18 +151,6 @@ namespace CAS.SmartFactory.IPR.Entities
             this.Tytuł
           );
         throw new IPRDataConsistencyException("IPR.AddDisposal", _ex.Message, _ex, "Disposal creation failed");
-      }
-    }
-    internal static IPR FindIPRAccount(EntitiesDataContext _edc, string _batch)
-    {
-      try
-      {
-        return (from IPR _iprx in _edc.IPR where (!_iprx.AccountClosed.Value && _iprx.Batch.Contains(_batch)) orderby _iprx.Identyfikator descending select _iprx).First<IPR>();
-      }
-      catch (Exception ex)
-      {
-        string _mssg = "Cannot find any IPR account to dispose the tobacco: batch:{0}";
-        throw new IPRDataConsistencyException("Material.FindIPRAccount", String.Format(_mssg, _batch), ex, "IPR unrecognized account");
       }
     }
     private class IPRData
