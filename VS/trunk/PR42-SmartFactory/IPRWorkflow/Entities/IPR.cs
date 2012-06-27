@@ -74,27 +74,32 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       _comments = "IPR account created";
     }
-    internal static IPR FindIPRAccount(EntitiesDataContext _edc, string _batch)
+    internal static List<IPR> FindIPRAccounts(EntitiesDataContext _edc, string _batch)
     {
       try
       {
-        return (from IPR _iprx in _edc.IPR where (!_iprx.AccountClosed.Value && _iprx.Batch.Contains(_batch)) orderby _iprx.Identyfikator descending select _iprx).First<IPR>();
+        List<IPR> _ret = (from IPR _iprx in _edc.IPR where _iprx.Batch.Contains(_batch) && !_iprx.AccountClosed.Value && _iprx.AccountBalance.Value > 0 orderby _iprx.Identyfikator ascending select _iprx).ToList();
+        if (_ret.Count == 0)
+          _ret.Add((from IPR _iprx in _edc.IPR where _iprx.Batch.Contains(_batch) && !_iprx.AccountClosed.Value orderby _iprx.Identyfikator descending select _iprx).First());
+        return _ret;
       }
       catch (Exception ex)
       {
         string _mssg = "Cannot find any IPR account to dispose the tobacco: batch:{0}";
-        throw new IPRDataConsistencyException("Material.FindIPRAccount", String.Format(_mssg, _batch), ex, "IPR unrecognized account");
+        throw new IPRDataConsistencyException("IPR.FindIPRAccount", String.Format(_mssg, _batch), ex, "IPR unrecognized account");
       }
     }
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>
-    internal void AddDisposal(EntitiesDataContext _edc, ref KeyValuePair<DisposalEnum, double> _item, Batch _batch)
+    internal void AddDisposal(EntitiesDataContext _edc, DisposalEnum _status, ref double _value, Batch _batch, bool _last)
     {
+      if (!_last && this.AccountBalance.Value == 0)
+        throw new IPRDataConsistencyException("IPR.AddDisposal", "There is no tobacco to dispose.", null, "Disposal creation failed");
       try
       {
         Entities.DisposalStatus _typeOfDisposal = default(Entities.DisposalStatus);
-        switch (_item.Key)
+        switch (_status)
         {
           case DisposalEnum.Dust:
             _typeOfDisposal = Entities.DisposalStatus.Dust;
@@ -112,10 +117,13 @@ namespace CAS.SmartFactory.IPR.Entities
             _typeOfDisposal = Entities.DisposalStatus.TobaccoInCigaretesExported;
             break;
         }
-        int _position = 0; //TODO this.DisposalDisposal.Count(); [pr4-3437] No reverse lookup from IPR to Disposal http://itrserver/Bugs/BugDetail.aspx?bid=3437
-        double _toDispose = Math.Min(_item.Value, this.AccountBalance.Value);
+        double _toDispose;
+        if (_last)
+          _toDispose = _value;
+        else
+          _toDispose = Math.Min(_value, this.AccountBalance.Value);
         this.AccountBalance -= _toDispose;
-        _item = new KeyValuePair<DisposalEnum, double>(_item.Key, _item.Value - _toDispose);
+        _value += _toDispose;
         Disposal _newDisposal = new Disposal()
         {
           BatchLookup = _batch,
@@ -132,12 +140,12 @@ namespace CAS.SmartFactory.IPR.Entities
           CompensationGood = default(Entities.PCNCode),
           VATPerSettledAmount = null,
           JSOXCustomsSummaryListLookup = null,
-          No = _position,
+          No = new Nullable<double>(),
           RemainingQuantity = this.AccountBalance,
           SADDate = new Nullable<DateTime>(),
           SADDocumentNo = "N/A",
           SettledQuantity = _toDispose,
-          TobaccoValue = _item.Value * _toDispose * this.Value / this.NetMass
+          TobaccoValue = _toDispose * this.Value / this.NetMass
         };
         _edc.Disposal.InsertOnSubmit(_newDisposal);
       }
@@ -147,7 +155,7 @@ namespace CAS.SmartFactory.IPR.Entities
           (
             "Disposal for batch= {0} of type={1} at account=={2} creation failed because of error: " + _ex.Message,
             _batch.Tytuł,
-            _item.Key,
+            _status,
             this.Tytuł
           );
         throw new IPRDataConsistencyException("IPR.AddDisposal", _ex.Message, _ex, "Disposal creation failed");
