@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         edc.SubmitChanges();
         BatchXml xml = BatchXml.ImportDocument(stream);
         progressChanged(null, new ProgressChangedEventArgs(1, "Finding lookup to the library"));
-        Dokument entry = Element.GetAtIndex<Dokument>(edc.BatchLibrary, listIndex);
+        BatchLib entry = Element.GetAtIndex<BatchLib>(edc.BatchLibrary, listIndex);
         progressChanged(null, new ProgressChangedEventArgs(1, "Getting Data"));
         Batch.GetXmlContent(xml, edc, entry, progressChanged);
         progressChanged(null, new ProgressChangedEventArgs(1, "Submiting Changes"));

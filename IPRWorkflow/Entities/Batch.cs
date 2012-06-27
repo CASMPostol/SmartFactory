@@ -17,7 +17,7 @@ namespace CAS.SmartFactory.IPR.Entities
     /// <param name="xml">The document.</param>
     /// <param name="edc">The edc.</param>
     /// <param name="parent">The entry.</param>
-    internal static void GetXmlContent(BatchXml xml, EntitiesDataContext edc, Dokument parent, ProgressChangedEventHandler progressChanged)
+    internal static void GetXmlContent(BatchXml xml, EntitiesDataContext edc, BatchLib parent, ProgressChangedEventHandler progressChanged)
     {
       Material.SummaryContentInfo fg = new Material.SummaryContentInfo(xml.Material, edc, progressChanged);
       Batch batch =
@@ -87,9 +87,9 @@ namespace CAS.SmartFactory.IPR.Entities
     #endregion
 
     #region private
-    private void BatchProcessing(EntitiesDataContext edc, BatchStatus _status, Material.SummaryContentInfo fg, Dokument parent)
+    private void BatchProcessing(EntitiesDataContext edc, BatchStatus _status, Material.SummaryContentInfo fg, BatchLib parent)
     {
-      this.BatchLibraryLookup = parent;
+      this.BatchLibraryLookup = parent; 
       this.BatchStatus = _status;
       Batch0 = fg.Product.Batch;
       SKU = fg.Product.SKU;

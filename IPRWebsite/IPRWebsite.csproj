@@ -204,6 +204,12 @@
     <None Include="Lists\ActivityLog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6ccae4c-19b2-4186-b214-e81b93e94daa}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\BatchLibraryTemplate\BatchLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c1c9da67-bc97-4321-baeb-bc25d33f6fce}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\BatchLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d0d88358-f451-452c-9849-d494b63e04dc}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\BatchTemplate\BatchList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{68aacb1d-a590-4172-a506-968a57dc3c6a}</SharePointProjectItemId>
     </None>
@@ -543,6 +549,13 @@
     </Content>
     <Content Include="Field\ReportsLookupFields\Elements.xml" />
     <Content Include="Lists\ActivityLog\Elements.xml" />
+    <Content Include="Lists\BatchLibraryTemplate\BatchLibrary\Elements.xml" />
+    <Content Include="Lists\BatchLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\BatchLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\BatchLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\BatchLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\BatchLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\BatchLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\BatchTemplate\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
