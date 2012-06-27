@@ -9,6 +9,6 @@ namespace CAS.SmartFactory.IPR
   {
     internal const string SADDocumentLibrary = "SAD Document Library";
     internal const string GoodsDescriptionTobaccoNamePattern = @"\b(.*)(?=\sGRADE:)";
-
+    internal const double WeightTolerance = 0.005;
   }
 }

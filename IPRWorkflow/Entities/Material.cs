@@ -60,13 +60,19 @@ namespace CAS.SmartFactory.IPR.Entities
             {
               if (_item.Value <= 0 && (_item.Key == IPR.DisposalEnum.SHMenthol || _item.Key == IPR.DisposalEnum.OverusageInKg))
                 continue;
-              KeyValuePair<IPR.DisposalEnum, double> _cv = _item;
-              do
+              List<IPR> _accounts = IPR.FindIPRAccounts(_edc, _materialInBatch.Batch);
+              if (_accounts.Count == 0)
               {
-                IPR _account = IPR.FindIPRAccount(_edc, _materialInBatch.Batch);
-                _account.AddDisposal(_edc, ref _cv, _parent);
+                string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {3}";
+                throw new IPRDataConsistencyException("Material.ProcessDisposals", String.Format(_mssg, _materialInBatch.Batch, _parent.Batch0, _item.Key), null, "IPR unrecognized account");
               }
-              while (_cv.Value != 0);
+              double _toDispose = _item.Value;
+              for (int _aidx = 0; _aidx < _accounts.Count; _aidx++)
+              {
+                _accounts[_aidx].AddDisposal(_edc, _item.Key, ref _toDispose, _parent, _aidx == _accounts.Count - 1);
+                if (_toDispose <= 0)
+                  break;
+              }
             }
             catch (IPRDataConsistencyException _ex)
             {
