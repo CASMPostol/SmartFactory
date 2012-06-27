@@ -44,6 +44,7 @@ namespace CAS.SmartFactory.IPR.Entities
           base.Add(value.GetKey(), value);
         }
       }
+      internal DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
       internal void ProcessDisposals(EntitiesDataContext _edc, Batch _parent, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusageCoefficient)
       {
         if (Product == null)
@@ -54,6 +55,7 @@ namespace CAS.SmartFactory.IPR.Entities
           if (_materialInBatch.ProductType.Value != Entities.ProductType.IPRTobacco)
             continue;
           DisposalsAnalisis _dspsls = new DisposalsAnalisis(_materialInBatch.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient);
+          AccumulatedDisposalsAnalisis.Accumutate(_dspsls);
           foreach (KeyValuePair<IPR.DisposalEnum, double> _item in _dspsls)
           {
             try
@@ -93,6 +95,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       internal SummaryContentInfo(BatchMaterialXml[] xml, EntitiesDataContext edc, ProgressChangedEventHandler progressChanged)
       {
+        AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
         foreach (BatchMaterialXml item in xml)
         {
           Material newMaterial = new Material(item);
@@ -115,6 +118,11 @@ namespace CAS.SmartFactory.IPR.Entities
     } //SummaryContentInfo
     internal class DisposalsAnalisis : SortedList<IPR.DisposalEnum, double>
     {
+      internal DisposalsAnalisis()
+      {
+        foreach (var _item in this.Keys)
+          this[_item] = 0;
+      }
       internal DisposalsAnalisis(double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage)
       {
         this[IPR.DisposalEnum.Dust] = _material * _dustRatio;
@@ -122,6 +130,11 @@ namespace CAS.SmartFactory.IPR.Entities
         this[IPR.DisposalEnum.Waste] = _material * _wasteRatio;
         this[IPR.DisposalEnum.OverusageInKg] = _overusage > 0 ? _material * _overusage : 0;
         this[IPR.DisposalEnum.Tobacco] = _material - this[IPR.DisposalEnum.SHMenthol] - this[IPR.DisposalEnum.Waste] - this[IPR.DisposalEnum.Dust] - this[IPR.DisposalEnum.OverusageInKg];
+      }
+      internal void Accumutate(DisposalsAnalisis _dspsls)
+      {
+        foreach (var _item in this.Keys)
+          this[_item] += _dspsls[_item];
       }
     }
     internal SKUCommonPart SKULookup { get; set; }
