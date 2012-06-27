@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+  DisplayName="OK"
+  Name="BatchLibraryOK"
+  Type="Boolean"
+  ID="{2790A828-BA38-4E76-8982-2AE749152FB3}"
+  Group="CAS Smart Factory IPR"
+    />
+  <Field
+  DisplayName="Comments"
+  Name="BatchLibraryComments"
+  Type="Text"
+  ID="{C89D9DC1-1632-46FC-8F0D-6FF78CF9CC5D}"
+  Group="CAS Smart Factory IPR Customs"
+    />
+  <Field
   DisplayName="Account closed"
   Name="AccountClosed"
   Type="Boolean"

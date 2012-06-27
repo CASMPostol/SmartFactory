@@ -52,6 +52,9 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content types\BatchLib\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b937c941-dc75-413f-a8e0-b2677e3be101}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Batch\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{53656ba7-5af2-433e-899c-e756a404c50d}</SharePointProjectItemId>
     </None>
@@ -200,9 +203,6 @@
     <None Include="key.snk" />
     <None Include="Lists\ActivityLog\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f6ccae4c-19b2-4186-b214-e81b93e94daa}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\BatchLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{ec5bf261-b65f-4d4f-9531-ee025399c797}</SharePointProjectItemId>
     </None>
     <None Include="Lists\BatchTemplate\BatchList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{68aacb1d-a590-4172-a506-968a57dc3c6a}</SharePointProjectItemId>
@@ -430,6 +430,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content types\BatchLib\Elements.xml" />
     <Content Include="Content types\Batch\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -542,7 +543,6 @@
     </Content>
     <Content Include="Field\ReportsLookupFields\Elements.xml" />
     <Content Include="Lists\ActivityLog\Elements.xml" />
-    <Content Include="Lists\BatchLibrary\Elements.xml" />
     <Content Include="Lists\BatchTemplate\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
