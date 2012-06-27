@@ -64,12 +64,12 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		/// <summary>
-		/// Batch files collection
+		/// Batch Library List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Batch Library")]
-		public Microsoft.SharePoint.Linq.EntityList<Dokument> BatchLibrary {
+		public Microsoft.SharePoint.Linq.EntityList<BatchLib> BatchLibrary {
 			get {
-				return this.GetList<Dokument>("Batch Library");
+				return this.GetList<BatchLib>("Batch Library");
 			}
 		}
 		
@@ -645,6 +645,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 	/// Utwórz nowy dokument.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Dokument", Id="0x0101")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BatchLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(InvoiceLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentLib))]
 	public partial class Dokument : Element {
@@ -1107,7 +1108,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		
 		private System.Nullable<BatchStatus> _batchStatus;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _batchLibraryLookup;
+		private Microsoft.SharePoint.Linq.EntityRef<BatchLib> _batchLibraryLookup;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<CutfillerCoefficient> _cutfillerCoefficientLookup;
 		
@@ -1128,8 +1129,8 @@ namespace CAS.SmartFactory.IPR.Entities {
 		#endregion
 		
 		public Batch() {
-			this._batchLibraryLookup = new Microsoft.SharePoint.Linq.EntityRef<Dokument>();
-			this._batchLibraryLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnBatchLibraryLookupSync);
+			this._batchLibraryLookup = new Microsoft.SharePoint.Linq.EntityRef<BatchLib>();
+			this._batchLibraryLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<BatchLib>>(this.OnBatchLibraryLookupSync);
 			this._batchLibraryLookup.OnChanged += new System.EventHandler(this.OnBatchLibraryLookupChanged);
 			this._batchLibraryLookup.OnChanging += new System.EventHandler(this.OnBatchLibraryLookupChanging);
 			this._cutfillerCoefficientLookup = new Microsoft.SharePoint.Linq.EntityRef<CutfillerCoefficient>();
@@ -1432,7 +1433,7 @@ namespace CAS.SmartFactory.IPR.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="BatchLibraryIndex", Storage="_batchLibraryLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Batch Library")]
-		public Dokument BatchLibraryLookup {
+		public BatchLib BatchLibraryLookup {
 			get {
 				return this._batchLibraryLookup.GetEntity();
 			}
@@ -1509,7 +1510,13 @@ namespace CAS.SmartFactory.IPR.Entities {
 			this.OnPropertyChanged("BatchLibraryLookup");
 		}
 		
-		private void OnBatchLibraryLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
+		private void OnBatchLibraryLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<BatchLib> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Batch.Add(this);
+			}
+			else {
+				e.Item.Batch.Remove(this);
+			}
 		}
 		
 		private void OnCutfillerCoefficientLookupChanging(object sender, System.EventArgs e) {
@@ -6024,6 +6031,88 @@ namespace CAS.SmartFactory.IPR.Entities {
 			}
 			else {
 				e.Item.WasteLookup = null;
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy dokument.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BatchLib", Id="0x01010057CD1193DB9A48F4B4E6E9B55FBAC70A")]
+	public partial class BatchLib : Dokument {
+		
+		private System.Nullable<bool> _oK;
+		
+		private string _comments;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Batch> _batch;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public BatchLib() {
+			this._batch = new Microsoft.SharePoint.Linq.EntitySet<Batch>();
+			this._batch.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch>>(this.OnBatchSync);
+			this._batch.OnChanged += new System.EventHandler(this.OnBatchChanged);
+			this._batch.OnChanging += new System.EventHandler(this.OnBatchChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BatchLibraryOK", Storage="_oK", FieldType="Boolean")]
+		public System.Nullable<bool> OK {
+			get {
+				return this._oK;
+			}
+			set {
+				if ((value != this._oK)) {
+					this.OnPropertyChanging("OK", this._oK);
+					this._oK = value;
+					this.OnPropertyChanged("OK");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BatchLibraryComments", Storage="_comments", FieldType="Text")]
+		public string Comments {
+			get {
+				return this._comments;
+			}
+			set {
+				if ((value != this._comments)) {
+					this.OnPropertyChanging("Comments", this._comments);
+					this._comments = value;
+					this.OnPropertyChanged("Comments");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="BatchLibraryIndex", Storage="_batch", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Batch")]
+		public Microsoft.SharePoint.Linq.EntitySet<Batch> Batch {
+			get {
+				return this._batch;
+			}
+			set {
+				this._batch.Assign(value);
+			}
+		}
+		
+		private void OnBatchChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Batch", this._batch.Clone());
+		}
+		
+		private void OnBatchChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Batch");
+		}
+		
+		private void OnBatchSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.BatchLibraryLookup = this;
+			}
+			else {
+				e.Item.BatchLibraryLookup = null;
 			}
 		}
 	}
