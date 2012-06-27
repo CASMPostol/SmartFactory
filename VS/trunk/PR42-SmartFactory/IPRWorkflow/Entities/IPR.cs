@@ -31,7 +31,7 @@ namespace CAS.SmartFactory.IPR.Entities
           Batch = _iprdata.Batch,
           Cartons = _iprdata.Cartons,
           ClearenceListLookup = _nc,
-          //ClosingDate = new Nullable<DateTime>(),
+          ClosingDate = DateTime.MinValue,
           ConsentNo = _cnsnt,
           Currency = _document.Currency,
           CustomsDebtDate = _customsDebtDate,
@@ -142,7 +142,7 @@ namespace CAS.SmartFactory.IPR.Entities
           JSOXCustomsSummaryListLookup = null,
           No = new Nullable<double>(),
           RemainingQuantity = this.AccountBalance,
-          SADDate = new Nullable<DateTime>(),
+          SADDate = DateTime.MinValue,
           SADDocumentNo = "N/A",
           SettledQuantity = _toDispose,
           TobaccoValue = _toDispose * this.Value / this.NetMass
