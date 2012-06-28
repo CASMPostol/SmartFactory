@@ -27,7 +27,8 @@ namespace CAS.SmartFactory.IPR.Entities
         batch = new Batch();
         edc.Batch.InsertOnSubmit(batch);
       }
-      batch.BatchProcessing(edc, GetBatchStatus(xml.Status), fg, parent);
+      progressChanged(null, new ProgressChangedEventArgs(1, "GetXmlContent: BatchProcessing"));
+      batch.BatchProcessing(edc, GetBatchStatus(xml.Status), fg, parent, progressChanged);
     }
     /// <summary>
     /// Gets or creates lookup.
@@ -87,9 +88,9 @@ namespace CAS.SmartFactory.IPR.Entities
     #endregion
 
     #region private
-    private void BatchProcessing(EntitiesDataContext edc, BatchStatus _status, Material.SummaryContentInfo fg, BatchLib parent)
+    private void BatchProcessing(EntitiesDataContext edc, BatchStatus _status, Material.SummaryContentInfo fg, BatchLib parent, ProgressChangedEventHandler progressChanged)
     {
-      this.BatchLibraryLookup = parent; 
+      this.BatchLibraryLookup = parent;
       this.BatchStatus = _status;
       Batch0 = fg.Product.Batch;
       SKU = fg.Product.SKU;
@@ -97,6 +98,7 @@ namespace CAS.SmartFactory.IPR.Entities
       FGQuantity = fg.Product.FGQuantity;
       MaterialQuantity = fg.TotalTobacco;
       ProductType = fg.Product.ProductType;
+      progressChanged(this, new ProgressChangedEventArgs(1, "BatchProcessing: interconnect"));
       //interconnect 
       SKULookup = SKUCommonPart.GetLookup(edc, fg.Product.SKU);
       CutfillerCoefficientLookup = CutfillerCoefficient.GetLookup(edc);
@@ -104,6 +106,7 @@ namespace CAS.SmartFactory.IPR.Entities
       SHMentholLookup = Entities.SHMenthol.GetLookup(ProductType.Value, edc);
       UsageLookup = Usage.GetLookup(SKULookup.FormatLookup, edc);
       WasteLookup = Entities.Waste.GetLookup(ProductType.Value, edc);
+      progressChanged(this, new ProgressChangedEventArgs(1, "BatchProcessing: processing"));
       //processing
       this.CalculatedOveruse = GetOverusage(MaterialQuantity, FGQuantity, UsageLookup.UsageMax, UsageLookup.UsageMin);
       this.FGQuantityAvailable = FGQuantity;
@@ -111,6 +114,7 @@ namespace CAS.SmartFactory.IPR.Entities
       this.FGQuantityPrevious = 0; //TODO [pr4-3421] Intermediate batches processing http://itrserver/Bugs/BugDetail.aspx?bid=3421
       this.MaterialQuantityPrevious = 0;
       double _shmcf = SKULookup.IPRMaterial.Value ? SHMentholLookup.SHMentholRatio.Value : 0;
+      progressChanged(this, new ProgressChangedEventArgs(1, "BatchProcessing: ProcessDisposals"));
       fg.ProcessDisposals(edc, this, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0));
       this.Dust = fg.AccumulatedDisposalsAnalisis[IPR.DisposalEnum.Dust];
       this.SHMenthol = fg.AccumulatedDisposalsAnalisis[IPR.DisposalEnum.SHMenthol];
