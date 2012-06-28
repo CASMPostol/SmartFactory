@@ -431,7 +431,7 @@
   <Field
     DisplayName="Duty per unit"
     Name="IPRDutyPerUnit"
-    Decimals="2"
+    Decimals="5"
     Type="Number"
     ID="{0F0388EF-3847-4795-BDE8-CA338B55CDAC}"
     Group="CAS Smart Factory IPR"
@@ -439,7 +439,7 @@
   <Field
     DisplayName="VAT per unit"
     Name="IPRVATPerUnit"
-    Decimals="2"
+    Decimals="5"
     Type="Number"
     ID="{6D2D089E-CA30-4875-AE10-D1A86A5C4EF1}"
     Group="CAS Smart Factory IPR"
