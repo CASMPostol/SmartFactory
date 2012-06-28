@@ -36,6 +36,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           properties.ListItem.File.ToString(),
           (object obj, ProgressChangedEventArgs progres) => { At = (string)progres.UserState; });
       }
+      catch (IPRDataConsistencyException _ex)
+      {
+        using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(properties.WebUrl))
+          _ex.Add2Log(_edc);
+      }
       catch (Exception _ex)
       {
         using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(properties.WebUrl))
