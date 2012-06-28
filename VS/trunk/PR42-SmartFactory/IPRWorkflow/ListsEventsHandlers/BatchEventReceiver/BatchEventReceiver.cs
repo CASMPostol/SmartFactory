@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           properties.WebUrl,
           properties.ListItem.ID,
           properties.ListItem.File.ToString(),
-          (object obj, ProgressChangedEventArgs progres) => { return; });
+          (object obj, ProgressChangedEventArgs progres) => { At = (string)progres.UserState; });
       }
       catch (Exception _ex)
       {
@@ -57,7 +57,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <param name="listIndex">Index of the list.</param>
     /// <param name="fileName">Name of the file.</param>
     /// <param name="progressChanged">The progress changed delegate <see cref="ProgressChangedEventHandler"/>.</param>
-    public static void ImportBatchFromXml(Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged)
+    public void ImportBatchFromXml(Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged)
     {
       EntitiesDataContext edc = null;
       try
@@ -75,9 +75,14 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         Anons.WriteEntry(edc, m_Title, "Import of the batch message finished");
         edc.SubmitChanges();
       }
+      catch (IPRDataConsistencyException _ex)
+      {
+        throw _ex;
+      }
       catch (Exception ex)
       {
-        Anons.WriteEntry(edc, "Batch message import error", ex.Message);
+        string _src = "BatchEventReceiver.ImportBatchFromXml at {0}";
+        throw new IPRDataConsistencyException(String.Format(_src, At), ex.Message, ex, "Batch message import error");
       }
       finally
       {
@@ -88,6 +93,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         }
       }
     }
+    private string At { get; set; }
     private const string m_Title = "Batch Message Import";
     private const string m_Message = "Import of the batch message {0} starting.";
   }

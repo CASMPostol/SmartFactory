@@ -120,21 +120,21 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       internal DisposalsAnalisis()
       {
-        foreach (var _item in this.Keys)
-          this[_item] = 0;
+        foreach (IPR.DisposalEnum _item in Enum.GetValues(typeof(IPR.DisposalEnum)))
+          this.Add(_item, 0);
       }
       internal DisposalsAnalisis(double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage)
       {
-        this[IPR.DisposalEnum.Dust] = _material * _dustRatio;
-        this[IPR.DisposalEnum.SHMenthol] = _material * _shMentholRatio;
-        this[IPR.DisposalEnum.Waste] = _material * _wasteRatio;
-        this[IPR.DisposalEnum.OverusageInKg] = _overusage > 0 ? _material * _overusage : 0;
-        this[IPR.DisposalEnum.Tobacco] = _material - this[IPR.DisposalEnum.SHMenthol] - this[IPR.DisposalEnum.Waste] - this[IPR.DisposalEnum.Dust] - this[IPR.DisposalEnum.OverusageInKg];
+        this.Add(IPR.DisposalEnum.Dust, _material * _dustRatio);
+        this.Add(IPR.DisposalEnum.SHMenthol, _material * _shMentholRatio);
+        this.Add(IPR.DisposalEnum.Waste, _material * _wasteRatio);
+        this.Add(IPR.DisposalEnum.OverusageInKg, _overusage > 0 ? _material * _overusage : 0);
+        this.Add(IPR.DisposalEnum.Tobacco, _material - this[IPR.DisposalEnum.SHMenthol] - this[IPR.DisposalEnum.Waste] - this[IPR.DisposalEnum.Dust] - this[IPR.DisposalEnum.OverusageInKg]);
       }
       internal void Accumutate(DisposalsAnalisis _dspsls)
       {
-        foreach (var _item in this.Keys)
-          this[_item] += _dspsls[_item];
+        foreach (IPR.DisposalEnum _item in this.Keys)
+          this[_item] += _dspsls.Keys.Contains(_item) ? _dspsls[_item] : 0;
       }
     }
     internal SKUCommonPart SKULookup { get; set; }
