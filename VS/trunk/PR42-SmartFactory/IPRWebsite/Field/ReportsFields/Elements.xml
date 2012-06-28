@@ -220,8 +220,7 @@
       <CHOICE>tytoń</CHOICE>
       <CHOICE>krajanka</CHOICE>
       <CHOICE>papierosy</CHOICE>
-      <CHOICE>pył tytoiowy</CHOICE>
-      <CHOICE>odpad tytoniowy</CHOICE>
+      <CHOICE>pył tytoiowy lub odpad</CHOICE>
       <CHOICE>kartony</CHOICE>
     </CHOICES>
   </Field>
