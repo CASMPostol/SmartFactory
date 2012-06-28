@@ -126,11 +126,12 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       internal DisposalsAnalisis(double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage)
       {
-        this.Add(IPR.DisposalEnum.Dust, _material * _dustRatio);
-        this.Add(IPR.DisposalEnum.SHMenthol, _material * _shMentholRatio);
-        this.Add(IPR.DisposalEnum.Waste, _material * _wasteRatio);
         this.Add(IPR.DisposalEnum.OverusageInKg, _overusage > 0 ? _material * _overusage : 0);
-        this.Add(IPR.DisposalEnum.Tobacco, _material - this[IPR.DisposalEnum.SHMenthol] - this[IPR.DisposalEnum.Waste] - this[IPR.DisposalEnum.Dust] - this[IPR.DisposalEnum.OverusageInKg]);
+        double _am = _material - this[IPR.DisposalEnum.OverusageInKg];
+        this.Add(IPR.DisposalEnum.Dust, _am * _dustRatio);
+        this.Add(IPR.DisposalEnum.SHMenthol, _am * _shMentholRatio);
+        this.Add(IPR.DisposalEnum.Waste, _am * _wasteRatio);
+        this.Add(IPR.DisposalEnum.Tobacco, _am - this[IPR.DisposalEnum.SHMenthol] - this[IPR.DisposalEnum.Waste] - this[IPR.DisposalEnum.Dust]);
       }
       internal void Accumutate(DisposalsAnalisis _dspsls)
       {
