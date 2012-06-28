@@ -104,6 +104,7 @@ namespace CAS.SmartFactory.IPR.Entities
           Add(newMaterial);
         }
         CheckConsistence();
+        progressChanged(this, new ProgressChangedEventArgs(1, "SummaryContentInfo created"));
       }
       #endregion
 
@@ -133,7 +134,7 @@ namespace CAS.SmartFactory.IPR.Entities
       }
       internal void Accumutate(DisposalsAnalisis _dspsls)
       {
-        foreach (IPR.DisposalEnum _item in this.Keys)
+        foreach (IPR.DisposalEnum _item in Enum.GetValues(typeof(IPR.DisposalEnum)))
           this[_item] += _dspsls.Keys.Contains(_item) ? _dspsls[_item] : 0;
       }
     }
