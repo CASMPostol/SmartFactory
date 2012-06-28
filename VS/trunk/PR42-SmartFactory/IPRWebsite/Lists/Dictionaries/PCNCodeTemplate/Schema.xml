@@ -20,18 +20,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field DisplayName="ProductCodeNumber" Name="ProductCodeNumber" Type="Text" ID="{fab1e4cf-d883-45a5-b682-97b78edf1f75}" Group="CAS Smart Factory IPR" Description="ProductCodeNumber" />
-      <Field Type="Choice" DisplayName="Compensation Good" ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Format="Dropdown" BaseType="Text" Description="Compensation Good" Name="CompensationGood" Group="CAS Smart Factory IPR Reports" CanToggleHidden="TRUE">
-        <Default>tytoń</Default>
-        <CHOICES>
-          <CHOICE>tytoń</CHOICE>
-          <CHOICE>krajanka</CHOICE>
-          <CHOICE>papierosy</CHOICE>
-          <CHOICE>pył tytoiowy</CHOICE>
-          <CHOICE>odpad tytoniowy</CHOICE>
-          <CHOICE>kartony</CHOICE>
-        </CHOICES>
-      </Field>
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
