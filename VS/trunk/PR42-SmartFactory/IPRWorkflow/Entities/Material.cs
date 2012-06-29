@@ -45,43 +45,53 @@ namespace CAS.SmartFactory.IPR.Entities
         }
       }
       internal DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
-      internal void ProcessDisposals(EntitiesDataContext _edc, Batch _parent, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusageCoefficient)
+      internal void ProcessDisposals(EntitiesDataContext _edc, Batch _parent, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusageCoefficient, ProgressChangedEventHandler _progressChanged)
       {
         if (Product == null)
           throw new IPRDataConsistencyException("Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized.");
-        InsertAllOnSubmit(_edc, _parent);
-        foreach (Material _materialInBatch in this.Values)
+        try
         {
-          if (_materialInBatch.ProductType.Value != Entities.ProductType.IPRTobacco)
-            continue;
-          DisposalsAnalisis _dspsls = new DisposalsAnalisis(_materialInBatch.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient);
-          AccumulatedDisposalsAnalisis.Accumutate(_dspsls);
-          foreach (KeyValuePair<IPR.DisposalEnum, double> _item in _dspsls)
+          InsertAllOnSubmit(_edc, _parent);
+          foreach (Material _materialInBatch in this.Values)
           {
-            try
+            if (_materialInBatch.ProductType.Value != Entities.ProductType.IPRTobacco)
+              continue;
+            DisposalsAnalisis _dspsls = new DisposalsAnalisis(_materialInBatch.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient);
+            _progressChanged(this, new ProgressChangedEventArgs(1, "AccumulatedDisposalsAnalisis"));
+            AccumulatedDisposalsAnalisis.Accumutate(_dspsls);
+            foreach (KeyValuePair<IPR.DisposalEnum, double> _item in _dspsls)
             {
-              if (_item.Value <= 0 && (_item.Key == IPR.DisposalEnum.SHMenthol || _item.Key == IPR.DisposalEnum.OverusageInKg))
-                continue;
-              List<IPR> _accounts = IPR.FindIPRAccounts(_edc, _materialInBatch.Batch);
-              if (_accounts.Count == 0)
+              try
               {
-                string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {3}";
-                throw new IPRDataConsistencyException("Material.ProcessDisposals", String.Format(_mssg, _materialInBatch.Batch, _parent.Batch0, _item.Key), null, "IPR unrecognized account");
+                if (_item.Value <= 0 && (_item.Key == IPR.DisposalEnum.SHMenthol || _item.Key == IPR.DisposalEnum.OverusageInKg))
+                  continue;
+                List<IPR> _accounts = IPR.FindIPRAccounts(_edc, _materialInBatch.Batch);
+                if (_accounts.Count == 0)
+                {
+                  string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {3}";
+                  throw new IPRDataConsistencyException("Material.ProcessDisposals", String.Format(_mssg, _materialInBatch.Batch, _parent.Batch0, _item.Key), null, "IPR unrecognized account");
+                }
+                double _toDispose = _item.Value;
+                _progressChanged(this, new ProgressChangedEventArgs(1, String.Format("AddDisposal {0}, batch {1}", _item.Key, _materialInBatch.Batch)));
+                for (int _aidx = 0; _aidx < _accounts.Count; _aidx++)
+                {
+                  _accounts[_aidx].AddDisposal(_edc, _item.Key, ref _toDispose, _parent, _aidx == _accounts.Count - 1);
+                  if (_toDispose <= 0)
+                    break;
+                }
               }
-              double _toDispose = _item.Value;
-              for (int _aidx = 0; _aidx < _accounts.Count; _aidx++)
+              catch (IPRDataConsistencyException _ex)
               {
-                _accounts[_aidx].AddDisposal(_edc, _item.Key, ref _toDispose, _parent, _aidx == _accounts.Count - 1);
-                if (_toDispose <= 0)
-                  break;
+                _ex.Add2Log(_edc);
               }
             }
-            catch (IPRDataConsistencyException _ex)
-            {
-              _ex.Add2Log(_edc);
-            }
+            _progressChanged(this, new ProgressChangedEventArgs(1, "SubmitChanges"));
+            _edc.SubmitChanges();
           }
-          _edc.SubmitChanges();
+        }
+        catch (Exception _ex)
+        {
+          throw new IPRDataConsistencyException("Material.ProcessDisposals", _ex.Message, _ex, "Disposal processing error");
         }
       }
       internal IEnumerable<Material> GeContentEnumerator()
