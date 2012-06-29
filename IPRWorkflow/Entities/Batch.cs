@@ -115,7 +115,7 @@ namespace CAS.SmartFactory.IPR.Entities
       this.MaterialQuantityPrevious = 0;
       double _shmcf = SKULookup.IPRMaterial.Value ? SHMentholLookup.SHMentholRatio.Value : 0;
       progressChanged(this, new ProgressChangedEventArgs(1, "BatchProcessing: ProcessDisposals"));
-      fg.ProcessDisposals(edc, this, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0));
+      fg.ProcessDisposals(edc, this, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault(0), progressChanged);
       this.Dust = fg.AccumulatedDisposalsAnalisis[IPR.DisposalEnum.Dust];
       this.SHMenthol = fg.AccumulatedDisposalsAnalisis[IPR.DisposalEnum.SHMenthol];
       this.Waste = fg.AccumulatedDisposalsAnalisis[IPR.DisposalEnum.Waste];
