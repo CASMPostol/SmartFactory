@@ -96,6 +96,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         {
           progressChanged(null, new ProgressChangedEventArgs(1, "BatchEventReceiver.ImportBatchFromXml.SubmitChangesSilently"));
           edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+          progressChanged(null, new ProgressChangedEventArgs(1, "BatchEventReceiver.ImportBatchFromXml.Dispose"));
           edc.Dispose();
         }
       }

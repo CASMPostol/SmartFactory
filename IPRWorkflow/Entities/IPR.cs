@@ -137,7 +137,7 @@ namespace CAS.SmartFactory.IPR.Entities
           InvoiceNo = "N/A",
           IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
           IPRID = this,
-          CompensationGood = default(Entities.PCNCode),
+          CompensationGood = null,
           VATPerSettledAmount = null,
           JSOXCustomsSummaryListLookup = null,
           No = new Nullable<double>(),
@@ -148,6 +148,10 @@ namespace CAS.SmartFactory.IPR.Entities
           TobaccoValue = _toDispose * this.Value / this.NetMass
         };
         _edc.Disposal.InsertOnSubmit(_newDisposal);
+      }
+      catch (IPRDataConsistencyException _ex)
+      {
+        throw _ex;
       }
       catch (Exception _ex)
       {
