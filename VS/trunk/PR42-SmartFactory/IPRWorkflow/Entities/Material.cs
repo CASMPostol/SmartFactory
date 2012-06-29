@@ -79,6 +79,7 @@ namespace CAS.SmartFactory.IPR.Entities
                   if (_toDispose <= 0)
                     break;
                 }
+                _edc.SubmitChanges();
               }
               catch (IPRDataConsistencyException _ex)
               {
