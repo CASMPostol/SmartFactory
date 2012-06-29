@@ -38,6 +38,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       }
       catch (IPRDataConsistencyException _ex)
       {
+        _ex.Source += " at " + At;
         using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(properties.WebUrl))
           _ex.Add2Log(_edc);
       }
@@ -45,7 +46,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       {
         using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(properties.WebUrl))
         {
-          Anons.WriteEntry(_edc, _ex.Source, _ex.Message);
+          Anons.WriteEntry(_edc, _ex.Source + " at " + At, _ex.Message);
         }
       }
       finally
@@ -62,7 +63,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <param name="listIndex">Index of the list.</param>
     /// <param name="fileName">Name of the file.</param>
     /// <param name="progressChanged">The progress changed delegate <see cref="ProgressChangedEventHandler"/>.</param>
-    public void ImportBatchFromXml(Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged)
+    public static void ImportBatchFromXml(Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged)
     {
       EntitiesDataContext edc = null;
       try
@@ -86,13 +87,14 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       }
       catch (Exception ex)
       {
-        string _src = "BatchEventReceiver.ImportBatchFromXml at {0}";
-        throw new IPRDataConsistencyException(String.Format(_src, At), ex.Message, ex, "Batch message import error");
+        string _src = "BatchEventReceiver.ImportBatchFromXml";
+        throw new IPRDataConsistencyException(_src, ex.Message, ex, "Batch message import error");
       }
       finally
       {
         if (edc != null)
         {
+          progressChanged(null, new ProgressChangedEventArgs(1, "BatchEventReceiver.ImportBatchFromXml.SubmitChangesSilently"));
           edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
           edc.Dispose();
         }
