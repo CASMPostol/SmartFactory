@@ -7,6 +7,7 @@
         <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
         <Class>CAS.SmartFactory.IPR.ListsEventsHandlers.BatchEventReceiver</Class>
         <SequenceNumber>10000</SequenceNumber>
+        <Synchronization>Synchronous</Synchronization>
       </Receiver>
   </Receivers>
 </Elements>
