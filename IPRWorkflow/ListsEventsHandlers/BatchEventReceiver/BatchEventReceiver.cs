@@ -37,8 +37,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           _properties.ListItemId,
           _properties.ListItem.File.ToString(),
           (object obj, ProgressChangedEventArgs progres) => { At = (string)progres.UserState; });
+        At = "ListItem assign";
         _properties.ListItem[_batchLibraryOK] = true;
         _properties.ListItem[_batchLibraryComments] = "Batch message import succeeded.";
+        At = "ListItem UpdateOverwriteVersion";
         _properties.ListItem.UpdateOverwriteVersion();
       }
       catch (IPRDataConsistencyException _ex)
@@ -46,18 +48,18 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         _ex.Source += " at " + At;
         using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(_properties.WebUrl))
           _ex.Add2Log(_edc);
-        _properties.ListItem[_batchLibraryOK] = false;
-        _properties.ListItem[_batchLibraryComments] = _ex.Comments;
-        _properties.ListItem.UpdateOverwriteVersion();
+        //_properties.ListItem[_batchLibraryOK] = false;
+        //_properties.ListItem[_batchLibraryComments] = _ex.Comments;
+        //_properties.ListItem.UpdateOverwriteVersion();
       }
       catch (Exception _ex)
       {
         using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(_properties.WebUrl))
-          Anons.WriteEntry(_edc, _ex.Source + " at " + At, _ex.Message);
-        string _comments = "Batch message import error";
-        _properties.ListItem[_batchLibraryOK] = false;
-        _properties.ListItem[_batchLibraryComments] = _comments;
-        _properties.ListItem.UpdateOverwriteVersion();
+          Anons.WriteEntry(_edc, "BatchEventReceiver.ItemAdded" + " at " + At, _ex.Message);
+        //string _comments = "Batch message import error";
+        //_properties.ListItem[_batchLibraryOK] = false;
+        //_properties.ListItem[_batchLibraryComments] = _comments;
+        //_properties.ListItem.UpdateOverwriteVersion();
       }
       finally
       {
