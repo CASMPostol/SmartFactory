@@ -5,6 +5,7 @@ using CAS.SmartFactory.xml.Customs;
 
 namespace CAS.SmartFactory.IPR.Entities
 {
+
   public partial class IPR
   {
     internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
@@ -86,7 +87,7 @@ namespace CAS.SmartFactory.IPR.Entities
       catch (Exception ex)
       {
         string _mssg = "Cannot find any IPR account to dispose the tobacco: batch:{0}";
-        throw new IPRDataConsistencyException("IPR.FindIPRAccount", String.Format(_mssg, _batch), ex, "IPR unrecognized account");
+        throw new IPRDataConsistencyException("IPR.FindIPRAccount", String.Format(_mssg, _batch), ex, String.Format("IPR unrecognized account for batch: {0}", _batch));
       }
     }
     /// <summary>

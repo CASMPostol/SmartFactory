@@ -4,19 +4,15 @@ using System;
 
 namespace IPRWorkflowsUnitTests
 {
-    
-    
-    /// <summary>
-    ///This is a test class for BatchTest and is intended
-    ///to contain all BatchTest Unit Tests
-    ///</summary>
+
+  /// <summary>
+  ///This is a test class for BatchTest and is intended
+  ///to contain all BatchTest Unit Tests
+  ///</summary>
   [TestClass()]
   public class BatchTest
   {
-
-
     private TestContext testContextInstance;
-
     /// <summary>
     ///Gets or sets the test context which provides
     ///information about and functionality for the current test run.
@@ -74,9 +70,30 @@ namespace IPRWorkflowsUnitTests
       Nullable<double> _materialQuantity = 669.873;
       Nullable<double> _fGQuantity = 1530;
       Nullable<double> _ctfUsageMax = 424;
-      Nullable<double> _ctfUsageMin = 394; 
-      double expected = 0.03157762740101485; // TODO: Initialize to an appropriate value
+      Nullable<double> _ctfUsageMin = 394;
+      double expected = 0.03157762740101485;
       double actual;
+      actual = Batch_Accessor.GetOverusage(_materialQuantity, _fGQuantity, _ctfUsageMax, _ctfUsageMin);
+      Assert.AreEqual(expected, actual);
+      _materialQuantity = 5045;
+      _fGQuantity = 5367;
+      _ctfUsageMax = 10000;
+      _ctfUsageMin = 0;
+      expected = 0;
+      actual = Batch_Accessor.GetOverusage(_materialQuantity, _fGQuantity, _ctfUsageMax, _ctfUsageMin);
+      Assert.AreEqual(expected, actual);
+      _materialQuantity = 5045;
+      _fGQuantity = 5367;
+      _ctfUsageMax = 10000;
+      _ctfUsageMin = 1000;
+      expected = -0.06382556987115956;
+      actual = Batch_Accessor.GetOverusage(_materialQuantity, _fGQuantity, _ctfUsageMax, _ctfUsageMin);
+      Assert.AreEqual(expected, actual);
+      _materialQuantity = 5045;
+      _fGQuantity = 5367;
+      _ctfUsageMax = 1200;
+      _ctfUsageMin = 900;
+      expected = 0;
       actual = Batch_Accessor.GetOverusage(_materialQuantity, _fGQuantity, _ctfUsageMax, _ctfUsageMin);
       Assert.AreEqual(expected, actual);
     }

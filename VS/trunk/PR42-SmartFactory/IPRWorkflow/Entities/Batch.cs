@@ -108,7 +108,7 @@ namespace CAS.SmartFactory.IPR.Entities
       WasteLookup = Entities.Waste.GetLookup(ProductType.Value, edc);
       progressChanged(this, new ProgressChangedEventArgs(1, "BatchProcessing: processing"));
       //processing
-      this.CalculatedOveruse = GetOverusage(MaterialQuantity, FGQuantity, UsageLookup.UsageMax, UsageLookup.UsageMin);
+      this.CalculatedOveruse = GetOverusage(MaterialQuantity.Value, FGQuantity.Value, UsageLookup.UsageMax.Value, UsageLookup.UsageMin.Value);
       this.FGQuantityAvailable = FGQuantity;
       this.FGQuantityBlocked = 0;
       this.FGQuantityPrevious = 0; //TODO [pr4-3421] Intermediate batches processing http://itrserver/Bugs/BugDetail.aspx?bid=3421
@@ -130,14 +130,14 @@ namespace CAS.SmartFactory.IPR.Entities
     /// <param name="_usageMax">The cutfiller usage max.</param>
     /// <param name="_usageMin">The cutfiller usage min.</param>
     /// <returns></returns>
-    private static double GetOverusage(double? _materialQuantity, double? _fGQuantity, double? _usageMax, double? _usageMin)
+    private static double GetOverusage(double _materialQuantity, double _fGQuantity, double _usageMax, double _usageMin)
     {
-      double _ret = (_materialQuantity - _fGQuantity * _usageMax / 1000).GetValueOrDefault(0);
+      double _ret = (_materialQuantity - _fGQuantity * _usageMax / 1000);
       if (_ret > 0)
-        return _ret / _materialQuantity.Value; // Overusage
-      _ret = (_materialQuantity - _fGQuantity * _usageMin / 1000).GetValueOrDefault(0);
+        return _ret / _materialQuantity; // Overusage
+      _ret = (_materialQuantity - _fGQuantity * _usageMin / 1000);
       if (_ret < 0)
-        return _ret / _materialQuantity.Value; //Underusage
+        return _ret / _materialQuantity; //Underusage
       return 0;
     }
     private static BatchStatus GetBatchStatus(xml.erp.BatchStatus batchStatus)
