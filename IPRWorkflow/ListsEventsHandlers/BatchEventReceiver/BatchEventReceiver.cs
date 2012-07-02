@@ -52,11 +52,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       }
       catch (Exception _ex)
       {
+        using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(_properties.WebUrl))
+          Anons.WriteEntry(_edc, _ex.Source + " at " + At, _ex.Message);
         string _comments = "Batch message import error";
         _properties.ListItem[_batchLibraryOK] = false;
         _properties.ListItem[_batchLibraryComments] = _comments;
-        using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(_properties.WebUrl))
-          Anons.WriteEntry(_edc, _ex.Source + " at " + At, _ex.Message);
+        _properties.ListItem.UpdateOverwriteVersion();
       }
       finally
       {
