@@ -6842,13 +6842,10 @@ namespace CAS.SmartFactory.IPR.Entities {
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="papierosy")]
 		Papierosy = 8,
 		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="pył tytoiowy")]
-		PyłTytoiowy = 16,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="odpad tytoniowy")]
-		OdpadTytoniowy = 32,
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="pył tytoiowy lub odpad")]
+		PyłTytoiowyLubOdpad = 16,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="kartony")]
-		Kartony = 64,
+		Kartony = 32,
 	}
 }
