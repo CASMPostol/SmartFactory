@@ -37,11 +37,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           _properties.ListItemId,
           _properties.ListItem.File.ToString(),
           (object obj, ProgressChangedEventArgs progres) => { At = (string)progres.UserState; });
-        At = "ListItem assign";
-        _properties.ListItem[_batchLibraryOK] = true;
-        _properties.ListItem[_batchLibraryComments] = "Batch message import succeeded.";
-        At = "ListItem UpdateOverwriteVersion";
-        _properties.ListItem.UpdateOverwriteVersion();
+        //At = "ListItem assign";
+        //_properties.ListItem[_batchLibraryOK] = true;
+        //_properties.ListItem[_batchLibraryComments] = "Batch message import succeeded.";
+        //At = "ListItem UpdateOverwriteVersion";
+        //_properties.ListItem.UpdateOverwriteVersion();
       }
       catch (IPRDataConsistencyException _ex)
       {
