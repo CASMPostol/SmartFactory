@@ -14,7 +14,7 @@
 <asp:Table ID="m_Table" runat="server" CssClass="Table">
 <asp:TableRow>
     <asp:TableCell VerticalAlign="Top">
-         <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="Invoice" ID="m_InvoicePanel">
+         <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="Invoice content" ID="m_InvoicePanel">
             <asp:Table ID="m_InvoiceTable" runat="server" CssClass="Table">
                 <asp:TableRow>
                     <asp:TableCell>
@@ -25,35 +25,27 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
-                       <asp:Label ID="m_InvoiceItemNoLabel" runat="server" CssClass="Label" Text="Item no." /> 
-                    </asp:TableCell>
-                    <asp:TableCell>
-                       <asp:TextBox ID="m_InvoiceItemNoTextBox" runat="server" CssClass="TextBox" /> 
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow>
-                    <asp:TableCell>
-                       <asp:Label ID="m_InvoiceProductTypeLabel" runat="server" CssClass="Label" Text="Product type" /> 
-                    </asp:TableCell>
-                    <asp:TableCell>
-                       <asp:DropDownList ID="m_InvoiceProductTypeDropDown" runat="server" CssClass="DropDown" /> 
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow>
-                    <asp:TableCell>
-                       <asp:Label ID="m_InvoiceSKULabel" runat="server" CssClass="Label" Text="SKU" /> 
-                    </asp:TableCell>
-                    <asp:TableCell>
-                       <asp:TextBox ID="m_InvoiceSKUTextBox" runat="server" CssClass="TextBox" /> 
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow>
-                    <asp:TableCell>
-                       <asp:Label ID="m_InvoiceBatchLabel" runat="server" CssClass="Label" Text="Batch" /> 
-                    </asp:TableCell>
-                    <asp:TableCell>
-                       <asp:TextBox ID="m_InvoiceBatchTextBox" runat="server" CssClass="TextBox" /> 
+                    <asp:TableCell ColumnSpan="2">
+                        <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="EditBatch" ID="m_EditBatchPanel">
+                            <asp:Table ID="m_EditBatchTable" runat="server">
+                            <asp:TableRow>
+                                    <asp:TableCell>
+                                        <asp:Label ID="m_EditBatchLabel" runat="server" CssClass="Label" Text="Edit Batch" />
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                        <asp:CheckBox ID="m_EditBatchCheckBox" runat="server" /> 
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow>
+                                    <asp:TableCell>
+                                        <asp:Label ID="m_BatchLabel" runat="server" CssClass="Label" Text="Batch" />
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                        <asp:TextBox ID="m_BatchTextBox" runat="server" CssClass="TextBox" /> 
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                            </asp:Table>
+                        </asp:Panel>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -68,33 +60,15 @@
             <asp:Table ID="m_InvoiceButtonsTable" runat="server" CssClass="Table">
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Button runat="server" CssClass="Button" Text="Button1" ID="m_InvoiceButton1" />
-                        <asp:Button runat="server" CssClass="Button" Text="Button2" ID="m_InvoiceButton2" />
-                        <asp:Button runat="server" CssClass="Button" Text="Button3" ID="m_InvoiceButton3" />
-                        <asp:Button runat="server" CssClass="Button" Text="Button4" ID="m_InvoiceButton4" />
+                        <asp:Button runat="server" CssClass="Button" Text="Add New" ID="m_NewButton" />
+                        <asp:Button runat="server" CssClass="Button" Text="Edit" ID="m_EditButton" />
+                        <asp:Button runat="server" CssClass="Button" Text="Save" ID="m_SaveButton" />
+                        <asp:Button runat="server" CssClass="Button" Text="Delete" ID="m_DeleteButton" />
+                        <asp:Button runat="server" CssClass="Button" Text="Cancel" ID="m_CancelButton" />
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
          </asp:Panel>
-    </asp:TableCell>
-    <asp:TableCell VerticalAlign="Top">
-        <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="Batch" ID="m_BatchPanel">
-            <asp:Table runat="server" CssClass="Table">
-                <asp:TableRow>
-                    <asp:TableCell>
-                        <asp:Label runat="server" ID="m_BatchQuantity" Text="Quantity" CssClass="Label"></asp:Label>
-                    </asp:TableCell>
-                    <asp:TableCell>
-                        <asp:TextBox runat="server" ID="m_BatchQuantityTextBox" CssClass="TextBox"></asp:TextBox>
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow>
-                    <asp:TableCell>
-                        <asp:Button runat="server" CssClass="Button" Text="Button1" ID="m_BatchButton1" />
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
-        </asp:Panel>
     </asp:TableCell>
 </asp:TableRow>
 
