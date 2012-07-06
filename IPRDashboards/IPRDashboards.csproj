@@ -102,7 +102,9 @@
     <Content Include="Dashboards\ExportDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Dashboards\IPRBookDashboard\Elements.xml" />
+    <Content Include="Dashboards\IPRBookDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DefaultPage\Elements.xml" />
     <Content Include="DefaultPage\DefaultTemplate.aspx" />
     <Content Include="Features\IPRDashboards\IPRDashboards.Template.xml">

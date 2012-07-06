@@ -76,76 +76,58 @@ namespace IPRDashboards.Webparts.ExportWebPart {
         protected global::System.Web.UI.WebControls.TextBox m_InvoiceTitleTextBox;
         
         /// <summary>
-        /// m_InvoiceItemNoLabel control.
+        /// m_EditBatchPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_InvoiceItemNoLabel;
+        protected global::System.Web.UI.WebControls.Panel m_EditBatchPanel;
         
         /// <summary>
-        /// m_InvoiceItemNoTextBox control.
+        /// m_EditBatchTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox m_InvoiceItemNoTextBox;
+        protected global::System.Web.UI.WebControls.Table m_EditBatchTable;
         
         /// <summary>
-        /// m_InvoiceProductTypeLabel control.
+        /// m_EditBatchLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_InvoiceProductTypeLabel;
+        protected global::System.Web.UI.WebControls.Label m_EditBatchLabel;
         
         /// <summary>
-        /// m_InvoiceProductTypeDropDown control.
+        /// m_EditBatchCheckBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList m_InvoiceProductTypeDropDown;
+        protected global::System.Web.UI.WebControls.CheckBox m_EditBatchCheckBox;
         
         /// <summary>
-        /// m_InvoiceSKULabel control.
+        /// m_BatchLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_InvoiceSKULabel;
+        protected global::System.Web.UI.WebControls.Label m_BatchLabel;
         
         /// <summary>
-        /// m_InvoiceSKUTextBox control.
+        /// m_BatchTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox m_InvoiceSKUTextBox;
-        
-        /// <summary>
-        /// m_InvoiceBatchLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_InvoiceBatchLabel;
-        
-        /// <summary>
-        /// m_InvoiceBatchTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox m_InvoiceBatchTextBox;
+        protected global::System.Web.UI.WebControls.TextBox m_BatchTextBox;
         
         /// <summary>
         /// m_InvoiceQuantityLabel control.
@@ -175,75 +157,48 @@ namespace IPRDashboards.Webparts.ExportWebPart {
         protected global::System.Web.UI.WebControls.Table m_InvoiceButtonsTable;
         
         /// <summary>
-        /// m_InvoiceButton1 control.
+        /// m_NewButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_InvoiceButton1;
+        protected global::System.Web.UI.WebControls.Button m_NewButton;
         
         /// <summary>
-        /// m_InvoiceButton2 control.
+        /// m_EditButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_InvoiceButton2;
+        protected global::System.Web.UI.WebControls.Button m_EditButton;
         
         /// <summary>
-        /// m_InvoiceButton3 control.
+        /// m_SaveButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_InvoiceButton3;
+        protected global::System.Web.UI.WebControls.Button m_SaveButton;
         
         /// <summary>
-        /// m_InvoiceButton4 control.
+        /// m_DeleteButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_InvoiceButton4;
+        protected global::System.Web.UI.WebControls.Button m_DeleteButton;
         
         /// <summary>
-        /// m_BatchPanel control.
+        /// m_CancelButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel m_BatchPanel;
-        
-        /// <summary>
-        /// m_BatchQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_BatchQuantity;
-        
-        /// <summary>
-        /// m_BatchQuantityTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox m_BatchQuantityTextBox;
-        
-        /// <summary>
-        /// m_BatchButton1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_BatchButton1;
+        protected global::System.Web.UI.WebControls.Button m_CancelButton;
     }
 }
