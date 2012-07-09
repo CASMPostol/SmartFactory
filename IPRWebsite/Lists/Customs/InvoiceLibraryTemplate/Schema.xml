@@ -4,7 +4,8 @@
     <ContentTypes>
       <ContentType ID="0x0101003054e4ebb5de4c6391ca389a60dcd926" Name="InvoiceLib" Group="CAS Smart Factory IPR Customs" Description="Invoice Document Library" Inherits="TRUE" Overwrite="TRUE">
         <FieldRefs>
-          <FieldRef ID="{EE5449C9-839E-434F-8EBB-9AC9CE843FF9}" Name="Dummy" Hidden="TRUE" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
+          <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" />
+          <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
@@ -114,6 +115,8 @@
           </FieldRef>
           <FieldRef Name="Editor">
           </FieldRef>
+          <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" />
+          <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
