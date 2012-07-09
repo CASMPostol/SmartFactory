@@ -28,6 +28,10 @@
           <FieldRef ID="{5674C84E-49A1-4FCE-AA1F-BE89C98CA633}" Name="SHMentholIndex" />
           <FieldRef ID="{B9FBC416-F875-4C9E-B099-9A14B219015B}" Name="DustIndex" />
           <FieldRef ID="{CE29CEDB-9FCC-4A9D-9C94-FA6EF041F789}" Name="WasteIndex" />
+          <FieldRef ID="{B4A62D70-8D8E-4231-95E7-754942CD20D6}" Name="BatchSHCooeficiency" />
+          <FieldRef ID="{B292C573-B10F-4BD6-BACA-D91E4930B35C}" Name="BatchDustCooeficiency" />
+          <FieldRef ID="{91109161-779F-4D61-AC19-1A7F9E260380}" Name="BatchWasteCooeficiency" />
+          <FieldRef ID="{21C30BD4-C5A8-48E3-B1D7-291B8E0EDA67}" Name="CooeficiencyVersion" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -95,6 +99,10 @@
           <FieldRef ID="{5674C84E-49A1-4FCE-AA1F-BE89C98CA633}" Name="SHMentholIndex" />
           <FieldRef ID="{B9FBC416-F875-4C9E-B099-9A14B219015B}" Name="DustIndex" />
           <FieldRef ID="{CE29CEDB-9FCC-4A9D-9C94-FA6EF041F789}" Name="WasteIndex" />
+          <FieldRef ID="{B4A62D70-8D8E-4231-95E7-754942CD20D6}" Name="BatchSHCooeficiency" />
+          <FieldRef ID="{B292C573-B10F-4BD6-BACA-D91E4930B35C}" Name="BatchDustCooeficiency" />
+          <FieldRef ID="{91109161-779F-4D61-AC19-1A7F9E260380}" Name="BatchWasteCooeficiency" />
+          <FieldRef ID="{21C30BD4-C5A8-48E3-B1D7-291B8E0EDA67}" Name="CooeficiencyVersion" />
         </ViewFields>
         <Query>
           <OrderBy>

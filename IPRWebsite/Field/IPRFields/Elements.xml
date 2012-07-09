@@ -1,6 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+  DisplayName="Cooeficiency Version"
+  Name="CooeficiencyVersion"
+  Type="Number"
+  ID="{21C30BD4-C5A8-48E3-B1D7-291B8E0EDA67}"
+  Group="CAS Smart Factory IPR"
+    />
+  <Field
+  DisplayName="Waste Cooeficiency"
+  Name="BatchWasteCooeficiency"
+  Type="Number"
+  ID="{91109161-779F-4D61-AC19-1A7F9E260380}"
+  Group="CAS Smart Factory IPR"
+    />
+  <Field
+  DisplayName="Dust Cooeficiency"
+  Name="BatchDustCooeficiency"
+  Type="Number"
+  ID="{B292C573-B10F-4BD6-BACA-D91E4930B35C}"
+  Group="CAS Smart Factory IPR"
+    />
+  <Field
+  DisplayName="SH Cooeficiency"
+  Name="BatchSHCooeficiency"
+  Type="Number"
+  ID="{B4A62D70-8D8E-4231-95E7-754942CD20D6}"
+  Group="CAS Smart Factory IPR"
+    />
+  <Field
   DisplayName="OK"
   Name="BatchLibraryOK"
   Type="Boolean"
