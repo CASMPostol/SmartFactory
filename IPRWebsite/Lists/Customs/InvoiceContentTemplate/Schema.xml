@@ -11,6 +11,7 @@
           <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
           <FieldRef ID="{85512A2C-C60C-400E-AA53-94ED8FBEF321}" Name="Quantity" />
           <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+          <FieldRef ID="{BA635D4D-4917-40BA-83A1-566C2D3C23F5}" Name="InvoiceContentStatus" />
           <FieldRef ID="{33CB339C-CA0F-409F-9790-37207A855756}" Name="InvoiceIndex" />
           <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
         </FieldRefs>
@@ -90,6 +91,7 @@
           <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
           <FieldRef ID="{85512A2C-C60C-400E-AA53-94ED8FBEF321}" Name="Quantity" />
           <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+          <FieldRef ID="{BA635D4D-4917-40BA-83A1-566C2D3C23F5}" Name="InvoiceContentStatus" />
         </ViewFields>
         <Query>
           <OrderBy>

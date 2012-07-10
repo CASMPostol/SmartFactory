@@ -122,6 +122,7 @@
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
+          <FieldRef ID="{69ADEE04-E60C-4871-AAB4-8D12A09CEBC1}" Name="FGQuantityAvailable" />
           <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
           <FieldRef ID="{ca980625-03da-4c63-b23a-b60f472ca2b3}" Name="BatchStatus" />
           <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
@@ -129,7 +130,6 @@
           <FieldRef ID="{88259302-82EA-4ADC-90D3-B6B6B7CC3B16}" Name="FGQuantity" />
           <FieldRef ID="{A0734EE0-F311-4FD8-A912-333C6F6E9690}" Name="FGQuantityPrevious" />
           <FieldRef ID="{EE831573-9757-4F8C-8DAF-E39E051998F3}" Name="FGQuantityBlocked" />
-          <FieldRef ID="{69ADEE04-E60C-4871-AAB4-8D12A09CEBC1}" Name="FGQuantityAvailable" />
         </ViewFields>
         <Query>
           <OrderBy>

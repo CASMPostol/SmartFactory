@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="InvoiceContentStatus"
+    ID="{BA635D4D-4917-40BA-83A1-566C2D3C23F5}"
+    Type="Boolean"
+    DisplayName="Status"
+    Group="CAS Smart Factory IPR Customs"
+    >
+    <Default>OK</Default>
+    <CHOICES>
+      <CHOICE>OK</CHOICE>
+      <CHOICE>Batch not found</CHOICE>
+      <CHOICE>Not enough Qnt.</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
     Name="ReferenceNumber"
     ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}"
     Type="Text"
