@@ -1,6 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Type="Lookup"
+    DisplayName="FG Quantity (available)"
+    List="Lists/BatchList"
+    ShowField="FGQuantityAvailable"
+    FieldRef="7235E320-CC65-421C-B1E8-98EBC448005B"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory IPR"
+    ID="{C53D648A-ECBD-461B-96AB-637A4A3E856E}"
+    Name="InvoiceContent2BatchQty_sec"
+    Overwrite="TRUE"
+  />
+  <Field
+    Name="InvoiceContent2BatchIndex"
+    ID="{7235E320-CC65-421C-B1E8-98EBC448005B}"
+    Type="Lookup"
+    List="Lists/BatchList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Batch ID"
+    Group="CAS Smart Factory IPR Customs"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="SADDocumenLibrarytIndex"
     ID="{66D3CFD7-0C8F-4BC9-B896-EF9A680E2FC5}"
     Type="Lookup"
