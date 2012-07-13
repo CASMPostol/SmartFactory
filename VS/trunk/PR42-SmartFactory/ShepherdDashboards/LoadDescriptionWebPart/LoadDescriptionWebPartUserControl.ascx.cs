@@ -67,14 +67,13 @@ namespace CAS.SmartFactory.Shepherd.Dashboards.LoadDescriptionWebPart
       #endregion
 
       #region public
-      public ControlState(ControlState _old)
+      public    ControlState(ControlState _old)
       {
         if (_old == null)
           return;
         InterfaceState = _old.InterfaceState;
       }
       #endregion
-
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
