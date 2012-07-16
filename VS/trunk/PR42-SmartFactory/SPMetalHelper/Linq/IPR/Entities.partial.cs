@@ -25,15 +25,15 @@ namespace CAS.SmartFactory.Linq.IPR
         return;
       try
       {
-        //using (EntitiesDataContext EDC = new EntitiesDataContext(_url))
-        //{
-        //  foreach (string _msg in this)
-        //  {
-        //    Anons _entry = new Anons() { Tytuł = "ReportActionResult", Treść = _msg, Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
-        //    EDC.EventLogList.InsertOnSubmit(_entry);
-        //  }
-        //  EDC.SubmitChanges();
-        //}
+        using ( EntitiesDataContext EDC = new EntitiesDataContext( _url ) )
+        {
+          foreach ( string _msg in this )
+          {
+            Anons _entry = new Anons() { Tytuł = "ReportActionResult", Treść = _msg, Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) };
+            EDC.ActivityLog.InsertOnSubmit( _entry );
+          }
+          EDC.SubmitChanges();
+        }
       }
       catch ( Exception ) { }
     }

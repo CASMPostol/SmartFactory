@@ -3,7 +3,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 
-namespace IPRDashboards.Webparts.ExportWebPart
+namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
   public partial class ExportWebPartUserControl: UserControl
   {
