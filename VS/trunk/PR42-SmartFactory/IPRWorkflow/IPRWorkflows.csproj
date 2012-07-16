@@ -69,7 +69,6 @@
     <Compile Include="Entities\EntitiesDataContext.cs" />
     <Compile Include="Entities\Extensions.cs" />
     <Compile Include="Entities\Format.cs" />
-    <Compile Include="Entities\Invoice.cs" />
     <Compile Include="Entities\InvoiceContent.cs" />
     <Compile Include="Entities\IPR.cs" />
     <Compile Include="Entities\Material.cs" />
