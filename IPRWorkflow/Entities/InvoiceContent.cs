@@ -1,5 +1,6 @@
 ﻿using CAS.SmartFactory.xml;
 using InvoiceItemXml = CAS.SmartFactory.xml.erp.InvoiceItem;
+using InvoiceXml = CAS.SmartFactory.xml.erp.Invoice;
 using System.Collections.Generic;
 using System;
 
@@ -7,7 +8,11 @@ namespace CAS.SmartFactory.IPR.Entities
 {
   public partial class InvoiceContent
   {
-    internal static string GetXmlContent(InvoiceItemXml[] invoiceEntries, EntitiesDataContext edc, Invoice parent)
+    internal static void GetXmlContent( InvoiceXml xml, EntitiesDataContext edc, InvoiceLib entry )
+    {
+      entry.BillDoc = Entities.InvoiceContent.GetXmlContent( xml.Item, edc, entry );
+    }
+    internal static string GetXmlContent(InvoiceItemXml[] invoiceEntries, EntitiesDataContext edc, InvoiceLib parent)
     {
       string functionValue = String.Empty;
       List<InvoiceContent> itemsList = new List<InvoiceContent>();
@@ -22,11 +27,11 @@ namespace CAS.SmartFactory.IPR.Entities
         edc.InvoiceContent.InsertAllOnSubmit(itemsList);
       return functionValue;
     }
-    private InvoiceContent(EntitiesDataContext edc, Invoice parent, InvoiceItemXml item) :
+    private InvoiceContent(EntitiesDataContext edc, InvoiceLib parent, InvoiceItemXml item) :
       this()
     {
       Batch = item.Batch;
-      BatchLookup = Entities.Batch.GetLookup(edc, item.Batch);
+      this.BatchID = Entities.Batch.GetLookup(edc, item.Batch);
       InvoiceLookup = parent;
       ItemNo = item.Item.ConvertToDouble();
       ProductType = SKUCommonPart.GetLookup(edc, item.Material).ProductType;
