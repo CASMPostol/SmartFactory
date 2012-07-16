@@ -101,12 +101,17 @@ namespace CAS.SmartFactory.IPR.Entities
       progressChanged(this, new ProgressChangedEventArgs(1, "BatchProcessing: interconnect"));
       //interconnect 
       SKULookup = SKUCommonPart.GetLookup(edc, fg.Product.SKU);
+      //TODO [pr4-2921] Batch.Add new columns http://itrserver/Bugs/BugDetail.aspx?bid=2921
       CutfillerCoefficientLookup = CutfillerCoefficient.GetLookup(edc);
       DustLookup = Entities.Dust.GetLookup(ProductType.Value, edc);
+      DustCooeficiency = DustLookup.DustRatio;
+      CooeficiencyVersion = DustLookup.Wersja;
       SHMentholLookup = Entities.SHMenthol.GetLookup(ProductType.Value, edc);
-      UsageLookup = Usage.GetLookup(SKULookup.FormatLookup, edc);
+      SHCooeficiency = SHMentholLookup.SHMentholRatio;
       WasteLookup = Entities.Waste.GetLookup(ProductType.Value, edc);
-      progressChanged(this, new ProgressChangedEventArgs(1, "BatchProcessing: processing"));
+      WasteCooeficiency = WasteLookup.WasteRatio;
+      UsageLookup = Usage.GetLookup( SKULookup.FormatLookup, edc );
+      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
       //processing
       this.CalculatedOveruse = GetOverusage(MaterialQuantity.Value, FGQuantity.Value, UsageLookup.UsageMax.Value, UsageLookup.UsageMin.Value);
       this.FGQuantityAvailable = FGQuantity;
