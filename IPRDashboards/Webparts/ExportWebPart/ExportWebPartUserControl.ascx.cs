@@ -5,10 +5,11 @@ using System.Web.UI.WebControls.WebParts;
 
 namespace IPRDashboards.Webparts.ExportWebPart
 {
-    public partial class ExportWebPartUserControl : UserControl
+  public partial class ExportWebPartUserControl: UserControl
+  {
+    protected void Page_Load( object sender, EventArgs e )
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
+
     }
+  }
 }

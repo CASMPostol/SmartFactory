@@ -67,10 +67,10 @@ namespace IPRWorkflowsUnitTests
     [DeploymentItem("CAS.SmartFactory.IPR.dll")]
     public void GetOverusageTest()
     {
-      Nullable<double> _materialQuantity = 669.873;
-      Nullable<double> _fGQuantity = 1530;
-      Nullable<double> _ctfUsageMax = 424;
-      Nullable<double> _ctfUsageMin = 394;
+      double _materialQuantity = 669.873;
+      double _fGQuantity = 1530;
+      double _ctfUsageMax = 424;
+      double _ctfUsageMin = 394;
       double expected = 0.03157762740101485;
       double actual;
       actual = Batch_Accessor.GetOverusage(_materialQuantity, _fGQuantity, _ctfUsageMax, _ctfUsageMin);
