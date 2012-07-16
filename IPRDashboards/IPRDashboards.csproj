@@ -7,8 +7,8 @@
     <ProjectGuid>{C3E386B9-7F0D-4B3B-A1E8-62EE6A5DB102}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IPRDashboards</RootNamespace>
-    <AssemblyName>IPRDashboards</AssemblyName>
+    <RootNamespace>CAS.SmartFactory.IPR.Dashboards</RootNamespace>
+    <AssemblyName>CAS.IPRDashboards</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -23,7 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <DocumentationFile>bin\Release\IPRDashboards.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\CAS.IPRDashboards.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

@@ -7,7 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IPRDashboards.Webparts.ExportWebPart {
+namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
+{
     
     
     public partial class ExportWebPartUserControl {
