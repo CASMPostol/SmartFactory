@@ -80,6 +80,8 @@
     <Compile Include="ImportDataModel\ImportDataModelShepherd.xsd.cs">
       <DependentUpon>ImportDataModelShepherd.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Linq\IPR\Entities.cs" />
+    <Compile Include="Linq\IPR\Entities.partial.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -103,6 +105,8 @@
     <None Include="ImportDataModel\ImportDataModelShepherd.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Linq\IPR\Scripts\GetEntities.ps1" />
+    <None Include="Linq\IPR\Scripts\psconsole.psc1" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -114,6 +118,7 @@
     <Content Include="Entities\Scripts\Parameters.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Linq\IPR\Scripts\Parameters.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
