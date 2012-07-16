@@ -8,8 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.Linq.IPR
-{
+namespace CAS.SmartFactory.Linq.IPR {
 	using System;
 	
 	
@@ -145,16 +144,6 @@ namespace CAS.SmartFactory.Linq.IPR
 		}
 		
 		/// <summary>
-		/// Invoice List Instance
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="Invoice")]
-		public Microsoft.SharePoint.Linq.EntityList<Invoice> Invoice {
-			get {
-				return this.GetList<Invoice>("Invoice");
-			}
-		}
-		
-		/// <summary>
 		/// Invoice Content List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Invoice Content")]
@@ -167,10 +156,10 @@ namespace CAS.SmartFactory.Linq.IPR
 		/// <summary>
 		/// Invoice Library Instance
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="InvoiceLibrary")]
-		public Microsoft.SharePoint.Linq.EntityList<InvoiceLibraryInvoiceLib> InvoiceLibrary {
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Invoice Library")]
+		public Microsoft.SharePoint.Linq.EntityList<InvoiceLib> InvoiceLibrary {
 			get {
-				return this.GetList<InvoiceLibraryInvoiceLib>("InvoiceLibrary");
+				return this.GetList<InvoiceLib>("Invoice Library");
 			}
 		}
 		
@@ -450,7 +439,6 @@ namespace CAS.SmartFactory.Linq.IPR
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Disposal))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Dust))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Format))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Invoice))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(InvoiceContent))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(IPR))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(JSOX))]
@@ -1105,6 +1093,14 @@ namespace CAS.SmartFactory.Linq.IPR
 		
 		private System.Nullable<double> _sHMenthol;
 		
+		private System.Nullable<double> _sHCooeficiency;
+		
+		private System.Nullable<double> _dustCooeficiency;
+		
+		private System.Nullable<double> _wasteCooeficiency;
+		
+		private System.Nullable<double> _cooeficiencyVersion;
+		
 		private System.Nullable<ProductType> _productType;
 		
 		private System.Nullable<BatchStatus> _batchStatus;
@@ -1122,6 +1118,8 @@ namespace CAS.SmartFactory.Linq.IPR
 		private Microsoft.SharePoint.Linq.EntityRef<Dust> _dustLookup;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Waste> _wasteLookup;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> _invoiceContent;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -1158,6 +1156,10 @@ namespace CAS.SmartFactory.Linq.IPR
 			this._wasteLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Waste>>(this.OnWasteLookupSync);
 			this._wasteLookup.OnChanged += new System.EventHandler(this.OnWasteLookupChanged);
 			this._wasteLookup.OnChanging += new System.EventHandler(this.OnWasteLookupChanging);
+			this._invoiceContent = new Microsoft.SharePoint.Linq.EntitySet<InvoiceContent>();
+			this._invoiceContent.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceContent>>(this.OnInvoiceContentSync);
+			this._invoiceContent.OnChanged += new System.EventHandler(this.OnInvoiceContentChanged);
+			this._invoiceContent.OnChanging += new System.EventHandler(this.OnInvoiceContentChanging);
 			this.OnCreated();
 		}
 		
@@ -1399,6 +1401,62 @@ namespace CAS.SmartFactory.Linq.IPR
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BatchSHCooeficiency", Storage="_sHCooeficiency", FieldType="Number")]
+		public System.Nullable<double> SHCooeficiency {
+			get {
+				return this._sHCooeficiency;
+			}
+			set {
+				if ((value != this._sHCooeficiency)) {
+					this.OnPropertyChanging("SHCooeficiency", this._sHCooeficiency);
+					this._sHCooeficiency = value;
+					this.OnPropertyChanged("SHCooeficiency");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BatchDustCooeficiency", Storage="_dustCooeficiency", FieldType="Number")]
+		public System.Nullable<double> DustCooeficiency {
+			get {
+				return this._dustCooeficiency;
+			}
+			set {
+				if ((value != this._dustCooeficiency)) {
+					this.OnPropertyChanging("DustCooeficiency", this._dustCooeficiency);
+					this._dustCooeficiency = value;
+					this.OnPropertyChanged("DustCooeficiency");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BatchWasteCooeficiency", Storage="_wasteCooeficiency", FieldType="Number")]
+		public System.Nullable<double> WasteCooeficiency {
+			get {
+				return this._wasteCooeficiency;
+			}
+			set {
+				if ((value != this._wasteCooeficiency)) {
+					this.OnPropertyChanging("WasteCooeficiency", this._wasteCooeficiency);
+					this._wasteCooeficiency = value;
+					this.OnPropertyChanged("WasteCooeficiency");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CooeficiencyVersion", Storage="_cooeficiencyVersion", FieldType="Number")]
+		public System.Nullable<double> CooeficiencyVersion {
+			get {
+				return this._cooeficiencyVersion;
+			}
+			set {
+				if ((value != this._cooeficiencyVersion)) {
+					this.OnPropertyChanging("CooeficiencyVersion", this._cooeficiencyVersion);
+					this._cooeficiencyVersion = value;
+					this.OnPropertyChanged("CooeficiencyVersion");
+				}
+			}
+		}
+		
 		/// <summary>
 		/// Material Type
 		/// </summary>
@@ -1500,6 +1558,16 @@ namespace CAS.SmartFactory.Linq.IPR
 			}
 			set {
 				this._wasteLookup.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceContent2BatchIndex", Storage="_invoiceContent", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Invoice Content")]
+		public Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> InvoiceContent {
+			get {
+				return this._invoiceContent;
+			}
+			set {
+				this._invoiceContent.Assign(value);
 			}
 		}
 		
@@ -1619,6 +1687,23 @@ namespace CAS.SmartFactory.Linq.IPR
 			}
 			else {
 				e.Item.Batch.Remove(this);
+			}
+		}
+		
+		private void OnInvoiceContentChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("InvoiceContent", this._invoiceContent.Clone());
+		}
+		
+		private void OnInvoiceContentChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("InvoiceContent");
+		}
+		
+		private void OnInvoiceContentSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceContent> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.BatchID = this;
+			}
+			else {
+				e.Item.BatchID = null;
 			}
 		}
 	}
@@ -2673,135 +2758,6 @@ namespace CAS.SmartFactory.Linq.IPR
 	/// <summary>
 	/// Utwórz nowy element listy.
 	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Invoice", Id="0x01008BF42A00B5B85E4E85D3CD58E7644E92")]
-	public partial class Invoice : Element {
-		
-		private string _billDoc;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<InvoiceLibraryInvoiceLib> _invoiceLibraryLookup;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceListLookup;
-		
-		private Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> _invoiceContent;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public Invoice() {
-			this._invoiceLibraryLookup = new Microsoft.SharePoint.Linq.EntityRef<InvoiceLibraryInvoiceLib>();
-			this._invoiceLibraryLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceLibraryInvoiceLib>>(this.OnInvoiceLibraryLookupSync);
-			this._invoiceLibraryLookup.OnChanged += new System.EventHandler(this.OnInvoiceLibraryLookupChanged);
-			this._invoiceLibraryLookup.OnChanging += new System.EventHandler(this.OnInvoiceLibraryLookupChanging);
-			this._clearenceListLookup = new Microsoft.SharePoint.Linq.EntityRef<Clearence>();
-			this._clearenceListLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnClearenceListLookupSync);
-			this._clearenceListLookup.OnChanged += new System.EventHandler(this.OnClearenceListLookupChanged);
-			this._clearenceListLookup.OnChanging += new System.EventHandler(this.OnClearenceListLookupChanging);
-			this._invoiceContent = new Microsoft.SharePoint.Linq.EntitySet<InvoiceContent>();
-			this._invoiceContent.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceContent>>(this.OnInvoiceContentSync);
-			this._invoiceContent.OnChanged += new System.EventHandler(this.OnInvoiceContentChanged);
-			this._invoiceContent.OnChanging += new System.EventHandler(this.OnInvoiceContentChanging);
-			this.OnCreated();
-		}
-		
-		/// <summary>
-		/// BillDoc
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BillDoc", Storage="_billDoc", FieldType="Text")]
-		public string BillDoc {
-			get {
-				return this._billDoc;
-			}
-			set {
-				if ((value != this._billDoc)) {
-					this.OnPropertyChanging("BillDoc", this._billDoc);
-					this._billDoc = value;
-					this.OnPropertyChanged("BillDoc");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceLibraryIndex", Storage="_invoiceLibraryLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="InvoiceLibrary")]
-		public InvoiceLibraryInvoiceLib InvoiceLibraryLookup {
-			get {
-				return this._invoiceLibraryLookup.GetEntity();
-			}
-			set {
-				this._invoiceLibraryLookup.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ClearenceIndex", Storage="_clearenceListLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Clearence")]
-		public Clearence ClearenceListLookup {
-			get {
-				return this._clearenceListLookup.GetEntity();
-			}
-			set {
-				this._clearenceListLookup.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceIndex", Storage="_invoiceContent", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Invoice Content")]
-		public Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> InvoiceContent {
-			get {
-				return this._invoiceContent;
-			}
-			set {
-				this._invoiceContent.Assign(value);
-			}
-		}
-		
-		private void OnInvoiceLibraryLookupChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("InvoiceLibraryLookup", this._invoiceLibraryLookup.Clone());
-		}
-		
-		private void OnInvoiceLibraryLookupChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("InvoiceLibraryLookup");
-		}
-		
-		private void OnInvoiceLibraryLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceLibraryInvoiceLib> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Invoice.Add(this);
-			}
-			else {
-				e.Item.Invoice.Remove(this);
-			}
-		}
-		
-		private void OnClearenceListLookupChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ClearenceListLookup", this._clearenceListLookup.Clone());
-		}
-		
-		private void OnClearenceListLookupChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ClearenceListLookup");
-		}
-		
-		private void OnClearenceListLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence> e) {
-		}
-		
-		private void OnInvoiceContentChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("InvoiceContent", this._invoiceContent.Clone());
-		}
-		
-		private void OnInvoiceContentChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("InvoiceContent");
-		}
-		
-		private void OnInvoiceContentSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceContent> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.InvoiceLookup = this;
-			}
-			else {
-				e.Item.InvoiceLookup = null;
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Utwórz nowy element listy.
-	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="InvoiceContent", Id="0x010082E2FD28F40C4269AC5C796F220F10C3")]
 	public partial class InvoiceContent : Element {
 		
@@ -2815,11 +2771,13 @@ namespace CAS.SmartFactory.Linq.IPR
 		
 		private string _units;
 		
+		private System.Nullable<bool> _status;
+		
 		private System.Nullable<ProductType> _productType;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Invoice> _invoiceLookup;
+		private Microsoft.SharePoint.Linq.EntityRef<InvoiceLib> _invoiceLookup;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Batch> _batchLookup;
+		private Microsoft.SharePoint.Linq.EntityRef<Batch> _batchID;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2828,14 +2786,14 @@ namespace CAS.SmartFactory.Linq.IPR
 		#endregion
 		
 		public InvoiceContent() {
-			this._invoiceLookup = new Microsoft.SharePoint.Linq.EntityRef<Invoice>();
-			this._invoiceLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Invoice>>(this.OnInvoiceLookupSync);
+			this._invoiceLookup = new Microsoft.SharePoint.Linq.EntityRef<InvoiceLib>();
+			this._invoiceLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceLib>>(this.OnInvoiceLookupSync);
 			this._invoiceLookup.OnChanged += new System.EventHandler(this.OnInvoiceLookupChanged);
 			this._invoiceLookup.OnChanging += new System.EventHandler(this.OnInvoiceLookupChanging);
-			this._batchLookup = new Microsoft.SharePoint.Linq.EntityRef<Batch>();
-			this._batchLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch>>(this.OnBatchLookupSync);
-			this._batchLookup.OnChanged += new System.EventHandler(this.OnBatchLookupChanged);
-			this._batchLookup.OnChanging += new System.EventHandler(this.OnBatchLookupChanging);
+			this._batchID = new Microsoft.SharePoint.Linq.EntityRef<Batch>();
+			this._batchID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch>>(this.OnBatchIDSync);
+			this._batchID.OnChanged += new System.EventHandler(this.OnBatchIDChanged);
+			this._batchID.OnChanging += new System.EventHandler(this.OnBatchIDChanging);
 			this.OnCreated();
 		}
 		
@@ -2924,6 +2882,20 @@ namespace CAS.SmartFactory.Linq.IPR
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="InvoiceContentStatus", Storage="_status", FieldType="Boolean")]
+		public System.Nullable<bool> Status {
+			get {
+				return this._status;
+			}
+			set {
+				if ((value != this._status)) {
+					this.OnPropertyChanging("Status", this._status);
+					this._status = value;
+					this.OnPropertyChanged("Status");
+				}
+			}
+		}
+		
 		/// <summary>
 		/// Material Type
 		/// </summary>
@@ -2941,8 +2913,8 @@ namespace CAS.SmartFactory.Linq.IPR
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceIndex", Storage="_invoiceLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Invoice")]
-		public Invoice InvoiceLookup {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceIndex", Storage="_invoiceLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Invoice Library")]
+		public InvoiceLib InvoiceLookup {
 			get {
 				return this._invoiceLookup.GetEntity();
 			}
@@ -2951,13 +2923,13 @@ namespace CAS.SmartFactory.Linq.IPR
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="BatchIndex", Storage="_batchLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Batch")]
-		public Batch BatchLookup {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceContent2BatchIndex", Storage="_batchID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Batch")]
+		public Batch BatchID {
 			get {
-				return this._batchLookup.GetEntity();
+				return this._batchID.GetEntity();
 			}
 			set {
-				this._batchLookup.SetEntity(value);
+				this._batchID.SetEntity(value);
 			}
 		}
 		
@@ -2969,7 +2941,7 @@ namespace CAS.SmartFactory.Linq.IPR
 			this.OnPropertyChanged("InvoiceLookup");
 		}
 		
-		private void OnInvoiceLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Invoice> e) {
+		private void OnInvoiceLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceLib> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.InvoiceContent.Add(this);
 			}
@@ -2978,15 +2950,21 @@ namespace CAS.SmartFactory.Linq.IPR
 			}
 		}
 		
-		private void OnBatchLookupChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("BatchLookup", this._batchLookup.Clone());
+		private void OnBatchIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("BatchID", this._batchID.Clone());
 		}
 		
-		private void OnBatchLookupChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("BatchLookup");
+		private void OnBatchIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("BatchID");
 		}
 		
-		private void OnBatchLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch> e) {
+		private void OnBatchIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.InvoiceContent.Add(this);
+			}
+			else {
+				e.Item.InvoiceContent.Remove(this);
+			}
 		}
 	}
 	
@@ -3039,6 +3017,8 @@ namespace CAS.SmartFactory.Linq.IPR
 		private System.Nullable<System.DateTime> _closingDate;
 		
 		private System.Nullable<double> _accountBalance;
+		
+		private System.Nullable<double> _tobaccoNotAllocated;
 		
 		private System.Nullable<bool> _accountClosed;
 		
@@ -3431,6 +3411,20 @@ namespace CAS.SmartFactory.Linq.IPR
 					this.OnPropertyChanging("AccountBalance", this._accountBalance);
 					this._accountBalance = value;
 					this.OnPropertyChanged("AccountBalance");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TobaccoNotAllocated", Storage="_tobaccoNotAllocated", FieldType="Number")]
+		public System.Nullable<double> TobaccoNotAllocated {
+			get {
+				return this._tobaccoNotAllocated;
+			}
+			set {
+				if ((value != this._tobaccoNotAllocated)) {
+					this.OnPropertyChanging("TobaccoNotAllocated", this._tobaccoNotAllocated);
+					this._tobaccoNotAllocated = value;
+					this.OnPropertyChanged("TobaccoNotAllocated");
 				}
 			}
 		}
@@ -6122,10 +6116,13 @@ namespace CAS.SmartFactory.Linq.IPR
 	/// Utwórz nowy dokument.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="InvoiceLib", Id="0x0101003054E4EBB5DE4C6391CA389A60DCD926")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(InvoiceLibraryInvoiceLib))]
 	public partial class InvoiceLib : Dokument {
 		
-		private string _dummy;
+		private string _billDoc;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> _invoiceContent;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceListLookup;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -6134,21 +6131,80 @@ namespace CAS.SmartFactory.Linq.IPR
 		#endregion
 		
 		public InvoiceLib() {
+			this._invoiceContent = new Microsoft.SharePoint.Linq.EntitySet<InvoiceContent>();
+			this._invoiceContent.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceContent>>(this.OnInvoiceContentSync);
+			this._invoiceContent.OnChanged += new System.EventHandler(this.OnInvoiceContentChanged);
+			this._invoiceContent.OnChanging += new System.EventHandler(this.OnInvoiceContentChanging);
+			this._clearenceListLookup = new Microsoft.SharePoint.Linq.EntityRef<Clearence>();
+			this._clearenceListLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnClearenceListLookupSync);
+			this._clearenceListLookup.OnChanged += new System.EventHandler(this.OnClearenceListLookupChanged);
+			this._clearenceListLookup.OnChanging += new System.EventHandler(this.OnClearenceListLookupChanging);
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Dummy", Storage="_dummy", FieldType="Text")]
-		public virtual string Dummy {
+		/// <summary>
+		/// BillDoc
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BillDoc", Storage="_billDoc", FieldType="Text")]
+		public string BillDoc {
 			get {
-				return this._dummy;
+				return this._billDoc;
 			}
 			set {
-				if ((value != this._dummy)) {
-					this.OnPropertyChanging("Dummy", this._dummy);
-					this._dummy = value;
-					this.OnPropertyChanged("Dummy");
+				if ((value != this._billDoc)) {
+					this.OnPropertyChanging("BillDoc", this._billDoc);
+					this._billDoc = value;
+					this.OnPropertyChanged("BillDoc");
 				}
 			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceIndex", Storage="_invoiceContent", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Invoice Content")]
+		public Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> InvoiceContent {
+			get {
+				return this._invoiceContent;
+			}
+			set {
+				this._invoiceContent.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ClearenceIndex", Storage="_clearenceListLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Clearence")]
+		public Clearence ClearenceListLookup {
+			get {
+				return this._clearenceListLookup.GetEntity();
+			}
+			set {
+				this._clearenceListLookup.SetEntity(value);
+			}
+		}
+		
+		private void OnInvoiceContentChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("InvoiceContent", this._invoiceContent.Clone());
+		}
+		
+		private void OnInvoiceContentChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("InvoiceContent");
+		}
+		
+		private void OnInvoiceContentSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceContent> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.InvoiceLookup = this;
+			}
+			else {
+				e.Item.InvoiceLookup = null;
+			}
+		}
+		
+		private void OnClearenceListLookupChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("ClearenceListLookup", this._clearenceListLookup.Clone());
+		}
+		
+		private void OnClearenceListLookupChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("ClearenceListLookup");
+		}
+		
+		private void OnClearenceListLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence> e) {
 		}
 	}
 	
@@ -6650,67 +6706,6 @@ namespace CAS.SmartFactory.Linq.IPR
 					this._blendPurpose = value;
 					this.OnPropertyChanged("BlendPurpose");
 				}
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Invoice Document Library
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="InvoiceLib", Id="0x0101003054E4EBB5DE4C6391CA389A60DCD926", List="InvoiceLibrary")]
-	public partial class InvoiceLibraryInvoiceLib : InvoiceLib {
-		
-		private Microsoft.SharePoint.Linq.EntitySet<Invoice> _invoice;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public InvoiceLibraryInvoiceLib() {
-			this._invoice = new Microsoft.SharePoint.Linq.EntitySet<Invoice>();
-			this._invoice.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Invoice>>(this.OnInvoiceSync);
-			this._invoice.OnChanged += new System.EventHandler(this.OnInvoiceChanged);
-			this._invoice.OnChanging += new System.EventHandler(this.OnInvoiceChanging);
-			this.OnCreated();
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Dummy {
-			get {
-				throw new System.InvalidOperationException("Pole Dummy zostało usunięte z typu zawartości InvoiceLib.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole Dummy zostało usunięte z typu zawartości InvoiceLib.");
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceLibraryIndex", Storage="_invoice", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Invoice")]
-		public Microsoft.SharePoint.Linq.EntitySet<Invoice> Invoice {
-			get {
-				return this._invoice;
-			}
-			set {
-				this._invoice.Assign(value);
-			}
-		}
-		
-		private void OnInvoiceChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Invoice", this._invoice.Clone());
-		}
-		
-		private void OnInvoiceChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Invoice");
-		}
-		
-		private void OnInvoiceSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Invoice> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.InvoiceLibraryLookup = this;
-			}
-			else {
-				e.Item.InvoiceLibraryLookup = null;
 			}
 		}
 	}
