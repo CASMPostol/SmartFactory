@@ -11,30 +11,31 @@ namespace CAS.SmartFactory.IPR.Entities
     internal static void GetXmlContent( InvoiceXml xml, EntitiesDataContext edc, InvoiceLib entry )
     {
       entry.BillDoc = Entities.InvoiceContent.GetXmlContent( xml.Item, edc, entry );
+      edc.SubmitChanges();
     }
-    internal static string GetXmlContent(InvoiceItemXml[] invoiceEntries, EntitiesDataContext edc, InvoiceLib parent)
+    internal static string GetXmlContent( InvoiceItemXml[] invoiceEntries, EntitiesDataContext edc, InvoiceLib parent )
     {
       string functionValue = String.Empty;
       List<InvoiceContent> itemsList = new List<InvoiceContent>();
-      foreach (InvoiceItemXml item in invoiceEntries)
+      foreach ( InvoiceItemXml item in invoiceEntries )
       {
-        InvoiceContent ic = new InvoiceContent(edc, parent, item);
-        itemsList.Add(ic);
-        if (String.IsNullOrEmpty(functionValue))
+        InvoiceContent ic = new InvoiceContent( edc, parent, item );
+        itemsList.Add( ic );
+        if ( String.IsNullOrEmpty( functionValue ) )
           functionValue = item.Bill_doc.ToString();
       }
-      if (itemsList.Count > 0)
-        edc.InvoiceContent.InsertAllOnSubmit(itemsList);
+      if ( itemsList.Count > 0 )
+        edc.InvoiceContent.InsertAllOnSubmit( itemsList );
       return functionValue;
     }
-    private InvoiceContent(EntitiesDataContext edc, InvoiceLib parent, InvoiceItemXml item) :
+    private InvoiceContent( EntitiesDataContext edc, InvoiceLib parent, InvoiceItemXml item ) :
       this()
     {
       Batch = item.Batch;
-      this.BatchID = Entities.Batch.GetLookup(edc, item.Batch);
+      this.BatchID = Entities.Batch.GetOrCreatePreliminary( edc, item.Batch );
       InvoiceLookup = parent;
       ItemNo = item.Item.ConvertToDouble();
-      ProductType = SKUCommonPart.GetLookup(edc, item.Material).ProductType;
+      ProductType = SKUCommonPart.GetLookup( edc, item.Material ).ProductType;
       Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
       SKU = item.Material;
       Tytuł = item.Description;
