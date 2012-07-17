@@ -26,26 +26,26 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       m_Control = Page.LoadControl( _ascxPath ) as ExportWebPartUserControl;
       Controls.Add( m_Control );
     }
-    #region Interconnections Providers
-    /// <summary>
-    /// Sets the BatchInterconnection provider.
-    /// </summary>
-    /// <param name="_provider">The provider interface.</param>
-    [ConnectionConsumer( "Batch table interconnection", "BatchInterconnection", AllowsMultipleConnections = false )]
-    public void SetBatchProvider( IWebPartRow _provider )
-    {
-      m_ProvidersDictionary.Add( ConnectionSelector.BatchInterconnection, _provider );
-    }
-    /// <summary>
-    /// Sets the SecurityEscortCatalog provider.
-    /// </summary>
-    /// <param name="_provider">The provider interface.</param>
-    [ConnectionConsumer( "Batch table interconnection", "BatchInterconnection", AllowsMultipleConnections = false )]
-    public void SetInvoiceProvider( IWebPartRow _provider )
-    {
-      m_ProvidersDictionary.Add( ConnectionSelector.BatchInterconnection, _provider );
-    }
-    private Dictionary<ConnectionSelector, IWebPartRow> m_ProvidersDictionary = new Dictionary<ConnectionSelector, IWebPartRow>();
-    #endregion
+    //#region Interconnections Providers
+    ///// <summary>
+    ///// Sets the BatchInterconnection provider.
+    ///// </summary>
+    ///// <param name="_provider">The provider interface.</param>
+    //[ConnectionConsumer( "Batch table interconnection", "BatchInterconnection", AllowsMultipleConnections = false )]
+    //public void SetBatchProvider( IWebPartRow _provider )
+    //{
+    //  m_ProvidersDictionary.Add( ConnectionSelector.BatchInterconnection, _provider );
+    //}
+    ///// <summary>
+    ///// Sets the SecurityEscortCatalog provider.
+    ///// </summary>
+    ///// <param name="_provider">The provider interface.</param>
+    //[ConnectionConsumer( "Batch table interconnection", "BatchInterconnection", AllowsMultipleConnections = false )]
+    //public void SetInvoiceProvider( IWebPartRow _provider )
+    //{
+    //  m_ProvidersDictionary.Add( ConnectionSelector.BatchInterconnection, _provider );
+    //}
+    //private Dictionary<ConnectionSelector, IWebPartRow> m_ProvidersDictionary = new Dictionary<ConnectionSelector, IWebPartRow>();
+    //#endregion
   }
 }
