@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
   public class ExportWebPart: WebPart
   {
     // Visual Studio might automatically update this path when you change the Visual Web Part project item.
-    private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS/SmartFactory/IPR/Dashboards/Webparts/ExportWebPart/ExportWebPartUserControl.ascx";
+    private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.IPR.Dashboards.Webparts/ExportWebPart/ExportWebPartUserControl.ascx";
     private ExportWebPartUserControl m_Control;
 
     protected override void CreateChildControls()
