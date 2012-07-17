@@ -2,7 +2,7 @@
 <webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="IPRDashboards.Webparts.ExportWebPart.ExportWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <type name="CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart.ExportWebPart, $SharePoint.Project.AssemblyFullName$" />
       <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
     </metaData>
     <data>
