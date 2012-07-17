@@ -3,7 +3,7 @@
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="ExportWebPart\" Type="ElementManifest" />
     <ProjectItemFile Source="ExportWebPart.webpart" Target="ExportWebPart\" Type="ElementFile" />
-    <ProjectItemFile Source="ExportWebPartUserControl.ascx" Target="CONTROLTEMPLATES\IPRDashboards.Webparts\ExportWebPart\" Type="TemplateFile" />
+    <ProjectItemFile Source="ExportWebPartUserControl.ascx" Target="CONTROLTEMPLATES\CAS.SmartFactory.IPR.Dashboards.Webparts\ExportWebPart\" Type="TemplateFile" />
   </Files>
   <SafeControls>
     <SafeControl Name="SafeControlEntry1" Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart" TypeName="*" IsSafe="true" IsSafeAgainstScript="false" />
