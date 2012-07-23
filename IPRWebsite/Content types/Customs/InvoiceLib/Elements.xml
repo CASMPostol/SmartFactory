@@ -8,6 +8,7 @@
                Overwrite="TRUE">
     <FieldRefs>
       <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" />
+      <FieldRef ID="{3A9F901C-8EB2-430A-A056-6438D3CD5900}" Name="InvoiceCreationDate" />
       <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
     </FieldRefs>
   </ContentType>

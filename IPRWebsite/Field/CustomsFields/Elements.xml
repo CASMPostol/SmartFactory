@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    ID="{3A9F901C-8EB2-430A-A056-6438D3CD5900}"
+    Name="InvoiceCreationDate"
+    Group="CAS Smart Factory IPR Dictionaries"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Creation date">
+    <Default>[today]</Default>
+  </Field>
+  <Field
     Name="InvoiceContentStatus"
     ID="{BA635D4D-4917-40BA-83A1-566C2D3C23F5}"
     Type="Boolean"
