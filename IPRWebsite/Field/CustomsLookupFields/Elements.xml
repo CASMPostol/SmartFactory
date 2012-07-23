@@ -2,6 +2,32 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
     Type="Lookup"
+    DisplayName="SKU"
+    List="Lists/BatchList"
+    ShowField="SKU"
+    FieldRef="7235E320-CC65-421C-B1E8-98EBC448005B"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory IPR"
+    ID="{5683FD10-EC27-4319-847E-C9B30CDB2796}"
+    Name="InvoiceContent2BatchSKU_sec"
+    Overwrite="TRUE"
+  />
+  <Field
+    Type="Lookup"
+    DisplayName="Batch"
+    List="Lists/BatchList"
+    ShowField="Batch"
+    FieldRef="7235E320-CC65-421C-B1E8-98EBC448005B"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory IPR"
+    ID="{825613AB-D69B-4D1B-94CE-3F33EA23CC58}"
+    Name="InvoiceContent2BatchBatch_sec"
+    Overwrite="TRUE"
+  />
+  <Field
+    Type="Lookup"
     DisplayName="FG Quantity (available)"
     List="Lists/BatchList"
     ShowField="FGQuantityAvailable"
