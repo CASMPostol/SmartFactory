@@ -560,9 +560,13 @@
     </Content>
     <Content Include="Lists\Customs\InvoiceContentTemplate\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceContentTemplate\InvoiceContentList\Elements.xml" />
-    <Content Include="Lists\Customs\InvoiceContentTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\InvoiceContentTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\InvoiceLibraryTemplate\EditDlg.htm" />
-    <Content Include="Lists\Customs\InvoiceLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\InvoiceLibraryTemplate\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\InvoiceLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\Customs\InvoiceLibraryTemplate\InvoiceLibrary\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceLibraryTemplate\Repair.aspx" />
