@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     /// </summary>
     public override void ItemAdded( SPItemEventProperties properties )
     {
-      if ( !properties.List.Title.Contains( "Invoice" ) )
+      if ( !properties.List.Title.Contains( "InvoiceLibrary" ) )
       {
         //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
         base.ItemAdded( properties );

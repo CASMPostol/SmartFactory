@@ -31,15 +31,18 @@ namespace CAS.SmartFactory.IPR.Entities
     private InvoiceContent( EntitiesDataContext edc, InvoiceLib parent, InvoiceItemXml item ) :
       this()
     {
+      //TODO [pr4-3465] Invoice Content list - add fields http://itrserver/Bugs/BugDetail.aspx?bid=3465
       Batch = item.Batch;
       this.BatchID = Entities.Batch.GetOrCreatePreliminary( edc, item.Batch );
       InvoiceLookup = parent;
       ItemNo = item.Item.ConvertToDouble();
+      //TODO get from batch or directly convert to enum
       ProductType = SKUCommonPart.GetLookup( edc, item.Material ).ProductType;
       Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
       SKU = item.Material;
       Tytuł = item.Description;
       Units = item.BUn;
+      this.Status = Quantity <= this.BatchID.FGQuantityAvailable;
     }
   }
 }
