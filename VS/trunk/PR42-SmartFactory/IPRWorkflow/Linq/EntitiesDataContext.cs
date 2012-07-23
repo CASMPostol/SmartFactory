@@ -42,27 +42,37 @@ namespace CAS.SmartFactory.Linq.IPR
         edc = new EntitiesDataContext(url);
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Format"));
         Linq.IPR.Format.ImportData( data.Format, edc );
-        edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+        edc.SubmitChanges();
+        //edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Consent"));
         Linq.IPR.Consent.ImportData( data.Consent, edc );
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "CustomsUnion"));
+        edc.SubmitChanges();
+        progressChanged( null, new ProgressChangedEventArgs( progress++, "CustomsUnion" ) );
         Linq.IPR.CustomsUnion.ImportData( data.CustomsUnion, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "CutfillerCoefficient"));
+        edc.SubmitChanges();
         Linq.IPR.CutfillerCoefficient.ImportData( data.CutfillerCoefficient, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Dust"));
+        edc.SubmitChanges();
         Linq.IPR.Dust.ImportData( data.Dust, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "PCNCode"));
+        edc.SubmitChanges();
         Linq.IPR.PCNCode.ImportData( data.PCNCode, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "SHMenthol"));
+        edc.SubmitChanges();
         Linq.IPR.SHMenthol.ImportData( data.SHMenthol, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Usage"));
+        edc.SubmitChanges();
         Linq.IPR.Usage.ImportData( data.Usage, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Warehouse"));
+        edc.SubmitChanges();
         Linq.IPR.Warehouse.ImportData( data.Warehouse, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Waste"));
+        edc.SubmitChanges();
         Linq.IPR.Waste.ImportData( data.Waste, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Submiting Changes"));
-        edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+        edc.SubmitChanges();
+        //edc.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
       }
       finally
       {

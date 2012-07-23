@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Collections.Generic;
-using CAS.SharePoint.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls.WebParts;
 using CAS.SharePoint;
-using CAS.SmartFactory.Linq.IPR;
 using CAS.SharePoint.Linq;
+using CAS.SharePoint.Web;
+using CAS.SmartFactory.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -74,7 +73,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         InterfaceState = _old.InterfaceState;
       }
       #endregion
-
     }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
@@ -101,7 +99,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
       m_EditButton.Click += new EventHandler( m_StateMachineEngine.EditButton_Click );
     }
-
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -234,7 +231,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           _ic.BatchID = null;
           _ic.Quantity = Convert.ToDouble( m_Parent.m_InvoiceQuantityTextBox.Text );
           _ic.ProductType = _ic.BatchID.ProductType;
-          _ic.SKU = _ic.BatchID.SKU;
           _ic.Status = true;
           _ic.Tytuł = _ic.BatchID.Tytuł;
           //TODO _ic.Units = _ic.BatchID.SKULookup.u
