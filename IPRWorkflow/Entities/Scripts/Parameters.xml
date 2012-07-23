@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Web Class="EntitiesDataContext" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal" >
-  <List Name="InvoiceLibrary" Member="InvoiceLibrary">
-  </List>
-  <ContentType Name="InvoiceLib" Class="InvoiceLib">
-    <Column Name="Dummy"/>
-  </ContentType>
-</Web>
