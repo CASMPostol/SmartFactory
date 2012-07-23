@@ -69,7 +69,7 @@
     <Compile Include="Webparts\ExportWebPart\ExportWebPartUserControl.ascx.designer.cs">
       <DependentUpon>ExportWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Webparts\InboundInterconnectionData.cs" />
+    <Compile Include="Webparts\InterconnectionData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dashboards\ExportDashboard\SharePointProjectItem.spdata">
@@ -132,9 +132,7 @@
     <Content Include="WebPartPages\WebPageTemplate_Export.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_IPRBook.aspx" />
     <Content Include="Webparts\ExportWebPart\Elements.xml" />
-    <Content Include="Webparts\ExportWebPart\ExportWebPartUserControl.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Webparts\ExportWebPart\ExportWebPartUserControl.ascx" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

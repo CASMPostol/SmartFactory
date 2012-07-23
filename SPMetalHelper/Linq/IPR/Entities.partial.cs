@@ -49,6 +49,7 @@ namespace CAS.SmartFactory.Linq.IPR
   /// </summary>
   public partial class EntitiesDataContext
   {
+    public EntitiesDataContext() : base( SPContext.Current.Web.Url ) { }
     /// <summary>
     /// Persists to the content database changes made by the current user to one or more lists using the specified failure mode;
     /// or, if a concurrency conflict is found, populates the <see cref="P:Microsoft.SharePoint.Linq.DataContext.ChangeConflicts"/> property.
