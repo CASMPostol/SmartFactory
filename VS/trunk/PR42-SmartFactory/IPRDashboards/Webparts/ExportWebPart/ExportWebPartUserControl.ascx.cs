@@ -6,6 +6,7 @@ using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
+using CAS.SharePoint.Web.ControlExtensions;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -158,7 +159,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 
       #region public
       [Flags]
-      internal enum LocalControlsSet { };
+      internal enum LocalControlsSet { EditBatchCheckBox, ExportButton };
       internal void InitMahine( InterfaceState _ControlState )
       {
         Parent.m_ControlState.InterfaceState = _ControlState;
@@ -170,15 +171,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       #endregion
 
-      #region NewDataEventHandlers'
+      #region NewDataEventHandlers
       internal void NewDataEventHandler( object sender, BatchInterconnectionData e )
       {
         switch ( CurrentMachineState )
         {
-          case InterfaceState.ViewState:
+          case InterfaceState.EditState:
             m_Parent.SetInterconnectionData( e );
             break;
-          case InterfaceState.EditState:
+          case InterfaceState.ViewState:
           case InterfaceState.NewState:
           default:
             break;
@@ -228,7 +229,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           Batch _btch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           //TODO [pr4-3465] Invoice Content list - add fields http://itrserver/Bugs/BugDetail.aspx?bid=3465
           InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
-          _ic.BatchID = null;
+          _ic.BatchID = _btch;
           _ic.Quantity = Convert.ToDouble( m_Parent.m_InvoiceQuantityTextBox.Text );
           _ic.ProductType = _ic.BatchID.ProductType;
           _ic.Status = true;
@@ -246,10 +247,23 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       {
         try
         {
+          List<string> _errors = new List<string>();
+          Batch _btch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
+          InvoiceLib _invc = Element.GetAtIndex<InvoiceLib>( Parent.m_DataContextManagement.DataContext.InvoiceLibrary, Parent.m_ControlState.InvoiceID );
           InvoiceContent _nic = new InvoiceContent()
           {
-
+            BatchID = _btch,
+            InvoiceLookup = _invc,
+            ItemNo = int.MaxValue,
+            ProductType = _btch.ProductType,
+            Quantity = Parent.m_InvoiceQuantityTextBox.TextBox2Double( _errors ),
+            Status = true,
+            Tytuł = _btch.SKULookup.Tytuł,
+            Units = "kg" //TODO  [pr4-3542] How to define units for new invoice content
           };
+          Parent.m_DataContextManagement.DataContext.InvoiceContent.InsertOnSubmit( _nic );
+          //TODO add diagnostic 
+          Parent.m_DataContextManagement.DataContext.SubmitChanges();
         }
         catch ( Exception ex )
         {
@@ -259,23 +273,36 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       protected override GenericStateMachineEngine.ActionResult Delete()
       {
-        throw new NotImplementedException();
+        try
+        {
+          throw new NotImplementedException();
+        }
+        catch ( Exception ex )
+        {
+          return GenericStateMachineEngine.ActionResult.Exception( ex, "Delete" );
+        }
+        return GenericStateMachineEngine.ActionResult.Success;
       }
       protected override void ClearUserInterface()
       {
-        throw new NotImplementedException();
+        m_Parent.m_BatchTextBox.Text = String.Empty;
+        m_Parent.m_EditBatchCheckBox.Checked = false;
+        m_Parent.m_InvoiceContentTextBox.Text = String.Empty;
+        m_Parent.m_InvoiceQuantityTextBox.Text = String.Empty;
+        m_Parent.m_InvoiceTextBox.Text = String.Empty;
       }
       protected override void SetEnabled( GenericStateMachineEngine.ControlsSet _buttons )
       {
-        throw new NotImplementedException();
+        // TODO throw new NotImplementedException();
       }
       protected override void SMError( GenericStateMachineEngine.InterfaceEvent interfaceEvent )
       {
-        throw new NotImplementedException();
+        //TODO throw new NotImplementedException();
       }
       protected override void ShowActionResult( GenericStateMachineEngine.ActionResult _rslt )
       {
-        throw new NotImplementedException();
+        //TODO improve diagnostic
+        Parent.Controls.Add( CAS.SharePoint.Web.ControlExtensions.CreateMessage( "Provided data is wrong" ) );
       }
       protected override GenericStateMachineEngine.InterfaceState CurrentMachineState
       {
@@ -372,8 +399,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     }
     #endregion
 
+    #region private
     private LocalStateMachineEngine m_StateMachineEngine = null;
     private ControlState m_ControlState = null;
     private DataContextManagement<EntitiesDataContext> m_DataContextManagement = null;
+    #endregion
+
   }
 }
