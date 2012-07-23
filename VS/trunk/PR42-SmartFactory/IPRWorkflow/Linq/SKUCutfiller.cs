@@ -6,14 +6,14 @@ using CutfillerXml = CAS.SmartFactory.xml.erp.Cutfiller;
 using MaterialXml = CAS.SmartFactory.xml.erp.Material;
 using System.ComponentModel;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class SKUCutfiller
   {
     public SKUCutfiller(CutfillerMaterialxML document, Dokument parent, EntitiesDataContext edc)
       : base(document, parent, edc)
     {
-      ProductType = Entities.ProductType.Cutfiller;
+      ProductType = Linq.IPR.ProductType.Cutfiller;
       BlendPurpose = String.IsNullOrEmpty(document.BlendPurpose) ? String.Empty : document.BlendPurpose;
     }
     protected override Format GetFormatLookup(MaterialXml document, EntitiesDataContext edc)

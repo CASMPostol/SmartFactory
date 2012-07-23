@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using CAS.SmartFactory.xml.Customs;
+using CAS.SmartFactory.IPR;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
 
   public partial class IPR
@@ -99,23 +100,23 @@ namespace CAS.SmartFactory.IPR.Entities
         throw new IPRDataConsistencyException("IPR.AddDisposal", "There is no tobacco to dispose.", null, "Disposal creation failed");
       try
       {
-        Entities.DisposalStatus _typeOfDisposal = default(Entities.DisposalStatus);
+        Linq.IPR.DisposalStatus _typeOfDisposal = default( Linq.IPR.DisposalStatus );
         switch (_status)
         {
           case DisposalEnum.Dust:
-            _typeOfDisposal = Entities.DisposalStatus.Dust;
+            _typeOfDisposal = Linq.IPR.DisposalStatus.Dust;
             break;
           case DisposalEnum.SHMenthol:
-            _typeOfDisposal = Entities.DisposalStatus.SHMenthol;
+            _typeOfDisposal = Linq.IPR.DisposalStatus.SHMenthol;
             break;
           case DisposalEnum.Waste:
-            _typeOfDisposal = Entities.DisposalStatus.Waste;
+            _typeOfDisposal = Linq.IPR.DisposalStatus.Waste;
             break;
           case DisposalEnum.OverusageInKg:
-            _typeOfDisposal = Entities.DisposalStatus.Overuse;
+            _typeOfDisposal = Linq.IPR.DisposalStatus.Overuse;
             break;
           case DisposalEnum.Tobacco:
-            _typeOfDisposal = Entities.DisposalStatus.TobaccoInCigaretesExported;
+            _typeOfDisposal = Linq.IPR.DisposalStatus.TobaccoInCigaretesExported;
             break;
         }
         double _toDispose;
@@ -129,8 +130,8 @@ namespace CAS.SmartFactory.IPR.Entities
         {
           BatchLookup = _batch,
           ClearenceListLookup = null,
-          ClearingType = Entities.ClearingType.PartialWindingUp,
-          CustomsStatus = Entities.CustomsStatus.NotStarted,
+          ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
+          CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
           CustomsProcedure = "N/A",
           DisposalStatus = _typeOfDisposal,
           DutyAndVAT = new Nullable<double>(),

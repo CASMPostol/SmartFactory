@@ -1,7 +1,8 @@
 ﻿using System;
+using CAS.SmartFactory.IPR;
 using CAS.SmartFactory.xml.Customs;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class SADDocumentType
   {

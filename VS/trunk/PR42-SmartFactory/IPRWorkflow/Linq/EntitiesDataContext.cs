@@ -3,35 +3,35 @@ using Microsoft.SharePoint.Linq;
 using XmlConfiguration = CAS.SmartFactory.xml.Dictionaries.Configuration;
 using System.ComponentModel;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class EntitiesDataContext
   {
-    /// <summary>
-    /// Persists to the content database changes made by the current user to one or more lists using the specified failure mode;
-    /// or, if a concurrency conflict is found, populates the <see cref="P:Microsoft.SharePoint.Linq.DataContext.ChangeConflicts"/> property.
-    /// </summary>
-    /// <param name="mode">Specifies how the list item changing system of the LINQ to SharePoint provider will respond when it 
-    /// finds that a list item has been changed by another process since it was retrieved.
-    /// </param>
-    public void SubmitChangesSilently(RefreshMode mode)
-    {
-      try
-      {
-        SubmitChanges();
-      }
-      catch (ChangeConflictException)
-      {
-        foreach (ObjectChangeConflict changedListItem in this.ChangeConflicts)
-        {
-          changedListItem.Resolve(mode);
-        }
-        this.SubmitChanges();
-      }
+    ///// <summary>
+    ///// Persists to the content database changes made by the current user to one or more lists using the specified failure mode;
+    ///// or, if a concurrency conflict is found, populates the <see cref="P:Microsoft.SharePoint.Linq.DataContext.ChangeConflicts"/> property.
+    ///// </summary>
+    ///// <param name="mode">Specifies how the list item changing system of the LINQ to SharePoint provider will respond when it 
+    ///// finds that a list item has been changed by another process since it was retrieved.
+    ///// </param>
+    //public void SubmitChangesSilently(RefreshMode mode)
+    //{
+    //  try
+    //  {
+    //    SubmitChanges();
+    //  }
+    //  catch (ChangeConflictException)
+    //  {
+    //    foreach (ObjectChangeConflict changedListItem in this.ChangeConflicts)
+    //    {
+    //      changedListItem.Resolve(mode);
+    //    }
+    //    this.SubmitChanges();
+    //  }
       //catch (Exception)
       //{
       //}// end catch
-    }
+    //}
     public static void ImportData(XmlConfiguration data, string url, ProgressChangedEventHandler progressChanged)
     {
       EntitiesDataContext edc = null;
@@ -41,26 +41,26 @@ namespace CAS.SmartFactory.IPR.Entities
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Connecting to website"));
         edc = new EntitiesDataContext(url);
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Format"));
-        Entities.Format.ImportData(data.Format, edc);
+        Linq.IPR.Format.ImportData( data.Format, edc );
         edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Consent"));
-        Entities.Consent.ImportData(data.Consent, edc);
+        Linq.IPR.Consent.ImportData( data.Consent, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "CustomsUnion"));
-        Entities.CustomsUnion.ImportData(data.CustomsUnion, edc);
+        Linq.IPR.CustomsUnion.ImportData( data.CustomsUnion, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "CutfillerCoefficient"));
-        Entities.CutfillerCoefficient.ImportData(data.CutfillerCoefficient, edc);
+        Linq.IPR.CutfillerCoefficient.ImportData( data.CutfillerCoefficient, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Dust"));
-        Entities.Dust.ImportData(data.Dust, edc);
+        Linq.IPR.Dust.ImportData( data.Dust, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "PCNCode"));
-        Entities.PCNCode.ImportData(data.PCNCode, edc);
+        Linq.IPR.PCNCode.ImportData( data.PCNCode, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "SHMenthol"));
-        Entities.SHMenthol.ImportData(data.SHMenthol, edc);
+        Linq.IPR.SHMenthol.ImportData( data.SHMenthol, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Usage"));
-        Entities.Usage.ImportData(data.Usage, edc);
+        Linq.IPR.Usage.ImportData( data.Usage, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Warehouse"));
-        Entities.Warehouse.ImportData(data.Warehouse, edc);
+        Linq.IPR.Warehouse.ImportData( data.Warehouse, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Waste"));
-        Entities.Waste.ImportData(data.Waste, edc);
+        Linq.IPR.Waste.ImportData( data.Waste, edc );
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Submiting Changes"));
         edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
       }
@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       internal ProductType productType;
       internal bool IPRMaterial;
-      internal Entities.SKUCommonPart skuLookup;
+      internal Linq.IPR.SKUCommonPart skuLookup;
       internal ProductDescription(ProductType type, bool ipr, SKUCommonPart lookup)
       {
         productType = type;
@@ -92,7 +92,7 @@ namespace CAS.SmartFactory.IPR.Entities
       SKUCommonPart entity = SKUCommonPart.Find(this, sku);
       if (entity != null)
         return new ProductDescription(entity.ProductType.GetValueOrDefault(ProductType.Other), entity.IPRMaterial.GetValueOrDefault(false), entity);
-      Warehouse wrh = Entities.Warehouse.Find(this, location);
+      Warehouse wrh = Linq.IPR.Warehouse.Find( this, location );
       if (wrh != null)
       {
         switch (wrh.ProductType)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CAS.SmartFactory.xml.Dictionaries;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class PCNCode
   {
@@ -29,9 +29,9 @@ namespace CAS.SmartFactory.IPR.Entities
       {
         _pcncode = new PCNCode()
           {
-            CompensationGood = Entities.CompensationGood.Tytoń,
+            CompensationGood = Linq.IPR.CompensationGood.Tytoń,
             ProductCodeNumber = _code,
-            Tytuł = String.Format("{0} {1}", Entities.CompensationGood.Tytoń, _code)
+            Tytuł = String.Format( "{0} {1}", Linq.IPR.CompensationGood.Tytoń, _code )
           };
         _edc.PCNCode.InsertOnSubmit(_pcncode);
       }

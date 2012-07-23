@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using CAS.SmartFactory.IPR.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
 using BatchXml = CAS.SmartFactory.xml.erp.Batch;
+using CAS.SmartFactory.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {
@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       catch (IPRDataConsistencyException _ex)
       {
         _ex.Source += " at " + At;
-        using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(_properties.WebUrl))
+        using ( EntitiesDataContext _edc = new EntitiesDataContext( _properties.WebUrl ) )
           _ex.Add2Log(_edc);
         //_properties.ListItem[_batchLibraryOK] = false;
         //_properties.ListItem[_batchLibraryComments] = _ex.Comments;
@@ -54,7 +54,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       }
       catch (Exception _ex)
       {
-        using (Entities.EntitiesDataContext _edc = new EntitiesDataContext(_properties.WebUrl))
+        using (EntitiesDataContext _edc = new EntitiesDataContext(_properties.WebUrl))
           Anons.WriteEntry(_edc, "BatchEventReceiver.ItemAdded" + " at " + At, _ex.Message);
         //string _comments = "Batch message import error";
         //_properties.ListItem[_batchLibraryOK] = false;

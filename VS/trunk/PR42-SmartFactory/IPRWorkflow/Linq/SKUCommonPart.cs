@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using CAS.SmartFactory.IPR;
 using CigarettesMaterialxML = CAS.SmartFactory.xml.erp.CigarettesMaterial;
 using CutfillerMaterialxML = CAS.SmartFactory.xml.erp.CutfillerMaterial;
 using MaterialXml = CAS.SmartFactory.xml.erp.Material;
 using SKUXml = CAS.SmartFactory.xml.erp.SKU;
-using System.ComponentModel;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public abstract partial class SKUCommonPart
   {

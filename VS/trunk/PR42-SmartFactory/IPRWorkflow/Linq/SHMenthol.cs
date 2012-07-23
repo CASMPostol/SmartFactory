@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using CAS.SmartFactory.IPR;
 using CAS.SmartFactory.xml.Dictionaries;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class SHMenthol
   {

@@ -56,10 +56,15 @@
     <Compile Include="..\SPMetalHelper\Extensions.cs">
       <Link>Extensions.cs</Link>
     </Compile>
+    <Compile Include="..\SPMetalHelper\Linq\IPR\Entities.cs">
+      <Link>Linq\Entities.cs</Link>
+    </Compile>
+    <Compile Include="..\SPMetalHelper\Linq\IPR\Entities.partial.cs">
+      <Link>Linq\Entities.partial.cs</Link>
+    </Compile>
     <Compile Include="CommonDefinition.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IPRDataConsistencyException.cs" />
-    <Compile Include="Linq\Anons.cs" />
     <Compile Include="Linq\Batch.cs" />
     <Compile Include="Linq\Clearence.cs" />
     <Compile Include="Linq\Consent.cs" />
@@ -67,7 +72,6 @@
     <Compile Include="Linq\CutfillerCoefficient.cs" />
     <Compile Include="Linq\Dust.cs" />
     <Compile Include="Linq\Element.cs" />
-    <Compile Include="Linq\Entities.cs" />
     <Compile Include="Linq\EntitiesDataContext.cs" />
     <Compile Include="Linq\Extensions.cs" />
     <Compile Include="Linq\Format.cs" />
@@ -76,7 +80,6 @@
     <Compile Include="Linq\Material.cs" />
     <Compile Include="Linq\PCNCode.cs" />
     <Compile Include="Linq\SADDocumentType.cs" />
-    <Compile Include="Linq\SADGood.cs" />
     <Compile Include="Linq\SHMenthol.cs" />
     <Compile Include="Linq\SKUCigarette.cs" />
     <Compile Include="Linq\SKUCommonPart.cs" />
@@ -152,6 +155,10 @@
     <Content Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
+      <Project>{B9D9FCCA-6132-4BF5-BC17-32EA752D6AD7}</Project>
+      <Name>SharePoint</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IPRExternalData\IPRExternalData.csproj">
       <Project>{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}</Project>
       <Name>IPRExternalData</Name>

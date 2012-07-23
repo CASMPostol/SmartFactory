@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using CAS.SmartFactory.IPR;
 using Microsoft.SharePoint.Linq;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   internal static class Extensions
   {
@@ -12,7 +11,7 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       try
       {
-        return (ProductType)Enum.Parse(typeof(Entities.ProductType), entry);
+        return (ProductType)Enum.Parse(typeof(Linq.IPR.ProductType), entry);
       }
       catch (Exception)
       {
@@ -23,7 +22,7 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       try
       {
-        return String.IsNullOrEmpty(entry) ? new Nullable<CompensationGood>() : (CompensationGood)Enum.Parse(typeof(Entities.CompensationGood), entry);
+        return String.IsNullOrEmpty( entry ) ? new Nullable<CompensationGood>() : (CompensationGood)Enum.Parse( typeof( Linq.IPR.CompensationGood ), entry );
       }
       catch (Exception)
       {

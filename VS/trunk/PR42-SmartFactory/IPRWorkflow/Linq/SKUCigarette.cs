@@ -5,7 +5,7 @@ using CigarettesXml = CAS.SmartFactory.xml.erp.Cigarettes;
 using MaterialXml = CAS.SmartFactory.xml.erp.Material;
 using System.ComponentModel;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class SKUCigarette
   {
@@ -14,7 +14,7 @@ namespace CAS.SmartFactory.IPR.Entities
       (CigarettesMaterialxML xmlDocument, Dokument parent, EntitiesDataContext edc)
       : base(xmlDocument, parent, edc)
     {
-      this.ProductType = Entities.ProductType.Cigarette;
+      this.ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette;
       this.Brand = xmlDocument.Brand_Description;
       this.Family = xmlDocument.Family_Des;
       this.Menthol = xmlDocument.Menthol;

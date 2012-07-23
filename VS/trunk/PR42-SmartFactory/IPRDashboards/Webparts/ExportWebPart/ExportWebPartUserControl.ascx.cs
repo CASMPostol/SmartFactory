@@ -253,7 +253,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           InvoiceContent _nic = new InvoiceContent()
           {
 
-          }
+          };
         }
         catch ( Exception ex )
         {
