@@ -32,17 +32,15 @@ namespace CAS.SmartFactory.Linq.IPR
       this()
     {
       //TODO [pr4-3465] Invoice Content list - add fields http://itrserver/Bugs/BugDetail.aspx?bid=3465
-      Batch = item.Batch;
       this.BatchID = Linq.IPR.Batch.GetOrCreatePreliminary( edc, item.Batch );
       InvoiceLookup = parent;
       ItemNo = item.Item.ConvertToDouble();
-      //TODO get from batch or directly convert to enum
-      ProductType = SKUCommonPart.GetLookup( edc, item.Material ).ProductType;
+      ProductType = this.BatchID.ProductType;
       Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
-      SKU = item.Material;
+      this.BatchID.FGQuantityAvailable -= Quantity;
+      this.Status = this.BatchID.FGQuantityAvailable >= 0;
       Tytuł = item.Description;
       Units = item.BUn;
-      this.Status = Quantity <= this.BatchID.FGQuantityAvailable;
     }
   }
 }

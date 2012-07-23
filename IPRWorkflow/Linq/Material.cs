@@ -28,11 +28,11 @@ namespace CAS.SmartFactory.Linq.IPR
       {
         Material ce = null;
         if ( value.ProductType == Linq.IPR.ProductType.IPRTobacco || value.ProductType == Linq.IPR.ProductType.Tobacco )
-          TotalTobacco += value.TobaccoQuantity.GetValueOrDefault( 0 );
+          TotalTobacco += value.TobaccoQuantityKg.GetValueOrDefault( 0 );
         if ( this.TryGetValue( value.GetKey(), out ce ) )
         {
-          ce.FGQuantity += value.FGQuantity;
-          ce.TobaccoQuantity += value.TobaccoQuantity;
+          ce.FGQuantityKUKg += value.FGQuantityKUKg;
+          ce.TobaccoQuantityKg += value.TobaccoQuantityKg;
         }
         else
         {
@@ -55,7 +55,7 @@ namespace CAS.SmartFactory.Linq.IPR
           {
             if ( _materialInBatch.ProductType.Value != Linq.IPR.ProductType.IPRTobacco )
               continue;
-            DisposalsAnalisis _dspsls = new DisposalsAnalisis( _materialInBatch.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient );
+            DisposalsAnalisis _dspsls = new DisposalsAnalisis( _materialInBatch.TobaccoQuantityKg.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient );
             _progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
             AccumulatedDisposalsAnalisis.Accumutate( _dspsls );
             foreach ( KeyValuePair<IPR.DisposalEnum, double> _item in _dspsls )
@@ -164,8 +164,8 @@ namespace CAS.SmartFactory.Linq.IPR
       SKUDescription = item.Material_description;
       Tytuł = item.Material_description;
       Units = item.Unit;
-      FGQuantity = Convert.ToDouble( item.Quantity );
-      TobaccoQuantity = Convert.ToDouble( item.Quantity_calculated );
+      FGQuantityKUKg = Convert.ToDouble( item.Quantity );
+      TobaccoQuantityKg = Convert.ToDouble( item.Quantity_calculated );
       ProductType = Linq.IPR.ProductType.Invalid;
       ProductID = item.material_group;
     }

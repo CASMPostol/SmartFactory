@@ -2,10 +2,10 @@
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
-using CAS.SmartFactory.IPR.Entities;
 using CAS.SmartFactory.IPR.ListsEventsHandlers;
 using CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries;
 using CAS.SmartFactory.IPR.ListsEventsHandlers.Reports;
+using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml.Dictionaries;
 
 namespace CAS.SmartFactory.Management

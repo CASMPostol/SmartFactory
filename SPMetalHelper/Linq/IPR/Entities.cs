@@ -1069,7 +1069,7 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private string _sKU;
 		
-		private System.Nullable<double> _fGQuantity;
+		private System.Nullable<double> _fGQuantityKUKg;
 		
 		private System.Nullable<double> _fGQuantityPrevious;
 		
@@ -1083,23 +1083,27 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private System.Nullable<double> _calculatedOveruse;
 		
-		private System.Nullable<double> _overuse;
+		private System.Nullable<double> _overuseKg;
 		
-		private System.Nullable<double> _dust;
+		private System.Nullable<double> _dustKg;
 		
-		private System.Nullable<double> _waste;
+		private System.Nullable<double> _wasteKg;
 		
-		private System.Nullable<double> _tobacco;
+		private System.Nullable<double> _tobaccoKg;
 		
-		private System.Nullable<double> _sHMenthol;
+		private System.Nullable<double> _sHMentholKg;
 		
 		private System.Nullable<double> _sHCooeficiency;
 		
+		private System.Nullable<double> _sHCoeficiencyVersion;
+		
 		private System.Nullable<double> _dustCooeficiency;
+		
+		private System.Nullable<double> _dustCoeficiencyVersion;
 		
 		private System.Nullable<double> _wasteCooeficiency;
 		
-		private System.Nullable<double> _cooeficiencyVersion;
+		private System.Nullable<double> _wasteCoeficiencyVersion;
 		
 		private System.Nullable<ProductType> _productType;
 		
@@ -1200,16 +1204,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 		/// <summary>
 		/// FG Quantity
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FGQuantity", Storage="_fGQuantity", FieldType="Number")]
-		public System.Nullable<double> FGQuantity {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FGQuantity", Storage="_fGQuantityKUKg", FieldType="Number")]
+		public System.Nullable<double> FGQuantityKUKg {
 			get {
-				return this._fGQuantity;
+				return this._fGQuantityKUKg;
 			}
 			set {
-				if ((value != this._fGQuantity)) {
-					this.OnPropertyChanging("FGQuantity", this._fGQuantity);
-					this._fGQuantity = value;
-					this.OnPropertyChanged("FGQuantity");
+				if ((value != this._fGQuantityKUKg)) {
+					this.OnPropertyChanging("FGQuantityKUKg", this._fGQuantityKUKg);
+					this._fGQuantityKUKg = value;
+					this.OnPropertyChanged("FGQuantityKUKg");
 				}
 			}
 		}
@@ -1319,16 +1323,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 		/// <summary>
 		/// Overuse
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Overuse", Storage="_overuse", FieldType="Number")]
-		public System.Nullable<double> Overuse {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Overuse", Storage="_overuseKg", FieldType="Number")]
+		public System.Nullable<double> OveruseKg {
 			get {
-				return this._overuse;
+				return this._overuseKg;
 			}
 			set {
-				if ((value != this._overuse)) {
-					this.OnPropertyChanging("Overuse", this._overuse);
-					this._overuse = value;
-					this.OnPropertyChanged("Overuse");
+				if ((value != this._overuseKg)) {
+					this.OnPropertyChanging("OveruseKg", this._overuseKg);
+					this._overuseKg = value;
+					this.OnPropertyChanged("OveruseKg");
 				}
 			}
 		}
@@ -1336,16 +1340,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 		/// <summary>
 		/// (Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/dust
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Dust", Storage="_dust", FieldType="Number")]
-		public System.Nullable<double> Dust {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Dust", Storage="_dustKg", FieldType="Number")]
+		public System.Nullable<double> DustKg {
 			get {
-				return this._dust;
+				return this._dustKg;
 			}
 			set {
-				if ((value != this._dust)) {
-					this.OnPropertyChanging("Dust", this._dust);
-					this._dust = value;
-					this.OnPropertyChanged("Dust");
+				if ((value != this._dustKg)) {
+					this.OnPropertyChanging("DustKg", this._dustKg);
+					this._dustKg = value;
+					this.OnPropertyChanged("DustKg");
 				}
 			}
 		}
@@ -1353,16 +1357,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 		/// <summary>
 		/// (Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/waste
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Waste", Storage="_waste", FieldType="Number")]
-		public System.Nullable<double> Waste {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Waste", Storage="_wasteKg", FieldType="Number")]
+		public System.Nullable<double> WasteKg {
 			get {
-				return this._waste;
+				return this._wasteKg;
 			}
 			set {
-				if ((value != this._waste)) {
-					this.OnPropertyChanging("Waste", this._waste);
-					this._waste = value;
-					this.OnPropertyChanged("Waste");
+				if ((value != this._wasteKg)) {
+					this.OnPropertyChanging("WasteKg", this._wasteKg);
+					this._wasteKg = value;
+					this.OnPropertyChanged("WasteKg");
 				}
 			}
 		}
@@ -1370,16 +1374,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 		/// <summary>
 		/// (Material Quantity-Material Quantity Previous)-kolumna'overuse'-kolumna'dust'-kolumna'waste'-kolumna'shmenthol'
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Tobacco", Storage="_tobacco", FieldType="Number")]
-		public System.Nullable<double> Tobacco {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Tobacco", Storage="_tobaccoKg", FieldType="Number")]
+		public System.Nullable<double> TobaccoKg {
 			get {
-				return this._tobacco;
+				return this._tobaccoKg;
 			}
 			set {
-				if ((value != this._tobacco)) {
-					this.OnPropertyChanging("Tobacco", this._tobacco);
-					this._tobacco = value;
-					this.OnPropertyChanged("Tobacco");
+				if ((value != this._tobaccoKg)) {
+					this.OnPropertyChanging("TobaccoKg", this._tobaccoKg);
+					this._tobaccoKg = value;
+					this.OnPropertyChanged("TobaccoKg");
 				}
 			}
 		}
@@ -1387,16 +1391,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 		/// <summary>
 		/// (Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/SHMenthol
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SHMenthol", Storage="_sHMenthol", FieldType="Number")]
-		public System.Nullable<double> SHMenthol {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SHMenthol", Storage="_sHMentholKg", FieldType="Number")]
+		public System.Nullable<double> SHMentholKg {
 			get {
-				return this._sHMenthol;
+				return this._sHMentholKg;
 			}
 			set {
-				if ((value != this._sHMenthol)) {
-					this.OnPropertyChanging("SHMenthol", this._sHMenthol);
-					this._sHMenthol = value;
-					this.OnPropertyChanged("SHMenthol");
+				if ((value != this._sHMentholKg)) {
+					this.OnPropertyChanging("SHMentholKg", this._sHMentholKg);
+					this._sHMentholKg = value;
+					this.OnPropertyChanged("SHMentholKg");
 				}
 			}
 		}
@@ -1415,6 +1419,20 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SHCooeficiencyVersion", Storage="_sHCoeficiencyVersion", FieldType="Number")]
+		public System.Nullable<double> SHCoeficiencyVersion {
+			get {
+				return this._sHCoeficiencyVersion;
+			}
+			set {
+				if ((value != this._sHCoeficiencyVersion)) {
+					this.OnPropertyChanging("SHCoeficiencyVersion", this._sHCoeficiencyVersion);
+					this._sHCoeficiencyVersion = value;
+					this.OnPropertyChanged("SHCoeficiencyVersion");
+				}
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BatchDustCooeficiency", Storage="_dustCooeficiency", FieldType="Number")]
 		public System.Nullable<double> DustCooeficiency {
 			get {
@@ -1425,6 +1443,20 @@ namespace CAS.SmartFactory.Linq.IPR {
 					this.OnPropertyChanging("DustCooeficiency", this._dustCooeficiency);
 					this._dustCooeficiency = value;
 					this.OnPropertyChanged("DustCooeficiency");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DustCooeficiencyVersion", Storage="_dustCoeficiencyVersion", FieldType="Number")]
+		public System.Nullable<double> DustCoeficiencyVersion {
+			get {
+				return this._dustCoeficiencyVersion;
+			}
+			set {
+				if ((value != this._dustCoeficiencyVersion)) {
+					this.OnPropertyChanging("DustCoeficiencyVersion", this._dustCoeficiencyVersion);
+					this._dustCoeficiencyVersion = value;
+					this.OnPropertyChanged("DustCoeficiencyVersion");
 				}
 			}
 		}
@@ -1443,16 +1475,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CooeficiencyVersion", Storage="_cooeficiencyVersion", FieldType="Number")]
-		public System.Nullable<double> CooeficiencyVersion {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WasteCooeficiencyVersion", Storage="_wasteCoeficiencyVersion", FieldType="Number")]
+		public System.Nullable<double> WasteCoeficiencyVersion {
 			get {
-				return this._cooeficiencyVersion;
+				return this._wasteCoeficiencyVersion;
 			}
 			set {
-				if ((value != this._cooeficiencyVersion)) {
-					this.OnPropertyChanging("CooeficiencyVersion", this._cooeficiencyVersion);
-					this._cooeficiencyVersion = value;
-					this.OnPropertyChanged("CooeficiencyVersion");
+				if ((value != this._wasteCoeficiencyVersion)) {
+					this.OnPropertyChanging("WasteCoeficiencyVersion", this._wasteCoeficiencyVersion);
+					this._wasteCoeficiencyVersion = value;
+					this.OnPropertyChanged("WasteCoeficiencyVersion");
 				}
 			}
 		}
@@ -2763,10 +2795,6 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private System.Nullable<double> _itemNo;
 		
-		private string _sKU;
-		
-		private string _batch;
-		
 		private System.Nullable<double> _quantity;
 		
 		private string _units;
@@ -2810,40 +2838,6 @@ namespace CAS.SmartFactory.Linq.IPR {
 					this.OnPropertyChanging("ItemNo", this._itemNo);
 					this._itemNo = value;
 					this.OnPropertyChanged("ItemNo");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// SKU
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
-		public string SKU {
-			get {
-				return this._sKU;
-			}
-			set {
-				if ((value != this._sKU)) {
-					this.OnPropertyChanging("SKU", this._sKU);
-					this._sKU = value;
-					this.OnPropertyChanged("SKU");
-				}
-			}
-		}
-		
-		/// <summary>
-		/// Batch
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Batch", Storage="_batch", FieldType="Text")]
-		public string Batch {
-			get {
-				return this._batch;
-			}
-			set {
-				if ((value != this._batch)) {
-					this.OnPropertyChanging("Batch", this._batch);
-					this._batch = value;
-					this.OnPropertyChanged("Batch");
 				}
 			}
 		}
@@ -3867,9 +3861,9 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private string _location;
 		
-		private System.Nullable<double> _fGQuantity;
+		private System.Nullable<double> _fGQuantityKUKg;
 		
-		private System.Nullable<double> _tobaccoQuantity;
+		private System.Nullable<double> _tobaccoQuantityKg;
 		
 		private string _units;
 		
@@ -3979,16 +3973,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 		/// <summary>
 		/// FG Quantity
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FGQuantity", Storage="_fGQuantity", FieldType="Number")]
-		public System.Nullable<double> FGQuantity {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FGQuantity", Storage="_fGQuantityKUKg", FieldType="Number")]
+		public System.Nullable<double> FGQuantityKUKg {
 			get {
-				return this._fGQuantity;
+				return this._fGQuantityKUKg;
 			}
 			set {
-				if ((value != this._fGQuantity)) {
-					this.OnPropertyChanging("FGQuantity", this._fGQuantity);
-					this._fGQuantity = value;
-					this.OnPropertyChanged("FGQuantity");
+				if ((value != this._fGQuantityKUKg)) {
+					this.OnPropertyChanging("FGQuantityKUKg", this._fGQuantityKUKg);
+					this._fGQuantityKUKg = value;
+					this.OnPropertyChanged("FGQuantityKUKg");
 				}
 			}
 		}
@@ -3996,16 +3990,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 		/// <summary>
 		/// TobaccoQuantity
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TobaccoQuantity", Storage="_tobaccoQuantity", FieldType="Number")]
-		public System.Nullable<double> TobaccoQuantity {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TobaccoQuantity", Storage="_tobaccoQuantityKg", FieldType="Number")]
+		public System.Nullable<double> TobaccoQuantityKg {
 			get {
-				return this._tobaccoQuantity;
+				return this._tobaccoQuantityKg;
 			}
 			set {
-				if ((value != this._tobaccoQuantity)) {
-					this.OnPropertyChanging("TobaccoQuantity", this._tobaccoQuantity);
-					this._tobaccoQuantity = value;
-					this.OnPropertyChanged("TobaccoQuantity");
+				if ((value != this._tobaccoQuantityKg)) {
+					this.OnPropertyChanging("TobaccoQuantityKg", this._tobaccoQuantityKg);
+					this._tobaccoQuantityKg = value;
+					this.OnPropertyChanged("TobaccoQuantityKg");
 				}
 			}
 		}
@@ -6120,6 +6114,8 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private string _billDoc;
 		
+		private System.Nullable<System.DateTime> _creationDate;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> _invoiceContent;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceListLookup;
@@ -6155,6 +6151,20 @@ namespace CAS.SmartFactory.Linq.IPR {
 					this.OnPropertyChanging("BillDoc", this._billDoc);
 					this._billDoc = value;
 					this.OnPropertyChanged("BillDoc");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="InvoiceCreationDate", Storage="_creationDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> CreationDate {
+			get {
+				return this._creationDate;
+			}
+			set {
+				if ((value != this._creationDate)) {
+					this.OnPropertyChanging("CreationDate", this._creationDate);
+					this._creationDate = value;
+					this.OnPropertyChanged("CreationDate");
 				}
 			}
 		}

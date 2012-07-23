@@ -91,7 +91,7 @@ namespace CAS.SmartFactory.Linq.IPR
       Batch0 = fg.Product.Batch;
       SKU = fg.Product.SKU;
       Tytuł = String.Format( "SKU: {0}; Batch: {1}", SKU, Batch0 );
-      FGQuantity = fg.Product.FGQuantity;
+      FGQuantityKUKg = fg.Product.FGQuantityKUKg;
       MaterialQuantity = fg.TotalTobacco;
       ProductType = fg.Product.ProductType;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: interconnect" ) );
@@ -101,27 +101,29 @@ namespace CAS.SmartFactory.Linq.IPR
       CutfillerCoefficientLookup = CutfillerCoefficient.GetLookup( edc );
       DustLookup = Linq.IPR.Dust.GetLookup( ProductType.Value, edc );
       DustCooeficiency = DustLookup.DustRatio;
-      CooeficiencyVersion = DustLookup.Wersja;
+      DustCoeficiencyVersion = DustLookup.Wersja;
       SHMentholLookup = Linq.IPR.SHMenthol.GetLookup( ProductType.Value, edc );
       SHCooeficiency = SHMentholLookup.SHMentholRatio;
+      SHCooeficiency = SHMentholLookup.Wersja;
       WasteLookup = Linq.IPR.Waste.GetLookup( ProductType.Value, edc );
       WasteCooeficiency = WasteLookup.WasteRatio;
+      WasteCoeficiencyVersion = WasteLookup.Wersja;
       UsageLookup = Usage.GetLookup( SKULookup.FormatLookup, edc );
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
       //processing
-      this.CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageLookup.UsageMax.Value, UsageLookup.UsageMin.Value );
-      this.FGQuantityAvailable = FGQuantity;
+      this.CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantityKUKg.Value, UsageLookup.UsageMax.Value, UsageLookup.UsageMin.Value );
+      this.FGQuantityAvailable = FGQuantityKUKg;
       this.FGQuantityBlocked = 0;
       this.FGQuantityPrevious = 0; //TODO [pr4-3421] Intermediate batches processing http://itrserver/Bugs/BugDetail.aspx?bid=3421
       this.MaterialQuantityPrevious = 0;
       double _shmcf = SKULookup.IPRMaterial.Value ? SHMentholLookup.SHMentholRatio.Value : 0;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
       fg.ProcessDisposals( edc, this, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
-      this.Dust = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Dust ];
-      this.SHMenthol = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.SHMenthol ];
-      this.Waste = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Waste ];
-      this.Tobacco = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Tobacco ];
-      this.Overuse = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.OverusageInKg ];
+      this.DustKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Dust ];
+      this.SHMentholKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.SHMenthol ];
+      this.WasteKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Waste ];
+      this.TobaccoKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Tobacco ];
+      this.OveruseKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.OverusageInKg ];
     }
     /// <summary>
     /// Gets the overuse as the ratio of overused tobacco divided by totaly usage of tobacco.
