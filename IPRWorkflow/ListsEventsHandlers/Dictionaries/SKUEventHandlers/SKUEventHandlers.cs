@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Security.Permissions;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.Security;
-using Microsoft.SharePoint.Utilities;
-using Microsoft.SharePoint.Workflow;
-using CAS.SmartFactory.IPR.Entities;
-using SKUXml = CAS.SmartFactory.xml.erp.SKU;
-using CigarettesXml = CAS.SmartFactory.xml.erp.Cigarettes;
-using CutfillerXml = CAS.SmartFactory.xml.erp.Cutfiller;
-using Microsoft.SharePoint.Linq;
 using System.ComponentModel;
 using System.IO;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Linq;
+using SKUXml = CAS.SmartFactory.xml.erp.SKU;
+using CAS.SmartFactory.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
 {

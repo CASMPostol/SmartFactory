@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using CAS.SmartFactory.IPR.Entities;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
 using StockXml = CAS.SmartFactory.xml.erp.Stock;
+using CAS.SmartFactory.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
 {

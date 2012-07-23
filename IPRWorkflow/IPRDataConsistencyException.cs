@@ -1,4 +1,5 @@
 ﻿using System;
+using CAS.SmartFactory.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR
 {
@@ -20,9 +21,9 @@ namespace CAS.SmartFactory.IPR
       Source = _source;
       Comments = _comments;
     }
-    internal void Add2Log(Entities.EntitiesDataContext _edc)
+    internal void Add2Log(EntitiesDataContext _edc)
     {
-      Entities.Anons.WriteEntry(_edc, this.Source, this.Message);
+      Anons.WriteEntry(_edc, this.Source, this.Message);
     }
     private IPRDataConsistencyException()
       : base()

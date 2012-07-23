@@ -4,13 +4,13 @@ using InvoiceXml = CAS.SmartFactory.xml.erp.Invoice;
 using System.Collections.Generic;
 using System;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class InvoiceContent
   {
     internal static void GetXmlContent( InvoiceXml xml, EntitiesDataContext edc, InvoiceLib entry )
     {
-      entry.BillDoc = Entities.InvoiceContent.GetXmlContent( xml.Item, edc, entry );
+      entry.BillDoc = InvoiceContent.GetXmlContent( xml.Item, edc, entry );
       edc.SubmitChanges();
     }
     internal static string GetXmlContent( InvoiceItemXml[] invoiceEntries, EntitiesDataContext edc, InvoiceLib parent )
@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       //TODO [pr4-3465] Invoice Content list - add fields http://itrserver/Bugs/BugDetail.aspx?bid=3465
       Batch = item.Batch;
-      this.BatchID = Entities.Batch.GetOrCreatePreliminary( edc, item.Batch );
+      this.BatchID = Linq.IPR.Batch.GetOrCreatePreliminary( edc, item.Batch );
       InvoiceLookup = parent;
       ItemNo = item.Item.ConvertToDouble();
       //TODO get from batch or directly convert to enum

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using CAS.SmartFactory.IPR;
 using BatchXml = CAS.SmartFactory.xml.erp.Batch;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   /// <summary>
   /// Batch
@@ -21,7 +22,7 @@ namespace CAS.SmartFactory.IPR.Entities
     {
       Material.SummaryContentInfo fg = new Material.SummaryContentInfo( xml.Material, edc, progressChanged );
       Batch batch =
-          ( from idx in edc.Batch where idx.Batch0.Contains( fg.Product.Batch ) && idx.BatchStatus.Value == Entities.BatchStatus.Preliminary select idx ).FirstOrDefault();
+          ( from idx in edc.Batch where idx.Batch0.Contains( fg.Product.Batch ) && idx.BatchStatus.Value == Linq.IPR.BatchStatus.Preliminary select idx ).FirstOrDefault();
       if ( batch == null )
       {
         batch = new Batch();
@@ -44,9 +45,9 @@ namespace CAS.SmartFactory.IPR.Entities
         newBatch = new Batch()
         {
           Batch0 = "Preliminary batch: " + batch,
-          BatchStatus = Entities.BatchStatus.Preliminary,
+          BatchStatus = Linq.IPR.BatchStatus.Preliminary,
           Tytuł = batch,
-          ProductType = Entities.ProductType.Invalid
+          ProductType = Linq.IPR.ProductType.Invalid
         };
         edc.Batch.InsertOnSubmit( newBatch );
         Anons.WriteEntry( edc, m_Source, String.Format( m_LookupFailedAndAddedMessage, batch ) );
@@ -98,12 +99,12 @@ namespace CAS.SmartFactory.IPR.Entities
       SKULookup = SKUCommonPart.GetLookup( edc, fg.Product.SKU );
       //TODO [pr4-2921] Batch.Add new columns http://itrserver/Bugs/BugDetail.aspx?bid=2921
       CutfillerCoefficientLookup = CutfillerCoefficient.GetLookup( edc );
-      DustLookup = Entities.Dust.GetLookup( ProductType.Value, edc );
+      DustLookup = Linq.IPR.Dust.GetLookup( ProductType.Value, edc );
       DustCooeficiency = DustLookup.DustRatio;
       CooeficiencyVersion = DustLookup.Wersja;
-      SHMentholLookup = Entities.SHMenthol.GetLookup( ProductType.Value, edc );
+      SHMentholLookup = Linq.IPR.SHMenthol.GetLookup( ProductType.Value, edc );
       SHCooeficiency = SHMentholLookup.SHMentholRatio;
-      WasteLookup = Entities.Waste.GetLookup( ProductType.Value, edc );
+      WasteLookup = Linq.IPR.Waste.GetLookup( ProductType.Value, edc );
       WasteCooeficiency = WasteLookup.WasteRatio;
       UsageLookup = Usage.GetLookup( SKULookup.FormatLookup, edc );
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
@@ -145,13 +146,13 @@ namespace CAS.SmartFactory.IPR.Entities
       switch ( batchStatus )
       {
         case CAS.SmartFactory.xml.erp.BatchStatus.Final:
-          return Entities.BatchStatus.Final;
+          return Linq.IPR.BatchStatus.Final;
         case CAS.SmartFactory.xml.erp.BatchStatus.Intermediate:
-          return Entities.BatchStatus.Intermediate;
+          return Linq.IPR.BatchStatus.Intermediate;
         case CAS.SmartFactory.xml.erp.BatchStatus.Progress:
-          return Entities.BatchStatus.Progress;
+          return Linq.IPR.BatchStatus.Progress;
         default:
-          return Entities.BatchStatus.Preliminary;
+          return Linq.IPR.BatchStatus.Preliminary;
       }
     }
     private const string m_Source = "Batch processing";

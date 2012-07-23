@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
+using CAS.SmartFactory.IPR;
 using StockXml = CAS.SmartFactory.xml.erp.Stock;
 using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
-using System.ComponentModel;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Stock
   {

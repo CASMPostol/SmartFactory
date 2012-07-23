@@ -3,7 +3,7 @@ using System.Linq;
 using CAS.SmartFactory.xml.Dictionaries;
 using System.Collections.Generic;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class CustomsUnion
   {

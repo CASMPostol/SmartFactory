@@ -2,7 +2,7 @@
 using System.Linq;
 using CAS.SmartFactory.xml.Dictionaries;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Consent
   {

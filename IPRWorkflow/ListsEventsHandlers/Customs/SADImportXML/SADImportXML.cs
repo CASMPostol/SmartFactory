@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using CAS.SmartFactory.IPR.Entities;
+using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
 using Microsoft.SharePoint;

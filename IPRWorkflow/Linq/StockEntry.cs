@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class StockEntry
   {
@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.Entities
       Units = xml.BUn;
       Unrestricted = xml.Unrestricted;
       BatchLookup = null;
-      ProductType = Entities.ProductType.Invalid;
+      ProductType = Linq.IPR.ProductType.Invalid;
       Quantity = xml.Blocked.GetValueOrDefault(0) + xml.InQualityInsp.GetValueOrDefault(0) + xml.RestrictedUse.GetValueOrDefault(0) + xml.Unrestricted.GetValueOrDefault(0);
     }
     internal void ProcessEntry(EntitiesDataContext edc)
@@ -39,11 +39,11 @@ namespace CAS.SmartFactory.IPR.Entities
     }
     private void GetBatchLookup(EntitiesDataContext edc)
     {
-      if (ProductType != Entities.ProductType.Cigarette && ProductType != Entities.ProductType.Cutfiller)
+      if (ProductType != Linq.IPR.ProductType.Cigarette && ProductType != Linq.IPR.ProductType.Cutfiller)
         return;
       if (!IPRType.GetValueOrDefault(false))
         return;
-      BatchLookup = Entities.Batch.GetOrCreatePreliminary(edc, this.Batch);
+      BatchLookup = Linq.IPR.Batch.GetOrCreatePreliminary(edc, this.Batch);
     }
     private const string m_Source = "Stock Entry";
     private const string m_WrongProductTypeMessage = "I cannot recognize product type of the stock entry SKU: {0} in location: {1}";

@@ -2,8 +2,9 @@
 using System.Linq;
 using CAS.SmartFactory.xml.Dictionaries;
 using System.Collections.Generic;
+using CAS.SmartFactory.IPR;
 
-namespace CAS.SmartFactory.IPR.Entities
+namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Dust
   {
