@@ -36,19 +36,28 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     /// Sets the BatchInterconnection provider.
     /// </summary>
     /// <param name="_provider">The provider interface.</param>
-    [ConnectionConsumer( "Batch table interconnection", "BatchInterconnection", AllowsMultipleConnections = false )]
+    [ConnectionConsumer( "Batch list interconnection", "BatchInterconnection", AllowsMultipleConnections = false )]
     public void SetBatchProvider( IWebPartRow _provider )
     {
       m_ProvidersDictionary.Add( ConnectionSelector.BatchInterconnection, _provider );
     }
     /// <summary>
-    /// Sets the SecurityEscortCatalog provider.
+    /// Sets the InvoiceContentInterconnection provider.
     /// </summary>
     /// <param name="_provider">The provider interface.</param>
-    [ConnectionConsumer( "Batch table interconnection", "BatchInterconnection", AllowsMultipleConnections = false )]
+    [ConnectionConsumer( "InvoiceContent list interconnection", "InvoiceContentInterconnection", AllowsMultipleConnections = false )]
+    public void SetInvoiceContentProvider( IWebPartRow _provider )
+    {
+      m_ProvidersDictionary.Add( ConnectionSelector.InvoiceContentInterconnection, _provider );
+    }
+    /// <summary>
+    /// Sets the InvoiceContentInterconnection provider.
+    /// </summary>
+    /// <param name="_provider">The provider interface.</param>
+    [ConnectionConsumer( "Invoice Library interconnection", "InvoiceInterconnection", AllowsMultipleConnections = false )]
     public void SetInvoiceProvider( IWebPartRow _provider )
     {
-      m_ProvidersDictionary.Add( ConnectionSelector.BatchInterconnection, _provider );
+      m_ProvidersDictionary.Add( ConnectionSelector.InvoiceInterconnection, _provider );
     }
     private Dictionary<ConnectionSelector, IWebPartRow> m_ProvidersDictionary = new Dictionary<ConnectionSelector, IWebPartRow>();
     #endregion

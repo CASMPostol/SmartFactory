@@ -11,11 +11,14 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
   public partial class ExportWebPartUserControl: UserControl
   {
+    #region ctor
     public ExportWebPartUserControl()
     {
       m_StateMachineEngine = new LocalStateMachineEngine( this );
       m_DataContextManagement = new DataContextManagement<EntitiesDataContext>( this );
     }
+    #endregion
+
     #region public
     internal void SetInterconnectionData( Dictionary<ConnectionSelector, IWebPartRow> m_ProvidersDictionary )
     {
@@ -90,12 +93,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     protected void Page_Load( object sender, EventArgs e )
     {
+      string at = "Starting";
       try
       {
         if ( !IsPostBack )
         {
+          at = "InitMahine";
           m_StateMachineEngine.InitMahine();
         }
+        at = "Event handlers";
         m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
         m_NewButton.Click += new EventHandler( m_StateMachineEngine.NewButton_Click );
         m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
@@ -103,7 +109,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       catch ( Exception ex )
       {
-        //ApplicationError _ae = new ApplicationError( "  " );
+        ApplicationError _ae = new ApplicationError( "Page_Load", "", ex.Message, ex );
+        this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
     }
     /// <summary>
@@ -118,7 +125,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         m_StateMachineEngine.InitMahine( m_ControlState.InterfaceState );
       }
       else
+      {
+        m_ControlState = new ControlState( null );
         m_StateMachineEngine.InitMahine();
+      }
     }
     /// <summary>
     /// Saves any server control state changes that have occurred since the time the page was posted back to the server.
@@ -183,7 +193,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         switch ( CurrentMachineState )
         {
           case InterfaceState.EditState:
-            m_Parent.SetInterconnectionData( e );
+            Parent.SetInterconnectionData( e );
             break;
           case InterfaceState.ViewState:
           case InterfaceState.NewState:
@@ -196,7 +206,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         switch ( CurrentMachineState )
         {
           case InterfaceState.ViewState:
-            m_Parent.SetInterconnectionData( e );
+            Parent.SetInterconnectionData( e );
             break;
           case InterfaceState.EditState:
           case InterfaceState.NewState:
@@ -209,7 +219,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         switch ( CurrentMachineState )
         {
           case InterfaceState.ViewState:
-            m_Parent.SetInterconnectionData( e );
+            Parent.SetInterconnectionData( e );
             break;
           case InterfaceState.EditState:
           case InterfaceState.NewState:
@@ -236,9 +246,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           //TODO [pr4-3465] Invoice Content list - add fields http://itrserver/Bugs/BugDetail.aspx?bid=3465
           InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
           _ic.BatchID = _btch;
-          _ic.Quantity = Convert.ToDouble( m_Parent.m_InvoiceQuantityTextBox.Text );
+          _ic.Quantity = Convert.ToDouble( Parent.m_InvoiceQuantityTextBox.Text );
           _ic.ProductType = _ic.BatchID.ProductType;
-          _ic.Status = true;
+          _ic.Status = Status.OK;
           _ic.Tytuł = _ic.BatchID.Tytuł;
           //TODO _ic.Units = _ic.BatchID.SKULookup.u
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
@@ -256,17 +266,18 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           List<string> _errors = new List<string>();
           Batch _btch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           InvoiceLib _invc = Element.GetAtIndex<InvoiceLib>( Parent.m_DataContextManagement.DataContext.InvoiceLibrary, Parent.m_ControlState.InvoiceID );
+          string _units = String.Empty;
           InvoiceContent _nic = new InvoiceContent()
-          {
-            BatchID = _btch,
-            InvoiceLookup = _invc,
-            ItemNo = int.MaxValue,
-            ProductType = _btch.ProductType,
-            Quantity = Parent.m_InvoiceQuantityTextBox.TextBox2Double( _errors ),
-            Status = true,
-            Tytuł = _btch.SKULookup.Tytuł,
-            Units = "kg" //TODO  [pr4-3542] How to define units for new invoice content
-          };
+        {
+          BatchID = _btch,
+          InvoiceLookup = _invc,
+          ItemNo = int.MaxValue,
+          ProductType = _btch.ProductType,
+          Quantity = Parent.m_InvoiceQuantityTextBox.TextBox2Double( _errors ),
+          Status = Linq.IPR.Status.OK,
+          Tytuł = _btch.SKULookup.Tytuł,
+          Units = _btch.ProductType.Value.Units()
+        };
           Parent.m_DataContextManagement.DataContext.InvoiceContent.InsertOnSubmit( _nic );
           //TODO add diagnostic 
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
@@ -281,7 +292,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       {
         try
         {
-          throw new NotImplementedException();
+          return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException(), "Delete" );
         }
         catch ( Exception ex )
         {
@@ -291,11 +302,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       protected override void ClearUserInterface()
       {
-        m_Parent.m_BatchTextBox.Text = String.Empty;
-        m_Parent.m_EditBatchCheckBox.Checked = false;
-        m_Parent.m_InvoiceContentTextBox.Text = String.Empty;
-        m_Parent.m_InvoiceQuantityTextBox.Text = String.Empty;
-        m_Parent.m_InvoiceTextBox.Text = String.Empty;
+        Parent.m_BatchTextBox.Text = String.Empty;
+        Parent.m_EditBatchCheckBox.Checked = false;
+        Parent.m_InvoiceContentTextBox.Text = String.Empty;
+        Parent.m_InvoiceQuantityTextBox.Text = String.Empty;
+        Parent.m_InvoiceTextBox.Text = String.Empty;
       }
       protected override void SetEnabled( GenericStateMachineEngine.ControlsSet _buttons )
       {
@@ -314,17 +325,16 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       {
         get
         {
-          throw new NotImplementedException();
+          return Parent.m_ControlState.InterfaceState;
         }
         set
         {
-          throw new NotImplementedException();
+          Parent.m_ControlState.InterfaceState = value;
         }
       }
       #endregion
 
       #region private
-      private ExportWebPartUserControl m_Parent = null;
       private ExportWebPartUserControl Parent { get; set; }
       #endregion
 
@@ -395,6 +405,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       m_CancelButton.Visible = ( _set & GenericStateMachineEngine.ControlsSet.CancelOn ) != 0;
       m_NewButton.Visible = ( _set & GenericStateMachineEngine.ControlsSet.NewOn ) != 0;
       m_SaveButton.Visible = ( _set & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
+      m_DeleteButton.Visible = ( _set & GenericStateMachineEngine.ControlsSet.DeleteOn ) != 0;
+    }
+    private void SetEnabled( GenericStateMachineEngine.ControlsSet _set, LocalStateMachineEngine.LocalControlsSet lset )
+    {
+      m_EditBatchCheckBox.Enabled = ( lset & LocalStateMachineEngine.LocalControlsSet.EditBatchCheckBox ) != 0;
+      //TODO  [pr4-3540] ExportWebPart - add button Export and column Read Only http://itrserver/Bugs/BugDetail.aspx?bid=3540
+      SetEnabled( _set );
     }
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set )
     {
@@ -402,12 +419,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       m_CancelButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.CancelOn ) != 0;
       m_NewButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.NewOn ) != 0;
       m_SaveButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
+      m_DeleteButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.DeleteOn ) != 0;
     }
     #endregion
 
     #region private
     private LocalStateMachineEngine m_StateMachineEngine = null;
-    private ControlState m_ControlState = null;
+    private ControlState m_ControlState = new ControlState( null );
     private DataContextManagement<EntitiesDataContext> m_DataContextManagement = null;
     #endregion
 
