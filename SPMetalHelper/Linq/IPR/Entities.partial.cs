@@ -59,18 +59,18 @@ namespace CAS.SmartFactory.Linq.IPR
     /// </param>
     public void SubmitChangesSilently( RefreshMode mode )
     {
-      //try
-      //{
-      //  SubmitChanges();
-      //}
-      //catch (ChangeConflictException)
-      //{
-      //  foreach (ObjectChangeConflict changedListItem in this.ChangeConflicts)
-      //  {
-      //    changedListItem.Resolve(mode);
-      //  }
-      //  this.SubmitChanges();
-      //}
+      try
+      {
+        SubmitChanges();
+      }
+      catch ( ChangeConflictException )
+      {
+        foreach ( ObjectChangeConflict changedListItem in this.ChangeConflicts )
+        {
+          changedListItem.Resolve( mode );
+        }
+        this.SubmitChanges();
+      }
     }
     internal void ResolveChangeConflicts( ActionResult _rsult )
     {
