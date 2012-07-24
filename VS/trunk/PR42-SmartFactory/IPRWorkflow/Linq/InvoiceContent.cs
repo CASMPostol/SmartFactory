@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using CAS.SmartFactory.xml;
 using InvoiceItemXml = CAS.SmartFactory.xml.erp.InvoiceItem;
 using InvoiceXml = CAS.SmartFactory.xml.erp.Invoice;
@@ -8,36 +7,48 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class InvoiceContent
   {
+    #region public
     internal static void GetXmlContent( InvoiceXml xml, EntitiesDataContext edc, InvoiceLib entry )
     {
       string number = String.Empty;
       DateTime date = CAS.SharePoint.Extensions.DateTimeNull;
-      InvoiceContent.GetXmlContent( xml.Item, edc, entry, out number, out date );
+      bool _ok = InvoiceContent.GetXmlContent( xml.Item, edc, entry, out number, out date );
+      entry.ClearenceListLookup = null;
       entry.BillDoc = number;
-      //TODO [pr4-3465] Invoice Content list - add fields http://itrserver/Bugs/BugDetail.aspx?bid=3465
-      //entry.CreationDate = date;
+      entry.CreationDate = date;
+      entry.OK = _ok;
       edc.SubmitChanges();
     }
-    internal static void GetXmlContent( InvoiceItemXml[] invoiceEntries, EntitiesDataContext edc, InvoiceLib parent, out string number, out DateTime date )
+    #endregion
+
+    #region private
+    private static bool GetXmlContent( InvoiceItemXml[] invoiceEntries, EntitiesDataContext edc, InvoiceLib parent, out string number, out DateTime date )
     {
       number = String.Empty;
       date = CAS.SharePoint.Extensions.DateTimeNull;
-      string functionValue = String.Empty;
-      List<InvoiceContent> itemsList = new List<InvoiceContent>();
+      bool _result = true;
       foreach ( InvoiceItemXml item in invoiceEntries )
       {
-        InvoiceContent ic = new InvoiceContent( edc, parent, item );
-        itemsList.Add( ic );
-        if ( String.IsNullOrEmpty( functionValue ) )
+        InvoiceContent _ic = null;
+        try
+        {
+          _ic = new InvoiceContent( edc, parent, item );
+          _result &= _ic.Status.Value == Linq.IPR.Status.OK;
+        }
+        catch ( Exception ex )
+        {
+          string _msg = "Cannot create new entry for the invoice No={0}/{1}, SKU={2}, because of error: {3}";
+          Anons.WriteEntry( edc, "Invoice import", String.Format( _msg, item.Bill_doc, item.Item, item.Description, ex.Message ) );
+        }
+        if ( String.IsNullOrEmpty( number ) )
         {
           number = item.Bill_doc.ToString();
           date = item.Created_on;
         }
+        edc.InvoiceContent.InsertOnSubmit( _ic );
+        edc.SubmitChanges();
       }
-      if ( itemsList.Count == 0 )
-        return;
-      edc.InvoiceContent.InsertAllOnSubmit( itemsList );
-      edc.SubmitChanges();
+      return _result;
     }
     private InvoiceContent( EntitiesDataContext edc, InvoiceLib parent, InvoiceItemXml item ) :
       this()
@@ -50,20 +61,12 @@ namespace CAS.SmartFactory.Linq.IPR
       this.BatchID.FGQuantityAvailable -= Quantity;
       Tytuł = item.Description;
       Units = item.BUn;
-      //TODO [pr4-3465] Invoice Content list - add fields http://itrserver/Bugs/BugDetail.aspx?bid=3465
+      this.Status = Linq.IPR.Status.OK;
       if ( this.BatchID.BatchStatus.Value == BatchStatus.Preliminary )
-      {
-        this.Status = false;
-        this.Error = InvoiceState.BatchNotFount;
-      }
+        this.Status = Linq.IPR.Status.BatchNotFound;
       else if ( this.BatchID.FGQuantityAvailable < 0 )
-      {
-        this.Status = false;
-        this.Error = InvoiceState.NotEnouchQuantity;
-      }
+        this.Status = Linq.IPR.Status.NotEnoughQnt;
     }
-    //TODO [pr4-3465] Invoice Content list - add fields http://itrserver/Bugs/BugDetail.aspx?bid=3465
-    private enum InvoiceState { OK, BatchNotFount, NotEnouchQuantity };
-    private InvoiceState Error = InvoiceState.OK;
+    #endregion
   }
 }
