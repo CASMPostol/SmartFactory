@@ -47,7 +47,11 @@ namespace CAS.SmartFactory.Linq.IPR
           Batch0 = "Preliminary batch: " + batch,
           BatchStatus = Linq.IPR.BatchStatus.Preliminary,
           Tytuł = batch,
-          ProductType = Linq.IPR.ProductType.Invalid
+          ProductType = Linq.IPR.ProductType.Invalid,
+          FGQuantityAvailable = 0,
+          FGQuantityBlocked = 0,
+          FGQuantityKUKg = 0,
+          FGQuantityPrevious = 0
         };
         edc.Batch.InsertOnSubmit( newBatch );
         Anons.WriteEntry( edc, m_Source, String.Format( m_LookupFailedAndAddedMessage, batch ) );
