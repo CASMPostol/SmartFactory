@@ -6,7 +6,6 @@ using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
-using CAS.SharePoint.Web.ControlExtensions;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -91,14 +90,21 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
     protected void Page_Load( object sender, EventArgs e )
     {
-      if ( !IsPostBack )
+      try
       {
-        m_StateMachineEngine.InitMahine();
+        if ( !IsPostBack )
+        {
+          m_StateMachineEngine.InitMahine();
+        }
+        m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
+        m_NewButton.Click += new EventHandler( m_StateMachineEngine.NewButton_Click );
+        m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
+        m_EditButton.Click += new EventHandler( m_StateMachineEngine.EditButton_Click );
       }
-      m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
-      m_NewButton.Click += new EventHandler( m_StateMachineEngine.NewButton_Click );
-      m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
-      m_EditButton.Click += new EventHandler( m_StateMachineEngine.EditButton_Click );
+      catch ( Exception ex )
+      {
+        //ApplicationError _ae = new ApplicationError( "  " );
+      }
     }
     /// <summary>
     /// Loads the state of the control.

@@ -53,7 +53,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
         Dokument entry = Element.GetAtIndex<Dokument>(edc.SKULibrary, listIndex);
         SKUCommonPart.GetXmlContent(xml, edc, entry, progressChanged);
         progressChanged(null, new ProgressChangedEventArgs(1, "Submiting Changes"));
-        edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+        edc.SubmitChanges();
       }
       catch (Exception ex)
       {

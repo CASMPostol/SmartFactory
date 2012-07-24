@@ -34,8 +34,9 @@ namespace CAS.SmartFactory.Linq.IPR
           date = item.Created_on;
         }
       }
-      if ( itemsList.Count > 0 )
-        edc.InvoiceContent.InsertAllOnSubmit( itemsList );
+      if ( itemsList.Count == 0 )
+        return;
+      edc.InvoiceContent.InsertAllOnSubmit( itemsList );
       edc.SubmitChanges();
     }
     private InvoiceContent( EntitiesDataContext edc, InvoiceLib parent, InvoiceItemXml item ) :
