@@ -101,18 +101,19 @@ namespace CAS.SmartFactory.Linq.IPR
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: interconnect" ) );
       //interconnect 
       SKULookup = SKUCommonPart.GetLookup( edc, fg.Product.SKU );
-      //TODO [pr4-2921] Batch.Add new columns http://itrserver/Bugs/BugDetail.aspx?bid=2921
       CutfillerCoefficientLookup = CutfillerCoefficient.GetLookup( edc );
+      UsageLookup = Usage.GetLookup( SKULookup.FormatLookup, edc );
+      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
+      //Coefficients
       DustLookup = Linq.IPR.Dust.GetLookup( ProductType.Value, edc );
       DustCooeficiency = DustLookup.DustRatio;
       DustCoeficiencyVersion = DustLookup.Wersja;
       SHMentholLookup = Linq.IPR.SHMenthol.GetLookup( ProductType.Value, edc );
       SHCooeficiency = SHMentholLookup.SHMentholRatio;
-      SHCooeficiency = SHMentholLookup.Wersja;
+      SHCoeficiencyVersion = SHMentholLookup.Wersja;
       WasteLookup = Linq.IPR.Waste.GetLookup( ProductType.Value, edc );
       WasteCooeficiency = WasteLookup.WasteRatio;
       WasteCoeficiencyVersion = WasteLookup.Wersja;
-      UsageLookup = Usage.GetLookup( SKULookup.FormatLookup, edc );
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
       //processing
       this.CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantityKUKg.Value, UsageLookup.UsageMax.Value, UsageLookup.UsageMin.Value );
