@@ -214,4 +214,24 @@ namespace CAS.SmartFactory.Linq.IPR
       edc.SubmitChangesSilently( Microsoft.SharePoint.Linq.RefreshMode.OverwriteCurrentValues );
     }
   }
+  public static class LinqIPRExtensions
+  {
+    public static string Units( this ProductType product )
+    {
+      switch ( product )
+      {
+        case ProductType.IPRTobacco:
+        case ProductType.Cutfiller:
+        case ProductType.Tobacco:
+          return "kg";
+        case ProductType.Cigarette:
+          return "kU";
+        case ProductType.None:
+        case ProductType.Invalid:
+        case ProductType.Other:
+        default:
+          return "N/A";
+      }
+    }
+  }
 }
