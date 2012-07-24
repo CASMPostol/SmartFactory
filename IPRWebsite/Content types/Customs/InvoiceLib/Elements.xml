@@ -7,9 +7,9 @@
                Inherits="TRUE"
                Overwrite="TRUE">
     <FieldRefs>
-      <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" />
+      <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" Required="False" ShowInNewForm="FALSE" />
       <FieldRef ID="{3A9F901C-8EB2-430A-A056-6438D3CD5900}" Name="InvoiceCreationDate" />
-      <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
+      <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" Required="False" ShowInNewForm="FALSE" />
       <FieldRef ID="{F4D8033F-3BC8-4903-BA9C-9F09E45EE005}" Name="InvoiceLibraryStatus" />
     </FieldRefs>
   </ContentType>
