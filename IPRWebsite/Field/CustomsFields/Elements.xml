@@ -19,7 +19,7 @@
   <Field
     Name="InvoiceContentStatus"
     ID="{BA635D4D-4917-40BA-83A1-566C2D3C23F5}"
-    Type="Boolean"
+    Type="Choice"
     DisplayName="Status"
     Group="CAS Smart Factory IPR Customs"
     >
