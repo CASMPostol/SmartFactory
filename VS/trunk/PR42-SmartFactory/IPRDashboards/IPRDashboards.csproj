@@ -132,7 +132,9 @@
     <Content Include="WebPartPages\WebPageTemplate_Export.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_IPRBook.aspx" />
     <Content Include="Webparts\ExportWebPart\Elements.xml" />
-    <Content Include="Webparts\ExportWebPart\ExportWebPartUserControl.ascx" />
+    <Content Include="Webparts\ExportWebPart\ExportWebPartUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
