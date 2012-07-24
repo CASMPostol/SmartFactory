@@ -42,28 +42,22 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     }
     public static void IportInvoiceFromXml( Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged )
     {
-      EntitiesDataContext edc = null;
       try
       {
-        edc = new EntitiesDataContext( url );
-        String message = String.Format( "Import of the invoice message {0} starting.", fileName );
-        Anons.WriteEntry( edc, m_Title, message );
-        InvoiceXml document = InvoiceXml.ImportDocument( stream );
-        InvoiceLib entry = Element.GetAtIndex<InvoiceLib>( edc.InvoiceLibrary, listIndex );
-        InvoiceContent.GetXmlContent( document, edc, entry );
-        Anons.WriteEntry( edc, m_Title, "Import of the invoice message finished" );
+        using ( EntitiesDataContext edc = new EntitiesDataContext( url ) )
+        {
+          String message = String.Format( "Import of the invoice message {0} starting.", fileName );
+          Anons.WriteEntry( edc, m_Title, message );
+          InvoiceXml document = InvoiceXml.ImportDocument( stream );
+          InvoiceLib entry = Element.GetAtIndex<InvoiceLib>( edc.InvoiceLibrary, listIndex );
+          InvoiceContent.GetXmlContent( document, edc, entry );
+          Anons.WriteEntry( edc, m_Title, "Import of the invoice message finished" );
+        }
       }
       catch ( Exception ex )
       {
-        Anons.WriteEntry( edc, "Aborted Invoice message import because of the error", ex.Message );
-      }
-      finally
-      {
-        if ( edc != null )
-        {
-          edc.SubmitChanges();
-          edc.Dispose();
-        }
+        using ( EntitiesDataContext edc = new EntitiesDataContext( url ) )
+          Anons.WriteEntry( edc, "Aborted Invoice message import because of the error", ex.Message );
       }
     }
     private const string m_Title = "Invoice Message Import";
