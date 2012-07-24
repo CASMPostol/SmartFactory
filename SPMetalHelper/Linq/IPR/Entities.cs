@@ -2799,9 +2799,9 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private string _units;
 		
-		private System.Nullable<bool> _status;
-		
 		private System.Nullable<ProductType> _productType;
+		
+		private System.Nullable<Status> _status;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<InvoiceLib> _invoiceLookup;
 		
@@ -2876,20 +2876,6 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="InvoiceContentStatus", Storage="_status", FieldType="Boolean")]
-		public System.Nullable<bool> Status {
-			get {
-				return this._status;
-			}
-			set {
-				if ((value != this._status)) {
-					this.OnPropertyChanging("Status", this._status);
-					this._status = value;
-					this.OnPropertyChanged("Status");
-				}
-			}
-		}
-		
 		/// <summary>
 		/// Material Type
 		/// </summary>
@@ -2903,6 +2889,20 @@ namespace CAS.SmartFactory.Linq.IPR {
 					this.OnPropertyChanging("ProductType", this._productType);
 					this._productType = value;
 					this.OnPropertyChanged("ProductType");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="InvoiceContentStatus", Storage="_status", FieldType="Choice")]
+		public System.Nullable<Status> Status {
+			get {
+				return this._status;
+			}
+			set {
+				if ((value != this._status)) {
+					this.OnPropertyChanging("Status", this._status);
+					this._status = value;
+					this.OnPropertyChanged("Status");
 				}
 			}
 		}
@@ -6847,6 +6847,22 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Total winding-up")]
 		TotalWindingUp = 4,
+	}
+	
+	public enum Status : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="OK")]
+		OK = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Batch not found")]
+		BatchNotFound = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Not enough Qnt.")]
+		NotEnoughQnt = 8,
 	}
 	
 	public enum CompensationGood : int {
