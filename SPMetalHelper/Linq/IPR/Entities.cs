@@ -6116,6 +6116,8 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private System.Nullable<System.DateTime> _creationDate;
 		
+		private System.Nullable<bool> _oK;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> _invoiceContent;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceListLookup;
@@ -6165,6 +6167,20 @@ namespace CAS.SmartFactory.Linq.IPR {
 					this.OnPropertyChanging("CreationDate", this._creationDate);
 					this._creationDate = value;
 					this.OnPropertyChanged("CreationDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="InvoiceLibraryStatus", Storage="_oK", FieldType="Boolean")]
+		public System.Nullable<bool> OK {
+			get {
+				return this._oK;
+			}
+			set {
+				if ((value != this._oK)) {
+					this.OnPropertyChanging("OK", this._oK);
+					this._oK = value;
+					this.OnPropertyChanged("OK");
 				}
 			}
 		}
