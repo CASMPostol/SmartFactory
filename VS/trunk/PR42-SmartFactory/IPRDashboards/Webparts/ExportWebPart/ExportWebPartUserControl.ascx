@@ -19,7 +19,10 @@
                     <asp:Table ID="m_InvoiceTable" runat="server" CssClass="Table">
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:TextBox ID="m_InvoiceTextBox" runat="server"></asp:TextBox>
+                                <asp:Label ID="m_InvoiceLabel" runat="server" CssClass="Label" Text="Invoice" />
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:TextBox ID="m_InvoiceTextBox" runat="server" CssClass="TextBox" />
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>

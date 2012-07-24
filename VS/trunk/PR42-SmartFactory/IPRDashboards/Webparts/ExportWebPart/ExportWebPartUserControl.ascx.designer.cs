@@ -58,6 +58,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart {
         protected global::System.Web.UI.WebControls.Table m_InvoiceTable;
         
         /// <summary>
+        /// m_InvoiceLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_InvoiceLabel;
+        
+        /// <summary>
         /// m_InvoiceTextBox control.
         /// </summary>
         /// <remarks>
