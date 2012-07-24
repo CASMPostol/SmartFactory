@@ -11,17 +11,17 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
   /// <summary>
   /// List Item Events
   /// </summary>
-  public class StockLibraryEventReceiver : SPItemEventReceiver
+  public class StockLibraryEventReceiver: SPItemEventReceiver
   {
     /// <summary>
     /// An item was added.
     /// </summary>
-    public override void ItemAdded(SPItemEventProperties properties)
+    public override void ItemAdded( SPItemEventProperties properties )
     {
-      if (!properties.List.Title.Contains("Stock"))
+      if ( !properties.List.Title.Contains( "Stock Library" ) )
       {
         //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
-        base.ItemAdded(properties);
+        base.ItemAdded( properties );
         return;
       }
       this.EventFiringEnabled = false;
@@ -37,37 +37,37 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         properties.WebUrl,
         properties.ListItem.ID,
         properties.ListItem.File.ToString(),
-        (object obj, ProgressChangedEventArgs progres) => { return; }
+        ( object obj, ProgressChangedEventArgs progres ) => { return; }
         );
       this.EventFiringEnabled = true;
-      base.ItemAdded(properties);
+      base.ItemAdded( properties );
     }
     public static void IportStockFromXML
-      (Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged)
+      ( Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged )
     {
       EntitiesDataContext edc = null;
       try
       {
-        edc = new EntitiesDataContext(url);
-        String message = String.Format("Import of the stock message {0} starting.", fileName);
-        Anons.WriteEntry(edc, m_Title, message);
+        edc = new EntitiesDataContext( url );
+        String message = String.Format( "Import of the stock message {0} starting.", fileName );
+        Anons.WriteEntry( edc, m_Title, message );
         edc.SubmitChanges();
-        StockXml document = StockXml.ImportDocument(stream);
-        Dokument entry = Element.GetAtIndex<Dokument>(edc.StockLibrary, listIndex);
-        Stock.IportXml(document, edc, entry, progressChanged);
-        progressChanged(null, new ProgressChangedEventArgs(1, "Submiting Changes"));
-        Anons.WriteEntry(edc, m_Title, "Import of the stock message finished");
+        StockXml document = StockXml.ImportDocument( stream );
+        Dokument entry = Element.GetAtIndex<Dokument>( edc.StockLibrary, listIndex );
+        Stock.IportXml( document, edc, entry, progressChanged );
+        progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
+        Anons.WriteEntry( edc, m_Title, "Import of the stock message finished" );
         edc.SubmitChanges();
       }
-      catch (Exception ex)
+      catch ( Exception ex )
       {
-        Anons.WriteEntry(edc, "Stock message import error", ex.Message);
+        Anons.WriteEntry( edc, "Stock message import error", ex.Message );
       }
       finally
       {
-        if (edc != null)
+        if ( edc != null )
         {
-          edc.SubmitChangesSilently(RefreshMode.KeepCurrentValues);
+          edc.SubmitChangesSilently( RefreshMode.KeepCurrentValues );
           edc.Dispose();
         }
       }
