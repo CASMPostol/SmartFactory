@@ -22,15 +22,15 @@
                                 <asp:Label ID="m_InvoiceLabel" runat="server" CssClass="Label" Text="Invoice" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:TextBox ID="m_InvoiceTextBox" runat="server" CssClass="TextBox" />
+                                <asp:TextBox ID="m_InvoiceTextBox" runat="server" CssClass="TextBox" Enabled="false" />
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:Label ID="m_InvoiceContentLabel" runat="server" CssClass="Label" Text="Title" />
+                                <asp:Label ID="m_InvoiceContentLabel" runat="server" CssClass="Label" Text="Invoice Item" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:TextBox ID="m_InvoiceContentTextBox" runat="server" CssClass="TextBox" />
+                                <asp:TextBox ID="m_InvoiceContentTextBox" runat="server" CssClass="TextBox" Enabled="false" />
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>
@@ -51,7 +51,7 @@
                                                 <asp:Label ID="m_BatchLabel" runat="server" CssClass="Label" Text="Batch" />
                                             </asp:TableCell>
                                             <asp:TableCell>
-                                                <asp:TextBox ID="m_BatchTextBox" runat="server" CssClass="TextBox" />
+                                                <asp:TextBox ID="m_BatchTextBox" runat="server" CssClass="TextBox" Enabled="false" />
                                             </asp:TableCell>
                                         </asp:TableRow>
                                     </asp:Table>
