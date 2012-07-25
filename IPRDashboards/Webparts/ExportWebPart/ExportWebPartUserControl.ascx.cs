@@ -6,6 +6,8 @@ using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
+using Microsoft.SharePoint;
+using System.Globalization;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -43,40 +45,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     #endregion
 
     #region UserControl override
-    [Serializable]
-    private class ControlState
-    {
-      #region state fields
-      public string InvoiceID = String.Empty;
-      public string InvoiceTitle = String.Empty;
-      public string InvoiceContentID = String.Empty;
-      public string InvoiceContentTitle = String.Empty;
-      public string BatchID = String.Empty;
-      public string BatchTitle = String.Empty;
-      public string InvoiceQuantity = String.Empty;
-      public GenericStateMachineEngine.InterfaceState InterfaceState = GenericStateMachineEngine.InterfaceState.ViewState;
-      public GenericStateMachineEngine.ControlsSet SetEnabled = 0;
-      public bool IsModified { get; set; }
-      #endregion
-
-      #region public
-      internal void Clear()
-      {
-        InvoiceID = String.Empty;
-        InvoiceTitle = String.Empty;
-        InvoiceContentID = String.Empty;
-        InvoiceContentTitle = String.Empty;
-        BatchID = String.Empty;
-        BatchTitle = String.Empty;
-      }
-      public ControlState( ControlState _old )
-      {
-        if ( _old == null )
-          return;
-        InterfaceState = _old.InterfaceState;
-      }
-      #endregion
-    }
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init"/> event.
     /// </summary>
@@ -164,6 +132,41 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     }
     #endregion
 
+    #region StateManagement
+    [Serializable]
+    private class ControlState
+    {
+      #region state fields
+      public string InvoiceID = String.Empty;
+      public string InvoiceTitle = String.Empty;
+      public string InvoiceContentID = String.Empty;
+      public string InvoiceContentTitle = String.Empty;
+      public string BatchID = String.Empty;
+      public string BatchTitle = String.Empty;
+      public double? InvoiceQuantity = new Nullable<double>();
+      public GenericStateMachineEngine.InterfaceState InterfaceState = GenericStateMachineEngine.InterfaceState.ViewState;
+      public GenericStateMachineEngine.ControlsSet SetEnabled = 0;
+      public bool IsModified { get; set; }
+      #endregion
+
+      #region public
+      internal void Clear()
+      {
+        InvoiceID = String.Empty;
+        InvoiceTitle = String.Empty;
+        InvoiceContentID = String.Empty;
+        InvoiceContentTitle = String.Empty;
+        BatchID = String.Empty;
+        BatchTitle = String.Empty;
+      }
+      public ControlState( ControlState _old )
+      {
+        if ( _old == null )
+          return;
+        InterfaceState = _old.InterfaceState;
+      }
+      #endregion
+    }
     private class LocalStateMachineEngine: GenericStateMachineEngine
     {
       #region ctor
@@ -232,25 +235,27 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #region GenericStateMachineEngine implementation
       protected override GenericStateMachineEngine.ActionResult Show()
       {
-        Parent.m_InvoiceTextBox.Text = Parent.m_ControlState.InvoiceTitle;
-        Parent.m_InvoiceContentTextBox.Text = Parent.m_ControlState.InvoiceContentTitle;
-        Parent.m_InvoiceQuantityTextBox.Text = Parent.m_ControlState.InvoiceQuantity;
-        Parent.m_BatchTextBox.Text = Parent.m_ControlState.BatchTitle;
-        return GenericStateMachineEngine.ActionResult.Success;
+        return Parent.Show();
       }
       protected override GenericStateMachineEngine.ActionResult Update()
       {
         try
         {
+          List<string> _errors = new List<string>();
           Batch _btch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
-          //TODO [pr4-3465] Invoice Content list - add fields http://itrserver/Bugs/BugDetail.aspx?bid=3465
           InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
-          _ic.BatchID = _btch;
-          _ic.Quantity = Convert.ToDouble( Parent.m_InvoiceQuantityTextBox.Text );
-          _ic.ProductType = _ic.BatchID.ProductType;
+          if ( _ic.BatchID.Identyfikator != _btch.Identyfikator )
+          {
+            _ic.BatchID = _btch;
+            _ic.ProductType = _ic.BatchID.ProductType;
+            _ic.Units = _ic.BatchID.ProductType.Value.Units();
+            _ic.Tytuł = _ic.BatchID.Tytuł;
+          }
+          double? _nq = Parent.m_InvoiceQuantityTextBox.TextBox2Double( _errors );
+          if ( _errors.Count == 0 )
+            return ActionResult.NotValidated( _errors[ 0 ] ); //TODO [pr4-3510] Move ActionResult Twp the SharePoint project
+          _ic.Quantity = 0;
           _ic.Status = Status.OK;
-          _ic.Tytuł = _ic.BatchID.Tytuł;
-          //TODO _ic.Units = _ic.BatchID.SKULookup.u
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
         }
         catch ( Exception ex )
@@ -339,6 +344,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #endregion
 
     }
+    #endregion
 
     #region SetInterconnectionData
     private void SetInterconnectionData( BatchInterconnectionData e )
@@ -380,11 +386,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         if ( m_ControlState.InvoiceContentID.CompareTo( e.ID ) == 0 )
           return;
         m_ControlState.InvoiceContentID = e.ID;
-        m_InvoiceContentTextBox.Text = e.Title;
+        m_ControlState.InvoiceContentTitle = e.Title;
         InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( m_DataContextManagement.DataContext.InvoiceContent, e.ID );
         m_ControlState.BatchID = _ic.BatchID != null ? _ic.BatchID.Identyfikator.IntToString() : String.Empty;
-        m_BatchTextBox.Text = _ic.BatchID != null ? _ic.BatchID.Tytuł : "N/A";
-        m_ControlState.BatchTitle = m_BatchTextBox.Text;
+        m_ControlState.BatchTitle = _ic.BatchID != null ? _ic.BatchID.Tytuł : "N/A";
+        m_ControlState.InvoiceQuantity = _ic.Quantity;
       }
       catch ( Exception _ex )
       {
@@ -423,11 +429,21 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     }
     #endregion
 
-    #region private
+    #region User interface
+    internal GenericStateMachineEngine.ActionResult Show()
+    {
+      m_InvoiceTextBox.Text = m_ControlState.InvoiceTitle;
+      m_InvoiceContentTextBox.Text = m_ControlState.InvoiceContentTitle;
+      m_InvoiceQuantityTextBox.Text = m_ControlState.InvoiceQuantity.Value.ToString( CultureInfo.CurrentCulture );
+      m_BatchTextBox.Text = m_ControlState.BatchTitle;
+      return GenericStateMachineEngine.ActionResult.Success;
+    }
+    #endregion
+
+    #region private variables
     private LocalStateMachineEngine m_StateMachineEngine = null;
     private ControlState m_ControlState = new ControlState( null );
     private DataContextManagement<EntitiesDataContext> m_DataContextManagement = null;
     #endregion
-
   }
 }
