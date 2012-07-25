@@ -60,6 +60,7 @@
     <Compile Include="..\SPMetalHelper\Linq\IPR\Entities.partial.cs">
       <Link>Linq\Entities.partial.cs</Link>
     </Compile>
+    <Compile Include="GlobalDefinitions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Webparts\ExportWebPart\ExportWebPart.cs" />
     <Compile Include="Webparts\ExportWebPart\ExportWebPartUserControl.ascx.cs">
