@@ -79,7 +79,7 @@
                         </asp:TableRow>
                         <asp:TableRow>
                             <asp:TableCell ColumnSpan=5>
-                                <asp:Button runat="server" CssClass="Button" Text="Export" ID="m_ExportButton"  />
+                                <asp:Button runat="server" CssClass="Button" Text="Export" ID="m_ExportButton" ToolTip="It will disable edition of the invoice and starts the export procedure."  />
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>
