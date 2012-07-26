@@ -127,6 +127,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       if ( m_ControlState.InvoiceContentID.IsNullOrEmpty() )
         _allowed ^= GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.SaveOn | GenericStateMachineEngine.ControlsSet.DeleteOn;
       SetEnabled( m_ControlState.SetEnabled & _allowed );
+      Show();
       base.OnPreRender( e );
     }
     /// <summary>
@@ -161,10 +162,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       {
         InvoiceID = String.Empty;
         InvoiceTitle = String.Empty;
+        ClearInvoiceContent();
+      }
+      internal void ClearInvoiceContent()
+      {
         InvoiceContentID = String.Empty;
         InvoiceContentTitle = String.Empty;
         BatchID = String.Empty;
         BatchTitle = String.Empty;
+        InvoiceQuantity = 0;
       }
       public ControlState( ControlState _old )
       {
@@ -242,7 +248,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #region GenericStateMachineEngine implementation
       protected override GenericStateMachineEngine.ActionResult Show()
       {
-        return Parent.Show();
+        return GenericStateMachineEngine.ActionResult.Success;
       }
       protected override GenericStateMachineEngine.ActionResult Update()
       {
@@ -309,8 +315,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           if ( _errors.Count > 0 )
             return ActionResult.NotValidated( _errors[ 0 ] );
           if ( _nq.HasValue && _nq.Value < 0 )
-              return ActionResult.NotValidated
-                ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
+            return ActionResult.NotValidated
+              ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
           Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           InvoiceLib _invc = Element.GetAtIndex<InvoiceLib>( Parent.m_DataContextManagement.DataContext.InvoiceLibrary, Parent.m_ControlState.InvoiceID );
           if ( _batch.FGQuantityAvailable + _nq.Value < 0 )
@@ -347,6 +353,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           InvoiceContent _invc = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
           _batch.FGQuantityAvailable += Parent.m_ControlState.InvoiceQuantity;
+          Parent.m_ControlState.ClearInvoiceContent();
           Parent.m_DataContextManagement.DataContext.InvoiceContent.DeleteOnSubmit( _invc );
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
         }
@@ -358,8 +365,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       protected override void ClearUserInterface()
       {
-        Parent.m_InvoiceContentTextBox.Text = String.Empty;
-        Parent.m_InvoiceQuantityTextBox.Text = String.Empty;
+        Parent.m_ControlState.ClearInvoiceContent();
       }
       protected override void SetEnabled( GenericStateMachineEngine.ControlsSet _buttons )
       {
@@ -382,7 +388,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         ShowActionResult
           ( ActionResult.Exception( new ApplicationError( "SMError", CurrentMachineState.ToString(), "State maschine internal error", null ), "State maschine internal error" ) );
         CurrentMachineState = InterfaceState.ViewState;
-        Parent.Show();
       }
       protected override void ShowActionResult( GenericStateMachineEngine.ActionResult _rslt )
       {
@@ -464,7 +469,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         m_ControlState.BatchID = string.Empty;
         m_ControlState.BatchTitle = string.Empty;
         m_BatchTextBox.Text = string.Empty;
-        Show();
       }
       catch ( Exception _ex )
       {
@@ -480,11 +484,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           return;
         m_ControlState.InvoiceContentID = e.ID;
         m_ControlState.InvoiceContentTitle = e.Title;
-        InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( m_DataContextManagement.DataContext.InvoiceContent, e.ID );
+        InvoiceContent _ic = Element.FindAtIndex<InvoiceContent>( m_DataContextManagement.DataContext.InvoiceContent, e.ID );
+        if ( _ic == null )
+        {
+          m_ControlState.ClearInvoiceContent();
+          return;
+        }
         m_ControlState.BatchID = _ic.BatchID != null ? _ic.BatchID.Identyfikator.IntToString() : String.Empty;
         m_ControlState.BatchTitle = _ic.BatchID != null ? _ic.BatchID.Tytuł : "N/A";
         m_ControlState.InvoiceQuantity = _ic.Quantity.Value;
-        Show();
       }
       catch ( Exception _ex )
       {
