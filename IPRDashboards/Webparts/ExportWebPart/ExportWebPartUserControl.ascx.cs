@@ -74,12 +74,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         m_NewButton.Click += new EventHandler( m_StateMachineEngine.NewButton_Click );
         m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
         m_EditButton.Click += new EventHandler( m_StateMachineEngine.EditButton_Click );
+        m_DeleteButton.Click += new EventHandler( m_StateMachineEngine.DeleteButton_Click );
+        m_ExportButton.Click += new EventHandler( m_StateMachineEngine.m_ExportButton_Click );
       }
       catch ( Exception ex )
       {
         ApplicationError _ae = new ApplicationError( "Page_Load", "", ex.Message, ex );
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
+    }
+
+    void m_DeleteButton_Click( object sender, EventArgs e )
+    {
+      throw new NotImplementedException();
     }
     /// <summary>
     /// Loads the state of the control.
@@ -196,10 +203,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         switch ( CurrentMachineState )
         {
           case InterfaceState.EditState:
+          case InterfaceState.NewState:
             Parent.SetInterconnectionData( e );
             break;
           case InterfaceState.ViewState:
-          case InterfaceState.NewState:
           default:
             break;
         }
@@ -259,22 +266,31 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
           if ( _ic.BatchID.Identyfikator != _newb.Identyfikator )
           {
+            if ( _newb.FGQuantityAvailable < _nq )
+            {
+              string _tmplt = Resources.NeBatchQuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
+              return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, Parent.m_ControlState.InvoiceQuantity + _newb.FGQuantityAvailable.Value ) );
+            }
             Batch _oldb = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, _ic.BatchID.Identyfikator.ToString() );
             _oldb.FGQuantityAvailable += _ic.Quantity.Value;
-            _newb.FGQuantityAvailable -= _ic.Quantity.Value;
+            _newb.FGQuantityAvailable -= _nq;
             _ic.BatchID = _newb;
             _ic.ProductType = _ic.BatchID.ProductType;
             _ic.Units = _ic.BatchID.ProductType.Value.Units();
-            _ic.Tytuł = _ic.BatchID.Tytuł;
+            _ic.Tytuł = _ic.BatchID.SKULookup != null ? _ic.BatchID.SKULookup.Tytuł : _ic.BatchID.SKU;
+            _ic.Quantity += _nq;
           }
-          if ( _newb.FGQuantityAvailable + _dif < 0 )
+          else if ( _newb.FGQuantityAvailable < _dif )
           {
             string _tmplt = Resources.QuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
             return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, Parent.m_ControlState.InvoiceQuantity + _newb.FGQuantityAvailable.Value ) );
           }
-          _ic.Quantity += _dif;
+          else
+          {
+            _ic.Quantity += _dif;
+            _newb.FGQuantityAvailable -= _dif;
+          }
           Parent.m_ControlState.InvoiceQuantity = _ic.Quantity.Value;
-          _newb.FGQuantityAvailable -= _dif;
           _ic.Status = Status.OK;
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
         }
@@ -292,12 +308,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           double? _nq = Parent.m_InvoiceQuantityTextBox.TextBox2Double( _errors );
           if ( _errors.Count > 0 )
             return ActionResult.NotValidated( _errors[ 0 ] );
-          if ( _nq.HasValue )
-            if ( _nq.Value < 0 )
+          if ( _nq.HasValue && _nq.Value < 0 )
               return ActionResult.NotValidated
                 ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
-            else
-              return ActionResult.NotValidated( String.Format( Resources.NotValidValue.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
           Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           InvoiceLib _invc = Element.GetAtIndex<InvoiceLib>( Parent.m_DataContextManagement.DataContext.InvoiceLibrary, Parent.m_ControlState.InvoiceID );
           if ( _batch.FGQuantityAvailable + _nq.Value < 0 )
@@ -332,7 +345,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         try
         {
           Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
-          InvoiceContent _invc = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceID );
+          InvoiceContent _invc = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
           _batch.FGQuantityAvailable += Parent.m_ControlState.InvoiceQuantity;
           Parent.m_DataContextManagement.DataContext.InvoiceContent.DeleteOnSubmit( _invc );
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
@@ -345,11 +358,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       protected override void ClearUserInterface()
       {
-        Parent.m_BatchTextBox.Text = String.Empty;
-        Parent.m_EditBatchCheckBox.Checked = false;
         Parent.m_InvoiceContentTextBox.Text = String.Empty;
         Parent.m_InvoiceQuantityTextBox.Text = String.Empty;
-        Parent.m_InvoiceTextBox.Text = String.Empty;
       }
       protected override void SetEnabled( GenericStateMachineEngine.ControlsSet _buttons )
       {
@@ -365,7 +375,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           case InterfaceState.NewState:
             break;
         }
-        Parent.SetEnabled( _buttons, _lcs );
+        Parent.m_ControlState.SetEnabled = _buttons;
       }
       protected override void SMError( GenericStateMachineEngine.InterfaceEvent interfaceEvent )
       {
@@ -390,6 +400,33 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
             return;
           Parent.m_ControlState.InterfaceState = value;
           EnterState();
+        }
+      }
+      #endregion
+
+      #region Event handlers
+      internal void m_ExportButton_Click( object sender, EventArgs e )
+      {
+        switch ( CurrentMachineState )
+        {
+          case InterfaceState.ViewState:
+            ActionResult _resu = Parent.Expot();
+            switch ( _resu.LastActionResult )
+            {
+              case ActionResult.Result.Success:
+                break;
+              case ActionResult.Result.NotValidated:
+              case ActionResult.Result.Exception:
+              default:
+                ShowActionResult( _resu );
+                break;
+            }
+            break;
+          case InterfaceState.EditState:
+          case InterfaceState.NewState:
+          default:
+            SMError( InterfaceEvent.NewClick );
+            break;
         }
       }
       #endregion
@@ -427,6 +464,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         m_ControlState.BatchID = string.Empty;
         m_ControlState.BatchTitle = string.Empty;
         m_BatchTextBox.Text = string.Empty;
+        Show();
       }
       catch ( Exception _ex )
       {
@@ -446,6 +484,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         m_ControlState.BatchID = _ic.BatchID != null ? _ic.BatchID.Identyfikator.IntToString() : String.Empty;
         m_ControlState.BatchTitle = _ic.BatchID != null ? _ic.BatchID.Tytuł : "N/A";
         m_ControlState.InvoiceQuantity = _ic.Quantity.Value;
+        Show();
       }
       catch ( Exception _ex )
       {
@@ -456,37 +495,36 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     #endregion
 
     #region Controls management
-    private void SetVisible( GenericStateMachineEngine.ControlsSet set, LocalStateMachineEngine.LocalControlsSet lset )
-    {
-      SetVisible( set );
-    }
-    private void SetVisible( GenericStateMachineEngine.ControlsSet _set )
-    {
-      m_EditButton.Visible = ( _set & GenericStateMachineEngine.ControlsSet.EditOn ) != 0;
-      m_CancelButton.Visible = ( _set & GenericStateMachineEngine.ControlsSet.CancelOn ) != 0;
-      m_NewButton.Visible = ( _set & GenericStateMachineEngine.ControlsSet.NewOn ) != 0;
-      m_SaveButton.Visible = ( _set & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
-      m_DeleteButton.Visible = ( _set & GenericStateMachineEngine.ControlsSet.DeleteOn ) != 0;
-    }
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set, LocalStateMachineEngine.LocalControlsSet lset )
     {
-      m_EditBatchCheckBox.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
-      m_InvoiceQuantityTextBox.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
       //TODO  [pr4-3540] ExportWebPart - add button Export and column Read Only http://itrserver/Bugs/BugDetail.aspx?bid=3540
       SetEnabled( _set );
     }
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set )
     {
+      //Buttons
       m_EditButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.EditOn ) != 0;
       m_CancelButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.CancelOn ) != 0;
       m_NewButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.NewOn ) != 0;
       m_SaveButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
       m_DeleteButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.DeleteOn ) != 0;
+      //Lodcal controls
+      m_EditBatchCheckBox.Enabled = m_SaveButton.Enabled;
+      if ( !m_EditBatchCheckBox.Enabled )
+        m_EditBatchCheckBox.Checked = false;
+      m_InvoiceQuantityTextBox.Enabled = m_SaveButton.Enabled;
+      m_ExportButton.Enabled = m_NewButton.Enabled;
     }
     #endregion
 
     #region User interface
-    internal GenericStateMachineEngine.ActionResult Show()
+
+    private GenericStateMachineEngine.ActionResult Expot()
+    {
+      //TODO throw new NotImplementedException();
+      return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException(), "Expot" );
+    }
+    private GenericStateMachineEngine.ActionResult Show()
     {
       m_InvoiceTextBox.Text = m_ControlState.InvoiceTitle;
       m_InvoiceContentTextBox.Text = m_ControlState.InvoiceContentTitle;
@@ -501,5 +539,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     private ControlState m_ControlState = new ControlState( null );
     private DataContextManagement<EntitiesDataContext> m_DataContextManagement = null;
     #endregion
+
   }
 }
