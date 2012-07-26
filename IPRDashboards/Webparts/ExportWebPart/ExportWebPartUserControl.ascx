@@ -77,6 +77,11 @@
                                 <asp:Button runat="server" CssClass="Button" Text="Cancel" ID="m_CancelButton" />
                             </asp:TableCell>
                         </asp:TableRow>
+                        <asp:TableRow>
+                            <asp:TableCell ColumnSpan=5>
+                                <asp:Button runat="server" CssClass="Button" Text="Export" ID="m_ExportButton"  />
+                            </asp:TableCell>
+                        </asp:TableRow>
                     </asp:Table>
                 </asp:Panel>
             </asp:TableCell>
