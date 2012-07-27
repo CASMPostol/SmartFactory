@@ -83,11 +83,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
     }
-
-    void m_DeleteButton_Click( object sender, EventArgs e )
-    {
-      throw new NotImplementedException();
-    }
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -125,7 +120,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       if ( m_ControlState.InvoiceID.IsNullOrEmpty() )
         _allowed ^= GenericStateMachineEngine.ControlsSet.NewOn;
       if ( m_ControlState.InvoiceContentID.IsNullOrEmpty() )
-        _allowed ^= GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.SaveOn | GenericStateMachineEngine.ControlsSet.DeleteOn;
+        _allowed ^= GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn;
       SetEnabled( m_ControlState.SetEnabled & _allowed );
       Show();
       base.OnPreRender( e );
@@ -319,7 +314,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
               ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
           Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           InvoiceLib _invc = Element.GetAtIndex<InvoiceLib>( Parent.m_DataContextManagement.DataContext.InvoiceLibrary, Parent.m_ControlState.InvoiceID );
-          if ( _batch.FGQuantityAvailable + _nq.Value < 0 )
+          if ( _batch.FGQuantityAvailable < _nq.Value )
           {
             string _tmplt = Resources.QuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
             return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, Parent.m_ControlState.InvoiceQuantity + _batch.FGQuantityAvailable.Value ) );
@@ -338,6 +333,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
             Units = _batch.ProductType.Value.Units()
           };
           Parent.m_DataContextManagement.DataContext.InvoiceContent.InsertOnSubmit( _nic );
+          Parent.m_DataContextManagement.DataContext.SubmitChanges();
+          _nic.CreateTitle();
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
         }
         catch ( Exception ex )
@@ -406,6 +403,20 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           Parent.m_ControlState.InterfaceState = value;
           EnterState();
         }
+      }
+      protected override void EnterState()
+      {
+        switch ( CurrentMachineState )
+        {
+          case InterfaceState.ViewState:
+          case InterfaceState.EditState:
+            Parent.m_EditBatchCheckBox.Checked = false;
+            break;
+          case InterfaceState.NewState:
+            Parent.m_EditBatchCheckBox.Checked = true;
+            break;
+        }
+        base.EnterState();
       }
       #endregion
 
@@ -502,7 +513,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     }
     #endregion
 
-    #region Controls management
+    #region private
+    private LocalStateMachineEngine m_StateMachineEngine = null;
+    private ControlState m_ControlState = new ControlState( null );
+    private DataContextManagement<EntitiesDataContext> m_DataContextManagement = null;
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set, LocalStateMachineEngine.LocalControlsSet lset )
     {
       //TODO  [pr4-3540] ExportWebPart - add button Export and column Read Only http://itrserver/Bugs/BugDetail.aspx?bid=3540
@@ -517,16 +531,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       m_SaveButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
       m_DeleteButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.DeleteOn ) != 0;
       //Lodcal controls
-      m_EditBatchCheckBox.Enabled = m_SaveButton.Enabled;
-      if ( !m_EditBatchCheckBox.Enabled )
-        m_EditBatchCheckBox.Checked = false;
-      m_InvoiceQuantityTextBox.Enabled = m_SaveButton.Enabled;
+      m_EditBatchCheckBox.Enabled = m_CancelButton.Enabled;
+      m_InvoiceQuantityTextBox.Enabled = m_CancelButton.Enabled;
       m_ExportButton.Enabled = m_NewButton.Enabled;
     }
-    #endregion
-
-    #region User interface
-
     private GenericStateMachineEngine.ActionResult Expot()
     {
       //TODO throw new NotImplementedException();
@@ -540,12 +548,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       m_BatchTextBox.Text = m_ControlState.BatchTitle;
       return GenericStateMachineEngine.ActionResult.Success;
     }
-    #endregion
-
-    #region private variables
-    private LocalStateMachineEngine m_StateMachineEngine = null;
-    private ControlState m_ControlState = new ControlState( null );
-    private DataContextManagement<EntitiesDataContext> m_DataContextManagement = null;
     #endregion
 
   }

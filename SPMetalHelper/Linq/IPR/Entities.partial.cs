@@ -214,6 +214,22 @@ namespace CAS.SmartFactory.Linq.IPR
       edc.SubmitChangesSilently( Microsoft.SharePoint.Linq.RefreshMode.OverwriteCurrentValues );
     }
   }
+  public partial class InvoiceContent
+  {
+    internal void CreateTitle()
+    {
+      string _tmplt = "{0}/{1} SKU:{2}/Batch:{3}";
+      string _sku = "N/A";
+      string _batch = "N/A";
+      if ( this.BatchID != null )
+      {
+        _batch = BatchID.Batch0;
+        if ( this.BatchID.SKULookup != null )
+          _sku = this.BatchID.SKULookup.Tytuł;
+      }
+      Tytuł = String.Format( _tmplt, Identyfikator.Value, this.InvoiceLookup.BillDoc, _sku, _batch );
+    }
+  }
   public static class LinqIPRExtensions
   {
     public static string Units( this ProductType product )
