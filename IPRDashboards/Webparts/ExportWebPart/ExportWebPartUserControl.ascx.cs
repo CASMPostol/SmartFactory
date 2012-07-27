@@ -191,8 +191,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #endregion
 
       #region public
-      [Flags]
-      internal enum LocalControlsSet { EditBatchCheckBox, ExportButton };
       internal void InitMahine( InterfaceState _ControlState )
       {
         Parent.m_ControlState.InterfaceState = _ControlState;
@@ -260,42 +258,24 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           double? _nq = Parent.m_InvoiceQuantityTextBox.TextBox2Double( _errors );
           if ( _errors.Count > 0 )
             return ActionResult.NotValidated( _errors[ 0 ] ); //TODO [pr4-3510] Move ActionResult Twp the SharePoint project
-          double _dif = 0;
-          if ( _nq.HasValue )
-            if ( _nq.Value < 0 )
-              return ActionResult.NotValidated
-                ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
-            else
-              _dif = _nq.Value - Parent.m_ControlState.InvoiceQuantity;
-          else
-            return ActionResult.NotValidated( String.Format( Resources.NotValidValue.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
+          if ( _nq.HasValue && _nq.Value < 0 )
+            return ActionResult.NotValidated
+              ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
           Batch _newb = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
+          if ( _newb.FGQuantityAvailable < _nq )
+          {
+            string _tmplt = Resources.NeBatchQuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
+            return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, _newb.FGQuantityAvailable.Value ) );
+          }
+          _ic.Quantity = _nq;
           if ( _ic.BatchID.Identyfikator != _newb.Identyfikator )
           {
-            if ( _newb.FGQuantityAvailable < _nq )
-            {
-              string _tmplt = Resources.NeBatchQuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
-              return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, Parent.m_ControlState.InvoiceQuantity + _newb.FGQuantityAvailable.Value ) );
-            }
-            Batch _oldb = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, _ic.BatchID.Identyfikator.ToString() );
-            _oldb.FGQuantityAvailable += _ic.Quantity.Value;
-            _newb.FGQuantityAvailable -= _nq;
             _ic.BatchID = _newb;
             _ic.ProductType = _ic.BatchID.ProductType;
             _ic.Units = _ic.BatchID.ProductType.Value.Units();
             _ic.Quantity = _nq;
             _ic.CreateTitle();
-          }
-          else if ( _newb.FGQuantityAvailable < _dif )
-          {
-            string _tmplt = Resources.QuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
-            return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, Parent.m_ControlState.InvoiceQuantity + _newb.FGQuantityAvailable.Value ) );
-          }
-          else
-          {
-            _ic.Quantity += _dif;
-            _newb.FGQuantityAvailable -= _dif;
           }
           Parent.m_ControlState.InvoiceQuantity = _ic.Quantity.Value;
           _ic.Status = Status.OK;
@@ -320,7 +300,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
               ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
           Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           InvoiceLib _invc = Element.GetAtIndex<InvoiceLib>( Parent.m_DataContextManagement.DataContext.InvoiceLibrary, Parent.m_ControlState.InvoiceID );
-          if ( _batch.FGQuantityAvailable < _nq.Value )
+          if ( !_batch.Available( _nq.Value ) )
           {
             string _tmplt = Resources.QuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
             return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, Parent.m_ControlState.InvoiceQuantity + _batch.FGQuantityAvailable.Value ) );
@@ -355,7 +335,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         {
           Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           InvoiceContent _invc = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
-          _batch.FGQuantityAvailable += Parent.m_ControlState.InvoiceQuantity;
           Parent.m_ControlState.ClearInvoiceContent();
           Parent.m_DataContextManagement.DataContext.InvoiceContent.DeleteOnSubmit( _invc );
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
@@ -372,18 +351,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       protected override void SetEnabled( GenericStateMachineEngine.ControlsSet _buttons )
       {
-        LocalControlsSet _lcs = 0;
-        switch ( CurrentMachineState )
-        {
-          case InterfaceState.ViewState:
-            _lcs = LocalControlsSet.ExportButton;
-            break;
-          case InterfaceState.EditState:
-            _lcs = LocalControlsSet.EditBatchCheckBox;
-            break;
-          case InterfaceState.NewState:
-            break;
-        }
         Parent.m_ControlState.SetEnabled = _buttons;
       }
       protected override void SMError( GenericStateMachineEngine.InterfaceEvent interfaceEvent )
@@ -523,11 +490,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     private LocalStateMachineEngine m_StateMachineEngine = null;
     private ControlState m_ControlState = new ControlState( null );
     private DataContextManagement<EntitiesDataContext> m_DataContextManagement = null;
-    private void SetEnabled( GenericStateMachineEngine.ControlsSet _set, LocalStateMachineEngine.LocalControlsSet lset )
-    {
-      //TODO  [pr4-3540] ExportWebPart - add button Export and column Read Only http://itrserver/Bugs/BugDetail.aspx?bid=3540
-      SetEnabled( _set );
-    }
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set )
     {
       //Buttons
@@ -543,24 +505,31 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     }
     private GenericStateMachineEngine.ActionResult Expot()
     {
-      InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
-      foreach ( var item in _invoice.InvoiceContent )
+      try
       {
-        if ( item.Status.Value == Status.OK )
-          continue;
-        m_ControlState.InvoiceContentID = item.Identyfikator.Value.ToString();
-        m_ControlState.InvoiceContentTitle = item.Tytuł;
-        m_ControlState.UpdateControlState( item );
-        string _frmt = "Cannot proceed with export because the invoice item contains eroors {0}.";
-        return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
+        InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
+        foreach ( var item in _invoice.InvoiceContent )
+        {
+          if ( item.Status.Value == Status.OK )
+            continue;
+          m_ControlState.InvoiceContentID = item.Identyfikator.Value.ToString();
+          m_ControlState.InvoiceContentTitle = item.Tytuł;
+          m_ControlState.UpdateControlState( item );
+          string _frmt = "Cannot proceed with export because the invoice item contains eroors {0}.";
+          return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
+        }
+        _invoice.OK = true;
+        foreach ( var item in _invoice.InvoiceContent )
+        {
+          item.BatchID.Export( item.Quantity );
+        }
+        //TODO  [pr4-3554] Add read only field to invoice library
+        return GenericStateMachineEngine.ActionResult.Success;
       }
-      _invoice.OK = true;
-      //_invoice.CreationDate
-      foreach ( var item in _invoice.InvoiceContent )
+      catch ( Exception ex )
       {
-        item.BatchID.Export( item.Quantity );
+        return GenericStateMachineEngine.ActionResult.Exception( ex, "Expot" );
       }
-      return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException(), "Expot" );
     }
     private GenericStateMachineEngine.ActionResult Show()
     {

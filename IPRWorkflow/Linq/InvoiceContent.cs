@@ -58,14 +58,13 @@ namespace CAS.SmartFactory.Linq.IPR
       ItemNo = item.Item.ConvertToDouble();
       ProductType = this.BatchID.ProductType;
       Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
-      this.BatchID.FGQuantityAvailable -= Quantity;
       this.CreateTitle();
       //TODO  SKUTitle = item.Description;
       Units = item.BUn;
       this.Status = Linq.IPR.Status.OK;
       if ( this.BatchID.BatchStatus.Value == BatchStatus.Preliminary )
         this.Status = Linq.IPR.Status.BatchNotFound;
-      else if ( this.BatchID.FGQuantityAvailable < 0 )
+      else if ( this.BatchID.Available(Quantity.Value))
         this.Status = Linq.IPR.Status.NotEnoughQnt;
     }
     #endregion
