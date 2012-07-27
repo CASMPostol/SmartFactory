@@ -59,7 +59,8 @@ namespace CAS.SmartFactory.Linq.IPR
       ProductType = this.BatchID.ProductType;
       Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
       this.BatchID.FGQuantityAvailable -= Quantity;
-      Tytuł = item.Description;
+      this.CreateTitle();
+      //TODO  SKUTitle = item.Description;
       Units = item.BUn;
       this.Status = Linq.IPR.Status.OK;
       if ( this.BatchID.BatchStatus.Value == BatchStatus.Preliminary )
