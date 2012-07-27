@@ -153,6 +153,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #endregion
 
       #region public
+      internal void UpdateControlState( InvoiceContent _ic )
+      {
+        BatchID = _ic.BatchID != null ? _ic.BatchID.Identyfikator.IntToString() : String.Empty;
+        BatchTitle = _ic.BatchID != null ? _ic.BatchID.Tytuł : "N/A";
+        InvoiceQuantity = _ic.Quantity.Value;
+      }
       internal void Clear()
       {
         InvoiceID = String.Empty;
@@ -278,8 +284,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
             _ic.BatchID = _newb;
             _ic.ProductType = _ic.BatchID.ProductType;
             _ic.Units = _ic.BatchID.ProductType.Value.Units();
-            _ic.Tytuł = _ic.BatchID.SKULookup != null ? _ic.BatchID.SKULookup.Tytuł : _ic.BatchID.SKU;
-            _ic.Quantity += _nq;
+            _ic.Quantity = _nq;
+            _ic.CreateTitle();
           }
           else if ( _newb.FGQuantityAvailable < _dif )
           {
@@ -432,6 +438,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
               case ActionResult.Result.Success:
                 break;
               case ActionResult.Result.NotValidated:
+                CurrentMachineState = InterfaceState.EditState;
+                break;
               case ActionResult.Result.Exception:
               default:
                 ShowActionResult( _resu );
@@ -501,9 +509,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           m_ControlState.ClearInvoiceContent();
           return;
         }
-        m_ControlState.BatchID = _ic.BatchID != null ? _ic.BatchID.Identyfikator.IntToString() : String.Empty;
-        m_ControlState.BatchTitle = _ic.BatchID != null ? _ic.BatchID.Tytuł : "N/A";
-        m_ControlState.InvoiceQuantity = _ic.Quantity.Value;
+        m_ControlState.UpdateControlState( _ic );
       }
       catch ( Exception _ex )
       {
@@ -537,7 +543,23 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     }
     private GenericStateMachineEngine.ActionResult Expot()
     {
-      //TODO throw new NotImplementedException();
+      InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
+      foreach ( var item in _invoice.InvoiceContent )
+      {
+        if ( item.Status.Value == Status.OK )
+          continue;
+        m_ControlState.InvoiceContentID = item.Identyfikator.Value.ToString();
+        m_ControlState.InvoiceContentTitle = item.Tytuł;
+        m_ControlState.UpdateControlState( item );
+        string _frmt = "Cannot proceed with export because the invoice item contains eroors {0}.";
+        return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
+      }
+      _invoice.OK = true;
+      //_invoice.CreationDate
+      foreach ( var item in _invoice.InvoiceContent )
+      {
+        item.BatchID.Export( item.Quantity );
+      }
       return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException(), "Expot" );
     }
     private GenericStateMachineEngine.ActionResult Show()

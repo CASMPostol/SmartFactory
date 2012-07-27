@@ -214,22 +214,6 @@ namespace CAS.SmartFactory.Linq.IPR
       edc.SubmitChangesSilently( Microsoft.SharePoint.Linq.RefreshMode.OverwriteCurrentValues );
     }
   }
-  public partial class InvoiceContent
-  {
-    internal void CreateTitle()
-    {
-      string _tmplt = "{0}/{1} SKU:{2}/Batch:{3}";
-      string _sku = "N/A";
-      string _batch = "N/A";
-      if ( this.BatchID != null )
-      {
-        _batch = BatchID.Batch0;
-        if ( this.BatchID.SKULookup != null )
-          _sku = this.BatchID.SKULookup.Tytuł;
-      }
-      Tytuł = String.Format( _tmplt, Identyfikator.Value, this.InvoiceLookup.BillDoc, _sku, _batch );
-    }
-  }
   public static class LinqIPRExtensions
   {
     public static string Units( this ProductType product )
@@ -248,6 +232,19 @@ namespace CAS.SmartFactory.Linq.IPR
         default:
           return "N/A";
       }
+    }
+    public static void CreateTitle(this InvoiceContent invoice)
+    {
+      string _tmplt = "{0}/{1} SKU:{2}/Batch:{3}";
+      string _sku = "N/A";
+      string _batch = "N/A";
+      if ( invoice.BatchID != null )
+      {
+        _batch = invoice.BatchID.Batch0;
+        if ( invoice.BatchID.SKULookup != null )
+          _sku = invoice.BatchID.SKULookup.SKU;
+      }
+      invoice.Tytuł = String.Format( _tmplt, invoice.Identyfikator.Value, invoice.InvoiceLookup.BillDoc, _sku, _batch );
     }
   }
 }
