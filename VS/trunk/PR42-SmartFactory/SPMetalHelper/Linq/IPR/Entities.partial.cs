@@ -233,7 +233,7 @@ namespace CAS.SmartFactory.Linq.IPR
           return "N/A";
       }
     }
-    public static void CreateTitle(this InvoiceContent invoice)
+    public static void CreateTitle( this InvoiceContent invoice )
     {
       string _tmplt = "{0}/{1} SKU:{2}/Batch:{3}";
       string _sku = "N/A";
@@ -245,6 +245,10 @@ namespace CAS.SmartFactory.Linq.IPR
           _sku = invoice.BatchID.SKULookup.SKU;
       }
       invoice.Tytuł = String.Format( _tmplt, invoice.Identyfikator.Value, invoice.InvoiceLookup.BillDoc, _sku, _batch );
+    }
+    internal static bool Available( this Batch batch, double _nq )
+    {
+      return batch.FGQuantityAvailable >= _nq;
     }
   }
 }
