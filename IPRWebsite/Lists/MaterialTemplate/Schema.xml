@@ -14,7 +14,7 @@
           <FieldRef ID="{78638A08-748F-4619-A690-299315659702}" Name="TobaccoQuantity" />
           <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
           <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
-          <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
+          <FieldRef ID="{F2AD5316-859E-43B4-B630-46C28B9523AE}" Name="Material2BatchIndex" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -28,25 +28,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field DisplayName="Batch" Name="Batch" Type="Text" ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Group="CAS Smart Factory IPR" Description="Batch" />
-      <Field DisplayName="Location" Name="StorLoc" Type="Text" ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Group="CAS Smart Factory IPR" Description="StorLoc" />
-      <Field DisplayName="SKUDescription" Name="SKUDescription" Type="Text" ID="{f9499ff7-0420-430d-b2b6-672546ba8235}" Group="CAS Smart Factory IPR" Description="SKUDescription" />
-      <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="CAS Smart Factory IPR Customs" Description="SKU" />
-      <Field DisplayName="Units" Name="Units" Type="Text" ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Group="CAS Smart Factory IPR Customs" Description="j.m." />
-      <Field DisplayName="FG Quantity" Name="FGQuantity" Type="Number" ID="{88259302-82ea-4adc-90d3-b6b6b7cc3b16}" Group="CAS Smart Factory IPR" Description="FG Quantity" />
-      <Field DisplayName="Tobacco Quantity" Name="TobaccoQuantity" Type="Number" ID="{78638A08-748F-4619-A690-299315659702}" Group="CAS Smart Factory IPR" Description="Tobacco Quantity" />
-      <Field DisplayName="Product ID" Name="ProductID" Type="Text" ID="{b523048c-0493-4d33-9166-d336c39f3c90}" Group="CAS Smart Factory IPR" Description="Product ID" />
-      <Field Name="BatchIndex" ID="{6b3af163-c404-433f-9801-047c12b9ee42}" Type="Lookup" List="Lists/BatchList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Batch lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Type="Choice" DisplayName="ProductType" ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Format="Dropdown" BaseType="Text" Description="Material Type" Name="ProductType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
-        <Default>Cigarette</Default>
-        <CHOICES>
-          <CHOICE>Cutfiller</CHOICE>
-          <CHOICE>Cigarette</CHOICE>
-          <CHOICE>Tobacco</CHOICE>
-          <CHOICE>IPRTobacco</CHOICE>
-          <CHOICE>Other</CHOICE>
-        </CHOICES>
-      </Field>  
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
@@ -87,7 +68,7 @@
           <FieldRef ID="{78638A08-748F-4619-A690-299315659702}" Name="TobaccoQuantity" />
           <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
           <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
-          <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
+          <FieldRef ID="{F2AD5316-859E-43B4-B630-46C28B9523AE}" Name="Material2BatchIndex" />
         </ViewFields>
         <Query>
           <OrderBy>

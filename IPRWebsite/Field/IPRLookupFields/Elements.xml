@@ -1,6 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="Material2BatchIndex"
+    ID="{F2AD5316-859E-43B4-B630-46C28B9523AE}"
+    Type="Lookup"
+    List="Lists/BatchList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Batch lookup"
+    Group="CAS Smart Factory IPR"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Name="Disposal2IPRIndex"
+    ID="{C0A4DD0E-A06E-40D4-BFE1-682D3C071AC1}"
+    Type="Lookup"
+    List="Lists/IPRList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="IPR ID"
+    Group="CAS Smart Factory IPR"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="Disposal2IPRIndex"
     ID="{C0A4DD0E-A06E-40D4-BFE1-682D3C071AC1}"
     Type="Lookup"
