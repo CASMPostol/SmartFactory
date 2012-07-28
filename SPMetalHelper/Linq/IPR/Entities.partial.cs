@@ -6,6 +6,7 @@ using Microsoft.SharePoint;
 using System.Globalization;
 using Microsoft.SharePoint.Linq;
 using CAS.SharePoint;
+using CAS.SharePoint.Web;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -212,6 +213,8 @@ namespace CAS.SmartFactory.Linq.IPR
       edc.ActivityLog.InsertOnSubmit( log );
       edc.SubmitChangesSilently( Microsoft.SharePoint.Linq.RefreshMode.OverwriteCurrentValues );
     }
+    
+
   }
   public static class LinqIPRExtensions
   {
@@ -253,5 +256,15 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       return _batch.FGQuantityAvailable.Value;
     }
+  }
+  public partial class InvoiceLib
+  {
+    internal static GenericStateMachineEngine.ActionResult PrepareConsignment( System.Collections.Generic.List<ExportConsignment> _consignment )
+    {
+      return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException(), "InvoiceLib.PrepareConsignment" );
+    }
+  }
+  internal class ExportConsignment
+  {
   }
 }
