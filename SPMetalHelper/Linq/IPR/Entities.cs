@@ -1125,6 +1125,8 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> _invoiceContent;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<Material> _material;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -1164,6 +1166,10 @@ namespace CAS.SmartFactory.Linq.IPR {
 			this._invoiceContent.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceContent>>(this.OnInvoiceContentSync);
 			this._invoiceContent.OnChanged += new System.EventHandler(this.OnInvoiceContentChanged);
 			this._invoiceContent.OnChanging += new System.EventHandler(this.OnInvoiceContentChanging);
+			this._material = new Microsoft.SharePoint.Linq.EntitySet<Material>();
+			this._material.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Material>>(this.OnMaterialSync);
+			this._material.OnChanged += new System.EventHandler(this.OnMaterialChanged);
+			this._material.OnChanging += new System.EventHandler(this.OnMaterialChanging);
 			this.OnCreated();
 		}
 		
@@ -1603,6 +1609,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Material2BatchIndex", Storage="_material", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Material")]
+		public Microsoft.SharePoint.Linq.EntitySet<Material> Material {
+			get {
+				return this._material;
+			}
+			set {
+				this._material.Assign(value);
+			}
+		}
+		
 		private void OnBatchLibraryLookupChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("BatchLibraryLookup", this._batchLibraryLookup.Clone());
 		}
@@ -1736,6 +1752,23 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 			else {
 				e.Item.BatchID = null;
+			}
+		}
+		
+		private void OnMaterialChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Material", this._material.Clone());
+		}
+		
+		private void OnMaterialChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Material");
+		}
+		
+		private void OnMaterialSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Material> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.BatchLookup = this;
+			}
+			else {
+				e.Item.BatchLookup = null;
 			}
 		}
 	}
@@ -4038,7 +4071,7 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="BatchIndex", Storage="_batchLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Batch")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Material2BatchIndex", Storage="_batchLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Batch")]
 		public Batch BatchLookup {
 			get {
 				return this._batchLookup.GetEntity();
@@ -4057,6 +4090,12 @@ namespace CAS.SmartFactory.Linq.IPR {
 		}
 		
 		private void OnBatchLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Material.Add(this);
+			}
+			else {
+				e.Item.Material.Remove(this);
+			}
 		}
 	}
 	
@@ -6118,6 +6157,8 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private System.Nullable<bool> _oK;
 		
+		private System.Nullable<bool> _readOnly;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> _invoiceContent;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceListLookup;
@@ -6181,6 +6222,20 @@ namespace CAS.SmartFactory.Linq.IPR {
 					this.OnPropertyChanging("OK", this._oK);
 					this._oK = value;
 					this.OnPropertyChanged("OK");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="InvoiceLibraryReadOnly", Storage="_readOnly", FieldType="Boolean")]
+		public System.Nullable<bool> ReadOnly {
+			get {
+				return this._readOnly;
+			}
+			set {
+				if ((value != this._readOnly)) {
+					this.OnPropertyChanging("ReadOnly", this._readOnly);
+					this._readOnly = value;
+					this.OnPropertyChanged("ReadOnly");
 				}
 			}
 		}
