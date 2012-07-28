@@ -9,7 +9,6 @@ using CAS.SharePoint;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  //TODO  [pr4-3510] Move ActionResult Twp the SharePoint project http://itrserver/Bugs/BugDetail.aspx?bid=3510
   internal class ActionResult: List<string>
   {
     #region public
@@ -249,6 +248,10 @@ namespace CAS.SmartFactory.Linq.IPR
     internal static bool Available( this Batch batch, double _nq )
     {
       return batch.FGQuantityAvailable >= _nq;
+    }
+    internal static double QuantityAvailable(this Batch _batch)
+    {
+      return _batch.FGQuantityAvailable.Value;
     }
   }
 }
