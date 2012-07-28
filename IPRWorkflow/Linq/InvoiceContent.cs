@@ -17,6 +17,7 @@ namespace CAS.SmartFactory.Linq.IPR
       entry.BillDoc = number;
       entry.CreationDate = date;
       entry.OK = _ok;
+      entry.ReadOnly = false;
       edc.SubmitChanges();
     }
     #endregion
