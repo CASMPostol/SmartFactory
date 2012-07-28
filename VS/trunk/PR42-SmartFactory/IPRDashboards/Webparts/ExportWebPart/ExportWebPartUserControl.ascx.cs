@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
-using Microsoft.SharePoint;
-using System.Globalization;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -116,12 +115,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
     protected override void OnPreRender( EventArgs e )
     {
-      GenericStateMachineEngine.ControlsSet _allowed = (GenericStateMachineEngine.ControlsSet)0xff;
-      if ( m_ControlState.InvoiceID.IsNullOrEmpty() )
-        _allowed ^= GenericStateMachineEngine.ControlsSet.NewOn;
-      if ( m_ControlState.InvoiceContentID.IsNullOrEmpty() )
-        _allowed ^= GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn;
-      SetEnabled( m_ControlState.SetEnabled & _allowed );
+      SetEnabled( m_ControlState.SetEnabled );
       Show();
       base.OnPreRender( e );
     }
@@ -155,6 +149,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #region public
       internal void UpdateControlState( InvoiceContent _ic )
       {
+        InvoiceContentID = _ic.Identyfikator.IntToString();
+        InvoiceContentTitle = _ic.Tytuł;
         BatchID = _ic.BatchID != null ? _ic.BatchID.Identyfikator.IntToString() : String.Empty;
         BatchTitle = _ic.BatchID != null ? _ic.BatchID.Tytuł : "N/A";
         InvoiceQuantity = _ic.Quantity.Value;
@@ -245,40 +241,35 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #endregion
 
       #region GenericStateMachineEngine implementation
-      protected override GenericStateMachineEngine.ActionResult Show()
-      {
-        return GenericStateMachineEngine.ActionResult.Success;
-      }
       protected override GenericStateMachineEngine.ActionResult Update()
       {
         try
         {
-          //[pr4-3510] Move ActionResult Twp the SharePoint project - replace by ActionResult
           List<string> _errors = new List<string>();
           double? _nq = Parent.m_InvoiceQuantityTextBox.TextBox2Double( _errors );
           if ( _errors.Count > 0 )
-            return ActionResult.NotValidated( _errors[ 0 ] ); //TODO [pr4-3510] Move ActionResult Twp the SharePoint project
+            return ActionResult.NotValidated( _errors[ 0 ] );
           if ( _nq.HasValue && _nq.Value < 0 )
             return ActionResult.NotValidated
               ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
-          Batch _newb = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
-          InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
-          if ( _newb.FGQuantityAvailable < _nq )
+          Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
+          if ( !_batch.Available( _nq.Value ) )
           {
             string _tmplt = Resources.NeBatchQuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
-            return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, _newb.FGQuantityAvailable.Value ) );
+            return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, _batch.QuantityAvailable() ) );
           }
+          InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
           _ic.Quantity = _nq;
-          if ( _ic.BatchID.Identyfikator != _newb.Identyfikator )
+          _ic.Status = Status.OK;
+          if ( _ic.BatchID.Identyfikator != _batch.Identyfikator )
           {
-            _ic.BatchID = _newb;
+            _ic.BatchID = _batch;
             _ic.ProductType = _ic.BatchID.ProductType;
             _ic.Units = _ic.BatchID.ProductType.Value.Units();
             _ic.Quantity = _nq;
             _ic.CreateTitle();
           }
           Parent.m_ControlState.InvoiceQuantity = _ic.Quantity.Value;
-          _ic.Status = Status.OK;
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
         }
         catch ( Exception ex )
@@ -303,10 +294,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           if ( !_batch.Available( _nq.Value ) )
           {
             string _tmplt = Resources.QuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
-            return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, Parent.m_ControlState.InvoiceQuantity + _batch.FGQuantityAvailable.Value ) );
+            return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, _batch.QuantityAvailable() ) );
           }
-          Parent.m_ControlState.InvoiceQuantity = _nq.Value;
-          _batch.FGQuantityAvailable -= _nq.Value;
           InvoiceContent _nic = new InvoiceContent()
           {
             BatchID = _batch,
@@ -318,6 +307,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
             Tytuł = _batch.SKULookup.Tytuł,
             Units = _batch.ProductType.Value.Units()
           };
+          Parent.m_ControlState.InvoiceQuantity = _nq.Value;
           Parent.m_DataContextManagement.DataContext.InvoiceContent.InsertOnSubmit( _nic );
           Parent.m_DataContextManagement.DataContext.SubmitChanges();
           _nic.CreateTitle();
@@ -333,7 +323,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       {
         try
         {
-          Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           InvoiceContent _invc = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
           Parent.m_ControlState.ClearInvoiceContent();
           Parent.m_DataContextManagement.DataContext.InvoiceContent.DeleteOnSubmit( _invc );
@@ -361,7 +350,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       protected override void ShowActionResult( GenericStateMachineEngine.ActionResult _rslt )
       {
-        Parent.Controls.Add( CAS.SharePoint.Web.ControlExtensions.CreateMessage( _rslt.ActionException.Message ) );
+        Parent.Controls.Add( ControlExtensions.CreateMessage( _rslt.ActionException.Message ) );
       }
       protected override GenericStateMachineEngine.InterfaceState CurrentMachineState
       {
@@ -448,13 +437,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           return;
         m_ControlState.InvoiceID = e.ID;
         m_ControlState.InvoiceTitle = e.Title;
-        m_InvoiceTextBox.Text = e.Title;
-        m_ControlState.InvoiceContentID = string.Empty;
-        m_ControlState.InvoiceContentTitle = string.Empty;
-        m_InvoiceContentTextBox.Text = string.Empty;
-        m_ControlState.BatchID = string.Empty;
-        m_ControlState.BatchTitle = string.Empty;
-        m_BatchTextBox.Text = string.Empty;
+        m_ControlState.ClearInvoiceContent();
       }
       catch ( Exception _ex )
       {
@@ -468,8 +451,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       {
         if ( m_ControlState.InvoiceContentID.CompareTo( e.ID ) == 0 )
           return;
-        m_ControlState.InvoiceContentID = e.ID;
-        m_ControlState.InvoiceContentTitle = e.Title;
         InvoiceContent _ic = Element.FindAtIndex<InvoiceContent>( m_DataContextManagement.DataContext.InvoiceContent, e.ID );
         if ( _ic == null )
         {
@@ -492,6 +473,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     private DataContextManagement<EntitiesDataContext> m_DataContextManagement = null;
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set )
     {
+      GenericStateMachineEngine.ControlsSet _allowed = (GenericStateMachineEngine.ControlsSet)0xff;
+      if ( m_ControlState.InvoiceID.IsNullOrEmpty() )
+        _allowed ^= GenericStateMachineEngine.ControlsSet.NewOn;
+      if ( m_ControlState.InvoiceContentID.IsNullOrEmpty() )
+        _allowed ^= GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn;
+      _set &= _allowed;
       //Buttons
       m_EditButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.EditOn ) != 0;
       m_CancelButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.CancelOn ) != 0;
@@ -501,7 +488,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       //Lodcal controls
       m_EditBatchCheckBox.Enabled = m_CancelButton.Enabled;
       m_InvoiceQuantityTextBox.Enabled = m_CancelButton.Enabled;
-      m_ExportButton.Enabled = m_NewButton.Enabled;
+      m_ExportButton.Enabled = m_NewButton.Enabled && !m_ControlState.InvoiceID.IsNullOrEmpty();
     }
     private GenericStateMachineEngine.ActionResult Expot()
     {
@@ -512,17 +499,14 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         {
           if ( item.Status.Value == Status.OK )
             continue;
-          m_ControlState.InvoiceContentID = item.Identyfikator.Value.ToString();
-          m_ControlState.InvoiceContentTitle = item.Tytuł;
           m_ControlState.UpdateControlState( item );
           string _frmt = "Cannot proceed with export because the invoice item contains eroors {0}.";
           return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
         }
         _invoice.OK = true;
+        List<Batch.ExportConsignment> _consignment = new List<Batch.ExportConsignment>();
         foreach ( var item in _invoice.InvoiceContent )
-        {
-          item.BatchID.Export( item.Quantity );
-        }
+          item.BatchID.Export( item.Quantity, _consignment );
         //TODO  [pr4-3554] Add read only field to invoice library
         return GenericStateMachineEngine.ActionResult.Success;
       }
