@@ -504,11 +504,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
         }
         _invoice.OK = true;
-        List<Batch.ExportConsignment> _consignment = new List<Batch.ExportConsignment>();
+        List<ExportConsignment> _consignment = new List<ExportConsignment>();
         foreach ( var item in _invoice.InvoiceContent )
           item.BatchID.Export( item.Quantity, _consignment );
         //TODO  [pr4-3554] Add read only field to invoice library
-        return GenericStateMachineEngine.ActionResult.Success;
+        return InvoiceLib.PrepareConsignment( _consignment );
       }
       catch ( Exception ex )
       {
