@@ -136,6 +136,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #region state fields
       public string InvoiceID = String.Empty;
       public string InvoiceTitle = String.Empty;
+      public bool ReadOnly;
       public string InvoiceContentID = String.Empty;
       public string InvoiceContentTitle = String.Empty;
       public string BatchID = String.Empty;
@@ -159,6 +160,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       {
         InvoiceID = String.Empty;
         InvoiceTitle = String.Empty;
+        ReadOnly = false;
         ClearInvoiceContent();
       }
       internal void ClearInvoiceContent()
@@ -176,6 +178,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         InterfaceState = _old.InterfaceState;
       }
       #endregion
+
     }
     private class LocalStateMachineEngine: GenericStateMachineEngine
     {
@@ -437,6 +440,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           return;
         m_ControlState.InvoiceID = e.ID;
         m_ControlState.InvoiceTitle = e.Title;
+        m_ControlState.ReadOnly = e.ReadOnly;
         m_ControlState.ClearInvoiceContent();
       }
       catch ( Exception _ex )
@@ -473,7 +477,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     private DataContextManagement<EntitiesDataContext> m_DataContextManagement = null;
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set )
     {
-      GenericStateMachineEngine.ControlsSet _allowed = (GenericStateMachineEngine.ControlsSet)0xff;
+      GenericStateMachineEngine.ControlsSet _allowed = m_ControlState.ReadOnly ? 0 : (GenericStateMachineEngine.ControlsSet)0xff;
       if ( m_ControlState.InvoiceID.IsNullOrEmpty() )
         _allowed ^= GenericStateMachineEngine.ControlsSet.NewOn;
       if ( m_ControlState.InvoiceContentID.IsNullOrEmpty() )
@@ -488,7 +492,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       //Lodcal controls
       m_EditBatchCheckBox.Enabled = m_CancelButton.Enabled;
       m_InvoiceQuantityTextBox.Enabled = m_CancelButton.Enabled;
-      m_ExportButton.Enabled = m_NewButton.Enabled && !m_ControlState.InvoiceID.IsNullOrEmpty();
+      m_ExportButton.Enabled = m_NewButton.Enabled && !m_ControlState.InvoiceID.IsNullOrEmpty() && !m_ControlState.ReadOnly;
     }
     private GenericStateMachineEngine.ActionResult Expot()
     {
@@ -507,7 +511,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         List<ExportConsignment> _consignment = new List<ExportConsignment>();
         foreach ( var item in _invoice.InvoiceContent )
           item.BatchID.Export( item.Quantity, _consignment );
-        //TODO  [pr4-3554] Add read only field to invoice library
+        _invoice.ReadOnly = true;
+        m_DataContextManagement.DataContext.SubmitChanges();
         return InvoiceLib.PrepareConsignment( _consignment );
       }
       catch ( Exception ex )

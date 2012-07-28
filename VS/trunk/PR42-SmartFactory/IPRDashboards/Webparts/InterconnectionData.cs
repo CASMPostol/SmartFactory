@@ -24,8 +24,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts
   internal class InvoiceInterconnectionData: InterconnectionData<InvoiceInterconnectionData>
   {
     internal InvoiceInterconnectionData()
-      : base()
-    { }
+      : base() { }
+    internal bool ReadOnly { get { return bool.Parse( GetFieldValue( "InvoiceLibraryReadOnly" ) ); } }
   }
   internal class InvoiceContentInterconnectionnData: InterconnectionData<InvoiceContentInterconnectionnData>
   {
