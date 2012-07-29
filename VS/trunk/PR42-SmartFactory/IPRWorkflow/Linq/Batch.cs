@@ -44,9 +44,9 @@ namespace CAS.SmartFactory.Linq.IPR
       {
         newBatch = new Batch()
         {
-          Batch0 = "Preliminary batch: " + batch,
+          Batch0 = batch,
           BatchStatus = Linq.IPR.BatchStatus.Preliminary,
-          Tytuł = batch,
+          Tytuł = "Preliminary batch: " + batch,
           ProductType = Linq.IPR.ProductType.Invalid,
           FGQuantityAvailable = 0,
           FGQuantityBlocked = 0,
