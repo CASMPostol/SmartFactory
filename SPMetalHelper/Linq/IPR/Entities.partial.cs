@@ -255,14 +255,4 @@ namespace CAS.SmartFactory.Linq.IPR
       return _batch.FGQuantityAvailable.Value;
     }
   }
-  public partial class InvoiceLib
-  {
-    internal static GenericStateMachineEngine.ActionResult PrepareConsignment( System.Collections.Generic.List<ExportConsignment> _consignment )
-    {
-      return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException(), "InvoiceLib.PrepareConsignment" );
-    }
-  }
-  internal class ExportConsignment
-  {
-  }
 }

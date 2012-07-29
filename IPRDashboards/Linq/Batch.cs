@@ -7,10 +7,11 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Batch
   {
-    internal void Export( double? quantity, List<ExportConsignment> consignment )
+    internal void Export( InvoiceContent productInvoice, List<ExportConsignment> consignment )
     {
-      this.FGQuantityAvailable -= quantity.Value;
-      double _portion = quantity.Value / this.FGQuantityKUKg.Value;
+      this.FGQuantityAvailable -= productInvoice.Quantity.Value;
+      //TODO consignment.Add(...);
+      ExportConsignment _batchAnalysis = new ExportConsignment( this, productInvoice );
       foreach ( var _didx in this.Material )
       {
 
@@ -37,6 +38,10 @@ namespace CAS.SmartFactory.Linq.IPR
         _didx.ExportPossible( quantity.Value, this.MaterialQuantity * _portion, _result );
       }
       return _result;
+    }
+    internal double TobaccoQuantity( double fgQuantity )
+    {
+      return this.ProductType.Value == Linq.IPR.ProductType.Cigarette ? this.TobaccoKg.Value / this.FGQuantityKUKg.Value * fgQuantity : fgQuantity;
     }
   }
 }
