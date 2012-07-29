@@ -213,8 +213,6 @@ namespace CAS.SmartFactory.Linq.IPR
       edc.ActivityLog.InsertOnSubmit( log );
       edc.SubmitChangesSilently( Microsoft.SharePoint.Linq.RefreshMode.OverwriteCurrentValues );
     }
-    
-
   }
   public static class LinqIPRExtensions
   {
@@ -252,7 +250,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       return batch.FGQuantityAvailable >= _nq;
     }
-    internal static double QuantityAvailable(this Batch _batch)
+    internal static double AvailableQuantity( this Batch _batch )
     {
       return _batch.FGQuantityAvailable.Value;
     }

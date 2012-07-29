@@ -10,12 +10,8 @@ namespace CAS.SmartFactory.Linq.IPR
     #region public
     internal static void GetXmlContent( InvoiceXml xml, EntitiesDataContext edc, InvoiceLib entry )
     {
-      string number = String.Empty;
-      DateTime date = CAS.SharePoint.Extensions.DateTimeNull;
-      bool _ok = InvoiceContent.GetXmlContent( xml.Item, edc, entry, out number, out date );
+      bool _ok = InvoiceContent.GetXmlContent( xml.Item, edc, entry );
       entry.ClearenceListLookup = null;
-      entry.BillDoc = number;
-      entry.CreationDate = date;
       entry.OK = _ok;
       entry.ReadOnly = false;
       edc.SubmitChanges();
@@ -23,10 +19,8 @@ namespace CAS.SmartFactory.Linq.IPR
     #endregion
 
     #region private
-    private static bool GetXmlContent( InvoiceItemXml[] invoiceEntries, EntitiesDataContext edc, InvoiceLib parent, out string number, out DateTime date )
+    private static bool GetXmlContent( InvoiceItemXml[] invoiceEntries, EntitiesDataContext edc, InvoiceLib parent )
     {
-      number = String.Empty;
-      date = CAS.SharePoint.Extensions.DateTimeNull;
       bool _result = true;
       foreach ( InvoiceItemXml item in invoiceEntries )
       {
@@ -35,19 +29,22 @@ namespace CAS.SmartFactory.Linq.IPR
         {
           _ic = new InvoiceContent( edc, parent, item );
           _result &= _ic.Status.Value == Linq.IPR.Status.OK;
+          if ( parent.BillDoc.IsNullOrEmpty() )
+          {
+            parent.BillDoc = item.Bill_doc.ToString();
+            parent.CreationDate = item.Created_on;
+          }
+          edc.InvoiceContent.InsertOnSubmit( _ic );
+          edc.SubmitChanges();
+          _ic.CreateTitle();
+          edc.SubmitChanges();
         }
         catch ( Exception ex )
         {
+          _result = false;
           string _msg = "Cannot create new entry for the invoice No={0}/{1}, SKU={2}, because of error: {3}";
           Anons.WriteEntry( edc, "Invoice import", String.Format( _msg, item.Bill_doc, item.Item, item.Description, ex.Message ) );
         }
-        if ( String.IsNullOrEmpty( number ) )
-        {
-          number = item.Bill_doc.ToString();
-          date = item.Created_on;
-        }
-        edc.InvoiceContent.InsertOnSubmit( _ic );
-        edc.SubmitChanges();
       }
       return _result;
     }
@@ -59,13 +56,13 @@ namespace CAS.SmartFactory.Linq.IPR
       ItemNo = item.Item.ConvertToDouble();
       ProductType = this.BatchID.ProductType;
       Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
-      this.CreateTitle();
       //TODO  SKUTitle = item.Description;
       Units = item.BUn;
+      Tytuł = "Creating";
       this.Status = Linq.IPR.Status.OK;
       if ( this.BatchID.BatchStatus.Value == BatchStatus.Preliminary )
         this.Status = Linq.IPR.Status.BatchNotFound;
-      else if ( this.BatchID.Available(Quantity.Value))
+      else if ( this.BatchID.Available( Quantity.Value ) )
         this.Status = Linq.IPR.Status.NotEnoughQnt;
     }
     #endregion

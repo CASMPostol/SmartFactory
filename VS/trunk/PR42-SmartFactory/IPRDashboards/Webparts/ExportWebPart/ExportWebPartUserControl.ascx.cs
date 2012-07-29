@@ -259,7 +259,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           if ( !_batch.Available( _nq.Value ) )
           {
             string _tmplt = Resources.NeBatchQuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
-            return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, _batch.QuantityAvailable() ) );
+            return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, _batch.AvailableQuantity() ) );
           }
           InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
           _ic.Quantity = _nq;
@@ -297,7 +297,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           if ( !_batch.Available( _nq.Value ) )
           {
             string _tmplt = Resources.QuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
-            return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, _batch.QuantityAvailable() ) );
+            return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, _batch.AvailableQuantity() ) );
           }
           InvoiceContent _nic = new InvoiceContent()
           {
@@ -398,6 +398,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
                 break;
               case ActionResult.Result.NotValidated:
                 CurrentMachineState = InterfaceState.EditState;
+                ShowActionResult( _resu );
                 break;
               case ActionResult.Result.Exception:
               default:
@@ -501,8 +502,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
         foreach ( var item in _invoice.InvoiceContent )
         {
-          if ( item.Status.Value == Status.OK )
+          ActionResult _checkResult = item.BatchID.ExportPossible( item.Quantity );
+          if ( _checkResult.Valid )
             continue;
+          foreach ( var _msg in _checkResult )
+            Controls.Add( ControlExtensions.CreateMessage( _msg ) );
           m_ControlState.UpdateControlState( item );
           string _frmt = "Cannot proceed with export because the invoice item contains eroors {0}.";
           return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
