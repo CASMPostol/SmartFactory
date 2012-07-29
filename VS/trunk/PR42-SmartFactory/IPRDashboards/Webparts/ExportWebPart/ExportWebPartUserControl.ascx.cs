@@ -514,10 +514,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         _invoice.OK = true;
         List<ExportConsignment> _consignment = new List<ExportConsignment>();
         foreach ( var item in _invoice.InvoiceContent )
-          item.BatchID.Export( item.Quantity, _consignment );
+          item.BatchID.Export( item, _consignment );
         _invoice.ReadOnly = true;
         m_DataContextManagement.DataContext.SubmitChanges();
-        return InvoiceLib.PrepareConsignment( _consignment );
+        return InvoiceLib.PrepareConsignment(m_DataContextManagement.DataContext, _consignment );
       }
       catch ( Exception ex )
       {
