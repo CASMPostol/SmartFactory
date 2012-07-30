@@ -30,7 +30,11 @@ namespace CAS.SmartFactory.Linq.IPR
           Batch = null,
           FormatLookup = Format.GetFormatLookup(item.Format_lookup, edc),
           UsageMax = item.UsageMax,
-          UsageMin = item.UsageMin
+          UsageMin = item.UsageMin,
+          //TODO  [pr4-3560] Usage List - add data and display CFT... column http://itrserver/Bugs/BugDetail.aspx?bid=3560
+          //Schema does not contain definition of this columns.
+          CTFUsageMax = int.MaxValue, 
+          CTFUsageMin = int.MinValue
         };
         list.Add(usg);
       };
