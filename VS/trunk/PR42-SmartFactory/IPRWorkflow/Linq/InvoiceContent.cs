@@ -53,10 +53,9 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       this.BatchID = Linq.IPR.Batch.GetOrCreatePreliminary( edc, item.Batch );
       InvoiceLookup = parent;
-      ItemNo = item.Item.ConvertToDouble();
+      this.SKUDescription = item.Description;
       ProductType = this.BatchID.ProductType;
       Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
-      //TODO  SKUTitle = item.Description;
       Units = item.BUn;
       Tytuł = "Creating";
       this.Status = Linq.IPR.Status.OK;

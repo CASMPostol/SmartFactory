@@ -303,7 +303,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           {
             BatchID = _batch,
             InvoiceLookup = _invc,
-            ItemNo = int.MaxValue,
+            SKUDescription = _batch.SKULookup.Tytuł,
             ProductType = _batch.ProductType,
             Quantity = _nq.Value,
             Status = Linq.IPR.Status.OK,
