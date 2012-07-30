@@ -62,7 +62,7 @@ namespace CAS.SmartFactory.Linq.IPR
       this.Status = Linq.IPR.Status.OK;
       if ( this.BatchID.BatchStatus.Value == BatchStatus.Preliminary )
         this.Status = Linq.IPR.Status.BatchNotFound;
-      else if ( this.BatchID.Available( Quantity.Value ) )
+      else if ( ! this.BatchID.Available( Quantity.Value ) )
         this.Status = Linq.IPR.Status.NotEnoughQnt;
     }
     #endregion
