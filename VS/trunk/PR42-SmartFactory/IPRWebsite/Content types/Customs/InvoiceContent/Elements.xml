@@ -9,7 +9,7 @@
                Version="100000">
     <Folder TargetName="_cts/InvoiceContent" />
     <FieldRefs>
-      <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />
+      <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
       <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
       <FieldRef ID="{5683FD10-EC27-4319-847E-C9B30CDB2796}" Name="InvoiceContent2BatchSKU_sec" />
       <FieldRef ID="{825613AB-D69B-4D1B-94CE-3F33EA23CC58}" Name="InvoiceContent2BatchBatch_sec" />
