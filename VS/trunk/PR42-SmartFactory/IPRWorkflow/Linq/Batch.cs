@@ -129,6 +129,14 @@ namespace CAS.SmartFactory.Linq.IPR
       this.WasteKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Waste ];
       this.TobaccoKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Tobacco ];
       this.OveruseKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.OverusageInKg ];
+      foreach ( var _invoice in this.InvoiceContent )
+      {
+        _invoice.CreateTitle();
+        if ( this.Available( _invoice.Quantity.Value ) )
+          _invoice.Status = Status.OK;
+        else
+          _invoice.Status = Status.NotEnoughQnt;
+      }
     }
     /// <summary>
     /// Gets the overuse as the ratio of overused tobacco divided by totaly usage of tobacco.
