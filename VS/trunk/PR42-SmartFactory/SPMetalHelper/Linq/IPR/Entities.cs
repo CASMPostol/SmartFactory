@@ -1123,9 +1123,13 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Waste> _wasteLookup;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> _invoiceContent;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Material> _material;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<StockEntry> _stockEntry;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -1162,6 +1166,10 @@ namespace CAS.SmartFactory.Linq.IPR {
 			this._wasteLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Waste>>(this.OnWasteLookupSync);
 			this._wasteLookup.OnChanged += new System.EventHandler(this.OnWasteLookupChanged);
 			this._wasteLookup.OnChanging += new System.EventHandler(this.OnWasteLookupChanging);
+			this._disposal = new Microsoft.SharePoint.Linq.EntitySet<Disposal>();
+			this._disposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposalSync);
+			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
+			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
 			this._invoiceContent = new Microsoft.SharePoint.Linq.EntitySet<InvoiceContent>();
 			this._invoiceContent.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceContent>>(this.OnInvoiceContentSync);
 			this._invoiceContent.OnChanged += new System.EventHandler(this.OnInvoiceContentChanged);
@@ -1170,6 +1178,10 @@ namespace CAS.SmartFactory.Linq.IPR {
 			this._material.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Material>>(this.OnMaterialSync);
 			this._material.OnChanged += new System.EventHandler(this.OnMaterialChanged);
 			this._material.OnChanging += new System.EventHandler(this.OnMaterialChanging);
+			this._stockEntry = new Microsoft.SharePoint.Linq.EntitySet<StockEntry>();
+			this._stockEntry.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<StockEntry>>(this.OnStockEntrySync);
+			this._stockEntry.OnChanged += new System.EventHandler(this.OnStockEntryChanged);
+			this._stockEntry.OnChanging += new System.EventHandler(this.OnStockEntryChanging);
 			this.OnCreated();
 		}
 		
@@ -1599,6 +1611,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2BatchIndex", Storage="_disposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Disposal")]
+		public Microsoft.SharePoint.Linq.EntitySet<Disposal> Disposal {
+			get {
+				return this._disposal;
+			}
+			set {
+				this._disposal.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceContent2BatchIndex", Storage="_invoiceContent", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Invoice Content")]
 		public Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> InvoiceContent {
 			get {
@@ -1616,6 +1638,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 			set {
 				this._material.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="BatchIndex", Storage="_stockEntry", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Stock Entry")]
+		public Microsoft.SharePoint.Linq.EntitySet<StockEntry> StockEntry {
+			get {
+				return this._stockEntry;
+			}
+			set {
+				this._stockEntry.Assign(value);
 			}
 		}
 		
@@ -1738,6 +1770,23 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
+		private void OnDisposalChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Disposal", this._disposal.Clone());
+		}
+		
+		private void OnDisposalChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Disposal");
+		}
+		
+		private void OnDisposalSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.BatchLookup = this;
+			}
+			else {
+				e.Item.BatchLookup = null;
+			}
+		}
+		
 		private void OnInvoiceContentChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("InvoiceContent", this._invoiceContent.Clone());
 		}
@@ -1764,6 +1813,23 @@ namespace CAS.SmartFactory.Linq.IPR {
 		}
 		
 		private void OnMaterialSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Material> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.BatchLookup = this;
+			}
+			else {
+				e.Item.BatchLookup = null;
+			}
+		}
+		
+		private void OnStockEntryChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("StockEntry", this._stockEntry.Clone());
+		}
+		
+		private void OnStockEntryChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("StockEntry");
+		}
+		
+		private void OnStockEntrySync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<StockEntry> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.BatchLookup = this;
 			}
@@ -2263,6 +2329,8 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<IPR> _iPRID;
 		
+		private Microsoft.SharePoint.Linq.EntityRef<Material> _materialLookup;
+		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
 		partial void OnValidate();
@@ -2290,6 +2358,10 @@ namespace CAS.SmartFactory.Linq.IPR {
 			this._iPRID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPRIDSync);
 			this._iPRID.OnChanged += new System.EventHandler(this.OnIPRIDChanged);
 			this._iPRID.OnChanging += new System.EventHandler(this.OnIPRIDChanging);
+			this._materialLookup = new Microsoft.SharePoint.Linq.EntityRef<Material>();
+			this._materialLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Material>>(this.OnMaterialLookupSync);
+			this._materialLookup.OnChanged += new System.EventHandler(this.OnMaterialLookupChanged);
+			this._materialLookup.OnChanging += new System.EventHandler(this.OnMaterialLookupChanging);
 			this.OnCreated();
 		}
 		
@@ -2572,7 +2644,7 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="BatchIndex", Storage="_batchLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Batch")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2BatchIndex", Storage="_batchLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Batch")]
 		public Batch BatchLookup {
 			get {
 				return this._batchLookup.GetEntity();
@@ -2589,6 +2661,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 			set {
 				this._iPRID.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2MaterialIndex", Storage="_materialLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Material")]
+		public Material MaterialLookup {
+			get {
+				return this._materialLookup.GetEntity();
+			}
+			set {
+				this._materialLookup.SetEntity(value);
 			}
 		}
 		
@@ -2646,6 +2728,12 @@ namespace CAS.SmartFactory.Linq.IPR {
 		}
 		
 		private void OnBatchLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Disposal.Add(this);
+			}
+			else {
+				e.Item.Disposal.Remove(this);
+			}
 		}
 		
 		private void OnIPRIDChanging(object sender, System.EventArgs e) {
@@ -2657,6 +2745,23 @@ namespace CAS.SmartFactory.Linq.IPR {
 		}
 		
 		private void OnIPRIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Disposal.Add(this);
+			}
+			else {
+				e.Item.Disposal.Remove(this);
+			}
+		}
+		
+		private void OnMaterialLookupChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("MaterialLookup", this._materialLookup.Clone());
+		}
+		
+		private void OnMaterialLookupChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("MaterialLookup");
+		}
+		
+		private void OnMaterialLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Material> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Disposal.Add(this);
 			}
@@ -2826,7 +2931,7 @@ namespace CAS.SmartFactory.Linq.IPR {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="InvoiceContent", Id="0x010082E2FD28F40C4269AC5C796F220F10C3")]
 	public partial class InvoiceContent : Element {
 		
-		private System.Nullable<double> _itemNo;
+		private string _sKUDescription;
 		
 		private System.Nullable<double> _quantity;
 		
@@ -2859,18 +2964,18 @@ namespace CAS.SmartFactory.Linq.IPR {
 		}
 		
 		/// <summary>
-		/// PozID
+		/// SKU description
 		/// </summary>
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ItemNo", Storage="_itemNo", FieldType="Number")]
-		public System.Nullable<double> ItemNo {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKUDescription", Storage="_sKUDescription", FieldType="Text")]
+		public string SKUDescription {
 			get {
-				return this._itemNo;
+				return this._sKUDescription;
 			}
 			set {
-				if ((value != this._itemNo)) {
-					this.OnPropertyChanging("ItemNo", this._itemNo);
-					this._itemNo = value;
-					this.OnPropertyChanged("ItemNo");
+				if ((value != this._sKUDescription)) {
+					this.OnPropertyChanging("SKUDescription", this._sKUDescription);
+					this._sKUDescription = value;
+					this.OnPropertyChanged("SKUDescription");
 				}
 			}
 		}
@@ -3902,6 +4007,8 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private System.Nullable<ProductType> _productType;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<Batch> _batchLookup;
 		
 		#region Extensibility Method Definitions
@@ -3911,6 +4018,10 @@ namespace CAS.SmartFactory.Linq.IPR {
 		#endregion
 		
 		public Material() {
+			this._disposal = new Microsoft.SharePoint.Linq.EntitySet<Disposal>();
+			this._disposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposalSync);
+			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
+			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
 			this._batchLookup = new Microsoft.SharePoint.Linq.EntityRef<Batch>();
 			this._batchLookup.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch>>(this.OnBatchLookupSync);
 			this._batchLookup.OnChanged += new System.EventHandler(this.OnBatchLookupChanged);
@@ -3919,7 +4030,7 @@ namespace CAS.SmartFactory.Linq.IPR {
 		}
 		
 		/// <summary>
-		/// SKUDescription
+		/// SKU description
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKUDescription", Storage="_sKUDescription", FieldType="Text")]
 		public string SKUDescription {
@@ -4071,6 +4182,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2MaterialIndex", Storage="_disposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Disposal")]
+		public Microsoft.SharePoint.Linq.EntitySet<Disposal> Disposal {
+			get {
+				return this._disposal;
+			}
+			set {
+				this._disposal.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Material2BatchIndex", Storage="_batchLookup", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Batch")]
 		public Batch BatchLookup {
 			get {
@@ -4078,6 +4199,23 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 			set {
 				this._batchLookup.SetEntity(value);
+			}
+		}
+		
+		private void OnDisposalChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Disposal", this._disposal.Clone());
+		}
+		
+		private void OnDisposalChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Disposal");
+		}
+		
+		private void OnDisposalSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.MaterialLookup = this;
+			}
+			else {
+				e.Item.MaterialLookup = null;
 			}
 		}
 		
@@ -5731,6 +5869,12 @@ namespace CAS.SmartFactory.Linq.IPR {
 		}
 		
 		private void OnBatchLookupSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.StockEntry.Add(this);
+			}
+			else {
+				e.Item.StockEntry.Remove(this);
+			}
 		}
 		
 		private void OnStockListLookupChanging(object sender, System.EventArgs e) {
