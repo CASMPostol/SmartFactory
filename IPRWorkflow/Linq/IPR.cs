@@ -94,7 +94,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>
-    internal void AddDisposal(EntitiesDataContext _edc, DisposalEnum _status, ref double _value, Batch _batch, bool _last)
+    internal void AddDisposal(EntitiesDataContext _edc, DisposalEnum _status, ref double _value, bool _last, Material material)
     {
       if (!_last && this.AccountBalance.Value == 0)
         throw new IPRDataConsistencyException("IPR.AddDisposal", "There is no tobacco to dispose.", null, "Disposal creation failed");
@@ -128,7 +128,7 @@ namespace CAS.SmartFactory.Linq.IPR
         _value += _toDispose;
         Disposal _newDisposal = new Disposal()
         {
-          BatchLookup = _batch,
+          BatchLookup = material.BatchLookup,
           ClearenceListLookup = null,
           ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
           CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
@@ -141,7 +141,8 @@ namespace CAS.SmartFactory.Linq.IPR
           IPRID = this,
           CompensationGood = null,
           VATPerSettledAmount = null,
-          JSOXCustomsSummaryListLookup = null,
+          JSOXCustomsSummaryListLookup = null, 
+          MaterialLookup = material,
           No = new Nullable<double>(),
           RemainingQuantity = this.AccountBalance,
           SADDate = CAS.SmartFactory.Extensions.SPMinimum,
@@ -160,7 +161,7 @@ namespace CAS.SmartFactory.Linq.IPR
         string _msg = String.Format
           (
             "Disposal for batch= {0} of type={1} at account=={2} creation failed because of error: " + _ex.Message,
-            _batch.Tytuł,
+            material.BatchLookup.Tytuł,
             _status,
             this.Tytuł
           );

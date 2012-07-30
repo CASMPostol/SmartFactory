@@ -74,7 +74,7 @@ namespace CAS.SmartFactory.Linq.IPR
                 _progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _item.Key, _materialInBatch.Batch ) ) );
                 for ( int _aidx = 0; _aidx < _accounts.Count; _aidx++ )
                 {
-                  _accounts[ _aidx ].AddDisposal( _edc, _item.Key, ref _toDispose, _parent, _aidx == _accounts.Count - 1 );
+                  _accounts[ _aidx ].AddDisposal( _edc, _item.Key, ref _toDispose, _aidx == _accounts.Count - 1, _materialInBatch );
                   if ( _toDispose <= 0 )
                     break;
                 }
