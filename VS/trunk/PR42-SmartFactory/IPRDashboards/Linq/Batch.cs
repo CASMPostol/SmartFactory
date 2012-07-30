@@ -10,12 +10,14 @@ namespace CAS.SmartFactory.Linq.IPR
     internal void Export( InvoiceContent productInvoice, List<ExportConsignment> consignment )
     {
       this.FGQuantityAvailable -= productInvoice.Quantity.Value;
-      //TODO consignment.Add(...);
+      double _portion = this.FGQuantityKUKg.Value / productInvoice.Quantity.Value;
       ExportConsignment _batchAnalysis = new ExportConsignment( this, productInvoice );
       foreach ( var _didx in this.Material )
       {
+        _didx.Export( _batchAnalysis, _portion );
 
       }
+      consignment.Add( _batchAnalysis );
     }
     internal ActionResult ExportPossible( double? quantity )
     {
