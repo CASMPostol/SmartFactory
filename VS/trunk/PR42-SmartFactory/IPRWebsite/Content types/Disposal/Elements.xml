@@ -30,8 +30,9 @@
       <FieldRef ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Name="ClearingType" />
       <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
       <FieldRef ID="{6E87DAC8-1B60-4246-97E1-9D0DC221F268}" Name="JSOXCustomsSummaryIndex" />
-      <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
+      <FieldRef ID="{5F667AC8-B2AB-4482-B3C9-54DEB82A8DC7}" Name="Disposal2BatchIndex" />
       <FieldRef ID="{C0A4DD0E-A06E-40D4-BFE1-682D3C071AC1}" Name="Disposal2IPRIndex" />
+      <FieldRef ID="{D9074909-785D-480D-944D-D9A813D9C97D}" Name="Disposal2MaterialIndex" />
 		</FieldRefs>
 		<XmlDocuments>
 			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
