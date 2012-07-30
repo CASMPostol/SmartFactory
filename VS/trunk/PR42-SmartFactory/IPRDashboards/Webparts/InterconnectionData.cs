@@ -1,4 +1,5 @@
 ﻿using CAS.SmartFactory.Linq.IPR;
+using CAS.SharePoint;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts
 {
@@ -25,7 +26,14 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts
   {
     internal InvoiceInterconnectionData()
       : base() { }
-    internal bool ReadOnly { get { return bool.Parse( GetFieldValue( "InvoiceLibraryReadOnly" ) ); } }
+    internal bool ReadOnly
+    {
+      get
+      {
+        string _value = GetFieldValue( "InvoiceLibraryReadOnly" );
+        return _value.IsNullOrEmpty() ? false : !_value.Contains( "0" ); // it is returned as number not bool 
+      }
+    }
   }
   internal class InvoiceContentInterconnectionnData: InterconnectionData<InvoiceContentInterconnectionnData>
   {
