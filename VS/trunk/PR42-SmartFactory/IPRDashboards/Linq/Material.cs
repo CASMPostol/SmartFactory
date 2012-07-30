@@ -26,7 +26,7 @@ namespace CAS.SmartFactory.Linq.IPR
         bool _closing = false;
         List<Disposal> _tobacco =
           (
-            from _didx in this._disposals
+            from _didx in this.Disposal
             let _ipr = _didx.IPRID
             where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == DisposalStatus.TobaccoInCigaretesWarehouse
             orderby _ipr.Identyfikator
@@ -36,13 +36,11 @@ namespace CAS.SmartFactory.Linq.IPR
         {
           double _exported = _disposal.Export( _quantity );
           IPRIngredient _Ingredient = new IPRIngredient( _quantity, _ca, _closing );
-
         }
       }
       else if ( this.ProductType.Value == Linq.IPR.ProductType.Tobacco )
       {
       }
     }
-    private EntitySet<Disposal> _disposals = null;
   }
 }
