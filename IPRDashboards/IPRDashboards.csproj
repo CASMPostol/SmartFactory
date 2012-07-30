@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="GlobalDefinitions.cs" />
     <Compile Include="Linq\Batch.cs" />
+    <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\InvoiceLib.cs" />
     <Compile Include="Linq\Material.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

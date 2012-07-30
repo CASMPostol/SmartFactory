@@ -512,6 +512,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
         }
         _invoice.OK = true;
+        throw new NotImplementedException( "Export functionality is under development" );
         List<ExportConsignment> _consignment = new List<ExportConsignment>();
         foreach ( var item in _invoice.InvoiceContent )
           item.BatchID.Export( item, _consignment );

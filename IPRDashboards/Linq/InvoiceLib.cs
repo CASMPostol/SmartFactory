@@ -23,12 +23,14 @@ namespace CAS.SmartFactory.Linq.IPR
   }
   internal class IPRIngredient: Ingredient
   {
-    internal IPRIngredient( double quantity, IPR account )
+    internal IPRIngredient( double quantity, IPR account, bool closing )
       : base( quantity )
     {
       IPRAccount = account;
+      ClosingEntry = closing;
     }
     internal IPR IPRAccount { get; private set; }
+    internal bool ClosingEntry { get; private set; }
   }
   internal class RegularIngredient: Ingredient
   {
@@ -45,13 +47,13 @@ namespace CAS.SmartFactory.Linq.IPR
   {
     internal ExportConsignment( Batch batch, InvoiceContent invoice )
     {
-      if (batch == null)
+      if ( batch == null )
         throw new ArgumentNullException( "Batch cannot be null" );
       if ( batch.SKULookup == null )
         throw new ArgumentNullException( "SKU in batch cannot be null" );
       if ( batch.SKULookup.FormatLookup == null )
         throw new ArgumentNullException( "Format in SKU cannot be null" );
-      if (invoice == null)
+      if ( invoice == null )
         throw new ArgumentNullException( "Invoice cannot be null" );
       ProductBatch = batch;
       ProductInvoice = invoice;
