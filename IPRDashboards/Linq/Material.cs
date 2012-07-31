@@ -17,11 +17,11 @@ namespace CAS.SmartFactory.Linq.IPR
 
       //}
     }
-    internal void Export( ExportConsignment _batchAnalysis, double portion )
+    internal void Export( ExportConsignment _batchAnalysis)
     {
       if ( this.ProductType.Value == Linq.IPR.ProductType.IPRTobacco )
       {
-        double _quantity = this.TobaccoQuantityKg.Value * portion;
+        double _quantity = this.TobaccoQuantityKg.Value * _batchAnalysis.Portion;
         IPR _ca = null;
         bool _closing = false;
         List<Disposal> _tobacco =

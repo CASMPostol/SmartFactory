@@ -45,7 +45,7 @@ namespace CAS.SmartFactory.Linq.IPR
   }
   internal class ExportConsignment: List<Ingredient>
   {
-    internal ExportConsignment( Batch batch, InvoiceContent invoice )
+    internal ExportConsignment( Batch batch, InvoiceContent invoice, double portion )
     {
       if ( batch == null )
         throw new ArgumentNullException( "Batch cannot be null" );
@@ -57,10 +57,10 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new ArgumentNullException( "Invoice cannot be null" );
       ProductBatch = batch;
       ProductInvoice = invoice;
-      double _portion = invoice.Quantity.Value / batch.FGQuantityKUKg.Value;
-      DustKg = batch.DustKg.Value * _portion;
-      SHMentholKg = batch.SHMentholKg.Value * _portion;
-      WasteKg = batch.WasteKg.Value + _portion;
+      Portion = portion;
+      DustKg = batch.DustKg.Value * portion;
+      SHMentholKg = batch.SHMentholKg.Value * portion;
+      WasteKg = batch.WasteKg.Value + portion;
     }
     internal type SKU<type>()
       where type: SKUCommonPart
@@ -74,5 +74,6 @@ namespace CAS.SmartFactory.Linq.IPR
     internal double SHMentholKg { get; private set; }
     internal double WasteKg { get; private set; }
     internal double TotalDSWKg { get { return DustKg + SHMentholKg + WasteKg; } }
+    internal double Portion { get; private set; }
   }
 }
