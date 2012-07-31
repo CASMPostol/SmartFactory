@@ -71,14 +71,20 @@
                         <asp:TableRow>
                             <asp:TableCell>
                                 <asp:Button runat="server" CssClass="Button" Text="Add New" ID="m_NewButton" />
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:Button runat="server" CssClass="Button" Text="Edit" ID="m_EditButton" />
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:Button runat="server" CssClass="Button" Text="Save" ID="m_SaveButton" />
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:Button runat="server" CssClass="Button" Text="Delete" ID="m_DeleteButton" />
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:Button runat="server" CssClass="Button" Text="Cancel" ID="m_CancelButton" />
                             </asp:TableCell>
-                        </asp:TableRow>
-                        <asp:TableRow>
-                            <asp:TableCell ColumnSpan=5>
+                            <asp:TableCell>
                                 <asp:Button runat="server" CssClass="Button" Text="Export" ID="m_ExportButton" ToolTip="It will disable edition of the invoice and starts the export procedure."  />
                             </asp:TableCell>
                         </asp:TableRow>
