@@ -15,7 +15,6 @@ namespace CAS.SmartFactory.Linq.IPR
       foreach ( var _didx in this.Material )
       {
         _didx.Export( _batchAnalysis, _portion );
-
       }
       consignment.Add( _batchAnalysis );
     }
