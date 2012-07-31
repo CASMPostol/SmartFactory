@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.Linq.IPR
       this.FGQuantityAvailable -= productInvoice.Quantity.Value;
       double _portion = this.FGQuantityKUKg.Value / productInvoice.Quantity.Value;
       ExportConsignment _batchAnalysis = new ExportConsignment( this, productInvoice, _portion );
-      foreach ( var _didx in this.Material )
+      foreach ( Material _didx in this.Material )
       {
         _didx.Export( _batchAnalysis );
       }

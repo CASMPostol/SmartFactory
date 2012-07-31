@@ -12,34 +12,37 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       if ( this.ProductType.Value != Linq.IPR.ProductType.IPRTobacco )
         return;
-      //foreach ( var item in this. )
-      //{
-
-      //}
+      foreach ( Disposal _disposal in TobaccoList )
+      {
+      }
     }
-    internal void Export( ExportConsignment _batchAnalysis)
+    internal void Export( ExportConsignment _batchAnalysis, ref double maxIncrement )
     {
       if ( this.ProductType.Value == Linq.IPR.ProductType.IPRTobacco )
       {
         double _quantity = this.TobaccoQuantityKg.Value * _batchAnalysis.Portion;
         IPR _ca = null;
         bool _closing = false;
-        List<Disposal> _tobacco =
-          (
-            from _didx in this.Disposal
-            let _ipr = _didx.IPRID
-            where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == DisposalStatus.TobaccoInCigaretesWarehouse
-            orderby _ipr.Identyfikator
-            select _didx
-          ).ToList();
-        foreach ( Disposal _disposal in _tobacco )
+        foreach ( Disposal _disposal in TobaccoList )
         {
-          double _exported = _disposal.Export( _quantity );
-          IPRIngredient _Ingredient = new IPRIngredient( _quantity, _ca, _closing );
+          _disposal.Export( ref _quantity, _batchAnalysis, ref maxIncrement);
         }
       }
       else if ( this.ProductType.Value == Linq.IPR.ProductType.Tobacco )
       {
+      }
+    }
+    public List<Disposal> TobaccoList
+    {
+      get
+      {
+        return (
+              from _didx in this.Disposal
+              let _ipr = _didx.IPRID
+              where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == DisposalStatus.TobaccoInCigaretesWarehouse
+              orderby _ipr.Identyfikator descending
+              select _didx
+            ).ToList();
       }
     }
   }
