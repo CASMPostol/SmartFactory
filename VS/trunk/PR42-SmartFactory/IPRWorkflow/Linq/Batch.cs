@@ -76,15 +76,6 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new IPRDataConsistencyException( m_Source, String.Format( m_LookupFailedMessage, index ), ex, "Cannot find batch" );
       }
     }
-    //TODO to be removed and replace by reverse lookup column
-    //internal DisposalDisposal[] GetDisposals(EntitiesDataContext edc)
-    //{
-    //  var disposals =
-    //      from idx in edc.Disposal
-    //      where this.Identyfikator == idx.BatchLookup.Identyfikator
-    //      select idx;
-    //  return disposals.ToArray<DisposalDisposal>();
-    //}
     #endregion
 
     #region private

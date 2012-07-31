@@ -57,6 +57,10 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new ArgumentNullException( "Invoice cannot be null" );
       ProductBatch = batch;
       ProductInvoice = invoice;
+      double _portion = invoice.Quantity.Value / batch.FGQuantityKUKg.Value;
+      DustKg = batch.DustKg.Value * _portion;
+      SHMentholKg = batch.SHMentholKg.Value * _portion;
+      WasteKg = batch.WasteKg.Value + _portion;
     }
     internal type SKU<type>()
       where type: SKUCommonPart
@@ -66,5 +70,9 @@ namespace CAS.SmartFactory.Linq.IPR
     internal Format ProductFormat { get { return ProductBatch.SKULookup.FormatLookup; } }
     internal Batch ProductBatch { get; private set; }
     internal InvoiceContent ProductInvoice { get; private set; }
+    internal double DustKg { get; private set; }
+    internal double SHMentholKg { get; private set; }
+    internal double WasteKg { get; private set; }
+    internal double TotalDSWKg { get { return DustKg + SHMentholKg + WasteKg; } }
   }
 }
