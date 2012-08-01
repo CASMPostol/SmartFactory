@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    ID="{AFDC5724-5183-4FC9-A07F-CF6BB18EBBBA}"
+    Name="IsExport"
+    Type="Boolean"
+    Group="CAS Smart Factory IPR Customs"
+    DisplayName="Export"
+    />
+  <Field
     ID="{DBD5FAFA-1965-4F2E-B97F-EB7273B3C540}"
     Name="InvoiceLibraryReadOnly"
     Type="Boolean"
