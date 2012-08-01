@@ -16,7 +16,7 @@ namespace CAS.SmartFactory.Linq.IPR
       {
       }
     }
-    internal void Export( EntitiesDataContext edc, ExportConsignment _batchAnalysis, ref double maxIncrement, string invoiceNoumber, string procedure, Clearence clearence )
+    internal void Export( EntitiesDataContext edc, ExportConsignment _batchAnalysis, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
     {
       if ( this.ProductType.Value == Linq.IPR.ProductType.IPRTobacco )
       {
@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.Linq.IPR
         bool _closing = false;
         foreach ( Disposal _disposal in TobaccoList )
         {
-          _disposal.Export( edc, ref _quantity, _batchAnalysis, ref maxIncrement, invoiceNoumber, procedure, clearence );
+          _disposal.Export( edc, ref _quantity, _batchAnalysis, closingBatch, invoiceNoumber, procedure, clearence );
         }
       }
       else if ( this.ProductType.Value == Linq.IPR.ProductType.Tobacco )
