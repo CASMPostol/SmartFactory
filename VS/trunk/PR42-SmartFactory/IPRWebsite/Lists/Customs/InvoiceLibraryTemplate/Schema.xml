@@ -9,6 +9,7 @@
           <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" Required="False" ShowInNewForm="FALSE" />
           <FieldRef ID="{F4D8033F-3BC8-4903-BA9C-9F09E45EE005}" Name="InvoiceLibraryStatus" Required="False" ShowInNewForm="FALSE" />
           <FieldRef ID="{DBD5FAFA-1965-4F2E-B97F-EB7273B3C540}" Name="InvoiceLibraryReadOnly" Required="False" ShowInNewForm="FALSE" />
+          <FieldRef ID="{AFDC5724-5183-4FC9-A07F-CF6BB18EBBBA}" Name="IsExport" Required="False" ShowInNewForm="FALSE" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
@@ -123,6 +124,7 @@
           <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
           <FieldRef ID="{F4D8033F-3BC8-4903-BA9C-9F09E45EE005}" Name="InvoiceLibraryStatus" />
           <FieldRef ID="{DBD5FAFA-1965-4F2E-B97F-EB7273B3C540}" Name="InvoiceLibraryReadOnly" />
+          <FieldRef ID="{AFDC5724-5183-4FC9-A07F-CF6BB18EBBBA}" Name="IsExport" />
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
