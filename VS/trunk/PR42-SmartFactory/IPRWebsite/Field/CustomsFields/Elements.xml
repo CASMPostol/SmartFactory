@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="ClearenceProcedure"
+    ID="{7D196321-5D5D-4D55-908C-125A2E694670}"
+    Type="Choice"
+    DisplayName="Procedure"
+    Group="CAS Smart Factory IPR Customs"
+    >
+    <Default>4051</Default>
+    <CHOICES>
+      <CHOICE>4051</CHOICE>
+      <CHOICE>3151</CHOICE>
+      <CHOICE>4071</CHOICE>
+      <CHOICE>3171</CHOICE>
+      <CHOICE>7171</CHOICE>
+      <CHOICE>5171</CHOICE>
+    </CHOICES>
+  </Field>
+  <Field
     ID="{AFDC5724-5183-4FC9-A07F-CF6BB18EBBBA}"
     Name="IsExport"
     Type="Boolean"
