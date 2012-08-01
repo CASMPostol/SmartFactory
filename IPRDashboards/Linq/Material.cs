@@ -1,51 +1,33 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
-using CAS.SmartFactory.Linq.IPR;
-using Microsoft.SharePoint.Linq;
-using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Material
   {
-    internal void ExportPossible( double p, double? nullable, ActionResult _result )
-    {
-      if ( this.ProductType.Value != Linq.IPR.ProductType.IPRTobacco )
-        return;
-      foreach ( Disposal _disposal in TobaccoList )
-      {
-      }
-    }
     internal void Export( EntitiesDataContext edc, ExportConsignment _batchAnalysis, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
     {
+      double _quantity = this.TobaccoQuantityKg.Value * _batchAnalysis.Portion;
       if ( this.ProductType.Value == Linq.IPR.ProductType.IPRTobacco )
-      {
-        double _quantity = this.TobaccoQuantityKg.Value * _batchAnalysis.Portion;
-        IPR _ca = null;
-        bool _closing = false;
-        foreach ( Disposal _disposal in TobaccoList )
-        {
+        foreach ( Disposal _disposal in GetListOfDisposals(  ) )
           _disposal.Export( edc, ref _quantity, _batchAnalysis, closingBatch, invoiceNoumber, procedure, clearence );
-        }
-      }
       else if ( this.ProductType.Value == Linq.IPR.ProductType.Tobacco )
       {
+        RegularIngredient _ri = new RegularIngredient( _quantity, this.SKU, this.Batch );
+        _batchAnalysis.Add( _ri );
       }
     }
-    public List<Disposal> TobaccoList
+    private List<Disposal> GetListOfDisposals( )
     {
-      get
-      {
-        return (
-              from _didx in this.Disposal
-              let _ipr = _didx.IPRID
-              where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == DisposalStatus.TobaccoInCigaretesWarehouse
-              orderby _ipr.Identyfikator descending
-              select _didx
-            ).ToList();
-      }
+      Linq.IPR.DisposalStatus status = this.BatchLookup.ProductType.Value == Linq.IPR.ProductType.Cigarette ? DisposalStatus.TobaccoInCigaretesWarehouse : DisposalStatus.TobaccoInCutfillerWarehouse;
+      return
+        (
+            from _didx in this.Disposal
+            let _ipr = _didx.IPRID
+            where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == status
+            orderby _ipr.Identyfikator ascending
+            select _didx
+        ).ToList();
     }
-
-
   }
 }
