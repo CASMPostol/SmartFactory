@@ -58,6 +58,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart {
         protected global::System.Web.UI.WebControls.Table m_InvoiceTable;
         
         /// <summary>
+        /// m_EditInvoicePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel m_EditInvoicePanel;
+        
+        /// <summary>
         /// m_InvoiceLabel control.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,33 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox m_InvoiceContentTextBox;
+        
+        /// <summary>
+        /// m_ExportProcedurePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel m_ExportProcedurePanel;
+        
+        /// <summary>
+        /// m_ExportProcedureTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table m_ExportProcedureTable;
+        
+        /// <summary>
+        /// m_ExportProcedureRadioButtonList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList m_ExportProcedureRadioButtonList;
         
         /// <summary>
         /// m_EditBatchPanel control.
