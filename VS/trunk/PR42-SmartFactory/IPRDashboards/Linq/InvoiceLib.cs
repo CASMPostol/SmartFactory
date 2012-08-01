@@ -10,6 +10,7 @@ namespace CAS.SmartFactory.Linq.IPR
   {
     internal static GenericStateMachineEngine.ActionResult PrepareConsignment( EntitiesDataContext entitiesDataContext, List<ExportConsignment> _consignment )
     {
+      
       return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException(), "InvoiceLib.PrepareConsignment" );
     }
   }
@@ -23,23 +24,14 @@ namespace CAS.SmartFactory.Linq.IPR
   }
   internal class IPRIngredient: Ingredient
   {
-    private Disposal disposal;
-
-    internal IPRIngredient( double quantity, IPR account, bool closing )
-      : base( quantity )
-    {
-      IPRAccount = account;
-      ClosingEntry = closing;
-    }
-
     public IPRIngredient( Disposal disposal )
       : base( disposal.SettledQuantity.Value )
     {
-      // TODO: Complete member initialization
       this.disposal = disposal;
     }
-    internal IPR IPRAccount { get; private set; }
-    internal bool ClosingEntry { get; private set; }
+    internal IPR IPRAccount { get { return disposal.IPRID; } }
+    internal bool ClosingEntry { get { return disposal.ClearingType.Value == ClearingType.TotalWindingUp; } }
+    private Disposal disposal;
   }
   internal class RegularIngredient: Ingredient
   {
@@ -54,7 +46,7 @@ namespace CAS.SmartFactory.Linq.IPR
   }
   internal class ExportConsignment: List<Ingredient>
   {
-    internal ExportConsignment( Batch batch, InvoiceContent invoice, double portion, ProductType product )
+    internal ExportConsignment( Batch batch, InvoiceContent invoice, double portion )
     {
       if ( batch == null )
         throw new ArgumentNullException( "Batch cannot be null" );
@@ -67,7 +59,6 @@ namespace CAS.SmartFactory.Linq.IPR
       ProductBatch = batch;
       ProductInvoice = invoice;
       Portion = portion;
-      Product = product;
       DustKg = batch.DustKg.Value * portion;
       SHMentholKg = batch.SHMentholKg.Value * portion;
       WasteKg = batch.WasteKg.Value + portion;
@@ -85,6 +76,6 @@ namespace CAS.SmartFactory.Linq.IPR
     internal double WasteKg { get; private set; }
     internal double TotalDSWKg { get { return DustKg + SHMentholKg + WasteKg; } }
     internal double Portion { get; private set; }
-    internal ProductType Product { get; private set; }
+    internal ProductType Product { get { return ProductBatch.ProductType.Value; } }
   }
 }

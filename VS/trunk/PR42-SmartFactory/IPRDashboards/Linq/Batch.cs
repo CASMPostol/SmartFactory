@@ -12,11 +12,9 @@ namespace CAS.SmartFactory.Linq.IPR
       bool closingBatch = this.FGQuantityAvailable == productInvoice.Quantity.Value;
       this.FGQuantityAvailable -= productInvoice.Quantity.Value;
       double _portion = closingBatch ? 1 : this.FGQuantityKUKg.Value / productInvoice.Quantity.Value;
-      ExportConsignment _batchAnalysis = new ExportConsignment( this, productInvoice, _portion, this.ProductType.Value );
+      ExportConsignment _batchAnalysis = new ExportConsignment( this, productInvoice, _portion );
       foreach ( Material _didx in this.Material )
-      {
         _didx.Export( edc, _batchAnalysis, closingBatch, invoiceNoumber, procedure, clearence );
-      }
       consignment.Add( _batchAnalysis );
     }
     internal ActionResult ExportPossible( double? quantity )

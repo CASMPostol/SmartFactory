@@ -391,7 +391,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         switch ( CurrentMachineState )
         {
           case InterfaceState.ViewState:
-            ActionResult _resu = Parent.Expot();
+            ActionResult _resu = Parent.ClearThroughCustom();
             switch ( _resu.LastActionResult )
             {
               case ActionResult.Result.Success:
@@ -495,46 +495,51 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       m_InvoiceQuantityTextBox.Enabled = m_CancelButton.Enabled;
       m_ExportButton.Enabled = m_NewButton.Enabled && !m_ControlState.InvoiceID.IsNullOrEmpty() && !m_ControlState.ReadOnly;
     }
-    private GenericStateMachineEngine.ActionResult Expot()
+    private GenericStateMachineEngine.ActionResult ClearThroughCustom()
     {
       try
       {
-        InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
-        foreach ( var item in _invoice.InvoiceContent )
+        if ( m_ExportProcedureRadioButtonList.SelectedIndex < 0 )
+          return GenericStateMachineEngine.ActionResult.NotValidated( "Customs procedure must  be selected" );
+        switch ( m_ExportProcedureRadioButtonList.SelectedValue )
         {
-          ActionResult _checkResult = item.BatchID.ExportPossible( item.Quantity );
-          if ( _checkResult.Valid )
-            continue;
-          foreach ( var _msg in _checkResult )
-            Controls.Add( ControlExtensions.CreateMessage( _msg ) );
-          m_ControlState.UpdateControlState( item );
-          string _frmt = "Cannot proceed with export because the invoice item contains eroors {0}.";
-          return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
+          case "Export":
+            return Export();
+          case "Revert":
+            return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException( "Revert FG to free circulation is not implemented yet" ), "ClearThroughCustom" );
         }
-        _invoice.OK = true;
-        throw new NotImplementedException( "Export functionality is under development" );
-        List<ExportConsignment> _consignment = new List<ExportConsignment>();
-        string _procedure = GetProcedure();
-        Clearence _newClearance = CreataClearence();
-        foreach ( InvoiceContent item in _invoice.InvoiceContent )
-          item.BatchID.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _procedure, _newClearance );
-        _invoice.ReadOnly = true;
-        m_DataContextManagement.DataContext.SubmitChanges();
-        return InvoiceLib.PrepareConsignment(m_DataContextManagement.DataContext, _consignment );
       }
       catch ( Exception ex )
       {
-        return GenericStateMachineEngine.ActionResult.Exception( ex, "Expot" );
+        return GenericStateMachineEngine.ActionResult.Exception( ex, "ClearThroughCustom" );
       }
+      return GenericStateMachineEngine.ActionResult.Success;
     }
-    private Clearence CreataClearence()
+    private GenericStateMachineEngine.ActionResult Export()
     {
-      throw new NotImplementedException();
-    }
-
-    private string GetProcedure()
-    {
-      throw new NotImplementedException();
+      InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
+      foreach ( var item in _invoice.InvoiceContent )
+      {
+        ActionResult _checkResult = item.BatchID.ExportPossible( item.Quantity );
+        if ( _checkResult.Valid )
+          continue;
+        foreach ( var _msg in _checkResult )
+          Controls.Add( ControlExtensions.CreateMessage( _msg ) );
+        m_ControlState.UpdateControlState( item );
+        string _frmt = "Cannot proceed with export because the invoice item contains eroors {0}.";
+        return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
+      }
+      _invoice.OK = true;
+      throw new NotImplementedException( "Export functionality is under development" );
+      List<ExportConsignment> _consignment = new List<ExportConsignment>();
+      string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
+      string _title = Resources.FinishedGoodsExportFormFileName;
+      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _title, _customsProcedureCode );
+      foreach ( InvoiceContent item in _invoice.InvoiceContent )
+        item.BatchID.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance );
+      _invoice.ReadOnly = true;
+      m_DataContextManagement.DataContext.SubmitChanges();
+      return InvoiceLib.PrepareConsignment( m_DataContextManagement.DataContext, _consignment );
     }
     private GenericStateMachineEngine.ActionResult Show()
     {

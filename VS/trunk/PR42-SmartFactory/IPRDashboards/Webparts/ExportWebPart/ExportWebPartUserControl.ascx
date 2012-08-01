@@ -50,8 +50,8 @@
                                             <asp:TableRow>
                                                 <asp:TableCell>
                                                     <asp:RadioButtonList ID="m_ExportProcedureRadioButtonList" runat="server">
-                                                        <asp:ListItem Enabled="true" Selected="True" Text="3151" Value="3151"></asp:ListItem>
-                                                        <asp:ListItem Enabled="true" Selected="False" Text="Zmiana przeznaczenia" Value="ZmianaPrzeznaczenia"></asp:ListItem>
+                                                        <asp:ListItem Enabled="true" Selected="True" Text="Export " Value="Export"></asp:ListItem>
+                                                        <asp:ListItem Enabled="true" Selected="False" Text="Revert to Fee Circulation" Value="Revert"></asp:ListItem>
                                                     </asp:RadioButtonList>
                                                 </asp:TableCell>
                                             </asp:TableRow>
