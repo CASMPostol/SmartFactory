@@ -14,23 +14,49 @@
     <asp:Table ID="m_Table" runat="server" CssClass="Table">
         <asp:TableRow>
             <asp:TableCell VerticalAlign="Top">
-                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="Invoice content"
+                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="Edit invoice / quantity"
                     ID="m_InvoicePanel">
                     <asp:Table ID="m_InvoiceTable" runat="server" CssClass="Table">
                         <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:Label ID="m_InvoiceLabel" runat="server" CssClass="Label" Text="Invoice" />
-                            </asp:TableCell>
-                            <asp:TableCell>
-                                <asp:TextBox ID="m_InvoiceTextBox" runat="server" CssClass="TextBox" Enabled="false" />
+                            <asp:TableCell ColumnSpan="2">
+                                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="Invoice"
+                                    ID="m_EditInvoicePanel">
+                                        <asp:Table runat="server">
+                                            <asp:TableRow>
+                                                <asp:TableCell>
+                                                    <asp:Label ID="m_InvoiceLabel" runat="server" CssClass="Label" Text="Invoice" />
+                                                </asp:TableCell>
+                                                <asp:TableCell>
+                                                    <asp:TextBox ID="m_InvoiceTextBox" runat="server" CssClass="TextBox" Enabled="false" />
+                                                </asp:TableCell>
+                                            </asp:TableRow>
+                                            <asp:TableRow>
+                                                <asp:TableCell>
+                                                    <asp:Label ID="m_InvoiceContentLabel" runat="server" CssClass="Label" Text="Invoice Item" />
+                                                </asp:TableCell>
+                                                <asp:TableCell>
+                                                    <asp:TextBox ID="m_InvoiceContentTextBox" runat="server" CssClass="TextBox" Enabled="false" />
+                                                </asp:TableCell>
+                                            </asp:TableRow>
+                                        </asp:Table>
+                                    </asp:Panel>
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:Label ID="m_InvoiceContentLabel" runat="server" CssClass="Label" Text="Invoice Item" />
-                            </asp:TableCell>
-                            <asp:TableCell>
-                                <asp:TextBox ID="m_InvoiceContentTextBox" runat="server" CssClass="TextBox" Enabled="false" />
+                            <asp:TableCell ColumnSpan="2">
+                                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="Export procedure"
+                                    ID="m_ExportProcedurePanel">
+                                        <asp:Table ID="m_ExportProcedureTable" runat="server">
+                                            <asp:TableRow>
+                                                <asp:TableCell>
+                                                    <asp:RadioButtonList ID="m_ExportProcedureRadioButtonList" runat="server">
+                                                        <asp:ListItem Enabled="true" Selected="True" Text="3151" Value="3151"></asp:ListItem>
+                                                        <asp:ListItem Enabled="true" Selected="False" Text="Zmiana przeznaczenia" Value="ZmianaPrzeznaczenia"></asp:ListItem>
+                                                    </asp:RadioButtonList>
+                                                </asp:TableCell>
+                                            </asp:TableRow>
+                                        </asp:Table>
+                                    </asp:Panel>
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>
