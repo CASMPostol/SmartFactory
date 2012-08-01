@@ -514,8 +514,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         _invoice.OK = true;
         throw new NotImplementedException( "Export functionality is under development" );
         List<ExportConsignment> _consignment = new List<ExportConsignment>();
-        foreach ( var item in _invoice.InvoiceContent )
-          item.BatchID.Export( item, _consignment );
+        string _procedure = GetProcedure();
+        Clearence _newClearance = CreataClearence();
+        foreach ( InvoiceContent item in _invoice.InvoiceContent )
+          item.BatchID.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _procedure, _newClearance );
         _invoice.ReadOnly = true;
         m_DataContextManagement.DataContext.SubmitChanges();
         return InvoiceLib.PrepareConsignment(m_DataContextManagement.DataContext, _consignment );
@@ -524,6 +526,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       {
         return GenericStateMachineEngine.ActionResult.Exception( ex, "Expot" );
       }
+    }
+    private Clearence CreataClearence()
+    {
+      throw new NotImplementedException();
+    }
+
+    private string GetProcedure()
+    {
+      throw new NotImplementedException();
     }
     private GenericStateMachineEngine.ActionResult Show()
     {

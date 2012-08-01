@@ -80,7 +80,6 @@ namespace CAS.SmartFactory.Linq.IPR
         this.VATPerSettledAmount = Math.Round( this.IPRID.VAT.Value - this.IPRID.GetVATNotCleared() );
       }
     }
-
     private void StartClearance( ClearingType clearingType )
     {
       throw new NotImplementedException();
