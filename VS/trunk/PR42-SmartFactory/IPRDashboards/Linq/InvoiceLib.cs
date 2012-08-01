@@ -23,11 +23,20 @@ namespace CAS.SmartFactory.Linq.IPR
   }
   internal class IPRIngredient: Ingredient
   {
+    private Disposal disposal;
+
     internal IPRIngredient( double quantity, IPR account, bool closing )
       : base( quantity )
     {
       IPRAccount = account;
       ClosingEntry = closing;
+    }
+
+    public IPRIngredient( Disposal disposal )
+      : base( disposal.SettledQuantity.Value )
+    {
+      // TODO: Complete member initialization
+      this.disposal = disposal;
     }
     internal IPR IPRAccount { get; private set; }
     internal bool ClosingEntry { get; private set; }

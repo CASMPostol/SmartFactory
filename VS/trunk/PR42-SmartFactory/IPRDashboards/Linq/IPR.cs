@@ -23,5 +23,9 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       get { return from _dec in this.Disposal where _dec.DisposalStatus.Value == DisposalStatus.TobaccoInCigaretesExported select _dec; }
     }
+    internal ClearingType GetClearingType()
+    {
+      throw new NotImplementedException();
+    }
   }
 }
