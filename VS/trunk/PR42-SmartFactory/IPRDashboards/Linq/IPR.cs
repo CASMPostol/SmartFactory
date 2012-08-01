@@ -9,23 +9,19 @@ namespace CAS.SmartFactory.Linq.IPR
   {
     internal double GetDutyNotCleared()
     {
-      return Duty.Value - DisposalsInExportedCigarettes.Sum( val => val.DutyPerSettledAmount.Value );
+      return this.Duty.Value - ( from _dec in this.Disposal where _dec.DutyPerSettledAmount.HasValue select new { val = _dec.DutyPerSettledAmount.Value } ).Sum( itm => itm.val );
     }
     internal double GetPriceNotCleared()
     {
-      throw new NotImplementedException();
+      return this.UnitPrice.Value - ( from _dec in this.Disposal where _dec.TobaccoValue.HasValue select new { val = _dec.TobaccoValue.Value } ).Sum( itm => itm.val );
     }
     internal double GetVATNotCleared()
     {
-      throw new NotImplementedException();
-    }
-    public IQueryable<Disposal> DisposalsInExportedCigarettes
-    {
-      get { return from _dec in this.Disposal where _dec.DisposalStatus.Value == DisposalStatus.TobaccoInCigaretesExported select _dec; }
+      return this.VAT.Value - ( from _dec in this.Disposal where _dec.VATPerSettledAmount.HasValue select new { val = _dec.VATPerSettledAmount.Value } ).Sum( itm => itm.val );
     }
     internal ClearingType GetClearingType()
     {
-      throw new NotImplementedException();
+      return ( from _dec in this.Disposal where _dec.CustomsStatus.Value == CustomsStatus.NotStarted select _dec ).Any() ? ClearingType.TotalWindingUp : ClearingType.PartialWindingUp;
     }
   }
 }
