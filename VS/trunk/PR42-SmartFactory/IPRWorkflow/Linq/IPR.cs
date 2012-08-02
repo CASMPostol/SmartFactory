@@ -116,7 +116,7 @@ namespace CAS.SmartFactory.Linq.IPR
             _typeOfDisposal = Linq.IPR.DisposalStatus.Overuse;
             break;
           case DisposalEnum.Tobacco:
-            _typeOfDisposal = Linq.IPR.DisposalStatus.TobaccoInCigaretesExported;
+            _typeOfDisposal = Linq.IPR.DisposalStatus.TobaccoInCigaretesWarehouse;
             break;
         }
         double _toDispose;
