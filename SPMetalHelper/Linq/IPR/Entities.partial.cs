@@ -213,6 +213,19 @@ namespace CAS.SmartFactory.Linq.IPR
       edc.ActivityLog.InsertOnSubmit( log );
       edc.SubmitChangesSilently( Microsoft.SharePoint.Linq.RefreshMode.OverwriteCurrentValues );
     }
+    /// <summary>
+    /// Checks for a condition and displays a message if the condition is false.
+    /// </summary>
+    /// <param name="edc">The <see cref="EntitiesDataContext"/> object.</param>
+    /// <param name="condition"> true to prevent a message being displayed; otherwise, false.</c> [condition].</param>
+    /// <param name="source">The source of the assertion.</param>
+    /// <param name="message">The message to log.</param>
+    internal static void Assert( EntitiesDataContext edc, bool condition, string source, string message )
+    {
+      if ( condition )
+        return;
+      Anons.WriteEntry( edc, source, message );
+    }
   }
   public static class LinqIPRExtensions
   {
