@@ -533,7 +533,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       List<ExportConsignment> _consignment = new List<ExportConsignment>();
       string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
       string _title = Resources.FinishedGoodsExportFormFileName;
-      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _title, _customsProcedureCode );
+      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _title, _customsProcedureCode, Procedure._3151 );
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
         item.BatchID.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance );
       _invoice.ReadOnly = true;

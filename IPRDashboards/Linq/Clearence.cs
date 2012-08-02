@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Clearence
   {
-    internal static Clearence CreataClearence( EntitiesDataContext edc, string title, string code )
+    internal static Clearence CreataClearence( EntitiesDataContext edc, string title, string code, Linq.IPR.Procedure procedure )
     {
       Clearence _newClearence = new Clearence()
       {
@@ -15,7 +15,8 @@ namespace CAS.SmartFactory.Linq.IPR
         ProcedureCode = code,
         ReferenceNumber = "N/A",
         Status = false,
-        Tytuł = "Creating"
+        Tytuł = "Creating", 
+        Procedure = procedure
       };
       edc.Clearence.InsertOnSubmit( _newClearence );
       edc.SubmitChanges();
