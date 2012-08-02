@@ -518,7 +518,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     private GenericStateMachineEngine.ActionResult Export()
     {
       InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
-      foreach ( var item in _invoice.InvoiceContent )
+      foreach ( InvoiceContent item in _invoice.InvoiceContent )
       {
         ActionResult _checkResult = item.BatchID.ExportPossible( item.Quantity );
         if ( _checkResult.Valid )
@@ -530,7 +530,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
       }
       _invoice.OK = true;
-      throw new NotImplementedException( "Export functionality is under development" );
       List<ExportConsignment> _consignment = new List<ExportConsignment>();
       string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
       string _title = Resources.FinishedGoodsExportFormFileName;
