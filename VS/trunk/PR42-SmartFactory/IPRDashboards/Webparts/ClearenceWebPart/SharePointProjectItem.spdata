@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.VisualWebPart" DefaultFile="ClearenceWebPartUserControl.ascx" SupportedTrustLevels="FullTrust" SupportedDeploymentScopes="Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="ClearenceWebPart\" Type="ElementManifest" />
+    <ProjectItemFile Source="ClearenceWebPart.webpart" Target="ClearenceWebPart\" Type="ElementFile" />
+    <ProjectItemFile Source="ClearenceWebPartUserControl.ascx" Target="CONTROLTEMPLATES\CAS.SmartFactory.IPR.Dashboards.Webparts\ClearenceWebPart\" Type="TemplateFile" />
+  </Files>
+  <SafeControls>
+    <SafeControl Name="SafeControlEntry1" Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart" TypeName="*" IsSafe="true" IsSafeAgainstScript="false" />
+  </SafeControls>
+</ProjectItem>

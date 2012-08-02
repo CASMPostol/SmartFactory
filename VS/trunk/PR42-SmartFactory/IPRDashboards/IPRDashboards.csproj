@@ -69,6 +69,14 @@
     <Compile Include="Linq\Material.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />
+    <Compile Include="Webparts\ClearenceWebPart\ClearenceWebPart.cs" />
+    <Compile Include="Webparts\ClearenceWebPart\ClearenceWebPartUserControl.ascx.cs">
+      <DependentUpon>ClearenceWebPartUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webparts\ClearenceWebPart\ClearenceWebPartUserControl.ascx.designer.cs">
+      <DependentUpon>ClearenceWebPartUserControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Webparts\ExportWebPart\ExportWebPart.cs" />
     <Compile Include="Webparts\ExportWebPart\ExportWebPartUserControl.ascx.cs">
       <DependentUpon>ExportWebPartUserControl.ascx</DependentUpon>
@@ -80,6 +88,9 @@
     <Compile Include="Webparts\InterconnectionData.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Dashboards\ClearenceDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{75625fce-5892-4642-9661-7915e074051a}</SharePointProjectItemId>
+    </None>
     <None Include="Dashboards\ExportDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d926c02c-50db-49dd-b790-563ff8388cad}</SharePointProjectItemId>
     </None>
@@ -108,6 +119,10 @@
     <None Include="WebPartPages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1bf15ec9-d51c-4227-a75e-9961ace65cf0}</SharePointProjectItemId>
     </None>
+    <None Include="Webparts\ClearenceWebPart\ClearenceWebPart.webpart" />
+    <None Include="Webparts\ClearenceWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{48972cb1-6c4a-4eda-9e7f-3310718add2a}</SharePointProjectItemId>
+    </None>
     <None Include="Webparts\ExportWebPart\ExportWebPart.webpart" />
     <None Include="Webparts\ExportWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a211bbd6-02a5-4e74-b344-8ac1868daea0}</SharePointProjectItemId>
@@ -120,6 +135,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dashboards\ClearenceDashboard\Elements.xml" />
     <Content Include="Dashboards\ExportDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -137,8 +153,13 @@
     <Content Include="Layouts\IPRDashboards\CAS_IPRDefault.css" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRLayouts.css" />
     <Content Include="WebPartPages\Elements.xml" />
+    <Content Include="WebPartPages\WebPageTemplate_Clearence.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Export.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_IPRBook.aspx" />
+    <Content Include="Webparts\ClearenceWebPart\ClearenceWebPartUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Webparts\ClearenceWebPart\Elements.xml" />
     <Content Include="Webparts\ExportWebPart\Elements.xml" />
     <Content Include="Webparts\ExportWebPart\ExportWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
