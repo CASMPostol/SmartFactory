@@ -31,31 +31,31 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.Panel m_Panel;
         
         /// <summary>
-        /// m_ConsentTable control.
+        /// m_ClearenceTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table m_ConsentTable;
+        protected global::System.Web.UI.WebControls.Table m_ClearenceTable;
         
         /// <summary>
-        /// m_ConsentLabel control.
+        /// m_ClearenceLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_ConsentLabel;
+        protected global::System.Web.UI.WebControls.Label m_ClearenceLabel;
         
         /// <summary>
-        /// m_ConsentTextBox control.
+        /// m_ClearenceTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox m_ConsentTextBox;
+        protected global::System.Web.UI.WebControls.TextBox m_ClearenceTextBox;
         
         /// <summary>
         /// m_FilterTable control.

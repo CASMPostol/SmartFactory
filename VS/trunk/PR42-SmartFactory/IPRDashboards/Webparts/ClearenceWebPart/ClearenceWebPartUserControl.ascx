@@ -10,13 +10,13 @@
 <SharePoint:CssRegistration runat="server" ID="cssreg" Name="/_layouts/IPRDashboards/CAS_IPRDashboards.css" />
 
 <asp:Panel ID="m_Panel" runat="server">
-    <asp:Table runat="server" ID="m_ConsentTable" CssClass="Table">
+    <asp:Table runat="server" ID="m_ClearenceTable" CssClass="Table">
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Label ID="m_ConsentLabel" runat="server" Text="Consent:" CssClass="Label"></asp:Label>
+                <asp:Label ID="m_ClearenceLabel" runat="server" Text="Clearence:" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="m_ConsentTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:TextBox ID="m_ClearenceTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
