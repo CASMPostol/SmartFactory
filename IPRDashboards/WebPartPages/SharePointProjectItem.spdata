@@ -3,6 +3,7 @@
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="WebPartPages\" Type="ElementManifest" />
     <ProjectItemFile Source="WebPageTemplate_IPRBook.aspx" Target="WebPartPages\" Type="ElementFile" />
+    <ProjectItemFile Source="WebPageTemplate_Clearence.aspx" Target="WebPartPages\" Type="ElementFile" />
     <ProjectItemFile Source="WebPageTemplate_Export.aspx" Target="WebPartPages\" Type="ElementFile" />
   </Files>
 </ProjectItem>

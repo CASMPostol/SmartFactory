@@ -2,6 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="WebPartPages">
   <File Path="WebPartPages\WebPageTemplate_IPRBook.aspx" Url="WebPartPages/WebPageTemplate_IPRBook.aspx" />
-  <File Path="WebPartPages\WebPageTemplate_Export.aspx" Url="WebPartPages/WebPageTemplate_Export.aspx" />
+<File Path="WebPartPages\WebPageTemplate_Clearence.aspx" Url="WebPartPages/WebPageTemplate_Clearence.aspx" />
+<File Path="WebPartPages\WebPageTemplate_Export.aspx" Url="WebPartPages/WebPageTemplate_Export.aspx" />
 </Module>
 </Elements>
