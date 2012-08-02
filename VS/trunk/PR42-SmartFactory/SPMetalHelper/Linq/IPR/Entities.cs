@@ -1853,6 +1853,8 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private string _procedureCode;
 		
+		private System.Nullable<Procedure> _procedure;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _sADConsignmentLibraryLookup;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<SADDocumentType> _sADDocumentType;
@@ -1936,6 +1938,20 @@ namespace CAS.SmartFactory.Linq.IPR {
 					this.OnPropertyChanging("ProcedureCode", this._procedureCode);
 					this._procedureCode = value;
 					this.OnPropertyChanged("ProcedureCode");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ClearenceProcedure", Storage="_procedure", FieldType="Choice")]
+		public System.Nullable<Procedure> Procedure {
+			get {
+				return this._procedure;
+			}
+			set {
+				if ((value != this._procedure)) {
+					this.OnPropertyChanging("Procedure", this._procedure);
+					this._procedure = value;
+					this.OnPropertyChanged("Procedure");
 				}
 			}
 		}
@@ -6303,6 +6319,8 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private System.Nullable<bool> _readOnly;
 		
+		private System.Nullable<bool> _export;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> _invoiceContent;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceListLookup;
@@ -6380,6 +6398,20 @@ namespace CAS.SmartFactory.Linq.IPR {
 					this.OnPropertyChanging("ReadOnly", this._readOnly);
 					this._readOnly = value;
 					this.OnPropertyChanged("ReadOnly");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IsExport", Storage="_export", FieldType="Boolean")]
+		public System.Nullable<bool> Export {
+			get {
+				return this._export;
+			}
+			set {
+				if ((value != this._export)) {
+					this.OnPropertyChanging("Export", this._export);
+					this._export = value;
+					this.OnPropertyChanged("Export");
 				}
 			}
 		}
@@ -6974,6 +7006,31 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Final")]
 		Final = 16,
+	}
+	
+	public enum Procedure : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="4051")]
+		_4051 = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="3151")]
+		_3151 = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="4071")]
+		_4071 = 8,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="3171")]
+		_3171 = 16,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="7171")]
+		_7171 = 32,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="5171")]
+		_5171 = 64,
 	}
 	
 	public enum DisposalStatus : int {
