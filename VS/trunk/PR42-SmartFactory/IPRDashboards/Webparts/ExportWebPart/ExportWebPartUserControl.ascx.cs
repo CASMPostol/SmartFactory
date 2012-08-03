@@ -530,7 +530,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
       }
       _invoice.OK = true;
-      List<ExportConsignment> _consignment = new List<ExportConsignment>();
+      List<CigaretteExportForm> _consignment = new List<CigaretteExportForm>();
       string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
       string _title = Resources.FinishedGoodsExportFormFileName;
       Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _title, _customsProcedureCode, Procedure._3151 );

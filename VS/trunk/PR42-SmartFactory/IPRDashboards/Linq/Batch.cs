@@ -7,12 +7,12 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Batch
   {
-    internal void Export( EntitiesDataContext edc, InvoiceContent productInvoice, List<ExportConsignment> consignment, string invoiceNoumber, string procedure, Clearence clearence )
+    internal void Export( EntitiesDataContext edc, InvoiceContent productInvoice, List<CigaretteExportForm> consignment, string invoiceNoumber, string procedure, Clearence clearence )
     {
       bool closingBatch = this.FGQuantityAvailable == productInvoice.Quantity.Value;
       this.FGQuantityAvailable -= productInvoice.Quantity.Value;
       double _portion = closingBatch ? 1 :  productInvoice.Quantity.Value / this.FGQuantityKUKg.Value;
-      ExportConsignment _exportConsignment = new ExportConsignment( this, productInvoice, _portion );
+      CigaretteExportForm _exportConsignment = new CigaretteExportForm( this, productInvoice, _portion );
       foreach ( Material _materialIdx in this.Material )
         _materialIdx.Export( edc, _exportConsignment, closingBatch, invoiceNoumber, procedure, clearence );
       consignment.Add( _exportConsignment );
