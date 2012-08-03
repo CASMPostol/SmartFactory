@@ -37,17 +37,6 @@ namespace CAS.SmartFactory.Linq.IPR
       this.CustomsStatus = Linq.IPR.CustomsStatus.Started;
       this.ClearingType = clearingType;
       this.CustomsProcedure = procedure;
-      switch ( this.DisposalStatus.Value )
-      {
-        case Linq.IPR.DisposalStatus.TobaccoInCigaretesWarehouse:
-          this.DisposalStatus = Linq.IPR.DisposalStatus.TobaccoInCigaretesExported;
-          break;
-        case Linq.IPR.DisposalStatus.TobaccoInCutfillerWarehouse:
-          this.DisposalStatus = Linq.IPR.DisposalStatus.TobaccoInCutfillerExported;
-          break;
-        default:
-          throw new ApplicationError( "Disposal.StartClearance", "DisposalStatus", "Wrong initial DisposalStatus", null );
-      }
       this.InvoiceNo = invoiceNoumber;
       if ( ClearingType.Value == Linq.IPR.ClearingType.PartialWindingUp )
       {
