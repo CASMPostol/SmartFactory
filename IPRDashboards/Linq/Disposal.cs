@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Disposal
   {
-    internal void Export( EntitiesDataContext edc, ref double _quantity, ExportConsignment _batchAnalysis, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
+    internal void Export( EntitiesDataContext edc, ref double _quantity, CigaretteExportForm _batchAnalysis, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
     {
       ClearingType _clearingType = Linq.IPR.ClearingType.PartialWindingUp;
       if ( !closingBatch && _quantity < this.SettledQuantity )

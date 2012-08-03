@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Material
   {
-    internal void Export( EntitiesDataContext edc, ExportConsignment consignment, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
+    internal void Export( EntitiesDataContext edc, CigaretteExportForm consignment, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
     {
       double _quantity = ( this.TobaccoQuantityKg.Value * consignment.Portion ).RountMass();
       if ( this.ProductType.Value == Linq.IPR.ProductType.IPRTobacco )

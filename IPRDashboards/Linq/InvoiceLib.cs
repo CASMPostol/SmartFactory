@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class InvoiceLib
   {
-    internal static GenericStateMachineEngine.ActionResult PrepareConsignment( EntitiesDataContext entitiesDataContext, List<ExportConsignment> _consignment )
+    internal static GenericStateMachineEngine.ActionResult PrepareConsignment( EntitiesDataContext entitiesDataContext, List<CigaretteExportForm> _consignment )
     {
       
       return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException(), "InvoiceLib.PrepareConsignment" );
@@ -44,9 +44,9 @@ namespace CAS.SmartFactory.Linq.IPR
     public string IngredientSKU { get; private set; }
     public string IngredientBatch { get; private set; }
   }
-  internal class ExportConsignment: List<Ingredient>
+  internal class CigaretteExportForm: List<Ingredient>
   {
-    internal ExportConsignment( Batch batch, InvoiceContent invoice, double portion )
+    internal CigaretteExportForm( Batch batch, InvoiceContent invoice, double portion )
     {
       if ( batch == null )
         throw new ArgumentNullException( "Batch cannot be null" );
