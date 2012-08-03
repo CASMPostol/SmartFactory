@@ -40,14 +40,14 @@ namespace CAS.SmartFactory.Linq.IPR
       this.InvoiceNo = invoiceNoumber;
       if ( ClearingType.Value == Linq.IPR.ClearingType.PartialWindingUp )
       {
-        this.DutyPerSettledAmount = Math.Round( this.IPRID.Duty.Value * _portion, 2 );
-        this.VATPerSettledAmount = Math.Round( this.IPRID.VAT.Value * _portion, 2 );
-        this.TobaccoValue = Math.Round( this.IPRID.UnitPrice.Value * _portion, 2 );
+        this.DutyPerSettledAmount = ( this.IPRID.Duty.Value * _portion ).RoundCurrency();
+        this.VATPerSettledAmount = ( this.IPRID.VAT.Value * _portion ).RoundCurrency();
+        this.TobaccoValue = ( this.IPRID.UnitPrice.Value * _portion ).RoundCurrency();
       }
       else
       {
         this.DutyPerSettledAmount = this.IPRID.GetDutyNotCleared();
-        this.VATPerSettledAmount =  this.IPRID.GetVATNotCleared();
+        this.VATPerSettledAmount = this.IPRID.GetVATNotCleared();
         this.TobaccoValue = this.IPRID.GetPriceNotCleared();
       }
       this.DutyAndVAT = this.DutyPerSettledAmount.Value + this.VATPerSettledAmount.Value;
