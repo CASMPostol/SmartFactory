@@ -42,7 +42,6 @@ namespace CAS.SmartFactory
     {
       return _val.HasValue ? string.Format(_format, _val.Value.ToString(CultureInfo.CurrentUICulture)) : String.Empty;
     }
-    public static DateTime SPMinimum = new DateTime(1900, 1, 1);
     internal const string UnknownEmail = "unknown@comapny.com";
     public static string UnknownIfEmpty(this String _val)
     {

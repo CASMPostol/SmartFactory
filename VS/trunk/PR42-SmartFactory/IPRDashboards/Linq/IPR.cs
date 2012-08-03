@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CAS.SharePoint;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -27,6 +28,23 @@ namespace CAS.SmartFactory.Linq.IPR
           where _dec.CustomsStatus.Value == CustomsStatus.NotStarted
           select _dec
         ).Count() == 1 ? ClearingType.TotalWindingUp : ClearingType.PartialWindingUp;
+    }
+    internal void CalcualteDutyAndVat( Disposal disposal, ClearingType clearingType )
+    {
+      double _portion = NetMass.Value / disposal.SettledQuantity.Value;
+      if ( clearingType == Linq.IPR.ClearingType.PartialWindingUp )
+      {
+        disposal.DutyPerSettledAmount = ( Duty.Value * _portion ).RoundCurrency();
+        disposal.VATPerSettledAmount = ( VAT.Value * _portion ).RoundCurrency();
+        disposal.TobaccoValue = ( UnitPrice.Value * _portion ).RoundCurrency();
+      }
+      else
+      {
+        disposal.DutyPerSettledAmount = GetDutyNotCleared();
+        disposal.VATPerSettledAmount = GetVATNotCleared();
+        disposal.TobaccoValue = GetPriceNotCleared();
+      }
+      disposal.DutyAndVAT = disposal.DutyPerSettledAmount.Value + disposal.VATPerSettledAmount.Value;
     }
   }
 }
