@@ -227,6 +227,13 @@ namespace CAS.SmartFactory.Linq.IPR
       Anons.WriteEntry( edc, source, message );
     }
   }
+  public partial class Disposal
+  {
+    internal void SetUpTitle()
+    {
+      Tytuł = this.BatchLookup.Tytuł + " " + this.DisposalStatus.Value.ToString();
+    }
+  }
   public static class LinqIPRExtensions
   {
     public static string Units( this ProductType product )

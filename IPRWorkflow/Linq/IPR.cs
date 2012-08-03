@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CAS.SmartFactory.xml.Customs;
 using CAS.SmartFactory.IPR;
+using CAS.SmartFactory;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -33,7 +34,7 @@ namespace CAS.SmartFactory.Linq.IPR
           Batch = _iprdata.Batch,
           Cartons = _iprdata.Cartons,
           ClearenceListLookup = _nc,
-          ClosingDate = CAS.SmartFactory.Extensions.SPMinimum,
+          ClosingDate = CAS.SharePoint.Extensions.SPMinimum,
           ConsentNo = _cnsnt,
           Currency = _document.Currency,
           CustomsDebtDate = _customsDebtDate,
@@ -130,7 +131,7 @@ namespace CAS.SmartFactory.Linq.IPR
           MaterialLookup = material,
           No = new Nullable<double>(),
           // RemainingQuantity = 0,
-          SADDate = CAS.SmartFactory.Extensions.SPMinimum,
+          SADDate = CAS.SharePoint.Extensions.SPMinimum,
           SADDocumentNo = "N/A",
           SettledQuantity = _toDispose,
           TobaccoValue = _toDispose * this.Value / this.NetMass

@@ -13,8 +13,27 @@ namespace CAS.SmartFactory.Linq.IPR
       ClearingType _clearingType = Linq.IPR.ClearingType.PartialWindingUp;
       if ( !closingBatch && _quantity < this.SettledQuantity )
       {
-        Disposal _newDisposal = (Disposal)this.MemberwiseClone();
-        _newDisposal.SettledQuantity = this.SettledQuantity - _quantity;
+        Disposal _newDisposal = new Disposal()
+        {
+          BatchLookup = this.BatchLookup,
+          ClearenceListLookup = null,
+          ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
+          CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
+          CustomsProcedure = "N/A",
+          DisposalStatus = this.DisposalStatus, 
+          InvoiceNo = "N/A",
+          IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
+          IPRID = this.IPRID,
+          CompensationGood = this.CompensationGood,
+          JSOXCustomsSummaryListLookup = null,
+          MaterialLookup = this.MaterialLookup,
+          No = int.MaxValue,
+          // RemainingQuantity = 0,
+          SADDate = CAS.SharePoint.Extensions.SPMinimum,
+          SADDocumentNo = "N/A",
+          SettledQuantity = this.SettledQuantity - _quantity,
+        };
+        this.IPRID.CalcualteDutyAndVat( _newDisposal, Linq.IPR.ClearingType.PartialWindingUp );
         this.SettledQuantity = _quantity;
         _quantity = 0;
         edc.Disposal.InsertOnSubmit( _newDisposal );
@@ -32,25 +51,12 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     private void StartClearance( ClearingType clearingType, string invoiceNoumber, string procedure, Clearence clearence )
     {
-      double _portion = this.IPRID.NetMass.Value / this.SettledQuantity.Value;
       this.ClearenceListLookup = clearence;
       this.CustomsStatus = Linq.IPR.CustomsStatus.Started;
       this.ClearingType = clearingType;
       this.CustomsProcedure = procedure;
       this.InvoiceNo = invoiceNoumber;
-      if ( ClearingType.Value == Linq.IPR.ClearingType.PartialWindingUp )
-      {
-        this.DutyPerSettledAmount = ( this.IPRID.Duty.Value * _portion ).RoundCurrency();
-        this.VATPerSettledAmount = ( this.IPRID.VAT.Value * _portion ).RoundCurrency();
-        this.TobaccoValue = ( this.IPRID.UnitPrice.Value * _portion ).RoundCurrency();
-      }
-      else
-      {
-        this.DutyPerSettledAmount = this.IPRID.GetDutyNotCleared();
-        this.VATPerSettledAmount = this.IPRID.GetVATNotCleared();
-        this.TobaccoValue = this.IPRID.GetPriceNotCleared();
-      }
-      this.DutyAndVAT = this.DutyPerSettledAmount.Value + this.VATPerSettledAmount.Value;
+      this.IPRID.CalcualteDutyAndVat( this, ClearingType.Value );
     }
   }
 }
