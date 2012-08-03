@@ -135,7 +135,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dashboards\ClearenceDashboard\Elements.xml" />
+    <Content Include="Dashboards\ClearenceDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashboards\ExportDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -152,7 +154,9 @@
     <Content Include="Layouts\IPRDashboards\CAS_IPRDashboards.css" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRDefault.css" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRLayouts.css" />
-    <Content Include="WebPartPages\Elements.xml" />
+    <Content Include="WebPartPages\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="WebPartPages\WebPageTemplate_Clearence.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Export.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_IPRBook.aspx" />
