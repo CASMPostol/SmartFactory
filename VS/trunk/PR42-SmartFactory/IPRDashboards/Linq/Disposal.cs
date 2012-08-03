@@ -46,11 +46,11 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       else
       {
-        this.DutyPerSettledAmount = this.IPRID.Duty.Value - this.IPRID.GetDutyNotCleared();
-        this.VATPerSettledAmount = Math.Round( this.IPRID.VAT.Value - this.IPRID.GetVATNotCleared() );
-        this.TobaccoValue = this.IPRID.UnitPrice.Value - this.IPRID.GetPriceNotCleared();
+        this.DutyPerSettledAmount = this.IPRID.GetDutyNotCleared();
+        this.VATPerSettledAmount =  this.IPRID.GetVATNotCleared();
+        this.TobaccoValue = this.IPRID.GetPriceNotCleared();
       }
-      this.DutyAndVAT = this.DutyPerSettledAmount + this.VATPerSettledAmount;
+      this.DutyAndVAT = this.DutyPerSettledAmount.Value + this.VATPerSettledAmount.Value;
     }
   }
 }
