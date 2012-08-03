@@ -67,7 +67,7 @@ namespace CAS.SmartFactory.Linq.IPR
                 List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( _edc, _materialInBatch.Batch );
                 if ( _accounts.Count == 0 )
                 {
-                  string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {3}";
+                  string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
                   throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, _materialInBatch.Batch, _parent.Batch0, _item.Key ), null, "IPR unrecognized account" );
                 }
                 double _toDispose = _item.Value;
