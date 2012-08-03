@@ -14,7 +14,7 @@ namespace CAS.SmartFactory.Linq.IPR
       return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException(), "InvoiceLib.PrepareConsignment" );
     }
   }
-  internal abstract class Ingredient
+  public abstract class Ingredient
   {
     internal Ingredient( double quantity )
     {
@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     internal double IngredientQuantity { get; private set; }
   }
-  internal class IPRIngredient: Ingredient
+  public class IPRIngredient: Ingredient
   {
     public IPRIngredient( Disposal disposal )
       : base( disposal.SettledQuantity.Value )
@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.Linq.IPR
     internal bool ClosingEntry { get { return disposal.ClearingType.Value == ClearingType.TotalWindingUp; } }
     private Disposal disposal;
   }
-  internal class RegularIngredient: Ingredient
+  public class RegularIngredient: Ingredient
   {
     public RegularIngredient( double quantity, string sku, string batch )
       : base( quantity )
@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.Linq.IPR
     public string IngredientSKU { get; private set; }
     public string IngredientBatch { get; private set; }
   }
-  internal class CigaretteExportForm: List<Ingredient>
+  public class CigaretteExportForm: List<Ingredient>
   {
     internal CigaretteExportForm( Batch batch, InvoiceContent invoice, double portion )
     {
@@ -63,19 +63,23 @@ namespace CAS.SmartFactory.Linq.IPR
       SHMentholKg = batch.SHMentholKg.Value * portion;
       WasteKg = batch.WasteKg.Value + portion;
     }
-    internal type SKU<type>()
+    public type SKU<type>()
       where type: SKUCommonPart
     {
       return (type)ProductBatch.SKULookup;
     }
-    internal Format ProductFormat { get { return ProductBatch.SKULookup.FormatLookup; } }
-    internal Batch ProductBatch { get; private set; }
-    internal InvoiceContent ProductInvoice { get; private set; }
-    internal double DustKg { get; private set; }
-    internal double SHMentholKg { get; private set; }
-    internal double WasteKg { get; private set; }
-    internal double TotalDSWKg { get { return DustKg + SHMentholKg + WasteKg; } }
-    internal double Portion { get; private set; }
-    internal ProductType Product { get { return ProductBatch.ProductType.Value; } }
+    public Format ProductFormat { get { return ProductBatch.SKULookup.FormatLookup; } }
+    public Batch ProductBatch { get; private set; }
+    public InvoiceContent ProductInvoice { get; private set; }
+    public double DustKg { get; private set; }
+    public double SHMentholKg { get; private set; }
+    public double WasteKg { get; private set; }
+    public double TotalDSWKg { get { return DustKg + SHMentholKg + WasteKg; } }
+    public double Portion { get; private set; }
+    public ProductType Product { get { return ProductBatch.ProductType.Value; } }
+  }
+  public class CigaretteExportFormCollection
+  {
+    public CigaretteExportForm[] CigaretteExportForms { get; set; }
   }
 }
