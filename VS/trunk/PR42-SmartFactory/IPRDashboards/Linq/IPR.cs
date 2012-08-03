@@ -21,7 +21,12 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     internal ClearingType GetClearingType()
     {
-      return ( from _dec in this.Disposal where _dec.CustomsStatus.Value == CustomsStatus.NotStarted select _dec ).Any() ? ClearingType.TotalWindingUp : ClearingType.PartialWindingUp;
+      return this.TobaccoNotAllocated == 0 &&
+        (
+          from _dec in this.Disposal
+          where _dec.CustomsStatus.Value == CustomsStatus.NotStarted
+          select _dec
+        ).Count() == 1 ? ClearingType.TotalWindingUp : ClearingType.PartialWindingUp;
     }
   }
 }
