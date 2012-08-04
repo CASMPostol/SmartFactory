@@ -28,11 +28,11 @@ namespace CAS.SmartFactory.Linq.IPR
           JSOXCustomsSummaryListLookup = null,
           MaterialLookup = this.MaterialLookup,
           No = int.MaxValue,
-          // RemainingQuantity = 0,
           SADDate = CAS.SharePoint.Extensions.SPMinimum,
           SADDocumentNo = "N/A",
-          SettledQuantity = this.SettledQuantity - _quantity,
+          SettledQuantity = this.SettledQuantity - _quantity, 
         };
+        _newDisposal.SetUpTitle();
         this.IPRID.CalcualteDutyAndVat( _newDisposal, Linq.IPR.ClearingType.PartialWindingUp );
         this.SettledQuantity = _quantity;
         _quantity = 0;
