@@ -20,16 +20,16 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="parent">The entry.</param>
     internal static void GetXmlContent( BatchXml xml, EntitiesDataContext edc, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
-      Material.SummaryContentInfo fg = new Material.SummaryContentInfo( xml.Material, edc, progressChanged );
+      Material.SummaryContentInfo xmlBatchContent = new Material.SummaryContentInfo( xml.Material, edc, progressChanged );
       Batch batch =
-          ( from idx in edc.Batch where idx.Batch0.Contains( fg.Product.Batch ) && idx.BatchStatus.Value == Linq.IPR.BatchStatus.Preliminary select idx ).FirstOrDefault();
+          ( from idx in edc.Batch where idx.Batch0.Contains( xmlBatchContent.Product.Batch ) && idx.BatchStatus.Value == Linq.IPR.BatchStatus.Preliminary select idx ).FirstOrDefault();
       if ( batch == null )
       {
         batch = new Batch();
         edc.Batch.InsertOnSubmit( batch );
       }
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: BatchProcessing" ) );
-      batch.BatchProcessing( edc, GetBatchStatus( xml.Status ), fg, parent, progressChanged );
+      batch.BatchProcessing( edc, GetBatchStatus( xml.Status ), xmlBatchContent, parent, progressChanged );
     }
     /// <summary>
     /// Gets or creates lookup.
@@ -79,19 +79,19 @@ namespace CAS.SmartFactory.Linq.IPR
     #endregion
 
     #region private
-    private void BatchProcessing( EntitiesDataContext edc, BatchStatus _status, Material.SummaryContentInfo fg, BatchLib parent, ProgressChangedEventHandler progressChanged )
+    private void BatchProcessing( EntitiesDataContext edc, BatchStatus status, Material.SummaryContentInfo content, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
       this.BatchLibraryLookup = parent;
-      this.BatchStatus = _status;
-      Batch0 = fg.Product.Batch;
-      SKU = fg.Product.SKU;
+      this.BatchStatus = status;
+      Batch0 = content.Product.Batch;
+      SKU = content.Product.SKU;
       Tytuł = String.Format( "SKU: {0}; Batch: {1}", SKU, Batch0 );
-      FGQuantityKUKg = fg.Product.FGQuantityKUKg;
-      MaterialQuantity = fg.TotalTobacco;
-      ProductType = fg.Product.ProductType;
+      FGQuantityKUKg = content.Product.FGQuantityKUKg;
+      MaterialQuantity = content.TotalTobacco;
+      ProductType = content.Product.ProductType;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: interconnect" ) );
       //interconnect 
-      SKULookup = SKUCommonPart.GetLookup( edc, fg.Product.SKU );
+      SKULookup = SKUCommonPart.GetLookup( edc, content.Product.SKU );
       CutfillerCoefficientLookup = CutfillerCoefficient.GetLookup( edc );
       UsageLookup = Usage.GetLookup( SKULookup.FormatLookup, edc );
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
@@ -114,12 +114,12 @@ namespace CAS.SmartFactory.Linq.IPR
       this.MaterialQuantityPrevious = 0;
       double _shmcf = SKULookup.IPRMaterial.Value ? SHMentholLookup.SHMentholRatio.Value : 0;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
-      fg.ProcessDisposals( edc, this, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
-      this.DustKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Dust ];
-      this.SHMentholKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.SHMenthol ];
-      this.WasteKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Waste ];
-      this.TobaccoKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Tobacco ];
-      this.OveruseKg = fg.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.OverusageInKg ];
+      content.ProcessDisposals( edc, this, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
+      this.DustKg = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Dust ];
+      this.SHMentholKg = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.SHMenthol ];
+      this.WasteKg = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Waste ];
+      this.TobaccoKg = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Tobacco ];
+      this.OveruseKg = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.OverusageInKg ];
       foreach ( var _invoice in this.InvoiceContent )
       {
         _invoice.CreateTitle();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using CAS.SmartFactory.IPR;
 using BatchMaterialXml = CAS.SmartFactory.xml.erp.BatchMaterial;
+using CAS.SharePoint;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -44,7 +45,8 @@ namespace CAS.SmartFactory.Linq.IPR
         }
       }
       internal DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
-      internal void ProcessDisposals( EntitiesDataContext _edc, Batch _parent, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusageCoefficient, ProgressChangedEventHandler _progressChanged )
+      internal void ProcessDisposals
+        ( EntitiesDataContext _edc, Batch _parent, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusageCoefficient, ProgressChangedEventHandler _progressChanged )
       {
         if ( Product == null )
           throw new IPRDataConsistencyException( "Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized." );
@@ -137,11 +139,17 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       internal DisposalsAnalisis( double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage )
       {
-        this.Add( IPR.DisposalEnum.OverusageInKg, _overusage > 0 ? _material * _overusage : 0 );
-        double _am = _material - this[ IPR.DisposalEnum.OverusageInKg ];
-        this.Add( IPR.DisposalEnum.Dust, _am * _dustRatio );
-        this.Add( IPR.DisposalEnum.SHMenthol, _am * _shMentholRatio );
-        this.Add( IPR.DisposalEnum.Waste, _am * _wasteRatio );
+        double _am;
+        if ( _overusage > 0 )
+        {
+          this.Add( IPR.DisposalEnum.OverusageInKg, ( _material * _overusage ).RountMass() );
+          _am = _material - this[ IPR.DisposalEnum.OverusageInKg ];
+        }
+        else
+          _am = _material;
+        this.Add( IPR.DisposalEnum.Dust, ( _am * _dustRatio ).RountMass() );
+        this.Add( IPR.DisposalEnum.SHMenthol, ( _am * _shMentholRatio ).RountMass() );
+        this.Add( IPR.DisposalEnum.Waste, ( _am * _wasteRatio ).RountMass() );
         this.Add( IPR.DisposalEnum.Tobacco, _am - this[ IPR.DisposalEnum.SHMenthol ] - this[ IPR.DisposalEnum.Waste ] - this[ IPR.DisposalEnum.Dust ] );
       }
       internal void Accumutate( DisposalsAnalisis _dspsls )
