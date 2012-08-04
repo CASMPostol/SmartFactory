@@ -57,7 +57,7 @@ namespace CAS.SmartFactory.Linq.IPR
           {
             if ( _materialInBatch.ProductType.Value != Linq.IPR.ProductType.IPRTobacco )
               continue;
-            DisposalsAnalisis _dspsls = new DisposalsAnalisis( _materialInBatch.TobaccoQuantityKg.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient );
+            DisposalsAnalisis _dspsls = new DisposalsAnalisis( _edc, _materialInBatch.Batch, _materialInBatch.TobaccoQuantityKg.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient );
             _progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
             AccumulatedDisposalsAnalisis.Accumutate( _dspsls );
             foreach ( KeyValuePair<IPR.DisposalEnum, double> _item in _dspsls )
@@ -132,13 +132,24 @@ namespace CAS.SmartFactory.Linq.IPR
     } //SummaryContentInfo
     internal class DisposalsAnalisis: SortedList<IPR.DisposalEnum, double>
     {
+      private EntitiesDataContext _edc;
+      private string p;
+      private double p_2;
+      private double _dustRatio;
+      private double _shMentholRatio;
+      private double _wasteRatio;
+      private double _overusageCoefficient;
+
       internal DisposalsAnalisis()
       {
         foreach ( IPR.DisposalEnum _item in Enum.GetValues( typeof( IPR.DisposalEnum ) ) )
           this.Add( _item, 0 );
       }
-      internal DisposalsAnalisis( double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage )
+      internal DisposalsAnalisis( EntitiesDataContext _edc, string batch, double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage )
       {
+        List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( _edc, batch );
+        if ( _accounts.Count == 1 && Math.Abs( _accounts[ 0 ].TobaccoNotAllocated.Value - _material ) < 1 )
+          _material = _accounts[ 0 ].TobaccoNotAllocated.Value;
         double _am;
         if ( _overusage > 0 )
         {
