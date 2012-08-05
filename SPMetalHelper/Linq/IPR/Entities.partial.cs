@@ -234,6 +234,38 @@ namespace CAS.SmartFactory.Linq.IPR
       Tytuł = this.BatchLookup.Tytuł + " " + this.DisposalStatus.Value.ToString();
     }
   }
+  public partial class IPR
+  {
+    internal void CalcualteDutyAndVat( Disposal disposal, ClearingType clearingType )
+    {
+      double _portion = NetMass.Value / disposal.SettledQuantity.Value;
+      if ( clearingType == Linq.IPR.ClearingType.PartialWindingUp )
+      {
+        disposal.DutyPerSettledAmount = ( Duty.Value * _portion ).RoundCurrency();
+        disposal.VATPerSettledAmount = ( VAT.Value * _portion ).RoundCurrency();
+        disposal.TobaccoValue = ( UnitPrice.Value * _portion ).RoundCurrency();
+      }
+      else
+      {
+        disposal.DutyPerSettledAmount = GetDutyNotCleared();
+        disposal.VATPerSettledAmount = GetVATNotCleared();
+        disposal.TobaccoValue = GetPriceNotCleared();
+      }
+      disposal.DutyAndVAT = disposal.DutyPerSettledAmount.Value + disposal.VATPerSettledAmount.Value;
+    }
+    private double GetDutyNotCleared()
+    {
+      return this.Duty.Value - ( from _dec in this.Disposal where _dec.DutyPerSettledAmount.HasValue select new { val = _dec.DutyPerSettledAmount.Value } ).Sum( itm => itm.val );
+    }
+    private double GetPriceNotCleared()
+    {
+      return this.UnitPrice.Value - ( from _dec in this.Disposal where _dec.TobaccoValue.HasValue select new { val = _dec.TobaccoValue.Value } ).Sum( itm => itm.val );
+    }
+    private double GetVATNotCleared()
+    {
+      return this.VAT.Value - ( from _dec in this.Disposal where _dec.VATPerSettledAmount.HasValue select new { val = _dec.VATPerSettledAmount.Value } ).Sum( itm => itm.val );
+    }
+  }
   public static class LinqIPRExtensions
   {
     public static string Units( this ProductType product )
