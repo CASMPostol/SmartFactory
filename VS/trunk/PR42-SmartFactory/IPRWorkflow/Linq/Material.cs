@@ -64,7 +64,7 @@ namespace CAS.SmartFactory.Linq.IPR
             {
               try
               {
-                if ( _item.Value <= 0 && ( _item.Key == IPR.DisposalEnum.SHMenthol || _item.Key == IPR.DisposalEnum.OverusageInKg ) )
+                if ( _item.Value <= 0 && ( _item.Key == IPR.DisposalEnum.SHMenthol ) )
                   continue;
                 List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( _edc, _materialInBatch.Batch );
                 if ( _accounts.Count == 0 )

@@ -119,13 +119,13 @@ namespace CAS.SmartFactory.Linq.IPR
           ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
           CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
           CustomsProcedure = "N/A",
+          CompensationGood = null,
           DisposalStatus = _typeOfDisposal,
           DutyAndVAT = new Nullable<double>(),
           DutyPerSettledAmount = new Nullable<double>(),
           InvoiceNo = "N/A",
           IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
           IPRID = this,
-          CompensationGood = null,
           VATPerSettledAmount = null,
           JSOXCustomsSummaryListLookup = null,
           MaterialLookup = material,
@@ -136,8 +136,10 @@ namespace CAS.SmartFactory.Linq.IPR
           SettledQuantity = _toDispose,
           TobaccoValue = _toDispose * this.Value / this.NetMass
         };
+        this.CalcualteDutyAndVat( _newDisposal, ClearingType.PartialWindingUp );
         _edc.Disposal.InsertOnSubmit( _newDisposal );
       }
+
       catch ( IPRDataConsistencyException _ex )
       {
         throw _ex;
