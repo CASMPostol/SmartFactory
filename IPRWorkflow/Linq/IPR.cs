@@ -136,7 +136,7 @@ namespace CAS.SmartFactory.Linq.IPR
           SettledQuantity = _toDispose,
           TobaccoValue = _toDispose * this.Value / this.NetMass
         };
-        this.CalcualteDutyAndVat( _newDisposal, ClearingType.PartialWindingUp );
+        _newDisposal.CalcualteDutyAndVat( ClearingType.PartialWindingUp );
         _newDisposal.SetUpTitle();
         _edc.Disposal.InsertOnSubmit( _newDisposal );
       }
