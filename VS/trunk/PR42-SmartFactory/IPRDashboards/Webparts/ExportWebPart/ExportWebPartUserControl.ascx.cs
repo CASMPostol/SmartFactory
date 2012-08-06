@@ -180,7 +180,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       #endregion
 
     }
-    private class LocalStateMachineEngine: GenericStateMachineEngine
+    private class LocalStateMachineEngine: WEB.WebpartStateMachineEngine
     {
       #region ctor
       public LocalStateMachineEngine( ExportWebPartUserControl parent )
@@ -354,6 +354,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       protected override void ShowActionResult( GenericStateMachineEngine.ActionResult _rslt )
       {
         Parent.Controls.Add( ControlExtensions.CreateMessage( _rslt.ActionException.Message ) );
+        base.ShowActionResult( _rslt );
       }
       protected override GenericStateMachineEngine.InterfaceState CurrentMachineState
       {

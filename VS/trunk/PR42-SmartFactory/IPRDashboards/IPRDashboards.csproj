@@ -86,6 +86,7 @@
       <DependentUpon>ExportWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Webparts\InterconnectionData.cs" />
+    <Compile Include="Webparts\WEB\WebpartStateMachineEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dashboards\ClearenceDashboard\SharePointProjectItem.spdata">
