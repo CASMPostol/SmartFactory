@@ -11,7 +11,8 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class IPR
   {
     internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
-    internal static void CreateIPRAccount( EntitiesDataContext _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType, DateTime _customsDebtDate, out string _comments )
+    internal static void CreateIPRAccount
+      ( EntitiesDataContext _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType, DateTime _customsDebtDate, out string _comments, SADDocumentLib iprLibraryLookup )
     {
       string _at = "started";
       _comments = "IPR account creation error";
@@ -41,10 +42,11 @@ namespace CAS.SmartFactory.Linq.IPR
           DocumentNo = _nc.DocumentNo,
           Duty = _iprdata.Duty,
           DutyName = _iprdata.DutyName,
-          DutyPerUnit = _iprdata.DutyPerUnit,
+          DutyPerUnit = _iprdata.DutyPerUnit, 
           Grade = _iprdata.GradeName,
           GrossMass = _iprdata.GrossMass,
           InvoiceNo = _iprdata.InvoiceNo,
+          IPRLibraryLookup = iprLibraryLookup,
           NetMass = _iprdata.NetMass,
           OGLValidTo = _customsDebtDate + new TimeSpan( Convert.ToInt32( _cnsnt.ConsentPeriod.Value ) * 30, 0, 0, 0 ),
           PCNTariffCode = _pcn,
