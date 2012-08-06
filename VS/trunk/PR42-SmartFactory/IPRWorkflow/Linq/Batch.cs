@@ -85,7 +85,7 @@ namespace CAS.SmartFactory.Linq.IPR
       this.BatchStatus = status;
       Batch0 = content.Product.Batch;
       SKU = content.Product.SKU;
-      Tytuł = String.Format( "SKU: {0}; Batch: {1}", SKU, Batch0 );
+      Tytuł = String.Format( "{0} SKU: {1}; Batch: {2}", content.Product.ProductType, SKU, Batch0 );
       FGQuantityKUKg = content.Product.FGQuantityKUKg;
       MaterialQuantity = content.TotalTobacco;
       ProductType = content.Product.ProductType;
@@ -162,7 +162,7 @@ namespace CAS.SmartFactory.Linq.IPR
       }
     }
     private const string m_Source = "Batch processing";
-    private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be edited.";
+    private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be uploaded.";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     #endregion
   }
