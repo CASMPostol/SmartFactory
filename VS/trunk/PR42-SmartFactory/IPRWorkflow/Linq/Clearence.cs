@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Clearence
   {
-    internal static Clearence Associate( EntitiesDataContext _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, out string _comments )
+    internal static Clearence Associate( EntitiesDataContext _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, out string _comments, SADDocumentLib customsDocumentLibrary )
     {
       Clearence _ret = default( Clearence );
       string _at = "started";
@@ -50,7 +50,7 @@ namespace CAS.SmartFactory.Linq.IPR
                 _edc.Clearence.InsertOnSubmit( _ret );
                 if ( _messageType == CustomsDocument.DocumentType.PZC )
                 {
-                  IPR.CreateIPRAccount( _edc, _sad, _ret, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments );
+                  IPR.CreateIPRAccount( _edc, _sad, _ret, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
                 }
                 else
                   _comments = "Document added";
@@ -80,7 +80,7 @@ namespace CAS.SmartFactory.Linq.IPR
                 _startingDocument.ReleaseForFreeCirculation( _edc, out _comments );
                 break;
               case CustomsProcedureCodes.InwardProcessing:
-                IPR.CreateIPRAccount( _edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD, _sad.CustomsDebtDate.Value, out _comments );
+                IPR.CreateIPRAccount( _edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
                 break;
               case CustomsProcedureCodes.ReExport:
               case CustomsProcedureCodes.NoProcedure:
