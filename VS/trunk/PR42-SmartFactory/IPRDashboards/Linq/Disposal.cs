@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.Linq.IPR
           SettledQuantity = this.SettledQuantity - _quantity, 
         };
         _newDisposal.SetUpTitle();
-        this.IPRID.CalcualteDutyAndVat( _newDisposal, Linq.IPR.ClearingType.PartialWindingUp );
+        this.CalcualteDutyAndVat( Linq.IPR.ClearingType.PartialWindingUp );
         this.SettledQuantity = _quantity;
         _quantity = 0;
         edc.Disposal.InsertOnSubmit( _newDisposal );
@@ -56,7 +56,7 @@ namespace CAS.SmartFactory.Linq.IPR
       this.ClearingType = clearingType;
       this.CustomsProcedure = procedure;
       this.InvoiceNo = invoiceNoumber;
-      this.IPRID.CalcualteDutyAndVat( this, ClearingType.Value );
+      this.CalcualteDutyAndVat( ClearingType.Value );
     }
   }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
 using CAS.SharePoint;
- 
+
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -232,37 +232,34 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       Tytuł = this.BatchLookup.Tytuł + " " + this.DisposalStatus.Value.ToString();
     }
-  }
-  public partial class IPR
-  {
-    internal void CalcualteDutyAndVat( Disposal disposal, ClearingType clearingType )
+    internal void CalcualteDutyAndVat( ClearingType clearingType )
     {
-      double _portion = NetMass.Value / disposal.SettledQuantity.Value;
+      double _portion = IPRID.NetMass.Value / SettledQuantity.Value;
       if ( clearingType == Linq.IPR.ClearingType.PartialWindingUp )
       {
-        disposal.DutyPerSettledAmount = ( Duty.Value * _portion ).RoundCurrency();
-        disposal.VATPerSettledAmount = ( VAT.Value * _portion ).RoundCurrency();
-        disposal.TobaccoValue = ( UnitPrice.Value * _portion ).RoundCurrency();
+        DutyPerSettledAmount = ( IPRID.Duty.Value * _portion ).RoundCurrency();
+        VATPerSettledAmount = ( IPRID.VAT.Value * _portion ).RoundCurrency();
+        TobaccoValue = ( IPRID.UnitPrice.Value * _portion ).RoundCurrency();
       }
       else
       {
-        disposal.DutyPerSettledAmount = GetDutyNotCleared();
-        disposal.VATPerSettledAmount = GetVATNotCleared();
-        disposal.TobaccoValue = GetPriceNotCleared();
+        DutyPerSettledAmount = GetDutyNotCleared();
+        VATPerSettledAmount = GetVATNotCleared();
+        TobaccoValue = GetPriceNotCleared();
       }
-      disposal.DutyAndVAT = disposal.DutyPerSettledAmount.Value + disposal.VATPerSettledAmount.Value;
+      DutyAndVAT = DutyPerSettledAmount.Value + VATPerSettledAmount.Value;
     }
     private double GetDutyNotCleared()
     {
-      return this.Duty.Value - ( from _dec in this.Disposal where _dec.DutyPerSettledAmount.HasValue select new { val = _dec.DutyPerSettledAmount.Value } ).Sum( itm => itm.val );
+      return IPRID.Duty.Value - ( from _dec in IPRID.Disposal where _dec.DutyPerSettledAmount.HasValue select new { val = _dec.DutyPerSettledAmount.Value } ).Sum( itm => itm.val );
     }
     private double GetPriceNotCleared()
     {
-      return this.UnitPrice.Value - ( from _dec in this.Disposal where _dec.TobaccoValue.HasValue select new { val = _dec.TobaccoValue.Value } ).Sum( itm => itm.val );
+      return IPRID.UnitPrice.Value - ( from _dec in IPRID.Disposal where _dec.TobaccoValue.HasValue select new { val = _dec.TobaccoValue.Value } ).Sum( itm => itm.val );
     }
     private double GetVATNotCleared()
     {
-      return this.VAT.Value - ( from _dec in this.Disposal where _dec.VATPerSettledAmount.HasValue select new { val = _dec.VATPerSettledAmount.Value } ).Sum( itm => itm.val );
+      return IPRID.VAT.Value - ( from _dec in IPRID.Disposal where _dec.VATPerSettledAmount.HasValue select new { val = _dec.VATPerSettledAmount.Value } ).Sum( itm => itm.val );
     }
   }
   public static class LinqIPRExtensions
