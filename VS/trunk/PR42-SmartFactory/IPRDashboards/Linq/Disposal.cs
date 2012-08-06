@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.Linq.IPR
             InvoiceNo = "N/A",
             IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
             IPRID = this.IPRID,
-            // CompensationGood = this.CompensationGood,
+            // CompensationGood = this.CompensationGood, //TODO [pr4-3585] Wrong value for CompensationGood http://itrserver/Bugs/BugDetail.aspx?bid=3585
             JSOXCustomsSummaryListLookup = null,
             MaterialLookup = this.MaterialLookup,
             No = int.MaxValue,
@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.Linq.IPR
             SettledQuantity = this.SettledQuantity - _quantity
           };
           _at = "SetUpCalculatedColumns";
-          this.SetUpCalculatedColumns( Linq.IPR.ClearingType.PartialWindingUp );
+          _newDisposal.SetUpCalculatedColumns( Linq.IPR.ClearingType.PartialWindingUp );
           this.SettledQuantity = _quantity;
           _quantity = 0;
           _at = "InsertOnSubmit";
