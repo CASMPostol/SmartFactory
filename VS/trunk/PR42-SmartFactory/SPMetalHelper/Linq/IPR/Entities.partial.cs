@@ -242,7 +242,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       string _titleTmplt = "Disposal: {0} of FG {1}";
       Tytuł = String.Format( _titleTmplt, this.DisposalStatus.Value.ToString(), this.BatchLookup.Tytuł );
-      double _portion = IPRID.NetMass.Value / SettledQuantity.Value;
+      double _portion = SettledQuantity.Value / IPRID.NetMass.Value;
       if ( clearingType == Linq.IPR.ClearingType.PartialWindingUp )
       {
         DutyPerSettledAmount = ( IPRID.Duty.Value * _portion ).RoundCurrency();
