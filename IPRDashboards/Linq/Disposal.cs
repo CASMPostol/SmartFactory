@@ -32,8 +32,7 @@ namespace CAS.SmartFactory.Linq.IPR
           SADDocumentNo = "N/A",
           SettledQuantity = this.SettledQuantity - _quantity, 
         };
-        _newDisposal.SetUpTitle();
-        this.CalcualteDutyAndVat( Linq.IPR.ClearingType.PartialWindingUp );
+        this.SetUpCalculatedColumns( Linq.IPR.ClearingType.PartialWindingUp );
         this.SettledQuantity = _quantity;
         _quantity = 0;
         edc.Disposal.InsertOnSubmit( _newDisposal );
@@ -56,7 +55,7 @@ namespace CAS.SmartFactory.Linq.IPR
       this.ClearingType = clearingType;
       this.CustomsProcedure = procedure;
       this.InvoiceNo = invoiceNoumber;
-      this.CalcualteDutyAndVat( ClearingType.Value );
+      this.SetUpCalculatedColumns( ClearingType.Value );
     }
   }
 }

@@ -228,12 +228,10 @@ namespace CAS.SmartFactory.Linq.IPR
   }
   public partial class Disposal
   {
-    internal void SetUpTitle()
+    internal void SetUpCalculatedColumns( ClearingType clearingType )
     {
-      Tytuł = this.BatchLookup.Tytuł + " " + this.DisposalStatus.Value.ToString();
-    }
-    internal void CalcualteDutyAndVat( ClearingType clearingType )
-    {
+      string _titleTmplt = "Disposal: {0} of FG {1}";
+      Tytuł = String.Format( _titleTmplt, this.DisposalStatus.Value.ToString(), this.BatchLookup.Tytuł );
       double _portion = IPRID.NetMass.Value / SettledQuantity.Value;
       if ( clearingType == Linq.IPR.ClearingType.PartialWindingUp )
       {
