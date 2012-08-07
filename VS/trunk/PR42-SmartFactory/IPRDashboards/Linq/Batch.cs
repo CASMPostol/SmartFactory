@@ -11,7 +11,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       bool closingBatch = this.FGQuantityAvailable == productInvoice.Quantity.Value;
       this.FGQuantityAvailable -= productInvoice.Quantity.Value;
-      double _portion = closingBatch ? 1 :  productInvoice.Quantity.Value / this.FGQuantityKUKg.Value;
+      double _portion = productInvoice.Quantity.Value / this.FGQuantityKUKg.Value;
       CigaretteExportForm _exportConsignment = new CigaretteExportForm( this, productInvoice, _portion );
       foreach ( Material _materialIdx in this.Material )
         _materialIdx.Export( edc, _exportConsignment, closingBatch, invoiceNoumber, procedure, clearence );
