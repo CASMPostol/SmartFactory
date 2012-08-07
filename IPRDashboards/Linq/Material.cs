@@ -16,7 +16,11 @@ namespace CAS.SmartFactory.Linq.IPR
         try
         {
           foreach ( Disposal _disposal in GetListOfDisposals() )
+          {
+            if ( _quantity == 0 )
+              break;
             _disposal.Export( edc, ref _quantity, consignment, closingBatch, invoiceNoumber, procedure, clearence );
+          }
           string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account";
           Anons.Assert( edc, _quantity == 0, "Material.Export", string.Format( _template, this.Batch, _quantity, invoiceNoumber ) );
         }

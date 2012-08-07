@@ -132,13 +132,6 @@ namespace CAS.SmartFactory.Linq.IPR
     } //SummaryContentInfo
     internal class DisposalsAnalisis: SortedList<IPR.DisposalEnum, double>
     {
-      private EntitiesDataContext _edc;
-      private string p;
-      private double p_2;
-      private double _dustRatio;
-      private double _shMentholRatio;
-      private double _wasteRatio;
-      private double _overusageCoefficient;
 
       internal DisposalsAnalisis()
       {
