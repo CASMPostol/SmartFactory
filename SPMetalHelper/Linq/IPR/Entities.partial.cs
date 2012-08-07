@@ -247,7 +247,7 @@ namespace CAS.SmartFactory.Linq.IPR
       {
         DutyPerSettledAmount = ( IPRID.Duty.Value * _portion ).RoundCurrency();
         VATPerSettledAmount = ( IPRID.VAT.Value * _portion ).RoundCurrency();
-        TobaccoValue = ( IPRID.UnitPrice.Value * _portion ).RoundCurrency();
+        TobaccoValue = ( IPRID.Value.Value * _portion ).RoundCurrency();
       }
       else
       {
