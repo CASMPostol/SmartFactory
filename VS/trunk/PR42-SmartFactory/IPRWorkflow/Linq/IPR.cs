@@ -42,7 +42,7 @@ namespace CAS.SmartFactory.Linq.IPR
           DocumentNo = _nc.DocumentNo,
           Duty = _iprdata.Duty,
           DutyName = _iprdata.DutyName,
-          DutyPerUnit = _iprdata.DutyPerUnit, 
+          DutyPerUnit = _iprdata.DutyPerUnit,
           Grade = _iprdata.GradeName,
           GrossMass = _iprdata.GrossMass,
           InvoiceNo = _iprdata.InvoiceNo,
@@ -175,9 +175,8 @@ namespace CAS.SmartFactory.Linq.IPR
           else
             throw new IPRDataConsistencyException( "IPRData.GetCartons", String.Format( "Unexpected message {0} message", _messageType ), null, "Unexpected message" );
           _at = "SADQuantity";
-          SADQuantity _quantity = FirstSADGood.SADQuantity.First();
-          _at = "NetMass";
-          NetMass = _quantity.NetMass.Value;
+          SADQuantity _quantity = FirstSADGood.SADQuantity.FirstOrDefault();
+          NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault(0);
           _at = "Cartons";
           if ( _packagex.Package.ToUpper().Contains( "CT" ) )
             Cartons = GrossMass - NetMass;
