@@ -106,6 +106,9 @@
     <Compile Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.cs">
       <DependentUpon>CigaretteExportFormCollection.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DocumentsFactory\CigaretteExportForm\Ingredient.cs" />
+    <Compile Include="DocumentsFactory\CigaretteExportForm\IPRIngredient.cs" />
+    <Compile Include="DocumentsFactory\CigaretteExportForm\RegularIngredient.cs" />
     <Compile Include="ERP\batch.cs">
       <DependentUpon>Batch.xsd</DependentUpon>
     </Compile>
