@@ -103,6 +103,9 @@
     <Compile Include="Dictionaries\Configuration.cs">
       <DependentUpon>Configuration.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.cs">
+      <DependentUpon>CigaretteExportFormCollection.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ERP\batch.cs">
       <DependentUpon>Batch.xsd</DependentUpon>
     </Compile>
@@ -347,6 +350,11 @@
     </None>
     <None Include="Dictionaries\GoXSD.ps1" />
     <None Include="Dictionaries\JTIConfigurationData.xlsx" />
+    <None Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DocumentsFactory\CigaretteExportForm\GoXSD.ps1" />
+    <None Include="DocumentsFactory\CigaretteExportForm\GoCS.ps1" />
     <None Include="ERP\Batch.xltx" />
     <None Include="ERP\Batch.xsd">
       <SubType>Designer</SubType>
@@ -380,7 +388,9 @@
     <Reference Include="System" />
     <Reference Include="System.XML" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xslt" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
