@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CAS.SharePoint;
+using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Disposal
   {
-    internal void Export( EntitiesDataContext edc, ref double _quantity, CigaretteExportForm _batchAnalysis, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
+    internal void Export( EntitiesDataContext edc, ref double _quantity, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
     {
       string _at = "startting";
       try
@@ -54,10 +55,9 @@ namespace CAS.SmartFactory.Linq.IPR
         this.StartClearance( _clearingType, invoiceNoumber, procedure, clearence );
         _at = "new IPRIngredient";
         IPRIngredient _ingredient = new IPRIngredient( this );
-        _batchAnalysis.Add( _ingredient );
+        ingredient.Add( _ingredient );
         _at = "SubmitChanges #2";
         edc.SubmitChanges();
-
       }
       catch ( Exception ex )
       {

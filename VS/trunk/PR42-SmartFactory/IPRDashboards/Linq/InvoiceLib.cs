@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CAS.SharePoint.Web;
+using CAS.SharePoint;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -10,43 +11,45 @@ namespace CAS.SmartFactory.Linq.IPR
   {
     internal static GenericStateMachineEngine.ActionResult PrepareConsignment( EntitiesDataContext entitiesDataContext, List<CigaretteExportForm> _consignment )
     {
-      
       return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException(), "InvoiceLib.PrepareConsignment" );
     }
   }
-  public abstract class Ingredient
-  {
-    internal Ingredient( double quantity )
-    {
-      IngredientQuantity = quantity;
-    }
-    internal double IngredientQuantity { get; private set; }
-  }
-  public class IPRIngredient: Ingredient
+
+  public class IPRIngredient: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.IPRIngredient
   {
     public IPRIngredient( Disposal disposal )
-      : base( disposal.SettledQuantity.Value )
+      : base( disposal.IPRID.Batch, disposal.IPRID.SKU, disposal.SettledQuantity.Value )
     {
-      this.disposal = disposal;
+      IPR _ipr = disposal.IPRID;
+      this.Currency = _ipr.Currency;
+      this.Date = _ipr.CustomsDebtDate.Value;
+      this.DocumentNoumber = _ipr.DocumentNo;
+      this.Duty = disposal.DutyPerSettledAmount.Value;
+      switch ( disposal.ClearingType.Value )
+      {
+        case ClearingType.PartialWindingUp:
+          this.ItemClearingType = xml.DocumentsFactory.CigaretteExportForm.ClearingType.PartialWindingUp;
+          break;
+        case ClearingType.TotalWindingUp:
+          this.ItemClearingType = xml.DocumentsFactory.CigaretteExportForm.ClearingType.PartialWindingUp;
+          break;
+        default:
+          throw new ApplicationError( "InvoiceLib.IPRIngredient", "ItemClearingType", "Wrong Clearing Type", null );
+      }
+      this.TobaccoUnitPrice = _ipr.UnitPrice.Value;
+      this.TobaccoValue = disposal.DutyPerSettledAmount.Value;
+      this.VAT = disposal.VATPerSettledAmount.Value;
     }
-    internal IPR IPRAccount { get { return disposal.IPRID; } }
-    internal bool ClosingEntry { get { return disposal.ClearingType.Value == ClearingType.TotalWindingUp; } }
-    private Disposal disposal;
   }
-  public class RegularIngredient: Ingredient
+  public class RegularIngredient: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.RegularIngredient
   {
-    public RegularIngredient( double quantity, string sku, string batch )
-      : base( quantity )
-    {
-      IngredientSKU = sku;
-      IngredientBatch = batch;
-    }
-    public string IngredientSKU { get; private set; }
-    public string IngredientBatch { get; private set; }
+    public RegularIngredient( string batch, string sku, double quantity )
+      : base( batch, sku, quantity )
+    { }
   }
-  public class CigaretteExportForm: List<Ingredient>
+  public class CigaretteExportForm: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm
   {
-    internal CigaretteExportForm( Batch batch, InvoiceContent invoice, double portion )
+    internal CigaretteExportForm( Batch batch, InvoiceContent invoice, double portion, List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.Ingredient> _ingredients )
     {
       if ( batch == null )
         throw new ArgumentNullException( "Batch cannot be null" );
@@ -56,30 +59,30 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new ArgumentNullException( "Format in SKU cannot be null" );
       if ( invoice == null )
         throw new ArgumentNullException( "Invoice cannot be null" );
-      ProductBatch = batch;
-      ProductInvoice = invoice;
-      Portion = portion;
-      DustKg = batch.DustKg.Value * portion;
-      SHMentholKg = batch.SHMentholKg.Value * portion;
-      WasteKg = batch.WasteKg.Value + portion;
+      this.DustKg = batch.DustKg.Value * portion;
+      this.Ingredients = _ingredients.ToArray();
+      this.Portion = portion;
+      switch ( batch.ProductType.Value )
+      {
+        case ProductType.Cutfiller:
+          this.Product = xml.DocumentsFactory.CigaretteExportForm.ProductType.Cutfiller;
+         break;
+        case ProductType.Cigarette:
+          this.Product = xml.DocumentsFactory.CigaretteExportForm.ProductType.Cigarette;
+          break;
+        default:
+          throw new ApplicationError( "InvoiceLib.CigaretteExportForm", "Product", "Wrong ProductType", null );
+      }
+      this.ProductFormat = batch.SKULookup.FormatLookup.Tytuł;
+      this.SHMentholKg = batch.SHMentholKg.Value * portion;
+      this.WasteKg = batch.WasteKg.Value + portion;
     }
-    public type SKU<type>()
-      where type: SKUCommonPart
-    {
-      return (type)ProductBatch.SKULookup;
-    }
-    public Format ProductFormat { get { return ProductBatch.SKULookup.FormatLookup; } }
-    public Batch ProductBatch { get; private set; }
-    public InvoiceContent ProductInvoice { get; private set; }
-    public double DustKg { get; private set; }
-    public double SHMentholKg { get; private set; }
-    public double WasteKg { get; private set; }
-    public double TotalDSWKg { get { return DustKg + SHMentholKg + WasteKg; } }
-    public double Portion { get; private set; }
-    public ProductType Product { get { return ProductBatch.ProductType.Value; } }
   }
-  public class CigaretteExportFormCollection
+  public class CigaretteExportFormCollection: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection
   {
-    public CigaretteExportForm[] CigaretteExportForms { get; set; }
+    public CigaretteExportFormCollection(List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> cigaretteExportForms)
+    {
+      this.CigaretteExportForms = cigaretteExportForms.ToArray();
+    }
   }
 }
