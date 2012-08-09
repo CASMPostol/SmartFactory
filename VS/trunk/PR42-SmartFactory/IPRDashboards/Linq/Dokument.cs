@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.Linq.IPR
         SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ CommonDefinitions.IPRSADConsignmentLibraryTitle ];
         _stt = "SPDocumentLibrary";
         _stt = "AddDocument2Collection";
-        SPFile _docFile = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection.AddDocument2Collection( _lib.RootFolder.Files, fileName);
+        SPFile _docFile = _cefc.AddDocument2Collection( _lib.RootFolder.Files, fileName );
         return _docFile.Item.ID;
       }
       catch ( Exception ex )
