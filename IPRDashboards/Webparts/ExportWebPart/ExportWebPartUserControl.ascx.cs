@@ -541,6 +541,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       _invoice.ReadOnly = true;
       int _sadConsignmentIdentifier = Dokument.PrepareConsignment( site, _consignment, _newClearance.Tytuł );
       Dokument _sadConsignment = Element.GetAtIndex<Dokument>( m_DataContextManagement.DataContext.SADConsignmentLibrary, _sadConsignmentIdentifier );
+      _newClearance.SADConsignmentLibraryLookup = _sadConsignment;
       m_DataContextManagement.DataContext.SubmitChanges();
       return GenericStateMachineEngine.ActionResult.Success;
     }
