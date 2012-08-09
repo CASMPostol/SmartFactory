@@ -7,6 +7,7 @@ using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
+using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -505,7 +506,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         switch ( m_ExportProcedureRadioButtonList.SelectedValue )
         {
           case "Export":
-            return Export();
+            return Export( SPContext.Current.Web );
           case "Revert":
             return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException( "Revert FG to free circulation is not implemented yet" ), "ClearThroughCustom" );
         }
@@ -516,7 +517,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       return GenericStateMachineEngine.ActionResult.Success;
     }
-    private GenericStateMachineEngine.ActionResult Export()
+    private GenericStateMachineEngine.ActionResult Export( SPWeb site )
     {
       InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
@@ -531,15 +532,17 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
       }
       _invoice.OK = true;
-      List<CigaretteExportForm> _consignment = new List<CigaretteExportForm>();
+      List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> _consignment = new List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm>();
       string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
       string _title = Resources.FinishedGoodsExportFormFileName;
       Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _title, _customsProcedureCode, Procedure._3151 );
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
         item.BatchID.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance );
       _invoice.ReadOnly = true;
+      int _sadConsignmentIdentifier = Dokument.PrepareConsignment( site, _consignment, _newClearance.Tytuł );
+      Dokument _sadConsignment = Element.GetAtIndex<Dokument>( m_DataContextManagement.DataContext.SADConsignmentLibrary, _sadConsignmentIdentifier );
       m_DataContextManagement.DataContext.SubmitChanges();
-      return InvoiceLib.PrepareConsignment( m_DataContextManagement.DataContext, _consignment );
+      return GenericStateMachineEngine.ActionResult.Success;
     }
     private GenericStateMachineEngine.ActionResult Show()
     {

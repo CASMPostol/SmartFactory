@@ -5,4 +5,5 @@ string AssemblyTrademark = "Smart Factory";
 string AssemblyCopyright = "Copyright (c) CAS 2012";
 string AssemblyProduct = "Smart Factory";
 string AssemblyCompany = "CAS";
+string IPRSADConsignmentLibraryTitle = "SAD Consignment Library";
 #>
