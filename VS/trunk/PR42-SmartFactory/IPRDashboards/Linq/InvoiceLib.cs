@@ -2,20 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CAS.SharePoint.Web;
+using WebCommonDefinitions = CAS.SharePoint.Web.CommonDefinitions;
 using CAS.SharePoint;
+using Microsoft.SharePoint;
+using CAS.SmartFactory.IPR.Dashboards;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class InvoiceLib
+  public partial class Dokument
   {
-    internal static GenericStateMachineEngine.ActionResult PrepareConsignment( EntitiesDataContext entitiesDataContext, List<CigaretteExportForm> _consignment )
+    internal static int PrepareConsignment
+      ( SPWeb site, List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> _consignment, string fileName )
     {
-      return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException(), "InvoiceLib.PrepareConsignment" );
+      string _stt = "Starting";
+      try
+      {
+        CigaretteExportFormCollection _cefc = new CigaretteExportFormCollection( _consignment );
+        SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ CommonDefinitions.IPRSADConsignmentLibraryTitle ];
+        _stt = "SPDocumentLibrary";
+        _stt = "AddDocument2Collection";
+        SPFile _docFile = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection.AddDocument2Collection( _lib.RootFolder.Files, fileName);
+        return _docFile.Item.ID;
+      }
+      catch ( Exception ex )
+      {
+        throw new ApplicationError( "InvoiceLib.PrepareConsignment" , _stt ,String.Format("Cannot finish the operation because of error {0}", ex.Message), ex);
+      }
     }
   }
-
-  public class IPRIngredient: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.IPRIngredient
+  internal class IPRIngredient: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.IPRIngredient
   {
     public IPRIngredient( Disposal disposal )
       : base( disposal.IPRID.Batch, disposal.IPRID.SKU, disposal.SettledQuantity.Value )
@@ -41,13 +56,13 @@ namespace CAS.SmartFactory.Linq.IPR
       this.VAT = disposal.VATPerSettledAmount.Value;
     }
   }
-  public class RegularIngredient: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.RegularIngredient
+  internal class RegularIngredient: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.RegularIngredient
   {
     public RegularIngredient( string batch, string sku, double quantity )
       : base( batch, sku, quantity )
     { }
   }
-  public class CigaretteExportForm: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm
+  internal class CigaretteExportForm: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm
   {
     internal CigaretteExportForm( Batch batch, InvoiceContent invoice, double portion, List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.Ingredient> _ingredients )
     {
@@ -66,7 +81,7 @@ namespace CAS.SmartFactory.Linq.IPR
       {
         case ProductType.Cutfiller:
           this.Product = xml.DocumentsFactory.CigaretteExportForm.ProductType.Cutfiller;
-         break;
+          break;
         case ProductType.Cigarette:
           this.Product = xml.DocumentsFactory.CigaretteExportForm.ProductType.Cigarette;
           break;
@@ -78,9 +93,9 @@ namespace CAS.SmartFactory.Linq.IPR
       this.WasteKg = batch.WasteKg.Value + portion;
     }
   }
-  public class CigaretteExportFormCollection: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection
+  internal class CigaretteExportFormCollection: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection
   {
-    public CigaretteExportFormCollection(List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> cigaretteExportForms)
+    public CigaretteExportFormCollection( List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> cigaretteExportForms )
     {
       this.CigaretteExportForms = cigaretteExportForms.ToArray();
     }

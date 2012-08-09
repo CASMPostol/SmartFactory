@@ -10,7 +10,7 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class Batch
   {
     internal void Export
-      ( EntitiesDataContext edc, InvoiceContent productInvoice, List<CigaretteExportForm> consignment, string invoiceNoumber, string procedure, Clearence clearence )
+      ( EntitiesDataContext edc, InvoiceContent productInvoice, List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> consignment, string invoiceNoumber, string procedure, Clearence clearence )
     {
       bool closingBatch = this.FGQuantityAvailable == productInvoice.Quantity.Value;
       this.FGQuantityAvailable -= productInvoice.Quantity.Value;

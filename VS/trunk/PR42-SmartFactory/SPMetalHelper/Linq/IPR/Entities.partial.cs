@@ -146,7 +146,6 @@ namespace CAS.SmartFactory.Linq.IPR
       int? _index = _ID.String2Int();
       if ( !_index.HasValue )
         throw new ApplicationException( typeof( t ).Name + " index is null" );
-      ;
       try
       {
         return (
@@ -157,6 +156,28 @@ namespace CAS.SmartFactory.Linq.IPR
       catch ( Exception )
       {
         throw new ApplicationException( String.Format( "{0} cannot be found at specified index{1}", typeof( t ).Name, _index.Value ) );
+      }
+    }
+    /// <summary>
+    /// Gets at index.
+    /// </summary>
+    /// <typeparam name="t"></typeparam>
+    /// <param name="list">The _list.</param>
+    /// <param name="index">The _index.</param>
+    /// <returns>
+    /// An instance of the <see cref="t"/> for the selected index.
+    /// </returns>
+    /// <exception cref="ApplicationException">_ID is nuul or element cannot be found.</exception>
+    internal static t GetAtIndex<t>( EntityList<t> list, int index )
+      where t: Element
+    {
+      try
+      {
+        return (from idx in list where idx.Identyfikator == index select idx ).First();
+      }
+      catch ( Exception )
+      {
+        throw new ApplicationException( String.Format( "{0} cannot be found at specified index{1}", typeof( t ).Name, index ) );
       }
     }
     internal static t FindAtIndex<t>( EntityList<t> _list, string _ID )
