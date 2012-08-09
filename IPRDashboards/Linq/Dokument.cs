@@ -17,7 +17,7 @@ namespace CAS.SmartFactory.Linq.IPR
       string _stt = "Starting";
       try
       {
-        CigaretteExportFormCollection _cefc = new CigaretteExportFormCollection( _consignment );
+        CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection _cefc = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( _consignment );
         SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ CommonDefinitions.IPRSADConsignmentLibraryTitle ];
         _stt = "SPDocumentLibrary";
         _stt = "AddDocument2Collection";
@@ -26,7 +26,7 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       catch ( Exception ex )
       {
-        throw new ApplicationError( "InvoiceLib.PrepareConsignment" , _stt ,String.Format("Cannot finish the operation because of error {0}", ex.Message), ex);
+        throw new ApplicationError( "InvoiceLib.PrepareConsignment", _stt, String.Format( "Cannot finish the operation because of error {0}", ex.Message ), ex );
       }
     }
   }
@@ -93,11 +93,17 @@ namespace CAS.SmartFactory.Linq.IPR
       this.WasteKg = batch.WasteKg.Value + portion;
     }
   }
-  internal class CigaretteExportFormCollection: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection
+  public static class CigaretteExportFormCollectionFactory //: CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection
   {
-    public CigaretteExportFormCollection( List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> cigaretteExportForms )
+    //[Obsolete("Use only for Xml serialization")]
+    //public CigaretteExportFormCollection() { }
+    internal static CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection CigaretteExportFormCollection( List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> cigaretteExportForms )
     {
-      this.CigaretteExportForms = cigaretteExportForms.ToArray();
+      CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection _ret = new xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection()
+      {
+        CigaretteExportForms = cigaretteExportForms.ToArray()
+      };
+      return _ret;
     }
   }
 }
