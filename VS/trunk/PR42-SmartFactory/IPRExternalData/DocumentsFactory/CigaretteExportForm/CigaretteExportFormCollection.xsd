@@ -9,7 +9,7 @@
   </xs:element>
   <xs:complexType name="ArrayOfCigaretteExportForm">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="CigaretteExportForm" nillable="true" type="tns:CigaretteExportForm" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CigaretteExportForm" nillable="false" type="tns:CigaretteExportForm" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="CigaretteExportForm">
@@ -20,7 +20,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="WasteKg" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="Portion" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="Product" type="tns:ProductType" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Ingredients" type="tns:ArrayOfChoice1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Ingredients" type="tns:ArrayOfIngredients" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="ProductType">
@@ -29,10 +29,10 @@
       <xs:enumeration value="Cigarette" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="ArrayOfChoice1">
+  <xs:complexType name="ArrayOfIngredients">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
-      <xs:element minOccurs="1" maxOccurs="1" name="IPRIngredient" nillable="true" type="tns:IPRIngredient" />
-      <xs:element minOccurs="1" maxOccurs="1" name="RegularIngredient" nillable="true" type="tns:RegularIngredient" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IPRIngredient" nillable="false" type="tns:IPRIngredient" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RegularIngredient" nillable="false" type="tns:RegularIngredient" />
     </xs:choice>
   </xs:complexType>
   <xs:complexType name="IPRIngredient">
