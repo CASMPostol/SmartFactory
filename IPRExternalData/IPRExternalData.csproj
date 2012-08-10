@@ -396,6 +396,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xml" />
     <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xslt" />
   </ItemGroup>
   <ItemGroup>

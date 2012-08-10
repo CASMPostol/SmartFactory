@@ -27,6 +27,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         private CigaretteExportForm[] cigaretteExportFormsField;
         
         /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
         public CigaretteExportForm[] CigaretteExportForms {
             get {
                 return this.cigaretteExportFormsField;
@@ -120,8 +121,8 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlArrayItemAttribute(typeof(IPRIngredient))]
-        [System.Xml.Serialization.XmlArrayItemAttribute(typeof(RegularIngredient))]
+        [System.Xml.Serialization.XmlArrayItemAttribute(typeof(IPRIngredient), IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute(typeof(RegularIngredient), IsNullable=false)]
         public Ingredient[] Ingredients {
             get {
                 return this.ingredientsField;
