@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm
       using ( MemoryStream _docStrm = new MemoryStream() )
       {
         _srlzr.Serialize( _docStrm, this );
-        _docFile = _dstCollection.Add( fileName + "xml", _docStrm, true );
+        _docFile = _dstCollection.Add( fileName + ".xml", _docStrm, true );
       }
       return _docFile;
     }

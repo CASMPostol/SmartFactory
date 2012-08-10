@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
           throw new ApplicationError( "InvoiceLib.IPRIngredient", "ItemClearingType", "Wrong Clearing Type", null );
       }
       _ret.TobaccoUnitPrice = _ipr.UnitPrice.Value;
-      _ret.TobaccoValue = disposal.DutyPerSettledAmount.Value;
+      _ret.TobaccoValue = disposal.TobaccoValue.Value;
       _ret.VAT = disposal.VATPerSettledAmount.Value;
       return _ret;
     }
