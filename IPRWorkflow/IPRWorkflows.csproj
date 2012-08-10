@@ -71,7 +71,6 @@
     <Compile Include="Linq\CustomsUnion.cs" />
     <Compile Include="Linq\CutfillerCoefficient.cs" />
     <Compile Include="Linq\Dust.cs" />
-    <Compile Include="Linq\Element.cs" />
     <Compile Include="Linq\EntitiesDataContext.cs" />
     <Compile Include="Linq\Extensions.cs" />
     <Compile Include="Linq\Format.cs" />
