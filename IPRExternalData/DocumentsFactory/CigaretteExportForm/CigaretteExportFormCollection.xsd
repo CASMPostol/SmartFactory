@@ -3,6 +3,7 @@
   <xs:element name="CigaretteExportFormCollection" nillable="true">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
         <xs:element minOccurs="0" maxOccurs="1" name="CigaretteExportForms" type="tns:ArrayOfCigaretteExportForm" />
       </xs:sequence>
     </xs:complexType>
@@ -14,6 +15,7 @@
   </xs:complexType>
   <xs:complexType name="CigaretteExportForm">
     <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="ProductFormat" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="DustKg" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="SHMentholKg" type="xs:double" />
@@ -31,8 +33,8 @@
   </xs:simpleType>
   <xs:complexType name="ArrayOfIngredients">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
-      <xs:element minOccurs="1" maxOccurs="1" name="IPRIngredient" nillable="false" type="tns:IPRIngredient" />
-      <xs:element minOccurs="1" maxOccurs="1" name="RegularIngredient" nillable="false" type="tns:RegularIngredient" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPRIngredient" type="tns:IPRIngredient" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RegularIngredient" type="tns:RegularIngredient" />
     </xs:choice>
   </xs:complexType>
   <xs:complexType name="IPRIngredient">

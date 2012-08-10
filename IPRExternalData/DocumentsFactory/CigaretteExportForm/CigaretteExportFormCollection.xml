@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CigaretteExportFormCollection xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd">
+  <DocumentNo>DocumentNo1</DocumentNo>
   <CigaretteExportForms>
     <CigaretteExportForm>
+      <DocumentNo>DocumentNo1</DocumentNo>
       <ProductFormat>ProductFormat1</ProductFormat>
       <DustKg>1</DustKg>
       <SHMentholKg>1</SHMentholKg>
@@ -43,6 +45,7 @@
       </Ingredients>
     </CigaretteExportForm>
     <CigaretteExportForm>
+      <DocumentNo>DocumentNo2</DocumentNo>
       <ProductFormat>ProductFormat2</ProductFormat>
       <DustKg>-1.7976931348623157E+308</DustKg>
       <SHMentholKg>-1.7976931348623157E+308</SHMentholKg>
@@ -84,6 +87,7 @@
       </Ingredients>
     </CigaretteExportForm>
     <CigaretteExportForm>
+      <DocumentNo>DocumentNo3</DocumentNo>
       <ProductFormat>ProductFormat3</ProductFormat>
       <DustKg>1.7976931348623157E+308</DustKg>
       <SHMentholKg>1.7976931348623157E+308</SHMentholKg>
