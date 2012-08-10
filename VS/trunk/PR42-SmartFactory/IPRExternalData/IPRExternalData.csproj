@@ -397,7 +397,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xml" />
-    <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xslt" />
+    <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xslt">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

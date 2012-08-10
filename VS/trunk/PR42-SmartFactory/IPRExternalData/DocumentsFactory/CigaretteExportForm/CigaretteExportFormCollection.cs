@@ -24,7 +24,19 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd", IsNullable=true)]
     public partial class CigaretteExportFormCollection {
         
+        private string documentNoField;
+        
         private CigaretteExportForm[] cigaretteExportFormsField;
+        
+        /// <uwagi/>
+        public string DocumentNo {
+            get {
+                return this.documentNoField;
+            }
+            set {
+                this.documentNoField = value;
+            }
+        }
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
@@ -46,6 +58,8 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd")]
     public partial class CigaretteExportForm {
         
+        private string documentNoField;
+        
         private string productFormatField;
         
         private double dustKgField;
@@ -59,6 +73,16 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         private ProductType productField;
         
         private Ingredient[] ingredientsField;
+        
+        /// <uwagi/>
+        public string DocumentNo {
+            get {
+                return this.documentNoField;
+            }
+            set {
+                this.documentNoField = value;
+            }
+        }
         
         /// <uwagi/>
         public string ProductFormat {

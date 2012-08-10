@@ -188,15 +188,19 @@ namespace IPRDashboardsTest
       };
       IPRIngredient _iprIngredient = IPRIngredientFactory.IPRIngredient( _disposal );
       ingridients.Add( _iprIngredient );
-      CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients );
+      string _masterDocumentName = "CigaretteExportFormFactory";
+      int _position = 1;
       List<XmlCigaretteExportForm> cigaretteExportForms = new List<XmlCigaretteExportForm>();
+      CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position );
       cigaretteExportForms.Add( _cigaretteExportForm );
-      CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportForms );
-      XmlSerializer _srlzr = new XmlSerializer( typeof( CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection ) );
-      using ( FileStream _docStrm = File.OpenWrite("CigaretteExportFormFactory.xml") )
+      _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position );
+      cigaretteExportForms.Add( _cigaretteExportForm );
+      CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportForms, _masterDocumentName );
+      XmlSerializer _srlzr = new XmlSerializer( typeof( CigaretteExportFormCollection ) );
+      using ( FileStream _docStrm = File.OpenWrite( _masterDocumentName + ".xml" ) )
       {
         _srlzr.Serialize( _docStrm, target );
-        Assert.AreEqual( _docStrm.Length, 1219, "the length of created stream is wrong" );
+        Assert.AreEqual( _docStrm.Length, 2289, "the length of created stream is wrong" );
       }
     }
   }

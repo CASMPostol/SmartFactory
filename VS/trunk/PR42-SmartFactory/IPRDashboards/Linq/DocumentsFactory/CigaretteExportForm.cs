@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CAS.SharePoint;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
+using CAS.SmartFactory.IPR.Dashboards;
 
 namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
 {
@@ -41,7 +42,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
   }
   internal static class CigaretteExportFormFactory
   {
-    internal static CigaretteExportForm CigaretteExportForm( Batch batch, InvoiceContent invoice, double portion, List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.Ingredient> _ingredients )
+    internal static CigaretteExportForm CigaretteExportForm
+      ( Batch batch, InvoiceContent invoice, double portion, List<Ingredient> _ingredients, string masretDocumentNo, ref int subdocumentNo )
     {
       CigaretteExportForm _ret = new CigaretteExportForm();
       if ( batch == null )
@@ -52,6 +54,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
         throw new ArgumentNullException( "Format in SKU cannot be null" );
       if ( invoice == null )
         throw new ArgumentNullException( "Invoice cannot be null" );
+      _ret.DocumentNo = String.Format(GlobalDefinitions.CigaretteExportFormNamePatern, masretDocumentNo, subdocumentNo++);
       _ret.DustKg = batch.DustKg.Value * portion;
       _ret.Ingredients = _ingredients.ToArray();
       _ret.Portion = portion;
@@ -74,11 +77,12 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
   }
   internal static class CigaretteExportFormCollectionFactory
   {
-    internal static CigaretteExportFormCollection CigaretteExportFormCollection( List<CigaretteExportForm> cigaretteExportForms )
+    internal static CigaretteExportFormCollection CigaretteExportFormCollection( List<CigaretteExportForm> cigaretteExportForms, string documentNo )
     {
       CigaretteExportFormCollection _ret = new CigaretteExportFormCollection()
       {
-        CigaretteExportForms = cigaretteExportForms.ToArray()
+        CigaretteExportForms = cigaretteExportForms.ToArray(),
+        DocumentNo = documentNo
       };
       return _ret;
     }

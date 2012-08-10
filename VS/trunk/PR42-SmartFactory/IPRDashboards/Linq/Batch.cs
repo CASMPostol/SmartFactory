@@ -11,7 +11,15 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class Batch
   {
     internal void Export
-      ( EntitiesDataContext edc, InvoiceContent productInvoice, List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> consignment, string invoiceNoumber, string procedure, Clearence clearence )
+      ( 
+        EntitiesDataContext edc, 
+        InvoiceContent productInvoice, 
+        List<CigaretteExportForm> consignment, 
+        string invoiceNoumber, string procedure, 
+        Clearence clearence, 
+        string masterDocumentNo, 
+        ref int _position 
+      )
     {
       bool closingBatch = this.FGQuantityAvailable == productInvoice.Quantity.Value;
       this.FGQuantityAvailable -= productInvoice.Quantity.Value;
@@ -19,7 +27,7 @@ namespace CAS.SmartFactory.Linq.IPR
       List<Ingredient> _ingredients = new List<Ingredient>();
       foreach ( Material _materialIdx in this.Material )
         _materialIdx.Export( edc, _ingredients, closingBatch, invoiceNoumber, procedure, clearence, _portion );
-      CigaretteExportForm _exportConsignment = CigaretteExportFormFactory.CigaretteExportForm( this, productInvoice, _portion, _ingredients );
+      CigaretteExportForm _exportConsignment = CigaretteExportFormFactory.CigaretteExportForm( this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position );
       consignment.Add( _exportConsignment );
     }
     internal ActionResult ExportPossible( double? quantity )

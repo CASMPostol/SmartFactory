@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.Dashboards;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
+using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Linq.IPR
@@ -15,7 +16,7 @@ namespace CAS.SmartFactory.Linq.IPR
       string _stt = "Starting";
       try
       {
-        CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection _cefc = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( _consignment );
+        CigaretteExportFormCollection _cefc = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( _consignment, fileName );
         SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ CommonDefinitions.IPRSADConsignmentLibraryTitle ];
         _stt = "AddDocument2Collection";
         SPFile _docFile = _cefc.AddDocument2Collection( _lib.RootFolder.Files, fileName );
