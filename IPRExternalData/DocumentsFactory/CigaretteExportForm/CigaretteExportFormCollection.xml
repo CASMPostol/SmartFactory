@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CigaretteExportFormCollection xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd">
+  <CigaretteExportForms>
+    <CigaretteExportForm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+    <CigaretteExportForm>
+      <ProductFormat>ProductFormat1</ProductFormat>
+      <DustKg>1</DustKg>
+      <SHMentholKg>1</SHMentholKg>
+      <WasteKg>1</WasteKg>
+      <Portion>1</Portion>
+      <Product>Cutfiller</Product>
+      <Ingredients>
+        <IPRIngredient xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+        <RegularIngredient xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+        <IPRIngredient>
+          <TobaccoSKU>TobaccoSKU1</TobaccoSKU>
+          <TobaccoBatch>TobaccoBatch1</TobaccoBatch>
+          <TobaccoQuantity>1</TobaccoQuantity>
+          <DocumentNoumber>DocumentNoumber1</DocumentNoumber>
+          <Date>1900-01-01T01:01:01+01:00</Date>
+          <TobaccoUnitPrice>1</TobaccoUnitPrice>
+          <TobaccoValue>1</TobaccoValue>
+          <ItemClearingType>PartialWindingUp</ItemClearingType>
+          <Currency>Currency1</Currency>
+          <Duty>1</Duty>
+          <VAT>1</VAT>
+        </IPRIngredient>
+      </Ingredients>
+    </CigaretteExportForm>
+    <CigaretteExportForm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+  </CigaretteExportForms>
+</CigaretteExportFormCollection>

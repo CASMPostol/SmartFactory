@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using Microsoft.SharePoint;
 using System.Xml.Serialization;
 using System.IO;
+using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
+using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 
 namespace IPRDashboardsTest
 {
@@ -99,7 +101,7 @@ namespace IPRDashboardsTest
         MaterialQuantity = 5000,
         MaterialQuantityPrevious = 0,
         OveruseKg = 0,
-        ProductType = ProductType.Cigarette,
+        ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette,
         SHCoeficiencyVersion = 1,
         SHCooeficiency = 0.01,
         SHMentholKg = 1.3,
@@ -119,7 +121,7 @@ namespace IPRDashboardsTest
       {
         BatchID = _batch,
         InvoiceLookup = null,
-        ProductType = ProductType.Cigarette,
+        ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette,
         Quantity = _quantity * _portion,
         SKUDescription = _batch.SKU,
         Status = Status.OK,
@@ -164,7 +166,7 @@ namespace IPRDashboardsTest
       {
         BatchLookup = _batch,
         ClearenceListLookup = null,
-        ClearingType = ClearingType.PartialWindingUp,
+        ClearingType = CAS.SmartFactory.Linq.IPR.ClearingType.PartialWindingUp,
         CustomsProcedure = "5100",
         CustomsStatus = CustomsStatus.NotStarted,
         DisposalStatus = DisposalStatus.TobaccoInCigaretesWarehouse,
@@ -184,17 +186,17 @@ namespace IPRDashboardsTest
         Tytuł = "Testing disposal",
         VATPerSettledAmount = 78.90,
       };
-      IPRIngredient _iprIngredient = new IPRIngredient( _disposal );
+      IPRIngredient _iprIngredient = IPRIngredientFactory.IPRIngredient( _disposal );
       ingridients.Add( _iprIngredient );
-      CAS.SmartFactory.Linq.IPR.CigaretteExportForm _cigaretteExportForm = new CigaretteExportForm( _batch, invoice, 0.5, ingridients );
+      CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients );
       List<XmlCigaretteExportForm> cigaretteExportForms = new List<XmlCigaretteExportForm>();
       cigaretteExportForms.Add( _cigaretteExportForm );
-      CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportForms );
+      CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportForms );
       XmlSerializer _srlzr = new XmlSerializer( typeof( CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportFormCollection ) );
-      using ( MemoryStream _docStrm = new MemoryStream() )
+      using ( FileStream _docStrm = File.OpenWrite("CigaretteExportFormFactory.xml") )
       {
         _srlzr.Serialize( _docStrm, target );
-        Assert.AreEqual( _docStrm.Length == 123, "the length of created stream is wrong" );
+        Assert.AreEqual( _docStrm.Length, 1219, "the length of created stream is wrong" );
       }
     }
   }

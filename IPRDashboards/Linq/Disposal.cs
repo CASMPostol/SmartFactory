@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CAS.SharePoint;
+using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 
 namespace CAS.SmartFactory.Linq.IPR
@@ -54,7 +53,7 @@ namespace CAS.SmartFactory.Linq.IPR
         _at = "StartClearance";
         this.StartClearance( _clearingType, invoiceNoumber, procedure, clearence );
         _at = "new IPRIngredient";
-        IPRIngredient _ingredient = new IPRIngredient( this );
+        IPRIngredient _ingredient = IPRIngredientFactory.IPRIngredient( this );
         ingredient.Add( _ingredient );
         _at = "SubmitChanges #2";
         edc.SubmitChanges();
