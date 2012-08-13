@@ -396,10 +396,13 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xml" />
+    <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xslt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.htm" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
