@@ -4,7 +4,7 @@
     xmlns:cas="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd"
 >
   <xsl:output method="html" indent="yes"/>
-  <xsl:variable name="FoarmatOfFloat" >### ##0.00</xsl:variable>
+  <xsl:variable name="FoarmatOfFloat" >### ###.00</xsl:variable>
   <xsl:variable name="FoarmatOfdate" >dd-MM-yyyy</xsl:variable>
   <xsl:template match="/" >
     <html>
@@ -90,6 +90,7 @@
         </tr>
       </table>
       <h3>I.	Charakterystyka ogólna procesu technologicznego:</h3>
+      <h4>a. Receptura procesu technologicznego:</h4>
       <p>Przedstawiony niżej proces technologiczny obejmuje wykonanie papierosów z przeznaczeniem na eksport, z tytoni importowanych dla potrzeb firmy JTI i obejmuje dwa etapy:</p>
       1. Wykonanie krajanki tytoniowej z tytoni i żył tytoniowych importowanych objętych procedurą uszlachetniania czynnego wg zestawienia:
       <table border="1">
@@ -113,26 +114,26 @@
         </tr>
         <xsl:apply-templates select="cas:Ingredients/cas:IPRIngredient" />
         <tr>
-          <td colspan="6">
+          <td colspan="6" align="left">
             Ilość liści tytoniowych - Suma
           </td>
-          <td>
+          <td align="right">
             <b>TBD</b>
           </td>
-          <td>
-            -
+          <td align ="center">
+            ---
           </td>
-          <td>
-            <b>TBD Wartość</b>
+          <td align="right">
+            <b>TBD</b>
           </td>
-          <td>
-            -
+          <td align ="center">
+            ---
           </td>
-          <td>
-            <b>TBD Cło</b>
+          <td align="right">
+            <b>TBD</b>
           </td>
-          <td>
-            <b>TBD Cło</b>
+          <td align="right">
+            <b>TBD</b>
           </td>
         </tr>
       </table>
@@ -161,10 +162,15 @@
       </table>
       <p>a także tytoni i żył nie objętych procedurą uszlachetniania czynnego wg zestawienia:</p>
       <table border="1">
+        <tr >
+          <th>SKU tytoniu</th>
+          <th>Batch tytoniu</th>
+          <th>Ilość [kg]</th>
+        </tr>
         <xsl:apply-templates select="cas:Ingredients/cas:RegularIngredient" />
       </table>
       <p>Suma tytoni z zawieszeń i nie z zawieszeń: [suma ilości z tabelek ] kg.</p>
-      <h4>Opis procesu technologicznego:</h4>
+      <h3>b. Opis procesu technologicznego:</h3>
       <p>W trakcie procesu technologicznego tytoń jest poddany obróbce w linii przerobu tytoni w JTI Polska Sp. z o.o., Zakład w Gostkowie wg szczegółowej instrukcji technologicznej ustalonej z odbiorcą:</p>
       <ol>
         <li>Rozlistkowanie tytoni</li>
@@ -178,7 +184,7 @@
         2. Wykonanie i spakowanie papierosów za użytkiem materiałów nie objętych procedurą uszlachetniania czynnego.
       </p>
       <p>Z krajanki tytoniowej wymienionej w pkt. 1 oraz innych materiałów uformowany zostaje papieros oraz spakowany w opakowanie jednostkowe i zbiorcze na maszynach znajdujących się w JTI Polska Sp. z o.o., Zakład w Gostkowie.</p>
-      <h3>II.	Określenia parametrów wagowych obrabianego materiału</h3>
+      <h4>II.	Określenia parametrów wagowych obrabianego materiału</h4>
       <ol>
         <li>
           Z wymienionego w pkt.1 materiału wsadowego poddanego obróbce w linii technologicznej uzyskuje się krajankę tytoniową o współczynniku produktywności [Wsp produktywnosci1] %-[Wsp produktywnosci2 ] % tzn. z 1000 kg tytoniu uzyskuje się [Ilosc krajanki min] -[Ilosc krajanki max ] kg (krajanki tytoniowej)
@@ -252,11 +258,15 @@
     </tr>
   </xsl:template>
   <xsl:template match="cas:RegularIngredient">
-    <tr>
+    <tr align="center">
       <td>
-        <p>
-          <xsl:number/> RegularIngredient
-        </p>
+        <xsl:value-of select="cas:TobaccoSKU"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:TobaccoBatch"/>
+      </td>
+      <td align="right">
+        <xsl:value-of select="format-number(cas:TobaccoQuantity, $FoarmatOfFloat)"/>
       </td>
     </tr>
   </xsl:template>
