@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 using System.IO;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
+using System.Xml;
 
 namespace IPRDashboardsTest
 {
@@ -188,7 +189,7 @@ namespace IPRDashboardsTest
       };
       IPRIngredient _iprIngredient = IPRIngredientFactory.IPRIngredient( _disposal );
       ingridients.Add( _iprIngredient );
-      string _masterDocumentName = "CigaretteExportFormFactory";
+      string _masterDocumentName = "CigaretteExportFormCollection";
       int _position = 1;
       List<XmlCigaretteExportForm> cigaretteExportForms = new List<XmlCigaretteExportForm>();
       CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position );
@@ -197,10 +198,17 @@ namespace IPRDashboardsTest
       cigaretteExportForms.Add( _cigaretteExportForm );
       CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportForms, _masterDocumentName );
       XmlSerializer _srlzr = new XmlSerializer( typeof( CigaretteExportFormCollection ) );
-      using ( FileStream _docStrm = File.OpenWrite( _masterDocumentName + ".xml" ) )
+      XmlWriterSettings _setting = new XmlWriterSettings()
       {
-        _srlzr.Serialize( _docStrm, target );
-        Assert.AreEqual( _docStrm.Length, 2289, "the length of created stream is wrong" );
+        Indent = true,
+        IndentChars = "  ",
+        NewLineChars = "\r\n"
+      };
+      using ( XmlWriter file = XmlWriter.Create( _masterDocumentName + ".xml", _setting ) )
+      {
+        file.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" href=\"CigaretteExportFormCollection.xslt\"" );
+        _srlzr.Serialize( file, target );
+        Assert.IsTrue( true, "Success" );
       }
     }
   }
