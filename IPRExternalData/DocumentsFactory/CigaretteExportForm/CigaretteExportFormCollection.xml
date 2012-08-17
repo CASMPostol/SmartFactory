@@ -45,6 +45,7 @@
           <VAT>78.9</VAT>
         </IPRIngredient>
       </Ingredients>
+      <InvoiceNo>INV987654</InvoiceNo>
     </CigaretteExportForm>
     <CigaretteExportForm>
       <FinishedGoodBatch>99999999</FinishedGoodBatch>
@@ -88,6 +89,7 @@
           <VAT>78.9</VAT>
         </IPRIngredient>
       </Ingredients>
+      <InvoiceNo>INV987654</InvoiceNo>
     </CigaretteExportForm>
   </CigaretteExportForms>
 </CigaretteExportFormCollection>
