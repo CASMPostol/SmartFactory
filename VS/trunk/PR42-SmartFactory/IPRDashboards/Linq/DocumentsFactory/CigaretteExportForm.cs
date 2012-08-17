@@ -43,36 +43,82 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
   internal static class CigaretteExportFormFactory
   {
     internal static CigaretteExportForm CigaretteExportForm
-      ( Batch batch, InvoiceContent invoice, double portion, List<Ingredient> _ingredients, string masretDocumentNo, ref int subdocumentNo )
+      ( Batch batch, InvoiceContent invoice, double portion, List<Ingredient> _ingredients, string masretDocumentNo, ref int subdocumentNo, string customsProcedure )
     {
       CigaretteExportForm _ret = new CigaretteExportForm();
       if ( batch == null )
         throw new ArgumentNullException( "Batch cannot be null" );
       if ( batch.SKULookup == null )
         throw new ArgumentNullException( "SKU in batch cannot be null" );
-      if ( batch.SKULookup.FormatLookup == null )
-        throw new ArgumentNullException( "Format in SKU cannot be null" );
       if ( invoice == null )
         throw new ArgumentNullException( "Invoice cannot be null" );
-      _ret.DocumentNo = String.Format(GlobalDefinitions.CigaretteExportFormNamePatern, masretDocumentNo, subdocumentNo++);
-      _ret.DustKg = batch.DustKg.Value * portion;
-      _ret.Ingredients = _ingredients.ToArray();
+      _ret.DocumentNo = String.Format( GlobalDefinitions.CigaretteExportFormNamePatern, masretDocumentNo, subdocumentNo++ );
+      _ret.DustKg = ( batch.DustKg.Value * portion ).RountMass();
+      CountExportFormTotals( _ingredients, _ret );
       _ret.Portion = portion;
+      _ret.CustomsProcedure = customsProcedure;
+      _ret.FinishedGoodBatch = batch.Batch0;
+      _ret.FinishedGoodQantity = invoice.Quantity.GetValueOrDefault( 0 );
+      _ret.FinishedGoodUnit = invoice.Units;
+      _ret.FinishedGoodSKU = batch.SKULookup.SKU;
+      _ret.FinishedGoodSKUDescription = batch.SKULookup.Title();
+      _ret.MaterialTotal = ( batch.TobaccoKg.Value * portion ).RountMass();
+      _ret.ProductFormat = batch.SKULookup.FormatLookup.Title();
+      _ret.CTFUsageMin = batch.UsageLookup.CTFUsageMin.Value;
+      _ret.CTFUsageMax = batch.UsageLookup.CTFUsageMax.Value;
+      _ret.CTFUsagePerUnitMin = 1000 * batch.UsageLookup.CTFUsageMin.Value;
+      _ret.CTFUsagePerUnitMaxn = 1000 * batch.UsageLookup.CTFUsageMax.Value;
+      _ret.CTFUsagePer1MFinishedGoodsMin = 1000 * batch.UsageLookup.UsageMin.Value;
+      _ret.CTFUsagePer1MFinishedGoodsMax = 1000 * batch.UsageLookup.UsageMax.Value;
+      _ret.Coefficient = batch.WasteCooeficiency.Value;
       switch ( batch.ProductType.Value )
       {
         case ProductType.Cutfiller:
           _ret.Product = xml.DocumentsFactory.CigaretteExportForm.ProductType.Cutfiller;
           break;
         case ProductType.Cigarette:
+          SKUCigarette _skuCigarette = batch.SKULookup as SKUCigarette;
+          _ret.BrandDescription = _skuCigarette.Brand;
+          _ret.FamilyDescription = _skuCigarette.Family;
+
           _ret.Product = xml.DocumentsFactory.CigaretteExportForm.ProductType.Cigarette;
           break;
         default:
           throw new ApplicationError( "InvoiceLib.CigaretteExportForm", "Product", "Wrong ProductType", null );
       }
-      _ret.ProductFormat = batch.SKULookup.FormatLookup.Tytuł;
-      _ret.SHMentholKg = batch.SHMentholKg.Value * portion;
-      _ret.WasteKg = batch.WasteKg.Value + portion;
+      _ret.SHMentholKg = ( batch.SHMentholKg.Value * portion ).RountMass();
+      _ret.WasteKg = ( batch.WasteKg.Value * portion ).RountMass();
       return _ret;
+    }
+    private static void CountExportFormTotals( List<Ingredient> _ingredients, CigaretteExportForm _ret )
+    {
+      _ret.Ingredients = _ingredients.ToArray();
+      _ret.IPTMaterialQuantityTotal = 0;
+      _ret.IPTMaterialValueTotal = 0;
+      _ret.IPTMaterialDutyTotal = 0;
+      _ret.IPTMaterialVATTotal = 0;
+      _ret.RegularMaterialQuantityTotal = 0;
+      foreach ( Ingredient _item in _ingredients )
+      {
+        if ( _item is IPRIngredient )
+        {
+          IPRIngredient _iprItem = (IPRIngredient)_item;
+          _ret.IPTMaterialQuantityTotal += _iprItem.TobaccoQuantity;
+          _ret.IPTMaterialValueTotal = _iprItem.TobaccoValue;
+          _ret.IPTMaterialDutyTotal = _iprItem.Duty;
+          _ret.IPTMaterialVATTotal = _iprItem.VAT;
+        }
+        else
+        {
+          RegularIngredient _rglrItem = (RegularIngredient)_item;
+          _ret.RegularMaterialQuantityTotal += _rglrItem.TobaccoQuantity;
+        }
+      }
+      _ret.IPTMaterialQuantityTotal = _ret.IPTMaterialQuantityTotal.RoundCurrency();
+      _ret.IPTMaterialValueTotal = _ret.IPTMaterialValueTotal.RountMass();
+      _ret.IPTMaterialDutyTotal = _ret.IPTMaterialDutyTotal.RountMass();
+      _ret.IPTMaterialVATTotal = _ret.IPTMaterialVATTotal.RountMass();
+      _ret.RegularMaterialQuantityTotal = _ret.RegularMaterialQuantityTotal.RountMass();
     }
   }
   internal static class CigaretteExportFormCollectionFactory
