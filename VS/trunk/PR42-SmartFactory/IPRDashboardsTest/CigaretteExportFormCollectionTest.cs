@@ -198,17 +198,17 @@ namespace IPRDashboardsTest
         Tytuł = "Testing disposal",
         VATPerSettledAmount = 78.90,
       };
-      IPRIngredient _iprIngredient = IPRIngredientFactory.IPRIngredient( _disposal );
-      ingridients.Add( _iprIngredient );
+      ingridients.Add( IPRIngredientFactory.IPRIngredient( _disposal ) );
+      ingridients.Add( RegularIngredientFactory.RegularIngredient( "Reg Batch 54321", "Reg SKU 12345", 1234.56789 ) );
       string _masterDocumentName = "CigaretteExportFormCollection";
       string _invoiceNumber = "INV987654";
       int _position = 1;
-      List<XmlCigaretteExportForm> cigaretteExportForms = new List<XmlCigaretteExportForm>();
+      List<XmlCigaretteExportForm> cigaretteExportFormList = new List<XmlCigaretteExportForm>();
       CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951", _invoiceNumber );
-      cigaretteExportForms.Add( _cigaretteExportForm );
+      cigaretteExportFormList.Add( _cigaretteExportForm );
       _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951", _invoiceNumber );
-      cigaretteExportForms.Add( _cigaretteExportForm );
-      CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportForms, _masterDocumentName );
+      cigaretteExportFormList.Add( _cigaretteExportForm );
+      CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportFormList, _masterDocumentName );
       XmlSerializer _srlzr = new XmlSerializer( typeof( CigaretteExportFormCollection ) );
       XmlWriterSettings _setting = new XmlWriterSettings()
       {

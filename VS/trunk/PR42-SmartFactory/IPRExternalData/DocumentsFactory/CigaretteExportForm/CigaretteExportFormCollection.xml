@@ -12,12 +12,12 @@
       <BrandDescription>Slims Menthol </BrandDescription>
       <MaterialTotal>2498.15</MaterialTotal>
       <FinishedGoodSKUDescription>SKU SA MXSR  99 CPB 20  5000 05  N PL1</FinishedGoodSKUDescription>
-      <TobaccoTotal>0</TobaccoTotal>
+      <TobaccoTotal>1245.54</TobaccoTotal>
       <IPTMaterialQuantityTotal>9.12</IPTMaterialQuantityTotal>
       <IPTMaterialValueTotal>34.56</IPTMaterialValueTotal>
       <IPTMaterialDutyTotal>345.6</IPTMaterialDutyTotal>
       <IPTMaterialVATTotal>78.9</IPTMaterialVATTotal>
-      <RegularMaterialQuantityTotal>0</RegularMaterialQuantityTotal>
+      <RegularMaterialQuantityTotal>1234.57</RegularMaterialQuantityTotal>
       <CTFUsageMin>0.9876</CTFUsageMin>
       <CTFUsageMax>1.23</CTFUsageMax>
       <CTFUsagePerUnitMin>987.6</CTFUsagePerUnitMin>
@@ -47,6 +47,11 @@
           <Duty>345.6</Duty>
           <VAT>78.9</VAT>
         </IPRIngredient>
+        <RegularIngredient>
+          <TobaccoSKU>Reg SKU 12345</TobaccoSKU>
+          <TobaccoBatch>Reg Batch 54321</TobaccoBatch>
+          <TobaccoQuantity>1234.56789</TobaccoQuantity>
+        </RegularIngredient>
       </Ingredients>
       <InvoiceNo>INV987654</InvoiceNo>
       <IPRRestMaterialQantityTotal>1.85</IPRRestMaterialQantityTotal>
@@ -60,12 +65,12 @@
       <BrandDescription>Slims Menthol </BrandDescription>
       <MaterialTotal>2498.15</MaterialTotal>
       <FinishedGoodSKUDescription>SKU SA MXSR  99 CPB 20  5000 05  N PL1</FinishedGoodSKUDescription>
-      <TobaccoTotal>0</TobaccoTotal>
+      <TobaccoTotal>1245.54</TobaccoTotal>
       <IPTMaterialQuantityTotal>9.12</IPTMaterialQuantityTotal>
       <IPTMaterialValueTotal>34.56</IPTMaterialValueTotal>
       <IPTMaterialDutyTotal>345.6</IPTMaterialDutyTotal>
       <IPTMaterialVATTotal>78.9</IPTMaterialVATTotal>
-      <RegularMaterialQuantityTotal>0</RegularMaterialQuantityTotal>
+      <RegularMaterialQuantityTotal>1234.57</RegularMaterialQuantityTotal>
       <CTFUsageMin>0.9876</CTFUsageMin>
       <CTFUsageMax>1.23</CTFUsageMax>
       <CTFUsagePerUnitMin>987.6</CTFUsagePerUnitMin>
@@ -95,6 +100,11 @@
           <Duty>345.6</Duty>
           <VAT>78.9</VAT>
         </IPRIngredient>
+        <RegularIngredient>
+          <TobaccoSKU>Reg SKU 12345</TobaccoSKU>
+          <TobaccoBatch>Reg Batch 54321</TobaccoBatch>
+          <TobaccoQuantity>1234.56789</TobaccoQuantity>
+        </RegularIngredient>
       </Ingredients>
       <InvoiceNo>INV987654</InvoiceNo>
       <IPRRestMaterialQantityTotal>1.85</IPRRestMaterialQantityTotal>
