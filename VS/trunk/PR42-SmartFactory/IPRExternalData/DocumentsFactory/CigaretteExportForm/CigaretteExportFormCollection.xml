@@ -4,11 +4,14 @@
   <DocumentNo>CigaretteExportFormCollection</DocumentNo>
   <CigaretteExportForms>
     <CigaretteExportForm>
+      <FinishedGoodSKU>12419574 </FinishedGoodSKU>
       <FinishedGoodBatch>99999999</FinishedGoodBatch>
       <FinishedGoodQantity>500</FinishedGoodQantity>
       <FinishedGoodUnit>kU</FinishedGoodUnit>
+      <FamilyDescription>Salem</FamilyDescription>
+      <BrandDescription>Slims Menthol </BrandDescription>
       <MaterialTotal>2498.15</MaterialTotal>
-      <FinishedGoodSKUDescription>NotApplicable</FinishedGoodSKUDescription>
+      <FinishedGoodSKUDescription>SKU SA MXSR  99 CPB 20  5000 05  N PL1</FinishedGoodSKUDescription>
       <TobaccoTotal>0</TobaccoTotal>
       <IPTMaterialQuantityTotal>9.12</IPTMaterialQuantityTotal>
       <IPTMaterialValueTotal>34.56</IPTMaterialValueTotal>
@@ -48,11 +51,14 @@
       <InvoiceNo>INV987654</InvoiceNo>
     </CigaretteExportForm>
     <CigaretteExportForm>
+      <FinishedGoodSKU>12419574 </FinishedGoodSKU>
       <FinishedGoodBatch>99999999</FinishedGoodBatch>
       <FinishedGoodQantity>500</FinishedGoodQantity>
       <FinishedGoodUnit>kU</FinishedGoodUnit>
+      <FamilyDescription>Salem</FamilyDescription>
+      <BrandDescription>Slims Menthol </BrandDescription>
       <MaterialTotal>2498.15</MaterialTotal>
-      <FinishedGoodSKUDescription>NotApplicable</FinishedGoodSKUDescription>
+      <FinishedGoodSKUDescription>SKU SA MXSR  99 CPB 20  5000 05  N PL1</FinishedGoodSKUDescription>
       <TobaccoTotal>0</TobaccoTotal>
       <IPTMaterialQuantityTotal>9.12</IPTMaterialQuantityTotal>
       <IPTMaterialValueTotal>34.56</IPTMaterialValueTotal>
