@@ -1,156 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="CigaretteExportFormCollection.xslt"?>
-<CigaretteExportFormCollection xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd">
-  <DocumentNo>DocumentNo1</DocumentNo>
+<CigaretteExportFormCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd">
+  <DocumentNo>CigaretteExportFormCollection</DocumentNo>
   <CigaretteExportForms>
     <CigaretteExportForm>
-      <DocumentNo>DocumentNo1</DocumentNo>
-      <ProductFormat>ProductFormat1</ProductFormat>
-      <DustKg>1</DustKg>
-      <SHMentholKg>1</SHMentholKg>
-      <WasteKg>0.1123456</WasteKg>
-      <Portion>1.9876543</Portion>
-      <Product>Cutfiller</Product>
-      <Ingredients>
-        <IPRIngredient>
-          <TobaccoSKU>TobaccoSKU1</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch1</TobaccoBatch>
-          <TobaccoQuantity>123456.6789</TobaccoQuantity>
-          <DocumentNoumber>DocumentNoumber1</DocumentNoumber>
-          <Date>1999-01-01T01:01:01+01:00</Date>
-          <TobaccoUnitPrice>1</TobaccoUnitPrice>
-          <TobaccoValue>11234.5678</TobaccoValue>
-          <ItemClearingType>PartialWindingUp</ItemClearingType>
-          <Currency>Currency1</Currency>
-          <Duty>1</Duty>
-          <VAT>1</VAT>
-        </IPRIngredient>
-        <RegularIngredient>
-          <TobaccoSKU>TobaccoSKU1</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch1</TobaccoBatch>
-          <TobaccoQuantity>1.987654</TobaccoQuantity>
-        </RegularIngredient>
-        <IPRIngredient>
-          <TobaccoSKU>TobaccoSKU2</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch2</TobaccoBatch>
-          <TobaccoQuantity>17976.931348623157</TobaccoQuantity>
-          <DocumentNoumber>DocumentNoumber2</DocumentNoumber>
-          <Date>2012-01-01T00:00:00+01:00</Date>
-          <TobaccoUnitPrice>179769.31348623157</TobaccoUnitPrice>
-          <TobaccoValue>-1797.6931348623157</TobaccoValue>
-          <ItemClearingType>TotalWindingUp</ItemClearingType>
-          <Currency>Currency2</Currency>
-          <Duty>-179.76931348623157</Duty>
-          <VAT>179769.31348623157</VAT>
-        </IPRIngredient>
-      </Ingredients>
-    </CigaretteExportForm>
-    <CigaretteExportForm>
-      <DocumentNo>DocumentNo2</DocumentNo>
-      <ProductFormat>ProductFormat2</ProductFormat>
-      <DustKg>-1.7976931348623157E+308</DustKg>
-      <SHMentholKg>-1.7976931348623157E+308</SHMentholKg>
-      <WasteKg>-1.7976931348623157E+308</WasteKg>
-      <Portion>-1.7976931348623157E+308</Portion>
+      <FinishedGoodBatch>99999999</FinishedGoodBatch>
+      <FinishedGoodQantity>500</FinishedGoodQantity>
+      <FinishedGoodUnit>kU</FinishedGoodUnit>
+      <MaterialTotal>2498.15</MaterialTotal>
+      <FinishedGoodSKUDescription>NotApplicable</FinishedGoodSKUDescription>
+      <TobaccoTotal>0</TobaccoTotal>
+      <IPTMaterialQuantityTotal>9.12</IPTMaterialQuantityTotal>
+      <IPTMaterialValueTotal>34.56</IPTMaterialValueTotal>
+      <IPTMaterialDutyTotal>345.6</IPTMaterialDutyTotal>
+      <IPTMaterialVATTotal>78.9</IPTMaterialVATTotal>
+      <RegularMaterialQuantityTotal>0</RegularMaterialQuantityTotal>
+      <CTFUsageMin>0.9876</CTFUsageMin>
+      <CTFUsageMax>1.23</CTFUsageMax>
+      <CTFUsagePerUnitMin>987.6</CTFUsagePerUnitMin>
+      <CTFUsagePerUnitMaxn>1230</CTFUsagePerUnitMaxn>
+      <CTFUsagePer1MFinishedGoodsMin>987650</CTFUsagePer1MFinishedGoodsMin>
+      <CTFUsagePer1MFinishedGoodsMax>1234450</CTFUsagePer1MFinishedGoodsMax>
+      <Coefficient>0.01</Coefficient>
+      <CustomsProcedure>3951</CustomsProcedure>
+      <DocumentNo>CigaretteExportFormCollection-01</DocumentNo>
+      <ProductFormat>Format title</ProductFormat>
+      <DustKg>0.55</DustKg>
+      <SHMentholKg>0.65</SHMentholKg>
+      <WasteKg>0.65</WasteKg>
+      <Portion>0.5</Portion>
       <Product>Cigarette</Product>
       <Ingredients>
         <IPRIngredient>
-          <TobaccoSKU>TobaccoSKU3</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch3</TobaccoBatch>
-          <TobaccoQuantity>1.7976931348623157E+308</TobaccoQuantity>
-          <DocumentNoumber>DocumentNoumber3</DocumentNoumber>
-          <Date>9999-12-31T23:59:59.9999999+01:00</Date>
-          <TobaccoUnitPrice>1.7976931348623157E+308</TobaccoUnitPrice>
-          <TobaccoValue>1.7976931348623157E+308</TobaccoValue>
+          <TobaccoSKU>IPR Tobacco SKU</TobaccoSKU>
+          <TobaccoBatch>TobaccoBatch</TobaccoBatch>
+          <TobaccoQuantity>9.12</TobaccoQuantity>
+          <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
+          <Date>2012-08-17T00:00:00+02:00</Date>
+          <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
+          <TobaccoValue>34.56</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
-          <Currency>Currency3</Currency>
-          <Duty>1.7976931348623157E+308</Duty>
-          <VAT>1.7976931348623157E+308</VAT>
-        </IPRIngredient>
-        <RegularIngredient>
-          <TobaccoSKU>TobaccoSKU2</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch2</TobaccoBatch>
-          <TobaccoQuantity>-1.7976931348623157</TobaccoQuantity>
-        </RegularIngredient>
-        <RegularIngredient>
-          <TobaccoSKU>TobaccoSKU2</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch2</TobaccoBatch>
-          <TobaccoQuantity>-1.7976931348623157</TobaccoQuantity>
-        </RegularIngredient>
-        <RegularIngredient>
-          <TobaccoSKU>TobaccoSKU2</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch2</TobaccoBatch>
-          <TobaccoQuantity>-1.7976931348623157</TobaccoQuantity>
-        </RegularIngredient>
-        <RegularIngredient>
-          <TobaccoSKU>TobaccoSKU2</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch2</TobaccoBatch>
-          <TobaccoQuantity>-1.7976931348623157</TobaccoQuantity>
-        </RegularIngredient>
-        <RegularIngredient>
-          <TobaccoSKU>TobaccoSKU2</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch2</TobaccoBatch>
-          <TobaccoQuantity>-1.7976931348623157</TobaccoQuantity>
-        </RegularIngredient>
-        <RegularIngredient>
-          <TobaccoSKU>TobaccoSKU2</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch2</TobaccoBatch>
-          <TobaccoQuantity>-1.7976931348623157</TobaccoQuantity>
-        </RegularIngredient>
-        <IPRIngredient>
-          <TobaccoSKU>TobaccoSKU4</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch4</TobaccoBatch>
-          <TobaccoQuantity>-0.10000002384185791</TobaccoQuantity>
-          <DocumentNoumber>DocumentNoumber4</DocumentNoumber>
-          <Date>1899-11-30T01:01:01+01:00</Date>
-          <TobaccoUnitPrice>-0.10000002384185791</TobaccoUnitPrice>
-          <TobaccoValue>-0.10000002384185791</TobaccoValue>
-          <ItemClearingType>TotalWindingUp</ItemClearingType>
-          <Currency>Currency4</Currency>
-          <Duty>-0.10000002384185791</Duty>
-          <VAT>-0.10000002384185791</VAT>
+          <Currency>USD</Currency>
+          <Duty>345.6</Duty>
+          <VAT>78.9</VAT>
         </IPRIngredient>
       </Ingredients>
     </CigaretteExportForm>
     <CigaretteExportForm>
-      <DocumentNo>DocumentNo3</DocumentNo>
-      <ProductFormat>ProductFormat3</ProductFormat>
-      <DustKg>1.7976931348623157E+308</DustKg>
-      <SHMentholKg>1.7976931348623157E+308</SHMentholKg>
-      <WasteKg>1.7976931348623157E+308</WasteKg>
-      <Portion>1.7976931348623157E+308</Portion>
-      <Product>Cutfiller</Product>
+      <FinishedGoodBatch>99999999</FinishedGoodBatch>
+      <FinishedGoodQantity>500</FinishedGoodQantity>
+      <FinishedGoodUnit>kU</FinishedGoodUnit>
+      <MaterialTotal>2498.15</MaterialTotal>
+      <FinishedGoodSKUDescription>NotApplicable</FinishedGoodSKUDescription>
+      <TobaccoTotal>0</TobaccoTotal>
+      <IPTMaterialQuantityTotal>9.12</IPTMaterialQuantityTotal>
+      <IPTMaterialValueTotal>34.56</IPTMaterialValueTotal>
+      <IPTMaterialDutyTotal>345.6</IPTMaterialDutyTotal>
+      <IPTMaterialVATTotal>78.9</IPTMaterialVATTotal>
+      <RegularMaterialQuantityTotal>0</RegularMaterialQuantityTotal>
+      <CTFUsageMin>0.9876</CTFUsageMin>
+      <CTFUsageMax>1.23</CTFUsageMax>
+      <CTFUsagePerUnitMin>987.6</CTFUsagePerUnitMin>
+      <CTFUsagePerUnitMaxn>1230</CTFUsagePerUnitMaxn>
+      <CTFUsagePer1MFinishedGoodsMin>987650</CTFUsagePer1MFinishedGoodsMin>
+      <CTFUsagePer1MFinishedGoodsMax>1234450</CTFUsagePer1MFinishedGoodsMax>
+      <Coefficient>0.01</Coefficient>
+      <CustomsProcedure>3951</CustomsProcedure>
+      <DocumentNo>CigaretteExportFormCollection-02</DocumentNo>
+      <ProductFormat>Format title</ProductFormat>
+      <DustKg>0.55</DustKg>
+      <SHMentholKg>0.65</SHMentholKg>
+      <WasteKg>0.65</WasteKg>
+      <Portion>0.5</Portion>
+      <Product>Cigarette</Product>
       <Ingredients>
         <IPRIngredient>
-          <TobaccoSKU>TobaccoSKU5</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch5</TobaccoBatch>
-          <TobaccoQuantity>2.1000000238418579</TobaccoQuantity>
-          <DocumentNoumber>DocumentNoumber5</DocumentNoumber>
-          <Date>1900-02-02T01:01:01+01:00</Date>
-          <TobaccoUnitPrice>2.1000000238418579</TobaccoUnitPrice>
-          <TobaccoValue>2.1000000238418579</TobaccoValue>
+          <TobaccoSKU>IPR Tobacco SKU</TobaccoSKU>
+          <TobaccoBatch>TobaccoBatch</TobaccoBatch>
+          <TobaccoQuantity>9.12</TobaccoQuantity>
+          <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
+          <Date>2012-08-17T00:00:00+02:00</Date>
+          <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
+          <TobaccoValue>34.56</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
-          <Currency>Currency5</Currency>
-          <Duty>2.1000000238418579</Duty>
-          <VAT>2.1000000238418579</VAT>
-        </IPRIngredient>
-        <RegularIngredient>
-          <TobaccoSKU>TobaccoSKU3</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch3</TobaccoBatch>
-          <TobaccoQuantity>1.7976931348623157E+308</TobaccoQuantity>
-        </RegularIngredient>
-        <IPRIngredient>
-          <TobaccoSKU>TobaccoSKU6</TobaccoSKU>
-          <TobaccoBatch>TobaccoBatch6</TobaccoBatch>
-          <TobaccoQuantity>-1.7976931348623157E+308</TobaccoQuantity>
-          <DocumentNoumber>DocumentNoumber6</DocumentNoumber>
-          <Date>0001-02-02T00:00:00+01:00</Date>
-          <TobaccoUnitPrice>-1.7976931348623157E+308</TobaccoUnitPrice>
-          <TobaccoValue>-1.7976931348623157E+308</TobaccoValue>
-          <ItemClearingType>TotalWindingUp</ItemClearingType>
-          <Currency>Currency6</Currency>
-          <Duty>-1.7976931348623157E+308</Duty>
-          <VAT>-1.7976931348623157E+308</VAT>
+          <Currency>USD</Currency>
+          <Duty>345.6</Duty>
+          <VAT>78.9</VAT>
         </IPRIngredient>
       </Ingredients>
     </CigaretteExportForm>
