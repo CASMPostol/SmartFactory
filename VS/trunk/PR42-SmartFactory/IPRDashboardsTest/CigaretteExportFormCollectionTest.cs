@@ -190,11 +190,12 @@ namespace IPRDashboardsTest
       IPRIngredient _iprIngredient = IPRIngredientFactory.IPRIngredient( _disposal );
       ingridients.Add( _iprIngredient );
       string _masterDocumentName = "CigaretteExportFormCollection";
+      string _invoiceNumber = "INV987654";
       int _position = 1;
       List<XmlCigaretteExportForm> cigaretteExportForms = new List<XmlCigaretteExportForm>();
-      CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951" );
+      CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951", _invoiceNumber );
       cigaretteExportForms.Add( _cigaretteExportForm );
-      _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951" );
+      _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951", _invoiceNumber );
       cigaretteExportForms.Add( _cigaretteExportForm );
       CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportForms, _masterDocumentName );
       XmlSerializer _srlzr = new XmlSerializer( typeof( CigaretteExportFormCollection ) );
