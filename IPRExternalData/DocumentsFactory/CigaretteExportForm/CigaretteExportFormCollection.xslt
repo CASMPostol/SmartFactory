@@ -92,8 +92,12 @@
         </tr>
         <tr>
           <td>Ilość: </td>
-          <td align="right">-- Qantity --</td>
-          <td align="left">-- Unit --</td>
+          <td align="right">
+            <xsl:value-of select="format-number(cas:FinishedGoodQantity, $FoarmatOfFloat, 'pl')"/>
+          </td>
+          <td align="left">
+            <xsl:value-of select="cas:FinishedGoodUnit"/>
+          </td>
         </tr>
       </table>
       <h3>I.	Charakterystyka ogólna procesu technologicznego:</h3>
@@ -125,22 +129,22 @@
             Ilość liści tytoniowych - Suma
           </td>
           <td align="right">
-            <b>TBD</b>
+            <xsl:value-of select="format-number(cas:IPTMaterialQuantityTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
           <td align ="center">
             ---
           </td>
           <td align="right">
-            <b>TBD</b>
+            <xsl:value-of select="format-number(cas:IPTMaterialValueTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
           <td align ="center">
             ---
           </td>
           <td align="right">
-            <b>TBD</b>
+            <xsl:value-of select="format-number(cas:IPTMaterialDutyTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
           <td align="right">
-            <b>TBD</b>
+            <xsl:value-of select="format-number(cas:IPTMaterialVATTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
         </tr>
       </table>
@@ -163,7 +167,7 @@
             <xsl:value-of select="format-number(cas:SHMentholKg, $FoarmatOfFloat, 'pl')"/>
           </td>
           <td >
-            TBD
+            <xsl:value-of select="format-number(cas:IPRRestMaterialQantityTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
         </tr>
       </table>
@@ -175,8 +179,16 @@
           <th>Ilość [kg]</th>
         </tr>
         <xsl:apply-templates select="cas:Ingredients/cas:RegularIngredient" />
+        <tr>
+          <td colspan="2" align="left" >
+            Suma
+          </td>
+          <td>
+            <xsl:value-of select="format-number(cas:TobaccoTotal, $FoarmatOfFloat, 'pl')"/>
+          </td>
+        </tr>       
       </table>
-      <p>Suma tytoni z zawieszeń i nie z zawieszeń: [suma ilości z tabelek ] kg.</p>
+      <p>Suma tytoni z zawieszeń i nie z zawieszeń: <xsl:value-of select="format-number(cas:RegularMaterialQuantityTotal, $FoarmatOfFloat, 'pl')"/> kg.</p>
       <h3>b. Opis procesu technologicznego:</h3>
       <p>W trakcie procesu technologicznego tytoń jest poddany obróbce w linii przerobu tytoni w JTI Polska Sp. z o.o., Zakład w Gostkowie wg szczegółowej instrukcji technologicznej ustalonej z odbiorcą:</p>
       <ol>
@@ -194,13 +206,17 @@
       <h4>II.	Określenia parametrów wagowych obrabianego materiału</h4>
       <ol>
         <li>
-          Z wymienionego w pkt.1 materiału wsadowego poddanego obróbce w linii technologicznej uzyskuje się krajankę tytoniową o współczynniku produktywności [Wsp produktywnosci1] %-[Wsp produktywnosci2 ] % tzn. z 1000 kg tytoniu uzyskuje się [Ilosc krajanki min] -[Ilosc krajanki max ] kg (krajanki tytoniowej)
+          Z wymienionego w pkt.1 materiału wsadowego poddanego obróbce w linii technologicznej uzyskuje się krajankę tytoniową o współczynniku produktywności
+          <xsl:value-of select="format-number(cas:CTFUsageMin, $FoarmatOfFloat, 'pl')"/>%-<xsl:value-of select="format-number(cas:CTFUsageMax, $FoarmatOfFloat, 'pl')"/>%
+          tzn. z 1000 kg tytoniu uzyskuje się <xsl:value-of select="format-number(cas:CTFUsagePerUnitMin, $FoarmatOfFloat, 'pl')"/>-<xsl:value-of select="format-number(cas:CTFUsagePerUnitMax, $FoarmatOfFloat, 'pl')"/> kg (krajanki tytoniowej)
         </li>
         <li>
-          Na 1 mln. szt. gotowych papierosów zużywa się w trakcie procesu produkcyjnego [Ilosc krajanki min] -[Ilosc krajanki max ] kg krajanki tytoniowej.
+          Na 1 mln. szt. gotowych papierosów zużywa się w trakcie procesu produkcyjnego 
+          <xsl:value-of select="format-number(cas:CTFUsagePer1MFinishedGoodsMin, $FoarmatOfFloat, 'pl')"/>-
+          <xsl:value-of select="format-number(cas:CTFUsagePer1MFinishedGoodsMax, $FoarmatOfFloat, 'pl')"/> kg krajanki tytoniowej.
         </li>
         <li>
-          Dodatkowo przy produkcji 1 mln papierosów powstaje [Procent odpadow ] % odpadów (zużycie tytoniu należy powiększyć o ten współczynnik)
+          Dodatkowo przy produkcji 1 mln papierosów powstaje <xsl:value-of select="format-number(cas:CTFUsagePer1MFinishedGoodsMax, $FoarmatOfFloat, 'pl')"/>% odpadów (zużycie tytoniu należy powiększyć o ten współczynnik)
         </li>
       </ol>
       <table>
