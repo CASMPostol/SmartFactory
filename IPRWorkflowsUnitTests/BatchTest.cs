@@ -1,6 +1,4 @@
-﻿using CAS.SmartFactory.IPR.Entities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IPRWorkflowsUnitTests
 {

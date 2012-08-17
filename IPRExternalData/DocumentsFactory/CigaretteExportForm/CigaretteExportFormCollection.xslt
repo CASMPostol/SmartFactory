@@ -66,7 +66,7 @@
         <tr>
           <td>Faktura:</td>
           <td>
-            <xsl:value-of select="cas:TBDInvoiceNo"/>
+            <xsl:value-of select="cas:InvoiceNo"/>
           </td>
         </tr>
         <tr>
@@ -183,12 +183,12 @@
           <td colspan="2" align="left" >
             Suma
           </td>
-          <td>
-            <xsl:value-of select="format-number(cas:TobaccoTotal, $FoarmatOfFloat, 'pl')"/>
+          <td align="right">
+            <xsl:value-of select="format-number(cas:RegularMaterialQuantityTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
         </tr>       
       </table>
-      <p>Suma tytoni z zawieszeń i nie z zawieszeń: <xsl:value-of select="format-number(cas:RegularMaterialQuantityTotal, $FoarmatOfFloat, 'pl')"/> kg.</p>
+      <p>Suma tytoni z zawieszeń i nie z zawieszeń: <xsl:value-of select="format-number(cas:TobaccoTotal, $FoarmatOfFloat, 'pl')"/> kg.</p>
       <h3>b. Opis procesu technologicznego:</h3>
       <p>W trakcie procesu technologicznego tytoń jest poddany obróbce w linii przerobu tytoni w JTI Polska Sp. z o.o., Zakład w Gostkowie wg szczegółowej instrukcji technologicznej ustalonej z odbiorcą:</p>
       <ol>

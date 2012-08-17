@@ -98,7 +98,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         
         private double cTFUsagePer1MFinishedGoodsMaxField;
         
-        private double coefficientField;
+        private double wasteCoefficientField;
         
         private string customsProcedureField;
         
@@ -323,12 +323,12 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         }
         
         /// <uwagi/>
-        public double Coefficient {
+        public double WasteCoefficient {
             get {
-                return this.coefficientField;
+                return this.wasteCoefficientField;
             }
             set {
-                this.coefficientField = value;
+                this.wasteCoefficientField = value;
             }
         }
         
