@@ -331,5 +331,9 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       return _batch.FGQuantityAvailable.Value;
     }
+    public static string Title( this Element _val )
+    {
+      return _val == null ? "NotApplicable".GetLocalizedString() : _val.Tytuł.NotAvailable();
+    }
   }
 }

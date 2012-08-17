@@ -255,11 +255,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
             return ActionResult.NotValidated( _errors[ 0 ] );
           if ( _nq.HasValue && _nq.Value < 0 )
             return ActionResult.NotValidated
-              ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
+              ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString(), Parent.m_InvoiceQuantityLabel.Text ) );
           Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           if ( !_batch.Available( _nq.Value ) )
           {
-            string _tmplt = Resources.NeBatchQuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
+            string _tmplt = Resources.NeBatchQuantityIsUnavailable.GetLocalizedString();
             return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, _batch.AvailableQuantity() ) );
           }
           InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
@@ -292,12 +292,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
             return ActionResult.NotValidated( _errors[ 0 ] );
           if ( _nq.HasValue && _nq.Value < 0 )
             return ActionResult.NotValidated
-              ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), Parent.m_InvoiceQuantityLabel.Text ) );
+              ( String.Format( Resources.NegativeValueNotAllowed.GetLocalizedString(), Parent.m_InvoiceQuantityLabel.Text ) );
           Batch _batch = Element.GetAtIndex<Batch>( Parent.m_DataContextManagement.DataContext.Batch, Parent.m_ControlState.BatchID );
           InvoiceLib _invc = Element.GetAtIndex<InvoiceLib>( Parent.m_DataContextManagement.DataContext.InvoiceLibrary, Parent.m_ControlState.InvoiceID );
           if ( !_batch.Available( _nq.Value ) )
           {
-            string _tmplt = Resources.QuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
+            string _tmplt = Resources.QuantityIsUnavailable.GetLocalizedString();
             return ActionResult.NotValidated( String.Format( CultureInfo.CurrentCulture, _tmplt, _batch.AvailableQuantity() ) );
           }
           InvoiceContent _nic = new InvoiceContent()
@@ -533,7 +533,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       _invoice.OK = true;
       List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> _consignment = new List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm>();
-      string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString( GlobalDefinitions.RootResourceFileName );
+      string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
       string _title = Resources.FinishedGoodsExportFormFileName;
       Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _title, _customsProcedureCode, Procedure._3151 );
       string _masterDocumentName = _newClearance.Tytuł;

@@ -11,14 +11,15 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class Batch
   {
     internal void Export
-      ( 
-        EntitiesDataContext edc, 
-        InvoiceContent productInvoice, 
-        List<CigaretteExportForm> consignment, 
-        string invoiceNoumber, string procedure, 
-        Clearence clearence, 
-        string masterDocumentNo, 
-        ref int _position 
+      (
+        EntitiesDataContext edc,
+        InvoiceContent productInvoice,
+        List<CigaretteExportForm> consignment,
+        string invoiceNoumber,
+        string procedure,
+        Clearence clearence,
+        string masterDocumentNo,
+        ref int _position
       )
     {
       bool closingBatch = this.FGQuantityAvailable == productInvoice.Quantity.Value;
@@ -27,7 +28,7 @@ namespace CAS.SmartFactory.Linq.IPR
       List<Ingredient> _ingredients = new List<Ingredient>();
       foreach ( Material _materialIdx in this.Material )
         _materialIdx.Export( edc, _ingredients, closingBatch, invoiceNoumber, procedure, clearence, _portion );
-      CigaretteExportForm _exportConsignment = CigaretteExportFormFactory.CigaretteExportForm( this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position );
+      CigaretteExportForm _exportConsignment = CigaretteExportFormFactory.CigaretteExportForm( this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position, clearence.ProcedureCode );
       consignment.Add( _exportConsignment );
     }
     internal ActionResult ExportPossible( double? quantity )
@@ -35,13 +36,13 @@ namespace CAS.SmartFactory.Linq.IPR
       ActionResult _result = new ActionResult();
       if ( !quantity.HasValue )
       {
-        string _message = String.Format( Resources.NotValidValue.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), "Quantity" );
+        string _message = String.Format( Resources.NotValidValue.GetLocalizedString(), "Quantity" );
         _result.AddMessage( "ExportPossible", _message );
         return _result;
       }
       else if ( this.FGQuantityAvailable.Value < quantity.Value )
       {
-        string _message = String.Format( Resources.QuantityIsUnavailable.GetLocalizedString( GlobalDefinitions.RootResourceFileName ), this.FGQuantityAvailable.Value );
+        string _message = String.Format( Resources.QuantityIsUnavailable.GetLocalizedString(), this.FGQuantityAvailable.Value );
         _result.AddMessage( "ExportPossible", _message );
         return _result;
       }

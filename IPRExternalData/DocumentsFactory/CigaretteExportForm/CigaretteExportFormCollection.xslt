@@ -69,8 +69,6 @@
             <b>TBD</b>
           </td>
         </tr>
-      </table>
-      <table>
         <tr>
           <td>Procedura: </td>
           <td>
