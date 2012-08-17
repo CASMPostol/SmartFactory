@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.Linq.IPR
         EntitiesDataContext edc,
         InvoiceContent productInvoice,
         List<CigaretteExportForm> consignment,
-        string invoiceNoumber,
+        string invoiceNumber,
         string procedure,
         Clearence clearence,
         string masterDocumentNo,
@@ -27,8 +27,9 @@ namespace CAS.SmartFactory.Linq.IPR
       double _portion = productInvoice.Quantity.Value / this.FGQuantityKUKg.Value;
       List<Ingredient> _ingredients = new List<Ingredient>();
       foreach ( Material _materialIdx in this.Material )
-        _materialIdx.Export( edc, _ingredients, closingBatch, invoiceNoumber, procedure, clearence, _portion );
-      CigaretteExportForm _exportConsignment = CigaretteExportFormFactory.CigaretteExportForm( this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position, clearence.ProcedureCode );
+        _materialIdx.Export( edc, _ingredients, closingBatch, invoiceNumber, procedure, clearence, _portion );
+      CigaretteExportForm _exportConsignment = 
+        CigaretteExportFormFactory.CigaretteExportForm( this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position, clearence.ProcedureCode, invoiceNumber );
       consignment.Add( _exportConsignment );
     }
     internal ActionResult ExportPossible( double? quantity )
