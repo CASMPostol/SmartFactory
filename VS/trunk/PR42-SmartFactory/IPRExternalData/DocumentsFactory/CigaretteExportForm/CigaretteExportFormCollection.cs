@@ -118,6 +118,8 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         
         private Ingredient[] ingredientsField;
         
+        private string invoiceNoField;
+        
         /// <uwagi/>
         public string FinishedGoodSKU {
             get {
@@ -417,6 +419,16 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
             }
             set {
                 this.ingredientsField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string InvoiceNo {
+            get {
+                return this.invoiceNoField;
+            }
+            set {
+                this.invoiceNoField = value;
             }
         }
     }

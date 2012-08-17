@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
   internal static class CigaretteExportFormFactory
   {
     internal static CigaretteExportForm CigaretteExportForm
-      ( Batch batch, InvoiceContent invoice, double portion, List<Ingredient> _ingredients, string masretDocumentNo, ref int subdocumentNo, string customsProcedure )
+      ( Batch batch, InvoiceContent invoice, double portion, List<Ingredient> _ingredients, string masretDocumentNo, ref int subdocumentNo, string customsProcedure, string invoiceNumber )
     {
       CigaretteExportForm _ret = new CigaretteExportForm();
       if ( batch == null )
@@ -62,6 +62,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       _ret.FinishedGoodUnit = invoice.Units;
       _ret.FinishedGoodSKU = batch.SKULookup.SKU;
       _ret.FinishedGoodSKUDescription = batch.SKULookup.Title();
+      _ret.InvoiceNo = invoiceNumber;
       _ret.MaterialTotal = ( batch.TobaccoKg.Value * portion ).RountMass();
       _ret.ProductFormat = batch.SKULookup.FormatLookup.Title();
       _ret.CTFUsageMin = batch.UsageLookup.CTFUsageMin.Value;

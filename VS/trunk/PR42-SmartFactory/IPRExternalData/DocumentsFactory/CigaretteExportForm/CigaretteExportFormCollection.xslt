@@ -60,7 +60,7 @@
         <tr>
           <td>Batch:</td>
           <td>
-            <b>TBD</b>
+            <xsl:value-of select="cas:FinishedGoodBatch"/>
           </td>
         </tr>
         <tr>
