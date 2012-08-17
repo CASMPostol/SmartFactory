@@ -10,11 +10,33 @@
   </xs:element>
   <xs:complexType name="ArrayOfCigaretteExportForm">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="CigaretteExportForm" nillable="false" type="tns:CigaretteExportForm" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CigaretteExportForm" type="tns:CigaretteExportForm" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="CigaretteExportForm">
     <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="FinishedGoodSKU" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FinishedGoodBatch" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FinishedGoodQantity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FinishedGoodUnit" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FamilyDescription" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BrandDescription" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MaterialTotal" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FinishedGoodSKUDescription" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoTotal" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IPTMaterialQuantityTotal" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IPTMaterialValueTotal" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IPTMaterialDutyTotal" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IPTMaterialVATTotal" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RegularMaterialQuantityTotal" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CTFUsageMin" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CTFUsageMax" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CTFUsagePerUnitMin" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CTFUsagePerUnitMaxn" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CTFUsagePer1MFinishedGoodsMin" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CTFUsagePer1MFinishedGoodsMax" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Coefficient" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CustomsProcedure" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="ProductFormat" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="DustKg" type="xs:double" />
