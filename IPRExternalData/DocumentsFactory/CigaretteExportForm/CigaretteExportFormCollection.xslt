@@ -17,7 +17,7 @@
           <tr>
             <td>
               <p align="right">
-                Gostków Stary, TBD: Date
+                Gostków Stary, <xsl:value-of select="ms:format-date(cas:CigaretteExportFormCollection/cas:DocumentDate, $FoarmatOfdate)"/>
               </p>
             </td>
           </tr>
@@ -44,34 +44,34 @@
       <h2>
         <xsl:number></xsl:number>. Proces technologiczny produkcji papierosów na eksport
       </h2>
-      <table>
+      <table border="1">
         <tr>
           <td>Dokument nr:</td>
-          <td>
+          <td colspan="4">
             <xsl:value-of select="cas:DocumentNo"/>
           </td>
         </tr>
         <tr>
           <td>Format:</td>
-          <td>
+          <td colspan="4">
             <xsl:value-of select="cas:ProductFormat"/>
           </td>
         </tr>
         <tr>
           <td>Batch:</td>
-          <td>
+          <td colspan="4">
             <xsl:value-of select="cas:FinishedGoodBatch"/>
           </td>
         </tr>
         <tr>
           <td>Faktura:</td>
-          <td>
+          <td colspan="4">
             <xsl:value-of select="cas:InvoiceNo"/>
           </td>
         </tr>
         <tr>
-          <td>Procedura: </td>
-          <td>
+          <td >Procedura: </td>
+          <td colspan="4">
             <xsl:value-of select="cas:CustomsProcedure"/>
           </td>
         </tr>
@@ -92,7 +92,7 @@
         </tr>
         <tr>
           <td>Ilość: </td>
-          <td align="right">
+          <td align="right" colspan="2">
             <xsl:value-of select="format-number(cas:FinishedGoodQantity, $FoarmatOfFloat, 'pl')"/>
           </td>
           <td align="left">
@@ -131,13 +131,13 @@
           <td align="right">
             <xsl:value-of select="format-number(cas:IPTMaterialQuantityTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
-          <td align ="center">
+          <td align ="center" bgcolor="gray">
             ---
           </td>
           <td align="right">
             <xsl:value-of select="format-number(cas:IPTMaterialValueTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
-          <td align ="center">
+          <td align ="center" bgcolor="gray">
             ---
           </td>
           <td align="right">

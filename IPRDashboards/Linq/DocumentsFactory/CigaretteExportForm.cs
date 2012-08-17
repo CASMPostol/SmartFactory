@@ -131,7 +131,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       CigaretteExportFormCollection _ret = new CigaretteExportFormCollection()
       {
         CigaretteExportForms = cigaretteExportForms.ToArray(),
-        DocumentNo = documentNo
+        DocumentNo = documentNo,
+        DocumentDate = DateTime.Now.Date
       };
       return _ret;
     }
