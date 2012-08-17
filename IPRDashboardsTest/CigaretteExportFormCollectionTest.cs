@@ -82,7 +82,18 @@ namespace IPRDashboardsTest
       double _portion = 0.5;
       SKUCigarette _sku = new SKUCigarette()
       {
-        FormatLookup = new Format() { Tytuł = "Format title" }
+        FormatLookup = new Format() { Tytuł = "Format title", CigaretteLenght = "100", FilterLenght = "20" },
+        Brand = "Slims Menthol ",
+        Family = "Salem",
+        CigaretteLenght = "99.00 mm ",
+        FilterLenght = "27.00 mm",
+        IPRMaterial = true,
+        Menthol = "M",
+        MentholMaterial = true,
+        PrimeMarket = "PL",
+        ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette,
+        SKU = "12419574 ",
+        Tytuł = "SKU SA MXSR  99 CPB 20  5000 05  N PL1"
       };
       Batch _batch = new Batch()
       {

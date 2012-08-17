@@ -66,21 +66,29 @@
         <tr>
           <td>Faktura:</td>
           <td>
-            <b>TBD</b>
+            <xsl:value-of select="cas:TBDInvoiceNo"/>
           </td>
         </tr>
         <tr>
           <td>Procedura: </td>
           <td>
-            TBD
+            <xsl:value-of select="cas:CustomsProcedure"/>
           </td>
         </tr>
         <tr>
           <td>NAZWA PAPIEROSÓW: </td>
-          <td>-- FamilyDescription --</td>
-          <td>-- BrandDescription --</td>
-          <td>-- Material --</td>
-          <td>-- MaterialDescription  --</td>
+          <td>
+            <xsl:value-of select="cas:FamilyDescription"/>
+          </td>
+          <td>
+            <xsl:value-of select="cas:BrandDescription"/>
+          </td>
+          <td>
+            <xsl:value-of select="cas:FinishedGoodSKU"/>
+          </td>
+          <td>
+            <xsl:value-of select="cas:FinishedGoodSKUDescription"/>
+          </td>
         </tr>
         <tr>
           <td>Ilość: </td>
