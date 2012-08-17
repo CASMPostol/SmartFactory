@@ -32,10 +32,10 @@
       <xs:element minOccurs="1" maxOccurs="1" name="CTFUsageMin" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="CTFUsageMax" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="CTFUsagePerUnitMin" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="CTFUsagePerUnitMaxn" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CTFUsagePerUnitMax" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="CTFUsagePer1MFinishedGoodsMin" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="CTFUsagePer1MFinishedGoodsMax" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Coefficient" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="WasteCoefficient" type="xs:double" />
       <xs:element minOccurs="0" maxOccurs="1" name="CustomsProcedure" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="ProductFormat" type="xs:string" />
@@ -46,6 +46,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="Product" type="tns:ProductType" />
       <xs:element minOccurs="0" maxOccurs="1" name="Ingredients" type="tns:ArrayOfIngredients" />
       <xs:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IPRRestMaterialQantityTotal" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="ProductType">

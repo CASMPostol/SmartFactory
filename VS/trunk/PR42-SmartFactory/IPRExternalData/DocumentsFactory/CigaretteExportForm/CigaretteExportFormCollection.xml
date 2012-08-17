@@ -21,10 +21,10 @@
       <CTFUsageMin>0.9876</CTFUsageMin>
       <CTFUsageMax>1.23</CTFUsageMax>
       <CTFUsagePerUnitMin>987.6</CTFUsagePerUnitMin>
-      <CTFUsagePerUnitMaxn>1230</CTFUsagePerUnitMaxn>
+      <CTFUsagePerUnitMax>1230</CTFUsagePerUnitMax>
       <CTFUsagePer1MFinishedGoodsMin>987650</CTFUsagePer1MFinishedGoodsMin>
       <CTFUsagePer1MFinishedGoodsMax>1234450</CTFUsagePer1MFinishedGoodsMax>
-      <Coefficient>0.01</Coefficient>
+      <WasteCoefficient>0.01</WasteCoefficient>
       <CustomsProcedure>3951</CustomsProcedure>
       <DocumentNo>CigaretteExportFormCollection-01</DocumentNo>
       <ProductFormat>Format title</ProductFormat>
@@ -49,6 +49,7 @@
         </IPRIngredient>
       </Ingredients>
       <InvoiceNo>INV987654</InvoiceNo>
+      <IPRRestMaterialQantityTotal>1.85</IPRRestMaterialQantityTotal>
     </CigaretteExportForm>
     <CigaretteExportForm>
       <FinishedGoodSKU>12419574 </FinishedGoodSKU>
@@ -68,10 +69,10 @@
       <CTFUsageMin>0.9876</CTFUsageMin>
       <CTFUsageMax>1.23</CTFUsageMax>
       <CTFUsagePerUnitMin>987.6</CTFUsagePerUnitMin>
-      <CTFUsagePerUnitMaxn>1230</CTFUsagePerUnitMaxn>
+      <CTFUsagePerUnitMax>1230</CTFUsagePerUnitMax>
       <CTFUsagePer1MFinishedGoodsMin>987650</CTFUsagePer1MFinishedGoodsMin>
       <CTFUsagePer1MFinishedGoodsMax>1234450</CTFUsagePer1MFinishedGoodsMax>
-      <Coefficient>0.01</Coefficient>
+      <WasteCoefficient>0.01</WasteCoefficient>
       <CustomsProcedure>3951</CustomsProcedure>
       <DocumentNo>CigaretteExportFormCollection-02</DocumentNo>
       <ProductFormat>Format title</ProductFormat>
@@ -96,6 +97,7 @@
         </IPRIngredient>
       </Ingredients>
       <InvoiceNo>INV987654</InvoiceNo>
+      <IPRRestMaterialQantityTotal>1.85</IPRRestMaterialQantityTotal>
     </CigaretteExportForm>
   </CigaretteExportForms>
 </CigaretteExportFormCollection>

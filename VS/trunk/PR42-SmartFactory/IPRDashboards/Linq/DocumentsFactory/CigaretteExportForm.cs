@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       _ret.CTFUsageMin = batch.UsageLookup.CTFUsageMin.Value;
       _ret.CTFUsageMax = batch.UsageLookup.CTFUsageMax.Value;
       _ret.CTFUsagePerUnitMin = 1000 * batch.UsageLookup.CTFUsageMin.Value;
-      _ret.CTFUsagePerUnitMaxn = 1000 * batch.UsageLookup.CTFUsageMax.Value;
+      _ret.CTFUsagePerUnitMax = 1000 * batch.UsageLookup.CTFUsageMax.Value;
       _ret.CTFUsagePer1MFinishedGoodsMin = 1000 * batch.UsageLookup.UsageMin.Value;
       _ret.CTFUsagePer1MFinishedGoodsMax = 1000 * batch.UsageLookup.UsageMax.Value;
       _ret.Coefficient = batch.WasteCooeficiency.Value;
@@ -89,6 +89,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       }
       _ret.SHMentholKg = ( batch.SHMentholKg.Value * portion ).RountMass();
       _ret.WasteKg = ( batch.WasteKg.Value * portion ).RountMass();
+      _ret.IPRRestMaterialQantityTotal = _ret.DustKg + _ret.SHMentholKg + _ret.WasteKg;
       return _ret;
     }
     private static void CountExportFormTotals( List<Ingredient> _ingredients, CigaretteExportForm _ret )

@@ -92,7 +92,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         
         private double cTFUsagePerUnitMinField;
         
-        private double cTFUsagePerUnitMaxnField;
+        private double cTFUsagePerUnitMaxField;
         
         private double cTFUsagePer1MFinishedGoodsMinField;
         
@@ -119,6 +119,8 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         private Ingredient[] ingredientsField;
         
         private string invoiceNoField;
+        
+        private double iPRRestMaterialQantityTotalField;
         
         /// <uwagi/>
         public string FinishedGoodSKU {
@@ -291,12 +293,12 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         }
         
         /// <uwagi/>
-        public double CTFUsagePerUnitMaxn {
+        public double CTFUsagePerUnitMax {
             get {
-                return this.cTFUsagePerUnitMaxnField;
+                return this.cTFUsagePerUnitMaxField;
             }
             set {
-                this.cTFUsagePerUnitMaxnField = value;
+                this.cTFUsagePerUnitMaxField = value;
             }
         }
         
@@ -429,6 +431,16 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
             }
             set {
                 this.invoiceNoField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double IPRRestMaterialQantityTotal {
+            get {
+                return this.iPRRestMaterialQantityTotalField;
+            }
+            set {
+                this.iPRRestMaterialQantityTotalField = value;
             }
         }
     }
