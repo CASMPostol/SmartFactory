@@ -112,7 +112,7 @@ namespace IPRDashboardsTest
         StockEntry = null,
         WasteCoeficiencyVersion = 1,
         WasteKg = 1.3,
-        UsageLookup = null,
+        UsageLookup = new Usage() { CTFUsageMax = 1.23, CTFUsageMin = 0.9876, UsageMax = 1234.45, UsageMin = 987.65, FormatLookup = null },
         WasteCooeficiency = 0.01,
         WasteLookup = null,
         Tytuł = "Testing batch"
@@ -192,9 +192,9 @@ namespace IPRDashboardsTest
       string _masterDocumentName = "CigaretteExportFormCollection";
       int _position = 1;
       List<XmlCigaretteExportForm> cigaretteExportForms = new List<XmlCigaretteExportForm>();
-      CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position );
+      CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951" );
       cigaretteExportForms.Add( _cigaretteExportForm );
-      _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position );
+      _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951" );
       cigaretteExportForms.Add( _cigaretteExportForm );
       CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportForms, _masterDocumentName );
       XmlSerializer _srlzr = new XmlSerializer( typeof( CigaretteExportFormCollection ) );
