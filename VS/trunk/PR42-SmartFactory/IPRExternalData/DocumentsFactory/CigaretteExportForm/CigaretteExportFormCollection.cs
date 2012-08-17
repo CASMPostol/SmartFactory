@@ -26,6 +26,8 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         
         private string documentNoField;
         
+        private System.DateTime documentDateField;
+        
         private CigaretteExportForm[] cigaretteExportFormsField;
         
         /// <uwagi/>
@@ -35,6 +37,17 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
             }
             set {
                 this.documentNoField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+        public System.DateTime DocumentDate {
+            get {
+                return this.documentDateField;
+            }
+            set {
+                this.documentDateField = value;
             }
         }
         
