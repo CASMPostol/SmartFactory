@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using CAS.SharePoint;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
-using CAS.SharePoint;
-
 
 namespace CAS.SmartFactory.Linq.IPR
 {

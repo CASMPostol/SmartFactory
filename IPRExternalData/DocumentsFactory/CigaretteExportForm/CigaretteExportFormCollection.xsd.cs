@@ -24,9 +24,10 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm
         NewLineChars = "\r\n"
       };
       using ( MemoryStream _docStrm = new MemoryStream() )
-      using (XmlWriter file = XmlWriter.Create( _docStrm, _setting ))
+      using ( XmlWriter file = XmlWriter.Create( _docStrm, _setting ) )
       {
-        _srlzr.Serialize( _docStrm, this );
+        file.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" href=\"CigaretteExportFormCollection.xslt\"" );
+        _srlzr.Serialize( file, this );
         _docFile = destinationCollection.Add( fileName + ".xml", _docStrm, true );
       }
       return _docFile;

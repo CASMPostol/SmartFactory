@@ -76,7 +76,7 @@
           </td>
         </tr>
         <tr>
-          <td>NAZWA PAPIEROSÓW: </td>
+          <td>Nazwa papierosów: </td>
           <td>
             <xsl:value-of select="cas:FamilyDescription"/>
           </td>
@@ -186,9 +186,11 @@
           <td align="right">
             <xsl:value-of select="format-number(cas:RegularMaterialQuantityTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
-        </tr>       
+        </tr>
       </table>
-      <p>Suma tytoni z zawieszeń i nie z zawieszeń: <xsl:value-of select="format-number(cas:TobaccoTotal, $FoarmatOfFloat, 'pl')"/> kg.</p>
+      <p>
+        Suma tytoni z zawieszeń i nie z zawieszeń: <xsl:value-of select="format-number(cas:TobaccoTotal, $FoarmatOfFloat, 'pl')"/> kg.
+      </p>
       <h3>b. Opis procesu technologicznego:</h3>
       <p>W trakcie procesu technologicznego tytoń jest poddany obróbce w linii przerobu tytoni w JTI Polska Sp. z o.o., Zakład w Gostkowie wg szczegółowej instrukcji technologicznej ustalonej z odbiorcą:</p>
       <ol>
@@ -207,16 +209,18 @@
       <ol>
         <li>
           Z wymienionego w pkt.1 materiału wsadowego poddanego obróbce w linii technologicznej uzyskuje się krajankę tytoniową o współczynniku produktywności
-          <xsl:value-of select="format-number(cas:CTFUsageMin, $FoarmatOfFloat, 'pl')"/>%-<xsl:value-of select="format-number(cas:CTFUsageMax, $FoarmatOfFloat, 'pl')"/>%
-          tzn. z 1000 kg tytoniu uzyskuje się <xsl:value-of select="format-number(cas:CTFUsagePerUnitMin, $FoarmatOfFloat, 'pl')"/>-<xsl:value-of select="format-number(cas:CTFUsagePerUnitMax, $FoarmatOfFloat, 'pl')"/> kg (krajanki tytoniowej)
+          <xsl:value-of select="format-number(cas:CTFUsagePerUnitMin, $FoarmatOfFloat, 'pl')"/>%-<xsl:value-of select="format-number(cas:CTFUsagePerUnitMax, $FoarmatOfFloat, 'pl')"/>%
+          tzn. z 1000 kg tytoniu uzyskuje się 
+          <xsl:value-of select="format-number(cas:CTFUsagePerUnitMin * 1000, $FoarmatOfFloat, 'pl')"/>-
+          <xsl:value-of select="format-number(cas:CTFUsagePerUnitMax*1000, $FoarmatOfFloat, 'pl')"/>kg (krajanki tytoniowej)
         </li>
         <li>
-          Na 1 mln. szt. gotowych papierosów zużywa się w trakcie procesu produkcyjnego 
+          Na 1 mln. szt. gotowych papierosów zużywa się w trakcie procesu produkcyjnego
           <xsl:value-of select="format-number(cas:CTFUsagePer1MFinishedGoodsMin, $FoarmatOfFloat, 'pl')"/>-
           <xsl:value-of select="format-number(cas:CTFUsagePer1MFinishedGoodsMax, $FoarmatOfFloat, 'pl')"/> kg krajanki tytoniowej.
         </li>
         <li>
-          Dodatkowo przy produkcji 1 mln papierosów powstaje <xsl:value-of select="format-number(cas:CTFUsagePer1MFinishedGoodsMax, $FoarmatOfFloat, 'pl')"/>% odpadów (zużycie tytoniu należy powiększyć o ten współczynnik)
+          Dodatkowo przy produkcji 1 mln papierosów powstaje <xsl:value-of select="format-number(cas:WasteCoefficient * 100, $FoarmatOfFloat, 'pl')"/>% odpadów (zużycie tytoniu należy powiększyć o ten współczynnik)
         </li>
       </ol>
       <table>

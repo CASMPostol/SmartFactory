@@ -110,12 +110,12 @@ namespace IPRDashboardsTest
         FGQuantityBlocked = 0,
         FGQuantityKUKg = _quantity,
         FGQuantityPrevious = 0,
-        MaterialQuantity = 5000,
+        MaterialQuantity = 5000.1234567,
         MaterialQuantityPrevious = 0,
         OveruseKg = 0,
         ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette,
         SHCoeficiencyVersion = 1,
-        SHCooeficiency = 0.01,
+        SHCooeficiency = 0.01234567,
         SHMentholKg = 1.3,
         SHMentholLookup = null,
         SKU = "SKU1234567890",
@@ -124,7 +124,7 @@ namespace IPRDashboardsTest
         WasteCoeficiencyVersion = 1,
         WasteKg = 1.3,
         UsageLookup = new Usage() { CTFUsageMax = 1.23, CTFUsageMin = 0.9876, UsageMax = 1234.45, UsageMin = 987.65, FormatLookup = null },
-        WasteCooeficiency = 0.01,
+        WasteCooeficiency = 0.012345678,
         WasteLookup = null,
         Tytuł = "Testing batch"
       };

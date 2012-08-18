@@ -11,7 +11,7 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class Dokument
   {
     internal static int PrepareConsignment
-      ( SPWeb site, List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> _consignment, string fileName )
+      ( SPWeb site, List<CigaretteExportForm> _consignment, string fileName )
     {
       string _stt = "Starting";
       try

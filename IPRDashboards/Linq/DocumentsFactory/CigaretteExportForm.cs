@@ -65,12 +65,12 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       _ret.InvoiceNo = invoiceNumber;
       _ret.MaterialTotal = ( batch.TobaccoKg.Value * portion ).RountMass();
       _ret.ProductFormat = batch.SKULookup.FormatLookup.Title();
-      _ret.CTFUsageMin = batch.UsageLookup.CTFUsageMin.Value;
-      _ret.CTFUsageMax = batch.UsageLookup.CTFUsageMax.Value;
-      _ret.CTFUsagePerUnitMin = 1000 * batch.UsageLookup.CTFUsageMin.Value;
-      _ret.CTFUsagePerUnitMax = 1000 * batch.UsageLookup.CTFUsageMax.Value;
-      _ret.CTFUsagePer1MFinishedGoodsMin = 1000 * batch.UsageLookup.UsageMin.Value;
-      _ret.CTFUsagePer1MFinishedGoodsMax = 1000 * batch.UsageLookup.UsageMax.Value;
+      _ret.CTFUsageMin = batch.UsageLookup.CTFUsageMin.Value * 1000;
+      _ret.CTFUsageMax = batch.UsageLookup.CTFUsageMax.Value * 1000;
+      _ret.CTFUsagePerUnitMin = batch.UsageLookup.CTFUsageMin.Value;
+      _ret.CTFUsagePerUnitMax = batch.UsageLookup.CTFUsageMax.Value;
+      _ret.CTFUsagePer1MFinishedGoodsMin = batch.UsageLookup.UsageMin.Value;
+      _ret.CTFUsagePer1MFinishedGoodsMax = batch.UsageLookup.UsageMax.Value;
       _ret.WasteCoefficient = batch.WasteCooeficiency.Value;
       switch ( batch.ProductType.Value )
       {
@@ -81,7 +81,6 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
           SKUCigarette _skuCigarette = batch.SKULookup as SKUCigarette;
           _ret.BrandDescription = _skuCigarette.Brand;
           _ret.FamilyDescription = _skuCigarette.Family;
-
           _ret.Product = xml.DocumentsFactory.CigaretteExportForm.ProductType.Cigarette;
           break;
         default:
@@ -107,9 +106,9 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
         {
           IPRIngredient _iprItem = (IPRIngredient)_item;
           _ret.IPTMaterialQuantityTotal += _iprItem.TobaccoQuantity;
-          _ret.IPTMaterialValueTotal = _iprItem.TobaccoValue;
-          _ret.IPTMaterialDutyTotal = _iprItem.Duty;
-          _ret.IPTMaterialVATTotal = _iprItem.VAT;
+          _ret.IPTMaterialValueTotal += _iprItem.TobaccoValue;
+          _ret.IPTMaterialDutyTotal += _iprItem.Duty;
+          _ret.IPTMaterialVATTotal += _iprItem.VAT;
         }
         else
         {
