@@ -12,6 +12,6 @@ namespace CAS.SmartFactory.IPR.Dashboards
     internal const string QuantityIsUnavailable = "The requested quantity is unavailable. There is only {0} on the stock.";
     internal const string NeBatchQuantityIsUnavailable = "The requested quantity is unavailable on the selected new batch. There is only {0} on the stock.";
     internal const string CustomsProcedure3151 = "3151";
-    internal const string FinishedGoodsExportFormFileName = "FinishedGoodsExportFormFileName{0}";
+    internal const string FinishedGoodsExportFormFileName = "FinishedGoodsExportForm{0}";
   }
 }
