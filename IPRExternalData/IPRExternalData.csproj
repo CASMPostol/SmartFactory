@@ -396,6 +396,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DocumentsFactory\BalanceSheet\BalanceSheetCollection.xslt" />
     <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xml">
       <SubType>Designer</SubType>
     </Content>
