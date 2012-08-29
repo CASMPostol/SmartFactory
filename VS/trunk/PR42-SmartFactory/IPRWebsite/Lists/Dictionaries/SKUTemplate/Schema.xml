@@ -26,7 +26,7 @@
       <ContentType ID="0x010014c98f440fb04c679f1d9d39acc92d8a00ae74b7010f534db980d221d41d0bcba1" Name="SKUCutfiller" Group="CAS Smart Factory IPR Dictionaries" Description="Cutfiller SKU" Overwrite="TRUE" Inherits="True">
         <Folder TargetName="_cts/SKUCutfiller" />
         <FieldRefs>
-          <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+          <FieldRef ID="{DD3EEFD0-C2B4-411D-B0CE-E72B2484DD5A}" Name="Units" />
           <FieldRef ID="{EFB4D543-B0D4-4371-A1DC-24F0EB576021}" Name="BlendPurpose" />
         </FieldRefs>
         <XmlDocuments>
@@ -79,8 +79,13 @@
           <FieldRef ID="{FEF25D85-B84C-4E2E-B5AD-21970B6351F5}" Name="PrimeMarket" />
           <FieldRef ID="{8E757B00-B79F-4B4F-A510-485635AEA6C0}" Name="MentholMaterial" />
           <FieldRef ID="{97EE3235-0816-43E7-AB77-AF9D4E040DF1}" Name="Menthol" />
-          <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+          <FieldRef ID="{DD3EEFD0-C2B4-411D-B0CE-E72B2484DD5A}" Name="Units" />
           <FieldRef ID="{EFB4D543-B0D4-4371-A1DC-24F0EB576021}" Name="BlendPurpose" />
+          <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="ProductType" />
+          <FieldRef ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}" Name="FormatIndex" />
+          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+          <FieldRef ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}" Name="IPRMaterial" />
+          <FieldRef ID="{82DC8814-8EF0-4570-83C9-98211FE1871E}" Name="SKULibraryIndex" />
         </ViewFields>
         <Query>
           <OrderBy>
