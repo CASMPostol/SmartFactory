@@ -8,7 +8,7 @@
                Inherits="True">
     <Folder TargetName="_cts/SKUCutfiller" />
     <FieldRefs>
-      <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
+      <FieldRef ID="{DD3EEFD0-C2B4-411D-B0CE-E72B2484DD5A}" Name="Units" />
       <FieldRef ID="{EFB4D543-B0D4-4371-A1DC-24F0EB576021}" Name="BlendPurpose" />
     </FieldRefs>
     <XmlDocuments>

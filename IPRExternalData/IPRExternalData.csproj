@@ -404,7 +404,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.htm" />
-    <Content Include="DocumentsFactory\CutfillerExportForm\CutfillerExportFormCollection.xslt" />
+    <Content Include="DocumentsFactory\CutfillerExportForm\CutfillerExportFormCollection.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DocumentsFactory\DustForm\DustFormCollection.xslt">
       <SubType>Designer</SubType>
     </Content>
