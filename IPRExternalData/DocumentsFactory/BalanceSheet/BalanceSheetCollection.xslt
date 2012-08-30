@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ms="urn:schemas-microsoft-com:xslt"
-    xmlns:cas="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CutfillerExportForm.xsd"
+    xmlns:cas="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheet.xsd"
 >
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
@@ -16,7 +16,7 @@
         <table border="0">
           <tr>
             <td align="right">
-                Gostków Stary, <xsl:value-of select="ms:format-date(cas:CutfillerExportFormCollection/cas:DocumentDate, $FoarmatOfdate)"/>
+                Gostków Stary, <xsl:value-of select="ms:format-date(cas:BalanceSheetCollection/cas:DocumentDate, $FoarmatOfdate)"/>
             </td>
           </tr>
           <tr>
