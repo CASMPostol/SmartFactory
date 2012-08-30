@@ -29,6 +29,44 @@
           Zestawienie ilości pyłów i ścinków tytoniowych powstałych przy produkcji papierosów wyprodukowanych
           w okresie od [Data] do [Data]
         </h2>
+        <p>Procedura: </p>
+        <table border="1">
+          <tr>
+            <td colspan="3">
+              Suma z pył + ścinki %
+            </td>
+            <td colspan="3"></td>
+          </tr>
+          <tr>
+            <th>NR SAD</th>
+            <th>Data</th>
+            <th>SKU tytoniu</th>
+            <th>Batch tytoniu</th>
+            <th>Batch produktu gotowego</th>
+            <th>Ilość w kg</th>
+          </tr>
+          <xsl:apply-templates select="cas:XX" />
+          <tr>
+            <td colspan="3">Suma końcowa</td>
+            <td colsapn="3"></td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td>
+              <p align="center">
+                .............................................
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="center">
+                Imię i Nazwisko
+              </p>
+            </td>
+          </tr>
+        </table>
       </body>
     </html>
   </xsl:template>
