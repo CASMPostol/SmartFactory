@@ -10,6 +10,7 @@
           <FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />
           <FieldRef ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}" Name="ProductivityRateMax" />
           <FieldRef ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}" Name="ConsentPeriod" />
+          <FieldRef ID="{3F474B3D-760E-4045-BA80-7D3A7CFAAFFF}" Name="IsIPR" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -59,6 +60,7 @@
           <FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />
           <FieldRef ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}" Name="ProductivityRateMax" />
           <FieldRef ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}" Name="ConsentPeriod" />
+          <FieldRef ID="{3F474B3D-760E-4045-BA80-7D3A7CFAAFFF}" Name="IsIPR" />
         </ViewFields>
         <Query>
           <OrderBy>
