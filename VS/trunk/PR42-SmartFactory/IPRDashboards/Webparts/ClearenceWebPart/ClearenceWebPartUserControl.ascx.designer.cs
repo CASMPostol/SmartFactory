@@ -121,6 +121,24 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.Table m_PeriodTable;
         
         /// <summary>
+        /// m_AllDateLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_AllDateLabel;
+        
+        /// <summary>
+        /// m_AllDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox m_AllDate;
+        
+        /// <summary>
         /// m_StartDateLabel control.
         /// </summary>
         /// <remarks>
@@ -191,6 +209,51 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList m_ProcedureRadioButtonList;
+        
+        /// <summary>
+        /// m_CurrencyPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel m_CurrencyPanel;
+        
+        /// <summary>
+        /// m_CurrencyTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table m_CurrencyTable;
+        
+        /// <summary>
+        /// m_AllCurrencyLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_AllCurrencyLabel;
+        
+        /// <summary>
+        /// m_AllCurency control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox m_AllCurency;
+        
+        /// <summary>
+        /// m_SelectCurrencyRadioButtonList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList m_SelectCurrencyRadioButtonList;
         
         /// <summary>
         /// m_ButtonsTable control.
