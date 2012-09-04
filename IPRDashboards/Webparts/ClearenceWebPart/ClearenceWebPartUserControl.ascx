@@ -95,7 +95,7 @@
                 </asp:Panel>
             </asp:TableCell>
             <asp:TableCell VerticalAlign="Top">
-                <asp:Panel runat="server" ID="m_CurrencyPanel" BorderColor="ActiveCaptionText" GroupingText="Currency">
+                <asp:Panel runat="server" ID="m_CurrencyPanel" BorderColor="ActiveCaptionText" GroupingText="Currency" HorizontalAlign="Left">
                     <asp:Table ID="m_CurrencyTable" runat="server" CssClass="Table">
                         <asp:TableRow>
                             <asp:TableCell>
