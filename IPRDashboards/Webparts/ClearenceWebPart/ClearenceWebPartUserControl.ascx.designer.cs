@@ -229,22 +229,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.Table m_CurrencyTable;
         
         /// <summary>
-        /// m_AllCurrencyLabel control.
+        /// m_SelectCurrencyLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_AllCurrencyLabel;
-        
-        /// <summary>
-        /// m_AllCurency control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox m_AllCurency;
+        protected global::System.Web.UI.WebControls.Label m_SelectCurrencyLabel;
         
         /// <summary>
         /// m_SelectCurrencyRadioButtonList control.

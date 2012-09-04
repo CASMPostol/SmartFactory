@@ -49,8 +49,6 @@
                         <asp:TableRow>
                             <asp:TableCell>
                                 <asp:Label ID="m_AllDateLabel" runat="server" Text="All" CssClass="Label"></asp:Label>
-                            </asp:TableCell>
-                            <asp:TableCell>
                                 <asp:CheckBox ID="m_AllDate" runat="server" />
                             </asp:TableCell>
                         </asp:TableRow>
@@ -101,18 +99,13 @@
                     <asp:Table ID="m_CurrencyTable" runat="server" CssClass="Table">
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:Label ID="m_AllCurrencyLabel" runat="server" Text="All" CssClass="Label"></asp:Label>
-                            </asp:TableCell>
-                            <asp:TableCell>
-                                <asp:CheckBox ID="m_AllCurency" runat="server" />
+                                <asp:Label ID="m_SelectCurrencyLabel" runat="server" Text="Select currency:" CssClass="Label"></asp:Label>
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:Label ID="m_SelectCurrencyLabel" runat="server" Text="Select Currency" CssClass="Label"
-                            </asp:TableCell>
-                            <asp:TableCell>
                                 <asp:RadioButtonList ID="m_SelectCurrencyRadioButtonList" runat="server">
+                                    <asp:ListItem Enabled="true" Selected="False" Text="All" Value="All"></asp:ListItem>
                                     <asp:ListItem Enabled="true" Selected="True" Text="PLN" Value="PLN"></asp:ListItem>
                                     <asp:ListItem Enabled="true" Selected="False" Text="USD" Value="USD"></asp:ListItem>
                                 </asp:RadioButtonList>
