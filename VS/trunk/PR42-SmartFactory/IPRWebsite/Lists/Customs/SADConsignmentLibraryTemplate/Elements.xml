@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ListTemplate
+        Name="SADConsignmentLibraryTemplate"
+        Type="10019"
+        BaseType="1"
+        OnQuickLaunch="TRUE"
+        SecurityBits="11"
+        Sequence="110"
+        DisplayName="SAD Consignment Library Template"
+        Description="SAD Consignment Library Definition"
+        Image="/_layouts/images/itdl.png"
+        DocumentTemplate="121"/>
+</Elements>

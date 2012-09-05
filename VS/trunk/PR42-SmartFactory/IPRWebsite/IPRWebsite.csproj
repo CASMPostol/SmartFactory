@@ -67,6 +67,9 @@
     <None Include="Content types\Customs\InvoiceLib\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{af417bcd-ea59-4d63-9af1-50fe89c7cd81}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Customs\SADConsignment\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e4bf9ddb-be84-43fa-af18-4a4ccfa7cdde}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Customs\SADDocumentLib\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d65a3d91-5a1c-49bd-b195-c8a315b2af9f}</SharePointProjectItemId>
     </None>
@@ -434,6 +437,7 @@
     <Content Include="Content types\Customs\InvoiceLib\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\Customs\SADConsignment\Elements.xml" />
     <Content Include="Content types\Customs\SADDocumentLib\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="SAD Consignment"
+                OnQuickLaunch="TRUE"
+                TemplateType="10019"
+                Url="Lists/SADConsignmentLibrary"
+                Description="SAD Consignment Library Instance">
+  </ListInstance>
+</Elements>
