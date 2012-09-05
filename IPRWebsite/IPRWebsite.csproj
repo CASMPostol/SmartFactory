@@ -443,7 +443,9 @@
     <Content Include="Content types\Customs\InvoiceLib\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Customs\SADConsignment\Elements.xml" />
+    <Content Include="Content types\Customs\SADConsignment\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Customs\SADDocumentLib\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -592,7 +594,9 @@
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\Repair.aspx" />
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\SADDocumentLibrary\Elements.xml" />
-    <Content Include="Lists\Customs\SADDocumentLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\SADDocumentLibraryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Customs\SADDocumentTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentTemplate\SADDocument\Elements.xml">
