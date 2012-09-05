@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0101002e7fb2d305d04b84adeea8e71ebd1561"
+               Name="SADConsignment"
+               Group="CAS Smart Factory IPR Customs"
+               Description="SAD Consignment Library"
+               Inherits="TRUE"
+               Overwrite="TRUE">
+    <FieldRefs>
+    </FieldRefs>
+  </ContentType>
+</Elements>
