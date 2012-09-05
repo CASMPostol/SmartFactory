@@ -231,10 +231,6 @@
     <None Include="Lists\Customs\InvoiceLibraryTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3af8e441-6abb-47cf-9907-e0bc77892c71}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Customs\SADConsignmentLibrary\SharePointProjectItem.spdata">
-      <SubType>Designer</SubType>
-      <SharePointProjectItemId>{e1c71d57-efb8-4aca-99e1-3ad973c6c1cb}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\Customs\SADDocumentLibraryTemplate\SADDocumentLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{96dc5247-2ca9-40ed-bb8e-28b1cfb1a58e}</SharePointProjectItemId>
     </None>
@@ -574,7 +570,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Customs\InvoiceLibraryTemplate\Upload.aspx" />
-    <Content Include="Lists\Customs\SADConsignmentLibrary\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\FileDlg.htm" />

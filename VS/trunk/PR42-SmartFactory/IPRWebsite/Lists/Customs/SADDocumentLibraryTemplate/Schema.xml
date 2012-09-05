@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="SADDocumentLibraryTemplate" Direction="$Resources:Direction;" Url="IPRWebsite-SADDocumentLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List xmlns:ows="Microsoft SharePoint" DefaultItemOpen="" Title="SADDocumentLibraryTemplate" Direction="$Resources:Direction;" Url="IPRWebsite-SADDocumentLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
       <ContentType ID="0x010100475f601a85c84d02b51f765e42311c86" Name="SADDocumentLib" Group="CAS Smart Factory IPR Customs" Description="SAD Document Library" Inherits="TRUE" Overwrite="TRUE">
