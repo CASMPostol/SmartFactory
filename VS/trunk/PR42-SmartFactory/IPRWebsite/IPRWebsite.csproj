@@ -234,6 +234,12 @@
     <None Include="Lists\Customs\InvoiceLibraryTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3af8e441-6abb-47cf-9907-e0bc77892c71}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\SADConsignmentLibraryTemplate\SADConsignmentLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{42903b27-38f9-4b23-8cd5-449c3e0691d2}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\SADConsignmentLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{56c9e8e5-b18d-4b2a-954d-9678c952883c}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Customs\SADDocumentLibraryTemplate\SADDocumentLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{96dc5247-2ca9-40ed-bb8e-28b1cfb1a58e}</SharePointProjectItemId>
     </None>
@@ -574,6 +580,13 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Lists\Customs\InvoiceLibraryTemplate\Upload.aspx" />
+    <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\SADConsignmentLibrary\Elements.xml" />
+    <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\FileDlg.htm" />
