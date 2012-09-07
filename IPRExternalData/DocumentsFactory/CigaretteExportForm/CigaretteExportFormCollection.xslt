@@ -23,8 +23,8 @@
           </tr>
           <tr>
             <td>
-              <h1 align="left" >
-                Zbiorczy proces technologiczny produkcji papierosów na eksport
+              <h1>
+                Procesy technologiczne dla papierosów z faktury nr <xsl:value-of select="cas:InvoiceNo"/>
               </h1>
             </td>
           </tr>
@@ -35,7 +35,7 @@
   </xsl:template>
   <xsl:template match="cas:CigaretteExportFormCollection">
     <p>
-      Dokument Zbiorczy Nr: <xsl:value-of select="cas:DocumentNo" />
+      Dokument zbiorczy nr: <xsl:value-of select="cas:DocumentNo" />
     </p>
     <xsl:apply-templates select="cas:CigaretteExportForms" />
   </xsl:template>
@@ -101,9 +101,8 @@
         </tr>
       </table>
       <h3>I.	Charakterystyka ogólna procesu technologicznego:</h3>
-      <h4>a. Receptura procesu technologicznego:</h4>
       <p>Przedstawiony niżej proces technologiczny obejmuje wykonanie papierosów z przeznaczeniem na eksport, z tytoni importowanych dla potrzeb firmy JTI i obejmuje dwa etapy:</p>
-      1. Wykonanie krajanki tytoniowej z tytoni i żył tytoniowych importowanych objętych procedurą uszlachetniania czynnego wg zestawienia:
+      <h4>1. Wykonanie krajanki tytoniowej z tytoni i żył tytoniowych importowanych objętych procedurą uszlachetniania czynnego wg zestawienia:</h4>
       <table border="1">
         <tr align="center" >
           <th>Lp.</th>
@@ -191,7 +190,7 @@
       <p>
         Suma tytoni z zawieszeń i nie z zawieszeń: <xsl:value-of select="format-number(cas:TobaccoTotal, $FoarmatOfFloat, 'pl')"/> kg.
       </p>
-      <h3>b. Opis procesu technologicznego:</h3>
+      <h4>Opis procesu technologicznego:</h4>
       <p>W trakcie procesu technologicznego tytoń jest poddany obróbce w linii przerobu tytoni w JTI Polska Sp. z o.o., Zakład w Gostkowie wg szczegółowej instrukcji technologicznej ustalonej z odbiorcą:</p>
       <ol>
         <li>Rozlistkowanie tytoni</li>
@@ -201,11 +200,11 @@
         <li>Suszenie</li>
         <li>Odbiór krajanki w opakowania</li>
       </ol>
-      <p>
+      <h4>
         2. Wykonanie i spakowanie papierosów za użytkiem materiałów nie objętych procedurą uszlachetniania czynnego.
-      </p>
+      </h4>
       <p>Z krajanki tytoniowej wymienionej w pkt. 1 oraz innych materiałów uformowany zostaje papieros oraz spakowany w opakowanie jednostkowe i zbiorcze na maszynach znajdujących się w JTI Polska Sp. z o.o., Zakład w Gostkowie.</p>
-      <h4>II.	Określenia parametrów wagowych obrabianego materiału</h4>
+      <h2>II.	Określenia parametrów wagowych obrabianego materiału</h2>
       <ol>
         <li>
           Z wymienionego w pkt.1 materiału wsadowego poddanego obróbce w linii technologicznej uzyskuje się krajankę tytoniową o współczynniku produktywności
