@@ -587,7 +587,9 @@
     <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\SADConsignmentLibrary\Elements.xml" />
     <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\Repair.aspx" />
-    <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Customs\SADConsignmentLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\Customs\SADDocumentLibraryTemplate\Elements.xml" />
