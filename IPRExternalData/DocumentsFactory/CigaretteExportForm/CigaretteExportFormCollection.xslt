@@ -265,8 +265,8 @@
       </td>
       <td>
         <xsl:choose>
-          <xsl:when test="cas:ItemClearingType='PartialWindingUp'">l. częściowa</xsl:when>
-          <xsl:when test="cas:ItemClearingType='TotalWindingUp'">l. całkowita</xsl:when>
+          <xsl:when test="cas:ItemClearingType='PartialWindingUp'">L. częściowa</xsl:when>
+          <xsl:when test="cas:ItemClearingType='TotalWindingUp'">L. całkowita</xsl:when>
         </xsl:choose>
       </td>
       <td>
