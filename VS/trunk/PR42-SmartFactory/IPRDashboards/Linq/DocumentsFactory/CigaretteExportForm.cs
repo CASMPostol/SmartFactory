@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       _ret.CustomsProcedure = customsProcedure;
       _ret.FinishedGoodBatch = batch.Batch0;
       _ret.FinishedGoodQantity = invoice.Quantity.GetValueOrDefault( 0 );
-      _ret.FinishedGoodUnit = invoice.Units;
+      _ret.FinishedGoodUnit = invoice.Units.GetLocalizedString();
       _ret.FinishedGoodSKU = batch.SKULookup.SKU;
       _ret.FinishedGoodSKUDescription = batch.SKULookup.Title();
       _ret.InvoiceNo = invoiceNumber;
