@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CAS.SmartFactory.Linq.IPR;
 
 namespace IPRWorkflowsUnitTests
 {
