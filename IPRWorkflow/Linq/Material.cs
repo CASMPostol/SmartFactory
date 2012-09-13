@@ -141,8 +141,12 @@ namespace CAS.SmartFactory.Linq.IPR
       internal DisposalsAnalisis( EntitiesDataContext _edc, string batch, double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage )
       {
         List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( _edc, batch );
+        bool _closing = false;
         if ( _accounts.Count == 1 && Math.Abs( _accounts[ 0 ].TobaccoNotAllocated.Value - _material ) < 1 )
+        {
           _material = _accounts[ 0 ].TobaccoNotAllocated.Value;
+          _closing = true;
+        }
         double _am;
         if ( _overusage > 0 )
         {
@@ -153,8 +157,11 @@ namespace CAS.SmartFactory.Linq.IPR
           _am = _material;
         this.Add( IPR.DisposalEnum.Dust, ( _am * _dustRatio ).RountMass() );
         this.Add( IPR.DisposalEnum.SHMenthol, ( _am * _shMentholRatio ).RountMass() );
-        this.Add( IPR.DisposalEnum.Waste, ( _am * _wasteRatio ).RountMass() );
-        this.Add( IPR.DisposalEnum.Tobacco, _am - this[ IPR.DisposalEnum.SHMenthol ] - this[ IPR.DisposalEnum.Waste ] - this[ IPR.DisposalEnum.Dust ] );
+        this.Add( IPR.DisposalEnum.Waste, ( _am * _wasteRatio ).RountMassUpper() );
+        if ( _closing )
+          this.Add( IPR.DisposalEnum.Tobacco, _am - this[ IPR.DisposalEnum.SHMenthol ] - this[ IPR.DisposalEnum.Waste ] - this[ IPR.DisposalEnum.Dust ] );
+        else
+          this.Add( IPR.DisposalEnum.Tobacco, (_am - this[ IPR.DisposalEnum.SHMenthol ] - this[ IPR.DisposalEnum.Waste ] - this[ IPR.DisposalEnum.Dust ]).RountMass() );
       }
       internal void Accumutate( DisposalsAnalisis _dspsls )
       {
