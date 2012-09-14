@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
   internal static class CigaretteExportFormFactory
   {
     internal static CigaretteExportForm CigaretteExportForm
-      ( Batch batch, InvoiceContent invoice, double portion, List<Ingredient> _ingredients, string masretDocumentNo, ref int subdocumentNo, string customsProcedure, string invoiceNumber )
+      ( CutfillerCoefficient cc, Batch batch, InvoiceContent invoice, double portion, List<Ingredient> _ingredients, string masretDocumentNo, ref int subdocumentNo, string customsProcedure, string invoiceNumber )
     {
       CigaretteExportForm _ret = new CigaretteExportForm();
       if ( batch == null )
@@ -65,13 +65,13 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       _ret.InvoiceNo = invoiceNumber;
       _ret.MaterialTotal = ( batch.TobaccoKg.Value * portion ).RountMass();
       _ret.ProductFormat = batch.SKULookup.FormatLookup.Title();
-      _ret.CTFUsageMin = batch.UsageLookup.CTFUsageMin.Value * 1000;
-      _ret.CTFUsageMax = batch.UsageLookup.CTFUsageMax.Value * 1000;
-      _ret.CTFUsagePerUnitMin = batch.UsageLookup.CTFUsageMin.Value;
-      _ret.CTFUsagePerUnitMax = batch.UsageLookup.CTFUsageMax.Value;
-      _ret.CTFUsagePer1MFinishedGoodsMin = batch.UsageLookup.UsageMin.Value;
-      _ret.CTFUsagePer1MFinishedGoodsMax = batch.UsageLookup.UsageMax.Value;
-      _ret.WasteCoefficient = batch.WasteCooeficiency.Value;
+      _ret.CTFUsageMin = cc.CFTProductivityRateMin.Value * 1000;
+      _ret.CTFUsageMax = cc.CFTProductivityRateMax.Value * 1000;
+      _ret.CTFUsagePerUnitMin = cc.CFTProductivityRateMin.Value;
+      _ret.CTFUsagePerUnitMax = cc.CFTProductivityRateMax.Value;
+      _ret.CTFUsagePer1MFinishedGoodsMin = batch.UsageLookup.CTFUsageMin.Value;
+      _ret.CTFUsagePer1MFinishedGoodsMax = batch.UsageLookup.CTFUsageMax.Value;
+      _ret.WasteCoefficient = batch.WasteCooeficiency.Value + batch.DustCooeficiency.Value;
       switch ( batch.ProductType.Value )
       {
         case ProductType.Cutfiller:
