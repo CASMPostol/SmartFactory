@@ -18,6 +18,7 @@ namespace CAS.SmartFactory.Linq.IPR
       this.Brand = xmlDocument.Brand_Description;
       this.Family = xmlDocument.Family_Des;
       this.Menthol = xmlDocument.Menthol;
+      this.MentholMaterial = this.Menthol.StartsWith( "M" ); 
       this.PrimeMarket = xmlDocument.Prime_Market;
     }
     #endregion

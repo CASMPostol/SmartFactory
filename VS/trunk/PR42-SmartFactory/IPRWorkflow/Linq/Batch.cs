@@ -112,7 +112,9 @@ namespace CAS.SmartFactory.Linq.IPR
       this.FGQuantityBlocked = 0;
       this.FGQuantityPrevious = 0; //TODO [pr4-3421] Intermediate batches processing http://itrserver/Bugs/BugDetail.aspx?bid=3421
       this.MaterialQuantityPrevious = 0;
-      double _shmcf = SKULookup.IPRMaterial.Value ? SHMentholLookup.SHMentholRatio.Value : 0;
+      double _shmcf = 0;
+      if ( (SKULookup is SKUCigarette) && ((SKUCigarette)SKULookup ).MentholMaterial.Value )
+        _shmcf = ( (SKUCigarette)SKULookup ).MentholMaterial.Value ? SHMentholLookup.SHMentholRatio.Value : 0;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
       content.ProcessDisposals( edc, this, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
       this.DustKg = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Dust ];
