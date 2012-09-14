@@ -652,12 +652,10 @@
       <CHOICE>SH Menthol</CHOICE>
       <CHOICE>Waste</CHOICE>
       <CHOICE>Overuse</CHOICE>
-      <CHOICE>Tobacco in cigaretes warehouse</CHOICE>
-      <CHOICE>Tobacco in cigaretes exported</CHOICE>
+      <CHOICE>Tobacco in cigaretes</CHOICE>
       <CHOICE>Tobacco in cigaretes destination EU</CHOICE>
       <CHOICE>Tobacco in cigaretes production</CHOICE>
-      <CHOICE>Tobacco in cutfiller warehouse</CHOICE>
-      <CHOICE>Tobacco in cutfiller exported</CHOICE>
+      <CHOICE>Tobacco in cutfiller</CHOICE>
       <CHOICE>Tobacco in cutfiller destination EU</CHOICE>
       <CHOICE>Tobacco in cutfiller production</CHOICE>
     </CHOICES>
