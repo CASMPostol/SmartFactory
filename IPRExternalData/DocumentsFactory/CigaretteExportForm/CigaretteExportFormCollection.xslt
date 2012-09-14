@@ -209,9 +209,9 @@
         <li>
           Z wymienionego w pkt.1 materiału wsadowego poddanego obróbce w linii technologicznej uzyskuje się krajankę tytoniową o współczynniku produktywności
           <xsl:value-of select="format-number(cas:CTFUsagePerUnitMin, $FoarmatOfFloat, 'pl')"/>%-<xsl:value-of select="format-number(cas:CTFUsagePerUnitMax, $FoarmatOfFloat, 'pl')"/>%
-          tzn. z 1000 kg tytoniu uzyskuje się 
+          tzn. z 1000 kg tytoniu uzyskuje się
           <xsl:value-of select="format-number(cas:CTFUsagePerUnitMin * 1000, $FoarmatOfFloat, 'pl')"/>-
-          <xsl:value-of select="format-number(cas:CTFUsagePerUnitMax*1000, $FoarmatOfFloat, 'pl')"/>kg (krajanki tytoniowej)
+          <xsl:value-of select="format-number(cas:CTFUsagePerUnitMax * 1000, $FoarmatOfFloat, 'pl')"/>kg (krajanki tytoniowej)
         </li>
         <li>
           Na 1 mln. szt. gotowych papierosów zużywa się w trakcie procesu produkcyjnego
