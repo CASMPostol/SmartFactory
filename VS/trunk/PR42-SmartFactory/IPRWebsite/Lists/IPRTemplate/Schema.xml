@@ -6,8 +6,11 @@
         <Folder TargetName="_cts/IPR" />
         <FieldRefs>
           <FieldRef ID="{B666BBEE-46EC-4E0D-B782-68BC5E9B561A}" Name="IPR2ConsentTitle" />
-          <FieldRef ID="{D5CA1825-4BB9-4F31-96E3-DFFB4E4E55AD}" Name="ConsentProductivityRateMin" />
-          <FieldRef ID="{E7D6F0BE-C2CA-41E0-9258-749510A9AFA5}" Name="ConsentProductivityRateMax" />
+          <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />
+          <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
+          <FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />
+          <FieldRef ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}" Name="ProductivityRateMax" />
+          <FieldRef ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}" Name="ConsentPeriod" />
           <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
           <FieldRef ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}" Name="CustomsDebtDate" />
           <FieldRef ID="{4D811640-9BD7-4E6D-B081-08B84B6C8123}" Name="OGLValidTo" />
@@ -81,8 +84,11 @@
           <FieldRef Name="LinkTitle">
           </FieldRef>
           <FieldRef ID="{B666BBEE-46EC-4E0D-B782-68BC5E9B561A}" Name="IPR2ConsentTitle" />
-          <FieldRef ID="{D5CA1825-4BB9-4F31-96E3-DFFB4E4E55AD}" Name="ConsentProductivityRateMin" />
-          <FieldRef ID="{E7D6F0BE-C2CA-41E0-9258-749510A9AFA5}" Name="ConsentProductivityRateMax" />
+          <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />
+          <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
+          <FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />
+          <FieldRef ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}" Name="ProductivityRateMax" />
+          <FieldRef ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}" Name="ConsentPeriod" />
           <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
           <FieldRef ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}" Name="CustomsDebtDate" />
           <FieldRef ID="{4D811640-9BD7-4E6D-B081-08B84B6C8123}" Name="OGLValidTo" />
