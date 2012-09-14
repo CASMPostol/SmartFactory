@@ -146,6 +146,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       public GenericStateMachineEngine.InterfaceState InterfaceState = GenericStateMachineEngine.InterfaceState.ViewState;
       public GenericStateMachineEngine.ControlsSet SetEnabled = 0;
       public bool IsModified { get; set; }
+      [NonSerialized()]
+      internal bool InvoiceChanged = false;
       #endregion
 
       #region public
@@ -445,6 +447,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         m_ControlState.InvoiceTitle = e.Title;
         m_ControlState.ReadOnly = e.ReadOnly;
         m_ControlState.ClearInvoiceContent();
+        m_ControlState.InvoiceChanged = true;
       }
       catch ( Exception _ex )
       {
@@ -456,7 +459,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     {
       try
       {
-        if ( m_ControlState.InvoiceContentID.CompareTo( e.ID ) == 0 )
+        if ( m_ControlState.InvoiceContentID.CompareTo( e.ID ) == 0 || m_ControlState.InvoiceChanged )
           return;
         InvoiceContent _ic = Element.FindAtIndex<InvoiceContent>( m_DataContextManagement.DataContext.InvoiceContent, e.ID );
         if ( _ic == null )
