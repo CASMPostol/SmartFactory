@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
   internal static class CigaretteExportFormFactory
   {
     internal static CigaretteExportForm CigaretteExportForm
-      ( CutfillerCoefficient cc, Batch batch, InvoiceContent invoice, double portion, List<Ingredient> _ingredients, string masretDocumentNo, ref int subdocumentNo, string customsProcedure, string invoiceNumber )
+      ( CutfillerCoefficient cc, Batch batch, InvoiceContent invoice, double portion, List<Ingredient> _ingredients, string masretDocumentNo, ref int subdocumentNo, string customsProcedure )
     {
       CigaretteExportForm _ret = new CigaretteExportForm();
       if ( batch == null )
@@ -62,7 +62,6 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       _ret.FinishedGoodUnit = invoice.Units.GetLocalizedString();
       _ret.FinishedGoodSKU = batch.SKULookup.SKU;
       _ret.FinishedGoodSKUDescription = batch.SKULookup.Title();
-      _ret.InvoiceNo = invoiceNumber;
       _ret.MaterialTotal = ( batch.TobaccoKg.Value * portion ).RountMass();
       _ret.ProductFormat = batch.SKULookup.FormatLookup.Title();
       _ret.CTFUsageMin = cc.CFTProductivityRateMin.Value * 1000;
@@ -125,14 +124,16 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
   }
   internal static class CigaretteExportFormCollectionFactory
   {
-    internal static CigaretteExportFormCollection CigaretteExportFormCollection( List<CigaretteExportForm> cigaretteExportForms, string documentNo )
+    internal static CigaretteExportFormCollection CigaretteExportFormCollection( List<CigaretteExportForm> cigaretteExportForms, string documentNo, string invoiceNo )
     {
       //TODO [pr4-3719] Export: Association of the SAD documents - unique naming convention http://itrserver/Bugs/BugDetail.aspx?bid=3719
       CigaretteExportFormCollection _ret = new CigaretteExportFormCollection()
       {
         CigaretteExportForms = cigaretteExportForms.ToArray(),
         DocumentNo = documentNo,
-        DocumentDate = DateTime.Now.Date
+        DocumentDate = DateTime.Now.Date,
+        InvoiceNo = invoiceNo,
+        NumberOfDocuments = cigaretteExportForms.Count
       };
       return _ret;
     }
