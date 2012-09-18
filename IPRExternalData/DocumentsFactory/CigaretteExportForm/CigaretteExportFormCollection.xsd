@@ -6,6 +6,7 @@
         <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
         <xs:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="NumberOfDocuments" type="xs:double" />
         <xs:element minOccurs="0" maxOccurs="1" name="CigaretteExportForms" type="tns:ArrayOfCigaretteExportForm" />
       </xs:sequence>
     </xs:complexType>

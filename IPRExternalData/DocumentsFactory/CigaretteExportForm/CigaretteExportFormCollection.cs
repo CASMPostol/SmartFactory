@@ -30,6 +30,8 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         
         private string invoiceNoField;
         
+        private double numberOfDocumentsField;
+        
         private CigaretteExportForm[] cigaretteExportFormsField;
         
         /// <uwagi/>
@@ -60,6 +62,16 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
             }
             set {
                 this.invoiceNoField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double NumberOfDocuments {
+            get {
+                return this.numberOfDocumentsField;
+            }
+            set {
+                this.numberOfDocumentsField = value;
             }
         }
         
