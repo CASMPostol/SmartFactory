@@ -15,6 +15,8 @@ namespace CAS.SmartFactory.Linq.IPR
       {
         if (_sg.Procedure.RequestedProcedure() != CustomsProcedureCodes.ReExport)
           throw new IPRDataConsistencyException("Clearence.Create", String.Format("IE529 contains invalid customs procedure {0}", _sg.Tytuł), null, "Wrong customs procedure.");
+        //TODO [pr4-3719] Export: Association of the SAD documents - unique naming convention  http://itrserver/Bugs/BugDetail.aspx?bid=3719
+        //TODO [pr4-3707] Export: Association of the SAD documents - SAD handling procedure modification http://itrserver/Bugs/BugDetail.aspx?bid=3707
         throw new NotImplementedException();
       }
     }

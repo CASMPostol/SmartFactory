@@ -8,6 +8,7 @@ using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
 using Microsoft.SharePoint;
+using CAS.SmartFactory.xml.DocumentsFactory;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -539,7 +540,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
       string _title = Resources.FinishedGoodsExportFormFileName;
       Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _title, _customsProcedureCode, Procedure._3151 );
-      string _masterDocumentName = _newClearance.Tytuł;
+      string _masterDocumentName = String.Format( DocumentNames.FinishedGoodExportFormNumberFormat, _newClearance.Identyfikator.Value );
       int _position = 1;
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
         item.BatchID.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );

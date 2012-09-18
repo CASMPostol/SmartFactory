@@ -44,6 +44,7 @@ namespace CAS.SmartFactory.Linq.IPR
                   ProcedureCode = _procedureCode,
                   Status = false,
                   Procedure = Linq.IPR.Procedure._5171,
+                  //TODO common naming mechanism must implemented
                   Tytuł = String.Format( "Procedure {0} Ref: {1}", _procedureCode, _sad.ReferenceNumber )
                 };
                 _at = "InsertOnSubmit";
