@@ -28,6 +28,8 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         
         private System.DateTime documentDateField;
         
+        private string invoiceNoField;
+        
         private CigaretteExportForm[] cigaretteExportFormsField;
         
         /// <uwagi/>
@@ -48,6 +50,16 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
             }
             set {
                 this.documentDateField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string InvoiceNo {
+            get {
+                return this.invoiceNoField;
+            }
+            set {
+                this.invoiceNoField = value;
             }
         }
         
@@ -130,8 +142,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         private ProductType productField;
         
         private Ingredient[] ingredientsField;
-        
-        private string invoiceNoField;
         
         private double iPRRestMaterialQantityTotalField;
         
@@ -434,16 +444,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
             }
             set {
                 this.ingredientsField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public string InvoiceNo {
-            get {
-                return this.invoiceNoField;
-            }
-            set {
-                this.invoiceNoField = value;
             }
         }
         
