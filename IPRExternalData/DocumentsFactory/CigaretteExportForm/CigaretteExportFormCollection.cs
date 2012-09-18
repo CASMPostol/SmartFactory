@@ -478,10 +478,10 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd")]
     public partial class TotalAmountOfMoney {
         
-        private AmountOfMoney[] amountOfMoneyField;
+        private AmountOfMoney amountOfMoneyField;
         
         /// <uwagi/>
-        public AmountOfMoney[] AmountOfMoney {
+        public AmountOfMoney AmountOfMoney {
             get {
                 return this.amountOfMoneyField;
             }
