@@ -53,12 +53,7 @@
   </xs:complexType>
   <xs:complexType name="TotalAmountOfMoney">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="AmountOfMoney" type="tns:ArrayOfAmountOfMoney" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="ArrayOfAmountOfMoney">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="AmountOfMoney" nillable="true" type="tns:AmountOfMoney" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AmountOfMoney" type="tns:AmountOfMoney" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AmountOfMoney">
