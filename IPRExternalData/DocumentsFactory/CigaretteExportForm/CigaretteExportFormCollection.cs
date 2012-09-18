@@ -91,11 +91,11 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         
         private double iPTMaterialQuantityTotalField;
         
-        private double iPTMaterialValueTotalField;
+        private TotalAmountOfMoney iPTMaterialValueTotalField;
         
-        private double iPTMaterialDutyTotalField;
+        private TotalAmountOfMoney iPTMaterialDutyTotalField;
         
-        private double iPTMaterialVATTotalField;
+        private TotalAmountOfMoney iPTMaterialVATTotalField;
         
         private double regularMaterialQuantityTotalField;
         
@@ -236,7 +236,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         }
         
         /// <uwagi/>
-        public double IPTMaterialValueTotal {
+        public TotalAmountOfMoney IPTMaterialValueTotal {
             get {
                 return this.iPTMaterialValueTotalField;
             }
@@ -246,7 +246,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         }
         
         /// <uwagi/>
-        public double IPTMaterialDutyTotal {
+        public TotalAmountOfMoney IPTMaterialDutyTotal {
             get {
                 return this.iPTMaterialDutyTotalField;
             }
@@ -256,7 +256,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         }
         
         /// <uwagi/>
-        public double IPTMaterialVATTotal {
+        public TotalAmountOfMoney IPTMaterialVATTotal {
             get {
                 return this.iPTMaterialVATTotalField;
             }
@@ -461,14 +461,111 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
     /// <uwagi/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
     [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd")]
-    public enum ProductType {
+    public partial class TotalAmountOfMoney {
+        
+        private AmountOfMoney[] amountOfMoneyField;
         
         /// <uwagi/>
-        Cutfiller,
+        public AmountOfMoney[] AmountOfMoney {
+            get {
+                return this.amountOfMoneyField;
+            }
+            set {
+                this.amountOfMoneyField = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd")]
+    public partial class AmountOfMoney {
+        
+        private double amountField;
+        
+        private string currencyField;
         
         /// <uwagi/>
-        Cigarette,
+        public double Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string Currency {
+            get {
+                return this.currencyField;
+            }
+            set {
+                this.currencyField = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(RegularIngredient))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(IPRIngredient))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd")]
+    public abstract partial class Ingredient {
+        
+        private string tobaccoSKUField;
+        
+        private string tobaccoBatchField;
+        
+        private double tobaccoQuantityField;
+        
+        /// <uwagi/>
+        public string TobaccoSKU {
+            get {
+                return this.tobaccoSKUField;
+            }
+            set {
+                this.tobaccoSKUField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string TobaccoBatch {
+            get {
+                return this.tobaccoBatchField;
+            }
+            set {
+                this.tobaccoBatchField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double TobaccoQuantity {
+            get {
+                return this.tobaccoQuantityField;
+            }
+            set {
+                this.tobaccoQuantityField = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd")]
+    public partial class RegularIngredient : Ingredient {
     }
     
     /// <uwagi/>
@@ -590,58 +687,15 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
     }
     
     /// <uwagi/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(RegularIngredient))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(IPRIngredient))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
     [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd")]
-    public abstract partial class Ingredient {
-        
-        private string tobaccoSKUField;
-        
-        private string tobaccoBatchField;
-        
-        private double tobaccoQuantityField;
+    public enum ProductType {
         
         /// <uwagi/>
-        public string TobaccoSKU {
-            get {
-                return this.tobaccoSKUField;
-            }
-            set {
-                this.tobaccoSKUField = value;
-            }
-        }
+        Cutfiller,
         
         /// <uwagi/>
-        public string TobaccoBatch {
-            get {
-                return this.tobaccoBatchField;
-            }
-            set {
-                this.tobaccoBatchField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public double TobaccoQuantity {
-            get {
-                return this.tobaccoQuantityField;
-            }
-            set {
-                this.tobaccoQuantityField = value;
-            }
-        }
-    }
-    
-    /// <uwagi/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd")]
-    public partial class RegularIngredient : Ingredient {
+        Cigarette,
     }
 }
