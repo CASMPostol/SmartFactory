@@ -141,7 +141,40 @@ namespace IPRDashboardsTest
         Units = "kU",
       };
       List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.Ingredient> ingridients = new List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.Ingredient>();
-      IPR _ipr = new IPR()
+      IPR _ipr1 = new IPR()
+      {
+        AccountBalance = 0,
+        AccountClosed = false,
+        Batch = "TobaccoBatch",
+        Cartons = 0,
+        ClearenceListLookup = null,
+        ClosingDate = DateTime.Today,
+        ConsentNo = null,
+        Currency = "PLN",
+        CustomsDebtDate = DateTime.Today,
+        DocumentNo = "SADDocumentNomber",
+        Duty = 123.45,
+        DutyName = "DustyName",
+        DutyPerUnit = 67.89,
+        Grade = "GradeName",
+        GrossMass = 12345.67,
+        InvoiceNo = "InvoiceNo",
+        IPRLibraryLookup = null,
+        JSOXListLookup = null,
+        NetMass = 23456.78,
+        OGLValidTo = DateTime.Today + TimeSpan.FromDays( 364 ),
+        PCNTariffCode = null,
+        SKU = "IPR Tobacco SKU",
+        TobaccoName = "TobaccoName",
+        TobaccoNotAllocated = 9876.54,
+        UnitPrice = 5.67,
+        Tytuł = "Testing IPR",
+        Value = 89012.34,
+        VAT = 56.78,
+        VATName = "VATName",
+        VATPerUnit = 9.12
+      };
+      IPR _ipr2 = new IPR()
       {
         AccountBalance = 0,
         AccountClosed = false,
@@ -174,7 +207,7 @@ namespace IPRDashboardsTest
         VATName = "VATName",
         VATPerUnit = 9.12
       };
-      Disposal _disposal = new Disposal()
+      Disposal _disposal1 = new Disposal()
       {
         BatchLookup = _batch,
         ClearenceListLookup = null,
@@ -186,7 +219,7 @@ namespace IPRDashboardsTest
         DutyPerSettledAmount = 345.6,
         IPRDocumentNo = null,
         InvoiceNo = "InvoiceNomber",
-        IPRID = _ipr,
+        IPRID = _ipr1,
         JSOXCustomsSummaryListLookup = null,
         MaterialLookup = null,
         No = 7.8,
@@ -198,17 +231,49 @@ namespace IPRDashboardsTest
         Tytuł = "Testing disposal",
         VATPerSettledAmount = 78.90,
       };
-      ingridients.Add( IPRIngredientFactory.IPRIngredient( _disposal ) );
+      Disposal _disposal2 = new Disposal()
+      {
+        BatchLookup = _batch,
+        ClearenceListLookup = null,
+        ClearingType = CAS.SmartFactory.Linq.IPR.ClearingType.PartialWindingUp,
+        CustomsProcedure = "5100",
+        CustomsStatus = CustomsStatus.NotStarted,
+        DisposalStatus = DisposalStatus.TobaccoInCigaretesWarehouse,
+        DutyAndVAT = 123.4,
+        DutyPerSettledAmount = 345.6,
+        IPRDocumentNo = null,
+        InvoiceNo = "InvoiceNomber",
+        IPRID = _ipr2,
+        JSOXCustomsSummaryListLookup = null,
+        MaterialLookup = null,
+        No = 7.8,
+        RemainingQuantity = 0,
+        SADDate = new Nullable<DateTime>(),
+        SADDocumentNo = "N/A",
+        SettledQuantity = 9.12,
+        TobaccoValue = 34.56,
+        Tytuł = "Testing disposal",
+        VATPerSettledAmount = 78.90,
+      };
+      CutfillerCoefficient _cc = new CutfillerCoefficient
+      {
+        CFTProductivityNormMax = 995,
+        CFTProductivityNormMin = 985,
+        CFTProductivityRateMax = 0.995,
+        CFTProductivityRateMin = 0.985
+      };
+      ingridients.Add( IPRIngredientFactory.IPRIngredient( _disposal1 ) );
+      ingridients.Add( IPRIngredientFactory.IPRIngredient( _disposal2 ) );
       ingridients.Add( RegularIngredientFactory.RegularIngredient( "Reg Batch 54321", "Reg SKU 12345", 1234.56789 ) );
       string _masterDocumentName = "CigaretteExportFormCollection";
       string _invoiceNumber = "INV987654";
       int _position = 1;
       List<XmlCigaretteExportForm> cigaretteExportFormList = new List<XmlCigaretteExportForm>();
-      CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951", _invoiceNumber );
+      CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _cc, _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951" );
       cigaretteExportFormList.Add( _cigaretteExportForm );
-      _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951", _invoiceNumber );
+      _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _cc, _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951" );
       cigaretteExportFormList.Add( _cigaretteExportForm );
-      CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportFormList, _masterDocumentName );
+      CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportFormList, _masterDocumentName, _invoiceNumber );
       XmlSerializer _srlzr = new XmlSerializer( typeof( CigaretteExportFormCollection ) );
       XmlWriterSettings _setting = new XmlWriterSettings()
       {
