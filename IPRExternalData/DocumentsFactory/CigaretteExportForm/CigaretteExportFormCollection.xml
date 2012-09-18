@@ -2,7 +2,9 @@
 <?xml-stylesheet type="text/xsl" href="CigaretteExportFormCollection.xslt"?>
 <CigaretteExportFormCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd">
   <DocumentNo>CigaretteExportFormCollection</DocumentNo>
-  <DocumentDate>2012-08-17</DocumentDate>
+  <DocumentDate>2012-09-18</DocumentDate>
+  <InvoiceNo>INV987654</InvoiceNo>
+  <NumberOfDocuments>2</NumberOfDocuments>
   <CigaretteExportForms>
     <CigaretteExportForm>
       <FinishedGoodSKU>12419574 </FinishedGoodSKU>
@@ -11,21 +13,54 @@
       <FinishedGoodUnit>kU</FinishedGoodUnit>
       <FamilyDescription>Salem</FamilyDescription>
       <BrandDescription>Slims Menthol </BrandDescription>
-      <MaterialTotal>2498.15</MaterialTotal>
+      <MaterialTotal>2498.21</MaterialTotal>
       <FinishedGoodSKUDescription>SKU SA MXSR  99 CPB 20  5000 05  N PL1</FinishedGoodSKUDescription>
-      <TobaccoTotal>1245.54</TobaccoTotal>
-      <IPTMaterialQuantityTotal>9.12</IPTMaterialQuantityTotal>
-      <IPTMaterialValueTotal>34.56</IPTMaterialValueTotal>
-      <IPTMaterialDutyTotal>345.6</IPTMaterialDutyTotal>
-      <IPTMaterialVATTotal>78.9</IPTMaterialVATTotal>
+      <TobaccoTotal>1254.66</TobaccoTotal>
+      <IPTMaterialQuantityTotal>18.24</IPTMaterialQuantityTotal>
+      <IPTMaterialValueTotal>
+        <AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>34.56</Amount>
+            <Currency>PLN</Currency>
+          </AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>34.56</Amount>
+            <Currency>USD</Currency>
+          </AmountOfMoney>
+        </AmountOfMoney>
+      </IPTMaterialValueTotal>
+      <IPTMaterialDutyTotal>
+        <AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>345.6</Amount>
+            <Currency>PLN</Currency>
+          </AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>345.6</Amount>
+            <Currency>USD</Currency>
+          </AmountOfMoney>
+        </AmountOfMoney>
+      </IPTMaterialDutyTotal>
+      <IPTMaterialVATTotal>
+        <AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>78.9</Amount>
+            <Currency>PLN</Currency>
+          </AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>78.9</Amount>
+            <Currency>USD</Currency>
+          </AmountOfMoney>
+        </AmountOfMoney>
+      </IPTMaterialVATTotal>
       <RegularMaterialQuantityTotal>1234.57</RegularMaterialQuantityTotal>
-      <CTFUsageMin>0.9876</CTFUsageMin>
-      <CTFUsageMax>1.23</CTFUsageMax>
-      <CTFUsagePerUnitMin>987.6</CTFUsagePerUnitMin>
-      <CTFUsagePerUnitMax>1230</CTFUsagePerUnitMax>
-      <CTFUsagePer1MFinishedGoodsMin>987650</CTFUsagePer1MFinishedGoodsMin>
-      <CTFUsagePer1MFinishedGoodsMax>1234450</CTFUsagePer1MFinishedGoodsMax>
-      <WasteCoefficient>0.01</WasteCoefficient>
+      <CTFUsageMin>985</CTFUsageMin>
+      <CTFUsageMax>995</CTFUsageMax>
+      <CTFUsagePerUnitMin>0.985</CTFUsagePerUnitMin>
+      <CTFUsagePerUnitMax>0.995</CTFUsagePerUnitMax>
+      <CTFUsagePer1MFinishedGoodsMin>0.9876</CTFUsagePer1MFinishedGoodsMin>
+      <CTFUsagePer1MFinishedGoodsMax>1.23</CTFUsagePer1MFinishedGoodsMax>
+      <WasteCoefficient>1.012345678</WasteCoefficient>
       <CustomsProcedure>3951</CustomsProcedure>
       <DocumentNo>CigaretteExportFormCollection-01</DocumentNo>
       <ProductFormat>Format title</ProductFormat>
@@ -40,7 +75,20 @@
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
           <TobaccoQuantity>9.12</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-08-17T00:00:00+02:00</Date>
+          <Date>2012-09-18T00:00:00+02:00</Date>
+          <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
+          <TobaccoValue>34.56</TobaccoValue>
+          <ItemClearingType>PartialWindingUp</ItemClearingType>
+          <Currency>PLN</Currency>
+          <Duty>345.6</Duty>
+          <VAT>78.9</VAT>
+        </IPRIngredient>
+        <IPRIngredient>
+          <TobaccoSKU>IPR Tobacco SKU</TobaccoSKU>
+          <TobaccoBatch>TobaccoBatch</TobaccoBatch>
+          <TobaccoQuantity>9.12</TobaccoQuantity>
+          <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
+          <Date>2012-09-18T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
           <TobaccoValue>34.56</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
@@ -54,7 +102,6 @@
           <TobaccoQuantity>1234.56789</TobaccoQuantity>
         </RegularIngredient>
       </Ingredients>
-      <InvoiceNo>INV987654</InvoiceNo>
       <IPRRestMaterialQantityTotal>1.85</IPRRestMaterialQantityTotal>
     </CigaretteExportForm>
     <CigaretteExportForm>
@@ -64,21 +111,54 @@
       <FinishedGoodUnit>kU</FinishedGoodUnit>
       <FamilyDescription>Salem</FamilyDescription>
       <BrandDescription>Slims Menthol </BrandDescription>
-      <MaterialTotal>2498.15</MaterialTotal>
+      <MaterialTotal>2498.21</MaterialTotal>
       <FinishedGoodSKUDescription>SKU SA MXSR  99 CPB 20  5000 05  N PL1</FinishedGoodSKUDescription>
-      <TobaccoTotal>1245.54</TobaccoTotal>
-      <IPTMaterialQuantityTotal>9.12</IPTMaterialQuantityTotal>
-      <IPTMaterialValueTotal>34.56</IPTMaterialValueTotal>
-      <IPTMaterialDutyTotal>345.6</IPTMaterialDutyTotal>
-      <IPTMaterialVATTotal>78.9</IPTMaterialVATTotal>
+      <TobaccoTotal>1254.66</TobaccoTotal>
+      <IPTMaterialQuantityTotal>18.24</IPTMaterialQuantityTotal>
+      <IPTMaterialValueTotal>
+        <AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>34.56</Amount>
+            <Currency>PLN</Currency>
+          </AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>34.56</Amount>
+            <Currency>USD</Currency>
+          </AmountOfMoney>
+        </AmountOfMoney>
+      </IPTMaterialValueTotal>
+      <IPTMaterialDutyTotal>
+        <AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>345.6</Amount>
+            <Currency>PLN</Currency>
+          </AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>345.6</Amount>
+            <Currency>USD</Currency>
+          </AmountOfMoney>
+        </AmountOfMoney>
+      </IPTMaterialDutyTotal>
+      <IPTMaterialVATTotal>
+        <AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>78.9</Amount>
+            <Currency>PLN</Currency>
+          </AmountOfMoney>
+          <AmountOfMoney>
+            <Amount>78.9</Amount>
+            <Currency>USD</Currency>
+          </AmountOfMoney>
+        </AmountOfMoney>
+      </IPTMaterialVATTotal>
       <RegularMaterialQuantityTotal>1234.57</RegularMaterialQuantityTotal>
-      <CTFUsageMin>0.9876</CTFUsageMin>
-      <CTFUsageMax>1.23</CTFUsageMax>
-      <CTFUsagePerUnitMin>987.6</CTFUsagePerUnitMin>
-      <CTFUsagePerUnitMax>1230</CTFUsagePerUnitMax>
-      <CTFUsagePer1MFinishedGoodsMin>987650</CTFUsagePer1MFinishedGoodsMin>
-      <CTFUsagePer1MFinishedGoodsMax>1234450</CTFUsagePer1MFinishedGoodsMax>
-      <WasteCoefficient>0.01</WasteCoefficient>
+      <CTFUsageMin>985</CTFUsageMin>
+      <CTFUsageMax>995</CTFUsageMax>
+      <CTFUsagePerUnitMin>0.985</CTFUsagePerUnitMin>
+      <CTFUsagePerUnitMax>0.995</CTFUsagePerUnitMax>
+      <CTFUsagePer1MFinishedGoodsMin>0.9876</CTFUsagePer1MFinishedGoodsMin>
+      <CTFUsagePer1MFinishedGoodsMax>1.23</CTFUsagePer1MFinishedGoodsMax>
+      <WasteCoefficient>1.012345678</WasteCoefficient>
       <CustomsProcedure>3951</CustomsProcedure>
       <DocumentNo>CigaretteExportFormCollection-02</DocumentNo>
       <ProductFormat>Format title</ProductFormat>
@@ -93,7 +173,20 @@
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
           <TobaccoQuantity>9.12</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-08-17T00:00:00+02:00</Date>
+          <Date>2012-09-18T00:00:00+02:00</Date>
+          <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
+          <TobaccoValue>34.56</TobaccoValue>
+          <ItemClearingType>PartialWindingUp</ItemClearingType>
+          <Currency>PLN</Currency>
+          <Duty>345.6</Duty>
+          <VAT>78.9</VAT>
+        </IPRIngredient>
+        <IPRIngredient>
+          <TobaccoSKU>IPR Tobacco SKU</TobaccoSKU>
+          <TobaccoBatch>TobaccoBatch</TobaccoBatch>
+          <TobaccoQuantity>9.12</TobaccoQuantity>
+          <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
+          <Date>2012-09-18T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
           <TobaccoValue>34.56</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
@@ -107,7 +200,6 @@
           <TobaccoQuantity>1234.56789</TobaccoQuantity>
         </RegularIngredient>
       </Ingredients>
-      <InvoiceNo>INV987654</InvoiceNo>
       <IPRRestMaterialQantityTotal>1.85</IPRRestMaterialQantityTotal>
     </CigaretteExportForm>
   </CigaretteExportForms>
