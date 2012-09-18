@@ -95,15 +95,12 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
     {
       _ret.Ingredients = _ingredients.ToArray();
       _ret.IPTMaterialQuantityTotal = 0;
-      _ret.IPTMaterialValueTotal = 0;
-      _ret.IPTMaterialDutyTotal = 0;
-      _ret.IPTMaterialVATTotal = 0;
       _ret.RegularMaterialQuantityTotal = 0;
+      _ret.IPTMaterialValueTotal = new TotalAmountOfMoney();
+      _ret.IPTMaterialDutyTotal = new TotalAmountOfMoney();
+      _ret.IPTMaterialVATTotal = new TotalAmountOfMoney();
       foreach ( Ingredient _item in _ingredients )
       {
-        _ret.IPTMaterialValueTotal = new TotalAmountOfMoney();
-        _ret.IPTMaterialDutyTotal = new TotalAmountOfMoney();
-        _ret.IPTMaterialVATTotal = new TotalAmountOfMoney();
         if ( _item is IPRIngredient )
         {
           IPRIngredient _iprItem = (IPRIngredient)_item;
@@ -119,9 +116,9 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
         }
       }
       _ret.IPTMaterialQuantityTotal = _ret.IPTMaterialQuantityTotal.RoundCurrency();
-      _ret.IPTMaterialValueTotal = _ret.IPTMaterialValueTotal.AssignTotals();
-      _ret.IPTMaterialDutyTotal = _ret.IPTMaterialDutyTotal.AssignTotals();
-      _ret.IPTMaterialVATTotal = _ret.IPTMaterialVATTotal.AssignTotals();
+      _ret.IPTMaterialValueTotal.AssignTotals();
+      _ret.IPTMaterialDutyTotal.AssignTotals();
+      _ret.IPTMaterialVATTotal.AssignTotals();
       _ret.RegularMaterialQuantityTotal = _ret.RegularMaterialQuantityTotal.RountMass();
     }
   }

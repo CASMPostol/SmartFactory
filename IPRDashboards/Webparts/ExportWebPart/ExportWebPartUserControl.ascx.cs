@@ -545,7 +545,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
         item.BatchID.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );
       _invoice.ReadOnly = true;
-      int _sadConsignmentIdentifier = Dokument.PrepareConsignment( site, _consignment, _masterDocumentName );
+      int _sadConsignmentIdentifier = Dokument.PrepareConsignment( site, _consignment, _masterDocumentName, _invoice.BillDoc );
       Dokument _sadConsignment = Element.GetAtIndex<Dokument>( m_DataContextManagement.DataContext.SADConsignmentLibrary, _sadConsignmentIdentifier );
       _newClearance.SADConsignmentLibraryLookup = _sadConsignment;
       m_DataContextManagement.DataContext.SubmitChanges();

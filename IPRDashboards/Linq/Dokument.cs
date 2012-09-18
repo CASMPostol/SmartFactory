@@ -11,12 +11,12 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class Dokument
   {
     internal static int PrepareConsignment
-      ( SPWeb site, List<CigaretteExportForm> _consignment, string fileName )
+      ( SPWeb site, List<CigaretteExportForm> _consignment, string fileName, string invoiceNo )
     {
       string _stt = "Starting";
       try
       {
-        CigaretteExportFormCollection _cefc = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( _consignment, fileName );
+        CigaretteExportFormCollection _cefc = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( _consignment, fileName, invoiceNo );
         SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ CommonDefinitions.IPRSADConsignmentLibraryTitle ];
         _stt = "AddDocument2Collection";
         SPFile _docFile = _cefc.AddDocument2Collection( _lib.RootFolder.Files, fileName );
