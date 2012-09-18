@@ -31,7 +31,7 @@ namespace CAS.SmartFactory.Linq.IPR
         _materialIdx.Export( edc, _ingredients, closingBatch, invoiceNumber, procedure, clearence, _portion );
       CutfillerCoefficient _cc = ( from _ccx in edc.CutfillerCoefficient orderby _ccx.Identyfikator descending select _ccx ).First();
       CigaretteExportForm _exportConsignment =
-        CigaretteExportFormFactory.CigaretteExportForm( _cc, this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position, clearence.ProcedureCode, invoiceNumber );
+        CigaretteExportFormFactory.CigaretteExportForm( _cc, this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position, clearence.ProcedureCode );
       consignment.Add( _exportConsignment );
     }
     internal ActionResult ExportPossible( double? quantity )
