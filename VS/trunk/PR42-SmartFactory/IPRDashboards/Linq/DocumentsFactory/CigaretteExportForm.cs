@@ -127,6 +127,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
   {
     internal static CigaretteExportFormCollection CigaretteExportFormCollection( List<CigaretteExportForm> cigaretteExportForms, string documentNo )
     {
+      //TODO [pr4-3719] Export: Association of the SAD documents - unique naming convention http://itrserver/Bugs/BugDetail.aspx?bid=3719
       CigaretteExportFormCollection _ret = new CigaretteExportFormCollection()
       {
         CigaretteExportForms = cigaretteExportForms.ToArray(),
