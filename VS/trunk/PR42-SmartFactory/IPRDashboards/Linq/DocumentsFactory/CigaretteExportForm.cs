@@ -111,7 +111,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
           _ret.RegularMaterialQuantityTotal += _rglrItem.TobaccoQuantity;
         }
       }
-      _ret.IPTMaterialQuantityTotal = _ret.IPTMaterialQuantityTotal.RoundCurrency();
+      _ret.IPTMaterialQuantityTotal = _ret.IPTMaterialQuantityTotal.RountMass();
       _ret.IPTDutyVatTotals.AssignTotals();
       _ret.RegularMaterialQuantityTotal = _ret.RegularMaterialQuantityTotal.RountMass();
     }
