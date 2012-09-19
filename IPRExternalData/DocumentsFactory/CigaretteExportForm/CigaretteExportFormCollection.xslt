@@ -62,8 +62,7 @@
         <tr>
           <td>Faktura:</td>
           <td colspan="4">
-            
-            <xsl:value-of select="cas:InvoiceNo"/>
+            <xsl:value-of select="../../cas:InvoiceNo"/>
           </td>
         </tr>
         <tr>
@@ -127,20 +126,9 @@
           <td align="right">
             <xsl:value-of select="format-number(cas:IPTMaterialQuantityTotal, $FoarmatOfFloat, 'pl')"/>
           </td>
-          <td align ="center" bgcolor="gray">
-            ---
-          </td>
-          <td align="right">
-            <xsl:apply-templates select="cas:IPTMaterialValueTotal" />
-          </td>
-          <td align ="center" bgcolor="gray">
-            ---
-          </td>
-          <td align="right">
-            <xsl:apply-templates select="cas:IPTMaterialDutyTotal" />
-          </td>
-          <td align="right">
-            <xsl:apply-templates select="cas:IPTMaterialVATTotal" />
+          <td align="center" bgcolor="gray"> --- </td>
+          <td colspan="4" align="right">
+            <xsl:apply-templates select="cas:IPTDutyVatTotals" />
           </td>
         </tr>
       </table>
@@ -237,18 +225,29 @@
       </table>
     </div>
   </xsl:template>
-  <xsl:template match="cas:IPTMaterialValueTotal">
-    <xsl:apply-templates select="AmountOfMoney" />
+  <xsl:template match="cas:IPTDutyVatTotals">
+    <table width="100%">
+      <xsl:apply-templates select="cas:AmountOfMoney" />
+    </table>
   </xsl:template>
-  <xsl:template match="cas:IPTMaterialDutyTotal">
-    <xsl:apply-templates select="AmountOfMoney" />
+  <xsl:template match="cas:AmountOfMoney">
+    <xsl:apply-templates select="cas:ArrayOfTotals" />
   </xsl:template>
-  <xsl:template match="cas:IPTMaterialVATTotal">
-    <xsl:apply-templates select="AmountOfMoney" />
-  </xsl:template>
-  <xsl:template match="cas:AmountOfMoney" >
-    <xsl:value-of select="format-number(cas:Amount, $FoarmatOfFloat, 'pl')"/>
-    <xsl:value-of select="Currency"/>
+  <xsl:template match="cas:ArrayOfTotals" >
+    <tr align="right" >
+      <td align="right">
+        <xsl:value-of select="format-number(cas:IPRMaterialValueTotal, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="right">
+        <xsl:value-of select="cas:Currency"/>
+      </td>
+      <td align="right">
+        <xsl:value-of select="format-number(cas:IPRMaterialDutyTotal, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="right">
+        <xsl:value-of select="format-number(cas:IPRMaterialVATTotal, $FoarmatOfFloat, 'pl')"/>
+      </td>
+    </tr>
   </xsl:template>
     
   <xsl:template match="cas:IPRIngredient" >
