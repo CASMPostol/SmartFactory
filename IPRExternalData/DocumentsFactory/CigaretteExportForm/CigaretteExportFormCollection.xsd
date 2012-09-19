@@ -28,9 +28,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="FinishedGoodSKUDescription" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="TobaccoTotal" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="IPTMaterialQuantityTotal" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IPTMaterialValueTotal" type="tns:TotalAmountOfMoney" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IPTMaterialDutyTotal" type="tns:TotalAmountOfMoney" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IPTMaterialVATTotal" type="tns:TotalAmountOfMoney" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPTDutyVatTotals" type="tns:TotalAmountOfMoney" />
       <xs:element minOccurs="1" maxOccurs="1" name="RegularMaterialQuantityTotal" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="CTFUsageMin" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="CTFUsageMax" type="xs:double" />
@@ -53,12 +51,19 @@
   </xs:complexType>
   <xs:complexType name="TotalAmountOfMoney">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="AmountOfMoney" type="tns:AmountOfMoney" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AmountOfMoney" type="tns:ArrayOfAmountOfMoney" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAmountOfMoney">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfTotals" nillable="true" type="tns:AmountOfMoney" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AmountOfMoney">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IPRMaterialValueTotal" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IPRMaterialDutyTotal" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IPRMaterialVATTotal" type="xs:double" />
       <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

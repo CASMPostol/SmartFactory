@@ -115,11 +115,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         
         private double iPTMaterialQuantityTotalField;
         
-        private TotalAmountOfMoney iPTMaterialValueTotalField;
-        
-        private TotalAmountOfMoney iPTMaterialDutyTotalField;
-        
-        private TotalAmountOfMoney iPTMaterialVATTotalField;
+        private TotalAmountOfMoney iPTDutyVatTotalsField;
         
         private double regularMaterialQuantityTotalField;
         
@@ -258,32 +254,12 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
         }
         
         /// <uwagi/>
-        public TotalAmountOfMoney IPTMaterialValueTotal {
+        public TotalAmountOfMoney IPTDutyVatTotals {
             get {
-                return this.iPTMaterialValueTotalField;
+                return this.iPTDutyVatTotalsField;
             }
             set {
-                this.iPTMaterialValueTotalField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public TotalAmountOfMoney IPTMaterialDutyTotal {
-            get {
-                return this.iPTMaterialDutyTotalField;
-            }
-            set {
-                this.iPTMaterialDutyTotalField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        public TotalAmountOfMoney IPTMaterialVATTotal {
-            get {
-                return this.iPTMaterialVATTotalField;
-            }
-            set {
-                this.iPTMaterialVATTotalField = value;
+                this.iPTDutyVatTotalsField = value;
             }
         }
         
@@ -478,10 +454,11 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd")]
     public partial class TotalAmountOfMoney {
         
-        private AmountOfMoney amountOfMoneyField;
+        private AmountOfMoney[] amountOfMoneyField;
         
         /// <uwagi/>
-        public AmountOfMoney AmountOfMoney {
+        [System.Xml.Serialization.XmlArrayItemAttribute("ArrayOfTotals")]
+        public AmountOfMoney[] AmountOfMoney {
             get {
                 return this.amountOfMoneyField;
             }
@@ -499,17 +476,41 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd")]
     public partial class AmountOfMoney {
         
-        private double amountField;
+        private double iPRMaterialValueTotalField;
+        
+        private double iPRMaterialDutyTotalField;
+        
+        private double iPRMaterialVATTotalField;
         
         private string currencyField;
         
         /// <uwagi/>
-        public double Amount {
+        public double IPRMaterialValueTotal {
             get {
-                return this.amountField;
+                return this.iPRMaterialValueTotalField;
             }
             set {
-                this.amountField = value;
+                this.iPRMaterialValueTotalField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double IPRMaterialDutyTotal {
+            get {
+                return this.iPRMaterialDutyTotalField;
+            }
+            set {
+                this.iPRMaterialDutyTotalField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double IPRMaterialVATTotal {
+            get {
+                return this.iPRMaterialVATTotalField;
+            }
+            set {
+                this.iPRMaterialVATTotalField = value;
             }
         }
         

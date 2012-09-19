@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="CigaretteExportFormCollection.xslt"?>
 <CigaretteExportFormCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd">
   <DocumentNo>CigaretteExportFormCollection</DocumentNo>
-  <DocumentDate>2012-09-18</DocumentDate>
+  <DocumentDate>2012-09-19</DocumentDate>
   <InvoiceNo>INV987654</InvoiceNo>
   <NumberOfDocuments>2</NumberOfDocuments>
   <CigaretteExportForms>
@@ -17,42 +17,22 @@
       <FinishedGoodSKUDescription>SKU SA MXSR  99 CPB 20  5000 05  N PL1</FinishedGoodSKUDescription>
       <TobaccoTotal>1254.66</TobaccoTotal>
       <IPTMaterialQuantityTotal>18.24</IPTMaterialQuantityTotal>
-      <IPTMaterialValueTotal>
+      <IPTDutyVatTotals>
         <AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>34.56</Amount>
+          <ArrayOfTotals>
+            <IPRMaterialValueTotal>34.56</IPRMaterialValueTotal>
+            <IPRMaterialDutyTotal>345.6</IPRMaterialDutyTotal>
+            <IPRMaterialVATTotal>78.9</IPRMaterialVATTotal>
             <Currency>PLN</Currency>
-          </AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>34.56</Amount>
+          </ArrayOfTotals>
+          <ArrayOfTotals>
+            <IPRMaterialValueTotal>34.56</IPRMaterialValueTotal>
+            <IPRMaterialDutyTotal>345.6</IPRMaterialDutyTotal>
+            <IPRMaterialVATTotal>78.9</IPRMaterialVATTotal>
             <Currency>USD</Currency>
-          </AmountOfMoney>
+          </ArrayOfTotals>
         </AmountOfMoney>
-      </IPTMaterialValueTotal>
-      <IPTMaterialDutyTotal>
-        <AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>345.6</Amount>
-            <Currency>PLN</Currency>
-          </AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>345.6</Amount>
-            <Currency>USD</Currency>
-          </AmountOfMoney>
-        </AmountOfMoney>
-      </IPTMaterialDutyTotal>
-      <IPTMaterialVATTotal>
-        <AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>78.9</Amount>
-            <Currency>PLN</Currency>
-          </AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>78.9</Amount>
-            <Currency>USD</Currency>
-          </AmountOfMoney>
-        </AmountOfMoney>
-      </IPTMaterialVATTotal>
+      </IPTDutyVatTotals>
       <RegularMaterialQuantityTotal>1234.57</RegularMaterialQuantityTotal>
       <CTFUsageMin>985</CTFUsageMin>
       <CTFUsageMax>995</CTFUsageMax>
@@ -75,7 +55,7 @@
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
           <TobaccoQuantity>9.12</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-18T00:00:00+02:00</Date>
+          <Date>2012-09-19T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
           <TobaccoValue>34.56</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
@@ -88,7 +68,7 @@
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
           <TobaccoQuantity>9.12</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-18T00:00:00+02:00</Date>
+          <Date>2012-09-19T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
           <TobaccoValue>34.56</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
@@ -115,42 +95,22 @@
       <FinishedGoodSKUDescription>SKU SA MXSR  99 CPB 20  5000 05  N PL1</FinishedGoodSKUDescription>
       <TobaccoTotal>1254.66</TobaccoTotal>
       <IPTMaterialQuantityTotal>18.24</IPTMaterialQuantityTotal>
-      <IPTMaterialValueTotal>
+      <IPTDutyVatTotals>
         <AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>34.56</Amount>
+          <ArrayOfTotals>
+            <IPRMaterialValueTotal>34.56</IPRMaterialValueTotal>
+            <IPRMaterialDutyTotal>345.6</IPRMaterialDutyTotal>
+            <IPRMaterialVATTotal>78.9</IPRMaterialVATTotal>
             <Currency>PLN</Currency>
-          </AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>34.56</Amount>
+          </ArrayOfTotals>
+          <ArrayOfTotals>
+            <IPRMaterialValueTotal>34.56</IPRMaterialValueTotal>
+            <IPRMaterialDutyTotal>345.6</IPRMaterialDutyTotal>
+            <IPRMaterialVATTotal>78.9</IPRMaterialVATTotal>
             <Currency>USD</Currency>
-          </AmountOfMoney>
+          </ArrayOfTotals>
         </AmountOfMoney>
-      </IPTMaterialValueTotal>
-      <IPTMaterialDutyTotal>
-        <AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>345.6</Amount>
-            <Currency>PLN</Currency>
-          </AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>345.6</Amount>
-            <Currency>USD</Currency>
-          </AmountOfMoney>
-        </AmountOfMoney>
-      </IPTMaterialDutyTotal>
-      <IPTMaterialVATTotal>
-        <AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>78.9</Amount>
-            <Currency>PLN</Currency>
-          </AmountOfMoney>
-          <AmountOfMoney>
-            <Amount>78.9</Amount>
-            <Currency>USD</Currency>
-          </AmountOfMoney>
-        </AmountOfMoney>
-      </IPTMaterialVATTotal>
+      </IPTDutyVatTotals>
       <RegularMaterialQuantityTotal>1234.57</RegularMaterialQuantityTotal>
       <CTFUsageMin>985</CTFUsageMin>
       <CTFUsageMax>995</CTFUsageMax>
@@ -173,7 +133,7 @@
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
           <TobaccoQuantity>9.12</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-18T00:00:00+02:00</Date>
+          <Date>2012-09-19T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
           <TobaccoValue>34.56</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
@@ -186,7 +146,7 @@
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
           <TobaccoQuantity>9.12</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-18T00:00:00+02:00</Date>
+          <Date>2012-09-19T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
           <TobaccoValue>34.56</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
