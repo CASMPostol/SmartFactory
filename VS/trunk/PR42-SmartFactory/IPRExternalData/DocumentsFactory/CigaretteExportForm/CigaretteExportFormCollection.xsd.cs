@@ -4,6 +4,7 @@ using Microsoft.SharePoint;
 using System.Xml;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm
 {
@@ -35,21 +36,34 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm
       return _docFile;
     }
   }
+  /// <summary>
+  /// Class representing Amount Of Money
+  /// </summary>
   public partial class AmountOfMoney
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="AmountOfMoney"/> class.
     /// </summary>
-    /// <param name="amount">The amount.</param>
+    /// <param name="iprMaterialValueTotal">The ipr material value total.</param>
+    /// <param name="iprMaterialDutyTotal">The ipr material duty total.</param>
+    /// <param name="iprMaterialVATTotal">The ipr material VAT total.</param>
     /// <param name="currency">The currency.</param>
-    public AmountOfMoney( double amount, string currency )
+    public AmountOfMoney( double iprMaterialValueTotal, double iprMaterialDutyTotal, double iprMaterialVATTotal, string currency )
     {
-      this.Amount = amount;
+      this.IPRMaterialValueTotal = iprMaterialValueTotal;
+      this.IPRMaterialDutyTotal = iprMaterialDutyTotal;
+      this.IPRMaterialVATTotal = iprMaterialVATTotal;
       this.Currency = currency;
     }
-    
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AmountOfMoney"/> class.
+    /// </summary>
+    [Obsolete( "Is to be used only by the XML serializer" )]
     public AmountOfMoney() { }
   }
+  /// <summary>
+  /// Class to calculate total sum of money.
+  /// </summary>
   public partial class TotalAmountOfMoney
   {
     private Dictionary<string, AmountOfMoney> _totals = new Dictionary<string, AmountOfMoney>();
@@ -58,12 +72,17 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm
     /// </summary>
     /// <param name="currency">The currency.</param>
     /// <param name="amount">The amount of money.</param>
-    public void Add( string currency, double amount )
+    public void Add( AmountOfMoney amount )
     {
-      if ( _totals.ContainsKey( currency ) )
-        _totals[ currency ].Amount += amount;
+      if ( _totals.ContainsKey( amount.Currency ) )
+      {
+        AmountOfMoney _tts = _totals[ amount.Currency ];
+        _tts.IPRMaterialDutyTotal += amount.IPRMaterialDutyTotal;
+        _tts.IPRMaterialValueTotal += amount.IPRMaterialValueTotal;
+        _tts.IPRMaterialVATTotal += amount.IPRMaterialVATTotal;
+      }
       else
-        _totals.Add( currency, new AmountOfMoney( amount, currency ) );
+        _totals.Add( amount.Currency, new AmountOfMoney( amount.IPRMaterialValueTotal, amount.IPRMaterialDutyTotal, amount.IPRMaterialVATTotal, amount.Currency ) );
     }
     /// <summary>
     /// Assigne current totals to the AmountOfMoney.

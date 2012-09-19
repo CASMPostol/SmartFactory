@@ -131,16 +131,16 @@
             ---
           </td>
           <td align="right">
-            <xsl:apply-templates select="IPTMaterialValueTotal" />
+            <xsl:apply-templates select="cas:IPTMaterialValueTotal" />
           </td>
           <td align ="center" bgcolor="gray">
             ---
           </td>
           <td align="right">
-            <xsl:apply-templates select="IPTMaterialDutyTotal" />
+            <xsl:apply-templates select="cas:IPTMaterialDutyTotal" />
           </td>
           <td align="right">
-            <xsl:apply-templates select="IPTMaterialVATTotal" />
+            <xsl:apply-templates select="cas:IPTMaterialVATTotal" />
           </td>
         </tr>
       </table>
