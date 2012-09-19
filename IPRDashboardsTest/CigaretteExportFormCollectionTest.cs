@@ -215,8 +215,8 @@ namespace IPRDashboardsTest
         CustomsProcedure = "5100",
         CustomsStatus = CustomsStatus.NotStarted,
         DisposalStatus = DisposalStatus.TobaccoInCigaretesWarehouse,
-        DutyAndVAT = 123.4,
-        DutyPerSettledAmount = 345.6,
+        DutyAndVAT = 123.4321,
+        DutyPerSettledAmount = 345.6789,
         IPRDocumentNo = null,
         InvoiceNo = "InvoiceNomber",
         IPRID = _ipr1,
@@ -227,9 +227,9 @@ namespace IPRDashboardsTest
         SADDate = new Nullable<DateTime>(),
         SADDocumentNo = "N/A",
         SettledQuantity = 9.12,
-        TobaccoValue = 34.56,
+        TobaccoValue = 34.567,
         Tytuł = "Testing disposal",
-        VATPerSettledAmount = 78.90,
+        VATPerSettledAmount = 78.901,
       };
       Disposal _disposal2 = new Disposal()
       {
@@ -239,8 +239,8 @@ namespace IPRDashboardsTest
         CustomsProcedure = "5100",
         CustomsStatus = CustomsStatus.NotStarted,
         DisposalStatus = DisposalStatus.TobaccoInCigaretesWarehouse,
-        DutyAndVAT = 123.4,
-        DutyPerSettledAmount = 345.6,
+        DutyAndVAT = 123.4567,
+        DutyPerSettledAmount = 345.67891234,
         IPRDocumentNo = null,
         InvoiceNo = "InvoiceNomber",
         IPRID = _ipr2,
@@ -250,10 +250,10 @@ namespace IPRDashboardsTest
         RemainingQuantity = 0,
         SADDate = new Nullable<DateTime>(),
         SADDocumentNo = "N/A",
-        SettledQuantity = 9.12,
-        TobaccoValue = 34.56,
+        SettledQuantity = 9.12345678,
+        TobaccoValue = 34.56789012,
         Tytuł = "Testing disposal",
-        VATPerSettledAmount = 78.90,
+        VATPerSettledAmount = 78.9012345,
       };
       CutfillerCoefficient _cc = new CutfillerCoefficient
       {

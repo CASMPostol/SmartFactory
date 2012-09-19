@@ -20,15 +20,15 @@
       <IPTDutyVatTotals>
         <AmountOfMoney>
           <ArrayOfTotals>
-            <IPRMaterialValueTotal>34.56</IPRMaterialValueTotal>
-            <IPRMaterialDutyTotal>345.6</IPRMaterialDutyTotal>
-            <IPRMaterialVATTotal>78.9</IPRMaterialVATTotal>
+            <IPRMaterialValueTotal>34.567</IPRMaterialValueTotal>
+            <IPRMaterialDutyTotal>345.6789</IPRMaterialDutyTotal>
+            <IPRMaterialVATTotal>78.901</IPRMaterialVATTotal>
             <Currency>PLN</Currency>
           </ArrayOfTotals>
           <ArrayOfTotals>
-            <IPRMaterialValueTotal>34.56</IPRMaterialValueTotal>
-            <IPRMaterialDutyTotal>345.6</IPRMaterialDutyTotal>
-            <IPRMaterialVATTotal>78.9</IPRMaterialVATTotal>
+            <IPRMaterialValueTotal>34.56789012</IPRMaterialValueTotal>
+            <IPRMaterialDutyTotal>345.67891234</IPRMaterialDutyTotal>
+            <IPRMaterialVATTotal>78.9012345</IPRMaterialVATTotal>
             <Currency>USD</Currency>
           </ArrayOfTotals>
         </AmountOfMoney>
@@ -57,24 +57,24 @@
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
           <Date>2012-09-19T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
-          <TobaccoValue>34.56</TobaccoValue>
+          <TobaccoValue>34.567</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
           <Currency>PLN</Currency>
-          <Duty>345.6</Duty>
-          <VAT>78.9</VAT>
+          <Duty>345.6789</Duty>
+          <VAT>78.901</VAT>
         </IPRIngredient>
         <IPRIngredient>
           <TobaccoSKU>IPR Tobacco SKU</TobaccoSKU>
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
-          <TobaccoQuantity>9.12</TobaccoQuantity>
+          <TobaccoQuantity>9.12345678</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
           <Date>2012-09-19T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
-          <TobaccoValue>34.56</TobaccoValue>
+          <TobaccoValue>34.56789012</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
           <Currency>USD</Currency>
-          <Duty>345.6</Duty>
-          <VAT>78.9</VAT>
+          <Duty>345.67891234</Duty>
+          <VAT>78.9012345</VAT>
         </IPRIngredient>
         <RegularIngredient>
           <TobaccoSKU>Reg SKU 12345</TobaccoSKU>
@@ -98,15 +98,15 @@
       <IPTDutyVatTotals>
         <AmountOfMoney>
           <ArrayOfTotals>
-            <IPRMaterialValueTotal>34.56</IPRMaterialValueTotal>
-            <IPRMaterialDutyTotal>345.6</IPRMaterialDutyTotal>
-            <IPRMaterialVATTotal>78.9</IPRMaterialVATTotal>
+            <IPRMaterialValueTotal>34.567</IPRMaterialValueTotal>
+            <IPRMaterialDutyTotal>345.6789</IPRMaterialDutyTotal>
+            <IPRMaterialVATTotal>78.901</IPRMaterialVATTotal>
             <Currency>PLN</Currency>
           </ArrayOfTotals>
           <ArrayOfTotals>
-            <IPRMaterialValueTotal>34.56</IPRMaterialValueTotal>
-            <IPRMaterialDutyTotal>345.6</IPRMaterialDutyTotal>
-            <IPRMaterialVATTotal>78.9</IPRMaterialVATTotal>
+            <IPRMaterialValueTotal>34.56789012</IPRMaterialValueTotal>
+            <IPRMaterialDutyTotal>345.67891234</IPRMaterialDutyTotal>
+            <IPRMaterialVATTotal>78.9012345</IPRMaterialVATTotal>
             <Currency>USD</Currency>
           </ArrayOfTotals>
         </AmountOfMoney>
@@ -135,24 +135,24 @@
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
           <Date>2012-09-19T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
-          <TobaccoValue>34.56</TobaccoValue>
+          <TobaccoValue>34.567</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
           <Currency>PLN</Currency>
-          <Duty>345.6</Duty>
-          <VAT>78.9</VAT>
+          <Duty>345.6789</Duty>
+          <VAT>78.901</VAT>
         </IPRIngredient>
         <IPRIngredient>
           <TobaccoSKU>IPR Tobacco SKU</TobaccoSKU>
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
-          <TobaccoQuantity>9.12</TobaccoQuantity>
+          <TobaccoQuantity>9.12345678</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
           <Date>2012-09-19T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
-          <TobaccoValue>34.56</TobaccoValue>
+          <TobaccoValue>34.56789012</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
           <Currency>USD</Currency>
-          <Duty>345.6</Duty>
-          <VAT>78.9</VAT>
+          <Duty>345.67891234</Duty>
+          <VAT>78.9012345</VAT>
         </IPRIngredient>
         <RegularIngredient>
           <TobaccoSKU>Reg SKU 12345</TobaccoSKU>
