@@ -23,11 +23,11 @@ namespace CAS.SmartFactory.Linq.IPR
         return;
       try
       {
-        using ( EntitiesDataContext EDC = new EntitiesDataContext( _url ) )
+        using ( Entities EDC = new Entities( _url ) )
         {
           foreach ( string _msg in this )
           {
-            Anons _entry = new Anons() { Tytuł = "ReportActionResult", Treść = _msg, Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) };
+            Anons _entry = new Anons() { Title = "ReportActionResult", Treść = _msg, Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) };
             EDC.ActivityLog.InsertOnSubmit( _entry );
           }
           EDC.SubmitChanges();
@@ -43,11 +43,11 @@ namespace CAS.SmartFactory.Linq.IPR
     #endregion
   }
   /// <summary>
-  /// Extends the EntitiesDataContext class
+  /// Extends the Entities class
   /// </summary>
-  public partial class EntitiesDataContext
+  public partial class Entities
   {
-    public EntitiesDataContext() : base( SPContext.Current.Web.Url ) { }
+    public Entities() : base( SPContext.Current.Web.Url ) { }
     /// <summary>
     /// Persists to the content database changes made by the current user to one or more lists using the specified failure mode;
     /// or, if a concurrency conflict is found, populates the <see cref="P:Microsoft.SharePoint.Linq.DataContext.ChangeConflicts"/> property.
@@ -106,7 +106,7 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new ApplicationException( String.Format( _frmt, _cp, ex.Message ) );
       }
     }
-  } //EntitiesDataContext
+  } //Entities
   /// <summary>
   /// Extednds the Element class
   /// </summary>
@@ -115,7 +115,7 @@ namespace CAS.SmartFactory.Linq.IPR
     internal const string IDColunmName = "ID";
     internal const string TitleColunmName = "Title";
     internal const string IDPropertyName = "Identyfikator";
-    internal const string TitlePropertyName = "Tytuł";
+    internal const string TitlePropertyName = "Title";
     /// <summary>
     /// Try to get at index. 
     /// </summary>
@@ -172,7 +172,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       try
       {
-        return (from idx in list where idx.Identyfikator == index select idx ).First();
+        return ( from idx in list where idx.Identyfikator == index select idx ).First();
       }
       catch ( Exception )
       {
@@ -210,7 +210,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="message">The string to write to the event log.</param>
     public Anons( string source, string message )
     {
-      Tytuł = source;
+      Title = source;
       Treść = message;
       this.Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 );
     }
@@ -221,7 +221,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="message">The string to write to the event log.</param>
     internal static void WriteEntry( string source, string message )
     {
-      using ( EntitiesDataContext edc = new EntitiesDataContext()  )
+      using ( Entities edc = new Entities() )
         Anons.WriteEntry( edc, source, message );
     }
     /// <summary>
@@ -231,7 +231,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// the lists and document libraries of a Windows SharePoint Services "14" Web site.</param>
     /// <param name="source">The source denominator of the message.</param>
     /// <param name="message">The string to write to the event log.</param>
-    internal static void WriteEntry( EntitiesDataContext edc, string source, string message )
+    internal static void WriteEntry( Entities edc, string source, string message )
     {
       if ( edc == null )
       {
@@ -245,11 +245,11 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <summary>
     /// Checks for a condition and displays a message if the condition is false.
     /// </summary>
-    /// <param name="edc">The <see cref="EntitiesDataContext"/> object.</param>
+    /// <param name="edc">The <see cref="Entities"/> object.</param>
     /// <param name="condition"> true to prevent a message being displayed; otherwise, false.</c> [condition].</param>
     /// <param name="source">The source of the assertion.</param>
     /// <param name="message">The message to log.</param>
-    internal static void Assert( EntitiesDataContext edc, bool condition, string source, string message )
+    internal static void Assert( Entities edc, bool condition, string source, string message )
     {
       if ( condition )
         return;
@@ -261,13 +261,13 @@ namespace CAS.SmartFactory.Linq.IPR
     internal void SetUpCalculatedColumns( ClearingType clearingType )
     {
       string _titleTmplt = "Disposal: {0} of FG {1}";
-      Tytuł = String.Format( _titleTmplt, this.DisposalStatus.Value.ToString(), this.BatchLookup.Tytuł );
-      double _portion = SettledQuantity.Value / IPRID.NetMass.Value;
+      Title = String.Format( _titleTmplt, this.DisposalStatus.Value.ToString(), this.Disposal2BatchIndex.Title );
+      double _portion = SettledQuantity.Value / Disposal2IPRIndex.NetMass.Value;
       if ( clearingType == Linq.IPR.ClearingType.PartialWindingUp )
       {
-        DutyPerSettledAmount = ( IPRID.Duty.Value * _portion ).RoundCurrency();
-        VATPerSettledAmount = ( IPRID.VAT.Value * _portion ).RoundCurrency();
-        TobaccoValue = ( IPRID.Value.Value * _portion ).RoundCurrency();
+        DutyPerSettledAmount = ( Disposal2IPRIndex.Duty.Value * _portion ).RoundCurrency();
+        VATPerSettledAmount = ( Disposal2IPRIndex.VAT.Value * _portion ).RoundCurrency();
+        TobaccoValue = ( Disposal2IPRIndex.Value.Value * _portion ).RoundCurrency();
       }
       else
       {
@@ -279,15 +279,15 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     private double GetDutyNotCleared()
     {
-      return IPRID.Duty.Value - ( from _dec in IPRID.Disposal where _dec.DutyPerSettledAmount.HasValue select new { val = _dec.DutyPerSettledAmount.Value } ).Sum( itm => itm.val );
+      return Disposal2IPRIndex.Duty.Value - ( from _dec in Disposal2IPRIndex.Disposal where _dec.DutyPerSettledAmount.HasValue select new { val = _dec.DutyPerSettledAmount.Value } ).Sum( itm => itm.val );
     }
     private double GetPriceNotCleared()
     {
-      return IPRID.UnitPrice.Value - ( from _dec in IPRID.Disposal where _dec.TobaccoValue.HasValue select new { val = _dec.TobaccoValue.Value } ).Sum( itm => itm.val );
+      return Disposal2IPRIndex.IPRUnitPrice.Value - ( from _dec in Disposal2IPRIndex.Disposal where _dec.TobaccoValue.HasValue select new { val = _dec.TobaccoValue.Value } ).Sum( itm => itm.val );
     }
     private double GetVATNotCleared()
     {
-      return IPRID.VAT.Value - ( from _dec in IPRID.Disposal where _dec.VATPerSettledAmount.HasValue select new { val = _dec.VATPerSettledAmount.Value } ).Sum( itm => itm.val );
+      return Disposal2IPRIndex.VAT.Value - ( from _dec in Disposal2IPRIndex.Disposal where _dec.VATPerSettledAmount.HasValue select new { val = _dec.VATPerSettledAmount.Value } ).Sum( itm => itm.val );
     }
   }
   public static class LinqIPRExtensions
@@ -314,13 +314,13 @@ namespace CAS.SmartFactory.Linq.IPR
       string _tmplt = "{0}/{1} SKU:{2}/Batch:{3}";
       string _sku = "N/A";
       string _batch = "N/A";
-      if ( invoice.BatchID != null )
+      if ( invoice.InvoiceContent2BatchIndex != null )
       {
-        _batch = invoice.BatchID.Batch0;
-        if ( invoice.BatchID.SKULookup != null )
-          _sku = invoice.BatchID.SKULookup.SKU;
+        _batch = invoice.InvoiceContent2BatchIndex.Batch0;
+        if ( invoice.InvoiceContent2BatchIndex.SKUIndex != null )
+          _sku = invoice.InvoiceContent2BatchIndex.SKUIndex.SKU;
       }
-      invoice.Tytuł = String.Format( _tmplt, invoice.Identyfikator.Value, invoice.InvoiceLookup.BillDoc, _sku, _batch );
+      invoice.Title = String.Format( _tmplt, invoice.Identyfikator.Value, invoice.InvoiceIndex.BillDoc, _sku, _batch );
     }
     internal static bool Available( this Batch batch, double _nq )
     {
@@ -332,7 +332,7 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     public static string Title( this Element _val )
     {
-      return _val == null ? "NotApplicable".GetLocalizedString() : _val.Tytuł.NotAvailable();
+      return _val == null ? "NotApplicable".GetLocalizedString() : _val.Title.NotAvailable();
     }
   }
 }

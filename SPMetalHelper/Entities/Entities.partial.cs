@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
         {
           foreach (string _msg in this)
           {
-            Anons _entry = new Anons() { Tytuł = "ReportActionResult", Treść = _msg, Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
+            Anons _entry = new Anons() { Title = "ReportActionResult", Treść = _msg, Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0) };
             EDC.EventLogList.InsertOnSubmit(_entry);
           }
           EDC.SubmitChanges();
@@ -114,7 +114,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
     internal const string IDColunmName = "ID";
     internal const string TitleColunmName = "Title";
     internal const string IDPropertyName = "Identyfikator";
-    internal const string TitlePropertyName = "Tytuł";
+    internal const string TitlePropertyName = "Title";
     /// <summary>
     /// Try to get at index. 
     /// </summary>
@@ -188,7 +188,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
     /// <param name="_shippingIndex">Index of the shipping.</param>
     public AlarmsAndEvents(string _title, Partner _partner, Shipping _shippingIndex)
     {
-      Tytuł = _title;
+      Title = _title;
       this.AlarmsAndEventsList2PartnerTitle = _partner;
       this.AlarmsAndEventsList2Shipping = _shippingIndex;
     }
@@ -224,7 +224,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
     /// <param name="message">The string to write to the event log.</param>
     public Anons(string source, string message)
     {
-      Tytuł = source;
+      Title = source;
       Treść = message;
       this.Wygasa = DateTime.Now + new TimeSpan(2, 0, 0, 0);
     }
@@ -273,7 +273,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
     {
       for (int i = 0; i < 10; i++)
       {
-        CityType _cmm = new CityType() { Tytuł = String.Format("City {0}", i) };
+        CityType _cmm = new CityType() { Title = String.Format("City {0}", i) };
         _EDC.City.InsertOnSubmit(_cmm);
         _EDC.SubmitChanges();
       }
@@ -336,7 +336,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
         this.PartnerTitle = null;
         return;
       }
-      this.BusinessDescription = Shipping2RouteTitle.Route2BusinessDescriptionTitle == null ? String.Empty : Shipping2RouteTitle.Route2BusinessDescriptionTitle.Tytuł;
+      this.BusinessDescription = Shipping2RouteTitle.Route2BusinessDescriptionTitle == null ? String.Empty : Shipping2RouteTitle.Route2BusinessDescriptionTitle.Title;
       this.PartnerTitle = Shipping2RouteTitle.PartnerTitle;
     }
     internal void ChangeEscort(SecurityEscortCatalog _nr, EntitiesDataContext _EDC)
@@ -402,7 +402,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
       }
       foreach (var item in _2release)
       {
-        //item.Tytuł = "-- not assigned --";
+        //item.Title = "-- not assigned --";
         if (Fixed())
           item.Occupied = Entities.Occupied.Delayed;
         else
@@ -425,7 +425,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
     internal void UpdateTitle()
     {
       string _tf = "{0}{1:D6}";
-      Tytuł = String.Format(_tf, IsOutbound.Value ? "O" : "I", Identyfikator.Value);
+      Title = String.Format(_tf, IsOutbound.Value ? "O" : "I", Identyfikator.Value);
     }
     internal void CalculateState()
     {
@@ -582,9 +582,9 @@ namespace CAS.SmartFactory.Shepherd.Entities
       this.IsDouble = _isDouble;
       //TODO cleanup commented code.
       //if (IsOutbound.Value)
-      //  _ts.Tytuł = String.Format("Outbound No. {0} to {1}", this.Tytuł, this.City == null ? "--not assigned--" : City.Tytuł);
+      //  _ts.Title = String.Format("Outbound No. {0} to {1}", this.Title, this.City == null ? "--not assigned--" : City.Title);
       //else
-      //  _ts.Tytuł = String.Format("Inbound No. {0} by {1}", this.Tytuł, this.VendorName == null ? "--not assigned--" : VendorName.Tytuł);
+      //  _ts.Title = String.Format("Inbound No. {0} by {1}", this.Title, this.VendorName == null ? "--not assigned--" : VendorName.Title);
       if (!_isDouble)
         return _ret;
       EntitySet<TimeSlot> _tslots = this.TimeSlot2ShippingPointLookup.TimeSlot;
