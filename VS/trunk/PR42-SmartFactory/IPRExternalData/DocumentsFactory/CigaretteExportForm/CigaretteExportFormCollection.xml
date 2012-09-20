@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="CigaretteExportFormCollection.xslt"?>
 <CigaretteExportFormCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/CigaretteExportForm.xsd">
   <DocumentNo>CigaretteExportFormCollection</DocumentNo>
-  <DocumentDate>2012-09-19</DocumentDate>
+  <DocumentDate>2012-09-20</DocumentDate>
   <InvoiceNo>INV987654</InvoiceNo>
   <NumberOfDocuments>2</NumberOfDocuments>
   <CigaretteExportForms>
@@ -55,7 +55,7 @@
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
           <TobaccoQuantity>9.12</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-19T00:00:00+02:00</Date>
+          <Date>2012-09-20T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
           <TobaccoValue>34.567</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
@@ -68,7 +68,7 @@
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
           <TobaccoQuantity>9.12345678</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-19T00:00:00+02:00</Date>
+          <Date>2012-09-20T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
           <TobaccoValue>34.56789012</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
@@ -133,7 +133,7 @@
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
           <TobaccoQuantity>9.12</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-19T00:00:00+02:00</Date>
+          <Date>2012-09-20T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
           <TobaccoValue>34.567</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
@@ -146,7 +146,7 @@
           <TobaccoBatch>TobaccoBatch</TobaccoBatch>
           <TobaccoQuantity>9.12345678</TobaccoQuantity>
           <DocumentNoumber>SADDocumentNomber</DocumentNoumber>
-          <Date>2012-09-19T00:00:00+02:00</Date>
+          <Date>2012-09-20T00:00:00+02:00</Date>
           <TobaccoUnitPrice>5.67</TobaccoUnitPrice>
           <TobaccoValue>34.56789012</TobaccoValue>
           <ItemClearingType>PartialWindingUp</ItemClearingType>
