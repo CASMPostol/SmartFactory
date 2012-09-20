@@ -8,17 +8,17 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Warehouse
   {
-    internal static Warehouse Find(EntitiesDataContext edc, string index)
+    internal static Warehouse Find(Entities edc, string index)
     {
       Warehouse newWarehouse = null;
       try
       {
-        newWarehouse = (from Warehouse item in edc.Warehouse where item.Tytuł.Contains(index) select item).First<Warehouse>();
+        newWarehouse = (from Warehouse item in edc.Warehouse where item.Title.Contains(index) select item).First<Warehouse>();
       }
       catch (Exception) { }
       return newWarehouse;
     }
-    internal static void ImportData(ConfigurationWarehouseItem[] configuration, EntitiesDataContext edc)
+    internal static void ImportData(ConfigurationWarehouseItem[] configuration, Entities edc)
     {
       List<Warehouse> list = new List<Warehouse>();
       foreach (ConfigurationWarehouseItem item in configuration)
@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Linq.IPR
         {
           External = item.External,
           ProductType = item.ProductType.ParseProductType(),
-          Tytuł = item.Title
+          Title = item.Title
         };
         list.Add(wrh);
       };

@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class Waste
   {
     #region public
-    internal static Waste GetLookup(ProductType type, EntitiesDataContext edc)
+    internal static Waste GetLookup(ProductType type, Entities edc)
     {
       try
       {
@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new IPRDataConsistencyException(m_Source, String.Format(m_Message, type), ex, "Waste lookup error");
       }
     }
-    internal static void ImportData(ConfigurationWasteItem[] configuration, EntitiesDataContext edc)
+    internal static void ImportData(ConfigurationWasteItem[] configuration, Entities edc)
     {
       List<Waste> list = new List<Waste>();
       foreach (ConfigurationWasteItem item in configuration)

@@ -31,7 +31,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           //throw new IPRDataConsistencyException(m_Title, "Wrong library name", null, "Wrong library name");
         }
         this.EventFiringEnabled = false;
-        using ( EntitiesDataContext _edc = new EntitiesDataContext( _properties.WebUrl ) )
+        using ( Entities _edc = new Entities( _properties.WebUrl ) )
         {
           BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>( _edc.BatchLibrary, _properties.ListItemId );
           At = "ImportBatchFromXml";
@@ -44,8 +44,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
               ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; }
             );
           At = "ListItem assign";
-          _entry.OK = true;
-          _entry.Comments = "Batch message import succeeded.";
+          _entry.BatchLibraryOK = true;
+          _entry.BatchLibraryComments = "Batch message import succeeded.";
           At = "SubmitChanges";
           _edc.SubmitChanges();
         }
@@ -53,23 +53,23 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       catch ( IPRDataConsistencyException _ex )
       {
         _ex.Source += " at " + At;
-        using ( EntitiesDataContext _edc = new EntitiesDataContext( _properties.WebUrl ) )
+        using ( Entities _edc = new Entities( _properties.WebUrl ) )
         {
           _ex.Add2Log( _edc );
           BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>( _edc.BatchLibrary, _properties.ListItemId );
-          _entry.OK = false;
-          _entry.Comments = _ex.Comments;
+          _entry.BatchLibraryOK = false;
+          _entry.BatchLibraryComments = _ex.Comments;
           _edc.SubmitChanges();
         }
       }
       catch ( Exception _ex )
       {
-        using ( EntitiesDataContext _edc = new EntitiesDataContext( _properties.WebUrl ) )
+        using ( Entities _edc = new Entities( _properties.WebUrl ) )
         {
           Anons.WriteEntry( _edc, "BatchEventReceiver.ItemAdded" + " at " + At, _ex.Message );
           BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>( _edc.BatchLibrary, _properties.ListItemId );
-          _entry.Comments = "Batch message import error";
-          _entry.OK = false;
+          _entry.BatchLibraryComments = "Batch message import error";
+          _entry.BatchLibraryOK = false;
           _edc.SubmitChanges();
         }
       }
@@ -86,7 +86,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <param name="listIndex">Index of the list.</param>
     /// <param name="fileName">Name of the file.</param>
     /// <param name="progressChanged">The progress changed delegate <see cref="ProgressChangedEventHandler"/>.</param>
-    public static void ImportBatchFromXml( EntitiesDataContext _edc, Stream stream, BatchLib _entry, string fileName, ProgressChangedEventHandler progressChanged )
+    public static void ImportBatchFromXml( Entities _edc, Stream stream, BatchLib _entry, string fileName, ProgressChangedEventHandler progressChanged )
     {
       try
       {

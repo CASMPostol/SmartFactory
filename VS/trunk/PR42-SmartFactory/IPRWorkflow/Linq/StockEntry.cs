@@ -11,39 +11,39 @@ namespace CAS.SmartFactory.Linq.IPR
     public StockEntry(StockXmlRow xml, Stock parent)
       : this()
     {
-      StockListLookup = parent;
+      StockIndex = parent;
       Batch = xml.Batch;
       Blocked = xml.Blocked;
       InQualityInsp = xml.InQualityInsp;
       IPRType = false;
-      Location = xml.SLoc;
+      this.StorLoc = xml.SLoc;
       RestrictedUse = xml.RestrictedUse;
       SKU = xml.Material;
-      Tytuł = xml.MaterialDescription;
+      Title = xml.MaterialDescription;
       Units = xml.BUn;
       Unrestricted = xml.Unrestricted;
-      BatchLookup = null;
+      BatchIndex = null;
       ProductType = Linq.IPR.ProductType.Invalid;
       Quantity = xml.Blocked.GetValueOrDefault(0) + xml.InQualityInsp.GetValueOrDefault(0) + xml.RestrictedUse.GetValueOrDefault(0) + xml.Unrestricted.GetValueOrDefault(0);
     }
-    internal void ProcessEntry(EntitiesDataContext edc)
+    internal void ProcessEntry(Entities edc)
     {
       GetProductType(edc);
       GetBatchLookup(edc);
     }
-    private void GetProductType(EntitiesDataContext edc)
+    private void GetProductType(Entities edc)
     {
-      EntitiesDataContext.ProductDescription product = edc.GetProductType(this.SKU, this.Location);
+      Entities.ProductDescription product = edc.GetProductType(this.SKU, this.StorLoc);
       this.ProductType = product.productType;
       this.IPRType = product.IPRMaterial;
     }
-    private void GetBatchLookup(EntitiesDataContext edc)
+    private void GetBatchLookup(Entities edc)
     {
       if (ProductType != Linq.IPR.ProductType.Cigarette && ProductType != Linq.IPR.ProductType.Cutfiller)
         return;
       if (!IPRType.GetValueOrDefault(false))
         return;
-      BatchLookup = Linq.IPR.Batch.GetOrCreatePreliminary(edc, this.Batch);
+      this.BatchIndex = Linq.IPR.Batch.GetOrCreatePreliminary(edc, this.Batch);
     }
     private const string m_Source = "Stock Entry";
     private const string m_WrongProductTypeMessage = "I cannot recognize product type of the stock entry SKU: {0} in location: {1}";

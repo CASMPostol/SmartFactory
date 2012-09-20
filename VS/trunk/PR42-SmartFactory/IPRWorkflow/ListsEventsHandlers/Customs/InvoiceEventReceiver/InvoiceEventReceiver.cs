@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     {
       try
       {
-        using ( EntitiesDataContext edc = new EntitiesDataContext( url ) )
+        using ( Entities edc = new Entities( url ) )
         {
           String message = String.Format( "Import of the invoice message {0} starting.", fileName );
           Anons.WriteEntry( edc, m_Title, message );
@@ -56,7 +56,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
       }
       catch ( Exception ex )
       {
-        using ( EntitiesDataContext edc = new EntitiesDataContext( url ) )
+        using ( Entities edc = new Entities( url ) )
           Anons.WriteEntry( edc, "Aborted Invoice message import because of the error", ex.Message );
       }
     }

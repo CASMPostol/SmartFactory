@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class SHMenthol
   {
-    internal static SHMenthol GetLookup(ProductType type, EntitiesDataContext edc)
+    internal static SHMenthol GetLookup(ProductType type, Entities edc)
     {
       try
       {
@@ -19,7 +19,7 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new IPRDataConsistencyException(m_Source, m_Message, ex, "SHMenthol lookup error");
       }
     }
-    internal static void ImportData(ConfigurationSHMentholItem[] configuration, EntitiesDataContext edc)
+    internal static void ImportData(ConfigurationSHMentholItem[] configuration, Entities edc)
     {
       List<SHMenthol> list = new List<SHMenthol>();
       foreach (ConfigurationSHMentholItem item in configuration)

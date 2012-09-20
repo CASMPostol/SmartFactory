@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Dust
   {
-    internal static Dust GetLookup(ProductType type, EntitiesDataContext edc)
+    internal static Dust GetLookup(ProductType type, Entities edc)
     {
       try
       {
@@ -19,7 +19,7 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new IPRDataConsistencyException(m_Source, m_Message, ex, "Cannot find Dust");
       }
     }
-    internal static void ImportData(ConfigurationDustItem[] configuration, EntitiesDataContext edc)
+    internal static void ImportData(ConfigurationDustItem[] configuration, Entities edc)
     {
       List<Dust> list = new List<Dust>();
       foreach (ConfigurationDustItem item in configuration)

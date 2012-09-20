@@ -10,17 +10,17 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class SKUCutfiller
   {
-    public SKUCutfiller(CutfillerMaterialxML document, Dokument parent, EntitiesDataContext edc)
+    public SKUCutfiller(CutfillerMaterialxML document, Dokument parent, Entities edc)
       : base(document, parent, edc)
     {
       ProductType = Linq.IPR.ProductType.Cutfiller;
       BlendPurpose = String.IsNullOrEmpty(document.BlendPurpose) ? String.Empty : document.BlendPurpose;
     }
-    protected override Format GetFormatLookup(MaterialXml document, EntitiesDataContext edc)
+    protected override Format GetFormatLookup(MaterialXml document, Entities edc)
     {
       return Format.GetCutfillerFormatLookup(edc);
     }
-    protected override bool? GetIPRMaterial(EntitiesDataContext edc)
+    protected override bool? GetIPRMaterial(Entities edc)
     {
       return (!String.IsNullOrEmpty(BlendPurpose)) && BlendPurpose.Contains("NEU");
     }

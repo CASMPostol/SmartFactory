@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Format
   {
-    internal static void ImportData(ConfigurationFormatItem[] configurationFormatItem, EntitiesDataContext edc)
+    internal static void ImportData(ConfigurationFormatItem[] configurationFormatItem, Entities edc)
     {
       List<Format> list = new List<Format>();
       foreach (ConfigurationFormatItem item in configurationFormatItem)
@@ -17,17 +17,17 @@ namespace CAS.SmartFactory.Linq.IPR
         {
           CigaretteLenght = item.CigaretteLenght,
           FilterLenght = item.FilterLenght,
-          Tytuł = item.Title
+          Title = item.Title
         };
         list.Add(frmt);
       };
       edc.Format.InsertAllOnSubmit(list);
     }
-    internal static Format GetCutfillerFormatLookup(EntitiesDataContext edc)
+    internal static Format GetCutfillerFormatLookup(Entities edc)
     {
       return GetFormatLookup(m_CutfillerLength, m_CutfillerLength, edc);
     }
-    internal static Format GetFormatLookup(string cigaretteLength, string filterSegmentLength, EntitiesDataContext edc)
+    internal static Format GetFormatLookup(string cigaretteLength, string filterSegmentLength, Entities edc)
     {
       try
       {
@@ -39,9 +39,9 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new CAS.SmartFactory.xml.ImputDataErrorException(m_Souece, message, ex);
       }
     }
-    internal static Format GetFormatLookup(string name, EntitiesDataContext edc)
+    internal static Format GetFormatLookup(string name, Entities edc)
     {
-      Format frmt = (from idx in edc.Format where idx.Tytuł.StartsWith(name) orderby idx.Identyfikator descending, idx.Wersja descending select idx).First();
+      Format frmt = (from idx in edc.Format where idx.Title.StartsWith(name) orderby idx.Identyfikator descending, idx.Wersja descending select idx).First();
       return frmt;
     }
     private bool Match(string cigaretteLength, string filterSegmentLength)
