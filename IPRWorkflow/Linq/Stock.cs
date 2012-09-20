@@ -9,15 +9,15 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Stock
   {
-    internal Stock(Dokument entry, EntitiesDataContext edc)
+    internal Stock(Dokument entry, Entities edc)
       : this()
     {
-      this.StockLibraryLookup = entry;
-      this.BalanceLibraryLookup = edc.StockLibrary.GetTopMostDocumentLookup();
-      this.Tytuł = ""; //TODO What to assign to it http://itrserver/Bugs/BugDetail.aspx?bid=2910
+      this.StockLibraryIndex = entry;
+      this.BalanceLibraryIndex = edc.StockLibrary.GetTopMostDocumentLookup();
+      this.Title = ""; //TODO What to assign to it http://itrserver/Bugs/BugDetail.aspx?bid=2910
     }
     internal static void IportXml
-      (StockXml document, EntitiesDataContext edc, Dokument entry, ProgressChangedEventHandler progressChanged)
+      (StockXml document, Entities edc, Dokument entry, ProgressChangedEventHandler progressChanged)
     {
       Stock newStock = new Stock(entry, edc);
       edc.Stock.InsertOnSubmit(newStock);

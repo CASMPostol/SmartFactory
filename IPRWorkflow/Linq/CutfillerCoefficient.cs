@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class CutfillerCoefficient
   {
     #region public
-    internal static CutfillerCoefficient GetLookup(EntitiesDataContext edc)
+    internal static CutfillerCoefficient GetLookup(Entities edc)
     {
       try
       {
@@ -19,7 +19,7 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new IPRDataConsistencyException(m_Source, m_Message, ex, "CutfillerCoefficient lookup error");
       }
     }
-    internal static void ImportData(ConfigurationCutfillerCoefficientItem[] configuration, EntitiesDataContext edc)
+    internal static void ImportData(ConfigurationCutfillerCoefficientItem[] configuration, Entities edc)
     {
       List<CutfillerCoefficient> list = new List<CutfillerCoefficient>();
       foreach (ConfigurationCutfillerCoefficientItem item in configuration)

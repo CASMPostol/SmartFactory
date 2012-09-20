@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="xml">The document.</param>
     /// <param name="edc">The edc.</param>
     /// <param name="parent">The entry.</param>
-    internal static void GetXmlContent( BatchXml xml, EntitiesDataContext edc, BatchLib parent, ProgressChangedEventHandler progressChanged )
+    internal static void GetXmlContent( BatchXml xml, Entities edc, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
       Material.SummaryContentInfo xmlBatchContent = new Material.SummaryContentInfo( xml.Material, edc, progressChanged );
       Batch batch =
@@ -34,10 +34,10 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <summary>
     /// Gets or creates lookup.
     /// </summary>
-    /// <param name="edc">The <see cref="EntitiesDataContext"/></param>
+    /// <param name="edc">The <see cref="Entities"/></param>
     /// <param name="index">The indexob batch.</param>
     /// <returns></returns>
-    internal static Batch GetOrCreatePreliminary( EntitiesDataContext edc, string batch )
+    internal static Batch GetOrCreatePreliminary( Entities edc, string batch )
     {
       Batch newBatch = FindLookup( edc, batch );
       if ( newBatch == null )
@@ -46,11 +46,11 @@ namespace CAS.SmartFactory.Linq.IPR
         {
           Batch0 = batch,
           BatchStatus = Linq.IPR.BatchStatus.Preliminary,
-          Tytuł = "Preliminary batch: " + batch,
+          Title = "Preliminary batch: " + batch,
           ProductType = Linq.IPR.ProductType.Invalid,
           FGQuantityAvailable = 0,
           FGQuantityBlocked = 0,
-          FGQuantityKUKg = 0,
+          FGQuantity = 0,
           FGQuantityPrevious = 0
         };
         edc.Batch.InsertOnSubmit( newBatch );
@@ -61,11 +61,11 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <summary>
     /// Gets the lookup.
     /// </summary>
-    /// <param name="edc">The <see cref="EntitiesDataContext"/> instance.</param>
+    /// <param name="edc">The <see cref="Entities"/> instance.</param>
     /// <param name="index">The index of the entry we are lookin for.</param>
     /// <returns>The most recent <see cref="Batch"/> object.</returns>
     /// <exception cref="System.ArgumentNullException">The source is null.</exception>
-    internal static Batch FindLookup( EntitiesDataContext edc, string index )
+    internal static Batch FindLookup( Entities edc, string index )
     {
       try
       {
@@ -79,56 +79,56 @@ namespace CAS.SmartFactory.Linq.IPR
     #endregion
 
     #region private
-    private void BatchProcessing( EntitiesDataContext edc, BatchStatus status, Material.SummaryContentInfo content, BatchLib parent, ProgressChangedEventHandler progressChanged )
+    private void BatchProcessing( Entities edc, BatchStatus status, Material.SummaryContentInfo content, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
-      this.BatchLibraryLookup = parent;
+      this.BatchLibraryIndex = parent;
       this.BatchStatus = status;
       Batch0 = content.Product.Batch;
       SKU = content.Product.SKU;
-      Tytuł = String.Format( "{0} SKU: {1}; Batch: {2}", content.Product.ProductType, SKU, Batch0 );
-      FGQuantityKUKg = content.Product.FGQuantityKUKg;
+      Title = String.Format( "{0} SKU: {1}; Batch: {2}", content.Product.ProductType, SKU, Batch0 );
+      FGQuantity = content.Product.FGQuantity;
       MaterialQuantity = content.TotalTobacco;
       ProductType = content.Product.ProductType;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: interconnect" ) );
       //interconnect 
-      SKULookup = SKUCommonPart.GetLookup( edc, content.Product.SKU );
-      CutfillerCoefficientLookup = CutfillerCoefficient.GetLookup( edc );
-      UsageLookup = Usage.GetLookup( SKULookup.FormatLookup, edc );
+      SKUIndex = SKUCommonPart.GetLookup( edc, content.Product.SKU );
+      CutfillerCoefficientIndex = CutfillerCoefficient.GetLookup( edc );
+      UsageIndex = Usage.GetLookup( SKUIndex.FormatIndex, edc );
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
       //Coefficients
-      DustLookup = Linq.IPR.Dust.GetLookup( ProductType.Value, edc );
-      DustCooeficiency = DustLookup.DustRatio;
-      DustCoeficiencyVersion = DustLookup.Wersja;
-      SHMentholLookup = Linq.IPR.SHMenthol.GetLookup( ProductType.Value, edc );
-      SHCooeficiency = SHMentholLookup.SHMentholRatio;
-      SHCoeficiencyVersion = SHMentholLookup.Wersja;
-      WasteLookup = Linq.IPR.Waste.GetLookup( ProductType.Value, edc );
-      WasteCooeficiency = WasteLookup.WasteRatio;
-      WasteCoeficiencyVersion = WasteLookup.Wersja;
+      DustIndex = Linq.IPR.Dust.GetLookup( ProductType.Value, edc );
+      Dust = DustIndex.DustRatio;
+      DustCooeficiencyVersion = DustIndex.Wersja;
+      SHMentholIndex = Linq.IPR.SHMenthol.GetLookup( ProductType.Value, edc );
+      SHMenthol = SHMentholIndex.SHMentholRatio;
+      SHCooeficiencyVersion = SHMentholIndex.Wersja;
+      WasteIndex = Linq.IPR.Waste.GetLookup( ProductType.Value, edc );
+      Waste = WasteIndex.WasteRatio;
+      WasteCooeficiencyVersion = WasteIndex.Wersja;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
       //processing
-      this.CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantityKUKg.Value, UsageLookup.UsageMax.Value, UsageLookup.UsageMin.Value );
-      this.FGQuantityAvailable = FGQuantityKUKg;
+      this.CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageIndex.UsageMax.Value, UsageIndex.UsageMin.Value );
+      this.FGQuantityAvailable = FGQuantity;
       this.FGQuantityBlocked = 0;
       this.FGQuantityPrevious = 0; //TODO [pr4-3421] Intermediate batches processing http://itrserver/Bugs/BugDetail.aspx?bid=3421
       this.MaterialQuantityPrevious = 0;
       double _shmcf = 0;
-      if ( (SKULookup is SKUCigarette) && ((SKUCigarette)SKULookup ).MentholMaterial.Value )
-        _shmcf = ( (SKUCigarette)SKULookup ).MentholMaterial.Value ? SHMentholLookup.SHMentholRatio.Value : 0;
+      if ( ( SKUIndex is SKUCigarette ) && ( (SKUCigarette)SKUIndex ).MentholMaterial.Value )
+        _shmcf = ( (SKUCigarette)SKUIndex ).MentholMaterial.Value ? SHMentholIndex.SHMentholRatio.Value : 0;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
-      content.ProcessDisposals( edc, this, DustLookup.DustRatio.Value, _shmcf, WasteLookup.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
-      this.DustKg = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Dust ];
-      this.SHMentholKg = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.SHMenthol ];
-      this.WasteKg = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Waste ];
-      this.TobaccoKg = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Tobacco ];
-      this.OveruseKg = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.OverusageInKg ];
+      content.ProcessDisposals( edc, this, DustIndex.DustRatio.Value, _shmcf, WasteIndex.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
+      this.Dust = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Dust ];
+      this.SHMenthol = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.SHMenthol ];
+      this.Waste = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Waste ];
+      this.Tobacco = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Tobacco ];
+      this.Overuse = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.OverusageInKg ];
       foreach ( var _invoice in this.InvoiceContent )
       {
         _invoice.CreateTitle();
         if ( this.Available( _invoice.Quantity.Value ) )
-          _invoice.Status = Status.OK;
+          _invoice.InvoiceContentStatus = InvoiceContentStatus.OK;
         else
-          _invoice.Status = Status.NotEnoughQnt;
+          _invoice.InvoiceContentStatus = InvoiceContentStatus.NotEnoughQnt;
       }
     }
     /// <summary>

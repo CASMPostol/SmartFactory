@@ -45,10 +45,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
     public static void IportStockFromXML
       ( Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged )
     {
-      EntitiesDataContext edc = null;
+      Entities edc = null;
       try
       {
-        edc = new EntitiesDataContext( url );
+        edc = new Entities( url );
         String message = String.Format( "Import of the stock message {0} starting.", fileName );
         Anons.WriteEntry( edc, m_Title, message );
         edc.SubmitChanges();

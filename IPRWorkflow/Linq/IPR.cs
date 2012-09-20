@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.Linq.IPR
   {
     internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
     internal static void CreateIPRAccount
-      ( EntitiesDataContext _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType, DateTime _customsDebtDate, out string _comments, 
+      ( Entities _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType, DateTime _customsDebtDate, out string _comments,
       SADDocumentLib iprLibraryLookup )
     {
       string _at = "started";
@@ -35,37 +35,37 @@ namespace CAS.SmartFactory.Linq.IPR
           AccountBalance = _iprdata.NetMass,
           Batch = _iprdata.Batch,
           Cartons = _iprdata.Cartons,
-          ClearenceListLookup = _nc,
+          ClearenceIndex = _nc,
           ClosingDate = CAS.SharePoint.Extensions.SPMinimum,
-          ConsentNo = _cnsnt,
+          IPR2ConsentTitle = _cnsnt,
           Currency = _document.Currency,
           CustomsDebtDate = _customsDebtDate,
           DocumentNo = _nc.DocumentNo,
           Duty = _iprdata.Duty,
           DutyName = _iprdata.DutyName,
-          DutyPerUnit = _iprdata.DutyPerUnit,
+          IPRDutyPerUnit = _iprdata.DutyPerUnit,
           Grade = _iprdata.GradeName,
           GrossMass = _iprdata.GrossMass,
           InvoiceNo = _iprdata.InvoiceNo,
-          IPRLibraryLookup = iprLibraryLookup,
+          IPRLibraryIndex = iprLibraryLookup,
           NetMass = _iprdata.NetMass,
           OGLValidTo = _customsDebtDate + new TimeSpan( Convert.ToInt32( _cnsnt.ConsentPeriod.Value ) * 30, 0, 0, 0 ),
-          PCNTariffCode = _pcn,
+          IPR2PCNPCN = _pcn,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
           TobaccoNotAllocated = _iprdata.NetMass,
-          Tytuł = "-- creating -- ",
-          UnitPrice = _iprdata.UnitPrice,
+          Title = "-- creating -- ",
+          IPRUnitPrice = _iprdata.UnitPrice,
           Value = _iprdata.Value,
           VATName = _iprdata.VATName,
           VAT = _iprdata.VAT,
-          VATPerUnit = _iprdata.VATPerUnit
+          IPRVATPerUnit = _iprdata.VATPerUnit
         };
         _at = "new InsertOnSubmit";
         _edc.IPR.InsertOnSubmit( _ipr );
         _at = "new SubmitChanges #1";
         _edc.SubmitChanges();
-        _ipr.Tytuł = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, _ipr.Identyfikator );
+        _ipr.Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, _ipr.Identyfikator );
         _at = "new SubmitChanges #2";
         _edc.SubmitChanges();
       }
@@ -81,14 +81,14 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       _comments = "IPR account created";
     }
-    internal static List<IPR> FindIPRAccountsWithNotAllocatedTobacco( EntitiesDataContext _edc, string _batch )
+    internal static List<IPR> FindIPRAccountsWithNotAllocatedTobacco( Entities _edc, string _batch )
     {
       return ( from IPR _iprx in _edc.IPR where _iprx.Batch.Contains( _batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
     }
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>
-    internal void AddDisposal( EntitiesDataContext _edc, DisposalEnum _status, ref double quantity, Material material )
+    internal void AddDisposal( Entities _edc, DisposalEnum _status, ref double quantity, Material material )
     {
       try
       {
@@ -108,7 +108,7 @@ namespace CAS.SmartFactory.Linq.IPR
             _typeOfDisposal = Linq.IPR.DisposalStatus.Overuse;
             break;
           case DisposalEnum.Tobacco:
-            _typeOfDisposal = Linq.IPR.DisposalStatus.TobaccoInCigaretesWarehouse;
+            _typeOfDisposal = Linq.IPR.DisposalStatus.TobaccoInCigaretes;
             break;
         }
         double _toDispose;
@@ -117,21 +117,21 @@ namespace CAS.SmartFactory.Linq.IPR
         quantity -= _toDispose;
         Disposal _newDisposal = new Disposal()
         {
-          BatchLookup = material.BatchLookup,
-          ClearenceListLookup = null,
+          Disposal2BatchIndex = material.Material2BatchIndex,
+          ClearenceIndex = null,
           ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
           CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
           CustomsProcedure = "N/A",
-          CompensationGood = null,
+          Disposal2PCNCompensationGood = null,
           DisposalStatus = _typeOfDisposal,
           DutyAndVAT = new Nullable<double>(),
           DutyPerSettledAmount = new Nullable<double>(),
           InvoiceNo = "N/A",
           IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
-          IPRID = this,
+          Disposal2IPRIndex = this,
           VATPerSettledAmount = null,
-          JSOXCustomsSummaryListLookup = null,
-          MaterialLookup = material,
+          JSOXCustomsSummaryIndex = null,
+          Disposal2MaterialIndex = material,
           No = new Nullable<double>(),
           // RemainingQuantity = 0,
           SADDate = CAS.SharePoint.Extensions.SPMinimum,
@@ -151,9 +151,9 @@ namespace CAS.SmartFactory.Linq.IPR
         string _msg = String.Format
           (
             "Disposal for batch= {0} of type={1} at account=={2} creation failed because of error: " + _ex.Message,
-            material.BatchLookup.Tytuł,
+            material.Material2BatchIndex.Title,
             _status,
-            this.Tytuł
+            this.Title
           );
         throw new IPRDataConsistencyException( "IPR.AddDisposal", _ex.Message, _ex, "Disposal creation failed" );
       }
@@ -177,7 +177,7 @@ namespace CAS.SmartFactory.Linq.IPR
             throw new IPRDataConsistencyException( "IPRData.GetCartons", String.Format( "Unexpected message {0} message", _messageType ), null, "Unexpected message" );
           _at = "SADQuantity";
           SADQuantity _quantity = FirstSADGood.SADQuantity.FirstOrDefault();
-          NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault(0);
+          NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault( 0 );
           _at = "Cartons";
           if ( _packagex.Package.ToUpper().Contains( "CT" ) )
             Cartons = GrossMass - NetMass;

@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Clearence
   {
-    internal static Clearence Associate( EntitiesDataContext _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, out string _comments, SADDocumentLib customsDocumentLibrary )
+    internal static Clearence Associate( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, out string _comments, SADDocumentLib customsDocumentLibrary )
     {
       Clearence _ret = default( Clearence );
       string _at = "started";
@@ -39,11 +39,11 @@ namespace CAS.SmartFactory.Linq.IPR
                 {
                   DocumentNo = _sad.DocumentNumber,
                   ReferenceNumber = _sad.ReferenceNumber,
-                  SADConsignmentLibraryLookup = null,
+                  SADConsignmentLibraryIndex = null,
                   ProcedureCode = String.Format( _procedureCodeFormat, (int)_customsProcedureCodes ),
                   Status = false,
-                  Procedure = Linq.IPR.Procedure._5171,
-                  Tytuł = _ClearenceTitle
+                  ClearenceProcedure = Linq.IPR.ClearenceProcedure._5171,
+                  Title = _ClearenceTitle
                 };
                 _at = "InsertOnSubmit";
                 _edc.Clearence.InsertOnSubmit( _ret );
@@ -58,12 +58,12 @@ namespace CAS.SmartFactory.Linq.IPR
                 {
                   DocumentNo = _sad.DocumentNumber,
                   ReferenceNumber = _sad.ReferenceNumber,
-                  SADConsignmentLibraryLookup = null,
+                  SADConsignmentLibraryIndex = null,
                   ProcedureCode = String.Format( _procedureCodeFormat, (int)_customsProcedureCodes ),
                   Status = false,
                   //TODO We need procedure 7100
-                  Procedure = Linq.IPR.Procedure._7171,
-                  Tytuł = _ClearenceTitle
+                  ClearenceProcedure = Linq.IPR.ClearenceProcedure._7171,
+                  Title = _ClearenceTitle
                 };
                 _at = "InsertOnSubmit";
                 _edc.Clearence.InsertOnSubmit( _ret );
@@ -120,7 +120,7 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       return _ret;
     }
-    private static Clearence FimdClearence( EntitiesDataContext _edc, string _referenceNumber )
+    private static Clearence FimdClearence( Entities _edc, string _referenceNumber )
     {
       return ( from _cx in _edc.Clearence where _referenceNumber.Contains( _cx.ReferenceNumber ) select _cx ).First<Clearence>();
     }

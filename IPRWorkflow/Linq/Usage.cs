@@ -9,18 +9,18 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class Usage
   {
 
-    internal static Usage GetLookup(Format format, EntitiesDataContext edc)
+    internal static Usage GetLookup(Format format, Entities edc)
     {
       try
       {
-        return (from idx in edc.Usage where idx.FormatLookup.Identyfikator == format.Identyfikator select idx).Aggregate((x, y) => (x.Wersja < y.Wersja ? y : x));
+        return (from idx in edc.Usage where idx.FormatIndex.Identyfikator == format.Identyfikator select idx).Aggregate((x, y) => (x.Wersja < y.Wersja ? y : x));
       }
       catch (Exception ex)
       {
         throw new IPRDataConsistencyException(m_Source, String.Format(m_Message, format), ex, "Usage lookup error");
       }
     }
-    internal static void ImportData(ConfigurationUsageItem[] configuration, EntitiesDataContext edc)
+    internal static void ImportData(ConfigurationUsageItem[] configuration, Entities edc)
     {
       List<Usage> list = new List<Usage>();
       foreach (ConfigurationUsageItem item in configuration)
@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.Linq.IPR
         Usage usg = new Usage
         {
           Batch = null,
-          FormatLookup = Format.GetFormatLookup(item.Format_lookup, edc),
+          FormatIndex = Format.GetFormatLookup(item.Format_lookup, edc),
           UsageMax = item.UsageMax,
           UsageMin = item.UsageMin,
           //TODO  [pr4-3560] Usage List - add data and display CFT... column http://itrserver/Bugs/BugDetail.aspx?bid=3560

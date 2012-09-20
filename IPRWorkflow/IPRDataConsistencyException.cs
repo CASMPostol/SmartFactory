@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.IPR
       Source = _source;
       Comments = _comments;
     }
-    internal void Add2Log(EntitiesDataContext _edc)
+    internal void Add2Log(Entities _edc)
     {
       Anons.WriteEntry(_edc, this.Source, this.Message);
     }

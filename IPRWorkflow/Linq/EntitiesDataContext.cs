@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class EntitiesDataContext
+  public partial class Entities
   {
     ///// <summary>
     ///// Persists to the content database changes made by the current user to one or more lists using the specified failure mode;
@@ -34,12 +34,12 @@ namespace CAS.SmartFactory.Linq.IPR
     //}
     public static void ImportData(XmlConfiguration data, string url, ProgressChangedEventHandler progressChanged)
     {
-      EntitiesDataContext edc = null;
+      Entities edc = null;
       int progress = 0;
       try
       {
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Connecting to website"));
-        edc = new EntitiesDataContext(url);
+        edc = new Entities(url);
         progressChanged(null, new ProgressChangedEventArgs(progress++, "Format"));
         Linq.IPR.Format.ImportData( data.Format, edc );
         edc.SubmitChanges();

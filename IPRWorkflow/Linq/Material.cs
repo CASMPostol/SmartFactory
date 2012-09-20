@@ -29,11 +29,11 @@ namespace CAS.SmartFactory.Linq.IPR
       {
         Material ce = null;
         if ( value.ProductType == Linq.IPR.ProductType.IPRTobacco || value.ProductType == Linq.IPR.ProductType.Tobacco )
-          TotalTobacco += value.TobaccoQuantityKg.GetValueOrDefault( 0 );
+          TotalTobacco += value.TobaccoQuantity.GetValueOrDefault( 0 );
         if ( this.TryGetValue( value.GetKey(), out ce ) )
         {
-          ce.FGQuantityKUKg += value.FGQuantityKUKg;
-          ce.TobaccoQuantityKg += value.TobaccoQuantityKg;
+          ce.FGQuantity += value.FGQuantity;
+          ce.TobaccoQuantity += value.TobaccoQuantity;
         }
         else
         {
@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       internal DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
       internal void ProcessDisposals
-        ( EntitiesDataContext _edc, Batch _parent, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusageCoefficient, ProgressChangedEventHandler _progressChanged )
+        ( Entities _edc, Batch _parent, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusageCoefficient, ProgressChangedEventHandler _progressChanged )
       {
         if ( Product == null )
           throw new IPRDataConsistencyException( "Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized." );
@@ -57,7 +57,7 @@ namespace CAS.SmartFactory.Linq.IPR
           {
             if ( _materialInBatch.ProductType.Value != Linq.IPR.ProductType.IPRTobacco )
               continue;
-            DisposalsAnalisis _dspsls = new DisposalsAnalisis( _edc, _materialInBatch.Batch, _materialInBatch.TobaccoQuantityKg.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient );
+            DisposalsAnalisis _dspsls = new DisposalsAnalisis( _edc, _materialInBatch.Batch, _materialInBatch.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient );
             _progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
             AccumulatedDisposalsAnalisis.Accumutate( _dspsls );
             foreach ( KeyValuePair<IPR.DisposalEnum, double> _item in _dspsls )
@@ -106,7 +106,7 @@ namespace CAS.SmartFactory.Linq.IPR
         if ( Product == null )
           throw new IPRDataConsistencyException( "Processing disposals", "Unrecognized finisched good", null, "CheckConsistence error" );
       }
-      internal SummaryContentInfo( BatchMaterialXml[] xml, EntitiesDataContext edc, ProgressChangedEventHandler progressChanged )
+      internal SummaryContentInfo( BatchMaterialXml[] xml, Entities edc, ProgressChangedEventHandler progressChanged )
       {
         AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
         foreach ( BatchMaterialXml item in xml )
@@ -122,10 +122,10 @@ namespace CAS.SmartFactory.Linq.IPR
       #endregion
 
       #region private
-      private void InsertAllOnSubmit( EntitiesDataContext edc, Batch parent )
+      private void InsertAllOnSubmit( Entities edc, Batch parent )
       {
         foreach ( var item in Values )
-          item.BatchLookup = parent;
+          item.Material2BatchIndex = parent;
         edc.Material.InsertAllOnSubmit( GeContentEnumerator() );
       }
       #endregion
@@ -138,7 +138,7 @@ namespace CAS.SmartFactory.Linq.IPR
         foreach ( IPR.DisposalEnum _item in Enum.GetValues( typeof( IPR.DisposalEnum ) ) )
           this.Add( _item, 0 );
       }
-      internal DisposalsAnalisis( EntitiesDataContext _edc, string batch, double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage )
+      internal DisposalsAnalisis( Entities _edc, string batch, double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage )
       {
         List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( _edc, batch );
         bool _closing = false;
@@ -178,24 +178,24 @@ namespace CAS.SmartFactory.Linq.IPR
       : this()
     {
       Batch = item.Batch;
-      BatchLookup = null;
+      this.Material2BatchIndex = null;
       SKU = item.Material;
-      Location = item.Stor__Loc;
+      this.StorLoc = item.Stor__Loc;
       SKUDescription = item.Material_description;
-      Tytuł = item.Material_description;
+      Title = item.Material_description;
       Units = item.Unit;
-      FGQuantityKUKg = Convert.ToDouble( item.Quantity );
-      TobaccoQuantityKg = Convert.ToDouble( item.Quantity_calculated );
+      FGQuantity = Convert.ToDouble( item.Quantity );
+      TobaccoQuantity = Convert.ToDouble( item.Quantity_calculated );
       ProductType = Linq.IPR.ProductType.Invalid;
       ProductID = item.material_group;
     }
     private string GetKey()
     {
-      return String.Format( m_keyForam, SKU, Batch, Location );
+      return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
     }
-    private void GetProductType( EntitiesDataContext edc )
+    private void GetProductType( Entities edc )
     {
-      EntitiesDataContext.ProductDescription product = edc.GetProductType( this.SKU, this.Location );
+      Entities.ProductDescription product = edc.GetProductType( this.SKU, this.StorLoc );
       this.ProductType = product.productType;
       this.SKULookup = product.skuLookup;
       this.IPRMaterial = product.IPRMaterial;

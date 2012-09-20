@@ -11,7 +11,7 @@ namespace CAS.SmartFactory.Linq.IPR
   {
     #region public
     public SKUCigarette
-      (CigarettesMaterialxML xmlDocument, Dokument parent, EntitiesDataContext edc)
+      (CigarettesMaterialxML xmlDocument, Dokument parent, Entities edc)
       : base(xmlDocument, parent, edc)
     {
       this.ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette;
@@ -24,7 +24,7 @@ namespace CAS.SmartFactory.Linq.IPR
     #endregion
 
     #region private
-    protected override Format GetFormatLookup(MaterialXml xml, EntitiesDataContext edc)
+    protected override Format GetFormatLookup(MaterialXml xml, Entities edc)
     {
       CigarettesMaterialxML cxml = (CigarettesMaterialxML)xml;
       this.CigaretteLenght = cxml.Cigarette_Length;
@@ -34,12 +34,12 @@ namespace CAS.SmartFactory.Linq.IPR
         Anons.WriteEntry(edc, m_Source, string.Format(m_FrmtTemplate, this.SKU));
       return frmt;
     }
-    protected override bool? GetIPRMaterial(EntitiesDataContext edc)
+    protected override bool? GetIPRMaterial(Entities edc)
     {
 
       if (String.IsNullOrEmpty(this.PrimeMarket))
       {
-        Anons.WriteEntry(edc, m_Source, string.Format(m_PMTemplate, this.Tytuł));
+        Anons.WriteEntry(edc, m_Source, string.Format(m_PMTemplate, this.Title));
         return new Nullable<bool>();
       }
       return !CustomsUnion.CheckIfUnion(this.PrimeMarket, edc);
