@@ -10,8 +10,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
   {
     internal static IPRIngredient IPRIngredient( Disposal disposal )
     {
-      IPRIngredient _ret = new IPRIngredient( disposal.IPRID.Batch, disposal.IPRID.SKU, disposal.SettledQuantity.Value );
-      IPR _ipr = disposal.IPRID;
+      IPRIngredient _ret = new IPRIngredient( disposal.Disposal2IPRIndex.Batch, disposal.Disposal2IPRIndex.SKU, disposal.SettledQuantity.Value );
+      IPR _ipr = disposal.Disposal2IPRIndex;
       _ret.Currency = _ipr.Currency;
       _ret.Date = _ipr.CustomsDebtDate.Value;
       _ret.DocumentNoumber = _ipr.DocumentNo;
@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
         default:
           throw new ApplicationError( "InvoiceLib.IPRIngredient", "ItemClearingType", "Wrong Clearing Type", null );
       }
-      _ret.TobaccoUnitPrice = _ipr.UnitPrice.Value;
+      _ret.TobaccoUnitPrice = _ipr.IPRUnitPrice.Value;
       _ret.TobaccoValue = disposal.TobaccoValue.Value;
       _ret.VAT = disposal.VATPerSettledAmount.Value;
       return _ret;
@@ -48,36 +48,36 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       CigaretteExportForm _ret = new CigaretteExportForm();
       if ( batch == null )
         throw new ArgumentNullException( "Batch cannot be null" );
-      if ( batch.SKULookup == null )
+      if ( batch.SKUIndex == null )
         throw new ArgumentNullException( "SKU in batch cannot be null" );
       if ( invoice == null )
         throw new ArgumentNullException( "Invoice cannot be null" );
       _ret.DocumentNo = String.Format( GlobalDefinitions.CigaretteExportFormNamePatern, masretDocumentNo, subdocumentNo++ );
-      _ret.DustKg = ( batch.DustKg.Value * portion ).RountMass();
+      _ret.DustKg = ( batch.Dust.Value * portion ).RountMass();
       CountExportFormTotals( _ingredients, _ret );
       _ret.Portion = portion;
       _ret.CustomsProcedure = customsProcedure;
       _ret.FinishedGoodBatch = batch.Batch0;
       _ret.FinishedGoodQantity = invoice.Quantity.GetValueOrDefault( 0 );
       _ret.FinishedGoodUnit = invoice.Units.GetLocalizedString();
-      _ret.FinishedGoodSKU = batch.SKULookup.SKU;
-      _ret.FinishedGoodSKUDescription = batch.SKULookup.Title();
-      _ret.MaterialTotal = ( batch.TobaccoKg.Value * portion ).RountMass();
-      _ret.ProductFormat = batch.SKULookup.FormatLookup.Title();
+      _ret.FinishedGoodSKU = batch.SKUIndex.SKU;
+      _ret.FinishedGoodSKUDescription = batch.SKUIndex.Title();
+      _ret.MaterialTotal = ( batch.Tobacco.Value * portion ).RountMass();
+      _ret.ProductFormat = batch.SKUIndex.FormatIndex.Title();
       _ret.CTFUsageMin = cc.CFTProductivityRateMin.Value * 1000;
       _ret.CTFUsageMax = cc.CFTProductivityRateMax.Value * 1000;
       _ret.CTFUsagePerUnitMin = cc.CFTProductivityRateMin.Value;
       _ret.CTFUsagePerUnitMax = cc.CFTProductivityRateMax.Value;
-      _ret.CTFUsagePer1MFinishedGoodsMin = batch.UsageLookup.CTFUsageMin.Value;
-      _ret.CTFUsagePer1MFinishedGoodsMax = batch.UsageLookup.CTFUsageMax.Value;
-      _ret.WasteCoefficient = batch.WasteCooeficiency.Value + batch.DustCooeficiency.Value;
+      _ret.CTFUsagePer1MFinishedGoodsMin = batch.UsageIndex.CTFUsageMin.Value;
+      _ret.CTFUsagePer1MFinishedGoodsMax = batch.UsageIndex.CTFUsageMax.Value;
+      _ret.WasteCoefficient = batch.Waste.Value + batch.Dust.Value;
       switch ( batch.ProductType.Value )
       {
         case ProductType.Cutfiller:
           _ret.Product = xml.DocumentsFactory.CigaretteExportForm.ProductType.Cutfiller;
           break;
         case ProductType.Cigarette:
-          SKUCigarette _skuCigarette = batch.SKULookup as SKUCigarette;
+          SKUCigarette _skuCigarette = batch.SKUIndex as SKUCigarette;
           _ret.BrandDescription = _skuCigarette.Brand;
           _ret.FamilyDescription = _skuCigarette.Family;
           _ret.Product = xml.DocumentsFactory.CigaretteExportForm.ProductType.Cigarette;
@@ -85,8 +85,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
         default:
           throw new ApplicationError( "InvoiceLib.CigaretteExportForm", "Product", "Wrong ProductType", null );
       }
-      _ret.SHMentholKg = ( batch.SHMentholKg.Value * portion ).RountMass();
-      _ret.WasteKg = ( batch.WasteKg.Value * portion ).RountMass();
+      _ret.SHMentholKg = ( batch.SHMenthol.Value * portion ).RountMass();
+      _ret.WasteKg = ( batch.Waste.Value * portion ).RountMass();
       _ret.IPRRestMaterialQantityTotal = _ret.DustKg + _ret.SHMentholKg + _ret.WasteKg;
       _ret.TobaccoTotal = ( _ret.IPTMaterialQuantityTotal + _ret.RegularMaterialQuantityTotal + _ret.IPRRestMaterialQantityTotal ).RountMass();
       return _ret;

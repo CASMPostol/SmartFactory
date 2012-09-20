@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     public ExportWebPartUserControl()
     {
       m_StateMachineEngine = new LocalStateMachineEngine( this );
-      m_DataContextManagement = new DataContextManagement<EntitiesDataContext>( this );
+      m_DataContextManagement = new DataContextManagement<Entities>( this );
     }
     #endregion
 
@@ -155,9 +155,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       internal void UpdateControlState( InvoiceContent _ic )
       {
         InvoiceContentID = _ic.Identyfikator.IntToString();
-        InvoiceContentTitle = _ic.Tytuł;
-        BatchID = _ic.BatchID != null ? _ic.BatchID.Identyfikator.IntToString() : String.Empty;
-        BatchTitle = _ic.BatchID != null ? _ic.BatchID.Tytuł : "N/A";
+        InvoiceContentTitle = _ic.Title;
+        BatchID = _ic.InvoiceContent2BatchIndex != null ? _ic.InvoiceContent2BatchIndex.Identyfikator.IntToString() : String.Empty;
+        BatchTitle = _ic.InvoiceContent2BatchIndex != null ? _ic.InvoiceContent2BatchIndex.Title : "N/A";
         InvoiceQuantity = _ic.Quantity.Value;
       }
       internal void Clear()
@@ -267,12 +267,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           }
           InvoiceContent _ic = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.InvoiceContentID );
           _ic.Quantity = _nq;
-          _ic.Status = Status.OK;
-          if ( _ic.BatchID.Identyfikator != _batch.Identyfikator )
+          _ic.InvoiceContentStatus = InvoiceContentStatus.OK;
+          if ( _ic.InvoiceContent2BatchIndex.Identyfikator != _batch.Identyfikator )
           {
-            _ic.BatchID = _batch;
-            _ic.ProductType = _ic.BatchID.ProductType;
-            _ic.Units = _ic.BatchID.ProductType.Value.Units();
+            _ic.InvoiceContent2BatchIndex = _batch;
+            _ic.ProductType = _ic.InvoiceContent2BatchIndex.ProductType;
+            _ic.Units = _ic.InvoiceContent2BatchIndex.ProductType.Value.Units();
             _ic.Quantity = _nq;
             _ic.CreateTitle();
           }
@@ -305,13 +305,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           }
           InvoiceContent _nic = new InvoiceContent()
           {
-            BatchID = _batch,
-            InvoiceLookup = _invc,
-            SKUDescription = _batch.SKULookup.Tytuł,
+            InvoiceContent2BatchIndex = _batch,
+            InvoiceIndex = _invc,
+            SKUDescription = _batch.SKUIndex.Title,
             ProductType = _batch.ProductType,
             Quantity = _nq.Value,
-            Status = Linq.IPR.Status.OK,
-            Tytuł = _batch.SKULookup.Tytuł,
+            InvoiceContentStatus = Linq.IPR.InvoiceContentStatus.OK,
+            Title = _batch.SKUIndex.Title,
             Units = _batch.ProductType.Value.Units()
           };
           Parent.m_ControlState.InvoiceQuantity = _nq.Value;
@@ -481,7 +481,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     #region private
     private LocalStateMachineEngine m_StateMachineEngine = null;
     private ControlState m_ControlState = new ControlState( null );
-    private DataContextManagement<EntitiesDataContext> m_DataContextManagement = null;
+    private DataContextManagement<Entities> m_DataContextManagement = null;
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set )
     {
       GenericStateMachineEngine.ControlsSet _allowed = m_ControlState.ReadOnly ? 0 : (GenericStateMachineEngine.ControlsSet)0xff;
@@ -526,28 +526,28 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
       {
-        ActionResult _checkResult = item.BatchID.ExportPossible( item.Quantity );
+        ActionResult _checkResult = item.InvoiceContent2BatchIndex.ExportPossible( item.Quantity );
         if ( _checkResult.Valid )
           continue;
         foreach ( var _msg in _checkResult )
           Controls.Add( ControlExtensions.CreateMessage( _msg ) );
         m_ControlState.UpdateControlState( item );
         string _frmt = "Cannot proceed with export because the invoice item contains eroors {0}.";
-        return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Tytuł ) );
+        return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Title ) );
       }
-      _invoice.OK = true;
+      _invoice.InvoiceLibraryStatus = true;
       List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> _consignment = new List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm>();
       string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
       string _title = Resources.FinishedGoodsExportFormFileName;
-      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _title, _customsProcedureCode, Procedure._3151 );
+      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _title, _customsProcedureCode, ClearenceProcedure._3151 );
       string _masterDocumentName = String.Format( DocumentNames.FinishedGoodExportFormNumberFormat, _newClearance.Identyfikator.Value );
       int _position = 1;
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
-        item.BatchID.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );
-      _invoice.ReadOnly = true;
+        item.InvoiceContent2BatchIndex.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );
+      _invoice.InvoiceLibraryReadOnly = true;
       int _sadConsignmentIdentifier = Dokument.PrepareConsignment( site, _consignment, _masterDocumentName, _invoice.BillDoc );
-      Dokument _sadConsignment = Element.GetAtIndex<Dokument>( m_DataContextManagement.DataContext.SADConsignmentLibrary, _sadConsignmentIdentifier );
-      _newClearance.SADConsignmentLibraryLookup = _sadConsignment;
+      SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
+      _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
       m_DataContextManagement.DataContext.SubmitChanges();
       return GenericStateMachineEngine.ActionResult.Success;
     }

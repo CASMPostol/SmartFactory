@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CAS.SharePoint;
-using System.Diagnostics;
-using System;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Material
   {
-    internal void Export( EntitiesDataContext edc, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence, double portion )
+    internal void Export( Entities edc, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence, double portion )
     {
-      double _quantity = ( this.TobaccoQuantityKg.Value * portion ).RountMass();
+      double _quantity = ( this.TobaccoQuantity.Value * portion ).RountMass();
       if ( this.ProductType.Value == Linq.IPR.ProductType.IPRTobacco )
       {
         try
@@ -32,7 +31,7 @@ namespace CAS.SmartFactory.Linq.IPR
         catch ( Exception _ex )
         {
           string _tmpl = "Cannot proceed with export of Material: {0} because of error: {1}.";
-          throw new ApplicationError( "Material.Export", "", String.Format( _tmpl, this.BatchLookup.Tytuł, _ex.Message ), _ex );
+          throw new ApplicationError( "Material.Export", "", String.Format( _tmpl, this.Material2BatchIndex.Title, _ex.Message ), _ex );
         }
       }
       else if ( this.ProductType.Value == Linq.IPR.ProductType.Tobacco )
@@ -43,11 +42,11 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     private List<Disposal> GetListOfDisposals()
     {
-      Linq.IPR.DisposalStatus status = this.BatchLookup.ProductType.Value == Linq.IPR.ProductType.Cigarette ? DisposalStatus.TobaccoInCigaretesWarehouse : DisposalStatus.TobaccoInCutfillerWarehouse;
+      Linq.IPR.DisposalStatus status = this.Material2BatchIndex.ProductType.Value == Linq.IPR.ProductType.Cigarette ? DisposalStatus.TobaccoInCigaretes : DisposalStatus.TobaccoInCutfiller;
       return
         (
             from _didx in this.Disposal
-            let _ipr = _didx.IPRID
+            let _ipr = _didx.Disposal2IPRIndex
             where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == status
             orderby _ipr.Identyfikator ascending
             select _didx

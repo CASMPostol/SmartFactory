@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Disposal
   {
-    internal void Export( EntitiesDataContext edc, ref double _quantity, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
+    internal void Export( Entities edc, ref double _quantity, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
     {
       string _at = "startting";
       try
@@ -19,18 +19,18 @@ namespace CAS.SmartFactory.Linq.IPR
           _at = "_newDisposal";
           Disposal _newDisposal = new Disposal()
           {
-            BatchLookup = this.BatchLookup,
-            ClearenceListLookup = null,
+            Disposal2BatchIndex = this.Disposal2BatchIndex,
+            ClearenceIndex = null,
             ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
             CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
             CustomsProcedure = "N/A",
             DisposalStatus = this.DisposalStatus,
             InvoiceNo = "N/A",
             IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
-            IPRID = this.IPRID,
+            Disposal2IPRIndex = this.Disposal2IPRIndex,
             // CompensationGood = this.CompensationGood, //TODO [pr4-3585] Wrong value for CompensationGood http://itrserver/Bugs/BugDetail.aspx?bid=3585
-            JSOXCustomsSummaryListLookup = null,
-            MaterialLookup = this.MaterialLookup,
+            JSOXCustomsSummaryIndex = null,
+            Disposal2MaterialIndex = this.Disposal2MaterialIndex,
             No = int.MaxValue,
             SADDate = CAS.SharePoint.Extensions.SPMinimum,
             SADDocumentNo = "N/A",
@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.Linq.IPR
         }
         else
         {
-          _clearingType = this.IPRID.GetClearingType();
+          _clearingType = this.Disposal2IPRIndex.GetClearingType();
           _quantity -= this.SettledQuantity.Value;
         }
         _at = "StartClearance";
@@ -66,7 +66,7 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     private void StartClearance( ClearingType clearingType, string invoiceNoumber, string procedure, Clearence clearence )
     {
-      this.ClearenceListLookup = clearence;
+      this.ClearenceIndex = clearence;
       this.CustomsStatus = Linq.IPR.CustomsStatus.Started;
       this.ClearingType = clearingType;
       this.CustomsProcedure = procedure;
