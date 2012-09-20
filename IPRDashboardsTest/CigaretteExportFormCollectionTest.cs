@@ -82,7 +82,7 @@ namespace IPRDashboardsTest
       double _portion = 0.5;
       SKUCigarette _sku = new SKUCigarette()
       {
-        FormatLookup = new Format() { Tytuł = "Format title", CigaretteLenght = "100", FilterLenght = "20" },
+        FormatLookup = new Format() { Title = "Format title", CigaretteLenght = "100", FilterLenght = "20" },
         Brand = "Slims Menthol ",
         Family = "Salem",
         CigaretteLenght = "99.00 mm ",
@@ -93,7 +93,7 @@ namespace IPRDashboardsTest
         PrimeMarket = "PL",
         ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette,
         SKU = "12419574 ",
-        Tytuł = "SKU SA MXSR  99 CPB 20  5000 05  N PL1"
+        Title = "SKU SA MXSR  99 CPB 20  5000 05  N PL1"
       };
       Batch _batch = new Batch()
       {
@@ -126,7 +126,7 @@ namespace IPRDashboardsTest
         UsageLookup = new Usage() { CTFUsageMax = 1.23, CTFUsageMin = 0.9876, UsageMax = 1234.45, UsageMin = 987.65, FormatLookup = null },
         WasteCooeficiency = 0.012345678,
         WasteLookup = null,
-        Tytuł = "Testing batch"
+        Title = "Testing batch"
       };
       _batch.TobaccoKg = _batch.MaterialQuantity.Value - _batch.SHMentholKg.Value - _batch.DustKg.Value - _batch.WasteKg.Value;
       InvoiceContent invoice = new InvoiceContent()
@@ -137,7 +137,7 @@ namespace IPRDashboardsTest
         Quantity = _quantity * _portion,
         SKUDescription = _batch.SKU,
         Status = Status.OK,
-        Tytuł = "Testing Invoice",
+        Title = "Testing Invoice",
         Units = "kU",
       };
       List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.Ingredient> ingridients = new List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.Ingredient>();
@@ -168,7 +168,7 @@ namespace IPRDashboardsTest
         TobaccoName = "TobaccoName",
         TobaccoNotAllocated = 9876.54,
         UnitPrice = 5.67,
-        Tytuł = "Testing IPR",
+        Title = "Testing IPR",
         Value = 89012.34,
         VAT = 56.78,
         VATName = "VATName",
@@ -201,7 +201,7 @@ namespace IPRDashboardsTest
         TobaccoName = "TobaccoName",
         TobaccoNotAllocated = 9876.54,
         UnitPrice = 5.67,
-        Tytuł = "Testing IPR",
+        Title = "Testing IPR",
         Value = 89012.34,
         VAT = 56.78,
         VATName = "VATName",
@@ -219,7 +219,7 @@ namespace IPRDashboardsTest
         DutyPerSettledAmount = 345.6789,
         IPRDocumentNo = null,
         InvoiceNo = "InvoiceNomber",
-        IPRID = _ipr1,
+        Disposal2IPRIndex = _ipr1,
         JSOXCustomsSummaryListLookup = null,
         MaterialLookup = null,
         No = 7.8,
@@ -228,7 +228,7 @@ namespace IPRDashboardsTest
         SADDocumentNo = "N/A",
         SettledQuantity = 9.12,
         TobaccoValue = 34.567,
-        Tytuł = "Testing disposal",
+        Title = "Testing disposal",
         VATPerSettledAmount = 78.901,
       };
       Disposal _disposal2 = new Disposal()
@@ -243,7 +243,7 @@ namespace IPRDashboardsTest
         DutyPerSettledAmount = 345.67891234,
         IPRDocumentNo = null,
         InvoiceNo = "InvoiceNomber",
-        IPRID = _ipr2,
+        Disposal2IPRIndex = _ipr2,
         JSOXCustomsSummaryListLookup = null,
         MaterialLookup = null,
         No = 7.8,
@@ -252,7 +252,7 @@ namespace IPRDashboardsTest
         SADDocumentNo = "N/A",
         SettledQuantity = 9.12345678,
         TobaccoValue = 34.56789012,
-        Tytuł = "Testing disposal",
+        Title = "Testing disposal",
         VATPerSettledAmount = 78.9012345,
       };
       CutfillerCoefficient _cc = new CutfillerCoefficient
