@@ -70,7 +70,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       _ret.CTFUsagePerUnitMax = cc.CFTProductivityRateMax.Value;
       _ret.CTFUsagePer1MFinishedGoodsMin = batch.UsageIndex.CTFUsageMin.Value;
       _ret.CTFUsagePer1MFinishedGoodsMax = batch.UsageIndex.CTFUsageMax.Value;
-      _ret.WasteCoefficient = batch.Waste.Value + batch.Dust.Value;
+      _ret.WasteCoefficient = batch.BatchWasteCooeficiency.Value + batch.BatchDustCooeficiency.Value;
       switch ( batch.ProductType.Value )
       {
         case ProductType.Cutfiller:
