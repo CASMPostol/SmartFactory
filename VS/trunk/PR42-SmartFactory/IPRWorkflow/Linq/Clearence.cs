@@ -14,51 +14,66 @@ namespace CAS.SmartFactory.Linq.IPR
       _comments = "Clearance association error";
       try
       {
+        //TODO common naming mechanism must implemented
+        string _ClearenceTitle = String.Format( "{0} Ref: {1}", _messageType, _sad.ReferenceNumber );
         switch ( _messageType )
         {
           case CustomsDocument.DocumentType.SAD:
           case CustomsDocument.DocumentType.PZC:
             _at = "_customsProcedureCodes";
             CustomsProcedureCodes _customsProcedureCodes = _sad.SADGood.First().Procedure.RequestedProcedure();
+            string _procedureCodeFormat = "{0:D2}XX";
             switch ( _customsProcedureCodes )
             {
               case CustomsProcedureCodes.FreeCirculation:
                 _at = "FimdClearence";
                 _ret = FimdClearence( _edc, _sad.ReferenceNumber );
                 if ( _messageType == CustomsDocument.DocumentType.PZC )
-                {
                   _sad.ReleaseForFreeCirculation( _edc, out _comments );
-                }
                 else
                   _comments = "Document added";
                 break;
               case CustomsProcedureCodes.InwardProcessing:
-                _at = "_procedureCode";
-                string _procedureCode = String.Format( "{0:D2}XX", (int)_customsProcedureCodes );
                 _at = "NewClearence";
                 _ret = new Clearence()
                 {
                   DocumentNo = _sad.DocumentNumber,
                   ReferenceNumber = _sad.ReferenceNumber,
                   SADConsignmentLibraryLookup = null,
-                  ProcedureCode = _procedureCode,
+                  ProcedureCode = String.Format( _procedureCodeFormat, (int)_customsProcedureCodes ),
                   Status = false,
                   Procedure = Linq.IPR.Procedure._5171,
-                  //TODO common naming mechanism must implemented
-                  Tytuł = String.Format( "Procedure {0} Ref: {1}", _procedureCode, _sad.ReferenceNumber )
+                  Tytuł = _ClearenceTitle
                 };
                 _at = "InsertOnSubmit";
                 _edc.Clearence.InsertOnSubmit( _ret );
                 if ( _messageType == CustomsDocument.DocumentType.PZC )
-                {
                   IPR.CreateIPRAccount( _edc, _sad, _ret, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
-                }
+                else
+                  _comments = "Document added";
+                break;
+              case CustomsProcedureCodes.CustomsWarehousingProcedure:
+                _at = "NewClearence";
+                _ret = new Clearence()
+                {
+                  DocumentNo = _sad.DocumentNumber,
+                  ReferenceNumber = _sad.ReferenceNumber,
+                  SADConsignmentLibraryLookup = null,
+                  ProcedureCode = String.Format( _procedureCodeFormat, (int)_customsProcedureCodes ),
+                  Status = false,
+                  //TODO We need procedure 7100
+                  Procedure = Linq.IPR.Procedure._7171,
+                  Tytuł = _ClearenceTitle
+                };
+                _at = "InsertOnSubmit";
+                _edc.Clearence.InsertOnSubmit( _ret );
+                if ( _messageType == CustomsDocument.DocumentType.PZC )
+                  ;// TODO CreateStockRecord  
                 else
                   _comments = "Document added";
                 break;
               case CustomsProcedureCodes.NoProcedure:
               case CustomsProcedureCodes.ReExport:
-              case CustomsProcedureCodes.CustomsWarehousingProcedure:
               default:
                 throw new IPRDataConsistencyException( "Clearence.Associate", string.Format( "Unexpected procedure code for the {0} message", _messageType ), null, _wrongProcedure );
             } //switch (_customsProcedureCodes)
