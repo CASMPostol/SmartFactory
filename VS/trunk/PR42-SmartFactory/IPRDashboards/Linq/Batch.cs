@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.Linq.IPR
   {
     internal void Export
       (
-        EntitiesDataContext edc,
+        Entities edc,
         InvoiceContent productInvoice,
         List<CigaretteExportForm> consignment,
         string invoiceNumber,
@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       bool closingBatch = this.FGQuantityAvailable == productInvoice.Quantity.Value;
       this.FGQuantityAvailable -= productInvoice.Quantity.Value;
-      double _portion = productInvoice.Quantity.Value / this.FGQuantityKUKg.Value;
+      double _portion = productInvoice.Quantity.Value / this.FGQuantity.Value;
       List<Ingredient> _ingredients = new List<Ingredient>();
       foreach ( Material _materialIdx in this.Material )
         _materialIdx.Export( edc, _ingredients, closingBatch, invoiceNumber, procedure, clearence, _portion );
