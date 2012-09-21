@@ -10,11 +10,11 @@ namespace CAS.SmartFactory.Linq.IPR
   {
     internal void Export( Entities edc, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence, double portion )
     {
-      double _quantity = ( this.TobaccoQuantity.Value * portion ).RountMass();
       if ( this.ProductType.Value == Linq.IPR.ProductType.IPRTobacco )
       {
         try
         {
+          double _quantity = DisposedQuantity( portion );
           foreach ( Disposal _disposal in GetListOfDisposals() )
           {
             if ( _quantity == 0 )
@@ -36,9 +36,13 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       else if ( this.ProductType.Value == Linq.IPR.ProductType.Tobacco )
       {
-        RegularIngredient _ri = new RegularIngredient( this.Batch, this.SKU, _quantity );
+        RegularIngredient _ri = new RegularIngredient( this.Batch, this.SKU, DisposedQuantity( portion ) );
         ingredient.Add( _ri );
       }
+    }
+    private double DisposedQuantity( double portion )
+    {
+      return ( this.TobaccoQuantity.Value * portion ).RountMass();
     }
     private List<Disposal> GetListOfDisposals()
     {
