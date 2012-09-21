@@ -13,7 +13,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
   /// <summary>
   /// Export Web Part
   /// </summary>
-  //TODO [pr4-3492] Create Export Finisched Goods workflow http://itrserver/Bugs/BugDetail.aspx?bid=3492
   [ToolboxItemAttribute( false )]
   public class ExportWebPart: WebPart
   {

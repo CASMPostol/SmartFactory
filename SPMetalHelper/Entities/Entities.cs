@@ -496,15 +496,15 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Title", Storage="_tytuł", Required=true, FieldType="Text")]
-		public virtual string Title {
+		public virtual string Tytuł {
 			get {
 				return this._tytuł;
 			}
 			set {
 				if ((value != this._tytuł)) {
-					this.OnPropertyChanging("Title", this._tytuł);
+					this.OnPropertyChanging("Tytuł", this._tytuł);
 					this._tytuł = value;
-					this.OnPropertyChanged("Title");
+					this.OnPropertyChanged("Tytuł");
 				}
 			}
 		}
@@ -1782,7 +1782,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
 		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Title {
+		public override string Tytuł {
 			get {
 				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości DestinationMarket.");
 			}
@@ -2034,7 +2034,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
 		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Title {
+		public override string Tytuł {
 			get {
 				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości ShippingDriversTeam.");
 			}
@@ -5146,7 +5146,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
 		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Title {
+		public override string Tytuł {
 			get {
 				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlotsTemplate.");
 			}
@@ -6811,7 +6811,7 @@ namespace CAS.SmartFactory.Shepherd.Entities {
 		
 		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
 		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string Title {
+		public override string Tytuł {
 			get {
 				throw new System.InvalidOperationException("Pole Title zostało usunięte z typu zawartości TimeSlot.");
 			}

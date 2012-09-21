@@ -75,7 +75,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
         BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>(m_EDC.BusinessDescription, m_BusinessDescription, _route.Business_description, false);
         Commodity _cmdty = GetOrAdd<Commodity>(m_EDC.Commodity, m_CommodityCommodity, _route.Commodity, false);
         string _sku = _route.Material_Master__Reference;
-        string _title = String.Format("To: {0}, by: {1}, of: {2}", _CityType.Title, _prtnr.Title, _route.Commodity);
+        string _title = String.Format("To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity);
         switch (_service)
         {
           case ServiceType.Forwarder:
@@ -93,7 +93,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
               RemarkMM = _route.Remarks,
               SAPDestinationPlantTitle = _SAPDestinationPlant,
               ShipmentTypeTitle = _ShipmentType,
-              Title = _title,
+              Tytuł = _title,
               TransportCosts = _testData ? 4567.8 : _route.Total_Cost_per_UoM.String2Double(),
               TransportUnitTypeTitle = _TranspotUnit,
               PartnerTitle = _prtnr,
@@ -113,7 +113,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
               RemarkMM = _route.Remarks,
               SecurityCost = _testData ? 345.6 : _route.Total_Cost_per_UoM.String2Double(),
               SecurityEscrotPO = _route.PO_NUMBER,
-              Title = _title,
+              Tytuł = _title,
               PartnerTitle = _prtnr
             };
             m_EDC.SecurityEscortRoute.InsertOnSubmit(_sec);
@@ -140,10 +140,10 @@ namespace CAS.SmartFactory.Shepherd.Entities
       {
         Market _mrkt = GetOrAdd<Market>(m_EDC.Market, m_MarketMarket, _market.Market, false);
         CityType _CityType = GetOrAddCity(_market.DestinationCity, _market.DestinationCountry, _market.Area);
-        string _dstName = String.Format("{0} in {1}", _CityType.Title, _mrkt.Title);
+        string _dstName = String.Format("{0} in {1}", _CityType.Tytuł, _mrkt.Tytuł);
         DestinationMarket _DestinationMarket = new DestinationMarket()
           {
-            //Title = _dstName,
+            //Tytuł = _dstName,
             DestinationMarket2CityTitle = _CityType,
             MarketTitle = _mrkt
           };
@@ -213,7 +213,7 @@ namespace CAS.SmartFactory.Shepherd.Entities
     private type Create<type>(EntityList<type> _EDC, Dictionary<string, type> _dictionary, string _key, bool _testData)
       where type : Element, new()
     {
-      type _elmnt = new type() { Title = _testData ? EmptyKey : _key };
+      type _elmnt = new type() { Tytuł = _testData ? EmptyKey : _key };
       if (_dictionary.Keys.Contains(_key))
         _key = String.Format("Duplicated name: {0} [{1}]", _key, EmptyKey);
       _dictionary.Add(_key, _elmnt);
