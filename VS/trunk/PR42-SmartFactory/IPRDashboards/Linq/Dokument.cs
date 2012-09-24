@@ -16,7 +16,9 @@ namespace CAS.SmartFactory.Linq.IPR
       string _stt = "Starting";
       try
       {
+        _stt = "CigaretteExportFormCollection";
         CigaretteExportFormCollection _cefc = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( _consignment, fileName, invoiceNo );
+        _stt = "SPDocumentLibrary";
         SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ CommonDefinitions.IPRSADConsignmentLibraryTitle ];
         _stt = "AddDocument2Collection";
         SPFile _docFile = _cefc.AddDocument2Collection( _lib.RootFolder.Files, fileName );

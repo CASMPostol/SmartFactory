@@ -15,7 +15,6 @@ namespace CAS.SmartFactory.Linq.IPR
       try
       {
         //TODO common naming mechanism must implemented
-        string _ClearenceTitle = String.Format( "{0} Ref: {1}", _messageType, _sad.ReferenceNumber );
         switch ( _messageType )
         {
           case CustomsDocument.DocumentType.SAD:
@@ -32,6 +31,7 @@ namespace CAS.SmartFactory.Linq.IPR
                   _sad.ReleaseForFreeCirculation( _edc, out _comments );
                 else
                   _comments = "Document added";
+                _ret.CreateTitle( _messageType.ToString() );
                 break;
               case CustomsProcedureCodes.InwardProcessing:
                 _at = "NewClearence";
@@ -43,7 +43,6 @@ namespace CAS.SmartFactory.Linq.IPR
                   ProcedureCode = String.Format( _procedureCodeFormat, (int)_customsProcedureCodes ),
                   Status = false,
                   ClearenceProcedure = Linq.IPR.ClearenceProcedure._5171,
-                  Title = _ClearenceTitle
                 };
                 _at = "InsertOnSubmit";
                 _edc.Clearence.InsertOnSubmit( _ret );
@@ -51,6 +50,7 @@ namespace CAS.SmartFactory.Linq.IPR
                   IPR.CreateIPRAccount( _edc, _sad, _ret, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
                 else
                   _comments = "Document added";
+                _ret.CreateTitle( _messageType.ToString() );
                 break;
               case CustomsProcedureCodes.CustomsWarehousingProcedure:
                 _at = "NewClearence";
@@ -63,8 +63,8 @@ namespace CAS.SmartFactory.Linq.IPR
                   Status = false,
                   //TODO We need procedure 7100
                   ClearenceProcedure = Linq.IPR.ClearenceProcedure._7171,
-                  Title = _ClearenceTitle
                 };
+                _ret.CreateTitle( _messageType.ToString() );
                 _at = "InsertOnSubmit";
                 _edc.Clearence.InsertOnSubmit( _ret );
                 if ( _messageType == CustomsDocument.DocumentType.PZC )
@@ -87,6 +87,7 @@ namespace CAS.SmartFactory.Linq.IPR
             _at = "FimdClearence";
             _ret = FimdClearence( _edc, _sad.ReferenceNumber );
             _ret.DocumentNo = _sad.DocumentNumber;
+            _ret.CreateTitle( _messageType.ToString() );
             _at = "StartingDocument";
             SADDocumentType _startingDocument = _ret.SADDocumentType.First<SADDocumentType>();
             _at = "switch RequestedProcedure";

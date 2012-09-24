@@ -290,6 +290,29 @@ namespace CAS.SmartFactory.Linq.IPR
       return Disposal2IPRIndex.VAT.Value - ( from _dec in Disposal2IPRIndex.Disposal where _dec.VATPerSettledAmount.HasValue select new { val = _dec.VATPerSettledAmount.Value } ).Sum( itm => itm.val );
     }
   }
+  public partial class Clearence
+  {
+    internal static Clearence CreataClearence( Entities edc, string code, ClearenceProcedure procedure )
+    {
+      Clearence _newClearence = new Clearence()
+      {
+        DocumentNo = "N/A",
+        ProcedureCode = code,
+        ReferenceNumber = "N/A",
+        Status = false,
+        //TODO common naming convention must be implemented.
+        Title = "Creating",
+        ClearenceProcedure = procedure
+      };
+      edc.Clearence.InsertOnSubmit( _newClearence );
+      edc.SubmitChanges();
+      return _newClearence;
+    }
+    internal void CreateTitle(string _messageType )
+    {
+      Title = String.Format( "{0} Ref: {1}", _messageType.NotAvailable(), ReferenceNumber.NotAvailable() );
+    }
+  }
   public static class LinqIPRExtensions
   {
     public static string Units( this ProductType product )

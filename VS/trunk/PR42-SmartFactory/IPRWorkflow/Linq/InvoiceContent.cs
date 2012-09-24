@@ -1,4 +1,5 @@
 ﻿using System;
+using CAS.SharePoint;
 using CAS.SmartFactory.xml;
 using InvoiceItemXml = CAS.SmartFactory.xml.erp.InvoiceItem;
 using InvoiceXml = CAS.SmartFactory.xml.erp.Invoice;

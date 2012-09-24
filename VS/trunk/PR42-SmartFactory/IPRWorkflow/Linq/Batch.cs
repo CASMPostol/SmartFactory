@@ -97,13 +97,13 @@ namespace CAS.SmartFactory.Linq.IPR
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
       //Coefficients
       DustIndex = Linq.IPR.Dust.GetLookup( ProductType.Value, edc );
-      Dust = DustIndex.DustRatio;
+      this.BatchDustCooeficiency = DustIndex.DustRatio;
       DustCooeficiencyVersion = DustIndex.Wersja;
       SHMentholIndex = Linq.IPR.SHMenthol.GetLookup( ProductType.Value, edc );
-      SHMenthol = SHMentholIndex.SHMentholRatio;
+      this.BatchSHCooeficiency = SHMentholIndex.SHMentholRatio;
       SHCooeficiencyVersion = SHMentholIndex.Wersja;
       WasteIndex = Linq.IPR.Waste.GetLookup( ProductType.Value, edc );
-      Waste = WasteIndex.WasteRatio;
+      this.BatchWasteCooeficiency = WasteIndex.WasteRatio;
       WasteCooeficiencyVersion = WasteIndex.Wersja;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
       //processing

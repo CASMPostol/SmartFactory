@@ -143,6 +143,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
+    <Compile Include="XMLResources.cs" />
     <None Include="cas.snk" />
     <None Include="ClassDiagram1.cd" />
     <None Include="Customs\CELINA\CLNBw2r0.xsd">
@@ -420,7 +421,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
+      <Project>{B9D9FCCA-6132-4BF5-BC17-32EA752D6AD7}</Project>
+      <Name>SharePoint</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

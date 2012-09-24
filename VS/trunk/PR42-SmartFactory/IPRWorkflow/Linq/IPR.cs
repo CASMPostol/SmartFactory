@@ -4,6 +4,7 @@ using System.Linq;
 using CAS.SmartFactory.xml.Customs;
 using CAS.SmartFactory.IPR;
 using CAS.SmartFactory;
+using CAS.SharePoint;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -246,13 +247,14 @@ namespace CAS.SmartFactory.Linq.IPR
         try
         {
           _at = "TobaccoName";
-          TobaccoName = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionTobaccoNamePattern );
+          string _na = "Not recognized";
+          TobaccoName = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionTobaccoNamePattern, _na );
           _at = "GradeName";
-          GradeName = _GoodsDescription.GetFirstCapture( @"(?<=\WGRADE:)\W*\b(\w*)" );
+          GradeName = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionWGRADEPattern, _na );
           _at = "SKU";
-          SKU = _GoodsDescription.GetFirstCapture( @"(?<=\WSKU:)\W*\b(\d*)" );
+          SKU = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionSKUPattern, _na );
           _at = "Batch";
-          Batch = _GoodsDescription.GetFirstCapture( @"(?<=\WBatch:)\W*\b(\d*)" );
+          Batch = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionBatchPattern, _na );
         }
         catch ( Exception _ex )
         {
