@@ -23,16 +23,33 @@ namespace CAS.SmartFactory.Linq.IPR
         ref int _position
       )
     {
-      bool closingBatch = this.FGQuantityAvailable == productInvoice.Quantity.Value;
-      this.FGQuantityAvailable -= productInvoice.Quantity.Value;
-      double _portion = productInvoice.Quantity.Value / this.FGQuantity.Value;
-      List<Ingredient> _ingredients = new List<Ingredient>();
-      foreach ( Material _materialIdx in this.Material )
-        _materialIdx.Export( edc, _ingredients, closingBatch, invoiceNumber, procedure, clearence, _portion );
-      CutfillerCoefficient _cc = ( from _ccx in edc.CutfillerCoefficient orderby _ccx.Identyfikator descending select _ccx ).First();
-      CigaretteExportForm _exportConsignment =
-        CigaretteExportFormFactory.CigaretteExportForm( _cc, this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position, clearence.ProcedureCode );
-      consignment.Add( _exportConsignment );
+      string _at = "beginning";
+      try
+      {
+        bool closingBatch = this.FGQuantityAvailable == productInvoice.Quantity.Value;
+        _at = "FGQuantityAvailable";
+        this.FGQuantityAvailable -= productInvoice.Quantity.Value;
+        double _portion = productInvoice.Quantity.Value / this.FGQuantity.Value;
+        List<Ingredient> _ingredients = new List<Ingredient>();
+        _at = "foreach";
+        foreach ( Material _materialIdx in this.Material )
+          _materialIdx.Export( edc, _ingredients, closingBatch, invoiceNumber, procedure, clearence, _portion );
+        _at = "CutfillerCoefficient";
+        CutfillerCoefficient _cc = ( from _ccx in edc.CutfillerCoefficient orderby _ccx.Identyfikator descending select _ccx ).First();
+        _at = "_exportConsignment";
+        CigaretteExportForm _exportConsignment =
+          CigaretteExportFormFactory.CigaretteExportForm( _cc, this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position, clearence.ProcedureCode );
+        consignment.Add( _exportConsignment );
+      }
+      catch ( ApplicationError _ar )
+      {
+        throw _ar;
+      }
+      catch ( Exception _ex )
+      {
+        string _tmpl = "Cannot proceed with export of Batch: {0} because of error: {1}.";
+        throw new ApplicationError( "Batch.Export", _at, String.Format(_tmpl, this.Batch0, _ex.Message), _ex );
+      }
     }
     internal ActionResult ExportPossible( double? quantity )
     {

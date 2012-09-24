@@ -10,34 +10,38 @@ namespace CAS.SmartFactory.Linq.IPR
   {
     internal void Export( Entities edc, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence, double portion )
     {
-      if ( this.ProductType.Value == Linq.IPR.ProductType.IPRTobacco )
+      string _at = "Beginning";
+      try
       {
-        try
+        if ( this.ProductType.Value == Linq.IPR.ProductType.IPRTobacco )
         {
           double _quantity = DisposedQuantity( portion );
+          _at = "GetListOfDisposals";
           foreach ( Disposal _disposal in GetListOfDisposals() )
           {
             if ( _quantity == 0 )
               break;
+            _at = "_disposal.Export(";
             _disposal.Export( edc, ref _quantity, ingredient, closingBatch, invoiceNoumber, procedure, clearence );
           }
           string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account";
           Anons.Assert( edc, _quantity == 0, "Material.Export", string.Format( _template, this.Batch, _quantity, invoiceNoumber ) );
         }
-        catch ( ApplicationError _ae )
+        else if ( this.ProductType.Value == Linq.IPR.ProductType.Tobacco )
         {
-          throw _ae;
-        }
-        catch ( Exception _ex )
-        {
-          string _tmpl = "Cannot proceed with export of Material: {0} because of error: {1}.";
-          throw new ApplicationError( "Material.Export", "", String.Format( _tmpl, this.Material2BatchIndex.Title, _ex.Message ), _ex );
+          _at = "RegularIngredient";
+          RegularIngredient _ri = new RegularIngredient( this.Batch, this.SKU, DisposedQuantity( portion ) );
+          ingredient.Add( _ri );
         }
       }
-      else if ( this.ProductType.Value == Linq.IPR.ProductType.Tobacco )
+      catch ( ApplicationError _ae )
       {
-        RegularIngredient _ri = new RegularIngredient( this.Batch, this.SKU, DisposedQuantity( portion ) );
-        ingredient.Add( _ri );
+        throw _ae;
+      }
+      catch ( Exception _ex )
+      {
+        string _tmpl = "Cannot proceed with export of Material: {0} because of error: {1}.";
+        throw new ApplicationError( "Material.Export", _at, String.Format( _tmpl, this.Material2BatchIndex.Title, _ex.Message ), _ex );
       }
     }
     private double DisposedQuantity( double portion )

@@ -7,8 +7,9 @@ using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
-using Microsoft.SharePoint;
+using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.DocumentsFactory;
+using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -538,9 +539,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       _invoice.InvoiceLibraryStatus = true;
       List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> _consignment = new List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm>();
       string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
-      string _title = Resources.FinishedGoodsExportFormFileName;
-      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _title, _customsProcedureCode, ClearenceProcedure._3151 );
-      string _masterDocumentName = String.Format( DocumentNames.FinishedGoodExportFormNumberFormat, _newClearance.Identyfikator.Value );
+      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _customsProcedureCode, ClearenceProcedure._3151 );
+      string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName(_newClearance.Identyfikator.Value );
       int _position = 1;
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
         item.InvoiceContent2BatchIndex.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );

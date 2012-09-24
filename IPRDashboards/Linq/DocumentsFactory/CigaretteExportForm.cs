@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using CAS.SharePoint;
-using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using CAS.SmartFactory.IPR.Dashboards;
+using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 
 namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
 {
@@ -53,7 +53,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       if ( invoice == null )
         throw new ArgumentNullException( "Invoice cannot be null" );
       _ret.DocumentNo = String.Format( GlobalDefinitions.CigaretteExportFormNamePatern, masretDocumentNo, subdocumentNo++ );
-      _ret.DustKg = ( batch.Dust.Value * portion ).RountMass();
+      _ret.DustKg = ( batch.Dust.GetValueOrDefault( -1 ) * portion ).RountMass();
       CountExportFormTotals( _ingredients, _ret );
       _ret.Portion = portion;
       _ret.CustomsProcedure = customsProcedure;
@@ -62,15 +62,15 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       _ret.FinishedGoodUnit = invoice.Units.GetLocalizedString();
       _ret.FinishedGoodSKU = batch.SKUIndex.SKU;
       _ret.FinishedGoodSKUDescription = batch.SKUIndex.Title();
-      _ret.MaterialTotal = ( batch.Tobacco.Value * portion ).RountMass();
+      _ret.MaterialTotal = ( batch.Tobacco.GetValueOrDefault( -1 ) * portion ).RountMass();
       _ret.ProductFormat = batch.SKUIndex.FormatIndex.Title();
-      _ret.CTFUsageMin = cc.CFTProductivityRateMin.Value * 1000;
-      _ret.CTFUsageMax = cc.CFTProductivityRateMax.Value * 1000;
-      _ret.CTFUsagePerUnitMin = cc.CFTProductivityRateMin.Value;
-      _ret.CTFUsagePerUnitMax = cc.CFTProductivityRateMax.Value;
-      _ret.CTFUsagePer1MFinishedGoodsMin = batch.UsageIndex.CTFUsageMin.Value;
-      _ret.CTFUsagePer1MFinishedGoodsMax = batch.UsageIndex.CTFUsageMax.Value;
-      _ret.WasteCoefficient = batch.BatchWasteCooeficiency.Value + batch.BatchDustCooeficiency.Value;
+      _ret.CTFUsageMin = cc.CFTProductivityRateMin.GetValueOrDefault( -1 ) * 1000;
+      _ret.CTFUsageMax = cc.CFTProductivityRateMax.GetValueOrDefault( -1 ) * 1000;
+      _ret.CTFUsagePerUnitMin = cc.CFTProductivityRateMin.GetValueOrDefault( -1 );
+      _ret.CTFUsagePerUnitMax = cc.CFTProductivityRateMax.GetValueOrDefault( -1 );
+      _ret.CTFUsagePer1MFinishedGoodsMin = batch.UsageIndex.CTFUsageMin.GetValueOrDefault( -1 );
+      _ret.CTFUsagePer1MFinishedGoodsMax = batch.UsageIndex.CTFUsageMax.GetValueOrDefault( -1 );
+      _ret.WasteCoefficient = batch.BatchWasteCooeficiency.GetValueOrDefault( -1 ) + batch.BatchDustCooeficiency.GetValueOrDefault( -1 );
       switch ( batch.ProductType.Value )
       {
         case ProductType.Cutfiller:
@@ -85,8 +85,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
         default:
           throw new ApplicationError( "InvoiceLib.CigaretteExportForm", "Product", "Wrong ProductType", null );
       }
-      _ret.SHMentholKg = ( batch.SHMenthol.Value * portion ).RountMass();
-      _ret.WasteKg = ( batch.Waste.Value * portion ).RountMass();
+      _ret.SHMentholKg = ( batch.SHMenthol.GetValueOrDefault( -1 ) * portion ).RountMass();
+      _ret.WasteKg = ( batch.Waste.GetValueOrDefault( -1 ) * portion ).RountMass();
       _ret.IPRRestMaterialQantityTotal = _ret.DustKg + _ret.SHMentholKg + _ret.WasteKg;
       _ret.TobaccoTotal = ( _ret.IPTMaterialQuantityTotal + _ret.RegularMaterialQuantityTotal + _ret.IPRRestMaterialQantityTotal ).RountMass();
       return _ret;

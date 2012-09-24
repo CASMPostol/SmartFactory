@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Linq;
+using CAS.SharePoint;
+using CAS.SharePoint.Web;
 using CAS.SmartFactory.IPR;
+using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
+
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -8,36 +13,51 @@ namespace CAS.SmartFactory.Linq.IPR
   {
 
     #region public
-    internal void ReExportOfGoods(Entities _edc, xml.Customs.CustomsDocument.DocumentType _messageType)
+    internal void ReExportOfGoods( Entities _edc, xml.Customs.CustomsDocument.DocumentType _messageType )
     {
-      this.SADDocument2Clearence = FimdClearence(_edc);
-      foreach (SADGood _sg in SADGood)
+      this.SADDocument2Clearence = FimdClearence( _edc );
+      //TODO Define and use the reverse lookup field. 
+      foreach ( var _disposal in from _dspx in _edc.Disposal where _dspx.ClearenceIndex.Identyfikator == this.SADDocument2Clearence.Identyfikator select _dspx )
+        //TODO not sure about this.CustomsDebtDate.Value, but it is the ony one date. 
+        _disposal.Export( _edc, this.DocumentNumber, this.SADDocument2Clearence, this.CustomsDebtDate.Value );
+    }
+    internal void ReleaseForFreeCirculation( Entities _edc, out string _comments )
+    {
+      //TODO NotImplementedException
+      _comments = "NotImplementedException";
+      throw new NotImplementedException() { Source = "ReleaseForFreeCirculation" };
+    }
+    #endregion
+
+    #region private
+    private Clearence FimdClearence( Entities _edc )
+    {
+      Clearence _clearance = null;
+      foreach ( SADGood _sg in SADGood )
       {
-        if (_sg.Procedure.RequestedProcedure() != CustomsProcedureCodes.ReExport)
-          throw new IPRDataConsistencyException("Clearence.Create", String.Format("IE529 contains invalid customs procedure {0}", _sg.Title), null, "Wrong customs procedure.");
+        if ( _sg.Procedure.RequestedProcedure() != CustomsProcedureCodes.ReExport )
+          throw new IPRDataConsistencyException( "Clearence.Create", String.Format( "IE529 contains invalid customs procedure {0}", _sg.Title ), null, "Wrong customs procedure." );
         //TODO [pr4-3719] Export: Association of the SAD documents - unique naming convention  http://itrserver/Bugs/BugDetail.aspx?bid=3719
         //TODO [pr4-3707] Export: Association of the SAD documents - SAD handling procedure modification http://itrserver/Bugs/BugDetail.aspx?bid=3707
         foreach ( SADRequiredDocuments _rdx in _sg.SADRequiredDocuments )
         {
-          //if (_rdx.Code != 
-        }
-        throw new NotImplementedException();
-      }
-    }
-    internal void ReleaseForFreeCirculation(Entities _edc, out string _comments)
-    {
-      //TODO NotImplementedException
-      _comments = "NotImplementedException";
-      throw new NotImplementedException() { Source = "ReleaseForFreeCirculation"};
-    } 
-    #endregion
+          if ( _rdx.Code != XMLResources.RequiredDocumentFinishedGoodExportConsignmentCode )
+          {
+            int? _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( _rdx.Number );
+            if ( _cleranceInt.HasValue )
+            {
+              _clearance = Element.GetAtIndex<Clearence>( _edc.Clearence, _cleranceInt.Value );
+              break;
+            }
+          }
+        } // foreach ( SADRequiredDocuments _rdx in _sg.SADRequiredDocuments )
+      }//foreach ( SADGood _sg in SADGood )
+      if ( _clearance != null )
+        return _clearance;
+      string _template = "Cannot find required document code ={0} for customs document = {1}/ref={2}";
+      throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _template, this.DocumentNumber, this.ReferenceNumber ) );
+    } //private Clearence FimdClearence(
 
-    #region private
-    private Clearence FimdClearence(Entities _edc)
-    {
-      //TODO NotImplementedException
-      throw new NotImplementedException() { Source = "FimdClearence" };
-    }
     #endregion
   }
 }

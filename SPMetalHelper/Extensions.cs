@@ -86,27 +86,6 @@ namespace CAS.SmartFactory
       return String.IsNullOrEmpty(_val);
     }
     /// <summary>
-    /// Returns valid for SharePoint string emoves control characters and limitint its lengt.
-    /// </summary>
-    /// <param name="_value">The _value.</param>
-    /// <returns></returns>
-    public static string SPValidSubstring(this string _value)
-    {
-      string _goodsDescription = Microsoft.SharePoint.Utilities.SPStringUtility.RemoveControlChars(_value);
-      int _gdl = _goodsDescription.Length;
-      do
-      {
-        _goodsDescription = _goodsDescription.Replace("  ", " ");
-        if (_gdl == _goodsDescription.Length)
-          break;
-        _gdl = _goodsDescription.Length;
-      } while (true);
-      int SPStringMAxLength = 250;
-      if (_gdl >= SPStringMAxLength)
-        _goodsDescription = _goodsDescription.Remove(SPStringMAxLength);
-      return _goodsDescription;
-    }
-    /// <summary>
     /// Gets the first capture.
     /// </summary>
     /// <param name="_input">The string to be tested for a match. <see cref="string"/>.</param>

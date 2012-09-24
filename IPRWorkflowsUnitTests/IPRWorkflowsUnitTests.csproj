@@ -57,6 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
+      <Project>{B9D9FCCA-6132-4BF5-BC17-32EA752D6AD7}</Project>
+      <Name>SharePoint</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IPRExternalData\IPRExternalData.csproj">
       <Project>{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}</Project>
       <Name>IPRExternalData</Name>

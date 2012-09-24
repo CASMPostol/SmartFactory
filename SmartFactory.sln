@@ -49,10 +49,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePoint", "..\PR44-SharePoint\SharePoint\SharePoint.csproj", "{B9D9FCCA-6132-4BF5-BC17-32EA752D6AD7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharePointHelpers", "SharePointHelpers", "{5A5E5E66-F5CE-496B-B9F2-C3A0B16E8F2B}"
+	ProjectSection(SolutionItems) = preProject
+		..\PR44-SharePoint\Model.t4 = ..\PR44-SharePoint\Model.t4
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPMetalParametersCreator", "..\PR44-SharePoint\SPMetalParametersCreator\SPMetalParametersCreator.csproj", "{7589DF10-1129-4833-B5BA-321B2F44B747}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPRDashboardsTest", "IPRDashboardsTest\IPRDashboardsTest.csproj", "{5E833829-EA05-458E-B172-FE37FFD24627}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPRExternalDataTest", "IPRExternalDataTest\IPRExternalDataTest.csproj", "{B8E3C6A4-38C0-40F5-A135-AAD43D989B91}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -271,6 +276,16 @@ Global
 		{5E833829-EA05-458E-B172-FE37FFD24627}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5E833829-EA05-458E-B172-FE37FFD24627}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5E833829-EA05-458E-B172-FE37FFD24627}.Release|x86.ActiveCfg = Release|Any CPU
+		{B8E3C6A4-38C0-40F5-A135-AAD43D989B91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8E3C6A4-38C0-40F5-A135-AAD43D989B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8E3C6A4-38C0-40F5-A135-AAD43D989B91}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B8E3C6A4-38C0-40F5-A135-AAD43D989B91}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B8E3C6A4-38C0-40F5-A135-AAD43D989B91}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B8E3C6A4-38C0-40F5-A135-AAD43D989B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8E3C6A4-38C0-40F5-A135-AAD43D989B91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8E3C6A4-38C0-40F5-A135-AAD43D989B91}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B8E3C6A4-38C0-40F5-A135-AAD43D989B91}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B8E3C6A4-38C0-40F5-A135-AAD43D989B91}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
