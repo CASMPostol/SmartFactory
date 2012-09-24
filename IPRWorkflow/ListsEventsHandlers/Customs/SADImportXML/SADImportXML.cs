@@ -162,7 +162,7 @@ namespace CAS.SmartFactory.IPR.Customs
           SADGood newRow = new SADGood()
           {
             SADDocumentIndex = lookup,
-            Title = String.Format( "{0}: {1}", _description.GetFirstCapture( CommonDefinition.GoodsDescriptionTobaccoNamePattern ), _doc.GetPCNTariffCode() ),
+            Title = String.Format( "{0}: {1}", _doc.GetDescription().SPValidSubstring(), _doc.GetPCNTariffCode() ),
             GoodsDescription = _description,
             PCNTariffCode = _doc.GetPCNTariffCode(),
             GrossMass = _doc.GetGrossMass(),
