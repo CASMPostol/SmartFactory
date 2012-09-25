@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.Linq.IPR
         if ( this.RemainingQuantity.Value == 0 )
           this.ClearingType = Linq.IPR.ClearingType.TotalWindingUp;
         this.CustomsProcedure = clearence.ProcedureCode;
-        //TODO move this code to the disposal creation procedure - must be get from message
+        //TODO [pr4-3737] Compensation good must be recognized using the PCN code from customs message http://itrserver/Bugs/BugDetail.aspx?bid=3737
         _at = "PCNCode _tobaccoPCN ";
         PCNCode _tobaccoPCN = ( from _pcnx in edc.PCNCode
                                 where _pcnx.IsIPR.GetValueOrDefault( true ) && _pcnx.CompensationGood.Value == CompensationGood.Papierosy
