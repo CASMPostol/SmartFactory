@@ -197,7 +197,7 @@
           <xsl:value-of select="format-number(cas:CTFUsageMin, $FoarmatOfFloat, 'pl')"/>%-<xsl:value-of select="format-number(cas:CTFUsageMax, $FoarmatOfFloat, 'pl')"/>%
           tzn. z 1000 kg tytoniu uzyskuje się
           <xsl:value-of select="format-number(cas:CTFUsagePerUnitMin * 1000, $FoarmatOfFloat, 'pl')"/>-
-          <xsl:value-of select="format-number(cas:CTFUsagePerUnitMax * 1000, $FoarmatOfFloat, 'pl')"/>kg (krajanki tytoniowej)
+          <xsl:value-of select="format-number(cas:CTFUsagePerUnitMax * 1000, $FoarmatOfFloat, 'pl')"/> kg (krajanki tytoniowej)
         </li>
         <li>
           Na 1 mln. szt. gotowych papierosów zużywa się w trakcie procesu produkcyjnego
