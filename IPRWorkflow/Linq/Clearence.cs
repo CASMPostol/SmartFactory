@@ -2,6 +2,7 @@
 using System.Linq;
 using CAS.SmartFactory.IPR;
 using CAS.SmartFactory.xml.Customs;
+using CAS.SharePoint.Web;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -79,6 +80,7 @@ namespace CAS.SmartFactory.Linq.IPR
             } //switch (_customsProcedureCodes)
             break;
           case CustomsDocument.DocumentType.IE529:
+            _at = "ReExportOfGoods";
             _comments = "Reexport of goods failed";
             _sad.ReExportOfGoods( _edc, _messageType );
             _comments = "Reexport of goods";
@@ -113,6 +115,10 @@ namespace CAS.SmartFactory.Linq.IPR
       catch ( IPRDataConsistencyException _iorex )
       {
         throw _iorex;
+      }
+      catch ( GenericStateMachineEngine.ActionResult _ar )
+      {
+        throw _ar;
       }
       catch ( Exception _ex )
       {
