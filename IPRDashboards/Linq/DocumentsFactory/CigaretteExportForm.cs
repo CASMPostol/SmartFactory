@@ -65,8 +65,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       _ret.MaterialTotal = ( batch.Tobacco.GetValueOrDefault( -1 ) * portion ).RountMass();
       _ret.ProductFormat = batch.SKUIndex.FormatIndex.Title();
       //TODO [pr4-3697] Handling versions for selected lists: Batch, IPR
-      _ret.CTFUsageMin = cc.CFTProductivityRateMin.GetValueOrDefault( -1 ) * 1000;
-      _ret.CTFUsageMax = cc.CFTProductivityRateMax.GetValueOrDefault( -1 ) * 1000;
+      _ret.CTFUsageMin = cc.CFTProductivityRateMin.GetValueOrDefault( -1 );
+      _ret.CTFUsageMax = cc.CFTProductivityRateMax.GetValueOrDefault( -1 );
       _ret.CTFUsagePerUnitMin = cc.CFTProductivityRateMin.GetValueOrDefault( -1 );
       _ret.CTFUsagePerUnitMax = cc.CFTProductivityRateMax.GetValueOrDefault( -1 );
       _ret.CTFUsagePer1MFinishedGoodsMin = batch.UsageIndex.CTFUsageMin.GetValueOrDefault( -1 );
