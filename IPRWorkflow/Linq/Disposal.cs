@@ -33,7 +33,7 @@ namespace CAS.SmartFactory.Linq.IPR
         PCNCode _tobaccoPCN = ( from _pcnx in edc.PCNCode
                                 where _pcnx.IsIPR.GetValueOrDefault( true ) && _pcnx.CompensationGood.Value == CompensationGood.Papierosy
                                 select _pcnx ).FirstOrDefault();
-        //TODO PCNCode - model error - this proble has been reported already.
+        //TODO [pr4-3733] Export: Association of the SAD documents: SAD analyses error at Clearence analyses error at started. 
         //this.Disposal2PCNCompensationGood = _tobaccoPCN == null ? null : _tobaccoPCN;
         this.ClearenceIndex = clearence;
       }
