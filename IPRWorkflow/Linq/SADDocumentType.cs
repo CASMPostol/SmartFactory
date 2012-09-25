@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
-using CAS.SharePoint;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.IPR;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
-
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -13,6 +11,12 @@ namespace CAS.SmartFactory.Linq.IPR
   {
 
     #region public
+    /// <summary>
+    /// Res the export of goods.
+    /// </summary>
+    /// <param name="_edc">The _edc.</param>
+    /// <exception cref="GenericStateMachineEngine.ActionResult"> if operation cannot be complited.</exception>
+    /// <param name="_messageType">Type of the _message.</param>
     internal void ReExportOfGoods( Entities _edc, xml.Customs.CustomsDocument.DocumentType _messageType )
     {
       this.SADDocument2Clearence = FimdClearence( _edc );
@@ -20,6 +24,10 @@ namespace CAS.SmartFactory.Linq.IPR
       foreach ( var _disposal in from _dspx in _edc.Disposal where _dspx.ClearenceIndex.Identyfikator == this.SADDocument2Clearence.Identyfikator select _dspx )
         //TODO not sure about this.CustomsDebtDate.Value, but it is the ony one date. 
         _disposal.Export( _edc, this.DocumentNumber, this.SADDocument2Clearence, this.CustomsDebtDate.Value );
+      this.SADDocument2Clearence.DocumentNo = this.DocumentNumber;
+      this.SADDocument2Clearence.ReferenceNumber = this.ReferenceNumber;
+      this.SADDocument2Clearence.Status = true;
+      this.SADDocument2Clearence.CreateTitle( _messageType.ToString() );
     }
     internal void ReleaseForFreeCirculation( Entities _edc, out string _comments )
     {
