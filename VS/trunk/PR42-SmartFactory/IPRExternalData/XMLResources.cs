@@ -40,7 +40,7 @@ namespace CAS.SmartFactory.xml
       catch ( GenericStateMachineEngine.ActionResult ) { }
       return _cleranceInt;
     }
-    private const string m_FinishedGoodsExportFormFileName = "Proces Technologiczny nr: {0:D7}";
-    private const string m_RequiredDocumentFinishedGoodExportConsignmentPattern = @"(?<=P\w*\b\sT\w*\b\snr:\s)(\d{7})";
+    private const string m_FinishedGoodsExportFormFileName = "Proces technologiczny {0:D7}";
+    private const string m_RequiredDocumentFinishedGoodExportConsignmentPattern = @"(?<=P\w*\b\st\w*\b\s)(\d{7})";
   }
 }
