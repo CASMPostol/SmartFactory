@@ -194,7 +194,7 @@
       <ol>
         <li>
           Z wymienionego w pkt.1 materiału wsadowego poddanego obróbce w linii technologicznej uzyskuje się krajankę tytoniową o współczynniku produktywności
-          <xsl:value-of select="format-number(cas:CTFUsagePerUnitMin, $FoarmatOfFloat, 'pl')"/>%-<xsl:value-of select="format-number(cas:CTFUsagePerUnitMax, $FoarmatOfFloat, 'pl')"/>%
+          <xsl:value-of select="format-number(cas:CTFUsageMin, $FoarmatOfFloat, 'pl')"/>%-<xsl:value-of select="format-number(cas:CTFUsageMax, $FoarmatOfFloat, 'pl')"/>%
           tzn. z 1000 kg tytoniu uzyskuje się
           <xsl:value-of select="format-number(cas:CTFUsagePerUnitMin * 1000, $FoarmatOfFloat, 'pl')"/>-
           <xsl:value-of select="format-number(cas:CTFUsagePerUnitMax * 1000, $FoarmatOfFloat, 'pl')"/>kg (krajanki tytoniowej)
