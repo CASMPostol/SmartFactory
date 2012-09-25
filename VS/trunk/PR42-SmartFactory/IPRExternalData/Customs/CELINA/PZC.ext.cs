@@ -10,7 +10,7 @@ namespace CAS.SmartFactory.xml.Customs.PZC
     #region CustomsDocument
     public override string GetReferenceNumber()
     {
-      return this.NrWlasny;
+      return this.ZwolnienieDoProcedury.NrWlasny;
     }
     /// <summary>
     /// The name of the root message.
