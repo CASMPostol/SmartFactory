@@ -62,7 +62,7 @@ namespace CAS.SmartFactory.Linq.IPR
                   SADConsignmentLibraryIndex = null,
                   ProcedureCode = String.Format( _procedureCodeFormat, (int)_customsProcedureCodes ),
                   Status = false,
-                  //TODO We need procedure 7100
+                  //[pr4-3738] CustomsProcedureCodes.CustomsWarehousingProcedure 7100 must be added http://itrserver/Bugs/BugDetail.aspx?bid=3738
                   ClearenceProcedure = Linq.IPR.ClearenceProcedure._7171,
                 };
                 _ret.CreateTitle( _messageType.ToString() );
