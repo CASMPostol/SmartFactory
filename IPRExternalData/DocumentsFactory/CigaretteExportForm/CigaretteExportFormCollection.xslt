@@ -29,7 +29,7 @@
   </xsl:template>
   <xsl:template match="cas:CigaretteExportFormCollection">
     <h1>
-      Procesy technologiczne (sztuk: <xsl:value-of select="cas:NumberOfDocuments"/>) dla papierosów z faktury nr <xsl:value-of select="cas:InvoiceNo"/>
+      Procesy technologiczne (<xsl:value-of select="cas:NumberOfDocuments"/> x batch) dla papierosów z faktury nr <xsl:value-of select="cas:InvoiceNo"/>
     </h1>
     <p>
       Dokument zbiorczy nr: <xsl:value-of select="cas:DocumentNo" />
