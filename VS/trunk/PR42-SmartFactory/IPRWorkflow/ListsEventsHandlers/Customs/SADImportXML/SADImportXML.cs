@@ -6,6 +6,7 @@ using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
 using Microsoft.SharePoint;
+using CAS.SharePoint.Web;
 
 namespace CAS.SmartFactory.IPR.Customs
 {
@@ -101,18 +102,30 @@ namespace CAS.SmartFactory.IPR.Customs
             _pattern = "XML import error at {0}.";
             _at = ( (CustomsDataException)ex ).Source;
           }
-          if ( ex is IPRDataConsistencyException )
+          else if ( ex is IPRDataConsistencyException )
           {
             IPRDataConsistencyException _iprex = ex as IPRDataConsistencyException;
             _pattern = "SAD analyses error at {0}.";
             _at = _iprex.Source;
+          }
+          else if ( ex is GenericStateMachineEngine.ActionResult )
+          {
+            GenericStateMachineEngine.ActionResult _ar = ex as GenericStateMachineEngine.ActionResult;
+            if ( _ar.LastActionResult == GenericStateMachineEngine.ActionResult.Result.NotValidated )
+              _pattern = "SAD content validation error at {0}.";
+            else
+              _pattern = "SAD analyses internal error at {0}.";
+            _at = _ar.Source;
           }
           else
           {
             _pattern = "ItemAdded error at {0}.";
           }
           item[ "Title" ] = String.Format( _pattern, _at );
-          item[ "Body" ] = String.Format( "Source= {0}; Message={1}", ex.Source, ex.Message );
+          string _innerMsg = String.Empty;
+          if ( ex.InnerException != null )
+            _innerMsg = String.Format( " as the result of {0}.", ex.InnerException.Message );
+          item[ "Body" ] = String.Format( "Message= {0}{1}", ex.Message, _innerMsg );
           item.UpdateOverwriteVersion();
         }
         finally
