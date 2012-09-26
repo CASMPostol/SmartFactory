@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{389A735D-C976-43FF-A3B1-470DD1BD51D9}"
 	ProjectSection(SolutionItems) = preProject
+		create_branch.cmd = create_branch.cmd
+		create_tag.cmd = create_tag.cmd
 		..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\feature.xml = ..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\feature.xml
 		..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss.xml = ..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss.xml
 		..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss3.xml = ..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\TEMPLATE\FEATURES\fields\fieldswss3.xml
