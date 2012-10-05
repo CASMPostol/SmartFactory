@@ -153,7 +153,7 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:GridView ID="m_AvailableGridView" runat="server"></asp:GridView>
+                <asp:GridView ID="m_AvailableGridView" runat="server" AllowSorting="True" EnableSortingAndPagingCallbacks="True"></asp:GridView>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -163,7 +163,7 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:GridView ID="m_AssignedGridView" runat="server"></asp:GridView>
+                <asp:GridView ID="m_AssignedGridView" runat="server" AllowSorting="True" EnableSortingAndPagingCallbacks="True"></asp:GridView>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table> 
