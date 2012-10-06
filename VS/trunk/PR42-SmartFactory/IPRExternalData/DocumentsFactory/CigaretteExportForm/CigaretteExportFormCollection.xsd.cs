@@ -18,22 +18,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm
     /// <returns>An object of <see cref="SPFile"/> containing the serialized <paramref name="destinationCollection"/></returns>
     public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName )
     {
-      SPFile _docFile = default( SPFile );
-      XmlSerializer _srlzr = new XmlSerializer( typeof( CigaretteExportFormCollection ) );
-      XmlWriterSettings _setting = new XmlWriterSettings()
-      {
-        Indent = true,
-        IndentChars = "  ",
-        NewLineChars = "\r\n"
-      };
-      using ( MemoryStream _docStrm = new MemoryStream() )
-      using ( XmlWriter file = XmlWriter.Create( _docStrm, _setting ) )
-      {
-        file.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" href=\"CigaretteExportFormCollection.xslt\"" );
-        _srlzr.Serialize( file, this );
-        _docFile = destinationCollection.Add( fileName + ".xml", _docStrm, true );
-      }
-      return _docFile;
+      return DocumentNames.CreateXmlFile<CigaretteExportFormCollection>( destinationCollection, fileName, this );
     }
   }
   /// <summary>
