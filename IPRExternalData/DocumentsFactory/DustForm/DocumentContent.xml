@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DocumentContent xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustForm.xsd">
+  <DocumentDate>1900-01-01T01:01:01+01:00</DocumentDate>
+  <DocumentNo>DocumentNo1</DocumentNo>
+  <StartDate>1900-01-01T01:01:01+01:00</StartDate>
+  <EndDate>1900-01-01T01:01:01+01:00</EndDate>
+  <CustomProcedureCode>CustomProcedureCode1</CustomProcedureCode>
+  <Total>1</Total>
+  <Dusts>
+    <DustsOnOneAccount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+    <DustsOnOneAccount>
+      <Total>1</Total>
+      <DustRecord>
+        <DustRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+        <DustRecord>
+          <CustomDocumentNo>CustomDocumentNo1</CustomDocumentNo>
+          <Date>1900-01-01T01:01:01+01:00</Date>
+          <MaterialSKU>MaterialSKU1</MaterialSKU>
+          <MaterialBatch>MaterialBatch1</MaterialBatch>
+          <FinishedGoodBatch>FinishedGoodBatch1</FinishedGoodBatch>
+          <Amount>1</Amount>
+        </DustRecord>
+        <DustRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+      </DustRecord>
+    </DustsOnOneAccount>
+    <DustsOnOneAccount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+  </Dusts>
+</DocumentContent>

@@ -8,7 +8,6 @@ using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml;
-using CAS.SmartFactory.xml.DocumentsFactory;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
@@ -311,7 +310,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
             SKUDescription = _batch.SKUIndex.Title,
             ProductType = _batch.ProductType,
             Quantity = _nq.Value,
-            InvoiceContentStatus = Linq.IPR.InvoiceContentStatus.OK,
+            InvoiceContentStatus = InvoiceContentStatus.OK,
             Title = _batch.SKUIndex.Title,
             Units = _batch.ProductType.Value.Units()
           };

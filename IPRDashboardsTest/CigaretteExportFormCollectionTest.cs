@@ -1,14 +1,13 @@
-﻿using CAS.SmartFactory.Linq.IPR;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using XmlCigaretteExportForm = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm;
+﻿using System;
 using System.Collections.Generic;
-using Microsoft.SharePoint;
-using System.Xml.Serialization;
-using System.IO;
-using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
-using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using System.Xml;
+using System.Xml.Serialization;
+using CAS.SmartFactory.Linq.IPR;
+using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
+using CAS.SmartFactory.xml.DocumentsFactory;
+using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using XmlCigaretteExportForm = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm;
 
 namespace IPRDashboardsTest
 {
@@ -288,5 +287,15 @@ namespace IPRDashboardsTest
         Assert.IsTrue( true, "Success" );
       }
     }
+    [TestMethod]
+    public void xmlStylesheetHrefTestMethod( )
+    {
+      string _ret = DocumentNames.xmlStylesheetHref( typeof( MyClass ) );
+      Assert.AreEqual( _ret, "href=\"MyClass.xslt\"" );
+    }
+  }
+  class MyClass
+  {
+    
   }
 }
