@@ -8,7 +8,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
 {
   public static class DocumentNames
   {
-    public const string FinishedGoodExportFormNumberFormat = "FGEF{0:D9}";
     public const string FinishedGoodExportFormRegularExpression = "";
     public static string xmlStylesheetHref( Type type )
     {
@@ -27,7 +26,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
       using ( MemoryStream _docStrm = new MemoryStream() )
       using ( XmlWriter file = XmlWriter.Create( _docStrm, _setting ) )
       {
-        file.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" href=\"CigaretteExportFormCollection.xslt\"" );
+        file.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" " + xmlStylesheetHref( typeof( type ) ) );
         _srlzr.Serialize( file, object2Serialize );
         _docFile = destinationCollection.Add( fileName + ".xml", _docStrm, true );
       }

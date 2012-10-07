@@ -112,6 +112,9 @@
     <Compile Include="DocumentsFactory\CigaretteExportForm\Ingredient.cs" />
     <Compile Include="DocumentsFactory\CigaretteExportForm\IPRIngredient.cs" />
     <Compile Include="DocumentsFactory\CigaretteExportForm\RegularIngredient.cs" />
+    <Compile Include="DocumentsFactory\DisposalsDescription.cs">
+      <DependentUpon>DisposalsDescription.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DocumentsFactory\DocumentNames.cs" />
     <Compile Include="DocumentsFactory\DustForm\DocumentContent.cs">
       <SubType>Code</SubType>
@@ -374,6 +377,12 @@
     </None>
     <None Include="DocumentsFactory\DustForm\GoCS.ps1" />
     <None Include="DocumentsFactory\DustForm\GoXSD.ps1" />
+    <None Include="DocumentsFactory\DustForm\schema1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DocumentsFactory\DisposalsDescription.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ERP\Batch.xltx" />
     <None Include="ERP\Batch.xsd">
       <SubType>Designer</SubType>
