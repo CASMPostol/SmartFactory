@@ -10,7 +10,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="CustomProcedureCode" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="Total" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Dusts" type="tns:ArrayOfMaterialsOnOneAccount" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountDescription" type="tns:ArrayOfMaterialsOnOneAccount" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfMaterialsOnOneAccount">

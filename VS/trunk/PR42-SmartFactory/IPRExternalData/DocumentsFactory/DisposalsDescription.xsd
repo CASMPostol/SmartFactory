@@ -3,7 +3,7 @@
   <xs:complexType name="MaterialsOnOneAccount">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Total" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="DustRecord" type="tns:ArrayOfMaterialRecord" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaterialRecords" type="tns:ArrayOfMaterialRecord" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfMaterialRecord">

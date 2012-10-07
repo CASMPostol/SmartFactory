@@ -37,7 +37,8 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
         }
         
         /// <uwagi/>
-        public MaterialRecord[] DustRecord {
+        public MaterialRecord[] MaterialRecords
+        {
             get {
                 return this.dustRecordField;
             }
