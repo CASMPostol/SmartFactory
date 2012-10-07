@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm
     /// <summary>
     /// WasteForm Stylesheet Name
     /// </summary>
-    public const string WasteFormStylesheetName = "DustFormStylesheet.xslt";
+    public const string WasteFormStylesheetName = "WasteFormStylesheet.xslt";
   }
 
 }

@@ -427,7 +427,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="DocumentsFactory\DustWasteForm\DocumentContent.xml" />
-    <Content Include="DocumentsFactory\DustWasteForm\DustFormCollection.xslt" />
+    <Content Include="DocumentsFactory\DustWasteForm\DustFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\DustWasteForm\WasteFormStylesheet.xslt" />
     <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
     <Content Include="DocumentsFactory\TobaccoFreeCirculationForm\TobaccoFreeCirculationFormCollection.xslt">
       <SubType>Designer</SubType>
