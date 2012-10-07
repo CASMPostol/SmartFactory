@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.SharePoint;
 
-namespace CAS.SmartFactory.xml.DocumentsFactory.DustForm
+namespace CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm
 {
   public partial class DocumentContent
   {
@@ -19,9 +19,5 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.DustForm
       return DocumentNames.CreateXmlFile<DocumentContent>( destinationCollection, fileName, this );
     }
   }
-  public partial class DustsOnOneAccount
-  {
 
-
-  }
 }

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustForm.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustForm.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="DocumentContent" nillable="false" type="tns:DocumentContent" />
+<xs:schema xmlns:tns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustWasteForm.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustWasteForm.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory" schemaLocation="..\DisposalsDescription.xsd" />
+  <xs:element name="DocumentContent" type="tns:DocumentContent" />
   <xs:complexType name="DocumentContent">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:dateTime" />
@@ -9,33 +10,12 @@
       <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:dateTime" />
       <xs:element minOccurs="0" maxOccurs="1" name="CustomProcedureCode" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="Total" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Dusts" type="tns:ArrayOfDustsOnOneAccount" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Dusts" type="tns:ArrayOfMaterialsOnOneAccount" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="ArrayOfDustsOnOneAccount">
+  <xs:complexType name="ArrayOfMaterialsOnOneAccount">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="DustsOnOneAccount" nillable="true" type="tns:DustsOnOneAccount" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="DustsOnOneAccount">
-    <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="Total" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="DustRecord" type="tns:ArrayOfDustRecord" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="ArrayOfDustRecord">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="DustRecord" nillable="true" type="tns:DustRecord" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="DustRecord">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="CustomDocumentNo" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Date" type="xs:dateTime" />
-      <xs:element minOccurs="0" maxOccurs="1" name="MaterialSKU" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="MaterialBatch" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="FinishedGoodBatch" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialsOnOneAccount" nillable="true" xmlns:q1="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory" type="q1:MaterialsOnOneAccount" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
