@@ -99,7 +99,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm {
         }
         
         /// <uwagi/>
-        public MaterialsOnOneAccount[] Dusts {
+        public MaterialsOnOneAccount[] AccountDescription{
             get {
                 return this.dustsField;
             }

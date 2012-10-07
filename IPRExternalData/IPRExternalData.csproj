@@ -116,6 +116,12 @@
       <DependentUpon>DisposalsDescription.xsd</DependentUpon>
     </Compile>
     <Compile Include="DocumentsFactory\DocumentNames.cs" />
+    <Compile Include="DocumentsFactory\DustWasteForm\DocumentContent.cs">
+      <DependentUpon>DocumentContent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\DustWasteForm\DocumentContent.xsd.cs">
+      <DependentUpon>DocumentContent.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ERP\batch.cs">
       <DependentUpon>Batch.xsd</DependentUpon>
     </Compile>
@@ -369,6 +375,11 @@
     <None Include="DocumentsFactory\DisposalsDescription.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="DocumentsFactory\DustWasteForm\DocumentContent.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DocumentsFactory\DustWasteForm\GoCS.ps1" />
+    <None Include="DocumentsFactory\DustWasteForm\GoXSD.ps1" />
     <None Include="ERP\Batch.xltx" />
     <None Include="ERP\Batch.xsd">
       <SubType>Designer</SubType>
@@ -415,6 +426,8 @@
     <Content Include="DocumentsFactory\CutfillerExportForm\CutfillerExportFormCollection.xslt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DocumentsFactory\DustWasteForm\DocumentContent.xml" />
+    <Content Include="DocumentsFactory\DustWasteForm\DustFormCollection.xslt" />
     <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
     <Content Include="DocumentsFactory\TobaccoFreeCirculationForm\TobaccoFreeCirculationFormCollection.xslt">
       <SubType>Designer</SubType>
