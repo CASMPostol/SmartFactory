@@ -432,7 +432,6 @@
     <Content Include="DocumentsFactory\TobaccoFreeCirculationForm\TobaccoFreeCirculationFormCollection.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\WasteForm\WasteFormCollection.xslt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

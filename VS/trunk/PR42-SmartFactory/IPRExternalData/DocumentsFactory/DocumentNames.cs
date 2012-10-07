@@ -6,9 +6,11 @@ using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.xml.DocumentsFactory
 {
+  /// <summary>
+  /// Document Names
+  /// </summary>
   public static class DocumentNames
   {
-    public const string FinishedGoodExportFormRegularExpression = "";
     internal static SPFile CreateXmlFile<type>( SPFileCollection destinationCollection, string fileName, type object2Serialize, string stylesheetName )
     {
       SPFile _docFile = default( SPFile );
