@@ -1,10 +1,7 @@
-﻿using System.IO;
-using System.Xml.Serialization;
-using Microsoft.SharePoint;
-using System.Xml;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm
 {
@@ -18,7 +15,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm
     /// <returns>An object of <see cref="SPFile"/> containing the serialized <paramref name="destinationCollection"/></returns>
     public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName )
     {
-      return DocumentNames.CreateXmlFile<CigaretteExportFormCollection>( destinationCollection, fileName, this );
+      return DocumentNames.CreateXmlFile<CigaretteExportFormCollection>( destinationCollection, fileName, this, "CigaretteExportFormCollection.xslt" );
     }
   }
   /// <summary>

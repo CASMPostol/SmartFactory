@@ -9,11 +9,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
   public static class DocumentNames
   {
     public const string FinishedGoodExportFormRegularExpression = "";
-    public static string xmlStylesheetHref( Type type )
-    {
-      return String.Format( "href=\"{0}.xslt\"", type.Name );
-    }
-    internal static SPFile CreateXmlFile<type>( SPFileCollection destinationCollection, string fileName, type object2Serialize )
+    internal static SPFile CreateXmlFile<type>( SPFileCollection destinationCollection, string fileName, type object2Serialize, string stylesheetName )
     {
       SPFile _docFile = default( SPFile );
       XmlSerializer _srlzr = new XmlSerializer( typeof( type ) );
@@ -26,7 +22,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
       using ( MemoryStream _docStrm = new MemoryStream() )
       using ( XmlWriter file = XmlWriter.Create( _docStrm, _setting ) )
       {
-        file.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" " + xmlStylesheetHref( typeof( type ) ) );
+        file.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" " + String.Format( "href=\"{0}.xslt\"", stylesheetName ) );
         _srlzr.Serialize( file, object2Serialize );
         _docFile = destinationCollection.Add( fileName + ".xml", _docStrm, true );
       }
