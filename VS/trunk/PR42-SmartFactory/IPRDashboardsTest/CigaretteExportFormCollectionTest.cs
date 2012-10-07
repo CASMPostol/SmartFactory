@@ -287,15 +287,5 @@ namespace IPRDashboardsTest
         Assert.IsTrue( true, "Success" );
       }
     }
-    [TestMethod]
-    public void xmlStylesheetHrefTestMethod( )
-    {
-      string _ret = DocumentNames.xmlStylesheetHref( typeof( MyClass ) );
-      Assert.AreEqual( _ret, "href=\"MyClass.xslt\"" );
-    }
-  }
-  class MyClass
-  {
-    
   }
 }

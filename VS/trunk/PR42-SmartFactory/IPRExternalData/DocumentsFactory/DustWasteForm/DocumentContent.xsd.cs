@@ -14,10 +14,18 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm
     /// <param name="destinationCollection">The destination collection.</param>
     /// <param name="fileName">Name of the file.</param>
     /// <returns>An object of <see cref="SPFile"/> containing the serialized <paramref name="destinationCollection"/></returns>
-    public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName )
+    public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName, string stylesheetName )
     {
-      return DocumentNames.CreateXmlFile<DocumentContent>( destinationCollection, fileName, this );
+      return DocumentNames.CreateXmlFile<DocumentContent>( destinationCollection, fileName, this, stylesheetName );
     }
+    /// <summary>
+    /// DustForm Stylesheet Name
+    /// </summary>
+    public const string DustFormStylesheetName = "DustFormStylesheet.xslt";
+    /// <summary>
+    /// WasteForm Stylesheet Name
+    /// </summary>
+    public const string WasteFormStylesheetName = "DustFormStylesheet.xslt";
   }
 
 }

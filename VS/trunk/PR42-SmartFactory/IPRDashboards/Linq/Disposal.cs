@@ -2,12 +2,37 @@
 using System.Collections.Generic;
 using CAS.SharePoint;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
+using CAS.SmartFactory.xml.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Disposal
   {
+    internal static MaterialRecord[] GetListOfMaterials( IEnumerable<Disposal> _disposals, string customsReference, ref double _subTotal )
+    {
+      List<MaterialRecord> _dustRecord = new List<MaterialRecord>();
+      foreach ( Disposal _dx in _disposals )
+      {
+        _subTotal += _dx.SettledQuantity.Value;
+        MaterialRecord _newRecord = new MaterialRecord()
+        {
+          Amount = _dx.SettledQuantity.GetValueOrDefault( 0 ),
+          //TODO not sure about if this parameter is set corectly 
+          Date = _dx.Disposal2IPRIndex.CustomsDebtDate.GetValueOrNull(),
+          CustomDocumentNo = customsReference,
+          FinishedGoodBatch = _dx.Disposal2BatchIndex.Batch0,
+          MaterialBatch = _dx.Disposal2IPRIndex.Batch,
+          MaterialSKU = _dx.Disposal2IPRIndex.SKU,
+          UnitPrice = _dx.Disposal2IPRIndex.Value / _dx.Disposal2IPRIndex.NetMass,
+          TobaccoValue = _dx.TobaccoValue,
+          Currency = _dx.Disposal2IPRIndex.Currency
+
+        };
+        _dustRecord.Add( _newRecord );
+      }
+      return _dustRecord.ToArray();
+    }
     internal void Export( Entities edc, ref double _quantity, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
     {
       string _at = "startting";
