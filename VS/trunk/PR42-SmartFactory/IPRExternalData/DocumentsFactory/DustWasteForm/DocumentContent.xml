@@ -18,7 +18,10 @@
           <MaterialSKU>MaterialSKU1</MaterialSKU>
           <MaterialBatch>MaterialBatch1</MaterialBatch>
           <FinishedGoodBatch>FinishedGoodBatch1</FinishedGoodBatch>
-          <Amount>1</Amount>
+          <Qantity>1</Qantity>
+          <UnitPrice>1</UnitPrice>
+          <TobaccoValue>1</TobaccoValue>
+          <Currency>Currency1</Currency>
         </MaterialRecord>
         <MaterialRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
       </MaterialRecords>
