@@ -122,6 +122,12 @@
     <Compile Include="DocumentsFactory\DustWasteForm\DocumentContent.xsd.cs">
       <DependentUpon>DocumentContent.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DocumentsFactory\TobaccoFreeCirculationForm\DocumentContent.cs">
+      <DependentUpon>DocumentContent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\TobaccoFreeCirculationForm\DocumentContent.xsd.cs">
+      <DependentUpon>DocumentContent.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ERP\batch.cs">
       <DependentUpon>Batch.xsd</DependentUpon>
     </Compile>
@@ -380,6 +386,9 @@
     </None>
     <None Include="DocumentsFactory\DustWasteForm\GoCS.ps1" />
     <None Include="DocumentsFactory\DustWasteForm\GoXSD.ps1" />
+    <None Include="DocumentsFactory\TobaccoFreeCirculationForm\DocumentContent.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="DocumentsFactory\TobaccoFreeCirculationForm\GoCS.ps1" />
     <None Include="DocumentsFactory\TobaccoFreeCirculationForm\GoXSD.ps1" />
     <None Include="ERP\Batch.xltx" />
@@ -432,9 +441,7 @@
     <Content Include="DocumentsFactory\DustWasteForm\DustFormStylesheet.xslt" />
     <Content Include="DocumentsFactory\DustWasteForm\WasteFormStylesheet.xslt" />
     <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
-    <Content Include="DocumentsFactory\TobaccoFreeCirculationForm\TobaccoFreeCirculationFormCollection.xslt">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="DocumentsFactory\TobaccoFreeCirculationForm\TobaccoFormStylesheet.xslt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
