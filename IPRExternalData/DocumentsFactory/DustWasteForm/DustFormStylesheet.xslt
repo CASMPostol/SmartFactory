@@ -59,7 +59,9 @@
       <xsl:apply-templates select="cas:AccountDescription" />
       <tr>
         <td colspan="3">Suma końcowa</td>
-        <td colsapn="6"></td>
+        <td align="right" colspan="6">
+          <xsl:value-of select="cas:Total" />
+        </td>
       </tr>
     </table>
     <table>
@@ -80,13 +82,15 @@
     </table>
   </xsl:template>
   <xsl:template match="cas:AccountDescription">
-      <xsl:apply-templates select="cas:MaterialsOnOneAccount" />  
+    <tr>
+      <xsl:apply-templates select="cas:MaterialsOnOneAccount" />
+    </tr>
   </xsl:template>
   <xsl:template match="cas:MaterialsOnOneAccount">
       <xsl:apply-templates select="cas:MaterialRecords" />
   </xsl:template>
   <xsl:template match="cas:MaterialRecords">
-    <xsl:apply-templates select="cas:MaterialRecord" />
+      <xsl:apply-templates select="cas:MaterialRecord" />
   </xsl:template>
   <xsl:template match="cas:MaterialRecord">
     <tr>
