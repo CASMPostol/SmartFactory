@@ -43,8 +43,7 @@
         <td colspan="3">
           Suma z pył + ścinki %
         </td>
-        <td colspan="3">
-        </td>
+        <td></td>
       </tr>
       <tr>
         <th>NR SAD</th>
