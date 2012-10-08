@@ -18,10 +18,8 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm
   [System.SerializableAttribute()]
   [System.Diagnostics.DebuggerStepThroughAttribute()]
   [System.ComponentModel.DesignerCategoryAttribute( "code" )]
-  [System.Xml.Serialization.XmlTypeAttribute( Namespace = "http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationFor" +
-      "m.xsd" )]
-  [System.Xml.Serialization.XmlRootAttribute( Namespace = "http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationFor" +
-      "m.xsd", IsNullable = false )]
+  [System.Xml.Serialization.XmlTypeAttribute( Namespace = "http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationForm.xsd" )]
+  [System.Xml.Serialization.XmlRootAttribute( Namespace = "http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationForm.xsd", IsNullable = false )]
   public partial class DocumentContent
   {
 

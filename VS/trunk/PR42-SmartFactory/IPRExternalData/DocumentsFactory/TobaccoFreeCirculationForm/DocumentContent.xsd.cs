@@ -13,11 +13,10 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm
     /// </summary>
     /// <param name="destinationCollection">The destination collection.</param>
     /// <param name="fileName">Name of the file.</param>
-    /// <param name="stylesheetName">Stylesheet Name</param>
     /// <returns>An object of <see cref="SPFile"/> containing the serialized <paramref name="destinationCollection"/></returns>
-    public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName, string stylesheetName )
+    public SPFile AddDocument2Collection( SPFileCollection destinationCollection, string fileName )
     {
-      return DocumentNames.CreateXmlFile<DocumentContent>( destinationCollection, fileName, this, stylesheetName );
+      return DocumentNames.CreateXmlFile<DocumentContent>( destinationCollection, fileName, this, DocumentNames.TobaccoFormStylesheetName);
     }
   }
 }

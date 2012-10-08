@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.Dashboards;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
-using CAS.SmartFactory.xml.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using Microsoft.SharePoint;
 
@@ -22,7 +21,7 @@ namespace CAS.SmartFactory.Linq.IPR
         _stt = "SPDocumentLibrary";
         SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ CommonDefinitions.IPRSADConsignmentLibraryTitle ];
         _stt = "AddDocument2Collection";
-        SPFile _docFile = _cefc.AddDocument2Collection( _lib.RootFolder.Files, fileName, DocumentNames.CigaretteExportFormName );
+        SPFile _docFile = _cefc.AddDocument2Collection( _lib.RootFolder.Files, fileName );
         return _docFile.Item.ID;
       }
       catch ( Exception ex )
