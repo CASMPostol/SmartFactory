@@ -43,7 +43,7 @@
         <td colspan="3">
           Suma z pył + ścinki %
         </td>
-        <td colspan="6">
+        <td colspan="3">
         </td>
       </tr>
       <tr>
@@ -53,14 +53,11 @@
         <th>Batch tytoniu</th>
         <th>Batch produktu gotowego</th>
         <th>Ilość w kg</th>
-        <th>Cena jednostkowa</th>
-        <th>Wartość</th>
-        <th>Waluta</th>
       </tr>
       <xsl:apply-templates select="cas:AccountDescription" />
       <tr>
         <td colspan="3">Suma końcowa</td>
-        <td align="right" colspan="6">
+        <td align="right" colspan="3">
           <xsl:value-of select="cas:Total" />
         </td>
       </tr>
@@ -83,12 +80,15 @@
     </table>
   </xsl:template>
   <xsl:template match="cas:AccountDescription">
-    <tr>
       <xsl:apply-templates select="cas:MaterialsOnOneAccount" />
-    </tr>
   </xsl:template>
   <xsl:template match="cas:MaterialsOnOneAccount">
       <xsl:apply-templates select="cas2:MaterialRecords" />
+    <tr>
+      <td colspan="6" align="right">
+        <xsl:value-of select="format-number(cas:Total, $FoarmatOfFloat, 'pl')"/>
+      </td>
+    </tr>
   </xsl:template>
   <xsl:template match="cas2:MaterialRecords">
       <xsl:apply-templates select="cas2:MaterialRecord" />
@@ -112,15 +112,6 @@
     </td>
     <td>
       <xsl:value-of select="format-number(cas2:Qantity, $FoarmatOfFloat, 'pl')"/>
-    </td>
-    <td>
-      <xsl:value-of select="format-number(cas2:UnitPrice, $FoarmatOfFloat, 'pl')"/>
-    </td>
-    <td>
-      <xsl:value-of select="format-number(cas2:TobaccoValue, $FoarmatOfFloat, 'pl')"/>
-    </td>
-    <td>
-      <xsl:value-of select="cas2:Currency"/>
     </td>
     </tr>
   </xsl:template>
