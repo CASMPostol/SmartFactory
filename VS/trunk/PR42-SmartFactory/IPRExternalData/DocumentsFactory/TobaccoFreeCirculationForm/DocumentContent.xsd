@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationForm.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationForm.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory" />
+  <xs:element name="DocumentContent" type="tns:DocumentContent" />
+  <xs:complexType name="DocumentContent">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="StartDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CustomProcedureCode" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Total" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AccountDescription" type="tns:ArrayOfMaterialRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfMaterialRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialRecord" nillable="true" xmlns:q1="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory" type="q1:MaterialRecord" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
