@@ -58,7 +58,7 @@
       <tr>
         <td colspan="3">Suma końcowa</td>
         <td align="right" colspan="3">
-          <xsl:value-of select="cas:Total" />
+          <xsl:value-of select="format-number(cas:Total, $FoarmatOfFloat, 'pl')" />
         </td>
       </tr>
     </table>
@@ -86,7 +86,7 @@
       <xsl:apply-templates select="cas2:MaterialRecords" />
     <tr>
       <td colspan="6" align="right">
-        <xsl:value-of select="format-number(cas:Total, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas2:Total, $FoarmatOfFloat, 'pl')"/>
       </td>
     </tr>
   </xsl:template>
