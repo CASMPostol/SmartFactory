@@ -25,73 +25,98 @@
             </td>
           </tr>
         </table>
-        <h2>
-          Zestawienie ilości pyłów i ścinków tytoniowych powstałych przy produkcji papierosów wyprodukowanych
-          w okresie od <xsl:value-of select="ms:format-date(cas:DocumentContent/cas:StartDate, $FoarmatOfdate)"/> do <xsl:value-of select="ms:format-date(cas:DocumentContent/cas:EndDate, $FoarmatOfdate)"/>
-        </h2>
-        <p>Procedura: <xsl:value-of select="cas:DocumentContent/cas:CustomProcedureCode" /></p>
-        <table border="1">
-          <tr>
-            <td colspan="3">
-              Suma z pył + ścinki %
-            </td>
-            <td colspan="3"><xsl:value-of select="cas:DocumentContent/cas:Total" /></td>
-          </tr>
-          <tr>
-            <th>NR SAD</th>
-            <th>Data</th>
-            <th>SKU tytoniu</th>
-            <th>Batch tytoniu</th>
-            <th>Batch produktu gotowego</th>
-            <th>Ilość w kg</th>
-          </tr>
-          <xsl:apply-templates select="cas:AccountDescription" />
-          <xsl:apply-templates select="cas:MaterialsOnOneAccount" ></xsl:apply-templates>
-          <tr>
-            <td colspan="3">Suma końcowa</td>
-            <td colsapn="3"></td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <td>
-              <p align="center">
-                .............................................
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p align="center">
-                Imię i Nazwisko
-              </p>
-            </td>
-          </tr>
-        </table>
+        <xsl:apply-templates select="cas:DocumentContent" />
       </body>
     </html>
   </xsl:template>
+  <xsl:template match="cas:DocumentContent">
+    <h2>
+      Zestawienie ilości pyłów i ścinków tytoniowych powstałych przy produkcji papierosów wyprodukowanych
+      w okresie od <xsl:value-of select="ms:format-date(cas:StartDate, $FoarmatOfdate)"/> do <xsl:value-of select="ms:format-date(cas:EndDate, $FoarmatOfdate)"/>
+    </h2>
+    <p>
+      Procedura: <xsl:value-of select="cas:CustomProcedureCode" />
+    </p>
+    <table border="1">
+      <tr>
+        <td colspan="3">
+          Suma z pył + ścinki %
+        </td>
+        <td colspan="6">
+        </td>
+      </tr>
+      <tr>
+        <th>NR SAD</th>
+        <th>Data</th>
+        <th>SKU tytoniu</th>
+        <th>Batch tytoniu</th>
+        <th>Batch produktu gotowego</th>
+        <th>Ilość w kg</th>
+        <th>Cena jednostkowa</th>
+        <th>Wartość</th>
+        <th>Waluta</th>
+      </tr>
+      <xsl:apply-templates select="cas:AccountDescription" />
+      <tr>
+        <td colspan="3">Suma końcowa</td>
+        <td colsapn="6"></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          <p align="center">
+            .............................................
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p align="center">
+            Imię i Nazwisko
+          </p>
+        </td>
+      </tr>
+    </table>
+  </xsl:template>
+  <xsl:template match="cas:AccountDescription">
+      <xsl:apply-templates select="cas:MaterialsOnOneAccount" />  
+  </xsl:template>
   <xsl:template match="cas:MaterialsOnOneAccount">
+      <xsl:apply-templates select="cas:MaterialRecords" />
+  </xsl:template>
+  <xsl:template match="cas:MaterialRecords">
+    <xsl:apply-templates select="cas:MaterialRecord" />
+  </xsl:template>
+  <xsl:template match="cas:MaterialRecord">
     <tr>
     <td>
-        <xsl:value-of select="cas:MaterialRecord/cas:CustomDocumentNo"/> 
+      <xsl:value-of select="cas:CustomDocumentNo"/>
     </td>
     <td>
-        <xsl:value-of select="ms:format-date(cas:Date, $FoarmatOfdate)"/>
+      <xsl:value-of select="ms:format-date(cas:Date, $FoarmatOfdate)"/>
     </td>
     <td>
-        <xsl:value-of select="cas:MaterialSKU"/>
+      <xsl:value-of select="cas:MaterialSKU"/>
     </td>
     <td>
-        <xsl:value-of select="cas:MaterialBatch"/>
+      <xsl:value-of select="cas:MaterialBatch"/>
     </td>
     <td>
-        <xsl:value-of select="cas:FinishedGoodBatch"/>
+      <xsl:value-of select="cas:FinishedGoodBatch"/>
     </td>
     <td>
-        <xsl:value-of select="cas:Qantity"/>
+      <xsl:value-of select="format-number(cas:Qantity, $FoarmatOfFloat, 'pl')"/>
     </td>
-  </tr>
-  
+    <td>
+      <xsl:value-of select="format-number(cas:UnitPrice, $FoarmatOfFloat, 'pl')"/>
+    </td>
+    <td>
+      <xsl:value-of select="format-number(cas:TobaccoValue, $FoarmatOfFloat, 'pl')"/>
+    </td>
+    <td>
+      <xsl:value-of select="cas:Currency"/>
+    </td>
+    </tr>
   </xsl:template>
 </xsl:stylesheet>
