@@ -30,6 +30,22 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
       }
       return _docFile;
     }
+    /// <summary>
+    /// Dust form stylesheet name
+    /// </summary>
+    public const string DustFormStylesheetName = "DustFormStylesheet.xslt";
+    /// <summary>
+    /// Waste form stylesheet name
+    /// </summary>
+    public const string WasteFormStylesheetName = "WasteFormStylesheet.xslt";
+    /// <summary>
+    /// Tobacco form stylesheet name
+    /// </summary>
+    public const string TobaccoFormStylesheetName = "TobaccoFormStylesheet.xslt";
+    /// <summary>
+    /// Cigarette export form name
+    /// </summary>
+    public const string CigaretteExportFormName = "CigaretteExportFormCollection.xslt";
   }
 }
 

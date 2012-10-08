@@ -4,7 +4,7 @@ $env:path += "; C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\x64\"
 #$cpath = get-location
 
 Write-host XSD processing
-xsd.exe ..\DisposalsDescription.xsd DocumentContent.xsd /N:CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm /c  |write-host
+xsd.exe ..\DisposalsDescription.xsd DocumentContent.xsd /N:CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm /c  |write-host
 
 #set-location $cpath
 Write-host Done...

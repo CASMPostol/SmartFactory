@@ -13,16 +13,15 @@
 // 
 namespace CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm
 {
-  using System.Xml.Serialization;
-
-
   /// <uwagi/>
   [System.CodeDom.Compiler.GeneratedCodeAttribute( "xsd", "2.0.50727.3038" )]
   [System.SerializableAttribute()]
   [System.Diagnostics.DebuggerStepThroughAttribute()]
   [System.ComponentModel.DesignerCategoryAttribute( "code" )]
-  [System.Xml.Serialization.XmlTypeAttribute( Namespace = "http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationForm.xsd" )]
-  [System.Xml.Serialization.XmlRootAttribute( Namespace = "http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationForm.xsd", IsNullable = false )]
+  [System.Xml.Serialization.XmlTypeAttribute( Namespace = "http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationFor" +
+      "m.xsd" )]
+  [System.Xml.Serialization.XmlRootAttribute( Namespace = "http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationFor" +
+      "m.xsd", IsNullable = false )]
   public partial class DocumentContent
   {
 
@@ -37,6 +36,8 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm
     private string customProcedureCodeField;
 
     private double totalField;
+
+    private MaterialRecord[] accountDescriptionField;
 
     /// <uwagi/>
     public System.DateTime DocumentDate
@@ -119,8 +120,14 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm
     /// <uwagi/>
     public MaterialRecord[] AccountDescription
     {
-      get;
-      set;
+      get
+      {
+        return this.accountDescriptionField;
+      }
+      set
+      {
+        this.accountDescriptionField = value;
+      }
     }
   }
 }
