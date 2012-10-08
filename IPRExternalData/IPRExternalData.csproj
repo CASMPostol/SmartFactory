@@ -380,6 +380,8 @@
     </None>
     <None Include="DocumentsFactory\DustWasteForm\GoCS.ps1" />
     <None Include="DocumentsFactory\DustWasteForm\GoXSD.ps1" />
+    <None Include="DocumentsFactory\TobaccoFreeCirculationForm\GoCS.ps1" />
+    <None Include="DocumentsFactory\TobaccoFreeCirculationForm\GoXSD.ps1" />
     <None Include="ERP\Batch.xltx" />
     <None Include="ERP\Batch.xsd">
       <SubType>Designer</SubType>
