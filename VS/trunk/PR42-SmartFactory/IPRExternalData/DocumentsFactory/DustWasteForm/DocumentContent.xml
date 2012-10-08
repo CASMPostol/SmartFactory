@@ -7,11 +7,9 @@
   <CustomProcedureCode>CustomProcedureCode1</CustomProcedureCode>
   <Total>1</Total>
   <AccountDescription>
-    <MaterialsOnOneAccount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
     <MaterialsOnOneAccount>
       <Total xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">1</Total>
       <MaterialRecords xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">
-        <MaterialRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
         <MaterialRecord>
           <CustomDocumentNo>CustomDocumentNo1</CustomDocumentNo>
           <Date>1900-01-01T01:01:01+01:00</Date>
@@ -23,9 +21,7 @@
           <TobaccoValue>1</TobaccoValue>
           <Currency>Currency1</Currency>
         </MaterialRecord>
-        <MaterialRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
       </MaterialRecords>
     </MaterialsOnOneAccount>
-    <MaterialsOnOneAccount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
   </AccountDescription>
 </DocumentContent>
