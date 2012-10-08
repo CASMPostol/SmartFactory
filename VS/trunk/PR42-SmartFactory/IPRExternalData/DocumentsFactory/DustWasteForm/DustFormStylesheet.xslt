@@ -2,6 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ms="urn:schemas-microsoft-com:xslt"
     xmlns:cas="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustWasteForm.xsd"
+    xmlns:cas2="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory"           
 >
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
@@ -87,39 +88,39 @@
     </tr>
   </xsl:template>
   <xsl:template match="cas:MaterialsOnOneAccount">
-      <xsl:apply-templates select="cas:MaterialRecords" />
+      <xsl:apply-templates select="cas2:MaterialRecords" />
   </xsl:template>
-  <xsl:template match="cas:MaterialRecords">
-      <xsl:apply-templates select="cas:MaterialRecord" />
+  <xsl:template match="cas2:MaterialRecords">
+      <xsl:apply-templates select="cas2:MaterialRecord" />
   </xsl:template>
-  <xsl:template match="cas:MaterialRecord">
+  <xsl:template match="cas2:MaterialRecord">
     <tr>
     <td>
-      <xsl:value-of select="cas:CustomDocumentNo"/>
+      <xsl:value-of select="cas2:CustomDocumentNo"/>
     </td>
     <td>
-      <xsl:value-of select="ms:format-date(cas:Date, $FoarmatOfdate)"/>
+      <xsl:value-of select="ms:format-date(cas2:Date, $FoarmatOfdate)"/>
     </td>
     <td>
-      <xsl:value-of select="cas:MaterialSKU"/>
+      <xsl:value-of select="cas2:MaterialSKU"/>
     </td>
     <td>
-      <xsl:value-of select="cas:MaterialBatch"/>
+      <xsl:value-of select="cas2:MaterialBatch"/>
     </td>
     <td>
-      <xsl:value-of select="cas:FinishedGoodBatch"/>
+      <xsl:value-of select="cas2:FinishedGoodBatch"/>
     </td>
     <td>
-      <xsl:value-of select="format-number(cas:Qantity, $FoarmatOfFloat, 'pl')"/>
+      <xsl:value-of select="format-number(cas2:Qantity, $FoarmatOfFloat, 'pl')"/>
     </td>
     <td>
-      <xsl:value-of select="format-number(cas:UnitPrice, $FoarmatOfFloat, 'pl')"/>
+      <xsl:value-of select="format-number(cas2:UnitPrice, $FoarmatOfFloat, 'pl')"/>
     </td>
     <td>
-      <xsl:value-of select="format-number(cas:TobaccoValue, $FoarmatOfFloat, 'pl')"/>
+      <xsl:value-of select="format-number(cas2:TobaccoValue, $FoarmatOfFloat, 'pl')"/>
     </td>
     <td>
-      <xsl:value-of select="cas:Currency"/>
+      <xsl:value-of select="cas2:Currency"/>
     </td>
     </tr>
   </xsl:template>
