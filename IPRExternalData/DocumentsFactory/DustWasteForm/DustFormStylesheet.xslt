@@ -11,7 +11,9 @@
   <xsl:template match="/" >
     <html>
       <head>
-        <title>Control JSOX TAXID-2180-10 JTI Polska Sp. z o.o.</title>
+        <title>
+          Zestawienie ilości pyłów i ścinków tytoniowych powstałych przy produkcji papierosów
+        </title>
       </head>
       <body>
         <table border="0" width="100%">
