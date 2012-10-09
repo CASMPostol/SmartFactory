@@ -6,17 +6,20 @@ using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm;
 
-namespace CAS.SmartFactory.IPR.Dashboards.Linq.DocumentsFactory
+namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
 {
   internal static class DustWasteFormFactory
   {
-    internal static DocumentContent DocumentContent( IQueryable<Disposal> disposals, string customProcedureCode, string documentNo, DateTime endDate, DateTime startDate )
+    internal static DocumentContent GetDocumentContent( IQueryable<Disposal> disposals, string customProcedureCode, string documentNo )
     {
 
       IQueryable<IGrouping<string, Disposal>> _groups = from _disx in disposals
                                                         let _ogl = _disx.Disposal2IPRIndex == null ? String.Empty : _disx.Disposal2IPRIndex.DocumentNo
                                                         orderby _ogl ascending
                                                         group _disx by _ogl;
+      //TODO Disposal contenty type does not provides creation and modification data
+      DateTime endDate = (from _dx in disposals select new {_endDate = DateTime.Today.Date}).Max(x=>x._endDate);
+      DateTime startDate = ( from _dx in disposals select new { _endDate = DateTime.Today.Date } ).Max( x => x._endDate );
       List<MaterialsOnOneAccount> _dustsGroupe = new List<MaterialsOnOneAccount>();
       double _total = 0;
       foreach ( IGrouping<string, Disposal> _gx in _groups )
