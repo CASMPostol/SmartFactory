@@ -426,7 +426,9 @@
     <Content Include="DocumentsFactory\CutfillerExportForm\CutfillerExportFormCollection.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\DustWasteForm\DocumentContent.xml" />
+    <Content Include="DocumentsFactory\DustWasteForm\DocumentContent.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DocumentsFactory\DustWasteForm\DustFormStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
