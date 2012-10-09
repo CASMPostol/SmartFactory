@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DocumentContent xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationForm.xsd">
+  <DocumentDate>1900-01-01T01:01:01+01:00</DocumentDate>
+  <DocumentNo>DocumentNo1</DocumentNo>
+  <StartDate>1900-01-01T01:01:01+01:00</StartDate>
+  <EndDate>1900-01-01T01:01:01+01:00</EndDate>
+  <CustomProcedureCode>CustomProcedureCode1</CustomProcedureCode>
+  <Total>1</Total>
+  <AccountDescription>
+    <MaterialRecord>
+      <CustomDocumentNo xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">CustomDocumentNo1</CustomDocumentNo>
+      <Date xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">1900-01-01T01:01:01+01:00</Date>
+      <MaterialSKU xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">MaterialSKU1</MaterialSKU>
+      <MaterialBatch xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">MaterialBatch1</MaterialBatch>
+      <FinishedGoodBatch xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">FinishedGoodBatch1</FinishedGoodBatch>
+      <Qantity xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">1</Qantity>
+      <UnitPrice xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">1</UnitPrice>
+      <TobaccoValue xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">1</TobaccoValue>
+      <Currency xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">Currency1</Currency>
+    </MaterialRecord>
+  </AccountDescription>
+</DocumentContent>
