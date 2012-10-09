@@ -14,6 +14,11 @@
         <title>
           Zestawienie ilości pyłów i ścinków tytoniowych powstałych przy produkcji papierosów
         </title>
+        <style type="text/css">
+          td, p { font-size:10px; }
+          th { font-size:12px; }
+          h2 { font-size:14px; text-align:center; }
+        </style>
       </head>
       <body>
         <table border="0" width="100%">
@@ -38,12 +43,11 @@
     <p>
       Procedura: <xsl:value-of select="cas:CustomProcedureCode" />
     </p>
-    <table border="1">
+    <table border="1" width="100%">
       <tr>
-        <td colspan="3">
+        <td colspan="6">
           Suma z pył + ścinki %
         </td>
-        <td></td>
       </tr>
       <tr>
         <th>NR SAD</th>
@@ -80,7 +84,10 @@
   <xsl:template match="cas:MaterialsOnOneAccount">
       <xsl:apply-templates select="cas2:MaterialRecords" />
     <tr>
-      <td colspan="6" align="right">
+      <td>
+        Suma częściowa
+      </td>
+      <td colspan="5" align="right">
         <xsl:value-of select="format-number(cas2:Total, $FoarmatOfFloat, 'pl')"/>
       </td>
     </tr>

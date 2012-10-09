@@ -14,6 +14,11 @@
         <title>
           Zestawienie zbiorcze - dopuszczenie do obrotu tytoni z systemu zawieszeń
         </title>
+      <style type="text/css">
+          td, p { font-size:10px; }
+          th { font-size:12px; }
+          h2 { font-size:14px; text-align:center; }
+        </style>
       </head>
       <body>
         <table border="0" width="100%">
