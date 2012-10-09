@@ -14,15 +14,13 @@
         <title>Control JSOX TAXID-2180-10 JTI Polska Sp. z o.o.</title>
       </head>
       <body>
-        <table border="0">
-          <tr>
-            <td align="right">
-              Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentContent/cas:DocumentDate, $FoarmatOfdate)"/>
-            </td>
-          </tr>
+        <table border="0" width="100%">
           <tr>
             <td align="left">
               Dokument: <xsl:value-of select="cas:DocumentContent/cas:DocumentNo" />
+            </td>
+            <td align="right">
+              Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentContent/cas:DocumentDate, $FoarmatOfdate)"/>
             </td>
           </tr>
         </table>
@@ -61,19 +59,15 @@
         </td>
       </tr>
     </table>
-    <table>
+    <table width="100%" border="0">
       <tr>
-        <td>
-          <p align="center">
+        <td align="right">
             .............................................
-          </p>
         </td>
       </tr>
       <tr>
-        <td>
-          <p align="center">
+        <td align="right">
             Imię i Nazwisko
-          </p>
         </td>
       </tr>
     </table>
