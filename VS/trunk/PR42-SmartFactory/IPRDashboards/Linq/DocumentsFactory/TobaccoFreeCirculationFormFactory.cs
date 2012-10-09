@@ -4,7 +4,7 @@ using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm;
 
-namespace CAS.SmartFactory.IPR.Dashboards.Linq.DocumentsFactory
+namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
 {
   internal static class TobaccoFreeCirculationFormFactory
   {
