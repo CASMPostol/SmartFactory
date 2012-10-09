@@ -22,12 +22,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Linq.DocumentsFactory
       foreach ( IGrouping<string, Disposal> _gx in _groups )
       {
         double _subTotal = 0;
-        IEnumerable<Disposal> _disposals = from _dspslx in _gx select _dspslx;
+        IEnumerable<Disposal> _dspslsInGroup = from _dspslx in _gx select _dspslx;
+        MaterialRecord[] _materialRecords = Disposal.GetListOfMaterials( _dspslsInGroup, ref _subTotal );
         _dustsGroupe.Add(
           new MaterialsOnOneAccount()
           {
             Total = _subTotal,
-            MaterialRecords = Disposal.GetListOfMaterials( _disposals, _gx.Key, ref _subTotal ),
+            MaterialRecords = _materialRecords,
           }
         );
         _total += _subTotal;
@@ -35,7 +36,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Linq.DocumentsFactory
       return new DocumentContent()
       {
         CustomProcedureCode = customProcedureCode,
-        DocumentDate = DateTime.Today.Date,
+        DocumentDate = DateTime.Today.Date, //TODO ?????
         DocumentNo = documentNo,
         AccountDescription = _dustsGroupe.ToArray(),
         EndDate = endDate,
