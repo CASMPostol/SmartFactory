@@ -6,7 +6,8 @@ using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 
 namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
 {
-  internal class IPRIngredientFactory
+  //TODO - refctor the - move methods to a single helpper class : http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3272
+  internal static class IPRIngredientFactory
   {
     internal static IPRIngredient IPRIngredient( Disposal disposal )
     {

@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Disposal
   {
-    internal static MaterialRecord[] GetListOfMaterials( IEnumerable<Disposal> _disposals, string customsReference, ref double _subTotal )
+    internal static MaterialRecord[] GetListOfMaterials( IEnumerable<Disposal> _disposals, ref double _subTotal )
     {
       List<MaterialRecord> _dustRecord = new List<MaterialRecord>();
       foreach ( Disposal _dx in _disposals )
@@ -19,7 +19,7 @@ namespace CAS.SmartFactory.Linq.IPR
         {
           Qantity = _dx.SettledQuantity.GetValueOrDefault( 0 ),
           Date = _dx.Disposal2IPRIndex.CustomsDebtDate.GetValueOrNull(),
-          CustomDocumentNo = customsReference,
+          CustomDocumentNo = _dx.Disposal2IPRIndex.DocumentNo,
           FinishedGoodBatch = _dx.Disposal2BatchIndex == null ? String.Empty : _dx.Disposal2BatchIndex.Batch0,
           MaterialBatch = _dx.Disposal2IPRIndex.Batch,
           MaterialSKU = _dx.Disposal2IPRIndex.SKU,
