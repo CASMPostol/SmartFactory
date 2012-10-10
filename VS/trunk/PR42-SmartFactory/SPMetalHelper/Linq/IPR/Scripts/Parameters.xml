@@ -75,7 +75,7 @@
     <Column Name="CTFUsageMin" Member="CTFUsageMin" />
     <Column Name="CTFUsageMax" Member="CTFUsageMax" />
   </ContentType>
-  <ContentType Name="Disposal" Class="Disposal">
+  <ContentType Name="Disposal" Class="Disposal" >
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="No" Member="No" />
@@ -104,6 +104,11 @@
     <Column Name="Disposal2BatchIndex" Member="Disposal2BatchIndex" />
     <Column Name="Disposal2IPRIndex" Member="Disposal2IPRIndex" />
     <Column Name="Disposal2MaterialIndex" Member="Disposal2MaterialIndex" />
+    <Column Name="Created" Member="CreatedDate"/>
+    <Column Name="Created_x0020_Date" Member="CreatedDate"/>
+    <Column Name="Last_x0020_Modified" Member="LastModified"/>
+    <ExcludeColumn Name="ContentType"/>
+    <IncludeHiddenColumns/>
   </ContentType>
   <ContentType Name="SKUCommonPart" Class="SKUCommonPart">
     <!--<Column Name="ContentType" Member="ContentType" />-->
