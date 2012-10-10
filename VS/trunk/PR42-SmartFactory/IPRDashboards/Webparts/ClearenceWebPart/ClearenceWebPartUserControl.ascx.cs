@@ -95,28 +95,45 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         AddColumn( new BoundField() { DataField = "ID", HeaderText = "ID", Visible = false } );
         m_AvailableGridView.DataKeyNames = new String[] { "ID" };
         m_AssignedGridView.DataKeyNames = new String[] { "ID" };
-        m_AvailableGridView.AllowPaging = false;
+        m_AvailableGridView.AllowFiltering = false;
+        at = "DataTable";
+        DataTable _data = new DataTable() { };
+        foreach ( DataControlField _clmnx in m_AvailableGridView.Columns )
+        {
+          string _name = String.Empty;
+          if ( _clmnx is CheckBoxField )
+            _name = ( (CheckBoxField)_clmnx ).DataField;
+          else if (_clmnx is BoundField)
+            _name = ( (BoundField)_clmnx ).DataField;
+          else
+            throw new ApplicationError("Page_Load", at, "Wrong field type", null);
+          _data.Columns.Add( new DataColumn( _name ) );
+        }
+        var _dataQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
+                          let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
+                          where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted && _dspslx.DisposalStatus.Value == DisposalStatus.Dust && _dspslx.ClearenceIndex == null
+                          orderby _ogl ascending
+                          select new
+                          {
+                            Selected = false,
+                            DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
+                            DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
+                            ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
+                            SKU = _dspslx.Disposal2IPRIndex.SKU,
+                            Batch = _dspslx.Disposal2IPRIndex.Batch,
+                            UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice,
+                            Currency = _dspslx.Disposal2IPRIndex.Currency,
+                            Quantity = _dspslx.SettledQuantity,
+                            Status = _dspslx.DisposalStatus,
+                            Created = SharePoint.Extensions.SPMinimum,
+                            ID = _dspslx.Identyfikator.Value
+                          }
+                                         );
+        at = "foreach";
+        foreach ( var item in _dataQery )
+          _data.Rows.Add( item );
         at = "DataSource";
-        m_AvailableGridView.DataSource = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
-                                           let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
-                                           where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted && _dspslx.DisposalStatus.Value == DisposalStatus.Dust && _dspslx.ClearenceIndex == null
-                                           orderby _ogl ascending
-                                           select new
-                                           {
-                                             Selected = false,
-                                             DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
-                                             DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
-                                             ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
-                                             SKU = _dspslx.Disposal2IPRIndex.SKU,
-                                             Batch = _dspslx.Disposal2IPRIndex.Batch,
-                                             UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice,
-                                             Currency = _dspslx.Disposal2IPRIndex.Currency,
-                                             Quantity = _dspslx.SettledQuantity,
-                                             Status = _dspslx.DisposalStatus,
-                                             Created = SharePoint.Extensions.SPMinimum,
-                                             ID = _dspslx.Identyfikator.Value
-                                           }
-                                         ).ToList();
+        m_AvailableGridView.DataSource = _dataQery.ToList();//_data.DefaultView;
         at = "DataBind";
         m_AvailableGridView.DataBind();
         at = "Event handlers";
@@ -154,7 +171,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         m_AssignedCheckAll = new CheckBox() { Text = "All", Checked = false };
         _heade.Cells[ 0 ].Controls.Add( m_AssignedCheckAll );
       }
-      catch ( Exception ex)
+      catch ( Exception ex )
       {
         ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
         this.Controls.Add( _ae.CreateMessage( at, true ) );
