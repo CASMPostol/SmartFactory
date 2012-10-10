@@ -34,6 +34,7 @@
                             <asp:TableCell>
                                 <asp:RadioButtonList ID="m_SelectGroupRadioButtonList" runat="server">
                                     <asp:ListItem Enabled="true" Selected="True" Text="Tobacco" Value="Tobacco"></asp:ListItem>
+                                    <asp:ListItem Enabled="true" Selected="True" Text="Tobacco not allocated" Value="TobaccoNotAllocated"></asp:ListItem>
                                     <asp:ListItem Enabled="true" Selected="false" Text="Dust" Value="Dust"></asp:ListItem>
                                     <asp:ListItem Enabled="true" Selected="false" Text="Waste" Value="Waste"></asp:ListItem>
                                     <asp:ListItem Enabled="true" Selected="false" Text="Cartons" Value="Cartons"></asp:ListItem>
@@ -122,6 +123,9 @@
                                 <asp:Button runat="server" CssClass="Button" Text="Add New" ID="m_NewButton" />
                             </asp:TableCell>
                             <asp:TableCell>
+                                <asp:Button runat="server" CssClass="Button" Text="Edit" ID="m_EditButton" />
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:Button runat="server" CssClass="Button" Text="Save" ID="m_SaveButton" />
                             </asp:TableCell>
                             <asp:TableCell>
@@ -131,7 +135,7 @@
                                 <asp:Button runat="server" CssClass="Button" Text="Cancel" ID="m_CancelButton" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="Button" Text="Clear" ID="m_ClearButton" />
+                                <asp:Button runat="server" CssClass="Button" Text="Clearence" ID="m_ClearButton"  OnClientClick="return confirm('Na pewno? Późniejsza edycja nie będzie już możliwa');" />
                             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ms="urn:schemas-microsoft-com:xslt"
-    xmlns:cas="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/TobaccoFreeCirculationForm.xsd"
+    xmlns:cas="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustWasteForm.xsd"
     xmlns:cas2="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory"
 >
   <xsl:output method="html" indent="yes"/>
@@ -42,7 +42,7 @@
     <p>Z uwagi na zmiany planu produkcyjnego jesteśmy zmuszeni zmienić status celny niżej wymienionych tytoni.</p>
     <p>Procedura <xsl:value-of select="cas:CustomProcedureCode"/>
   </p>
-    <table border="1">
+    <table border="1" width="100%">
       <tr>
         <th>Nr SAD</th>
         <th>Data</th>
@@ -81,9 +81,32 @@
     </table>
   </xsl:template>
   <xsl:template match="cas:AccountDescription">
-    <xsl:apply-templates select="cas:MaterialRecord" />
+    <xsl:apply-templates select="cas:MaterialsOnOneAccount" />
   </xsl:template>
-  <xsl:template match="cas:MaterialRecord">
+  <xsl:template match="cas:MaterialsOnOneAccount">
+    <xsl:apply-templates select="cas2:MaterialRecords" />
+    <tr>
+      <td colspan="4">
+        Suma częściowa
+      </td>
+      <td>
+        
+      </td>
+      <td>
+
+      </td>
+      <td>
+
+      </td>
+      <td>
+
+      </td>
+    </tr>
+  </xsl:template>
+  <xsl:template match="cas2:MaterialRecords">
+    <xsl:apply-templates select="cas2:MaterialRecord" />
+  </xsl:template>
+  <xsl:template match="cas2:MaterialRecord">
     <tr>
       <td>
         <xsl:value-of select="cas2:CustomDocumentNo"/>
