@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using CAS.SharePoint;
 using CAS.SharePoint.Linq;
@@ -78,6 +80,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         //m_EditButton.Click += new EventHandler( m_StateMachineEngine.EditButton_Click );
         m_DeleteButton.Click += new EventHandler( m_StateMachineEngine.DeleteButton_Click );
         m_ClearButton.Click += new EventHandler( m_StateMachineEngine.m_ClearButton_Click );
+        HttpBrowserCapabilities _myBrowserCaps = Request.Browser;
+        LinqDataSource _availabelDataSource = new LinqDataSource()
+        {
+          ContextTypeName = "CAS.SmartFactory.Linq.IPR.Disposal",
+          
+        };
+        m_AvailableGridView.DataSource = _availabelDataSource;
+        m_AvailableGridView.DataBind();
+        if ( ( (System.Web.Configuration.HttpCapabilitiesBase)_myBrowserCaps ).SupportsCallback )
+        {
+          m_AvailableGridView.EnableSortingAndPagingCallbacks = true;
+          m_AssignedGridView.EnableSortingAndPagingCallbacks = true;
+        }
       }
       catch ( Exception ex )
       {

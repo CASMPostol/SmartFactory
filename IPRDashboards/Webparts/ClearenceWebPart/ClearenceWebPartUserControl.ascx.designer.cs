@@ -361,7 +361,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView m_AvailableGridView;
+        protected global::Microsoft.SharePoint.WebControls.SPGridView m_AvailableGridView;
         
         /// <summary>
         /// m_AssignedLabel control.
@@ -379,6 +379,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView m_AssignedGridView;
+        protected global::Microsoft.SharePoint.WebControls.SPGridView m_AssignedGridView;
     }
 }
