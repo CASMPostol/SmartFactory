@@ -12,6 +12,9 @@ using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
+  /// <summary>
+  /// Export Web Part User Control
+  /// </summary>
   public partial class ExportWebPartUserControl: UserControl
   {
     #region ctor
