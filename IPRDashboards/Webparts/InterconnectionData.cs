@@ -8,7 +8,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts
   {
     BatchInterconnection,
     InvoiceInterconnection,
-    InvoiceContentInterconnection
+    InvoiceContentInterconnection,
+    ClearenceInterconnection
   }
   internal abstract class InterconnectionData<DerivedType>: CAS.SharePoint.Web.InterconnectionData<DerivedType>
       where DerivedType: InterconnectionData<DerivedType>
@@ -38,6 +39,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts
   internal class InvoiceContentInterconnectionnData: InterconnectionData<InvoiceContentInterconnectionnData>
   {
     internal InvoiceContentInterconnectionnData()
+      : base()
+    { }
+  }
+  internal class ClearenceInterconnectionnData: InterconnectionData<ClearenceInterconnectionnData>
+  {
+    internal ClearenceInterconnectionnData()
       : base()
     { }
   }
