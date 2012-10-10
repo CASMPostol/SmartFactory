@@ -443,12 +443,12 @@
     <Content Include="DocumentsFactory\DustWasteForm\DustFormStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\DustWasteForm\WasteFormStylesheet.xslt" />
-    <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
-    <Content Include="DocumentsFactory\TobaccoFreeCirculationForm\DocumentContent.xml">
+    <Content Include="DocumentsFactory\DustWasteForm\TobaccoFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\DustWasteForm\WasteFormStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\TobaccoFreeCirculationForm\TobaccoFormStylesheet.xslt">
+    <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
+    <Content Include="DocumentsFactory\TobaccoFreeCirculationForm\DocumentContent.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="DocumentsFactory\TobaccoFreeCirculationForm\TobaccoFreeCirculationFormCollection.xslt">
