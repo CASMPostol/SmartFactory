@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Content types\Dictionaries\BusienssDescription\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bbbe2c6e-a679-4437-a58a-800d3d56aa14}</SharePointProjectItemId>
     </None>
