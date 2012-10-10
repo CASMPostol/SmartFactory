@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Web;
 using System.Web.UI;
@@ -11,6 +12,8 @@ using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.WebControls;
+using System.Linq;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
 {
@@ -72,6 +75,50 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           at = "InitMahine";
           m_StateMachineEngine.InitMahine();
         }
+        //Grid setup
+        m_AvailableGridView.EmptyDataText = "Not selected";
+        //TODO IPR: - DocumentNo - Customs debt date - OGL valid to - SKU - Batch - Unit price - Currency 
+        //TODO Disposal: - Settled quantity - Disposal Status - Created Other: - FG Batch - lookup from disposal to batch list - Required Quantity - should be added as a text box - Select - check box 
+        at = "AddColumn";
+        m_AvailableGridView.DataBound += m_AssignedGridView_DataBound;
+        AddColumn( new CheckBoxField() { DataField = "Selected", HeaderText = "Select all" } );
+        AddColumn( new BoundField() { DataField = "DocumentNo", HeaderText = "Document No" } );
+        AddColumn( new BoundField() { DataField = "DebtDate", HeaderText = "Debt date", DataFormatString = "{0:d}" } );
+        AddColumn( new BoundField() { DataField = "ValidTo", HeaderText = "Valid To ", DataFormatString = "{0:d}" } );
+        AddColumn( new BoundField() { DataField = "SKU", HeaderText = "SKU" } );
+        AddColumn( new BoundField() { DataField = "Batch", HeaderText = "Batch" } );
+        AddColumn( new BoundField() { DataField = "UnitPrice", HeaderText = "Unit price" } );
+        AddColumn( new BoundField() { DataField = "Currency", HeaderText = "Currency" } );
+        AddColumn( new BoundField() { DataField = "Quantity", HeaderText = "Quantity" } );
+        AddColumn( new BoundField() { DataField = "Status", HeaderText = "Status" } );
+        AddColumn( new BoundField() { DataField = "Created", HeaderText = "Created", DataFormatString = "{0:d}" } );
+        AddColumn( new BoundField() { DataField = "ID", HeaderText = "ID", Visible = false } );
+        m_AvailableGridView.DataKeyNames = new String[] { "ID" };
+        m_AssignedGridView.DataKeyNames = new String[] { "ID" };
+        m_AvailableGridView.AllowPaging = false;
+        at = "DataSource";
+        m_AvailableGridView.DataSource = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
+                                           let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
+                                           where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted && _dspslx.DisposalStatus.Value == DisposalStatus.Dust && _dspslx.ClearenceIndex == null
+                                           orderby _ogl ascending
+                                           select new
+                                           {
+                                             Selected = false,
+                                             DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
+                                             DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
+                                             ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
+                                             SKU = _dspslx.Disposal2IPRIndex.SKU,
+                                             Batch = _dspslx.Disposal2IPRIndex.Batch,
+                                             UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice,
+                                             Currency = _dspslx.Disposal2IPRIndex.Currency,
+                                             Quantity = _dspslx.SettledQuantity,
+                                             Status = _dspslx.DisposalStatus,
+                                             Created = SharePoint.Extensions.SPMinimum,
+                                             ID = _dspslx.Identyfikator.Value
+                                           }
+                                         ).ToList();
+        at = "DataBind";
+        m_AvailableGridView.DataBind();
         at = "Event handlers";
         m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
         m_NewButton.Click += new EventHandler( m_StateMachineEngine.NewButton_Click );
@@ -81,13 +128,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         m_DeleteButton.Click += new EventHandler( m_StateMachineEngine.DeleteButton_Click );
         m_ClearButton.Click += new EventHandler( m_StateMachineEngine.m_ClearButton_Click );
         HttpBrowserCapabilities _myBrowserCaps = Request.Browser;
-        LinqDataSource _availabelDataSource = new LinqDataSource()
-        {
-          ContextTypeName = "CAS.SmartFactory.Linq.IPR.Disposal",
-          
-        };
-        m_AvailableGridView.DataSource = _availabelDataSource;
-        m_AvailableGridView.DataBind();
         if ( ( (System.Web.Configuration.HttpCapabilitiesBase)_myBrowserCaps ).SupportsCallback )
         {
           m_AvailableGridView.EnableSortingAndPagingCallbacks = true;
@@ -96,9 +136,34 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       }
       catch ( Exception ex )
       {
-        ApplicationError _ae = new ApplicationError( "Page_Load", "", ex.Message, ex );
+        ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
+    }
+
+    private void m_AssignedGridView_DataBound( object sender, EventArgs e )
+    {
+      string at = "starting";
+      try
+      {
+        at = "GridViewRow";
+        GridViewRow _heade = m_AvailableGridView.HeaderRow;
+        at = "Cells[ 0 ].Controls.Clear";
+        _heade.Cells[ 0 ].Controls.Clear();
+        at = "new CheckBox";
+        m_AssignedCheckAll = new CheckBox() { Text = "All", Checked = false };
+        _heade.Cells[ 0 ].Controls.Add( m_AssignedCheckAll );
+      }
+      catch ( Exception ex)
+      {
+        ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
+        this.Controls.Add( _ae.CreateMessage( at, true ) );
+      }
+    }
+    private void AddColumn( DataControlField _column )
+    {
+      m_AvailableGridView.Columns.Add( _column );
+      //m_AssignedGridView.Columns.Add( _column );
     }
     /// <summary>
     /// Loads the state of the control.
@@ -450,5 +515,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     #endregion
 
 
+
+    private CheckBox m_AssignedCheckAll { get; set; }
   }
 }
