@@ -9,12 +9,14 @@
     >
     <Default>4051</Default>
     <CHOICES>
-      <CHOICE>4051</CHOICE>
       <CHOICE>3151</CHOICE>
-      <CHOICE>4071</CHOICE>
       <CHOICE>3171</CHOICE>
-      <CHOICE>7171</CHOICE>
+      <CHOICE>4051</CHOICE>
+      <CHOICE>4071</CHOICE>
+      <CHOICE>5100</CHOICE>
       <CHOICE>5171</CHOICE>
+      <CHOICE>7100</CHOICE>
+      <CHOICE>7171</CHOICE>
     </CHOICES>
   </Field>
   <Field
