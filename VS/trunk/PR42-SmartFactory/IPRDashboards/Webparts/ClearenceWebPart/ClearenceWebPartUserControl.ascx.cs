@@ -80,9 +80,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         //TODO IPR: - DocumentNo - Customs debt date - OGL valid to - SKU - Batch - Unit price - Currency 
         //TODO Disposal: - Settled quantity - Disposal Status - Created Other: - FG Batch - lookup from disposal to batch list - Required Quantity - should be added as a text box - Select - check box 
         at = "AddColumn";
-        m_AvailableGridView.DataBound += m_AssignedGridView_DataBound;
-        AddColumn( new CheckBoxField() { DataField = "Selected", HeaderText = "Select all" } );
-        AddColumn( new BoundField() { DataField = "DocumentNo", HeaderText = "Document No" } );
+        //m_AvailableGridView.DataBound += m_AssignedGridView_DataBound;
+        //AddColumn( new CheckBoxField() { DataField = "Selected", HeaderText = "Select all" } );
+        AddColumn( new BoundField() { DataField = "DocumentNo", HeaderText = "Document No", SortExpression = "DocumentNo" } );
         AddColumn( new BoundField() { DataField = "DebtDate", HeaderText = "Debt date", DataFormatString = "{0:d}" } );
         AddColumn( new BoundField() { DataField = "ValidTo", HeaderText = "Valid To ", DataFormatString = "{0:d}" } );
         AddColumn( new BoundField() { DataField = "SKU", HeaderText = "SKU" } );
@@ -103,10 +103,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           string _name = String.Empty;
           if ( _clmnx is CheckBoxField )
             _name = ( (CheckBoxField)_clmnx ).DataField;
-          else if (_clmnx is BoundField)
+          else if ( _clmnx is BoundField )
             _name = ( (BoundField)_clmnx ).DataField;
           else
-            throw new ApplicationError("Page_Load", at, "Wrong field type", null);
+            throw new ApplicationError( "Page_Load", at, "Wrong field type", null );
           _data.Columns.Add( new DataColumn( _name ) );
         }
         var _dataQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
@@ -115,7 +115,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
                           orderby _ogl ascending
                           select new
                           {
-                            Selected = false,
+                            //Selected = false,
                             DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
                             DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
                             ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
@@ -128,15 +128,25 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
                             Created = SharePoint.Extensions.SPMinimum,
                             ID = _dspslx.Identyfikator.Value
                           }
-                                         );
+                         );
         at = "foreach";
-        foreach ( var item in _dataQery )
-          _data.Rows.Add( item );
+        foreach ( var _rowx in _dataQery )
+        {
+          DataRow _nr = _data.NewRow();
+          _nr[ "DocumentNo" ] = _rowx.DocumentNo;
+          _nr[ "DebtDate" ] = _rowx.DebtDate;
+          _data.Rows.Add( _nr );
+        }
+        //Persist the table in the Session object.
+        Session[ m_SessionAvailableGridViewKey ] = _data;
         at = "DataSource";
-        m_AvailableGridView.DataSource = _dataQery.ToList();//_data.DefaultView;
+        //Bind the GridView control to the data source.
+        m_AvailableGridView.DataSource = Session[ m_SessionAvailableGridViewKey ];
+        m_AvailableGridView.AllowSorting = true;
         at = "DataBind";
         m_AvailableGridView.DataBind();
         at = "Event handlers";
+        m_AvailableGridView.Sorting += m_AvailableGridView_Sorting;
         m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
         m_NewButton.Click += new EventHandler( m_StateMachineEngine.NewButton_Click );
         m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
@@ -156,6 +166,50 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
+    }
+    private const string m_SessionAvailableGridViewKey = "AvailableGridView";
+    private void m_AvailableGridView_Sorting( object sender, GridViewSortEventArgs e )
+    {
+      SPGridView _sender = sender as SPGridView;
+      if ( _sender == null )
+        return;
+      //Retrieve the table from the session object.
+      DataTable dt = Session[ m_SessionAvailableGridViewKey ] as DataTable;
+      if ( dt == null )
+        return;
+      //Sort the data.
+      dt.DefaultView.Sort = e.SortExpression + " " + GetSortDirection( e.SortExpression );
+      _sender.DataSource = Session[ m_SessionAvailableGridViewKey ];
+      _sender.DataBind();
+    }
+    private string GetSortDirection( string column )
+    {
+
+      // By default, set the sort direction to ascending.
+      string sortDirection = "ASC";
+
+      // Retrieve the last column that was sorted.
+      string sortExpression = ViewState[ "SortExpression" ] as string;
+
+      if ( sortExpression != null )
+      {
+        // Check if the same column is being sorted. 
+        // Otherwise, the default value can be returned. 
+        if ( sortExpression == column )
+        {
+          string lastDirection = ViewState[ "SortDirection" ] as string;
+          if ( ( lastDirection != null ) && ( lastDirection == "ASC" ) )
+          {
+            sortDirection = "DESC";
+          }
+        }
+      }
+
+      // Save new values in ViewState.
+      ViewState[ "SortDirection" ] = sortDirection;
+      ViewState[ "SortExpression" ] = column;
+
+      return sortDirection;
     }
 
     private void m_AssignedGridView_DataBound( object sender, EventArgs e )
