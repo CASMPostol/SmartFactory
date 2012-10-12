@@ -31,6 +31,21 @@
     font-family:Verdana;
     font-size:8pt; 
 }
+.ButtonLong
+{
+    border-width:1px 1px 1px 12px;
+    width:120px;
+    height:20px;
+    border-top-color:#addbf7;
+    border-bottom-color:#addbf7;
+    border-left-color:#91cdf2;
+    border-right-color:#91cdf2;
+    border-style:solid;
+    background-image:url(/_layouts/images/IPRDashboards/button_background.jpg);
+    background-color:#FFFFFF;
+    font-family:Verdana;
+    font-size:8pt; 
+}
 .Button_TR
 {
     border-width:1px 1px 1px 12px;

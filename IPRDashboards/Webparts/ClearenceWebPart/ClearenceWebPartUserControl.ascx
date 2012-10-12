@@ -162,6 +162,12 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
+                <asp:Button runat="server" CssClass="ButtonLong" Text="Add to assigned" ID="m_AddToAssigned" />
+                <asp:Button runat="server" CssClass="ButtonLong" Text="Remove from assigned" ID="m_RemoveFromAssigned" />
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell>
                 <asp:Label ID="m_AssignedLabel" runat="server" Text="Assigned:" CssClass="Label"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
