@@ -177,25 +177,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       if ( m_ControlState.AvailableItems == null )
         return;
       //Sort the data.
-      m_ControlState.AvailableItems.DefaultView.Sort = e.SortExpression + " " + GetSortDirection( e.SortExpression );
+      m_ControlState.AvailableItems.DefaultView.Sort = e.SortExpression + " " + m_ControlState.GetSortDirection( e.SortExpression );
       _sender.DataSource = m_ControlState.AvailableItems;
       _sender.DataBind();
     }
-    private string GetSortDirection( string column )
-    {
-      if ( m_ControlState.SortExpression == column )
-        if ( m_ControlState.SortDirection == "ASC" )
-          m_ControlState.SortDirection = "DESC";
-        else
-          m_ControlState.SortDirection = "ASC";
-      else
-      {
-        m_ControlState.SortExpression = column;
-        m_ControlState.SortDirection = "DESC";
-      }
-      return m_ControlState.SortDirection;
-    }
-
     private void m_AssignedGridView_DataBound( object sender, EventArgs e )
     {
       string at = "starting";
@@ -283,6 +268,20 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       #endregion
 
       #region public
+      internal string GetSortDirection( string column )
+      {
+        if ( SortExpression == column )
+          if ( SortDirection == "ASC" )
+            SortDirection = "DESC";
+          else
+            SortDirection = "ASC";
+        else
+        {
+          SortExpression = column;
+          SortDirection = "DESC";
+        }
+        return SortDirection;
+      }
       internal void UpdateControlState( InvoiceContent _ic )
       {
       }
