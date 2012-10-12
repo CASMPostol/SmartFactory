@@ -76,38 +76,30 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           m_StateMachineEngine.InitMahine();
           //Grid setup
           m_AvailableGridView.EmptyDataText = "Not selected";
+          m_AvailableGridView.AutoGenerateSelectButton = true;
+          m_AvailableGridView.AutoGenerateEditButton = true;
+          m_AvailableGridView.AllowSorting = true;
           //TODO IPR: - DocumentNo - Customs debt date - OGL valid to - SKU - Batch - Unit price - Currency 
           //TODO Disposal: - Settled quantity - Disposal Status - Created Other: - FG Batch - lookup from disposal to batch list - Required Quantity - should be added as a text box - Select - check box 
           at = "AddColumn";
           //m_AvailableGridView.DataBound += m_AssignedGridView_DataBound;
-          //AddColumn( new CheckBoxField() { DataField = "Selected", HeaderText = "Select all" } );
-          AddColumn( new BoundField() { DataField = "DocumentNo", HeaderText = "Document No", SortExpression = "DocumentNo" } );
+          AddColumn( new CheckBoxField() { DataField =""/* "Selected"*/, HeaderText = "Select all" } );
+          AddColumn( new BoundField() { DataField = "DocumentNo", HeaderText = "Document No", SortExpression = "DocumentNo", ReadOnly = false } );
           AddColumn( new BoundField() { DataField = "DebtDate", HeaderText = "Debt date", DataFormatString = "{0:d}", SortExpression = "DebtDate" } );
           AddColumn( new BoundField() { DataField = "ValidTo", HeaderText = "Valid To ", DataFormatString = "{0:d}" } );
-          AddColumn( new BoundField() { DataField = "SKU", HeaderText = "SKU" } );
-          AddColumn( new BoundField() { DataField = "Batch", HeaderText = "Batch" } );
-          AddColumn( new BoundField() { DataField = "UnitPrice", HeaderText = "Unit price" } );
-          AddColumn( new BoundField() { DataField = "Currency", HeaderText = "Currency" } );
-          AddColumn( new BoundField() { DataField = "Quantity", HeaderText = "Quantity" } );
-          AddColumn( new BoundField() { DataField = "Status", HeaderText = "Status" } );
-          AddColumn( new BoundField() { DataField = "Created", HeaderText = "Created", DataFormatString = "{0:d}" } );
+          //AddColumn( new BoundField() { DataField = "SKU", HeaderText = "SKU" } );
+          //AddColumn( new BoundField() { DataField = "Batch", HeaderText = "Batch" } );
+          //AddColumn( new BoundField() { DataField = "UnitPrice", HeaderText = "Unit price" } );
+          //AddColumn( new BoundField() { DataField = "Currency", HeaderText = "Currency" } );
+          //AddColumn( new BoundField() { DataField = "Quantity", HeaderText = "Quantity" } );
+          //AddColumn( new BoundField() { DataField = "Status", HeaderText = "Status" } );
+          //AddColumn( new BoundField() { DataField = "Created", HeaderText = "Created", DataFormatString = "{0:d}" } );
           AddColumn( new BoundField() { DataField = "ID", HeaderText = "ID", Visible = false } );
           m_AvailableGridView.DataKeyNames = new String[] { "ID" };
           m_AssignedGridView.DataKeyNames = new String[] { "ID" };
           m_AvailableGridView.AllowFiltering = false;
           at = "DataTable";
-          DataTable _data = new DataTable() { };
-          foreach ( DataControlField _clmnx in m_AvailableGridView.Columns )
-          {
-            string _name = String.Empty;
-            if ( _clmnx is CheckBoxField )
-              _name = ( (CheckBoxField)_clmnx ).DataField;
-            else if ( _clmnx is BoundField )
-              _name = ( (BoundField)_clmnx ).DataField;
-            else
-              throw new ApplicationError( "Page_Load", at, "Wrong field type", null );
-            _data.Columns.Add( new DataColumn( _name ) );
-          }
+          Selection _data = new Selection() { };
           var _dataQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
                             let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
                             where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted && _dspslx.DisposalStatus.Value == DisposalStatus.Dust && _dspslx.ClearenceIndex == null
@@ -131,22 +123,22 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           at = "foreach";
           foreach ( var _rowx in _dataQery )
           {
-            DataRow _nr = _data.NewRow();
-            _nr[ "DocumentNo" ] = _rowx.DocumentNo;
-            _nr[ "DebtDate" ] = _rowx.DebtDate;
-            _data.Rows.Add( _nr );
+            Selection.SelectionTableRow _nr = _data.SelectionTable.NewSelectionTableRow();
+            _nr.DocumentNo = _rowx.DocumentNo;
+            _nr.DebtDate = _rowx.DebtDate.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
+            _data.SelectionTable.AddSelectionTableRow( _nr );
           }
-          //Persist the table in the Session object.
+          //Persist the table in the ControlState object.
           m_ControlState.AvailableItems = _data;
           at = "DataSource";
           //Bind the GridView control to the data source.
-          m_AvailableGridView.DataSource = _data;
-          m_AvailableGridView.AllowSorting = true;
         }
+        m_AvailableGridView.DataSource = m_ControlState.AvailableItems.SelectionTable;
         at = "DataBind";
         m_AvailableGridView.DataBind();
         at = "Event handlers";
         m_AvailableGridView.Sorting += m_AvailableGridView_Sorting;
+        m_AvailableGridView.RowEditing += m_AvailableGridView_RowEditing;
         m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
         m_NewButton.Click += new EventHandler( m_StateMachineEngine.NewButton_Click );
         m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
@@ -154,18 +146,16 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         //m_EditButton.Click += new EventHandler( m_StateMachineEngine.EditButton_Click );
         m_DeleteButton.Click += new EventHandler( m_StateMachineEngine.DeleteButton_Click );
         m_ClearButton.Click += new EventHandler( m_StateMachineEngine.m_ClearButton_Click );
-        //HttpBrowserCapabilities _myBrowserCaps = Request.Browser;
-        //if ( ( (System.Web.Configuration.HttpCapabilitiesBase)_myBrowserCaps ).SupportsCallback )
-        //{
-        //  m_AvailableGridView.EnableSortingAndPagingCallbacks = true;
-        //  m_AssignedGridView.EnableSortingAndPagingCallbacks = true;
-        //}
       }
       catch ( Exception ex )
       {
         ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
+    }
+
+    void m_AvailableGridView_RowEditing( object sender, GridViewEditEventArgs e )
+    {
     }
     private const string m_SessionAvailableGridViewKey = "AvailableGridView";
     private void m_AvailableGridView_Sorting( object sender, GridViewSortEventArgs e )
@@ -177,8 +167,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       if ( m_ControlState.AvailableItems == null )
         return;
       //Sort the data.
-      m_ControlState.AvailableItems.DefaultView.Sort = e.SortExpression + " " + m_ControlState.GetSortDirection( e.SortExpression );
-      _sender.DataSource = m_ControlState.AvailableItems;
+      m_ControlState.AvailableItems.SelectionTable.DefaultView.Sort = e.SortExpression + " " + m_ControlState.GetSortDirection( e.SortExpression );
+      _sender.DataSource = m_ControlState.AvailableItems.SelectionTable;
       _sender.DataBind();
     }
     private void m_AssignedGridView_DataBound( object sender, EventArgs e )
@@ -262,7 +252,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       public string ClearanceID = String.Empty;
       public string ClearanceTitle;
       public bool IsModified { get; set; }
-      public DataTable AvailableItems = default( DataTable );
+      public Selection AvailableItems = default( Selection );
       public string SortDirection = "ASC";
       public string SortExpression = String.Empty;
       #endregion

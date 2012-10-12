@@ -94,6 +94,15 @@
     <Compile Include="Webparts\ClearenceWebPart\ClearenceWebPartUserControl.ascx.designer.cs">
       <DependentUpon>ClearenceWebPartUserControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Webparts\ClearenceWebPart\Selection.cs">
+      <DependentUpon>Selection.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Webparts\ClearenceWebPart\Selection.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Selection.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Webparts\ExportWebPart\ExportWebPart.cs" />
     <Compile Include="Webparts\ExportWebPart\ExportWebPartUserControl.ascx.cs">
       <DependentUpon>ExportWebPartUserControl.ascx</DependentUpon>
@@ -149,6 +158,17 @@
       <SharePointProjectItemId>{1bf15ec9-d51c-4227-a75e-9961ace65cf0}</SharePointProjectItemId>
     </None>
     <None Include="Webparts\ClearenceWebPart\ClearenceWebPart.webpart" />
+    <None Include="Webparts\ClearenceWebPart\Selection.xsc">
+      <DependentUpon>Selection.xsd</DependentUpon>
+    </None>
+    <None Include="Webparts\ClearenceWebPart\Selection.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Selection.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Webparts\ClearenceWebPart\Selection.xss">
+      <DependentUpon>Selection.xsd</DependentUpon>
+    </None>
     <None Include="Webparts\ClearenceWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{48972cb1-6c4a-4eda-9e7f-3310718add2a}</SharePointProjectItemId>
     </None>
