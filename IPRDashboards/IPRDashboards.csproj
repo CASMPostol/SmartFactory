@@ -116,6 +116,9 @@
     <None Include="Dashboards\ExportDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d926c02c-50db-49dd-b790-563ff8388cad}</SharePointProjectItemId>
     </None>
+    <None Include="Dashboards\IPRBookCustomsOfficeDashboard\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e36a6b8c-1d30-4ee2-9ba6-e8f2216267c6}</SharePointProjectItemId>
+    </None>
     <None Include="Dashboards\IPRBookDashboard\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e7488a06-3c0f-4341-8b90-bd4be0001672}</SharePointProjectItemId>
     </None>
@@ -171,6 +174,7 @@
     <Content Include="Dashboards\ExportDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Dashboards\IPRBookCustomsOfficeDashboard\Elements.xml" />
     <Content Include="Dashboards\IPRBookDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -190,6 +194,7 @@
     <Content Include="WebPartPages\WebPageTemplate_Clearence.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_Export.aspx" />
     <Content Include="WebPartPages\WebPageTemplate_IPRBook.aspx" />
+    <Content Include="WebPartPages\WebPageTemplate_IPRBookCustomsOffice.aspx" />
     <Content Include="Webparts\ClearenceWebPart\ClearenceWebPartUserControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>

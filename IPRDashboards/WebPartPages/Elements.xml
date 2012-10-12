@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="WebPartPages">
-  <File Path="WebPartPages\WebPageTemplate_IPRBook.aspx" Url="WebPartPages/WebPageTemplate_IPRBook.aspx" />
 <File Path="WebPartPages\WebPageTemplate_Clearence.aspx" Url="WebPartPages/WebPageTemplate_Clearence.aspx" />
 <File Path="WebPartPages\WebPageTemplate_Export.aspx" Url="WebPartPages/WebPageTemplate_Export.aspx" />
+<File Path="WebPartPages\WebPageTemplate_IPRBookCustomsOffice.aspx" Url="WebPartPages/WebPageTemplate_IPRBookCustomsOffice.aspx" />
+<File Path="WebPartPages\WebPageTemplate_IPRBook.aspx" Url="WebPartPages/WebPageTemplate_IPRBook.aspx" />
 </Module>
 </Elements>
