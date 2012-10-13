@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
     [global::System.Xml.Serialization.XmlRootAttribute("Selection")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    internal partial class Selection : global::System.Data.DataSet {
+    public partial class Selection : global::System.Data.DataSet {
         
         private SelectionTableDataTable tableSelectionTable;
         

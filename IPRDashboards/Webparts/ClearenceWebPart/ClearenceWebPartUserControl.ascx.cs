@@ -74,11 +74,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         {
           at = "InitMahine";
           m_StateMachineEngine.InitMahine();
-          //ObjectDataSource m_AvailableDataSource = new ObjectDataSource()
-          //{
-          //   TypeName =  
-          //}
-          //Grid setup
           m_AvailableGridView.EmptyDataText = "Not selected";
           m_AvailableGridView.AutoGenerateSelectButton = true;
           m_AvailableGridView.AutoGenerateEditButton = true;
@@ -87,7 +82,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           //TODO Disposal: - Settled quantity - Disposal Status - Created Other: - FG Batch - lookup from disposal to batch list - Required Quantity - should be added as a text box - Select - check box 
           at = "AddColumn";
           //m_AvailableGridView.DataBound += m_AssignedGridView_DataBound;
-          AddColumn( new CheckBoxField() { DataField =""/* "Selected"*/, HeaderText = "Select all" } );
+          AddColumn( new CheckBoxField() { DataField = ""/* "Selected"*/, HeaderText = "Select all" } );
           AddColumn( new BoundField() { DataField = "DocumentNo", HeaderText = "Document No", SortExpression = "DocumentNo", ReadOnly = false } );
           AddColumn( new BoundField() { DataField = "DebtDate", HeaderText = "Debt date", DataFormatString = "{0:d}", SortExpression = "DebtDate" } );
           AddColumn( new BoundField() { DataField = "ValidTo", HeaderText = "Valid To ", DataFormatString = "{0:d}" } );
@@ -137,10 +132,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           }
           //Persist the table in the ControlState object.
           m_ControlState.AvailableItems = _data;
-          at = "DataSource";
-          //Bind the GridView control to the data source.
         }
-        m_AvailableGridView.DataSource = m_ControlState.AvailableItems.SelectionTable;
+        at = "DataSource";
+        ObjectDataSource _availableDataSource = new ObjectDataSource()
+        {
+          TypeName = new SelectionDataObject(m_ControlState.AvailableItems).GetType().AssemblyQualifiedName,
+          SelectMethod = "GetItems",
+          UpdateMethod = "UpdateItem",
+        };
+        _availableDataSource.UpdateParameters.Add( new Parameter( "ID" ) { Type = TypeCode.Int32 } );
+        _availableDataSource.UpdateParameters.Add( new Parameter( "Quantity" ) { Type = TypeCode.Double } );
+        _availableDataSource.ObjectCreating += m_AvailableDataSource_ObjectCreating;
+        //Bind the GridView control to the data source.
+        m_AvailableGridView.DataSource = _availableDataSource;
         at = "DataBind";
         m_AvailableGridView.DataBind();
         at = "Event handlers";
@@ -159,6 +163,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
+    }
+    private void m_AvailableDataSource_ObjectCreating( object sender, ObjectDataSourceEventArgs e )
+    {
+      e.ObjectInstance = new SelectionDataObject( m_ControlState.AvailableItems );
     }
 
     void m_AvailableGridView_RowEditing( object sender, GridViewEditEventArgs e )
