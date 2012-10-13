@@ -74,6 +74,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         {
           at = "InitMahine";
           m_StateMachineEngine.InitMahine();
+          //ObjectDataSource m_AvailableDataSource = new ObjectDataSource()
+          //{
+          //   TypeName =  
+          //}
           //Grid setup
           m_AvailableGridView.EmptyDataText = "Not selected";
           m_AvailableGridView.AutoGenerateSelectButton = true;
@@ -91,7 +95,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           //AddColumn( new BoundField() { DataField = "Batch", HeaderText = "Batch" } );
           //AddColumn( new BoundField() { DataField = "UnitPrice", HeaderText = "Unit price" } );
           //AddColumn( new BoundField() { DataField = "Currency", HeaderText = "Currency" } );
-          //AddColumn( new BoundField() { DataField = "Quantity", HeaderText = "Quantity" } );
+          AddColumn( new BoundField() { DataField = "Quantity", HeaderText = "Quantity" } );
           //AddColumn( new BoundField() { DataField = "Status", HeaderText = "Status" } );
           //AddColumn( new BoundField() { DataField = "Created", HeaderText = "Created", DataFormatString = "{0:d}" } );
           AddColumn( new BoundField() { DataField = "ID", HeaderText = "ID", Visible = false } );
@@ -126,7 +130,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
             Selection.SelectionTableRow _nr = _data.SelectionTable.NewSelectionTableRow();
             _nr.DocumentNo = _rowx.DocumentNo;
             _nr.DebtDate = _rowx.DebtDate.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
+            _nr.Quantity = _rowx.Quantity.Value;
+            _nr.ID = _rowx.ID;
             _data.SelectionTable.AddSelectionTableRow( _nr );
+
           }
           //Persist the table in the ControlState object.
           m_ControlState.AvailableItems = _data;
