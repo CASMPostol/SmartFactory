@@ -288,6 +288,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             private global::System.Data.DataColumn columnValidTo;
             
+            private global::System.Data.DataColumn columnQuantity;
+            
             private global::System.Data.DataColumn columnID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -357,6 +359,14 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn QuantityColumn {
+                get {
+                    return this.columnQuantity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn IDColumn {
                 get {
                     return this.columnID;
@@ -400,17 +410,25 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SelectionTableRow AddSelectionTableRow(bool Selected, string DocumentNo, System.DateTime DebtDate, string ValidTo, int ID) {
+            public SelectionTableRow AddSelectionTableRow(bool Selected, string DocumentNo, System.DateTime DebtDate, string ValidTo, double Quantity, int ID) {
                 SelectionTableRow rowSelectionTableRow = ((SelectionTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Selected,
                         DocumentNo,
                         DebtDate,
                         ValidTo,
+                        Quantity,
                         ID};
                 rowSelectionTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSelectionTableRow);
                 return rowSelectionTableRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SelectionTableRow FindByID(int ID) {
+                return ((SelectionTableRow)(this.Rows.Find(new object[] {
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -434,6 +452,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 this.columnDocumentNo = base.Columns["DocumentNo"];
                 this.columnDebtDate = base.Columns["DebtDate"];
                 this.columnValidTo = base.Columns["ValidTo"];
+                this.columnQuantity = base.Columns["Quantity"];
                 this.columnID = base.Columns["ID"];
             }
             
@@ -448,11 +467,18 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 base.Columns.Add(this.columnDebtDate);
                 this.columnValidTo = new global::System.Data.DataColumn("ValidTo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnValidTo);
+                this.columnQuantity = new global::System.Data.DataColumn("Quantity", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQuantity);
                 this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
                 this.columnDocumentNo.Caption = "Document No";
                 this.columnDebtDate.Caption = "Debt Date";
                 this.columnValidTo.Caption = "Valid To";
+                this.columnQuantity.AllowDBNull = false;
+                this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -659,14 +685,20 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double Quantity {
+                get {
+                    return ((double)(this[this.tableSelectionTable.QuantityColumn]));
+                }
+                set {
+                    this[this.tableSelectionTable.QuantityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int ID {
                 get {
-                    try {
-                        return ((int)(this[this.tableSelectionTable.IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ID\' in table \'SelectionTable\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableSelectionTable.IDColumn]));
                 }
                 set {
                     this[this.tableSelectionTable.IDColumn] = value;
@@ -719,18 +751,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetValidToNull() {
                 this[this.tableSelectionTable.ValidToColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIDNull() {
-                return this.IsNull(this.tableSelectionTable.IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIDNull() {
-                this[this.tableSelectionTable.IDColumn] = global::System.Convert.DBNull;
             }
         }
         
