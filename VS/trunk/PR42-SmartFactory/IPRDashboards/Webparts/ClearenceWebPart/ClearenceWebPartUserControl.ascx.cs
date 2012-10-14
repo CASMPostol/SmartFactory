@@ -75,28 +75,29 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           at = "InitMahine";
           m_StateMachineEngine.InitMahine();
           m_AvailableGridView.EmptyDataText = "Not selected";
-          m_AvailableGridView.AutoGenerateSelectButton = true;
-          m_AvailableGridView.AutoGenerateEditButton = true;
+          //m_AvailableGridView.AutoGenerateSelectButton = true;
+          //m_AvailableGridView.AutoGenerateEditButton = true;
           m_AvailableGridView.AllowSorting = true;
           //TODO IPR: - DocumentNo - Customs debt date - OGL valid to - SKU - Batch - Unit price - Currency 
           //TODO Disposal: - Settled quantity - Disposal Status - Created Other: - FG Batch - lookup from disposal to batch list - Required Quantity - should be added as a text box - Select - check box 
           at = "AddColumn";
           //m_AvailableGridView.DataBound += m_AssignedGridView_DataBound;
-          AddColumn( new CheckBoxField() { DataField = ""/* "Selected"*/, HeaderText = "Select all" } );
-          AddColumn( new BoundField() { DataField = "DocumentNo", HeaderText = "Document No", SortExpression = "DocumentNo", ReadOnly = false } );
-          AddColumn( new BoundField() { DataField = "DebtDate", HeaderText = "Debt date", DataFormatString = "{0:d}", SortExpression = "DebtDate" } );
-          AddColumn( new BoundField() { DataField = "ValidTo", HeaderText = "Valid To ", DataFormatString = "{0:d}" } );
+          //AddColumn( new CheckBoxField() { DataField = ""/* "Selected"*/, HeaderText = "Select all" } );
+          //AddColumn( new CommandField() { ShowEditButton = true } );
+          //AddColumn( new BoundField() { DataField = "DocumentNo", HeaderText = "Document No", SortExpression = "DocumentNo", ReadOnly = true } );
+          //AddColumn( new BoundField() { DataField = "DebtDate", HeaderText = "Debt date", DataFormatString = "{0:d}", SortExpression = "DebtDate", ReadOnly = true } );
+          //AddColumn( new BoundField() { DataField = "ValidTo", HeaderText = "Valid To ", DataFormatString = "{0:d}", SortExpression = "ValidTo", ReadOnly = true } );
           //AddColumn( new BoundField() { DataField = "SKU", HeaderText = "SKU" } );
           //AddColumn( new BoundField() { DataField = "Batch", HeaderText = "Batch" } );
           //AddColumn( new BoundField() { DataField = "UnitPrice", HeaderText = "Unit price" } );
           //AddColumn( new BoundField() { DataField = "Currency", HeaderText = "Currency" } );
-          AddColumn( new BoundField() { DataField = "Quantity", HeaderText = "Quantity" } );
+          //AddColumn( new BoundField() { DataField = "Quantity", HeaderText = "Quantity" } );
           //AddColumn( new BoundField() { DataField = "Status", HeaderText = "Status" } );
           //AddColumn( new BoundField() { DataField = "Created", HeaderText = "Created", DataFormatString = "{0:d}" } );
-          AddColumn( new BoundField() { DataField = "ID", HeaderText = "ID", Visible = false } );
-          m_AvailableGridView.DataKeyNames = new String[] { "ID" };
-          m_AssignedGridView.DataKeyNames = new String[] { "ID" };
-          m_AvailableGridView.AllowFiltering = false;
+          TemplateField _itField = new TemplateField() { HeaderText = "ID", Visible = true };
+          //_itField.ItemTemplate 
+          //AddColumn( _itField);
+          //m_AvailableGridView.AllowFiltering = false;
           at = "DataTable";
           Selection _data = new Selection() { };
           var _dataQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
@@ -125,6 +126,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
             Selection.SelectionTableRow _nr = _data.SelectionTable.NewSelectionTableRow();
             _nr.DocumentNo = _rowx.DocumentNo;
             _nr.DebtDate = _rowx.DebtDate.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
+            _nr.ValidTo = _rowx.ValidTo.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
             _nr.Quantity = _rowx.Quantity.Value;
             _nr.ID = _rowx.ID;
             _data.SelectionTable.AddSelectionTableRow( _nr );
@@ -132,24 +134,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           }
           //Persist the table in the ControlState object.
           m_ControlState.AvailableItems = _data;
+          at = "DataSource";
+          //ObjectDataSource _availableDataSource = GetObjectDataSource();
+          //Bind the GridView control to the data source.
+          m_AvailableGridView.DataKeyNames = new String[] { "ID" };
+          m_AssignedGridView.DataKeyNames = new String[] { "ID" };
+          BindData();
         }
-        at = "DataSource";
-        ObjectDataSource _availableDataSource = new ObjectDataSource()
-        {
-          TypeName = new SelectionDataObject(m_ControlState.AvailableItems).GetType().AssemblyQualifiedName,
-          SelectMethod = "GetItems",
-          UpdateMethod = "UpdateItem",
-        };
-        _availableDataSource.UpdateParameters.Add( new Parameter( "ID" ) { Type = TypeCode.Int32 } );
-        _availableDataSource.UpdateParameters.Add( new Parameter( "Quantity" ) { Type = TypeCode.Double } );
-        _availableDataSource.ObjectCreating += m_AvailableDataSource_ObjectCreating;
-        //Bind the GridView control to the data source.
-        m_AvailableGridView.DataSource = _availableDataSource;
-        at = "DataBind";
-        m_AvailableGridView.DataBind();
         at = "Event handlers";
-        m_AvailableGridView.Sorting += m_AvailableGridView_Sorting;
+        //m_AvailableGridView.Sorting += m_AvailableGridView_Sorting;
         m_AvailableGridView.RowEditing += m_AvailableGridView_RowEditing;
+        m_AvailableGridView.RowUpdating += m_AvailableGridView_RowUpdating;
+        m_AvailableGridView.RowUpdated += m_AvailableGridView_RowUpdated;
+        m_AvailableGridView.RowCancelingEdit += m_AvailableGridView_RowCancelingEdit;
         m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
         m_NewButton.Click += new EventHandler( m_StateMachineEngine.NewButton_Click );
         m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
@@ -164,6 +161,86 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
     }
+    private void m_AvailableGridView_RowCancelingEdit( object sender, GridViewCancelEditEventArgs e )
+    {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      _sender.EditIndex = -1;
+      BindData();
+    }
+    private void m_AvailableGridView_RowUpdating( object sender, GridViewUpdateEventArgs e )
+    {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      //Update the values.
+      GridViewRow row = _sender.Rows[ e.RowIndex ];
+      //string _id = ( (TextBox)FindControlRecursive(row, "ID" ) ).Text;
+      //string _qtty = ( (TextBox)FindControlRecursive(row,  "Quantity" ) ).Text;
+      string _qtty = ( (TextBox)( row.Cells[ 4 ].Controls[ 0 ] ) ).Text;
+      string _id = ( (Label)( row.Cells[ 5 ].Controls[ 0 ] ) ).Text;
+      //dt.Rows[ row.DataItemIndex ][ "IsComplete" ] = ( (CheckBox)( row.Cells[ 3 ].Controls[ 0 ] ) ).Checked;
+
+      //Selection.SelectionTableRow _row = m_ControlState.AvailableItems.SelectionTable.FindByID( (int)e.Keys[ "ID" ] );
+      //double Quantity = (double)e.NewValues[ "Quantity" ];
+      //if ( Quantity > _row.Quantity )
+      //  throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
+      //_row.Quantity -= Quantity;
+      //_sender.EditIndex = -1;
+      BindData();
+    }
+    private Control FindControlRecursive( Control rootControl, string controlID )
+    {
+      if ( rootControl.ID == controlID )
+        return rootControl;
+      foreach ( Control controlToSearch in rootControl.Controls )
+      {
+        Control controlToReturn =
+            FindControlRecursive( controlToSearch, controlID );
+        if ( controlToReturn != null )
+          return controlToReturn;
+      }
+      return null;
+    }
+    private void m_AvailableGridView_RowUpdated( object sender, GridViewUpdatedEventArgs e )
+    {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      if ( e.Keys[ "ID" ] == null )
+        return;
+      int _key = (int)e.Keys[ "ID" ];
+      Selection.SelectionTableRow _row = m_ControlState.AvailableItems.SelectionTable.FindByID( _key );
+      double Quantity = (double)e.NewValues[ "Quantity" ];
+      if ( Quantity > _row.Quantity )
+        throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
+      _row.Quantity -= Quantity;
+      _sender.EditIndex = -1;
+      BindData();
+    }
+    private void BindData()
+    {
+      m_AvailableGridView.DataSource = m_ControlState.AvailableItems;
+      m_AvailableGridView.DataBind();
+    }
+    internal ObjectDataSource GetObjectDataSource()
+    {
+      ObjectDataSource _availableDataSource = new ObjectDataSource()
+      {
+        TypeName = typeof( SelectionDataObject ).AssemblyQualifiedName,
+        SelectMethod = "GetItems",
+        UpdateMethod = "UpdateItem",
+        ConflictDetection = ConflictOptions.OverwriteChanges
+      };
+      _availableDataSource.UpdateParameters.Add( new Parameter() { Name = "DocumentNo", Type = TypeCode.String } );
+      _availableDataSource.UpdateParameters.Add( new Parameter() { Name = "DebtDate", Type = TypeCode.DateTime } );
+      _availableDataSource.UpdateParameters.Add( new Parameter() { Name = "ValidTo", Type = TypeCode.DateTime } );
+      _availableDataSource.UpdateParameters.Add( new Parameter() { Name = "Quantity", Type = TypeCode.Double } );
+      _availableDataSource.UpdateParameters.Add( new Parameter() { Name = "ID", Type = TypeCode.Int32 } );
+      _availableDataSource.ObjectCreating += m_AvailableDataSource_ObjectCreating;
+      return _availableDataSource;
+    }
     private void m_AvailableDataSource_ObjectCreating( object sender, ObjectDataSourceEventArgs e )
     {
       e.ObjectInstance = new SelectionDataObject( m_ControlState.AvailableItems );
@@ -171,11 +248,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
 
     void m_AvailableGridView_RowEditing( object sender, GridViewEditEventArgs e )
     {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      _sender.EditIndex = e.NewEditIndex;
+      BindData();
     }
-    private const string m_SessionAvailableGridViewKey = "AvailableGridView";
     private void m_AvailableGridView_Sorting( object sender, GridViewSortEventArgs e )
     {
-      SPGridView _sender = sender as SPGridView;
+      GridView _sender = sender as GridView;
       if ( _sender == null )
         return;
       //Retrieve the table from the session object.
@@ -183,7 +264,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         return;
       //Sort the data.
       m_ControlState.AvailableItems.SelectionTable.DefaultView.Sort = e.SortExpression + " " + m_ControlState.GetSortDirection( e.SortExpression );
-      _sender.DataSource = m_ControlState.AvailableItems.SelectionTable;
+      _sender.DataSource = GetObjectDataSource();
       _sender.DataBind();
     }
     private void m_AssignedGridView_DataBound( object sender, EventArgs e )

@@ -156,7 +156,7 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <SharePoint:SPGridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="true" AutoGenerateColumns="false"></SharePoint:SPGridView>
+                <asp:GridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="true" AutoGenerateColumns="false"></asp:GridView>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -176,4 +176,6 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+    <asp:GridView ID="GridView1" runat="server" EnableModelValidation="True" AutoGenerateColumns="False" >
+    </asp:GridView>
 </asp:Panel>
