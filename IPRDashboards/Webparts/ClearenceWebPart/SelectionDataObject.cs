@@ -28,10 +28,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       return _newTAble;
     }
     [System.ComponentModel.DataObjectMethodAttribute( System.ComponentModel.DataObjectMethodType.Update, true )]
-    public bool UpdateItem( double Quantity, int ID )
+    public bool UpdateItem( string DocumentNo, DateTime DebtDate, DateTime ValidTo, double Quantity, int original_ID )
     {
-      Selection.SelectionTableRow _row = m_Selection.SelectionTable.FindByID( ID );
-      if ( Quantity > _row.Quantity)
+      Selection.SelectionTableRow _row = m_Selection.SelectionTable.FindByID( original_ID );
+      if ( Quantity > _row.Quantity )
         throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
       _row.Quantity -= Quantity;
       return true;
