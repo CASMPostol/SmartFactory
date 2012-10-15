@@ -94,7 +94,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           //AddColumn( new BoundField() { DataField = "Quantity", HeaderText = "Quantity" } );
           //AddColumn( new BoundField() { DataField = "Status", HeaderText = "Status" } );
           //AddColumn( new BoundField() { DataField = "Created", HeaderText = "Created", DataFormatString = "{0:d}" } );
-          TemplateField _itField = new TemplateField() { HeaderText = "ID", Visible = true };
+          //TemplateField _itField = new TemplateField() { HeaderText = "ID", Visible = true };
           //_itField.ItemTemplate 
           //AddColumn( _itField);
           //m_AvailableGridView.AllowFiltering = false;
@@ -137,8 +137,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           at = "DataSource";
           //ObjectDataSource _availableDataSource = GetObjectDataSource();
           //Bind the GridView control to the data source.
-          m_AvailableGridView.DataKeyNames = new String[] { "ID" };
-          m_AssignedGridView.DataKeyNames = new String[] { "ID" };
           BindData();
         }
         at = "Event handlers";
