@@ -58,6 +58,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.TextBox m_ClearenceTextBox;
         
         /// <summary>
+        /// m_FiltersPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel m_FiltersPanel;
+        
+        /// <summary>
         /// m_FilterTable control.
         /// </summary>
         /// <remarks>
@@ -175,42 +184,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_EndTimeControl1;
         
         /// <summary>
-        /// m_ProcedurePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel m_ProcedurePanel;
-        
-        /// <summary>
-        /// m_ProcedureTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table m_ProcedureTable;
-        
-        /// <summary>
-        /// m_SelectProcedureLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_SelectProcedureLabel;
-        
-        /// <summary>
-        /// m_ProcedureRadioButtonList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList m_ProcedureRadioButtonList;
-        
-        /// <summary>
         /// m_CurrencyPanel control.
         /// </summary>
         /// <remarks>
@@ -245,6 +218,42 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList m_SelectCurrencyRadioButtonList;
+        
+        /// <summary>
+        /// m_ProcedurePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel m_ProcedurePanel;
+        
+        /// <summary>
+        /// m_ProcedureTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table m_ProcedureTable;
+        
+        /// <summary>
+        /// m_SelectProcedureLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_SelectProcedureLabel;
+        
+        /// <summary>
+        /// m_ProcedureRadioButtonList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList m_ProcedureRadioButtonList;
         
         /// <summary>
         /// m_ButtonsTable control.
