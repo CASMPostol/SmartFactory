@@ -280,8 +280,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class SelectionTableDataTable : global::System.Data.TypedTableBase<SelectionTableRow> {
             
-            private global::System.Data.DataColumn columnSelected;
-            
             private global::System.Data.DataColumn columnDocumentNo;
             
             private global::System.Data.DataColumn columnDebtDate;
@@ -323,14 +321,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             protected SelectionTableDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SelectedColumn {
-                get {
-                    return this.columnSelected;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -410,10 +400,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SelectionTableRow AddSelectionTableRow(bool Selected, string DocumentNo, System.DateTime DebtDate, System.DateTime ValidTo, double Quantity, int ID) {
+            public SelectionTableRow AddSelectionTableRow(string DocumentNo, System.DateTime DebtDate, System.DateTime ValidTo, double Quantity, int ID) {
                 SelectionTableRow rowSelectionTableRow = ((SelectionTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Selected,
                         DocumentNo,
                         DebtDate,
                         ValidTo,
@@ -448,7 +437,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnSelected = base.Columns["Selected"];
                 this.columnDocumentNo = base.Columns["DocumentNo"];
                 this.columnDebtDate = base.Columns["DebtDate"];
                 this.columnValidTo = base.Columns["ValidTo"];
@@ -459,8 +447,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnSelected = new global::System.Data.DataColumn("Selected", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSelected);
                 this.columnDocumentNo = new global::System.Data.DataColumn("DocumentNo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDocumentNo);
                 this.columnDebtDate = new global::System.Data.DataColumn("DebtDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -621,22 +607,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Selected {
-                get {
-                    try {
-                        return ((bool)(this[this.tableSelectionTable.SelectedColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Selected\' in table \'SelectionTable\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSelectionTable.SelectedColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string DocumentNo {
                 get {
                     try {
@@ -703,18 +673,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 set {
                     this[this.tableSelectionTable.IDColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSelectedNull() {
-                return this.IsNull(this.tableSelectionTable.SelectedColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSelectedNull() {
-                this[this.tableSelectionTable.SelectedColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

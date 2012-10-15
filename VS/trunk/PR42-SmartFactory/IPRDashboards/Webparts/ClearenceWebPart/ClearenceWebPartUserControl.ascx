@@ -186,9 +186,8 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <SharePoint:SPGridView ID="m_AssignedGridView" runat="server" AllowSorting="True" AllowPaging="true" AutoGenerateColumns="false">
+                <SharePoint:SPGridView ID="m_AssignedGridView" runat="server" AllowSorting="True" AllowPaging="true" AutoGenerateColumns="false" DataKeyNames="ID">
                     <Columns>
-                        <asp:CheckBoxField HeaderText="Select" />
                         <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
                         <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" />
                         <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" />
@@ -196,7 +195,7 @@
                         <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" />
                         <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" ReadOnly="true" />
                         <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" />
-                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="true" />
+                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="false" />
                         <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" ReadOnly="true" />
                         <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString = "{0:d}" ReadOnly="true" />
                     </Columns>
@@ -204,6 +203,4 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    <asp:GridView ID="GridView1" runat="server" EnableModelValidation="True" AutoGenerateColumns="False" >
-    </asp:GridView>
 </asp:Panel>
