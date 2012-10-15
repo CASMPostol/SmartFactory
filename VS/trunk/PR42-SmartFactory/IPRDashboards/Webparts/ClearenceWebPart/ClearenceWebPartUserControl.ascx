@@ -19,6 +19,7 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+    <asp:Panel runat="server" ID="m_FiltersPanel" BorderColor="ActiveCaptionText" GroupingText="Filters">
     <asp:Table runat="server" ID="m_FilterTable" CssClass="Table">
         <asp:TableRow>
             <asp:TableCell VerticalAlign="Top">
@@ -33,7 +34,7 @@
                             <asp:TableCell>
                                 <asp:RadioButtonList ID="m_SelectGroupRadioButtonList" runat="server">
                                     <asp:ListItem Enabled="true" Selected="True" Text="Tobacco" Value="Tobacco"></asp:ListItem>
-                                    <asp:ListItem Enabled="true" Selected="True" Text="Tobacco not allocated" Value="TobaccoNotAllocated"></asp:ListItem>
+                                    <asp:ListItem Enabled="true" Selected="false" Text="Tobacco not allocated" Value="TobaccoNotAllocated"></asp:ListItem>
                                     <asp:ListItem Enabled="true" Selected="false" Text="Dust" Value="Dust"></asp:ListItem>
                                     <asp:ListItem Enabled="true" Selected="false" Text="Waste" Value="Waste"></asp:ListItem>
                                     <asp:ListItem Enabled="true" Selected="false" Text="Cartons" Value="Cartons"></asp:ListItem>
@@ -76,25 +77,6 @@
                 </asp:Panel>
             </asp:TableCell>
             <asp:TableCell VerticalAlign="Top">
-                <asp:Panel runat="server" ID="m_ProcedurePanel" BorderColor="ActiveCaptionText" GroupingText="Procedure">
-                    <asp:Table ID="m_ProcedureTable" runat="server" CssClass="Table">
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:Label ID="m_SelectProcedureLabel" runat="server" Text="Select procedure:" CssClass="Label"></asp:Label>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:RadioButtonList ID="m_ProcedureRadioButtonList" runat="server">
-                                    <asp:ListItem Enabled="true" Selected="True" Text="4051" Value="4051"></asp:ListItem>
-                                    <asp:ListItem Enabled="true" Selected="False" Text="3151" Value="3151"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                    </asp:Table>
-                </asp:Panel>
-            </asp:TableCell>
-            <asp:TableCell VerticalAlign="Top">
                 <asp:Panel runat="server" ID="m_CurrencyPanel" BorderColor="ActiveCaptionText" GroupingText="Currency" HorizontalAlign="Left">
                     <asp:Table ID="m_CurrencyTable" runat="server" CssClass="Table">
                         <asp:TableRow>
@@ -116,6 +98,24 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+    </asp:Panel>
+    <asp:Panel runat="server" ID="m_ProcedurePanel" BorderColor="ActiveCaptionText" GroupingText="Procedure">
+                    <asp:Table ID="m_ProcedureTable" runat="server" CssClass="Table">
+                        <asp:TableRow>
+                            <asp:TableCell>
+                                <asp:Label ID="m_SelectProcedureLabel" runat="server" Text="Select procedure:" CssClass="Label"></asp:Label>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                        <asp:TableRow>
+                            <asp:TableCell>
+                                <asp:RadioButtonList ID="m_ProcedureRadioButtonList" runat="server">
+                                    <asp:ListItem Enabled="true" Selected="True" Text="4051" Value="4051"></asp:ListItem>
+                                    <asp:ListItem Enabled="true" Selected="False" Text="3151" Value="3151"></asp:ListItem>
+                                </asp:RadioButtonList>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                </asp:Panel>
     <asp:Table ID="m_ButtonsTable" runat="server" CssClass="Table">
         <asp:TableRow>
             <asp:TableCell>
@@ -166,7 +166,7 @@
                         <asp:BoundField DataField="Batch" HeaderText="Batch" />
                         <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" />
                         <asp:BoundField DataField="Currency" HeaderText="Currency" />
-                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
+                        <asp:BoundField DataField="Quantity" HeaderText="Quantity"  />
                         <asp:BoundField DataField="Status" HeaderText="Status" />
                         <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString = "{0:d}" />
                     </Columns>
