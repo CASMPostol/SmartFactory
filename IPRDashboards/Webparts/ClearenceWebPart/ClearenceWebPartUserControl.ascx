@@ -20,102 +20,102 @@
         </asp:TableRow>
     </asp:Table>
     <asp:Panel runat="server" ID="m_FiltersPanel" BorderColor="ActiveCaptionText" GroupingText="Filters">
-    <asp:Table runat="server" ID="m_FilterTable" CssClass="Table">
-        <asp:TableRow>
-            <asp:TableCell VerticalAlign="Top">
-                <asp:Panel runat="server" ID="m_GroupPanel" BorderColor="ActiveCaptionText" GroupingText="Group">
-                    <asp:Table ID="m_GroupTable" runat="server" CssClass="Table">
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:Label ID="m_SelectGroupLabel" runat="server" Text="Select group:" CssClass="Label"></asp:Label>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:RadioButtonList ID="m_SelectGroupRadioButtonList" runat="server">
-                                    <asp:ListItem Enabled="true" Selected="True" Text="Tobacco" Value="Tobacco"></asp:ListItem>
-                                    <asp:ListItem Enabled="true" Selected="false" Text="Tobacco not allocated" Value="TobaccoNotAllocated"></asp:ListItem>
-                                    <asp:ListItem Enabled="true" Selected="false" Text="Dust" Value="Dust"></asp:ListItem>
-                                    <asp:ListItem Enabled="true" Selected="false" Text="Waste" Value="Waste"></asp:ListItem>
-                                    <asp:ListItem Enabled="true" Selected="false" Text="Cartons" Value="Cartons"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                    </asp:Table>
-                </asp:Panel>
-            </asp:TableCell>
-            <asp:TableCell VerticalAlign="Top">
-                <asp:Panel runat="server" ID="m_PeriodPanel" BorderColor="ActiveCaptionText" GroupingText="Period">
-                    <asp:Table ID="m_PeriodTable" runat="server" CssClass="Table">
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:Label ID="m_AllDateLabel" runat="server" Text="All" CssClass="Label"></asp:Label>
-                                <asp:CheckBox ID="m_AllDate" runat="server" />
-                            </asp:TableCell>
-                        </asp:TableRow>
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:Label ID="m_StartDateLabel" runat="server" Text="Start date:" CssClass="Label"></asp:Label>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" />
-                            </asp:TableCell>
-                        </asp:TableRow>
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:Label ID="m_EndDateLabel" runat="server" Text="End date:" CssClass="Label"></asp:Label>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" />
-                            </asp:TableCell>
-                        </asp:TableRow>
-                    </asp:Table>
-                </asp:Panel>
-            </asp:TableCell>
-            <asp:TableCell VerticalAlign="Top">
-                <asp:Panel runat="server" ID="m_CurrencyPanel" BorderColor="ActiveCaptionText" GroupingText="Currency" HorizontalAlign="Left">
-                    <asp:Table ID="m_CurrencyTable" runat="server" CssClass="Table">
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:Label ID="m_SelectCurrencyLabel" runat="server" Text="Select currency:" CssClass="Label"></asp:Label>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:RadioButtonList ID="m_SelectCurrencyRadioButtonList" runat="server">
-                                    <asp:ListItem Enabled="true" Selected="False" Text="All" Value="All"></asp:ListItem>
-                                    <asp:ListItem Enabled="true" Selected="True" Text="PLN" Value="PLN"></asp:ListItem>
-                                    <asp:ListItem Enabled="true" Selected="False" Text="USD" Value="USD"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                    </asp:Table>
-                </asp:Panel>
-            </asp:TableCell>
-        </asp:TableRow>
-    </asp:Table>
+        <asp:Table runat="server" ID="m_FilterTable" CssClass="Table">
+            <asp:TableRow>
+                <asp:TableCell VerticalAlign="Top">
+                    <asp:Panel runat="server" ID="m_GroupPanel" BorderColor="ActiveCaptionText" GroupingText="Group">
+                        <asp:Table ID="m_GroupTable" runat="server" CssClass="Table">
+                            <asp:TableRow>
+                                <asp:TableCell>
+                                    <asp:Label ID="m_SelectGroupLabel" runat="server" Text="Select group:" CssClass="Label"></asp:Label>
+                                </asp:TableCell>
+                            </asp:TableRow>
+                            <asp:TableRow>
+                                <asp:TableCell>
+                                    <asp:RadioButtonList ID="m_SelectGroupRadioButtonList" runat="server">
+                                        <asp:ListItem Enabled="true" Selected="True" Text="Tobacco" Value="Tobacco"></asp:ListItem>
+                                        <asp:ListItem Enabled="true" Selected="false" Text="Tobacco not allocated" Value="TobaccoNotAllocated"></asp:ListItem>
+                                        <asp:ListItem Enabled="true" Selected="false" Text="Dust" Value="Dust"></asp:ListItem>
+                                        <asp:ListItem Enabled="true" Selected="false" Text="Waste" Value="Waste"></asp:ListItem>
+                                        <asp:ListItem Enabled="true" Selected="false" Text="Cartons" Value="Cartons"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                </asp:TableCell>
+                            </asp:TableRow>
+                        </asp:Table>
+                    </asp:Panel>
+                </asp:TableCell>
+                <asp:TableCell VerticalAlign="Top">
+                    <asp:Panel runat="server" ID="m_PeriodPanel" BorderColor="ActiveCaptionText" GroupingText="Period">
+                        <asp:Table ID="m_PeriodTable" runat="server" CssClass="Table">
+                            <asp:TableRow>
+                                <asp:TableCell>
+                                    <asp:Label ID="m_AllDateLabel" runat="server" Text="All" CssClass="Label"></asp:Label>
+                                    <asp:CheckBox ID="m_AllDate" runat="server" />
+                                </asp:TableCell>
+                            </asp:TableRow>
+                            <asp:TableRow>
+                                <asp:TableCell>
+                                    <asp:Label ID="m_StartDateLabel" runat="server" Text="Start date:" CssClass="Label"></asp:Label>
+                                </asp:TableCell>
+                            </asp:TableRow>
+                            <asp:TableRow>
+                                <asp:TableCell>
+                                    <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" />
+                                </asp:TableCell>
+                            </asp:TableRow>
+                            <asp:TableRow>
+                                <asp:TableCell>
+                                    <asp:Label ID="m_EndDateLabel" runat="server" Text="End date:" CssClass="Label"></asp:Label>
+                                </asp:TableCell>
+                            </asp:TableRow>
+                            <asp:TableRow>
+                                <asp:TableCell>
+                                    <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" />
+                                </asp:TableCell>
+                            </asp:TableRow>
+                        </asp:Table>
+                    </asp:Panel>
+                </asp:TableCell>
+                <asp:TableCell VerticalAlign="Top">
+                    <asp:Panel runat="server" ID="m_CurrencyPanel" BorderColor="ActiveCaptionText" GroupingText="Currency" HorizontalAlign="Left">
+                        <asp:Table ID="m_CurrencyTable" runat="server" CssClass="Table">
+                            <asp:TableRow>
+                                <asp:TableCell>
+                                    <asp:Label ID="m_SelectCurrencyLabel" runat="server" Text="Select currency:" CssClass="Label"></asp:Label>
+                                </asp:TableCell>
+                            </asp:TableRow>
+                            <asp:TableRow>
+                                <asp:TableCell>
+                                    <asp:RadioButtonList ID="m_SelectCurrencyRadioButtonList" runat="server">
+                                        <asp:ListItem Enabled="true" Selected="False" Text="All" Value="All"></asp:ListItem>
+                                        <asp:ListItem Enabled="true" Selected="True" Text="PLN" Value="PLN"></asp:ListItem>
+                                        <asp:ListItem Enabled="true" Selected="False" Text="USD" Value="USD"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                </asp:TableCell>
+                            </asp:TableRow>
+                        </asp:Table>
+                    </asp:Panel>
+                </asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
     </asp:Panel>
     <asp:Panel runat="server" ID="m_ProcedurePanel" BorderColor="ActiveCaptionText" GroupingText="Procedure">
-                    <asp:Table ID="m_ProcedureTable" runat="server" CssClass="Table">
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:Label ID="m_SelectProcedureLabel" runat="server" Text="Select procedure:" CssClass="Label"></asp:Label>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                        <asp:TableRow>
-                            <asp:TableCell>
-                                <asp:RadioButtonList ID="m_ProcedureRadioButtonList" runat="server">
-                                    <asp:ListItem Enabled="true" Selected="True" Text="4051" Value="4051"></asp:ListItem>
-                                    <asp:ListItem Enabled="true" Selected="False" Text="3151" Value="3151"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                    </asp:Table>
-                </asp:Panel>
+        <asp:Table ID="m_ProcedureTable" runat="server" CssClass="Table">
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Label ID="m_SelectProcedureLabel" runat="server" Text="Select procedure:" CssClass="Label"></asp:Label>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:RadioButtonList ID="m_ProcedureRadioButtonList" runat="server">
+                        <asp:ListItem Enabled="true" Selected="True" Text="4051" Value="4051"></asp:ListItem>
+                        <asp:ListItem Enabled="true" Selected="False" Text="3151" Value="3151"></asp:ListItem>
+                    </asp:RadioButtonList>
+                </asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+    </asp:Panel>
     <asp:Table ID="m_ButtonsTable" runat="server" CssClass="Table">
         <asp:TableRow>
             <asp:TableCell>
@@ -156,20 +156,6 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:GridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="true" AutoGenerateColumns="false">
-                    <Columns>
-                        <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
-                        <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" />
-                        <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" />
-                        <asp:BoundField DataField="SKU" HeaderText="SKU" SortExpression="SKU" ReadOnly="true" />
-                        <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" />
-                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" ReadOnly="true" />
-                        <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" />
-                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
-                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" ReadOnly="true" />
-                        <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString = "{0:d}" ReadOnly="true" />
-                    </Columns>
-                </asp:GridView>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -185,21 +171,57 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <SharePoint:SPGridView ID="m_AssignedGridView" runat="server" AllowSorting="True" AllowPaging="true" AutoGenerateColumns="false" DataKeyNames="ID">
+                <asp:GridView ID="m_AssignedGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="Not selected" EnableModelValidation="True">
                     <Columns>
-                        <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
-                        <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" />
-                        <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" />
-                        <asp:BoundField DataField="SKU" HeaderText="SKU" SortExpression="SKU" ReadOnly="true" />
-                        <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" />
+                        <asp:CommandField ShowEditButton="True" />
+                        <asp:BoundField DataField="DocumentNo" HeaderText="Document No" ReadOnly="true" SortExpression="DocumentNo" />
+                        <asp:BoundField DataField="DebtDate" DataFormatString="{0:d}" HeaderText="Debt date" ReadOnly="true" SortExpression="DebtDate" />
+                        <asp:BoundField DataField="ValidTo" DataFormatString="{0:d}" HeaderText="Valid To" ReadOnly="true" SortExpression="ValidTo" />
+                        <asp:BoundField DataField="SKU" HeaderText="SKU" ReadOnly="true" SortExpression="SKU" />
+                        <asp:BoundField DataField="Batch" HeaderText="Batch" ReadOnly="true" SortExpression="Batch" />
                         <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" ReadOnly="true" />
                         <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" />
                         <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="false" />
-                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" ReadOnly="true" />
-                        <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString = "{0:d}" ReadOnly="true" />
+                        <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" SortExpression="Status" />
+                        <asp:BoundField DataField="Created" DataFormatString="{0:d}" HeaderText="Created" ReadOnly="true" />
                     </Columns>
-                </SharePoint:SPGridView>
+                </asp:GridView>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+    <asp:GridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" EnableModelValidation="True" 
+        OnRowCancelingEdit="m_AvailableGridView_RowCancelingEdit" 
+        OnRowEditing="m_AvailableGridView_RowEditing" OnRowUpdated="m_AvailableGridView_RowUpdated" 
+        OnRowUpdating="m_AvailableGridView_RowUpdating" OnSorting="m_AvailableGridView_Sorting">
+        <Columns>
+            <asp:CommandField HeaderText="Select all" ShowEditButton="True" ShowSelectButton="True" />
+            <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
+            <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" />
+            <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" />
+            <asp:BoundField DataField="SKU" HeaderText="SKU" SortExpression="SKU" ReadOnly="true" />
+            <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" />
+            <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" ReadOnly="true" />
+            <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" SortExpression="Currency" />
+            <asp:TemplateField HeaderText="Quantity">
+                <EditItemTemplate>
+                    <asp:TextBox ID="QuantityNewValue" runat="server" Text='<%# Bind("Quantity") %>'></asp:TextBox>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="QuantityOldValue" runat="server" Text='<%# Bind("Quantity") %>'></asp:Label>
+                </ItemTemplate>
+                <ItemStyle HorizontalAlign="Right" />
+            </asp:TemplateField>
+            <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" ReadOnly="true" />
+            <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString="{0:d}" ReadOnly="true" />
+            <asp:TemplateField HeaderText="ID" SortExpression="ID" Visible="False">
+                <EditItemTemplate>
+                    <asp:Label ID="IDEditLabel" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
+
 </asp:Panel>

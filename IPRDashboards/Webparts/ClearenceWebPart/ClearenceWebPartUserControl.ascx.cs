@@ -74,29 +74,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         {
           at = "InitMahine";
           m_StateMachineEngine.InitMahine();
-          m_AvailableGridView.EmptyDataText = "Not selected";
-          //m_AvailableGridView.AutoGenerateSelectButton = true;
-          //m_AvailableGridView.AutoGenerateEditButton = true;
-          m_AvailableGridView.AllowSorting = true;
-          //TODO IPR: - DocumentNo - Customs debt date - OGL valid to - SKU - Batch - Unit price - Currency 
-          //TODO Disposal: - Settled quantity - Disposal Status - Created Other: - FG Batch - lookup from disposal to batch list - Required Quantity - should be added as a text box - Select - check box 
           at = "AddColumn";
           //m_AvailableGridView.DataBound += m_AssignedGridView_DataBound;
-          //AddColumn( new CheckBoxField() { DataField = ""/* "Selected"*/, HeaderText = "Select all" } );
-          //AddColumn( new CommandField() { ShowEditButton = true } );
-          //AddColumn( new BoundField() { DataField = "DocumentNo", HeaderText = "Document No", SortExpression = "DocumentNo", ReadOnly = true } );
-          //AddColumn( new BoundField() { DataField = "DebtDate", HeaderText = "Debt date", DataFormatString = "{0:d}", SortExpression = "DebtDate", ReadOnly = true } );
-          //AddColumn( new BoundField() { DataField = "ValidTo", HeaderText = "Valid To ", DataFormatString = "{0:d}", SortExpression = "ValidTo", ReadOnly = true } );
-          //AddColumn( new BoundField() { DataField = "SKU", HeaderText = "SKU" } );
-          //AddColumn( new BoundField() { DataField = "Batch", HeaderText = "Batch" } );
-          //AddColumn( new BoundField() { DataField = "UnitPrice", HeaderText = "Unit price" } );
-          //AddColumn( new BoundField() { DataField = "Currency", HeaderText = "Currency" } );
-          //AddColumn( new BoundField() { DataField = "Quantity", HeaderText = "Quantity" } );
-          //AddColumn( new BoundField() { DataField = "Status", HeaderText = "Status" } );
-          //AddColumn( new BoundField() { DataField = "Created", HeaderText = "Created", DataFormatString = "{0:d}" } );
-          //TemplateField _itField = new TemplateField() { HeaderText = "ID", Visible = true };
-          //_itField.ItemTemplate 
-          //AddColumn( _itField);
           //m_AvailableGridView.AllowFiltering = false;
           at = "DataTable";
           Selection _data = new Selection() { };
@@ -106,7 +85,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
                             orderby _ogl ascending
                             select new
                             {
-                              //Selected = false,
                               DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
                               DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
                               ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
@@ -124,27 +102,27 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           foreach ( var _rowx in _dataQery )
           {
             Selection.SelectionTableRow _nr = _data.SelectionTable.NewSelectionTableRow();
+            _nr.Batch = _rowx.Batch;
+            _nr.Created = _rowx.Created;
+            _nr.Currency = _rowx.Currency;
             _nr.DocumentNo = _rowx.DocumentNo;
             _nr.DebtDate = _rowx.DebtDate.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
-            _nr.ValidTo = _rowx.ValidTo.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
-            _nr.Quantity = _rowx.Quantity.Value;
             _nr.ID = _rowx.ID;
+            _nr.SKU = _rowx.SKU;
+            _nr.Quantity = _rowx.Quantity.Value;
+            _nr.Status = _rowx.Status.ToString();
+            _nr.UnitPrice = _rowx.UnitPrice.Value;
+            _nr.ValidTo = _rowx.ValidTo.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
             _data.SelectionTable.AddSelectionTableRow( _nr );
-
           }
           //Persist the table in the ControlState object.
           m_ControlState.AvailableItems = _data;
           at = "DataSource";
           //ObjectDataSource _availableDataSource = GetObjectDataSource();
           //Bind the GridView control to the data source.
-          BindData();
+          m_AvailableGridViewBindData();
         }
         at = "Event handlers";
-        //m_AvailableGridView.Sorting += m_AvailableGridView_Sorting;
-        m_AvailableGridView.RowEditing += m_AvailableGridView_RowEditing;
-        m_AvailableGridView.RowUpdating += m_AvailableGridView_RowUpdating;
-        m_AvailableGridView.RowUpdated += m_AvailableGridView_RowUpdated;
-        m_AvailableGridView.RowCancelingEdit += m_AvailableGridView_RowCancelingEdit;
         m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
         m_NewButton.Click += new EventHandler( m_StateMachineEngine.NewButton_Click );
         m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
@@ -159,49 +137,56 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
     }
-    private void m_AvailableGridView_RowCancelingEdit( object sender, GridViewCancelEditEventArgs e )
+
+    #region GridView event handlers
+    protected void m_AvailableGridView_RowEditing( object sender, GridViewEditEventArgs e )
+    {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      _sender.EditIndex = e.NewEditIndex;
+      m_AvailableGridViewBindData();
+    }
+    protected void m_AvailableGridView_RowCancelingEdit( object sender, GridViewCancelEditEventArgs e )
     {
       GridView _sender = sender as GridView;
       if ( _sender == null )
         return;
       _sender.EditIndex = -1;
-      BindData();
+      m_AvailableGridViewBindData();
     }
-    private void m_AvailableGridView_RowUpdating( object sender, GridViewUpdateEventArgs e )
+    protected void m_AvailableGridView_RowUpdating( object sender, GridViewUpdateEventArgs e )
     {
       GridView _sender = sender as GridView;
       if ( _sender == null )
         return;
       //Update the values.
       GridViewRow row = _sender.Rows[ e.RowIndex ];
-      //string _id = ( (TextBox)FindControlRecursive(row, "ID" ) ).Text;
-      //string _qtty = ( (TextBox)FindControlRecursive(row,  "Quantity" ) ).Text;
-      string _qtty = ( (TextBox)( row.Cells[ 4 ].Controls[ 0 ] ) ).Text;
-      string _id = ( (Label)( row.Cells[ 5 ].Controls[ 0 ] ) ).Text;
-      //dt.Rows[ row.DataItemIndex ][ "IsComplete" ] = ( (CheckBox)( row.Cells[ 3 ].Controls[ 0 ] ) ).Checked;
-
-      //Selection.SelectionTableRow _row = m_ControlState.AvailableItems.SelectionTable.FindByID( (int)e.Keys[ "ID" ] );
-      //double Quantity = (double)e.NewValues[ "Quantity" ];
-      //if ( Quantity > _row.Quantity )
-      //  throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
-      //_row.Quantity -= Quantity;
-      //_sender.EditIndex = -1;
-      BindData();
+      List<Control> _controls = new List<Control>();
+      int _id = ( (Label)FindControlRecursive( row, "IDEditLabel", _controls ) ).Text.String2Int().Value;
+      double _qtty = double.Parse( ( (TextBox)FindControlRecursive( row, "QuantityNewValue", _controls ) ).Text );
+      Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _id );
+      if ( _slctdItem.Quantity < _qtty )
+        SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
+      _slctdItem.Quantity -= _qtty;
+      _sender.EditIndex = -1;
+      m_AvailableGridViewBindData();
     }
-    private Control FindControlRecursive( Control rootControl, string controlID )
+    protected Control FindControlRecursive( Control rootControl, string controlID, List<Control> _ctrls )
     {
+
+      _ctrls.Add( rootControl );
       if ( rootControl.ID == controlID )
         return rootControl;
       foreach ( Control controlToSearch in rootControl.Controls )
       {
-        Control controlToReturn =
-            FindControlRecursive( controlToSearch, controlID );
+        Control controlToReturn = FindControlRecursive( controlToSearch, controlID, _ctrls );
         if ( controlToReturn != null )
           return controlToReturn;
       }
       return null;
     }
-    private void m_AvailableGridView_RowUpdated( object sender, GridViewUpdatedEventArgs e )
+    protected void m_AvailableGridView_RowUpdated( object sender, GridViewUpdatedEventArgs e )
     {
       GridView _sender = sender as GridView;
       if ( _sender == null )
@@ -215,11 +200,44 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
       _row.Quantity -= Quantity;
       _sender.EditIndex = -1;
-      BindData();
+      m_AvailableGridViewBindData();
     }
-    private void BindData()
+    protected void m_AvailableGridView_Sorting( object sender, GridViewSortEventArgs e )
     {
-      m_AvailableGridView.DataSource = m_ControlState.AvailableItems;
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      //Retrieve the table from the session object.
+      if ( m_ControlState.AvailableItems == null )
+        return;
+      //Sort the data.
+      m_ControlState.AvailableItems.SelectionTable.DefaultView.Sort = e.SortExpression + " " + m_ControlState.GetSortDirection( e.SortExpression );
+      m_AvailableGridViewBindData();
+    }
+    protected void m_AssignedGridView_DataBound( object sender, EventArgs e )
+    {
+      string at = "starting";
+      try
+      {
+        at = "GridViewRow";
+        GridViewRow _heade = m_AvailableGridView.HeaderRow;
+        at = "Cells[ 0 ].Controls.Clear";
+        _heade.Cells[ 0 ].Controls.Clear();
+        at = "new CheckBox";
+        m_AssignedCheckAll = new CheckBox() { Text = "All", Checked = false };
+        _heade.Cells[ 0 ].Controls.Add( m_AssignedCheckAll );
+      }
+      catch ( Exception ex )
+      {
+        ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
+        this.Controls.Add( _ae.CreateMessage( at, true ) );
+      }
+    }
+    #endregion
+
+    private void m_AvailableGridViewBindData()
+    {
+      m_AvailableGridView.DataSource = m_ControlState.AvailableItems.SelectionTable.DefaultView;
       m_AvailableGridView.DataBind();
     }
     internal ObjectDataSource GetObjectDataSource()
@@ -244,46 +262,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       e.ObjectInstance = new SelectionDataObject( m_ControlState.AvailableItems );
     }
 
-    void m_AvailableGridView_RowEditing( object sender, GridViewEditEventArgs e )
-    {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
-        return;
-      _sender.EditIndex = e.NewEditIndex;
-      BindData();
-    }
-    private void m_AvailableGridView_Sorting( object sender, GridViewSortEventArgs e )
-    {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
-        return;
-      //Retrieve the table from the session object.
-      if ( m_ControlState.AvailableItems == null )
-        return;
-      //Sort the data.
-      m_ControlState.AvailableItems.SelectionTable.DefaultView.Sort = e.SortExpression + " " + m_ControlState.GetSortDirection( e.SortExpression );
-      _sender.DataSource = GetObjectDataSource();
-      _sender.DataBind();
-    }
-    private void m_AssignedGridView_DataBound( object sender, EventArgs e )
-    {
-      string at = "starting";
-      try
-      {
-        at = "GridViewRow";
-        GridViewRow _heade = m_AvailableGridView.HeaderRow;
-        at = "Cells[ 0 ].Controls.Clear";
-        _heade.Cells[ 0 ].Controls.Clear();
-        at = "new CheckBox";
-        m_AssignedCheckAll = new CheckBox() { Text = "All", Checked = false };
-        _heade.Cells[ 0 ].Controls.Add( m_AssignedCheckAll );
-      }
-      catch ( Exception ex )
-      {
-        ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
-        this.Controls.Add( _ae.CreateMessage( at, true ) );
-      }
-    }
     private void AddColumn( DataControlField _column )
     {
       m_AvailableGridView.Columns.Add( _column );
@@ -654,9 +632,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       return GenericStateMachineEngine.ActionResult.Success;
     }
     #endregion
-
-
-
     private CheckBox m_AssignedCheckAll { get; set; }
   }
 }
