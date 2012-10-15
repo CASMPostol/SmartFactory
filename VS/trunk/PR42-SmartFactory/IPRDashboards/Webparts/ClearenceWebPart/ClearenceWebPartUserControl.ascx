@@ -158,7 +158,6 @@
             <asp:TableCell>
                 <asp:GridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="true" AutoGenerateColumns="false">
                     <Columns>
-                        <asp:CheckBoxField HeaderText="Select" />
                         <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
                         <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" />
                         <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" />

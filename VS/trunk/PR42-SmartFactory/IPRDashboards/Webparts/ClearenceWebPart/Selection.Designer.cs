@@ -288,6 +288,18 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             private global::System.Data.DataColumn columnQuantity;
             
+            private global::System.Data.DataColumn columnUnitPrice;
+            
+            private global::System.Data.DataColumn columnCurrency;
+            
+            private global::System.Data.DataColumn columnCreated;
+            
+            private global::System.Data.DataColumn columnStatus;
+            
+            private global::System.Data.DataColumn columnBatch;
+            
+            private global::System.Data.DataColumn columnSKU;
+            
             private global::System.Data.DataColumn columnID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -357,6 +369,54 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UnitPriceColumn {
+                get {
+                    return this.columnUnitPrice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CurrencyColumn {
+                get {
+                    return this.columnCurrency;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CreatedColumn {
+                get {
+                    return this.columnCreated;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn StatusColumn {
+                get {
+                    return this.columnStatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BatchColumn {
+                get {
+                    return this.columnBatch;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SKUColumn {
+                get {
+                    return this.columnSKU;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn IDColumn {
                 get {
                     return this.columnID;
@@ -400,13 +460,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SelectionTableRow AddSelectionTableRow(string DocumentNo, System.DateTime DebtDate, System.DateTime ValidTo, double Quantity, int ID) {
+            public SelectionTableRow AddSelectionTableRow(string DocumentNo, System.DateTime DebtDate, System.DateTime ValidTo, double Quantity, double UnitPrice, string Currency, System.DateTime Created, string Status, string Batch, string SKU, int ID) {
                 SelectionTableRow rowSelectionTableRow = ((SelectionTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         DocumentNo,
                         DebtDate,
                         ValidTo,
                         Quantity,
+                        UnitPrice,
+                        Currency,
+                        Created,
+                        Status,
+                        Batch,
+                        SKU,
                         ID};
                 rowSelectionTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSelectionTableRow);
@@ -441,6 +507,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 this.columnDebtDate = base.Columns["DebtDate"];
                 this.columnValidTo = base.Columns["ValidTo"];
                 this.columnQuantity = base.Columns["Quantity"];
+                this.columnUnitPrice = base.Columns["UnitPrice"];
+                this.columnCurrency = base.Columns["Currency"];
+                this.columnCreated = base.Columns["Created"];
+                this.columnStatus = base.Columns["Status"];
+                this.columnBatch = base.Columns["Batch"];
+                this.columnSKU = base.Columns["SKU"];
                 this.columnID = base.Columns["ID"];
             }
             
@@ -455,6 +527,18 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 base.Columns.Add(this.columnValidTo);
                 this.columnQuantity = new global::System.Data.DataColumn("Quantity", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQuantity);
+                this.columnUnitPrice = new global::System.Data.DataColumn("UnitPrice", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUnitPrice);
+                this.columnCurrency = new global::System.Data.DataColumn("Currency", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCurrency);
+                this.columnCreated = new global::System.Data.DataColumn("Created", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCreated);
+                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatus);
+                this.columnBatch = new global::System.Data.DataColumn("Batch", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBatch);
+                this.columnSKU = new global::System.Data.DataColumn("SKU", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSKU);
                 this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -463,6 +547,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 this.columnDebtDate.Caption = "Debt Date";
                 this.columnValidTo.Caption = "Valid To";
                 this.columnQuantity.AllowDBNull = false;
+                this.columnUnitPrice.AllowDBNull = false;
+                this.columnUnitPrice.Caption = "Unit Price";
+                this.columnCurrency.AllowDBNull = false;
+                this.columnCreated.AllowDBNull = false;
+                this.columnStatus.AllowDBNull = false;
+                this.columnBatch.AllowDBNull = false;
+                this.columnSKU.AllowDBNull = false;
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
             }
@@ -661,6 +752,72 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 }
                 set {
                     this[this.tableSelectionTable.QuantityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double UnitPrice {
+                get {
+                    return ((double)(this[this.tableSelectionTable.UnitPriceColumn]));
+                }
+                set {
+                    this[this.tableSelectionTable.UnitPriceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Currency {
+                get {
+                    return ((string)(this[this.tableSelectionTable.CurrencyColumn]));
+                }
+                set {
+                    this[this.tableSelectionTable.CurrencyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime Created {
+                get {
+                    return ((global::System.DateTime)(this[this.tableSelectionTable.CreatedColumn]));
+                }
+                set {
+                    this[this.tableSelectionTable.CreatedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Status {
+                get {
+                    return ((string)(this[this.tableSelectionTable.StatusColumn]));
+                }
+                set {
+                    this[this.tableSelectionTable.StatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Batch {
+                get {
+                    return ((string)(this[this.tableSelectionTable.BatchColumn]));
+                }
+                set {
+                    this[this.tableSelectionTable.BatchColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SKU {
+                get {
+                    return ((string)(this[this.tableSelectionTable.SKUColumn]));
+                }
+                set {
+                    this[this.tableSelectionTable.SKUColumn] = value;
                 }
             }
             
