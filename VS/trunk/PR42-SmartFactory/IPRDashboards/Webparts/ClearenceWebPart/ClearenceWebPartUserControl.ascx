@@ -162,13 +162,13 @@
                         <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
                         <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" />
                         <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" />
-                        <asp:BoundField DataField="SKU" HeaderText="SKU" />
-                        <asp:BoundField DataField="Batch" HeaderText="Batch" />
-                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" />
-                        <asp:BoundField DataField="Currency" HeaderText="Currency" />
-                        <asp:BoundField DataField="Quantity" HeaderText="Quantity"  />
-                        <asp:BoundField DataField="Status" HeaderText="Status" />
-                        <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString = "{0:d}" />
+                        <asp:BoundField DataField="SKU" HeaderText="SKU" SortExpression="SKU" ReadOnly="true" />
+                        <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" />
+                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" ReadOnly="true" />
+                        <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" />
+                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
+                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" ReadOnly="true" />
+                        <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString = "{0:d}" ReadOnly="true" />
                     </Columns>
                 </asp:GridView>
             </asp:TableCell>
@@ -192,13 +192,13 @@
                         <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
                         <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" />
                         <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" />
-                        <asp:BoundField DataField="SKU" HeaderText="SKU" />
-                        <asp:BoundField DataField="Batch" HeaderText="Batch" />
-                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" />
-                        <asp:BoundField DataField="Currency" HeaderText="Currency" />
-                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
-                        <asp:BoundField DataField="Status" HeaderText="Status" />
-                        <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString = "{0:d}" />
+                        <asp:BoundField DataField="SKU" HeaderText="SKU" SortExpression="SKU" ReadOnly="true" />
+                        <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" />
+                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" ReadOnly="true" />
+                        <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" />
+                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="true" />
+                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" ReadOnly="true" />
+                        <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString = "{0:d}" ReadOnly="true" />
                     </Columns>
                 </SharePoint:SPGridView>
             </asp:TableCell>
