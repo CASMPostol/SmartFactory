@@ -137,9 +137,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
     }
-
-
-
     private void m_AvailableGridViewBindData()
     {
       m_AvailableGridView.DataSource = m_ControlState.AvailableItems.SelectionTable.DefaultView;
@@ -550,6 +547,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       _sender.EditIndex = -1;
       m_AvailableGridViewBindData();
     }
+    /// <summary>
+    /// Finds the control recursive.
+    /// </summary>
+    /// <param name="rootControl">The root control.</param>
+    /// <param name="controlID">The control ID.</param>
+    /// <param name="_ctrls">The _CTRLS.</param>
+    /// <returns></returns>
     protected Control FindControlRecursive( Control rootControl, string controlID, List<Control> _ctrls )
     {
 
@@ -564,6 +568,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       }
       return null;
     }
+    /// <summary>
+    /// Handles the RowUpdated event of the m_AvailableGridView control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="GridViewUpdatedEventArgs" /> instance containing the event data.</param>
     protected void m_AvailableGridView_RowUpdated( object sender, GridViewUpdatedEventArgs e )
     {
       GridView _sender = sender as GridView;
@@ -580,6 +589,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       _sender.EditIndex = -1;
       m_AvailableGridViewBindData();
     }
+    /// <summary>
+    /// Handles the Sorting event of the m_AvailableGridView control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="GridViewSortEventArgs" /> instance containing the event data.</param>
     protected void m_AvailableGridView_Sorting( object sender, GridViewSortEventArgs e )
     {
       GridView _sender = sender as GridView;
@@ -592,6 +606,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       m_ControlState.AvailableItems.SelectionTable.DefaultView.Sort = e.SortExpression + " " + m_ControlState.GetSortDirection( e.SortExpression );
       m_AvailableGridViewBindData();
     }
+    /// <summary>
+    /// Handles the DataBound event of the m_AssignedGridView control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
     protected void m_AssignedGridView_DataBound( object sender, EventArgs e )
     {
       string at = "starting";
