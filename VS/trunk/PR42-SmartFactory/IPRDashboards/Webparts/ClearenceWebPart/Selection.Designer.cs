@@ -460,7 +460,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SelectionTableRow AddSelectionTableRow(string DocumentNo, System.DateTime DebtDate, System.DateTime ValidTo, double Quantity, double UnitPrice, string Currency, System.DateTime Created, string Status, string Batch, string SKU, int ID) {
+            public SelectionTableRow AddSelectionTableRow(string DocumentNo, System.DateTime DebtDate, System.DateTime ValidTo, double Quantity, double UnitPrice, string Currency, System.DateTime Created, string Status, string Batch, string SKU, string ID) {
                 SelectionTableRow rowSelectionTableRow = ((SelectionTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         DocumentNo,
@@ -481,7 +481,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SelectionTableRow FindByID(int ID) {
+            public SelectionTableRow FindByID(string ID) {
                 return ((SelectionTableRow)(this.Rows.Find(new object[] {
                             ID})));
             }
@@ -539,7 +539,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 base.Columns.Add(this.columnBatch);
                 this.columnSKU = new global::System.Data.DataColumn("SKU", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSKU);
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
@@ -555,6 +555,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 this.columnBatch.AllowDBNull = false;
                 this.columnSKU.AllowDBNull = false;
                 this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
                 this.columnID.Unique = true;
             }
             
@@ -823,9 +824,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ID {
+            public string ID {
                 get {
-                    return ((int)(this[this.tableSelectionTable.IDColumn]));
+                    return ((string)(this[this.tableSelectionTable.IDColumn]));
                 }
                 set {
                     this[this.tableSelectionTable.IDColumn] = value;
