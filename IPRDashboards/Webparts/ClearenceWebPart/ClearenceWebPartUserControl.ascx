@@ -24,30 +24,31 @@
             <asp:TableRow>
                 <asp:TableCell VerticalAlign="Top">
                     <asp:Panel runat="server" ID="m_GroupPanel" BorderColor="ActiveCaptionText" GroupingText="Group">
-                                    <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_SelectGroupRadioButtonList" runat="server" >
-                                        <asp:ListItem Enabled="true" Selected="True" Text="Tobacco" Value="Tobacco"></asp:ListItem>
-                                        <asp:ListItem Enabled="true" Selected="false" Text="Tobacco not allocated" Value="TobaccoNotAllocated"></asp:ListItem>
-                                        <asp:ListItem Enabled="true" Selected="false" Text="Dust" Value="Dust"></asp:ListItem>
-                                        <asp:ListItem Enabled="true" Selected="false" Text="Waste" Value="Waste"></asp:ListItem>
-                                        <asp:ListItem Enabled="true" Selected="false" Text="Cartons" Value="Cartons"></asp:ListItem>
-                                    </asp:RadioButtonList>
-                    </asp:Panel><br/>
+                        <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_SelectGroupRadioButtonList" runat="server">
+                            <asp:ListItem Enabled="true" Selected="True" Text="Tobacco" Value="Tobacco"></asp:ListItem>
+                            <asp:ListItem Enabled="true" Selected="false" Text="Tobacco not allocated" Value="TobaccoNotAllocated"></asp:ListItem>
+                            <asp:ListItem Enabled="true" Selected="false" Text="Dust" Value="Dust"></asp:ListItem>
+                            <asp:ListItem Enabled="true" Selected="false" Text="Waste" Value="Waste"></asp:ListItem>
+                            <asp:ListItem Enabled="true" Selected="false" Text="Cartons" Value="Cartons"></asp:ListItem>
+                        </asp:RadioButtonList>
+                    </asp:Panel>
+                    <br />
                     <asp:Panel runat="server" ID="m_CurrencyPanel" BorderColor="ActiveCaptionText" GroupingText="Currency" HorizontalAlign="Left">
-                                    <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_SelectCurrencyRadioButtonList" runat="server">
-                                        <asp:ListItem Enabled="true" Selected="False" Text="All" Value="All"></asp:ListItem>
-                                        <asp:ListItem Enabled="true" Selected="True" Text="PLN" Value="PLN"></asp:ListItem>
-                                        <asp:ListItem Enabled="true" Selected="False" Text="USD" Value="USD"></asp:ListItem>
-                                    </asp:RadioButtonList>
+                        <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_SelectCurrencyRadioButtonList" runat="server">
+                            <asp:ListItem Enabled="true" Selected="False" Text="All" Value="All"></asp:ListItem>
+                            <asp:ListItem Enabled="true" Selected="True" Text="PLN" Value="PLN"></asp:ListItem>
+                            <asp:ListItem Enabled="true" Selected="False" Text="USD" Value="USD"></asp:ListItem>
+                        </asp:RadioButtonList>
                     </asp:Panel>
                 </asp:TableCell>
                 <asp:TableCell VerticalAlign="Top">
                     <asp:Panel runat="server" ID="m_PeriodPanel" BorderColor="ActiveCaptionText" GroupingText="Period">
-                                    <asp:Label ID="m_AllDateLabel" runat="server" Text="All" CssClass="Label" />
-                                    <asp:CheckBox ID="m_AllDate" runat="server" /><br />
-                                    <asp:Label ID="m_StartDateLabel" runat="server" Text="Start date:" CssClass="Label" />
-                                    <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" />
-                                    <asp:Label ID="m_EndDateLabel" runat="server" Text="End date:" CssClass="Label"/>
-                                    <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" />
+                        <asp:Label ID="m_AllDateLabel" runat="server" Text="All" CssClass="Label" />
+                        <asp:CheckBox ID="m_AllDate" runat="server" /><br />
+                        <asp:Label ID="m_StartDateLabel" runat="server" Text="Start date:" CssClass="Label" />
+                        <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" />
+                        <asp:Label ID="m_EndDateLabel" runat="server" Text="End date:" CssClass="Label" />
+                        <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" />
                     </asp:Panel>
                 </asp:TableCell>
             </asp:TableRow>
@@ -105,12 +106,10 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:GridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" EnableModelValidation="True" 
-                    OnRowCancelingEdit="m_AvailableGridView_RowCancelingEdit" 
-                    OnRowEditing="m_AvailableGridView_RowEditing" OnRowUpdated="m_AvailableGridView_RowUpdated" 
-                    OnRowUpdating="m_AvailableGridView_RowUpdating" OnSorting="m_AvailableGridView_Sorting" OnPageIndexChanging="m_AvailableGridView_PageIndexChanging">
+                <SharePoint:SPGridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID"
+                    AllowFiltering="true" FilterDataFields="DocumentNo,DebtDate,ValidTo,SKU,Batch,UnitPrice,Currency,Quantity,Status,Created" FilteredDataSourcePropertyName="FilterExpression" FilteredDataSourcePropertyFormat="{1} like '{0}'"
+                    >
                     <Columns>
-                        <asp:CommandField HeaderText="Select all" ShowEditButton="True" ShowSelectButton="True" />
                         <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
                         <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" />
                         <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" />
@@ -118,7 +117,7 @@
                         <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" />
                         <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" ReadOnly="true" />
                         <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" SortExpression="Currency" />
-                        <asp:TemplateField HeaderText="Quantity">
+                        <asp:TemplateField HeaderText="Quantity" SortExpression="Quantity">
                             <EditItemTemplate>
                                 <asp:TextBox ID="QuantityNewValue" runat="server" Text='<%# Bind("Quantity") %>'></asp:TextBox>
                             </EditItemTemplate>
@@ -137,9 +136,10 @@
                                 <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:CommandField HeaderText="Select all" ShowEditButton="True" ShowSelectButton="True" />
                     </Columns>
-                    <PagerSettings Mode="NumericFirstLast" />
-                </asp:GridView>
+                </SharePoint:SPGridView>
+                <SharePoint:SPGridViewPager ID="m_AvailableGridViewPager" GridViewId="m_AvailableGridView" runat="server" />
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -149,7 +149,7 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:GridView ID="m_AssignedGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="Not selected" EnableModelValidation="True" OnRowCancelingEdit="m_AssignedGridView_RowCancelingEdit" OnRowEditing="m_AssignedGridView_RowEditing" OnRowUpdated="m_AssignedGridView_RowUpdated" OnRowUpdating="m_AssignedGridView_RowUpdating" OnSorting="m_AssignedGridView_Sorting">
+<%--                <asp:GridView ID="m_AssignedGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="Not selected" EnableModelValidation="True" OnRowCancelingEdit="m_AssignedGridView_RowCancelingEdit" OnRowEditing="m_AssignedGridView_RowEditing" OnRowUpdated="m_AssignedGridView_RowUpdated" OnRowUpdating="m_AssignedGridView_RowUpdating" OnSorting="m_AssignedGridView_Sorting">
                     <Columns>
                         <asp:CommandField ShowEditButton="True" />
                         <asp:BoundField DataField="DocumentNo" HeaderText="Document No" ReadOnly="true" SortExpression="DocumentNo" />
@@ -164,7 +164,7 @@
                         <asp:BoundField DataField="Created" DataFormatString="{0:d}" HeaderText="Created" ReadOnly="true" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" />
-                </asp:GridView>
+                </asp:GridView>--%>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>

@@ -30,6 +30,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       m_StateMachineEngine = new LocalStateMachineEngine( this );
       m_DataContextManagement = new DataContextManagement<Entities>( this );
+      gridDS = new ObjectDataSource();
+      gridDS.ID = "DATASOURCEID";
+      gridDS.SelectMethod = "SelectData";
+      gridDS.TypeName = this.GetType().AssemblyQualifiedName;
+      gridDS.ObjectCreating += gridDS_ObjectCreating;
+      this.Controls.Add( gridDS );
+
+    }
+    private ObjectDataSource gridDS;
+
+    void gridDS_ObjectCreating( object sender, ObjectDataSourceEventArgs e )
+    {
+      e.ObjectInstance = this;
     }
     #endregion
 
@@ -58,6 +71,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     protected override void OnInit( EventArgs e )
     {
       Page.RegisterRequiresControlState( this );
+
+      m_AvailableGridView.DataSourceID = gridDS.ID;
+
       base.OnInit( e );
     }
     /// <summary>
@@ -74,53 +90,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         {
           at = "InitMahine";
           m_StateMachineEngine.InitMahine();
-          at = "AddColumn";
-          //m_AvailableGridView.DataBound += m_AssignedGridView_DataBound;
-          //m_AvailableGridView.AllowFiltering = false;
           at = "DataTable";
-          Selection _data = new Selection() { };
-          var _dataQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
-                            let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
-                            where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted && _dspslx.DisposalStatus.Value == DisposalStatus.Dust && _dspslx.ClearenceIndex == null
-                            orderby _ogl ascending
-                            select new
-                            {
-                              DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
-                              DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
-                              ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
-                              SKU = _dspslx.Disposal2IPRIndex.SKU,
-                              Batch = _dspslx.Disposal2IPRIndex.Batch,
-                              UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice,
-                              Currency = _dspslx.Disposal2IPRIndex.Currency,
-                              Quantity = _dspslx.SettledQuantity,
-                              Status = _dspslx.DisposalStatus,
-                              Created = SharePoint.Extensions.SPMinimum,
-                              ID = _dspslx.Identyfikator.Value
-                            }
-                           );
-          at = "foreach";
-          foreach ( var _rowx in _dataQery )
-          {
-            Selection.SelectionTableRow _nr = _data.SelectionTable.NewSelectionTableRow();
-            _nr.Batch = _rowx.Batch;
-            _nr.Created = _rowx.Created;
-            _nr.Currency = _rowx.Currency;
-            _nr.DocumentNo = _rowx.DocumentNo;
-            _nr.DebtDate = _rowx.DebtDate.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
-            _nr.ID = _rowx.ID;
-            _nr.SKU = _rowx.SKU;
-            _nr.Quantity = _rowx.Quantity.Value;
-            _nr.Status = _rowx.Status.ToString();
-            _nr.UnitPrice = _rowx.UnitPrice.Value;
-            _nr.ValidTo = _rowx.ValidTo.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
-            _data.SelectionTable.AddSelectionTableRow( _nr );
-          }
-          //Persist the table in the ControlState object.
-          m_ControlState.AvailableItems = _data;
-          at = "DataSource";
-          //ObjectDataSource _availableDataSource = GetObjectDataSource();
-          //Bind the GridView control to the data source.
-          m_AvailableGridViewBindData();
+          //Selection _data = SelectDataDS();
+          //m_ControlState.AvailableItems = _data;
+          //m_AvailableGridViewBindData();
         }
         at = "Event handlers";
         m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
@@ -136,6 +109,56 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
+    }
+    /// <summary>
+    /// Selects the data.
+    /// </summary>
+    /// <returns></returns>
+    public DataTable SelectData()
+    {
+      Selection _SelectedData = SelectDataDS();
+      return _SelectedData.SelectionTable;
+    }
+    private Selection SelectDataDS()
+    {
+      Selection _data = new Selection() { };
+      var _dataQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
+                        let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
+                        where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted && _dspslx.DisposalStatus.Value == DisposalStatus.Dust && _dspslx.ClearenceIndex == null
+                        orderby _ogl ascending
+                        select new
+                        {
+                          DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
+                          DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
+                          ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
+                          SKU = _dspslx.Disposal2IPRIndex.SKU,
+                          Batch = _dspslx.Disposal2IPRIndex.Batch,
+                          UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice,
+                          Currency = _dspslx.Disposal2IPRIndex.Currency,
+                          Quantity = _dspslx.SettledQuantity,
+                          Status = _dspslx.DisposalStatus,
+                          Created = SharePoint.Extensions.SPMinimum,
+                          ID = _dspslx.Identyfikator.Value
+                        }
+                       );
+      foreach ( var _rowx in _dataQery )
+      {
+        Selection.SelectionTableRow _nr = _data.SelectionTable.NewSelectionTableRow();
+        _nr.Batch = _rowx.Batch;
+        _nr.Created = _rowx.Created;
+        _nr.Currency = _rowx.Currency;
+        _nr.DocumentNo = _rowx.DocumentNo;
+        _nr.DebtDate = _rowx.DebtDate.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
+        _nr.ID = _rowx.ID.ToString();
+        _nr.SKU = _rowx.SKU;
+        _nr.Quantity = _rowx.Quantity.Value;
+        _nr.Status = _rowx.Status.ToString();
+        _nr.UnitPrice = _rowx.UnitPrice.Value;
+        _nr.ValidTo = _rowx.ValidTo.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
+        _data.SelectionTable.AddSelectionTableRow( _nr );
+      }
+      //Persist the table in the ControlState object.
+      return _data;
     }
     private void m_AvailableGridViewBindData()
     {
@@ -182,6 +205,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       SetEnabled( m_ControlState.SetEnabled );
       Show();
+      m_AvailableGridView.DataBind();
       base.OnPreRender( e );
     }
     /// <summary>
@@ -538,7 +562,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       //Update the values.
       GridViewRow row = _sender.Rows[ e.RowIndex ];
       List<Control> _controls = new List<Control>();
-      int _id = ( (Label)FindControlRecursive( row, "IDEditLabel", _controls ) ).Text.String2Int().Value;
+      string _id = ( (Label)FindControlRecursive( row, "IDEditLabel", _controls ) ).Text;
       double _qtty = double.Parse( ( (TextBox)FindControlRecursive( row, "QuantityNewValue", _controls ) ).Text );
       Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _id );
       if ( _slctdItem.Quantity < _qtty )
@@ -575,19 +599,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// <param name="e">The <see cref="GridViewUpdatedEventArgs" /> instance containing the event data.</param>
     protected void m_AvailableGridView_RowUpdated( object sender, GridViewUpdatedEventArgs e )
     {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
-        return;
-      if ( e.Keys[ "ID" ] == null )
-        return;
-      int _key = (int)e.Keys[ "ID" ];
-      Selection.SelectionTableRow _row = m_ControlState.AvailableItems.SelectionTable.FindByID( _key );
-      double Quantity = (double)e.NewValues[ "Quantity" ];
-      if ( Quantity > _row.Quantity )
-        throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
-      _row.Quantity -= Quantity;
-      _sender.EditIndex = -1;
-      m_AvailableGridViewBindData();
+      //GridView _sender = sender as GridView;
+      //if ( _sender == null )
+      //  return;
+      //if ( e.Keys[ "ID" ] == null )
+      //  return;
+      //int _key = (int)e.Keys[ "ID" ];
+      //Selection.SelectionTableRow _row = m_ControlState.AvailableItems.SelectionTable.FindByID( _key );
+      //double Quantity = (double)e.NewValues[ "Quantity" ];
+      //if ( Quantity > _row.Quantity )
+      //  throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
+      //_row.Quantity -= Quantity;
+      //_sender.EditIndex = -1;
+      //m_AvailableGridViewBindData();
     }
     /// <summary>
     /// Handles the Sorting event of the m_AvailableGridView control.
@@ -637,14 +661,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// <param name="args">The <see cref="GridViewPageEventArgs" /> instance containing the event data.</param>
     protected void m_AvailableGridView_PageIndexChanging( object sender, GridViewPageEventArgs args )
     {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
-        return;
-      _sender.PageIndex = args.NewPageIndex;
-      m_AvailableGridViewBindData();
+      //GridView _sender = sender as GridView;
+      //if ( _sender == null )
+      //  return;
+      //_sender.PageIndex = args.NewPageIndex;
+      ////m_AvailableGridViewBindData();
+      //m_AvailableGridView.DataBind();
     }
     #endregion
-    
+
     #region AssignedGridView
     protected void m_AssignedGridView_Sorting( object sender, GridViewSortEventArgs e )
     {
@@ -666,7 +691,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
 
     }
-    #endregion    
+    #endregion
 
     #endregion
 
