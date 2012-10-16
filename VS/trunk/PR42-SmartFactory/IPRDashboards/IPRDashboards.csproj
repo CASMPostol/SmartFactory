@@ -103,7 +103,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Selection.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Webparts\ClearenceWebPart\SelectionDataObject.cs" />
     <Compile Include="Webparts\ExportWebPart\ExportWebPart.cs" />
     <Compile Include="Webparts\ExportWebPart\ExportWebPartUserControl.ascx.cs">
       <DependentUpon>ExportWebPartUserControl.ascx</DependentUpon>

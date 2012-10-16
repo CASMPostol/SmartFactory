@@ -240,28 +240,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       m_AvailableGridView.DataSource = m_ControlState.AvailableItems.SelectionTable.DefaultView;
       m_AvailableGridView.DataBind();
     }
-    internal ObjectDataSource GetObjectDataSource()
-    {
-      ObjectDataSource _availableDataSource = new ObjectDataSource()
-      {
-        TypeName = typeof( SelectionDataObject ).AssemblyQualifiedName,
-        SelectMethod = "GetItems",
-        UpdateMethod = "UpdateItem",
-        ConflictDetection = ConflictOptions.OverwriteChanges
-      };
-      _availableDataSource.UpdateParameters.Add( new Parameter() { Name = "DocumentNo", Type = TypeCode.String } );
-      _availableDataSource.UpdateParameters.Add( new Parameter() { Name = "DebtDate", Type = TypeCode.DateTime } );
-      _availableDataSource.UpdateParameters.Add( new Parameter() { Name = "ValidTo", Type = TypeCode.DateTime } );
-      _availableDataSource.UpdateParameters.Add( new Parameter() { Name = "Quantity", Type = TypeCode.Double } );
-      _availableDataSource.UpdateParameters.Add( new Parameter() { Name = "ID", Type = TypeCode.Int32 } );
-      _availableDataSource.ObjectCreating += m_AvailableDataSource_ObjectCreating;
-      return _availableDataSource;
-    }
-    private void m_AvailableDataSource_ObjectCreating( object sender, ObjectDataSourceEventArgs e )
-    {
-      e.ObjectInstance = new SelectionDataObject( m_ControlState.AvailableItems );
-    }
-
     private void AddColumn( DataControlField _column )
     {
       m_AvailableGridView.Columns.Add( _column );
