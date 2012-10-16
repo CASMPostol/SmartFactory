@@ -310,24 +310,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.Label m_AvailableLabel;
         
         /// <summary>
-        /// m_AddToAssigned control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_AddToAssigned;
-        
-        /// <summary>
-        /// m_RemoveFromAssigned control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_RemoveFromAssigned;
-        
-        /// <summary>
         /// m_AssignedLabel control.
         /// </summary>
         /// <remarks>
