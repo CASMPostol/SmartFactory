@@ -85,24 +85,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.Panel m_GroupPanel;
         
         /// <summary>
-        /// m_GroupTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table m_GroupTable;
-        
-        /// <summary>
-        /// m_SelectGroupLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_SelectGroupLabel;
-        
-        /// <summary>
         /// m_SelectGroupRadioButtonList control.
         /// </summary>
         /// <remarks>
@@ -112,6 +94,24 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.RadioButtonList m_SelectGroupRadioButtonList;
         
         /// <summary>
+        /// m_CurrencyPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel m_CurrencyPanel;
+        
+        /// <summary>
+        /// m_SelectCurrencyRadioButtonList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList m_SelectCurrencyRadioButtonList;
+        
+        /// <summary>
         /// m_PeriodPanel control.
         /// </summary>
         /// <remarks>
@@ -119,15 +119,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel m_PeriodPanel;
-        
-        /// <summary>
-        /// m_PeriodTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table m_PeriodTable;
         
         /// <summary>
         /// m_AllDateLabel control.
@@ -184,42 +175,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::Microsoft.SharePoint.WebControls.DateTimeControl m_EndTimeControl1;
         
         /// <summary>
-        /// m_CurrencyPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel m_CurrencyPanel;
-        
-        /// <summary>
-        /// m_CurrencyTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table m_CurrencyTable;
-        
-        /// <summary>
-        /// m_SelectCurrencyLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_SelectCurrencyLabel;
-        
-        /// <summary>
-        /// m_SelectCurrencyRadioButtonList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList m_SelectCurrencyRadioButtonList;
-        
-        /// <summary>
         /// m_ProcedurePanel control.
         /// </summary>
         /// <remarks>
@@ -236,15 +191,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table m_ProcedureTable;
-        
-        /// <summary>
-        /// m_SelectProcedureLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_SelectProcedureLabel;
         
         /// <summary>
         /// m_ProcedureRadioButtonList control.

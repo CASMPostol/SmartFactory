@@ -24,76 +24,30 @@
             <asp:TableRow>
                 <asp:TableCell VerticalAlign="Top">
                     <asp:Panel runat="server" ID="m_GroupPanel" BorderColor="ActiveCaptionText" GroupingText="Group">
-                        <asp:Table ID="m_GroupTable" runat="server" CssClass="Table">
-                            <asp:TableRow>
-                                <asp:TableCell>
-                                    <asp:Label ID="m_SelectGroupLabel" runat="server" Text="Select group:" CssClass="Label"></asp:Label>
-                                </asp:TableCell>
-                            </asp:TableRow>
-                            <asp:TableRow>
-                                <asp:TableCell>
-                                    <asp:RadioButtonList ID="m_SelectGroupRadioButtonList" runat="server">
+                                    <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_SelectGroupRadioButtonList" runat="server" >
                                         <asp:ListItem Enabled="true" Selected="True" Text="Tobacco" Value="Tobacco"></asp:ListItem>
                                         <asp:ListItem Enabled="true" Selected="false" Text="Tobacco not allocated" Value="TobaccoNotAllocated"></asp:ListItem>
                                         <asp:ListItem Enabled="true" Selected="false" Text="Dust" Value="Dust"></asp:ListItem>
                                         <asp:ListItem Enabled="true" Selected="false" Text="Waste" Value="Waste"></asp:ListItem>
                                         <asp:ListItem Enabled="true" Selected="false" Text="Cartons" Value="Cartons"></asp:ListItem>
                                     </asp:RadioButtonList>
-                                </asp:TableCell>
-                            </asp:TableRow>
-                        </asp:Table>
-                    </asp:Panel>
-                </asp:TableCell>
-                <asp:TableCell VerticalAlign="Top">
-                    <asp:Panel runat="server" ID="m_PeriodPanel" BorderColor="ActiveCaptionText" GroupingText="Period">
-                        <asp:Table ID="m_PeriodTable" runat="server" CssClass="Table">
-                            <asp:TableRow>
-                                <asp:TableCell>
-                                    <asp:Label ID="m_AllDateLabel" runat="server" Text="All" CssClass="Label"></asp:Label>
-                                    <asp:CheckBox ID="m_AllDate" runat="server" />
-                                </asp:TableCell>
-                            </asp:TableRow>
-                            <asp:TableRow>
-                                <asp:TableCell>
-                                    <asp:Label ID="m_StartDateLabel" runat="server" Text="Start date:" CssClass="Label"></asp:Label>
-                                </asp:TableCell>
-                            </asp:TableRow>
-                            <asp:TableRow>
-                                <asp:TableCell>
-                                    <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" />
-                                </asp:TableCell>
-                            </asp:TableRow>
-                            <asp:TableRow>
-                                <asp:TableCell>
-                                    <asp:Label ID="m_EndDateLabel" runat="server" Text="End date:" CssClass="Label"></asp:Label>
-                                </asp:TableCell>
-                            </asp:TableRow>
-                            <asp:TableRow>
-                                <asp:TableCell>
-                                    <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" />
-                                </asp:TableCell>
-                            </asp:TableRow>
-                        </asp:Table>
-                    </asp:Panel>
-                </asp:TableCell>
-                <asp:TableCell VerticalAlign="Top">
+                    </asp:Panel><br/>
                     <asp:Panel runat="server" ID="m_CurrencyPanel" BorderColor="ActiveCaptionText" GroupingText="Currency" HorizontalAlign="Left">
-                        <asp:Table ID="m_CurrencyTable" runat="server" CssClass="Table">
-                            <asp:TableRow>
-                                <asp:TableCell>
-                                    <asp:Label ID="m_SelectCurrencyLabel" runat="server" Text="Select currency:" CssClass="Label"></asp:Label>
-                                </asp:TableCell>
-                            </asp:TableRow>
-                            <asp:TableRow>
-                                <asp:TableCell>
-                                    <asp:RadioButtonList ID="m_SelectCurrencyRadioButtonList" runat="server">
+                                    <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_SelectCurrencyRadioButtonList" runat="server">
                                         <asp:ListItem Enabled="true" Selected="False" Text="All" Value="All"></asp:ListItem>
                                         <asp:ListItem Enabled="true" Selected="True" Text="PLN" Value="PLN"></asp:ListItem>
                                         <asp:ListItem Enabled="true" Selected="False" Text="USD" Value="USD"></asp:ListItem>
                                     </asp:RadioButtonList>
-                                </asp:TableCell>
-                            </asp:TableRow>
-                        </asp:Table>
+                    </asp:Panel>
+                </asp:TableCell>
+                <asp:TableCell VerticalAlign="Top">
+                    <asp:Panel runat="server" ID="m_PeriodPanel" BorderColor="ActiveCaptionText" GroupingText="Period">
+                                    <asp:Label ID="m_AllDateLabel" runat="server" Text="All" CssClass="Label" />
+                                    <asp:CheckBox ID="m_AllDate" runat="server" /><br />
+                                    <asp:Label ID="m_StartDateLabel" runat="server" Text="Start date:" CssClass="Label" />
+                                    <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" />
+                                    <asp:Label ID="m_EndDateLabel" runat="server" Text="End date:" CssClass="Label"/>
+                                    <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" />
                     </asp:Panel>
                 </asp:TableCell>
             </asp:TableRow>
@@ -103,12 +57,7 @@
         <asp:Table ID="m_ProcedureTable" runat="server" CssClass="Table">
             <asp:TableRow>
                 <asp:TableCell>
-                    <asp:Label ID="m_SelectProcedureLabel" runat="server" Text="Select procedure:" CssClass="Label"></asp:Label>
-                </asp:TableCell>
-            </asp:TableRow>
-            <asp:TableRow>
-                <asp:TableCell>
-                    <asp:RadioButtonList ID="m_ProcedureRadioButtonList" runat="server">
+                    <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_ProcedureRadioButtonList" runat="server">
                         <asp:ListItem Enabled="true" Selected="True" Text="4051" Value="4051"></asp:ListItem>
                         <asp:ListItem Enabled="true" Selected="False" Text="3151" Value="3151"></asp:ListItem>
                     </asp:RadioButtonList>
