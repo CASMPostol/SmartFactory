@@ -105,6 +105,41 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
+                <asp:GridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" EnableModelValidation="True" 
+                    OnRowCancelingEdit="m_AvailableGridView_RowCancelingEdit" 
+                    OnRowEditing="m_AvailableGridView_RowEditing" OnRowUpdated="m_AvailableGridView_RowUpdated" 
+                    OnRowUpdating="m_AvailableGridView_RowUpdating" OnSorting="m_AvailableGridView_Sorting">
+                    <Columns>
+                        <asp:CommandField HeaderText="Select all" ShowEditButton="True" ShowSelectButton="True" />
+                        <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
+                        <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" />
+                        <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" />
+                        <asp:BoundField DataField="SKU" HeaderText="SKU" SortExpression="SKU" ReadOnly="true" />
+                        <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" />
+                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" ReadOnly="true" />
+                        <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" SortExpression="Currency" />
+                        <asp:TemplateField HeaderText="Quantity">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="QuantityNewValue" runat="server" Text='<%# Bind("Quantity") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="QuantityOldValue" runat="server" Text='<%# Bind("Quantity") %>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Right" />
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" ReadOnly="true" />
+                        <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString="{0:d}" ReadOnly="true" />
+                        <asp:TemplateField HeaderText="ID" SortExpression="ID" Visible="False">
+                            <EditItemTemplate>
+                                <asp:Label ID="IDEditLabel" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <PagerSettings Mode="NumericFirstLast" />
+                </asp:GridView>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -114,7 +149,7 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:GridView ID="m_AssignedGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="Not selected" EnableModelValidation="True">
+                <asp:GridView ID="m_AssignedGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="Not selected" EnableModelValidation="True" OnRowCancelingEdit="m_AssignedGridView_RowCancelingEdit" OnRowEditing="m_AssignedGridView_RowEditing" OnRowUpdated="m_AssignedGridView_RowUpdated" OnRowUpdating="m_AssignedGridView_RowUpdating" OnSorting="m_AssignedGridView_Sorting">
                     <Columns>
                         <asp:CommandField ShowEditButton="True" />
                         <asp:BoundField DataField="DocumentNo" HeaderText="Document No" ReadOnly="true" SortExpression="DocumentNo" />
@@ -128,43 +163,9 @@
                         <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" SortExpression="Status" />
                         <asp:BoundField DataField="Created" DataFormatString="{0:d}" HeaderText="Created" ReadOnly="true" />
                     </Columns>
+                    <PagerSettings Mode="NumericFirstLast" />
                 </asp:GridView>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    <asp:GridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" EnableModelValidation="True" 
-        OnRowCancelingEdit="m_AvailableGridView_RowCancelingEdit" 
-        OnRowEditing="m_AvailableGridView_RowEditing" OnRowUpdated="m_AvailableGridView_RowUpdated" 
-        OnRowUpdating="m_AvailableGridView_RowUpdating" OnSorting="m_AvailableGridView_Sorting">
-        <Columns>
-            <asp:CommandField HeaderText="Select all" ShowEditButton="True" ShowSelectButton="True" />
-            <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
-            <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" />
-            <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" />
-            <asp:BoundField DataField="SKU" HeaderText="SKU" SortExpression="SKU" ReadOnly="true" />
-            <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" />
-            <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" ReadOnly="true" />
-            <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" SortExpression="Currency" />
-            <asp:TemplateField HeaderText="Quantity">
-                <EditItemTemplate>
-                    <asp:TextBox ID="QuantityNewValue" runat="server" Text='<%# Bind("Quantity") %>'></asp:TextBox>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="QuantityOldValue" runat="server" Text='<%# Bind("Quantity") %>'></asp:Label>
-                </ItemTemplate>
-                <ItemStyle HorizontalAlign="Right" />
-            </asp:TemplateField>
-            <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" ReadOnly="true" />
-            <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString="{0:d}" ReadOnly="true" />
-            <asp:TemplateField HeaderText="ID" SortExpression="ID" Visible="False">
-                <EditItemTemplate>
-                    <asp:Label ID="IDEditLabel" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
-
 </asp:Panel>

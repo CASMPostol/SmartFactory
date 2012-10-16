@@ -611,5 +611,30 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     #endregion
     private CheckBox m_AssignedCheckAll { get; set; }
+
+    protected void m_AssignedGridView_Sorting(object sender, GridViewSortEventArgs e)
+    {
+
+    }
+
+    protected void m_AssignedGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+
+    }
+
+    protected void m_AssignedGridView_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+
+    }
+
+    protected void m_AssignedGridView_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    {
+
+    }
+
+    protected void m_AssignedGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+
+    }
   }
 }
