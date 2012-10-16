@@ -24,6 +24,22 @@
           </tr>
         </table>
         <xsl:apply-templates select="cas:CigaretteExportFormCollection"> </xsl:apply-templates>
+        <table>
+        <tr>
+          <td>
+            <p align="center">
+              .............................................
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p align="center">
+              Imię i Nazwisko
+            </p>
+          </td>
+        </tr>
+      </table>
       </body>
     </html>
   </xsl:template>
@@ -208,22 +224,6 @@
           Dodatkowo przy produkcji 1 mln papierosów powstaje <xsl:value-of select="format-number(cas:WasteCoefficient * 100, $FoarmatOfFloat, 'pl')"/>% odpadów (zużycie tytoniu należy powiększyć o ten współczynnik)
         </li>
       </ol>
-      <table>
-        <tr>
-          <td>
-            <p align="center">
-              .............................................
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p align="center">
-              Imię i Nazwisko
-            </p>
-          </td>
-        </tr>
-      </table>
     </div>
   </xsl:template>
   <xsl:template match="cas:IPTDutyVatTotals">
