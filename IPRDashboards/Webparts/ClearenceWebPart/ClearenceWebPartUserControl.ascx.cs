@@ -138,102 +138,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       }
     }
 
-    #region GridView event handlers
-    protected void m_AvailableGridView_RowEditing( object sender, GridViewEditEventArgs e )
-    {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
-        return;
-      _sender.EditIndex = e.NewEditIndex;
-      m_AvailableGridViewBindData();
-    }
-    protected void m_AvailableGridView_RowCancelingEdit( object sender, GridViewCancelEditEventArgs e )
-    {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
-        return;
-      _sender.EditIndex = -1;
-      m_AvailableGridViewBindData();
-    }
-    protected void m_AvailableGridView_RowUpdating( object sender, GridViewUpdateEventArgs e )
-    {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
-        return;
-      //Update the values.
-      GridViewRow row = _sender.Rows[ e.RowIndex ];
-      List<Control> _controls = new List<Control>();
-      int _id = ( (Label)FindControlRecursive( row, "IDEditLabel", _controls ) ).Text.String2Int().Value;
-      double _qtty = double.Parse( ( (TextBox)FindControlRecursive( row, "QuantityNewValue", _controls ) ).Text );
-      Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _id );
-      if ( _slctdItem.Quantity < _qtty )
-        SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
-      _slctdItem.Quantity -= _qtty;
-      _sender.EditIndex = -1;
-      m_AvailableGridViewBindData();
-    }
-    protected Control FindControlRecursive( Control rootControl, string controlID, List<Control> _ctrls )
-    {
 
-      _ctrls.Add( rootControl );
-      if ( rootControl.ID == controlID )
-        return rootControl;
-      foreach ( Control controlToSearch in rootControl.Controls )
-      {
-        Control controlToReturn = FindControlRecursive( controlToSearch, controlID, _ctrls );
-        if ( controlToReturn != null )
-          return controlToReturn;
-      }
-      return null;
-    }
-    protected void m_AvailableGridView_RowUpdated( object sender, GridViewUpdatedEventArgs e )
-    {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
-        return;
-      if ( e.Keys[ "ID" ] == null )
-        return;
-      int _key = (int)e.Keys[ "ID" ];
-      Selection.SelectionTableRow _row = m_ControlState.AvailableItems.SelectionTable.FindByID( _key );
-      double Quantity = (double)e.NewValues[ "Quantity" ];
-      if ( Quantity > _row.Quantity )
-        throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
-      _row.Quantity -= Quantity;
-      _sender.EditIndex = -1;
-      m_AvailableGridViewBindData();
-    }
-    protected void m_AvailableGridView_Sorting( object sender, GridViewSortEventArgs e )
-    {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
-        return;
-      //Retrieve the table from the session object.
-      if ( m_ControlState.AvailableItems == null )
-        return;
-      //Sort the data.
-      m_ControlState.AvailableItems.SelectionTable.DefaultView.Sort = e.SortExpression + " " + m_ControlState.GetSortDirection( e.SortExpression );
-      m_AvailableGridViewBindData();
-    }
-    protected void m_AssignedGridView_DataBound( object sender, EventArgs e )
-    {
-      string at = "starting";
-      try
-      {
-        at = "GridViewRow";
-        GridViewRow _heade = m_AvailableGridView.HeaderRow;
-        at = "Cells[ 0 ].Controls.Clear";
-        _heade.Cells[ 0 ].Controls.Clear();
-        at = "new CheckBox";
-        m_AssignedCheckAll = new CheckBox() { Text = "All", Checked = false };
-        _heade.Cells[ 0 ].Controls.Add( m_AssignedCheckAll );
-      }
-      catch ( Exception ex )
-      {
-        ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
-        this.Controls.Add( _ae.CreateMessage( at, true ) );
-      }
-    }
-    #endregion
 
     private void m_AvailableGridViewBindData()
     {
@@ -609,32 +514,142 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       //m_BatchTextBox.Text = m_ControlState.BatchTitle;
       return GenericStateMachineEngine.ActionResult.Success;
     }
-    #endregion
     private CheckBox m_AssignedCheckAll { get; set; }
 
-    protected void m_AssignedGridView_Sorting(object sender, GridViewSortEventArgs e)
+    #region AvailableGridView event handlers
+    protected void m_AvailableGridView_RowEditing( object sender, GridViewEditEventArgs e )
+    {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      _sender.EditIndex = e.NewEditIndex;
+      m_AvailableGridViewBindData();
+    }
+    protected void m_AvailableGridView_RowCancelingEdit( object sender, GridViewCancelEditEventArgs e )
+    {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      _sender.EditIndex = -1;
+      m_AvailableGridViewBindData();
+    }
+    protected void m_AvailableGridView_RowUpdating( object sender, GridViewUpdateEventArgs e )
+    {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      //Update the values.
+      GridViewRow row = _sender.Rows[ e.RowIndex ];
+      List<Control> _controls = new List<Control>();
+      int _id = ( (Label)FindControlRecursive( row, "IDEditLabel", _controls ) ).Text.String2Int().Value;
+      double _qtty = double.Parse( ( (TextBox)FindControlRecursive( row, "QuantityNewValue", _controls ) ).Text );
+      Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _id );
+      if ( _slctdItem.Quantity < _qtty )
+        SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
+      _slctdItem.Quantity -= _qtty;
+      _sender.EditIndex = -1;
+      m_AvailableGridViewBindData();
+    }
+    protected Control FindControlRecursive( Control rootControl, string controlID, List<Control> _ctrls )
+    {
+
+      _ctrls.Add( rootControl );
+      if ( rootControl.ID == controlID )
+        return rootControl;
+      foreach ( Control controlToSearch in rootControl.Controls )
+      {
+        Control controlToReturn = FindControlRecursive( controlToSearch, controlID, _ctrls );
+        if ( controlToReturn != null )
+          return controlToReturn;
+      }
+      return null;
+    }
+    protected void m_AvailableGridView_RowUpdated( object sender, GridViewUpdatedEventArgs e )
+    {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      if ( e.Keys[ "ID" ] == null )
+        return;
+      int _key = (int)e.Keys[ "ID" ];
+      Selection.SelectionTableRow _row = m_ControlState.AvailableItems.SelectionTable.FindByID( _key );
+      double Quantity = (double)e.NewValues[ "Quantity" ];
+      if ( Quantity > _row.Quantity )
+        throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
+      _row.Quantity -= Quantity;
+      _sender.EditIndex = -1;
+      m_AvailableGridViewBindData();
+    }
+    protected void m_AvailableGridView_Sorting( object sender, GridViewSortEventArgs e )
+    {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      //Retrieve the table from the session object.
+      if ( m_ControlState.AvailableItems == null )
+        return;
+      //Sort the data.
+      m_ControlState.AvailableItems.SelectionTable.DefaultView.Sort = e.SortExpression + " " + m_ControlState.GetSortDirection( e.SortExpression );
+      m_AvailableGridViewBindData();
+    }
+    protected void m_AssignedGridView_DataBound( object sender, EventArgs e )
+    {
+      string at = "starting";
+      try
+      {
+        at = "GridViewRow";
+        GridViewRow _heade = m_AvailableGridView.HeaderRow;
+        at = "Cells[ 0 ].Controls.Clear";
+        _heade.Cells[ 0 ].Controls.Clear();
+        at = "new CheckBox";
+        m_AssignedCheckAll = new CheckBox() { Text = "All", Checked = false };
+        _heade.Cells[ 0 ].Controls.Add( m_AssignedCheckAll );
+      }
+      catch ( Exception ex )
+      {
+        ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
+        this.Controls.Add( _ae.CreateMessage( at, true ) );
+      }
+    }
+    /// <summary>
+    /// Handles the PageIndexChanging event of the m_AvailableGridView control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="args">The <see cref="GridViewPageEventArgs" /> instance containing the event data.</param>
+    protected void m_AvailableGridView_PageIndexChanging( object sender, GridViewPageEventArgs args )
+    {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      _sender.PageIndex = args.NewPageIndex;
+      m_AvailableGridViewBindData();
+    }
+    #endregion
+    
+    #region AssignedGridView
+    protected void m_AssignedGridView_Sorting( object sender, GridViewSortEventArgs e )
     {
 
     }
-
-    protected void m_AssignedGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    protected void m_AssignedGridView_RowCancelingEdit( object sender, GridViewCancelEditEventArgs e )
     {
 
     }
-
-    protected void m_AssignedGridView_RowEditing(object sender, GridViewEditEventArgs e)
+    protected void m_AssignedGridView_RowEditing( object sender, GridViewEditEventArgs e )
     {
 
     }
-
-    protected void m_AssignedGridView_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    protected void m_AssignedGridView_RowUpdated( object sender, GridViewUpdatedEventArgs e )
     {
 
     }
-
-    protected void m_AssignedGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    protected void m_AssignedGridView_RowUpdating( object sender, GridViewUpdateEventArgs e )
     {
 
     }
+    #endregion    
+
+    #endregion
+
   }
 }
