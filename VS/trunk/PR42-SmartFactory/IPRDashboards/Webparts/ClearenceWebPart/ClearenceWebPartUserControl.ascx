@@ -108,7 +108,7 @@
                 <asp:GridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" EnableModelValidation="True" 
                     OnRowCancelingEdit="m_AvailableGridView_RowCancelingEdit" 
                     OnRowEditing="m_AvailableGridView_RowEditing" OnRowUpdated="m_AvailableGridView_RowUpdated" 
-                    OnRowUpdating="m_AvailableGridView_RowUpdating" OnSorting="m_AvailableGridView_Sorting">
+                    OnRowUpdating="m_AvailableGridView_RowUpdating" OnSorting="m_AvailableGridView_Sorting" OnPageIndexChanging="m_AvailableGridView_PageIndexChanging">
                     <Columns>
                         <asp:CommandField HeaderText="Select all" ShowEditButton="True" ShowSelectButton="True" />
                         <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
