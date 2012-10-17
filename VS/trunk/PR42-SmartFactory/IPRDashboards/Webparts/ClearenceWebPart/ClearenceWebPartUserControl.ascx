@@ -110,14 +110,14 @@
                     AllowFiltering="true" FilterDataFields="DocumentNo,DebtDate,ValidTo,SKU,Batch,UnitPrice,Currency,Quantity,Status,Created" FilteredDataSourcePropertyName="FilterExpression" FilteredDataSourcePropertyFormat="{1} like '{0}'"
                     >
                     <Columns>
-                        <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" />
-                        <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" />
-                        <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" />
-                        <asp:BoundField DataField="SKU" HeaderText="SKU" SortExpression="SKU" ReadOnly="true" />
-                        <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" />
-                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" ReadOnly="true" />
-                        <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" SortExpression="Currency" />
-                        <asp:TemplateField HeaderText="Quantity" SortExpression="Quantity">
+                        <asp:BoundField HeaderText="Document No" DataField="DocumentNo"  SortExpression="DocumentNo" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="ValidTo" HeaderText="Valid To" DataFormatString="{0:d}" SortExpression="ValidTo" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="SKU" HeaderText="SKU" SortExpression="SKU" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="UnitPrice" DataFormatString="{0:F3}" HeaderText="Unit price" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" SortExpression="Currency" ItemStyle-HorizontalAlign="Right" />
+                        <asp:TemplateField HeaderText="Quantity" SortExpression="Quantity" ItemStyle-HorizontalAlign="Right">
                             <EditItemTemplate>
                                 <asp:TextBox ID="QuantityNewValue" runat="server" Text='<%# Bind("Quantity") %>'></asp:TextBox>
                             </EditItemTemplate>
@@ -126,8 +126,8 @@
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Right" />
                         </asp:TemplateField>
-                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" ReadOnly="true" />
-                        <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString="{0:d}" ReadOnly="true" />
+                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="Created" HeaderText="Created" DataFormatString="{0:d}" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                         <asp:TemplateField HeaderText="ID" SortExpression="ID" Visible="False">
                             <EditItemTemplate>
                                 <asp:Label ID="IDEditLabel" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
@@ -136,7 +136,7 @@
                                 <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:CommandField HeaderText="Select all" ShowEditButton="True" ShowSelectButton="True" />
+                        <asp:CommandField HeaderText="Select all" ShowEditButton="True" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" />
                     </Columns>
                 </SharePoint:SPGridView>
                 <SharePoint:SPGridViewPager ID="m_AvailableGridViewPager" GridViewId="m_AvailableGridView" runat="server" />
@@ -152,16 +152,16 @@
 <%--                <asp:GridView ID="m_AssignedGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID" EmptyDataText="Not selected" EnableModelValidation="True" OnRowCancelingEdit="m_AssignedGridView_RowCancelingEdit" OnRowEditing="m_AssignedGridView_RowEditing" OnRowUpdated="m_AssignedGridView_RowUpdated" OnRowUpdating="m_AssignedGridView_RowUpdating" OnSorting="m_AssignedGridView_Sorting">
                     <Columns>
                         <asp:CommandField ShowEditButton="True" />
-                        <asp:BoundField DataField="DocumentNo" HeaderText="Document No" ReadOnly="true" SortExpression="DocumentNo" />
-                        <asp:BoundField DataField="DebtDate" DataFormatString="{0:d}" HeaderText="Debt date" ReadOnly="true" SortExpression="DebtDate" />
-                        <asp:BoundField DataField="ValidTo" DataFormatString="{0:d}" HeaderText="Valid To" ReadOnly="true" SortExpression="ValidTo" />
-                        <asp:BoundField DataField="SKU" HeaderText="SKU" ReadOnly="true" SortExpression="SKU" />
-                        <asp:BoundField DataField="Batch" HeaderText="Batch" ReadOnly="true" SortExpression="Batch" />
-                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" ReadOnly="true" />
-                        <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" />
-                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="false" />
-                        <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" SortExpression="Status" />
-                        <asp:BoundField DataField="Created" DataFormatString="{0:d}" HeaderText="Created" ReadOnly="true" />
+                        <asp:BoundField DataField="DocumentNo" HeaderText="Document No" ReadOnly="true" SortExpression="DocumentNo" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="DebtDate" DataFormatString="{0:d}" HeaderText="Debt date" ReadOnly="true" SortExpression="DebtDate" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="ValidTo" DataFormatString="{0:d}" HeaderText="Valid To" ReadOnly="true" SortExpression="ValidTo" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="SKU" HeaderText="SKU" ReadOnly="true" SortExpression="SKU" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="Batch" HeaderText="Batch" ReadOnly="true" SortExpression="Batch" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" DataFormatString="{0:F3}" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" DataFormatString="{0:F2}" ReadOnly="false" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" SortExpression="Status" ItemStyle-HorizontalAlign="Right" />
+                        <asp:BoundField DataField="Created" DataFormatString="{0:d}" HeaderText="Created" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" />
                 </asp:GridView>--%>
