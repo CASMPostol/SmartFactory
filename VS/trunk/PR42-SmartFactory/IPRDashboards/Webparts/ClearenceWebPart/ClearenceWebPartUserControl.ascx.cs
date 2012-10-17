@@ -30,26 +30,36 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       m_StateMachineEngine = new LocalStateMachineEngine( this );
       m_DataContextManagement = new DataContextManagement<Entities>( this );
-      gridDS = new ObjectDataSource();
-      gridDS.ID = "DATASOURCEID";
-      gridDS.SelectMethod = "SelectData";
-      gridDS.TypeName = this.GetType().AssemblyQualifiedName;
-      gridDS.ObjectCreating += gridDS_ObjectCreating;
-      this.Controls.Add( gridDS );
+      m_AvailableGridViewDataSource = new ObjectDataSource();
+      m_AvailableGridViewDataSource.ID = "DATASOURCEID";
+      m_AvailableGridViewDataSource.SelectMethod = "SelectData";
+      m_AvailableGridViewDataSource.TypeName = this.GetType().AssemblyQualifiedName;
+      m_AvailableGridViewDataSource.ObjectCreating += m_GridViewDataSource_ObjectCreating;
+      this.Controls.Add( m_AvailableGridViewDataSource );
 
       m_AssignedGridViewDataSource = new ObjectDataSource();
       m_AssignedGridViewDataSource.ID = "ASSIGNEDGRIDVIEWDATASOURCE";
       m_AssignedGridViewDataSource.SelectMethod = "SelectDataAssigned";
       m_AssignedGridViewDataSource.TypeName = this.GetType().AssemblyQualifiedName;
-      m_AssignedGridViewDataSource.ObjectCreating += gridDS_ObjectCreating;
+      m_AssignedGridViewDataSource.ObjectCreating += m_GridViewDataSource_ObjectCreating;
       this.Controls.Add( m_AssignedGridViewDataSource );
-
     }
-    private ObjectDataSource gridDS;
-    private ObjectDataSource m_AssignedGridViewDataSource;
-    void gridDS_ObjectCreating( object sender, ObjectDataSourceEventArgs e )
+    /// <summary>
+    /// Selects the available items.
+    /// </summary>
+    /// <returns></returns>
+    public DataTable SelectData()
     {
-      e.ObjectInstance = this;
+      Selection _SelectedData = SelectDataDS();
+      return _SelectedData.SelectionTable;
+    }
+    /// <summary>
+    /// Selects the just assigned items.
+    /// </summary>
+    /// <returns></returns>
+    public DataTable SelectDataAssigned()
+    {
+      return m_ControlState.AssignedItems.SelectionTable;
     }
     #endregion
 
@@ -79,7 +89,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       Page.RegisterRequiresControlState( this );
 
-      m_AvailableGridView.DataSourceID = gridDS.ID;
+      m_AvailableGridView.DataSourceID = m_AvailableGridViewDataSource.ID;
       m_AssignedGridView.DataSourceID = m_AssignedGridViewDataSource.ID;
       base.OnInit( e );
     }
@@ -116,74 +126,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
-    }
-    /// <summary>
-    /// Selects the data.
-    /// </summary>
-    /// <returns></returns>
-    public DataTable SelectData()
-    {
-      Selection _SelectedData = SelectDataDS();
-      return _SelectedData.SelectionTable;
-    }
-    public DataTable SelectDataAssigned()
-    {
-      return m_ControlState.AssignedItems.SelectionTable;
-    }
-    private Selection SelectDataDS()
-    {
-      if ( m_ControlState.AvailableItems != null )
-        return m_ControlState.AvailableItems;
-      Selection _data = new Selection() { };
-      var _dataQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
-                        let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
-                        where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted && _dspslx.DisposalStatus.Value == DisposalStatus.Dust && _dspslx.ClearenceIndex == null
-                        orderby _ogl ascending
-                        select new
-                        {
-                          DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
-                          DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
-                          ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
-                          SKU = _dspslx.Disposal2IPRIndex.SKU,
-                          Batch = _dspslx.Disposal2IPRIndex.Batch,
-                          UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice,
-                          Currency = _dspslx.Disposal2IPRIndex.Currency,
-                          Quantity = _dspslx.SettledQuantity,
-                          Status = _dspslx.DisposalStatus,
-                          Created = SharePoint.Extensions.SPMinimum,
-                          ID = _dspslx.Identyfikator.Value
-                        }
-                       );
-      foreach ( var _rowx in _dataQery )
-      {
-        Selection.SelectionTableRow _nr = _data.SelectionTable.NewSelectionTableRow();
-        _nr.Batch = _rowx.Batch;
-        _nr.Created = _rowx.Created;
-        _nr.Currency = _rowx.Currency;
-        _nr.DocumentNo = _rowx.DocumentNo;
-        _nr.DebtDate = _rowx.DebtDate.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
-        _nr.ID = _rowx.ID.ToString();
-        _nr.SKU = _rowx.SKU;
-        _nr.Quantity = _rowx.Quantity.Value;
-        _nr.Status = _rowx.Status.ToString();
-        _nr.UnitPrice = _rowx.UnitPrice.Value;
-        _nr.ValidTo = _rowx.ValidTo.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
-        _data.SelectionTable.AddSelectionTableRow( _nr );
-      }
-      _data.AcceptChanges();
-      //Persist the table in the ControlState object.
-      m_ControlState.AvailableItems = _data;
-      return _data;
-    }
-    private void m_AvailableGridViewBindData()
-    {
-      m_AvailableGridView.DataSource = m_ControlState.AvailableItems.SelectionTable.DefaultView;
-      m_AvailableGridView.DataBind();
-    }
-    private void AddColumn( DataControlField _column )
-    {
-      m_AvailableGridView.Columns.Add( _column );
-      //m_AssignedGridView.Columns.Add( _column );
     }
     /// <summary>
     /// Loads the state of the control.
@@ -477,9 +419,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     #endregion
 
     #region private
-    private LocalStateMachineEngine m_StateMachineEngine = null;
-    private ControlState m_ControlState = new ControlState( null );
-    private DataContextManagement<Entities> m_DataContextManagement = null;
+
+    #region business logic
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set )
     {
       GenericStateMachineEngine.ControlsSet _allowed = (GenericStateMachineEngine.ControlsSet)0xff;
@@ -552,10 +493,66 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       //m_BatchTextBox.Text = m_ControlState.BatchTitle;
       return GenericStateMachineEngine.ActionResult.Success;
     }
-    private CheckBox m_AssignedCheckAll { get; set; }
+    private Selection SelectDataDS()
+    {
+      if ( m_ControlState.AvailableItems != null )
+        return m_ControlState.AvailableItems;
+      Selection _data = new Selection() { };
+      var _dataQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
+                        let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
+                        where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted && _dspslx.DisposalStatus.Value == DisposalStatus.Dust && _dspslx.ClearenceIndex == null
+                        orderby _ogl ascending
+                        select new
+                        {
+                          DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
+                          DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
+                          ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
+                          SKU = _dspslx.Disposal2IPRIndex.SKU,
+                          Batch = _dspslx.Disposal2IPRIndex.Batch,
+                          UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice,
+                          Currency = _dspslx.Disposal2IPRIndex.Currency,
+                          Quantity = _dspslx.SettledQuantity,
+                          Status = _dspslx.DisposalStatus,
+                          Created = SharePoint.Extensions.SPMinimum,
+                          ID = _dspslx.Identyfikator.Value
+                        }
+                       );
+      foreach ( var _rowx in _dataQery )
+      {
+        Selection.SelectionTableRow _nr = _data.SelectionTable.NewSelectionTableRow();
+        _nr.Batch = _rowx.Batch;
+        _nr.Created = _rowx.Created;
+        _nr.Currency = _rowx.Currency;
+        _nr.DocumentNo = _rowx.DocumentNo;
+        _nr.DebtDate = _rowx.DebtDate.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
+        _nr.ID = _rowx.ID.ToString();
+        _nr.SKU = _rowx.SKU;
+        _nr.Quantity = _rowx.Quantity.Value;
+        _nr.Status = _rowx.Status.ToString();
+        _nr.UnitPrice = _rowx.UnitPrice.Value;
+        _nr.ValidTo = _rowx.ValidTo.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
+        _data.SelectionTable.AddSelectionTableRow( _nr );
+      }
+      _data.AcceptChanges();
+      //Persist the table in the ControlState object.
+      m_ControlState.AvailableItems = _data;
+      return _data;
+    }
+    
+    #endregion
+
+    #region vars
+    private LocalStateMachineEngine m_StateMachineEngine = null;
+    private ControlState m_ControlState = new ControlState( null );
+    private DataContextManagement<Entities> m_DataContextManagement = null;
     private const string m_IDItemLabel = "IDItemLabel";
     private const string m_IDEditLabel = "IDEditLabel";
     private const string m_QuantityNewValue = "QuantityNewValue";
+    private ObjectDataSource m_AvailableGridViewDataSource;
+    private ObjectDataSource m_AssignedGridViewDataSource;
+    #endregion
+
+    #region Event handlers
 
     #region AvailableGridView event handlers
     /// <summary>
@@ -569,7 +566,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       if ( _sender == null )
         return;
       _sender.EditIndex = e.NewEditIndex;
-      m_AvailableGridViewBindData();
     }
     /// <summary>
     /// Handles the RowCancelingEdit event of the m_AvailableGridView control.
@@ -657,6 +653,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       e.NewSelectedIndex = -1;
       e.Cancel = true;
     }
+    #endregion
+
+    void m_GridViewDataSource_ObjectCreating( object sender, ObjectDataSourceEventArgs e )
+    {
+      e.ObjectInstance = this;
+    }
+
     #endregion
 
     #endregion
