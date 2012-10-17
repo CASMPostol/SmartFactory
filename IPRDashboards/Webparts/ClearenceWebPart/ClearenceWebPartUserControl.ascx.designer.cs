@@ -335,5 +335,23 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label m_AssignedLabel;
+        
+        /// <summary>
+        /// m_AssignedGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.SPGridView m_AssignedGridView;
+        
+        /// <summary>
+        /// m_AssignedGridViewPager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.SPGridViewPager m_AssignedGridViewPager;
     }
 }

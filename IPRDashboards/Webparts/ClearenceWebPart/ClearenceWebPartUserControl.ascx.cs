@@ -36,8 +36,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       gridDS.TypeName = this.GetType().AssemblyQualifiedName;
       gridDS.ObjectCreating += gridDS_ObjectCreating;
       this.Controls.Add( gridDS );
-
     }
+
     private ObjectDataSource gridDS;
 
     void gridDS_ObjectCreating( object sender, ObjectDataSourceEventArgs e )
@@ -121,6 +121,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private Selection SelectDataDS()
     {
+      if ( m_ControlState.AvailableItems != null )
+        return m_ControlState.AvailableItems;
       Selection _data = new Selection() { };
       var _dataQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
                         let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
@@ -158,6 +160,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         _data.SelectionTable.AddSelectionTableRow( _nr );
       }
       //Persist the table in the ControlState object.
+      m_ControlState.AvailableItems = _data;
       return _data;
     }
     private void m_AvailableGridViewBindData()
@@ -561,9 +564,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         return;
       //Update the values.
       GridViewRow row = _sender.Rows[ e.RowIndex ];
-      List<Control> _controls = new List<Control>();
-      string _id = ( (Label)FindControlRecursive( row, "IDEditLabel", _controls ) ).Text;
-      double _qtty = double.Parse( ( (TextBox)FindControlRecursive( row, "QuantityNewValue", _controls ) ).Text );
+      string _id = ( (Label)FindControlRecursive( row, "IDEditLabel" ) ).Text;
+      double _qtty = double.Parse( ( (TextBox)FindControlRecursive( row, "QuantityNewValue" ) ).Text );
       Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _id );
       if ( _slctdItem.Quantity < _qtty )
         SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
@@ -578,15 +580,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// <param name="controlID">The control ID.</param>
     /// <param name="_ctrls">The _CTRLS.</param>
     /// <returns></returns>
-    protected Control FindControlRecursive( Control rootControl, string controlID, List<Control> _ctrls )
+    protected Control FindControlRecursive( Control rootControl, string controlID )
     {
-
-      _ctrls.Add( rootControl );
       if ( rootControl.ID == controlID )
         return rootControl;
       foreach ( Control controlToSearch in rootControl.Controls )
       {
-        Control controlToReturn = FindControlRecursive( controlToSearch, controlID, _ctrls );
+        Control controlToReturn = FindControlRecursive( controlToSearch, controlID );
         if ( controlToReturn != null )
           return controlToReturn;
       }
@@ -668,6 +668,24 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       ////m_AvailableGridViewBindData();
       //m_AvailableGridView.DataBind();
     }
+    /// <summary>
+    /// Handles the SelectedIndexChanging event of the m_AvailableGridView control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="GridViewSelectEventArgs" /> instance containing the event data.</param>
+    protected void m_AvailableGridView_SelectedIndexChanging( object sender, GridViewSelectEventArgs e )
+    {
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      GridViewRow row = _sender.Rows[ e.NewSelectedIndex ];
+      string _id = ( (Label)FindControlRecursive( row, "IDItemLabel" ) ).Text;
+      Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _id );
+      _slctdItem.Delete();
+      m_ControlState.AvailableItems.SelectionTable.AcceptChanges();
+      e.NewSelectedIndex = -1;
+      e.Cancel = true;
+    }
     #endregion
 
     #region AssignedGridView
@@ -692,6 +710,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
 
     }
     #endregion
+
 
     #endregion
 
