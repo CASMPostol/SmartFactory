@@ -555,7 +555,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 this.columnBatch.AllowDBNull = false;
                 this.columnSKU.AllowDBNull = false;
                 this.columnID.AllowDBNull = false;
-                this.columnID.ReadOnly = true;
                 this.columnID.Unique = true;
             }
             
