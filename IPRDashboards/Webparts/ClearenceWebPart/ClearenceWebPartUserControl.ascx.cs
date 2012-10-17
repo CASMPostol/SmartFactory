@@ -553,6 +553,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       return GenericStateMachineEngine.ActionResult.Success;
     }
     private CheckBox m_AssignedCheckAll { get; set; }
+    private const string m_IDItemLabel = "IDItemLabel";
+    private const string m_IDEditLabel = "IDEditLabel";
+    private const string m_QuantityNewValue = "QuantityNewValue";
 
     #region AvailableGridView event handlers
     /// <summary>
@@ -593,89 +596,31 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         return;
       //Update the values.
       GridViewRow row = _sender.Rows[ e.RowIndex ];
-      string _id = ( (Label)FindControlRecursive( row, "IDEditLabel" ) ).Text;
-      double _qtty = double.Parse( ( (TextBox)FindControlRecursive( row, "QuantityNewValue" ) ).Text );
-      Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _id );
-      if ( _slctdItem.Quantity < _qtty )
-        SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
-      Selection.SelectionTableRow _newRow = m_ControlState.AssignedItems.SelectionTable.FindByID( _id );
-      if ( _newRow == null )
+      Label _idLabel = (Label)row.FindControlRecursive( m_IDEditLabel );
+      double _qtty = default( double );
+      Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _idLabel.Text );
+      if ( !double.TryParse( ( (TextBox)row.FindControlRecursive( m_QuantityNewValue ) ).Text, out _qtty ) || ( _slctdItem.Quantity < _qtty ) )
+      {
+        _idLabel.Text = _slctdItem.Quantity.ToString( "F2" );
+        _idLabel.BorderColor = System.Drawing.Color.Red;
+        _idLabel.BackColor = System.Drawing.Color.Yellow;
+        e.Cancel = true;
+        return;
+      }
+      Selection.SelectionTableRow _assignedRow = m_ControlState.AssignedItems.SelectionTable.FindByID( _idLabel.Text );
+      if ( _assignedRow == null )
       {
         m_ControlState.AssignedItems.SelectionTable.ImportRow( _slctdItem );
-        _newRow = m_ControlState.AssignedItems.SelectionTable.FindByID( _id );
-        _newRow.Quantity = _qtty;
-        _newRow.AcceptChanges();
-        _newRow.SetAdded();
+        _assignedRow = m_ControlState.AssignedItems.SelectionTable.FindByID( _idLabel.Text );
+        _assignedRow.Quantity = _qtty;
       }
       else
-      {
-        _newRow.Quantity += _qtty;
-        _newRow.AcceptChanges();
-        _newRow.SetAdded();
-      }
+        _assignedRow.Quantity += _qtty;
+      _assignedRow.AcceptChanges();
+      _assignedRow.SetAdded();
       _slctdItem.Quantity -= _qtty;
       _sender.EditIndex = -1;
       e.Cancel = true;
-    }
-    /// <summary>
-    /// Finds the control recursive.
-    /// </summary>
-    /// <param name="rootControl">The root control.</param>
-    /// <param name="controlID">The control ID.</param>
-    /// <param name="_ctrls">The _CTRLS.</param>
-    /// <returns></returns>
-    protected Control FindControlRecursive( Control rootControl, string controlID )
-    {
-      if ( rootControl.ID == controlID )
-        return rootControl;
-      foreach ( Control controlToSearch in rootControl.Controls )
-      {
-        Control controlToReturn = FindControlRecursive( controlToSearch, controlID );
-        if ( controlToReturn != null )
-          return controlToReturn;
-      }
-      return null;
-    }
-    /// <summary>
-    /// Handles the Sorting event of the m_AvailableGridView control.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="GridViewSortEventArgs" /> instance containing the event data.</param>
-    protected void m_AvailableGridView_Sorting( object sender, GridViewSortEventArgs e )
-    {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
-        return;
-      //Retrieve the table from the session object.
-      if ( m_ControlState.AvailableItems == null )
-        return;
-      //Sort the data.
-      m_ControlState.AvailableItems.SelectionTable.DefaultView.Sort = e.SortExpression + " " + m_ControlState.GetSortDirection( e.SortExpression );
-      m_AvailableGridViewBindData();
-    }
-    /// <summary>
-    /// Handles the DataBound event of the m_AssignedGridView control.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-    protected void m_AssignedGridView_DataBound( object sender, EventArgs e )
-    {
-      string at = "starting";
-      try
-      {
-        at = "GridViewRow";
-        GridViewRow _heade = m_AvailableGridView.HeaderRow;
-        at = "Cells[ 0 ].Controls.Clear";
-        _heade.Cells[ 0 ].Controls.Clear();
-        at = "new CheckBox";
-        m_AssignedCheckAll = new CheckBox() { Text = "All", Checked = false };
-        _heade.Cells[ 0 ].Controls.Add( m_AssignedCheckAll );
-      }
-      catch ( Exception ex )
-      {
-        ApplicationError _ae = new ApplicationError( "Page_Load", at, ex.Message, ex );
-        this.Controls.Add( _ae.CreateMessage( at, true ) );
-      }
     }
     /// <summary>
     /// Handles the SelectedIndexChanging event of the m_AvailableGridView control.
@@ -688,29 +633,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       if ( _sender == null )
         return;
       GridViewRow row = _sender.Rows[ e.NewSelectedIndex ];
-      string _id = ( (Label)FindControlRecursive( row, "IDItemLabel" ) ).Text;
-      Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _id );
-      if ( _slctdItem.RowState == DataRowState.Unchanged )
-      {
-        m_ControlState.AssignedItems.SelectionTable.ImportRow( _slctdItem );
-        _slctdItem.Delete();
-      }
-      else if ( _slctdItem.RowState == DataRowState.Modified )
-      {
-        IEnumerable<Selection.SelectionTableRow> _newRows = from _rx in m_ControlState.AssignedItems.SelectionTable
-                                                            where _rx.RowState == DataRowState.Added && _rx.Batch == _slctdItem.Batch
-                                                            select _rx;
-        foreach ( Selection.SelectionTableRow _rx in _newRows )
-        {
-          _slctdItem.Quantity += _rx.Quantity;
-          _rx.Delete();
-        }
-        _slctdItem.AcceptChanges();
-        m_ControlState.AssignedItems.SelectionTable.ImportRow( _slctdItem );
-        _slctdItem.Delete();
-      }
-      else
-        throw new SharePoint.ApplicationError( "m_AvailableGridView_SelectedIndexChanging", "RowState", "Internal error - wrong row state", null );
+      string _id = ( (Label)row.FindControlRecursive( m_IDItemLabel ) ).Text;
+      m_ControlState.AssignedItems.SelectionTable.GetRow( m_ControlState.AvailableItems.SelectionTable, _id );
       e.NewSelectedIndex = -1;
       e.Cancel = true;
     }
@@ -728,26 +652,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       if ( _sender == null )
         return;
       GridViewRow row = _sender.Rows[ e.NewSelectedIndex ];
-      string _id = ( (Label)FindControlRecursive( row, "IDItemLabel" ) ).Text;
-      Selection.SelectionTableRow _slctdItem = m_ControlState.AssignedItems.SelectionTable.FindByID( _id );
-      if ( _slctdItem.RowState == DataRowState.Unchanged )
-      {
-        m_ControlState.AvailableItems.SelectionTable.ImportRow( _slctdItem );
-        _slctdItem.Delete();
-      }
-      else if ( _slctdItem.RowState == DataRowState.Added )
-      {
-        Selection.SelectionTableRow _oldRow = ( from _rx in m_ControlState.AvailableItems.SelectionTable where _rx.RowState == DataRowState.Modified && _rx.Batch == _slctdItem.Batch select _rx ).First();
-        _oldRow.Quantity += _slctdItem.Quantity;
-        _slctdItem.Delete();
-      }
-      else
-        throw new SharePoint.ApplicationError( "m_AssignedGridView_SelectedIndexChanging", "RowState", "Internal error - wrong row state", null );
+      string _id = ( (Label)row.FindControlRecursive( m_IDItemLabel ) ).Text;
+      m_ControlState.AvailableItems.SelectionTable.GetRow( m_ControlState.AssignedItems.SelectionTable, _id );
       e.NewSelectedIndex = -1;
       e.Cancel = true;
     }
     #endregion
-
 
     #endregion
 
