@@ -170,6 +170,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         _nr.ValidTo = _rowx.ValidTo.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
         _data.SelectionTable.AddSelectionTableRow( _nr );
       }
+      _data.AcceptChanges();
       //Persist the table in the ControlState object.
       m_ControlState.AvailableItems = _data;
       return _data;
@@ -597,6 +598,21 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _id );
       if ( _slctdItem.Quantity < _qtty )
         SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
+      Selection.SelectionTableRow _newRow = m_ControlState.AssignedItems.SelectionTable.FindByID( _id );
+      if ( _newRow == null )
+      {
+        m_ControlState.AssignedItems.SelectionTable.ImportRow( _slctdItem );
+        _newRow = m_ControlState.AssignedItems.SelectionTable.FindByID( _id );
+        _newRow.Quantity = _qtty;
+        _newRow.AcceptChanges();
+        _newRow.SetAdded();
+      }
+      else
+      {
+        _newRow.Quantity += _qtty;
+        _newRow.AcceptChanges();
+        _newRow.SetAdded();
+      }
       _slctdItem.Quantity -= _qtty;
       _sender.EditIndex = -1;
       e.Cancel = true;
@@ -619,27 +635,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           return controlToReturn;
       }
       return null;
-    }
-    /// <summary>
-    /// Handles the RowUpdated event of the m_AvailableGridView control.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="e">The <see cref="GridViewUpdatedEventArgs" /> instance containing the event data.</param>
-    protected void m_AvailableGridView_RowUpdated( object sender, GridViewUpdatedEventArgs e )
-    {
-      //GridView _sender = sender as GridView;
-      //if ( _sender == null )
-      //  return;
-      //if ( e.Keys[ "ID" ] == null )
-      //  return;
-      //int _key = (int)e.Keys[ "ID" ];
-      //Selection.SelectionTableRow _row = m_ControlState.AvailableItems.SelectionTable.FindByID( _key );
-      //double Quantity = (double)e.NewValues[ "Quantity" ];
-      //if ( Quantity > _row.Quantity )
-      //  throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
-      //_row.Quantity -= Quantity;
-      //_sender.EditIndex = -1;
-      //m_AvailableGridViewBindData();
     }
     /// <summary>
     /// Handles the Sorting event of the m_AvailableGridView control.
@@ -695,15 +690,38 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       GridViewRow row = _sender.Rows[ e.NewSelectedIndex ];
       string _id = ( (Label)FindControlRecursive( row, "IDItemLabel" ) ).Text;
       Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _id );
-      m_ControlState.AssignedItems.SelectionTable.ImportRow( _slctdItem );
-      _slctdItem.Delete();
-      m_ControlState.AvailableItems.SelectionTable.AcceptChanges();
+      if ( _slctdItem.RowState == DataRowState.Unchanged )
+      {
+        m_ControlState.AssignedItems.SelectionTable.ImportRow( _slctdItem );
+        _slctdItem.Delete();
+      }
+      else if ( _slctdItem.RowState == DataRowState.Modified )
+      {
+        IEnumerable<Selection.SelectionTableRow> _newRows = from _rx in m_ControlState.AssignedItems.SelectionTable
+                                                            where _rx.RowState == DataRowState.Added && _rx.Batch == _slctdItem.Batch
+                                                            select _rx;
+        foreach ( Selection.SelectionTableRow _rx in _newRows )
+        {
+          _slctdItem.Quantity += _rx.Quantity;
+          _rx.Delete();
+        }
+        _slctdItem.AcceptChanges();
+        m_ControlState.AssignedItems.SelectionTable.ImportRow( _slctdItem );
+        _slctdItem.Delete();
+      }
+      else
+        throw new SharePoint.ApplicationError( "m_AvailableGridView_SelectedIndexChanging", "RowState", "Internal error - wrong row state", null );
       e.NewSelectedIndex = -1;
       e.Cancel = true;
     }
     #endregion
 
     #region AssignedGridView
+    /// <summary>
+    /// Handles the SelectedIndexChanging event of the m_AssignedGridView control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="GridViewSelectEventArgs" /> instance containing the event data.</param>
     protected void m_AssignedGridView_SelectedIndexChanging( object sender, GridViewSelectEventArgs e )
     {
       GridView _sender = sender as GridView;
@@ -712,9 +730,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       GridViewRow row = _sender.Rows[ e.NewSelectedIndex ];
       string _id = ( (Label)FindControlRecursive( row, "IDItemLabel" ) ).Text;
       Selection.SelectionTableRow _slctdItem = m_ControlState.AssignedItems.SelectionTable.FindByID( _id );
-      m_ControlState.AvailableItems.SelectionTable.ImportRow( _slctdItem );
-      _slctdItem.Delete();
-      m_ControlState.AvailableItems.SelectionTable.AcceptChanges();
+      if ( _slctdItem.RowState == DataRowState.Unchanged )
+      {
+        m_ControlState.AvailableItems.SelectionTable.ImportRow( _slctdItem );
+        _slctdItem.Delete();
+      }
+      else if ( _slctdItem.RowState == DataRowState.Added )
+      {
+        Selection.SelectionTableRow _oldRow = ( from _rx in m_ControlState.AvailableItems.SelectionTable where _rx.RowState == DataRowState.Modified && _rx.Batch == _slctdItem.Batch select _rx ).First();
+        _oldRow.Quantity += _slctdItem.Quantity;
+        _slctdItem.Delete();
+      }
+      else
+        throw new SharePoint.ApplicationError( "m_AssignedGridView_SelectedIndexChanging", "RowState", "Internal error - wrong row state", null );
       e.NewSelectedIndex = -1;
       e.Cancel = true;
     }
