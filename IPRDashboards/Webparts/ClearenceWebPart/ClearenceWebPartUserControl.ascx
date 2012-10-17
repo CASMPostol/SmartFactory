@@ -107,7 +107,7 @@
         <asp:TableRow>
             <asp:TableCell>
                 <SharePoint:SPGridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID"
-                    OnSelectedIndexChanging="m_AvailableGridView_SelectedIndexChanging"
+                    OnSelectedIndexChanging="m_AvailableGridView_SelectedIndexChanging" OnRowUpdating="m_AvailableGridView_RowUpdating" OnRowCancelingEdit="m_AvailableGridView_RowCancelingEdit"
                     AllowFiltering="true" FilterDataFields="DocumentNo,DebtDate,ValidTo,SKU,Batch,UnitPrice,Currency,Quantity,Status,Created" FilteredDataSourcePropertyName="FilterExpression" FilteredDataSourcePropertyFormat="{1} = '{0}'">
                     <Columns>
                         <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
@@ -136,7 +136,7 @@
                                 <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:CommandField HeaderText="Select all" ShowEditButton="True" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" />
+                        <asp:CommandField HeaderText="Select all" ShowEditButton="True" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" EditText="Split" UpdateText="Select" />
                     </Columns>
                 </SharePoint:SPGridView>
                 <SharePoint:SPGridViewPager ID="m_AvailableGridViewPager" GridViewId="m_AvailableGridView" runat="server" />
@@ -150,10 +150,9 @@
         <asp:TableRow>
             <asp:TableCell>
                 <SharePoint:SPGridView ID="m_AssignedGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID"
-                    OnRowCancelingEdit="m_AssignedGridView_RowCancelingEdit" OnRowEditing="m_AssignedGridView_RowEditing" OnRowUpdated="m_AssignedGridView_RowUpdated" OnRowUpdating="m_AssignedGridView_RowUpdating"
+                    OnSelectedIndexChanging="m_AssignedGridView_SelectedIndexChanging"
                     AllowFiltering="true" FilterDataFields="DocumentNo,DebtDate,ValidTo,SKU,Batch,UnitPrice,Currency,Quantity,Status,Created" FilteredDataSourcePropertyName="FilterExpression" FilteredDataSourcePropertyFormat="{1} = '{0}'">
                     <Columns>
-                        <asp:CommandField ShowEditButton="True" />
                         <asp:BoundField DataField="DocumentNo" HeaderText="Document No" ReadOnly="true" SortExpression="DocumentNo" ItemStyle-HorizontalAlign="Right" />
                         <asp:BoundField DataField="DebtDate" DataFormatString="{0:d}" HeaderText="Debt date" ReadOnly="true" SortExpression="DebtDate" ItemStyle-HorizontalAlign="Right" />
                         <asp:BoundField DataField="ValidTo" DataFormatString="{0:d}" HeaderText="Valid To" ReadOnly="true" SortExpression="ValidTo" ItemStyle-HorizontalAlign="Right" />
@@ -164,6 +163,15 @@
                         <asp:BoundField DataField="Quantity" HeaderText="Quantity" DataFormatString="{0:F2}" ReadOnly="false" ItemStyle-HorizontalAlign="Right" />
                         <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" SortExpression="Status" ItemStyle-HorizontalAlign="Right" />
                         <asp:BoundField DataField="Created" DataFormatString="{0:d}" HeaderText="Created" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                        <asp:TemplateField HeaderText="ID" SortExpression="ID" Visible="False">
+                            <EditItemTemplate>
+                                <asp:Label ID="IDEditLabel" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:CommandField HeaderText="Select all" ShowEditButton="false" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" />
                     </Columns>
                 </SharePoint:SPGridView>
                 <SharePoint:SPGridViewPager ID="m_AssignedGridViewPager" GridViewId="m_AssignedGridView" runat="server" />
