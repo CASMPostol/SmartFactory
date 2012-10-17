@@ -36,10 +36,17 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       gridDS.TypeName = this.GetType().AssemblyQualifiedName;
       gridDS.ObjectCreating += gridDS_ObjectCreating;
       this.Controls.Add( gridDS );
+
+      m_AssignedGridViewDataSource = new ObjectDataSource();
+      m_AssignedGridViewDataSource.ID = "ASSIGNEDGRIDVIEWDATASOURCE";
+      m_AssignedGridViewDataSource.SelectMethod = "SelectDataAssigned";
+      m_AssignedGridViewDataSource.TypeName = this.GetType().AssemblyQualifiedName;
+      m_AssignedGridViewDataSource.ObjectCreating += gridDS_ObjectCreating;
+      this.Controls.Add( m_AssignedGridViewDataSource );
+
     }
-
     private ObjectDataSource gridDS;
-
+    private ObjectDataSource m_AssignedGridViewDataSource;
     void gridDS_ObjectCreating( object sender, ObjectDataSourceEventArgs e )
     {
       e.ObjectInstance = this;
@@ -73,7 +80,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       Page.RegisterRequiresControlState( this );
 
       m_AvailableGridView.DataSourceID = gridDS.ID;
-
+      m_AssignedGridView.DataSourceID = m_AssignedGridViewDataSource.ID;
       base.OnInit( e );
     }
     /// <summary>
@@ -118,6 +125,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       Selection _SelectedData = SelectDataDS();
       return _SelectedData.SelectionTable;
+    }
+    public DataTable SelectDataAssigned()
+    {
+      return m_ControlState.AssignedItems.SelectionTable;
     }
     private Selection SelectDataDS()
     {
@@ -209,6 +220,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       SetEnabled( m_ControlState.SetEnabled );
       Show();
       m_AvailableGridView.DataBind();
+      m_AssignedGridView.DataBind();
       base.OnPreRender( e );
     }
     /// <summary>
@@ -232,6 +244,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       public string ClearanceTitle;
       public bool IsModified { get; set; }
       public Selection AvailableItems = default( Selection );
+      public Selection AssignedItems = new Selection();
       public string SortDirection = "ASC";
       public string SortExpression = String.Empty;
       #endregion
@@ -541,6 +554,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private CheckBox m_AssignedCheckAll { get; set; }
 
     #region AvailableGridView event handlers
+    /// <summary>
+    /// Handles the RowEditing event of the m_AvailableGridView control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="GridViewEditEventArgs" /> instance containing the event data.</param>
     protected void m_AvailableGridView_RowEditing( object sender, GridViewEditEventArgs e )
     {
       GridView _sender = sender as GridView;
@@ -549,14 +567,24 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       _sender.EditIndex = e.NewEditIndex;
       m_AvailableGridViewBindData();
     }
+    /// <summary>
+    /// Handles the RowCancelingEdit event of the m_AvailableGridView control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="GridViewCancelEditEventArgs" /> instance containing the event data.</param>
     protected void m_AvailableGridView_RowCancelingEdit( object sender, GridViewCancelEditEventArgs e )
     {
       GridView _sender = sender as GridView;
       if ( _sender == null )
         return;
       _sender.EditIndex = -1;
-      m_AvailableGridViewBindData();
+      e.Cancel = true;
     }
+    /// <summary>
+    /// Handles the RowUpdating event of the m_AvailableGridView control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="GridViewUpdateEventArgs" /> instance containing the event data.</param>
     protected void m_AvailableGridView_RowUpdating( object sender, GridViewUpdateEventArgs e )
     {
       GridView _sender = sender as GridView;
@@ -571,7 +599,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "You cannot withdraw more than there is on the stock." );
       _slctdItem.Quantity -= _qtty;
       _sender.EditIndex = -1;
-      m_AvailableGridViewBindData();
+      e.Cancel = true;
     }
     /// <summary>
     /// Finds the control recursive.
@@ -655,20 +683,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       }
     }
     /// <summary>
-    /// Handles the PageIndexChanging event of the m_AvailableGridView control.
-    /// </summary>
-    /// <param name="sender">The source of the event.</param>
-    /// <param name="args">The <see cref="GridViewPageEventArgs" /> instance containing the event data.</param>
-    protected void m_AvailableGridView_PageIndexChanging( object sender, GridViewPageEventArgs args )
-    {
-      //GridView _sender = sender as GridView;
-      //if ( _sender == null )
-      //  return;
-      //_sender.PageIndex = args.NewPageIndex;
-      ////m_AvailableGridViewBindData();
-      //m_AvailableGridView.DataBind();
-    }
-    /// <summary>
     /// Handles the SelectedIndexChanging event of the m_AvailableGridView control.
     /// </summary>
     /// <param name="sender">The source of the event.</param>
@@ -681,6 +695,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       GridViewRow row = _sender.Rows[ e.NewSelectedIndex ];
       string _id = ( (Label)FindControlRecursive( row, "IDItemLabel" ) ).Text;
       Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _id );
+      m_ControlState.AssignedItems.SelectionTable.ImportRow( _slctdItem );
       _slctdItem.Delete();
       m_ControlState.AvailableItems.SelectionTable.AcceptChanges();
       e.NewSelectedIndex = -1;
@@ -689,25 +704,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     #endregion
 
     #region AssignedGridView
-    protected void m_AssignedGridView_Sorting( object sender, GridViewSortEventArgs e )
+    protected void m_AssignedGridView_SelectedIndexChanging( object sender, GridViewSelectEventArgs e )
     {
-
-    }
-    protected void m_AssignedGridView_RowCancelingEdit( object sender, GridViewCancelEditEventArgs e )
-    {
-
-    }
-    protected void m_AssignedGridView_RowEditing( object sender, GridViewEditEventArgs e )
-    {
-
-    }
-    protected void m_AssignedGridView_RowUpdated( object sender, GridViewUpdatedEventArgs e )
-    {
-
-    }
-    protected void m_AssignedGridView_RowUpdating( object sender, GridViewUpdateEventArgs e )
-    {
-
+      GridView _sender = sender as GridView;
+      if ( _sender == null )
+        return;
+      GridViewRow row = _sender.Rows[ e.NewSelectedIndex ];
+      string _id = ( (Label)FindControlRecursive( row, "IDItemLabel" ) ).Text;
+      Selection.SelectionTableRow _slctdItem = m_ControlState.AssignedItems.SelectionTable.FindByID( _id );
+      m_ControlState.AvailableItems.SelectionTable.ImportRow( _slctdItem );
+      _slctdItem.Delete();
+      m_ControlState.AvailableItems.SelectionTable.AcceptChanges();
+      e.NewSelectedIndex = -1;
+      e.Cancel = true;
     }
     #endregion
 
