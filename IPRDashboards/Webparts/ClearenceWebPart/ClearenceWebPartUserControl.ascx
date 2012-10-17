@@ -25,11 +25,11 @@
                 <asp:TableCell VerticalAlign="Top">
                     <asp:Panel runat="server" ID="m_GroupPanel" BorderColor="ActiveCaptionText" GroupingText="Group">
                         <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_SelectGroupRadioButtonList" runat="server">
-                            <asp:ListItem Enabled="true" Selected="True" Text="Tobacco" Value="Tobacco"></asp:ListItem>
+                            <asp:ListItem Enabled="true" Selected="false" Text="Tobacco" Value="Tobacco"></asp:ListItem>
                             <asp:ListItem Enabled="true" Selected="false" Text="Tobacco not allocated" Value="TobaccoNotAllocated"></asp:ListItem>
                             <asp:ListItem Enabled="true" Selected="false" Text="Dust" Value="Dust"></asp:ListItem>
                             <asp:ListItem Enabled="true" Selected="false" Text="Waste" Value="Waste"></asp:ListItem>
-                            <asp:ListItem Enabled="true" Selected="false" Text="Cartons" Value="Cartons"></asp:ListItem>
+                            <asp:ListItem Enabled="true" Selected="True" Text="Cartons" Value="Cartons"></asp:ListItem>
                         </asp:RadioButtonList>
                     </asp:Panel>
                     <br />

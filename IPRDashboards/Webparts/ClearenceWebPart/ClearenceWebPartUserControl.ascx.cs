@@ -497,36 +497,59 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       if ( m_ControlState.AvailableItems != null )
         return m_ControlState.AvailableItems;
+      DisposalStatus _dStatus = default( DisposalStatus );
+      bool _ddpsl = true;
+      switch ( m_SelectGroupRadioButtonList.SelectedValue )
+      {
+        case "Tobacco":
+          _dStatus = DisposalStatus.Overuse;
+          break;
+        case "TobaccoNotAllocated":
+          _dStatus = DisposalStatus.TobaccoInCutfiller;
+          break;
+        case "Dust":
+          _dStatus = DisposalStatus.Dust;
+          break;
+        case "Waste":
+          _dStatus = DisposalStatus.Waste;
+          break;
+        case "Cartons":
+          //TODO we need dedicated status
+          _dStatus = DisposalStatus.None;
+          break;
+        default:
+          throw new SharePoint.ApplicationError( "SelectDataDS", "switch", "Internal error - wrong switch case.", null );
+      }
       Selection _data = new Selection() { };
-      var _dataQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
-                        let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
-                        where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted && _dspslx.DisposalStatus.Value == DisposalStatus.Dust && _dspslx.ClearenceIndex == null
-                        orderby _ogl ascending
-                        select new
-                        {
-                          DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
-                          DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
-                          ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
-                          SKU = _dspslx.Disposal2IPRIndex.SKU,
-                          Batch = _dspslx.Disposal2IPRIndex.Batch,
-                          UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice,
-                          Currency = _dspslx.Disposal2IPRIndex.Currency,
-                          Quantity = _dspslx.SettledQuantity,
-                          Status = _dspslx.DisposalStatus,
-                          Created = SharePoint.Extensions.SPMinimum,
-                          ID = _dspslx.Identyfikator.Value
-                        }
+      var AvailableDustQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
+                                let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
+                                where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted && _dspslx.DisposalStatus.Value == DisposalStatus.Dust && _dspslx.ClearenceIndex == null
+                                orderby _ogl ascending
+                                select new
+                                {
+                                  DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
+                                  DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
+                                  ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
+                                  SKU = _dspslx.Disposal2IPRIndex.SKU,
+                                  Batch = _dspslx.Disposal2IPRIndex.Batch,
+                                  UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice,
+                                  Currency = _dspslx.Disposal2IPRIndex.Currency,
+                                  Quantity = _dspslx.SettledQuantity,
+                                  Status = _dspslx.DisposalStatus,
+                                  Created = SharePoint.Extensions.SPMinimum,
+                                  ID = _dspslx.Identyfikator.Value
+                                }
                        );
-      foreach ( var _rowx in _dataQery )
+      foreach ( var _rowx in AvailableDustQery )
       {
         Selection.SelectionTableRow _nr = _data.SelectionTable.NewSelectionTableRow();
-        _nr.Batch = _rowx.Batch;
+        _nr.Batch = _rowx.Batch.Trim();
         _nr.Created = _rowx.Created;
         _nr.Currency = _rowx.Currency;
-        _nr.DocumentNo = _rowx.DocumentNo;
+        _nr.DocumentNo = _rowx.DocumentNo.Trim();
         _nr.DebtDate = _rowx.DebtDate.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
         _nr.ID = _rowx.ID.ToString();
-        _nr.SKU = _rowx.SKU;
+        _nr.SKU = _rowx.SKU.Trim();
         _nr.Quantity = _rowx.Quantity.Value;
         _nr.Status = _rowx.Status.ToString();
         _nr.UnitPrice = _rowx.UnitPrice.Value;
@@ -538,7 +561,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       m_ControlState.AvailableItems = _data;
       return _data;
     }
-    
+
     #endregion
 
     #region vars
