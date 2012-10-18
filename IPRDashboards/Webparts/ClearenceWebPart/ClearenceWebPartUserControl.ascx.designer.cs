@@ -265,33 +265,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.Button m_ClearButton;
         
         /// <summary>
-        /// m_OGLTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table m_OGLTable;
-        
-        /// <summary>
-        /// m_OGLLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_OGLLabel;
-        
-        /// <summary>
-        /// m_OGLDropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList m_OGLDropDownList;
-        
-        /// <summary>
         /// m_GridViewTable control.
         /// </summary>
         /// <remarks>
@@ -326,6 +299,60 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Microsoft.SharePoint.WebControls.SPGridViewPager m_AvailableGridViewPager;
+        
+        /// <summary>
+        /// m_ActionsPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel m_ActionsPanel;
+        
+        /// <summary>
+        /// m_ActionsTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table m_ActionsTable;
+        
+        /// <summary>
+        /// m_AddAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button m_AddAll;
+        
+        /// <summary>
+        /// m_AddDisplayed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button m_AddDisplayed;
+        
+        /// <summary>
+        /// m_RemoveAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button m_RemoveAll;
+        
+        /// <summary>
+        /// m_RemoveDisplayed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button m_RemoveDisplayed;
         
         /// <summary>
         /// m_AssignedLabel control.
