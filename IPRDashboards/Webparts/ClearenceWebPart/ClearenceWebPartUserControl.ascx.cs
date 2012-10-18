@@ -50,8 +50,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// <returns></returns>
     public DataTable SelectData()
     {
-      Selection _SelectedData = SelectDataDS();
-      return _SelectedData.SelectionTable;
+      return m_ControlState.AvailableItems.SelectionTable;
     }
     /// <summary>
     /// Selects the just assigned items.
@@ -107,17 +106,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         {
           at = "InitMahine";
           m_StateMachineEngine.InitMahine();
-          at = "DataTable";
-          //Selection _data = SelectDataDS();
-          //m_ControlState.AvailableItems = _data;
-          //m_AvailableGridViewBindData();
         }
         at = "Event handlers";
         m_SaveButton.Click += new EventHandler( m_StateMachineEngine.SaveButton_Click );
         m_NewButton.Click += new EventHandler( m_StateMachineEngine.NewButton_Click );
         m_CancelButton.Click += new EventHandler( m_StateMachineEngine.CancelButton_Click );
-        //TODO 
-        //m_EditButton.Click += new EventHandler( m_StateMachineEngine.EditButton_Click );
+        m_EditButton.Click += new EventHandler( m_StateMachineEngine.EditButton_Click );
         m_DeleteButton.Click += new EventHandler( m_StateMachineEngine.DeleteButton_Click );
         m_ClearButton.Click += new EventHandler( m_StateMachineEngine.m_ClearButton_Click );
       }
@@ -161,6 +155,21 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     protected override void OnPreRender( EventArgs e )
     {
       SetEnabled( m_ControlState.SetEnabled );
+      switch ( m_StateMachineEngine.CurrentState )
+      {
+        case GenericStateMachineEngine.InterfaceState.ViewState:
+          m_FiltersPanel.Enabled = true;
+          m_GridViewTable.Enabled = false;
+          break;
+        case GenericStateMachineEngine.InterfaceState.EditState:
+          m_FiltersPanel.Enabled = false;
+          m_GridViewTable.Enabled = true;
+          break;
+        case GenericStateMachineEngine.InterfaceState.NewState:
+          m_FiltersPanel.Enabled = false;
+          m_GridViewTable.Enabled = true;
+          break;
+      }
       Show();
       m_AvailableGridView.DataBind();
       m_AssignedGridView.DataBind();
@@ -186,45 +195,30 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       public string ClearanceID = String.Empty;
       public string ClearanceTitle;
       public bool IsModified { get; set; }
-      public Selection AvailableItems = default( Selection );
+      public Selection AvailableItems = new Selection();
       public Selection AssignedItems = new Selection();
-      public string SortDirection = "ASC";
-      public string SortExpression = String.Empty;
       #endregion
 
       #region public
-      internal string GetSortDirection( string column )
-      {
-        if ( SortExpression == column )
-          if ( SortDirection == "ASC" )
-            SortDirection = "DESC";
-          else
-            SortDirection = "ASC";
-        else
-        {
-          SortExpression = column;
-          SortDirection = "DESC";
-        }
-        return SortDirection;
-      }
-      internal void UpdateControlState( InvoiceContent _ic )
-      {
-      }
-      internal void Clear()
-      {
-      }
       public ControlState( ControlState _old )
       {
         if ( _old == null )
           return;
         InterfaceState = _old.InterfaceState;
       }
-      #endregion
-
-
       internal void ClearClearance()
       {
         throw new NotImplementedException();
+      }
+      internal void ClearAvailable()
+      {
+        AvailableItems.SelectionTable.Clear();
+      }
+      #endregion
+
+      internal void ClearAssigned()
+      {
+        AssignedItems.SelectionTable.Clear();
       }
     }
     private class LocalStateMachineEngine: WEB.WebpartStateMachineEngine
@@ -246,6 +240,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Parent.m_ControlState.InterfaceState = InterfaceState.ViewState;
         EnterState();
       }
+      internal InterfaceState CurrentState { get { return this.CurrentMachineState; } }
       #endregion
 
       #region NewDataEventHandlers
@@ -352,11 +347,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         switch ( CurrentMachineState )
         {
           case InterfaceState.ViewState:
+            Parent.ClearAvailable();
+            Parent.QueryAssigned();
             break;
           case InterfaceState.EditState:
-            Parent.SelectDataDS();
+            Parent.QueryAvailable();
             break;
           case InterfaceState.NewState:
+            Parent.QueryAvailable();
+            Parent.ClearAssigned();
             break;
         }
         base.EnterState();
@@ -430,7 +429,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         _allowed ^= GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn;
       _set &= _allowed;
       //Buttons
-      //m_EditButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.EditOn ) != 0;
+      m_EditButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.EditOn ) != 0;
       m_CancelButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.CancelOn ) != 0;
       m_NewButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.NewOn ) != 0;
       m_SaveButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
@@ -495,47 +494,54 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       //m_BatchTextBox.Text = m_ControlState.BatchTitle;
       return GenericStateMachineEngine.ActionResult.Success;
     }
-    private Selection SelectDataDS()
+    internal void ClearAvailable()
     {
-      if ( m_ControlState.AvailableItems != null )
-        return m_ControlState.AvailableItems;
-      DisposalStatus _dStatus = default( DisposalStatus );
+      m_ControlState.ClearAvailable();
+    }
+    internal void ClearAssigned()
+    {
+      m_ControlState.ClearAssigned();
+    }
+    internal void QueryAssigned()
+    {
+      m_ControlState.ClearAssigned();
+    }
+    private void QueryAvailable()
+    {
+      DisposalStatus[] _dStatus = default( DisposalStatus[] );
       bool _ddpsl = true;
       switch ( m_SelectGroupRadioButtonList.SelectedValue )
       {
         case "Tobacco":
-          _dStatus = DisposalStatus.Overuse;
+          _dStatus = new DisposalStatus[] { DisposalStatus.Overuse, DisposalStatus.SHMenthol };
           break;
         case "TobaccoNotAllocated":
-          _dStatus = DisposalStatus.TobaccoInCutfiller;
+          _dStatus = new DisposalStatus[] { DisposalStatus.TobaccoInCutfiller };
           _ddpsl = false;
           break;
         case "Dust":
-          _dStatus = DisposalStatus.Dust;
+          _dStatus = new DisposalStatus[] { DisposalStatus.Dust };
           break;
         case "Waste":
-          _dStatus = DisposalStatus.Waste;
+          _dStatus = new DisposalStatus[] { DisposalStatus.Waste };
           break;
         case "Cartons":
           //TODO we need dedicated status http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3294
-          _dStatus = DisposalStatus.None;
+          _dStatus = default( DisposalStatus[] );
           break;
         default:
           throw new SharePoint.ApplicationError( "SelectDataDS", "switch", "Internal error - wrong switch case.", null );
       }
-      Selection _data = new Selection() { };
+      ;
       if ( _ddpsl )
-        GetDisposals( _dStatus, _data );
+        GetDisposals( _dStatus, m_ControlState.AvailableItems );
       else
         if ( m_AllDate.Checked )
-          GetMaterial( _data );
+          GetMaterial( m_ControlState.AvailableItems );
         else
-          GetMaterial( _data, m_StartDateTimeControl.IsDateEmpty ? new Nullable<DateTime>() : m_StartDateTimeControl.SelectedDate.Date,
+          GetMaterial( m_ControlState.AvailableItems, m_StartDateTimeControl.IsDateEmpty ? new Nullable<DateTime>() : m_StartDateTimeControl.SelectedDate.Date,
                        m_EndTimeControl1.IsDateEmpty ? new Nullable<DateTime>() : m_EndTimeControl1.SelectedDate.Date );
-      _data.AcceptChanges();
-      //Persist the table in the ControlState object.
-      m_ControlState.AvailableItems = _data;
-      return _data;
+      m_ControlState.AvailableItems.AcceptChanges();
     }
     private void GetMaterial( Selection _data )
     {
@@ -580,42 +586,30 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         _data.SelectionTable.AddSelectionTableRow( _nr );
       }
     }
-    private void GetDisposals( DisposalStatus _dStatus, Selection _data )
+    private void GetDisposals( DisposalStatus[] status, Selection data )
     {
       var AvailableDustQery = from _dspslx in m_DataContextManagement.DataContext.Disposal
                               let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
-                              where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted && _dspslx.DisposalStatus.Value == _dStatus && _dspslx.ClearenceIndex == null
+                              where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted &&
+                                    ( _dspslx.DisposalStatus.Value == status[ 0 ] || ( status.Length == 2 && _dspslx.DisposalStatus.Value == status[ 1 ] ) ) &&
+                                      _dspslx.ClearenceIndex == null
                               orderby _ogl ascending
-                              select new
+                              select new Selection.SelectionTableRowWraper()
                               {
                                 DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
-                                DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate,
-                                ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate,
+                                DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate.Value,
+                                ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate.Value,
                                 SKU = _dspslx.Disposal2IPRIndex.SKU,
                                 Batch = _dspslx.Disposal2IPRIndex.Batch,
-                                UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice,
+                                UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice.Value,
                                 Currency = _dspslx.Disposal2IPRIndex.Currency,
-                                Quantity = _dspslx.SettledQuantity,
-                                Status = _dspslx.DisposalStatus,
+                                Quantity = _dspslx.SettledQuantity.Value,
+                                Status = _dspslx.DisposalStatus.Value.ToString(),
                                 Created = SharePoint.Extensions.SPMinimum,
-                                ID = _dspslx.Identyfikator.Value
+                                ID = _dspslx.Identyfikator.Value.ToString()
                               };
       foreach ( var _rowx in AvailableDustQery )
-      {
-        Selection.SelectionTableRow _nr = _data.SelectionTable.NewSelectionTableRow();
-        _nr.Batch = _rowx.Batch.Trim();
-        _nr.Created = _rowx.Created;
-        _nr.Currency = _rowx.Currency;
-        _nr.DocumentNo = _rowx.DocumentNo.Trim();
-        _nr.DebtDate = _rowx.DebtDate.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
-        _nr.ID = _rowx.ID.ToString();
-        _nr.SKU = _rowx.SKU.Trim();
-        _nr.Quantity = _rowx.Quantity.Value;
-        _nr.Status = _rowx.Status.ToString();
-        _nr.UnitPrice = _rowx.UnitPrice.Value;
-        _nr.ValidTo = _rowx.ValidTo.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
-        _data.SelectionTable.AddSelectionTableRow( _nr );
-      }
+        data.SelectionTable.NewSelectionTableRow( _rowx );
     }
 
     #endregion

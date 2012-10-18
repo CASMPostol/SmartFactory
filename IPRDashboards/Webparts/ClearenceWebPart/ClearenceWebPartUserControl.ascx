@@ -15,7 +15,7 @@
                 <asp:Label ID="m_ClearenceLabel" runat="server" Text="Clearence:" CssClass="Label"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="m_ClearenceTextBox" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:TextBox ID="m_ClearenceTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
