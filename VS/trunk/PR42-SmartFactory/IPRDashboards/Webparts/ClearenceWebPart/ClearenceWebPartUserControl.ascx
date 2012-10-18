@@ -88,16 +88,6 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    <asp:Table ID="m_OGLTable" runat="server" CssClass="Table">
-        <asp:TableRow>
-            <asp:TableCell>
-                <asp:Label ID="m_OGLLabel" runat="server" Text="OGL:" CssClass="Label"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:DropDownList ID="m_OGLDropDownList" runat="server" CssClass="DropDown"></asp:DropDownList>
-            </asp:TableCell>
-        </asp:TableRow>
-    </asp:Table>
     <asp:Table ID="m_GridViewTable" runat="server" CssClass="Table">
         <asp:TableRow>
             <asp:TableCell>
@@ -140,6 +130,28 @@
                     </Columns>
                 </SharePoint:SPGridView>
                 <SharePoint:SPGridViewPager ID="m_AvailableGridViewPager" GridViewId="m_AvailableGridView" runat="server" />
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell>
+                <asp:Panel runat="server" ID="m_ActionsPanel" BorderColor="ActiveCaptionText" GroupingText="Actions">
+                    <asp:Table runat="server" CssClass="Table" ID="m_ActionsTable">
+                        <asp:TableRow>
+                            <asp:TableCell>
+                                <asp:Button runat="server" CssClass="ButtonLong" Text="Add all" ID="m_AddAll" ToolTip="Add all items from available list to assigned list" />
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Button runat="server" CssClass="ButtonLong" Text="Add displayed" ID="m_AddDisplayed" ToolTip="Add displayed items from available list to assigned list" />
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Button runat="server" CssClass="ButtonLong" Text="Remove all" ID="m_RemoveAll" ToolTip="Remove all items from assigned list" />
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Button runat="server" CssClass="ButtonLong" Text="Remove displayed" ID="m_RemoveDisplayed" ToolTip="Remove displayed items from assigned list" />
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                </asp:Panel>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
