@@ -9,6 +9,21 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
   {
     internal partial class SelectionTableRowWraper
     {
+
+      public SelectionTableRowWraper( Linq.IPR.Disposal _dspslx )
+      {
+        DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo;
+        DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate.Value;
+        ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate.Value;
+        SKU = _dspslx.Disposal2IPRIndex.SKU;
+        Batch = _dspslx.Disposal2IPRIndex.Batch;
+        UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice.Value;
+        Currency = _dspslx.Disposal2IPRIndex.Currency;
+        Quantity = _dspslx.SettledQuantity.Value;
+        Status = _dspslx.DisposalStatus.Value.ToString();
+        Created = SharePoint.Extensions.SPMinimum;
+        ID = _dspslx.Identyfikator.Value.ToString();
+      }
       internal string DocumentNo { get; set; }
       internal DateTime DebtDate { get; set; }
       internal DateTime ValidTo { get; set; }
@@ -36,7 +51,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
 
       internal void NewSelectionTableRow( SelectionTableRowWraper _rowx )
       {
-        SelectionTableRow  _nr = this.NewSelectionTableRow();
+        SelectionTableRow _nr = this.NewSelectionTableRow();
         _nr.Batch = _rowx.Batch.Trim();
         _nr.Created = _rowx.Created;
         _nr.Currency = _rowx.Currency;

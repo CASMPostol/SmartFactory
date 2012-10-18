@@ -210,16 +210,22 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         throw new NotImplementedException();
       }
-      internal void ClearAvailable()
-      {
-        AvailableItems.SelectionTable.Clear();
-      }
-      #endregion
-
       internal void ClearAssigned()
       {
         AssignedItems.SelectionTable.Clear();
       }
+      internal void ClearAvailable()
+      {
+        AvailableItems.SelectionTable.Clear();
+      }
+      internal void AddAvailableItems( List<Selection.SelectionTableRowWraper> AvailableDustQery )
+      {
+        AvailableItems.SelectionTable.Clear();
+        foreach ( Selection.SelectionTableRowWraper _rowx in AvailableDustQery )
+          AvailableItems.SelectionTable.NewSelectionTableRow( _rowx );
+        AvailableItems.SelectionTable.AcceptChanges();
+      }
+      #endregion
     }
     private class LocalStateMachineEngine: WEB.WebpartStateMachineEngine
     {
@@ -508,39 +514,29 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private void QueryAvailable()
     {
-      DisposalStatus[] _dStatus = default( DisposalStatus[] );
-      bool _ddpsl = true;
+      DateTime? _start = m_AllDate.Checked || m_StartDateTimeControl.IsDateEmpty ? new Nullable<DateTime>() : m_StartDateTimeControl.SelectedDate.Date;
+      DateTime? _finish = m_AllDate.Checked || m_EndTimeControl1.IsDateEmpty ? new Nullable<DateTime>() : m_EndTimeControl1.SelectedDate.Date;
       switch ( m_SelectGroupRadioButtonList.SelectedValue )
       {
         case "Tobacco":
-          _dStatus = new DisposalStatus[] { DisposalStatus.Overuse, DisposalStatus.SHMenthol };
+          GetDisposals( new DisposalStatus[] { DisposalStatus.Overuse, DisposalStatus.SHMenthol }, false, _start, _finish );
           break;
         case "TobaccoNotAllocated":
-          _dStatus = new DisposalStatus[] { DisposalStatus.TobaccoInCutfiller };
-          _ddpsl = false;
+          GetMaterial( m_ControlState.AvailableItems, _start, _finish );
           break;
         case "Dust":
-          _dStatus = new DisposalStatus[] { DisposalStatus.Dust };
+          GetDisposals( new DisposalStatus[] { DisposalStatus.Dust }, true, _start, _finish );
           break;
         case "Waste":
-          _dStatus = new DisposalStatus[] { DisposalStatus.Waste };
+          GetDisposals( new DisposalStatus[] { DisposalStatus.Waste }, true, _start, _finish );
           break;
         case "Cartons":
           //TODO we need dedicated status http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3294
-          _dStatus = default( DisposalStatus[] );
+          GetDisposals( new DisposalStatus[] { DisposalStatus.None }, false, _start, _finish );
           break;
         default:
           throw new SharePoint.ApplicationError( "SelectDataDS", "switch", "Internal error - wrong switch case.", null );
-      }
-      ;
-      if ( _ddpsl )
-        GetDisposals( _dStatus, m_ControlState.AvailableItems );
-      else
-        if ( m_AllDate.Checked )
-          GetMaterial( m_ControlState.AvailableItems );
-        else
-          GetMaterial( m_ControlState.AvailableItems, m_StartDateTimeControl.IsDateEmpty ? new Nullable<DateTime>() : m_StartDateTimeControl.SelectedDate.Date,
-                       m_EndTimeControl1.IsDateEmpty ? new Nullable<DateTime>() : m_EndTimeControl1.SelectedDate.Date );
+      };
       m_ControlState.AvailableItems.AcceptChanges();
     }
     private void GetMaterial( Selection _data )
@@ -586,30 +582,26 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         _data.SelectionTable.AddSelectionTableRow( _nr );
       }
     }
-    private void GetDisposals( DisposalStatus[] status, Selection data )
+    private void GetDisposals( DisposalStatus[] status, bool creationDataFilter, DateTime? start, DateTime? finisch )
     {
-      var AvailableDustQery = from _dspslx in m_DataContextManagement.DataContext.Disposal
-                              let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
-                              where _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted &&
-                                    ( _dspslx.DisposalStatus.Value == status[ 0 ] || ( status.Length == 2 && _dspslx.DisposalStatus.Value == status[ 1 ] ) ) &&
-                                      _dspslx.ClearenceIndex == null
-                              orderby _ogl ascending
-                              select new Selection.SelectionTableRowWraper()
-                              {
-                                DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo,
-                                DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate.Value,
-                                ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate.Value,
-                                SKU = _dspslx.Disposal2IPRIndex.SKU,
-                                Batch = _dspslx.Disposal2IPRIndex.Batch,
-                                UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice.Value,
-                                Currency = _dspslx.Disposal2IPRIndex.Currency,
-                                Quantity = _dspslx.SettledQuantity.Value,
-                                Status = _dspslx.DisposalStatus.Value.ToString(),
-                                Created = SharePoint.Extensions.SPMinimum,
-                                ID = _dspslx.Identyfikator.Value.ToString()
-                              };
-      foreach ( var _rowx in AvailableDustQery )
-        data.SelectionTable.NewSelectionTableRow( _rowx );
+      List<Selection.SelectionTableRowWraper> AvailableDustQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
+                                                                    let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
+                                                                    where _dspslx.ClearenceIndex == null &&
+                                                                          _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted &&
+                                                                          ( _dspslx.DisposalStatus.Value == status[ 0 ] || ( status.Length == 2 && _dspslx.DisposalStatus.Value == status[ 1 ] ) )
+                                                                    orderby _ogl ascending
+                                                                    select new Selection.SelectionTableRowWraper( _dspslx ) ).ToList();
+      if ( creationDataFilter )
+        AvailableDustQery = ( from _itmx in AvailableDustQery
+                              where ( !start.HasValue || _itmx.Created >= start ) && ( !finisch.HasValue || _itmx.Created <= finisch )
+                              orderby _itmx.Created ascending
+                              select _itmx ).ToList();
+      else
+        AvailableDustQery = ( from _itmx in AvailableDustQery
+                              where ( !start.HasValue || _itmx.DebtDate >= start ) && ( !finisch.HasValue || _itmx.DebtDate <= finisch )
+                              orderby _itmx.DebtDate ascending
+                              select _itmx ).ToList();
+      m_ControlState.AddAvailableItems( AvailableDustQery );
     }
 
     #endregion
