@@ -8,6 +8,7 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ClearenceWebPartUserControl.ascx.cs" Inherits="CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart.ClearenceWebPartUserControl" %>
 
 <SharePoint:CssRegistration runat="server" ID="cssreg" Name="/_layouts/IPRDashboards/CAS_IPRDashboards.css" />
+
 <asp:Panel ID="m_Panel" runat="server">
     <asp:Table runat="server" ID="m_ClearenceTable" CssClass="Table">
         <asp:TableRow>
@@ -46,9 +47,9 @@
                         <asp:Label ID="m_AllDateLabel" runat="server" Text="All" CssClass="Label" />
                         <asp:CheckBox ID="m_AllDate" runat="server" /><br />
                         <asp:Label ID="m_StartDateLabel" runat="server" Text="Start date:" CssClass="Label" />
-                        <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" />
+                        <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx"/>
                         <asp:Label ID="m_EndDateLabel" runat="server" Text="End date:" CssClass="Label" />
-                        <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" />
+                        <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx"/>
                     </asp:Panel>
                 </asp:TableCell>
             </asp:TableRow>
