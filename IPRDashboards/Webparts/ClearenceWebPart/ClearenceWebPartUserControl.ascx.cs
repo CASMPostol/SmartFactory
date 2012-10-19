@@ -516,40 +516,38 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       DateTime? _start = m_AllDate.Checked || m_StartDateTimeControl.IsDateEmpty ? new Nullable<DateTime>() : m_StartDateTimeControl.SelectedDate.Date;
       DateTime? _finish = m_AllDate.Checked || m_EndTimeControl1.IsDateEmpty ? new Nullable<DateTime>() : m_EndTimeControl1.SelectedDate.Date;
+      string _currency = m_SelectCurrencyRadioButtonList.SelectedValue.Contains( "All" ) ? String.Empty : m_SelectCurrencyRadioButtonList.SelectedValue;
       switch ( m_SelectGroupRadioButtonList.SelectedValue )
       {
         case "Tobacco":
-          GetDisposals( new DisposalStatus[] { DisposalStatus.Overuse, DisposalStatus.SHMenthol }, false, _start, _finish );
+          GetDisposals( new DisposalStatus[] { DisposalStatus.Overuse, DisposalStatus.SHMenthol }, false, _start, _finish, _currency );
           break;
         case "TobaccoNotAllocated":
-          GetMaterial( m_ControlState.AvailableItems, _start, _finish );
+          GetMaterial( m_ControlState.AvailableItems, _start, _finish, _currency );
           break;
         case "Dust":
-          GetDisposals( new DisposalStatus[] { DisposalStatus.Dust }, true, _start, _finish );
+          GetDisposals( new DisposalStatus[] { DisposalStatus.Dust }, true, _start, _finish, _currency );
           break;
         case "Waste":
-          GetDisposals( new DisposalStatus[] { DisposalStatus.Waste }, true, _start, _finish );
+          GetDisposals( new DisposalStatus[] { DisposalStatus.Waste }, true, _start, _finish, _currency );
           break;
         case "Cartons":
           //TODO we need dedicated status http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3294
-          GetDisposals( new DisposalStatus[] { DisposalStatus.None }, false, _start, _finish );
+          GetDisposals( new DisposalStatus[] { DisposalStatus.None }, false, _start, _finish, _currency );
           break;
         default:
           throw new SharePoint.ApplicationError( "SelectDataDS", "switch", "Internal error - wrong switch case.", null );
       };
       m_ControlState.AvailableItems.AcceptChanges();
     }
-    private void GetMaterial( Selection _data )
-    {
-      GetMaterial( _data, new Nullable<DateTime>(), new Nullable<DateTime>() );
-    }
-    private void GetMaterial( Selection _data, DateTime? start, DateTime? finisch )
+    private void GetMaterial( Selection _data, DateTime? start, DateTime? finisch, string currency )
     {
       var AvailableDustQery = from _iprx in m_DataContextManagement.DataContext.IPR
                               let _batch = _iprx.Batch
                               where ( !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 ) &&
                                     ( !start.HasValue || _iprx.CustomsDebtDate >= start.Value ) &&
-                                    ( !finisch.HasValue || _iprx.CustomsDebtDate <= finisch.Value )
+                                    ( !finisch.HasValue || _iprx.CustomsDebtDate <= finisch.Value ) &&
+                                    ( String.IsNullOrEmpty( currency ) || _iprx.Currency.Contains( currency ) )
                               orderby _batch ascending
                               select new
                               {
@@ -582,13 +580,16 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         _data.SelectionTable.AddSelectionTableRow( _nr );
       }
     }
-    private void GetDisposals( DisposalStatus[] status, bool creationDataFilter, DateTime? start, DateTime? finisch )
+    private void GetDisposals( DisposalStatus[] status, bool creationDataFilter, DateTime? start, DateTime? finisch, string currency )
     {
+      DisposalStatus _status0 = status[ 0 ];
+      DisposalStatus _status1 = status.Length == 2 ? status[ 1 ] : DisposalStatus.Invalid;
       List<Selection.SelectionTableRowWraper> AvailableDustQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
                                                                     let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
                                                                     where _dspslx.ClearenceIndex == null &&
                                                                           _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted &&
-                                                                          ( _dspslx.DisposalStatus.Value == status[ 0 ] || ( status.Length == 2 && _dspslx.DisposalStatus.Value == status[ 1 ] ) )
+                                                                          ( _dspslx.DisposalStatus.Value == _status0 || _dspslx.DisposalStatus.Value == _status1 ) &&
+                                                                          ( String.IsNullOrEmpty( currency ) || _dspslx.Disposal2IPRIndex.Currency.Contains( currency ) )
                                                                     orderby _ogl ascending
                                                                     select new Selection.SelectionTableRowWraper( _dspslx ) ).ToList();
       if ( creationDataFilter )
