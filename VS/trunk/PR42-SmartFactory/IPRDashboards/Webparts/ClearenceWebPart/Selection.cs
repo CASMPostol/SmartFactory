@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using CAS.SharePoint;
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
@@ -88,6 +89,20 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         _nr.UnitPrice = _rowx.UnitPrice;
         _nr.ValidTo = _rowx.ValidTo;
         AddSelectionTableRow( _nr );
+      }
+      internal IEnumerable<SelectionTableRow> OnlyDisposals
+      {
+        get
+        {
+          return from _dx in this where _dx.Disposal select _dx;
+        }
+      }
+      internal IEnumerable<Selection.SelectionTableRow> OnlyAdded
+      {
+        get
+        {
+          return from _dx in this where _dx.RowState == DataRowState.Added select _dx;
+        }
       }
     }
     /// <summary>

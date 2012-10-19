@@ -258,6 +258,10 @@ namespace CAS.SmartFactory.Linq.IPR
   }
   public partial class Disposal
   {
+    /// <summary>
+    /// Calculate values of columns: Title, DutyPerSettledAmount, VATPerSettledAmount, TobaccoValue, DutyAndVAT.
+    /// </summary>
+    /// <param name="clearingType">Type of the clearing.</param>
     internal void SetUpCalculatedColumns( ClearingType clearingType )
     {
       string _titleTmplt = "Disposal: {0} of FG {1}";
@@ -290,6 +294,9 @@ namespace CAS.SmartFactory.Linq.IPR
       return Disposal2IPRIndex.VAT.Value - ( from _dec in Disposal2IPRIndex.Disposal where _dec.VATPerSettledAmount.HasValue select new { val = _dec.VATPerSettledAmount.Value } ).Sum( itm => itm.val );
     }
   }
+  /// <summary>
+  /// Clearence
+  /// </summary>
   public partial class Clearence
   {
     internal static Clearence CreataClearence( Entities edc, string code, ClearenceProcedure procedure )
@@ -313,8 +320,16 @@ namespace CAS.SmartFactory.Linq.IPR
       Title = String.Format( "{0} Ref: {1}", _messageType.NotAvailable(), ReferenceNumber.NotAvailable() );
     }
   }
+  /// <summary>
+  /// LinqIPRExtensions
+  /// </summary>
   public static class LinqIPRExtensions
   {
+    /// <summary>
+    /// Unitses for the specified product.
+    /// </summary>
+    /// <param name="product">The product.</param>
+    /// <returns></returns>
     public static string Units( this ProductType product )
     {
       switch ( product )
