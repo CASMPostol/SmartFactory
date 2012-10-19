@@ -12,6 +12,11 @@
     <html>
       <head>
         <title>Zbiorczy proces technologiczny produkcji papierosów na eksport</title>
+        <style type="text/css">
+          td, p { font-size:10px; }
+          th { font-size:12px; }
+          h2 { font-size:14px; text-align:center; }
+        </style>
       </head>
       <body>
         <table  >
