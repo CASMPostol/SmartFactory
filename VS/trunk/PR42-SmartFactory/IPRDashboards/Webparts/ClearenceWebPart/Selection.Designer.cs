@@ -302,6 +302,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             private global::System.Data.DataColumn columnID;
             
+            private global::System.Data.DataColumn columnDisposal;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SelectionTableDataTable() {
@@ -425,6 +427,14 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DisposalColumn {
+                get {
+                    return this.columnDisposal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -460,7 +470,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SelectionTableRow AddSelectionTableRow(string DocumentNo, System.DateTime DebtDate, System.DateTime ValidTo, double Quantity, double UnitPrice, string Currency, System.DateTime Created, string Status, string Batch, string SKU, string ID) {
+            public SelectionTableRow AddSelectionTableRow(string DocumentNo, System.DateTime DebtDate, System.DateTime ValidTo, double Quantity, double UnitPrice, string Currency, System.DateTime Created, string Status, string Batch, string SKU, string ID, bool Disposal) {
                 SelectionTableRow rowSelectionTableRow = ((SelectionTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         DocumentNo,
@@ -473,7 +483,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                         Status,
                         Batch,
                         SKU,
-                        ID};
+                        ID,
+                        Disposal};
                 rowSelectionTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSelectionTableRow);
                 return rowSelectionTableRow;
@@ -514,6 +525,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 this.columnBatch = base.Columns["Batch"];
                 this.columnSKU = base.Columns["SKU"];
                 this.columnID = base.Columns["ID"];
+                this.columnDisposal = base.Columns["Disposal"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -541,6 +553,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 base.Columns.Add(this.columnSKU);
                 this.columnID = new global::System.Data.DataColumn("ID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
+                this.columnDisposal = new global::System.Data.DataColumn("Disposal", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDisposal);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnDocumentNo.Caption = "Document No";
@@ -556,6 +570,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 this.columnSKU.AllowDBNull = false;
                 this.columnID.AllowDBNull = false;
                 this.columnID.Unique = true;
+                this.columnDisposal.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -829,6 +844,17 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 }
                 set {
                     this[this.tableSelectionTable.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Disposal {
+                get {
+                    return ((bool)(this[this.tableSelectionTable.DisposalColumn]));
+                }
+                set {
+                    this[this.tableSelectionTable.DisposalColumn] = value;
                 }
             }
             

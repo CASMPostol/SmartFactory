@@ -285,21 +285,16 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         try
         {
-          List<string> _errors = new List<string>();
-          if ( _errors.Count > 0 )
-            return ActionResult.NotValidated( _errors[ 0 ] );
-          Clearence _newClearance = new Clearence()
-          {
-          };
-          Parent.m_DataContextManagement.DataContext.Clearence.InsertOnSubmit( _newClearance );
-          Parent.m_DataContextManagement.DataContext.SubmitChanges();
-          Parent.m_DataContextManagement.DataContext.SubmitChanges();
+          return Parent.Create();
+        }
+        catch ( GenericStateMachineEngine.ActionResult ex )
+        {
+          return ex;
         }
         catch ( Exception ex )
         {
           return GenericStateMachineEngine.ActionResult.Exception( ex, "Create" );
         }
-        return GenericStateMachineEngine.ActionResult.Success;
       }
       protected override GenericStateMachineEngine.ActionResult Delete()
       {
@@ -449,19 +444,115 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         if ( m_ProcedureRadioButtonList.SelectedIndex < 0 )
           return GenericStateMachineEngine.ActionResult.NotValidated( "Customs procedure must  be selected" );
-        switch ( m_ProcedureRadioButtonList.SelectedValue )
+        switch ( SelectedClearenceProcedure )
         {
-          case "4051":
+          case ClearenceProcedure._4051:
             return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException( "Revert  to free circulation is not implemented yet" ), "ClearThroughCustom" );
-          case "3151":
+          case ClearenceProcedure._3151:
             return Export( SPContext.Current.Web );
         }
+        throw GenericStateMachineEngine.ActionResult.Exception( null, "Wrong ClearenceProcedure in ClearThroughCustom" );
       }
       catch ( Exception ex )
       {
         return GenericStateMachineEngine.ActionResult.Exception( ex, "ClearThroughCustom" );
       }
       return GenericStateMachineEngine.ActionResult.Success;
+    }
+    private GenericStateMachineEngine.ActionResult Create()
+    {
+      List<string> _errors = new List<string>();
+      if ( _errors.Count > 0 )
+        return SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( _errors[ 0 ] );
+      string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
+      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, customsProcedureCode, SelectedClearenceProcedure );
+      Entities _edc = m_DataContextManagement.DataContext;
+      switch ( SelectedGroup )
+      {
+        case Group.TobaccoNotAllocated:
+          ClearanceOfTobaccoNotAllocated( _newClearance, _edc );
+          break;
+        case Group.Tobacco:
+        case Group.Dust:
+        case Group.Waste:
+        case Group.Cartons:
+          ClearanceOfDisposal( _newClearance, _edc );
+          break;
+      }
+      m_DataContextManagement.DataContext.Clearence.InsertOnSubmit( _newClearance );
+      m_DataContextManagement.DataContext.SubmitChanges();
+      return GenericStateMachineEngine.ActionResult.Success;
+    }
+    private void ClearanceOfDisposal( Clearence _newClearance, Entities _edc )
+    {
+      IEnumerable<Selection.SelectionTableRow> _previouslyAssigned = from _dx in m_ControlState.AvailableItems.SelectionTable
+                                                                     where _dx.RowState == DataRowState.Added
+                                                                     select _dx;
+      foreach ( Selection.SelectionTableRow _row in _previouslyAssigned )
+      {
+        Linq.IPR.Disposal _dspsl = Element.TryGetAtIndex<Linq.IPR.Disposal>( _edc.Disposal, _row.ID );
+        _dspsl.ClearenceIndex = null;
+      }
+      IEnumerable<Selection.SelectionTableRow> _assigned = from _dx in m_ControlState.AssignedItems.SelectionTable
+                                                           where _dx.RowState == DataRowState.Added
+                                                           select _dx;
+      foreach ( Selection.SelectionTableRow _row in _assigned )
+      {
+        Linq.IPR.Disposal _dspsl = Element.TryGetAtIndex<Linq.IPR.Disposal>( _edc.Disposal, _row.ID );
+        _dspsl.ClearenceIndex = _newClearance;
+      }
+    }
+    private void ClearanceOfTobaccoNotAllocated( Clearence _newClearance, Entities _edc )
+    {
+      IEnumerable<Selection.SelectionTableRow> _previouslyAssigned = from _dx in m_ControlState.AvailableItems.SelectionTable
+                                                                     where _dx.Disposal
+                                                                     select _dx;
+      foreach ( Selection.SelectionTableRow _row in _previouslyAssigned )
+      {
+        Linq.IPR.Disposal _dspsl = Element.GetAtIndex<Linq.IPR.Disposal>( _edc.Disposal, _row.Identyfikator );
+        _dspsl.ClearenceIndex = null;
+        _dspsl.Disposal2IPRIndex.RevertWithdraw( _dspsl.SettledQuantity );
+        _edc.Disposal.DeleteOnSubmit( _dspsl );
+      }
+      foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable )
+      {
+        if ( _row.Disposal )
+          continue;
+        Linq.IPR.IPR _ipr = Element.GetAtIndex<Linq.IPR.IPR>( _edc.IPR, _row.Identyfikator );
+        double _dutyPerSettledAmount = _ipr.CalculateDutyAndVAT( _row.Quantity );
+        double _vatPerSettledAmount = _ipr.CalculateVATPerSettledAmount( _row.Quantity );
+        double _tobaccoValue = _ipr.CalculateTobaccoValue( _row.Quantity );
+        Disposal _nd = new Disposal()
+        {
+          ClearenceIndex = _newClearance,
+          ClearingType = ClearingType.PartialWindingUp,
+          CustomsProcedure = _newClearance.ProcedureCode,
+          CustomsStatus = CustomsStatus.NotStarted,
+          Disposal2BatchIndex = null,
+          Disposal2IPRIndex = Element.TryGetAtIndex<Linq.IPR.IPR>( _edc.IPR, _row.ID ),
+          Disposal2MaterialIndex = null,
+          //TODO how to find the code ??
+          Disposal2PCNCompensationGood = null,
+          //TODO we must add DisposalStatus Tobacco
+          DisposalStatus = DisposalStatus.Invalid,
+          DutyAndVAT = _dutyPerSettledAmount + _vatPerSettledAmount,
+          DutyPerSettledAmount = _dutyPerSettledAmount,
+          InvoiceNo = String.Empty.NotAvailable(),
+          IPRDocumentNo = String.Empty.NotAvailable(),
+          JSOXCustomsSummaryIndex = null,
+          No = new Nullable<double>(),
+          RemainingQuantity = _ipr.TobaccoNotAllocated - _row.Quantity,
+          SADDate = SharePoint.Extensions.DateTimeNull,
+          SADDocumentNo = String.Empty.NotAvailable(),
+          SettledQuantity = _row.Quantity,
+          Title = "Creating",
+          VATPerSettledAmount = _vatPerSettledAmount,
+          TobaccoValue = _tobaccoValue
+        };
+        _edc.Disposal.InsertOnSubmit( _nd );
+        _ipr.Withdraw( _row.Quantity );
+      }
+      _edc.SubmitChanges();
     }
     private GenericStateMachineEngine.ActionResult Export( SPWeb site )
     {
@@ -500,15 +591,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       //m_BatchTextBox.Text = m_ControlState.BatchTitle;
       return GenericStateMachineEngine.ActionResult.Success;
     }
-    internal void ClearAvailable()
+    private void ClearAvailable()
     {
       m_ControlState.ClearAvailable();
     }
-    internal void ClearAssigned()
+    private void ClearAssigned()
     {
       m_ControlState.ClearAssigned();
     }
-    internal void QueryAssigned()
+    private void QueryAssigned()
     {
       m_ControlState.ClearAssigned();
     }
@@ -517,21 +608,21 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       DateTime? _start = m_AllDate.Checked || m_StartDateTimeControl.IsDateEmpty ? new Nullable<DateTime>() : m_StartDateTimeControl.SelectedDate.Date;
       DateTime? _finish = m_AllDate.Checked || m_EndTimeControl1.IsDateEmpty ? new Nullable<DateTime>() : m_EndTimeControl1.SelectedDate.Date;
       string _currency = m_SelectCurrencyRadioButtonList.SelectedValue.Contains( "All" ) ? String.Empty : m_SelectCurrencyRadioButtonList.SelectedValue;
-      switch ( m_SelectGroupRadioButtonList.SelectedValue )
+      switch ( SelectedGroup )
       {
-        case "Tobacco":
+        case Group.Tobacco:
           GetDisposals( new DisposalStatus[] { DisposalStatus.Overuse, DisposalStatus.SHMenthol }, false, _start, _finish, _currency );
           break;
-        case "TobaccoNotAllocated":
+        case Group.TobaccoNotAllocated:
           GetMaterial( m_ControlState.AvailableItems, _start, _finish, _currency );
           break;
-        case "Dust":
+        case Group.Dust:
           GetDisposals( new DisposalStatus[] { DisposalStatus.Dust }, true, _start, _finish, _currency );
           break;
-        case "Waste":
+        case Group.Waste:
           GetDisposals( new DisposalStatus[] { DisposalStatus.Waste }, true, _start, _finish, _currency );
           break;
-        case "Cartons":
+        case Group.Cartons:
           //TODO we need dedicated status http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3294
           GetDisposals( new DisposalStatus[] { DisposalStatus.None }, false, _start, _finish, _currency );
           break;
@@ -542,43 +633,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private void GetMaterial( Selection _data, DateTime? start, DateTime? finisch, string currency )
     {
-      var AvailableDustQery = from _iprx in m_DataContextManagement.DataContext.IPR
-                              let _batch = _iprx.Batch
-                              where ( !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 ) &&
-                                    ( !start.HasValue || _iprx.CustomsDebtDate >= start.Value ) &&
-                                    ( !finisch.HasValue || _iprx.CustomsDebtDate <= finisch.Value ) &&
-                                    ( String.IsNullOrEmpty( currency ) || _iprx.Currency.Contains( currency ) )
-                              orderby _batch ascending
-                              select new
-                              {
-                                DocumentNo = _iprx.DocumentNo,
-                                DebtDate = _iprx.CustomsDebtDate,
-                                ValidTo = _iprx.ValidToDate,
-                                SKU = _iprx.SKU,
-                                Batch = _iprx.Batch,
-                                UnitPrice = _iprx.IPRUnitPrice,
-                                Currency = _iprx.Currency,
-                                Quantity = _iprx.TobaccoNotAllocated,
-                                Status = "Material",
-                                Created = _iprx.CustomsDebtDate.Value,
-                                ID = _iprx.Identyfikator.Value
-                              };
-      foreach ( var _rowx in AvailableDustQery )
-      {
-        Selection.SelectionTableRow _nr = _data.SelectionTable.NewSelectionTableRow();
-        _nr.Batch = _rowx.Batch.Trim();
-        _nr.Created = _rowx.Created;
-        _nr.Currency = _rowx.Currency;
-        _nr.DocumentNo = _rowx.DocumentNo.Trim();
-        _nr.DebtDate = _rowx.DebtDate.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
-        _nr.ID = _rowx.ID.ToString();
-        _nr.SKU = _rowx.SKU.Trim();
-        _nr.Quantity = _rowx.Quantity.Value;
-        _nr.Status = _rowx.Status.ToString();
-        _nr.UnitPrice = _rowx.UnitPrice.Value;
-        _nr.ValidTo = _rowx.ValidTo.GetValueOrDefault( SharePoint.Extensions.SPMinimum );
-        _data.SelectionTable.AddSelectionTableRow( _nr );
-      }
+      List<Selection.SelectionTableRowWraper> AvailableDustQery = ( from _iprx in m_DataContextManagement.DataContext.IPR
+                                                                    let _batch = _iprx.Batch
+                                                                    where ( !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 ) &&
+                                                                          ( !start.HasValue || _iprx.CustomsDebtDate >= start.Value ) &&
+                                                                          ( !finisch.HasValue || _iprx.CustomsDebtDate <= finisch.Value ) &&
+                                                                          ( String.IsNullOrEmpty( currency ) || _iprx.Currency.Contains( currency ) )
+                                                                    orderby _batch ascending
+                                                                    select new Selection.SelectionTableRowWraper( _iprx ) ).ToList();
+      m_ControlState.AddAvailableItems( AvailableDustQery );
     }
     private void GetDisposals( DisposalStatus[] status, bool creationDataFilter, DateTime? start, DateTime? finisch, string currency )
     {
@@ -604,7 +667,42 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
                               select _itmx ).ToList();
       m_ControlState.AddAvailableItems( AvailableDustQery );
     }
-
+    private ClearenceProcedure SelectedClearenceProcedure
+    {
+      get
+      {
+        switch ( m_ProcedureRadioButtonList.SelectedValue )
+        {
+          case "4051":
+            return ClearenceProcedure._4051;
+          case "3151":
+            return ClearenceProcedure._3151;
+        }
+        return ClearenceProcedure.Invalid;
+      }
+    }
+    private enum Group { Tobacco, TobaccoNotAllocated, Dust, Waste, Cartons }
+    private Group SelectedGroup
+    {
+      get
+      {
+        switch ( m_SelectGroupRadioButtonList.SelectedValue )
+        {
+          case "Tobacco":
+            return Group.Tobacco;
+          case "TobaccoNotAllocated":
+            return Group.TobaccoNotAllocated;
+          case "Dust":
+            return Group.Dust;
+          case "Waste":
+            return Group.Waste;
+          case "Cartons":
+            return Group.Tobacco;
+          default:
+            throw new SharePoint.ApplicationError( "SelectDataDS", "switch", "Internal error - wrong switch case.", null );
+        };
+      }
+    }
     #endregion
 
     #region vars
@@ -730,5 +828,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
 
     #endregion
 
+    public string customsProcedureCode { get; set; }
   }
 }
