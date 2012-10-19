@@ -465,63 +465,54 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       if ( _errors.Count > 0 )
         return SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( _errors[ 0 ] );
       string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
-      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, customsProcedureCode, SelectedClearenceProcedure );
+      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _customsProcedureCode, SelectedClearenceProcedure );
       Entities _edc = m_DataContextManagement.DataContext;
       switch ( SelectedGroup )
       {
         case Group.TobaccoNotAllocated:
-          ClearanceOfTobaccoNotAllocated( _newClearance, _edc );
+          ClearTobaccoNotAllocated( _newClearance, _edc );
           break;
         case Group.Tobacco:
         case Group.Dust:
         case Group.Waste:
         case Group.Cartons:
-          ClearanceOfDisposal( _newClearance, _edc );
+          ClearDisposals( _newClearance, _edc );
           break;
       }
-      m_DataContextManagement.DataContext.Clearence.InsertOnSubmit( _newClearance );
       m_DataContextManagement.DataContext.SubmitChanges();
       return GenericStateMachineEngine.ActionResult.Success;
     }
-    private void ClearanceOfDisposal( Clearence _newClearance, Entities _edc )
+    private void ClearDisposals( Clearence newClearance, Entities edc )
     {
-      IEnumerable<Selection.SelectionTableRow> _previouslyAssigned = from _dx in m_ControlState.AvailableItems.SelectionTable
-                                                                     where _dx.RowState == DataRowState.Added
-                                                                     select _dx;
-      foreach ( Selection.SelectionTableRow _row in _previouslyAssigned )
+      //remove from clearance
+      foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyAdded )
       {
-        Linq.IPR.Disposal _dspsl = Element.TryGetAtIndex<Linq.IPR.Disposal>( _edc.Disposal, _row.ID );
+        Linq.IPR.Disposal _dspsl = Element.GetAtIndex<Linq.IPR.Disposal>( edc.Disposal, _row.Identyfikator );
         _dspsl.ClearenceIndex = null;
       }
-      IEnumerable<Selection.SelectionTableRow> _assigned = from _dx in m_ControlState.AssignedItems.SelectionTable
-                                                           where _dx.RowState == DataRowState.Added
-                                                           select _dx;
-      foreach ( Selection.SelectionTableRow _row in _assigned )
+      //add to clearance
+      foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
       {
-        Linq.IPR.Disposal _dspsl = Element.TryGetAtIndex<Linq.IPR.Disposal>( _edc.Disposal, _row.ID );
-        _dspsl.ClearenceIndex = _newClearance;
+        Linq.IPR.Disposal _dspsl = Element.GetAtIndex<Linq.IPR.Disposal>( edc.Disposal, _row.Identyfikator );
+        _dspsl.ClearenceIndex = newClearance;
       }
     }
-    private void ClearanceOfTobaccoNotAllocated( Clearence _newClearance, Entities _edc )
+    private void ClearTobaccoNotAllocated( Clearence _newClearance, Entities _edc )
     {
-      IEnumerable<Selection.SelectionTableRow> _previouslyAssigned = from _dx in m_ControlState.AvailableItems.SelectionTable
-                                                                     where _dx.Disposal
-                                                                     select _dx;
-      foreach ( Selection.SelectionTableRow _row in _previouslyAssigned )
+      //remove for clearance
+      foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyDisposals )
       {
         Linq.IPR.Disposal _dspsl = Element.GetAtIndex<Linq.IPR.Disposal>( _edc.Disposal, _row.Identyfikator );
         _dspsl.ClearenceIndex = null;
         _dspsl.Disposal2IPRIndex.RevertWithdraw( _dspsl.SettledQuantity );
         _edc.Disposal.DeleteOnSubmit( _dspsl );
       }
-      foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable )
+      //add to clearance
+      foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
       {
         if ( _row.Disposal )
-          continue;
+          throw SharePoint.Web.GenericStateMachineEngine.ActionResult.Exception( null, "Internal error - disposal is on the added to assigned list" );
         Linq.IPR.IPR _ipr = Element.GetAtIndex<Linq.IPR.IPR>( _edc.IPR, _row.Identyfikator );
-        double _dutyPerSettledAmount = _ipr.CalculateDutyAndVAT( _row.Quantity );
-        double _vatPerSettledAmount = _ipr.CalculateVATPerSettledAmount( _row.Quantity );
-        double _tobaccoValue = _ipr.CalculateTobaccoValue( _row.Quantity );
         Disposal _nd = new Disposal()
         {
           ClearenceIndex = _newClearance,
@@ -529,14 +520,14 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           CustomsProcedure = _newClearance.ProcedureCode,
           CustomsStatus = CustomsStatus.NotStarted,
           Disposal2BatchIndex = null,
-          Disposal2IPRIndex = Element.TryGetAtIndex<Linq.IPR.IPR>( _edc.IPR, _row.ID ),
+          Disposal2IPRIndex = _ipr,
           Disposal2MaterialIndex = null,
           //TODO how to find the code ??
           Disposal2PCNCompensationGood = null,
           //TODO we must add DisposalStatus Tobacco
           DisposalStatus = DisposalStatus.Invalid,
-          DutyAndVAT = _dutyPerSettledAmount + _vatPerSettledAmount,
-          DutyPerSettledAmount = _dutyPerSettledAmount,
+          //DutyAndVAT - in SetUpCalculatedColumns,
+          //DutyPerSettledAmount - in SetUpCalculatedColumns,
           InvoiceNo = String.Empty.NotAvailable(),
           IPRDocumentNo = String.Empty.NotAvailable(),
           JSOXCustomsSummaryIndex = null,
@@ -546,9 +537,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           SADDocumentNo = String.Empty.NotAvailable(),
           SettledQuantity = _row.Quantity,
           Title = "Creating",
-          VATPerSettledAmount = _vatPerSettledAmount,
-          TobaccoValue = _tobaccoValue
+          //VATPerSettledAmount - in SetUpCalculatedColumns,
+          //TobaccoValue - in SetUpCalculatedColumns,
         };
+        _nd.SetUpCalculatedColumns( ClearingType.PartialWindingUp );
         _edc.Disposal.InsertOnSubmit( _nd );
         _ipr.Withdraw( _row.Quantity );
       }
@@ -827,7 +819,5 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     #endregion
 
     #endregion
-
-    public string customsProcedureCode { get; set; }
   }
 }
