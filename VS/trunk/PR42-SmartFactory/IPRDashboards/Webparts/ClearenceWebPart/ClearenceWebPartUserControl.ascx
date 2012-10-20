@@ -131,6 +131,8 @@
                     </Columns>
                 </SharePoint:SPGridView>
                 <SharePoint:SPGridViewPager ID="m_AvailableGridViewPager" GridViewId="m_AvailableGridView" runat="server" />
+                <asp:Label ID="m_AvailableGridViewQuntitySumLabel" runat="server" />
+
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -187,6 +189,7 @@
                         <asp:CommandField HeaderText="Select all" ShowEditButton="false" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" />
                     </Columns>
                 </SharePoint:SPGridView>
+                <asp:Label ID="m_AssignedGridViewQuantitySumLabel" runat="server" />
                 <SharePoint:SPGridViewPager ID="m_AssignedGridViewPager" GridViewId="m_AssignedGridView" runat="server" />
             </asp:TableCell>
         </asp:TableRow>
