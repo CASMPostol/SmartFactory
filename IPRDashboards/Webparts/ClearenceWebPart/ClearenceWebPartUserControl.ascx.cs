@@ -9,6 +9,8 @@ using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
+using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
+using CAS.SmartFactory.xml.DocumentsFactory;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 
@@ -444,17 +446,16 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         switch ( SelectedClearenceProcedure )
         {
           case ClearenceProcedure._4051:
-            return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException( "Revert  to free circulation is not implemented yet" ), "ClearThroughCustom" );
+            return Revert2FreeCirculation();
           case ClearenceProcedure._3151:
             return Export( SPContext.Current.Web );
         }
-        throw GenericStateMachineEngine.ActionResult.Exception( null, "Wrong ClearenceProcedure in ClearThroughCustom" );
+        return GenericStateMachineEngine.ActionResult.Success;
       }
       catch ( Exception ex )
       {
         return GenericStateMachineEngine.ActionResult.Exception( ex, "ClearThroughCustom" );
       }
-      return GenericStateMachineEngine.ActionResult.Success;
     }
     private GenericStateMachineEngine.ActionResult Create()
     {
@@ -531,7 +532,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           Disposal2IPRIndex = _ipr,
           Disposal2MaterialIndex = null,
           //TODO how to find the code ??
-          Disposal2PCNCompensationGood = null,
+          // Disposal2PCNCompensationGood = null,
           //TODO we must add DisposalStatus Tobacco
           DisposalStatus = DisposalStatus.Invalid,
           //DutyAndVAT - in SetUpCalculatedColumns,
@@ -554,9 +555,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       }
       _edc.SubmitChanges();
     }
+    private GenericStateMachineEngine.ActionResult Revert2FreeCirculation()
+    {
+      throw new NotImplementedException();
+    }
     private GenericStateMachineEngine.ActionResult Export( SPWeb site )
     {
-      //InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
+      if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
+        return GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - ClearanceID is null or empty at Export" );
+      Clearence _invoice = Element.GetAtIndex<Clearence>( m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID );
       //foreach ( InvoiceContent item in _invoice.InvoiceContent )
       //{
       //  ActionResult _checkResult = item.InvoiceContent2BatchIndex.ExportPossible( item.Quantity );
@@ -570,7 +577,21 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       //}
       //_invoice.InvoiceLibraryStatus = true;
       //List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> _consignment = new List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm>();
-      //string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
+      switch ( SelectedGroup )
+      {
+        case Group.Tobacco:
+        case Group.TobaccoNotAllocated:
+          break;
+        case Group.Waste:
+        case Group.Dust:
+          CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm.DocumentContent _newDoc = DustWasteFormFactory.GetDocumentContent( _invoice.Disposals( m_DataContextManagement.DataContext ), "4051", "OGL Number" );
+          break;
+        case Group.Cartons:
+          break;
+        default:
+          break;
+      }
+      string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
       //Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _customsProcedureCode, ClearenceProcedure._3151 );
       //string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( _newClearance.Identyfikator.Value );
       //int _position = 1;
@@ -602,6 +623,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private void QueryAssigned()
     {
       m_ControlState.ClearAssigned();
+      //TODO must be implemented
     }
     private void QueryAvailable()
     {
