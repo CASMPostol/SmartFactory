@@ -137,20 +137,20 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Panel runat="server" ID="m_ActionsPanel" BorderColor="ActiveCaptionText" GroupingText="Actions">
+                <asp:Panel runat="server" ID="m_GridViewActionsPanel" BorderColor="ActiveCaptionText" GroupingText="Mange selection list.">
                     <asp:Table runat="server" CssClass="Table" ID="m_ActionsTable">
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="ButtonLong" Text="Add all" ID="m_AddAll" ToolTip="Add all items from available list to assigned list" />
+                                <asp:Button runat="server" CssClass="ButtonLong" Text="Add all" ID="m_GridViewAddAll" ToolTip="Add all items from available list to assigned list" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="ButtonLong" Text="Add displayed" ID="m_AddDisplayed" ToolTip="Add displayed items from available list to assigned list" />
+                                <asp:Button runat="server" CssClass="ButtonLong" Text="Add displayed" ID="m_GridViewAddDisplayed" ToolTip="Add displayed items from available list to assigned list" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="ButtonLong" Text="Remove all" ID="m_RemoveAll" ToolTip="Remove all items from assigned list" />
+                                <asp:Button runat="server" CssClass="ButtonLong" Text="Remove all" ID="m_GridViewRemoveAll" ToolTip="Remove all items from assigned list" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="ButtonLong" Text="Remove displayed" ID="m_RemoveDisplayed" ToolTip="Remove displayed items from assigned list" />
+                                <asp:Button runat="server" CssClass="ButtonLong" Text="Remove displayed" ID="m_GridViewRemoveDisplayed" ToolTip="Remove displayed items from assigned list" />
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>

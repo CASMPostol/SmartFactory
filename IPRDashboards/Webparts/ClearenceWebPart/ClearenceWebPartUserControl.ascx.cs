@@ -114,6 +114,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         m_EditButton.Click += new EventHandler( m_StateMachineEngine.EditButton_Click );
         m_DeleteButton.Click += new EventHandler( m_StateMachineEngine.DeleteButton_Click );
         m_ClearButton.Click += new EventHandler( m_StateMachineEngine.m_ClearButton_Click );
+        m_GridViewAddAll.Click += m_GridViewAddAll_Click;
+        m_GridViewAddDisplayed.Click += m_GridViewAddDisplayed_Click;
+        m_GridViewRemoveAll.Click += m_GridViewRemoveAll_Click;
+        m_GridViewRemoveDisplayed.Click += m_GridViewRemoveDisplayed_Click;
       }
       catch ( Exception ex )
       {
@@ -121,6 +125,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         this.Controls.Add( _ae.CreateMessage( at, true ) );
       }
     }
+
     /// <summary>
     /// Loads the state of the control.
     /// </summary>
@@ -160,14 +165,17 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         case GenericStateMachineEngine.InterfaceState.ViewState:
           m_FiltersPanel.Enabled = true;
           m_GridViewTable.Enabled = false;
+          m_GridViewActionsPanel.Enabled = false;
           break;
         case GenericStateMachineEngine.InterfaceState.EditState:
           m_FiltersPanel.Enabled = false;
           m_GridViewTable.Enabled = true;
+          m_GridViewActionsPanel.Enabled = true;
           break;
         case GenericStateMachineEngine.InterfaceState.NewState:
           m_FiltersPanel.Enabled = false;
           m_GridViewTable.Enabled = true;
+          m_GridViewActionsPanel.Enabled = true;
           break;
       }
       Show();
@@ -579,7 +587,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private GenericStateMachineEngine.ActionResult Show()
     {
-      double _availableSum = ( from _avrx in m_ControlState.AvailableItems.SelectionTable select _avrx).Sum( x => x.Quantity );
+      double _availableSum = ( from _avrx in m_ControlState.AvailableItems.SelectionTable select _avrx ).Sum( x => x.Quantity );
       double _assignedSum = ( from _avrx in m_ControlState.AssignedItems.SelectionTable select _avrx ).Sum( x => x.Quantity );
       m_AvailableGridViewQuntitySumLabel.Text = String.Format( "Quantity {0:F2}", _availableSum );
       m_AssignedGridViewQuantitySumLabel.Text = String.Format( "Quantity {0:F2}", _assignedSum );
@@ -723,11 +731,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       SPGridView _sender = sender as SPGridView;
       if ( _sender == null )
         return;
-      Label _idLabel = (Label)_sender.Rows[e.NewEditIndex].FindControlRecursive( m_IDEditLabel );
+      Label _idLabel = (Label)_sender.Rows[ e.NewEditIndex ].FindControlRecursive( m_IDEditLabel );
       if ( Selection.SelectionTableRow.IsDisposal( _idLabel.Text ) )
         e.Cancel = true;
       else
-      _sender.EditIndex = e.NewEditIndex;
+        _sender.EditIndex = e.NewEditIndex;
     }
     /// <summary>
     /// Handles the RowCancelingEdit event of the m_AvailableGridView control.
@@ -807,18 +815,44 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// <param name="e">The <see cref="GridViewSelectEventArgs" /> instance containing the event data.</param>
     protected void m_AssignedGridView_SelectedIndexChanging( object sender, GridViewSelectEventArgs e )
     {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
+      GetRow( sender as SPGridView, e, m_ControlState.AvailableItems.SelectionTable, m_ControlState.AssignedItems.SelectionTable );
+    }
+    private static void GetRow( SPGridView sender, GridViewSelectEventArgs e, Selection.SelectionTableDataTable destination, Selection.SelectionTableDataTable source )
+    {
+      if ( sender == null )
         return;
-      GridViewRow row = _sender.Rows[ e.NewSelectedIndex ];
+      GridViewRow row = sender.Rows[ e.NewSelectedIndex ];
       string _id = ( (Label)row.FindControlRecursive( m_IDItemLabel ) ).Text;
-      m_ControlState.AvailableItems.SelectionTable.GetRow( m_ControlState.AssignedItems.SelectionTable, _id );
+      destination.GetRow( source, _id );
       e.NewSelectedIndex = -1;
       e.Cancel = true;
     }
     #endregion
 
-    void m_GridViewDataSource_ObjectCreating( object sender, ObjectDataSourceEventArgs e )
+    #region m_GridViewActionsPanel
+    private void m_GridViewRemoveDisplayed_Click( object sender, EventArgs e )
+    {
+      for ( int i = m_AssignedGridView.LowestDataItemIndex; i <= m_AssignedGridView.HighestDataItemIndex; i++ )
+        m_ControlState.AvailableItems.SelectionTable.GetRow( m_ControlState.AssignedItems.SelectionTable[ i ] );
+    }
+    private void m_GridViewRemoveAll_Click( object sender, EventArgs e )
+    {
+      foreach ( Selection.SelectionTableRow _rw in m_ControlState.AssignedItems.SelectionTable )
+        m_ControlState.AvailableItems.SelectionTable.GetRow( _rw );
+    }
+    private void m_GridViewAddDisplayed_Click( object sender, EventArgs e )
+    {
+      for ( int i = m_AvailableGridView.LowestDataItemIndex; i <= m_AvailableGridView.HighestDataItemIndex; i++ )
+        m_ControlState.AssignedItems.SelectionTable.GetRow( m_ControlState.AvailableItems.SelectionTable[ i ] );
+    }
+    private void m_GridViewAddAll_Click( object sender, EventArgs e )
+    {
+      foreach ( Selection.SelectionTableRow _rw in m_ControlState.AvailableItems.SelectionTable )
+        m_ControlState.AssignedItems.SelectionTable.GetRow( _rw );
+    }
+    #endregion
+
+    protected void m_GridViewDataSource_ObjectCreating( object sender, ObjectDataSourceEventArgs e )
     {
       e.ObjectInstance = this;
     }
