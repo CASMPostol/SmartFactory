@@ -63,15 +63,24 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// </summary>
     partial class SelectionTableDataTable
     {
-      internal void GetRow( Selection.SelectionTableDataTable source, string _id )
+      internal void GetRow( Selection.SelectionTableDataTable source, string id )
       {
-        Selection.SelectionTableRow _slctdItem = source.FindByID( _id );
-        Selection.SelectionTableRow _oldRow = FindByID( _id );
-        if ( _oldRow == null )
-          ImportRow( _slctdItem );
+        Selection.SelectionTableRow _sourceRow = source.FindByID( id );
+        Selection.SelectionTableRow _destinationRow = FindByID( id );
+        if ( _destinationRow == null )
+        {
+          if ( _sourceRow.RowState == DataRowState.Added )
+            _sourceRow.AcceptChanges();
+          else
+          {
+            _sourceRow.AcceptChanges();
+            _sourceRow.SetAdded();
+          }
+          ImportRow( _sourceRow );
+        }
         else
-          _oldRow.Quantity += _slctdItem.Quantity;
-        _slctdItem.Delete();
+          _destinationRow.Quantity += _sourceRow.Quantity;
+        _sourceRow.Delete();
       }
       internal void NewSelectionTableRow( SelectionTableRowWraper _rowx )
       {
