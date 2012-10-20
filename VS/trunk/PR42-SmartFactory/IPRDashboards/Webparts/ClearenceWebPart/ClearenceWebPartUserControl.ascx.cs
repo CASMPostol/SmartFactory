@@ -279,10 +279,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         try
         {
-          List<string> _errors = new List<string>();
-          if ( _errors.Count > 0 )
-            return ActionResult.NotValidated( _errors[ 0 ] );
-          Parent.m_DataContextManagement.DataContext.SubmitChanges();
+          return Parent.Update();
+        }
+        catch ( GenericStateMachineEngine.ActionResult ex )
+        {
+          return ex;
         }
         catch ( Exception ex )
         {
@@ -307,18 +308,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       }
       protected override GenericStateMachineEngine.ActionResult Delete()
       {
-        try
-        {
-          InvoiceContent _invc = Element.GetAtIndex<InvoiceContent>( Parent.m_DataContextManagement.DataContext.InvoiceContent, Parent.m_ControlState.ClearanceID );
-          Parent.m_ControlState.ClearClearance();
-          Parent.m_DataContextManagement.DataContext.InvoiceContent.DeleteOnSubmit( _invc );
-          Parent.m_DataContextManagement.DataContext.SubmitChanges();
-        }
-        catch ( Exception ex )
-        {
-          return GenericStateMachineEngine.ActionResult.Exception( ex, "Delete" );
-        }
-        return GenericStateMachineEngine.ActionResult.Success;
+        return GenericStateMachineEngine.ActionResult.Exception( null, "Internal error Delete key is useless" );
       }
       protected override void ClearUserInterface()
       {
@@ -476,21 +466,32 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         return SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( _errors[ 0 ] );
       string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
       Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _customsProcedureCode, SelectedClearenceProcedure );
+      Update( _newClearance );
+      return GenericStateMachineEngine.ActionResult.Success;
+    }
+    private GenericStateMachineEngine.ActionResult Update()
+    {
+      if (m_ControlState.ClearanceID.IsNullOrEmpty())
+        return GenericStateMachineEngine.ActionResult.NotValidated("INternal error - ClearanceID is null or empty at Create");
+
+      return GenericStateMachineEngine.ActionResult.Success;
+    }
+    private void Update( Clearence clearance )
+    {
       Entities _edc = m_DataContextManagement.DataContext;
       switch ( SelectedGroup )
       {
         case Group.TobaccoNotAllocated:
-          ClearTobaccoNotAllocated( _newClearance, _edc );
+          ClearTobaccoNotAllocated( clearance, _edc );
           break;
         case Group.Tobacco:
         case Group.Dust:
         case Group.Waste:
         case Group.Cartons:
-          ClearDisposals( _newClearance, _edc );
+          ClearDisposals( clearance, _edc );
           break;
       }
       m_DataContextManagement.DataContext.SubmitChanges();
-      return GenericStateMachineEngine.ActionResult.Success;
     }
     private void ClearDisposals( Clearence newClearance, Entities edc )
     {
@@ -860,5 +861,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     #endregion
 
     #endregion
+
   }
 }
