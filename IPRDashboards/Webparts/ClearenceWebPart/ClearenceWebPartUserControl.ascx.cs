@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Web;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
@@ -10,10 +9,8 @@ using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
-using CAS.SmartFactory.xml;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
-using System.Linq;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
 {
@@ -471,24 +468,24 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private GenericStateMachineEngine.ActionResult Update()
     {
-      if (m_ControlState.ClearanceID.IsNullOrEmpty())
-        return GenericStateMachineEngine.ActionResult.NotValidated("INternal error - ClearanceID is null or empty at Create");
-
+      if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
+        return GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - ClearanceID is null or empty at Create" );
+      Clearence _clearance = Element.GetAtIndex<Clearence>( m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID );
+      Update( _clearance );
       return GenericStateMachineEngine.ActionResult.Success;
     }
     private void Update( Clearence clearance )
     {
-      Entities _edc = m_DataContextManagement.DataContext;
       switch ( SelectedGroup )
       {
         case Group.TobaccoNotAllocated:
-          ClearTobaccoNotAllocated( clearance, _edc );
+          ClearTobaccoNotAllocated( clearance, m_DataContextManagement.DataContext );
           break;
         case Group.Tobacco:
         case Group.Dust:
         case Group.Waste:
         case Group.Cartons:
-          ClearDisposals( clearance, _edc );
+          ClearDisposals( clearance, m_DataContextManagement.DataContext );
           break;
       }
       m_DataContextManagement.DataContext.SubmitChanges();
