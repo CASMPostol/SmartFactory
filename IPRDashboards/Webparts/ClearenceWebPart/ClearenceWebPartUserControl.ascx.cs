@@ -718,9 +718,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// <param name="e">The <see cref="GridViewEditEventArgs" /> instance containing the event data.</param>
     protected void m_AvailableGridView_RowEditing( object sender, GridViewEditEventArgs e )
     {
-      GridView _sender = sender as GridView;
+      SPGridView _sender = sender as SPGridView;
       if ( _sender == null )
         return;
+      Label _idLabel = (Label)_sender.Rows[e.NewEditIndex].FindControlRecursive( m_IDEditLabel );
+      if ( Selection.SelectionTableRow.IsDisposal( _idLabel.Text ) )
+        e.Cancel = true;
+      else
       _sender.EditIndex = e.NewEditIndex;
     }
     /// <summary>
@@ -751,11 +755,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       Label _idLabel = (Label)row.FindControlRecursive( m_IDEditLabel );
       double _qtty = default( double );
       Selection.SelectionTableRow _slctdItem = m_ControlState.AvailableItems.SelectionTable.FindByID( _idLabel.Text );
-      if ( !double.TryParse( ( (TextBox)row.FindControlRecursive( m_QuantityNewValue ) ).Text, out _qtty ) || ( _slctdItem.Quantity < _qtty ) )
+      TextBox _quantityTB = (TextBox)row.FindControlRecursive( m_QuantityNewValue );
+      if ( !double.TryParse( _quantityTB.Text, out _qtty ) || ( _slctdItem.Quantity < _qtty ) )
       {
-        _idLabel.Text = _slctdItem.Quantity.ToString( "F2" );
-        _idLabel.BorderColor = System.Drawing.Color.Red;
-        _idLabel.BackColor = System.Drawing.Color.Yellow;
+        _quantityTB.Text = _slctdItem.Quantity.ToString( "F2" );
+        _quantityTB.BorderColor = System.Drawing.Color.Red;
+        _quantityTB.BackColor = System.Drawing.Color.Yellow;
         e.Cancel = true;
         return;
       }
