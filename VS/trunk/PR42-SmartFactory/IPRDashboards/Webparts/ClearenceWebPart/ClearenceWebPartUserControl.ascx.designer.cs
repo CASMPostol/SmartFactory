@@ -310,13 +310,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.Label m_AvailableGridViewQuntitySumLabel;
         
         /// <summary>
-        /// m_ActionsPanel control.
+        /// m_GridViewActionsPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel m_ActionsPanel;
+        protected global::System.Web.UI.WebControls.Panel m_GridViewActionsPanel;
         
         /// <summary>
         /// m_ActionsTable control.
@@ -328,40 +328,40 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.Table m_ActionsTable;
         
         /// <summary>
-        /// m_AddAll control.
+        /// m_GridViewAddAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_AddAll;
+        protected global::System.Web.UI.WebControls.Button m_GridViewAddAll;
         
         /// <summary>
-        /// m_AddDisplayed control.
+        /// m_GridViewAddDisplayed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_AddDisplayed;
+        protected global::System.Web.UI.WebControls.Button m_GridViewAddDisplayed;
         
         /// <summary>
-        /// m_RemoveAll control.
+        /// m_GridViewRemoveAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_RemoveAll;
+        protected global::System.Web.UI.WebControls.Button m_GridViewRemoveAll;
         
         /// <summary>
-        /// m_RemoveDisplayed control.
+        /// m_GridViewRemoveDisplayed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button m_RemoveDisplayed;
+        protected global::System.Web.UI.WebControls.Button m_GridViewRemoveDisplayed;
         
         /// <summary>
         /// m_AssignedLabel control.
