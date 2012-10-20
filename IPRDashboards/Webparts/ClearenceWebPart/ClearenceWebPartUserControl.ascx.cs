@@ -256,9 +256,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         {
           case InterfaceState.EditState:
           case InterfaceState.NewState:
-            Parent.SetInterconnectionData( e );
             break;
           case InterfaceState.ViewState:
+            Parent.SetInterconnectionData( e );
+            break;
           default:
             break;
         }
@@ -411,6 +412,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         m_ControlState.ClearanceID = e.ID;
         m_ControlState.ClearanceTitle = e.Title;
         m_ClearenceTextBox.Text = e.Title;
+        QueryAssigned();
       }
       catch ( Exception _ex )
       {
@@ -577,10 +579,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private GenericStateMachineEngine.ActionResult Show()
     {
-      //m_InvoiceTextBox.Text = m_ControlState.InvoiceTitle;
-      //m_InvoiceContentTextBox.Text = m_ControlState.InvoiceContentTitle;
-      //m_InvoiceQuantityTextBox.Text = m_ControlState.InvoiceQuantity.ToString( CultureInfo.CurrentCulture );
-      //m_BatchTextBox.Text = m_ControlState.BatchTitle;
+      double _availableSum = ( from _avrx in m_ControlState.AvailableItems.SelectionTable select _avrx).Sum( x => x.Quantity );
+      double _assignedSum = ( from _avrx in m_ControlState.AssignedItems.SelectionTable select _avrx ).Sum( x => x.Quantity );
+      m_AvailableGridViewQuntitySumLabel.Text = String.Format( "Quantity {0:F2}", _availableSum );
+      m_AssignedGridViewQuantitySumLabel.Text = String.Format( "Quantity {0:F2}", _assignedSum );
       return GenericStateMachineEngine.ActionResult.Success;
     }
     private void ClearAvailable()
