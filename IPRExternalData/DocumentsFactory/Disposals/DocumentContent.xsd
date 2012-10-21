@@ -14,7 +14,7 @@
   </xs:complexType>
   <xs:complexType name="ArrayOfMaterialsOnOneAccount">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialsOnOneAccount" nillable="true" type="tns:MaterialsOnOneAccount" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialsOnOneAccount" nillable="false" type="tns:MaterialsOnOneAccount" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="MaterialsOnOneAccount">
@@ -25,7 +25,7 @@
   </xs:complexType>
   <xs:complexType name="ArrayOfMaterialRecord">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialRecord" nillable="true" type="tns:MaterialRecord" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaterialRecord" nillable="false" type="tns:MaterialRecord" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="MaterialRecord">

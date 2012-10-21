@@ -99,6 +99,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals {
         }
         
         /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
         public MaterialsOnOneAccount[] AccountDescription {
             get {
                 return this.accountDescriptionField;
@@ -132,6 +133,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals {
         }
         
         /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
         public MaterialRecord[] MaterialRecords {
             get {
                 return this.materialRecordsField;

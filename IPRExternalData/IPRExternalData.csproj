@@ -112,7 +112,6 @@
     <Compile Include="DocumentsFactory\CigaretteExportForm\Ingredient.cs" />
     <Compile Include="DocumentsFactory\CigaretteExportForm\IPRIngredient.cs" />
     <Compile Include="DocumentsFactory\CigaretteExportForm\RegularIngredient.cs" />
-    <Compile Include="DocumentsFactory\Disposals\Class1.cs" />
     <Compile Include="DocumentsFactory\Disposals\DocumentContent.cs">
       <DependentUpon>DocumentContent.xsd</DependentUpon>
     </Compile>

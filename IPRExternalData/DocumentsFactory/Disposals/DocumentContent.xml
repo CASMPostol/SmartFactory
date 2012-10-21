@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DocumentContent xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustWasteForm.xsd">
+<DocumentContent xmlns="http://CAS.SmartFactory.xml.DocumentsFactory.Disposals/DocumentContent.xsd">
   <DocumentDate>1900-01-01T01:01:01+01:00</DocumentDate>
   <DocumentNo>DocumentNo1</DocumentNo>
   <StartDate>1900-01-01T01:01:01+01:00</StartDate>
@@ -8,8 +8,8 @@
   <Total>1</Total>
   <AccountDescription>
     <MaterialsOnOneAccount>
-      <Total xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">1</Total>
-      <MaterialRecords xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory">
+      <Total>1</Total>
+      <MaterialRecords>
         <MaterialRecord>
           <CustomDocumentNo>CustomDocumentNo1</CustomDocumentNo>
           <Date>1900-01-01T01:01:01+01:00</Date>
@@ -20,6 +20,104 @@
           <UnitPrice>1</UnitPrice>
           <TobaccoValue>1</TobaccoValue>
           <Currency>Currency1</Currency>
+        </MaterialRecord>
+        <MaterialRecord>
+          <CustomDocumentNo>CustomDocumentNo2</CustomDocumentNo>
+          <Date>0001-01-01T00:00:00+01:00</Date>
+          <MaterialSKU>MaterialSKU2</MaterialSKU>
+          <MaterialBatch>MaterialBatch2</MaterialBatch>
+          <FinishedGoodBatch>FinishedGoodBatch2</FinishedGoodBatch>
+          <Qantity>-1.7976931348623157E+308</Qantity>
+          <UnitPrice>-1.7976931348623157E+308</UnitPrice>
+          <TobaccoValue>-1.7976931348623157E+308</TobaccoValue>
+          <Currency>Currency2</Currency>
+        </MaterialRecord>
+        <MaterialRecord>
+          <CustomDocumentNo>CustomDocumentNo3</CustomDocumentNo>
+          <Date>9999-12-31T23:59:59.9999999+01:00</Date>
+          <MaterialSKU>MaterialSKU3</MaterialSKU>
+          <MaterialBatch>MaterialBatch3</MaterialBatch>
+          <FinishedGoodBatch>FinishedGoodBatch3</FinishedGoodBatch>
+          <Qantity>1.7976931348623157E+308</Qantity>
+          <UnitPrice>1.7976931348623157E+308</UnitPrice>
+          <TobaccoValue>1.7976931348623157E+308</TobaccoValue>
+          <Currency>Currency3</Currency>
+        </MaterialRecord>
+      </MaterialRecords>
+    </MaterialsOnOneAccount>
+    <MaterialsOnOneAccount>
+      <Total>-1.7976931348623157E+308</Total>
+      <MaterialRecords>
+        <MaterialRecord>
+          <CustomDocumentNo>CustomDocumentNo4</CustomDocumentNo>
+          <Date>1899-11-30T01:01:01+01:00</Date>
+          <MaterialSKU>MaterialSKU4</MaterialSKU>
+          <MaterialBatch>MaterialBatch4</MaterialBatch>
+          <FinishedGoodBatch>FinishedGoodBatch4</FinishedGoodBatch>
+          <Qantity>-0.10000002384185791</Qantity>
+          <UnitPrice>-0.10000002384185791</UnitPrice>
+          <TobaccoValue>-0.10000002384185791</TobaccoValue>
+          <Currency>Currency4</Currency>
+        </MaterialRecord>
+        <MaterialRecord>
+          <CustomDocumentNo>CustomDocumentNo5</CustomDocumentNo>
+          <Date>1900-02-02T01:01:01+01:00</Date>
+          <MaterialSKU>MaterialSKU5</MaterialSKU>
+          <MaterialBatch>MaterialBatch5</MaterialBatch>
+          <FinishedGoodBatch>FinishedGoodBatch5</FinishedGoodBatch>
+          <Qantity>2.1000000238418579</Qantity>
+          <UnitPrice>2.1000000238418579</UnitPrice>
+          <TobaccoValue>2.1000000238418579</TobaccoValue>
+          <Currency>Currency5</Currency>
+        </MaterialRecord>
+        <MaterialRecord>
+          <CustomDocumentNo>CustomDocumentNo6</CustomDocumentNo>
+          <Date>0001-02-02T00:00:00+01:00</Date>
+          <MaterialSKU>MaterialSKU6</MaterialSKU>
+          <MaterialBatch>MaterialBatch6</MaterialBatch>
+          <FinishedGoodBatch>FinishedGoodBatch6</FinishedGoodBatch>
+          <Qantity>-1.7976931348623157E+308</Qantity>
+          <UnitPrice>-1.7976931348623157E+308</UnitPrice>
+          <TobaccoValue>-1.7976931348623157E+308</TobaccoValue>
+          <Currency>Currency6</Currency>
+        </MaterialRecord>
+      </MaterialRecords>
+    </MaterialsOnOneAccount>
+    <MaterialsOnOneAccount>
+      <Total>1.7976931348623157E+308</Total>
+      <MaterialRecords>
+        <MaterialRecord>
+          <CustomDocumentNo>CustomDocumentNo7</CustomDocumentNo>
+          <Date>9999-11-29T23:59:59.9999999+01:00</Date>
+          <MaterialSKU>MaterialSKU7</MaterialSKU>
+          <MaterialBatch>MaterialBatch7</MaterialBatch>
+          <FinishedGoodBatch>FinishedGoodBatch7</FinishedGoodBatch>
+          <Qantity>1.7976931348623157E+308</Qantity>
+          <UnitPrice>1.7976931348623157E+308</UnitPrice>
+          <TobaccoValue>1.7976931348623157E+308</TobaccoValue>
+          <Currency>Currency7</Currency>
+        </MaterialRecord>
+        <MaterialRecord>
+          <CustomDocumentNo>CustomDocumentNo8</CustomDocumentNo>
+          <Date>1899-10-29T01:01:01+02:00</Date>
+          <MaterialSKU>MaterialSKU8</MaterialSKU>
+          <MaterialBatch>MaterialBatch8</MaterialBatch>
+          <FinishedGoodBatch>FinishedGoodBatch8</FinishedGoodBatch>
+          <Qantity>-1.2000000476837158</Qantity>
+          <UnitPrice>-1.2000000476837158</UnitPrice>
+          <TobaccoValue>-1.2000000476837158</TobaccoValue>
+          <Currency>Currency8</Currency>
+        </MaterialRecord>
+        <MaterialRecord>
+          <CustomDocumentNo>CustomDocumentNo9</CustomDocumentNo>
+          <Date>1900-03-06T01:01:01+01:00</Date>
+          <MaterialSKU>MaterialSKU9</MaterialSKU>
+          <MaterialBatch>MaterialBatch9</MaterialBatch>
+          <FinishedGoodBatch>FinishedGoodBatch9</FinishedGoodBatch>
+          <Qantity>3.2000000476837158</Qantity>
+          <UnitPrice>3.2000000476837158</UnitPrice>
+          <TobaccoValue>3.2000000476837158</TobaccoValue>
+          <Currency>Currency9</Currency>
         </MaterialRecord>
       </MaterialRecords>
     </MaterialsOnOneAccount>
