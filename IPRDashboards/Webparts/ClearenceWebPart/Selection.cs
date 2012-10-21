@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Currency = _dspslx.Disposal2IPRIndex.Currency;
         Quantity = _dspslx.SettledQuantity.Value;
         Status = _dspslx.DisposalStatus.Value.ToString();
-        Created = SharePoint.Extensions.SPMinimum;
+        Created = _dspslx.CreatedDate.Value;
         ID = ( -_dspslx.Identyfikator.Value ).ToString();
       }
       internal SelectionTableRowWraper( Linq.IPR.IPR _iprx )

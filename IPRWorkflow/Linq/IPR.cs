@@ -122,13 +122,15 @@ namespace CAS.SmartFactory.Linq.IPR
           ClearenceIndex = null,
           ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
           CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
-          CustomsProcedure = "N/A",
-          Disposal2PCNCompensationGood = null,
+          CustomsProcedure = String.Empty.NotAvailable(),
+          //TODO CompensationGood must be assigned.
+          PCNID= null,
+          CompensationGood = String.Empty.NotAvailable(),
           DisposalStatus = _typeOfDisposal,
           DutyAndVAT = new Nullable<double>(),
           DutyPerSettledAmount = new Nullable<double>(),
-          InvoiceNo = "N/A",
-          IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
+          InvoiceNo = String.Empty.NotAvailable(),
+          IPRDocumentNo = String.Empty.NotAvailable(), // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
           Disposal2IPRIndex = this,
           VATPerSettledAmount = null,
           JSOXCustomsSummaryIndex = null,
@@ -136,7 +138,7 @@ namespace CAS.SmartFactory.Linq.IPR
           No = new Nullable<double>(),
           // RemainingQuantity = 0,
           SADDate = CAS.SharePoint.Extensions.SPMinimum,
-          SADDocumentNo = "N/A",
+          SADDocumentNo = String.Empty.NotAvailable(),
           SettledQuantity = _toDispose,
           TobaccoValue = _toDispose * this.Value / this.NetMass
         };

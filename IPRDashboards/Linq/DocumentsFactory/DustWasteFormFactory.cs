@@ -17,9 +17,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
                                                         let _ogl = _disx.Disposal2IPRIndex == null ? String.Empty : _disx.Disposal2IPRIndex.DocumentNo
                                                         orderby _ogl ascending
                                                         group _disx by _ogl;
-      //TODO Disposal contenty type does not provides creation and modification data
-      DateTime endDate = (from _dx in disposals select new {_endDate = DateTime.Today.Date}).Max(x=>x._endDate);
-      DateTime startDate = ( from _dx in disposals select new { _endDate = DateTime.Today.Date } ).Max( x => x._endDate );
+      DateTime endDate = (from _dx in disposals select new {_endDate = _dx.CreatedDate.Value}).Max(x=>x._endDate);
+      DateTime startDate = ( from _dx in disposals select new { _endDate = _dx.CreatedDate.Value } ).Max( x => x._endDate );
       List<MaterialsOnOneAccount> _dustsGroupe = new List<MaterialsOnOneAccount>();
       double _total = 0;
       foreach ( IGrouping<string, Disposal> _gx in _groups )
@@ -39,7 +38,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       return new DocumentContent()
       {
         CustomProcedureCode = customProcedureCode,
-        DocumentDate = DateTime.Today.Date, //TODO ?????
+        DocumentDate = DateTime.Today.Date, //TODO not sure how to assigne document date.
         DocumentNo = documentNo,
         AccountDescription = _dustsGroupe.ToArray(),
         EndDate = endDate,
