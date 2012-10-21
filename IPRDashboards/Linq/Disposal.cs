@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using CAS.SharePoint;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
-using CAS.SmartFactory.xml.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
+using CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm;
 
 namespace CAS.SmartFactory.Linq.IPR
 {

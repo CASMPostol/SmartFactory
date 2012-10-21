@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CAS.SmartFactory.xml.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm;
 
 namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory

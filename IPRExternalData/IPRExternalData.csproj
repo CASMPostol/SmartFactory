@@ -112,9 +112,6 @@
     <Compile Include="DocumentsFactory\CigaretteExportForm\Ingredient.cs" />
     <Compile Include="DocumentsFactory\CigaretteExportForm\IPRIngredient.cs" />
     <Compile Include="DocumentsFactory\CigaretteExportForm\RegularIngredient.cs" />
-    <Compile Include="DocumentsFactory\DisposalsDescription.cs">
-      <DependentUpon>DisposalsDescription.xsd</DependentUpon>
-    </Compile>
     <Compile Include="DocumentsFactory\DocumentNames.cs" />
     <Compile Include="DocumentsFactory\DustWasteForm\DocumentContent.cs">
       <DependentUpon>DocumentContent.xsd</DependentUpon>
@@ -154,7 +151,6 @@
     </Compile>
     <Compile Include="XMLResources.cs" />
     <None Include="cas.snk" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Customs\CELINA\CLNBw2r0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -372,9 +368,6 @@
     </None>
     <None Include="DocumentsFactory\CigaretteExportForm\GoXSD.ps1" />
     <None Include="DocumentsFactory\CigaretteExportForm\GoCS.ps1" />
-    <None Include="DocumentsFactory\DisposalsDescription.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="DocumentsFactory\DustWasteForm\DocumentContent.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -426,6 +419,7 @@
     <Content Include="DocumentsFactory\CutfillerExportForm\CutfillerExportFormCollection.xslt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DocumentsFactory\DustWasteForm\CartonsFormStylesheet.xslt" />
     <Content Include="DocumentsFactory\DustWasteForm\DocumentContent.xml">
       <SubType>Designer</SubType>
     </Content>
