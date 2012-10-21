@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustWasteForm.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustWasteForm.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://CAS.SmartFactory.xml.DocumentsFactory.Disposals/DocumentContent.xsd" elementFormDefault="qualified" targetNamespace="http://CAS.SmartFactory.xml.DocumentsFactory.Disposals/DocumentContent.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="DocumentContent" type="tns:DocumentContent" />
   <xs:complexType name="DocumentContent">
     <xs:sequence>

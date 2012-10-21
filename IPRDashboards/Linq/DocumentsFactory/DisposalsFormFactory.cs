@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm;
+using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 
 namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
 {
@@ -12,8 +12,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       double _subTotal = 0;
       MaterialRecord[] _materialRecords = Disposal.GetListOfMaterials( disposals, ref _subTotal );
       //TODO not sure about how to calculate end and start date 
-      DateTime endDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
-      DateTime startDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
+      DateTime endDate = disposals.Max( x => x.CreatedDate.Value );
+      DateTime startDate = disposals.Max( x => x.CreatedDate.Value );
       MaterialsOnOneAccount _materials = new MaterialsOnOneAccount()
       {
         Total = _subTotal,
@@ -35,8 +35,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       double _subTotal = 0;
       MaterialRecord[] _materialRecords = Disposal.GetListOfMaterials( disposals, ref _subTotal );
       //TODO not sure about how to calculate end and start date 
-      DateTime endDate = disposals.Max( x => x.CreatedDate.Value );
-      DateTime startDate = disposals.Max( x => x.CreatedDate.Value );
+      DateTime endDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
+      DateTime startDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
       MaterialsOnOneAccount _materials = new MaterialsOnOneAccount()
       {
         Total = _subTotal,

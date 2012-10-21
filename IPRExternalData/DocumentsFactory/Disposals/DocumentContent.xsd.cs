@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.SharePoint;
 
-namespace CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm
+namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals
 {
   /// <summary>
   /// Compensatiion good enum

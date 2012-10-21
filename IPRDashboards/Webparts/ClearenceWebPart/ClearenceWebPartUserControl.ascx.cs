@@ -11,7 +11,7 @@ using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml;
-using CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm;
+using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 
