@@ -10,6 +10,7 @@ using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
+using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.DocumentsFactory;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
@@ -434,8 +435,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       m_NewButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.NewOn ) != 0;
       m_SaveButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
       m_DeleteButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.DeleteOn ) != 0;
-      //Lodcal controls
-      //TODO setup other controls.
     }
     private GenericStateMachineEngine.ActionResult ClearThroughCustom()
     {
@@ -531,8 +530,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           Disposal2BatchIndex = null,
           Disposal2IPRIndex = _ipr,
           Disposal2MaterialIndex = null,
-          //TODO how to find the code ??
-          // Disposal2PCNCompensationGood = null,
+          CompensationGood = _ipr.IPR2PCNPCN.Title(),
           //TODO we must add DisposalStatus Tobacco
           DisposalStatus = DisposalStatus.Invalid,
           //DutyAndVAT - in SetUpCalculatedColumns,
@@ -541,6 +539,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           IPRDocumentNo = String.Empty.NotAvailable(),
           JSOXCustomsSummaryIndex = null,
           No = new Nullable<double>(),
+          PCNID = _ipr.IPR2PCNPCN,
           RemainingQuantity = _ipr.TobaccoNotAllocated - _row.Quantity,
           SADDate = SharePoint.Extensions.DateTimeNull,
           SADDocumentNo = String.Empty.NotAvailable(),
@@ -563,45 +562,34 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
         return GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - ClearanceID is null or empty at Export" );
-      Clearence _invoice = Element.GetAtIndex<Clearence>( m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID );
-      //foreach ( InvoiceContent item in _invoice.InvoiceContent )
-      //{
-      //  ActionResult _checkResult = item.InvoiceContent2BatchIndex.ExportPossible( item.Quantity );
-      //  if ( _checkResult.Valid )
-      //    continue;
-      //  foreach ( var _msg in _checkResult )
-      //    Controls.Add( ControlExtensions.CreateMessage( _msg ) );
-      //  m_ControlState.UpdateControlState( item );
-      //  string _frmt = "Cannot proceed with export because the invoice item contains eroors {0}.";
-      //  return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Title ) );
-      //}
-      //_invoice.InvoiceLibraryStatus = true;
-      //List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> _consignment = new List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm>();
+      Clearence _clearence = Element.GetAtIndex<Clearence>( m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID );
+      string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( _clearence.Identyfikator.Value );
+      int _sadConsignmentIdentifier = default(int);
       switch ( SelectedGroup )
       {
         case Group.Tobacco:
         case Group.TobaccoNotAllocated:
+          CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent _newTobaccoDoc =
+            TobaccoFreeCirculationFormFactory.GetDocumentContent( _clearence.Disposals( m_DataContextManagement.DataContext ), "4051", "OGL Number" );
+          _sadConsignmentIdentifier = Dokument.PrepareConsignment( site, _newTobaccoDoc, _masterDocumentName );
           break;
         case Group.Waste:
         case Group.Dust:
-          CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm.DocumentContent _newDoc = DustWasteFormFactory.GetDocumentContent( _invoice.Disposals( m_DataContextManagement.DataContext ), "4051", "OGL Number" );
+          xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood compensatiionGood = SelectedGroup == Group.Waste ?
+            xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood.Waste : xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood.Dust;
+          xml.DocumentsFactory.DustWasteForm.DocumentContent _newDustWasteDoc =
+            DustWasteFormFactory.GetDocumentContent( _clearence.Disposals( m_DataContextManagement.DataContext ), "4051", "OGL Number" );
+          _sadConsignmentIdentifier = Dokument.PrepareConsignment( site, _newDustWasteDoc, _masterDocumentName, compensatiionGood );
           break;
         case Group.Cartons:
+          //TODO not implemented.
           break;
         default:
           break;
       }
-      string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
-      //Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _customsProcedureCode, ClearenceProcedure._3151 );
-      //string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( _newClearance.Identyfikator.Value );
-      //int _position = 1;
-      //foreach ( InvoiceContent item in _invoice.InvoiceContent )
-      //  item.InvoiceContent2BatchIndex.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );
-      //_invoice.InvoiceLibraryReadOnly = true;
-      //int _sadConsignmentIdentifier = Dokument.PrepareConsignment( site, _consignment, _masterDocumentName, _invoice.BillDoc );
-      //SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
-      //_newClearance.SADConsignmentLibraryIndex = _sadConsignment;
-      //m_DataContextManagement.DataContext.SubmitChanges();
+      SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
+      _clearence.SADConsignmentLibraryIndex = _sadConsignment;
+      m_DataContextManagement.DataContext.SubmitChanges();
       return GenericStateMachineEngine.ActionResult.Success;
     }
     private GenericStateMachineEngine.ActionResult Show()
@@ -645,8 +633,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           GetDisposals( new DisposalStatus[] { DisposalStatus.Waste }, true, _start, _finish, _currency );
           break;
         case Group.Cartons:
-          //TODO we need dedicated status http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3294
-          GetDisposals( new DisposalStatus[] { DisposalStatus.None }, false, _start, _finish, _currency );
+          //TODO  mark resolvet we need dedicated status http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3294
+          GetDisposals( new DisposalStatus[] { DisposalStatus.Cartons }, false, _start, _finish, _currency );
           break;
         default:
           throw new SharePoint.ApplicationError( "SelectDataDS", "switch", "Internal error - wrong switch case.", null );

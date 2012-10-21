@@ -26,7 +26,41 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       catch ( Exception ex )
       {
-        throw new ApplicationError( "InvoiceLib.PrepareConsignment", _stt, String.Format( "Cannot finish the operation because of error {0}", ex.Message ), ex );
+        throw new ApplicationError( "Dokument.PrepareConsignment", _stt, String.Format( "Cannot finish the operation because of error {0}", ex.Message ), ex );
+      }
+    }
+    internal static int PrepareConsignment
+      ( SPWeb site, xml.DocumentsFactory.DustWasteForm.DocumentContent document, string fileName, xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood compensatiionGood )
+    {
+      string _stt = "Starting";
+      try
+      {
+        _stt = "SPDocumentLibrary";
+        SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ CommonDefinitions.IPRSADConsignmentLibraryTitle ];
+        _stt = "AddDocument2Collection";
+        SPFile _docFile = document.AddDocument2Collection( _lib.RootFolder.Files, fileName, compensatiionGood );
+        return _docFile.Item.ID;
+      }
+      catch ( Exception ex )
+      {
+        throw new ApplicationError( "Dokument.PrepareConsignment", _stt, String.Format( "Cannot finish the operation because of error {0}", ex.Message ), ex );
+      }
+    }
+    internal static int PrepareConsignment
+      ( SPWeb site, xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent document, string fileName )
+    {
+      string _stt = "Starting";
+      try
+      {
+        _stt = "SPDocumentLibrary";
+        SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ CommonDefinitions.IPRSADConsignmentLibraryTitle ];
+        _stt = "AddDocument2Collection";
+        SPFile _docFile = document.AddDocument2Collection( _lib.RootFolder.Files, fileName );
+        return _docFile.Item.ID;
+      }
+      catch ( Exception ex )
+      {
+        throw new ApplicationError( "Dokument.PrepareConsignment", _stt, String.Format( "Cannot finish the operation because of error {0}", ex.Message ), ex );
       }
     }
   }

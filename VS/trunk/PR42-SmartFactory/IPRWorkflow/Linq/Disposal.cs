@@ -31,7 +31,7 @@ namespace CAS.SmartFactory.Linq.IPR
         //TODO [pr4-3737] Compensation good must be recognized using the PCN code from customs message http://itrserver/Bugs/BugDetail.aspx?bid=3737
         _at = "PCNCode _tobaccoPCN ";
         PCNCode _tobaccoPCN = ( from _pcnx in edc.PCNCode
-                                where _pcnx.IsIPR.GetValueOrDefault( true ) && _pcnx.CompensationGood.Value == CompensationGood.Papierosy
+                                where _pcnx.IsIPR.GetValueOrDefault( true ) && _pcnx.CompensationGood.Value == Linq.IPR.CompensationGood.Papierosy
                                 select _pcnx ).FirstOrDefault();
         //TODO [pr4-3733] Export: Association of the SAD documents: SAD analyses error at Clearence analyses error at started. 
         //this.Disposal2PCNCompensationGood = _tobaccoPCN == null ? null : _tobaccoPCN;
