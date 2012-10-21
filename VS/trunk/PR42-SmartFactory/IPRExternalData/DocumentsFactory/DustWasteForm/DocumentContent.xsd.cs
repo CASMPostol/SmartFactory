@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm
     /// <summary>
     /// Compensatiion good enum
     /// </summary>
-    public enum CompensatiionGood { Dust, Waste }
+    public enum CompensatiionGood { Dust, Waste, Cartons }
     /// <summary>
     /// Adds the document to collection <see cref="SPFileCollection" />.
     /// </summary>

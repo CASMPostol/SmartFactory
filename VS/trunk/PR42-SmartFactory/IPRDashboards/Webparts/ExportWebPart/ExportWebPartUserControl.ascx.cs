@@ -186,7 +186,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       #endregion
 
-    }
+    } //ControlState
     private class LocalStateMachineEngine: WEB.WebpartStateMachineEngine
     {
       #region ctor
@@ -427,7 +427,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       private ExportWebPartUserControl Parent { get; set; }
       #endregion
 
-    }
+    } //LocalStateMachineEngine
     #endregion
 
     #region SetInterconnectionData

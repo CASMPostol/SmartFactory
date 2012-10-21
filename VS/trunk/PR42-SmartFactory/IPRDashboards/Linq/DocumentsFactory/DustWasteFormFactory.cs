@@ -10,6 +10,11 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
 {
   internal static class DustWasteFormFactory
   {
+    internal static DocumentContent GetBoxFormContent( IQueryable<Disposal> disposals, string customProcedureCode, string documentNo )
+    {
+      //TODO not implemented
+      throw new NotImplementedException();
+    }
     internal static DocumentContent GetDocumentContent( IQueryable<Disposal> disposals, string customProcedureCode, string documentNo )
     {
 

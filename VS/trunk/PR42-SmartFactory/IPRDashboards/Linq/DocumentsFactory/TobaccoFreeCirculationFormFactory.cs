@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CAS.SmartFactory.Linq.IPR;
+using System.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm;
-using System.Linq;
 
 namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
 {

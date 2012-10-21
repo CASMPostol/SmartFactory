@@ -67,13 +67,22 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       foreach ( var _item in m_ProvidersDictionary )
       {
-        switch ( _item.Key )
+        try
         {
-          case ConnectionSelector.ClearenceInterconnection:
-            new ClearenceInterconnectionnData().SetRowData( _item.Value, m_StateMachineEngine.NewDataEventHandler );
-            break;
-          default:
-            break;
+          switch ( _item.Key )
+          {
+            case ConnectionSelector.ClearenceInterconnection:
+              new ClearenceInterconnectionnData().SetRowData( _item.Value, m_StateMachineEngine.NewDataEventHandler );
+              break;
+            default:
+              break;
+          }
+        }
+        catch ( Exception ex )
+        {
+          string _at = _item.Key.ToString();
+          ApplicationError _ae = new ApplicationError( "Page_Load", _at, ex.Message, ex );
+          this.Controls.Add( _ae.CreateMessage( _at, true ) );
         }
       }
     }
@@ -87,7 +96,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     protected override void OnInit( EventArgs e )
     {
       Page.RegisterRequiresControlState( this );
-
       m_AvailableGridView.DataSourceID = m_AvailableGridViewDataSource.ID;
       m_AssignedGridView.DataSourceID = m_AssignedGridViewDataSource.ID;
       base.OnInit( e );
@@ -160,24 +168,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     protected override void OnPreRender( EventArgs e )
     {
       SetEnabled( m_ControlState.SetEnabled );
-      switch ( m_StateMachineEngine.CurrentState )
-      {
-        case GenericStateMachineEngine.InterfaceState.ViewState:
-          m_FiltersPanel.Enabled = true;
-          m_GridViewTable.Enabled = false;
-          m_GridViewActionsPanel.Enabled = false;
-          break;
-        case GenericStateMachineEngine.InterfaceState.EditState:
-          m_FiltersPanel.Enabled = false;
-          m_GridViewTable.Enabled = true;
-          m_GridViewActionsPanel.Enabled = true;
-          break;
-        case GenericStateMachineEngine.InterfaceState.NewState:
-          m_FiltersPanel.Enabled = false;
-          m_GridViewTable.Enabled = true;
-          m_GridViewActionsPanel.Enabled = true;
-          break;
-      }
       Show();
       m_AvailableGridView.DataBind();
       m_AssignedGridView.DataBind();
@@ -214,24 +204,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           return;
         InterfaceState = _old.InterfaceState;
       }
-      internal void ClearClearance()
-      {
-        throw new NotImplementedException();
-      }
       internal void ClearAssigned()
       {
         AssignedItems.SelectionTable.Clear();
+        ClearanceID = String.Empty;
+        ClearanceTitle = String.Empty;
       }
       internal void ClearAvailable()
       {
         AvailableItems.SelectionTable.Clear();
-      }
-      internal void AddAvailableItems( List<Selection.SelectionTableRowWraper> AvailableDustQery )
-      {
-        AvailableItems.SelectionTable.Clear();
-        foreach ( Selection.SelectionTableRowWraper _rowx in AvailableDustQery )
-          AvailableItems.SelectionTable.NewSelectionTableRow( _rowx );
-        AvailableItems.SelectionTable.AcceptChanges();
       }
       #endregion
     }
@@ -279,7 +260,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         try
         {
-          return Parent.Update();
+          Parent.Update();
+          return GenericStateMachineEngine.ActionResult.Success;
         }
         catch ( GenericStateMachineEngine.ActionResult ex )
         {
@@ -289,13 +271,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         {
           return GenericStateMachineEngine.ActionResult.Exception( ex, "Update" );
         }
-        return GenericStateMachineEngine.ActionResult.Success;
       }
       protected override GenericStateMachineEngine.ActionResult Create()
       {
         try
         {
-          return Parent.Create();
+          Parent.Create();
+          return GenericStateMachineEngine.ActionResult.Success;
         }
         catch ( GenericStateMachineEngine.ActionResult ex )
         {
@@ -308,10 +290,23 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       }
       protected override GenericStateMachineEngine.ActionResult Delete()
       {
-        return GenericStateMachineEngine.ActionResult.Exception( null, "Internal error Delete key is useless" );
+        try
+        {
+          Parent.Delete();
+          return GenericStateMachineEngine.ActionResult.Success;
+        }
+        catch ( GenericStateMachineEngine.ActionResult ex )
+        {
+          return ex;
+        }
+        catch ( Exception ex )
+        {
+          return GenericStateMachineEngine.ActionResult.Exception( ex, "Create" );
+        }
       }
       protected override void ClearUserInterface()
       {
+        Parent.ClearAssigned();
       }
       protected override void SetEnabled( GenericStateMachineEngine.ControlsSet _buttons )
       {
@@ -325,7 +320,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       }
       protected override void ShowActionResult( GenericStateMachineEngine.ActionResult _rslt )
       {
-        Parent.Controls.Add( ControlExtensions.CreateMessage( _rslt.ActionException.Message ) );
+        Parent.ShowActionResult( _rslt );
         base.ShowActionResult( _rslt );
       }
       protected override GenericStateMachineEngine.InterfaceState CurrentMachineState
@@ -423,6 +418,37 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     #region private
 
     #region business logic
+    private void Update()
+    {
+      if ( CurrentClearence == null )
+        throw GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - ClearanceID is null or empty at Create" );
+      CurrentClearence.ProcedureCode = SelectedClearenceProcedure.ToString();
+      CurrentClearence.ClearenceProcedure = SelectedClearenceProcedure;
+      switch ( SelectedGroup )
+      {
+        case Group.TobaccoNotAllocated:
+          ClearTobaccoNotAllocated( CurrentClearence, m_DataContextManagement.DataContext );
+          break;
+        case Group.Tobacco:
+        case Group.Dust:
+        case Group.Waste:
+        case Group.Cartons:
+          ClearDisposals( CurrentClearence, m_DataContextManagement.DataContext );
+          break;
+      }
+      m_DataContextManagement.DataContext.SubmitChanges();
+    }
+    private void Create()
+    {
+      string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
+      CurrentClearence = Clearence.CreataClearence( m_DataContextManagement.DataContext, _customsProcedureCode, SelectedClearenceProcedure );
+      Update();
+    }
+    internal void Delete()
+    {
+      //TODO NotImplementedException
+      throw new NotImplementedException();
+    }
     private void SetEnabled( GenericStateMachineEngine.ControlsSet _set )
     {
       GenericStateMachineEngine.ControlsSet _allowed = (GenericStateMachineEngine.ControlsSet)0xff;
@@ -431,64 +457,80 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       _set &= _allowed;
       //Buttons
       m_EditButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.EditOn ) != 0;
+      m_ClearButton.Enabled = m_EditButton.Enabled;
       m_CancelButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.CancelOn ) != 0;
       m_NewButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.NewOn ) != 0;
       m_SaveButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
       m_DeleteButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.DeleteOn ) != 0;
+      switch ( m_StateMachineEngine.CurrentState )
+      {
+        case GenericStateMachineEngine.InterfaceState.ViewState:
+          m_FiltersPanel.Enabled = true;
+          m_AvailableGridView.Enabled = false;
+          m_GridViewActionsPanel.Enabled = false;
+          break;
+        case GenericStateMachineEngine.InterfaceState.EditState:
+          m_FiltersPanel.Enabled = false;
+          m_GridViewActionsPanel.Enabled = true;
+          AssignedGridViewAddCommandField();
+          break;
+        case GenericStateMachineEngine.InterfaceState.NewState:
+          m_FiltersPanel.Enabled = false;
+          m_GridViewActionsPanel.Enabled = true;
+          AssignedGridViewAddCommandField();
+          break;
+      }
+    }
+    private void ShowActionResult( GenericStateMachineEngine.ActionResult _rslt )
+    {
+      Parent.Controls.Add( ControlExtensions.CreateMessage( _rslt.ActionException.Message ) );
     }
     private GenericStateMachineEngine.ActionResult ClearThroughCustom()
     {
       try
       {
-        if ( m_ProcedureRadioButtonList.SelectedIndex < 0 )
-          return GenericStateMachineEngine.ActionResult.NotValidated( "Customs procedure must  be selected" );
-        switch ( SelectedClearenceProcedure )
+        if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
+          throw GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - ClearanceID is null or empty at Export" );
+        Clearence _clearence = Element.GetAtIndex<Clearence>( m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID );
+        string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( _clearence.Identyfikator.Value );
+        int _sadConsignmentIdentifier = default( int );
+        switch ( SelectedGroup )
         {
-          case ClearenceProcedure._4051:
-            return Revert2FreeCirculation();
-          case ClearenceProcedure._3151:
-            return Export( SPContext.Current.Web );
+          case Group.Tobacco:
+          case Group.TobaccoNotAllocated:
+            CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent _newTobaccoDoc =
+              TobaccoFreeCirculationFormFactory.GetDocumentContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
+            _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName );
+            break;
+          case Group.Waste:
+          case Group.Dust:
+            xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood compensatiionGood = SelectedGroup == Group.Waste ?
+              xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood.Waste : xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood.Dust;
+            xml.DocumentsFactory.DustWasteForm.DocumentContent _newDustWasteDoc =
+              DustWasteFormFactory.GetDocumentContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
+            _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, compensatiionGood );
+            break;
+          case Group.Cartons:
+            xml.DocumentsFactory.DustWasteForm.DocumentContent _newBoxFormContent =
+              DustWasteFormFactory.GetBoxFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
+            _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood.Cartons );
+            break;
+          default:
+            break;
         }
+        SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
+        _clearence.SADConsignmentLibraryIndex = _sadConsignment;
+        m_DataContextManagement.DataContext.SubmitChanges();
         return GenericStateMachineEngine.ActionResult.Success;
+      }
+      catch ( GenericStateMachineEngine.ActionResult _ar )
+      {
+        return _ar;
       }
       catch ( Exception ex )
       {
         return GenericStateMachineEngine.ActionResult.Exception( ex, "ClearThroughCustom" );
       }
-    }
-    private GenericStateMachineEngine.ActionResult Create()
-    {
-      List<string> _errors = new List<string>();
-      if ( _errors.Count > 0 )
-        return SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( _errors[ 0 ] );
-      string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
-      Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, _customsProcedureCode, SelectedClearenceProcedure );
-      Update( _newClearance );
-      return GenericStateMachineEngine.ActionResult.Success;
-    }
-    private GenericStateMachineEngine.ActionResult Update()
-    {
-      if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
-        return GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - ClearanceID is null or empty at Create" );
-      Clearence _clearance = Element.GetAtIndex<Clearence>( m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID );
-      Update( _clearance );
-      return GenericStateMachineEngine.ActionResult.Success;
-    }
-    private void Update( Clearence clearance )
-    {
-      switch ( SelectedGroup )
-      {
-        case Group.TobaccoNotAllocated:
-          ClearTobaccoNotAllocated( clearance, m_DataContextManagement.DataContext );
-          break;
-        case Group.Tobacco:
-        case Group.Dust:
-        case Group.Waste:
-        case Group.Cartons:
-          ClearDisposals( clearance, m_DataContextManagement.DataContext );
-          break;
-      }
-      m_DataContextManagement.DataContext.SubmitChanges();
     }
     private void ClearDisposals( Clearence newClearance, Entities edc )
     {
@@ -531,7 +573,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           Disposal2IPRIndex = _ipr,
           Disposal2MaterialIndex = null,
           CompensationGood = _ipr.IPR2PCNPCN.Title(),
-          //TODO we must add DisposalStatus Tobacco
+          //TODO: DisposalStatus Tobacco must be added
           DisposalStatus = DisposalStatus.Invalid,
           //DutyAndVAT - in SetUpCalculatedColumns,
           //DutyPerSettledAmount - in SetUpCalculatedColumns,
@@ -554,64 +596,33 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       }
       _edc.SubmitChanges();
     }
-    private GenericStateMachineEngine.ActionResult Revert2FreeCirculation()
-    {
-      throw new NotImplementedException();
-    }
-    private GenericStateMachineEngine.ActionResult Export( SPWeb site )
-    {
-      if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
-        return GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - ClearanceID is null or empty at Export" );
-      Clearence _clearence = Element.GetAtIndex<Clearence>( m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID );
-      string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( _clearence.Identyfikator.Value );
-      int _sadConsignmentIdentifier = default(int);
-      switch ( SelectedGroup )
-      {
-        case Group.Tobacco:
-        case Group.TobaccoNotAllocated:
-          CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent _newTobaccoDoc =
-            TobaccoFreeCirculationFormFactory.GetDocumentContent( _clearence.Disposals( m_DataContextManagement.DataContext ), "4051", "OGL Number" );
-          _sadConsignmentIdentifier = Dokument.PrepareConsignment( site, _newTobaccoDoc, _masterDocumentName );
-          break;
-        case Group.Waste:
-        case Group.Dust:
-          xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood compensatiionGood = SelectedGroup == Group.Waste ?
-            xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood.Waste : xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood.Dust;
-          xml.DocumentsFactory.DustWasteForm.DocumentContent _newDustWasteDoc =
-            DustWasteFormFactory.GetDocumentContent( _clearence.Disposals( m_DataContextManagement.DataContext ), "4051", "OGL Number" );
-          _sadConsignmentIdentifier = Dokument.PrepareConsignment( site, _newDustWasteDoc, _masterDocumentName, compensatiionGood );
-          break;
-        case Group.Cartons:
-          //TODO not implemented.
-          break;
-        default:
-          break;
-      }
-      SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
-      _clearence.SADConsignmentLibraryIndex = _sadConsignment;
-      m_DataContextManagement.DataContext.SubmitChanges();
-      return GenericStateMachineEngine.ActionResult.Success;
-    }
     private GenericStateMachineEngine.ActionResult Show()
     {
       double _availableSum = ( from _avrx in m_ControlState.AvailableItems.SelectionTable select _avrx ).Sum( x => x.Quantity );
       double _assignedSum = ( from _avrx in m_ControlState.AssignedItems.SelectionTable select _avrx ).Sum( x => x.Quantity );
       m_AvailableGridViewQuntitySumLabel.Text = String.Format( "Quantity {0:F2}", _availableSum );
       m_AssignedGridViewQuantitySumLabel.Text = String.Format( "Quantity {0:F2}", _assignedSum );
+      m_ClearenceTextBox.Text = m_ControlState.ClearanceTitle;
       return GenericStateMachineEngine.ActionResult.Success;
     }
     private void ClearAvailable()
     {
       m_ControlState.ClearAvailable();
+      m_AvailableGridViewQuntitySumLabel.Text = String.Empty;
     }
     private void ClearAssigned()
     {
       m_ControlState.ClearAssigned();
+      m_AssignedGridViewQuantitySumLabel.Text = String.Empty;
     }
     private void QueryAssigned()
     {
       m_ControlState.ClearAssigned();
-      //TODO must be implemented
+      if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
+        return;
+      List<Selection.SelectionTableRowWraper> _dsposals = ( from _dsx in CurrentClearence.Disposals( m_DataContextManagement.DataContext )
+                                                            select new Selection.SelectionTableRowWraper( _dsx ) ).ToList();
+      m_ControlState.AssignedItems.SelectionTable.Add( _dsposals );
     }
     private void QueryAvailable()
     {
@@ -633,7 +644,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           GetDisposals( new DisposalStatus[] { DisposalStatus.Waste }, true, _start, _finish, _currency );
           break;
         case Group.Cartons:
-          //TODO  mark resolvet we need dedicated status http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3294
           GetDisposals( new DisposalStatus[] { DisposalStatus.Cartons }, false, _start, _finish, _currency );
           break;
         default:
@@ -641,7 +651,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       };
       m_ControlState.AvailableItems.AcceptChanges();
     }
-    private void GetMaterial( Selection _data, DateTime? start, DateTime? finisch, string currency )
+    private void GetMaterial( Selection data, DateTime? start, DateTime? finisch, string currency )
     {
       List<Selection.SelectionTableRowWraper> AvailableDustQery = ( from _iprx in m_DataContextManagement.DataContext.IPR
                                                                     let _batch = _iprx.Batch
@@ -651,7 +661,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
                                                                           ( String.IsNullOrEmpty( currency ) || _iprx.Currency.Contains( currency ) )
                                                                     orderby _batch ascending
                                                                     select new Selection.SelectionTableRowWraper( _iprx ) ).ToList();
-      m_ControlState.AddAvailableItems( AvailableDustQery );
+      m_ControlState.AvailableItems.SelectionTable.Add( AvailableDustQery );
     }
     private void GetDisposals( DisposalStatus[] status, bool creationDataFilter, DateTime? start, DateTime? finisch, string currency )
     {
@@ -675,20 +685,23 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
                               where ( !start.HasValue || _itmx.DebtDate >= start ) && ( !finisch.HasValue || _itmx.DebtDate <= finisch )
                               orderby _itmx.DebtDate ascending
                               select _itmx ).ToList();
-      m_ControlState.AddAvailableItems( AvailableDustQery );
+      m_ControlState.AvailableItems.SelectionTable.Add( AvailableDustQery );
     }
     private ClearenceProcedure SelectedClearenceProcedure
     {
       get
       {
+        if ( m_ProcedureRadioButtonList.SelectedIndex < 0 )
+          throw GenericStateMachineEngine.ActionResult.NotValidated( "Customs procedure must  be selected" );
         switch ( m_ProcedureRadioButtonList.SelectedValue )
         {
           case "4051":
             return ClearenceProcedure._4051;
           case "3151":
             return ClearenceProcedure._3151;
+          default:
+            throw GenericStateMachineEngine.ActionResult.Exception( null, "Internal error - wrong Customs procedure is is selected" );
         }
-        return ClearenceProcedure.Invalid;
       }
     }
     private enum Group { Tobacco, TobaccoNotAllocated, Dust, Waste, Cartons }
@@ -724,6 +737,27 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private const string m_QuantityNewValue = "QuantityNewValue";
     private ObjectDataSource m_AvailableGridViewDataSource;
     private ObjectDataSource m_AssignedGridViewDataSource;
+    private Clearence @_clearence = default( Clearence );
+    public Clearence CurrentClearence
+    {
+      get
+      {
+        if ( @_clearence != null )
+          return @_clearence;
+        if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
+          return null;
+        @_clearence = Element.GetAtIndex<Clearence>( m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID );
+        return @_clearence;
+        ;
+      }
+      set
+      {
+        @_clearence = value;
+        m_ControlState.ClearanceID = value.Identyfikator.Value.ToString();
+        ;
+        m_ControlState.ClearanceTitle = value.Title;
+      }
+    }
     #endregion
 
     #region Event handlers
@@ -835,6 +869,18 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       e.NewSelectedIndex = -1;
       e.Cancel = true;
     }
+    private void AssignedGridViewAddCommandField()
+    {
+      CommandField _cf = new CommandField()
+      {
+        HeaderText = "Manage",
+        ShowEditButton = false,
+        ShowSelectButton = true,
+        SelectText = "Split",
+      };
+      _cf.ItemStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
+      m_AssignedGridView.Columns.Add( _cf );
+    }
     #endregion
 
     #region m_GridViewActionsPanel
@@ -868,6 +914,5 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     #endregion
 
     #endregion
-
   }
 }
