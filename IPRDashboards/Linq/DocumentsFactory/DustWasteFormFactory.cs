@@ -15,7 +15,25 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       //TODO not implemented
       throw new NotImplementedException();
     }
-    internal static DocumentContent GetDocumentContent( IQueryable<Disposal> disposals, string customProcedureCode, string documentNo )
+    internal static CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent GetTobaccoFreeCirculationFormContent( IEnumerable<Disposal> disposals, string customProcedureCode, string documentNo )
+    {
+      double _subTotal = 0;
+      MaterialRecord[] _materialRecords = Disposal.GetListOfMaterials( disposals, ref _subTotal );
+      //TODO not sure about how to calculate end and start date 
+      DateTime endDate = ( from _dx in disposals select new { _endDate = _dx.Disposal2IPRIndex.CustomsDebtDate.Value } ).Max( x => x._endDate );
+      DateTime startDate = ( from _dx in disposals select new { _endDate = _dx.Disposal2IPRIndex.CustomsDebtDate.Value } ).Max( x => x._endDate );
+      return new CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent()
+      {
+        AccountDescription = _materialRecords,
+        CustomProcedureCode = customProcedureCode,
+        DocumentDate = DateTime.Today.Date, //TODO not sure how to assigne document date.
+        DocumentNo = documentNo,
+        EndDate = endDate,
+        StartDate = startDate,
+        Total = _subTotal
+      };
+    }
+    internal static DocumentContent GetDustWasteFormContent( IQueryable<Disposal> disposals, string customProcedureCode, string documentNo )
     {
 
       IQueryable<IGrouping<string, Disposal>> _groups = from _disx in disposals

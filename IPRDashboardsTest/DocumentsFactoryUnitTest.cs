@@ -277,7 +277,7 @@ namespace IPRDashboardsTest
             VATPerSettledAmount = 0.156,
         }
         ));
-      DocumentContent _newDoc = DustWasteFormFactory.GetDocumentContent( _disposals.AsQueryable<Disposal>(), "4051", "OGL Number" );
+      DocumentContent _newDoc = DustWasteFormFactory.GetDustWasteFormContent( _disposals.AsQueryable<Disposal>(), "4051", "OGL Number" );
       Assert.AreEqual( _newDoc.DocumentNo, "OGL Number" );
       ;
     }

@@ -499,13 +499,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           case Group.Tobacco:
           case Group.TobaccoNotAllocated:
             CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent _newTobaccoDoc =
-              TobaccoFreeCirculationFormFactory.GetDocumentContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
+              TobaccoFreeCirculationFormFactory.GetTobaccoFreeCirculationFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
             _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName );
             break;
           case Group.Waste:
           case Group.Dust:
             xml.DocumentsFactory.DustWasteForm.DocumentContent _newDustWasteDoc =
-              DustWasteFormFactory.GetDocumentContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
+              DustWasteFormFactory.GetDustWasteFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
             xml.DocumentsFactory.DustWasteForm.CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ?
               xml.DocumentsFactory.DustWasteForm.CompensatiionGood.Waste : xml.DocumentsFactory.DustWasteForm.CompensatiionGood.Dust;
             _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood );
