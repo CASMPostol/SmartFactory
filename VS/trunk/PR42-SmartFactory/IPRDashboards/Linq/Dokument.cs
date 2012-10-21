@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.Linq.IPR
       }
     }
     internal static int PrepareConsignment
-      ( SPWeb site, xml.DocumentsFactory.DustWasteForm.DocumentContent document, string fileName, xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood compensatiionGood )
+      ( SPWeb site, xml.DocumentsFactory.DustWasteForm.DocumentContent document, string fileName, xml.DocumentsFactory.DustWasteForm.CompensatiionGood compensatiionGood )
     {
       string _stt = "Starting";
       try
