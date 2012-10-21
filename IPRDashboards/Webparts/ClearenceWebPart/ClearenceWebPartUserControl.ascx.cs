@@ -499,20 +499,20 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           case Group.Tobacco:
           case Group.TobaccoNotAllocated:
             CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent _newTobaccoDoc =
-              TobaccoFreeCirculationFormFactory.GetTobaccoFreeCirculationFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
+              DisposalsFormFactory.GetTobaccoFreeCirculationFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
             _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName );
             break;
           case Group.Waste:
           case Group.Dust:
             xml.DocumentsFactory.DustWasteForm.DocumentContent _newDustWasteDoc =
-              DustWasteFormFactory.GetDustWasteFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
+              DisposalsFormFactory.GetDustWasteFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
             xml.DocumentsFactory.DustWasteForm.CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ?
               xml.DocumentsFactory.DustWasteForm.CompensatiionGood.Waste : xml.DocumentsFactory.DustWasteForm.CompensatiionGood.Dust;
             _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood );
             break;
           case Group.Cartons:
             xml.DocumentsFactory.DustWasteForm.DocumentContent _newBoxFormContent =
-              DustWasteFormFactory.GetBoxFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
+              DisposalsFormFactory.GetBoxFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
             _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, xml.DocumentsFactory.DustWasteForm.CompensatiionGood.Cartons );
             break;
         }
