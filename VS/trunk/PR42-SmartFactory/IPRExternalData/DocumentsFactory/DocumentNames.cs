@@ -35,6 +35,10 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
     /// </summary>
     public const string DustFormStylesheetName = "DustFormStylesheet.xslt";
     /// <summary>
+    /// The cartons form stylesheet name
+    /// </summary>
+    public const string CartonsFormStylesheetName = "CartonsFormStylesheet.xslt";
+    /// <summary>
     /// Waste form stylesheet name
     /// </summary>
     public const string WasteFormStylesheetName = "WasteFormStylesheet.xslt";

@@ -11,7 +11,7 @@ using CAS.SharePoint.Web;
 using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml;
-using CAS.SmartFactory.xml.DocumentsFactory;
+using CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 
@@ -498,22 +498,22 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         {
           case Group.Tobacco:
           case Group.TobaccoNotAllocated:
-            CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent _newTobaccoDoc =
+            DocumentContent _newTobaccoDoc =
               DisposalsFormFactory.GetTobaccoFreeCirculationFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
-            _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName );
+            _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName, CompensatiionGood.Tobacco );
             break;
           case Group.Waste:
           case Group.Dust:
-            xml.DocumentsFactory.DustWasteForm.DocumentContent _newDustWasteDoc =
+            DocumentContent _newDustWasteDoc =
               DisposalsFormFactory.GetDustWasteFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
-            xml.DocumentsFactory.DustWasteForm.CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ?
-              xml.DocumentsFactory.DustWasteForm.CompensatiionGood.Waste : xml.DocumentsFactory.DustWasteForm.CompensatiionGood.Dust;
+            CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ?
+              CompensatiionGood.Waste : CompensatiionGood.Dust;
             _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood );
             break;
           case Group.Cartons:
-            xml.DocumentsFactory.DustWasteForm.DocumentContent _newBoxFormContent =
+            DocumentContent _newBoxFormContent =
               DisposalsFormFactory.GetBoxFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
-            _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, xml.DocumentsFactory.DustWasteForm.CompensatiionGood.Cartons );
+            _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, CompensatiionGood.Cartons );
             break;
         }
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
