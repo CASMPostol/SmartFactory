@@ -6,7 +6,25 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm
   /// <summary>
   /// Compensatiion good enum
   /// </summary>
-  public enum CompensatiionGood { Dust, Waste, Cartons }
+  public enum CompensatiionGood
+  {
+    /// <summary>
+    /// The dust compensatiion good
+    /// </summary>
+    Dust,
+    /// <summary>
+    /// The waste  compensatiion good
+    /// </summary>
+    Waste,
+    /// <summary>
+    /// The cartons  compensatiion good
+    /// </summary>
+    Cartons,
+    /// <summary>
+    /// The tobacco  compensatiion good
+    /// </summary>
+    Tobacco
+  }
   public partial class DocumentContent
   {
 
@@ -29,6 +47,12 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm
           break;
         case CompensatiionGood.Waste:
           stylesheetName = DocumentNames.WasteFormStylesheetName;
+          break;
+        case CompensatiionGood.Cartons:
+          stylesheetName = DocumentNames.CartonsFormStylesheetName;
+          break;
+        case CompensatiionGood.Tobacco:
+          stylesheetName = DocumentNames.TobaccoFormStylesheetName;
           break;
       }
       return DocumentNames.CreateXmlFile<DocumentContent>( destinationCollection, fileName, this, stylesheetName );

@@ -10,19 +10,42 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
   {
     internal static DocumentContent GetBoxFormContent( IQueryable<Disposal> disposals, string customProcedureCode, string documentNo )
     {
-      //TODO not implemented
-      throw new NotImplementedException();
+      double _subTotal = 0;
+      MaterialRecord[] _materialRecords = Disposal.GetListOfMaterials( disposals, ref _subTotal );
+      //TODO not sure about how to calculate end and start date 
+      DateTime endDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
+      DateTime startDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
+      MaterialsOnOneAccount _materials = new MaterialsOnOneAccount()
+      {
+        Total = _subTotal,
+        MaterialRecords = _materialRecords,
+      };
+      return new DocumentContent()
+      {
+        AccountDescription = new MaterialsOnOneAccount[] { _materials },
+        CustomProcedureCode = customProcedureCode,
+        DocumentDate = DateTime.Today.Date, //TODO not sure how to assigne document date.
+        DocumentNo = documentNo,
+        EndDate = endDate,
+        StartDate = startDate,
+        Total = _subTotal
+      };
     }
-    internal static xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent GetTobaccoFreeCirculationFormContent( IEnumerable<Disposal> disposals, string customProcedureCode, string documentNo )
+    internal static DocumentContent GetTobaccoFreeCirculationFormContent( IEnumerable<Disposal> disposals, string customProcedureCode, string documentNo )
     {
       double _subTotal = 0;
       MaterialRecord[] _materialRecords = Disposal.GetListOfMaterials( disposals, ref _subTotal );
       //TODO not sure about how to calculate end and start date 
-      DateTime endDate = ( from _dx in disposals select new { _endDate = _dx.Disposal2IPRIndex.CustomsDebtDate.Value } ).Max( x => x._endDate );
-      DateTime startDate = ( from _dx in disposals select new { _endDate = _dx.Disposal2IPRIndex.CustomsDebtDate.Value } ).Max( x => x._endDate );
-      return new xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent()
+      DateTime endDate = disposals.Max( x => x.CreatedDate.Value );
+      DateTime startDate = disposals.Max( x => x.CreatedDate.Value );
+      MaterialsOnOneAccount _materials = new MaterialsOnOneAccount()
       {
-        AccountDescription = _materialRecords,
+        Total = _subTotal,
+        MaterialRecords = _materialRecords,
+      };
+      return new DocumentContent()
+      {
+        AccountDescription = new MaterialsOnOneAccount[] { _materials },
         CustomProcedureCode = customProcedureCode,
         DocumentDate = DateTime.Today.Date, //TODO not sure how to assigne document date.
         DocumentNo = documentNo,
@@ -38,8 +61,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
                                                         let _ogl = _disx.Disposal2IPRIndex == null ? String.Empty : _disx.Disposal2IPRIndex.DocumentNo
                                                         orderby _ogl ascending
                                                         group _disx by _ogl;
-      DateTime endDate = (from _dx in disposals select new {_endDate = _dx.CreatedDate.Value}).Max(x=>x._endDate);
-      DateTime startDate = ( from _dx in disposals select new { _endDate = _dx.CreatedDate.Value } ).Max( x => x._endDate );
+      DateTime endDate = disposals.Max( x => x.CreatedDate.Value );
+      DateTime startDate = disposals.Max( x => x.CreatedDate.Value );
       List<MaterialsOnOneAccount> _dustsGroupe = new List<MaterialsOnOneAccount>();
       double _total = 0;
       foreach ( IGrouping<string, Disposal> _gx in _groups )
