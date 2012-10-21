@@ -131,4 +131,189 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm
       }
     }
   }
+
+  /// <uwagi/>
+  [System.CodeDom.Compiler.GeneratedCodeAttribute( "xsd", "2.0.50727.3038" )]
+  [System.SerializableAttribute()]
+  [System.Diagnostics.DebuggerStepThroughAttribute()]
+  [System.ComponentModel.DesignerCategoryAttribute( "code" )]
+  [System.Xml.Serialization.XmlTypeAttribute( Namespace = "http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustWasteForm.xsd" )]
+  public partial class MaterialsOnOneAccount
+  {
+
+    private double totalField;
+
+    private MaterialRecord[] materialRecordsField;
+
+    /// <uwagi/>
+    public double Total
+    {
+      get
+      {
+        return this.totalField;
+      }
+      set
+      {
+        this.totalField = value;
+      }
+    }
+
+    /// <uwagi/>
+    public MaterialRecord[] MaterialRecords
+    {
+      get
+      {
+        return this.materialRecordsField;
+      }
+      set
+      {
+        this.materialRecordsField = value;
+      }
+    }
+  }
+
+  /// <uwagi/>
+  [System.CodeDom.Compiler.GeneratedCodeAttribute( "xsd", "2.0.50727.3038" )]
+  [System.SerializableAttribute()]
+  [System.Diagnostics.DebuggerStepThroughAttribute()]
+  [System.ComponentModel.DesignerCategoryAttribute( "code" )]
+  [System.Xml.Serialization.XmlTypeAttribute( Namespace = "http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/DustWasteForm.xsd" )]
+  public partial class MaterialRecord
+  {
+
+    private string customDocumentNoField;
+
+    private System.DateTime dateField;
+
+    private string materialSKUField;
+
+    private string materialBatchField;
+
+    private string finishedGoodBatchField;
+
+    private double qantityField;
+
+    private double unitPriceField;
+
+    private double tobaccoValueField;
+
+    private string currencyField;
+
+    /// <uwagi/>
+    public string CustomDocumentNo
+    {
+      get
+      {
+        return this.customDocumentNoField;
+      }
+      set
+      {
+        this.customDocumentNoField = value;
+      }
+    }
+
+    /// <uwagi/>
+    public System.DateTime Date
+    {
+      get
+      {
+        return this.dateField;
+      }
+      set
+      {
+        this.dateField = value;
+      }
+    }
+
+    /// <uwagi/>
+    public string MaterialSKU
+    {
+      get
+      {
+        return this.materialSKUField;
+      }
+      set
+      {
+        this.materialSKUField = value;
+      }
+    }
+
+    /// <uwagi/>
+    public string MaterialBatch
+    {
+      get
+      {
+        return this.materialBatchField;
+      }
+      set
+      {
+        this.materialBatchField = value;
+      }
+    }
+
+    /// <uwagi/>
+    public string FinishedGoodBatch
+    {
+      get
+      {
+        return this.finishedGoodBatchField;
+      }
+      set
+      {
+        this.finishedGoodBatchField = value;
+      }
+    }
+
+    /// <uwagi/>
+    public double Qantity
+    {
+      get
+      {
+        return this.qantityField;
+      }
+      set
+      {
+        this.qantityField = value;
+      }
+    }
+
+    /// <uwagi/>
+    public double UnitPrice
+    {
+      get
+      {
+        return this.unitPriceField;
+      }
+      set
+      {
+        this.unitPriceField = value;
+      }
+    }
+
+    /// <uwagi/>
+    public double TobaccoValue
+    {
+      get
+      {
+        return this.tobaccoValueField;
+      }
+      set
+      {
+        this.tobaccoValueField = value;
+      }
+    }
+
+    /// <uwagi/>
+    public string Currency
+    {
+      get
+      {
+        return this.currencyField;
+      }
+      set
+      {
+        this.currencyField = value;
+      }
+    }
+  }
 }
