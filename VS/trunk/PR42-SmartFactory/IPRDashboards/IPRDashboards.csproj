@@ -76,8 +76,7 @@
     <Compile Include="Linq\Batch.cs" />
     <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\DocumentsFactory\CigaretteExportForm.cs" />
-    <Compile Include="Linq\DocumentsFactory\DustWasteFormFactory.cs" />
-    <Compile Include="Linq\DocumentsFactory\TobaccoFreeCirculationFormFactory.cs" />
+    <Compile Include="Linq\DocumentsFactory\DisposalsFormFactory.cs" />
     <Compile Include="Linq\Dokument.cs" />
     <Compile Include="Linq\IPR.cs" />
     <Compile Include="Linq\Material.cs" />

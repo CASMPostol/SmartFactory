@@ -1,28 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CAS.SharePoint;
-using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm;
 
 namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
 {
-  internal static class DustWasteFormFactory
+  internal static class DisposalsFormFactory
   {
     internal static DocumentContent GetBoxFormContent( IQueryable<Disposal> disposals, string customProcedureCode, string documentNo )
     {
       //TODO not implemented
       throw new NotImplementedException();
     }
-    internal static CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent GetTobaccoFreeCirculationFormContent( IEnumerable<Disposal> disposals, string customProcedureCode, string documentNo )
+    internal static xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent GetTobaccoFreeCirculationFormContent( IEnumerable<Disposal> disposals, string customProcedureCode, string documentNo )
     {
       double _subTotal = 0;
       MaterialRecord[] _materialRecords = Disposal.GetListOfMaterials( disposals, ref _subTotal );
       //TODO not sure about how to calculate end and start date 
       DateTime endDate = ( from _dx in disposals select new { _endDate = _dx.Disposal2IPRIndex.CustomsDebtDate.Value } ).Max( x => x._endDate );
       DateTime startDate = ( from _dx in disposals select new { _endDate = _dx.Disposal2IPRIndex.CustomsDebtDate.Value } ).Max( x => x._endDate );
-      return new CAS.SmartFactory.xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent()
+      return new xml.DocumentsFactory.TobaccoFreeCirculationForm.DocumentContent()
       {
         AccountDescription = _materialRecords,
         CustomProcedureCode = customProcedureCode,
@@ -60,10 +58,10 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       }
       return new DocumentContent()
       {
+        AccountDescription = _dustsGroupe.ToArray(),
         CustomProcedureCode = customProcedureCode,
         DocumentDate = DateTime.Today.Date, //TODO not sure how to assigne document date.
         DocumentNo = documentNo,
-        AccountDescription = _dustsGroupe.ToArray(),
         EndDate = endDate,
         StartDate = startDate,
         Total = _total
