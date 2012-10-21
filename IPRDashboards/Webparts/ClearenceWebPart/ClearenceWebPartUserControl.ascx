@@ -186,7 +186,6 @@
                                 <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:CommandField HeaderText="Select all" ShowEditButton="false" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" />
                     </Columns>
                 </SharePoint:SPGridView>
                 <asp:Label ID="m_AssignedGridViewQuantitySumLabel" runat="server" />

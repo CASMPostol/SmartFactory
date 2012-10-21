@@ -303,9 +303,9 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       Clearence _newClearence = new Clearence()
       {
-        DocumentNo = "N/A",
+        DocumentNo = String.Empty.NotAvailable(),
         ProcedureCode = code,
-        ReferenceNumber = "N/A",
+        ReferenceNumber = String.Empty.NotAvailable(),
         Status = false,
         //TODO common naming convention must be implemented.
         Title = "Creating",

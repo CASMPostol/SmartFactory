@@ -116,7 +116,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           return from _dx in this where _dx.RowState == DataRowState.Added select _dx;
         }
       }
+      internal void Add( List<Selection.SelectionTableRowWraper> collection )
+      {
+        Clear();
+        foreach ( Selection.SelectionTableRowWraper _rowx in collection )
+          NewSelectionTableRow( _rowx );
+        AcceptChanges();
+      }
     }
+
     /// <summary>
     ///Represents strongly named DataRow class.
     ///</summary>
