@@ -421,47 +421,50 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private void Update()
     {
       if ( CurrentClearence == null )
-        throw GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - ClearanceID is null or empty at Create" );
+        throw GenericStateMachineEngine.ActionResult.Exception( null, "Internal error - ClearanceID is null or empty at Update" );
       CurrentClearence.ProcedureCode = SelectedClearenceProcedure.ToString();
       CurrentClearence.ClearenceProcedure = SelectedClearenceProcedure;
       switch ( SelectedGroup )
       {
         case Group.TobaccoNotAllocated:
-          ClearTobaccoNotAllocated( CurrentClearence, m_DataContextManagement.DataContext );
+          UpdateTobaccoNotAllocated();
           break;
         case Group.Tobacco:
         case Group.Dust:
         case Group.Waste:
         case Group.Cartons:
-          ClearDisposals( CurrentClearence, m_DataContextManagement.DataContext );
+          UpdateDisposals();
           break;
       }
       m_DataContextManagement.DataContext.SubmitChanges();
     }
     private void Create()
     {
-      string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
-      CurrentClearence = Clearence.CreataClearence( m_DataContextManagement.DataContext, _customsProcedureCode, SelectedClearenceProcedure );
+      CurrentClearence = Clearence.CreataClearence( m_DataContextManagement.DataContext, "", SelectedClearenceProcedure );
       Update();
     }
     internal void Delete()
     {
-      //TODO NotImplementedException
-      throw new NotImplementedException();
+      foreach ( Disposal _dx in CurrentClearence.Disposals( m_DataContextManagement.DataContext ) )
+        _dx.ClearenceIndex = null;
+      m_DataContextManagement.DataContext.SubmitChanges();
+      m_DataContextManagement.DataContext.Clearence.DeleteOnSubmit( CurrentClearence );
+      ClearAssigned();
+      m_DataContextManagement.DataContext.SubmitChanges();
     }
-    private void SetEnabled( GenericStateMachineEngine.ControlsSet _set )
+    private void SetEnabled( GenericStateMachineEngine.ControlsSet controlsSet )
     {
       GenericStateMachineEngine.ControlsSet _allowed = (GenericStateMachineEngine.ControlsSet)0xff;
       if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
         _allowed ^= GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn;
-      _set &= _allowed;
+      controlsSet &= _allowed;
       //Buttons
-      m_EditButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.EditOn ) != 0;
+      m_EditButton.Enabled = ( controlsSet & GenericStateMachineEngine.ControlsSet.EditOn ) != 0;
       m_ClearButton.Enabled = m_EditButton.Enabled;
-      m_CancelButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.CancelOn ) != 0;
-      m_NewButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.NewOn ) != 0;
-      m_SaveButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
-      m_DeleteButton.Enabled = ( _set & GenericStateMachineEngine.ControlsSet.DeleteOn ) != 0;
+      m_CancelButton.Enabled = ( controlsSet & GenericStateMachineEngine.ControlsSet.CancelOn ) != 0;
+      m_NewButton.Enabled = ( controlsSet & GenericStateMachineEngine.ControlsSet.NewOn ) != 0;
+      m_SaveButton.Enabled = ( controlsSet & GenericStateMachineEngine.ControlsSet.SaveOn ) != 0;
+      m_DeleteButton.Enabled = ( controlsSet & GenericStateMachineEngine.ControlsSet.DeleteOn ) != 0;
       switch ( m_StateMachineEngine.CurrentState )
       {
         case GenericStateMachineEngine.InterfaceState.ViewState:
@@ -483,15 +486,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private void ShowActionResult( GenericStateMachineEngine.ActionResult _rslt )
     {
-      Parent.Controls.Add( ControlExtensions.CreateMessage( _rslt.ActionException.Message ) );
+      Controls.Add( ControlExtensions.CreateMessage( _rslt.ActionException.Message ) );
     }
     private GenericStateMachineEngine.ActionResult ClearThroughCustom()
     {
       try
       {
-        if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
-          throw GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - ClearanceID is null or empty at Export" );
-        Clearence _clearence = Element.GetAtIndex<Clearence>( m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID );
         string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( _clearence.Identyfikator.Value );
         int _sadConsignmentIdentifier = default( int );
         switch ( SelectedGroup )
@@ -504,18 +504,16 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
             break;
           case Group.Waste:
           case Group.Dust:
-            xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood compensatiionGood = SelectedGroup == Group.Waste ?
-              xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood.Waste : xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood.Dust;
             xml.DocumentsFactory.DustWasteForm.DocumentContent _newDustWasteDoc =
               DustWasteFormFactory.GetDocumentContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
-            _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, compensatiionGood );
+            xml.DocumentsFactory.DustWasteForm.CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ?
+              xml.DocumentsFactory.DustWasteForm.CompensatiionGood.Waste : xml.DocumentsFactory.DustWasteForm.CompensatiionGood.Dust;
+            _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood );
             break;
           case Group.Cartons:
             xml.DocumentsFactory.DustWasteForm.DocumentContent _newBoxFormContent =
               DustWasteFormFactory.GetBoxFormContent( _clearence.Disposals( m_DataContextManagement.DataContext ), _clearence.ProcedureCode, _masterDocumentName );
-            _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, xml.DocumentsFactory.DustWasteForm.DocumentContent.CompensatiionGood.Cartons );
-            break;
-          default:
+            _sadConsignmentIdentifier = Dokument.PrepareConsignment( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, xml.DocumentsFactory.DustWasteForm.CompensatiionGood.Cartons );
             break;
         }
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
@@ -532,8 +530,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         return GenericStateMachineEngine.ActionResult.Exception( ex, "ClearThroughCustom" );
       }
     }
-    private void ClearDisposals( Clearence newClearance, Entities edc )
+    private void UpdateDisposals()
     {
+      Entities edc = m_DataContextManagement.DataContext;
       //remove from clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyAdded )
       {
@@ -544,11 +543,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
       {
         Linq.IPR.Disposal _dspsl = Element.GetAtIndex<Linq.IPR.Disposal>( edc.Disposal, _row.Identyfikator );
-        _dspsl.ClearenceIndex = newClearance;
+        _dspsl.ClearenceIndex = CurrentClearence;
       }
     }
-    private void ClearTobaccoNotAllocated( Clearence _newClearance, Entities _edc )
+    private void UpdateTobaccoNotAllocated()
     {
+      Entities _edc = m_DataContextManagement.DataContext;
       //remove for clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyDisposals )
       {
@@ -561,13 +561,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
       {
         if ( _row.Disposal )
-          throw SharePoint.Web.GenericStateMachineEngine.ActionResult.Exception( null, "Internal error - disposal is on the added to assigned list" );
+          throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - disposal is on the added to assigned list" );
         Linq.IPR.IPR _ipr = Element.GetAtIndex<Linq.IPR.IPR>( _edc.IPR, _row.Identyfikator );
         Disposal _nd = new Disposal()
         {
-          ClearenceIndex = _newClearance,
+          ClearenceIndex = CurrentClearence,
           ClearingType = ClearingType.PartialWindingUp,
-          CustomsProcedure = _newClearance.ProcedureCode,
+          CustomsProcedure = CurrentClearence.ProcedureCode,
           CustomsStatus = CustomsStatus.NotStarted,
           Disposal2BatchIndex = null,
           Disposal2IPRIndex = _ipr,
@@ -582,7 +582,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           JSOXCustomsSummaryIndex = null,
           No = new Nullable<double>(),
           PCNID = _ipr.IPR2PCNPCN,
-          RemainingQuantity = _ipr.TobaccoNotAllocated - _row.Quantity,
+          RemainingQuantity = new Nullable<double>(),
           SADDate = SharePoint.Extensions.DateTimeNull,
           SADDocumentNo = String.Empty.NotAvailable(),
           SettledQuantity = _row.Quantity,
@@ -598,8 +598,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private GenericStateMachineEngine.ActionResult Show()
     {
-      double _availableSum = ( from _avrx in m_ControlState.AvailableItems.SelectionTable select _avrx ).Sum( x => x.Quantity );
-      double _assignedSum = ( from _avrx in m_ControlState.AssignedItems.SelectionTable select _avrx ).Sum( x => x.Quantity );
+      double _availableSum = m_ControlState.AvailableItems.SelectionTable.Count > 0 ? ( from _avrx in m_ControlState.AvailableItems.SelectionTable select _avrx ).Sum( x => x.Quantity ) : 0;
+      double _assignedSum = m_ControlState.AssignedItems.SelectionTable.Count > 0 ? ( from _avrx in m_ControlState.AssignedItems.SelectionTable select _avrx ).Sum( x => x.Quantity ) : 0;
       m_AvailableGridViewQuntitySumLabel.Text = String.Format( "Quantity {0:F2}", _availableSum );
       m_AssignedGridViewQuantitySumLabel.Text = String.Format( "Quantity {0:F2}", _assignedSum );
       m_ClearenceTextBox.Text = m_ControlState.ClearanceTitle;
@@ -618,7 +618,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private void QueryAssigned()
     {
       m_ControlState.ClearAssigned();
-      if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
+      if ( CurrentClearence == null )
         return;
       List<Selection.SelectionTableRowWraper> _dsposals = ( from _dsx in CurrentClearence.Disposals( m_DataContextManagement.DataContext )
                                                             select new Selection.SelectionTableRowWraper( _dsx ) ).ToList();
@@ -629,6 +629,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       DateTime? _start = m_AllDate.Checked || m_StartDateTimeControl.IsDateEmpty ? new Nullable<DateTime>() : m_StartDateTimeControl.SelectedDate.Date;
       DateTime? _finish = m_AllDate.Checked || m_EndTimeControl1.IsDateEmpty ? new Nullable<DateTime>() : m_EndTimeControl1.SelectedDate.Date;
       string _currency = m_SelectCurrencyRadioButtonList.SelectedValue.Contains( "All" ) ? String.Empty : m_SelectCurrencyRadioButtonList.SelectedValue;
+      List<Selection.SelectionTableRowWraper> _available = null;
       switch ( SelectedGroup )
       {
         case Group.Tobacco:
@@ -649,43 +650,44 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         default:
           throw new SharePoint.ApplicationError( "SelectDataDS", "switch", "Internal error - wrong switch case.", null );
       };
-      m_ControlState.AvailableItems.AcceptChanges();
+      m_ControlState.AvailableItems.SelectionTable.Add( _available );
     }
-    private void GetMaterial( Selection data, DateTime? start, DateTime? finisch, string currency )
+    private List<Selection.SelectionTableRowWraper> GetMaterial( Selection data, DateTime? start, DateTime? finisch, string currency )
     {
-      List<Selection.SelectionTableRowWraper> AvailableDustQery = ( from _iprx in m_DataContextManagement.DataContext.IPR
-                                                                    let _batch = _iprx.Batch
-                                                                    where ( !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 ) &&
-                                                                          ( !start.HasValue || _iprx.CustomsDebtDate >= start.Value ) &&
-                                                                          ( !finisch.HasValue || _iprx.CustomsDebtDate <= finisch.Value ) &&
-                                                                          ( String.IsNullOrEmpty( currency ) || _iprx.Currency.Contains( currency ) )
-                                                                    orderby _batch ascending
-                                                                    select new Selection.SelectionTableRowWraper( _iprx ) ).ToList();
-      m_ControlState.AvailableItems.SelectionTable.Add( AvailableDustQery );
+      return ( from _iprx in m_DataContextManagement.DataContext.IPR
+               let _batch = _iprx.Batch
+               where ( !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 ) &&
+                     ( !start.HasValue || _iprx.CustomsDebtDate >= start.Value ) &&
+                     ( !finisch.HasValue || _iprx.CustomsDebtDate <= finisch.Value ) &&
+                     ( String.IsNullOrEmpty( currency ) || _iprx.Currency.Contains( currency ) )
+               orderby _batch ascending
+               select new Selection.SelectionTableRowWraper( _iprx ) ).ToList();
     }
-    private void GetDisposals( DisposalStatus[] status, bool creationDataFilter, DateTime? start, DateTime? finisch, string currency )
+    private List<Selection.SelectionTableRowWraper> GetDisposals( DisposalStatus[] status, bool creationDataFilter, DateTime? start, DateTime? finisch, string currency )
     {
       DisposalStatus _status0 = status[ 0 ];
       DisposalStatus _status1 = status.Length == 2 ? status[ 1 ] : DisposalStatus.Invalid;
-      List<Selection.SelectionTableRowWraper> AvailableDustQery = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
-                                                                    let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
-                                                                    where _dspslx.ClearenceIndex == null &&
-                                                                          _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted &&
-                                                                          ( _dspslx.DisposalStatus.Value == _status0 || _dspslx.DisposalStatus.Value == _status1 ) &&
-                                                                          ( String.IsNullOrEmpty( currency ) || _dspslx.Disposal2IPRIndex.Currency.Contains( currency ) )
-                                                                    orderby _ogl ascending
-                                                                    select new Selection.SelectionTableRowWraper( _dspslx ) ).ToList();
+      List<Selection.SelectionTableRowWraper> _ret = null;
+      _ret = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
+               let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
+               let _currency = _dspslx.Disposal2IPRIndex.Currency
+               where _dspslx.ClearenceIndex == null &&
+                     _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted &&
+                     ( _dspslx.DisposalStatus.Value == _status0 || _dspslx.DisposalStatus.Value == _status1 ) &&
+                     ( String.IsNullOrEmpty( currency ) || _currency.Contains( currency ) )
+               orderby _ogl ascending
+               select new Selection.SelectionTableRowWraper( _dspslx ) ).ToList();
       if ( creationDataFilter )
-        AvailableDustQery = ( from _itmx in AvailableDustQery
-                              where ( !start.HasValue || _itmx.Created >= start ) && ( !finisch.HasValue || _itmx.Created <= finisch )
-                              orderby _itmx.Created ascending
-                              select _itmx ).ToList();
+        _ret = ( from _itmx in _ret
+                 where ( !start.HasValue || _itmx.Created >= start ) && ( !finisch.HasValue || _itmx.Created <= finisch )
+                 orderby _itmx.Created ascending
+                 select _itmx ).ToList();
       else
-        AvailableDustQery = ( from _itmx in AvailableDustQery
-                              where ( !start.HasValue || _itmx.DebtDate >= start ) && ( !finisch.HasValue || _itmx.DebtDate <= finisch )
-                              orderby _itmx.DebtDate ascending
-                              select _itmx ).ToList();
-      m_ControlState.AvailableItems.SelectionTable.Add( AvailableDustQery );
+        _ret = ( from _itmx in _ret
+                 where ( !start.HasValue || _itmx.DebtDate >= start ) && ( !finisch.HasValue || _itmx.DebtDate <= finisch )
+                 orderby _itmx.DebtDate ascending
+                 select _itmx ).ToList();
+      return _ret;
     }
     private ClearenceProcedure SelectedClearenceProcedure
     {
@@ -722,7 +724,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           case "Cartons":
             return Group.Tobacco;
           default:
-            throw new SharePoint.ApplicationError( "SelectDataDS", "switch", "Internal error - wrong switch case.", null );
+            throw new SharePoint.ApplicationError( "SelectedGroup", "switch", "Internal error - wrong switch case.", null );
         };
       }
     }
@@ -738,7 +740,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private ObjectDataSource m_AvailableGridViewDataSource;
     private ObjectDataSource m_AssignedGridViewDataSource;
     private Clearence @_clearence = default( Clearence );
-    public Clearence CurrentClearence
+    private Clearence CurrentClearence
     {
       get
       {
@@ -762,6 +764,17 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
 
     #region Event handlers
 
+    private static void GetRow( SPGridView sender, GridViewSelectEventArgs e, Selection.SelectionTableDataTable destination, Selection.SelectionTableDataTable source )
+    {
+      if ( sender == null )
+        return;
+      GridViewRow row = sender.Rows[ e.NewSelectedIndex ];
+      string _id = ( (Label)row.FindControlRecursive( m_IDItemLabel ) ).Text;
+      destination.GetRow( source, _id );
+      e.NewSelectedIndex = -1;
+      e.Cancel = true;
+    }
+
     #region AvailableGridView event handlers
     /// <summary>
     /// Handles the RowEditing event of the m_AvailableGridView control.
@@ -777,7 +790,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       if ( Selection.SelectionTableRow.IsDisposal( _idLabel.Text ) )
         e.Cancel = true;
       else
-        _sender.EditIndex = e.NewEditIndex;
+        _sender.EditIndex = e.NewEditIndex;  //TODO GridView - Split - BUG
     }
     /// <summary>
     /// Handles the RowCancelingEdit event of the m_AvailableGridView control.
@@ -838,14 +851,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// <param name="e">The <see cref="GridViewSelectEventArgs" /> instance containing the event data.</param>
     protected void m_AvailableGridView_SelectedIndexChanging( object sender, GridViewSelectEventArgs e )
     {
-      GridView _sender = sender as GridView;
-      if ( _sender == null )
-        return;
-      GridViewRow row = _sender.Rows[ e.NewSelectedIndex ];
-      string _id = ( (Label)row.FindControlRecursive( m_IDItemLabel ) ).Text;
-      m_ControlState.AssignedItems.SelectionTable.GetRow( m_ControlState.AvailableItems.SelectionTable, _id );
-      e.NewSelectedIndex = -1;
-      e.Cancel = true;
+      GetRow( sender as SPGridView, e, m_ControlState.AssignedItems.SelectionTable, m_ControlState.AvailableItems.SelectionTable );
     }
     #endregion
 
@@ -858,16 +864,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     protected void m_AssignedGridView_SelectedIndexChanging( object sender, GridViewSelectEventArgs e )
     {
       GetRow( sender as SPGridView, e, m_ControlState.AvailableItems.SelectionTable, m_ControlState.AssignedItems.SelectionTable );
-    }
-    private static void GetRow( SPGridView sender, GridViewSelectEventArgs e, Selection.SelectionTableDataTable destination, Selection.SelectionTableDataTable source )
-    {
-      if ( sender == null )
-        return;
-      GridViewRow row = sender.Rows[ e.NewSelectedIndex ];
-      string _id = ( (Label)row.FindControlRecursive( m_IDItemLabel ) ).Text;
-      destination.GetRow( source, _id );
-      e.NewSelectedIndex = -1;
-      e.Cancel = true;
     }
     private void AssignedGridViewAddCommandField()
     {
@@ -906,6 +902,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     #endregion
 
+    /// <summary>
+    /// Handles the ObjectCreating event of the m_GridViewDataSource control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="ObjectDataSourceEventArgs" /> instance containing the event data.</param>
     protected void m_GridViewDataSource_ObjectCreating( object sender, ObjectDataSourceEventArgs e )
     {
       e.ObjectInstance = this;
