@@ -112,13 +112,14 @@
     <Compile Include="DocumentsFactory\CigaretteExportForm\Ingredient.cs" />
     <Compile Include="DocumentsFactory\CigaretteExportForm\IPRIngredient.cs" />
     <Compile Include="DocumentsFactory\CigaretteExportForm\RegularIngredient.cs" />
+    <Compile Include="DocumentsFactory\Disposals\Class1.cs" />
+    <Compile Include="DocumentsFactory\Disposals\DocumentContent.cs">
+      <DependentUpon>DocumentContent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\Disposals\DocumentContent.xsd.cs">
+      <DependentUpon>DocumentContent.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DocumentsFactory\DocumentNames.cs" />
-    <Compile Include="DocumentsFactory\DustWasteForm\DocumentContent.cs">
-      <DependentUpon>DocumentContent.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DocumentsFactory\DustWasteForm\DocumentContent.xsd.cs">
-      <DependentUpon>DocumentContent.xsd</DependentUpon>
-    </Compile>
     <Compile Include="ERP\batch.cs">
       <DependentUpon>Batch.xsd</DependentUpon>
     </Compile>
@@ -368,11 +369,11 @@
     </None>
     <None Include="DocumentsFactory\CigaretteExportForm\GoXSD.ps1" />
     <None Include="DocumentsFactory\CigaretteExportForm\GoCS.ps1" />
-    <None Include="DocumentsFactory\DustWasteForm\DocumentContent.xsd">
+    <None Include="DocumentsFactory\Disposals\DocumentContent.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="DocumentsFactory\DustWasteForm\GoCS.ps1" />
-    <None Include="DocumentsFactory\DustWasteForm\GoXSD.ps1" />
+    <None Include="DocumentsFactory\Disposals\GoCS.ps1" />
+    <None Include="DocumentsFactory\Disposals\GoXSD.ps1" />
     <None Include="ERP\Batch.xltx" />
     <None Include="ERP\Batch.xsd">
       <SubType>Designer</SubType>
@@ -419,17 +420,11 @@
     <Content Include="DocumentsFactory\CutfillerExportForm\CutfillerExportFormCollection.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\DustWasteForm\CartonsFormStylesheet.xslt" />
-    <Content Include="DocumentsFactory\DustWasteForm\DocumentContent.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="DocumentsFactory\DustWasteForm\DustFormStylesheet.xslt">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="DocumentsFactory\DustWasteForm\TobaccoFormStylesheet.xslt" />
-    <Content Include="DocumentsFactory\DustWasteForm\WasteFormStylesheet.xslt">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="DocumentsFactory\Disposals\CartonsFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\Disposals\DocumentContent.xml" />
+    <Content Include="DocumentsFactory\Disposals\DustFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\Disposals\TobaccoFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\Disposals\WasteFormStylesheet.xslt" />
     <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,7 @@ using CAS.SharePoint;
 using CAS.SmartFactory.IPR.Dashboards;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
+using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Linq.IPR
@@ -30,7 +31,7 @@ namespace CAS.SmartFactory.Linq.IPR
       }
     }
     internal static int PrepareConsignment
-      ( SPWeb site, xml.DocumentsFactory.DustWasteForm.DocumentContent document, string fileName, xml.DocumentsFactory.DustWasteForm.CompensatiionGood compensatiionGood )
+      ( SPWeb site, DocumentContent document, string fileName, CompensatiionGood compensatiionGood )
     {
       string _stt = "Starting";
       try
