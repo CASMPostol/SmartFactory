@@ -446,7 +446,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     internal void Delete()
     {
       foreach ( Disposal _dx in CurrentClearence.Disposals( m_DataContextManagement.DataContext ) )
-        _dx.ClearenceIndex = null;
+        _dx.Disposal2ClearenceIndex = null;
       m_DataContextManagement.DataContext.SubmitChanges();
       m_DataContextManagement.DataContext.Clearence.DeleteOnSubmit( CurrentClearence );
       ClearAssigned();
@@ -537,13 +537,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyAdded )
       {
         Linq.IPR.Disposal _dspsl = Element.GetAtIndex<Linq.IPR.Disposal>( edc.Disposal, _row.Identyfikator );
-        _dspsl.ClearenceIndex = null;
+        _dspsl.Disposal2ClearenceIndex = null;
       }
       //add to clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
       {
         Linq.IPR.Disposal _dspsl = Element.GetAtIndex<Linq.IPR.Disposal>( edc.Disposal, _row.Identyfikator );
-        _dspsl.ClearenceIndex = CurrentClearence;
+        _dspsl.Disposal2ClearenceIndex = CurrentClearence;
       }
     }
     private void UpdateTobaccoNotAllocated()
@@ -553,7 +553,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyDisposals )
       {
         Linq.IPR.Disposal _dspsl = Element.GetAtIndex<Linq.IPR.Disposal>( _edc.Disposal, _row.Identyfikator );
-        _dspsl.ClearenceIndex = null;
+        _dspsl.Disposal2ClearenceIndex = null;
         _dspsl.Disposal2IPRIndex.RevertWithdraw( _dspsl.SettledQuantity );
         _edc.Disposal.DeleteOnSubmit( _dspsl );
       }
@@ -565,14 +565,14 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Linq.IPR.IPR _ipr = Element.GetAtIndex<Linq.IPR.IPR>( _edc.IPR, _row.Identyfikator );
         Disposal _nd = new Disposal()
         {
-          ClearenceIndex = CurrentClearence,
+          Disposal2ClearenceIndex = CurrentClearence,
           ClearingType = ClearingType.PartialWindingUp,
           CustomsProcedure = CurrentClearence.ProcedureCode,
           CustomsStatus = CustomsStatus.NotStarted,
           Disposal2BatchIndex = null,
           Disposal2IPRIndex = _ipr,
           Disposal2MaterialIndex = null,
-          CompensationGood = _ipr.IPR2PCNPCN.Title(),
+          PCNCompensationGood = _ipr.IPR2PCNPCN.Title(),
           //TODO: DisposalStatus Tobacco must be added
           DisposalStatus = DisposalStatus.Invalid,
           //DutyAndVAT - in SetUpCalculatedColumns,
@@ -581,7 +581,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           IPRDocumentNo = String.Empty.NotAvailable(),
           JSOXCustomsSummaryIndex = null,
           No = new Nullable<double>(),
-          PCNID = _ipr.IPR2PCNPCN,
+          Disposal2PCNID = _ipr.IPR2PCNPCN,
           RemainingQuantity = new Nullable<double>(),
           SADDate = SharePoint.Extensions.DateTimeNull,
           SADDocumentNo = String.Empty.NotAvailable(),
@@ -671,7 +671,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       _ret = ( from _dspslx in m_DataContextManagement.DataContext.Disposal
                let _ogl = _dspslx.Disposal2IPRIndex.DocumentNo
                let _currency = _dspslx.Disposal2IPRIndex.Currency
-               where _dspslx.ClearenceIndex == null &&
+               where _dspslx.Disposal2ClearenceIndex == null &&
                      _dspslx.CustomsStatus.Value == CustomsStatus.NotStarted &&
                      ( _dspslx.DisposalStatus.Value == _status0 || _dspslx.DisposalStatus.Value == _status1 ) &&
                      ( String.IsNullOrEmpty( currency ) || _currency.Contains( currency ) )

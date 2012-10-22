@@ -1992,6 +1992,8 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SADConsignment> _sADConsignmentLibraryIndex;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<SADDocumentType> _sADDocumentType;
 		
 		#region Extensibility Method Definitions
@@ -2005,6 +2007,10 @@ namespace CAS.SmartFactory.Linq.IPR {
 			this._sADConsignmentLibraryIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADConsignment>>(this.OnSADConsignmentLibraryIndexSync);
 			this._sADConsignmentLibraryIndex.OnChanged += new System.EventHandler(this.OnSADConsignmentLibraryIndexChanged);
 			this._sADConsignmentLibraryIndex.OnChanging += new System.EventHandler(this.OnSADConsignmentLibraryIndexChanging);
+			this._disposal = new Microsoft.SharePoint.Linq.EntitySet<Disposal>();
+			this._disposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposalSync);
+			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
+			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
 			this._sADDocumentType = new Microsoft.SharePoint.Linq.EntitySet<SADDocumentType>();
 			this._sADDocumentType.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentTypeSync);
 			this._sADDocumentType.OnChanged += new System.EventHandler(this.OnSADDocumentTypeChanged);
@@ -2101,6 +2107,16 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2ClearenceIndex", Storage="_disposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Disposal")]
+		public Microsoft.SharePoint.Linq.EntitySet<Disposal> Disposal {
+			get {
+				return this._disposal;
+			}
+			set {
+				this._disposal.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocument2Clearence", Storage="_sADDocumentType", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="SAD Document")]
 		public Microsoft.SharePoint.Linq.EntitySet<SADDocumentType> SADDocumentType {
 			get {
@@ -2128,6 +2144,23 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
+		private void OnDisposalChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Disposal", this._disposal.Clone());
+		}
+		
+		private void OnDisposalChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Disposal");
+		}
+		
+		private void OnDisposalSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Disposal2ClearenceIndex = this;
+			}
+			else {
+				e.Item.Disposal2ClearenceIndex = null;
+			}
+		}
+		
 		private void OnSADDocumentTypeChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("SADDocumentType", this._sADDocumentType.Clone());
 		}
@@ -2144,8 +2177,7 @@ namespace CAS.SmartFactory.Linq.IPR {
 				e.Item.SADDocument2Clearence = null;
 			}
 		}
-
-  }
+	}
 	
 	/// <summary>
 	/// Utwórz nowy element listy.
@@ -2487,9 +2519,9 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private string _customsProcedure;
 		
-		private string _compensationGood;
+		private string _pCNCompensationGood;
 		
-		private System.Nullable<System.DateTime> _createdDate;
+		private System.Nullable<System.DateTime> _created;
 		
 		private System.Nullable<DisposalStatus> _disposalStatus;
 		
@@ -2497,9 +2529,9 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private System.Nullable<ClearingType> _clearingType;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _pCNID;
+		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _disposal2PCNID;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _disposal2ClearenceIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<JSOXCustomsSummary> _jSOXCustomsSummaryIndex;
 		
@@ -2509,9 +2541,9 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Material> _disposal2MaterialIndex;
 		
-		private System.Nullable<int> _utworzonyPrzezIdentyfikator;
+		private System.Nullable<int> _authorIdentyfikator;
 		
-		private string _utworzonyPrzez;
+		private string _author;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2520,14 +2552,14 @@ namespace CAS.SmartFactory.Linq.IPR {
 		#endregion
 		
 		public Disposal() {
-			this._pCNID = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
-			this._pCNID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnPCNIDSync);
-			this._pCNID.OnChanged += new System.EventHandler(this.OnPCNIDChanged);
-			this._pCNID.OnChanging += new System.EventHandler(this.OnPCNIDChanging);
-			this._clearenceIndex = new Microsoft.SharePoint.Linq.EntityRef<Clearence>();
-			this._clearenceIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnClearenceIndexSync);
-			this._clearenceIndex.OnChanged += new System.EventHandler(this.OnClearenceIndexChanged);
-			this._clearenceIndex.OnChanging += new System.EventHandler(this.OnClearenceIndexChanging);
+			this._disposal2PCNID = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
+			this._disposal2PCNID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnDisposal2PCNIDSync);
+			this._disposal2PCNID.OnChanged += new System.EventHandler(this.OnDisposal2PCNIDChanged);
+			this._disposal2PCNID.OnChanging += new System.EventHandler(this.OnDisposal2PCNIDChanging);
+			this._disposal2ClearenceIndex = new Microsoft.SharePoint.Linq.EntityRef<Clearence>();
+			this._disposal2ClearenceIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnDisposal2ClearenceIndexSync);
+			this._disposal2ClearenceIndex.OnChanged += new System.EventHandler(this.OnDisposal2ClearenceIndexChanged);
+			this._disposal2ClearenceIndex.OnChanging += new System.EventHandler(this.OnDisposal2ClearenceIndexChanging);
 			this._jSOXCustomsSummaryIndex = new Microsoft.SharePoint.Linq.EntityRef<JSOXCustomsSummary>();
 			this._jSOXCustomsSummaryIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXCustomsSummary>>(this.OnJSOXCustomsSummaryIndexSync);
 			this._jSOXCustomsSummaryIndex.OnChanged += new System.EventHandler(this.OnJSOXCustomsSummaryIndexChanged);
@@ -2745,30 +2777,30 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PCNCompensationGood", Storage="_compensationGood", FieldType="Text")]
-		public string CompensationGood {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PCNCompensationGood", Storage="_pCNCompensationGood", FieldType="Text")]
+		public string PCNCompensationGood {
 			get {
-				return this._compensationGood;
+				return this._pCNCompensationGood;
 			}
 			set {
-				if ((value != this._compensationGood)) {
-					this.OnPropertyChanging("CompensationGood", this._compensationGood);
-					this._compensationGood = value;
-					this.OnPropertyChanged("CompensationGood");
+				if ((value != this._pCNCompensationGood)) {
+					this.OnPropertyChanging("PCNCompensationGood", this._pCNCompensationGood);
+					this._pCNCompensationGood = value;
+					this.OnPropertyChanged("PCNCompensationGood");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Created", Storage="_createdDate", ReadOnly=true, FieldType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Created", Storage="_created", ReadOnly=true, FieldType="DateTime")]
+		public System.Nullable<System.DateTime> Created {
 			get {
-				return this._createdDate;
+				return this._created;
 			}
 			set {
-				if ((value != this._createdDate)) {
-					this.OnPropertyChanging("CreatedDate", this._createdDate);
-					this._createdDate = value;
-					this.OnPropertyChanged("CreatedDate");
+				if ((value != this._created)) {
+					this.OnPropertyChanging("Created", this._created);
+					this._created = value;
+					this.OnPropertyChanged("Created");
 				}
 			}
 		}
@@ -2824,23 +2856,23 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2PCNID", Storage="_pCNID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
-		public PCNCode PCNID {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2PCNID", Storage="_disposal2PCNID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
+		public PCNCode Disposal2PCNID {
 			get {
-				return this._pCNID.GetEntity();
+				return this._disposal2PCNID.GetEntity();
 			}
 			set {
-				this._pCNID.SetEntity(value);
+				this._disposal2PCNID.SetEntity(value);
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="ClearenceIndex", Storage="_clearenceIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Clearence")]
-		public Clearence ClearenceIndex {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2ClearenceIndex", Storage="_disposal2ClearenceIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Clearence")]
+		public Clearence Disposal2ClearenceIndex {
 			get {
-				return this._clearenceIndex.GetEntity();
+				return this._disposal2ClearenceIndex.GetEntity();
 			}
 			set {
-				this._clearenceIndex.SetEntity(value);
+				this._disposal2ClearenceIndex.SetEntity(value);
 			}
 		}
 		
@@ -2884,43 +2916,43 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Author", Storage="_utworzonyPrzezIdentyfikator", ReadOnly=true, FieldType="User", IsLookupId=true)]
-		public System.Nullable<int> UtworzonyPrzezIdentyfikator {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Author", Storage="_authorIdentyfikator", ReadOnly=true, FieldType="User", IsLookupId=true)]
+		public System.Nullable<int> AuthorIdentyfikator {
 			get {
-				return this._utworzonyPrzezIdentyfikator;
+				return this._authorIdentyfikator;
 			}
 			set {
-				if ((value != this._utworzonyPrzezIdentyfikator)) {
-					this.OnPropertyChanging("UtworzonyPrzezIdentyfikator", this._utworzonyPrzezIdentyfikator);
-					this._utworzonyPrzezIdentyfikator = value;
-					this.OnPropertyChanged("UtworzonyPrzezIdentyfikator");
+				if ((value != this._authorIdentyfikator)) {
+					this.OnPropertyChanging("AuthorIdentyfikator", this._authorIdentyfikator);
+					this._authorIdentyfikator = value;
+					this.OnPropertyChanged("AuthorIdentyfikator");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Author", Storage="_utworzonyPrzez", ReadOnly=true, FieldType="User", IsLookupValue=true)]
-		public string UtworzonyPrzez {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Author", Storage="_author", ReadOnly=true, FieldType="User", IsLookupValue=true)]
+		public string Author {
 			get {
-				return this._utworzonyPrzez;
+				return this._author;
 			}
 			set {
-				if ((value != this._utworzonyPrzez)) {
-					this.OnPropertyChanging("UtworzonyPrzez", this._utworzonyPrzez);
-					this._utworzonyPrzez = value;
-					this.OnPropertyChanged("UtworzonyPrzez");
+				if ((value != this._author)) {
+					this.OnPropertyChanging("Author", this._author);
+					this._author = value;
+					this.OnPropertyChanged("Author");
 				}
 			}
 		}
 		
-		private void OnPCNIDChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("PCNID", this._pCNID.Clone());
+		private void OnDisposal2PCNIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Disposal2PCNID", this._disposal2PCNID.Clone());
 		}
 		
-		private void OnPCNIDChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("PCNID");
+		private void OnDisposal2PCNIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Disposal2PCNID");
 		}
 		
-		private void OnPCNIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
+		private void OnDisposal2PCNIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Disposal.Add(this);
 			}
@@ -2929,15 +2961,21 @@ namespace CAS.SmartFactory.Linq.IPR {
 			}
 		}
 		
-		private void OnClearenceIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("ClearenceIndex", this._clearenceIndex.Clone());
+		private void OnDisposal2ClearenceIndexChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Disposal2ClearenceIndex", this._disposal2ClearenceIndex.Clone());
 		}
 		
-		private void OnClearenceIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("ClearenceIndex");
+		private void OnDisposal2ClearenceIndexChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Disposal2ClearenceIndex");
 		}
 		
-		private void OnClearenceIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence> e) {
+		private void OnDisposal2ClearenceIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Disposal.Add(this);
+			}
+			else {
+				e.Item.Disposal.Remove(this);
+			}
 		}
 		
 		private void OnJSOXCustomsSummaryIndexChanging(object sender, System.EventArgs e) {
@@ -4667,10 +4705,10 @@ namespace CAS.SmartFactory.Linq.IPR {
 		
 		private void OnDisposalSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.PCNID = this;
+				e.Item.Disposal2PCNID = this;
 			}
 			else {
-				e.Item.PCNID = null;
+				e.Item.Disposal2PCNID = null;
 			}
 		}
 		
@@ -7496,23 +7534,26 @@ namespace CAS.SmartFactory.Linq.IPR {
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Cartons")]
 		Cartons = 32,
 		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco")]
+		Tobacco = 64,
+		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cigaretes")]
-		TobaccoInCigaretes = 64,
+		TobaccoInCigaretes = 128,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cigaretes destination EU")]
-		TobaccoInCigaretesDestinationEU = 128,
+		TobaccoInCigaretesDestinationEU = 256,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cigaretes production")]
-		TobaccoInCigaretesProduction = 256,
+		TobaccoInCigaretesProduction = 512,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cutfiller")]
-		TobaccoInCutfiller = 512,
+		TobaccoInCutfiller = 1024,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cutfiller destination EU")]
-		TobaccoInCutfillerDestinationEU = 1024,
+		TobaccoInCutfillerDestinationEU = 2048,
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cutfiller production")]
-		TobaccoInCutfillerProduction = 2048,
+		TobaccoInCutfillerProduction = 4096,
 	}
 	
 	public enum CustomsStatus : int {

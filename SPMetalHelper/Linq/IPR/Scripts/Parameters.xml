@@ -95,20 +95,18 @@
     <Column Name="Disposal2IPRCurrency_sec" Member="Disposal2IPRCurrency_sec" />
     <Column Name="RemainingQuantity" Member="RemainingQuantity" />
     <Column Name="CustomsProcedure" Member="CustomsProcedure" />
-    <Column Name="Disposal2PCNCompensationGood" Member="Disposal2PCNCompensationGood" />
+    <Column Name="Disposal2PCNID" Member="Disposal2PCNID" />
+    <Column Name="PCNCompensationGood" Member="PCNCompensationGood" />
     <Column Name="Disposal2PCNPCN_sec" Member="Disposal2PCNPCN_sec" />
     <Column Name="ClearingType" Member="ClearingType" />
     <Column Name="Disposal2IPRBatch_sec" Member="Disposal2IPRBatch_sec" />
-    <Column Name="ClearenceIndex" Member="ClearenceIndex" />
+    <Column Name="Disposal2ClearenceIndex" Member="Disposal2ClearenceIndex" />
     <Column Name="JSOXCustomsSummaryIndex" Member="JSOXCustomsSummaryIndex" />
     <Column Name="Disposal2BatchIndex" Member="Disposal2BatchIndex" />
     <Column Name="Disposal2IPRIndex" Member="Disposal2IPRIndex" />
     <Column Name="Disposal2MaterialIndex" Member="Disposal2MaterialIndex" />
-    <Column Name="Created" Member="CreatedDate"/>
-    <Column Name="Created_x0020_Date" Member="CreatedDate"/>
-    <Column Name="Last_x0020_Modified" Member="LastModified"/>
-    <ExcludeColumn Name="ContentType"/>
-    <IncludeHiddenColumns/>
+    <Column Name="Created" Member="Created" />
+    <Column Name="Author" Member="Author" />
   </ContentType>
   <ContentType Name="SKUCommonPart" Class="SKUCommonPart">
     <!--<Column Name="ContentType" Member="ContentType" />-->

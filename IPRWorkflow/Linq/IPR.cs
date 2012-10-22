@@ -119,13 +119,13 @@ namespace CAS.SmartFactory.Linq.IPR
         Disposal _newDisposal = new Disposal()
         {
           Disposal2BatchIndex = material.Material2BatchIndex,
-          ClearenceIndex = null,
+          Disposal2ClearenceIndex = null,
           ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
           CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
           CustomsProcedure = String.Empty.NotAvailable(),
           //TODO CompensationGood must be assigned.
-          PCNID= null,
-          CompensationGood = String.Empty.NotAvailable(),
+          Disposal2PCNID = null,
+          PCNCompensationGood = String.Empty.NotAvailable(),
           DisposalStatus = _typeOfDisposal,
           DutyAndVAT = new Nullable<double>(),
           DutyPerSettledAmount = new Nullable<double>(),

@@ -12,8 +12,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       double _subTotal = 0;
       MaterialRecord[] _materialRecords = Disposal.GetListOfMaterials( disposals, ref _subTotal );
       //TODO not sure about how to calculate end and start date 
-      DateTime endDate = disposals.Max( x => x.CreatedDate.Value );
-      DateTime startDate = disposals.Max( x => x.CreatedDate.Value );
+      DateTime endDate = disposals.Max( x => x.Created.Value );
+      DateTime startDate = disposals.Max( x => x.Created.Value );
       MaterialsOnOneAccount _materials = new MaterialsOnOneAccount()
       {
         Total = _subTotal,
@@ -60,8 +60,8 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
                                                         let _ogl = _disx.Disposal2IPRIndex == null ? String.Empty : _disx.Disposal2IPRIndex.DocumentNo
                                                         orderby _ogl ascending
                                                         group _disx by _ogl;
-      DateTime endDate = disposals.Max( x => x.CreatedDate.Value );
-      DateTime startDate = disposals.Max( x => x.CreatedDate.Value );
+      DateTime endDate = disposals.Max( x => x.Created.Value );
+      DateTime startDate = disposals.Max( x => x.Created.Value );
       List<MaterialsOnOneAccount> _dustsGroupe = new List<MaterialsOnOneAccount>();
       double _total = 0;
       foreach ( IGrouping<string, Disposal> _gx in _groups )

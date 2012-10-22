@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.Linq.IPR
                                 select _pcnx ).FirstOrDefault();
         //TODO [pr4-3733] Export: Association of the SAD documents: SAD analyses error at Clearence analyses error at started. 
         //this.Disposal2PCNCompensationGood = _tobaccoPCN == null ? null : _tobaccoPCN;
-        this.ClearenceIndex = clearence;
+        this.Disposal2ClearenceIndex = clearence;
       }
       catch ( Exception _ex )
       {

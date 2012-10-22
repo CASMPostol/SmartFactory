@@ -25,7 +25,7 @@ namespace IPRDashboardsTest
         NetMass = 800,
         Title = "IPR-2012000003"
       };
-      IPR _ipr2 = new IPR() 
+      IPR _ipr2 = new IPR()
       {
         Currency = "USD",
         DocumentNo = "OGL/362010/00/001300/2012",
@@ -34,7 +34,7 @@ namespace IPRDashboardsTest
         NetMass = 400,
         Title = "IPR-2012000006",
       };
-      IPR _ipr3 = new IPR() 
+      IPR _ipr3 = new IPR()
       {
         Currency = "USD",
         DocumentNo = "OGL/362010/00/001302/2012",
@@ -56,15 +56,15 @@ namespace IPRDashboardsTest
       _disposals.Add(
         ( new Disposal()
         {
-          ClearenceIndex = null,
+          Disposal2ClearenceIndex = null,
           ClearingType = ClearingType.PartialWindingUp,
           CustomsProcedure = String.Empty,
           CustomsStatus = CustomsStatus.NotStarted,
           Disposal2BatchIndex = null,
           Disposal2IPRIndex = _ipr1,
           Disposal2MaterialIndex = null,
-          PCNID = null,
-          CompensationGood = String.Empty.NotAvailable(),
+          Disposal2PCNID = null,
+          PCNCompensationGood = String.Empty.NotAvailable(),
           DisposalStatus = DisposalStatus.Dust,
           DutyAndVAT = 392.70,
           DutyPerSettledAmount = 125.992,
@@ -84,43 +84,43 @@ namespace IPRDashboardsTest
       _disposals.Add(
         ( new Disposal()
         {
-            ClearenceIndex = null,
-            ClearingType = ClearingType.PartialWindingUp,
-            CustomsProcedure = String.Empty,
-            CustomsStatus = CustomsStatus.NotStarted,
-            Disposal2BatchIndex = null,
-            Disposal2IPRIndex = _ipr1,
-            Disposal2MaterialIndex = null,
-            CompensationGood = String.Empty.NotAvailable(),
-            PCNID = null,
-            DisposalStatus = DisposalStatus.Waste,
-            DutyAndVAT = 13.84,
-            DutyPerSettledAmount = 4.44,
-            InvoiceNo = String.Empty,
-            IPRDocumentNo = String.Empty,
-            JSOXCustomsSummaryIndex = null,
-            No = 0,
-            RemainingQuantity = 0,
-            SADDate = Extensions.DateTimeNull,
-            SADDocumentNo = String.Empty,
-            SettledQuantity = 4.15,
-            Title = "Disposal: Waste of FG Cigarette SKU: 12650149; Batch: 0007444111",
-            TobaccoValue = 33.461,
-            VATPerSettledAmount = 9.4,
+          Disposal2ClearenceIndex = null,
+          ClearingType = ClearingType.PartialWindingUp,
+          CustomsProcedure = String.Empty,
+          CustomsStatus = CustomsStatus.NotStarted,
+          Disposal2BatchIndex = null,
+          Disposal2IPRIndex = _ipr1,
+          Disposal2MaterialIndex = null,
+          PCNCompensationGood = String.Empty.NotAvailable(),
+          Disposal2PCNID = null,
+          DisposalStatus = DisposalStatus.Waste,
+          DutyAndVAT = 13.84,
+          DutyPerSettledAmount = 4.44,
+          InvoiceNo = String.Empty,
+          IPRDocumentNo = String.Empty,
+          JSOXCustomsSummaryIndex = null,
+          No = 0,
+          RemainingQuantity = 0,
+          SADDate = Extensions.DateTimeNull,
+          SADDocumentNo = String.Empty,
+          SettledQuantity = 4.15,
+          Title = "Disposal: Waste of FG Cigarette SKU: 12650149; Batch: 0007444111",
+          TobaccoValue = 33.461,
+          VATPerSettledAmount = 9.4,
         }
-        ));
+        ) );
       _disposals.Add(
-          (new Disposal() 
+          ( new Disposal()
           {
-            ClearenceIndex = null,
+            Disposal2ClearenceIndex = null,
             ClearingType = ClearingType.PartialWindingUp,
             CustomsProcedure = String.Empty,
             CustomsStatus = CustomsStatus.NotStarted,
             Disposal2BatchIndex = null,
             Disposal2IPRIndex = _ipr2,
             Disposal2MaterialIndex = null,
-            CompensationGood = String.Empty.NotAvailable(),
-            PCNID = null,
+            PCNCompensationGood = String.Empty.NotAvailable(),
+            Disposal2PCNID = null,
             DisposalStatus = DisposalStatus.Dust,
             DutyAndVAT = 30.65,
             DutyPerSettledAmount = 0,
@@ -138,17 +138,17 @@ namespace IPRDashboardsTest
           }
           ) );
       _disposals.Add(
-          (new Disposal() 
+          ( new Disposal()
           {
-            ClearenceIndex = null,
+            Disposal2ClearenceIndex = null,
             ClearingType = ClearingType.PartialWindingUp,
             CustomsProcedure = String.Empty,
             CustomsStatus = CustomsStatus.NotStarted,
             Disposal2BatchIndex = null,
             Disposal2IPRIndex = _ipr2,
             Disposal2MaterialIndex = null,
-            CompensationGood = String.Empty.NotAvailable(),
-            PCNID = null,
+            PCNCompensationGood = String.Empty.NotAvailable(),
+            Disposal2PCNID = null,
             DisposalStatus = DisposalStatus.Waste,
             DutyAndVAT = 1.09,
             DutyPerSettledAmount = 0,
@@ -166,17 +166,17 @@ namespace IPRDashboardsTest
           }
           ) );
       _disposals.Add(
-          (new Disposal() 
+          ( new Disposal()
           {
-            ClearenceIndex = null,
+            Disposal2ClearenceIndex = null,
             ClearingType = ClearingType.PartialWindingUp,
             CustomsProcedure = String.Empty,
             CustomsStatus = CustomsStatus.NotStarted,
             Disposal2BatchIndex = null,
             Disposal2IPRIndex = _ipr3,
             Disposal2MaterialIndex = null,
-            CompensationGood = String.Empty.NotAvailable(),
-            PCNID = null,
+            PCNCompensationGood = String.Empty.NotAvailable(),
+            Disposal2PCNID = null,
             DisposalStatus = DisposalStatus.Dust,
             DutyAndVAT = 48.19,
             DutyPerSettledAmount = 17.343,
@@ -194,17 +194,17 @@ namespace IPRDashboardsTest
           }
           ) );
       _disposals.Add(
-          (new Disposal() 
-          { 
-            ClearenceIndex = null,
+          ( new Disposal()
+          {
+            Disposal2ClearenceIndex = null,
             ClearingType = ClearingType.PartialWindingUp,
             CustomsProcedure = String.Empty,
             CustomsStatus = CustomsStatus.NotStarted,
             Disposal2BatchIndex = null,
             Disposal2IPRIndex = _ipr3,
             Disposal2MaterialIndex = null,
-            CompensationGood = String.Empty.NotAvailable(),
-            PCNID= null,
+            PCNCompensationGood = String.Empty.NotAvailable(),
+            Disposal2PCNID = null,
             DisposalStatus = DisposalStatus.Waste,
             DutyAndVAT = 1.73,
             DutyPerSettledAmount = 0.621,
@@ -220,63 +220,63 @@ namespace IPRDashboardsTest
             SettledQuantity = 0.58,
             VATPerSettledAmount = 1.104,
           }
-          ));
+          ) );
       _disposals.Add(
-        (new Disposal()
+        ( new Disposal()
         {
-            ClearenceIndex = null,
-            ClearingType = ClearingType.PartialWindingUp,
-            CustomsProcedure = String.Empty,
-            CustomsStatus = CustomsStatus.NotStarted,
-            Disposal2BatchIndex = null,
-            Disposal2IPRIndex = _ipr4,
-            Disposal2MaterialIndex = null,
-            CompensationGood = String.Empty.NotAvailable(),
-            PCNID = null,
-            DisposalStatus = DisposalStatus.Dust,
-            DutyAndVAT = 6.18,
-            DutyPerSettledAmount = 1.973,
-            InvoiceNo = String.Empty,
-            IPRDocumentNo = String.Empty,
-            JSOXCustomsSummaryIndex = null,
-            No = 0,
-            RemainingQuantity = 0,
-            SADDate = Extensions.DateTimeNull,
-            SADDocumentNo = String.Empty,
-            Title = "Disposal: Dust of FG Cigarette SKU: 12988459; Batch: 0007403609",
-            TobaccoValue = 14.975,
-            SettledQuantity = 2.96,
-            VATPerSettledAmount = 4.206,
+          Disposal2ClearenceIndex = null,
+          ClearingType = ClearingType.PartialWindingUp,
+          CustomsProcedure = String.Empty,
+          CustomsStatus = CustomsStatus.NotStarted,
+          Disposal2BatchIndex = null,
+          Disposal2IPRIndex = _ipr4,
+          Disposal2MaterialIndex = null,
+          PCNCompensationGood = String.Empty.NotAvailable(),
+          Disposal2PCNID = null,
+          DisposalStatus = DisposalStatus.Dust,
+          DutyAndVAT = 6.18,
+          DutyPerSettledAmount = 1.973,
+          InvoiceNo = String.Empty,
+          IPRDocumentNo = String.Empty,
+          JSOXCustomsSummaryIndex = null,
+          No = 0,
+          RemainingQuantity = 0,
+          SADDate = Extensions.DateTimeNull,
+          SADDocumentNo = String.Empty,
+          Title = "Disposal: Dust of FG Cigarette SKU: 12988459; Batch: 0007403609",
+          TobaccoValue = 14.975,
+          SettledQuantity = 2.96,
+          VATPerSettledAmount = 4.206,
         }
-        ));
+        ) );
       _disposals.Add(
-        (new Disposal() 
-        { 
-            ClearenceIndex = null,
-            ClearingType = ClearingType.PartialWindingUp,
-            CustomsProcedure = String.Empty,
-            CustomsStatus = CustomsStatus.NotStarted,
-            Disposal2BatchIndex = null,
-            Disposal2IPRIndex = _ipr4,
-            Disposal2MaterialIndex = null,
-            CompensationGood = String.Empty.NotAvailable(),
-            PCNID = null,
-            DisposalStatus = DisposalStatus.Waste,
-            DutyAndVAT = 0.23,
-            DutyPerSettledAmount = 0.073,
-            InvoiceNo = String.Empty,
-            IPRDocumentNo = String.Empty,
-            JSOXCustomsSummaryIndex = null,
-            No = 0,
-            RemainingQuantity = 0,
-            SADDate = Extensions.DateTimeNull,
-            SADDocumentNo = String.Empty,
-            Title = "Disposal: Waste of FG Cigarette SKU: 12988459; Batch: 0007403609",
-            TobaccoValue = 0.556,
-            SettledQuantity = 0.11,
-            VATPerSettledAmount = 0.156,
+        ( new Disposal()
+        {
+          Disposal2ClearenceIndex = null,
+          ClearingType = ClearingType.PartialWindingUp,
+          CustomsProcedure = String.Empty,
+          CustomsStatus = CustomsStatus.NotStarted,
+          Disposal2BatchIndex = null,
+          Disposal2IPRIndex = _ipr4,
+          Disposal2MaterialIndex = null,
+          PCNCompensationGood = String.Empty.NotAvailable(),
+          Disposal2PCNID = null,
+          DisposalStatus = DisposalStatus.Waste,
+          DutyAndVAT = 0.23,
+          DutyPerSettledAmount = 0.073,
+          InvoiceNo = String.Empty,
+          IPRDocumentNo = String.Empty,
+          JSOXCustomsSummaryIndex = null,
+          No = 0,
+          RemainingQuantity = 0,
+          SADDate = Extensions.DateTimeNull,
+          SADDocumentNo = String.Empty,
+          Title = "Disposal: Waste of FG Cigarette SKU: 12988459; Batch: 0007403609",
+          TobaccoValue = 0.556,
+          SettledQuantity = 0.11,
+          VATPerSettledAmount = 0.156,
         }
-        ));
+        ) );
       DocumentContent _newDoc = DisposalsFormFactory.GetDustWasteFormContent( _disposals.AsQueryable<Disposal>(), "4051", "OGL Number" );
       Assert.AreEqual( _newDoc.DocumentNo, "OGL Number" );
       ;
