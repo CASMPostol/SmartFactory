@@ -27,7 +27,7 @@
           <FieldRef ID="{03524E3C-0A1F-4FFD-9AA5-154BDF15922B}" Name="Disposal2PCNPCN_sec" />
           <FieldRef ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Name="ClearingType" />
           <FieldRef ID="{10C39E4D-192E-4FB7-8A14-A8CE732B41D7}" Name="Disposal2IPRBatch_sec" />
-          <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
+          <FieldRef ID="{AD5CAC03-2C3B-4E43-90AD-4E5C9A80B76C}" Name="Disposal2ClearenceIndex" />
           <FieldRef ID="{6E87DAC8-1B60-4246-97E1-9D0DC221F268}" Name="JSOXCustomsSummaryIndex" />
           <FieldRef ID="{5F667AC8-B2AB-4482-B3C9-54DEB82A8DC7}" Name="Disposal2BatchIndex" />
           <FieldRef ID="{C0A4DD0E-A06E-40D4-BFE1-682D3C071AC1}" Name="Disposal2IPRIndex" />
@@ -98,9 +98,9 @@
           <FieldRef ID="{5B25CD17-51A4-4807-86DE-56B773C7DEB7}" Name="Disposal2PCNID" />
           <FieldRef ID="{1075A488-94A3-4937-9806-264381DE1542}" Name="PCNCompensationGood" />
           <FieldRef ID="{03524E3C-0A1F-4FFD-9AA5-154BDF15922B}" Name="Disposal2PCNPCN_sec" />
-          <FieldRef ID="{10C39E4D-192E-4FB7-8A14-A8CE732B41D7}" Name="Disposal2IPRBatch_sec" />
           <FieldRef ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Name="ClearingType" />
-          <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
+          <FieldRef ID="{10C39E4D-192E-4FB7-8A14-A8CE732B41D7}" Name="Disposal2IPRBatch_sec" />
+          <FieldRef ID="{AD5CAC03-2C3B-4E43-90AD-4E5C9A80B76C}" Name="Disposal2ClearenceIndex" />
           <FieldRef ID="{6E87DAC8-1B60-4246-97E1-9D0DC221F268}" Name="JSOXCustomsSummaryIndex" />
           <FieldRef ID="{5F667AC8-B2AB-4482-B3C9-54DEB82A8DC7}" Name="Disposal2BatchIndex" />
           <FieldRef ID="{C0A4DD0E-A06E-40D4-BFE1-682D3C071AC1}" Name="Disposal2IPRIndex" />

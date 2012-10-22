@@ -176,6 +176,23 @@
     ReadOnly="False"
     />
   <Field
+    Name="Disposal2ClearenceIndex"
+    ID="{AD5CAC03-2C3B-4E43-90AD-4E5C9A80B76C}"
+    Type="Lookup"
+    List="Lists/ClearenceList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Clearence List lookup"
+    Group="CAS Smart Factory IPR Customs"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="ClearenceIndex"
     ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}"
     Type="Lookup"
