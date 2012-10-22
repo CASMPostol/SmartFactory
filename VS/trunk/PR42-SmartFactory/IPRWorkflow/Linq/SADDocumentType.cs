@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       this.SADDocument2Clearence = FimdClearence( _edc );
       //TODO Define and use the reverse lookup field. 
-      foreach ( var _disposal in from _dspx in _edc.Disposal where _dspx.ClearenceIndex.Identyfikator == this.SADDocument2Clearence.Identyfikator select _dspx )
+      foreach ( var _disposal in from _dspx in _edc.Disposal where _dspx.Disposal2ClearenceIndex.Identyfikator == this.SADDocument2Clearence.Identyfikator select _dspx )
         //TODO not sure about this.CustomsDebtDate.Value, but it is the ony one date. 
         _disposal.Export( _edc, this.DocumentNumber, this.SADDocument2Clearence, this.CustomsDebtDate.Value );
       this.SADDocument2Clearence.DocumentNo = this.DocumentNumber;

@@ -322,7 +322,7 @@ namespace CAS.SmartFactory.Linq.IPR
     //TODO must be replace by reverese lookup http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3307
     public System.Linq.IQueryable<Disposal> Disposals( Entities edc )
     {
-      return from _dspx in edc.Disposal where _dspx.ClearenceIndex.Identyfikator == this.Identyfikator select _dspx;
+      return from _dspx in edc.Disposal where _dspx.Disposal2ClearenceIndex.Identyfikator == this.Identyfikator select _dspx;
     }
   }
   /// <summary>

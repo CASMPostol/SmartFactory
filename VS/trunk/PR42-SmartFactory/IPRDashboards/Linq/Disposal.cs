@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.Linq.IPR
           Disposal _newDisposal = new Disposal()
           {
             Disposal2BatchIndex = this.Disposal2BatchIndex,
-            ClearenceIndex = null,
+            Disposal2ClearenceIndex = null,
             ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
             CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
             CustomsProcedure = "N/A",
@@ -89,7 +89,7 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     private void StartClearance( ClearingType clearingType, string invoiceNoumber, string procedure, Clearence clearence )
     {
-      this.ClearenceIndex = clearence;
+      this.Disposal2ClearenceIndex = clearence;
       this.CustomsStatus = Linq.IPR.CustomsStatus.Started;
       this.ClearingType = clearingType;
       this.CustomsProcedure = procedure;
