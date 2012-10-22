@@ -12,11 +12,46 @@
 <asp:Panel ID="m_Panel" runat="server">
     <asp:Table runat="server" ID="m_ClearenceTable" CssClass="Table">
         <asp:TableRow>
-            <asp:TableCell>
-                <asp:Label ID="m_ClearenceLabel" runat="server" Text="Clearence:" CssClass="Label"></asp:Label>
+            <asp:TableCell VerticalAlign="Top">
+                <asp:Panel runat="server" ID="m_ClearencePanel" BorderColor="ActiveCaptionText" GroupingText="Clearence">
+                    <asp:TextBox ID="m_ClearenceTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
+                </asp:Panel>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="m_ClearenceTextBox" runat="server" CssClass="TextBox" Enabled="false"></asp:TextBox>
+                <asp:Panel runat="server" ID="m_ProcedurePanel" BorderColor="ActiveCaptionText" GroupingText="Procedure">
+                    <asp:Table ID="m_ProcedureTable" runat="server" CssClass="Table">
+                        <asp:TableRow>
+                            <asp:TableCell>
+                                <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_ProcedureRadioButtonList" runat="server">
+                                    <asp:ListItem Enabled="true" Selected="True" Text="4051" Value="4051"></asp:ListItem>
+                                    <asp:ListItem Enabled="true" Selected="False" Text="3151" Value="3151"></asp:ListItem>
+                                </asp:RadioButtonList>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                </asp:Panel>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
+        <asp:Table ID="m_ButtonsTable" runat="server" CssClass="Table">
+        <asp:TableRow>
+            <asp:TableCell>
+                <asp:Button runat="server" CssClass="Button" Text="Add New" ID="m_NewButton" />
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Button runat="server" CssClass="Button" Text="Edit" ID="m_EditButton" />
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Button runat="server" CssClass="Button" Text="Save" ID="m_SaveButton" />
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Button runat="server" CssClass="Button" Text="Delete" ID="m_DeleteButton" />
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Button runat="server" CssClass="Button" Text="Cancel" ID="m_CancelButton" />
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Button runat="server" CssClass="Button" Text="Clearence" ID="m_ClearButton" OnClientClick="return confirm('Na pewno? Późniejsza edycja nie będzie już możliwa');" />
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
@@ -45,7 +80,7 @@
                 <asp:TableCell VerticalAlign="Top">
                     <asp:Panel runat="server" ID="m_PeriodPanel" BorderColor="ActiveCaptionText" GroupingText="Period">
                         <asp:Label ID="m_AllDateLabel" runat="server" Text="All" CssClass="Label" />
-                        <asp:CheckBox ID="m_AllDate" runat="server" /><br />
+                        <asp:CheckBox ID="m_AllDate" Checked="true" runat="server" /><br />
                         <asp:Label ID="m_StartDateLabel" runat="server" Text="Start date:" CssClass="Label" />
                         <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx"/>
                         <asp:Label ID="m_EndDateLabel" runat="server" Text="End date:" CssClass="Label" />
@@ -55,40 +90,6 @@
             </asp:TableRow>
         </asp:Table>
     </asp:Panel>
-    <asp:Panel runat="server" ID="m_ProcedurePanel" BorderColor="ActiveCaptionText" GroupingText="Procedure">
-        <asp:Table ID="m_ProcedureTable" runat="server" CssClass="Table">
-            <asp:TableRow>
-                <asp:TableCell>
-                    <asp:RadioButtonList RepeatDirection="Horizontal" ID="m_ProcedureRadioButtonList" runat="server">
-                        <asp:ListItem Enabled="true" Selected="True" Text="4051" Value="4051"></asp:ListItem>
-                        <asp:ListItem Enabled="true" Selected="False" Text="3151" Value="3151"></asp:ListItem>
-                    </asp:RadioButtonList>
-                </asp:TableCell>
-            </asp:TableRow>
-        </asp:Table>
-    </asp:Panel>
-    <asp:Table ID="m_ButtonsTable" runat="server" CssClass="Table">
-        <asp:TableRow>
-            <asp:TableCell>
-                <asp:Button runat="server" CssClass="Button" Text="Add New" ID="m_NewButton" />
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Button runat="server" CssClass="Button" Text="Edit" ID="m_EditButton" />
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Button runat="server" CssClass="Button" Text="Save" ID="m_SaveButton" />
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Button runat="server" CssClass="Button" Text="Delete" ID="m_DeleteButton" />
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Button runat="server" CssClass="Button" Text="Cancel" ID="m_CancelButton" />
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Button runat="server" CssClass="Button" Text="Clearence" ID="m_ClearButton" OnClientClick="return confirm('Na pewno? Późniejsza edycja nie będzie już możliwa');" />
-            </asp:TableCell>
-        </asp:TableRow>
-    </asp:Table>
     <asp:Table ID="m_GridViewTable" runat="server" CssClass="Table">
         <asp:TableRow>
             <asp:TableCell>
