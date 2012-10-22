@@ -209,7 +209,7 @@ namespace IPRDashboardsTest
       Disposal _disposal1 = new Disposal()
       {
         Disposal2BatchIndex = _batch,
-        ClearenceIndex = null,
+        Disposal2ClearenceIndex = null,
         ClearingType = CAS.SmartFactory.Linq.IPR.ClearingType.PartialWindingUp,
         CustomsProcedure = "5100",
         CustomsStatus = CustomsStatus.NotStarted,
@@ -233,7 +233,7 @@ namespace IPRDashboardsTest
       Disposal _disposal2 = new Disposal()
       {
         Disposal2BatchIndex = _batch,
-        ClearenceIndex = null,
+        Disposal2ClearenceIndex = null,
         ClearingType = CAS.SmartFactory.Linq.IPR.ClearingType.PartialWindingUp,
         CustomsProcedure = "5100",
         CustomsStatus = CustomsStatus.NotStarted,

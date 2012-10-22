@@ -573,8 +573,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           Disposal2IPRIndex = _ipr,
           Disposal2MaterialIndex = null,
           PCNCompensationGood = _ipr.IPR2PCNPCN.Title(),
-          //TODO: DisposalStatus Tobacco must be added
-          DisposalStatus = DisposalStatus.Invalid,
+          DisposalStatus = DisposalStatus.Tobacco,
           //DutyAndVAT - in SetUpCalculatedColumns,
           //DutyPerSettledAmount - in SetUpCalculatedColumns,
           InvoiceNo = String.Empty.NotAvailable(),
