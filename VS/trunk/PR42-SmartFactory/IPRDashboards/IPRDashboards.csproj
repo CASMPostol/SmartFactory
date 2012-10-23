@@ -61,12 +61,6 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SPMetalHelper\Linq\IPR\Entities.cs">
-      <Link>Linq\Entities.cs</Link>
-    </Compile>
-    <Compile Include="..\SPMetalHelper\Linq\IPR\Entities.partial.cs">
-      <Link>Linq\Entities.partial.cs</Link>
-    </Compile>
     <Compile Include="CommonDefinitions.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -185,6 +179,10 @@
     <ProjectReference Include="..\IPRExternalData\IPRExternalData.csproj">
       <Project>{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}</Project>
       <Name>IPRExternalData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IPRWorkflow\IPRWorkflows.csproj">
+      <Project>{c4d9bbc4-c123-4aab-b1e6-9906b7b51bc6}</Project>
+      <Name>IPRWorkflows</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
