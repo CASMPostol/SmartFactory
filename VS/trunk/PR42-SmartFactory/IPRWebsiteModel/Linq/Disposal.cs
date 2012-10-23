@@ -6,7 +6,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Disposal
   {
-    internal void Export( Entities edc, string documentNo, Clearence clearence, DateTime clearenceDate )
+    public void Export( Entities edc, string documentNo, Clearence clearence, DateTime clearenceDate )
     {
       string _at = "starting";
       try
@@ -42,6 +42,15 @@ namespace CAS.SmartFactory.Linq.IPR
         string _template = "Cannot finish Export of disposal {0} {1} because of internal error: {2} at: {3}";
         throw GenericStateMachineEngine.ActionResult.Exception( _ex, String.Format( _template, this.Title, this.Identyfikator.Value, _ex.Message, _at ) );
       }
+    }
+    public void StartClearance( ClearingType clearingType, string invoiceNoumber, string procedure, Clearence clearence )
+    {
+      this.Disposal2ClearenceIndex = clearence;
+      this.CustomsStatus = Linq.IPR.CustomsStatus.Started;
+      this.ClearingType = clearingType;
+      this.CustomsProcedure = procedure;
+      this.InvoiceNo = invoiceNoumber;
+      this.SetUpCalculatedColumns( ClearingType.Value );
     }
   }
 }

@@ -9,7 +9,10 @@ using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class Dokument
+  /// <summary>
+  /// Dokument Extension
+  /// </summary>
+  public static class DokumentExtension
   {
     internal static int PrepareConsignment
       ( SPWeb site, List<CigaretteExportForm> _consignment, string fileName, string invoiceNo )

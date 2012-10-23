@@ -18,6 +18,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
   public partial class ExportWebPartUserControl: UserControl
   {
     #region ctor
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ExportWebPartUserControl" /> class.
+    /// </summary>
     public ExportWebPartUserControl()
     {
       m_StateMachineEngine = new LocalStateMachineEngine( this );
@@ -547,7 +550,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
         item.InvoiceContent2BatchIndex.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );
       _invoice.InvoiceLibraryReadOnly = true;
-      int _sadConsignmentIdentifier = Dokument.PrepareConsignment( site, _consignment, _masterDocumentName, _invoice.BillDoc );
+      int _sadConsignmentIdentifier = DokumentExtension.PrepareConsignment( site, _consignment, _masterDocumentName, _invoice.BillDoc );
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
       _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
       m_DataContextManagement.DataContext.SubmitChanges();
