@@ -202,6 +202,7 @@
       <DependentUpon>IPRDashboards.feature</DependentUpon>
     </Content>
     <Content Include="Images\IPRDashboards\button_background.jpg" />
+    <Content Include="Images\IPRDashboards\button_red_background.png" />
     <Content Include="Images\IPRDashboards\FeatureLogo32x32.gif" />
     <Content Include="Layouts\CAS_iframe.aspx" />
     <Content Include="Layouts\IPRDashboards\CAS_IPRDashboards.css" />
