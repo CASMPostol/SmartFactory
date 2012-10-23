@@ -9,10 +9,11 @@ using ExportedProductType = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExpor
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class Batch
+  public class BatchExtension
   {
-    internal void Export
+    public static void Export
       (
+        this Batch _this,
         Entities edc,
         InvoiceContent productInvoice,
         List<CigaretteExportForm> consignment,
@@ -26,19 +27,19 @@ namespace CAS.SmartFactory.Linq.IPR
       string _at = "beginning";
       try
       {
-        bool closingBatch = this.FGQuantityAvailable == productInvoice.Quantity.Value;
+        bool closingBatch = _this.FGQuantityAvailable == productInvoice.Quantity.Value;
         _at = "FGQuantityAvailable";
-        this.FGQuantityAvailable -= productInvoice.Quantity.Value;
-        double _portion = productInvoice.Quantity.Value / this.FGQuantity.Value;
+        _this.FGQuantityAvailable -= productInvoice.Quantity.Value;
+        double _portion = productInvoice.Quantity.Value / _this.FGQuantity.Value;
         List<Ingredient> _ingredients = new List<Ingredient>();
         _at = "foreach";
-        foreach ( Material _materialIdx in this.Material )
+        foreach ( Material _materialIdx in _this.Material )
           _materialIdx.Export( edc, _ingredients, closingBatch, invoiceNumber, procedure, clearence, _portion );
         _at = "CutfillerCoefficient";
         CutfillerCoefficient _cc = ( from _ccx in edc.CutfillerCoefficient orderby _ccx.Identyfikator descending select _ccx ).First();
         _at = "_exportConsignment";
         CigaretteExportForm _exportConsignment =
-          CigaretteExportFormFactory.CigaretteExportForm( _cc, this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position, clearence.ProcedureCode );
+          CigaretteExportFormFactory.CigaretteExportForm( _cc, _this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position, clearence.ProcedureCode );
         consignment.Add( _exportConsignment );
       }
       catch ( ApplicationError _ar )
@@ -48,10 +49,10 @@ namespace CAS.SmartFactory.Linq.IPR
       catch ( Exception _ex )
       {
         string _tmpl = "Cannot proceed with export of Batch: {0} because of error: {1}.";
-        throw new ApplicationError( "Batch.Export", _at, String.Format(_tmpl, this.Batch0, _ex.Message), _ex );
+        throw new ApplicationError( "Batch.Export", _at, String.Format( _tmpl, _this.Batch0, _ex.Message ), _ex );
       }
     }
-    internal ActionResult ExportPossible( double? quantity )
+    public static ActionResult ExportPossible( Batch _this, double? quantity )
     {
       ActionResult _result = new ActionResult();
       if ( !quantity.HasValue )
@@ -60,29 +61,26 @@ namespace CAS.SmartFactory.Linq.IPR
         _result.AddMessage( "ExportPossible", _message );
         return _result;
       }
-      else if ( this.FGQuantityAvailable.Value < quantity.Value )
+      else if ( _this.FGQuantityAvailable.Value < quantity.Value )
       {
-        string _message = String.Format( Resources.QuantityIsUnavailable.GetLocalizedString(), this.FGQuantityAvailable.Value );
+        string _message = String.Format( Resources.QuantityIsUnavailable.GetLocalizedString(), _this.FGQuantityAvailable.Value );
         _result.AddMessage( "ExportPossible", _message );
         return _result;
       }
       return _result;
     }
-    private ExportedProductType Product
+    private ExportedProductType Product( ProductType productType )
     {
-      get
+      switch ( productType )
       {
-        switch ( ProductType.Value )
-        {
-          case Linq.IPR.ProductType.Cutfiller:
-            return ExportedProductType.Cutfiller;
-          case Linq.IPR.ProductType.Cigarette:
-            return ExportedProductType.Cigarette;
-          default:
-            string _prdct = String.Format( "Product: {0}", ProductType.Value );
-            throw new ApplicationError( "Batch.Product", _prdct, "Wrong product of the expoerted goods", null );
-        };
-      }
+        case Linq.IPR.ProductType.Cutfiller:
+          return ExportedProductType.Cutfiller;
+        case Linq.IPR.ProductType.Cigarette:
+          return ExportedProductType.Cigarette;
+        default:
+          string _prdct = String.Format( "Product: {0}", productType );
+          throw new ApplicationError( "Batch.Product", _prdct, "Wrong product of the expoerted goods", null );
+      };
     }
   }
 }

@@ -59,12 +59,6 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SPMetalHelper\Linq\IPR\Entities.cs">
-      <Link>Linq\Entities.cs</Link>
-    </Compile>
-    <Compile Include="..\SPMetalHelper\Linq\IPR\Entities.partial.cs">
-      <Link>Linq\Entities.partial.cs</Link>
-    </Compile>
     <Compile Include="CommonDefinition.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IPRDataConsistencyException.cs" />
@@ -162,6 +156,10 @@
     <ProjectReference Include="..\IPRExternalData\IPRExternalData.csproj">
       <Project>{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}</Project>
       <Name>IPRExternalData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IPRWebsiteModel\IPRWebsiteModel.csproj">
+      <Project>{8920f657-54a3-4376-99a5-c2d823f94038}</Project>
+      <Name>IPRWebsiteModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

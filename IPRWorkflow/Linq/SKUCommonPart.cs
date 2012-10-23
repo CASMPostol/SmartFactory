@@ -10,50 +10,14 @@ using SKUXml = CAS.SmartFactory.xml.erp.SKU;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public abstract partial class SKUCommonPart
+  public abstract class SKUCommonPartExtensions
   {
     #region public
-    public SKUCommonPart(MaterialXml xml, Dokument parent, Entities edc)
-      : this()
+    public void  SKUCommonPart(SKUCommonPart _this, MaterialXml xml, Dokument parent)
     {
-      this.SKULibraryIndex = parent;
-      this.SKU = xml.GetMaterial();
-      this.Title = xml.GetMaterialDescription();
-    }
-    internal static SKUCommonPart Find(Entities edc, string index)
-    {
-      SKUCommonPart newSKU = null;
-      try
-      {
-        newSKU = (
-            from idx in edc.SKU
-            where idx.SKU.Contains(index)
-            orderby idx.Wersja descending
-            select idx).First();
-      }
-      catch (Exception) { }
-      return newSKU;
-    }
-    /// <summary>
-    /// Gets the lookup.
-    /// </summary>
-    /// <param name="edc">The edc.</param>
-    /// <param name="index">The index.</param>
-    /// <returns></returns>
-    internal static SKUCommonPart GetLookup(Entities edc, string index)
-    {
-      try
-      {
-       return (
-            from idx in edc.SKU
-            where idx.SKU.Contains(index)
-            orderby idx.Wersja descending
-            select idx).First();
-      }
-      catch (Exception ex)
-      {
-        throw new IPRDataConsistencyException(m_Source, String.Format(m_Message, index), ex, "SKU lookup error");
-      }
+      _this.SKULibraryIndex = parent;
+      _this.SKU = xml.GetMaterial();
+      _this.Title = xml.GetMaterialDescription();
     }
     internal static void GetXmlContent
       (SKUXml xmlDocument, Entities edc, Dokument entry, ProgressChangedEventHandler progressChanged)
@@ -111,8 +75,6 @@ namespace CAS.SmartFactory.Linq.IPR
       this.FormatIndex = GetFormatLookup(xml, edc);
       this.IPRMaterial = GetIPRMaterial(edc);
     }
-    protected abstract Format GetFormatLookup(MaterialXml xml, Entities edc);
-    protected abstract bool? GetIPRMaterial(Entities edc);
     private const string m_Source = "SKU Processing";
     private const string m_Message = "I cannot find material with SKU: {0}";
     #endregion
