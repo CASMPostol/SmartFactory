@@ -8,17 +8,13 @@ using System.ComponentModel;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class SKUCutfiller
+  public static class SKUCutfillerExtensions
   {
     public SKUCutfiller(CutfillerMaterialxML document, Dokument parent, Entities edc)
       : base(document, parent, edc)
     {
       ProductType = Linq.IPR.ProductType.Cutfiller;
       BlendPurpose = String.IsNullOrEmpty(document.BlendPurpose) ? String.Empty : document.BlendPurpose;
-    }
-    protected override Format GetFormatLookup(MaterialXml document, Entities edc)
-    {
-      return Format.GetCutfillerFormatLookup(edc);
     }
     protected override bool? GetIPRMaterial(Entities edc)
     {

@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class Entities
+  public class EntitiesExtensions
   {
     ///// <summary>
     ///// Persists to the content database changes made by the current user to one or more lists using the specified failure mode;
@@ -32,7 +32,7 @@ namespace CAS.SmartFactory.Linq.IPR
       //{
       //}// end catch
     //}
-    public static void ImportData(XmlConfiguration data, string url, ProgressChangedEventHandler progressChanged)
+    public static void ImportData( this Entities _this, XmlConfiguration data, string url, ProgressChangedEventHandler progressChanged )
     {
       Entities edc = null;
       int progress = 0;
