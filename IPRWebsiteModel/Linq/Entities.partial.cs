@@ -8,16 +8,16 @@ using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  internal class ActionResult: List<string>
+  public class ActionResult: List<string>
   {
     #region public
-    internal bool Valid { get { return this.Count == 0; } }
-    internal void AddException( string _src, Exception _excptn )
+    public bool Valid { get { return this.Count == 0; } }
+    public void AddException( string _src, Exception _excptn )
     {
       string _msg = String.Format( "The operation interrupted at {0} by the error: {1}.", _src, _excptn.Message );
       base.Add( _msg );
     }
-    internal void ReportActionResult( string _url )
+    public void ReportActionResult( string _url )
     {
       if ( this.Count == 0 )
         return;
@@ -219,7 +219,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// </summary>
     /// <param name="source">The source denominator of the message.</param>
     /// <param name="message">The string to write to the event log.</param>
-    internal static void WriteEntry( string source, string message )
+    public static void WriteEntry( string source, string message )
     {
       using ( Entities edc = new Entities() )
         Anons.WriteEntry( edc, source, message );
@@ -231,7 +231,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// the lists and document libraries of a Windows SharePoint Services "14" Web site.</param>
     /// <param name="source">The source denominator of the message.</param>
     /// <param name="message">The string to write to the event log.</param>
-    internal static void WriteEntry( Entities edc, string source, string message )
+    public static void WriteEntry( Entities edc, string source, string message )
     {
       if ( edc == null )
       {
@@ -249,7 +249,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="condition"> true to prevent a message being displayed; otherwise, false.</c> [condition].</param>
     /// <param name="source">The source of the assertion.</param>
     /// <param name="message">The message to log.</param>
-    internal static void Assert( Entities edc, bool condition, string source, string message )
+    public static void Assert( Entities edc, bool condition, string source, string message )
     {
       if ( condition )
         return;
@@ -262,7 +262,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// Calculate values of columns: Title, DutyPerSettledAmount, VATPerSettledAmount, TobaccoValue, DutyAndVAT.
     /// </summary>
     /// <param name="clearingType">Type of the clearing.</param>
-    internal void SetUpCalculatedColumns( ClearingType clearingType )
+    public void SetUpCalculatedColumns( ClearingType clearingType )
     {
       string _titleTmplt = "Disposal: {0} of FG {1}";
       Title = String.Format( _titleTmplt, this.DisposalStatus.Value.ToString(), this.Disposal2BatchIndex.Title );
@@ -299,7 +299,7 @@ namespace CAS.SmartFactory.Linq.IPR
   /// </summary>
   public partial class Clearence
   {
-    internal static Clearence CreataClearence( Entities edc, string code, ClearenceProcedure procedure )
+    public static Clearence CreataClearence( Entities edc, string code, ClearenceProcedure procedure )
     {
       Clearence _newClearence = new Clearence()
       {
@@ -315,7 +315,7 @@ namespace CAS.SmartFactory.Linq.IPR
       edc.SubmitChanges();
       return _newClearence;
     }
-    internal void CreateTitle( string _messageType )
+    public void CreateTitle( string _messageType )
     {
       Title = String.Format( "{0} Ref: {1}", _messageType.NotAvailable(), ReferenceNumber.NotAvailable() );
     }
@@ -360,11 +360,11 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       invoice.Title = String.Format( _tmplt, invoice.Identyfikator.Value, invoice.InvoiceIndex.BillDoc, _sku, _batch );
     }
-    internal static bool Available( this Batch batch, double _nq )
+    public static bool Available( this Batch batch, double _nq )
     {
       return batch.FGQuantityAvailable >= _nq;
     }
-    internal static double AvailableQuantity( this Batch _batch )
+    public static double AvailableQuantity( this Batch _batch )
     {
       return _batch.FGQuantityAvailable.Value;
     }
