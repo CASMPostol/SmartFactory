@@ -41,6 +41,7 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -49,6 +50,8 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Linq\Entities.cs" />
+    <Compile Include="Linq\Entities.partial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +59,8 @@
       <FeatureId>{6157b1a8-2d62-414f-9045-48bfbcf8892e}</FeatureId>
     </None>
     <None Include="key.snk" />
+    <None Include="Linq\Scripts\GetEntities.ps1" />
+    <None Include="Linq\Scripts\psconsole.psc1" />
     <None Include="Package\Package.package">
       <PackageId>{7344e360-313b-4553-8318-153c7ce49c8d}</PackageId>
     </None>
@@ -67,6 +72,13 @@
     <Content Include="Features\CAS.IPRWebsiteModel\CAS.IPRWebsiteModel.Template.xml">
       <DependentUpon>CAS.IPRWebsiteModel.feature</DependentUpon>
     </Content>
+    <Content Include="Linq\Scripts\Parameters.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
+      <Project>{b9d9fcca-6132-4bf5-bc17-32ea752d6ad7}</Project>
+      <Name>SharePoint</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
