@@ -274,13 +274,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.Table m_GridViewTable;
         
         /// <summary>
-        /// m_AvailableLabel control.
+        /// m_AvailablePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_AvailableLabel;
+        protected global::System.Web.UI.WebControls.Panel m_AvailablePanel;
         
         /// <summary>
         /// m_AvailableGridView control.
@@ -364,13 +364,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::System.Web.UI.WebControls.Button m_GridViewRemoveDisplayed;
         
         /// <summary>
-        /// m_AssignedLabel control.
+        /// m_AssignedPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_AssignedLabel;
+        protected global::System.Web.UI.WebControls.Panel m_AssignedPanel;
         
         /// <summary>
         /// m_AssignedGridView control.
@@ -382,15 +382,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         protected global::Microsoft.SharePoint.WebControls.SPGridView m_AssignedGridView;
         
         /// <summary>
-        /// m_AssignedGridViewQuantitySumLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label m_AssignedGridViewQuantitySumLabel;
-        
-        /// <summary>
         /// m_AssignedGridViewPager control.
         /// </summary>
         /// <remarks>
@@ -398,5 +389,14 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Microsoft.SharePoint.WebControls.SPGridViewPager m_AssignedGridViewPager;
+        
+        /// <summary>
+        /// m_AssignedGridViewQuantitySumLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label m_AssignedGridViewQuantitySumLabel;
     }
 }
