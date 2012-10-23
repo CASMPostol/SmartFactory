@@ -70,7 +70,7 @@ namespace CAS.SmartFactory.Linq.IPR
         this.SubmitChanges();
       }
     }
-    internal void ResolveChangeConflicts( ActionResult _rsult )
+    public void ResolveChangeConflicts( ActionResult _rsult )
     {
       string _cp = "Starting";
       try
@@ -112,10 +112,10 @@ namespace CAS.SmartFactory.Linq.IPR
   /// </summary>
   public partial class Element
   {
-    internal const string IDColunmName = "ID";
-    internal const string TitleColunmName = "Title";
-    internal const string IDPropertyName = "Identyfikator";
-    internal const string TitlePropertyName = "Title";
+    public const string IDColunmName = "ID";
+    public const string TitleColunmName = "Title";
+    public const string IDPropertyName = "Identyfikator";
+    public const string TitlePropertyName = "Title";
     /// <summary>
     /// Try to get at index. 
     /// </summary>
@@ -124,7 +124,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="_ID">The _ ID.</param>
     /// <exception cref="ApplicationException">Element cannot be found.</exception>
     /// <returns>An instance of the <see cref="t"/> for the selected index or null if <paramref name="_ID"/> is null or empty.</returns>
-    internal static t TryGetAtIndex<t>( EntityList<t> _list, string _ID )
+    public static t TryGetAtIndex<t>( EntityList<t> _list, string _ID )
       where t: Element
     {
       if ( _ID.IsNullOrEmpty() )
@@ -139,7 +139,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="_ID">The _ ID.</param>
     /// <exception cref="ApplicationException">_ID is nuul or element cannot be found.</exception>
     /// <returns>An instance of the <see cref="t"/> for the selected index.</returns>
-    internal static t GetAtIndex<t>( EntityList<t> _list, string _ID )
+    public static t GetAtIndex<t>( EntityList<t> _list, string _ID )
       where t: Element
     {
       int? _index = _ID.String2Int();
@@ -167,7 +167,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// An instance of the <see cref="t"/> for the selected index.
     /// </returns>
     /// <exception cref="ApplicationException">_ID is nuul or element cannot be found.</exception>
-    internal static t GetAtIndex<t>( EntityList<t> list, int index )
+    public static t GetAtIndex<t>( EntityList<t> list, int index )
       where t: Element
     {
       try
@@ -179,7 +179,7 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new ApplicationException( String.Format( "{0} cannot be found at specified index{1}", typeof( t ).Name, index ) );
       }
     }
-    internal static t FindAtIndex<t>( EntityList<t> _list, string _ID )
+    public static t FindAtIndex<t>( EntityList<t> _list, string _ID )
       where t: Element
     {
       int? _index = _ID.String2Int();

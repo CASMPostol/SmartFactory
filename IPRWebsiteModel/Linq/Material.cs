@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR;
 
@@ -157,6 +158,23 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     internal SKUCommonPart SKULookup { get; set; }
     internal bool IPRMaterial { get; set; }
+    public double DisposedQuantity( double portion )
+    {
+      return ( this.TobaccoQuantity.Value * portion ).RountMass();
+    }
+    public List<Disposal> GetListOfDisposals()
+    {
+      Linq.IPR.DisposalStatus status = this.Material2BatchIndex.ProductType.Value == Linq.IPR.ProductType.Cigarette ? DisposalStatus.TobaccoInCigaretes : DisposalStatus.TobaccoInCutfiller;
+      return
+        (
+            from _didx in this.Disposal
+            let _ipr = _didx.Disposal2IPRIndex
+            where _didx.CustomsStatus.Value == CustomsStatus.NotStarted && _didx.DisposalStatus.Value == status
+            orderby _ipr.Identyfikator ascending
+            select _didx
+        ).ToList();
+    }
+
     #endregion
 
     #region private

@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class IPR
   {
-    internal ClearingType GetClearingType()
+    public ClearingType GetClearingType()
     {
       return this.TobaccoNotAllocated == 0 &&
         (
@@ -18,25 +18,25 @@ namespace CAS.SmartFactory.Linq.IPR
           select _dec
         ).Count() == 1 ? ClearingType.TotalWindingUp : ClearingType.PartialWindingUp;
     }
-    internal void Withdraw( double p )
+    public void Withdraw( double p )
     {
       //TODO NotImplementedException
       throw new NotImplementedException();
     }
-    internal void RevertWithdraw( double? nullable )
+    public void RevertWithdraw( double? nullable )
     {
       //TODO NotImplementedException
       throw new NotImplementedException();
     }
-    internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
-    internal static List<IPR> FindIPRAccountsWithNotAllocatedTobacco( Entities _edc, string _batch )
+    public enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
+    public static List<IPR> FindIPRAccountsWithNotAllocatedTobacco( Entities _edc, string _batch )
     {
       return ( from IPR _iprx in _edc.IPR where _iprx.Batch.Contains( _batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
     }
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>
-    internal void AddDisposal( Entities _edc, DisposalEnum _status, ref double quantity, Material material )
+    public void AddDisposal( Entities _edc, DisposalEnum _status, ref double quantity, Material material )
     {
       try
       {

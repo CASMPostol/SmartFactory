@@ -15,12 +15,18 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
     // Visual Studio might automatically update this path when you change the Visual Web Part project item.
     private const string _ascxPath = @"~/_CONTROLTEMPLATES/CAS.SmartFactory.IPR.Dashboards.Webparts/ExportWebPart/ExportWebPartUserControl.ascx";
     private ExportWebPartUserControl m_Control;
-
+    /// <summary>
+    /// Called by the ASP.NET page framework to notify server controls that use composition-based implementation to create any child controls they contain in preparation for posting back or rendering.
+    /// </summary>
     protected override void CreateChildControls()
     {
       m_Control = Page.LoadControl( _ascxPath ) as ExportWebPartUserControl;
       Controls.Add( m_Control );
     }
+    /// <summary>
+    /// Raises the <see cref="E:System.Web.UI.Control.PreRender" /> event.
+    /// </summary>
+    /// <param name="e">An <see cref="T:System.EventArgs" /> object that contains the event data.</param>
     protected override void OnPreRender( EventArgs e )
     {
       m_Control.SetInterconnectionData( m_ProvidersDictionary );

@@ -7,7 +7,10 @@ using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class Disposal
+  /// <summary>
+  /// Disposal Extension
+  /// </summary>
+  public static class DisposalExtension
   {
     internal static MaterialRecord[] GetListOfMaterials( IEnumerable<Disposal> _disposals, ref double _subTotal )
     {
@@ -31,37 +34,49 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       return _dustRecord.ToArray();
     }
-    internal void Export( Entities edc, ref double _quantity, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
+    /// <summary>
+    /// Exports the specified _this.
+    /// </summary>
+    /// <param name="_this">The _this.</param>
+    /// <param name="edc">The edc.</param>
+    /// <param name="_quantity">The _quantity.</param>
+    /// <param name="ingredient">The ingredient.</param>
+    /// <param name="closingBatch">if set to <c>true</c> [closing batch].</param>
+    /// <param name="invoiceNoumber">The invoice noumber.</param>
+    /// <param name="procedure">The procedure.</param>
+    /// <param name="clearence">The clearence.</param>
+    /// <exception cref="ApplicationError">Disposal.Export</exception>
+    public static void Export(this Disposal _this, Entities edc, ref double _quantity, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
     {
       string _at = "startting";
       try
       {
         ClearingType _clearingType = Linq.IPR.ClearingType.PartialWindingUp;
-        if ( !closingBatch && _quantity < this.SettledQuantity )
+        if ( !closingBatch && _quantity < _this.SettledQuantity )
         {
           _at = "_newDisposal";
           Disposal _newDisposal = new Disposal()
           {
-            Disposal2BatchIndex = this.Disposal2BatchIndex,
+            Disposal2BatchIndex = _this.Disposal2BatchIndex,
             Disposal2ClearenceIndex = null,
             ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
             CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
             CustomsProcedure = "N/A",
-            DisposalStatus = this.DisposalStatus,
+            DisposalStatus = _this.DisposalStatus,
             InvoiceNo = "N/A",
             IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
-            Disposal2IPRIndex = this.Disposal2IPRIndex,
-            // CompensationGood = this.CompensationGood, //TODO [pr4-3585] Wrong value for CompensationGood http://itrserver/Bugs/BugDetail.aspx?bid=3585
+            Disposal2IPRIndex = _this.Disposal2IPRIndex,
+            // CompensationGood = _this.CompensationGood, //TODO [pr4-3585] Wrong value for CompensationGood http://itrserver/Bugs/BugDetail.aspx?bid=3585
             JSOXCustomsSummaryIndex = null,
-            Disposal2MaterialIndex = this.Disposal2MaterialIndex,
+            Disposal2MaterialIndex = _this.Disposal2MaterialIndex,
             No = int.MaxValue,
             SADDate = CAS.SharePoint.Extensions.SPMinimum,
             SADDocumentNo = "N/A",
-            SettledQuantity = this.SettledQuantity - _quantity
+            SettledQuantity = _this.SettledQuantity - _quantity
           };
           _at = "SetUpCalculatedColumns";
           _newDisposal.SetUpCalculatedColumns( Linq.IPR.ClearingType.PartialWindingUp );
-          this.SettledQuantity = _quantity;
+          _this.SettledQuantity = _quantity;
           _quantity = 0;
           _at = "InsertOnSubmit";
           edc.Disposal.InsertOnSubmit( _newDisposal );
@@ -70,13 +85,13 @@ namespace CAS.SmartFactory.Linq.IPR
         }
         else
         {
-          _clearingType = this.Disposal2IPRIndex.GetClearingType();
-          _quantity -= this.SettledQuantity.Value;
+          _clearingType = _this.Disposal2IPRIndex.GetClearingType();
+          _quantity -= _this.SettledQuantity.Value;
         }
         _at = "StartClearance";
-        this.StartClearance( _clearingType, invoiceNoumber, procedure, clearence );
+        _this.StartClearance( _clearingType, invoiceNoumber, procedure, clearence );
         _at = "new IPRIngredient";
-        IPRIngredient _ingredient = IPRIngredientFactory.IPRIngredient( this );
+        IPRIngredient _ingredient = IPRIngredientFactory.IPRIngredient( _this );
         ingredient.Add( _ingredient );
         _at = "SubmitChanges #2";
         edc.SubmitChanges();
@@ -84,17 +99,8 @@ namespace CAS.SmartFactory.Linq.IPR
       catch ( Exception ex )
       {
         string _tmpl = "Cannot proceed with export of disposal: {0} because of error: {1}.";
-        throw new ApplicationError( "Disposal.Export", _at, String.Format( _tmpl, this.Identyfikator, ex.Message ), ex );
+        throw new ApplicationError( "Disposal.Export", _at, String.Format( _tmpl, _this.Identyfikator, ex.Message ), ex );
       }
-    }
-    private void StartClearance( ClearingType clearingType, string invoiceNoumber, string procedure, Clearence clearence )
-    {
-      this.Disposal2ClearenceIndex = clearence;
-      this.CustomsStatus = Linq.IPR.CustomsStatus.Started;
-      this.ClearingType = clearingType;
-      this.CustomsProcedure = procedure;
-      this.InvoiceNo = invoiceNoumber;
-      this.SetUpCalculatedColumns( ClearingType.Value );
     }
   }
 }

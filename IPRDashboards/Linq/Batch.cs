@@ -9,8 +9,24 @@ using ExportedProductType = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExpor
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public class BatchExtension
+  /// <summary>
+  /// Batch Extension
+  /// </summary>
+  public static class BatchExtension
   {
+    /// <summary>
+    /// Exports the specified _this.
+    /// </summary>
+    /// <param name="_this">The _this.</param>
+    /// <param name="edc">The edc.</param>
+    /// <param name="productInvoice">The product invoice.</param>
+    /// <param name="consignment">The consignment.</param>
+    /// <param name="invoiceNumber">The invoice number.</param>
+    /// <param name="procedure">The procedure.</param>
+    /// <param name="clearence">The clearence.</param>
+    /// <param name="masterDocumentNo">The master document no.</param>
+    /// <param name="_position">The _position.</param>
+    /// <exception cref="ApplicationError">Batch.Export</exception>
     public static void Export
       (
         this Batch _this,
@@ -52,7 +68,13 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new ApplicationError( "Batch.Export", _at, String.Format( _tmpl, _this.Batch0, _ex.Message ), _ex );
       }
     }
-    public static ActionResult ExportPossible( Batch _this, double? quantity )
+    /// <summary>
+    /// Exports the possible.
+    /// </summary>
+    /// <param name="_this">The _this.</param>
+    /// <param name="quantity">The quantity.</param>
+    /// <returns></returns>
+    public static ActionResult ExportPossible( this Batch _this, double? quantity )
     {
       ActionResult _result = new ActionResult();
       if ( !quantity.HasValue )
@@ -69,7 +91,7 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       return _result;
     }
-    private ExportedProductType Product( ProductType productType )
+    private static ExportedProductType Product( ProductType productType )
     {
       switch ( productType )
       {
