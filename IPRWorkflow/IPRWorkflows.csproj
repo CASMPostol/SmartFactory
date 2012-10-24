@@ -68,8 +68,6 @@
     <Compile Include="CommonDefinition.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IPRDataConsistencyException.cs" />
-    <Compile Include="Linq\EntitiesDataContext.cs" />
-    <Compile Include="Linq\SADDocumentType.cs" />
     <Compile Include="Linq\SKUCigarette.cs" />
     <Compile Include="Linq\SKUCommonPart.cs" />
     <Compile Include="Linq\SKUCutfiller.cs" />
