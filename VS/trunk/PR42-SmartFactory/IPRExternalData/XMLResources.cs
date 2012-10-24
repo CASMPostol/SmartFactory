@@ -2,7 +2,7 @@
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
 
-namespace CAS.SmartFactory.IPR.Dashboards
+namespace CAS.SmartFactory.xml
 {
   //TODO  [pr4-3550] Add localization to the application http://itrserver/Bugs/BugDetail.aspx?bid=3550
   /// <summary>
