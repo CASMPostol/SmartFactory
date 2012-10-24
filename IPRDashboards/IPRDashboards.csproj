@@ -65,6 +65,7 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clearance\Class1.cs" />
     <Compile Include="CommonDefinitions.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -72,11 +73,9 @@
     </Compile>
     <Compile Include="GlobalDefinitions.cs" />
     <Compile Include="Linq\Batch.cs" />
-    <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\DocumentsFactory\CigaretteExportForm.cs" />
     <Compile Include="Linq\DocumentsFactory\DisposalsFormFactory.cs" />
     <Compile Include="Linq\Dokument.cs" />
-    <Compile Include="Linq\Material.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -226,6 +225,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

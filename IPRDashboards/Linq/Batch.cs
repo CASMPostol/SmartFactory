@@ -8,13 +8,16 @@ using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using ExportedProductType = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.ProductType;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.Dashboards.Clearance
 {
+  
   /// <summary>
   /// Batch Extension
   /// </summary>
-  internal static class BatchExtension
+  internal static class ExportFinishedGoods
   {
+    #region public
+
     /// <summary>
     /// Exports the specified _this.
     /// </summary>
@@ -28,7 +31,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="masterDocumentNo">The master document no.</param>
     /// <param name="_position">The _position.</param>
     /// <exception cref="ApplicationError">Batch.Export</exception>
-    internal static void Export
+    internal static void Do
       (
         this Batch _this,
         Entities edc,
@@ -75,7 +78,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="_this">The _this.</param>
     /// <param name="quantity">The quantity.</param>
     /// <returns></returns>
-    internal static ActionResult ExportPossible( this Batch _this, double? quantity )
+    internal static ActionResult IsPossible( this Batch _this, double? quantity )
     {
       ActionResult _result = new ActionResult();
       if ( !quantity.HasValue )
@@ -92,6 +95,11 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       return _result;
     }
+
+    #endregion    
+    
+    #region private
+
     /// <summary>
     /// Exports the specified material of <see cref="Material"/>.
     /// </summary>
@@ -221,5 +229,7 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new ApplicationError( "Disposal.Export", _at, String.Format( _tmpl, _this.Identyfikator, ex.Message ), ex );
       }
     }
+
+    #endregion
   }
 }
