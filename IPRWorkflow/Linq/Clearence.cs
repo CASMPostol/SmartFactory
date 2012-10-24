@@ -10,6 +10,8 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   internal static class ClearenceExtension
   {
+
+    #region MyRegion
     internal static Clearence Associate( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, out string _comments, SADDocumentLib customsDocumentLibrary )
     {
       Clearence _ret = default( Clearence );
@@ -129,10 +131,11 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       return _ret;
     }
-    //internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
-    internal static void CreateIPRAccount
-      ( Entities _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType, DateTime _customsDebtDate, out string _comments,
-      SADDocumentLib iprLibraryLookup )
+    #endregion
+
+    #region private
+    private static void CreateIPRAccount
+      ( Entities _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType, DateTime _customsDebtDate, out string _comments, SADDocumentLib iprLibraryLookup )
     {
       string _at = "started";
       _comments = "IPR account creation error";
@@ -373,5 +376,7 @@ namespace CAS.SmartFactory.Linq.IPR
       #endregion
     }
     private const string _wrongProcedure = "Wrong customs procedure";
+
+    #endregion
   }
 }
