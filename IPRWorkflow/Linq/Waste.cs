@@ -8,21 +8,6 @@ namespace CAS.SmartFactory.Linq.IPR
   {
     #region public
 
-    internal static void ImportData(ConfigurationWasteItem[] configuration, Entities edc)
-    {
-      List<Waste> list = new List<Waste>();
-      foreach (ConfigurationWasteItem item in configuration)
-      {
-        Waste wst = new Waste
-        {
-          Batch = null,
-          ProductType = item.ProductType.ParseProductType(),
-          WasteRatio = item.WasteRatio
-        };
-        list.Add(wst);
-      };
-      edc.Waste.InsertAllOnSubmit(list);
-    } 
     #endregion
   }
 }
