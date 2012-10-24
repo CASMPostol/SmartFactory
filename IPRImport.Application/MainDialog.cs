@@ -64,7 +64,7 @@ namespace CAS.SmartFactory.Management
         UpdateToolStrip( this, new ProgressChangedEventArgs( 1, "Reading Data" ) );
         Configuration cnfg = Configuration.ImportDocument( strm );
         UpdateToolStrip( this, new ProgressChangedEventArgs( 10, "Importing Data" ) );
-        EntitiesExtensions.ImportData( cnfg, m_URLTextBox.Text.Trim(), UpdateToolStrip );
+        DictionaryImport.ImportData( cnfg, m_URLTextBox.Text.Trim(), UpdateToolStrip );
         SetDone();
       }
       catch ( Exception ex )
