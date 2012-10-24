@@ -65,6 +65,7 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clearance\ConsignmentFactory.cs" />
     <Compile Include="Clearance\ExportFinishedGoods.cs" />
     <Compile Include="CommonDefinitions.cs">
       <AutoGen>True</AutoGen>
@@ -74,7 +75,6 @@
     <Compile Include="GlobalDefinitions.cs" />
     <Compile Include="Linq\DocumentsFactory\CigaretteExportForm.cs" />
     <Compile Include="Linq\DocumentsFactory\DisposalsFormFactory.cs" />
-    <Compile Include="Linq\Dokument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
