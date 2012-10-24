@@ -632,19 +632,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       switch ( SelectedGroup )
       {
         case Group.Tobacco:
-          GetDisposals( new DisposalStatus[] { DisposalStatus.Overuse, DisposalStatus.SHMenthol }, false, _start, _finish, _currency );
+          _available = GetDisposals( new DisposalStatus[] { DisposalStatus.Overuse, DisposalStatus.SHMenthol }, false, _start, _finish, _currency );
           break;
         case Group.TobaccoNotAllocated:
-          GetMaterial( m_ControlState.AvailableItems, _start, _finish, _currency );
+          _available = GetMaterial( m_ControlState.AvailableItems, _start, _finish, _currency );
           break;
         case Group.Dust:
-          GetDisposals( new DisposalStatus[] { DisposalStatus.Dust }, true, _start, _finish, _currency );
+          _available = GetDisposals( new DisposalStatus[] { DisposalStatus.Dust }, true, _start, _finish, _currency );
           break;
         case Group.Waste:
-          GetDisposals( new DisposalStatus[] { DisposalStatus.Waste }, true, _start, _finish, _currency );
+          _available = GetDisposals( new DisposalStatus[] { DisposalStatus.Waste }, true, _start, _finish, _currency );
           break;
         case Group.Cartons:
-          GetDisposals( new DisposalStatus[] { DisposalStatus.Cartons }, false, _start, _finish, _currency );
+          _available = GetDisposals( new DisposalStatus[] { DisposalStatus.Cartons }, false, _start, _finish, _currency );
           break;
         default:
           throw new SharePoint.ApplicationError( "SelectDataDS", "switch", "Internal error - wrong switch case.", null );
