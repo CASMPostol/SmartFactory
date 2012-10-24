@@ -64,28 +64,19 @@
     <Compile Include="IPRDataConsistencyException.cs" />
     <Compile Include="Linq\Batch.cs" />
     <Compile Include="Linq\Clearence.cs" />
-    <Compile Include="Linq\Consent.cs" />
-    <Compile Include="Linq\CustomsUnion.cs" />
-    <Compile Include="Linq\CutfillerCoefficient.cs" />
     <Compile Include="Linq\Disposal.cs" />
-    <Compile Include="Linq\Dust.cs" />
     <Compile Include="Linq\EntitiesDataContext.cs" />
     <Compile Include="Linq\Extensions.cs" />
     <Compile Include="Linq\Format.cs" />
     <Compile Include="Linq\InvoiceContent.cs" />
     <Compile Include="Linq\IPR.cs" />
     <Compile Include="Linq\Material.cs" />
-    <Compile Include="Linq\PCNCode.cs" />
     <Compile Include="Linq\SADDocumentType.cs" />
-    <Compile Include="Linq\SHMenthol.cs" />
     <Compile Include="Linq\SKUCigarette.cs" />
     <Compile Include="Linq\SKUCommonPart.cs" />
     <Compile Include="Linq\SKUCutfiller.cs" />
     <Compile Include="Linq\Stock.cs" />
     <Compile Include="Linq\StockEntry.cs" />
-    <Compile Include="Linq\Usage.cs" />
-    <Compile Include="Linq\Warehouse.cs" />
-    <Compile Include="Linq\Waste.cs" />
     <Compile Include="ListsEventsHandlers\BatchEventReceiver\BatchEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\SADImportXML\SADImportXML.cs" />
@@ -98,8 +89,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Linq\IPR.cd" />
-    <None Include="Linq\SAD.cd" />
     <None Include="ListsEventsHandlers\Customs\SADImportXML\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{32323fbc-d26b-4398-b3d0-963410cce328}</SharePointProjectItemId>
     </None>
