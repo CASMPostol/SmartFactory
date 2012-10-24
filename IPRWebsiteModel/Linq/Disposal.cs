@@ -2,7 +2,7 @@
 using System.Linq;
 using CAS.SharePoint.Web;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class Disposal
   {
@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.Linq.IPR
       {
         _at = "Disposal _lastOne";
         Disposal _lastOne = ( from _dsp in this.Disposal2IPRIndex.Disposal
-                              where _dsp.CustomsStatus.Value == Linq.IPR.CustomsStatus.Finished
+                              where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
                               orderby _dsp.No.Value descending
                               select _dsp ).FirstOrDefault<Disposal>();
         if ( _lastOne == null )
@@ -22,16 +22,16 @@ namespace CAS.SmartFactory.Linq.IPR
           this.No = _lastOne.No++;
         this.SADDocumentNo = documentNo;
         this.SADDate = clearenceDate;
-        this.CustomsStatus = Linq.IPR.CustomsStatus.Finished;
+        this.CustomsStatus = Linq.CustomsStatus.Finished;
         this.Disposal2IPRIndex.AccountBalance -= this.SettledQuantity.Value;
         this.RemainingQuantity = Disposal2IPRIndex.AccountBalance;
         if ( this.RemainingQuantity.Value == 0 )
-          this.ClearingType = Linq.IPR.ClearingType.TotalWindingUp;
+          this.ClearingType = Linq.ClearingType.TotalWindingUp;
         this.CustomsProcedure = clearence.ProcedureCode;
         //TODO [pr4-3737] Compensation good must be recognized using the PCN code from customs message http://itrserver/Bugs/BugDetail.aspx?bid=3737
         _at = "PCNCode _tobaccoPCN ";
         PCNCode _tobaccoPCN = ( from _pcnx in edc.PCNCode
-                                where _pcnx.IsIPR.GetValueOrDefault( true ) && _pcnx.CompensationGood.Value == Linq.IPR.CompensationGood.Papierosy
+                                where _pcnx.IsIPR.GetValueOrDefault( true ) && _pcnx.CompensationGood.Value == Linq.CompensationGood.Papierosy
                                 select _pcnx ).FirstOrDefault();
         //TODO [pr4-3733] Export: Association of the SAD documents: SAD analyses error at Clearence analyses error at started. 
         //this.Disposal2PCNCompensationGood = _tobaccoPCN == null ? null : _tobaccoPCN;
@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.Linq.IPR
     public void StartClearance( ClearingType clearingType, string invoiceNoumber, string procedure, Clearence clearence )
     {
       this.Disposal2ClearenceIndex = clearence;
-      this.CustomsStatus = Linq.IPR.CustomsStatus.Started;
+      this.CustomsStatus = Linq.CustomsStatus.Started;
       this.ClearingType = clearingType;
       this.CustomsProcedure = procedure;
       this.InvoiceNo = invoiceNoumber;

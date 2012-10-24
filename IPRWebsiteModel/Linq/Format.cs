@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class Format
   {
@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.Linq.IPR
       catch ( Exception ex )
       {
         string message = String.Format( "Cannot find the format cigarette length: {0}/filter segment length: {1}", cigaretteLength, filterSegmentLength );
-        throw new CAS.SmartFactory.IPR.IPRDataConsistencyException( m_Souece, message, ex, "GetFormatLookup failed" );
+        throw new IPRDataConsistencyException( m_Souece, message, ex, "GetFormatLookup failed" );
       }
     }
     public static Format GetFormatLookup( string name, Entities edc )

@@ -1,6 +1,5 @@
-﻿using CAS.SharePoint;
-using CAS.SharePoint.Web;
-using CAS.SmartFactory.Linq.IPR;
+﻿using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.WEB
 {

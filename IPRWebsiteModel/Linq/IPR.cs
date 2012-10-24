@@ -5,7 +5,7 @@ using System.Text;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class IPR
   {
@@ -40,23 +40,23 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       try
       {
-        Linq.IPR.DisposalStatus _typeOfDisposal = default( Linq.IPR.DisposalStatus );
+        Linq.DisposalStatus _typeOfDisposal = default( Linq.DisposalStatus );
         switch ( _status )
         {
           case DisposalEnum.Dust:
-            _typeOfDisposal = Linq.IPR.DisposalStatus.Dust;
+            _typeOfDisposal = Linq.DisposalStatus.Dust;
             break;
           case DisposalEnum.SHMenthol:
-            _typeOfDisposal = Linq.IPR.DisposalStatus.SHMenthol;
+            _typeOfDisposal = Linq.DisposalStatus.SHMenthol;
             break;
           case DisposalEnum.Waste:
-            _typeOfDisposal = Linq.IPR.DisposalStatus.Waste;
+            _typeOfDisposal = Linq.DisposalStatus.Waste;
             break;
           case DisposalEnum.OverusageInKg:
-            _typeOfDisposal = Linq.IPR.DisposalStatus.Overuse;
+            _typeOfDisposal = Linq.DisposalStatus.Overuse;
             break;
           case DisposalEnum.Tobacco:
-            _typeOfDisposal = Linq.IPR.DisposalStatus.TobaccoInCigaretes;
+            _typeOfDisposal = Linq.DisposalStatus.TobaccoInCigaretes;
             break;
         }
         double _toDispose;
@@ -67,8 +67,8 @@ namespace CAS.SmartFactory.Linq.IPR
         {
           Disposal2BatchIndex = material.Material2BatchIndex,
           Disposal2ClearenceIndex = null,
-          ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
-          CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
+          ClearingType = Linq.ClearingType.PartialWindingUp,
+          CustomsStatus = Linq.CustomsStatus.NotStarted,
           CustomsProcedure = String.Empty.NotAvailable(),
           //TODO CompensationGood must be assigned.
           Disposal2PCNID = null,

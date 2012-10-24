@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using CAS.SmartFactory.IPR;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public abstract partial class SKUCommonPart
   {

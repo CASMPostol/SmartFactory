@@ -1,4 +1,5 @@
-﻿using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
+﻿using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -20,7 +21,7 @@ namespace CAS.SmartFactory.Linq.IPR
         Units = xml.BUn,
         Unrestricted = xml.Unrestricted,
         BatchIndex = null,
-        ProductType = Linq.IPR.ProductType.Invalid,
+        ProductType = ProductType.Invalid,
         Quantity = xml.Blocked.GetValueOrDefault( 0 ) + xml.InQualityInsp.GetValueOrDefault( 0 ) + xml.RestrictedUse.GetValueOrDefault( 0 ) + xml.Unrestricted.GetValueOrDefault( 0 ),
       };
     }

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using CAS.SmartFactory.IPR;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class Dust
   {

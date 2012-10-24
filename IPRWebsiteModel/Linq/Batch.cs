@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
-using CAS.SmartFactory.IPR;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
+  /// <summary>
+  /// Batch
+  /// </summary>
   public partial class Batch
   {
     #region public
@@ -39,9 +41,9 @@ namespace CAS.SmartFactory.Linq.IPR
         newBatch = new Batch()
         {
           Batch0 = batch,
-          BatchStatus = Linq.IPR.BatchStatus.Preliminary,
+          BatchStatus = Linq.BatchStatus.Preliminary,
           Title = "Preliminary batch: " + batch,
-          ProductType = Linq.IPR.ProductType.Invalid,
+          ProductType = Linq.ProductType.Invalid,
           FGQuantityAvailable = 0,
           FGQuantityBlocked = 0,
           FGQuantity = 0,
@@ -52,11 +54,9 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       return newBatch;
     }
-    
     #endregion
 
     #region private
-
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be uploaded.";

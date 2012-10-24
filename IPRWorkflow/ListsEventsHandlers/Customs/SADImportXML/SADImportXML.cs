@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using CAS.SharePoint;
+using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
 using Microsoft.SharePoint;
-using CAS.SharePoint.Web;
 
 namespace CAS.SmartFactory.IPR.Customs
 {

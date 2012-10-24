@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class PCNCode
   {
@@ -19,9 +19,9 @@ namespace CAS.SmartFactory.Linq.IPR
       {
         _pcncode = new PCNCode()
           {
-            CompensationGood = Linq.IPR.CompensationGood.Tytoń,
+            CompensationGood = Linq.CompensationGood.Tytoń,
             ProductCodeNumber = _code,
-            Title = String.Format( "{0} {1}", Linq.IPR.CompensationGood.Tytoń, _code )
+            Title = String.Format( "{0} {1}", Linq.CompensationGood.Tytoń, _code )
           };
         _edc.PCNCode.InsertOnSubmit( _pcncode );
       }

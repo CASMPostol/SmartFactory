@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using CAS.SmartFactory.IPR;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Linq.IPR
@@ -11,7 +12,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       try
       {
-        return (ProductType)Enum.Parse(typeof(Linq.IPR.ProductType), entry);
+        return (ProductType)Enum.Parse(typeof(ProductType), entry);
       }
       catch (Exception)
       {
@@ -22,7 +23,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       try
       {
-        return String.IsNullOrEmpty( entry ) ? new Nullable<CompensationGood>() : (CompensationGood)Enum.Parse( typeof( Linq.IPR.CompensationGood ), entry );
+        return String.IsNullOrEmpty( entry ) ? new Nullable<CompensationGood>() : (CompensationGood)Enum.Parse( typeof( CompensationGood ), entry );
       }
       catch (Exception)
       {

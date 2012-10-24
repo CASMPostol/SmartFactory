@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using Microsoft.SharePoint;
-using Microsoft.SharePoint.Linq;
-using BatchXml = CAS.SmartFactory.xml.erp.Batch;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.Linq.IPR;
+using Microsoft.SharePoint;
+using BatchXml = CAS.SmartFactory.xml.erp.Batch;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers
 {

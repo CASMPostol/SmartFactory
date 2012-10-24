@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.Linq.IPR;
 using Microsoft.SharePoint;
 using InvoiceXml = CAS.SmartFactory.xml.erp.Invoice;

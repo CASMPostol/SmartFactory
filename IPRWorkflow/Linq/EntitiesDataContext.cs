@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using XmlConfiguration = CAS.SmartFactory.xml.Dictionaries.Configuration;
 
 namespace CAS.SmartFactory.Linq.IPR

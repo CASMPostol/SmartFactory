@@ -6,6 +6,7 @@ using System.Web.UI.WebControls.WebParts;
 using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml;
 using Microsoft.SharePoint;

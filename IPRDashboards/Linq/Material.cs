@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using CAS.SharePoint;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 
 namespace CAS.SmartFactory.Linq.IPR
@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.Linq.IPR
       string _at = "Beginning";
       try
       {
-        if ( material.ProductType.Value == Linq.IPR.ProductType.IPRTobacco )
+        if ( material.ProductType.Value == CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.IPRTobacco )
         {
           double _quantity = material.DisposedQuantity( portion );
           _at = "GetListOfDisposals";
@@ -42,7 +42,7 @@ namespace CAS.SmartFactory.Linq.IPR
           string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account";
           Anons.Assert( edc, _quantity == 0, "Material.Export", string.Format( _template, material.Batch, _quantity, invoiceNoumber ) );
         }
-        else if ( material.ProductType.Value == Linq.IPR.ProductType.Tobacco )
+        else if ( material.ProductType.Value == CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Tobacco )
         {
           _at = "RegularIngredient";
           RegularIngredient _ri = new RegularIngredient( material.Batch, material.SKU, material.DisposedQuantity( portion ) );
