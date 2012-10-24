@@ -31,6 +31,7 @@ namespace CAS.SmartFactory.Linq.IPR
       _this.SADDocument2Clearence.CreateTitle( _messageType.ToString() );
     }
     #endregion
+
     #region private
     private static Clearence FimdClearence( Entities _edc, SADDocumentType _this )
     {
