@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
   /// <summary>
   /// List Item Events
   /// </summary>
-  internal class InvoiceEventReceiver: SPItemEventReceiver
+  public class InvoiceEventReceiver: SPItemEventReceiver
   {
 
     #region public

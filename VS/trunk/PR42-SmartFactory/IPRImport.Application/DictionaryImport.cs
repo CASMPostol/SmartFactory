@@ -5,12 +5,12 @@ using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.Dictionaries;
 using XmlConfiguration = CAS.SmartFactory.xml.Dictionaries.Configuration;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.Management
 {
   /// <summary>
   /// EntitiesExtensions - provides import functionality 
   /// </summary>
-  public static class EntitiesExtensions
+  internal static class DictionaryImport
   {
     #region public
 
@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="data">The data.</param>
     /// <param name="url">The URL.</param>
     /// <param name="progressChanged">The progress changed.</param>
-    public static void ImportData( XmlConfiguration data, string url, ProgressChangedEventHandler progressChanged )
+    internal static void ImportData( XmlConfiguration data, string url, ProgressChangedEventHandler progressChanged )
     {
       Entities edc = null;
       int progress = 0;

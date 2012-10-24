@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.Linq.IPR
             xmlDocument.GetMaterial(),
             edc,
             entry,
-            (MaterialXml xml, Dokument lib, Entities context) => { return SKUCigaretteExtension.SKUCigarette((CigarettesMaterialxML)xml, lib, context); },
+            (MaterialXml xml, Dokument lib, Entities context) => { return SKUCigarette((CigarettesMaterialxML)xml, lib, context); },
             progressChanged);
           break;
         case CAS.SmartFactory.xml.erp.SKU.SKUType.Cutfiller:
@@ -36,7 +36,7 @@ namespace CAS.SmartFactory.Linq.IPR
             xmlDocument.GetMaterial(),
             edc,
             entry,
-            ( MaterialXml xml, Dokument lib, Entities context ) => { return SKUCutfillerExtensions.SKUCutfiller( (CutfillerMaterialxML)xml, lib, context ); }, progressChanged );
+            ( MaterialXml xml, Dokument lib, Entities context ) => { return SKUCutfiller( (CutfillerMaterialxML)xml, lib, context ); }, progressChanged );
           break;
       }
     }
@@ -67,6 +67,33 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       if (entities.Count > 0)
         edc.SKU.InsertAllOnSubmit(entities);
+    }
+    private static SKUCigarette SKUCigarette( CigarettesMaterialxML xmlDocument, Dokument parent, Entities edc )
+    {
+      bool _menthol = xmlDocument.Menthol.StartsWith( "M" );
+      SKUCigarette _ret = new SKUCigarette()
+      {
+        ProductType = ProductType.Cigarette,
+        Brand = xmlDocument.Brand_Description,
+        Family = xmlDocument.Family_Des,
+        Menthol = xmlDocument.Menthol,
+        MentholMaterial = _menthol,
+        PrimeMarket = xmlDocument.Prime_Market,
+      };
+      _ret.ProcessData( xmlDocument.Cigarette_Length, xmlDocument.Filter_Segment_Length, edc );
+      SKUCommonPartExtensions.UpdateSKUCommonPart( _ret, xmlDocument, parent );
+      return _ret;
+    }
+    private static SKUCutfiller SKUCutfiller( CutfillerMaterialxML xmlDocument, Dokument parent, Entities edc )
+    {
+      SKUCutfiller _ret = new SKUCutfiller()
+      {
+        ProductType = ProductType.Cutfiller,
+        BlendPurpose = String.IsNullOrEmpty( xmlDocument.BlendPurpose ) ? String.Empty : xmlDocument.BlendPurpose
+      };
+      _ret.ProcessData( String.Empty, String.Empty, edc );
+      SKUCommonPartExtensions.UpdateSKUCommonPart( _ret, xmlDocument, parent );
+      return _ret;
     }
     private const string m_Source = "SKU Processing";
     private const string m_Message = "I cannot find material with SKU: {0}";
