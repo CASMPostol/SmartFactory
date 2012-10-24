@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.Linq.IPR;
+using CAS.SmartFactory.xml;
 using Microsoft.SharePoint;
+using InvoiceItemXml = CAS.SmartFactory.xml.erp.InvoiceItem;
 using InvoiceXml = CAS.SmartFactory.xml.erp.Invoice;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
@@ -11,8 +13,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
   /// <summary>
   /// List Item Events
   /// </summary>
-  public class InvoiceEventReceiver: SPItemEventReceiver
+  internal class InvoiceEventReceiver: SPItemEventReceiver
   {
+
+    #region public
     /// <summary>
     /// An item was added.
     /// </summary>
@@ -41,6 +45,14 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
       this.EventFiringEnabled = true;
       base.ItemAdded( properties );
     }
+    /// <summary>
+    /// Iports the invoice from XML.
+    /// </summary>
+    /// <param name="stream">The stream.</param>
+    /// <param name="url">The URL.</param>
+    /// <param name="listIndex">Index of the list.</param>
+    /// <param name="fileName">Name of the file.</param>
+    /// <param name="progressChanged">The progress changed.</param>
     public static void IportInvoiceFromXml( Stream stream, string url, int listIndex, string fileName, ProgressChangedEventHandler progressChanged )
     {
       try
@@ -51,7 +63,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
           Anons.WriteEntry( edc, m_Title, message );
           InvoiceXml document = InvoiceXml.ImportDocument( stream );
           InvoiceLib entry = Element.GetAtIndex<InvoiceLib>( edc.InvoiceLibrary, listIndex );
-          InvoiceContentExtension.GetXmlContent( document, edc, entry );
+          GetXmlContent( document, edc, entry );
           Anons.WriteEntry( edc, m_Title, "Import of the invoice message finished" );
         }
       }
@@ -61,6 +73,68 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
           Anons.WriteEntry( edc, "Aborted Invoice message import because of the error", ex.Message );
       }
     }
+    #endregion
+
+    #region private
+    internal static void GetXmlContent( InvoiceXml xml, Entities edc, InvoiceLib entry )
+    {
+      bool _ok = GetXmlContent( xml.Item, edc, entry );
+      entry.ClearenceIndex = null;
+      entry.InvoiceLibraryStatus = _ok;
+      entry.InvoiceLibraryReadOnly = false;
+      edc.SubmitChanges();
+    }
+    private static bool GetXmlContent( InvoiceItemXml[] invoiceEntries, Entities edc, InvoiceLib parent )
+    {
+      bool _result = true;
+      foreach ( InvoiceItemXml item in invoiceEntries )
+      {
+        InvoiceContent _ic = null;
+        try
+        {
+          _ic = CreateInvoiceContent( edc, parent, item );
+          _result &= _ic.InvoiceContentStatus.Value == InvoiceContentStatus.OK;
+          if ( parent.BillDoc.IsNullOrEmpty() )
+          {
+            parent.BillDoc = item.Bill_doc.ToString();
+            parent.InvoiceCreationDate = item.Created_on;
+          }
+          edc.InvoiceContent.InsertOnSubmit( _ic );
+          edc.SubmitChanges();
+          _ic.CreateTitle();
+          edc.SubmitChanges();
+        }
+        catch ( Exception ex )
+        {
+          _result = false;
+          string _msg = "Cannot create new entry for the invoice No={0}/{1}, SKU={2}, because of error: {3}";
+          Anons.WriteEntry( edc, "Invoice import", String.Format( _msg, item.Bill_doc, item.Item, item.Description, ex.Message ) );
+        }
+      }
+      return _result;
+    }
+    private static InvoiceContent CreateInvoiceContent( Entities edc, InvoiceLib parent, InvoiceItemXml item )
+    {
+      Batch _batch = Batch.GetOrCreatePreliminary( edc, item.Batch );
+      InvoiceContentStatus _invoiceContentStatus = InvoiceContentStatus.OK;
+      double? _Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
+      if ( _batch.BatchStatus.Value == BatchStatus.Preliminary )
+        _invoiceContentStatus = InvoiceContentStatus.BatchNotFound;
+      else if ( !_batch.Available( _Quantity.Value ) )
+        _invoiceContentStatus = InvoiceContentStatus.NotEnoughQnt;
+      return new InvoiceContent()
+      {
+        InvoiceContent2BatchIndex = _batch,
+        InvoiceIndex = parent,
+        SKUDescription = item.Description,
+        ProductType = _batch.ProductType,
+        Quantity = _Quantity,
+        Units = item.BUn,
+        Title = "Creating",
+        InvoiceContentStatus = _invoiceContentStatus
+      };
+    }
     private const string m_Title = "Invoice Message Import";
+    #endregion
   }
 }

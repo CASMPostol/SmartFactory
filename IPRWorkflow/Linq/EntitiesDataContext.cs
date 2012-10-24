@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.Dictionaries;
@@ -13,31 +14,12 @@ namespace CAS.SmartFactory.Linq.IPR
   {
     #region public
 
-    ///// <summary>
-    ///// Persists to the content database changes made by the current user to one or more lists using the specified failure mode;
-    ///// or, if a concurrency conflict is found, populates the <see cref="P:Microsoft.SharePoint.Linq.DataContext.ChangeConflicts"/> property.
-    ///// </summary>
-    ///// <param name="mode">Specifies how the list item changing system of the LINQ to SharePoint provider will respond when it 
-    ///// finds that a list item has been changed by another process since it was retrieved.
-    ///// </param>
-    //public void SubmitChangesSilently(RefreshMode mode)
-    //{
-    //  try
-    //  {
-    //    SubmitChanges();
-    //  }
-    //  catch (ChangeConflictException)
-    //  {
-    //    foreach (ObjectChangeConflict changedListItem in this.ChangeConflicts)
-    //    {
-    //      changedListItem.Resolve(mode);
-    //    }
-    //    this.SubmitChanges();
-    //  }
-    //catch (Exception)
-    //{
-    //}// end catch
-    //}
+    /// <summary>
+    /// Imports the data.
+    /// </summary>
+    /// <param name="data">The data.</param>
+    /// <param name="url">The URL.</param>
+    /// <param name="progressChanged">The progress changed.</param>
     public static void ImportData( XmlConfiguration data, string url, ProgressChangedEventHandler progressChanged )
     {
       Entities edc = null;
@@ -49,7 +31,7 @@ namespace CAS.SmartFactory.Linq.IPR
           progressChanged( null, new ProgressChangedEventArgs( progress++, "Connecting to website" ) );
           edc = new Entities( url );
           progressChanged( null, new ProgressChangedEventArgs( progress++, "Format" ) );
-          FormatExtension.ImportData( data.Format, edc );
+          ImportData( data.Format, edc );
           edc.SubmitChanges();
           //edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
           progressChanged( null, new ProgressChangedEventArgs( progress++, "Consent" ) );
@@ -234,6 +216,43 @@ namespace CAS.SmartFactory.Linq.IPR
         list.Add( wst );
       };
       edc.Waste.InsertAllOnSubmit( list );
+    }
+    private static void ImportData( ConfigurationFormatItem[] configurationFormatItem, Entities edc )
+    {
+      List<Format> list = new List<Format>();
+      foreach ( ConfigurationFormatItem item in configurationFormatItem )
+      {
+        Format frmt = new Format
+        {
+          CigaretteLenght = item.CigaretteLenght,
+          FilterLenght = item.FilterLenght,
+          Title = item.Title
+        };
+        list.Add( frmt );
+      };
+      edc.Format.InsertAllOnSubmit( list );
+    }
+    private static ProductType ParseProductType( this string entry )
+    {
+      try
+      {
+        return (ProductType)Enum.Parse( typeof( ProductType ), entry );
+      }
+      catch ( Exception )
+      {
+        return ProductType.None;
+      }
+    }
+    private static CompensationGood? ParseCompensationGood( this string entry )
+    {
+      try
+      {
+        return String.IsNullOrEmpty( entry ) ? new Nullable<CompensationGood>() : (CompensationGood)Enum.Parse( typeof( CompensationGood ), entry );
+      }
+      catch ( Exception )
+      {
+        return CompensationGood.Invalid;
+      }
     }
 
     #endregion

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
@@ -6,6 +7,7 @@ using CAS.SmartFactory.Linq.IPR;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
 using StockXml = CAS.SmartFactory.xml.erp.Stock;
+using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
 
 namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
 {
@@ -55,7 +57,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         edc.SubmitChanges();
         StockXml document = StockXml.ImportDocument( stream );
         Dokument entry = Element.GetAtIndex<Dokument>( edc.StockLibrary, listIndex );
-        StockExtension.IportXml( document, edc, entry, progressChanged );
+        IportXml( document, edc, entry, progressChanged );
         progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
         Anons.WriteEntry( edc, m_Title, "Import of the stock message finished" );
         edc.SubmitChanges();
@@ -73,6 +75,54 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         }
       }
     }
+    private static void IportXml( StockXml document, Entities edc, Dokument entry, ProgressChangedEventHandler progressChanged )
+    {
+      Stock newStock = new Stock( entry, edc );
+      edc.Stock.InsertOnSubmit( newStock );
+      List<StockEntry> stockEntities = new List<StockEntry>();
+      bool errors = false;
+      foreach ( StockXmlRow item in document.Row )
+      {
+        try
+        {
+          StockEntry nse = CreateStockEntry( item, newStock );
+          nse.ProcessEntry( edc );
+          progressChanged( item, new ProgressChangedEventArgs( 1, item.Material ) );
+          stockEntities.Add( nse );
+        }
+        catch ( Exception ex )
+        {
+          Anons.WriteEntry( edc, "Stock entry import error", ex.Message );
+          errors = true;
+        }
+      }
+      if ( errors )
+        throw new IPRDataConsistencyException( m_Source, m_AbortMessage, null, "Stock import error" );
+      if ( stockEntities.Count > 0 )
+        edc.StockEntry.InsertAllOnSubmit( stockEntities );
+    }
+    private static StockEntry CreateStockEntry( StockXmlRow xml, Stock parent )
+    {
+      return new StockEntry()
+      {
+        StockIndex = parent,
+        Batch = xml.Batch,
+        Blocked = xml.Blocked,
+        InQualityInsp = xml.InQualityInsp,
+        IPRType = false,
+        StorLoc = xml.SLoc,
+        RestrictedUse = xml.RestrictedUse,
+        SKU = xml.Material,
+        Title = xml.MaterialDescription,
+        Units = xml.BUn,
+        Unrestricted = xml.Unrestricted,
+        BatchIndex = null,
+        ProductType = ProductType.Invalid,
+        Quantity = xml.Blocked.GetValueOrDefault( 0 ) + xml.InQualityInsp.GetValueOrDefault( 0 ) + xml.RestrictedUse.GetValueOrDefault( 0 ) + xml.Unrestricted.GetValueOrDefault( 0 ),
+      };
+    }
+    private const string m_Source = "Stock processing";
+    private const string m_AbortMessage = "There are errors while importing the stock message";
     private const string m_Title = "Stock Message Import";
   }
 }
