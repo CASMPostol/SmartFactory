@@ -6,7 +6,6 @@ using CAS.SmartFactory.IPR.ListsEventsHandlers;
 using CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries;
 using CAS.SmartFactory.IPR.ListsEventsHandlers.Reports;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml.Dictionaries;
 
 namespace CAS.SmartFactory.Management

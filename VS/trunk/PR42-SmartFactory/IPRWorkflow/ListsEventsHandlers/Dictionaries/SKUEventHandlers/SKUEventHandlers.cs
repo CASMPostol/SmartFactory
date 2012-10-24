@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.IO;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.Linq.IPR;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
 using SKUXml = CAS.SmartFactory.xml.erp.SKU;
@@ -52,7 +51,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
         Anons.WriteEntry(edc, m_Title, message);
         SKUXml xml = SKUXml.ImportDocument(stream);
         Dokument entry = Element.GetAtIndex<Dokument>(edc.SKULibrary, listIndex);
-        SKUCommonPartExtensions.GetXmlContent(xml, edc, entry, progressChanged);
+        SKUGetFromXML.GetXmlContent(xml, edc, entry, progressChanged);
         progressChanged(null, new ProgressChangedEventArgs(1, "Submiting Changes"));
         edc.SubmitChanges();
       }
