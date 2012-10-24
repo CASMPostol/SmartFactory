@@ -75,7 +75,7 @@
     <Compile Include="Linq\SKUCutfiller.cs" />
     <Compile Include="ListsEventsHandlers\BatchEventReceiver\BatchEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />
-    <Compile Include="ListsEventsHandlers\Customs\SADImportXML\Clearence.cs" />
+    <Compile Include="ListsEventsHandlers\Customs\SADImportXML\ClearenceHelpers.cs" />
     <Compile Include="ListsEventsHandlers\Customs\SADImportXML\SADImportXML.cs" />
     <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUEventHandlers.cs" />
     <Compile Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\StockLibraryEventReceiver.cs" />
