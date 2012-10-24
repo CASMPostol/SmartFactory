@@ -66,14 +66,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clearance\ConsignmentFactory.cs" />
-    <Compile Include="Clearance\ExportFinishedGoods.cs" />
+    <Compile Include="Clearance\DisposalsFormFactory.cs" />
+    <Compile Include="Clearance\FinishedGoodsFormFactory.cs" />
     <Compile Include="CommonDefinitions.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CommonDefinitions.tt</DependentUpon>
     </Compile>
     <Compile Include="GlobalDefinitions.cs" />
-    <Compile Include="Linq\DocumentsFactory\DisposalsFormFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
