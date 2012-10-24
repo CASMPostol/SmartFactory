@@ -65,14 +65,13 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clearance\Class1.cs" />
+    <Compile Include="Clearance\ExportFinishedGoods.cs" />
     <Compile Include="CommonDefinitions.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CommonDefinitions.tt</DependentUpon>
     </Compile>
     <Compile Include="GlobalDefinitions.cs" />
-    <Compile Include="Linq\Batch.cs" />
     <Compile Include="Linq\DocumentsFactory\CigaretteExportForm.cs" />
     <Compile Include="Linq\DocumentsFactory\DisposalsFormFactory.cs" />
     <Compile Include="Linq\Dokument.cs" />
