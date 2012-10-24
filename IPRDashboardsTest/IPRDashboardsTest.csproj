@@ -39,6 +39,10 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.SharePoint, Version=1.60.19.23712, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PR44-SharePoint\SharePoint\bin\Debug\CAS.SharePoint.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SharePoint.Security, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
@@ -65,10 +69,6 @@
     <Compile Include="DocumentsFactoryUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
-      <Project>{B9D9FCCA-6132-4BF5-BC17-32EA752D6AD7}</Project>
-      <Name>SharePoint</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IPRDashboards\IPRDashboards.csproj">
       <Project>{C3E386B9-7F0D-4B3B-A1E8-62EE6A5DB102}</Project>
       <Name>IPRDashboards</Name>

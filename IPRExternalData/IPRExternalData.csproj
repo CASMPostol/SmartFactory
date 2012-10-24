@@ -403,6 +403,10 @@
     <Compile Include="ImputDataError.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="CAS.SharePoint, Version=1.60.19.23712, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PR44-SharePoint\SharePoint\bin\Debug\CAS.SharePoint.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.XML" />
@@ -428,12 +432,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
-      <Project>{B9D9FCCA-6132-4BF5-BC17-32EA752D6AD7}</Project>
-      <Name>SharePoint</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

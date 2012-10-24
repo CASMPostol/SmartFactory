@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.SharePoint, Version=1.60.19.23712, Culture=neutral, PublicKeyToken=92136b07f57214f5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PR44-SharePoint\SharePoint\bin\Debug\CAS.SharePoint.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -51,10 +55,6 @@
     <Compile Include="XMLResourcesTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PR44-SharePoint\SharePoint\SharePoint.csproj">
-      <Project>{B9D9FCCA-6132-4BF5-BC17-32EA752D6AD7}</Project>
-      <Name>SharePoint</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IPRExternalData\IPRExternalData.csproj">
       <Project>{54AF26B7-F75F-4025-8F30-89C0BE05DEE5}</Project>
       <Name>IPRExternalData</Name>
