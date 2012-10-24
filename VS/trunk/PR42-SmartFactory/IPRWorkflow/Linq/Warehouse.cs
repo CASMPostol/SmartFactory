@@ -18,20 +18,5 @@ namespace CAS.SmartFactory.Linq.IPR
       catch (Exception) { }
       return newWarehouse;
     }
-    internal static void ImportData(ConfigurationWarehouseItem[] configuration, Entities edc)
-    {
-      List<Warehouse> list = new List<Warehouse>();
-      foreach (ConfigurationWarehouseItem item in configuration)
-      {
-        Warehouse wrh = new Warehouse
-        {
-          External = item.External,
-          ProductType = item.ProductType.ParseProductType(),
-          Title = item.Title
-        };
-        list.Add(wrh);
-      };
-      edc.Warehouse.InsertAllOnSubmit(list);
-    }
   }
 }
