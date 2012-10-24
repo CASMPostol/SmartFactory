@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="21c3e4db-c217-4a05-98a2-9523cabf376f" solutionId="21c3e4db-c217-4a05-98a2-9523cabf376f" resetWebServer="false" title="CAS SmartFactory IPR Workflows" description="Package containing CAS.SmartFactory solution" name="CASSmartFactoryIPRWorkflows" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <customAssembly location="CAS.SmartFactory.xml.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\IPRExternalData\bin\Debug\CAS.SmartFactory.xml.dll" />
+  </assemblies>
   <features>
     <featureReference itemId="337c7c22-ae01-4c0d-93d5-ada18f0ee76e" />
   </features>

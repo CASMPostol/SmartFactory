@@ -2,7 +2,7 @@
 <feature xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="337c7c22-ae01-4c0d-93d5-ada18f0ee76e" creator="CAS" description="Workflows of the IPR component" featureId="337c7c22-ae01-4c0d-93d5-ada18f0ee76e" imageUrl="" scope="Site" solutionId="00000000-0000-0000-0000-000000000000" title="CAS SmartFactory IPR Workflows" version="AAEAAAD/////AQAAAAAAAAAEAQAAAA5TeXN0ZW0uVmVyc2lvbgQAAAAGX01ham9yBl9NaW5vcgZfQnVpbGQJX1JldmlzaW9uAAAAAAgICAgBAAAAPAAAAAAAAAAAAAAACw==" deploymentPath="$SharePoint.Project.FileNameWithoutExtension$_$SharePoint.Feature.FileNameWithoutExtension$" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/FeatureModel">
   <activationDependencies>
     <referencedFeatureActivationDependency minimumVersion="" itemId="f7642b3b-52e4-47c6-89f9-b0eb3120a5a2" projectPath="..\IPRWebsite\IPRWebsite.csproj" />
-    <referencedFeatureActivationDependency minimumVersion="" itemId="f8e968e3-19d1-4bc3-97fb-0ad9398b5d58" projectPath="..\IPRDashboards\IPRDashboards.csproj" />
+    <referencedFeatureActivationDependency minimumVersion="" itemId="6157b1a8-2d62-414f-9045-48bfbcf8892e" projectPath="..\IPRWebsiteModel\IPRWebsiteModel.csproj" />
   </activationDependencies>
   <projectItems>
     <projectItemReference itemId="f9f76688-a9ac-4d7a-895f-f67e0bb63324" />
