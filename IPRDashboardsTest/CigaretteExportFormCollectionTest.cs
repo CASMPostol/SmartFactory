@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
-using CAS.SmartFactory.Linq.IPR;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
-using CAS.SmartFactory.xml.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using XmlCigaretteExportForm = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm;
@@ -90,7 +89,7 @@ namespace IPRDashboardsTest
         Menthol = "M",
         MentholMaterial = true,
         PrimeMarket = "PL",
-        ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette,
+        ProductType = CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Cigarette,
         SKU = "12419574 ",
         Title = "SKU SA MXSR  99 CPB 20  5000 05  N PL1"
       };
@@ -112,7 +111,7 @@ namespace IPRDashboardsTest
         MaterialQuantity = 5000.1234567,
         MaterialQuantityPrevious = 0,
         Overuse = 0,
-        ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette,
+        ProductType = CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Cigarette,
         SHCooeficiencyVersion = 1,
         BatchSHCooeficiency = 0.01234567,
         SHMenthol = 1.3,
@@ -132,7 +131,7 @@ namespace IPRDashboardsTest
       {
         InvoiceContent2BatchIndex = _batch,
         InvoiceIndex = null,
-        ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette,
+        ProductType = CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Cigarette,
         Quantity = _quantity * _portion,
         SKUDescription = _batch.SKU,
         InvoiceContentStatus = InvoiceContentStatus.OK,
@@ -210,7 +209,7 @@ namespace IPRDashboardsTest
       {
         Disposal2BatchIndex = _batch,
         Disposal2ClearenceIndex = null,
-        ClearingType = CAS.SmartFactory.Linq.IPR.ClearingType.PartialWindingUp,
+        ClearingType = ClearingType.PartialWindingUp,
         CustomsProcedure = "5100",
         CustomsStatus = CustomsStatus.NotStarted,
         DisposalStatus = DisposalStatus.TobaccoInCigaretes,
