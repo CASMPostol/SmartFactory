@@ -6,7 +6,7 @@ using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 
 
-namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
+namespace CAS.SmartFactory.IPR.Dashboards.Clearance
 {
   internal static class DisposalsFormFactory
   {

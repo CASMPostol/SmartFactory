@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.Dashboards;
-using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 using Microsoft.SharePoint;
@@ -14,8 +13,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
   /// </summary>
   internal static class ConsignmentFactory
   {
-    internal static int Prepare
-      ( SPWeb site, CigaretteExportFormCollection _consignment, string fileName )
+    internal static int Prepare( SPWeb site, CigaretteExportFormCollection _consignment, string fileName )
     {
       string _stt = "Starting";
       try

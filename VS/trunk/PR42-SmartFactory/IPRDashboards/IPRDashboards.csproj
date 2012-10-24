@@ -73,7 +73,6 @@
       <DependentUpon>CommonDefinitions.tt</DependentUpon>
     </Compile>
     <Compile Include="GlobalDefinitions.cs" />
-    <Compile Include="Linq\DocumentsFactory\CigaretteExportForm.cs" />
     <Compile Include="Linq\DocumentsFactory\DisposalsFormFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>

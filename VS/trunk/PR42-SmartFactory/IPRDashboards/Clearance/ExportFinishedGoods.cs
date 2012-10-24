@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using ExportedProductType = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.ProductType;
 
@@ -13,7 +12,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
   /// <summary>
   /// Batch Extension
   /// </summary>
-  internal static class ExportFinishedGoods
+  internal static class FinishedGoodsFormFactory
   {
     #region public
 
