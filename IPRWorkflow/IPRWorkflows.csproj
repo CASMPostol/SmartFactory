@@ -68,14 +68,12 @@
     <Compile Include="CommonDefinition.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IPRDataConsistencyException.cs" />
-    <Compile Include="Linq\SKUCigarette.cs" />
-    <Compile Include="Linq\SKUCommonPart.cs" />
-    <Compile Include="Linq\SKUCutfiller.cs" />
     <Compile Include="ListsEventsHandlers\BatchEventReceiver\BatchEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\InvoiceEventReceiver\InvoiceEventReceiver.cs" />
     <Compile Include="ListsEventsHandlers\Customs\SADImportXML\ClearenceHelpers.cs" />
     <Compile Include="ListsEventsHandlers\Customs\SADImportXML\SADImportXML.cs" />
     <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUEventHandlers.cs" />
+    <Compile Include="ListsEventsHandlers\Dictionaries\SKUEventHandlers\SKUGetFromXML.cs" />
     <Compile Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\StockLibraryEventReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>

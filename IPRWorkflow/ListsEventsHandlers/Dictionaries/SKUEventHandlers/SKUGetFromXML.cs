@@ -7,9 +7,9 @@ using CutfillerMaterialxML = CAS.SmartFactory.xml.erp.CutfillerMaterial;
 using MaterialXml = CAS.SmartFactory.xml.erp.Material;
 using SKUXml = CAS.SmartFactory.xml.erp.SKU;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
 {
-  public static class SKUCommonPartExtensions
+  internal static class SKUGetFromXML
   {
     #region public
     internal static void UpdateSKUCommonPart(SKUCommonPart skuCommonPart, MaterialXml xml, Dokument parent)
@@ -81,7 +81,7 @@ namespace CAS.SmartFactory.Linq.IPR
         PrimeMarket = xmlDocument.Prime_Market,
       };
       _ret.ProcessData( xmlDocument.Cigarette_Length, xmlDocument.Filter_Segment_Length, edc );
-      SKUCommonPartExtensions.UpdateSKUCommonPart( _ret, xmlDocument, parent );
+      SKUGetFromXML.UpdateSKUCommonPart( _ret, xmlDocument, parent );
       return _ret;
     }
     private static SKUCutfiller SKUCutfiller( CutfillerMaterialxML xmlDocument, Dokument parent, Entities edc )
@@ -92,7 +92,7 @@ namespace CAS.SmartFactory.Linq.IPR
         BlendPurpose = String.IsNullOrEmpty( xmlDocument.BlendPurpose ) ? String.Empty : xmlDocument.BlendPurpose
       };
       _ret.ProcessData( String.Empty, String.Empty, edc );
-      SKUCommonPartExtensions.UpdateSKUCommonPart( _ret, xmlDocument, parent );
+      SKUGetFromXML.UpdateSKUCommonPart( _ret, xmlDocument, parent );
       return _ret;
     }
     private const string m_Source = "SKU Processing";

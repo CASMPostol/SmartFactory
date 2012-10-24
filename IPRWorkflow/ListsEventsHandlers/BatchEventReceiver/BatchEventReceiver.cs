@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.Linq.IPR;
 using Microsoft.SharePoint;
 using BatchMaterialXml = CAS.SmartFactory.xml.erp.BatchMaterial;
 using BatchXml = CAS.SmartFactory.xml.erp.Batch;
