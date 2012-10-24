@@ -10,6 +10,7 @@ using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml;
 using Microsoft.SharePoint;
+using CAS.SmartFactory.IPR.Dashboards.Clearance;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -533,7 +534,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
       {
-        ActionResult _checkResult = item.InvoiceContent2BatchIndex.ExportPossible( item.Quantity );
+        ActionResult _checkResult = item.InvoiceContent2BatchIndex.IsPossible( item.Quantity );
         if ( _checkResult.Valid )
           continue;
         foreach ( var _msg in _checkResult )
@@ -549,7 +550,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName(_newClearance.Identyfikator.Value );
       int _position = 1;
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
-        item.InvoiceContent2BatchIndex.Export( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );
+        item.InvoiceContent2BatchIndex.Do( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );
       _invoice.InvoiceLibraryReadOnly = true;
       int _sadConsignmentIdentifier = DokumentExtension.PrepareConsignment( site, _consignment, _masterDocumentName, _invoice.BillDoc );
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
