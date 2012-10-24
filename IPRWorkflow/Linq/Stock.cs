@@ -7,41 +7,34 @@ using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class Stock
+  internal static class StockExtension
   {
-    internal Stock(Dokument entry, Entities edc)
-      : this()
-    {
-      this.StockLibraryIndex = entry;
-      this.BalanceLibraryIndex = edc.StockLibrary.GetTopMostDocumentLookup();
-      this.Title = ""; //TODO What to assign to it http://itrserver/Bugs/BugDetail.aspx?bid=2910
-    }
     internal static void IportXml
-      (StockXml document, Entities edc, Dokument entry, ProgressChangedEventHandler progressChanged)
+      ( StockXml document, Entities edc, Dokument entry, ProgressChangedEventHandler progressChanged )
     {
-      Stock newStock = new Stock(entry, edc);
-      edc.Stock.InsertOnSubmit(newStock);
+      Stock newStock = new Stock( entry, edc );
+      edc.Stock.InsertOnSubmit( newStock );
       List<StockEntry> stockEntities = new List<StockEntry>();
       bool errors = false;
-      foreach (StockXmlRow item in document.Row)
+      foreach ( StockXmlRow item in document.Row )
       {
         try
         {
-          StockEntry nse = new StockEntry(item, newStock);
-          nse.ProcessEntry(edc);
-          progressChanged(item, new ProgressChangedEventArgs(1, item.Material));
-          stockEntities.Add(nse);
+          StockEntry nse = StockEntryExtension.StockEntry( item, newStock );
+          nse.ProcessEntry( edc );
+          progressChanged( item, new ProgressChangedEventArgs( 1, item.Material ) );
+          stockEntities.Add( nse );
         }
-        catch (Exception ex)
+        catch ( Exception ex )
         {
-          Anons.WriteEntry(edc, "Stock entry import error", ex.Message);
+          Anons.WriteEntry( edc, "Stock entry import error", ex.Message );
           errors = true;
         }
       }
-      if (errors)
-        throw new IPRDataConsistencyException(m_Source, m_AbortMessage, null, "Stock import error");
-      if (stockEntities.Count > 0)
-        edc.StockEntry.InsertAllOnSubmit(stockEntities);
+      if ( errors )
+        throw new IPRDataConsistencyException( m_Source, m_AbortMessage, null, "Stock import error" );
+      if ( stockEntities.Count > 0 )
+        edc.StockEntry.InsertAllOnSubmit( stockEntities );
     }
     private const string m_Source = "Stock processing";
     private const string m_AbortMessage = "There are errors while importing the stock message";

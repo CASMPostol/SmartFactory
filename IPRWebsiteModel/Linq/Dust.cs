@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Dust
   {
-    internal static Dust GetLookup(ProductType type, Entities edc)
+    public static Dust GetLookup( ProductType type, Entities edc )
     {
       try
       {

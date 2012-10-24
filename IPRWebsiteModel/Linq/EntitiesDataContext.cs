@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SharePoint.Linq;
-using System.ComponentModel;
-
+﻿
 namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Entities
@@ -44,7 +41,6 @@ namespace CAS.SmartFactory.Linq.IPR
         }
       }
       return new ProductDescription(ProductType.Other, false);
-      //throw new IPRDataConsistencyException(m_Source, String.Format(m_WrongProductTypeMessage, entity, location), null);
     }
     private const string m_Source = "Data Context";
     private const string m_WrongProductTypeMessage = "I cannot recognize product type of the stock entry SKU: {0} in location: {1}";

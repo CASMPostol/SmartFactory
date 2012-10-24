@@ -12,9 +12,20 @@ namespace CAS.SmartFactory.Linq.IPR
     /// </summary>
     /// <param name="edc">The edc.</param>
     /// <returns></returns>
-    protected override bool? GetIPRMaterial(Entities edc)
+    internal protected override bool? GetIPRMaterial( Entities edc )
     {
-      return (!String.IsNullOrEmpty(BlendPurpose)) && BlendPurpose.Contains("NEU");
+      return ( !String.IsNullOrEmpty( BlendPurpose ) ) && BlendPurpose.Contains( "NEU" );
+    }
+    /// <summary>
+    /// Gets the format lookup.
+    /// </summary>
+    /// <param name="cigaretteLenght">The cigarette lenght.</param>
+    /// <param name="filterLenght">The filter lenght.</param>
+    /// <param name="edc">The edc.</param>
+    /// <returns></returns>
+    internal protected override Format GetFormatLookup( string cigaretteLenght, string filterLenght, Entities edc )
+    {
+      return Format.GetCutfillerFormatLookup( edc );
     }
   }
 }

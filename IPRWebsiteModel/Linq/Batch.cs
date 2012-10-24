@@ -14,7 +14,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="index">The index of the entry we are lookin for.</param>
     /// <returns>The most recent <see cref="Batch"/> object.</returns>
     /// <exception cref="System.ArgumentNullException">The source is null.</exception>
-    internal static Batch FindLookup( Entities edc, string index )
+    public static Batch FindLookup( Entities edc, string index )
     {
       try
       {
@@ -25,7 +25,13 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new IPRDataConsistencyException( m_Source, String.Format( m_LookupFailedMessage, index ), ex, "Cannot find batch" );
       }
     }
-    internal static Batch GetOrCreatePreliminary( Entities edc, string batch )
+    /// <summary>
+    /// Gets an existing <see cref="Batch"/> or create preliminary.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="batch">The batch.</param>
+    /// <returns></returns>
+    public static Batch GetOrCreatePreliminary( Entities edc, string batch )
     {
       Batch newBatch = FindLookup( edc, batch );
       if ( newBatch == null )
@@ -46,9 +52,11 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       return newBatch;
     }
+    
     #endregion
 
     #region private
+
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be uploaded.";

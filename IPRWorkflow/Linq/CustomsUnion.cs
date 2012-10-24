@@ -1,18 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 using CAS.SmartFactory.xml.Dictionaries;
-using System.Collections.Generic;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class CustomsUnion
+  internal static class CustomsUnionExtension
   {
-    internal static bool? CheckIfUnion(string primeMarket, Entities edc)
-    {
-      if (String.IsNullOrEmpty(primeMarket))
-        throw new InvalidProgramException("CustomsUnion.CheckIfUnion the primeMarket parameter cannot be null");
-      return (from item in edc.CustomsUnion where item.EUPrimeMarket.Contains(primeMarket) select item).Any();
-    }
     internal static void ImportData(ConfigurationCustomsUnionItem[] configuration, Entities edc)
     {
       List<CustomsUnion> list = new List<CustomsUnion>();
@@ -27,6 +19,5 @@ namespace CAS.SmartFactory.Linq.IPR
       };
       edc.CustomsUnion.InsertAllOnSubmit(list);
     }
-    private const string  m_Source = "Customs Union List";
   }
 }

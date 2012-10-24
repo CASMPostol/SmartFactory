@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CAS.SmartFactory.IPR;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Warehouse
   {
-    internal static Warehouse Find(Entities edc, string index)
+    public static Warehouse Find( Entities edc, string index )
     {
       Warehouse newWarehouse = null;
       try

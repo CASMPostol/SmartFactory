@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using CAS.SmartFactory.IPR;
 using BatchXml = CAS.SmartFactory.xml.erp.Batch;
 
 namespace CAS.SmartFactory.Linq.IPR
@@ -9,7 +8,7 @@ namespace CAS.SmartFactory.Linq.IPR
   /// <summary>
   /// Batch
   /// </summary>
-  public partial class Batch
+  internal static class BatchExtension
   {
     #region public
     /// <summary>
@@ -20,7 +19,7 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="parent">The entry.</param>
     internal static void GetXmlContent( BatchXml xml, Entities edc, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
-      Material.SummaryContentInfo xmlBatchContent = new Material.SummaryContentInfo( xml.Material, edc, progressChanged );
+      MaterialExtension.SummaryContentInfo xmlBatchContent = new MaterialExtension.SummaryContentInfo( xml.Material, edc, progressChanged );
       Batch batch =
           ( from idx in edc.Batch where idx.Batch0.Contains( xmlBatchContent.Product.Batch ) && idx.BatchStatus.Value == Linq.IPR.BatchStatus.Preliminary select idx ).FirstOrDefault();
       if ( batch == null )
@@ -29,8 +28,61 @@ namespace CAS.SmartFactory.Linq.IPR
         edc.Batch.InsertOnSubmit( batch );
       }
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: BatchProcessing" ) );
-      batch.BatchProcessing( edc, GetBatchStatus( xml.Status ), xmlBatchContent, parent, progressChanged );
+      BatchProcessing(batch, edc, GetBatchStatus( xml.Status ), xmlBatchContent, parent, progressChanged );
     }
+    private static void BatchProcessing( Batch _this, Entities edc, BatchStatus status, MaterialExtension.SummaryContentInfo content, BatchLib parent, ProgressChangedEventHandler progressChanged )
+    {
+      _this.BatchLibraryIndex = parent;
+      _this.BatchStatus = status;
+      _this.Batch0 = content.Product.Batch;
+      _this.SKU = content.Product.SKU;
+      _this.Title = String.Format( "{0} SKU: {1}; Batch: {2}", content.Product.ProductType, _this.SKU, _this.Batch0 );
+      _this.FGQuantity = content.Product.FGQuantity;
+      _this.MaterialQuantity = content.TotalTobacco;
+      _this.ProductType = content.Product.ProductType;
+      progressChanged( _this, new ProgressChangedEventArgs( 1, "BatchProcessing: interconnect" ) );
+      //interconnect 
+      _this.SKUIndex = SKUCommonPart.GetLookup( edc, content.Product.SKU );
+      _this.CutfillerCoefficientIndex = CutfillerCoefficient.GetLookup( edc );
+      _this.UsageIndex = Usage.GetLookup( _this.SKUIndex.FormatIndex, edc );
+      progressChanged( _this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
+      //Coefficients
+      _this.DustIndex = Linq.IPR.Dust.GetLookup( _this.ProductType.Value, edc );
+      _this.BatchDustCooeficiency = _this.DustIndex.DustRatio;
+      _this.DustCooeficiencyVersion = _this.DustIndex.Wersja;
+      _this.SHMentholIndex = Linq.IPR.SHMenthol.GetLookup( _this.ProductType.Value, edc );
+      _this.BatchSHCooeficiency = _this.SHMentholIndex.SHMentholRatio;
+      _this.SHCooeficiencyVersion = _this.SHMentholIndex.Wersja;
+      _this.WasteIndex = Waste.GetLookup( _this.ProductType.Value, edc );
+      _this.BatchWasteCooeficiency = _this.WasteIndex.WasteRatio;
+      _this.WasteCooeficiencyVersion = _this.WasteIndex.Wersja;
+      progressChanged( _this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
+      //processing
+      _this.CalculatedOveruse = GetOverusage( _this.MaterialQuantity.Value, _this.FGQuantity.Value, _this.UsageIndex.UsageMax.Value, _this.UsageIndex.UsageMin.Value );
+      _this.FGQuantityAvailable = _this.FGQuantity;
+      _this.FGQuantityBlocked = 0;
+      _this.FGQuantityPrevious = 0; //TODO [pr4-3421] Intermediate batches processing http://itrserver/Bugs/BugDetail.aspx?bid=3421
+      _this.MaterialQuantityPrevious = 0;
+      double _shmcf = 0;
+      if ( ( _this.SKUIndex is SKUCigarette ) && ( (SKUCigarette)_this.SKUIndex ).MentholMaterial.Value )
+        _shmcf = ( (SKUCigarette)_this.SKUIndex ).MentholMaterial.Value ? _this.SHMentholIndex.SHMentholRatio.Value : 0;
+      progressChanged( _this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
+      content.ProcessDisposals( edc, _this, _this.DustIndex.DustRatio.Value, _shmcf, _this.WasteIndex.WasteRatio.Value, _this.CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
+      _this.Dust = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Dust ];
+      _this.SHMenthol = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.SHMenthol ];
+      _this.Waste = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Waste ];
+      _this.Tobacco = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Tobacco ];
+      _this.Overuse = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.OverusageInKg ];
+      foreach ( var _invoice in _this.InvoiceContent )
+      {
+        _invoice.CreateTitle();
+        if ( _this.Available( _invoice.Quantity.Value ) )
+          _invoice.InvoiceContentStatus = InvoiceContentStatus.OK;
+        else
+          _invoice.InvoiceContentStatus = InvoiceContentStatus.NotEnoughQnt;
+      }
+    }
+
     /// <summary>
     /// Gets or creates lookup.
     /// </summary>
@@ -40,56 +92,18 @@ namespace CAS.SmartFactory.Linq.IPR
      #endregion
 
     #region private
-    private void BatchProcessing( Entities edc, BatchStatus status, Material.SummaryContentInfo content, BatchLib parent, ProgressChangedEventHandler progressChanged )
+    private static BatchStatus GetBatchStatus( xml.erp.BatchStatus batchStatus )
     {
-      this.BatchLibraryIndex = parent;
-      this.BatchStatus = status;
-      Batch0 = content.Product.Batch;
-      SKU = content.Product.SKU;
-      Title = String.Format( "{0} SKU: {1}; Batch: {2}", content.Product.ProductType, SKU, Batch0 );
-      FGQuantity = content.Product.FGQuantity;
-      MaterialQuantity = content.TotalTobacco;
-      ProductType = content.Product.ProductType;
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: interconnect" ) );
-      //interconnect 
-      SKUIndex = SKUCommonPart.GetLookup( edc, content.Product.SKU );
-      CutfillerCoefficientIndex = CutfillerCoefficient.GetLookup( edc );
-      UsageIndex = Usage.GetLookup( SKUIndex.FormatIndex, edc );
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
-      //Coefficients
-      DustIndex = Linq.IPR.Dust.GetLookup( ProductType.Value, edc );
-      this.BatchDustCooeficiency = DustIndex.DustRatio;
-      DustCooeficiencyVersion = DustIndex.Wersja;
-      SHMentholIndex = Linq.IPR.SHMenthol.GetLookup( ProductType.Value, edc );
-      this.BatchSHCooeficiency = SHMentholIndex.SHMentholRatio;
-      SHCooeficiencyVersion = SHMentholIndex.Wersja;
-      WasteIndex = Linq.IPR.Waste.GetLookup( ProductType.Value, edc );
-      this.BatchWasteCooeficiency = WasteIndex.WasteRatio;
-      WasteCooeficiencyVersion = WasteIndex.Wersja;
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
-      //processing
-      this.CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageIndex.UsageMax.Value, UsageIndex.UsageMin.Value );
-      this.FGQuantityAvailable = FGQuantity;
-      this.FGQuantityBlocked = 0;
-      this.FGQuantityPrevious = 0; //TODO [pr4-3421] Intermediate batches processing http://itrserver/Bugs/BugDetail.aspx?bid=3421
-      this.MaterialQuantityPrevious = 0;
-      double _shmcf = 0;
-      if ( ( SKUIndex is SKUCigarette ) && ( (SKUCigarette)SKUIndex ).MentholMaterial.Value )
-        _shmcf = ( (SKUCigarette)SKUIndex ).MentholMaterial.Value ? SHMentholIndex.SHMentholRatio.Value : 0;
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
-      content.ProcessDisposals( edc, this, DustIndex.DustRatio.Value, _shmcf, WasteIndex.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
-      this.Dust = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Dust ];
-      this.SHMenthol = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.SHMenthol ];
-      this.Waste = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Waste ];
-      this.Tobacco = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Tobacco ];
-      this.Overuse = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.OverusageInKg ];
-      foreach ( var _invoice in this.InvoiceContent )
+      switch ( batchStatus )
       {
-        _invoice.CreateTitle();
-        if ( this.Available( _invoice.Quantity.Value ) )
-          _invoice.InvoiceContentStatus = InvoiceContentStatus.OK;
-        else
-          _invoice.InvoiceContentStatus = InvoiceContentStatus.NotEnoughQnt;
+        case CAS.SmartFactory.xml.erp.BatchStatus.Final:
+          return Linq.IPR.BatchStatus.Final;
+        case CAS.SmartFactory.xml.erp.BatchStatus.Intermediate:
+          return Linq.IPR.BatchStatus.Intermediate;
+        case CAS.SmartFactory.xml.erp.BatchStatus.Progress:
+          return Linq.IPR.BatchStatus.Progress;
+        default:
+          return Linq.IPR.BatchStatus.Preliminary;
       }
     }
     /// <summary>
@@ -109,20 +123,6 @@ namespace CAS.SmartFactory.Linq.IPR
       if ( _ret < 0 )
         return _ret / _materialQuantity; //Underusage
       return 0;
-    }
-    private static BatchStatus GetBatchStatus( xml.erp.BatchStatus batchStatus )
-    {
-      switch ( batchStatus )
-      {
-        case CAS.SmartFactory.xml.erp.BatchStatus.Final:
-          return Linq.IPR.BatchStatus.Final;
-        case CAS.SmartFactory.xml.erp.BatchStatus.Intermediate:
-          return Linq.IPR.BatchStatus.Intermediate;
-        case CAS.SmartFactory.xml.erp.BatchStatus.Progress:
-          return Linq.IPR.BatchStatus.Progress;
-        default:
-          return Linq.IPR.BatchStatus.Preliminary;
-      }
     }
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";

@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class Waste
   {
     #region public
-    internal static Waste GetLookup( ProductType type, Entities edc )
+    public static Waste GetLookup( ProductType type, Entities edc )
     {
       try
       {

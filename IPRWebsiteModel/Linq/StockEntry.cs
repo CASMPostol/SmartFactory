@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class StockEntry
   {
-    internal void ProcessEntry(Entities edc)
+    public void ProcessEntry( Entities edc )
     {
       GetProductType(edc);
       GetBatchLookup(edc);
@@ -26,7 +26,7 @@ namespace CAS.SmartFactory.Linq.IPR
         return;
       this.BatchIndex = Linq.IPR.Batch.GetOrCreatePreliminary(edc, this.Batch);
     }
-    private const string m_Source = "Stock Entry";
-    private const string m_WrongProductTypeMessage = "I cannot recognize product type of the stock entry SKU: {0} in location: {1}";
+    //private const string m_Source = "Stock Entry";
+    //private const string m_WrongProductTypeMessage = "I cannot recognize product type of the stock entry SKU: {0} in location: {1}";
   }
 }

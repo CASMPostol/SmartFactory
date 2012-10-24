@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class Usage
   {
 
-    internal static Usage GetLookup(Format format, Entities edc)
+    public static Usage GetLookup( Format format, Entities edc )
     {
       try
       {

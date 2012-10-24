@@ -6,7 +6,7 @@ using CAS.SharePoint.Web;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class Clearence
+  public static class ClearenceExtension
   {
     internal static Clearence Associate( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, out string _comments, SADDocumentLib customsDocumentLibrary )
     {
@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.Linq.IPR
                 _at = "InsertOnSubmit";
                 _edc.Clearence.InsertOnSubmit( _ret );
                 if ( _messageType == CustomsDocument.DocumentType.PZC )
-                  IPR.CreateIPRAccount( _edc, _sad, _ret, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
+                  IPRExtension.CreateIPRAccount( _edc, _sad, _ret, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
                 else
                   _comments = "Document added";
                 _ret.CreateTitle( _messageType.ToString() );
@@ -99,7 +99,7 @@ namespace CAS.SmartFactory.Linq.IPR
                 _startingDocument.ReleaseForFreeCirculation( _edc, out _comments );
                 break;
               case CustomsProcedureCodes.InwardProcessing:
-                IPR.CreateIPRAccount( _edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
+                IPRExtension.CreateIPRAccount( _edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
                 break;
               case CustomsProcedureCodes.ReExport:
               case CustomsProcedureCodes.NoProcedure:
