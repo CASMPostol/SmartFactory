@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.IPR.Customs
             Clearence _clrnc = null;
             try
             {
-              _clrnc = ClearenceExtension.Associate( edc, _message.MessageRootName(), _sad, out _comments, entry );
+              _clrnc = ClearenceHelpers.Associate( edc, _message.MessageRootName(), _sad, out _comments, entry );
             }
             catch ( Exception ex )
             {
