@@ -6,7 +6,13 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class PCNCode
   {
-    internal static PCNCode AddOrGet( Entities _edc, string _code )
+    /// <summary>
+    /// Adds the or get.
+    /// </summary>
+    /// <param name="_edc">The _edc.</param>
+    /// <param name="_code">The _code.</param>
+    /// <returns></returns>
+    public static PCNCode AddOrGet( Entities _edc, string _code )
     {
       PCNCode _pcncode = ( from _pcnx in _edc.PCNCode where _code.Trim().Contains( _pcnx.ProductCodeNumber ) select _pcnx ).FirstOrDefault();
       if ( _pcncode == null )

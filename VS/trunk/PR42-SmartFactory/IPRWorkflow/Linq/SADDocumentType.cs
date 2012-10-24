@@ -7,7 +7,7 @@ using CAS.SmartFactory.xml.Customs;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class SADDocumentType
+  public static class SADDocumentTypeExtension
   {
 
     #region public
@@ -17,31 +17,24 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <param name="_edc">The _edc.</param>
     /// <exception cref="GenericStateMachineEngine.ActionResult"> if operation cannot be complited.</exception>
     /// <param name="_messageType">Type of the _message.</param>
-    internal void ReExportOfGoods( Entities _edc, xml.Customs.CustomsDocument.DocumentType _messageType )
+    internal static void ReExportOfGoods( this SADDocumentType _this, Entities _edc, xml.Customs.CustomsDocument.DocumentType _messageType )
     {
-      this.SADDocument2Clearence = FimdClearence( _edc );
+      _this.SADDocument2Clearence = FimdClearence( _edc, _this );
       //TODO Define and use the reverse lookup field. 
-      foreach ( var _disposal in from _dspx in _edc.Disposal where _dspx.Disposal2ClearenceIndex.Identyfikator == this.SADDocument2Clearence.Identyfikator select _dspx )
+      foreach ( var _disposal in from _dspx in _edc.Disposal where _dspx.Disposal2ClearenceIndex.Identyfikator == _this.SADDocument2Clearence.Identyfikator select _dspx )
         //TODO not sure about this.CustomsDebtDate.Value, but it is the ony one date. 
-        _disposal.Export( _edc, this.DocumentNumber, this.SADDocument2Clearence, this.CustomsDebtDate.Value );
-      this.SADDocument2Clearence.DocumentNo = this.DocumentNumber;
-      this.SADDocument2Clearence.ReferenceNumber = this.ReferenceNumber;
-      this.SADDocument2Clearence.Status = true;
-      this.SADDocument2Clearence.CreateTitle( _messageType.ToString() );
-    }
-    internal void ReleaseForFreeCirculation( Entities _edc, out string _comments )
-    {
-      //TODO NotImplementedException
-      _comments = "NotImplementedException";
-      throw new NotImplementedException() { Source = "ReleaseForFreeCirculation" };
+        _disposal.Export( _edc, _this.DocumentNumber, _this.SADDocument2Clearence, _this.CustomsDebtDate.Value );
+      _this.SADDocument2Clearence.DocumentNo = _this.DocumentNumber;
+      _this.SADDocument2Clearence.ReferenceNumber = _this.ReferenceNumber;
+      _this.SADDocument2Clearence.Status = true;
+      _this.SADDocument2Clearence.CreateTitle( _messageType.ToString() );
     }
     #endregion
-
     #region private
-    private Clearence FimdClearence( Entities _edc )
+    private static Clearence FimdClearence( Entities _edc, SADDocumentType _this )
     {
       Clearence _clearance = null;
-      foreach ( SADGood _sg in SADGood )
+      foreach ( SADGood _sg in _this.SADGood )
       {
         if ( _sg.Procedure.RequestedProcedure() != CustomsProcedureCodes.ReExport )
           throw new IPRDataConsistencyException( "Clearence.Create", String.Format( "IE529 contains invalid customs procedure {0}", _sg.Title ), null, "Wrong customs procedure." );
@@ -62,7 +55,7 @@ namespace CAS.SmartFactory.Linq.IPR
       if ( _clearance != null )
         return _clearance;
       string _template = "Cannot find required document code ={0} for customs document = {1}/ref={2}";
-      throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _template, this.DocumentNumber, this.ReferenceNumber ) );
+      throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _template, _this.DocumentNumber, _this.ReferenceNumber ) );
     } //private Clearence FimdClearence(
 
     #endregion

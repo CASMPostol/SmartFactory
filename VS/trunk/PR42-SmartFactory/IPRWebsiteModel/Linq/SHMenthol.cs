@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class SHMenthol
   {
-    internal static SHMenthol GetLookup(ProductType type, Entities edc)
+    public static SHMenthol GetLookup( ProductType type, Entities edc )
     {
       try
       {

@@ -1,52 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using CigarettesMaterialxML = CAS.SmartFactory.xml.erp.CigarettesMaterial;
-using CigarettesXml = CAS.SmartFactory.xml.erp.Cigarettes;
+﻿using CigarettesMaterialxML = CAS.SmartFactory.xml.erp.CigarettesMaterial;
 using MaterialXml = CAS.SmartFactory.xml.erp.Material;
-using System.ComponentModel;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class SKUCigarette
+  internal static class SKUCigaretteExtension
   {
     #region public
-    public SKUCigarette
-      (CigarettesMaterialxML xmlDocument, Dokument parent, Entities edc)
-      : base(xmlDocument, parent, edc)
+    internal static SKUCigarette SKUCigarette( CigarettesMaterialxML xmlDocument, Dokument parent, Entities edc )
     {
-      this.ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette;
-      this.Brand = xmlDocument.Brand_Description;
-      this.Family = xmlDocument.Family_Des;
-      this.Menthol = xmlDocument.Menthol;
-      this.MentholMaterial = this.Menthol.StartsWith( "M" ); 
-      this.PrimeMarket = xmlDocument.Prime_Market;
+      bool _menthol = xmlDocument.Menthol.StartsWith( "M" );
+      SKUCigarette _ret = new SKUCigarette()
+      {
+        ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette,
+        Brand = xmlDocument.Brand_Description,
+        Family = xmlDocument.Family_Des,
+        Menthol = xmlDocument.Menthol,
+        MentholMaterial = _menthol,
+        PrimeMarket = xmlDocument.Prime_Market,
+      };
+      _ret.ProcessData( xmlDocument.Cigarette_Length, xmlDocument.Filter_Segment_Length, edc );
+      SKUCommonPartExtensions.UpdateSKUCommonPart( _ret, xmlDocument, parent );
+      return _ret;
     }
     #endregion
 
     #region private
-    protected override Format GetFormatLookup(MaterialXml xml, Entities edc)
+    internal static Format GetFormatLookup( this SKUCigarette _this, MaterialXml xml, Entities edc )
     {
       CigarettesMaterialxML cxml = (CigarettesMaterialxML)xml;
-      this.CigaretteLenght = cxml.Cigarette_Length;
-      this.FilterLenght = cxml.Filter_Segment_Length;
-      Format frmt = Format.GetFormatLookup(cxml.Cigarette_Length, cxml.Filter_Segment_Length, edc);
-      if (frmt == null)
-        Anons.WriteEntry(edc, m_Source, string.Format(m_FrmtTemplate, this.SKU));
+      _this.CigaretteLenght = cxml.Cigarette_Length;
+      _this.FilterLenght = cxml.Filter_Segment_Length;
+      Format frmt = Format.GetFormatLookup( cxml.Cigarette_Length, cxml.Filter_Segment_Length, edc );
+      if ( frmt == null )
+        Anons.WriteEntry( edc, m_Source, string.Format( m_FrmtTemplate, _this.SKU ) );
       return frmt;
-    }
-    protected override bool? GetIPRMaterial(Entities edc)
-    {
-
-      if (String.IsNullOrEmpty(this.PrimeMarket))
-      {
-        Anons.WriteEntry(edc, m_Source, string.Format(m_PMTemplate, this.Title));
-        return new Nullable<bool>();
-      }
-      return !CustomsUnion.CheckIfUnion(this.PrimeMarket, edc);
     }
     #endregion
     private const string m_Source = "Cigarettes SKU processing";
-    private const string m_PMTemplate = "I cannot analize the market for {0} because the name is epty";
     private const string m_FrmtTemplate = "I cannot recognize the format for {0}";
   }
 }

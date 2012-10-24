@@ -10,15 +10,16 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public static class SKUCutfillerExtensions
   {
-    public SKUCutfiller(CutfillerMaterialxML document, Dokument parent, Entities edc)
-      : base(document, parent, edc)
+    public static SKUCutfiller SKUCutfiller( CutfillerMaterialxML xmlDocument, Dokument parent, Entities edc )
     {
-      ProductType = Linq.IPR.ProductType.Cutfiller;
-      BlendPurpose = String.IsNullOrEmpty(document.BlendPurpose) ? String.Empty : document.BlendPurpose;
-    }
-    protected override bool? GetIPRMaterial(Entities edc)
-    {
-      return (!String.IsNullOrEmpty(BlendPurpose)) && BlendPurpose.Contains("NEU");
+      SKUCutfiller _ret = new SKUCutfiller()
+      {
+        ProductType = Linq.IPR.ProductType.Cutfiller,
+        BlendPurpose = String.IsNullOrEmpty( xmlDocument.BlendPurpose ) ? String.Empty : xmlDocument.BlendPurpose
+      };
+      _ret.ProcessData( String.Empty, String.Empty, edc );
+      SKUCommonPartExtensions.UpdateSKUCommonPart( _ret, xmlDocument, parent);
+      return _ret;
     }
   }
 }

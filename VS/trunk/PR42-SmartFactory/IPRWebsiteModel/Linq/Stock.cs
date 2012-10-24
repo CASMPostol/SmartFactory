@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.Linq.IPR
 {
   public partial class Stock
   {
-    internal Stock(Dokument entry, Entities edc)
+    public Stock( Dokument entry, Entities edc )
       : this()
     {
       this.StockLibraryIndex = entry;

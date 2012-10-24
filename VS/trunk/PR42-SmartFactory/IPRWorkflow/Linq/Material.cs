@@ -1,18 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using CAS.SharePoint;
 using CAS.SmartFactory.IPR;
 using BatchMaterialXml = CAS.SmartFactory.xml.erp.BatchMaterial;
-using CAS.SharePoint;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class Material
+  internal static class MaterialExtension
   {
-    #region public
-    /// <summary>
-    /// Contains all materials sorted using the following key: SKU,Batch,Location. <see cref="GetKey"/>
-    /// </summary>
+    #region private
+    internal static Material Material( BatchMaterialXml item )
+    {
+      return new Material()
+      {
+        Batch = item.Batch,
+        Material2BatchIndex = null,
+        SKU = item.Material,
+        StorLoc = item.Stor__Loc,
+        SKUDescription = item.Material_description,
+        Title = item.Material_description,
+        Units = item.Unit,
+        FGQuantity = Convert.ToDouble( item.Quantity ),
+        TobaccoQuantity = Convert.ToDouble( item.Quantity_calculated ),
+        ProductType = Linq.IPR.ProductType.Invalid,
+        ProductID = item.material_group,
+      };
+    }
     internal class SummaryContentInfo: SortedList<string, Material>
     {
       #region public
@@ -106,19 +120,20 @@ namespace CAS.SmartFactory.Linq.IPR
         if ( Product == null )
           throw new IPRDataConsistencyException( "Processing disposals", "Unrecognized finisched good", null, "CheckConsistence error" );
       }
-      internal SummaryContentInfo( BatchMaterialXml[] xml, Entities edc, ProgressChangedEventHandler progressChanged )
+      public SummaryContentInfo( BatchMaterialXml[] xml, Entities edc, ProgressChangedEventHandler progressChanged )
       {
         AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
         foreach ( BatchMaterialXml item in xml )
         {
-          Material newMaterial = new Material( item );
-          newMaterial.GetProductType( edc );
-          progressChanged( null, new ProgressChangedEventArgs( 1, String.Format( "SKU={0}", newMaterial.SKU ) ) );
-          Add( newMaterial );
+          Material _newMaterial = Material( item );
+          _newMaterial.GetProductType( edc );
+          progressChanged( null, new ProgressChangedEventArgs( 1, String.Format( "SKU={0}", _newMaterial.SKU ) ) );
+          Add( _newMaterial );
         }
         CheckConsistence();
         progressChanged( this, new ProgressChangedEventArgs( 1, "SummaryContentInfo created" ) );
       }
+
       #endregion
 
       #region private
@@ -130,15 +145,17 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       #endregion
     } //SummaryContentInfo
+    /// <summary>
+    /// Contains all materials sorted using the following key: SKU,Batch,Location. <see cref="GetKey"/>
+    /// </summary>
     internal class DisposalsAnalisis: SortedList<IPR.DisposalEnum, double>
     {
-
-      internal DisposalsAnalisis()
+      public DisposalsAnalisis()
       {
         foreach ( IPR.DisposalEnum _item in Enum.GetValues( typeof( IPR.DisposalEnum ) ) )
           this.Add( _item, 0 );
       }
-      internal DisposalsAnalisis( Entities _edc, string batch, double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage )
+      public DisposalsAnalisis( Entities _edc, string batch, double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage )
       {
         List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( _edc, batch );
         bool _closing = false;
@@ -161,46 +178,15 @@ namespace CAS.SmartFactory.Linq.IPR
         if ( _closing )
           this.Add( IPR.DisposalEnum.Tobacco, _am - this[ IPR.DisposalEnum.SHMenthol ] - this[ IPR.DisposalEnum.Waste ] - this[ IPR.DisposalEnum.Dust ] );
         else
-          this.Add( IPR.DisposalEnum.Tobacco, (_am - this[ IPR.DisposalEnum.SHMenthol ] - this[ IPR.DisposalEnum.Waste ] - this[ IPR.DisposalEnum.Dust ]).RountMass() );
+          this.Add( IPR.DisposalEnum.Tobacco, ( _am - this[ IPR.DisposalEnum.SHMenthol ] - this[ IPR.DisposalEnum.Waste ] - this[ IPR.DisposalEnum.Dust ] ).RountMass() );
       }
-      internal void Accumutate( DisposalsAnalisis _dspsls )
+      public void Accumutate( DisposalsAnalisis _dspsls )
       {
         foreach ( IPR.DisposalEnum _item in Enum.GetValues( typeof( IPR.DisposalEnum ) ) )
           this[ _item ] += _dspsls.Keys.Contains( _item ) ? _dspsls[ _item ] : 0;
       }
     }
-    internal SKUCommonPart SKULookup { get; set; }
-    internal bool IPRMaterial { get; set; }
-    #endregion
 
-    #region private
-    private Material( BatchMaterialXml item )
-      : this()
-    {
-      Batch = item.Batch;
-      this.Material2BatchIndex = null;
-      SKU = item.Material;
-      this.StorLoc = item.Stor__Loc;
-      SKUDescription = item.Material_description;
-      Title = item.Material_description;
-      Units = item.Unit;
-      FGQuantity = Convert.ToDouble( item.Quantity );
-      TobaccoQuantity = Convert.ToDouble( item.Quantity_calculated );
-      ProductType = Linq.IPR.ProductType.Invalid;
-      ProductID = item.material_group;
-    }
-    private string GetKey()
-    {
-      return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
-    }
-    private void GetProductType( Entities edc )
-    {
-      Entities.ProductDescription product = edc.GetProductType( this.SKU, this.StorLoc );
-      this.ProductType = product.productType;
-      this.SKULookup = product.skuLookup;
-      this.IPRMaterial = product.IPRMaterial;
-    }
-    private const string m_keyForam = "{0}:{1}:{2}";
     #endregion
   }
 }

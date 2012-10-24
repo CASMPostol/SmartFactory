@@ -10,14 +10,14 @@ using SKUXml = CAS.SmartFactory.xml.erp.SKU;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public abstract class SKUCommonPartExtensions
+  public static class SKUCommonPartExtensions
   {
     #region public
-    public void  SKUCommonPart(SKUCommonPart _this, MaterialXml xml, Dokument parent)
+    internal static void UpdateSKUCommonPart(SKUCommonPart skuCommonPart, MaterialXml xml, Dokument parent)
     {
-      _this.SKULibraryIndex = parent;
-      _this.SKU = xml.GetMaterial();
-      _this.Title = xml.GetMaterialDescription();
+      skuCommonPart.SKULibraryIndex = parent;
+      skuCommonPart.SKU = xml.GetMaterial();
+      skuCommonPart.Title = xml.GetMaterialDescription();
     }
     internal static void GetXmlContent
       (SKUXml xmlDocument, Entities edc, Dokument entry, ProgressChangedEventHandler progressChanged)
@@ -29,7 +29,7 @@ namespace CAS.SmartFactory.Linq.IPR
             xmlDocument.GetMaterial(),
             edc,
             entry,
-            (MaterialXml xml, Dokument lib, Entities context) => { return new SKUCigarette((CigarettesMaterialxML)xml, lib, context); },
+            (MaterialXml xml, Dokument lib, Entities context) => { return SKUCigaretteExtension.SKUCigarette((CigarettesMaterialxML)xml, lib, context); },
             progressChanged);
           break;
         case CAS.SmartFactory.xml.erp.SKU.SKUType.Cutfiller:
@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.Linq.IPR
             xmlDocument.GetMaterial(),
             edc,
             entry,
-            (MaterialXml xml, Dokument lib, Entities context) => { return new SKUCutfiller((CutfillerMaterialxML)xml, lib, context); }, progressChanged);
+            ( MaterialXml xml, Dokument lib, Entities context ) => { return SKUCutfillerExtensions.SKUCutfiller( (CutfillerMaterialxML)xml, lib, context ); }, progressChanged );
           break;
       }
     }
@@ -54,11 +54,10 @@ namespace CAS.SmartFactory.Linq.IPR
         try
         {
           progressChanged(null, new ProgressChangedEventArgs(1, "Processing: " + item.GetMaterial()));
-          SKUCommonPart entity = Find(edc, item.GetMaterial());
+          SKUCommonPart entity = SKUCommonPart.Find( edc, item.GetMaterial() );
           if (entity != null)
             continue;
           SKUCommonPart sku = creator(item, parent, edc);
-          sku.ProcessData(item, edc);
           entities.Add(sku);
         }
         catch (Exception ex)
@@ -70,13 +69,9 @@ namespace CAS.SmartFactory.Linq.IPR
       if (entities.Count > 0)
         edc.SKU.InsertAllOnSubmit(entities);
     }
-    private void ProcessData(MaterialXml xml, Entities edc)
-    {
-      this.FormatIndex = GetFormatLookup(xml, edc);
-      this.IPRMaterial = GetIPRMaterial(edc);
-    }
     private const string m_Source = "SKU Processing";
     private const string m_Message = "I cannot find material with SKU: {0}";
     #endregion
+
   }
 }

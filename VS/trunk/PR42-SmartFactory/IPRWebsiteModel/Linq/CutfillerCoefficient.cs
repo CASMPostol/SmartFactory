@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.Linq.IPR
   public partial class CutfillerCoefficient
   {
     #region public
-    internal static CutfillerCoefficient GetLookup(Entities edc)
+    public static CutfillerCoefficient GetLookup( Entities edc )
     {
       try
       {

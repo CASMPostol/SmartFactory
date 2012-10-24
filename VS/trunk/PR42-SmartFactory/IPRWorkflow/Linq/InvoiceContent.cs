@@ -6,12 +6,12 @@ using InvoiceXml = CAS.SmartFactory.xml.erp.Invoice;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class InvoiceContent
+  internal static class InvoiceContentExtension
   {
     #region public
     internal static void GetXmlContent( InvoiceXml xml, Entities edc, InvoiceLib entry )
     {
-      bool _ok = InvoiceContent.GetXmlContent( xml.Item, edc, entry );
+      bool _ok = GetXmlContent( xml.Item, edc, entry );
       entry.ClearenceIndex = null;
       entry.InvoiceLibraryStatus = _ok;
       entry.InvoiceLibraryReadOnly = false;
@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.Linq.IPR
         InvoiceContent _ic = null;
         try
         {
-          _ic = new InvoiceContent( edc, parent, item );
+          _ic = CreateInvoiceContent( edc, parent, item );
           _result &= _ic.InvoiceContentStatus.Value == Linq.IPR.InvoiceContentStatus.OK;
           if ( parent.BillDoc.IsNullOrEmpty() )
           {
@@ -49,21 +49,26 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       return _result;
     }
-    private InvoiceContent( Entities edc, InvoiceLib parent, InvoiceItemXml item ) :
-      this()
+    private static InvoiceContent CreateInvoiceContent( Entities edc, InvoiceLib parent, InvoiceItemXml item )
     {
-      this.InvoiceContent2BatchIndex = Linq.IPR.Batch.GetOrCreatePreliminary( edc, item.Batch );
-      InvoiceIndex = parent;
-      this.SKUDescription = item.Description;
-      ProductType = this.InvoiceContent2BatchIndex.ProductType;
-      Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
-      Units = item.BUn;
-      Title = "Creating";
-      this.InvoiceContentStatus = Linq.IPR.InvoiceContentStatus.OK;
-      if ( this.InvoiceContent2BatchIndex.BatchStatus.Value == BatchStatus.Preliminary )
-        this.InvoiceContentStatus = Linq.IPR.InvoiceContentStatus.BatchNotFound;
-      else if ( !this.InvoiceContent2BatchIndex.Available( Quantity.Value ) )
-        this.InvoiceContentStatus = Linq.IPR.InvoiceContentStatus.NotEnoughQnt;
+      Batch _batch = Linq.IPR.Batch.GetOrCreatePreliminary( edc, item.Batch );
+      InvoiceContentStatus _invoiceContentStatus = Linq.IPR.InvoiceContentStatus.OK;
+      double? _Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
+      if ( _batch.BatchStatus.Value == BatchStatus.Preliminary )
+        _invoiceContentStatus = Linq.IPR.InvoiceContentStatus.BatchNotFound;
+      else if ( !_batch.Available( _Quantity.Value ) )
+        _invoiceContentStatus = Linq.IPR.InvoiceContentStatus.NotEnoughQnt;
+      return new InvoiceContent()
+      {
+        InvoiceContent2BatchIndex = _batch,
+        InvoiceIndex = parent,
+        SKUDescription = item.Description,
+        ProductType = _batch.ProductType,
+        Quantity = _Quantity,
+        Units = item.BUn,
+        Title = "Creating",
+        InvoiceContentStatus = _invoiceContentStatus
+      };
     }
     #endregion
   }

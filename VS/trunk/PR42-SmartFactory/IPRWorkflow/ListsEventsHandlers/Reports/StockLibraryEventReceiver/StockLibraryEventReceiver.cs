@@ -54,7 +54,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         edc.SubmitChanges();
         StockXml document = StockXml.ImportDocument( stream );
         Dokument entry = Element.GetAtIndex<Dokument>( edc.StockLibrary, listIndex );
-        Stock.IportXml( document, edc, entry, progressChanged );
+        StockExtension.IportXml( document, edc, entry, progressChanged );
         progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
         Anons.WriteEntry( edc, m_Title, "Import of the stock message finished" );
         edc.SubmitChanges();

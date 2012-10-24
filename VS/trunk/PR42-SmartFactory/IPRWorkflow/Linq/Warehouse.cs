@@ -6,7 +6,7 @@ using CAS.SmartFactory.xml.Dictionaries;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  public partial class Warehouse
+  public partial class WarehouseExtension
   {
     internal static Warehouse Find(Entities edc, string index)
     {

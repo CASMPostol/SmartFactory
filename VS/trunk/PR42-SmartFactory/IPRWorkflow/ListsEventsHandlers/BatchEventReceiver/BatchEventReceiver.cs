@@ -95,7 +95,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         _edc.SubmitChanges();
         BatchXml _xml = BatchXml.ImportDocument( stream );
         progressChanged( null, new ProgressChangedEventArgs( 1, "Getting Data" ) );
-        Batch.GetXmlContent( _xml, _edc, _entry, progressChanged );
+        BatchExtension.GetXmlContent( _xml, _edc, _entry, progressChanged );
         progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
         Anons.WriteEntry( _edc, m_Title, "Import of the batch message finished" );
         _edc.SubmitChanges();
