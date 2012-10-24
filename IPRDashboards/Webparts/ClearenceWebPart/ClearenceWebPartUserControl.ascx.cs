@@ -10,7 +10,6 @@ using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.IPR.Dashboards.Clearance;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 using Microsoft.SharePoint;
