@@ -4,7 +4,10 @@ using XmlConfiguration = CAS.SmartFactory.xml.Dictionaries.Configuration;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
-  internal static class EntitiesExtensions
+  /// <summary>
+  /// EntitiesExtensions - provides import functionality 
+  /// </summary>
+  public static class EntitiesExtensions
   {
     ///// <summary>
     ///// Persists to the content database changes made by the current user to one or more lists using the specified failure mode;
@@ -27,55 +30,58 @@ namespace CAS.SmartFactory.Linq.IPR
     //    }
     //    this.SubmitChanges();
     //  }
-      //catch (Exception)
-      //{
-      //}// end catch
+    //catch (Exception)
+    //{
+    //}// end catch
     //}
-    internal static void ImportData( this Entities _this, XmlConfiguration data, string url, ProgressChangedEventHandler progressChanged )
+    public static void ImportData( XmlConfiguration data, string url, ProgressChangedEventHandler progressChanged )
     {
       Entities edc = null;
       int progress = 0;
       try
       {
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "Connecting to website"));
-        edc = new Entities(url);
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "Format"));
-        Linq.IPR.FormatExtension.ImportData( data.Format, edc );
-        edc.SubmitChanges();
-        //edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "Consent"));
-        Linq.IPR.ConsentExtension.ImportData( data.Consent, edc );
-        edc.SubmitChanges();
-        progressChanged( null, new ProgressChangedEventArgs( progress++, "CustomsUnion" ) );
-        Linq.IPR.CustomsUnionExtension.ImportData( data.CustomsUnion, edc );
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "CutfillerCoefficient"));
-        edc.SubmitChanges();
-        Linq.IPR.CutfillerCoefficientExtension.ImportData( data.CutfillerCoefficient, edc );
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "Dust"));
-        edc.SubmitChanges();
-        Linq.IPR.DustExtension.ImportData( data.Dust, edc );
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "PCNCode"));
-        edc.SubmitChanges();
-        Linq.IPR.PCNCodeExtension.ImportData( data.PCNCode, edc );
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "SHMenthol"));
-        edc.SubmitChanges();
-        Linq.IPR.SHMentholExtension.ImportData( data.SHMenthol, edc );
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "Usage"));
-        edc.SubmitChanges();
-        Linq.IPR.UsageExtension.ImportData( data.Usage, edc );
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "Warehouse"));
-        edc.SubmitChanges();
-        Linq.IPR.WarehouseExtension.ImportData( data.Warehouse, edc );
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "Waste"));
-        edc.SubmitChanges();
-        Linq.IPR.WasteExtension.ImportData( data.Waste, edc );
-        progressChanged(null, new ProgressChangedEventArgs(progress++, "Submiting Changes"));
-        edc.SubmitChanges();
-        //edc.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
+        using ( Entities _this = new Entities( url ) )
+        {
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "Connecting to website" ) );
+          edc = new Entities( url );
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "Format" ) );
+          FormatExtension.ImportData( data.Format, edc );
+          edc.SubmitChanges();
+          //edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "Consent" ) );
+          ConsentExtension.ImportData( data.Consent, edc );
+          edc.SubmitChanges();
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "CustomsUnion" ) );
+          CustomsUnionExtension.ImportData( data.CustomsUnion, edc );
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "CutfillerCoefficient" ) );
+          edc.SubmitChanges();
+          CutfillerCoefficientExtension.ImportData( data.CutfillerCoefficient, edc );
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "Dust" ) );
+          edc.SubmitChanges();
+          DustExtension.ImportData( data.Dust, edc );
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "PCNCode" ) );
+          edc.SubmitChanges();
+          PCNCodeExtension.ImportData( data.PCNCode, edc );
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "SHMenthol" ) );
+          edc.SubmitChanges();
+          SHMentholExtension.ImportData( data.SHMenthol, edc );
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "Usage" ) );
+          edc.SubmitChanges();
+          UsageExtension.ImportData( data.Usage, edc );
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "Warehouse" ) );
+          edc.SubmitChanges();
+          WarehouseExtension.ImportData( data.Warehouse, edc );
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "Waste" ) );
+          edc.SubmitChanges();
+          WasteExtension.ImportData( data.Waste, edc );
+          progressChanged( null, new ProgressChangedEventArgs( progress++, "Submiting Changes" ) );
+          edc.SubmitChanges();
+          //edc.SubmitChangesSilently( RefreshMode.OverwriteCurrentValues );
+        }
       }
       finally
       {
-        if (edc != null)
+        if ( edc != null )
         {
           edc.Dispose();
         }
