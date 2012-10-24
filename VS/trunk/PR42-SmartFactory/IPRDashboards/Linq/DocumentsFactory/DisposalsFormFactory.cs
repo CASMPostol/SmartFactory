@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
+
 
 namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
 {
@@ -11,7 +13,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
     internal static DocumentContent GetBoxFormContent( IQueryable<Disposal> disposals, string customProcedureCode, string documentNo )
     {
       double _subTotal = 0;
-      MaterialRecord[] _materialRecords = DisposalExtension.GetListOfMaterials( disposals, ref _subTotal );
+      MaterialRecord[] _materialRecords = GetListOfMaterials( disposals, ref _subTotal );
       //TODO not sure about how to calculate end and start date 
       DateTime endDate = disposals.Max( x => x.Created.Value );
       DateTime startDate = disposals.Max( x => x.Created.Value );
@@ -34,7 +36,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
     internal static DocumentContent GetTobaccoFreeCirculationFormContent( IEnumerable<Disposal> disposals, string customProcedureCode, string documentNo )
     {
       double _subTotal = 0;
-      MaterialRecord[] _materialRecords = DisposalExtension.GetListOfMaterials( disposals, ref _subTotal );
+      MaterialRecord[] _materialRecords = GetListOfMaterials( disposals, ref _subTotal );
       //TODO not sure about how to calculate end and start date 
       DateTime endDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
       DateTime startDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
@@ -69,7 +71,7 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       {
         double _subTotal = 0;
         IEnumerable<Disposal> _dspslsInGroup = from _dspslx in _gx select _dspslx;
-        MaterialRecord[] _materialRecords = DisposalExtension.GetListOfMaterials( _dspslsInGroup, ref _subTotal );
+        MaterialRecord[] _materialRecords = GetListOfMaterials( _dspslsInGroup, ref _subTotal );
         _dustsGroupe.Add(
           new MaterialsOnOneAccount()
           {
@@ -89,6 +91,28 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
         StartDate = startDate,
         Total = _total
       };
+    }
+    private static MaterialRecord[] GetListOfMaterials( IEnumerable<Disposal> _disposals, ref double _subTotal )
+    {
+      List<MaterialRecord> _dustRecord = new List<MaterialRecord>();
+      foreach ( Disposal _dx in _disposals )
+      {
+        _subTotal += _dx.SettledQuantity.Value;
+        MaterialRecord _newRecord = new MaterialRecord()
+        {
+          Qantity = _dx.SettledQuantity.GetValueOrDefault( 0 ),
+          Date = _dx.Disposal2IPRIndex.CustomsDebtDate.GetValueOrNull(),
+          CustomDocumentNo = _dx.Disposal2IPRIndex.DocumentNo,
+          FinishedGoodBatch = _dx.Disposal2BatchIndex == null ? String.Empty : _dx.Disposal2BatchIndex.Batch0,
+          MaterialBatch = _dx.Disposal2IPRIndex.Batch,
+          MaterialSKU = _dx.Disposal2IPRIndex.SKU,
+          UnitPrice = _dx.Disposal2IPRIndex.IPRUnitPrice.Value,
+          TobaccoValue = _dx.TobaccoValue.Value,
+          Currency = _dx.Disposal2IPRIndex.Currency
+        };
+        _dustRecord.Add( _newRecord );
+      }
+      return _dustRecord.ToArray();
     }
   }
 }
