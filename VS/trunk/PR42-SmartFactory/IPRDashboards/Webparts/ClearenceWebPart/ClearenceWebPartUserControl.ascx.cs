@@ -8,8 +8,8 @@ using System.Web.UI.WebControls.WebParts;
 using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR.Dashboards.Clearance;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
@@ -501,7 +501,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           case Group.TobaccoNotAllocated:
             DocumentContent _newTobaccoDoc =
               DisposalsFormFactory.GetTobaccoFreeCirculationFormContent( _clearence.Disposal, _clearence.ProcedureCode, _masterDocumentName );
-            _sadConsignmentIdentifier = DokumentExtension.PrepareConsignment( SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName, CompensatiionGood.Tobacco );
+            _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName, CompensatiionGood.Tobacco );
             break;
           case Group.Waste:
           case Group.Dust:
@@ -509,12 +509,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
               DisposalsFormFactory.GetDustWasteFormContent( _clearence.Disposal, _clearence.ProcedureCode, _masterDocumentName );
             CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ?
               CompensatiionGood.Waste : CompensatiionGood.Dust;
-            _sadConsignmentIdentifier = DokumentExtension.PrepareConsignment( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood );
+            _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood );
             break;
           case Group.Cartons:
             DocumentContent _newBoxFormContent =
               DisposalsFormFactory.GetBoxFormContent( _clearence.Disposal, _clearence.ProcedureCode, _masterDocumentName );
-            _sadConsignmentIdentifier = DokumentExtension.PrepareConsignment( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, CompensatiionGood.Cartons );
+            _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, CompensatiionGood.Cartons );
             break;
         }
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );

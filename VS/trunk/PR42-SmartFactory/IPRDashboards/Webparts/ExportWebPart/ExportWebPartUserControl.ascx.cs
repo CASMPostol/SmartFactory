@@ -11,6 +11,7 @@ using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.xml;
 using Microsoft.SharePoint;
 using CAS.SmartFactory.IPR.Dashboards.Clearance;
+using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -550,9 +551,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName(_newClearance.Identyfikator.Value );
       int _position = 1;
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
-        item.InvoiceContent2BatchIndex.Do( m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );
+        ExportFinishedGoods.Do(item.InvoiceContent2BatchIndex, m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );
       _invoice.InvoiceLibraryReadOnly = true;
-      int _sadConsignmentIdentifier = DokumentExtension.PrepareConsignment( site, _consignment, _masterDocumentName, _invoice.BillDoc );
+      CigaretteExportFormCollection _cefc = CAS.SmartFactory.IPR.Dashboards.Clearance.ExportFinishedGoods.CigaretteExportFormCollection( _consignment, _masterDocumentName, _invoice.BillDoc );
+      int _sadConsignmentIdentifier = ConsignmentFactory.Prepare( site, _cefc, _masterDocumentName );
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
       _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
       m_DataContextManagement.DataContext.SubmitChanges();
