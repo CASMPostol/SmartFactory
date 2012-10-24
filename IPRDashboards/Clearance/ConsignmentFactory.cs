@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using CAS.SharePoint;
-using CAS.SmartFactory.IPR.Dashboards;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 using Microsoft.SharePoint;
