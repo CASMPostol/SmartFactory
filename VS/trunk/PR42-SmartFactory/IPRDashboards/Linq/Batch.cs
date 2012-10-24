@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.Dashboards;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using ExportedProductType = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.ProductType;
@@ -91,13 +92,13 @@ namespace CAS.SmartFactory.Linq.IPR
       }
       return _result;
     }
-    private static ExportedProductType Product( ProductType productType )
+    private static ExportedProductType Product(CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType productType )
     {
       switch ( productType )
       {
-        case Linq.IPR.ProductType.Cutfiller:
+        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Cutfiller:
           return ExportedProductType.Cutfiller;
-        case Linq.IPR.ProductType.Cigarette:
+        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Cigarette:
           return ExportedProductType.Cigarette;
         default:
           string _prdct = String.Format( "Product: {0}", productType );

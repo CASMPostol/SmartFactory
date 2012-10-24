@@ -5,7 +5,7 @@ using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class Material
   {
@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     public List<Disposal> GetListOfDisposals()
     {
-      Linq.IPR.DisposalStatus status = this.Material2BatchIndex.ProductType.Value == Linq.IPR.ProductType.Cigarette ? DisposalStatus.TobaccoInCigaretes : DisposalStatus.TobaccoInCutfiller;
+      Linq.DisposalStatus status = this.Material2BatchIndex.ProductType.Value == Linq.ProductType.Cigarette ? DisposalStatus.TobaccoInCigaretes : DisposalStatus.TobaccoInCutfiller;
       return
         (
             from _didx in this.Disposal

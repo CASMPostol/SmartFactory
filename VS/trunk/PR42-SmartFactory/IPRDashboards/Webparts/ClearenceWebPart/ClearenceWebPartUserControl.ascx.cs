@@ -8,6 +8,7 @@ using System.Web.UI.WebControls.WebParts;
 using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.Linq.IPR;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml;
@@ -536,13 +537,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       //remove from clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyAdded )
       {
-        Linq.IPR.Disposal _dspsl = Element.GetAtIndex<Linq.IPR.Disposal>( edc.Disposal, _row.Identyfikator );
+        Disposal _dspsl = Element.GetAtIndex<Disposal>( edc.Disposal, _row.Identyfikator );
         _dspsl.Disposal2ClearenceIndex = null;
       }
       //add to clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
       {
-        Linq.IPR.Disposal _dspsl = Element.GetAtIndex<Linq.IPR.Disposal>( edc.Disposal, _row.Identyfikator );
+        Disposal _dspsl = Element.GetAtIndex<Disposal>( edc.Disposal, _row.Identyfikator );
         _dspsl.Disposal2ClearenceIndex = CurrentClearence;
       }
     }
@@ -552,7 +553,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       //remove for clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyDisposals )
       {
-        Linq.IPR.Disposal _dspsl = Element.GetAtIndex<Linq.IPR.Disposal>( _edc.Disposal, _row.Identyfikator );
+        Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
         _dspsl.Disposal2ClearenceIndex = null;
         _dspsl.Disposal2IPRIndex.RevertWithdraw( _dspsl.SettledQuantity );
         _edc.Disposal.DeleteOnSubmit( _dspsl );
@@ -562,7 +563,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         if ( _row.Disposal )
           throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - disposal is on the added to assigned list" );
-        Linq.IPR.IPR _ipr = Element.GetAtIndex<Linq.IPR.IPR>( _edc.IPR, _row.Identyfikator );
+        CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _ipr = Element.GetAtIndex<CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR>( _edc.IPR, _row.Identyfikator );
         Disposal _nd = new Disposal()
         {
           Disposal2ClearenceIndex = CurrentClearence,

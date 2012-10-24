@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using CAS.SharePoint;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
 {
   /// <summary>
@@ -11,7 +13,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
   {
     internal partial class SelectionTableRowWraper
     {
-      internal SelectionTableRowWraper( Linq.IPR.Disposal _dspslx )
+      internal SelectionTableRowWraper( Disposal _dspslx )
       {
         Disposal = true;
         DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo;
@@ -26,7 +28,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Created = _dspslx.Created.Value;
         ID = ( -_dspslx.Identyfikator.Value ).ToString();
       }
-      internal SelectionTableRowWraper( Linq.IPR.IPR _iprx )
+      internal SelectionTableRowWraper(CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _iprx )
       {
         Disposal = false;
         DocumentNo = _iprx.DocumentNo;

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
-using CAS.SmartFactory.IPR;
-using CAS.SmartFactory.xml.Customs;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using CAS.SmartFactory.xml.Customs;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -27,7 +28,7 @@ namespace CAS.SmartFactory.Linq.IPR
             {
               case CustomsProcedureCodes.FreeCirculation:
                 _at = "FimdClearence";
-                _ret = FimdClearence( _edc, _sad.ReferenceNumber );
+                _ret = Clearence.FimdClearence( _edc, _sad.ReferenceNumber );
                 if ( _messageType == CustomsDocument.DocumentType.PZC )
                   _sad.ReleaseForFreeCirculation( _edc, out _comments );
                 else
@@ -43,7 +44,7 @@ namespace CAS.SmartFactory.Linq.IPR
                   SADConsignmentLibraryIndex = null,
                   ProcedureCode = String.Format( _procedureCodeFormat, (int)_customsProcedureCodes ),
                   Status = false,
-                  ClearenceProcedure = Linq.IPR.ClearenceProcedure._5171,
+                  ClearenceProcedure = ClearenceProcedure._5171,
                 };
                 _at = "InsertOnSubmit";
                 _edc.Clearence.InsertOnSubmit( _ret );
@@ -63,7 +64,7 @@ namespace CAS.SmartFactory.Linq.IPR
                   ProcedureCode = String.Format( _procedureCodeFormat, (int)_customsProcedureCodes ),
                   Status = false,
                   //[pr4-3738] CustomsProcedureCodes.CustomsWarehousingProcedure 7100 must be added http://itrserver/Bugs/BugDetail.aspx?bid=3738
-                  ClearenceProcedure = Linq.IPR.ClearenceProcedure._7171,
+                  ClearenceProcedure = ClearenceProcedure._7100,
                 };
                 _ret.CreateTitle( _messageType.ToString() );
                 _at = "InsertOnSubmit";
@@ -87,7 +88,7 @@ namespace CAS.SmartFactory.Linq.IPR
             break;
           case CustomsDocument.DocumentType.CLNE:
             _at = "FimdClearence";
-            _ret = FimdClearence( _edc, _sad.ReferenceNumber );
+            _ret = Clearence.FimdClearence( _edc, _sad.ReferenceNumber );
             _ret.DocumentNo = _sad.DocumentNumber;
             _ret.CreateTitle( _messageType.ToString() );
             _at = "StartingDocument";
@@ -126,10 +127,6 @@ namespace CAS.SmartFactory.Linq.IPR
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
       }
       return _ret;
-    }
-    private static Clearence FimdClearence( Entities _edc, string _referenceNumber )
-    {
-      return ( from _cx in _edc.Clearence where _referenceNumber.Contains( _cx.ReferenceNumber ) select _cx ).First<Clearence>();
     }
     private const string _wrongProcedure = "Wrong customs procedure";
   }

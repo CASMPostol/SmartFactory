@@ -1,5 +1,6 @@
 ﻿using System;
 using CAS.SharePoint;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml;
 using InvoiceItemXml = CAS.SmartFactory.xml.erp.InvoiceItem;
 using InvoiceXml = CAS.SmartFactory.xml.erp.Invoice;
@@ -29,7 +30,7 @@ namespace CAS.SmartFactory.Linq.IPR
         try
         {
           _ic = CreateInvoiceContent( edc, parent, item );
-          _result &= _ic.InvoiceContentStatus.Value == Linq.IPR.InvoiceContentStatus.OK;
+          _result &= _ic.InvoiceContentStatus.Value == InvoiceContentStatus.OK;
           if ( parent.BillDoc.IsNullOrEmpty() )
           {
             parent.BillDoc = item.Bill_doc.ToString();
@@ -51,13 +52,13 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     private static InvoiceContent CreateInvoiceContent( Entities edc, InvoiceLib parent, InvoiceItemXml item )
     {
-      Batch _batch = Linq.IPR.Batch.GetOrCreatePreliminary( edc, item.Batch );
-      InvoiceContentStatus _invoiceContentStatus = Linq.IPR.InvoiceContentStatus.OK;
+      Batch _batch = Batch.GetOrCreatePreliminary( edc, item.Batch );
+      InvoiceContentStatus _invoiceContentStatus = InvoiceContentStatus.OK;
       double? _Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
       if ( _batch.BatchStatus.Value == BatchStatus.Preliminary )
-        _invoiceContentStatus = Linq.IPR.InvoiceContentStatus.BatchNotFound;
+        _invoiceContentStatus = InvoiceContentStatus.BatchNotFound;
       else if ( !_batch.Available( _Quantity.Value ) )
-        _invoiceContentStatus = Linq.IPR.InvoiceContentStatus.NotEnoughQnt;
+        _invoiceContentStatus = InvoiceContentStatus.NotEnoughQnt;
       return new InvoiceContent()
       {
         InvoiceContent2BatchIndex = _batch,

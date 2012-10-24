@@ -1,5 +1,5 @@
 ﻿
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class Entities
   {
@@ -7,7 +7,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       internal ProductType productType;
       internal bool IPRMaterial;
-      internal Linq.IPR.SKUCommonPart skuLookup;
+      internal SKUCommonPart skuLookup;
       internal ProductDescription(ProductType type, bool ipr, SKUCommonPart lookup)
       {
         productType = type;
@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.Linq.IPR
       SKUCommonPart entity = SKUCommonPart.Find(this, sku);
       if (entity != null)
         return new ProductDescription(entity.ProductType.GetValueOrDefault(ProductType.Other), entity.IPRMaterial.GetValueOrDefault(false), entity);
-      Warehouse wrh = Linq.IPR.Warehouse.Find( this, location );
+      Warehouse wrh = Linq.Warehouse.Find( this, location );
       if (wrh != null)
       {
         switch (wrh.ProductType)

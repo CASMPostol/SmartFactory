@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CutfillerMaterialxML = CAS.SmartFactory.xml.erp.CutfillerMaterial;
-using CutfillerXml = CAS.SmartFactory.xml.erp.Cutfiller;
-using MaterialXml = CAS.SmartFactory.xml.erp.Material;
-using System.ComponentModel;
 
 namespace CAS.SmartFactory.Linq.IPR
 {
@@ -14,7 +10,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       SKUCutfiller _ret = new SKUCutfiller()
       {
-        ProductType = Linq.IPR.ProductType.Cutfiller,
+        ProductType = ProductType.Cutfiller,
         BlendPurpose = String.IsNullOrEmpty( xmlDocument.BlendPurpose ) ? String.Empty : xmlDocument.BlendPurpose
       };
       _ret.ProcessData( String.Empty, String.Empty, edc );

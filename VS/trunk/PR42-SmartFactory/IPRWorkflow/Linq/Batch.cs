@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using BatchXml = CAS.SmartFactory.xml.erp.Batch;
 
 namespace CAS.SmartFactory.Linq.IPR
@@ -21,7 +22,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       MaterialExtension.SummaryContentInfo xmlBatchContent = new MaterialExtension.SummaryContentInfo( xml.Material, edc, progressChanged );
       Batch batch =
-          ( from idx in edc.Batch where idx.Batch0.Contains( xmlBatchContent.Product.Batch ) && idx.BatchStatus.Value == Linq.IPR.BatchStatus.Preliminary select idx ).FirstOrDefault();
+          ( from idx in edc.Batch where idx.Batch0.Contains( xmlBatchContent.Product.Batch ) && idx.BatchStatus.Value == BatchStatus.Preliminary select idx ).FirstOrDefault();
       if ( batch == null )
       {
         batch = new Batch();
@@ -47,10 +48,10 @@ namespace CAS.SmartFactory.Linq.IPR
       _this.UsageIndex = Usage.GetLookup( _this.SKUIndex.FormatIndex, edc );
       progressChanged( _this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
       //Coefficients
-      _this.DustIndex = Linq.IPR.Dust.GetLookup( _this.ProductType.Value, edc );
+      _this.DustIndex = Dust.GetLookup( _this.ProductType.Value, edc );
       _this.BatchDustCooeficiency = _this.DustIndex.DustRatio;
       _this.DustCooeficiencyVersion = _this.DustIndex.Wersja;
-      _this.SHMentholIndex = Linq.IPR.SHMenthol.GetLookup( _this.ProductType.Value, edc );
+      _this.SHMentholIndex = SHMenthol.GetLookup( _this.ProductType.Value, edc );
       _this.BatchSHCooeficiency = _this.SHMentholIndex.SHMentholRatio;
       _this.SHCooeficiencyVersion = _this.SHMentholIndex.Wersja;
       _this.WasteIndex = Waste.GetLookup( _this.ProductType.Value, edc );
@@ -68,11 +69,11 @@ namespace CAS.SmartFactory.Linq.IPR
         _shmcf = ( (SKUCigarette)_this.SKUIndex ).MentholMaterial.Value ? _this.SHMentholIndex.SHMentholRatio.Value : 0;
       progressChanged( _this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
       content.ProcessDisposals( edc, _this, _this.DustIndex.DustRatio.Value, _shmcf, _this.WasteIndex.WasteRatio.Value, _this.CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
-      _this.Dust = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Dust ];
-      _this.SHMenthol = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.SHMenthol ];
-      _this.Waste = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Waste ];
-      _this.Tobacco = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.Tobacco ];
-      _this.Overuse = content.AccumulatedDisposalsAnalisis[ IPR.DisposalEnum.OverusageInKg ];
+      _this.Dust = content.AccumulatedDisposalsAnalisis[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.Dust ];
+      _this.SHMenthol = content.AccumulatedDisposalsAnalisis[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.SHMenthol ];
+      _this.Waste = content.AccumulatedDisposalsAnalisis[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.Waste ];
+      _this.Tobacco = content.AccumulatedDisposalsAnalisis[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.Tobacco ];
+      _this.Overuse = content.AccumulatedDisposalsAnalisis[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.OverusageInKg ];
       foreach ( var _invoice in _this.InvoiceContent )
       {
         _invoice.CreateTitle();
@@ -97,13 +98,13 @@ namespace CAS.SmartFactory.Linq.IPR
       switch ( batchStatus )
       {
         case CAS.SmartFactory.xml.erp.BatchStatus.Final:
-          return Linq.IPR.BatchStatus.Final;
+          return BatchStatus.Final;
         case CAS.SmartFactory.xml.erp.BatchStatus.Intermediate:
-          return Linq.IPR.BatchStatus.Intermediate;
+          return BatchStatus.Intermediate;
         case CAS.SmartFactory.xml.erp.BatchStatus.Progress:
-          return Linq.IPR.BatchStatus.Progress;
+          return BatchStatus.Progress;
         default:
-          return Linq.IPR.BatchStatus.Preliminary;
+          return BatchStatus.Preliminary;
       }
     }
     /// <summary>

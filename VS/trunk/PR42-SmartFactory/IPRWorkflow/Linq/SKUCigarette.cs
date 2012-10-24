@@ -1,4 +1,5 @@
-﻿using CigarettesMaterialxML = CAS.SmartFactory.xml.erp.CigarettesMaterial;
+﻿using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using CigarettesMaterialxML = CAS.SmartFactory.xml.erp.CigarettesMaterial;
 using MaterialXml = CAS.SmartFactory.xml.erp.Material;
 
 namespace CAS.SmartFactory.Linq.IPR
@@ -11,7 +12,7 @@ namespace CAS.SmartFactory.Linq.IPR
       bool _menthol = xmlDocument.Menthol.StartsWith( "M" );
       SKUCigarette _ret = new SKUCigarette()
       {
-        ProductType = CAS.SmartFactory.Linq.IPR.ProductType.Cigarette,
+        ProductType = ProductType.Cigarette,
         Brand = xmlDocument.Brand_Description,
         Family = xmlDocument.Family_Des,
         Menthol = xmlDocument.Menthol,

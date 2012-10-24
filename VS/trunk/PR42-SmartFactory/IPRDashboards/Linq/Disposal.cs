@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CAS.SharePoint;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
@@ -51,7 +52,7 @@ namespace CAS.SmartFactory.Linq.IPR
       string _at = "startting";
       try
       {
-        ClearingType _clearingType = Linq.IPR.ClearingType.PartialWindingUp;
+        CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType _clearingType = CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp;
         if ( !closingBatch && _quantity < _this.SettledQuantity )
         {
           _at = "_newDisposal";
@@ -59,8 +60,8 @@ namespace CAS.SmartFactory.Linq.IPR
           {
             Disposal2BatchIndex = _this.Disposal2BatchIndex,
             Disposal2ClearenceIndex = null,
-            ClearingType = Linq.IPR.ClearingType.PartialWindingUp,
-            CustomsStatus = Linq.IPR.CustomsStatus.NotStarted,
+            ClearingType = CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp,
+            CustomsStatus = CustomsStatus.NotStarted,
             CustomsProcedure = "N/A",
             DisposalStatus = _this.DisposalStatus,
             InvoiceNo = "N/A",
@@ -75,7 +76,7 @@ namespace CAS.SmartFactory.Linq.IPR
             SettledQuantity = _this.SettledQuantity - _quantity
           };
           _at = "SetUpCalculatedColumns";
-          _newDisposal.SetUpCalculatedColumns( Linq.IPR.ClearingType.PartialWindingUp );
+          _newDisposal.SetUpCalculatedColumns( CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp );
           _this.SettledQuantity = _quantity;
           _quantity = 0;
           _at = "InsertOnSubmit";

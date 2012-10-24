@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using CAS.SmartFactory.IPR;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CigarettesMaterialxML = CAS.SmartFactory.xml.erp.CigarettesMaterial;
 using CutfillerMaterialxML = CAS.SmartFactory.xml.erp.CutfillerMaterial;
 using MaterialXml = CAS.SmartFactory.xml.erp.Material;

@@ -6,7 +6,7 @@ using CAS.SharePoint;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public class ActionResult: List<string>
   {
@@ -267,7 +267,7 @@ namespace CAS.SmartFactory.Linq.IPR
       string _titleTmplt = "Disposal: {0} of FG {1}";
       Title = String.Format( _titleTmplt, this.DisposalStatus.Value.ToString(), this.Disposal2BatchIndex.Title );
       double _portion = SettledQuantity.Value / Disposal2IPRIndex.NetMass.Value;
-      if ( clearingType == Linq.IPR.ClearingType.PartialWindingUp )
+      if ( clearingType == Linq.ClearingType.PartialWindingUp )
       {
         DutyPerSettledAmount = ( Disposal2IPRIndex.Duty.Value * _portion ).RoundCurrency();
         VATPerSettledAmount = ( Disposal2IPRIndex.VAT.Value * _portion ).RoundCurrency();

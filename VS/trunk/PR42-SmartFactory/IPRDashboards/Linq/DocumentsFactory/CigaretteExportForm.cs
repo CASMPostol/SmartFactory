@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.Dashboards;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 
 namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
@@ -12,17 +13,17 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
     internal static IPRIngredient IPRIngredient( Disposal disposal )
     {
       IPRIngredient _ret = new IPRIngredient( disposal.Disposal2IPRIndex.Batch, disposal.Disposal2IPRIndex.SKU, disposal.SettledQuantity.Value );
-      IPR _ipr = disposal.Disposal2IPRIndex;
+     CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _ipr = disposal.Disposal2IPRIndex;
       _ret.Currency = _ipr.Currency;
       _ret.Date = _ipr.CustomsDebtDate.Value;
       _ret.DocumentNoumber = _ipr.DocumentNo;
       _ret.Duty = disposal.DutyPerSettledAmount.Value;
       switch ( disposal.ClearingType.Value )
       {
-        case ClearingType.PartialWindingUp:
+        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp:
           _ret.ItemClearingType = xml.DocumentsFactory.CigaretteExportForm.ClearingType.PartialWindingUp;
           break;
-        case ClearingType.TotalWindingUp:
+        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.TotalWindingUp:
           _ret.ItemClearingType = xml.DocumentsFactory.CigaretteExportForm.ClearingType.PartialWindingUp;
           break;
         default:
@@ -75,10 +76,10 @@ namespace CAS.SmartFactory.Linq.IPR.DocumentsFactory
       _ret.WasteCoefficient = batch.BatchWasteCooeficiency.GetValueOrDefault( -1 ) + batch.BatchDustCooeficiency.GetValueOrDefault( -1 );
       switch ( batch.ProductType.Value )
       {
-        case ProductType.Cutfiller:
+        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Cutfiller:
           _ret.Product = xml.DocumentsFactory.CigaretteExportForm.ProductType.Cutfiller;
           break;
-        case ProductType.Cigarette:
+        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Cigarette:
           SKUCigarette _skuCigarette = batch.SKUIndex as SKUCigarette;
           _ret.BrandDescription = _skuCigarette.Brand;
           _ret.FamilyDescription = _skuCigarette.Family;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using BatchMaterialXml = CAS.SmartFactory.xml.erp.BatchMaterial;
 
 namespace CAS.SmartFactory.Linq.IPR
@@ -23,7 +24,7 @@ namespace CAS.SmartFactory.Linq.IPR
         Units = item.Unit,
         FGQuantity = Convert.ToDouble( item.Quantity ),
         TobaccoQuantity = Convert.ToDouble( item.Quantity_calculated ),
-        ProductType = Linq.IPR.ProductType.Invalid,
+        ProductType = ProductType.Invalid,
         ProductID = item.material_group,
       };
     }
@@ -42,7 +43,7 @@ namespace CAS.SmartFactory.Linq.IPR
       internal void Add( Material value )
       {
         Material ce = null;
-        if ( value.ProductType == Linq.IPR.ProductType.IPRTobacco || value.ProductType == Linq.IPR.ProductType.Tobacco )
+        if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
           TotalTobacco += value.TobaccoQuantity.GetValueOrDefault( 0 );
         if ( this.TryGetValue( value.GetKey(), out ce ) )
         {
@@ -51,9 +52,9 @@ namespace CAS.SmartFactory.Linq.IPR
         }
         else
         {
-          if ( value.ProductType == Linq.IPR.ProductType.Cigarette )
+          if ( value.ProductType == ProductType.Cigarette )
             Product = value;
-          else if ( Product == null && value.ProductType == Linq.IPR.ProductType.Cutfiller )
+          else if ( Product == null && value.ProductType == ProductType.Cutfiller )
             Product = value;
           base.Add( value.GetKey(), value );
         }
@@ -69,18 +70,18 @@ namespace CAS.SmartFactory.Linq.IPR
           InsertAllOnSubmit( _edc, _parent );
           foreach ( Material _materialInBatch in this.Values )
           {
-            if ( _materialInBatch.ProductType.Value != Linq.IPR.ProductType.IPRTobacco )
+            if ( _materialInBatch.ProductType.Value != ProductType.IPRTobacco )
               continue;
             DisposalsAnalisis _dspsls = new DisposalsAnalisis( _edc, _materialInBatch.Batch, _materialInBatch.TobaccoQuantity.Value, _dustRatio, _shMentholRatio, _wasteRatio, _overusageCoefficient );
             _progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
             AccumulatedDisposalsAnalisis.Accumutate( _dspsls );
-            foreach ( KeyValuePair<IPR.DisposalEnum, double> _item in _dspsls )
+            foreach ( KeyValuePair<CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum, double> _item in _dspsls )
             {
               try
               {
-                if ( _item.Value <= 0 && ( _item.Key == IPR.DisposalEnum.SHMenthol ) )
+                if ( _item.Value <= 0 && ( _item.Key == CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.SHMenthol ) )
                   continue;
-                List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( _edc, _materialInBatch.Batch );
+                List<CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR> _accounts = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.FindIPRAccountsWithNotAllocatedTobacco( _edc, _materialInBatch.Batch );
                 if ( _accounts.Count == 0 )
                 {
                   string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
@@ -148,16 +149,16 @@ namespace CAS.SmartFactory.Linq.IPR
     /// <summary>
     /// Contains all materials sorted using the following key: SKU,Batch,Location. <see cref="GetKey"/>
     /// </summary>
-    internal class DisposalsAnalisis: SortedList<IPR.DisposalEnum, double>
+    internal class DisposalsAnalisis: SortedList<CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum, double>
     {
       public DisposalsAnalisis()
       {
-        foreach ( IPR.DisposalEnum _item in Enum.GetValues( typeof( IPR.DisposalEnum ) ) )
+        foreach ( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum _item in Enum.GetValues( typeof( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum ) ) )
           this.Add( _item, 0 );
       }
       public DisposalsAnalisis( Entities _edc, string batch, double _material, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusage )
       {
-        List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( _edc, batch );
+        List<CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR> _accounts = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.FindIPRAccountsWithNotAllocatedTobacco( _edc, batch );
         bool _closing = false;
         if ( _accounts.Count == 1 && Math.Abs( _accounts[ 0 ].TobaccoNotAllocated.Value - _material ) < 1 )
         {
@@ -167,22 +168,22 @@ namespace CAS.SmartFactory.Linq.IPR
         double _am;
         if ( _overusage > 0 )
         {
-          this.Add( IPR.DisposalEnum.OverusageInKg, ( _material * _overusage ).RountMass() );
-          _am = _material - this[ IPR.DisposalEnum.OverusageInKg ];
+          this.Add( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.OverusageInKg, ( _material * _overusage ).RountMass() );
+          _am = _material - this[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.OverusageInKg ];
         }
         else
           _am = _material;
-        this.Add( IPR.DisposalEnum.Dust, ( _am * _dustRatio ).RountMass() );
-        this.Add( IPR.DisposalEnum.SHMenthol, ( _am * _shMentholRatio ).RountMass() );
-        this.Add( IPR.DisposalEnum.Waste, ( _am * _wasteRatio ).RountMassUpper() );
+        this.Add( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.Dust, ( _am * _dustRatio ).RountMass() );
+        this.Add( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.SHMenthol, ( _am * _shMentholRatio ).RountMass() );
+        this.Add( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.Waste, ( _am * _wasteRatio ).RountMassUpper() );
         if ( _closing )
-          this.Add( IPR.DisposalEnum.Tobacco, _am - this[ IPR.DisposalEnum.SHMenthol ] - this[ IPR.DisposalEnum.Waste ] - this[ IPR.DisposalEnum.Dust ] );
+          this.Add( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.Tobacco, _am - this[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.SHMenthol ] - this[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.Waste ] - this[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.Dust ] );
         else
-          this.Add( IPR.DisposalEnum.Tobacco, ( _am - this[ IPR.DisposalEnum.SHMenthol ] - this[ IPR.DisposalEnum.Waste ] - this[ IPR.DisposalEnum.Dust ] ).RountMass() );
+          this.Add( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.Tobacco, ( _am - this[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.SHMenthol ] - this[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.Waste ] - this[ CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum.Dust ] ).RountMass() );
       }
       public void Accumutate( DisposalsAnalisis _dspsls )
       {
-        foreach ( IPR.DisposalEnum _item in Enum.GetValues( typeof( IPR.DisposalEnum ) ) )
+        foreach ( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum _item in Enum.GetValues( typeof( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR.DisposalEnum ) ) )
           this[ _item ] += _dspsls.Keys.Contains( _item ) ? _dspsls[ _item ] : 0;
       }
     }

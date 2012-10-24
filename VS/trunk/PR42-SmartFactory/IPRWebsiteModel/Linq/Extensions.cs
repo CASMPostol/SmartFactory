@@ -3,15 +3,15 @@ using System.Linq;
 using CAS.SmartFactory.IPR;
 using Microsoft.SharePoint.Linq;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
-  internal static class Extensions
+  internal static class LinqExtensions
   {
     public static ProductType ParseProductType(this string entry)
     {
       try
       {
-        return (ProductType)Enum.Parse(typeof(Linq.IPR.ProductType), entry);
+        return (ProductType)Enum.Parse(typeof(Linq.ProductType), entry);
       }
       catch (Exception)
       {
@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.Linq.IPR
     {
       try
       {
-        return String.IsNullOrEmpty( entry ) ? new Nullable<CompensationGood>() : (CompensationGood)Enum.Parse( typeof( Linq.IPR.CompensationGood ), entry );
+        return String.IsNullOrEmpty( entry ) ? new Nullable<CompensationGood>() : (CompensationGood)Enum.Parse( typeof( Linq.CompensationGood ), entry );
       }
       catch (Exception)
       {

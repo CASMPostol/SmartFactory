@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.SmartFactory.Linq.IPR {
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	using System;
 	
 	

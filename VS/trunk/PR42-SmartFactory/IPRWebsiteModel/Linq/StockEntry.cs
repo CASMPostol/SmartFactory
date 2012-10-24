@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CAS.SmartFactory.Linq.IPR
+namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class StockEntry
   {
@@ -20,11 +20,11 @@ namespace CAS.SmartFactory.Linq.IPR
     }
     private void GetBatchLookup(Entities edc)
     {
-      if (ProductType != Linq.IPR.ProductType.Cigarette && ProductType != Linq.IPR.ProductType.Cutfiller)
+      if (ProductType != Linq.ProductType.Cigarette && ProductType != Linq.ProductType.Cutfiller)
         return;
       if (!IPRType.GetValueOrDefault(false))
         return;
-      this.BatchIndex = Linq.IPR.Batch.GetOrCreatePreliminary(edc, this.Batch);
+      this.BatchIndex = Linq.Batch.GetOrCreatePreliminary(edc, this.Batch);
     }
     //private const string m_Source = "Stock Entry";
     //private const string m_WrongProductTypeMessage = "I cannot recognize product type of the stock entry SKU: {0} in location: {1}";

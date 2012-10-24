@@ -1,5 +1,5 @@
 ﻿using System;
-using CAS.SmartFactory.Linq.IPR;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.IPR
 {

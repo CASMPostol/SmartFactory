@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using CAS.SmartFactory.IPR;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using StockXml = CAS.SmartFactory.xml.erp.Stock;
 using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
 

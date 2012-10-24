@@ -2,6 +2,7 @@
 using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.Customs;
 
 namespace CAS.SmartFactory.Linq.IPR
@@ -9,7 +10,7 @@ namespace CAS.SmartFactory.Linq.IPR
 
   internal static class IPRExtension
   {
-    internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
+    //internal enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
     internal static void CreateIPRAccount
       ( Entities _edc, SADDocumentType _document, Clearence _nc, CustomsDocument.DocumentType _messageType, DateTime _customsDebtDate, out string _comments,
       SADDocumentLib iprLibraryLookup )
@@ -28,7 +29,7 @@ namespace CAS.SmartFactory.Linq.IPR
         _comments = "PCN lookup filed";
         PCNCode _pcn = PCNCode.AddOrGet( _edc, _iprdata.PCNTariffCode );
         _at = "new IPRIPR";
-        IPR _ipr = new IPR()
+        CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _ipr = new CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR()
         {
           AccountClosed = false,
           AccountBalance = _iprdata.NetMass,

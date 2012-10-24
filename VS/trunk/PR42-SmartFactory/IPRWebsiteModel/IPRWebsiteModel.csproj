@@ -7,7 +7,7 @@
     <ProjectGuid>{8920F657-54A3-4376-99A5-C2D823F94038}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CAS.SmartFactory.IPR.IPRWebsiteModel</RootNamespace>
+    <RootNamespace>CAS.SmartFactory.IPR.WebsiteModel</RootNamespace>
     <AssemblyName>CAS.IPRWebsiteModel</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
