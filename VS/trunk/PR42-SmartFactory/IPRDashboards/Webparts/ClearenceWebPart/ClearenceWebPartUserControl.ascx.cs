@@ -470,17 +470,20 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         case GenericStateMachineEngine.InterfaceState.ViewState:
           m_FiltersPanel.Enabled = true;
           m_AvailableGridView.Enabled = false;
+          m_AssignedGridView.Enabled = false;
           m_GridViewActionsPanel.Enabled = false;
           break;
         case GenericStateMachineEngine.InterfaceState.EditState:
           m_FiltersPanel.Enabled = false;
+          m_AvailableGridView.Enabled = true;
+          m_AssignedGridView.Enabled = true;
           m_GridViewActionsPanel.Enabled = true;
-          AssignedGridViewAddCommandField();
           break;
         case GenericStateMachineEngine.InterfaceState.NewState:
           m_FiltersPanel.Enabled = false;
+          m_AvailableGridView.Enabled = true;
+          m_AssignedGridView.Enabled = true;
           m_GridViewActionsPanel.Enabled = true;
-          AssignedGridViewAddCommandField();
           break;
       }
     }
@@ -863,18 +866,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     protected void m_AssignedGridView_SelectedIndexChanging( object sender, GridViewSelectEventArgs e )
     {
       GetRow( sender as SPGridView, e, m_ControlState.AvailableItems.SelectionTable, m_ControlState.AssignedItems.SelectionTable );
-    }
-    private void AssignedGridViewAddCommandField()
-    {
-      CommandField _cf = new CommandField()
-      {
-        HeaderText = "Manage",
-        ShowEditButton = false,
-        ShowSelectButton = true,
-        SelectText = "Split",
-      };
-      _cf.ItemStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
-      m_AssignedGridView.Columns.Add( _cf );
     }
     #endregion
 
