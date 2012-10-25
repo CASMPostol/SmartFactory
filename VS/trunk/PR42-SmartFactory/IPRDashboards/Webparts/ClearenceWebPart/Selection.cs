@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Created = _dspslx.Created.Value;
         ID = ( -_dspslx.Identyfikator.Value ).ToString();
       }
-      internal SelectionTableRowWraper(CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _iprx )
+      internal SelectionTableRowWraper( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _iprx )
       {
         Disposal = false;
         DocumentNo = _iprx.DocumentNo;
@@ -86,6 +86,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         else
           _destinationRow.Quantity += sourceRow.Quantity;
         sourceRow.Delete();
+        if ( sourceRow.RowState != DataRowState.Detached)
+          sourceRow.AcceptChanges();
       }
       internal void NewSelectionTableRow( SelectionTableRowWraper _rowx )
       {

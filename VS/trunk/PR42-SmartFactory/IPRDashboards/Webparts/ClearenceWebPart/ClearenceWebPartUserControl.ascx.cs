@@ -167,10 +167,18 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// <param name="e">An <see cref="T:System.EventArgs"/> object that contains the event data.</param>
     protected override void OnPreRender( EventArgs e )
     {
-      SetEnabled( m_ControlState.SetEnabled );
-      Show();
-      m_AvailableGridView.DataBind();
-      m_AssignedGridView.DataBind();
+      try
+      {
+        SetEnabled( m_ControlState.SetEnabled );
+        Show();
+        m_AvailableGridView.DataBind();
+        m_AssignedGridView.DataBind();
+      }
+      catch ( Exception _ex )
+      {
+        LocalStateMachineEngine.ActionResult _errr = LocalStateMachineEngine.ActionResult.Exception( _ex, _ex.Message );
+        this.ShowActionResult( _errr );
+      }
       base.OnPreRender( e );
     }
     /// <summary>
@@ -872,23 +880,55 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     #region m_GridViewActionsPanel
     private void m_GridViewRemoveDisplayed_Click( object sender, EventArgs e )
     {
-      for ( int i = m_AssignedGridView.LowestDataItemIndex; i <= m_AssignedGridView.HighestDataItemIndex; i++ )
-        m_ControlState.AvailableItems.SelectionTable.GetRow( m_ControlState.AssignedItems.SelectionTable[ i ] );
+      try
+      {
+        for ( int i = m_AssignedGridView.LowestDataItemIndex; i <= m_AssignedGridView.HighestDataItemIndex; i++ )
+          m_ControlState.AvailableItems.SelectionTable.GetRow( m_ControlState.AssignedItems.SelectionTable[ i ] );
+      }
+      catch ( Exception _ex )
+      {
+        LocalStateMachineEngine.ActionResult _errr = LocalStateMachineEngine.ActionResult.Exception( _ex, _ex.Message );
+        this.ShowActionResult( _errr );
+      }
     }
     private void m_GridViewRemoveAll_Click( object sender, EventArgs e )
     {
-      foreach ( Selection.SelectionTableRow _rw in m_ControlState.AssignedItems.SelectionTable )
-        m_ControlState.AvailableItems.SelectionTable.GetRow( _rw );
+      try
+      {
+        foreach ( Selection.SelectionTableRow _rw in m_ControlState.AssignedItems.SelectionTable.ToList<Selection.SelectionTableRow>() )
+          m_ControlState.AvailableItems.SelectionTable.GetRow( _rw );
+      }
+      catch ( Exception _ex )
+      {
+        LocalStateMachineEngine.ActionResult _errr = LocalStateMachineEngine.ActionResult.Exception( _ex, _ex.Message );
+        this.ShowActionResult( _errr );
+      }
     }
     private void m_GridViewAddDisplayed_Click( object sender, EventArgs e )
     {
-      for ( int i = m_AvailableGridView.LowestDataItemIndex; i <= m_AvailableGridView.HighestDataItemIndex; i++ )
-        m_ControlState.AssignedItems.SelectionTable.GetRow( m_ControlState.AvailableItems.SelectionTable[ i ] );
+      try
+      {
+        for ( int i = m_AvailableGridView.LowestDataItemIndex; i <= m_AvailableGridView.HighestDataItemIndex; i++ )
+          m_ControlState.AssignedItems.SelectionTable.GetRow( m_ControlState.AvailableItems.SelectionTable[ i ] );
+      }
+      catch ( Exception _ex )
+      {
+        LocalStateMachineEngine.ActionResult _errr = LocalStateMachineEngine.ActionResult.Exception( _ex, _ex.Message );
+        this.ShowActionResult( _errr );
+      }
     }
     private void m_GridViewAddAll_Click( object sender, EventArgs e )
     {
-      foreach ( Selection.SelectionTableRow _rw in m_ControlState.AvailableItems.SelectionTable )
-        m_ControlState.AssignedItems.SelectionTable.GetRow( _rw );
+      try
+      {
+        foreach ( Selection.SelectionTableRow _rw in m_ControlState.AvailableItems.SelectionTable.ToList<Selection.SelectionTableRow>() )
+          m_ControlState.AssignedItems.SelectionTable.GetRow( _rw );
+      }
+      catch ( Exception _ex )
+      {
+        LocalStateMachineEngine.ActionResult _errr = LocalStateMachineEngine.ActionResult.Exception( _ex, _ex.Message );
+        this.ShowActionResult( _errr );
+      }
     }
     #endregion
 
