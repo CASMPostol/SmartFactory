@@ -51,7 +51,7 @@
                 <asp:Button runat="server" CssClass="Button" Text="Cancel" ID="m_CancelButton" />
             </asp:TableCell>
             <asp:TableCell>
-                <asp:Button runat="server" CssClass="ButtonAlert" Text="Clearence" ID="m_ClearButton" OnClientClick="return confirm('Na pewno? Późniejsza edycja nie będzie już możliwa');" />
+                <asp:Button runat="server" CssClass="ButtonAlert" Text="Clearance" ID="m_ClearButton" OnClientClick="return confirm('Na pewno? Późniejsza edycja nie będzie już możliwa');" />
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
