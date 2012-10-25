@@ -33,7 +33,7 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-        <asp:Table ID="m_ButtonsTable" runat="server" CssClass="Table">
+    <asp:Table ID="m_ButtonsTable" runat="server" CssClass="Table">
         <asp:TableRow>
             <asp:TableCell>
                 <asp:Button runat="server" CssClass="Button" Text="Add New" ID="m_NewButton" />
@@ -82,9 +82,9 @@
                         <asp:Label ID="m_AllDateLabel" runat="server" Text="All" CssClass="Label" />
                         <asp:CheckBox ID="m_AllDate" Checked="true" runat="server" /><br />
                         <asp:Label ID="m_StartDateLabel" runat="server" Text="Start date:" CssClass="Label" />
-                        <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx"/>
+                        <SharePoint:DateTimeControl ID="m_StartDateTimeControl" DateOnly="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
                         <asp:Label ID="m_EndDateLabel" runat="server" Text="End date:" CssClass="Label" />
-                        <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx"/>
+                        <SharePoint:DateTimeControl ID="m_EndTimeControl1" DateOnly="true" runat="server" DatePickerFrameUrl="/_layouts/CAS_iframe.aspx" />
                     </asp:Panel>
                 </asp:TableCell>
             </asp:TableRow>
@@ -124,7 +124,7 @@
                                     <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:CommandField HeaderText="Select all" ShowEditButton="True" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" EditText="Split" UpdateText="Select" />
+                            <asp:CommandField HeaderText="" ShowEditButton="True" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" EditText="Split" UpdateText="Select" />
                         </Columns>
                     </SharePoint:SPGridView>
                     <SharePoint:SPGridViewPager ID="m_AvailableGridViewPager" GridViewId="m_AvailableGridView" runat="server" />
@@ -179,6 +179,7 @@
                                     <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:CommandField HeaderText="" ShowEditButton="false" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" />
                         </Columns>
                     </SharePoint:SPGridView>
                     <SharePoint:SPGridViewPager ID="m_AssignedGridViewPager" GridViewId="m_AssignedGridView" runat="server" />
