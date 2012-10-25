@@ -627,9 +627,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private void QueryAssigned()
     {
-      m_ControlState.ClearAssigned();
       if ( CurrentClearence == null )
         return;
+      m_ControlState.AssignedItems.SelectionTable.Clear();
       List<Selection.SelectionTableRowWraper> _dsposals = ( from _dsx in CurrentClearence.Disposal
                                                             select new Selection.SelectionTableRowWraper( _dsx ) ).ToList();
       m_ControlState.AssignedItems.SelectionTable.Add( _dsposals );
