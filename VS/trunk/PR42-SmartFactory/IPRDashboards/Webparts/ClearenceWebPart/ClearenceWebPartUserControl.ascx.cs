@@ -503,32 +503,32 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       try
       {
-        string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( _clearence.Identyfikator.Value );
+        string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( CurrentClearence.Identyfikator.Value );
         int _sadConsignmentIdentifier = default( int );
         switch ( SelectedGroup )
         {
           case Group.Tobacco:
           case Group.TobaccoNotAllocated:
             DocumentContent _newTobaccoDoc =
-              DisposalsFormFactory.GetTobaccoFreeCirculationFormContent( _clearence.Disposal, _clearence.ProcedureCode, _masterDocumentName );
+              DisposalsFormFactory.GetTobaccoFreeCirculationFormContent( CurrentClearence.Disposal, CurrentClearence.ProcedureCode, _masterDocumentName );
             _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName, CompensatiionGood.Tobacco );
             break;
           case Group.Waste:
           case Group.Dust:
             DocumentContent _newDustWasteDoc =
-              DisposalsFormFactory.GetDustWasteFormContent( _clearence.Disposal, _clearence.ProcedureCode, _masterDocumentName );
+              DisposalsFormFactory.GetDustWasteFormContent( CurrentClearence.Disposal, CurrentClearence.ProcedureCode, _masterDocumentName );
             CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ?
               CompensatiionGood.Waste : CompensatiionGood.Dust;
             _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood );
             break;
           case Group.Cartons:
             DocumentContent _newBoxFormContent =
-              DisposalsFormFactory.GetBoxFormContent( _clearence.Disposal, _clearence.ProcedureCode, _masterDocumentName );
+              DisposalsFormFactory.GetBoxFormContent( CurrentClearence.Disposal, CurrentClearence.ProcedureCode, _masterDocumentName );
             _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, CompensatiionGood.Cartons );
             break;
         }
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
-        _clearence.SADConsignmentLibraryIndex = _sadConsignment;
+        CurrentClearence.SADConsignmentLibraryIndex = _sadConsignment;
         m_DataContextManagement.DataContext.SubmitChanges();
         return GenericStateMachineEngine.ActionResult.Success;
       }
@@ -749,24 +749,23 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private const string m_QuantityNewValue = "QuantityNewValue";
     private ObjectDataSource m_AvailableGridViewDataSource;
     private ObjectDataSource m_AssignedGridViewDataSource;
-    private Clearence @_clearence = default( Clearence );
+    private Clearence _clearence = default( Clearence );
     private Clearence CurrentClearence
     {
       get
       {
-        if ( @_clearence != null )
-          return @_clearence;
+        if ( _clearence != null )
+          return _clearence;
         if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
           return null;
-        @_clearence = Element.GetAtIndex<Clearence>( m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID );
-        return @_clearence;
+        _clearence = Element.GetAtIndex<Clearence>( m_DataContextManagement.DataContext.Clearence, m_ControlState.ClearanceID );
+        return _clearence;
         ;
       }
       set
       {
-        @_clearence = value;
+        _clearence = value;
         m_ControlState.ClearanceID = value.Identyfikator.Value.ToString();
-        ;
         m_ControlState.ClearanceTitle = value.Title;
       }
     }
