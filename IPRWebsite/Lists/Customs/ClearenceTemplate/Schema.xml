@@ -82,12 +82,11 @@
           </FieldRef>
           <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
           <FieldRef ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}" Name="ReferenceNumber" />
-          <FieldRef ID="{0F8D4217-D9F2-4065-8F0D-04E727B3C24B}" Name="ProcedureCode" />
           <FieldRef ID="{7D196321-5D5D-4D55-908C-125A2E694670}" Name="ClearenceProcedure" />
         </ViewFields>
         <Query>
           <OrderBy>
-            <FieldRef Name="ID">
+            <FieldRef Name="Modified" Ascending="FALSE">
             </FieldRef>
           </OrderBy>
           <Where>
