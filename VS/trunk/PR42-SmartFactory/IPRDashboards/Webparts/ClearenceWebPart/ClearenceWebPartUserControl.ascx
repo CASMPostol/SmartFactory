@@ -95,8 +95,10 @@
             <asp:TableCell>
                 <asp:Panel runat="server" ID="m_AvailablePanel" BorderColor="ActiveCaptionText" GroupingText="Available" HorizontalAlign="Left">
                     <SharePoint:SPGridView ID="m_AvailableGridView" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="ID"
-                        OnSelectedIndexChanging="m_AvailableGridView_SelectedIndexChanging" OnRowUpdating="m_AvailableGridView_RowUpdating" OnRowCancelingEdit="m_AvailableGridView_RowCancelingEdit"
-                        AllowFiltering="true" FilterDataFields="DocumentNo,DebtDate,ValidTo,SKU,Batch,UnitPrice,Currency,Quantity,Status,Created" FilteredDataSourcePropertyName="FilterExpression" FilteredDataSourcePropertyFormat="{1} = '{0}'">
+                        OnSelectedIndexChanging="m_AvailableGridView_SelectedIndexChanging" OnRowUpdating="m_AvailableGridView_RowUpdating" OnRowEditing="m_AvailableGridView_RowEditing" 
+                        OnRowCancelingEdit="m_AvailableGridView_RowCancelingEdit"
+                        AllowFiltering="true" FilterDataFields="DocumentNo,DebtDate,ValidTo,SKU,Batch,UnitPrice,Currency,Quantity,Status,Created" FilteredDataSourcePropertyName="FilterExpression" 
+                        FilteredDataSourcePropertyFormat="{1} = '{0}'">
                         <Columns>
                             <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                             <asp:BoundField DataField="DebtDate" HeaderText="Debt date" DataFormatString="{0:d}" SortExpression="DebtDate" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
