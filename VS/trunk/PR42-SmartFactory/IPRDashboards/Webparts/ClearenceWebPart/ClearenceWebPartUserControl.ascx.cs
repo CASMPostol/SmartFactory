@@ -811,7 +811,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// <param name="e">The <see cref="GridViewCancelEditEventArgs" /> instance containing the event data.</param>
     protected void m_AvailableGridView_RowCancelingEdit( object sender, GridViewCancelEditEventArgs e )
     {
-      GridView _sender = sender as GridView;
+      SPGridView _sender = sender as SPGridView;
       if ( _sender == null )
         return;
       _sender.EditIndex = -1;
@@ -824,7 +824,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     /// <param name="e">The <see cref="GridViewUpdateEventArgs" /> instance containing the event data.</param>
     protected void m_AvailableGridView_RowUpdating( object sender, GridViewUpdateEventArgs e )
     {
-      GridView _sender = sender as GridView;
+      SPGridView _sender = sender as SPGridView;
       if ( _sender == null )
         return;
       //Update the values.

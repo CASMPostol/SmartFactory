@@ -1992,9 +1992,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SADConsignment> _sADConsignmentLibraryIndex;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
+		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentType> _sADDocumentID;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<SADDocumentType> _sADDocumentType;
+		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2007,14 +2007,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._sADConsignmentLibraryIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADConsignment>>(this.OnSADConsignmentLibraryIndexSync);
 			this._sADConsignmentLibraryIndex.OnChanged += new System.EventHandler(this.OnSADConsignmentLibraryIndexChanged);
 			this._sADConsignmentLibraryIndex.OnChanging += new System.EventHandler(this.OnSADConsignmentLibraryIndexChanging);
+			this._sADDocumentID = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentType>();
+			this._sADDocumentID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentIDSync);
+			this._sADDocumentID.OnChanged += new System.EventHandler(this.OnSADDocumentIDChanged);
+			this._sADDocumentID.OnChanging += new System.EventHandler(this.OnSADDocumentIDChanging);
 			this._disposal = new Microsoft.SharePoint.Linq.EntitySet<Disposal>();
 			this._disposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposalSync);
 			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
 			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
-			this._sADDocumentType = new Microsoft.SharePoint.Linq.EntitySet<SADDocumentType>();
-			this._sADDocumentType.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType>>(this.OnSADDocumentTypeSync);
-			this._sADDocumentType.OnChanged += new System.EventHandler(this.OnSADDocumentTypeChanged);
-			this._sADDocumentType.OnChanging += new System.EventHandler(this.OnSADDocumentTypeChanging);
 			this.OnCreated();
 		}
 		
@@ -2107,6 +2107,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Clearence2SadDocumentIndex", Storage="_sADDocumentID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document")]
+		public SADDocumentType SADDocumentID {
+			get {
+				return this._sADDocumentID.GetEntity();
+			}
+			set {
+				this._sADDocumentID.SetEntity(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2ClearenceIndex", Storage="_disposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Disposal")]
 		public Microsoft.SharePoint.Linq.EntitySet<Disposal> Disposal {
 			get {
@@ -2114,16 +2124,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 			set {
 				this._disposal.Assign(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocument2Clearence", Storage="_sADDocumentType", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="SAD Document")]
-		public Microsoft.SharePoint.Linq.EntitySet<SADDocumentType> SADDocumentType {
-			get {
-				return this._sADDocumentType;
-			}
-			set {
-				this._sADDocumentType.Assign(value);
 			}
 		}
 		
@@ -2136,6 +2136,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		private void OnSADConsignmentLibraryIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADConsignment> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.Clearence.Add(this);
+			}
+			else {
+				e.Item.Clearence.Remove(this);
+			}
+		}
+		
+		private void OnSADDocumentIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("SADDocumentID", this._sADDocumentID.Clone());
+		}
+		
+		private void OnSADDocumentIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("SADDocumentID");
+		}
+		
+		private void OnSADDocumentIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Clearence.Add(this);
 			}
@@ -2158,23 +2175,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 			else {
 				e.Item.Disposal2ClearenceIndex = null;
-			}
-		}
-		
-		private void OnSADDocumentTypeChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SADDocumentType", this._sADDocumentType.Clone());
-		}
-		
-		private void OnSADDocumentTypeChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SADDocumentType");
-		}
-		
-		private void OnSADDocumentTypeSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentType> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SADDocument2Clearence = this;
-			}
-			else {
-				e.Item.SADDocument2Clearence = null;
 			}
 		}
 	}
@@ -2675,9 +2675,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Duty per settled amount
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyPerSettledAmount", Storage="_dutyPerSettledAmount", FieldType="Number")]
 		public System.Nullable<double> DutyPerSettledAmount {
 			get {
@@ -2692,9 +2689,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// VAT per settled amount
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VATPerSettledAmount", Storage="_vATPerSettledAmount", FieldType="Number")]
 		public System.Nullable<double> VATPerSettledAmount {
 			get {
@@ -2709,9 +2703,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Duty and VAT
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyAndVAT", Storage="_dutyAndVAT", FieldType="Number")]
 		public System.Nullable<double> DutyAndVAT {
 			get {
@@ -2743,9 +2734,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Remaining quantity
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="RemainingQuantity", Storage="_remainingQuantity", FieldType="Number")]
 		public System.Nullable<double> RemainingQuantity {
 			get {
@@ -4748,9 +4736,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _grossMass;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentLib> _sADDocumenLibrarytIndex;
+		private Microsoft.SharePoint.Linq.EntitySet<Clearence> _clearence;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _sADDocument2Clearence;
+		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentLib> _sADDocumenLibrarytIndex;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<SADGood> _sADGood;
 		
@@ -4761,14 +4749,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		#endregion
 		
 		public SADDocumentType() {
+			this._clearence = new Microsoft.SharePoint.Linq.EntitySet<Clearence>();
+			this._clearence.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnClearenceSync);
+			this._clearence.OnChanged += new System.EventHandler(this.OnClearenceChanged);
+			this._clearence.OnChanging += new System.EventHandler(this.OnClearenceChanging);
 			this._sADDocumenLibrarytIndex = new Microsoft.SharePoint.Linq.EntityRef<SADDocumentLib>();
 			this._sADDocumenLibrarytIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentLib>>(this.OnSADDocumenLibrarytIndexSync);
 			this._sADDocumenLibrarytIndex.OnChanged += new System.EventHandler(this.OnSADDocumenLibrarytIndexChanged);
 			this._sADDocumenLibrarytIndex.OnChanging += new System.EventHandler(this.OnSADDocumenLibrarytIndexChanging);
-			this._sADDocument2Clearence = new Microsoft.SharePoint.Linq.EntityRef<Clearence>();
-			this._sADDocument2Clearence.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnSADDocument2ClearenceSync);
-			this._sADDocument2Clearence.OnChanged += new System.EventHandler(this.OnSADDocument2ClearenceChanged);
-			this._sADDocument2Clearence.OnChanging += new System.EventHandler(this.OnSADDocument2ClearenceChanging);
 			this._sADGood = new Microsoft.SharePoint.Linq.EntitySet<SADGood>();
 			this._sADGood.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnSADGoodSync);
 			this._sADGood.OnChanged += new System.EventHandler(this.OnSADGoodChanged);
@@ -4863,6 +4851,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Clearence2SadDocumentIndex", Storage="_clearence", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Clearence")]
+		public Microsoft.SharePoint.Linq.EntitySet<Clearence> Clearence {
+			get {
+				return this._clearence;
+			}
+			set {
+				this._clearence.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocumenLibrarytIndex", Storage="_sADDocumenLibrarytIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Document Library")]
 		public SADDocumentLib SADDocumenLibrarytIndex {
 			get {
@@ -4870,16 +4868,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 			set {
 				this._sADDocumenLibrarytIndex.SetEntity(value);
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="SADDocument2Clearence", Storage="_sADDocument2Clearence", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Clearence")]
-		public Clearence SADDocument2Clearence {
-			get {
-				return this._sADDocument2Clearence.GetEntity();
-			}
-			set {
-				this._sADDocument2Clearence.SetEntity(value);
 			}
 		}
 		
@@ -4893,6 +4881,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
+		private void OnClearenceChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Clearence", this._clearence.Clone());
+		}
+		
+		private void OnClearenceChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Clearence");
+		}
+		
+		private void OnClearenceSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.SADDocumentID = this;
+			}
+			else {
+				e.Item.SADDocumentID = null;
+			}
+		}
+		
 		private void OnSADDocumenLibrarytIndexChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("SADDocumenLibrarytIndex", this._sADDocumenLibrarytIndex.Clone());
 		}
@@ -4902,23 +4907,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		private void OnSADDocumenLibrarytIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADDocumentLib> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SADDocumentType.Add(this);
-			}
-			else {
-				e.Item.SADDocumentType.Remove(this);
-			}
-		}
-		
-		private void OnSADDocument2ClearenceChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SADDocument2Clearence", this._sADDocument2Clearence.Clone());
-		}
-		
-		private void OnSADDocument2ClearenceChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SADDocument2Clearence");
-		}
-		
-		private void OnSADDocument2ClearenceSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.SADDocumentType.Add(this);
 			}
