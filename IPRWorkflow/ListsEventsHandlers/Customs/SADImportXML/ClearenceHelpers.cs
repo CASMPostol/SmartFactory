@@ -13,9 +13,9 @@ namespace CAS.SmartFactory.IPR.Customs
   {
 
     #region MyRegion
-    internal static IQueryable<Clearence> Associate( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, out string _comments, SADDocumentLib customsDocumentLibrary )
+    internal static void Associate( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, out string _comments, SADDocumentLib customsDocumentLibrary )
     {
-      IQueryable<Clearence> _ret = default( IQueryable<Clearence> );
+      IQueryable<Clearence> _clearenceList = default( IQueryable<Clearence> );
       string _at = "started";
       _comments = "Clearance association error";
       try
@@ -32,13 +32,11 @@ namespace CAS.SmartFactory.IPR.Customs
             {
               case CustomsProcedureCodes.FreeCirculation:
                 _at = "FimdClearence";
-                _ret = Clearence.FimdClearence( _edc, _sad.ReferenceNumber );
+                _clearenceList = Clearence.FimdClearence( _edc, _sad.ReferenceNumber );
                 if ( _messageType == CustomsDocument.DocumentType.PZC )
                   _sad.ReleaseForFreeCirculation( _edc, out _comments );
                 else
                   _comments = "Document added";
-                foreach ( Clearence _clrnx in _ret )
-                  _clrnx.CreateTitle( _messageType.ToString() );
                 break;
               case CustomsProcedureCodes.InwardProcessing:
                 _at = "NewClearence";
@@ -51,7 +49,7 @@ namespace CAS.SmartFactory.IPR.Customs
                                                             Status = false,
                                                             ClearenceProcedure = ClearenceProcedure._5171,
                                                           };
-                _ret = new Clearence[] { _newClearance }.AsQueryable();
+                _clearenceList = new Clearence[] { _newClearance }.AsQueryable();
                 _at = "InsertOnSubmit";
                 _edc.Clearence.InsertOnSubmit( _newClearance );
                 if ( _messageType == CustomsDocument.DocumentType.PZC )
@@ -72,7 +70,7 @@ namespace CAS.SmartFactory.IPR.Customs
                   //[pr4-3738] CustomsProcedureCodes.CustomsWarehousingProcedure 7100 must be added http://itrserver/Bugs/BugDetail.aspx?bid=3738
                   ClearenceProcedure = ClearenceProcedure._7100,
                 };
-                _ret = new Clearence[] { _newWarehousinClearance }.AsQueryable();
+                _clearenceList = new Clearence[] { _newWarehousinClearance }.AsQueryable();
                 _newWarehousinClearance.CreateTitle( _messageType.ToString() );
                 _at = "InsertOnSubmit";
                 _edc.Clearence.InsertOnSubmit( _newWarehousinClearance );
@@ -95,8 +93,8 @@ namespace CAS.SmartFactory.IPR.Customs
             break;
           case CustomsDocument.DocumentType.CLNE:
             _at = "FimdClearence";
-            _ret = Clearence.FimdClearence( _edc, _sad.ReferenceNumber );
-            foreach ( Clearence _cx in _ret )
+            _clearenceList = Clearence.FimdClearence( _edc, _sad.ReferenceNumber );
+            foreach ( Clearence _cx in _clearenceList )
             {
               _cx.DocumentNo = _sad.DocumentNumber;
               _cx.CreateTitle( _messageType.ToString() );
@@ -122,9 +120,11 @@ namespace CAS.SmartFactory.IPR.Customs
           default:
             throw new IPRDataConsistencyException( "Clearence.Associate", "Unexpected message type.", null, "Unexpected message type." );
         }//switch (_documentType
-        foreach ( Clearence _clrncx in _ret )
+        foreach ( Clearence _clrncx in _clearenceList )
+        {
+          _clrncx.CreateTitle( _messageType.ToString() );
           _clrncx.SADDocumentID = _sad;
-        return _ret;
+        }
       }
       catch ( IPRDataConsistencyException _iorex )
       {
@@ -393,43 +393,44 @@ namespace CAS.SmartFactory.IPR.Customs
     /// <exception cref="GenericStateMachineEngine.ActionResult">if operation cannot be complited.</exception>
     private static void ReExportOfGoods( this SADDocumentType sadDocument, Entities _edc, string _messageType )
     {
-      List<Clearence> _clearanceList = FimdClearence( _edc, sadDocument );
-      foreach ( Clearence _clearance in _clearanceList )
+      List<CleranceDescription> _clearanceList = new List<CleranceDescription>();
+      FimdClearenceList( _edc, _clearanceList, sadDocument );
+      foreach ( CleranceDescription _clearance in _clearanceList )
       {
-        _clearance.SADDocumentID = sadDocument;
-        foreach ( var _disposal in _clearance.Disposal )
-          _disposal.Export( _edc, sadDocument.DocumentNumber, _clearance, sadDocument.CustomsDebtDate.Value );
-        _clearance.DocumentNo = sadDocument.DocumentNumber;
-        _clearance.ReferenceNumber = sadDocument.ReferenceNumber;
-        _clearance.Status = true;
-        _clearance.CreateTitle( _messageType );
+        _clearance.Clerance.SADDocumentID = sadDocument;
+        _clearance.Clerance.DocumentNo = sadDocument.DocumentNumber;
+        _clearance.Clerance.ReferenceNumber = sadDocument.ReferenceNumber;
+        _clearance.Clerance.Status = true;
+        _clearance.Clerance.CreateTitle( _messageType );
+        foreach ( var _disposal in _clearance.Clerance.Disposal )
+          _disposal.Export( _edc, sadDocument.DocumentNumber, _clearance.Clerance, sadDocument.CustomsDebtDate.Value, _clearance.ProductCodeNumber );
       }
     }
-    private static List<Clearence> FimdClearence( Entities _edc, SADDocumentType _this )
+    private static void FimdClearenceList( Entities _edc, List<CleranceDescription> _clearance, SADDocumentType _this )
     {
-      List<Clearence> _clearance = null;
       foreach ( SADGood _sg in _this.SADGood )
       {
         if ( _sg.Procedure.RequestedProcedure() != CustomsProcedureCodes.ReExport )
           throw new IPRDataConsistencyException( "Clearence.Create", String.Format( "IE529 contains invalid customs procedure {0}", _sg.Title ), null, "Wrong customs procedure." );
         foreach ( SADRequiredDocuments _rdx in _sg.SADRequiredDocuments )
         {
-          if ( _rdx.Code != XMLResources.RequiredDocumentFinishedGoodExportConsignmentCode )
-          {
-            int? _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( _rdx.Number );
-            if ( _cleranceInt.HasValue )
-            {
-              _clearance.Add( Element.GetAtIndex<Clearence>( _edc.Clearence, _cleranceInt.Value ) );
-              break;
-            }
-          }
-        } // foreach ( SADRequiredDocuments _rdx in _sg.SADRequiredDocuments )
+          if ( _rdx.Code != XMLResources.RequiredDocumentConsignmentCode )
+            continue;
+          int? _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( _rdx.Number );
+          if ( _cleranceInt.HasValue )
+            _clearance.Add( new CleranceDescription() { Clerance = Element.GetAtIndex<Clearence>( _edc.Clearence, _cleranceInt.Value ), ProductCodeNumber = _sg.PCNTariffCode } );
+        } // foreach 
       }//foreach ( SADGood _sg in SADGood )
       if ( _clearance.Count > 0 )
-        return _clearance;
+        return;
       string _template = "Cannot find required document code ={0} for customs document = {1}/ref={2}";
       throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _template, _this.DocumentNumber, _this.ReferenceNumber ) );
-    } //private Clearence FimdClearence(
+    }
+    private class CleranceDescription
+    {
+      internal Clearence Clerance { get; set; }
+      internal string ProductCodeNumber { get; set; }
+    }
     /// <summary>
     /// Get requested customs procedure code 
     /// </summary>
@@ -453,7 +454,6 @@ namespace CAS.SmartFactory.IPR.Customs
           throw new CustomsDataException( "Extensions.RequestedProcedure", "Unsupported requested procedure" );
       }
     }
-
     private const string _wrongProcedure = "Wrong customs procedure";
     #endregion
 

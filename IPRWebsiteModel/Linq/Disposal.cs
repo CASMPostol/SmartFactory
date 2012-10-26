@@ -6,7 +6,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class Disposal
   {
-    public void Export( Entities edc, string documentNo, Clearence clearence, DateTime clearenceDate )
+    public void Export( Entities edc, string documentNo, Clearence clearence, DateTime clearanceDate, string productCodeNumber )
     {
       string _at = "starting";
       try
@@ -20,21 +20,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           this.No = 1;
         else
           this.No = _lastOne.No++;
+        //TODO [pr4-3737] Compensation good must be recognized using the PCN code from customs message http://itrserver/Bugs/BugDetail.aspx?bid=3737
+        PCNCode _pcn = ( from _pcnx in edc.PCNCode
+                         where _pcnx.IsIPR.GetValueOrDefault( true ) && _pcnx.ProductCodeNumber.Contains( productCodeNumber ) 
+                         // && this.DisposalStatus == _pcnx.CompensationGood 
+                         select _pcnx ).FirstOrDefault();
         this.SADDocumentNo = documentNo;
-        this.SADDate = clearenceDate;
+        this.SADDate = clearanceDate;
         this.CustomsStatus = Linq.CustomsStatus.Finished;
         this.Disposal2IPRIndex.AccountBalance -= this.SettledQuantity.Value;
         this.RemainingQuantity = Disposal2IPRIndex.AccountBalance;
         if ( this.RemainingQuantity.Value == 0 )
           this.ClearingType = Linq.ClearingType.TotalWindingUp;
         this.CustomsProcedure = clearence.ProcedureCode;
-        //TODO [pr4-3737] Compensation good must be recognized using the PCN code from customs message http://itrserver/Bugs/BugDetail.aspx?bid=3737
         _at = "PCNCode _tobaccoPCN ";
-        PCNCode _tobaccoPCN = ( from _pcnx in edc.PCNCode
-                                where _pcnx.IsIPR.GetValueOrDefault( true ) && _pcnx.CompensationGood.Value == Linq.CompensationGood.Papierosy
-                                select _pcnx ).FirstOrDefault();
-        //TODO [pr4-3733] Export: Association of the SAD documents: SAD analyses error at Clearence analyses error at started. 
-        //this.Disposal2PCNCompensationGood = _tobaccoPCN == null ? null : _tobaccoPCN;
+        this.Disposal2PCNID = _pcn;
         this.Disposal2ClearenceIndex = clearence;
       }
       catch ( Exception _ex )

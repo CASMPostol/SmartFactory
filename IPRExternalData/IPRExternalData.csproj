@@ -94,7 +94,6 @@
     <Compile Include="Customs\ECS\IE529ZwolnienieTowarOpakowanie.cs" />
     <Compile Include="Customs\ECS\IE529ZwolnienieTowarOplata.cs" />
     <Compile Include="Customs\ECS\IE529_v1-0_xmldsig-core-schema.cs" />
-    <Compile Include="Customs\Extensions.cs" />
     <Compile Include="Customs\GoodDescription.cs" />
     <Compile Include="Customs\PackageDescription.cs" />
     <Compile Include="Customs\QuantityDescription.cs" />
