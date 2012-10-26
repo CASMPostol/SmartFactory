@@ -11,6 +11,7 @@
           <FieldRef ID="{109482BF-107F-44C3-9CD8-6AC9C1FAB851}" Name="SADConsignmentLibraryIndex" />
           <FieldRef ID="{0F8D4217-D9F2-4065-8F0D-04E727B3C24B}" Name="ProcedureCode" />
           <FieldRef ID="{7D196321-5D5D-4D55-908C-125A2E694670}" Name="ClearenceProcedure" />
+          <FieldRef ID="{C84F88F1-CBCD-4F4A-94FF-357970C20DC3}" Name="Clearence2SadDocumentIndex" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -61,6 +62,7 @@
           <FieldRef ID="{109482BF-107F-44C3-9CD8-6AC9C1FAB851}" Name="SADConsignmentLibraryIndex" />
           <FieldRef ID="{0F8D4217-D9F2-4065-8F0D-04E727B3C24B}" Name="ProcedureCode" />
           <FieldRef ID="{7D196321-5D5D-4D55-908C-125A2E694670}" Name="ClearenceProcedure" />
+          <FieldRef ID="{C84F88F1-CBCD-4F4A-94FF-357970C20DC3}" Name="Clearence2SadDocumentIndex" />
         </ViewFields>
         <Query>
           <OrderBy>
