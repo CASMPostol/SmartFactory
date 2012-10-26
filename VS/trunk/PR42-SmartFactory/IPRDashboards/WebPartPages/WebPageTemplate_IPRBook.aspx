@@ -29,8 +29,16 @@
         <tr>
             <td valign="top">
                         <WebPartPages:WebpartZone
-                        ID="Disposal" runat="server"
-                        Title="Disposal List Web Part Zone"
+                        ID="IPR_All" runat="server"
+                        Title="IPR All List Web Part Zone"
+                        FrameType="TitleBarOnly" />
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                        <WebPartPages:WebpartZone
+                        ID="Disposals" runat="server"
+                        Title="Disposals List Web Part Zone"
                         FrameType="TitleBarOnly" />
             </td>
         </tr>
@@ -40,9 +48,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-
+    <asp:Literal ID="m_PageTitle" runat="server" Text="KSIĘGA USZLACHETNIANIA CZYNNEGO" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-
+    <asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="KSIĘGA USZLACHETNIANIA CZYNNEGO" />
 </asp:Content>
