@@ -66,12 +66,9 @@ namespace CAS.SmartFactory.IPR.Customs
             edc.SubmitChanges();
             _at = "Clearence.Associate";
             string _comments = String.Empty;
-            IQueryable<Clearence> _clrnc = null;
             try
             {
-              _clrnc = ClearenceHelpers.Associate( edc, _message.MessageRootName(), _sad, out _comments, entry );
-              foreach ( Clearence _clrncx in _clrnc )
-                _clrncx.SADDocumentID = _sad;
+              ClearenceHelpers.Associate( edc, _message.MessageRootName(), _sad, out _comments, entry );
             }
             catch ( Exception ex )
             {
