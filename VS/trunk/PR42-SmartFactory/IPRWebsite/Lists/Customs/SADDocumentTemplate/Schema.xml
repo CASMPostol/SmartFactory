@@ -12,7 +12,6 @@
           <FieldRef Name="ExchangeRate" ID="{2995A5AF-EC77-4FD7-89F8-898B5068A5E4}" />
           <FieldRef Name="GrossMass" ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" />
           <FieldRef Name="SADDocumenLibrarytIndex" ID="{66D3CFD7-0C8F-4BC9-B896-EF9A680E2FC5}" />
-          <FieldRef ID="{2A2BD397-96B8-4BE9-9AB1-8651A729854E}" Name="SADDocument2Clearence" />
         </FieldRefs>
         <XmlDocuments>
           <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
@@ -26,13 +25,6 @@
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="ReferenceNumber" ID="{8c9856b8-0ed9-42e8-99a2-9c58aa31810e}" Type="Text" DisplayName="Reference Number" AuthoringInfo="SAD Document Reference Number - box 7." Group="CAS Smart Factory IPR Customs" Indexed="True" Description="SAD Document Reference Number - box 7." Required="False" />
-      <Field Name="CustomsDebtDate" ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}" Type="DateTime" DisplayName="Customs debt date" Group="CAS Smart Factory IPR Customs" />
-      <Field Name="DocumentNumber" ID="{760b5433-5802-47aa-bb65-6438772d78b5}" Type="Text" DisplayName="DocumentNumber" Group="CAS Smart Factory IPR Customs" />
-      <Field Name="Currency" ID="{91f0305a-9f13-468a-85ca-1ae1c859dbd7}" Type="Text" DisplayName="Currency" Group="CAS Smart Factory IPR Customs" AuthoringInfo="Box 22 first part" />
-      <Field Name="ExchangeRate" ID="{2995a5af-ec77-4fd7-89f8-898b5068a5e4}" Type="Number" DisplayName="Exchange rate" Group="CAS Smart Factory IPR Customs" AuthoringInfo="Box 23" />
-      <Field Name="GrossMass" Type="Number" ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" DisplayName="Gross mass" Group="CAS Smart Factory IPR Customs" />
-      <Field Name="SADDocumenLibrarytIndex" ID="{66d3cfd7-0c8f-4bc9-b896-ef9a680e2fc5}" Type="Lookup" List="Lists/SADDocumentLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="SAD Document Library lookup" Group="CAS Smart Factory IPR Customs" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
