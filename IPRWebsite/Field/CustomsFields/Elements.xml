@@ -101,7 +101,7 @@
     Name="GrossMass"
     Type="Number"
     ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}"
-    DisplayName="Gross mass"
+    DisplayName="Gross mass [kg]"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
@@ -177,7 +177,7 @@
     Description="BillQtyInSKU"
     />
   <Field
-    DisplayName="Duty"
+    DisplayName="Duty [PLN]"
     Name="Duty"
     Type="Number"
     Decimals="0"
@@ -194,7 +194,7 @@
     Description="PozID"
     />
   <Field
-    DisplayName="Net mass"
+    DisplayName="Net mass [kg]"
     Name="NetMass"
     Type="Number"
     ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}"
@@ -258,7 +258,7 @@
     Description="j.m."
     />
   <Field
-    DisplayName="VAT"
+    DisplayName="VAT [PLN]"
     Name="VAT"
     Type="Number"
     Decimals="0"
