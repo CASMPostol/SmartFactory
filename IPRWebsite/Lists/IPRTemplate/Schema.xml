@@ -150,7 +150,7 @@
           <OrderBy>
             <FieldRef Name="CustomsDebtDate" Ascending="TRUE">
             </FieldRef>
-            <FieldRef Name="AccountClosed" Ascending="FALSE">
+            <FieldRef Name="AccountClosed" Ascending="TRUE">
             </FieldRef>
           </OrderBy>
         </Query>
