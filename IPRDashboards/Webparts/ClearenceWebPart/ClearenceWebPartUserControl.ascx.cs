@@ -529,6 +529,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         }
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
         CurrentClearence.SADConsignmentLibraryIndex = _sadConsignment;
+        CurrentClearence.Status = true;
         foreach ( Disposal _dspsl in CurrentClearence.Disposal )
           _dspsl.CustomsStatus = CustomsStatus.Started;
         m_DataContextManagement.DataContext.SubmitChanges();
