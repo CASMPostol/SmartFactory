@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Disposal = true;
         DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo;
         DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate.Value;
-        ValidTo = _dspslx.Disposal2IPRIndex.ValidToDate.Value;
+        ValidTo = _dspslx.Disposal2IPRIndex.OGLValidTo.Value;
         SKU = _dspslx.Disposal2IPRIndex.SKU;
         Batch = _dspslx.Disposal2IPRIndex.Batch;
         UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice.Value;
