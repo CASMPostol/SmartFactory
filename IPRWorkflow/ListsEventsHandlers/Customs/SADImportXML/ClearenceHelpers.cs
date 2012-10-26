@@ -90,7 +90,7 @@ namespace CAS.SmartFactory.IPR.Customs
           case CustomsDocument.DocumentType.IE529:
             _at = "ReExportOfGoods";
             _comments = "Reexport of goods failed";
-            _sad.ReExportOfGoods( _edc, _messageType );
+            _sad.ReExportOfGoods( _edc, _messageType.ToString() );
             _comments = "Reexport of goods";
             break;
           case CustomsDocument.DocumentType.CLNE:
@@ -122,6 +122,9 @@ namespace CAS.SmartFactory.IPR.Customs
           default:
             throw new IPRDataConsistencyException( "Clearence.Associate", "Unexpected message type.", null, "Unexpected message type." );
         }//switch (_documentType
+        foreach ( Clearence _clrncx in _ret )
+          _clrncx.SADDocumentID = _sad;
+        return _ret;
       }
       catch ( IPRDataConsistencyException _iorex )
       {
@@ -136,7 +139,6 @@ namespace CAS.SmartFactory.IPR.Customs
         string _src = String.Format( "Clearence analyses error at {0}", _at );
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
       }
-      return _ret;
     }
     #endregion
 
@@ -389,19 +391,18 @@ namespace CAS.SmartFactory.IPR.Customs
     /// <param name="_edc">The _edc.</param>
     /// <param name="_messageType">Type of the _message.</param>
     /// <exception cref="GenericStateMachineEngine.ActionResult">if operation cannot be complited.</exception>
-    private static void ReExportOfGoods( this SADDocumentType sadDocument, Entities _edc, xml.Customs.CustomsDocument.DocumentType _messageType )
+    private static void ReExportOfGoods( this SADDocumentType sadDocument, Entities _edc, string _messageType )
     {
       List<Clearence> _clearanceList = FimdClearence( _edc, sadDocument );
       foreach ( Clearence _clearance in _clearanceList )
       {
         _clearance.SADDocumentID = sadDocument;
         foreach ( var _disposal in _clearance.Disposal )
-          //TODO not sure about this.CustomsDebtDate.Value, but it is the ony one date. 
           _disposal.Export( _edc, sadDocument.DocumentNumber, _clearance, sadDocument.CustomsDebtDate.Value );
         _clearance.DocumentNo = sadDocument.DocumentNumber;
         _clearance.ReferenceNumber = sadDocument.ReferenceNumber;
         _clearance.Status = true;
-        _clearance.CreateTitle( _messageType.ToString() );
+        _clearance.CreateTitle( _messageType );
       }
     }
     private static List<Clearence> FimdClearence( Entities _edc, SADDocumentType _this )
@@ -429,6 +430,30 @@ namespace CAS.SmartFactory.IPR.Customs
       string _template = "Cannot find required document code ={0} for customs document = {1}/ref={2}";
       throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _template, _this.DocumentNumber, _this.ReferenceNumber ) );
     } //private Clearence FimdClearence(
+    /// <summary>
+    /// Get requested customs procedure code 
+    /// </summary>
+    /// <param name="_cpc">The Customs Procedure Code.</param>
+    /// <returns>Requested procedure code <see cref="CustomsProcedureCodes"/> - first two chars of the box 37</returns>
+    private static CustomsProcedureCodes RequestedProcedure( this string _cpc )
+    {
+      switch ( _cpc.Remove( 2 ) )
+      {
+        case "00":
+          return CustomsProcedureCodes.NoProcedure;
+        case "31":
+          return CustomsProcedureCodes.ReExport;
+        case "40":
+          return CustomsProcedureCodes.FreeCirculation;
+        case "51":
+          return CustomsProcedureCodes.InwardProcessing;
+        case "71":
+          return CustomsProcedureCodes.CustomsWarehousingProcedure;
+        default:
+          throw new CustomsDataException( "Extensions.RequestedProcedure", "Unsupported requested procedure" );
+      }
+    }
+
     private const string _wrongProcedure = "Wrong customs procedure";
     #endregion
 
