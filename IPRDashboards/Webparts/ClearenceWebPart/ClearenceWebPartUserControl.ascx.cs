@@ -451,7 +451,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       CurrentClearence = Clearence.CreataClearence( m_DataContextManagement.DataContext, "", SelectedClearenceProcedure );
       Update();
     }
-    internal void Delete()
+    private void Delete()
     {
       foreach ( Disposal _dx in CurrentClearence.Disposal )
         _dx.Disposal2ClearenceIndex = null;
@@ -798,7 +798,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       SPGridView _sender = sender as SPGridView;
       if ( _sender == null )
         return;
-      Label _idLabel = (Label)_sender.Rows[ e.NewEditIndex ].FindControlRecursive( m_IDEditLabel );
+      Label _idLabel = (Label)_sender.Rows[ e.NewEditIndex ].FindControlRecursive( m_IDItemLabel );
       if ( Selection.SelectionTableRow.IsDisposal( _idLabel.Text ) )
         e.Cancel = true;
       else
