@@ -14,7 +14,7 @@ namespace CAS.SmartFactory.xml
     /// <summary>
     /// Required document finishedgood export consignmen tcode
     /// </summary>
-    public const string RequiredDocumentFinishedGoodExportConsignmentCode = " ";
+    public const string RequiredDocumentConsignmentCode = "9DK8";
     /// <summary>
     /// Finisheds the name of the goods export form file.
     /// </summary>
