@@ -12,9 +12,9 @@ namespace CAS.SmartFactory.IPR.Customs
   {
 
     #region MyRegion
-    internal static Clearence Associate( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, out string _comments, SADDocumentLib customsDocumentLibrary )
+    internal static IQueryable<Clearence> Associate( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, out string _comments, SADDocumentLib customsDocumentLibrary )
     {
-      Clearence _ret = default( Clearence );
+      IQueryable<Clearence> _ret = default( IQueryable<Clearence> );
       string _at = "started";
       _comments = "Clearance association error";
       try
@@ -36,30 +36,32 @@ namespace CAS.SmartFactory.IPR.Customs
                   _sad.ReleaseForFreeCirculation( _edc, out _comments );
                 else
                   _comments = "Document added";
-                _ret.CreateTitle( _messageType.ToString() );
+                foreach ( Clearence _clrnx in _ret )
+                  _clrnx.CreateTitle( _messageType.ToString() );
                 break;
               case CustomsProcedureCodes.InwardProcessing:
                 _at = "NewClearence";
-                _ret = new Clearence()
-                {
-                  DocumentNo = _sad.DocumentNumber,
-                  ReferenceNumber = _sad.ReferenceNumber,
-                  SADConsignmentLibraryIndex = null,
-                  ProcedureCode = String.Format( _procedureCodeFormat, (int)_customsProcedureCodes ),
-                  Status = false,
-                  ClearenceProcedure = ClearenceProcedure._5171,
-                };
+                Clearence _newClearance = new Clearence()
+                                                          {
+                                                            DocumentNo = _sad.DocumentNumber,
+                                                            ReferenceNumber = _sad.ReferenceNumber,
+                                                            SADConsignmentLibraryIndex = null,
+                                                            ProcedureCode = String.Format( _procedureCodeFormat, (int)_customsProcedureCodes ),
+                                                            Status = false,
+                                                            ClearenceProcedure = ClearenceProcedure._5171,
+                                                          };
+                _ret = new Clearence[] { _newClearance }.AsQueryable();
                 _at = "InsertOnSubmit";
-                _edc.Clearence.InsertOnSubmit( _ret );
+                _edc.Clearence.InsertOnSubmit( _newClearance );
                 if ( _messageType == CustomsDocument.DocumentType.PZC )
-                  CreateIPRAccount( _edc, _sad, _ret, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
+                  CreateIPRAccount( _edc, _sad, _newClearance, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
                 else
                   _comments = "Document added";
-                _ret.CreateTitle( _messageType.ToString() );
+                _newClearance.CreateTitle( _messageType.ToString() );
                 break;
               case CustomsProcedureCodes.CustomsWarehousingProcedure:
                 _at = "NewClearence";
-                _ret = new Clearence()
+                Clearence _newWarehousinClearance = new Clearence()
                 {
                   DocumentNo = _sad.DocumentNumber,
                   ReferenceNumber = _sad.ReferenceNumber,
@@ -69,9 +71,10 @@ namespace CAS.SmartFactory.IPR.Customs
                   //[pr4-3738] CustomsProcedureCodes.CustomsWarehousingProcedure 7100 must be added http://itrserver/Bugs/BugDetail.aspx?bid=3738
                   ClearenceProcedure = ClearenceProcedure._7100,
                 };
-                _ret.CreateTitle( _messageType.ToString() );
+                _ret = new Clearence[] { _newWarehousinClearance }.AsQueryable();
+                _newWarehousinClearance.CreateTitle( _messageType.ToString() );
                 _at = "InsertOnSubmit";
-                _edc.Clearence.InsertOnSubmit( _ret );
+                _edc.Clearence.InsertOnSubmit( _newWarehousinClearance );
                 if ( _messageType == CustomsDocument.DocumentType.PZC )
                   ;// TODO CreateStockRecord  
                 else
@@ -92,24 +95,27 @@ namespace CAS.SmartFactory.IPR.Customs
           case CustomsDocument.DocumentType.CLNE:
             _at = "FimdClearence";
             _ret = Clearence.FimdClearence( _edc, _sad.ReferenceNumber );
-            _ret.DocumentNo = _sad.DocumentNumber;
-            _ret.CreateTitle( _messageType.ToString() );
-            _at = "StartingDocument";
-            SADDocumentType _startingDocument = _ret.SADDocumentType.First<SADDocumentType>();
-            _at = "switch RequestedProcedure";
-            switch ( _ret.ProcedureCode.RequestedProcedure() )
+            foreach ( Clearence _cx in _ret )
             {
-              case CustomsProcedureCodes.FreeCirculation:
-                _startingDocument.ReleaseForFreeCirculation( _edc, out _comments );
-                break;
-              case CustomsProcedureCodes.InwardProcessing:
-                CreateIPRAccount( _edc, _startingDocument, _ret, CustomsDocument.DocumentType.SAD, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
-                break;
-              case CustomsProcedureCodes.ReExport:
-              case CustomsProcedureCodes.NoProcedure:
-              case CustomsProcedureCodes.CustomsWarehousingProcedure:
-              default:
-                throw new IPRDataConsistencyException( "Clearence.Associate", "Unexpected procedure code for CLNE message", null, _wrongProcedure );
+              _cx.DocumentNo = _sad.DocumentNumber;
+              _cx.CreateTitle( _messageType.ToString() );
+              _at = "StartingDocument";
+              SADDocumentType _startingDocument = _cx.SADDocumentID;
+              _at = "switch RequestedProcedure";
+              switch ( _cx.ProcedureCode.RequestedProcedure() )
+              {
+                case CustomsProcedureCodes.FreeCirculation:
+                  _startingDocument.ReleaseForFreeCirculation( _edc, out _comments );
+                  break;
+                case CustomsProcedureCodes.InwardProcessing:
+                  CreateIPRAccount( _edc, _startingDocument, _cx, CustomsDocument.DocumentType.SAD, _sad.CustomsDebtDate.Value, out _comments, customsDocumentLibrary );
+                  break;
+                case CustomsProcedureCodes.ReExport:
+                case CustomsProcedureCodes.NoProcedure:
+                case CustomsProcedureCodes.CustomsWarehousingProcedure:
+                default:
+                  throw new IPRDataConsistencyException( "Clearence.Associate", "Unexpected procedure code for CLNE message", null, _wrongProcedure );
+              }
             }
             break;
           default:
@@ -384,15 +390,16 @@ namespace CAS.SmartFactory.IPR.Customs
     /// <exception cref="GenericStateMachineEngine.ActionResult">if operation cannot be complited.</exception>
     private static void ReExportOfGoods( this SADDocumentType _this, Entities _edc, xml.Customs.CustomsDocument.DocumentType _messageType )
     {
-      _this.SADDocument2Clearence = FimdClearence( _edc, _this );
+      Clearence _clearance = FimdClearence( _edc, _this );
       //TODO Define and use the reverse lookup field. 
-      foreach ( var _disposal in from _dspx in _edc.Disposal where _dspx.Disposal2ClearenceIndex.Identyfikator == _this.SADDocument2Clearence.Identyfikator select _dspx )
+      _clearance.SADDocumentID = _this;
+      foreach ( var _disposal in from _dspx in _edc.Disposal where _dspx.Disposal2ClearenceIndex.Identyfikator == _clearance.Identyfikator select _dspx )
         //TODO not sure about this.CustomsDebtDate.Value, but it is the ony one date. 
-        _disposal.Export( _edc, _this.DocumentNumber, _this.SADDocument2Clearence, _this.CustomsDebtDate.Value );
-      _this.SADDocument2Clearence.DocumentNo = _this.DocumentNumber;
-      _this.SADDocument2Clearence.ReferenceNumber = _this.ReferenceNumber;
-      _this.SADDocument2Clearence.Status = true;
-      _this.SADDocument2Clearence.CreateTitle( _messageType.ToString() );
+        _disposal.Export( _edc, _this.DocumentNumber, _clearance, _this.CustomsDebtDate.Value );
+      _clearance.DocumentNo = _this.DocumentNumber;
+      _clearance.ReferenceNumber = _this.ReferenceNumber;
+      _clearance.Status = true;
+      _clearance.CreateTitle( _messageType.ToString() );
     }
     private static Clearence FimdClearence( Entities _edc, SADDocumentType _this )
     {

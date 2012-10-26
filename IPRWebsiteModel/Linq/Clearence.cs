@@ -14,9 +14,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="referenceNumber">The _reference number.</param>
     /// <returns>An object od <see cref=""/> that has <paramref name="referenceNumber"/></returns>
     //TODO rename to get
-    public static Clearence FimdClearence( Entities _edc, string referenceNumber )
+    public static IQueryable<Clearence> FimdClearence( Entities _edc, string referenceNumber )
     {
-      return ( from _cx in _edc.Clearence where referenceNumber.Contains( _cx.ReferenceNumber ) select _cx ).First<Clearence>();
+      return from _cx in _edc.Clearence where referenceNumber.Contains( _cx.ReferenceNumber ) select _cx;
     }
   }
 }

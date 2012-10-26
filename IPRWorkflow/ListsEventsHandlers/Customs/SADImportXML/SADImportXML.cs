@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
@@ -65,10 +66,12 @@ namespace CAS.SmartFactory.IPR.Customs
             edc.SubmitChanges();
             _at = "Clearence.Associate";
             string _comments = String.Empty;
-            Clearence _clrnc = null;
+            IQueryable<Clearence> _clrnc = null;
             try
             {
               _clrnc = ClearenceHelpers.Associate( edc, _message.MessageRootName(), _sad, out _comments, entry );
+              foreach ( Clearence _clrncx in _clrnc )
+                _clrncx.SADDocumentID = _sad;
             }
             catch ( Exception ex )
             {
@@ -79,7 +82,6 @@ namespace CAS.SmartFactory.IPR.Customs
               entry.SADDocumentLibraryComments = _comments;
               edc.SubmitChanges();
             }
-            _sad.SADDocument2Clearence = _clrnc;
             entry.SADDocumentLibraryOK = true;
             entry.SADDocumentLibraryComments = _comments;
             _at = "SubmitChanges #2";
