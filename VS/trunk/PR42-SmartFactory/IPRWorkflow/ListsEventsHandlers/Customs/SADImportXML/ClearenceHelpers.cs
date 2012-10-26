@@ -392,11 +392,10 @@ namespace CAS.SmartFactory.IPR.Customs
     private static void ReExportOfGoods( this SADDocumentType sadDocument, Entities _edc, xml.Customs.CustomsDocument.DocumentType _messageType )
     {
       List<Clearence> _clearanceList = FimdClearence( _edc, sadDocument );
-      //TODO Define and use the reverse lookup field. 
       foreach ( Clearence _clearance in _clearanceList )
       {
         _clearance.SADDocumentID = sadDocument;
-        foreach ( var _disposal in from _dspx in _edc.Disposal where _dspx.Disposal2ClearenceIndex.Identyfikator == _clearance.Identyfikator select _dspx )
+        foreach ( var _disposal in _clearance.Disposal )
           //TODO not sure about this.CustomsDebtDate.Value, but it is the ony one date. 
           _disposal.Export( _edc, sadDocument.DocumentNumber, _clearance, sadDocument.CustomsDebtDate.Value );
         _clearance.DocumentNo = sadDocument.DocumentNumber;
