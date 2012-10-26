@@ -437,7 +437,7 @@
     Description="Tobacco Name"
     />
   <Field
-    DisplayName="Duty Name"
+    DisplayName="Duty Name [PLN]"
     Name="DutyName"
     Type="Text"
     ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}"
@@ -445,7 +445,7 @@
     Description="Duty Name"
     />
   <Field
-    DisplayName="VAT Name"
+    DisplayName="VAT Name [PLN]"
     Name="VATName"
     Type="Text"
     ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}"
@@ -453,7 +453,7 @@
     Description="VAT Name"
     />
   <Field
-    DisplayName="Cartons"
+    DisplayName="Cartons [kg]"
     Name="Cartons"
     Type="Number"
     ID="{EC985ABA-7AA4-4603-86E6-904837CF0F77}"
@@ -637,7 +637,7 @@
     Description="IPR Document No."
     />
   <Field
-    DisplayName="Settled quantity"
+    DisplayName="Settled quantity [kg]"
     Name="SettledQuantity"
     Type="Number"
     ID="{333AB237-93FB-4910-B2FC-9A08A08643DA}"
@@ -687,24 +687,21 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="Duty per settled amount"
+    DisplayName="Duty per settled amount [PLN]"
     Name="DutyPerSettledAmount"
     Type="Number"
     ID="{9B890369-B6CC-403E-A921-F9E686EF094C}"
     Group="CAS Smart Factory IPR"
-    Description="Duty per settled amount"
     />
   <Field
-    DisplayName="VAT per settled amount"
+    DisplayName="VAT per settled amount [PLN]"
     Name="VATPerSettledAmount"
     Type="Number"
     ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}"
     Group="CAS Smart Factory IPR"
-    Description="VAT per settled amount"
     />
   <Field
-    Description="Duty and VAT"
-    DisplayName="Duty and VAT"
+    DisplayName="Duty and VAT [PLN]"
     Decimals="2"
     Type="Number"
     ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}"
@@ -720,13 +717,12 @@
     Description="Tobacco Value"
     />
   <Field
-    DisplayName="Remaining quantity"
+    DisplayName="Remaining quantity [kg]"
     Name="RemainingQuantity"
     Type="Number"
     Decimals="5"
     ID="{0E24A674-1FE7-4C77-9106-387E12417644}"
     Group="CAS Smart Factory IPR"
-    Description="Remaining quantity"
     />
   <Field
     DisplayName="Customs Procedure"
