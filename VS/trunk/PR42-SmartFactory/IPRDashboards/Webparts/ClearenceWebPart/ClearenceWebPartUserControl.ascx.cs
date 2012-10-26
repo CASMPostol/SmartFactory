@@ -734,7 +734,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           case "Waste":
             return Group.Waste;
           case "Cartons":
-            return Group.Tobacco;
+            return Group.Cartons;
           default:
             throw new SharePoint.ApplicationError( "SelectedGroup", "switch", "Internal error - wrong switch case.", null );
         };
