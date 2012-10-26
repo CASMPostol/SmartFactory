@@ -48,7 +48,7 @@
          </metaData>
          <data>
          <properties>
-         <property name="Title" type="string">IPR - import</property>
+         <property name="Title" type="string">IPR - export</property>
          <property name="AllowConnect" type="bool">True</property>
          </properties>
          </data>

@@ -143,6 +143,12 @@
             <FieldRef Name="ID">
             </FieldRef>
           </OrderBy>
+          <Where>
+            <Eq>
+              <FieldRef Name="CustomsStatus" />
+              <Value Type="Choice">Finished</Value>
+            </Eq>
+          </Where>
         </Query>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
