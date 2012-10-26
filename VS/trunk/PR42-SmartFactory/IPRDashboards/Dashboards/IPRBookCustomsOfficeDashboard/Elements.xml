@@ -12,7 +12,7 @@
          </metaData>
          <data>
          <properties>
-         <property name="Title" type="string">IPR accounts</property>
+         <property name="Title" type="string">KSIĘGA USZLACHETNIANIA CZYNNEGO</property>
          <property name="AllowConnect" type="bool">True</property>
          </properties>
          </data>
@@ -30,7 +30,7 @@
          </metaData>
          <data>
          <properties>
-         <property name="Title" type="string">IPR - import</property>
+         <property name="Title" type="string">KSIĘGA USZLACHETNIANIA CZYNNEGO - PRZYWÓZ</property>
          <property name="AllowConnect" type="bool">True</property>
          </properties>
          </data>
@@ -48,7 +48,7 @@
          </metaData>
          <data>
          <properties>
-         <property name="Title" type="string">IPR - export</property>
+         <property name="Title" type="string">KSIĘGA USZLACHETNIANIA CZYNNEGO - WYWÓZ</property>
          <property name="AllowConnect" type="bool">True</property>
          </properties>
          </data>
