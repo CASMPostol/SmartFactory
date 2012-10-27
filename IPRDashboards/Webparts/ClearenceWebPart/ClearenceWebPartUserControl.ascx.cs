@@ -414,6 +414,27 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         m_ControlState.ClearanceTitle = e.Title;
         m_ClearenceTextBox.Text = e.Title;
         QueryAssigned();
+        string _export = "3151";
+        switch ( CurrentClearence.ClearenceProcedure.Value )
+        {
+          case ClearenceProcedure._3151:
+          case ClearenceProcedure._3171:
+            break;
+          case ClearenceProcedure._4051:
+          case ClearenceProcedure._4071:
+            _export = "4051";
+            break;
+          case ClearenceProcedure._5100:
+          case ClearenceProcedure._5171:
+          case ClearenceProcedure._7100:
+          case ClearenceProcedure._7171:
+          case ClearenceProcedure.Invalid:
+          case ClearenceProcedure.None:
+          default:
+            break;
+        }
+        m_ProcedureRadioButtonList.SelectedValue = _export;
+        m_SelectGroupRadioButtonList.SelectedValue = CurrentClearence.ProcedureCode;
       }
       catch ( Exception _ex )
       {
@@ -430,7 +451,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       if ( CurrentClearence == null )
         throw GenericStateMachineEngine.ActionResult.Exception( null, "Internal error - ClearanceID is null or empty at Update" );
-      CurrentClearence.ProcedureCode = SelectedClearenceProcedure.ToString();
+      CurrentClearence.ProcedureCode = m_SelectGroupRadioButtonList.SelectedValue;
       CurrentClearence.ClearenceProcedure = SelectedClearenceProcedure;
       switch ( SelectedGroup )
       {
@@ -448,7 +469,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private void Create()
     {
-      CurrentClearence = Clearence.CreataClearence( m_DataContextManagement.DataContext, "", SelectedClearenceProcedure );
+      CurrentClearence = Clearence.CreataClearence( m_DataContextManagement.DataContext, m_SelectGroupRadioButtonList.SelectedValue, SelectedClearenceProcedure );
       Update();
     }
     private void Delete()
@@ -505,25 +526,25 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( CurrentClearence.Identyfikator.Value );
         int _sadConsignmentIdentifier = default( int );
-        switch ( SelectedGroup )
+        switch ( ToSelectedGroup( CurrentClearence.ProcedureCode ) )
         {
           case Group.Tobacco:
           case Group.TobaccoNotAllocated:
             DocumentContent _newTobaccoDoc =
-              DisposalsFormFactory.GetTobaccoFreeCirculationFormContent( CurrentClearence.Disposal, CurrentClearence.ProcedureCode, _masterDocumentName );
+              DisposalsFormFactory.GetTobaccoFreeCirculationFormContent( CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName );
             _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName, CompensatiionGood.Tobacco );
             break;
           case Group.Waste:
           case Group.Dust:
             DocumentContent _newDustWasteDoc =
-              DisposalsFormFactory.GetDustWasteFormContent( CurrentClearence.Disposal, CurrentClearence.ProcedureCode, _masterDocumentName );
+              DisposalsFormFactory.GetDustWasteFormContent( CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName );
             CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ?
               CompensatiionGood.Waste : CompensatiionGood.Dust;
             _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood );
             break;
           case Group.Cartons:
             DocumentContent _newBoxFormContent =
-              DisposalsFormFactory.GetBoxFormContent( CurrentClearence.Disposal, CurrentClearence.ProcedureCode, _masterDocumentName );
+              DisposalsFormFactory.GetBoxFormContent( CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName );
             _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, CompensatiionGood.Cartons );
             break;
         }
@@ -724,22 +745,26 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       get
       {
-        switch ( m_SelectGroupRadioButtonList.SelectedValue )
-        {
-          case "Tobacco":
-            return Group.Tobacco;
-          case "TobaccoNotAllocated":
-            return Group.TobaccoNotAllocated;
-          case "Dust":
-            return Group.Dust;
-          case "Waste":
-            return Group.Waste;
-          case "Cartons":
-            return Group.Cartons;
-          default:
-            throw new SharePoint.ApplicationError( "SelectedGroup", "switch", "Internal error - wrong switch case.", null );
-        };
+        return ToSelectedGroup( m_SelectGroupRadioButtonList.SelectedValue );
       }
+    }
+    private Group ToSelectedGroup( string group )
+    {
+      switch ( group )
+      {
+        case "Tobacco":
+          return Group.Tobacco;
+        case "TobaccoNotAllocated":
+          return Group.TobaccoNotAllocated;
+        case "Dust":
+          return Group.Dust;
+        case "Waste":
+          return Group.Waste;
+        case "Cartons":
+          return Group.Cartons;
+        default:
+          throw new SharePoint.ApplicationError( "SelectedGroup", "switch", "Internal error - wrong switch case.", null );
+      };
     }
     #endregion
 

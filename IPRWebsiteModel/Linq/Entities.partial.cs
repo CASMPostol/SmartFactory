@@ -299,6 +299,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// </summary>
   public partial class Clearence
   {
+    /// <summary>
+    /// Creatas the clearence.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="code">The code.</param>
+    /// <param name="procedure">The procedure.</param>
+    /// <returns></returns>
     public static Clearence CreataClearence( Entities edc, string code, ClearenceProcedure procedure )
     {
       Clearence _newClearence = new Clearence()
@@ -307,17 +314,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         ProcedureCode = code,
         ReferenceNumber = String.Empty.NotAvailable(),
         Status = false,
-        //TODO common naming convention must be implemented.
-        Title = "Creating",
+        Title = "Created",
         ClearenceProcedure = procedure
       };
       edc.Clearence.InsertOnSubmit( _newClearence );
       edc.SubmitChanges();
       return _newClearence;
     }
-    public void CreateTitle( string _messageType )
+    /// <summary>
+    /// Creates the title.
+    /// </summary>
+    /// <param name="messageType">Type of the message.</param>
+    public void CreateTitle( string messageType )
     {
-      Title = String.Format( "{0} Ref: {1}", _messageType.NotAvailable(), ReferenceNumber.NotAvailable() );
+         //TODO common naming convention must be implemented.
+     Title = String.Format( "{0} Ref: {1}", messageType.NotAvailable(), ReferenceNumber.NotAvailable() );
     }
   }
   /// <summary>
