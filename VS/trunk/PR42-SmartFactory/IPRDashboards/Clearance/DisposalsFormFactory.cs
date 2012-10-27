@@ -4,13 +4,14 @@ using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
+using CAS.SmartFactory.IPR.WebsiteModel;
 
 
 namespace CAS.SmartFactory.IPR.Dashboards.Clearance
 {
   internal static class DisposalsFormFactory
   {
-    internal static DocumentContent GetBoxFormContent( IQueryable<Disposal> disposals, string customProcedureCode, string documentNo )
+    internal static DocumentContent GetBoxFormContent( IQueryable<Disposal> disposals, ClearenceProcedure customProcedureCode, string documentNo )
     {
       double _subTotal = 0;
       MaterialRecord[] _materialRecords = GetListOfMaterials( disposals, ref _subTotal );
@@ -25,7 +26,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       return new DocumentContent()
       {
         AccountDescription = new MaterialsOnOneAccount[] { _materials },
-        CustomProcedureCode = customProcedureCode,
+        CustomProcedureCode = Entities.ToString( customProcedureCode ),
         DocumentDate = DateTime.Today.Date, //TODO not sure how to assigne document date.
         DocumentNo = documentNo,
         EndDate = endDate,
@@ -33,7 +34,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         Total = _subTotal
       };
     }
-    internal static DocumentContent GetTobaccoFreeCirculationFormContent( IEnumerable<Disposal> disposals, string customProcedureCode, string documentNo )
+    internal static DocumentContent GetTobaccoFreeCirculationFormContent( IEnumerable<Disposal> disposals, ClearenceProcedure customProcedureCode, string documentNo )
     {
       double _subTotal = 0;
       MaterialRecord[] _materialRecords = GetListOfMaterials( disposals, ref _subTotal );
@@ -48,7 +49,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       return new DocumentContent()
       {
         AccountDescription = new MaterialsOnOneAccount[] { _materials },
-        CustomProcedureCode = customProcedureCode,
+        CustomProcedureCode = Entities.ToString( customProcedureCode ),
         DocumentDate = DateTime.Today.Date, //TODO not sure how to assigne document date.
         DocumentNo = documentNo,
         EndDate = endDate,
@@ -56,7 +57,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         Total = _subTotal
       };
     }
-    internal static DocumentContent GetDustWasteFormContent( IQueryable<Disposal> disposals, string customProcedureCode, string documentNo )
+    internal static DocumentContent GetDustWasteFormContent( IQueryable<Disposal> disposals, ClearenceProcedure customProcedureCode, string documentNo )
     {
 
       IQueryable<IGrouping<string, Disposal>> _groups = from _disx in disposals
@@ -84,7 +85,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       return new DocumentContent()
       {
         AccountDescription = _dustsGroupe.ToArray(),
-        CustomProcedureCode = customProcedureCode,
+        CustomProcedureCode = Entities.ToString( customProcedureCode ),
         DocumentDate = DateTime.Today.Date, //TODO not sure how to assigne document date.
         DocumentNo = documentNo,
         EndDate = endDate,

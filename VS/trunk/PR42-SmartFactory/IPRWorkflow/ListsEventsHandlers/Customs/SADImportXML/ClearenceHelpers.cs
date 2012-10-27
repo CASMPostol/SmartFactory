@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.Customs
         {
           case CustomsDocument.DocumentType.SAD:
           case CustomsDocument.DocumentType.PZC:
-            SADPZCProcessing( _edc, _messageType, _sad, ref _comments, customsDocumentLibrary, ref _clearenceList, ref _at );
+            SADPZCProcessing( _edc, _messageType, _sad, ref _comments, customsDocumentLibrary, _clearenceList, ref _at );
             break;
           case CustomsDocument.DocumentType.IE529:
             _at = "ReExportOfGoods";
@@ -85,7 +85,7 @@ namespace CAS.SmartFactory.IPR.Customs
       }
     }
     private static void SADPZCProcessing
-      ( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, ref string _comments, SADDocumentLib customsDocumentLibrary, ref List<Clearence> _clearenceList, ref string _at )
+      ( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, ref string _comments, SADDocumentLib customsDocumentLibrary, List<Clearence> _clearenceList, ref string _at )
     {
       _at = "_customsProcedureCodes";
       foreach ( SADGood _sgx in _sad.SADGood )
