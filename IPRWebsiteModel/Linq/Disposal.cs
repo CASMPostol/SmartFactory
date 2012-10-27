@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           this.No = 1;
         else
           this.No = _lastOne.No++;
-        //TODO [pr4-3737] Compensation good must be recognized using the PCN code from customs message http://itrserver/Bugs/BugDetail.aspx?bid=3737
+        //TODO [pr4-3737] Compensation good must be recognized using the PCN code from customs message http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=1744
         PCNCode _pcn = ( from _pcnx in edc.PCNCode
                          where _pcnx.IsIPR.GetValueOrDefault( true ) && _pcnx.ProductCodeNumber.Contains( productCodeNumber ) 
                          // && this.DisposalStatus == _pcnx.CompensationGood 
