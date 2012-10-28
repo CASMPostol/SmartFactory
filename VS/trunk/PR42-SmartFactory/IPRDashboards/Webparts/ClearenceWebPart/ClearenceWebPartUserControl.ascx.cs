@@ -406,10 +406,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     #region SetInterconnectionData
     private void SetInterconnectionData( ClearenceInterconnectionnData e )
     {
+      if ( m_ControlState.ClearanceID.CompareTo( e.ID ) == 0 )
+        return;
       try
       {
-        if ( m_ControlState.ClearanceID.CompareTo( e.ID ) == 0 )
-          return;
+        m_SelectGroupRadioButtonList.SelectedValue = CurrentClearence.ProcedureCode;
+      }
+      catch ( Exception )
+      {
+        this.ShowActionResult( GenericStateMachineEngine.ActionResult.NotValidated( "This clearance cannot be edited - it is not compensation good clearance." ) );
+        return;
+      }
+      try
+      {
         m_ControlState.IsModified = true;
         m_ControlState.ClearanceID = e.ID;
         m_ControlState.ClearanceTitle = e.Title;
@@ -435,7 +444,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
             break;
         }
         m_ProcedureRadioButtonList.SelectedValue = _export;
-        m_SelectGroupRadioButtonList.SelectedValue = CurrentClearence.ProcedureCode;
       }
       catch ( Exception _ex )
       {
