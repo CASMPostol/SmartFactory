@@ -404,6 +404,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     #endregion
 
+    #region private
+
     #region SetInterconnectionData
     private void SetInterconnectionData( ClearenceInterconnectionnData e )
     {
@@ -465,8 +467,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     #endregion
 
-    #region private
-
     #region business logic
     private void Update()
     {
@@ -524,7 +524,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private void SetEnabled( GenericStateMachineEngine.ControlsSet controlsSet )
     {
       if ( m_ControlState.ReadOnly || m_ControlState.ClearanceID.IsNullOrEmpty() )
-        controlsSet &= ~(GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn);
+        controlsSet &= ~( GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn );
       //Buttons
       m_EditButton.Enabled = ( controlsSet & GenericStateMachineEngine.ControlsSet.EditOn ) != 0;
       m_ClearButton.Enabled = m_EditButton.Enabled;
@@ -882,8 +882,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       try
       {
-        for ( int i = m_AssignedGridView.LowestDataItemIndex; i <= m_AssignedGridView.HighestDataItemIndex; i++ )
-          m_ControlState.AvailableItems.SelectionTable.GetRow( m_ControlState.AssignedItems.SelectionTable[ i ] );
+        MovePage( m_AssignedGridView, m_ControlState.AvailableItems.SelectionTable, m_ControlState.AssignedItems.SelectionTable );
       }
       catch ( Exception _ex )
       {
@@ -908,8 +907,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       try
       {
-        for ( int i = m_AvailableGridView.LowestDataItemIndex; i <= m_AvailableGridView.HighestDataItemIndex; i++ )
-          m_ControlState.AssignedItems.SelectionTable.GetRow( m_ControlState.AvailableItems.SelectionTable[ i ] );
+        MovePage( m_AvailableGridView, m_ControlState.AssignedItems.SelectionTable, m_ControlState.AvailableItems.SelectionTable );
       }
       catch ( Exception _ex )
       {
@@ -928,6 +926,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         LocalStateMachineEngine.ActionResult _errr = LocalStateMachineEngine.ActionResult.Exception( _ex, _ex.Message );
         this.ShowActionResult( _errr );
+      }
+    }
+    private void MovePage( SPGridView gridView, Selection.SelectionTableDataTable destination, Selection.SelectionTableDataTable source )
+    {
+      foreach ( GridViewRow _cr in gridView.Rows )
+      {
+        Label _idLabel = (Label)_cr.FindControlRecursive( m_IDItemLabel );
+        Selection.SelectionTableRow _slctdItem = source.FindByID( _idLabel.Text );
+        destination.GetRow( _slctdItem );
       }
     }
     #endregion
