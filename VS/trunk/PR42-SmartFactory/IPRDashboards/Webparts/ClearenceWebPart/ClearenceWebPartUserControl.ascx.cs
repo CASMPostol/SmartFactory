@@ -454,7 +454,27 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         throw GenericStateMachineEngine.ActionResult.Exception( null, "Internal error - ClearanceID is null or empty at Update" );
       CurrentClearence.ProcedureCode = m_SelectGroupRadioButtonList.SelectedValue;
       CurrentClearence.ClearenceProcedure = SelectedClearenceProcedure;
-      UpdateDisposals();
+      Entities _edc = m_DataContextManagement.DataContext;
+      //remove from clearance
+      foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyAdded )
+      {
+        Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
+        RemoveDisposalFromClearance( _edc, _dspsl );
+      }
+      //add to clearance
+      foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
+      {
+        if ( _row.Disposal )
+        {
+          Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
+          _dspsl.Disposal2ClearenceIndex = CurrentClearence;
+        }
+        else
+        {
+          IPRClass _ipr = Element.GetAtIndex<IPRClass>( _edc.IPR, _row.Identyfikator );
+          _ipr.AddDisposal( _edc, Convert.ToDecimal( _row.Quantity ), CurrentClearence );
+        }
+      }
       m_DataContextManagement.DataContext.SubmitChanges();
     }
     private void Create()
@@ -464,12 +484,22 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private void Delete()
     {
+      Entities _edc = m_DataContextManagement.DataContext;
       foreach ( Disposal _dx in CurrentClearence.Disposal )
-        _dx.Disposal2ClearenceIndex = null;
+        RemoveDisposalFromClearance( _edc, _dx );
       m_DataContextManagement.DataContext.SubmitChanges();
       m_DataContextManagement.DataContext.Clearence.DeleteOnSubmit( CurrentClearence );
       ClearAssigned();
-      m_DataContextManagement.DataContext.SubmitChanges();
+      _edc.SubmitChanges();
+    }
+    private static void RemoveDisposalFromClearance( Entities edc, Disposal dspsl )
+    {
+      dspsl.Disposal2ClearenceIndex = null;
+      if ( dspsl.DisposalStatus.Value == DisposalStatus.Tobacco )
+      {
+        dspsl.Disposal2IPRIndex.RevertWithdraw( dspsl.SettledQuantity.Value );
+        edc.Disposal.DeleteOnSubmit( dspsl );
+      }
     }
     private void SetEnabled( GenericStateMachineEngine.ControlsSet controlsSet )
     {
@@ -553,35 +583,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       catch ( Exception ex )
       {
         return GenericStateMachineEngine.ActionResult.Exception( ex, "ClearThroughCustom" );
-      }
-    }
-    private void UpdateDisposals()
-    {
-      Entities _edc = m_DataContextManagement.DataContext;
-      //remove from clearance
-      foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyAdded )
-      {
-        Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
-        _dspsl.Disposal2ClearenceIndex = null;
-        if ( _dspsl.DisposalStatus.Value == DisposalStatus.Tobacco )
-        {
-          _dspsl.Disposal2IPRIndex.RevertWithdraw( _dspsl.SettledQuantity.Value );
-          _edc.Disposal.DeleteOnSubmit( _dspsl );
-        }
-      }
-      //add to clearance
-      foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
-      {
-        if ( _row.Disposal )
-        {
-          Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
-          _dspsl.Disposal2ClearenceIndex = CurrentClearence;
-        }
-        else
-        {
-          IPRClass _ipr = Element.GetAtIndex<IPRClass>( _edc.IPR, _row.Identyfikator );
-          _ipr.AddDisposal( _edc, Convert.ToDecimal( _row.Quantity ), CurrentClearence );
-        }
       }
     }
     private GenericStateMachineEngine.ActionResult Show()
