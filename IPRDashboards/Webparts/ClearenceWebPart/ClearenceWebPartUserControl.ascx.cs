@@ -485,7 +485,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private void Delete()
     {
       Entities _edc = m_DataContextManagement.DataContext;
-      foreach ( Disposal _dx in CurrentClearence.Disposal )
+      foreach ( Disposal _dx in CurrentClearence.Disposal.ToList() )
         RemoveDisposalFromClearance( _edc, _dx );
       m_DataContextManagement.DataContext.SubmitChanges();
       m_DataContextManagement.DataContext.Clearence.DeleteOnSubmit( CurrentClearence );
