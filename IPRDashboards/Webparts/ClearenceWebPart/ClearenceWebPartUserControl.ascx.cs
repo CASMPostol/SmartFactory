@@ -524,7 +524,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private void SetEnabled( GenericStateMachineEngine.ControlsSet controlsSet )
     {
       if ( m_ControlState.ReadOnly || m_ControlState.ClearanceID.IsNullOrEmpty() )
-        controlsSet ^= GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn;
+        controlsSet &= ~(GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn);
       //Buttons
       m_EditButton.Enabled = ( controlsSet & GenericStateMachineEngine.ControlsSet.EditOn ) != 0;
       m_ClearButton.Enabled = m_EditButton.Enabled;
