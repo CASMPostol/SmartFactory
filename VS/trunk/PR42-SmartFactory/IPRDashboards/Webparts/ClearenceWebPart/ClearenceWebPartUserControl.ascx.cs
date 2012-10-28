@@ -567,17 +567,22 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private void UpdateDisposals()
     {
-      Entities edc = m_DataContextManagement.DataContext;
+      Entities _edc = m_DataContextManagement.DataContext;
       //remove from clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyAdded )
       {
-        Disposal _dspsl = Element.GetAtIndex<Disposal>( edc.Disposal, _row.Identyfikator );
+        Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
         _dspsl.Disposal2ClearenceIndex = null;
+        if ( _dspsl.DisposalStatus.Value ==  DisposalStatus.Tobacco  )
+        {
+          _dspsl.Disposal2IPRIndex.RevertWithdraw( _dspsl.SettledQuantity.Value );
+          _edc.Disposal.DeleteOnSubmit( _dspsl );
+        }
       }
       //add to clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
       {
-        Disposal _dspsl = Element.GetAtIndex<Disposal>( edc.Disposal, _row.Identyfikator );
+        Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
         _dspsl.Disposal2ClearenceIndex = CurrentClearence;
       }
     }
@@ -589,8 +594,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
         _dspsl.Disposal2ClearenceIndex = null;
-        _dspsl.Disposal2IPRIndex.RevertWithdraw( _dspsl.SettledQuantity.Value );
-        _edc.Disposal.DeleteOnSubmit( _dspsl );
       }
       //add to clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
