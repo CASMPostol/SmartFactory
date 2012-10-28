@@ -589,7 +589,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
         _dspsl.Disposal2ClearenceIndex = null;
-        _dspsl.Disposal2IPRIndex.RevertWithdraw( _dspsl.SettledQuantity );
+        _dspsl.Disposal2IPRIndex.RevertWithdraw( _dspsl.SettledQuantity.Value );
         _edc.Disposal.DeleteOnSubmit( _dspsl );
       }
       //add to clearance
@@ -598,7 +598,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         if ( _row.Disposal )
           throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - disposal is on the added to assigned list" );
         CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _ipr = Element.GetAtIndex<CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR>( _edc.IPR, _row.Identyfikator );
-        _ipr.AddDisposal( _edc, _row.Quantity, CurrentClearence );
+        _ipr.AddDisposal( _edc, Convert.ToDecimal( _row.Quantity ), CurrentClearence );
       }
       _edc.SubmitChanges();
     }
