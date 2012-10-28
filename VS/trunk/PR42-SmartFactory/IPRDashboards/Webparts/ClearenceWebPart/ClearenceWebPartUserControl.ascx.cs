@@ -14,6 +14,7 @@ using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
+using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
 {
@@ -453,18 +454,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         throw GenericStateMachineEngine.ActionResult.Exception( null, "Internal error - ClearanceID is null or empty at Update" );
       CurrentClearence.ProcedureCode = m_SelectGroupRadioButtonList.SelectedValue;
       CurrentClearence.ClearenceProcedure = SelectedClearenceProcedure;
-      switch ( SelectedGroup )
-      {
-        case Group.TobaccoNotAllocated:
-          UpdateTobaccoNotAllocated();
-          break;
-        case Group.Tobacco:
-        case Group.Dust:
-        case Group.Waste:
-        case Group.Cartons:
-          UpdateDisposals();
-          break;
-      }
+      UpdateDisposals();
       m_DataContextManagement.DataContext.SubmitChanges();
     }
     private void Create()
@@ -573,7 +563,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
         _dspsl.Disposal2ClearenceIndex = null;
-        if ( _dspsl.DisposalStatus.Value ==  DisposalStatus.Tobacco  )
+        if ( _dspsl.DisposalStatus.Value == DisposalStatus.Tobacco )
         {
           _dspsl.Disposal2IPRIndex.RevertWithdraw( _dspsl.SettledQuantity.Value );
           _edc.Disposal.DeleteOnSubmit( _dspsl );
@@ -582,28 +572,17 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       //add to clearance
       foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
       {
-        Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
-        _dspsl.Disposal2ClearenceIndex = CurrentClearence;
-      }
-    }
-    private void UpdateTobaccoNotAllocated()
-    {
-      Entities _edc = m_DataContextManagement.DataContext;
-      //remove for clearance
-      foreach ( Selection.SelectionTableRow _row in m_ControlState.AvailableItems.SelectionTable.OnlyDisposals )
-      {
-        Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
-        _dspsl.Disposal2ClearenceIndex = null;
-      }
-      //add to clearance
-      foreach ( Selection.SelectionTableRow _row in m_ControlState.AssignedItems.SelectionTable.OnlyAdded )
-      {
         if ( _row.Disposal )
-          throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - disposal is on the added to assigned list" );
-        CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _ipr = Element.GetAtIndex<CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR>( _edc.IPR, _row.Identyfikator );
-        _ipr.AddDisposal( _edc, Convert.ToDecimal( _row.Quantity ), CurrentClearence );
+        {
+          Disposal _dspsl = Element.GetAtIndex<Disposal>( _edc.Disposal, _row.Identyfikator );
+          _dspsl.Disposal2ClearenceIndex = CurrentClearence;
+        }
+        else
+        {
+          IPRClass _ipr = Element.GetAtIndex<IPRClass>( _edc.IPR, _row.Identyfikator );
+          _ipr.AddDisposal( _edc, Convert.ToDecimal( _row.Quantity ), CurrentClearence );
+        }
       }
-      _edc.SubmitChanges();
     }
     private GenericStateMachineEngine.ActionResult Show()
     {
