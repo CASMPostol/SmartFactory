@@ -53,9 +53,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt > 0;null</exception>
     public void AddDisposal( Entities edc, decimal quantity, Clearence clearence )
     {
-      decimal _qunt = quantity;
       AddDisposal( edc, DisposalEnum.Tobacco, ref quantity, null, clearence );
-      if ( _qunt > 0 )
+      if ( quantity > 0 )
       {
         string _msg = String.Format( "Cannot add Disposal to IPR  {0} because because the there is not material on tje IPR.", this.Identyfikator.Value );
         throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.Exception
