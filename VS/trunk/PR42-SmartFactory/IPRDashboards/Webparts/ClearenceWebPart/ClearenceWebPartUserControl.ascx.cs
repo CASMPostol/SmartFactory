@@ -204,6 +204,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       public bool IsModified { get; set; }
       public Selection AvailableItems = new Selection();
       public Selection AssignedItems = new Selection();
+      public bool ReadOnly = false;
       #endregion
 
       #region public
@@ -410,19 +411,30 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         return;
       try
       {
-        m_SelectGroupRadioButtonList.SelectedValue = CurrentClearence.ProcedureCode;
       }
-      catch ( Exception )
+      catch ( Exception ex )
       {
-        this.ShowActionResult( GenericStateMachineEngine.ActionResult.NotValidated( "This clearance cannot be edited - it is not compensation good clearance." ) );
         return;
       }
       try
       {
-        m_ControlState.IsModified = true;
         m_ControlState.ClearanceID = e.ID;
+        ListItem _cs = m_SelectGroupRadioButtonList.Items.FindByValue( CurrentClearence.ProcedureCode );
+        if ( _cs == null )
+        {
+          this.ShowActionResult( GenericStateMachineEngine.ActionResult.NotValidated( "This clearance cannot be edited - it is not compensation good clearance." ) );
+          m_ControlState.ReadOnly = true;
+          m_ControlState.ClearanceID = String.Empty;
+          m_ControlState.ClearanceTitle = String.Empty;
+          m_ClearenceTextBox.Text = String.Empty;
+          return;
+        }
+        m_ControlState.IsModified = true;
         m_ControlState.ClearanceTitle = e.Title;
         m_ClearenceTextBox.Text = e.Title;
+        m_SelectGroupRadioButtonList.SelectedIndex = -1;
+        _cs.Selected = true;
+        m_ControlState.ReadOnly = false;
         QueryAssigned();
         string _export = "3151";
         switch ( CurrentClearence.ClearenceProcedure.Value )
@@ -511,10 +523,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     }
     private void SetEnabled( GenericStateMachineEngine.ControlsSet controlsSet )
     {
-      GenericStateMachineEngine.ControlsSet _allowed = (GenericStateMachineEngine.ControlsSet)0xff;
-      if ( m_ControlState.ClearanceID.IsNullOrEmpty() )
-        _allowed ^= GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn;
-      controlsSet &= _allowed;
+      if ( m_ControlState.ReadOnly || m_ControlState.ClearanceID.IsNullOrEmpty() )
+        controlsSet ^= GenericStateMachineEngine.ControlsSet.EditOn | GenericStateMachineEngine.ControlsSet.DeleteOn;
       //Buttons
       m_EditButton.Enabled = ( controlsSet & GenericStateMachineEngine.ControlsSet.EditOn ) != 0;
       m_ClearButton.Enabled = m_EditButton.Enabled;
