@@ -598,35 +598,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         if ( _row.Disposal )
           throw SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( "Internal error - disposal is on the added to assigned list" );
         CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _ipr = Element.GetAtIndex<CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR>( _edc.IPR, _row.Identyfikator );
-        Disposal _nd = new Disposal()
-        {
-          Disposal2ClearenceIndex = CurrentClearence,
-          ClearingType = ClearingType.PartialWindingUp,
-          CustomsProcedure = CurrentClearence.ProcedureCode,
-          CustomsStatus = CustomsStatus.NotStarted,
-          Disposal2BatchIndex = null,
-          Disposal2IPRIndex = _ipr,
-          Disposal2MaterialIndex = null,
-          PCNCompensationGood = _ipr.IPR2PCNPCN.Title(),
-          DisposalStatus = DisposalStatus.Tobacco,
-          //DutyAndVAT - in SetUpCalculatedColumns,
-          //DutyPerSettledAmount - in SetUpCalculatedColumns,
-          InvoiceNo = String.Empty.NotAvailable(),
-          IPRDocumentNo = String.Empty.NotAvailable(),
-          JSOXCustomsSummaryIndex = null,
-          No = new Nullable<double>(),
-          Disposal2PCNID = _ipr.IPR2PCNPCN,
-          RemainingQuantity = new Nullable<double>(),
-          SADDate = SharePoint.Extensions.DateTimeNull,
-          SADDocumentNo = String.Empty.NotAvailable(),
-          SettledQuantity = _row.Quantity,
-          Title = "Creating",
-          //VATPerSettledAmount - in SetUpCalculatedColumns,
-          //TobaccoValue - in SetUpCalculatedColumns,
-        };
-        _nd.SetUpCalculatedColumns( ClearingType.PartialWindingUp );
-        _edc.Disposal.InsertOnSubmit( _nd );
-        _ipr.Withdraw( _row.Quantity );
+        _ipr.AddDisposal( _edc, _row.Quantity, CurrentClearence );
       }
       _edc.SubmitChanges();
     }

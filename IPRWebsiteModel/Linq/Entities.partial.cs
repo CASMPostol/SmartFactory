@@ -264,8 +264,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="clearingType">Type of the clearing.</param>
     public void SetUpCalculatedColumns( ClearingType clearingType )
     {
-      string _titleTmplt = "Disposal: {0} of FG {1}";
-      Title = String.Format( _titleTmplt, this.DisposalStatus.Value.ToString(), this.Disposal2BatchIndex.Title );
+      string _titleTmplt = "Disposal: {0} of material {1}";
+      Title = String.Format( _titleTmplt, this.DisposalStatus.Value.ToString(), this.Disposal2IPRIndex.Batch );
       double _portion = SettledQuantity.Value / Disposal2IPRIndex.NetMass.Value;
       if ( clearingType == Linq.ClearingType.PartialWindingUp )
       {
