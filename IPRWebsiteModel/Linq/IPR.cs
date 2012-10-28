@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CAS.SharePoint;
-using CAS.SmartFactory.IPR;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -32,32 +30,31 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="nullable">The nullable.</param>
     /// <exception cref="System.NotImplementedException"></exception>
-    public void RevertWithdraw( double? nullable )
+    public void RevertWithdraw( double quantity )
     {
-      //TODO NotImplementedException
-      throw new NotImplementedException();
+      this.TobaccoNotAllocated += quantity;
     }
     /// <summary>
     /// Finds the IPR accounts with not allocated tobacco.
     /// </summary>
-    /// <param name="_edc">The _edc.</param>
-    /// <param name="_batch">The _batch.</param>
+    /// <param name="edc">The _edc.</param>
+    /// <param name="batch">The _batch.</param>
     /// <returns></returns>
-    public static List<IPR> FindIPRAccountsWithNotAllocatedTobacco( Entities _edc, string _batch )
+    public static List<IPR> FindIPRAccountsWithNotAllocatedTobacco( Entities edc, string batch )
     {
-      return ( from IPR _iprx in _edc.IPR where _iprx.Batch.Contains( _batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
+      return ( from IPR _iprx in edc.IPR where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
     }
     /// <summary>
     /// Adds the disposal.
     /// </summary>
-    /// <param name="_edc">The _edc.</param>
+    /// <param name="edc">The _edc.</param>
     /// <param name="quantity">The quantity.</param>
     /// <param name="clearence">The clearence.</param>
     /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt > 0;null</exception>
-    public void AddDisposal( Entities _edc, double quantity, Clearence clearence )
+    public void AddDisposal( Entities edc, decimal quantity, Clearence clearence )
     {
-      double _qunt = quantity;
-      AddDisposal( _edc, DisposalEnum.Tobacco, ref quantity, null, clearence );
+      decimal _qunt = quantity;
+      AddDisposal( edc, DisposalEnum.Tobacco, ref quantity, null, clearence );
       if ( _qunt > 0 )
       {
         string _msg = String.Format( "Cannot add Disposal to IPR  {0} because because the there is not material on tje IPR.", this.Identyfikator.Value );
@@ -68,13 +65,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Adds the disposal.
     /// </summary>
-    /// <param name="_edc">The _edc.</param>
-    /// <param name="_status">The _status.</param>
+    /// <param name="edc">The _edc.</param>
+    /// <param name="status">The _status.</param>
     /// <param name="quantity">The quantity.</param>
     /// <param name="material">The material.</param>
-    public void AddDisposal( Entities _edc, DisposalEnum _status, ref double quantity, Material material )
+    public void AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity, Material material )
     {
-      AddDisposal( _edc, _status, ref quantity, material, null );
+      AddDisposal( edc, status, ref quantity, material, null );
     }
     #endregion
 
@@ -82,7 +79,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>
-    private void AddDisposal( Entities _edc, DisposalEnum _status, ref double quantity, Material material, Clearence clearence )
+    private void AddDisposal( Entities _edc, DisposalEnum _status, ref decimal quantity, Material material, Clearence clearence )
     {
       try
       {
@@ -160,12 +157,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="quantity">The quantity.</param>
     /// <returns></returns>
-    private double Withdraw( ref double quantity )
+    private double Withdraw( ref decimal quantity )
     {
       double _toDispose;
-      _toDispose = Math.Min( quantity, this.TobaccoNotAllocated.Value );
+      _toDispose = Math.Min( Convert.ToDouble( quantity ), this.TobaccoNotAllocated.Value );
       this.TobaccoNotAllocated -= _toDispose;
-      quantity -= _toDispose;
+      quantity -= Convert.ToDecimal( _toDispose );
       return _toDispose;
     }
     #endregion

@@ -282,7 +282,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
                   string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
                   throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, _materialInBatch.Batch, _parent.Batch0, _item.Key ), null, "IPR unrecognized account" );
                 }
-                double _toDispose = _item.Value;
+                decimal _toDispose = Convert.ToDecimal( _item.Value );
                 _progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _item.Key, _materialInBatch.Batch ) ) );
                 //TODOD  [pr4-3572] Adjust the tobacco usage while importing batch 
                 for ( int _aidx = 0; _aidx < _accounts.Count; _aidx++ )
