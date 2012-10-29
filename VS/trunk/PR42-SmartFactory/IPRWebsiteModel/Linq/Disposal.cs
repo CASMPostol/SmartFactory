@@ -4,9 +4,12 @@ using CAS.SharePoint.Web;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
+  /// <summary>
+  /// Disposal
+  /// </summary>
   public partial class Disposal
   {
-    public void Export( Entities edc, string documentNo, Clearence clearence, DateTime clearanceDate, string productCodeNumber )
+    internal void ClearThroughCustoms( Entities edc, string documentNo, Clearence clearence, DateTime clearanceDate, string productCodeNumber )
     {
       string _at = "starting";
       try
