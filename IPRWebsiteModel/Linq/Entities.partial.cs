@@ -294,43 +294,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return Disposal2IPRIndex.VAT.Value - ( from _dec in Disposal2IPRIndex.Disposal where _dec.VATPerSettledAmount.HasValue select new { val = _dec.VATPerSettledAmount.Value } ).Sum( itm => itm.val );
     }
   }
-  /// <summary>
-  /// Clearence
-  /// </summary>
-  public partial class Clearence
-  {
-    /// <summary>
-    /// Creatas the clearence.
-    /// </summary>
-    /// <param name="edc">The edc.</param>
-    /// <param name="code">The code.</param>
-    /// <param name="procedure">The procedure.</param>
-    /// <returns></returns>
-    public static Clearence CreataClearence( Entities edc, string code, ClearenceProcedure procedure )
-    {
-      Clearence _newClearence = new Clearence()
-      {
-        DocumentNo = String.Empty.NotAvailable(),
-        ProcedureCode = code,
-        ReferenceNumber = String.Empty.NotAvailable(),
-        Status = false,
-        Title = "Created",
-        ClearenceProcedure = procedure
-      };
-      edc.Clearence.InsertOnSubmit( _newClearence );
-      edc.SubmitChanges();
-      return _newClearence;
-    }
-    /// <summary>
-    /// Creates the title.
-    /// </summary>
-    /// <param name="messageType">Type of the message.</param>
-    public void CreateTitle( string messageType )
-    {
-         //TODO common naming convention must be implemented.
-     Title = String.Format( "{0} Ref: {1}", messageType.NotAvailable(), ReferenceNumber.NotAvailable() );
-    }
-  }
+
   /// <summary>
   /// LinqIPRExtensions
   /// </summary>
