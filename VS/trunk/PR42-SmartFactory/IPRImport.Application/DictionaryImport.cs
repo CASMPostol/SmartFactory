@@ -243,16 +243,9 @@ namespace CAS.SmartFactory.Management
         return ProductType.None;
       }
     }
-    private static CompensationGood? ParseCompensationGood( this string entry )
+    private static string ParseCompensationGood( this string entry )
     {
-      try
-      {
-        return String.IsNullOrEmpty( entry ) ? new Nullable<CompensationGood>() : (CompensationGood)Enum.Parse( typeof( CompensationGood ), entry );
-      }
-      catch ( Exception )
-      {
-        return CompensationGood.Invalid;
-      }
+      return entry;
     }
 
     #endregion
