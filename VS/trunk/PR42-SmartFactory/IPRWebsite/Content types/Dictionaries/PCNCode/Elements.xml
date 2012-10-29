@@ -10,7 +10,7 @@
     <FieldRefs>
       <FieldRef ID="{FAB1E4CF-D883-45A5-B682-97B78EDF1F75}" Name="ProductCodeNumber" />
       <FieldRef ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Name="CompensationGood" />
-      <FieldRef ID="{3F474B3D-760E-4045-BA80-7D3A7CFAAFFF}" Name="IsIPR" />
+      <FieldRef ID="{32B34535-E682-446B-B406-A0E73F3483AA}" Name="RequestedProcedure" />
     </FieldRefs>
     <XmlDocuments>
       <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
