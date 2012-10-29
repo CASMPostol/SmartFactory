@@ -274,6 +274,7 @@
           </FieldRef>
           <FieldRef Name="Editor">
           </FieldRef>
+          <FieldRef Name="IsExport" />
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />

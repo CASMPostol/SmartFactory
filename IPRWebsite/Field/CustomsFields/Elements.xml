@@ -20,6 +20,13 @@
     </CHOICES>
   </Field>
   <Field
+    ID="{32B34535-E682-446B-B406-A0E73F3483AA}"
+    Name="RequestedProcedure"
+    Type="Text"
+    Group="CAS Smart Factory IPR Customs"
+    DisplayName="Procedure"
+    />
+  <Field
     ID="{AFDC5724-5183-4FC9-A07F-CF6BB18EBBBA}"
     Name="IsExport"
     Type="Boolean"
