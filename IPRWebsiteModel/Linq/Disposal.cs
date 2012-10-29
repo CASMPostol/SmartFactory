@@ -22,7 +22,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           this.No = _lastOne.No++;
         //TODO [pr4-3737] Compensation good must be recognized using the PCN code from customs message http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=1744
         PCNCode _pcn = ( from _pcnx in edc.PCNCode
-                         where _pcnx.IsIPR.GetValueOrDefault( true ) && _pcnx.ProductCodeNumber.Contains( productCodeNumber ) 
+                         where _pcnx.Procedure.Contains( RequestedProcedure( clearence.ClearenceProcedure ) ) && _pcnx.ProductCodeNumber.Contains( productCodeNumber )
                          // && this.DisposalStatus == _pcnx.CompensationGood 
                          select _pcnx ).FirstOrDefault();
         this.SADDocumentNo = documentNo;
@@ -42,6 +42,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         string _template = "Cannot finish Export of disposal {0} {1} because of internal error: {2} at: {3}";
         throw GenericStateMachineEngine.ActionResult.Exception( _ex, String.Format( _template, this.Title, this.Identyfikator.Value, _ex.Message, _at ) );
       }
+    }
+    //TODO [pr4-3737] Compensation good must be recognized using the PCN code from customs message http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=1744
+    private string RequestedProcedure( ClearenceProcedure? nullable )
+    {
+      throw new NotImplementedException();
     }
     public void StartClearance( ClearingType clearingType, string invoiceNoumber, string procedure, Clearence clearence )
     {

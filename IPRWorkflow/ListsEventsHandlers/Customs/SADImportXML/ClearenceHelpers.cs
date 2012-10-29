@@ -67,7 +67,7 @@ namespace CAS.SmartFactory.IPR.Customs
         foreach ( Clearence _clrncx in _clearenceList )
         {
           _clrncx.CreateTitle( _messageType.ToString() );
-          _clrncx.SADDocumentID = _sad;
+          //_clrncx.SADDocumentID = _sad; TODO SADGood must be assigned.
         }
       }
       catch ( IPRDataConsistencyException _iorex )
@@ -412,9 +412,9 @@ namespace CAS.SmartFactory.IPR.Customs
       foreach ( CleranceDescription _clearance in _clearanceList )
         ReleaseForFreeCirculation( sadDocument, _edc, _messageType, _clearance );
     }
-    private static void ReleaseForFreeCirculation( SADDocumentType sadDocument, Entities _edc, string _messageType, CleranceDescription _clearance )
+    private static void ReleaseForFreeCirculation( SADDocumentType sadDocument, SADGood sadGood, Entities _edc, string _messageType, CleranceDescription _clearance )
     {
-      _clearance.CleranceMember.SADDocumentID = sadDocument;
+      _clearance.CleranceMember.SADGoodID = sadGood;
       _clearance.CleranceMember.DocumentNo = sadDocument.DocumentNumber;
       _clearance.CleranceMember.ReferenceNumber = sadDocument.ReferenceNumber;
       _clearance.CleranceMember.Status = true;
