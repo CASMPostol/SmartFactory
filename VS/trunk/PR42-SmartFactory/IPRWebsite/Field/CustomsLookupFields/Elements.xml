@@ -243,4 +243,21 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+  <Field
+    Name="Clearence2SadGoodID"
+    ID="{64E1ED0D-0694-4BA9-83EC-40DE68451B9B}"
+    Type="Lookup"
+    List="Lists/SADGoodList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="SAD Good ID"
+    Group="CAS Smart Factory IPR Customs"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
