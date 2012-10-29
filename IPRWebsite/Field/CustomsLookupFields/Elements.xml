@@ -243,21 +243,4 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
-  <Field
-    Name="Clearence2SadDocumentIndex"
-    ID="{C84F88F1-CBCD-4F4A-94FF-357970C20DC3}"
-    Type="Lookup"
-    List="Lists/SADDocument"
-    ShowField="ID"
-    UnlimitedLengthInDocumentLibrary="False"
-    Indexed="True"
-    RelationshipDeleteBehavior="None"
-    DisplayName="SAD Document ID"
-    Group="CAS Smart Factory IPR Customs"
-    Required="True"
-    Hidden="False"
-    DisplaceOnUpgrade="True"
-    EnforceUniqueValues="False"
-    ReadOnly="False"
-    />
 </Elements>
