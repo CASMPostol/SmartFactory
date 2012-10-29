@@ -18,17 +18,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return ProductType.None;
       }
     }
-    public static CompensationGood? ParseCompensationGood(this string entry)
-    {
-      try
-      {
-        return String.IsNullOrEmpty( entry ) ? new Nullable<CompensationGood>() : (CompensationGood)Enum.Parse( typeof( Linq.CompensationGood ), entry );
-      }
-      catch (Exception)
-      {
-        return CompensationGood.Invalid;
-      }
-    }
+    //TODO to be removed
+    //public static CompensationGood? ParseCompensationGood(this string entry)
+    //{
+    //  try
+    //  {
+    //    return String.IsNullOrEmpty( entry ) ? new Nullable<CompensationGood>() : (CompensationGood)Enum.Parse( typeof( Linq.CompensationGood ), entry );
+    //  }
+    //  catch (Exception)
+    //  {
+    //    return CompensationGood.Invalid;
+    //  }
+    //}
     /// <summary>
     /// Gets the top most document lookup.
     /// </summary>
