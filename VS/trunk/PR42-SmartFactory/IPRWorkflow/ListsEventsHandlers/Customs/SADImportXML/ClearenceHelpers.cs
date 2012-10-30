@@ -136,22 +136,22 @@ namespace CAS.SmartFactory.IPR.Customs
       throw new NotImplementedException();
     }
     private static void CreateIPRAccount
-      ( Entities _edc, Clearence nc, CustomsDocument.DocumentType _messageType, DateTime _customsDebtDate, out string _comments )
+      ( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, DateTime customsDebtDate, out string _comments )
     {
       string _at = "started";
       _comments = "IPR account creation error";
-      SADDocumentType declaration = nc.SADGoodID.SADDocumentIndex;
+      SADDocumentType declaration = clearence.SADGoodID.SADDocumentIndex;
       try
       {
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
-        IPRData _iprdata = new IPRData( nc.SADGoodID, _messageType );
+        IPRData _iprdata = new IPRData( clearence.SADGoodID, _messageType );
         _at = "Consent.Lookup";
         _comments = "Consent lookup filed";
-        Consent _cnsnt = Consent.Lookup( _edc, _iprdata.Consent );
+        Consent _cnsnt = Consent.Lookup( entities, _iprdata.Consent );
         _at = "PCNCode.AddOrGet";
         _comments = "PCN lookup filed";
-        PCNCode _pcn = PCNCode.AddOrGet( _edc, _iprdata.PCNTariffCode );
+        PCNCode _pcn = PCNCode.AddOrGet( entities, _iprdata.PCNTariffCode );
         _at = "new IPRIPR";
         IPRClass _ipr = new IPRClass()
         {
@@ -159,12 +159,12 @@ namespace CAS.SmartFactory.IPR.Customs
           AccountBalance = _iprdata.GrossMass,
           Batch = _iprdata.Batch,
           Cartons = _iprdata.Cartons,
-          ClearenceIndex = nc,
+          ClearenceIndex = clearence,
           ClosingDate = CAS.SharePoint.Extensions.SPMinimum,
           IPR2ConsentTitle = _cnsnt,
           Currency = declaration.Currency,
-          CustomsDebtDate = _customsDebtDate,
-          DocumentNo = nc.DocumentNo,
+          CustomsDebtDate = customsDebtDate,
+          DocumentNo = clearence.DocumentNo,
           Duty = _iprdata.Duty,
           DutyName = _iprdata.DutyName,
           IPRDutyPerUnit = _iprdata.DutyPerUnit,
@@ -173,7 +173,7 @@ namespace CAS.SmartFactory.IPR.Customs
           InvoiceNo = _iprdata.Invoice,
           IPRLibraryIndex = declaration.SADDocumenLibrarytIndex,
           NetMass = _iprdata.NetMass,
-          OGLValidTo = _customsDebtDate + new TimeSpan( Convert.ToInt32( _cnsnt.ConsentPeriod.Value ) * 30, 0, 0, 0 ),
+          OGLValidTo = customsDebtDate + new TimeSpan( Convert.ToInt32( _cnsnt.ConsentPeriod.Value ) * 30, 0, 0, 0 ),
           IPR2PCNPCN = _pcn,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
@@ -186,14 +186,14 @@ namespace CAS.SmartFactory.IPR.Customs
           IPRVATPerUnit = _iprdata.VATPerUnit
         };
         _at = "new InsertOnSubmit";
-        _edc.IPR.InsertOnSubmit( _ipr );
+        entities.IPR.InsertOnSubmit( _ipr );
         _at = "new SubmitChanges #1";
-        _edc.SubmitChanges();
+        entities.SubmitChanges();
         _ipr.Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, _ipr.Identyfikator );
         if ( _iprdata.Cartons > 0 )
-          _ipr.AddDisposal( _edc, _iprdata.Cartons );
+          _ipr.AddDisposal( entities, Convert.ToDecimal( _iprdata.Cartons ) );
         _at = "new SubmitChanges #2";
-        _edc.SubmitChanges();
+        entities.SubmitChanges();
       }
       catch ( IPRDataConsistencyException _ex )
       {
