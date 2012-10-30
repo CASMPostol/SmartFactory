@@ -11,7 +11,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Enumerated kinds of Disposal 
     /// </summary>
-    public enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco };
+    public enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco, Cartons };
     /// <summary>
     /// Gets the type of the clearing.
     /// </summary>
@@ -44,8 +44,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from IPR _iprx in edc.IPR where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
     }
+    public void AddDisposal( Entities edc, decimal quantity )
+    {
+      AddDisposal( edc, DisposalEnum.Cartons, ref quantity, null, null );
+      if ( quantity > 0 )
+      {
+        string _msg = String.Format( "Cannot add Disposal to IPR {0} because because the there is not material on tje IPR.", this.Identyfikator.Value );
+        throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.Exception
+          ( new CAS.SharePoint.ApplicationError( "CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal", "_qunt > 0", _msg, null ), _msg );
+      }
+    }
     /// <summary>
-    /// Adds the disposal.
+    /// Insert on submit the disposal.
     /// </summary>
     /// <param name="edc">The _edc.</param>
     /// <param name="quantity">The quantity.</param>
@@ -62,7 +72,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
     }
     /// <summary>
-    /// Adds the disposal.
+    /// Insert on submit the disposal.
     /// </summary>
     /// <param name="edc">The _edc.</param>
     /// <param name="status">The _status.</param>
@@ -82,34 +92,35 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       try
       {
-        Linq.DisposalStatus _typeOfDisposal = default( Linq.DisposalStatus );
         PCNCode _disposal2PCNID = null; // PCNCompensationGood should be secoundary lookup. http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3333
-        string _pcncompensationGood = String.Empty.NotAvailable();
+        Linq.DisposalStatus _typeOfDisposal = default( Linq.DisposalStatus );
         switch ( _status )
         {
+          case DisposalEnum.Cartons:
+            _typeOfDisposal = DisposalStatus.Cartons;
+            break;
           case DisposalEnum.Dust:
-            _typeOfDisposal = Linq.DisposalStatus.Dust;
+            _typeOfDisposal = DisposalStatus.Dust;
             break;
           case DisposalEnum.SHMenthol:
-            _typeOfDisposal = Linq.DisposalStatus.SHMenthol;
+            _typeOfDisposal = DisposalStatus.SHMenthol;
             break;
           case DisposalEnum.Waste:
-            _typeOfDisposal = Linq.DisposalStatus.Waste;
+            _typeOfDisposal = DisposalStatus.Waste;
             break;
           case DisposalEnum.OverusageInKg:
-            _typeOfDisposal = Linq.DisposalStatus.Overuse;
+            _typeOfDisposal = DisposalStatus.Overuse;
             break;
           case DisposalEnum.Tobacco:
-            _typeOfDisposal = Linq.DisposalStatus.Tobacco;
+            _typeOfDisposal = DisposalStatus.Tobacco;
             _disposal2PCNID = IPR2PCNPCN;
-            _pcncompensationGood = IPR2PCNPCN.Title();
             break;
         }
         double _toDispose = Withdraw( ref quantity );
         Disposal _newDisposal = new Disposal()
         {
           ClearingType = Linq.ClearingType.PartialWindingUp,
-          CustomsStatus = Linq.CustomsStatus.NotStarted,
+          CustomsStatus = clearence == null ? Linq.CustomsStatus.NotStarted : CustomsStatus.Started,
           CustomsProcedure = clearence == null ? string.Empty.NotAvailable() : Entities.ToString( clearence.ClearenceProcedure.Value ),
           Disposal2BatchIndex = material == null ? null : material.Material2BatchIndex,
           Disposal2ClearenceIndex = clearence,
