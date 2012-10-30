@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.IPR.Customs
             string _comments = String.Empty;
             try
             {
-              ClearenceHelpers.Associate( edc, _message.MessageRootName(), _sad, out _comments, entry );
+              ClearenceHelpers.DeclarationProcessing( _sad, edc, _message.MessageRootName(), out _comments );
             }
             catch ( Exception ex )
             {
@@ -134,6 +134,8 @@ namespace CAS.SmartFactory.IPR.Customs
       }
       base.ItemAdded( properties );
     }
+
+    #region private get xml
     private static SADDocumentType GetSADDocument( CustomsDocument document, Entities edc, SADDocumentLib lookup )
     {
       try
@@ -313,5 +315,7 @@ namespace CAS.SmartFactory.IPR.Customs
       }
     }
     private const string m_Title = "SAD Document Import";
+    #endregion
+
   }
 }
