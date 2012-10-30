@@ -66,9 +66,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         else
           this.No = _lastOne.No++;
         //TODO [pr4-3737] Compensation good must be recognized using the PCN code from customs message http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=1744
-        PCNCode _pcn = ( from _pcnx in edc.PCNCode
-                         where _pcnx.Procedure.Contains( Entities.RequestedProcedure( clearence.ClearenceProcedure ) ) && _pcnx.ProductCodeNumber.Contains( productCodeNumber )
-                         select _pcnx ).FirstOrDefault();
+        PCNCode _pcn = PCNCode.Find( edc, clearence.ClearenceProcedure.Value, productCodeNumber );
         this.SADDocumentNo = documentNo;
         this.SADDate = clearanceDate;
         this.CustomsStatus = Linq.CustomsStatus.Finished;
@@ -79,6 +77,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         this.CustomsProcedure = clearence.ProcedureCode;
         _at = "PCNCode _tobaccoPCN ";
         this.Disposal2PCNID = _pcn;
+        this.PCNCompensationGood = _pcn == null ? String.Empty.NotAvailable() : _pcn.CompensationGood;
         this.Disposal2ClearenceIndex = clearence;
       }
       catch ( Exception _ex )
@@ -88,7 +87,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
     }
     #endregion
-    
+
     #region private
     private double GetDutyNotCleared()
     {
