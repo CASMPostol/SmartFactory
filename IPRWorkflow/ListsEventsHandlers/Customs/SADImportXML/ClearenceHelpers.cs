@@ -133,6 +133,7 @@ namespace CAS.SmartFactory.IPR.Customs
     }
     private static void CreateCWAccount( Entities _edc, SADDocumentType _sad, SADGood _sgx )
     {
+      //TODO CreateCWAccountNotImplementedException 
       throw new NotImplementedException();
     }
     private static void CreateIPRAccount
