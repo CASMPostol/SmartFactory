@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
 {
@@ -13,36 +14,29 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
   {
     internal partial class SelectionTableRowWraper
     {
+
+      #region ctor
       internal SelectionTableRowWraper( Disposal _dspslx )
       {
+        InitializeDisposal( _dspslx.Disposal2IPRIndex );
         Disposal = true;
-        DocumentNo = _dspslx.Disposal2IPRIndex.DocumentNo;
-        DebtDate = _dspslx.Disposal2IPRIndex.CustomsDebtDate.Value;
-        ValidTo = _dspslx.Disposal2IPRIndex.OGLValidTo.Value;
-        SKU = _dspslx.Disposal2IPRIndex.SKU;
-        Batch = _dspslx.Disposal2IPRIndex.Batch;
-        UnitPrice = _dspslx.Disposal2IPRIndex.IPRUnitPrice.Value;
-        Currency = _dspslx.Disposal2IPRIndex.Currency;
         Quantity = _dspslx.SettledQuantity.Value;
         Status = _dspslx.DisposalStatus.Value.ToString();
-        Created = _dspslx.Created.Value;
+        Created = _dspslx.Created.Value.Date;
         ID = ( -_dspslx.Identyfikator.Value ).ToString();
       }
-      internal SelectionTableRowWraper( CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _iprx )
+      internal SelectionTableRowWraper( IPRClass _iprx )
       {
+        InitializeDisposal( _iprx );
         Disposal = false;
-        DocumentNo = _iprx.DocumentNo;
-        DebtDate = _iprx.CustomsDebtDate.Value;
-        ValidTo = _iprx.OGLValidTo.Value;
-        SKU = _iprx.SKU;
-        Batch = _iprx.Batch;
-        UnitPrice = _iprx.IPRUnitPrice.Value;
-        Currency = _iprx.Currency;
         Quantity = _iprx.TobaccoNotAllocated.Value;
         Status = "IPR Material";
-        Created = _iprx.CustomsDebtDate.Value;
+        Created = _iprx.CustomsDebtDate.Value.Date;
         ID = _iprx.Identyfikator.Value.ToString();
       }
+      #endregion
+
+      #region public
       internal bool Disposal { get; set; }
       internal string DocumentNo { get; set; }
       internal DateTime DebtDate { get; set; }
@@ -59,6 +53,21 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         get { return Math.Abs( ID.String2Int().Value ); }
       }
+      #endregion
+
+      #region private
+      private void InitializeDisposal( IPRClass _ipr )
+      {
+        DocumentNo = _ipr.DocumentNo;
+        DebtDate = _ipr.CustomsDebtDate.Value;
+        ValidTo = _ipr.OGLValidTo.Value;
+        SKU = _ipr.SKU;
+        Batch = _ipr.Batch;
+        UnitPrice = _ipr.IPRUnitPrice.Value;
+        Currency = _ipr.Currency;
+      }
+      #endregion
+
     }
     /// <summary>
     /// Represents the strongly named DataTable class.
@@ -86,7 +95,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         else
           _destinationRow.Quantity += sourceRow.Quantity;
         sourceRow.Delete();
-        if ( sourceRow.RowState != DataRowState.Detached)
+        if ( sourceRow.RowState != DataRowState.Detached )
           sourceRow.AcceptChanges();
       }
       internal void NewSelectionTableRow( SelectionTableRowWraper _rowx )
@@ -128,7 +137,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         AcceptChanges();
       }
     }
-
     /// <summary>
     ///Represents strongly named DataRow class.
     ///</summary>
