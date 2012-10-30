@@ -220,24 +220,24 @@ namespace CAS.SmartFactory.IPR.Customs
     private class IPRData
     {
       #region private
-      private SADGood FirstSADGood { get; set; }
-      private void AnalizeGood( SADDocumentType _document, CustomsDocument.DocumentType _messageType )
+      private void AnalizeGood( SADGood good, CustomsDocument.DocumentType _messageType )
       {
         string _at = "Started";
         try
         {
-          SADPackage _packagex = FirstSADGood.SADPackage.First();
           _at = "GrossMass";
+          SADDocumentType _document = good.SADDocumentIndex;
           if ( _messageType == CustomsDocument.DocumentType.SAD )
-            GrossMass = FirstSADGood.GrossMass.HasValue ? FirstSADGood.GrossMass.Value : _document.GrossMass.Value;
+            GrossMass = good.GrossMass.HasValue ? good.GrossMass.Value : _document.GrossMass.Value;
           else if ( _messageType == CustomsDocument.DocumentType.PZC )
-            GrossMass = _document.GrossMass.HasValue ? _document.GrossMass.Value : FirstSADGood.GrossMass.Value;
+            GrossMass = _document.GrossMass.HasValue ? _document.GrossMass.Value : good.GrossMass.Value;
           else
             throw new IPRDataConsistencyException( "IPRData.GetCartons", String.Format( "Unexpected message {0} message", _messageType ), null, "Unexpected message" );
           _at = "SADQuantity";
-          SADQuantity _quantity = FirstSADGood.SADQuantity.FirstOrDefault();
+          SADQuantity _quantity = good.SADQuantity.FirstOrDefault();
           NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault( 0 );
           _at = "Cartons";
+          SADPackage _packagex = good.SADPackage.First();
           if ( _packagex.Package.ToUpper().Contains( "CT" ) )
             Cartons = GrossMass - NetMass;
           else
@@ -249,7 +249,7 @@ namespace CAS.SmartFactory.IPR.Customs
           throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
         }
       }
-      private void AnalizeDutyAndVAT()
+      private void AnalizeDutyAndVAT( SADGood good )
       {
         string _at = "Started";
         try
@@ -258,7 +258,7 @@ namespace CAS.SmartFactory.IPR.Customs
           VAT = 0;
           DutyName = string.Empty;
           VATName = string.Empty;
-          foreach ( SADDuties _duty in FirstSADGood.SADDuties )
+          foreach ( SADDuties _duty in good.SADDuties )
           {
             _at = "switch " + _duty.DutyType;
             switch ( _duty.DutyType )
@@ -288,7 +288,7 @@ namespace CAS.SmartFactory.IPR.Customs
           _at = "VATPerUnit";
           VATPerUnit = VAT / NetMass;
           _at = "Value";
-          Value = FirstSADGood.TotalAmountInvoiced.Value;
+          Value = good.TotalAmountInvoiced.Value;
           _at = "UnitPrice";
           UnitPrice = Value / NetMass;
         }
@@ -323,13 +323,14 @@ namespace CAS.SmartFactory.IPR.Customs
       #endregion
 
       #region cretor
-      internal IPRData( SADDocumentType declaration, SADGood good, CustomsDocument.DocumentType _messageType )
+      internal IPRData( SADGood good, CustomsDocument.DocumentType _messageType )
       {
         string _at = "starting";
         try
         {
-          AnalizeGood( declaration, _messageType );
-          AnalizeDutyAndVAT();
+          PCNTariffCode = good.PCNTariffCode;
+          AnalizeGood( good, _messageType );
+          AnalizeDutyAndVAT( good );
           _at = "InvoiceNo";
           this.Invoice = (
                           from _dx in good.SADRequiredDocuments
@@ -384,7 +385,7 @@ namespace CAS.SmartFactory.IPR.Customs
       internal double VAT { get; private set; }
       internal double VATPerUnit { get; private set; }
       internal string Batch { get; private set; }
-      internal string PCNTariffCode { get { return FirstSADGood.PCNTariffCode; } }
+      internal string PCNTariffCode { get; private set; }
       internal string SKU { get; private set; }
       #endregion
     }
@@ -402,7 +403,7 @@ namespace CAS.SmartFactory.IPR.Customs
           _clearance.ClearThroughCustoms( _edc, _messageType, _sg );
           _clearanceList.Add( _clearance );
         }
-      } // foreach 
+      }// foreach 
       if ( _clearanceList.Count > 0 )
         return _clearanceList;
       string _template = "Cannot find required document code ={0} for customs document = {1}/ref={2}";
