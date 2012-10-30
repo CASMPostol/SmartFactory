@@ -156,7 +156,7 @@ namespace CAS.SmartFactory.IPR.Customs
         IPRClass _ipr = new IPRClass()
         {
           AccountClosed = false,
-          AccountBalance = _iprdata.NetMass,
+          AccountBalance = _iprdata.GrossMass,
           Batch = _iprdata.Batch,
           Cartons = _iprdata.Cartons,
           ClearenceIndex = nc,
@@ -177,7 +177,7 @@ namespace CAS.SmartFactory.IPR.Customs
           IPR2PCNPCN = _pcn,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
-          TobaccoNotAllocated = _iprdata.NetMass,
+          TobaccoNotAllocated = _iprdata.GrossMass,
           Title = "-- creating -- ",
           IPRUnitPrice = _iprdata.UnitPrice,
           Value = _iprdata.Value,
@@ -190,6 +190,8 @@ namespace CAS.SmartFactory.IPR.Customs
         _at = "new SubmitChanges #1";
         _edc.SubmitChanges();
         _ipr.Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, _ipr.Identyfikator );
+        if ( _iprdata.Cartons > 0 )
+          _ipr.AddDisposal( _edc, _iprdata.Cartons );
         _at = "new SubmitChanges #2";
         _edc.SubmitChanges();
       }

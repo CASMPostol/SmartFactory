@@ -4089,7 +4089,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 				e.Item.IPRIndex = null;
 			}
 		}
-	}
+
+    public void AddDisposal( Entities _edc, double p )
+    {
+      throw new NotImplementedException();
+    }
+  }
 	
 	/// <summary>
 	/// Utwórz nowy element listy.
