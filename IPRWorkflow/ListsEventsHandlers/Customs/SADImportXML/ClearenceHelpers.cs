@@ -152,7 +152,7 @@ namespace CAS.SmartFactory.IPR.Customs
         Consent _cnsnt = Consent.Lookup( entities, _iprdata.Consent );
         _at = "PCNCode.AddOrGet";
         _comments = "PCN lookup filed";
-        PCNCode _pcn = PCNCode.AddOrGet( entities, _iprdata.PCNTariffCode );
+        PCNCode _pcn = PCNCode.AddOrGet( entities, clearence.ClearenceProcedure.Value, _iprdata.PCNTariffCode, _iprdata.TobaccoName );
         _at = "new IPRIPR";
         IPRClass _ipr = new IPRClass()
         {

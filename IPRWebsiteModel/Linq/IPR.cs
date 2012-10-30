@@ -92,7 +92,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       try
       {
-        PCNCode _disposal2PCNID = null; // PCNCompensationGood should be secoundary lookup. http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3333
+        PCNCode _disposal2PCNID = null; 
         Linq.DisposalStatus _typeOfDisposal = default( Linq.DisposalStatus );
         switch ( _status )
         {
@@ -128,7 +128,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           Disposal2MaterialIndex = material,
           DisposalStatus = _typeOfDisposal,
           Disposal2PCNID = _disposal2PCNID,
-          PCNCompensationGood = String.Empty.NotAvailable(),
+          PCNCompensationGood = _disposal2PCNID.CompensationGood, //TODO PCNCompensationGood should be secoundary lookup. http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3333
           DutyAndVAT = new Nullable<double>(),  // calculated in SetUpCalculatedColumns,
           DutyPerSettledAmount = new Nullable<double>(),  // calculated in SetUpCalculatedColumns,
           InvoiceNo = String.Empty.NotAvailable(), //To be assigned during finished goods export.
