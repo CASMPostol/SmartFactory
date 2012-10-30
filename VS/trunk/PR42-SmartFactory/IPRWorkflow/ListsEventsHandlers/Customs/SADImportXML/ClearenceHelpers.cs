@@ -157,7 +157,7 @@ namespace CAS.SmartFactory.IPR.Customs
       {
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
-        IPRData _iprdata = new IPRData( declaration, nc.SADGoodID, _messageType );
+        IPRData _iprdata = new IPRData( nc.SADGoodID, _messageType );
         _at = "Consent.Lookup";
         _comments = "Consent lookup filed";
         Consent _cnsnt = Consent.Lookup( _edc, _iprdata.Consent );
