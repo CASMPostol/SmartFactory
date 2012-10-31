@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using Microsoft.SharePoint;
 using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
@@ -22,7 +24,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Disposal = true;
         Quantity = _dspslx.SettledQuantity.Value;
         Status = _dspslx.DisposalStatus.Value.ToString();
-        Created = _dspslx.Created.Value.Date;
+        Created = _dspslx.Created.Value;
         ID = ( -_dspslx.Identyfikator.Value ).ToString();
       }
       internal SelectionTableRowWraper( IPRClass _iprx )
@@ -31,7 +33,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         Disposal = false;
         Quantity = _iprx.TobaccoNotAllocated.Value;
         Status = "IPR Material";
-        Created = _iprx.CustomsDebtDate.Value.Date;
+        Created = _iprx.CustomsDebtDate.Value;
         ID = _iprx.Identyfikator.Value.ToString();
       }
       #endregion
@@ -102,17 +104,17 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         SelectionTableRow _nr = this.NewSelectionTableRow();
         _nr.Batch = _rowx.Batch.Trim();
-        _nr.Created = _rowx.Created;
+        _nr.Created = _rowx.Created.Date.ToString( "d",  CultureInfo.CurrentUICulture );
         _nr.Currency = _rowx.Currency;
         _nr.DocumentNo = _rowx.DocumentNo.Trim();
-        _nr.DebtDate = _rowx.DebtDate;
+        _nr.DebtDate = _rowx.DebtDate.Date.ToString( "d", CultureInfo.CurrentUICulture );
         _nr.Disposal = _rowx.Disposal;
         _nr.ID = _rowx.ID.ToString();
         _nr.SKU = _rowx.SKU.Trim();
         _nr.Quantity = _rowx.Quantity;
         _nr.Status = _rowx.Status;
         _nr.UnitPrice = _rowx.UnitPrice;
-        _nr.ValidTo = _rowx.ValidTo;
+        _nr.ValidTo = _rowx.ValidTo.Date.ToString( "d", CultureInfo.CurrentUICulture );
         AddSelectionTableRow( _nr );
       }
       internal IEnumerable<SelectionTableRow> OnlyDisposals

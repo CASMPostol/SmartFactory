@@ -470,7 +470,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SelectionTableRow AddSelectionTableRow(string DocumentNo, System.DateTime DebtDate, System.DateTime ValidTo, double Quantity, double UnitPrice, string Currency, System.DateTime Created, string Status, string Batch, string SKU, string ID, bool Disposal) {
+            public SelectionTableRow AddSelectionTableRow(string DocumentNo, string DebtDate, string ValidTo, double Quantity, double UnitPrice, string Currency, string Created, string Status, string Batch, string SKU, string ID, bool Disposal) {
                 SelectionTableRow rowSelectionTableRow = ((SelectionTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         DocumentNo,
@@ -533,9 +533,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             private void InitClass() {
                 this.columnDocumentNo = new global::System.Data.DataColumn("DocumentNo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDocumentNo);
-                this.columnDebtDate = new global::System.Data.DataColumn("DebtDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnDebtDate = new global::System.Data.DataColumn("DebtDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDebtDate);
-                this.columnValidTo = new global::System.Data.DataColumn("ValidTo", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnValidTo = new global::System.Data.DataColumn("ValidTo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnValidTo);
                 this.columnQuantity = new global::System.Data.DataColumn("Quantity", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQuantity);
@@ -543,7 +543,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
                 base.Columns.Add(this.columnUnitPrice);
                 this.columnCurrency = new global::System.Data.DataColumn("Currency", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCurrency);
-                this.columnCreated = new global::System.Data.DataColumn("Created", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnCreated = new global::System.Data.DataColumn("Created", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreated);
                 this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatus);
@@ -729,10 +729,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime DebtDate {
+            public string DebtDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableSelectionTable.DebtDateColumn]));
+                        return ((string)(this[this.tableSelectionTable.DebtDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DebtDate\' in table \'SelectionTable\' is DBNull.", e);
@@ -745,10 +745,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime ValidTo {
+            public string ValidTo {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableSelectionTable.ValidToColumn]));
+                        return ((string)(this[this.tableSelectionTable.ValidToColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ValidTo\' in table \'SelectionTable\' is DBNull.", e);
@@ -794,9 +794,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime Created {
+            public string Created {
                 get {
-                    return ((global::System.DateTime)(this[this.tableSelectionTable.CreatedColumn]));
+                    return ((string)(this[this.tableSelectionTable.CreatedColumn]));
                 }
                 set {
                     this[this.tableSelectionTable.CreatedColumn] = value;
