@@ -293,9 +293,9 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
                 }
                 _edc.SubmitChanges();
               }
-              catch ( CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult _ex )
+              catch ( IPRDataConsistencyException _ex )
               {
-                new IPRDataConsistencyException(@"CAS.SmartFactory.IPR.ListsEventsHandlers\ProcessDisposals", _ex.Message, _ex, "Disposal error").Add2Log( _edc );
+                _ex.Add2Log( _edc );
               }
             }
             _progressChanged( this, new ProgressChangedEventArgs( 1, "SubmitChanges" ) );
