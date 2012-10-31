@@ -54,9 +54,31 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       return newBatch;
     }
+    /// <summary>
+    /// Checks if exports is possible.
+    /// </summary>
+    /// <param name="quantity">The quantity to export.</param>
+    /// <returns>Result of <see cref="ActionResult"/></returns>
+    public ActionResult ExportIsPossible( double? quantity )
+    {
+      ActionResult _result = new ActionResult();
+      if ( !quantity.HasValue )
+      {
+        string _message = String.Format( m_notValidValue, "Quantity" );
+        _result.AddMessage( "ExportPossible", _message );
+      }
+      else if ( FGQuantityAvailable.Value < quantity.Value )
+      {
+        string _message = String.Format( m_quantityIsUnavailable, this.FGQuantityAvailable.Value );
+        _result.AddMessage( "ExportPossible", _message );
+      }
+      return _result;
+    }
     #endregion
 
     #region private
+    private const string m_notValidValue = "Valid {0} value must be provided";
+    private const string m_quantityIsUnavailable = "The requested quantity is unavailable. There is only {0} on the stock.";
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be uploaded.";

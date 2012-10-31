@@ -6,11 +6,11 @@ using System.Web.UI.WebControls.WebParts;
 using CAS.SharePoint;
 using CAS.SharePoint.Linq;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR.Dashboards.Clearance;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml;
-using Microsoft.SharePoint;
-using CAS.SmartFactory.IPR.Dashboards.Clearance;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
+using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
 {
@@ -534,7 +534,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
       {
-        ActionResult _checkResult = item.InvoiceContent2BatchIndex.IsPossible( item.Quantity );
+        ActionResult _checkResult = item.InvoiceContent2BatchIndex.ExportIsPossible( item.Quantity );
         if ( _checkResult.Valid )
           continue;
         foreach ( var _msg in _checkResult )
@@ -544,15 +544,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Title ) );
       }
       _invoice.InvoiceLibraryStatus = true;
-      List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm> _consignment = new List<CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm>();
-      string _customsProcedureCode = Resources.CustomsProcedure3151.GetLocalizedString();
       Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, "FinischedGoodsExport", ClearenceProcedure._3151 );
       string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( _newClearance.Identyfikator.Value );
-      int _position = 1;
-      foreach ( InvoiceContent item in _invoice.InvoiceContent )
-        FinishedGoodsFormFactory.Do( item.InvoiceContent2BatchIndex, m_DataContextManagement.DataContext, item, _consignment, _invoice.BillDoc, _customsProcedureCode, _newClearance, _masterDocumentName, ref _position );
-      _invoice.InvoiceLibraryReadOnly = true;
-      CigaretteExportFormCollection _cefc = CAS.SmartFactory.IPR.Dashboards.Clearance.FinishedGoodsFormFactory.CigaretteExportFormCollection( _consignment, _masterDocumentName, _invoice.BillDoc );
+      CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent(m_DataContextManagement.DataContext, _invoice, _newClearance, _masterDocumentName );
       int _sadConsignmentIdentifier = ConsignmentFactory.Prepare( site, _cefc, _masterDocumentName );
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
       _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
