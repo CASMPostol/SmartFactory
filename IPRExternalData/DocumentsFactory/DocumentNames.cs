@@ -33,23 +33,23 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
     /// <summary>
     /// Dust form stylesheet name
     /// </summary>
-    public const string DustFormStylesheetName = "DustFormStylesheet.xslt";
+    public const string DustFormStylesheetName = "DustFormStylesheet";
     /// <summary>
     /// The cartons form stylesheet name
     /// </summary>
-    public const string CartonsFormStylesheetName = "CartonsFormStylesheet.xslt";
+    public const string CartonsFormStylesheetName = "CartonsFormStylesheet";
     /// <summary>
     /// Waste form stylesheet name
     /// </summary>
-    public const string WasteFormStylesheetName = "WasteFormStylesheet.xslt";
+    public const string WasteFormStylesheetName = "WasteFormStylesheet";
     /// <summary>
     /// Tobacco form stylesheet name
     /// </summary>
-    public const string TobaccoFormStylesheetName = "TobaccoFormStylesheet.xslt";
+    public const string TobaccoFormStylesheetName = "TobaccoFormStylesheet";
     /// <summary>
     /// Cigarette export form name
     /// </summary>
-    public const string CigaretteExportFormName = "CigaretteExportFormCollection.xslt";
+    public const string CigaretteExportFormName = "CigaretteExportFormCollection";
   }
 }
 
