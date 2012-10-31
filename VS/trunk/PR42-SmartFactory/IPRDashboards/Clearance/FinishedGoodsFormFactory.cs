@@ -15,49 +15,50 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
   internal static class FinishedGoodsFormFactory
   {
     #region public
+    internal static CigaretteExportFormCollection GetFormContent( Entities entities, InvoiceLib invoice, Clearence clearance, string documentName )
+    {
+      int _position = 1;
+      List<CigaretteExportForm> _consignment = new List<CigaretteExportForm>();
+      foreach ( InvoiceContent item in invoice.InvoiceContent )
+        FinishedGoodsFormFactory.GetCigaretteExportForm( entities, _consignment, item, clearance, documentName, ref _position );
+      invoice.InvoiceLibraryReadOnly = true;
+      return FinishedGoodsFormFactory.GetCigaretteExportFormCollection( _consignment, documentName, invoice.BillDoc );
+    }
+    #endregion
+    //TODO - refctor the - move methods to a single helpper class : http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3272
 
+    #region private
     /// <summary>
     /// Exports the specified _this.
     /// </summary>
-    /// <param name="_this">The _this.</param>
-    /// <param name="edc">The edc.</param>
-    /// <param name="productInvoice">The product invoice.</param>
+    /// <param name="entities">The edc.</param>
     /// <param name="consignment">The consignment.</param>
-    /// <param name="invoiceNumber">The invoice number.</param>
-    /// <param name="procedure">The procedure.</param>
+    /// <param name="invoice">The product invoice.</param>
     /// <param name="clearence">The clearence.</param>
-    /// <param name="masterDocumentNo">The master document no.</param>
+    /// <param name="documentName">The master document no.</param>
     /// <param name="_position">The _position.</param>
     /// <exception cref="ApplicationError">Batch.Export</exception>
-    internal static void Do
-      (
-        Batch _this,
-        Entities edc,
-        InvoiceContent productInvoice,
-        List<CigaretteExportForm> consignment,
-        string invoiceNumber,
-        string procedure,
-        Clearence clearence,
-        string masterDocumentNo,
-        ref int _position
-      )
+    private static void GetCigaretteExportForm
+      ( Entities entities, List<CigaretteExportForm> consignment, InvoiceContent invoice, Clearence clearence, string documentName, ref int _position )
     {
       string _at = "beginning";
+      Batch batch = invoice.InvoiceContent2BatchIndex;
+      string procedure = Resources.CustomsProcedure3151.GetLocalizedString();
       try
       {
-        bool closingBatch = _this.FGQuantityAvailable == productInvoice.Quantity.Value;
+        bool closingBatch = batch.FGQuantityAvailable == invoice.Quantity.Value;
         _at = "FGQuantityAvailable";
-        _this.FGQuantityAvailable -= productInvoice.Quantity.Value;
-        double _portion = productInvoice.Quantity.Value / _this.FGQuantity.Value;
+        batch.FGQuantityAvailable -= invoice.Quantity.Value;
+        double _portion = invoice.Quantity.Value / batch.FGQuantity.Value;
         List<Ingredient> _ingredients = new List<Ingredient>();
         _at = "foreach";
-        foreach ( Material _materialIdx in _this.Material )
-          _materialIdx.Export( edc, _ingredients, closingBatch, invoiceNumber, procedure, clearence, _portion );
+        foreach ( Material _materialIdx in batch.Material )
+          _materialIdx.Export( entities, _ingredients, closingBatch, invoice.InvoiceIndex.BillDoc, procedure, clearence, _portion );
         _at = "CutfillerCoefficient";
-        CutfillerCoefficient _cc = ( from _ccx in edc.CutfillerCoefficient orderby _ccx.Identyfikator descending select _ccx ).First();
+        CutfillerCoefficient _cc = ( from _ccx in entities.CutfillerCoefficient orderby _ccx.Identyfikator descending select _ccx ).First();
         _at = "_exportConsignment";
         CigaretteExportForm _exportConsignment =
-          CigaretteExportForm( _cc, _this, productInvoice, _portion, _ingredients, masterDocumentNo, ref _position, clearence.ProcedureCode );
+          GetCigaretteExportForm( _cc, batch, invoice, _portion, _ingredients, documentName, ref _position, clearence.ProcedureCode );
         consignment.Add( _exportConsignment );
       }
       catch ( ApplicationError _ar )
@@ -67,37 +68,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       catch ( Exception _ex )
       {
         string _tmpl = "Cannot proceed with export of Batch: {0} because of error: {1}.";
-        throw new ApplicationError( "Batch.Export", _at, String.Format( _tmpl, _this.Batch0, _ex.Message ), _ex );
+        throw new ApplicationError( "Batch.Export", _at, String.Format( _tmpl, batch.Batch0, _ex.Message ), _ex );
       }
     }
-    /// <summary>
-    /// Exports the possible.
-    /// </summary>
-    /// <param name="_this">The _this.</param>
-    /// <param name="quantity">The quantity.</param>
-    /// <returns></returns>
-    internal static ActionResult IsPossible( this Batch _this, double? quantity )
-    {
-      ActionResult _result = new ActionResult();
-      if ( !quantity.HasValue )
-      {
-        string _message = String.Format( Resources.NotValidValue.GetLocalizedString(), "Quantity" );
-        _result.AddMessage( "ExportPossible", _message );
-        return _result;
-      }
-      else if ( _this.FGQuantityAvailable.Value < quantity.Value )
-      {
-        string _message = String.Format( Resources.QuantityIsUnavailable.GetLocalizedString(), _this.FGQuantityAvailable.Value );
-        _result.AddMessage( "ExportPossible", _message );
-        return _result;
-      }
-      return _result;
-    }
-
-    #endregion
-
-    #region private
-
     /// <summary>
     /// Exports the specified material of <see cref="Material"/>.
     /// </summary>
@@ -227,7 +200,6 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         throw new ApplicationError( "Disposal.Export", _at, String.Format( _tmpl, _this.Identyfikator, ex.Message ), ex );
       }
     }
-    //TODO - refctor the - move methods to a single helpper class : http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3272
     private static IPRIngredient IPRIngredient( Disposal disposal )
     {
       IPRIngredient _ret = new IPRIngredient( disposal.Disposal2IPRIndex.Batch, disposal.Disposal2IPRIndex.SKU, disposal.SettledQuantity.Value );
@@ -252,11 +224,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       _ret.VAT = disposal.VATPerSettledAmount.Value;
       return _ret;
     }
-    //public static RegularIngredient RegularIngredient( string batch, string sku, double quantity )
-    //{
-    //  return new RegularIngredient( batch, sku, quantity );
-    //}
-    private static CigaretteExportForm CigaretteExportForm
+    private static CigaretteExportForm GetCigaretteExportForm
       ( CutfillerCoefficient cc, Batch batch, InvoiceContent invoice, double portion, List<Ingredient> _ingredients, string masretDocumentNo, ref int subdocumentNo, string customsProcedure )
     {
       CigaretteExportForm _ret = new CigaretteExportForm();
@@ -306,41 +274,41 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       _ret.TobaccoTotal = ( _ret.IPTMaterialQuantityTotal + _ret.RegularMaterialQuantityTotal + _ret.IPRRestMaterialQantityTotal ).RountMass();
       return _ret;
     }
-    private static void CountExportFormTotals( List<Ingredient> _ingredients, CigaretteExportForm _ret )
+    private static CigaretteExportFormCollection GetCigaretteExportFormCollection( List<CigaretteExportForm> forms, string documentName, string invoiceNo )
     {
-      _ret.Ingredients = _ingredients.ToArray();
-      _ret.IPTMaterialQuantityTotal = 0;
-      _ret.RegularMaterialQuantityTotal = 0;
-      _ret.IPTDutyVatTotals = new TotalAmountOfMoney();
-      foreach ( Ingredient _item in _ingredients )
+      CigaretteExportFormCollection _ret = new CigaretteExportFormCollection()
+      {
+        CigaretteExportForms = forms.ToArray(),
+        DocumentNo = documentName,
+        DocumentDate = DateTime.Now.Date,
+        InvoiceNo = invoiceNo,
+        NumberOfDocuments = forms.Count
+      };
+      return _ret;
+    }
+    private static void CountExportFormTotals( List<Ingredient> ingredients, CigaretteExportForm form )
+    {
+      form.Ingredients = ingredients.ToArray();
+      form.IPTMaterialQuantityTotal = 0;
+      form.RegularMaterialQuantityTotal = 0;
+      form.IPTDutyVatTotals = new TotalAmountOfMoney();
+      foreach ( Ingredient _item in ingredients )
       {
         if ( _item is IPRIngredient )
         {
           IPRIngredient _iprItem = (IPRIngredient)_item;
-          _ret.IPTMaterialQuantityTotal += _iprItem.TobaccoQuantity;
-          _ret.IPTDutyVatTotals.Add( new AmountOfMoney( _iprItem.TobaccoValue, _iprItem.Duty, _iprItem.VAT, _iprItem.Currency ) );
+          form.IPTMaterialQuantityTotal += _iprItem.TobaccoQuantity;
+          form.IPTDutyVatTotals.Add( new AmountOfMoney( _iprItem.TobaccoValue, _iprItem.Duty, _iprItem.VAT, _iprItem.Currency ) );
         }
         else
         {
           RegularIngredient _rglrItem = (RegularIngredient)_item;
-          _ret.RegularMaterialQuantityTotal += _rglrItem.TobaccoQuantity;
+          form.RegularMaterialQuantityTotal += _rglrItem.TobaccoQuantity;
         }
       }
-      _ret.IPTMaterialQuantityTotal = _ret.IPTMaterialQuantityTotal.RountMass();
-      _ret.IPTDutyVatTotals.AssignTotals();
-      _ret.RegularMaterialQuantityTotal = _ret.RegularMaterialQuantityTotal.RountMass();
-    }
-    internal static CigaretteExportFormCollection CigaretteExportFormCollection( List<CigaretteExportForm> cigaretteExportForms, string documentNo, string invoiceNo )
-    {
-      CigaretteExportFormCollection _ret = new CigaretteExportFormCollection()
-      {
-        CigaretteExportForms = cigaretteExportForms.ToArray(),
-        DocumentNo = documentNo,
-        DocumentDate = DateTime.Now.Date,
-        InvoiceNo = invoiceNo,
-        NumberOfDocuments = cigaretteExportForms.Count
-      };
-      return _ret;
+      form.IPTMaterialQuantityTotal = form.IPTMaterialQuantityTotal.RountMass();
+      form.IPTDutyVatTotals.AssignTotals();
+      form.RegularMaterialQuantityTotal = form.RegularMaterialQuantityTotal.RountMass();
     }
 
     #endregion

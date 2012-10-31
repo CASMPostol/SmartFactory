@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
-using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
 using CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using XmlCigaretteExportForm = CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.CigaretteExportForm;
@@ -209,7 +208,7 @@ namespace IPRDashboardsTest
       {
         Disposal2BatchIndex = _batch,
         Disposal2ClearenceIndex = null,
-        ClearingType = ClearingType.PartialWindingUp,
+        ClearingType = CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp,
         CustomsProcedure = "5100",
         CustomsStatus = CustomsStatus.NotStarted,
         DisposalStatus = DisposalStatus.TobaccoInCigaretes,
@@ -233,7 +232,7 @@ namespace IPRDashboardsTest
       {
         Disposal2BatchIndex = _batch,
         Disposal2ClearenceIndex = null,
-        ClearingType = CAS.SmartFactory.Linq.IPR.ClearingType.PartialWindingUp,
+        ClearingType = CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp,
         CustomsProcedure = "5100",
         CustomsStatus = CustomsStatus.NotStarted,
         DisposalStatus = DisposalStatus.TobaccoInCigaretes,
@@ -260,8 +259,8 @@ namespace IPRDashboardsTest
         CFTProductivityRateMax = 0.995,
         CFTProductivityRateMin = 0.985
       };
-      ingridients.Add( IPRIngredientFactory.IPRIngredient( _disposal1 ) );
-      ingridients.Add( IPRIngredientFactory.IPRIngredient( _disposal2 ) );
+      ingridients.Add( CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.IPRIngredientFactory.IPRIngredient( _disposal1 ) );
+      ingridients.Add( CAS.SmartFactory.IPR.Dashboards.Clearance.FinishedGoodsFormFactory.IPRIngredient( _disposal2.Disposal2BatchIndex.Batch0, _disposal2.Disposal2IPRIndex.SKU, _disposal2.SettledQuantity.Value ) );
       ingridients.Add( RegularIngredientFactory.RegularIngredient( "Reg Batch 54321", "Reg SKU 12345", 1234.56789 ) );
       string _masterDocumentName = "CigaretteExportFormCollection";
       string _invoiceNumber = "INV987654";

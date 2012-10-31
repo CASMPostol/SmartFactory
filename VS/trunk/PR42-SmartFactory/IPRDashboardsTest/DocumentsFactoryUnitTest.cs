@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using CAS.SharePoint;
-using CAS.SmartFactory.Linq.IPR;
-using CAS.SmartFactory.Linq.IPR.DocumentsFactory;
+using CAS.SmartFactory.IPR.Dashboards.Clearance;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace IPRDashboardsTest
 {
@@ -64,7 +64,6 @@ namespace IPRDashboardsTest
           Disposal2IPRIndex = _ipr1,
           Disposal2MaterialIndex = null,
           Disposal2PCNID = null,
-          PCNCompensationGood = String.Empty.NotAvailable(),
           DisposalStatus = DisposalStatus.Dust,
           DutyAndVAT = 392.70,
           DutyPerSettledAmount = 125.992,
@@ -91,7 +90,6 @@ namespace IPRDashboardsTest
           Disposal2BatchIndex = null,
           Disposal2IPRIndex = _ipr1,
           Disposal2MaterialIndex = null,
-          PCNCompensationGood = String.Empty.NotAvailable(),
           Disposal2PCNID = null,
           DisposalStatus = DisposalStatus.Waste,
           DutyAndVAT = 13.84,
@@ -119,7 +117,6 @@ namespace IPRDashboardsTest
             Disposal2BatchIndex = null,
             Disposal2IPRIndex = _ipr2,
             Disposal2MaterialIndex = null,
-            PCNCompensationGood = String.Empty.NotAvailable(),
             Disposal2PCNID = null,
             DisposalStatus = DisposalStatus.Dust,
             DutyAndVAT = 30.65,
@@ -147,7 +144,6 @@ namespace IPRDashboardsTest
             Disposal2BatchIndex = null,
             Disposal2IPRIndex = _ipr2,
             Disposal2MaterialIndex = null,
-            PCNCompensationGood = String.Empty.NotAvailable(),
             Disposal2PCNID = null,
             DisposalStatus = DisposalStatus.Waste,
             DutyAndVAT = 1.09,
@@ -175,7 +171,6 @@ namespace IPRDashboardsTest
             Disposal2BatchIndex = null,
             Disposal2IPRIndex = _ipr3,
             Disposal2MaterialIndex = null,
-            PCNCompensationGood = String.Empty.NotAvailable(),
             Disposal2PCNID = null,
             DisposalStatus = DisposalStatus.Dust,
             DutyAndVAT = 48.19,
@@ -203,7 +198,6 @@ namespace IPRDashboardsTest
             Disposal2BatchIndex = null,
             Disposal2IPRIndex = _ipr3,
             Disposal2MaterialIndex = null,
-            PCNCompensationGood = String.Empty.NotAvailable(),
             Disposal2PCNID = null,
             DisposalStatus = DisposalStatus.Waste,
             DutyAndVAT = 1.73,
@@ -231,7 +225,6 @@ namespace IPRDashboardsTest
           Disposal2BatchIndex = null,
           Disposal2IPRIndex = _ipr4,
           Disposal2MaterialIndex = null,
-          PCNCompensationGood = String.Empty.NotAvailable(),
           Disposal2PCNID = null,
           DisposalStatus = DisposalStatus.Dust,
           DutyAndVAT = 6.18,
@@ -259,7 +252,6 @@ namespace IPRDashboardsTest
           Disposal2BatchIndex = null,
           Disposal2IPRIndex = _ipr4,
           Disposal2MaterialIndex = null,
-          PCNCompensationGood = String.Empty.NotAvailable(),
           Disposal2PCNID = null,
           DisposalStatus = DisposalStatus.Waste,
           DutyAndVAT = 0.23,
@@ -277,7 +269,7 @@ namespace IPRDashboardsTest
           VATPerSettledAmount = 0.156,
         }
         ) );
-      DocumentContent _newDoc = DisposalsFormFactory.GetDustWasteFormContent( _disposals.AsQueryable<Disposal>(), "4051", "OGL Number" );
+      DocumentContent _newDoc = DisposalsFormFactory.GetDustWasteFormContent( _disposals.AsQueryable<Disposal>(), ClearenceProcedure._4051, "OGL Number" );
       Assert.AreEqual( _newDoc.DocumentNo, "OGL Number" );
       ;
     }
