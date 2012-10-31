@@ -14,9 +14,10 @@
           Kartony dopuszczenie do obrotu
         </title>
         <style type="text/css">
-          td, p { font-size:10px; }
-          th { font-size:12px; }
-          h2 { font-size:14px; text-align:center; }
+          p  { font-size:12pt; }
+          td { font-size:10pt; }
+          th { font-size:11pt; }
+          h2 { font-size:14pt; text-align:center; }
         </style>
       </head>
       <body>
@@ -42,7 +43,7 @@
    <p>
      Procedura: <xsl:value-of select="cas:CustomProcedureCode" />
    </p>
-   <table border="1" width="100%">
+   <table border="1" cellspacing="0" cellpadding="0" width="100%">
      <tr>
        <th>NR SAD</th>
        <th>Data</th>
@@ -58,7 +59,7 @@
    </table>
    <table width="100%" border="0">
      <tr>
-       <td align="right">
+       <td align="right" height="50px" valign="bottom">
          .............................................
        </td>
      </tr>

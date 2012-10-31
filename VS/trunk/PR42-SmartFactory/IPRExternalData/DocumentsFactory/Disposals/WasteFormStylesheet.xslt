@@ -14,9 +14,10 @@
           Zestawienie ilości odpadów tytoniowych powstałych przy produkcji papierosów
         </title>
         <style type="text/css">
-          td, p { font-size:10px; }
-          th { font-size:12px; }
-          h2 { font-size:14px; text-align:center; }
+          p  { font-size:12pt; }
+          td { font-size:10pt; }
+          th { font-size:11pt; }
+          h2 { font-size:14pt; text-align:center; }
         </style>
       </head>
       <body>
@@ -41,12 +42,11 @@
         <p>
           Procedura: <xsl:value-of select="cas:CustomProcedureCode" />
       </p>
-        <table border="1" width="100%">
+        <table border="1" width="100%" cellspacing="0" cellpadding="0">
           <tr>
-            <td colspan="3">
+            <td colspan="6">
               Suma z pozostałe odpady %
             </td>
-            <td colspan="3"></td>
           </tr>
           <tr>
             <th>NR SAD</th>
@@ -66,7 +66,7 @@
         </table>
         <table border="0" width="100%">
           <tr>
-            <td align="right">
+            <td align="right" height="50px" valign="bottom">
                 .............................................
             </td>
           </tr>
@@ -108,7 +108,7 @@
       <td>
         <xsl:value-of select="cas:FinishedGoodBatch"/>
       </td>
-      <td>
+      <td align="right">
         <xsl:value-of select="format-number(cas:Qantity, $FoarmatOfFloat, 'pl')"/>
       </td>
     </tr>
