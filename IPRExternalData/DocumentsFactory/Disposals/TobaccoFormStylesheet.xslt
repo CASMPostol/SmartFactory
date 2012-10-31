@@ -14,10 +14,11 @@
           Zestawienie zbiorcze - dopuszczenie do obrotu tytoni z systemu zawieszeń
         </title>
       <style type="text/css">
-          td, p { font-size:10px; }
-          th { font-size:12px; }
-          h2 { font-size:14px; text-align:center; }
-        </style>
+        p  { font-size:12pt; }
+        td { font-size:10pt; }
+        th { font-size:11pt; }
+        h2 { font-size:14pt; text-align:center; }
+      </style>
       </head>
       <body>
         <table border="0" width="100%">
@@ -39,9 +40,9 @@
       Zestawienie zbiorcze - dopuszczenie do obrotu tytoni z systemu zawieszeń
     </h2>
     <p>Z uwagi na zmiany planu produkcyjnego jesteśmy zmuszeni zmienić status celny niżej wymienionych tytoni.</p>
-    <p>Procedura <xsl:value-of select="cas:CustomProcedureCode"/>
+    <p>Procedura: <xsl:value-of select="cas:CustomProcedureCode"/>
   </p>
-    <table border="1" width="100%">
+    <table border="1" width="100%" cellspacing="0" cellpadding="0">
       <tr>
         <th>Nr SAD</th>
         <th>Data</th>
@@ -59,16 +60,16 @@
           <xsl:value-of select="cas:Total"/>
         </td>
         <td>
-
+          &#160;
         </td>
         <td>
-
+          &#160;
         </td>
       </tr>
     </table>
     <table width="100%" border="0">
       <tr>
-        <td align="right">
+        <td align="right" height="50px" valign="bottom">
             .............................................
         </td>
       </tr>
@@ -89,16 +90,16 @@
         Suma częściowa
       </td>
       <td>
-        
+        &#160;
       </td>
       <td>
-
+        <xsl:value-of select="format-number(cas:Total, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
-
+        &#160;
       </td>
       <td>
-
+        &#160;
       </td>
     </tr>
   </xsl:template>

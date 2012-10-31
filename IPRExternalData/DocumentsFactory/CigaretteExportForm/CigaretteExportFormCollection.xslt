@@ -13,13 +13,15 @@
       <head>
         <title>Zbiorczy proces technologiczny produkcji papierosów na eksport</title>
         <style type="text/css">
-          td, p { font-size:10px; }
-          th { font-size:12px; }
-          h2 { font-size:14px; text-align:center; }
+          td, p, li { font-size:10pt; }
+          h4 { font-size:11pt; }
+          th { font-size:11pt; }
+          h3 { font-size:12pt; }
+          h2 { font-size:14pt; text-align:center; }
         </style>
       </head>
       <body>
-        <table  >
+        <table width="100%" border="0">
           <tr>
             <td>
               <p align="right">
@@ -29,17 +31,17 @@
           </tr>
         </table>
         <xsl:apply-templates select="cas:CigaretteExportFormCollection"> </xsl:apply-templates>
-        <table>
+        <table border="0" width="100%">
         <tr>
           <td>
-            <p align="center">
+            <p align="right" height="50px" valign="bottom">
               .............................................
             </p>
           </td>
         </tr>
         <tr>
           <td>
-            <p align="center">
+            <p align="right">
               Imię i Nazwisko
             </p>
           </td>
@@ -49,9 +51,9 @@
     </html>
   </xsl:template>
   <xsl:template match="cas:CigaretteExportFormCollection">
-    <h1>
+    <h2>
       Procesy technologiczne (<xsl:value-of select="cas:NumberOfDocuments"/> x batch) dla papierosów z faktury nr <xsl:value-of select="cas:InvoiceNo"/>
-    </h1>
+    </h2>
     <p>
       Dokument zbiorczy nr: <xsl:value-of select="cas:DocumentNo" />
     </p>
@@ -59,10 +61,10 @@
   </xsl:template>
   <xsl:template match="cas:CigaretteExportForm">
     <div>
-      <h2>
+      <h3>
         <xsl:number></xsl:number>. Proces technologiczny produkcji papierosów na eksport
-      </h2>
-      <table border="1">
+      </h3>
+      <table border="1" cellspacing="0" cellpadding="0">
         <tr>
           <td>Dokument nr:</td>
           <td colspan="4">
@@ -113,7 +115,7 @@
           <td align="right" colspan="2">
             <xsl:value-of select="format-number(cas:FinishedGoodQantity, $FoarmatOfFloat, 'pl')"/>
           </td>
-          <td align="left">
+          <td align="left" colspan="2">
             <xsl:value-of select="cas:FinishedGoodUnit"/>
           </td>
         </tr>
@@ -121,7 +123,7 @@
       <h3>I.	Charakterystyka ogólna procesu technologicznego:</h3>
       <p>Przedstawiony niżej proces technologiczny obejmuje wykonanie papierosów z przeznaczeniem na eksport, z tytoni importowanych dla potrzeb firmy JTI i obejmuje dwa etapy:</p>
       <h4>1. Wykonanie krajanki tytoniowej z tytoni i żył tytoniowych importowanych objętych procedurą uszlachetniania czynnego wg zestawienia:</h4>
-      <table border="1">
+      <table border="1" cellspacing="0" cellpadding="0">
         <tr align="center" >
           <th>Lp.</th>
           <th>Nr SAD</th>
@@ -155,7 +157,7 @@
         </tr>
       </table>
       <p>oraz</p>
-      <table border="1">
+      <table border="1" cellspacing="0" cellpadding="0">
         <tr align="center">
           <th >Pył</th>
           <th >Odpad</th>
@@ -178,7 +180,7 @@
         </tr>
       </table>
       <p>a także tytoni i żył nie objętych procedurą uszlachetniania czynnego wg zestawienia:</p>
-      <table border="1">
+      <table border="1" cellspacing="0" cellpadding="0">
         <tr >
           <th>SKU tytoniu</th>
           <th>Batch tytoniu</th>
