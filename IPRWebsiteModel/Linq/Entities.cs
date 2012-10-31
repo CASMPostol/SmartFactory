@@ -2519,8 +2519,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private string _customsProcedure;
 		
-		private string _pCNCompensationGood;
-		
 		private System.Nullable<System.DateTime> _created;
 		
 		private System.Nullable<DisposalStatus> _disposalStatus;
@@ -2761,20 +2759,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this.OnPropertyChanging("CustomsProcedure", this._customsProcedure);
 					this._customsProcedure = value;
 					this.OnPropertyChanged("CustomsProcedure");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PCNCompensationGood", Storage="_pCNCompensationGood", FieldType="Text")]
-		public string PCNCompensationGood {
-			get {
-				return this._pCNCompensationGood;
-			}
-			set {
-				if ((value != this._pCNCompensationGood)) {
-					this.OnPropertyChanging("PCNCompensationGood", this._pCNCompensationGood);
-					this._pCNCompensationGood = value;
-					this.OnPropertyChanged("PCNCompensationGood");
 				}
 			}
 		}

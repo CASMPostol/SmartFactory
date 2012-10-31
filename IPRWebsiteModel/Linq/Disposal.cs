@@ -86,7 +86,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         this.CustomsProcedure = clearence.ProcedureCode;
         _at = "PCNCode _tobaccoPCN ";
         this.Disposal2PCNID = _pcn;
-        this.PCNCompensationGood = _pcn == null ? String.Empty.NotAvailable() : _pcn.CompensationGood;
         this.Disposal2ClearenceIndex = clearence;
       }
       catch ( Exception _ex )
