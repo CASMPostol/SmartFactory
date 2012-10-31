@@ -274,15 +274,21 @@
           </FieldRef>
           <FieldRef Name="Editor">
           </FieldRef>
-          <FieldRef Name="IsExport" />
+          <FieldRef Name="InvoiceLibraryReadOnly" />
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noitemsinview_doclibrary_howto2)" />
         </ParameterBindings>
         <Query>
+          <Where>
+            <Eq>
+              <FieldRef Name="InvoiceLibraryReadOnly" />
+              <Value Type="Boolean">No</Value>
+            </Eq>
+          </Where>
           <OrderBy>
-            <FieldRef Name="FileLeafRef" />
+            <FieldRef Name="ID" Ascending="FALSE" />
           </OrderBy>
         </Query>
       </View>
