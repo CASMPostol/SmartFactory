@@ -34,22 +34,31 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="clearingType">Type of the clearing.</param>
     public void SetUpCalculatedColumns( ClearingType clearingType )
     {
-      string _titleTmplt = "Disposal: {0} of material {1}";
-      Title = String.Format( _titleTmplt, this.DisposalStatus.Value.ToString(), this.Disposal2IPRIndex.Batch );
-      double _portion = SettledQuantity.Value / Disposal2IPRIndex.NetMass.Value;
-      if ( clearingType == Linq.ClearingType.PartialWindingUp )
+      try
       {
-        DutyPerSettledAmount = ( Disposal2IPRIndex.Duty.Value * _portion ).RoundCurrency();
-        VATPerSettledAmount = ( Disposal2IPRIndex.VAT.Value * _portion ).RoundCurrency();
-        TobaccoValue = ( Disposal2IPRIndex.Value.Value * _portion ).RoundCurrency();
+        string _titleTmplt = "Disposal: {0} of material {1}";
+        Title = String.Format( _titleTmplt, this.DisposalStatus.Value.ToString(), this.Disposal2IPRIndex.Batch );
+        if ( this.DisposalStatus.Value == Linq.DisposalStatus.Cartons )
+          return;
+        double _portion = SettledQuantity.Value / Disposal2IPRIndex.NetMass.Value;
+        if ( clearingType == Linq.ClearingType.PartialWindingUp )
+        {
+          DutyPerSettledAmount = ( Disposal2IPRIndex.Duty.Value * _portion ).RoundCurrency();
+          VATPerSettledAmount = ( Disposal2IPRIndex.VAT.Value * _portion ).RoundCurrency();
+          TobaccoValue = ( Disposal2IPRIndex.Value.Value * _portion ).RoundCurrency();
+        }
+        else
+        {
+          DutyPerSettledAmount = GetDutyNotCleared();
+          VATPerSettledAmount = GetVATNotCleared();
+          TobaccoValue = GetPriceNotCleared();
+        }
+        DutyAndVAT = DutyPerSettledAmount.Value + VATPerSettledAmount.Value;
       }
-      else
+      catch ( Exception ex )
       {
-        DutyPerSettledAmount = GetDutyNotCleared();
-        VATPerSettledAmount = GetVATNotCleared();
-        TobaccoValue = GetPriceNotCleared();
+        throw GenericStateMachineEngine.ActionResult.Exception( ex, @"CAS.SmartFactory.IPR.WebsiteModel.Linq\SetUpCalculatedColumns" );
       }
-      DutyAndVAT = DutyPerSettledAmount.Value + VATPerSettledAmount.Value;
     }
     internal void ClearThroughCustoms( Entities edc, string documentNo, Clearence clearence, DateTime clearanceDate, string productCodeNumber )
     {
