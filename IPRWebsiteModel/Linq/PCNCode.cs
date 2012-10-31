@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       string _requestedProcedure = Entities.RequestedProcedure( procedureCode );
       PCNCode _pcn = ( from _pcnx in entities.PCNCode
-                       where String.IsNullOrEmpty( _pcnx.Procedure ) || _pcnx.Procedure.Contains( _requestedProcedure ) &&
+                       where ( String.IsNullOrEmpty( _pcnx.Procedure ) || _pcnx.Procedure.Contains( _requestedProcedure ) ) &&
                              _pcnx.ProductCodeNumber.Contains( productCodeNumber )
                        select _pcnx ).FirstOrDefault();
       return _pcn;
