@@ -168,6 +168,19 @@
     Overwrite="TRUE"
   />
   <Field
+    Type="Lookup"
+    DisplayName="Compensation Good"
+    List="Lists/PCNCodeList"
+    ShowField="CompensationGood"
+    FieldRef="5B25CD17-51A4-4807-86DE-56B773C7DEB7"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory IPR"
+    ID="{1075A488-94A3-4937-9806-264381DE1542}"
+    Name="PCNCompensationGood"
+    Overwrite="TRUE"
+  />
+  <Field
     Name="IPR2PCNPCN"
     ID="{FDFA2B02-4073-4A29-B694-4CF4001A5357}"
     Type="Lookup"

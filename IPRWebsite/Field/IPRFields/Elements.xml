@@ -1,13 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
-  DisplayName="Compensation Good"
-  Name="PCNCompensationGood"
-  Type="Text"
-  ID="{1075A488-94A3-4937-9806-264381DE1542}"
-  Group="CAS Smart Factory IPR Customs"
-    />
-  <Field
   DisplayName="Tobacco not allocated"
   Name="TobaccoNotAllocated"
   Type="Number"
