@@ -196,7 +196,7 @@ namespace CAS.SmartFactory.IPR.Customs
         _at = "new SubmitChanges #2";
         entities.SubmitChanges();
       }
-      catch ( IPRDataConsistencyException _ex )
+      catch ( GenericStateMachineEngine.ActionResult _ex )
       {
         _ex.Message.Insert( 0, String.Format( "Message={0}, Reference={1}; ", _messageType, declaration.ReferenceNumber ) );
         throw _ex;

@@ -107,26 +107,37 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </returns>
     public static string ToString( ClearenceProcedure procedureCode )
     {
+      string _value = String.Empty.NotAvailable();
       switch ( procedureCode )
       {
         case ClearenceProcedure._3151:
-          return "3151";
+          _value = "3151";
+          break;
         case ClearenceProcedure._3171:
-          return "3171";
+          _value = "3171";
+          break;
         case ClearenceProcedure._4051:
-          return "4051";
+          _value = "4051";
+          break;
         case ClearenceProcedure._4071:
-          return "4071";
+          _value = "4071";
+          break;
         case ClearenceProcedure._5100:
-          return "5100";
+          _value = "5100";
+          break;
         case ClearenceProcedure._5171:
-          return "5171";
+          _value = "5171";
+          break;
         case ClearenceProcedure._7100:
-          return "7100";
+          _value = "7100";
+          break;
         case ClearenceProcedure._7171:
-          return "7171";
+          _value = "7171";
+          break;
+        default:
+          break;
       }
-      return string.Empty.NotAvailable();
+      return _value;
     }
     internal class ProductDescription
     {
