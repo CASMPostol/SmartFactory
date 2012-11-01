@@ -20,46 +20,33 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       int _position = 1;
       List<CigaretteExportForm> _consignment = new List<CigaretteExportForm>();
       foreach ( InvoiceContent item in invoice.InvoiceContent )
-        FinishedGoodsFormFactory.GetCigaretteExportForm( entities, _consignment, item, clearance, documentName, ref _position );
+        ExportInvoiceEntry( item, entities, _consignment, clearance, documentName, ref _position );
       invoice.InvoiceLibraryReadOnly = true;
-      return FinishedGoodsFormFactory.GetCigaretteExportFormCollection( _consignment, documentName, invoice.BillDoc );
+      return GetCigaretteExportFormCollection( _consignment, documentName, invoice.BillDoc );
     }
     #endregion
-    //TODO - refctor the - move methods to a single helpper class : http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3272
 
     #region private
-    /// <summary>
-    /// Exports the specified _this.
-    /// </summary>
-    /// <param name="entities">The edc.</param>
-    /// <param name="consignment">The consignment.</param>
-    /// <param name="invoice">The product invoice.</param>
-    /// <param name="clearence">The clearence.</param>
-    /// <param name="documentName">The master document no.</param>
-    /// <param name="_position">The _position.</param>
-    /// <exception cref="ApplicationError">Batch.Export</exception>
-    private static void GetCigaretteExportForm
-      ( Entities entities, List<CigaretteExportForm> consignment, InvoiceContent invoice, Clearence clearence, string documentName, ref int _position )
+    private static void ExportInvoiceEntry
+      ( InvoiceContent invoice, Entities entities, List<CigaretteExportForm> formsList, Clearence clearence, string documentName, ref int subdocumentNo )
     {
       string _at = "beginning";
       Batch batch = invoice.InvoiceContent2BatchIndex;
-      string procedure = Resources.CustomsProcedure3151.GetLocalizedString();
       try
       {
-        bool closingBatch = batch.FGQuantityAvailable == invoice.Quantity.Value;
+        bool _closingBatch = batch.FGQuantityAvailable == invoice.Quantity.Value;
         _at = "FGQuantityAvailable";
         batch.FGQuantityAvailable -= invoice.Quantity.Value;
         double _portion = invoice.Quantity.Value / batch.FGQuantity.Value;
         List<Ingredient> _ingredients = new List<Ingredient>();
         _at = "foreach";
         foreach ( Material _materialIdx in batch.Material )
-          _materialIdx.Export( entities, _ingredients, closingBatch, invoice.InvoiceIndex.BillDoc, procedure, clearence, _portion );
+          ExportMaterial( _materialIdx, entities, _ingredients, clearence, _closingBatch, invoice.InvoiceIndex.BillDoc, _portion );
         _at = "CutfillerCoefficient";
         CutfillerCoefficient _cc = ( from _ccx in entities.CutfillerCoefficient orderby _ccx.Identyfikator descending select _ccx ).First();
         _at = "_exportConsignment";
-        CigaretteExportForm _exportConsignment =
-          GetCigaretteExportForm( _cc, batch, invoice, _portion, _ingredients, documentName, ref _position, clearence.ProcedureCode );
-        consignment.Add( _exportConsignment );
+        CigaretteExportForm _form = GetCigaretteExportForm( _cc, batch, invoice, _portion, _ingredients, documentName, ref subdocumentNo, clearence );
+        formsList.Add( _form );
       }
       catch ( ApplicationError _ar )
       {
@@ -71,24 +58,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         throw new ApplicationError( "Batch.Export", _at, String.Format( _tmpl, batch.Batch0, _ex.Message ), _ex );
       }
     }
-    /// <summary>
-    /// Exports the specified material of <see cref="Material"/>.
-    /// </summary>
-    /// <param name="material">The _this.</param>
-    /// <param name="edc">The edc.</param>
-    /// <param name="ingredient">The ingredient.</param>
-    /// <param name="closingBatch">if set to <c>true</c> [closing batch].</param>
-    /// <param name="invoiceNoumber">The invoice noumber.</param>
-    /// <param name="procedure">The procedure.</param>
-    /// <param name="clearence">The clearence.</param>
-    /// <param name="portion">The portion.</param>
-    /// <exception cref="ApplicationError">Material.Export</exception>
-    private static void Export( this Material material, Entities edc, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence, double portion )
+    private static void ExportMaterial( Material material, Entities entities, List<Ingredient> formsList, Clearence clearence, bool closingBatch, string invoiceNoumber, double portion )
     {
       string _at = "Beginning";
       try
       {
-        if ( material.ProductType.Value == CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.IPRTobacco )
+        if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.IPRTobacco )
         {
           double _quantity = material.DisposedQuantity( portion );
           _at = "GetListOfDisposals";
@@ -97,16 +72,19 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
             if ( _quantity == 0 )
               break;
             _at = "_disposal.Export(";
-            _disposal.Export( edc, ref _quantity, ingredient, closingBatch, invoiceNoumber, procedure, clearence );
+            _disposal.Export( entities, clearence, ref _quantity, closingBatch, invoiceNoumber );
+            _at = "SubmitChanges";
+            entities.SubmitChanges();
+            formsList.Add( GetIPRIngredient( _disposal ) );
           }
           string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account";
-          Anons.Assert( edc, _quantity == 0, "Material.Export", string.Format( _template, material.Batch, _quantity, invoiceNoumber ) );
+          Anons.Assert( entities, _quantity == 0, "Material.Export", string.Format( _template, material.Batch, _quantity, invoiceNoumber ) );
         }
-        else if ( material.ProductType.Value == CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Tobacco )
+        else if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.Tobacco )
         {
           _at = "RegularIngredient";
           RegularIngredient _ri = new RegularIngredient( material.Batch, material.SKU, material.DisposedQuantity( portion ) );
-          ingredient.Add( _ri );
+          formsList.Add( _ri );
         }
       }
       catch ( ApplicationError _ae )
@@ -119,113 +97,20 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         throw new ApplicationError( "Material.Export", _at, String.Format( _tmpl, material.Material2BatchIndex.Title, _ex.Message ), _ex );
       }
     }
-    private static ExportedProductType Product( CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType productType )
+    private static CigaretteExportFormCollection GetCigaretteExportFormCollection( List<CigaretteExportForm> forms, string documentName, string invoiceNo )
     {
-      switch ( productType )
+      CigaretteExportFormCollection _ret = new CigaretteExportFormCollection()
       {
-        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Cutfiller:
-          return ExportedProductType.Cutfiller;
-        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Cigarette:
-          return ExportedProductType.Cigarette;
-        default:
-          string _prdct = String.Format( "Product: {0}", productType );
-          throw new ApplicationError( "Batch.Product", _prdct, "Wrong product of the expoerted goods", null );
+        CigaretteExportForms = forms.ToArray(),
+        DocumentNo = documentName,
+        DocumentDate = DateTime.Now.Date,
+        InvoiceNo = invoiceNo,
+        NumberOfDocuments = forms.Count
       };
-    }
-    /// <summary>
-    /// Exports the specified _this.
-    /// </summary>
-    /// <param name="_this">The _this.</param>
-    /// <param name="edc">The edc.</param>
-    /// <param name="_quantity">The _quantity.</param>
-    /// <param name="ingredient">The ingredient.</param>
-    /// <param name="closingBatch">if set to <c>true</c> [closing batch].</param>
-    /// <param name="invoiceNoumber">The invoice noumber.</param>
-    /// <param name="procedure">The procedure.</param>
-    /// <param name="clearence">The clearence.</param>
-    /// <exception cref="ApplicationError">Disposal.Export</exception>
-    private static void Export( this Disposal _this, Entities edc, ref double _quantity, List<Ingredient> ingredient, bool closingBatch, string invoiceNoumber, string procedure, Clearence clearence )
-    {
-      string _at = "startting";
-      try
-      {
-        CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType _clearingType = CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp;
-        if ( !closingBatch && _quantity < _this.SettledQuantity )
-        {
-          _at = "_newDisposal";
-          Disposal _newDisposal = new Disposal()
-          {
-            Disposal2BatchIndex = _this.Disposal2BatchIndex,
-            Disposal2ClearenceIndex = null,
-            ClearingType = CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp,
-            CustomsStatus = CustomsStatus.NotStarted,
-            CustomsProcedure = "N/A",
-            DisposalStatus = _this.DisposalStatus,
-            InvoiceNo = "N/A",
-            IPRDocumentNo = "N/A", // [pr4-3432] Disposal IPRDocumentNo - clarify  http://itrserver/Bugs/BugDetail.aspx?bid=3432
-            Disposal2IPRIndex = _this.Disposal2IPRIndex,
-            // CompensationGood = _this.CompensationGood, //TODO [pr4-3585] Wrong value for CompensationGood http://itrserver/Bugs/BugDetail.aspx?bid=3585
-            JSOXCustomsSummaryIndex = null,
-            Disposal2MaterialIndex = _this.Disposal2MaterialIndex,
-            No = int.MaxValue,
-            SADDate = CAS.SharePoint.Extensions.SPMinimum,
-            SADDocumentNo = "N/A",
-            SettledQuantity = _this.SettledQuantity - _quantity
-          };
-          _at = "SetUpCalculatedColumns";
-          _newDisposal.SetUpCalculatedColumns( CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp );
-          _this.SettledQuantity = _quantity;
-          _quantity = 0;
-          _at = "InsertOnSubmit";
-          edc.Disposal.InsertOnSubmit( _newDisposal );
-          _at = "SubmitChanges #1";
-          edc.SubmitChanges();
-        }
-        else
-        {
-          _clearingType = _this.Disposal2IPRIndex.GetClearingType();
-          _quantity -= _this.SettledQuantity.Value;
-        }
-        _at = "StartClearance";
-        _this.StartClearance( _clearingType, invoiceNoumber, procedure, clearence );
-        _at = "new IPRIngredient";
-        IPRIngredient _ingredient = IPRIngredient( _this );
-        ingredient.Add( _ingredient );
-        _at = "SubmitChanges #2";
-        edc.SubmitChanges();
-      }
-      catch ( Exception ex )
-      {
-        string _tmpl = "Cannot proceed with export of disposal: {0} because of error: {1}.";
-        throw new ApplicationError( "Disposal.Export", _at, String.Format( _tmpl, _this.Identyfikator, ex.Message ), ex );
-      }
-    }
-    private static IPRIngredient IPRIngredient( Disposal disposal )
-    {
-      IPRIngredient _ret = new IPRIngredient( disposal.Disposal2IPRIndex.Batch, disposal.Disposal2IPRIndex.SKU, disposal.SettledQuantity.Value );
-      CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _ipr = disposal.Disposal2IPRIndex;
-      _ret.Currency = _ipr.Currency;
-      _ret.Date = _ipr.CustomsDebtDate.Value;
-      _ret.DocumentNoumber = _ipr.DocumentNo;
-      _ret.Duty = disposal.DutyPerSettledAmount.Value;
-      switch ( disposal.ClearingType.Value )
-      {
-        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp:
-          _ret.ItemClearingType = xml.DocumentsFactory.CigaretteExportForm.ClearingType.PartialWindingUp;
-          break;
-        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.TotalWindingUp:
-          _ret.ItemClearingType = xml.DocumentsFactory.CigaretteExportForm.ClearingType.PartialWindingUp;
-          break;
-        default:
-          throw new ApplicationError( "InvoiceLib.IPRIngredient", "ItemClearingType", "Wrong Clearing Type", null );
-      }
-      _ret.TobaccoUnitPrice = _ipr.IPRUnitPrice.Value;
-      _ret.TobaccoValue = disposal.TobaccoValue.Value;
-      _ret.VAT = disposal.VATPerSettledAmount.Value;
       return _ret;
     }
     private static CigaretteExportForm GetCigaretteExportForm
-      ( CutfillerCoefficient cc, Batch batch, InvoiceContent invoice, double portion, List<Ingredient> _ingredients, string masretDocumentNo, ref int subdocumentNo, string customsProcedure )
+       ( CutfillerCoefficient cc, Batch batch, InvoiceContent invoice, double portion, List<Ingredient> ingredients, string documentName, ref int subdocumentNo, Clearence clearence )
     {
       CigaretteExportForm _ret = new CigaretteExportForm();
       if ( batch == null )
@@ -234,11 +119,11 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         throw new ArgumentNullException( "SKU in batch cannot be null" );
       if ( invoice == null )
         throw new ArgumentNullException( "Invoice cannot be null" );
-      _ret.DocumentNo = String.Format( GlobalDefinitions.CigaretteExportFormNamePatern, masretDocumentNo, subdocumentNo++ );
+      _ret.DocumentNo = String.Format( GlobalDefinitions.CigaretteExportFormNamePatern, documentName, subdocumentNo++ );
       _ret.DustKg = ( batch.Dust.GetValueOrDefault( -1 ) * portion ).RountMass();
-      CountExportFormTotals( _ingredients, _ret );
+      CountExportFormTotals( ingredients, _ret );
       _ret.Portion = portion;
-      _ret.CustomsProcedure = customsProcedure;
+      _ret.CustomsProcedure = Entities.ToString( clearence.ClearenceProcedure.Value );
       _ret.FinishedGoodBatch = batch.Batch0;
       _ret.FinishedGoodQantity = invoice.Quantity.GetValueOrDefault( 0 );
       _ret.FinishedGoodUnit = invoice.Units.GetLocalizedString();
@@ -274,16 +159,28 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       _ret.TobaccoTotal = ( _ret.IPTMaterialQuantityTotal + _ret.RegularMaterialQuantityTotal + _ret.IPRRestMaterialQantityTotal ).RountMass();
       return _ret;
     }
-    private static CigaretteExportFormCollection GetCigaretteExportFormCollection( List<CigaretteExportForm> forms, string documentName, string invoiceNo )
+    private static IPRIngredient GetIPRIngredient( Disposal disposal )
     {
-      CigaretteExportFormCollection _ret = new CigaretteExportFormCollection()
+      IPRIngredient _ret = new IPRIngredient( disposal.Disposal2IPRIndex.Batch, disposal.Disposal2IPRIndex.SKU, disposal.SettledQuantity.Value );
+      CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _ipr = disposal.Disposal2IPRIndex;
+      _ret.Currency = _ipr.Currency;
+      _ret.Date = _ipr.CustomsDebtDate.Value;
+      _ret.DocumentNoumber = _ipr.DocumentNo;
+      _ret.Duty = disposal.DutyPerSettledAmount.Value;
+      switch ( disposal.ClearingType.Value )
       {
-        CigaretteExportForms = forms.ToArray(),
-        DocumentNo = documentName,
-        DocumentDate = DateTime.Now.Date,
-        InvoiceNo = invoiceNo,
-        NumberOfDocuments = forms.Count
-      };
+        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp:
+          _ret.ItemClearingType = xml.DocumentsFactory.CigaretteExportForm.ClearingType.PartialWindingUp;
+          break;
+        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.TotalWindingUp:
+          _ret.ItemClearingType = xml.DocumentsFactory.CigaretteExportForm.ClearingType.PartialWindingUp;
+          break;
+        default:
+          throw new ApplicationError( "InvoiceLib.IPRIngredient", "ItemClearingType", "Wrong Clearing Type", null );
+      }
+      _ret.TobaccoUnitPrice = _ipr.IPRUnitPrice.Value;
+      _ret.TobaccoValue = disposal.TobaccoValue.Value;
+      _ret.VAT = disposal.VATPerSettledAmount.Value;
       return _ret;
     }
     private static void CountExportFormTotals( List<Ingredient> ingredients, CigaretteExportForm form )
@@ -310,7 +207,20 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       form.IPTDutyVatTotals.AssignTotals();
       form.RegularMaterialQuantityTotal = form.RegularMaterialQuantityTotal.RountMass();
     }
-
+    private static ExportedProductType Product( CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType productType )
+    {
+      switch ( productType )
+      {
+        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Cutfiller:
+          return ExportedProductType.Cutfiller;
+        case CAS.SmartFactory.IPR.WebsiteModel.Linq.ProductType.Cigarette:
+          return ExportedProductType.Cigarette;
+        default:
+          string _prdct = String.Format( "Product: {0}", productType );
+          throw new ApplicationError( "Batch.Product", _prdct, "Wrong product of the expoerted goods", null );
+      };
+    }
     #endregion
+
   }
 }

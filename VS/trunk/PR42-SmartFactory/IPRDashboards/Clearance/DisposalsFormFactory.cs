@@ -11,6 +11,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
 {
   internal static class DisposalsFormFactory
   {
+    
+    #region internal
     internal static DocumentContent GetBoxFormContent( IQueryable<Disposal> disposals, ClearenceProcedure customProcedureCode, string documentNo )
     {
       double _subTotal = 0;
@@ -93,6 +95,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         Total = _total
       };
     }
+    #endregion
+
+    #region private
     private static MaterialRecord[] GetListOfMaterials( IEnumerable<Disposal> _disposals, ref double _subTotal )
     {
       List<MaterialRecord> _dustRecord = new List<MaterialRecord>();
@@ -115,5 +120,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       }
       return _dustRecord.ToArray();
     }
+    #endregion
+  
   }
 }
