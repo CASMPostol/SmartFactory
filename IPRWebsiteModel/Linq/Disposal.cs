@@ -10,29 +10,72 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// </summary>
   public partial class Disposal
   {
-
     #region public
+
     /// <summary>
-    /// Starts the clearance.
+    /// Exports the specified entities.
     /// </summary>
-    /// <param name="clearingType">Type of the clearing.</param>
-    /// <param name="invoiceNoumber">The invoice noumber.</param>
-    /// <param name="procedure">The procedure.</param>
+    /// <param name="entities">The entities.</param>
     /// <param name="clearence">The clearence.</param>
-    public void StartClearance( ClearingType clearingType, string invoiceNoumber, string procedure, Clearence clearence )
+    /// <param name="quantity">The quantity.</param>
+    /// <param name="closingBatch">if set to <c>true</c> the batch is to be closed.</param>
+    /// <param name="invoiceNoumber">The invoice noumber.</param>
+    /// <exception cref="ApplicationError">if any internal exception has to be catched.</exception>
+    public void Export( Entities entities, Clearence clearence, ref double quantity, bool closingBatch, string invoiceNoumber )
     {
-      this.Disposal2ClearenceIndex = clearence;
-      this.CustomsStatus = Linq.CustomsStatus.Started;
-      this.ClearingType = clearingType;
-      this.CustomsProcedure = procedure;
-      this.InvoiceNo = invoiceNoumber;
-      this.SetUpCalculatedColumns( ClearingType.Value );
+      string _at = "Startting";
+      try
+      {
+        ClearingType _clearingType = Linq.ClearingType.PartialWindingUp;
+        if ( !closingBatch && quantity < SettledQuantity )
+        {
+          _at = "_newDisposal";
+          Disposal _newDisposal = new Disposal()
+          {
+            Disposal2BatchIndex = Disposal2BatchIndex,
+            Disposal2ClearenceIndex = null,
+            ClearingType = CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp,
+            CustomsStatus = Linq.CustomsStatus.NotStarted,
+            CustomsProcedure = "N/A",
+            DisposalStatus = DisposalStatus,
+            InvoiceNo = "N/A",
+            IPRDocumentNo = "N/A",
+            Disposal2IPRIndex = Disposal2IPRIndex,
+            Disposal2PCNID = Disposal2PCNID,
+            JSOXCustomsSummaryIndex = null,
+            Disposal2MaterialIndex = Disposal2MaterialIndex,
+            No = int.MaxValue,
+            SADDate = CAS.SharePoint.Extensions.SPMinimum,
+            SADDocumentNo = "N/A",
+            SettledQuantity = SettledQuantity - quantity
+          };
+          _at = "SetUpCalculatedColumns";
+          _newDisposal.SetUpCalculatedColumns( CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp );
+          SettledQuantity = quantity;
+          quantity = 0;
+          _at = "InsertOnSubmit";
+          entities.Disposal.InsertOnSubmit( _newDisposal );
+          _at = "SubmitChanges #1";
+          entities.SubmitChanges();
+        }
+        else
+        {
+          _clearingType = Disposal2IPRIndex.GetClearingType();
+          quantity -= SettledQuantity.Value;
+        }
+        _at = "StartClearance";
+        StartClearance( _clearingType, invoiceNoumber, clearence );
+      }
+      catch ( Exception _ex )
+      {
+        throw new ApplicationError( @"CAS.SmartFactory.IPR.WebsiteModel.Linq.Export", _at, _ex.Message, _ex );
+      }
     }
     /// <summary>
     /// Calculate values of columns: Title, DutyPerSettledAmount, VATPerSettledAmount, TobaccoValue, DutyAndVAT.
     /// </summary>
     /// <param name="clearingType">Type of the clearing.</param>
-    public void SetUpCalculatedColumns( ClearingType clearingType )
+    internal void SetUpCalculatedColumns( ClearingType clearingType )
     {
       try
       {
@@ -74,7 +117,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           this.No = 1;
         else
           this.No = _lastOne.No++;
-        //TODO [pr4-3737] Compensation good must be recognized using the PCN code from customs message http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=1744
         PCNCode _pcn = PCNCode.Find( edc, clearence.ClearenceProcedure.Value, productCodeNumber );
         this.SADDocumentNo = documentNo;
         this.SADDate = clearanceDate;
@@ -97,6 +139,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
+    /// <summary>
+    /// Starts the clearance.
+    /// </summary>
+    /// <param name="clearingType">Type of the clearing.</param>
+    /// <param name="invoiceNoumber">The invoice noumber.</param>
+    /// <param name="clearence">The clearence.</param>
+    private void StartClearance( ClearingType clearingType, string invoiceNoumber, Clearence clearence )
+    {
+      this.Disposal2ClearenceIndex = clearence;
+      this.CustomsStatus = Linq.CustomsStatus.Started;
+      this.ClearingType = clearingType;
+      this.CustomsProcedure = Entities.ToString( clearence.ClearenceProcedure.Value );
+      this.InvoiceNo = invoiceNoumber;
+      this.SetUpCalculatedColumns( ClearingType.Value );
+    }
     private double GetDutyNotCleared()
     {
       return Disposal2IPRIndex.Duty.Value - ( from _dec in Disposal2IPRIndex.Disposal where _dec.DutyPerSettledAmount.HasValue select new { val = _dec.DutyPerSettledAmount.Value } ).Sum( itm => itm.val );
