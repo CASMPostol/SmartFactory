@@ -380,9 +380,9 @@ namespace CAS.SmartFactory.IPR.Customs
       internal string SKU { get; private set; }
       #endregion
     }
-    private static List<Clearence> ClearThroughCustoms( Entities entities, SADGood good )
+    private void ClearThroughCustoms( Entities entities, SADGood good )
     {
-      List<Clearence> _clearanceList = new List<Clearence>();
+      bool _ifAny = false;
       foreach ( SADRequiredDocuments _rdx in good.SADRequiredDocuments )
       {
         if ( _rdx.Code != XMLResources.RequiredDocumentConsignmentCode )
@@ -392,13 +392,14 @@ namespace CAS.SmartFactory.IPR.Customs
         {
           Clearence _clearance = Element.GetAtIndex<Clearence>( entities.Clearence, _cleranceInt.Value );
           _clearance.ClearThroughCustoms( entities, good );
-          _clearanceList.Add( _clearance );
+          _ifAny = true;
         }
       }// foreach 
-      if ( _clearanceList.Count > 0 )
-        return _clearanceList;
-      string _template = "Cannot find required document code ={0} for customs document = {1}/ref={2}";
-      throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _template, good.SADDocumentIndex.DocumentNumber, good.SADDocumentIndex.ReferenceNumber ) );
+      if ( !_ifAny )
+      {
+        string _template = "Cannot find required document code ={0} for customs document = {1}/ref={2}";
+        throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _template, good.SADDocumentIndex.DocumentNumber, good.SADDocumentIndex.ReferenceNumber ) );
+      }
     }
     /// <summary>
     /// Get requested customs procedure code 
