@@ -5,7 +5,6 @@ using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.Disposals;
 
-
 namespace CAS.SmartFactory.IPR.Dashboards.Clearance
 {
   internal static class DisposalsFormFactory
@@ -14,24 +13,22 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
     #region internal
     internal static DocumentContent GetBoxFormContent( IQueryable<Disposal> disposals, ClearenceProcedure customProcedureCode, string documentNo )
     {
-      //TODO not sure about how to calculate end and start date 
-      DateTime endDate = disposals.Max( x => x.Created.Value );
-      DateTime startDate = disposals.Max( x => x.Created.Value );
+      DateTime endDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value);
+      DateTime startDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value);
       MaterialsOnOneAccount _materials = CreateMaterialRecords( disposals );
       return new DocumentContent()
       {
         AccountDescription = new MaterialsOnOneAccount[] { _materials },
         CustomProcedureCode = Entities.ToString( customProcedureCode ),
-        DocumentDate = DateTime.Today.Date, //TODO not sure how to assigne document date.
+        DocumentDate = DateTime.Today.Date,
         DocumentNo = documentNo,
-        EndDate = endDate,
-        StartDate = startDate,
+        EndDate = endDate.Date,
+        StartDate = startDate.Date,
         Total = _materials.Total
       };
     }
     internal static DocumentContent GetTobaccoFreeCirculationFormContent( IQueryable<Disposal> disposals, ClearenceProcedure customProcedureCode, string documentNo )
     {
-      //TODO not sure about how to calculate end and start date 
       DateTime endDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
       DateTime startDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
       return CreateDocumentContent( disposals, customProcedureCode, documentNo, endDate, startDate );
@@ -64,10 +61,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       {
         AccountDescription = _group.ToArray(),
         CustomProcedureCode = Entities.ToString( customProcedureCode ),
-        DocumentDate = DateTime.Today.Date, //TODO not sure how to assigne document date.
+        DocumentDate = DateTime.Today.Date,
         DocumentNo = documentNo,
-        EndDate = endDate,
-        StartDate = startDate,
+        EndDate = endDate.Date,
+        StartDate = startDate.Date,
         Total = _total
       };
     }
@@ -95,8 +92,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
           FinishedGoodBatch = _dx.Disposal2BatchIndex == null ? String.Empty : _dx.Disposal2BatchIndex.Batch0,
           MaterialBatch = _dx.Disposal2IPRIndex.Batch,
           MaterialSKU = _dx.Disposal2IPRIndex.SKU,
-          UnitPrice = _dx.Disposal2IPRIndex.IPRUnitPrice.Value,
-          TobaccoValue = _dx.TobaccoValue.Value,
+          UnitPrice = _dx.Disposal2IPRIndex.IPRUnitPrice,
+          TobaccoValue = _dx.TobaccoValue,
           Currency = _dx.Disposal2IPRIndex.Currency
         };
         _dustRecord.Add( _newRecord );

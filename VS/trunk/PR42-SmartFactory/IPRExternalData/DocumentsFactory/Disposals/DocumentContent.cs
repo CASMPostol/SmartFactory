@@ -39,6 +39,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals {
         private MaterialsOnOneAccount[] accountDescriptionField;
         
         /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
         public System.DateTime DocumentDate {
             get {
                 return this.documentDateField;
@@ -164,9 +165,13 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals {
         
         private double qantityField;
         
-        private double unitPriceField;
+        private System.Nullable<double> unitPriceField;
         
-        private double tobaccoValueField;
+        private bool unitPriceFieldSpecified;
+        
+        private System.Nullable<double> tobaccoValueField;
+        
+        private bool tobaccoValueFieldSpecified;
         
         private string currencyField;
         
@@ -181,6 +186,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals {
         }
         
         /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
         public System.DateTime Date {
             get {
                 return this.dateField;
@@ -231,7 +237,8 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals {
         }
         
         /// <uwagi/>
-        public double UnitPrice {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> UnitPrice {
             get {
                 return this.unitPriceField;
             }
@@ -241,12 +248,35 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals {
         }
         
         /// <uwagi/>
-        public double TobaccoValue {
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool UnitPriceSpecified {
+            get {
+                return this.unitPriceFieldSpecified;
+            }
+            set {
+                this.unitPriceFieldSpecified = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> TobaccoValue {
             get {
                 return this.tobaccoValueField;
             }
             set {
                 this.tobaccoValueField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool TobaccoValueSpecified {
+            get {
+                return this.tobaccoValueFieldSpecified;
+            }
+            set {
+                this.tobaccoValueFieldSpecified = value;
             }
         }
         

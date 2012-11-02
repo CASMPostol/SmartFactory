@@ -3,7 +3,7 @@
   <xs:element name="DocumentContent" type="tns:DocumentContent" />
   <xs:complexType name="DocumentContent">
     <xs:sequence>
-      <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="StartDate" type="xs:dateTime" />
       <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:dateTime" />
@@ -31,13 +31,13 @@
   <xs:complexType name="MaterialRecord">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="CustomDocumentNo" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Date" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="MaterialSKU" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="MaterialBatch" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="FinishedGoodBatch" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="Qantity" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="UnitPrice" type="xs:double" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoValue" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="UnitPrice" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TobaccoValue" nillable="true" type="xs:double" />
       <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

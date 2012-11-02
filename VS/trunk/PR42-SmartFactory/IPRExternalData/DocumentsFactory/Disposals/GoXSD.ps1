@@ -7,5 +7,5 @@ $env:path += "; C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\x64\"
 $cpath = get-location
 Write-host CAS.SmartFactory.xml.dll processing
 set-location ..\..\bin\debug\
-xsd.exe CAS.SmartFactory.xml.dll /t:CAS.SmartFactory.xml.DocumentsFactory.DustWasteForm.DocumentContent | write-host
+xsd.exe CAS.SmartFactory.xml.dll /t:CAS.SmartFactory.xml.DocumentsFactory.Disposals.DocumentContent | write-host
 set-location $cpath
