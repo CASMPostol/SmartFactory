@@ -518,7 +518,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
         switch ( m_ExportProcedureRadioButtonList.SelectedValue )
         {
           case "Export":
-            return Export( SPContext.Current.Web );
+            return Export();
           case "Revert":
             return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException( "Revert FG to free circulation is not implemented yet" ), "ClearThroughCustom" );
         }
@@ -529,7 +529,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       }
       return GenericStateMachineEngine.ActionResult.Success;
     }
-    private GenericStateMachineEngine.ActionResult Export( SPWeb site )
+    private GenericStateMachineEngine.ActionResult Export()
     {
       InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
@@ -546,8 +546,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       _invoice.InvoiceLibraryStatus = true;
       Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, "FinischedGoodsExport", ClearenceProcedure._3151 );
       string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( _newClearance.Identyfikator.Value );
-      CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent(m_DataContextManagement.DataContext, _invoice, _newClearance, _masterDocumentName );
-      int _sadConsignmentIdentifier = ConsignmentFactory.Prepare( site, _cefc, _masterDocumentName );
+      CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent( m_DataContextManagement.DataContext, _invoice, _newClearance, _masterDocumentName );
+      int _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _cefc, _masterDocumentName );
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
       _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
       m_DataContextManagement.DataContext.SubmitChanges();
