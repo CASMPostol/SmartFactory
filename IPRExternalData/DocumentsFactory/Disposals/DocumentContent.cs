@@ -60,6 +60,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals {
         }
         
         /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
         public System.DateTime StartDate {
             get {
                 return this.startDateField;
@@ -70,6 +71,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.Disposals {
         }
         
         /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
         public System.DateTime EndDate {
             get {
                 return this.endDateField;
