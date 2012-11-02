@@ -98,7 +98,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         throw new ApplicationError( "Material.Export", _at, String.Format( _tmpl, material.Material2BatchIndex.Title, _ex.Message ), _ex );
       }
     }
-    private static CigaretteExportFormCollection GetCigaretteExportFormCollection( List<CigaretteExportForm> forms, string documentName, string invoiceNo )
+    internal static CigaretteExportFormCollection GetCigaretteExportFormCollection( List<CigaretteExportForm> forms, string documentName, string invoiceNo )
     {
       CigaretteExportFormCollection _ret = new CigaretteExportFormCollection()
       {
@@ -110,7 +110,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       };
       return _ret;
     }
-    private static CigaretteExportForm GetCigaretteExportForm
+    internal static CigaretteExportForm GetCigaretteExportForm
        ( CutfillerCoefficient cc, Batch batch, InvoiceContent invoice, double portion, List<Ingredient> ingredients, string documentName, ref int subdocumentNo, Clearence clearence )
     {
       CigaretteExportForm _ret = new CigaretteExportForm();
@@ -160,7 +160,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       _ret.TobaccoTotal = ( _ret.IPTMaterialQuantityTotal + _ret.RegularMaterialQuantityTotal + _ret.IPRRestMaterialQantityTotal ).RountMass();
       return _ret;
     }
-    private static IPRIngredient GetIPRIngredient( Disposal disposal )
+    internal static IPRIngredient GetIPRIngredient( Disposal disposal )
     {
       IPRIngredient _ret = new IPRIngredient( disposal.Disposal2IPRIndex.Batch, disposal.Disposal2IPRIndex.SKU, disposal.SettledQuantity.Value );
       CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR _ipr = disposal.Disposal2IPRIndex;
