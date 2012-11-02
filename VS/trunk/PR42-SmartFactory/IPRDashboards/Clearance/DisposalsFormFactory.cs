@@ -14,7 +14,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
     internal static DocumentContent GetBoxFormContent( IQueryable<Disposal> disposals, ClearenceProcedure customProcedureCode, string documentNo )
     {
       DateTime endDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value);
-      DateTime startDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value);
+      DateTime startDate = disposals.Min( x => x.Disposal2IPRIndex.CustomsDebtDate.Value);
       MaterialsOnOneAccount _materials = CreateMaterialRecords( disposals );
       return new DocumentContent()
       {
@@ -30,13 +30,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
     internal static DocumentContent GetTobaccoFreeCirculationFormContent( IQueryable<Disposal> disposals, ClearenceProcedure customProcedureCode, string documentNo )
     {
       DateTime endDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
-      DateTime startDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
+      DateTime startDate = disposals.Min( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
       return CreateDocumentContent( disposals, customProcedureCode, documentNo, endDate, startDate );
     }
     internal static DocumentContent GetDustWasteFormContent( IQueryable<Disposal> disposals, ClearenceProcedure customProcedureCode, string documentNo )
     {
       DateTime endDate = disposals.Max( x => x.Created.Value );
-      DateTime startDate = disposals.Max( x => x.Created.Value );
+      DateTime startDate = disposals.Min( x => x.Created.Value );
       return CreateDocumentContent( disposals, customProcedureCode, documentNo, endDate, startDate );
     }
     #endregion
@@ -93,7 +93,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
           MaterialBatch = _dx.Disposal2IPRIndex.Batch,
           MaterialSKU = _dx.Disposal2IPRIndex.SKU,
           UnitPrice = _dx.Disposal2IPRIndex.IPRUnitPrice,
-          TobaccoValue = _dx.TobaccoValue,
+          UnitPriceSpecified = _dx.Disposal2IPRIndex.IPRUnitPrice.HasValue,
+          TobaccoValue = _dx.TobaccoValue, 
+          TobaccoValueSpecified = _dx.TobaccoValue.HasValue,
           Currency = _dx.Disposal2IPRIndex.Currency
         };
         _dustRecord.Add( _newRecord );

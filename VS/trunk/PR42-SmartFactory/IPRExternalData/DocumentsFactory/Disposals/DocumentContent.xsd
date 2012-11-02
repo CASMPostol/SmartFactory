@@ -5,8 +5,8 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="StartDate" type="xs:dateTime" />
-      <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="StartDate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="CustomProcedureCode" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="Total" type="xs:double" />
       <xs:element minOccurs="0" maxOccurs="1" name="AccountDescription" type="tns:ArrayOfMaterialsOnOneAccount" />
