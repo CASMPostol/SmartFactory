@@ -22,6 +22,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       foreach ( InvoiceContent item in invoice.InvoiceContent )
         ExportInvoiceEntry( item, entities, _consignment, clearance, documentName, ref _position );
       invoice.InvoiceLibraryReadOnly = true;
+      invoice.ClearenceIndex = clearance;
       return GetCigaretteExportFormCollection( _consignment, documentName, invoice.BillDoc );
     }
     #endregion

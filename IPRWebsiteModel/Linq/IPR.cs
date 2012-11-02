@@ -11,7 +11,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Enumerated kinds of Disposal 
     /// </summary>
-    public enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco, Cartons };
+    public enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco, TobaccoInCigaretess, Cartons };
     /// <summary>
     /// Gets the type of the clearing.
     /// </summary>
@@ -110,6 +110,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             break;
           case DisposalEnum.OverusageInKg:
             _typeOfDisposal = DisposalStatus.Overuse;
+            break;
+          case DisposalEnum.TobaccoInCigaretess:
+            _typeOfDisposal = DisposalStatus.TobaccoInCigaretes;
+            _disposal2PCNID = IPR2PCNPCN;
             break;
           case DisposalEnum.Tobacco:
             _typeOfDisposal = DisposalStatus.Tobacco;
