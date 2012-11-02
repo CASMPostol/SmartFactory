@@ -380,7 +380,7 @@ namespace CAS.SmartFactory.IPR.Customs
       internal string SKU { get; private set; }
       #endregion
     }
-    private void ClearThroughCustoms( Entities entities, SADGood good )
+    private static void ClearThroughCustoms( Entities entities, SADGood good )
     {
       bool _ifAny = false;
       foreach ( SADRequiredDocuments _rdx in good.SADRequiredDocuments )

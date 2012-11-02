@@ -188,7 +188,9 @@
     <Content Include="Dashboards\ExportDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Dashboards\IPRBookCustomsOfficeDashboard\Elements.xml" />
+    <Content Include="Dashboards\IPRBookCustomsOfficeDashboard\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Dashboards\IPRBookDashboard\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
