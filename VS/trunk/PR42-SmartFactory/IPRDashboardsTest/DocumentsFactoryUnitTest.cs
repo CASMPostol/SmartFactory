@@ -271,7 +271,6 @@ namespace IPRDashboardsTest
         ) );
       DocumentContent _newDoc = DisposalsFormFactory.GetDustWasteFormContent( _disposals.AsQueryable<Disposal>(), ClearenceProcedure._4051, "OGL Number" );
       Assert.AreEqual( _newDoc.DocumentNo, "OGL Number" );
-      ;
     }
   }
 }
