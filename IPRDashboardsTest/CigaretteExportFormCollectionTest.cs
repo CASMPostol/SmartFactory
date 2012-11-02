@@ -259,18 +259,18 @@ namespace IPRDashboardsTest
         CFTProductivityRateMax = 0.995,
         CFTProductivityRateMin = 0.985
       };
-      ingridients.Add( CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.IPRIngredientFactory.IPRIngredient( _disposal1 ) );
-      ingridients.Add( CAS.SmartFactory.IPR.Dashboards.Clearance.FinishedGoodsFormFactory.IPRIngredient( _disposal2.Disposal2BatchIndex.Batch0, _disposal2.Disposal2IPRIndex.SKU, _disposal2.SettledQuantity.Value ) );
-      ingridients.Add( RegularIngredientFactory.RegularIngredient( "Reg Batch 54321", "Reg SKU 12345", 1234.56789 ) );
+      ingridients.Add(CAS.SmartFactory.IPR.Dashboards.Clearance.FinishedGoodsFormFactory.GetIPRIngredient( _disposal1 ) );
+      ingridients.Add( CAS.SmartFactory.IPR.Dashboards.Clearance.FinishedGoodsFormFactory.GetIPRIngredient( _disposal2 ) );
+      ingridients.Add( new CAS.SmartFactory.xml.DocumentsFactory.CigaretteExportForm.RegularIngredient( "Reg Batch 54321", "Reg SKU 12345", 1234.56789 ) );
       string _masterDocumentName = "CigaretteExportFormCollection";
       string _invoiceNumber = "INV987654";
       int _position = 1;
       List<XmlCigaretteExportForm> cigaretteExportFormList = new List<XmlCigaretteExportForm>();
-      CigaretteExportForm _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _cc, _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951" );
+      CigaretteExportForm _cigaretteExportForm = CAS.SmartFactory.IPR.Dashboards.Clearance.FinishedGoodsFormFactory.GetCigaretteExportForm( _cc, _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951" );
       cigaretteExportFormList.Add( _cigaretteExportForm );
-      _cigaretteExportForm = CigaretteExportFormFactory.CigaretteExportForm( _cc, _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951" );
+      _cigaretteExportForm = CAS.SmartFactory.IPR.Dashboards.Clearance.FinishedGoodsFormFactory.GetCigaretteExportForm( _cc, _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, "3951" );
       cigaretteExportFormList.Add( _cigaretteExportForm );
-      CigaretteExportFormCollection target = CigaretteExportFormCollectionFactory.CigaretteExportFormCollection( cigaretteExportFormList, _masterDocumentName, _invoiceNumber );
+      CigaretteExportFormCollection target = CAS.SmartFactory.IPR.Dashboards.Clearance.FinishedGoodsFormFactory.GetCigaretteExportFormCollection( cigaretteExportFormList, _masterDocumentName, _invoiceNumber );
       XmlSerializer _srlzr = new XmlSerializer( typeof( CigaretteExportFormCollection ) );
       XmlWriterSettings _setting = new XmlWriterSettings()
       {
