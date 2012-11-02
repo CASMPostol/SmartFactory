@@ -558,7 +558,9 @@
     <Content Include="Lists\BatchLibraryTemplate\Elements.xml" />
     <Content Include="Lists\BatchLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\BatchLibraryTemplate\Repair.aspx" />
-    <Content Include="Lists\BatchLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\BatchLibraryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\BatchLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\BatchTemplate\Elements.xml">
       <SubType>Designer</SubType>
