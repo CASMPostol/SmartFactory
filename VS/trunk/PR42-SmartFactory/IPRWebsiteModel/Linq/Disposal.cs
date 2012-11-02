@@ -125,7 +125,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         this.RemainingQuantity = Disposal2IPRIndex.AccountBalance;
         if ( this.RemainingQuantity.Value == 0 )
           this.ClearingType = Linq.ClearingType.TotalWindingUp;
-        this.CustomsProcedure = clearence.ProcedureCode;
+        this.CustomsProcedure = Entities.ToString( clearence.ClearenceProcedure.Value );
         _at = "PCNCode _tobaccoPCN ";
         this.Disposal2PCNID = _pcn;
         this.Disposal2ClearenceIndex = clearence;
