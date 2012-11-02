@@ -45,7 +45,7 @@
                 <asp:Button runat="server" CssClass="Button" Text="Save" ID="m_SaveButton" />
             </asp:TableCell>
             <asp:TableCell>
-                <asp:Button runat="server" CssClass="Button" Text="Delete" ID="m_DeleteButton" />
+                <asp:Button runat="server" CssClass="Button" Text="Delete" ID="m_DeleteButton" OnClientClick="return confirm('Czy na pewno chcesz usunąć?');" />
             </asp:TableCell>
             <asp:TableCell>
                 <asp:Button runat="server" CssClass="Button" Text="Cancel" ID="m_CancelButton" />
