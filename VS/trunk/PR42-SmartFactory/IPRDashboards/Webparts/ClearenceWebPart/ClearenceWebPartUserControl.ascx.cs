@@ -172,7 +172,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       {
         SetEnabled( m_ControlState.SetEnabled );
         Show();
-        m_AvailableGridView.DataBind();
+        if ( !m_AvailableGridViewSkipBinding )
+          m_AvailableGridView.DataBind();
         m_AssignedGridView.DataBind();
       }
       catch ( Exception _ex )
@@ -742,6 +743,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     #endregion
 
     #region vars
+    private bool m_AvailableGridViewSkipBinding = false;
     private LocalStateMachineEngine m_StateMachineEngine = null;
     private ControlState m_ControlState = new ControlState( null );
     private DataContextManagement<Entities> m_DataContextManagement = null;
@@ -796,11 +798,23 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       SPGridView _sender = sender as SPGridView;
       if ( _sender == null )
         return;
+      if ( !_sender.FilterFieldValue.IsNullOrEmpty() )
+      {
+        e.Cancel = true;
+        string _msg = "Spiting entry is not supported when filtering. Use \"Period \" filter instead.";
+        m_AvailablePanel.Controls.Add( ControlExtensions.CreateMessage( _msg ) );
+        return;
+      }
       Label _idLabel = (Label)_sender.Rows[ e.NewEditIndex ].FindControlRecursive( m_IDItemLabel );
       if ( Selection.SelectionTableRow.IsDisposal( _idLabel.Text ) )
+      {
         e.Cancel = true;
-      else
-        _sender.EditIndex = e.NewEditIndex;  //TODO GridView - Split - BUG
+        string _msg = "Splitting the item for the selected goods group is not allowed.";
+        m_AvailablePanel.Controls.Add( ControlExtensions.CreateMessage( _msg ) );
+        return;
+      }
+      _sender.EditIndex = e.NewEditIndex;  //NewEditIndex is index of the selectet item in filtering mode, but unfortunately entering editing mode the filter is not active.
+      m_AvailableGridViewSkipBinding = true;
     }
     /// <summary>
     /// Handles the RowCancelingEdit event of the m_AvailableGridView control.
