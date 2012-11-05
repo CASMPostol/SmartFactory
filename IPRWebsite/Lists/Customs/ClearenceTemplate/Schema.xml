@@ -92,10 +92,34 @@
             </FieldRef>
           </OrderBy>
           <Where>
+            <And>
+            <Or>
+              <Eq>
+                <FieldRef Name="ProcedureCode" />
+                <Value Type="Text">Tobacco</Value>
+              </Eq>
+              <Eq>
+                <FieldRef Name="ProcedureCode" />
+                <Value Type="Text">TobaccoNotAllocated</Value>
+              </Eq>
+              <Eq>
+                <FieldRef Name="ProcedureCode" />
+                <Value Type="Text">Dust</Value>
+              </Eq>
+              <Eq>
+                <FieldRef Name="ProcedureCode" />
+                <Value Type="Text">Waste</Value>
+              </Eq>
+              <Eq>
+                <FieldRef Name="ProcedureCode" />
+                <Value Type="Text">Cartons</Value>
+              </Eq>
+            </Or>
             <Eq>
               <FieldRef Name="Status" />
               <Value Type="Boolean">No</Value>
             </Eq>
+            </And>
           </Where>
         </Query>
         <ParameterBindings>
