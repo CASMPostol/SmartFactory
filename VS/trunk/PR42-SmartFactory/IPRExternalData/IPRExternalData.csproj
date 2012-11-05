@@ -422,12 +422,18 @@
     <Content Include="DocumentsFactory\CutfillerExportForm\CutfillerExportFormCollection.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\Disposals\CartonsFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\Disposals\CartonsFormStylesheet.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DocumentsFactory\Disposals\DocumentContent.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\Disposals\DustFormStylesheet.xslt" />
-    <Content Include="DocumentsFactory\Disposals\TobaccoFormStylesheet.xslt" />
+    <Content Include="DocumentsFactory\Disposals\DustFormStylesheet.xslt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DocumentsFactory\Disposals\TobaccoFormStylesheet.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DocumentsFactory\Disposals\WasteFormStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
