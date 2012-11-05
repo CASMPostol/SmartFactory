@@ -93,32 +93,38 @@
           </OrderBy>
           <Where>
             <And>
-            <Or>
+              <Or>
+                <Or>
+                  <Or>
+                    <Eq>
+                      <FieldRef Name="ProcedureCode" />
+                      <Value Type="Text">Tobacco</Value>
+                    </Eq>
+                    <Eq>
+                      <FieldRef Name="ProcedureCode" />
+                      <Value Type="Text">TobaccoNotAllocated</Value>
+                    </Eq>
+                  </Or>
+                  <Or>
+                    <Eq>
+                      <FieldRef Name="ProcedureCode" />
+                      <Value Type="Text">Dust</Value>
+                    </Eq>
+                    <Eq>
+                      <FieldRef Name="ProcedureCode" />
+                      <Value Type="Text">Waste</Value>
+                    </Eq>
+                  </Or>
+                </Or>
+                  <Eq>
+                    <FieldRef Name="ProcedureCode" />
+                    <Value Type="Text">Cartons</Value>
+                  </Eq>
+                </Or>
               <Eq>
-                <FieldRef Name="ProcedureCode" />
-                <Value Type="Text">Tobacco</Value>
+                <FieldRef Name="Status" />
+                <Value Type="Boolean">No</Value>
               </Eq>
-              <Eq>
-                <FieldRef Name="ProcedureCode" />
-                <Value Type="Text">TobaccoNotAllocated</Value>
-              </Eq>
-              <Eq>
-                <FieldRef Name="ProcedureCode" />
-                <Value Type="Text">Dust</Value>
-              </Eq>
-              <Eq>
-                <FieldRef Name="ProcedureCode" />
-                <Value Type="Text">Waste</Value>
-              </Eq>
-              <Eq>
-                <FieldRef Name="ProcedureCode" />
-                <Value Type="Text">Cartons</Value>
-              </Eq>
-            </Or>
-            <Eq>
-              <FieldRef Name="Status" />
-              <Value Type="Boolean">No</Value>
-            </Eq>
             </And>
           </Where>
         </Query>
