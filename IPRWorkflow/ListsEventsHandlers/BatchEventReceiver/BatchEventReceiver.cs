@@ -307,29 +307,25 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           throw new IPRDataConsistencyException( "Material.ProcessDisposals", _ex.Message, _ex, "Disposal processing error" );
         }
       }
-      internal IEnumerable<Material> GeContentEnumerator()
-      {
-        return this.Values;
-      }
       internal void CheckConsistence()
       {
         if ( Product == null )
-          throw new IPRDataConsistencyException( "Processing disposals", "Unrecognized finisched good", null, "CheckConsistence error" );
+          throw new IPRDataConsistencyException( "Processing disposals", "Unrecognized finished good", null, "CheckConsistence error" );
       }
       public SummaryContentInfo( BatchMaterialXml[] xml, Entities edc, ProgressChangedEventHandler progressChanged )
       {
         AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
         foreach ( BatchMaterialXml item in xml )
         {
-          Material _newMaterial = Material( item );
+          Material _newMaterial = CreateMaterial( item );
           _newMaterial.GetProductType( edc );
           progressChanged( null, new ProgressChangedEventArgs( 1, String.Format( "SKU={0}", _newMaterial.SKU ) ) );
           Add( _newMaterial );
         }
+        progressChanged( null, new ProgressChangedEventArgs( 1, "CheckConsistence" ) );
         CheckConsistence();
         progressChanged( this, new ProgressChangedEventArgs( 1, "SummaryContentInfo created" ) );
       }
-
       #endregion
 
       #region private
@@ -337,7 +333,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       {
         foreach ( var item in Values )
           item.Material2BatchIndex = parent;
-        edc.Material.InsertAllOnSubmit( GeContentEnumerator() );
+        edc.Material.InsertAllOnSubmit( this.Values );
       }
       #endregion
     } //SummaryContentInfo
@@ -382,7 +378,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           this[ _item ] += _dspsls.Keys.Contains( _item ) ? _dspsls[ _item ] : 0;
       }
     }
-    private static Material Material( BatchMaterialXml item )
+    private static Material CreateMaterial( BatchMaterialXml item )
     {
       return new Material()
       {
@@ -396,7 +392,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         FGQuantity = Convert.ToDouble( item.Quantity ),
         TobaccoQuantity = Convert.ToDouble( item.Quantity_calculated ),
         ProductType = ProductType.Invalid,
-        ProductID = item.material_group,
+        ProductID = item.material_group, // TODO mustbe used to recognise proguct 
       };
     }
     #endregion
