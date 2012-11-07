@@ -391,10 +391,10 @@
       <SharePointProjectItemId>{0b7655f1-c0b4-45b5-8961-1df233a68b5d}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Reports\JSOXLibraryTemplate\JSOXLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{3d9dcd8c-2bd2-41fa-920a-dceee5a41a38}</SharePointProjectItemId>
+      <SharePointProjectItemId>{99d91e30-35aa-4d74-9146-594d8e57f744}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Reports\JSOXLibraryTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{8a2d7b3c-e9a6-4857-b566-e0c4b4cadd38}</SharePointProjectItemId>
+      <SharePointProjectItemId>{4478bf4b-1bf7-4163-87af-9109d067a240}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Reports\JSOXSummaryTemplate\JSOXSummaryList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{24fff617-cc2b-4653-a0d3-b82f0dc7712e}</SharePointProjectItemId>
@@ -705,12 +705,18 @@
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Reports\JSOXLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\Reports\JSOXLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\Reports\JSOXLibraryTemplate\JSOXLibrary\Elements.xml" />
+    <Content Include="Lists\Reports\JSOXLibraryTemplate\Repair.aspx" />
     <Content Include="Lists\Reports\JSOXLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Reports\JSOXLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Reports\JSOXSummaryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\JSOXSummaryTemplate\JSOXSummaryList\Elements.xml" />
-    <Content Include="Lists\Reports\JSOXSummaryTemplate\Schema.xml" />
+    <Content Include="Lists\Reports\JSOXSummaryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Reports\StockEntryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\StockEntryTemplate\StockEntryList\Elements.xml" />
     <Content Include="Lists\Reports\StockEntryTemplate\Schema.xml" />

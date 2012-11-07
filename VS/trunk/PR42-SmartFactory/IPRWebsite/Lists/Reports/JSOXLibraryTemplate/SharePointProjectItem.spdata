@@ -3,5 +3,9 @@
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="JSOXLibraryTemplate\" Type="ElementManifest" />
     <ProjectItemFile Source="Schema.xml" Target="JSOXLibraryTemplate\" Type="ElementFile" />
+    <ProjectItemFile Source="EditDlg.htm" Target="JSOXLibraryTemplate\" Type="ElementFile" />
+    <ProjectItemFile Source="FileDlg.htm" Target="JSOXLibraryTemplate\" Type="ElementFile" />
+    <ProjectItemFile Source="Repair.aspx" Target="JSOXLibraryTemplate\" Type="ElementFile" />
+    <ProjectItemFile Source="Upload.aspx" Target="JSOXLibraryTemplate\" Type="ElementFile" />
   </Files>
 </ProjectItem>
