@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="JSOXLibrary2BalanceLibraryID"
+    ID="{299DEB36-16FC-47FA-8FDF-A1C1318A95C6}"
+    Type="Lookup"
+    List="Lists/BalanceLibrary"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Balance Library ID"
+    Group="CAS Smart Factory IPR Reports"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="BalanceLibraryIndex"
     ID="{40C6B34C-EE93-4282-A6A7-AFEF69F43220}"
     Type="Lookup"
