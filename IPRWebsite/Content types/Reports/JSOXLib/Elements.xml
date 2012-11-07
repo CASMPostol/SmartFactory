@@ -1,14 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ContentType ID="0x0101004C62BA98329F48B8AD93D2FFDC7F5C7A"
-               Name="JSOXLibrary"
-               Group="CAS Smart Factory IPR Reports"
-               Description="JSOX Library content type"
-               Overwrite="TRUE"
-               Inherits="TRUE">
-    <Folder TargetName="_cts/JSOXLib" />
+  <ContentType ID="0x0101002CFEC8BBC3F440D69B724CC2B95FFF93" Name="JSOXLib" Group="CAS Smart Factory IPR Reports" Description="JSOX Library Content Type" Inherits="TRUE" Version="0">
     <FieldRefs>
-      <FieldRef ID="{299DEB36-16FC-47FA-8FDF-A1C1318A95C6}" Name="JSOXLibrary2BalanceLibraryID"/>
+      <FieldRef Name="JSOXLibrary2BalanceLibraryID" ID="{299DEB36-16FC-47FA-8FDF-A1C1318A95C6}" />
     </FieldRefs>
   </ContentType>
 </Elements>

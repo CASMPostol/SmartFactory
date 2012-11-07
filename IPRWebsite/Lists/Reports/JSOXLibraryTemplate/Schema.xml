@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="JSOXLibraryTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/JSOXLibraryTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/" EnableContentTypes="TRUE">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x0101002CFEC8BBC3F440D69B724CC2B95FFF93" Name="JSOXLib" Group="CAS Smart Factory IPR Reports" Description="JSOX Library Content Type" Inherits="TRUE" Version="0">
+        <FieldRefs>
+          <FieldRef Name="JSOXLibrary2BalanceLibraryID" ID="{299DEB36-16FC-47FA-8FDF-A1C1318A95C6}" />
+        </FieldRefs>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+      <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Type="Text" Name="Title" DisplayName="$Resources:core,Title;" Required="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" MaxLength="255" />
+      <Field Name="JSOXLibrary2BalanceLibraryID" ID="{299DEB36-16FC-47FA-8FDF-A1C1318A95C6}" Type="Lookup" List="Lists/BalanceLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Balance Library ID" Group="CAS Smart Factory IPR Reports" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
+      <Field ID="{5f47e085-2150-41dc-b661-442f3027f552}" Name="SelectFilename" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="SelectFilename" Group="_Hidden" ReadOnly="TRUE" Type="Computed" DisplayName="$Resources:core,Select;" Hidden="TRUE" CanToggleHidden="TRUE" Filterable="FALSE" AuthoringInfo="$Resources:core,web_part_connection;" HeaderImage="blank.gif" Sortable="FALSE">
+        <FieldRefs>
+          <FieldRef ID="{1d22ea11-1e32-424e-89ab-9fedbadb6ce1}" Name="ID" />
+        </FieldRefs>
+        <DisplayPattern>
+          <IfEqual>
+            <Expr1>
+              <GetVar Name="SelectedID" />
+            </Expr1>
+            <Expr2>
+              <Column Name="ID" />
+            </Expr2>
+            <Then>
+              <HTML><![CDATA[<img align="absmiddle" style="cursor: hand" src="/_layouts/images/rbsel.gif" alt="]]></HTML>
+              <HTML>Selected</HTML>
+              <HTML><![CDATA[">]]></HTML>
+            </Then>
+            <Else>
+              <HTML><![CDATA[<a href="javascript:SelectField(']]></HTML>
+              <GetVar Name="View" />
+              <HTML><![CDATA[',']]></HTML>
+              <ScriptQuote NotAddingQuote="TRUE">
+                <Column Name="ID" />
+              </ScriptQuote>
+              <HTML><![CDATA[');return false;" onclick="javascript:SelectField(']]></HTML>
+              <GetVar Name="View" />
+              <HTML><![CDATA[',']]></HTML>
+              <ScriptQuote NotAddingQuote="TRUE">
+                <Column Name="ID" />
+              </ScriptQuote>
+              <HTML><![CDATA[');return false;" target="_self">]]></HTML>
+              <HTML><![CDATA[<img border="0" align="absmiddle" style="cursor: hand" src="/_layouts/images/rbunsel.gif"  alt="]]></HTML>
+              <HTML>Normal</HTML>
+              <HTML><![CDATA[">]]></HTML>
+              <HTML><![CDATA[</a>]]></HTML>
+            </Else>
+          </IfEqual>
+        </DisplayPattern>
+      </Field>
+      <Field ID="{822c78e3-1ea9-4943-b449-57863ad33ca9}" Name="Modified_x0020_By" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Modified_x0020_By" Group="_Hidden" ReadOnly="TRUE" Hidden="FALSE" Type="Text" DisplayName="$Resources:core,Document_Modified_By;" />
+      <Field ID="{4dd7e525-8d6b-4cb4-9d3e-44ee25f973eb}" Name="Created_x0020_By" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Created_x0020_By" Group="_Hidden" ReadOnly="TRUE" Hidden="FALSE" Type="Text" DisplayName="$Resources:core,Document_Created_By;" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu"></FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments"></FieldRef>
+          <FieldRef Name="LinkTitle"></FieldRef>
+          <FieldRef Name="JSOXLibrary2BalanceLibraryID" />
+          <FieldRef Name="Modified_x0020_By" />
+          <FieldRef Name="Created_x0020_By" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>
