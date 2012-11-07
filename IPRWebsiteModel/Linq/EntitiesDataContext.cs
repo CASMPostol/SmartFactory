@@ -154,7 +154,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         : this( type, ipr, null )
       { }
     }
-    //Batch processing - product recognition improvement  http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3362
+    //TODO Batch processing - product recognition improvement  http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3362
     internal ProductDescription GetProductType( string sku, string location )
     {
       SKUCommonPart entity = SKUCommonPart.Find( this, sku );
