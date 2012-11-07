@@ -392,7 +392,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         FGQuantity = Convert.ToDouble( item.Quantity ),
         TobaccoQuantity = Convert.ToDouble( item.Quantity_calculated ),
         ProductType = ProductType.Invalid,
-        ProductID = item.material_group, // TODO mustbe used to recognise proguct 
+        ProductID = item.material_group, 
       };
     }
     #endregion
