@@ -156,7 +156,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       {
         if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.IPRTobacco )
         {
-          double _quantity = material.DisposedQuantity( portion );
+          double _quantity = material.DisposedQuantity( portion );//TODO it contains Dust, Wast and Overuse.
           _at = "GetListOfDisposals";
           foreach ( Disposal _disposal in material.GetListOfDisposals() )
           {
@@ -168,7 +168,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
             entities.SubmitChanges();
             formsList.Add( GetIPRIngredient( _disposal ) );
           }
-          string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account";
+          //TODO Material.Export - message is loged during export of FG  http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3371 
+          string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account"; 
           Anons.Assert( entities, _quantity == 0, "Material.Export", string.Format( _template, material.Batch, _quantity, invoiceNoumber ) );
         }
         else if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.Tobacco )
