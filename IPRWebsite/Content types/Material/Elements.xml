@@ -17,6 +17,11 @@
       <FieldRef ID="{78638A08-748F-4619-A690-299315659702}" Name="TobaccoQuantity" />
 			<FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
       <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
+      <FieldRef ID="{36D134B9-A652-43F1-A650-51F62E079775}" Name="Overuse" />
+      <FieldRef ID="{E00CB825-5594-485D-A232-4DE70F99A939}" Name="Dust" />
+      <FieldRef ID="{41BDDA92-4D8D-4B1F-8C60-1D3B7AEA6B98}" Name="Waste" />
+      <FieldRef ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}" Name="Tobacco" />
+      <FieldRef ID="{762353C4-D601-4461-84FA-EB26F7E314C2}" Name="SHMenthol" />
       <FieldRef ID="{F2AD5316-859E-43B4-B630-46C28B9523AE}" Name="Material2BatchIndex" />
 		</FieldRefs>
 		<XmlDocuments>
