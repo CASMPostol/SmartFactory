@@ -710,7 +710,9 @@
     <Content Include="Lists\Reports\JSOXLibraryTemplate\FileDlg.htm" />
     <Content Include="Lists\Reports\JSOXLibraryTemplate\JSOXLibrary\Elements.xml" />
     <Content Include="Lists\Reports\JSOXLibraryTemplate\Repair.aspx" />
-    <Content Include="Lists\Reports\JSOXLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Reports\JSOXLibraryTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Reports\JSOXLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Reports\JSOXSummaryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\JSOXSummaryTemplate\JSOXSummaryList\Elements.xml" />
