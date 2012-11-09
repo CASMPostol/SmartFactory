@@ -16,14 +16,5 @@
       <FieldRef ID="{8E757B00-B79F-4B4F-A510-485635AEA6C0}" Name="MentholMaterial" />
       <FieldRef ID="{97EE3235-0816-43E7-AB77-AF9D4E040DF1}" Name="Menthol" />
     </FieldRefs>
-    <XmlDocuments>
-      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-          <Display>ListForm</Display>
-          <Edit>ListForm</Edit>
-          <New>ListForm</New>
-        </FormTemplates>
-      </XmlDocument>
-    </XmlDocuments>
   </ContentType>
 </Elements>

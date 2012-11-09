@@ -13,15 +13,6 @@
           <FieldRef Name="GrossMass" ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" />
           <FieldRef Name="SADDocumenLibrarytIndex" ID="{66D3CFD7-0C8F-4BC9-B896-EF9A680E2FC5}" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>

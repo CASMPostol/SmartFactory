@@ -14,14 +14,5 @@
       <FieldRef ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}" Name="IPRMaterial" />
       <FieldRef ID="{82DC8814-8EF0-4570-83C9-98211FE1871E}" Name="SKULibraryIndex" />
     </FieldRefs>
-    <XmlDocuments>
-      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-          <Display>ListForm</Display>
-          <Edit>ListForm</Edit>
-          <New>ListForm</New>
-        </FormTemplates>
-      </XmlDocument>
-    </XmlDocuments>
   </ContentType>
 </Elements>

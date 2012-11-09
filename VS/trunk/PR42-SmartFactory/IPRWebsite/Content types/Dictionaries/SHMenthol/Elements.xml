@@ -12,14 +12,5 @@
 			<FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" Required="TRUE" />
 			<FieldRef ID="{dd7d6806-45a6-494d-a940-1baae80840a2}" Name="SHMentholRatio" Required="TRUE" />
 		</FieldRefs>
-		<XmlDocuments>
-			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-				<FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-					<Display>ListForm</Display>
-					<Edit>ListForm</Edit>
-					<New>ListForm</New>
-				</FormTemplates>
-			</XmlDocument>
-		</XmlDocuments>
 	</ContentType>
 </Elements>

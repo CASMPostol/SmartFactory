@@ -8,29 +8,9 @@
           <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
           <FieldRef ID="{440bd88d-3870-480e-b01e-f934d478593f}" Name="WasteRatio" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Type="Choice" DisplayName="ProductType" ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Format="Dropdown" BaseType="Text" Description="Material Type" Name="ProductType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
-    <Default>Cigarette</Default>
-    <CHOICES>
-      <CHOICE>Cutfiller</CHOICE>
-      <CHOICE>Cigarette</CHOICE>
-      <CHOICE>Tobacco</CHOICE>
-      <CHOICE>IPRTobacco</CHOICE>
-      <CHOICE>Other</CHOICE>
-    </CHOICES>
-  </Field>
-      <Field DisplayName="WasteRatio" Name="WasteRatio" Type="Number" ID="{440bd88d-3870-480e-b01e-f934d478593f}" Group="CAS Smart Factory IPR" Description="WasteRatio" Percentage="TRUE" Min="0" Max="5" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

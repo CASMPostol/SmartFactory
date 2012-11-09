@@ -20,14 +20,5 @@
       <FieldRef ID="{7235E320-CC65-421C-B1E8-98EBC448005B}" Name="InvoiceContent2BatchIndex" />
       <FieldRef ID="{C53D648A-ECBD-461B-96AB-637A4A3E856E}" Name="InvoiceContent2BatchQty_sec" />
     </FieldRefs>
-    <XmlDocuments>
-      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-          <Display>ListForm</Display>
-          <Edit>ListForm</Edit>
-          <New>ListForm</New>
-        </FormTemplates>
-      </XmlDocument>
-    </XmlDocuments>
   </ContentType>
 </Elements>

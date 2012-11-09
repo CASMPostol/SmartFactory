@@ -7,19 +7,9 @@
         <FieldRefs>
           <FieldRef ID="{C5AEA337-BDDC-4F77-AF0C-A8C925B6BB5B}" Name="EUPrimeMarket" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="EUPrimeMarket" ID="{c5aea337-bddc-4f77-af0c-a8c925b6bb5b}" Type="Text" DisplayName="EU Prime Market" Group="CAS Smart Factory IPR Dictionaries" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

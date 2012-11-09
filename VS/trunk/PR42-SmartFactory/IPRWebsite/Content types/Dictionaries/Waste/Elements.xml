@@ -12,14 +12,5 @@
 			<FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
 			<FieldRef ID="{440bd88d-3870-480e-b01e-f934d478593f}" Name="WasteRatio" />
 		</FieldRefs>
-		<XmlDocuments>
-			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-				<FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-					<Display>ListForm</Display>
-					<Edit>ListForm</Edit>
-					<New>ListForm</New>
-				</FormTemplates>
-			</XmlDocument>
-		</XmlDocuments>
 	</ContentType>
 </Elements>
