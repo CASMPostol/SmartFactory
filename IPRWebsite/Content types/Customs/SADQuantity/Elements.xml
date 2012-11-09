@@ -13,14 +13,5 @@
       <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
       <FieldRef ID="{49EDD335-1478-4207-B2F2-F004344890AF}" Name="SADQuantity2SADGoodID" />
     </FieldRefs>
-    <XmlDocuments>
-      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-          <Display>ListForm</Display>
-          <Edit>ListForm</Edit>
-          <New>ListForm</New>
-        </FormTemplates>
-      </XmlDocument>
-    </XmlDocuments>
   </ContentType>
 </Elements>

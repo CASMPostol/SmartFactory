@@ -12,15 +12,6 @@
           <FieldRef ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}" Name="ConsentPeriod" />
           <FieldRef ID="{3F474B3D-760E-4045-BA80-7D3A7CFAAFFF}" Name="IsIPR" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>

@@ -9,15 +9,6 @@
           <FieldRef ID="{1A8DEAD6-163D-45BB-B278-E946F49C071B}" Name="Amount" />
           <FieldRef ID="{D3A23FBE-A497-4019-B7B9-58130DDEABC9}" Name="SADDuties2SADGoodID" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>

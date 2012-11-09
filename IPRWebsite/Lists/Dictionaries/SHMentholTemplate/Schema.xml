@@ -8,29 +8,9 @@
           <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" Required="TRUE" />
           <FieldRef ID="{dd7d6806-45a6-494d-a940-1baae80840a2}" Name="SHMentholRatio" Required="TRUE" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Type="Choice" DisplayName="ProductType" ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Format="Dropdown" BaseType="Text" Description="Material Type" Name="ProductType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
-    <Default>Cigarette</Default>
-    <CHOICES>
-      <CHOICE>Cutfiller</CHOICE>
-      <CHOICE>Cigarette</CHOICE>
-      <CHOICE>Tobacco</CHOICE>
-      <CHOICE>IPRTobacco</CHOICE>
-      <CHOICE>Other</CHOICE>
-    </CHOICES>
-  </Field>
-      <Field DisplayName="SHMentholRatio" Name="SHMentholRatio" Type="Number" Percentage="TRUE" Min="0" Max="5" ID="{dd7d6806-45a6-494d-a940-1baae80840a2}" Group="CAS Smart Factory IPR" Description="SHMentholRatio" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

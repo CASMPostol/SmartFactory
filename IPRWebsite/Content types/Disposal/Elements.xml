@@ -38,14 +38,5 @@
       <FieldRef ID="{8c06beca-0777-48f7-91c7-6da68bc07b69}" Name="Created"/>
       <FieldRef ID="{1df5e554-ec7e-46a6-901d-d85a3881cb18}" Name="Author" />
 		</FieldRefs>
-		<XmlDocuments>
-			<XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-				<FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-					<Display>ListForm</Display>
-					<Edit>ListForm</Edit>
-					<New>ListForm</New>
-				</FormTemplates>
-			</XmlDocument>
-		</XmlDocuments>
 	</ContentType>
 </Elements>

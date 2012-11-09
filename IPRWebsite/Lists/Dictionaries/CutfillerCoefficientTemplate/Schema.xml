@@ -10,34 +10,9 @@
           <FieldRef ID="{5adf1294-84c9-44f8-9a47-3ca5ac37b17a}" Name="CFTProductivityNormMin" />
           <FieldRef ID="{2a6ee086-6d19-429b-a9ff-5f6bf33062b8}" Name="CFTProductivityNormMax" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field ResultType="Number" LCID="1045" Description="CFTProductivityNormMax" DisplayName="CFTProductivityNormMax" Type="Calculated" ID="{2a6ee086-6d19-429b-a9ff-5f6bf33062b8}" Name="CFTProductivityNormMax" Group="CAS Smart Factory IPR" ReadOnly="TRUE">
-    <Formula>=CFTProductivityRateMax*1000</Formula>
-    <FormulaDisplayNames>=CFTProductivityRateMax*1000</FormulaDisplayNames>
-    <FieldRefs>
-      <FieldRef ID="368C844B-0491-42AE-A102-D888646823FD" Name="CFTProductivityRateMax" />
-    </FieldRefs>
-  </Field>
-      <Field ResultType="Number" LCID="1045" Format="DateTime" Description="CFTProductivityNormMin" DisplayName="CFTProductivityNormMin" Type="Calculated" ID="{5adf1294-84c9-44f8-9a47-3ca5ac37b17a}" Name="CFTProductivityNormMin" Group="CAS Smart Factory IPR" ReadOnly="TRUE">
-    <Formula>=CFTProductivityRateMin*1000</Formula>
-    <FormulaDisplayNames>=CFTProductivityRateMin*1000</FormulaDisplayNames>
-    <FieldRefs>
-      <FieldRef Name="CFTProductivityRateMin" />
-    </FieldRefs>
-  </Field>
-      <Field DisplayName="CFTProductivityRateMax" Name="CFTProductivityRateMax" Percentage="TRUE" Min="0" Max="5" Type="Number" ID="{368c844b-0491-42ae-a102-d888646823fd}" Group="CAS Smart Factory IPR" StaticName="CFTProductivityRateMax" />
-      <Field DisplayName="CFTProductivityRateMin" Name="CFTProductivityRateMin" Percentage="TRUE" Min="0" Max="5" Type="Number" ID="{8238b9f6-7172-4fad-bebf-b576b9dbd76a}" Group="CAS Smart Factory IPR" Description="CFTProductivityRateMin" />
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">

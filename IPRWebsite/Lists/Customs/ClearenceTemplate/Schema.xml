@@ -13,15 +13,6 @@
           <FieldRef ID="{7D196321-5D5D-4D55-908C-125A2E694670}" Name="ClearenceProcedure" />
           <FieldRef ID="{64E1ED0D-0694-4BA9-83EC-40DE68451B9B}" Name="Clearence2SadGoodID" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>

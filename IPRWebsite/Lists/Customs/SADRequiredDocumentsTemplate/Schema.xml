@@ -8,15 +8,6 @@
           <FieldRef ID="{12104636-b615-4f4e-a0b9-23158b9adad8}" Name="Number" />
           <FieldRef ID="{50EF804E-B80E-45DA-8CCB-C07C856AF94A}" Name="SADRequiredDoc2SADGoodID" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>

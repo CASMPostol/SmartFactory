@@ -11,15 +11,6 @@
       <FieldRef ID="{DD3EEFD0-C2B4-411D-B0CE-E72B2484DD5A}" Name="Units" />
       <FieldRef ID="{EFB4D543-B0D4-4371-A1DC-24F0EB576021}" Name="BlendPurpose" />
     </FieldRefs>
-    <XmlDocuments>
-      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-          <Display>ListForm</Display>
-          <Edit>ListForm</Edit>
-          <New>ListForm</New>
-        </FormTemplates>
-      </XmlDocument>
-    </XmlDocuments>
   </ContentType>
 </Elements>
 

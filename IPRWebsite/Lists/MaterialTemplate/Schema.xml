@@ -21,15 +21,6 @@
           <FieldRef ID="{762353C4-D601-4461-84FA-EB26F7E314C2}" Name="SHMenthol" />
           <FieldRef ID="{F2AD5316-859E-43B4-B630-46C28B9523AE}" Name="Material2BatchIndex" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>

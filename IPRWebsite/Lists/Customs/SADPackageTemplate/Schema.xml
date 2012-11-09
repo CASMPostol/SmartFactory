@@ -9,15 +9,6 @@
           <FieldRef ID="{218a57ca-6aad-4c08-8b14-7bb92323cb68}" Name="Package" />
           <FieldRef ID="{A9DDA134-42DC-4407-8515-624362E986CC}" Name="SADPackage2SADGoodID" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>
