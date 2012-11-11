@@ -141,12 +141,12 @@ namespace CAS.SmartFactory.IPR.Customs
     {
       string _at = "started";
       _comments = "IPR account creation error";
-      SADDocumentType declaration = clearence.SADGoodID.SADDocumentIndex;
+      SADDocumentType declaration = clearence.Clearence2SadGoodID.SADDocumentIndex;
       try
       {
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
-        IPRData _iprdata = new IPRData( clearence.SADGoodID, _messageType );
+        IPRData _iprdata = new IPRData( clearence.Clearence2SadGoodID, _messageType );
         _at = "Consent.Lookup";
         _comments = "Consent lookup filed";
         Consent _cnsnt = Consent.Lookup( entities, _iprdata.Consent );

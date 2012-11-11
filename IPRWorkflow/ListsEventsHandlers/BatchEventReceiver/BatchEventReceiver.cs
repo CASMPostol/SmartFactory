@@ -84,11 +84,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <summary>
     /// Imports the batch from XML.
     /// </summary>
+    /// <param name="_edc">The _edc.</param>
     /// <param name="stream">The stream.</param>
-    /// <param name="url">The URL.</param>
-    /// <param name="listIndex">Index of the list.</param>
+    /// <param name="_entry">The _entry.</param>
     /// <param name="fileName">Name of the file.</param>
-    /// <param name="progressChanged">The progress changed delegate <see cref="ProgressChangedEventHandler"/>.</param>
+    /// <param name="progressChanged">The progress changed delegate <see cref="ProgressChangedEventHandler" />.</param>
+    /// <exception cref="IPRDataConsistencyException"></exception>
     public static void ImportBatchFromXml( Entities _edc, Stream stream, BatchLib _entry, string fileName, ProgressChangedEventHandler progressChanged )
     {
       try

@@ -179,6 +179,7 @@
     <Column Name="SADConsignmentLibraryIndex" Member="SADConsignmentLibraryIndex" />
     <Column Name="ProcedureCode" Member="ProcedureCode" />
     <Column Name="ClearenceProcedure" Member="ClearenceProcedure" />
+    <Column Name="Clearence2SadGoodID" Member="Clearence2SadGoodID" />
   </ContentType>
   <ContentType Name="SHMenthol" Class="SHMenthol">
     <Column Name="ProductType" Member="ProductType" />
@@ -233,6 +234,11 @@
     <Column Name="TobaccoQuantity" Member="TobaccoQuantity" />
     <Column Name="Units" Member="Units" />
     <Column Name="ProductType" Member="ProductType" />
+    <Column Name="Overuse" Member="Overuse" />
+    <Column Name="Dust" Member="Dust" />
+    <Column Name="Waste" Member="Waste" />
+    <Column Name="Tobacco" Member="Tobacco" />
+    <Column Name="SHMenthol" Member="SHMenthol" />
     <Column Name="Material2BatchIndex" Member="Material2BatchIndex" />
   </ContentType>
   <ContentType Name="CustomsUnion" Class="CustomsUnion">
@@ -277,7 +283,6 @@
     <Column Name="ExchangeRate" Member="ExchangeRate" />
     <Column Name="GrossMass" Member="GrossMass" />
     <Column Name="SADDocumenLibrarytIndex" Member="SADDocumenLibrarytIndex" />
-    <Column Name="SADDocument2Clearence" Member="SADDocument2Clearence" />
   </ContentType>
   <ContentType Name="TobaccoBatchSummary" Class="TobaccoBatchSummary">
     <!--<Column Name="ContentType" Member="ContentType" />-->
@@ -439,11 +444,6 @@
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
   </ContentType>
-  <ContentType Name="JSOX" Class="JSOX">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="BalanceLibraryIndex" Member="BalanceLibraryIndex" />
-  </ContentType>
   <ContentType Name="Dust" Class="Dust">
     <Column Name="ProductType" Member="ProductType" />
     <Column Name="DustRatio" Member="DustRatio" />
@@ -488,6 +488,14 @@
     <Column Name="UsageMax" Member="UsageMax" />
     <Column Name="CTFUsageMin" Member="CTFUsageMin" />
     <Column Name="CTFUsageMax" Member="CTFUsageMax" />
+  </ContentType>
+  <ContentType Name="JSOXLib" Class="JSOXLib">
+    <Column Name="ContentType" Member="ContentType" />
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="JSOXLibrary2BalanceLibraryID" Member="JSOXLibrary2BalanceLibraryID" />
   </ContentType>
   <ContentType Name="SADConsignment" Class="SADConsignment">
     <!--<Column Name="ContentType" Member="ContentType" />-->
