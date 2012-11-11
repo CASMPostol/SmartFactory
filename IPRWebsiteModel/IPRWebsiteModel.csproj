@@ -81,6 +81,7 @@
     <Compile Include="Linq\Warehouse.cs" />
     <Compile Include="Linq\Waste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebsiteModelExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Features\CAS.IPRWebsiteModel\CAS.IPRWebsiteModel.feature">

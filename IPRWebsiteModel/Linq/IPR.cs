@@ -78,9 +78,28 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="status">The _status.</param>
     /// <param name="quantity">The quantity.</param>
     /// <param name="material">The material.</param>
-    public void AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity, Material material )
+    public void AddDisposal( Entities edc, Material.DisposalsEnum status, ref decimal quantity, Material material )
     {
-      AddDisposal( edc, status, ref quantity, material, null );
+      DisposalEnum _dsposl = default( DisposalEnum );
+      switch ( status )
+      {
+        case Material.DisposalsEnum.Dust:
+          _dsposl = DisposalEnum.Dust;
+          break;
+        case Material.DisposalsEnum.SHMenthol:
+          _dsposl = DisposalEnum.SHMenthol;
+          break;
+        case Material.DisposalsEnum.Waste:
+          _dsposl = DisposalEnum.Waste;
+          break;
+        case Material.DisposalsEnum.OverusageInKg:
+          _dsposl = DisposalEnum.OverusageInKg;
+          break;
+        case Material.DisposalsEnum.Tobacco:
+          _dsposl = DisposalEnum.Tobacco;
+          break;
+      }
+      AddDisposal( edc, _dsposl, ref quantity, material, null );
     }
     #endregion
 
