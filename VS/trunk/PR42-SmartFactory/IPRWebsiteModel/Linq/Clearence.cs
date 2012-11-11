@@ -26,12 +26,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="entities">The entities.</param>
     public void ClearThroughCustoms( Entities entities )
     {
-      SADDocumentType sadDocument = SADGoodID.SADDocumentIndex;
+      SADDocumentType sadDocument = Clearence2SadGoodID.SADDocumentIndex;
       DocumentNo = sadDocument.DocumentNumber;
       ReferenceNumber = sadDocument.ReferenceNumber;
       Status = true;
       foreach ( Disposal _disposal in Disposal )
-        _disposal.ClearThroughCustoms( entities, sadDocument.DocumentNumber, this, sadDocument.CustomsDebtDate.Value, SADGoodID.PCNTariffCode );
+        _disposal.ClearThroughCustoms( entities, sadDocument.DocumentNumber, this, sadDocument.CustomsDebtDate.Value, Clearence2SadGoodID.PCNTariffCode );
     }
     /// <summary>
     /// Clears through customs.
@@ -40,7 +40,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="sadGood">The sad good.</param>
     public void ClearThroughCustoms( Entities entities, SADGood sadGood )
     {
-      SADGoodID = sadGood;
+      Clearence2SadGoodID = sadGood;
       ClearThroughCustoms( entities );
     }
     /// <summary>
@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public static Clearence CreataClearence( Entities entities, string procedure, ClearenceProcedure procedureCode, SADGood good )
     {
       Clearence _newClearence = CreateClearance( procedure, procedureCode );
-      _newClearence.SADGoodID = good;
+      _newClearence.Clearence2SadGoodID = good;
       _newClearence.DocumentNo = good.SADDocumentIndex.DocumentNumber;
       _newClearence.ReferenceNumber = good.SADDocumentIndex.ReferenceNumber;
       entities.Clearence.InsertOnSubmit( _newClearence );

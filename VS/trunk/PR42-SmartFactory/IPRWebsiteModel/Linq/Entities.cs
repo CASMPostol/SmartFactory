@@ -184,16 +184,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		/// <summary>
-		/// JSOX List Instance
-		/// </summary>
-		[Microsoft.SharePoint.Linq.ListAttribute(Name="JSOX")]
-		public Microsoft.SharePoint.Linq.EntityList<JSOX> JSOX {
-			get {
-				return this.GetList<JSOX>("JSOX");
-			}
-		}
-		
-		/// <summary>
 		/// JSOX Customs Summary List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="JSOX Customs Summary")]
@@ -204,12 +194,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		/// <summary>
-		/// JSOX files collection
+		/// JSOX Library Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="JSOX Library")]
-		public Microsoft.SharePoint.Linq.EntityList<Dokument> JSOXLibrary {
+		public Microsoft.SharePoint.Linq.EntityList<JSOXLibraryJSOXLib> JSOXLibrary {
 			get {
-				return this.GetList<Dokument>("JSOX Library");
+				return this.GetList<JSOXLibraryJSOXLib>("JSOX Library");
 			}
 		}
 		
@@ -431,7 +421,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Format))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(InvoiceContent))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(IPR))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(JSOX))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(JSOXCustomsSummary))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Material))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(PCNCode))]
@@ -630,6 +619,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Dokument", Id="0x0101")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BatchLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(InvoiceLib))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(JSOXLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADConsignment))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentLib))]
 	public partial class Dokument : Element {
@@ -1992,7 +1982,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<SADConsignment> _sADConsignmentLibraryIndex;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _sADGoodID;
+		private Microsoft.SharePoint.Linq.EntityRef<SADGood> _clearence2SadGoodID;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
 		
@@ -2007,10 +1997,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._sADConsignmentLibraryIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADConsignment>>(this.OnSADConsignmentLibraryIndexSync);
 			this._sADConsignmentLibraryIndex.OnChanged += new System.EventHandler(this.OnSADConsignmentLibraryIndexChanged);
 			this._sADConsignmentLibraryIndex.OnChanging += new System.EventHandler(this.OnSADConsignmentLibraryIndexChanging);
-			this._sADGoodID = new Microsoft.SharePoint.Linq.EntityRef<SADGood>();
-			this._sADGoodID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnSADGoodIDSync);
-			this._sADGoodID.OnChanged += new System.EventHandler(this.OnSADGoodIDChanged);
-			this._sADGoodID.OnChanging += new System.EventHandler(this.OnSADGoodIDChanging);
+			this._clearence2SadGoodID = new Microsoft.SharePoint.Linq.EntityRef<SADGood>();
+			this._clearence2SadGoodID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood>>(this.OnClearence2SadGoodIDSync);
+			this._clearence2SadGoodID.OnChanged += new System.EventHandler(this.OnClearence2SadGoodIDChanged);
+			this._clearence2SadGoodID.OnChanging += new System.EventHandler(this.OnClearence2SadGoodIDChanging);
 			this._disposal = new Microsoft.SharePoint.Linq.EntitySet<Disposal>();
 			this._disposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposalSync);
 			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
@@ -2107,13 +2097,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Clearence2SadGoodID", Storage="_sADGoodID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Good")]
-		public SADGood SADGoodID {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Clearence2SadGoodID", Storage="_clearence2SadGoodID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="SAD Good")]
+		public SADGood Clearence2SadGoodID {
 			get {
-				return this._sADGoodID.GetEntity();
+				return this._clearence2SadGoodID.GetEntity();
 			}
 			set {
-				this._sADGoodID.SetEntity(value);
+				this._clearence2SadGoodID.SetEntity(value);
 			}
 		}
 		
@@ -2144,15 +2134,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		private void OnSADGoodIDChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("SADGoodID", this._sADGoodID.Clone());
+		private void OnClearence2SadGoodIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Clearence2SadGoodID", this._clearence2SadGoodID.Clone());
 		}
 		
-		private void OnSADGoodIDChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("SADGoodID");
+		private void OnClearence2SadGoodIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Clearence2SadGoodID");
 		}
 		
-		private void OnSADGoodIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
+		private void OnClearence2SadGoodIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<SADGood> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Clearence.Add(this);
 			}
@@ -3418,7 +3408,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _iPR2PCNPCN;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<JSOX> _jSOXIndex;
+		private System.Nullable<int> _jSOXIndexIdentyfikator;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceIndex;
 		
@@ -3445,10 +3435,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._iPR2PCNPCN.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnIPR2PCNPCNSync);
 			this._iPR2PCNPCN.OnChanged += new System.EventHandler(this.OnIPR2PCNPCNChanged);
 			this._iPR2PCNPCN.OnChanging += new System.EventHandler(this.OnIPR2PCNPCNChanging);
-			this._jSOXIndex = new Microsoft.SharePoint.Linq.EntityRef<JSOX>();
-			this._jSOXIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOX>>(this.OnJSOXIndexSync);
-			this._jSOXIndex.OnChanged += new System.EventHandler(this.OnJSOXIndexChanged);
-			this._jSOXIndex.OnChanging += new System.EventHandler(this.OnJSOXIndexChanging);
 			this._clearenceIndex = new Microsoft.SharePoint.Linq.EntityRef<Clearence>();
 			this._clearenceIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnClearenceIndexSync);
 			this._clearenceIndex.OnChanged += new System.EventHandler(this.OnClearenceIndexChanged);
@@ -3933,13 +3919,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="JSOXIndex", Storage="_jSOXIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JSOX")]
-		public JSOX JSOXIndex {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="JSOXIndex", Storage="_jSOXIndexIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> JSOXIndexIdentyfikator {
 			get {
-				return this._jSOXIndex.GetEntity();
+				return this._jSOXIndexIdentyfikator;
 			}
 			set {
-				this._jSOXIndex.SetEntity(value);
+				if ((value != this._jSOXIndexIdentyfikator)) {
+					this.OnPropertyChanging("JSOXIndexIdentyfikator", this._jSOXIndexIdentyfikator);
+					this._jSOXIndexIdentyfikator = value;
+					this.OnPropertyChanged("JSOXIndexIdentyfikator");
+				}
 			}
 		}
 		
@@ -4024,17 +4014,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		private void OnJSOXIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("JSOXIndex", this._jSOXIndex.Clone());
-		}
-		
-		private void OnJSOXIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("JSOXIndex");
-		}
-		
-		private void OnJSOXIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOX> e) {
-		}
-		
 		private void OnClearenceIndexChanging(object sender, System.EventArgs e) {
 			this.OnPropertyChanging("ClearenceIndex", this._clearenceIndex.Clone());
 		}
@@ -4078,50 +4057,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// <summary>
 	/// Utwórz nowy element listy.
 	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOX", Id="0x0100D1CB53094EEF4E39A0F56682BF66210B")]
-	public partial class JSOX : Element {
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _balanceLibraryIndex;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public JSOX() {
-			this._balanceLibraryIndex = new Microsoft.SharePoint.Linq.EntityRef<Dokument>();
-			this._balanceLibraryIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnBalanceLibraryIndexSync);
-			this._balanceLibraryIndex.OnChanged += new System.EventHandler(this.OnBalanceLibraryIndexChanged);
-			this._balanceLibraryIndex.OnChanging += new System.EventHandler(this.OnBalanceLibraryIndexChanging);
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="BalanceLibraryIndex", Storage="_balanceLibraryIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Balance Library")]
-		public Dokument BalanceLibraryIndex {
-			get {
-				return this._balanceLibraryIndex.GetEntity();
-			}
-			set {
-				this._balanceLibraryIndex.SetEntity(value);
-			}
-		}
-		
-		private void OnBalanceLibraryIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("BalanceLibraryIndex", this._balanceLibraryIndex.Clone());
-		}
-		
-		private void OnBalanceLibraryIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("BalanceLibraryIndex");
-		}
-		
-		private void OnBalanceLibraryIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
-		}
-	}
-	
-	/// <summary>
-	/// Utwórz nowy element listy.
-	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXCustomsSummary", Id="0x0100C94F6A12898E497EAE5EFEFDC240C3F4")]
 	public partial class JSOXCustomsSummary : Element {
 		
@@ -4141,7 +4076,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<JSOX> _jSOXIndex;
+		private System.Nullable<int> _jSOXIndexIdentyfikator;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -4154,10 +4089,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._disposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposalSync);
 			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
 			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
-			this._jSOXIndex = new Microsoft.SharePoint.Linq.EntityRef<JSOX>();
-			this._jSOXIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOX>>(this.OnJSOXIndexSync);
-			this._jSOXIndex.OnChanged += new System.EventHandler(this.OnJSOXIndexChanged);
-			this._jSOXIndex.OnChanging += new System.EventHandler(this.OnJSOXIndexChanging);
 			this.OnCreated();
 		}
 		
@@ -4269,13 +4200,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="JSOXIndex", Storage="_jSOXIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JSOX")]
-		public JSOX JSOXIndex {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="JSOXIndex", Storage="_jSOXIndexIdentyfikator", Required=true, FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> JSOXIndexIdentyfikator {
 			get {
-				return this._jSOXIndex.GetEntity();
+				return this._jSOXIndexIdentyfikator;
 			}
 			set {
-				this._jSOXIndex.SetEntity(value);
+				if ((value != this._jSOXIndexIdentyfikator)) {
+					this.OnPropertyChanging("JSOXIndexIdentyfikator", this._jSOXIndexIdentyfikator);
+					this._jSOXIndexIdentyfikator = value;
+					this.OnPropertyChanged("JSOXIndexIdentyfikator");
+				}
 			}
 		}
 		
@@ -4294,17 +4229,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			else {
 				e.Item.JSOXCustomsSummaryIndex = null;
 			}
-		}
-		
-		private void OnJSOXIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("JSOXIndex", this._jSOXIndex.Clone());
-		}
-		
-		private void OnJSOXIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("JSOXIndex");
-		}
-		
-		private void OnJSOXIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOX> e) {
 		}
 	}
 	
@@ -4329,6 +4253,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		private System.Nullable<double> _tobaccoQuantity;
 		
 		private string _units;
+		
+		private System.Nullable<double> _overuse;
+		
+		private System.Nullable<double> _dust;
+		
+		private System.Nullable<double> _waste;
+		
+		private System.Nullable<double> _tobacco;
+		
+		private System.Nullable<double> _sHMenthol;
 		
 		private System.Nullable<ProductType> _productType;
 		
@@ -4486,6 +4420,91 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this.OnPropertyChanging("Units", this._units);
 					this._units = value;
 					this.OnPropertyChanged("Units");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Overuse
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Overuse", Storage="_overuse", FieldType="Number")]
+		public System.Nullable<double> Overuse {
+			get {
+				return this._overuse;
+			}
+			set {
+				if ((value != this._overuse)) {
+					this.OnPropertyChanging("Overuse", this._overuse);
+					this._overuse = value;
+					this.OnPropertyChanged("Overuse");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// (Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/dust
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Dust", Storage="_dust", FieldType="Number")]
+		public System.Nullable<double> Dust {
+			get {
+				return this._dust;
+			}
+			set {
+				if ((value != this._dust)) {
+					this.OnPropertyChanging("Dust", this._dust);
+					this._dust = value;
+					this.OnPropertyChanged("Dust");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// (Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/waste
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Waste", Storage="_waste", FieldType="Number")]
+		public System.Nullable<double> Waste {
+			get {
+				return this._waste;
+			}
+			set {
+				if ((value != this._waste)) {
+					this.OnPropertyChanging("Waste", this._waste);
+					this._waste = value;
+					this.OnPropertyChanged("Waste");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// (Material Quantity-Material Quantity Previous)-kolumna'overuse'-kolumna'dust'-kolumna'waste'-kolumna'shmenthol'
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Tobacco", Storage="_tobacco", FieldType="Number")]
+		public System.Nullable<double> Tobacco {
+			get {
+				return this._tobacco;
+			}
+			set {
+				if ((value != this._tobacco)) {
+					this.OnPropertyChanging("Tobacco", this._tobacco);
+					this._tobacco = value;
+					this.OnPropertyChanged("Tobacco");
+				}
+			}
+		}
+		
+		/// <summary>
+		/// (Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/SHMenthol
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SHMenthol", Storage="_sHMenthol", FieldType="Number")]
+		public System.Nullable<double> SHMenthol {
+			get {
+				return this._sHMenthol;
+			}
+			set {
+				if ((value != this._sHMenthol)) {
+					this.OnPropertyChanging("SHMenthol", this._sHMenthol);
+					this._sHMenthol = value;
+					this.OnPropertyChanged("SHMenthol");
 				}
 			}
 		}
@@ -5199,10 +5218,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnClearenceSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.SADGoodID = this;
+				e.Item.Clearence2SadGoodID = this;
 			}
 			else {
-				e.Item.SADGoodID = null;
+				e.Item.Clearence2SadGoodID = null;
 			}
 		}
 		
@@ -6858,6 +6877,67 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// <summary>
 	/// Utwórz nowy dokument.
 	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXLib", Id="0x0101002CFEC8BBC3F440D69B724CC2B95FFF93")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(JSOXLibraryJSOXLib))]
+	public partial class JSOXLib : Dokument {
+		
+		private string _contentType;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _jSOXLibrary2BalanceLibraryID;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public JSOXLib() {
+			this._jSOXLibrary2BalanceLibraryID = new Microsoft.SharePoint.Linq.EntityRef<Dokument>();
+			this._jSOXLibrary2BalanceLibraryID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnJSOXLibrary2BalanceLibraryIDSync);
+			this._jSOXLibrary2BalanceLibraryID.OnChanged += new System.EventHandler(this.OnJSOXLibrary2BalanceLibraryIDChanged);
+			this._jSOXLibrary2BalanceLibraryID.OnChanging += new System.EventHandler(this.OnJSOXLibrary2BalanceLibraryIDChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
+		public virtual string ContentType {
+			get {
+				return this._contentType;
+			}
+			set {
+				if ((value != this._contentType)) {
+					this.OnPropertyChanging("ContentType", this._contentType);
+					this._contentType = value;
+					this.OnPropertyChanged("ContentType");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="JSOXLibrary2BalanceLibraryID", Storage="_jSOXLibrary2BalanceLibraryID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Balance Library")]
+		public Dokument JSOXLibrary2BalanceLibraryID {
+			get {
+				return this._jSOXLibrary2BalanceLibraryID.GetEntity();
+			}
+			set {
+				this._jSOXLibrary2BalanceLibraryID.SetEntity(value);
+			}
+		}
+		
+		private void OnJSOXLibrary2BalanceLibraryIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("JSOXLibrary2BalanceLibraryID", this._jSOXLibrary2BalanceLibraryID.Clone());
+		}
+		
+		private void OnJSOXLibrary2BalanceLibraryIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("JSOXLibrary2BalanceLibraryID");
+		}
+		
+		private void OnJSOXLibrary2BalanceLibraryIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy dokument.
+	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SADConsignment", Id="0x0101002E7FB2D305D04B84ADEEA8E71EBD1561")]
 	public partial class SADConsignment : Dokument {
 		
@@ -7121,7 +7201,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private System.Nullable<int> _balanceIndexIdentyfikator;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<JSOX> _jSOXIndex;
+		private System.Nullable<int> _jSOXIndexIdentyfikator;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<IPR> _iPRIndex;
 		
@@ -7132,10 +7212,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		#endregion
 		
 		public JSOXSummary() {
-			this._jSOXIndex = new Microsoft.SharePoint.Linq.EntityRef<JSOX>();
-			this._jSOXIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOX>>(this.OnJSOXIndexSync);
-			this._jSOXIndex.OnChanged += new System.EventHandler(this.OnJSOXIndexChanged);
-			this._jSOXIndex.OnChanging += new System.EventHandler(this.OnJSOXIndexChanging);
 			this._iPRIndex = new Microsoft.SharePoint.Linq.EntityRef<IPR>();
 			this._iPRIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPRIndexSync);
 			this._iPRIndex.OnChanged += new System.EventHandler(this.OnIPRIndexChanged);
@@ -7171,13 +7247,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="JSOXIndex", Storage="_jSOXIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JSOX")]
-		public JSOX JSOXIndex {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="JSOXIndex", Storage="_jSOXIndexIdentyfikator", Required=true, FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> JSOXIndexIdentyfikator {
 			get {
-				return this._jSOXIndex.GetEntity();
+				return this._jSOXIndexIdentyfikator;
 			}
 			set {
-				this._jSOXIndex.SetEntity(value);
+				if ((value != this._jSOXIndexIdentyfikator)) {
+					this.OnPropertyChanging("JSOXIndexIdentyfikator", this._jSOXIndexIdentyfikator);
+					this._jSOXIndexIdentyfikator = value;
+					this.OnPropertyChanged("JSOXIndexIdentyfikator");
+				}
 			}
 		}
 		
@@ -7189,17 +7269,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			set {
 				this._iPRIndex.SetEntity(value);
 			}
-		}
-		
-		private void OnJSOXIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("JSOXIndex", this._jSOXIndex.Clone());
-		}
-		
-		private void OnJSOXIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("JSOXIndex");
-		}
-		
-		private void OnJSOXIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOX> e) {
 		}
 		
 		private void OnIPRIndexChanging(object sender, System.EventArgs e) {
@@ -7403,6 +7472,34 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this._blendPurpose = value;
 					this.OnPropertyChanged("BlendPurpose");
 				}
+			}
+		}
+	}
+	
+	/// <summary>
+	/// JSOX Library Content Type
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXLib", Id="0x0101002CFEC8BBC3F440D69B724CC2B95FFF93", List="JSOX Library")]
+	public partial class JSOXLibraryJSOXLib : JSOXLib {
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public JSOXLibraryJSOXLib() {
+			this.OnCreated();
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string ContentType {
+			get {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości JSOXLib.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości JSOXLib.");
 			}
 		}
 	}
