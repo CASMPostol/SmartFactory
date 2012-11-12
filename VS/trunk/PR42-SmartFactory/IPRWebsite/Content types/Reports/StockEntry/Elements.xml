@@ -3,7 +3,7 @@
   <ContentType ID="0x0100060fe33d5aae473abdc2777ae86fed6c"
                Name="StockEntry"
                Group="CAS Smart Factory IPR Reports"
-               Description="StockEntry"
+               Description="Stock Entry List Content Type"
                Overwrite="TRUE"
                Inherits="TRUE">
     <Folder TargetName="_cts/StockEntry" />
@@ -22,14 +22,5 @@
       <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
       <FieldRef ID="{6D5D5BFD-84C0-44A0-B8E2-C3C994748DA5}" Name="StockIndex" />
     </FieldRefs>
-    <XmlDocuments>
-      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-          <Display>ListForm</Display>
-          <Edit>ListForm</Edit>
-          <New>ListForm</New>
-        </FormTemplates>
-      </XmlDocument>
-    </XmlDocuments>
   </ContentType>
 </Elements>

@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="DisposalTemlate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-DisposalTemlate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01000FAE27B30BF7FC46886DA88A4D425DEF" Name="Disposal" Group="CAS Smart Factory IPR" Description="IPR: Disposals List" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01000FAE27B30BF7FC46886DA88A4D425DEF"
+                 Name="Disposal"
+                 Group="CAS Smart Factory IPR"
+                 Description="Disposals List Content Type"
+                 Overwrite="TRUE"
+                 Inherits="TRUE">
         <Folder TargetName="_cts/Disposal" />
         <FieldRefs>
           <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />

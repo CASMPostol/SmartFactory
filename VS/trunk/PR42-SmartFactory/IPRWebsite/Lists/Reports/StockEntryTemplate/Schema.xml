@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="StockEntryTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-StockEntryTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100060fe33d5aae473abdc2777ae86fed6c" Name="StockEntry" Group="CAS Smart Factory IPR Reports" Description="StockEntry" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x0100060fe33d5aae473abdc2777ae86fed6c"
+               Name="StockEntry"
+               Group="CAS Smart Factory IPR Reports"
+               Description="Stock Entry List Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
         <Folder TargetName="_cts/StockEntry" />
         <FieldRefs>
           <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
@@ -19,41 +24,9 @@
           <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
           <FieldRef ID="{6D5D5BFD-84C0-44A0-B8E2-C3C994748DA5}" Name="StockIndex" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
-    <Fields>
-      <Field DisplayName="Batch" Name="Batch" Type="Text" ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Group="CAS Smart Factory IPR" Description="Batch" />
-      <Field DisplayName="Blocked" Name="Blocked" Type="Number" ID="{4c65897d-cbd2-4468-8520-50e371ef3a3f}" Group="CAS Smart Factory IPR" Description="Blocked" />
-      <Field DisplayName="InQualityInsp" Name="InQualityInsp" Type="Number" ID="{5d27eabe-c74b-4233-9a07-d7389c831e3a}" Group="CAS Smart Factory IPR" Description="InQualityInsp" />
-      <Field DisplayName="Quantity" Name="Quantity" Type="Number" ID="{85512a2c-c60c-400e-aa53-94ed8fbef321}" Group="CAS Smart Factory IPR" Description="Quantity" />
-      <Field DisplayName="RestrictedUse" Name="RestrictedUse" Type="Number" ID="{76c04784-3d54-46db-bb7f-686eb7ef8254}" Group="CAS Smart Factory IPR" Description="RestrictedUse" />
-      <Field DisplayName="Location" Name="StorLoc" Type="Text" ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Group="CAS Smart Factory IPR" Description="StorLoc" />
-      <Field DisplayName="Unrestricted" Name="Unrestricted" Type="Number" ID="{a748d4bc-74c0-4f52-90e9-46a9e0140324}" Group="CAS Smart Factory IPR" Description="Unrestricted" />
-      <Field DisplayName="SKU" Name="SKU" Type="Text" ID="{619a086c-ba11-4c40-a19d-cf3f0c503a2c}" Group="CAS Smart Factory IPR Customs" Description="SKU" />
-      <Field DisplayName="Units" Name="Units" Type="Text" ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Group="CAS Smart Factory IPR Customs" Description="j.m." />
-      <Field Name="BatchIndex" ID="{6b3af163-c404-433f-9801-047c12b9ee42}" Type="Lookup" List="Lists/BatchList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Batch lookup" Group="CAS Smart Factory IPR" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field DisplayName="IPR Type" Name="IPRType" Type="Boolean" ID="{b31967c9-30e2-44cc-bb55-c9c3f8a64eeb}" Group="CAS Smart Factory" Description="IPR Type" />
-      <Field Name="StockIndex" ID="{6d5d5bfd-84c0-44a0-b8e2-c3c994748da5}" Type="Lookup" List="Lists/StockList" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Stock List lookup" Group="CAS Smart Factory IPR Reports" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Type="Choice" DisplayName="ProductType" ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Format="Dropdown" BaseType="Text" Description="Material Type" Name="ProductType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
-        <Default>Cigarette</Default>
-        <CHOICES>
-          <CHOICE>Cutfiller</CHOICE>
-          <CHOICE>Cigarette</CHOICE>
-          <CHOICE>Tobacco</CHOICE>
-          <CHOICE>IPRTobacco</CHOICE>
-          <CHOICE>Other</CHOICE>
-        </CHOICES>
-      </Field>
-    </Fields>
+    <Fields></Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
         <Toolbar Type="Standard" />

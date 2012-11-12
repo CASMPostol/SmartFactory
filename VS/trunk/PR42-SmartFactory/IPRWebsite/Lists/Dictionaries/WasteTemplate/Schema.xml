@@ -2,9 +2,15 @@
 <List xmlns:ows="Microsoft SharePoint" VersioningEnabled="TRUE" Title="WasteTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-WasteTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01002D6DCE3B847D5942ACDD176925283176" Name="Waste" Group="CAS Smart Factory IPR Dictionaries" Description="Utwórz nowy element listy." Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01002D6DCE3B847D5942ACDD176925283176"
+                 Name="Waste"
+                 Group="CAS Smart Factory IPR Dictionaries"
+                 Description="Waste List Content Type"
+                 Overwrite="True"
+                 Inherits="False">
         <Folder TargetName="_cts/Waste" />
         <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
           <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
           <FieldRef ID="{440bd88d-3870-480e-b01e-f934d478593f}" Name="WasteRatio" />
         </FieldRefs>

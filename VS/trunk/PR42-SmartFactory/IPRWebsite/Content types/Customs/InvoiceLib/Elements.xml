@@ -3,7 +3,7 @@
   <ContentType ID="0x0101003054e4ebb5de4c6391ca389a60dcd926"
                Name="InvoiceLib"
                Group="CAS Smart Factory IPR Customs"
-               Description="Invoice Document Library"
+               Description="Invoice Document Library Content Type"
                Inherits="TRUE"
                Overwrite="TRUE">
     <FieldRefs>

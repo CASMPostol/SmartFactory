@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="MaterialTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-MaterialTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01004D0C63D616EA814E8B077CF59ADDB12B" Name="Material" Group="CAS Smart Factory IPR" Description="Batch: Material" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01004D0C63D616EA814E8B077CF59ADDB12B"
+                 Name="Material"
+                 Group="CAS Smart Factory IPR"
+                 Description="Material List Content Type"
+                 Overwrite="TRUE"
+                 Inherits="TRUE">
         <Folder TargetName="_cts/Material" />
         <FieldRefs>
           <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />

@@ -3,7 +3,7 @@
   <ContentType ID="0x010100475f601a85c84d02b51f765e42311c86"
                Name="SADDocumentLib"
                Group="CAS Smart Factory IPR Customs"
-               Description="SAD Document Library"
+               Description="SAD Document Library Content Type"
                Inherits="TRUE"
                Overwrite="TRUE">
     <FieldRefs>

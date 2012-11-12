@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" DefaultItemOpen="" Title="SADDocumentLibraryTemplate" Direction="$Resources:Direction;" Url="IPRWebsite-SADDocumentLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x010100475f601a85c84d02b51f765e42311c86" Name="SADDocumentLib" Group="CAS Smart Factory IPR Customs" Description="SAD Document Library" Inherits="TRUE" Overwrite="TRUE">
+      <ContentType ID="0x010100475f601a85c84d02b51f765e42311c86"
+               Name="SADDocumentLib"
+               Group="CAS Smart Factory IPR Customs"
+               Description="SAD Document Library Content Type"
+               Inherits="TRUE"
+               Overwrite="TRUE">
         <FieldRefs>
           <FieldRef ID="{89422377-9695-4FC8-88C2-B6FECC24E4D4}" Name="SADDocumentLibraryOK" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
           <FieldRef ID="{F6AA27B5-972F-432A-B637-BF726D701168}" Name="SADDocumentLibraryComments" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />

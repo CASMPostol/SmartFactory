@@ -3,7 +3,7 @@
   <ContentType ID="0x0100700a5727db0a43069a5e0a479e3b80a7"
                Name="CustomsUnion"
                Group="CAS Smart Factory IPR Dictionaries"
-               Description="Customs Union"
+               Description="Customs Union List Content Type"
                Overwrite="TRUE"
                Inherits="True">
     <Folder TargetName="_cts/CustomsUnion" />

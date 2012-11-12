@@ -3,7 +3,7 @@
   <ContentType ID="0x01007F42F9669FE35A41801B017E1D69C7D9"
                Name="SADPackage"
                Group="CAS Smart Factory IPR Customs"
-               Description="SADPackage"
+               Description="SAD Package List Content Type"
                Inherits="TRUE"
                Overwrite="TRUE">
     <Folder TargetName="_cts/SADPackage" />

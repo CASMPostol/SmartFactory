@@ -3,7 +3,7 @@
   <ContentType ID="0x010014c98f440fb04c679f1d9d39acc92d8a0029e2e9bc132c4633b01b0df733a64ada"
                Name="SKUCigarette"
                Group="CAS Smart Factory IPR Dictionaries"
-               Description="Cigarette SKU"
+               Description="Cigarette SKU List Content Type"
                Overwrite="TRUE"
                Inherits="True">
     <Folder TargetName="_cts/SKUCigarette" />

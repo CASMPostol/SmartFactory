@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="InvoiceLibraryTemplate" Direction="$Resources:Direction;" Url="IPRWebsite-InvoiceLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0101003054e4ebb5de4c6391ca389a60dcd926" Name="InvoiceLib" Group="CAS Smart Factory IPR Customs" Description="Invoice Document Library" Inherits="TRUE" Overwrite="TRUE">
+      <ContentType ID="0x0101003054e4ebb5de4c6391ca389a60dcd926"
+               Name="InvoiceLib"
+               Group="CAS Smart Factory IPR Customs"
+               Description="Invoice Document Library Content Type"
+               Inherits="TRUE"
+               Overwrite="TRUE">
         <FieldRefs>
           <FieldRef ID="{c169e96e-f73b-4a1f-9b0d-bb5fd8782119}" Name="BillDoc" Required="False" ShowInNewForm="FALSE" />
           <FieldRef ID="{3A9F901C-8EB2-430A-A056-6438D3CD5900}" Name="InvoiceCreationDate" Required="False" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />

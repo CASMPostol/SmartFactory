@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="ClearenceTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-ClearenceTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x010024D8E558C8B92D4094E6420B75D7AEDD" Name="Clearence" Group="CAS Smart Factory IPR Customs" Description="Clearance - collects all of the events involved in clearance through the customs." Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x010024D8E558C8B92D4094E6420B75D7AEDD"
+               Name="Clearence"
+               Group="CAS Smart Factory IPR Customs"
+               Description="Clearance List Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
         <Folder TargetName="_cts/Clearence" />
         <FieldRefs>
           <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />

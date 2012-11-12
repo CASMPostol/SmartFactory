@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="JSOXCustomsSummaryTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-JSOXCustomsSummaryTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100c94f6a12898e497eae5efefdc240c3f4" Name="JSOXCustomsSummary" Group="CAS Smart Factory IPR Reports" Description="JSOX Customs Summary content type" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x0100c94f6a12898e497eae5efefdc240c3f4"
+               Name="JSOXCustomsSummary"
+               Group="CAS Smart Factory IPR Reports"
+               Description="JSOX Customs Summary List Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
         <Folder TargetName="_cts/JSOXCustomsSummary" />
         <FieldRefs>
           <FieldRef ID="{0D1243D7-75A7-47EB-A17E-E82C15AEA206}" Name="ExportOrFreeCirculationSAD" />

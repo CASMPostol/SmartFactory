@@ -3,7 +3,7 @@
   <ContentType ID="0x010014c98f440fb04c679f1d9d39acc92d8a00ae74b7010f534db980d221d41d0bcba1"
                Name="SKUCutfiller"
                Group="CAS Smart Factory IPR Dictionaries"
-               Description="Cutfiller SKU"
+               Description="Cutfiller SKU List Content Type"
                Overwrite="TRUE"
                Inherits="True">
     <Folder TargetName="_cts/SKUCutfiller" />

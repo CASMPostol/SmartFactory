@@ -3,7 +3,7 @@
 	<ContentType ID="0x0100BB872D605E9F0F49B05D98D6A01655F8" 
                  Name="IPR" 
                  Group="CAS Smart Factory IPR" 
-                 Description="IPR List" 
+                 Description="IPR List Content Type" 
                  Overwrite="TRUE" 
                  Inherits="TRUE">
 		<Folder TargetName="_cts/IPR" />

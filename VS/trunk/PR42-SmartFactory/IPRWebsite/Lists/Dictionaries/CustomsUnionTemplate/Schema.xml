@@ -2,12 +2,17 @@
 <List xmlns:ows="Microsoft SharePoint" Title="CustomsUnionTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-CustomsUnionTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100700a5727db0a43069a5e0a479e3b80a7" Name="CustomsUnion" Group="CAS Smart Factory IPR Dictionaries" Description="Customs Union" Overwrite="TRUE" Inherits="True">
-        <Folder TargetName="_cts/CustomsUnion" />
-        <FieldRefs>
-          <FieldRef ID="{C5AEA337-BDDC-4F77-AF0C-A8C925B6BB5B}" Name="EUPrimeMarket" />
-        </FieldRefs>
-      </ContentType>
+      <ContentType ID="0x0100700a5727db0a43069a5e0a479e3b80a7"
+               Name="CustomsUnion"
+               Group="CAS Smart Factory IPR Dictionaries"
+               Description="Customs Union List Content Type"
+               Overwrite="TRUE"
+               Inherits="True">
+    <Folder TargetName="_cts/CustomsUnion" />
+    <FieldRefs>
+      <FieldRef ID="{C5AEA337-BDDC-4F77-AF0C-A8C925B6BB5B}" Name="EUPrimeMarket" />
+    </FieldRefs>
+  </ContentType>
     </ContentTypes>
     <Fields>
     </Fields>

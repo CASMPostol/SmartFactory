@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="BatchTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-BatchTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100FCF87F15D5BE244EBA39ACA130B1ABDB" Name="Batch" Group="CAS Smart Factory" Description="Batch" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x0100FCF87F15D5BE244EBA39ACA130B1ABDB"
+             Name="Batch"
+             Group="CAS Smart Factory IPR"
+             Description="Batch List Content Type"
+             Overwrite="TRUE"
+             Inherits="TRUE">
         <Folder TargetName="_cts/Batch" />
         <FieldRefs>
           <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />

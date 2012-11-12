@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="SKUTemplate" EnableContentTypes="TRUE" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-SKUTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x010014c98f440fb04c679f1d9d39acc92d8a0029e2e9bc132c4633b01b0df733a64ada" Name="SKUCigarette" Group="CAS Smart Factory IPR Dictionaries" Description="Cigarette SKU" Overwrite="TRUE" Inherits="True">
+      <ContentType ID="0x010014c98f440fb04c679f1d9d39acc92d8a0029e2e9bc132c4633b01b0df733a64ada"
+               Name="SKUCigarette"
+               Group="CAS Smart Factory IPR Dictionaries"
+               Description="Cigarette SKU List Content Type"
+               Overwrite="TRUE"
+               Inherits="True">
         <Folder TargetName="_cts/SKUCigarette" />
         <FieldRefs>
           <FieldRef ID="{37C6BB68-8EDF-4C0D-ADAC-3C26766EB3F7}" Name="Family" />
@@ -14,7 +19,12 @@
           <FieldRef ID="{97EE3235-0816-43E7-AB77-AF9D4E040DF1}" Name="Menthol" />
         </FieldRefs>
       </ContentType>
-      <ContentType ID="0x010014c98f440fb04c679f1d9d39acc92d8a00ae74b7010f534db980d221d41d0bcba1" Name="SKUCutfiller" Group="CAS Smart Factory IPR Dictionaries" Description="Cutfiller SKU" Overwrite="TRUE" Inherits="True">
+      <ContentType ID="0x010014c98f440fb04c679f1d9d39acc92d8a00ae74b7010f534db980d221d41d0bcba1"
+               Name="SKUCutfiller"
+               Group="CAS Smart Factory IPR Dictionaries"
+               Description="Cutfiller SKU List Content Type"
+               Overwrite="TRUE"
+               Inherits="True">
         <Folder TargetName="_cts/SKUCutfiller" />
         <FieldRefs>
           <FieldRef ID="{DD3EEFD0-C2B4-411D-B0CE-E72B2484DD5A}" Name="Units" />

@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="SADDutiesTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-SADDutiesTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100307F2A8F2886D24FBF3393F84E0E616B" Name="SADDuties" Group="CAS Smart Factory IPR Customs" Description="SADDuties" Inherits="TRUE" Overwrite="TRUE" Version="100000">
+      <ContentType ID="0x0100307F2A8F2886D24FBF3393F84E0E616B"
+               Name="SADDuties"
+               Group="CAS Smart Factory IPR Customs"
+               Description="SAD Duties List Content Type"
+               Inherits="TRUE"
+               Overwrite="TRUE">
         <Folder TargetName="_cts/SADDuties" />
         <FieldRefs>
           <FieldRef ID="{6EA6E99D-21C1-4527-8D92-C3DF4060485A}" Name="DutyType" />

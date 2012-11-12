@@ -3,7 +3,7 @@
   <ContentType ID="0x010014c98f440fb04c679f1d9d39acc92d8a"
                Name="SKUCommonPart"
                Group="CAS Smart Factory IPR Dictionaries"
-               Description="SKU Common Part"
+               Description="SKU Common Part List Content Type"
                Overwrite="TRUE"
                Inherits="True">
     <Folder TargetName="_cts/SKUCommonPart" />

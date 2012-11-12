@@ -2,9 +2,15 @@
 <List xmlns:ows="Microsoft SharePoint" VersioningEnabled="TRUE" Title="CutfillerCoefficientTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-CutfillerCoefficientTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01001D2AFAE51342C546A5F1677134421FD5" Name="CutfillerCoefficient" Group="CAS Smart Factory IPR Dictionaries" Description="CutfillerCoefficient" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01001D2AFAE51342C546A5F1677134421FD5"
+               Name="CutfillerCoefficient"
+               Group="CAS Smart Factory IPR Dictionaries"
+               Description="Cutfiller Coefficient List Content Type"
+               Overwrite="TRUE"
+               Inherits="False">
         <Folder TargetName="_cts/CutfillerCoefficient" />
         <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
           <FieldRef ID="{8238b9f6-7172-4fad-bebf-b576b9dbd76a}" Name="CFTProductivityRateMin" />
           <FieldRef ID="{368c844b-0491-42ae-a102-d888646823fd}" Name="CFTProductivityRateMax" />
           <FieldRef ID="{5adf1294-84c9-44f8-9a47-3ca5ac37b17a}" Name="CFTProductivityNormMin" />

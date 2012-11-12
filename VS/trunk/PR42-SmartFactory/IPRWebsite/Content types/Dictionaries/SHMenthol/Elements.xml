@@ -3,7 +3,7 @@
 	<ContentType ID="0x010029964D9D2D53F84CB1083741C40FA8D1" 
                Name="SHMenthol" 
                Group="CAS Smart Factory IPR Dictionaries" 
-               Description="It contains a table of entries describing all the coefficients of menthol usage in cigarettes, including the date of their validity." 
+               Description="SH Menthol List Content Type" 
                Overwrite="TRUE" 
                Inherits="False">
 		<Folder TargetName="_cts/SHMenthol" />
