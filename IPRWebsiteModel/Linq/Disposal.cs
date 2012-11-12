@@ -21,13 +21,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="closingBatch">if set to <c>true</c> the batch is to be closed.</param>
     /// <param name="invoiceNoumber">The invoice noumber.</param>
     /// <exception cref="ApplicationError">if any internal exception has to be catched.</exception>
-    public void Export( Entities entities, Clearence clearence, ref double quantity, bool closingBatch, string invoiceNoumber )
+    public void Export( Entities entities, Clearence clearence, ref decimal quantity, bool closingBatch, string invoiceNoumber )
     {
       string _at = "Startting";
       try
       {
         ClearingType _clearingType = Linq.ClearingType.PartialWindingUp;
-        if ( !closingBatch && quantity < SettledQuantity )
+        decimal _settledQuantity = Convert.ToDecimal( SettledQuantity.Value );
+        if ( !closingBatch && quantity < _settledQuantity )
         {
           _at = "_newDisposal";
           Disposal _newDisposal = new Disposal()
@@ -47,11 +48,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             No = int.MaxValue,
             SADDate = CAS.SharePoint.Extensions.SPMinimum,
             SADDocumentNo = "N/A",
-            SettledQuantity = SettledQuantity - quantity
+            SettledQuantity = Convert.ToDouble( _settledQuantity - quantity )
           };
           _at = "SetUpCalculatedColumns";
           _newDisposal.SetUpCalculatedColumns( CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp );
-          SettledQuantity = quantity;
+          SettledQuantity = Convert.ToDouble( quantity);
           quantity = 0;
           _at = "InsertOnSubmit";
           entities.Disposal.InsertOnSubmit( _newDisposal );
@@ -61,7 +62,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         else
         {
           _clearingType = Disposal2IPRIndex.GetClearingType();
-          quantity -= SettledQuantity.Value;
+          quantity -= _settledQuantity;
         }
         _at = "StartClearance";
         StartClearance( _clearingType, invoiceNoumber, clearence );
