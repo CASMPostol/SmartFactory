@@ -16,7 +16,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       public double shMentholRatio;
       public double wasteRatio;
     }
-    public Material( Entities edc, string batch, string sku, string storLoc, string skuDescription, string units, decimal quantity, decimal tobaccoQuantity, string productID )
+    public Material( Entities edc, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal tobaccoQuantity, string productID )
       : base()
     {
       Batch = batch;
@@ -26,36 +26,33 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       SKUDescription = skuDescription;
       Title = skuDescription;
       Units = units;
-      FGQuantity = Convert.ToDouble( quantity );
+      FGQuantity = Convert.ToDouble( fgQuantity );
       TobaccoQuantity = Convert.ToDouble( tobaccoQuantity );
       ProductID = productID;
       Entities.ProductDescription product = edc.GetProductType( this.SKU, this.StorLoc );
       ProductType = product.productType;
     }
-
-    public Ratios DisposalsAnalisis( Entities edc, Ratios ratios, double overusage )
+    /// <summary>
+    /// Disposalses the analisis.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="ratios">The ratios.</param>
+    /// <param name="overusage">The overusage.</param>
+    public void DisposalsAnalisis( Entities edc, Ratios ratios, double overusage )
     {
       decimal material = Convert.ToDecimal( this.TobaccoQuantity );
       List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, Batch );
       if ( _accounts.Count == 1 && Math.Abs( Convert.ToDecimal( _accounts[ 0 ].TobaccoNotAllocated.Value ) - material ) < 1 )
         material = Convert.ToDecimal( _accounts[ 0 ].TobaccoNotAllocated.Value );
-      decimal _am;
       if ( overusage > 0 )
       {
-        decimal _overuseInKg = ( material * Convert.ToDecimal( overusage ) ).RountMass();
-        this.Overuse = Convert.ToDouble( _overuseInKg );
-        _am = material - _overuseInKg;
+        decimal _overuseInKg = this[ DisposalsEnum.OverusageInKg ] = ( material * Convert.ToDecimal( overusage ) ).RountMass();
+        material -= _overuseInKg;
       }
-      else
-        _am = material;
-      decimal _dust = ( _am * Convert.ToDecimal( ratios.dustRatio ) ).RountMass();
-      decimal _shMenthol = ( _am * Convert.ToDecimal( ratios.shMentholRatio ) ).RountMass();
-      decimal _waste = ( _am * Convert.ToDecimal( ratios.wasteRatio ) ).RountMass();
-      this.Dust = Convert.ToDouble( _dust );
-      this.SHMenthol = Convert.ToDouble( _shMenthol );
-      this.Waste = Convert.ToDouble( _waste );
-      this.TobaccoQuantity = Convert.ToDouble( _am - _shMenthol - _waste - _dust );
-      return ratios;
+      decimal _dust = this[ DisposalsEnum.Dust ] = ( material  * Convert.ToDecimal( ratios.dustRatio ) ).RountMass();
+      decimal _shMenthol = this[ DisposalsEnum.SHMenthol ] = ( material  * Convert.ToDecimal( ratios.shMentholRatio ) ).RountMass();
+      decimal _waste = this[ DisposalsEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).RountMass();
+      this[ DisposalsEnum.Tobacco ] = material - _shMenthol - _waste - _dust;
     }
     /// <summary>
     /// 
@@ -116,6 +113,28 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         }
         return Convert.ToDecimal( _ret );
       }
+      set
+      {
+        double _val = Convert.ToDouble( value );
+        switch ( index )
+        {
+          case DisposalsEnum.Dust:
+            this.Dust = _val;
+            break;
+          case DisposalsEnum.SHMenthol:
+            this.SHMenthol = _val;
+            break;
+          case DisposalsEnum.Waste:
+            this.Waste = _val;
+            break;
+          case DisposalsEnum.OverusageInKg:
+            this.Overuse = _val;
+            break;
+          case DisposalsEnum.Tobacco:
+            this.Tobacco = _val;
+            break;
+        }
+      }
     }
     public double DisposedQuantity( double portion )
     {
@@ -141,10 +160,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
     }
-
-    private void DisposalsAnalisis( Entities edc, double _overusage, Ratios ratios )
-    {
-    }
+    public decimal TobaccoTotal { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
 
     #endregion
 
