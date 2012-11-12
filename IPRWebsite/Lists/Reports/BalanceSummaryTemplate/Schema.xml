@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="BalanceSummaryTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-BalanceSummaryTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100bc0ddc1827f346ed911d777504830c5200673b96617ea2407484db22020e9f5289" Name="BalanceSummary" Group="CAS Smart Factory IPR Reports" Description="Balance Summary content type" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x0100bc0ddc1827f346ed911d777504830c5200673b96617ea2407484db22020e9f5289"
+               Name="BalanceSummary"
+               Group="CAS Smart Factory IPR Reports"
+               Description="Balance Summary List Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
         <Folder TargetName="_cts/BalanceSummary" />
         <FieldRefs>
           <FieldRef ID="{54C90F3E-3C47-4B04-9793-EE1395939864}" Name="TobaccoInWarehouse" />
@@ -12,25 +17,10 @@
           <FieldRef ID="{D341520E-A826-4C16-A8ED-8325153B7D49}" Name="Balance" />
           <FieldRef ID="{40C6B34C-EE93-4282-A6A7-AFEF69F43220}" Name="BalanceLibraryIndex" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
     <Fields>
-      <Field Name="TobaccoInWarehouse" ID="{54c90f3e-3c47-4b04-9793-ee1395939864}" Type="Number" DisplayName="Tobacco in Warehouse" Group="CAS Smart Factory IPR Reports" />
-      <Field Name="TobaccoInCigarettesWarehouse" ID="{5683b652-df3a-4988-a253-7535ae34003a}" Type="Number" DisplayName="Tobacco in Cigarettes Warehouse" Group="CAS Smart Factory IPR Reports" />
-      <Field Name="TobaccoInCigarettesProduction" ID="{5ba601fa-60e5-452c-8d40-832083c03201}" Type="Number" DisplayName="Tobacco in Cigarettes Production" Group="CAS Smart Factory IPR Reports" />
-      <Field Name="TobaccoInCutfillerWarehouse" ID="{adff97ef-0414-477c-af48-d1def14d8c5e}" Type="Number" DisplayName="Tobacco in Cutfiller Warehouse" Group="CAS Smart Factory IPR Reports" />
-      <Field Name="Balance" ID="{d341520e-a826-4c16-a8ed-8325153b7d49}" Type="Number" DisplayName="Balance" Group="CAS Smart Factory IPR Reports" />
-      <Field Name="BalanceLibraryIndex" ID="{40c6b34c-ee93-4282-a6a7-afef69f43220}" Type="Lookup" List="Lists/BalanceLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Balance Library lookup" Group="CAS Smart Factory IPR Reports" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-    </Fields>
+   </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
         <Toolbar Type="Standard" />

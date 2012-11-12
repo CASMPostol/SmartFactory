@@ -3,7 +3,7 @@
 	<ContentType ID="0x0100A7FE6CFCCADBB7409C1F0FA102B9C573" 
                Name="Consent" 
                Group="CAS Smart Factory IPR Dictionaries" 
-               Description="Consent" 
+               Description="Consent List Content Type" 
                Overwrite="TRUE"
                Inherits="TRUE">
 		<Folder TargetName="_cts/Consent" />

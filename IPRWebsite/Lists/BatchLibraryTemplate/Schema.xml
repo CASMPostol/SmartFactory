@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="BatchLibraryTemplate" Direction="$Resources:Direction;" Url="IPRWebsite-BatchLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01010057cd1193db9a48f4b4e6e9b55fbac70a" Name="BatchLib" Group="CAS Smart Factory IPR" Description="Batch Library Content Type" Inherits="TRUE" Overwrite="TRUE">
+      <ContentType ID="0x01010057cd1193db9a48f4b4e6e9b55fbac70a"
+               Name="BatchLib"
+               Group="CAS Smart Factory IPR"
+               Description="Batch Library Content Type"
+               Inherits="TRUE"
+               Overwrite="TRUE">
         <FieldRefs>
           <FieldRef ID="{2790A828-BA38-4E76-8982-2AE749152FB3}" Name="BatchLibraryOK" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
           <FieldRef ID="{C89D9DC1-1632-46FC-8F0D-6FF78CF9CC5D}" Name="BatchLibraryComments" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />

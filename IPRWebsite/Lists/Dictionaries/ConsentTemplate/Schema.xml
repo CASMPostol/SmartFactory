@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" VersioningEnabled="TRUE" Title="ConsentTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-ConsentTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100A7FE6CFCCADBB7409C1F0FA102B9C573" Name="Consent" Group="CAS Smart Factory IPR Dictionaries" Description="Consent" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x0100A7FE6CFCCADBB7409C1F0FA102B9C573"
+               Name="Consent"
+               Group="CAS Smart Factory IPR Dictionaries"
+               Description="Consent List Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
         <Folder TargetName="_cts/Consent" />
         <FieldRefs>
           <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />

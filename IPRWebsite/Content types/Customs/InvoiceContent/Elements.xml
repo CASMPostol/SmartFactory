@@ -3,7 +3,7 @@
   <ContentType ID="0x010082e2fd28f40c4269ac5c796f220f10c3"
                Name="InvoiceContent"
                Group="CAS Smart Factory IPR Customs"
-               Description="InvoiceContent"
+               Description="Invoice Content List Content Type"
                Inherits="TRUE"
                Overwrite="TRUE"
                Version="100000">

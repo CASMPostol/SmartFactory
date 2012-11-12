@@ -2,7 +2,13 @@
 <List xmlns:ows="Microsoft SharePoint" Title="IPRWebsite - SADRequiredDocumentsTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-SADRequiredDocumentsTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100CAF95BD14627B343981DE5345DD0BD37" Name="SADRequiredDocuments" Group="CAS Smart Factory IPR Customs" Description="SADRequiredDocuments" Inherits="TRUE" Overwrite="TRUE">
+      <ContentType ID="0x0100CAF95BD14627B343981DE5345DD0BD37"
+               Name="SADRequiredDocuments"
+               Group="CAS Smart Factory IPR Customs"
+               Description="SAD Required Documents List Content Type"
+               Inherits="TRUE"
+               Overwrite="TRUE"
+               Version="100000">
         <FieldRefs>
           <FieldRef ID="{db36ba74-4c91-4793-9ab2-a48ce633ccbe}" Name="Code" />
           <FieldRef ID="{12104636-b615-4f4e-a0b9-23158b9adad8}" Name="Number" />

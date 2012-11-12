@@ -3,7 +3,7 @@
   <ContentType ID="0x0100307F2A8F2886D24FBF3393F84E0E616B"
                Name="SADDuties"
                Group="CAS Smart Factory IPR Customs"
-               Description="SADDuties"
+               Description="SAD Duties List Content Type"
                Inherits="TRUE"
                Overwrite="TRUE">
     <Folder TargetName="_cts/SADDuties" />

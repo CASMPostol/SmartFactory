@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="SADQuantityTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-SADQuantityTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x010016BC5B99EA5169458266BB52B8784B3F" Name="SADQuantity" Group="CAS Smart Factory IPR Customs" Description="SADQuantity" Inherits="TRUE" Overwrite="TRUE">
+      <ContentType ID="0x010016BC5B99EA5169458266BB52B8784B3F"
+               Name="SADQuantity"
+               Group="CAS Smart Factory IPR Customs"
+               Description="SAD Quantity List Content Type"
+               Inherits="TRUE"
+               Overwrite="TRUE">
         <Folder TargetName="_cts/SADQuantity" />
         <FieldRefs>
           <FieldRef ID="{fffdd6d0-160f-43a2-bff0-c27ca9de1fd1}" Name="ItemNo" />

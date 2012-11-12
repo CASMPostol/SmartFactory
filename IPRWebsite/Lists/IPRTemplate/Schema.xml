@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="IPRTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-IPRTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100BB872D605E9F0F49B05D98D6A01655F8" Name="IPR" Group="CAS Smart Factory IPR" Description="IPR List" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x0100BB872D605E9F0F49B05D98D6A01655F8"
+                 Name="IPR"
+                 Group="CAS Smart Factory IPR"
+                 Description="IPR List Content Type"
+                 Overwrite="TRUE"
+                 Inherits="TRUE">
         <Folder TargetName="_cts/IPR" />
         <FieldRefs>
           <FieldRef ID="{B666BBEE-46EC-4E0D-B782-68BC5E9B561A}" Name="IPR2ConsentTitle" />

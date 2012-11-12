@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" VersioningEnabled="TRUE" Title="FormatTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-FormatTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01008229b51223914bb3b88f3abdb737237b" Name="Format" Group="CAS Smart Factory IPR Dictionaries" Description="Format" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01008229b51223914bb3b88f3abdb737237b"
+               Name="Format"
+               Group="CAS Smart Factory IPR Dictionaries"
+               Description="Format List Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
         <Folder TargetName="_cts/Format" />
         <FieldRefs>
           <FieldRef ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}" Name="CigaretteLenght" Required="TRUE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" />

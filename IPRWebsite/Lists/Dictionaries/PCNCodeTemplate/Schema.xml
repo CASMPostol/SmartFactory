@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="PCNCodeTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-PCNCodeTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01002e9f09b06acf47f7ada76c12453c7af7" Name="PCNCode" Group="CAS Smart Factory IPR Dictionaries" Description="PCNCode" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01002e9f09b06acf47f7ada76c12453c7af7"
+               Name="PCNCode"
+               Group="CAS Smart Factory IPR Dictionaries"
+               Description="PCN Code List Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
         <Folder TargetName="_cts/PCNCode" />
         <FieldRefs>
           <FieldRef ID="{FAB1E4CF-D883-45A5-B682-97B78EDF1F75}" Name="ProductCodeNumber" />

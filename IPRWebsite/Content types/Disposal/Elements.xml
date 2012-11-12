@@ -3,7 +3,7 @@
 	<ContentType ID="0x01000FAE27B30BF7FC46886DA88A4D425DEF" 
                  Name="Disposal" 
                  Group="CAS Smart Factory IPR" 
-                 Description="IPR: Disposals List" 
+                 Description="Disposals List Content Type" 
                  Overwrite="TRUE" 
                  Inherits="TRUE">
 		<Folder TargetName="_cts/Disposal" />

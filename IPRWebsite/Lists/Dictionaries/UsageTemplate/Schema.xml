@@ -2,9 +2,15 @@
 <List xmlns:ows="Microsoft SharePoint" VersioningEnabled="TRUE" Title="UsageTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-UsageTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01000E2260EFB66F324B9CC50EEEC274F5FD" Name="Usage" Group="CAS Smart Factory IPR Dictionaries" Description="It contains all relevant norms of tobacco usage for cigarette production. Tobacco consumption for the different formats will be entered into the system as the max and min numbers; the user should declare (select from list) an appropriate format for the norm. The list must contain information as to since when the norm has been valid and when it expires." Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01000E2260EFB66F324B9CC50EEEC274F5FD"
+                 Name="Usage"
+                 Group="CAS Smart Factory IPR Dictionaries"
+                 Description="Usage List Content Type"
+                 Overwrite="TRUE"
+                 Inherits="False">
         <Folder TargetName="_cts/Usage" />
         <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />
           <FieldRef ID="{54FE0A48-E3C8-4E8F-BC10-A1C4935EA8D0}" Name="FormatIndex" />
           <FieldRef ID="{a5854e29-ef45-49d8-8cf8-8c5c91f1c0c6}" Name="UsageMin" />
           <FieldRef ID="{1d56fc71-6866-4a9f-a9c9-629e91b54ae1}" Name="UsageMax" />

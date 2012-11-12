@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" Title="IPRWebsite - SADDocumentTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/SADDocumentTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0100844099fc49b54d30a1516ea17a6883fc" Name="SADDocumentType" Group="CAS Smart Factory IPR Customs" Description="SAD Document Type" Inherits="TRUE" Overwrite="TRUE">
+      <ContentType ID="0x0100844099fc49b54d30a1516ea17a6883fc"
+               Name="SADDocumentType"
+               Group="CAS Smart Factory IPR Customs"
+               Description="SAD Document Type List Content Type"
+               Inherits="TRUE"
+               Overwrite="TRUE">
         <Folder TargetName="_cts/SADDocumentType" />
         <FieldRefs>
           <FieldRef Name="ReferenceNumber" ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}" />

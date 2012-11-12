@@ -2,7 +2,12 @@
 <List xmlns:ows="Microsoft SharePoint" DefaultItemOpen="0" Title="SADConsignmentLibraryTemplate" Direction="$Resources:Direction;" Url="IPRWebsite-SADConsignmentLibraryTemplate" BaseType="1" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x0101002e7fb2d305d04b84adeea8e71ebd1561" Name="SADConsignment" Group="CAS Smart Factory IPR Customs" Description="SAD Consignment Library" Inherits="TRUE" Overwrite="TRUE">
+      <ContentType ID="0x0101002e7fb2d305d04b84adeea8e71ebd1561"
+               Name="SADConsignment"
+               Group="CAS Smart Factory IPR Customs"
+               Description="SAD Consignment Library Content Type"
+               Inherits="TRUE"
+               Overwrite="TRUE">
         <FieldRefs>
         </FieldRefs>
       </ContentType>

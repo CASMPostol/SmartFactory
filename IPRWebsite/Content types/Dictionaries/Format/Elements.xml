@@ -3,7 +3,7 @@
   <ContentType ID="0x01008229b51223914bb3b88f3abdb737237b"
                Name="Format"
                Group="CAS Smart Factory IPR Dictionaries"
-               Description="Format"
+               Description="Format List Content Type"
                Overwrite="TRUE"
                Inherits="TRUE">
     <Folder TargetName="_cts/Format" />

@@ -3,7 +3,7 @@
 	<ContentType ID="0x01001D2AFAE51342C546A5F1677134421FD5" 
                Name="CutfillerCoefficient" 
                Group="CAS Smart Factory IPR Dictionaries"
-               Description="CutfillerCoefficient"
+               Description="Cutfiller Coefficient List Content Type"
                Overwrite="TRUE" 
                Inherits="False">
 		<Folder TargetName="_cts/CutfillerCoefficient" />

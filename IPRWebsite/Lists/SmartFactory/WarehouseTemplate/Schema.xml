@@ -2,48 +2,22 @@
 <List xmlns:ows="Microsoft SharePoint" Title="WarehouseTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-WarehouseTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01001E57547208B49B46B4AA7CB4536B1A55" Name="Warehouse" Group="CAS Smart Factory" Description="Warehouse" Overwrite="TRUE">
+      <ContentType ID="0x01001E57547208B49B46B4AA7CB4536B1A55"
+                 Name="Warehouse"
+                 Group="CAS Smart Factory"
+                 Description="Warehouse List Content Type"
+                 Overwrite="TRUE"
+               Inherits="TRUE">
         <Folder TargetName="_cts/Warehouse" />
         <FieldRefs>
           <FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />
-          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Required="TRUE" Hidden="FALSE" ShowInNewForm="TRUE" ShowInEditForm="TRUE" ReadOnly="FALSE" PITarget="" PrimaryPITarget="" PIAttribute="" PrimaryPIAttribute="" Aggregation="" Node="" />
-          <FieldRef ID="{9eab9f89-5490-4f0f-b33d-25aa398202c0}" Name="External" Required="TRUE" Hidden="FALSE" ReadOnly="FALSE" PITarget="" PrimaryPITarget="" PIAttribute="" PrimaryPIAttribute="" Aggregation="" Node="" />
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Required="TRUE" />
+          <FieldRef ID="{9eab9f89-5490-4f0f-b33d-25aa398202c0}" Name="External" Required="TRUE" />
           <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
-    <Fields>
-      <Field DisplayName="External" Name="External" Type="Boolean" ID="{9eab9f89-5490-4f0f-b33d-25aa398202c0}" Group="CAS Smart Factory" Description="External" />
-      <Field Type="Choice" DisplayName="ProductType" ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Format="Dropdown" BaseType="Text" Description="Material Type" Name="ProductType" Group="CAS Smart Factory IPR" CanToggleHidden="TRUE">
-    <Default>Cigarette</Default>
-    <CHOICES>
-      <CHOICE>Cutfiller</CHOICE>
-      <CHOICE>Cigarette</CHOICE>
-      <CHOICE>Tobacco</CHOICE>
-      <CHOICE>IPRTobacco</CHOICE>
-      <CHOICE>Other</CHOICE>
-    </CHOICES>
-  </Field>
-      <Field ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="ContentType" Group="_Hidden" Type="Computed" DisplayName="$Resources:core,Content_Type;" Sealed="TRUE" Sortable="FALSE" RenderXMLUsingPattern="TRUE" PITarget="MicrosoftWindowsSharePointServices" PIAttribute="ContentTypeID">
-        <FieldRefs>
-          <FieldRef ID="{03e45e84-1992-4d42-9116-26f756012634}" Name="ContentTypeId" />
-        </FieldRefs>
-        <DisplayPattern>
-          <MapToContentType>
-            <Column Name="ContentTypeId" />
-          </MapToContentType>
-        </DisplayPattern>
-      </Field>
-    </Fields>
+    <Fields></Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
         <Toolbar Type="Standard" />

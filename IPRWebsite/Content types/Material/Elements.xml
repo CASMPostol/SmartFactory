@@ -3,7 +3,7 @@
 	<ContentType ID="0x01004D0C63D616EA814E8B077CF59ADDB12B" 
                  Name="Material" 
                  Group="CAS Smart Factory IPR" 
-                 Description="Batch: Material" 
+                 Description="Material List Content Type" 
                  Overwrite="TRUE" 
                  Inherits="TRUE">
 		<Folder TargetName="_cts/Material" />

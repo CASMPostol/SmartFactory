@@ -3,7 +3,7 @@
 	<ContentType ID="0x01002D6DCE3B847D5942ACDD176925283176" 
                  Name="Waste" 
                  Group="CAS Smart Factory IPR Dictionaries" 
-                 Description="Utwórz nowy element listy." 
+                 Description="Waste List Content Type" 
                  Overwrite="True" 
                  Inherits="False">
 		<Folder TargetName="_cts/Waste" />

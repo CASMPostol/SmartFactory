@@ -2,27 +2,20 @@
 <List xmlns:ows="Microsoft SharePoint" Title="StockTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/IPRWebsite-StockTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
     <ContentTypes>
-      <ContentType ID="0x01001A55BDA09C39724B9FAF87A859B9D82C" Name="Stock" Group="CAS Smart Factory IPR Reports" Description="Stock" Overwrite="TRUE" Inherits="TRUE">
+      <ContentType ID="0x01001A55BDA09C39724B9FAF87A859B9D82C"
+                 Name="Stock"
+                 Group="CAS Smart Factory IPR Reports"
+                 Description="Stock List Content Type"
+                 Overwrite="TRUE"
+                 Inherits="TRUE">
         <Folder TargetName="_cts/Stock" />
         <FieldRefs>
           <FieldRef ID="{44A7C743-E3C0-4426-94B3-A639903E5EAD}" Name="StockLibraryIndex" />
           <FieldRef ID="{40C6B34C-EE93-4282-A6A7-AFEF69F43220}" Name="BalanceLibraryIndex" />
         </FieldRefs>
-        <XmlDocuments>
-          <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-            <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-              <Display>ListForm</Display>
-              <Edit>ListForm</Edit>
-              <New>ListForm</New>
-            </FormTemplates>
-          </XmlDocument>
-        </XmlDocuments>
       </ContentType>
     </ContentTypes>
-    <Fields>
-      <Field Name="BalanceLibraryIndex" ID="{40c6b34c-ee93-4282-a6a7-afef69f43220}" Type="Lookup" List="Lists/BalanceLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Balance Library lookup" Group="CAS Smart Factory IPR Reports" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-      <Field Name="StockLibraryIndex" ID="{44a7c743-e3c0-4426-94b3-a639903e5ead}" Type="Lookup" List="Lists/StockLibrary" ShowField="ID" UnlimitedLengthInDocumentLibrary="False" Indexed="True" RelationshipDeleteBehavior="None" DisplayName="Stock Library lookup" Group="CAS Smart Factory IPR Reports" Required="True" Hidden="False" DisplaceOnUpgrade="True" EnforceUniqueValues="False" ReadOnly="False" />
-    </Fields>
+    <Fields></Fields>
     <Views>
       <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
         <Toolbar Type="Standard" />

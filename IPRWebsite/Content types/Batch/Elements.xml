@@ -3,7 +3,7 @@
 	<ContentType ID="0x0100FCF87F15D5BE244EBA39ACA130B1ABDB" 
                Name="Batch" 
                Group="CAS Smart Factory IPR" 
-               Description="Batch" 
+               Description="Batch List Content Type" 
                Overwrite="TRUE"
                Inherits="TRUE">
 		<Folder TargetName="_cts/Batch" />

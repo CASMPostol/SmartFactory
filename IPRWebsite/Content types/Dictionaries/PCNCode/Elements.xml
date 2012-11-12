@@ -3,7 +3,7 @@
   <ContentType ID="0x01002e9f09b06acf47f7ada76c12453c7af7"
                Name="PCNCode"
                Group="CAS Smart Factory IPR Dictionaries"
-               Description="PCNCode"
+               Description="PCN Code List Content Type"
                Overwrite="TRUE"
                Inherits="TRUE">
     <Folder TargetName="_cts/PCNCode" />

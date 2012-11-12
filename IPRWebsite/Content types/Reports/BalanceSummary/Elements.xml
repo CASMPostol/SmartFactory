@@ -3,7 +3,7 @@
   <ContentType ID="0x0100bc0ddc1827f346ed911d777504830c5200673b96617ea2407484db22020e9f5289"
                Name="BalanceSummary"
                Group="CAS Smart Factory IPR Reports"
-               Description="Balance Summary content type"
+               Description="Balance Summary List Content Type"
                Overwrite="TRUE"
                Inherits="TRUE">
     <Folder TargetName="_cts/BalanceSummary" />
@@ -15,14 +15,5 @@
       <FieldRef ID="{D341520E-A826-4C16-A8ED-8325153B7D49}" Name="Balance" />
       <FieldRef ID="{40C6B34C-EE93-4282-A6A7-AFEF69F43220}" Name="BalanceLibraryIndex" />
     </FieldRefs>
-    <XmlDocuments>
-      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-        <FormTemplates xmlns="http://schemas.microsoft.com/sharepoint/v3/contenttype/forms">
-          <Display>ListForm</Display>
-          <Edit>ListForm</Edit>
-          <New>ListForm</New>
-        </FormTemplates>
-      </XmlDocument>
-    </XmlDocuments>
   </ContentType>
 </Elements>

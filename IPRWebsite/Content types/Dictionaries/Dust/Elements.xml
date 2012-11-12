@@ -5,7 +5,7 @@
                Group="CAS Smart Factory IPR Dictionaries" 
                Overwrite="TRUE"
                Inherits="False"
-               Description="Dust">
+               Description="Dust List Content Type">
 		<Folder TargetName="_cts/Dust" />
 		<FieldRefs>
       <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Hidden="TRUE" />

@@ -3,7 +3,7 @@
   <ContentType ID="0x0100a10a60051d134aac8ea8b57d80fa78f8"
                Name="TobaccoBatchSummary"
                Group="CAS Smart Factory IPR Reports"
-               Description="TobaccoBatchSummary"
+               Description="Tobacco Batch Summary List Content Type"
                Overwrite="TRUE"
                Inherits="TRUE">
     <Folder TargetName="_cts/TobaccoBatchSummary" />
