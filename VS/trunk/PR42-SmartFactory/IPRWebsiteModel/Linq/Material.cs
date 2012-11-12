@@ -49,8 +49,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         decimal _overuseInKg = this[ DisposalsEnum.OverusageInKg ] = ( material * Convert.ToDecimal( overusage ) ).RountMass();
         material -= _overuseInKg;
       }
-      decimal _dust = this[ DisposalsEnum.Dust ] = ( material  * Convert.ToDecimal( ratios.dustRatio ) ).RountMass();
-      decimal _shMenthol = this[ DisposalsEnum.SHMenthol ] = ( material  * Convert.ToDecimal( ratios.shMentholRatio ) ).RountMass();
+      decimal _dust = this[ DisposalsEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).RountMass();
+      decimal _shMenthol = this[ DisposalsEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).RountMass();
       decimal _waste = this[ DisposalsEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).RountMass();
       this[ DisposalsEnum.Tobacco ] = material - _shMenthol - _waste - _dust;
     }
@@ -136,9 +136,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         }
       }
     }
-    public double DisposedQuantity( double portion )
+    public decimal DisposedQuantity( double portion )
     {
-      return ( this.TobaccoQuantity.Value * portion ).RountMass();
+      return Convert.ToDecimal( ( this.Tobacco.Value * portion ).RountMass() );
     }
     public List<Disposal> GetListOfDisposals()
     {

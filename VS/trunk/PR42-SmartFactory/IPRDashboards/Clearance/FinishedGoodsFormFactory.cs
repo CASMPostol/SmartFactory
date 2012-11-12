@@ -156,7 +156,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       {
         if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.IPRTobacco )
         {
-          double _quantity = material.DisposedQuantity( portion );//TODO it contains Dust, Wast and Overuse.
+          decimal _quantity = material.DisposedQuantity( portion );
           _at = "GetListOfDisposals";
           foreach ( Disposal _disposal in material.GetListOfDisposals() )
           {
