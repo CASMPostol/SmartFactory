@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0104005C85A6C821F245D582FCC9CDC2D3688C"
+               Name="ActivityLogCT"
+               Group="CAS Smart Factory IPR"
+               Description="Activity Log List Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <FieldRefs>
+      <FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" />
+      <FieldRef ID="7662cd2c-f069-4dba-9e35-082cf976e170" Name="Body" />
+    </FieldRefs>
+  </ContentType>
+</Elements>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ListTemplate 
+        Name="ActivityLogTemplate" 
+        Type="10056" 
+        BaseType="0" 
+        OnQuickLaunch="TRUE" 
+        SecurityBits="11" 
+        Sequence="320"
+        DisplayName="Activity Log Template"
+        Description="Activity Log List Definition"
+        Image="/_layouts/images/itann.png"/>
+</Elements>

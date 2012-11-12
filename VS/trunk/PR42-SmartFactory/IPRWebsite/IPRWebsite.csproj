@@ -58,6 +58,9 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content types\ActivityLogCT\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{11fc1d20-9724-45dd-8a26-364ff4ffafa7}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\BatchLib\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b937c941-dc75-413f-a8e0-b2677e3be101}</SharePointProjectItemId>
     </None>
@@ -207,8 +210,11 @@
       <SharePointProjectItemId>{deaf1d98-e781-4e00-9810-d5f91935e3c7}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
-    <None Include="Lists\ActivityLog\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{f6ccae4c-19b2-4186-b214-e81b93e94daa}</SharePointProjectItemId>
+    <None Include="Lists\ActivityLogTemplate\ActivityLog\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2a98ca8d-0fcf-4418-acd8-e694a309eee7}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\ActivityLogTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{740def56-3055-4e90-bcb0-08c473f429b2}</SharePointProjectItemId>
     </None>
     <None Include="Lists\BatchLibraryTemplate\BatchLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c1c9da67-bc97-4321-baeb-bc25d33f6fce}</SharePointProjectItemId>
@@ -435,6 +441,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content types\ActivityLogCT\Elements.xml" />
     <Content Include="Content types\BatchLib\Elements.xml" />
     <Content Include="Content types\Batch\Elements.xml">
       <SubType>Designer</SubType>
@@ -551,7 +558,9 @@
     <Content Include="Field\ReportsLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\ActivityLog\Elements.xml" />
+    <Content Include="Lists\ActivityLogTemplate\ActivityLog\Elements.xml" />
+    <Content Include="Lists\ActivityLogTemplate\Elements.xml" />
+    <Content Include="Lists\ActivityLogTemplate\Schema.xml" />
     <Content Include="Lists\BatchLibraryTemplate\BatchLibrary\Elements.xml" />
     <Content Include="Lists\BatchLibraryTemplate\EditDlg.htm" />
     <Content Include="Lists\BatchLibraryTemplate\Elements.xml" />
