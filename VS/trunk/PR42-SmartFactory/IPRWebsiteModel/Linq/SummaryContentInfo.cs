@@ -14,34 +14,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #region public
 
     public Material Product { get; private set; }
-    internal decimal TotalTobacco { get; private set; }
-    /// <summary>
-    /// Adds an element with the specified key and value into the System.Collections.Generic.SortedList<TKey,TValue>.
-    /// </summary>
-    /// <param name="key">The key of the element to add.</param>
-    /// <param name="value">The value of the element to add. The value can be null for reference types.</param>
-    /// <exception cref="System.ArgumentNullException">key is null</exception>
-    /// <exception cref="System.ArgumentException">An element with the same key already exists in the <paramref name="System.Collections.Generic.SortedList<TKey,TValue>"/>.</exception>
-    protected void Add( Material value )
-    {
-      Material ce = null;
-      if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
-        TotalTobacco += value.TobaccoTotal;
-      if ( this.TryGetValue( value.GetKey(), out ce ) )
-      {
-        ce.FGQuantity += value.FGQuantity;
-        ce.TobaccoQuantity += value.TobaccoQuantity;
-      }
-      else
-      {
-        if ( value.ProductType == ProductType.Cigarette )
-          Product = value;
-        else if ( Product == null && value.ProductType == ProductType.Cutfiller )
-          Product = value;
-        base.Add( value.GetKey(), value );
-      }
-    }
     public DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
+    internal decimal TotalTobacco { get; private set; }
     internal void ProcessDisposals
       ( Entities _edc, Batch _parent, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusageCoefficient, ProgressChangedEventHandler _progressChanged )
     {
@@ -96,14 +70,40 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw new IPRDataConsistencyException( "Material.ProcessDisposals", _ex.Message, _ex, "Disposal processing error" );
       }
     }
+    #endregion
+
+    #region private
+    /// <summary>
+    /// Adds an element with the specified key and value into the System.Collections.Generic.SortedList<TKey,TValue>.
+    /// </summary>
+    /// <param name="key">The key of the element to add.</param>
+    /// <param name="value">The value of the element to add. The value can be null for reference types.</param>
+    /// <exception cref="System.ArgumentNullException">key is null</exception>
+    /// <exception cref="System.ArgumentException">An element with the same key already exists in the <paramref name="System.Collections.Generic.SortedList<TKey,TValue>"/>.</exception>
+    protected void Add( Material value )
+    {
+      Material ce = null;
+      if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
+        TotalTobacco += value.TobaccoTotal;
+      if ( this.TryGetValue( value.GetKey(), out ce ) )
+      {
+        ce.FGQuantity += value.FGQuantity;
+        ce.TobaccoQuantity += value.TobaccoQuantity;
+      }
+      else
+      {
+        if ( value.ProductType == ProductType.Cigarette )
+          Product = value;
+        else if ( Product == null && value.ProductType == ProductType.Cutfiller )
+          Product = value;
+        base.Add( value.GetKey(), value );
+      }
+    }
     protected void CheckConsistence()
     {
       if ( Product == null )
         throw new IPRDataConsistencyException( "Processing disposals", "Unrecognized finished good", null, "CheckConsistence error" );
     }
-    #endregion
-
-    #region private
     protected SummaryContentInfo()
     {
       AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
