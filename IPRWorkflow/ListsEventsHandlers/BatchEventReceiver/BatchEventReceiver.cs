@@ -124,6 +124,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <param name="xml">The document.</param>
     /// <param name="edc">The edc.</param>
     /// <param name="parent">The entry.</param>
+    /// <param name="progressChanged">The progress changed.</param>
     private static void GetXmlContent( BatchXml xml, Entities edc, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
       SummaryContentInfo contentInfo = new Content( xml.Material, edc, progressChanged );
@@ -137,16 +138,15 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: BatchProcessing" ) );
       batch.BatchProcessing( edc, GetBatchStatus( xml.Status ), contentInfo, parent, progressChanged );
     }
-
     private static BatchStatus GetBatchStatus( xml.erp.BatchStatus batchStatus )
     {
       switch ( batchStatus )
       {
-        case CAS.SmartFactory.xml.erp.BatchStatus.Final:
+        case xml.erp.BatchStatus.Final:
           return BatchStatus.Final;
-        case CAS.SmartFactory.xml.erp.BatchStatus.Intermediate:
+        case xml.erp.BatchStatus.Intermediate:
           return BatchStatus.Intermediate;
-        case CAS.SmartFactory.xml.erp.BatchStatus.Progress:
+        case xml.erp.BatchStatus.Progress:
           return BatchStatus.Progress;
         default:
           return BatchStatus.Preliminary;
@@ -159,22 +159,16 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         foreach ( BatchMaterialXml item in xml )
         {
           Material _newMaterial = new Material( edc, item.Batch, item.Material, item.Stor__Loc, item.Material_description, item.Unit, item.Quantity, item.Quantity_calculated, item.material_group );
-          progressChanged( null, new ProgressChangedEventArgs( 1, String.Format( "SKU={0}", _newMaterial.SKU ) ) );
+          progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "SKU={0}", _newMaterial.SKU ) ) );
           Add( _newMaterial );
         }
-        progressChanged( null, new ProgressChangedEventArgs( 1, "CheckConsistence" ) );
+        progressChanged( this, new ProgressChangedEventArgs( 1, "CheckConsistence" ) );
         CheckConsistence();
         progressChanged( this, new ProgressChangedEventArgs( 1, "SummaryContentInfo created" ) );
       }
     }
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
-
-    #endregion
-
-    #region private
-    private const string _batchLibraryOK = "BatchLibraryOK";
-    private const string _batchLibraryComments = "BatchLibraryComments";
     private string At { get; set; }
     private const string m_Title = "Batch Message Import";
     private const string m_Message = "Import of the batch message {0} starting.";
