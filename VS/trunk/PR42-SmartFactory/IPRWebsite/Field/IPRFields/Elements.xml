@@ -80,12 +80,11 @@
   Required="TRUE"
     />
   <Field
-  DisplayName="MaterialDescription"
+  DisplayName="Material Description"
   Name="MaterialDescription"
   Type="Text"
   ID="{CF44612E-FDF4-47AD-B730-43F88EE2D9D0}"
   Group="CAS Smart Factory IPR"
-  Description="MaterialDescription"
     />
   <Field
     DisplayName="External"
@@ -93,7 +92,6 @@
     Type="Boolean"
     ID="{9EAB9F89-5490-4F0F-B33D-25AA398202C0}"
     Group="CAS Smart Factory"
-    Description="External"
     />
   <Field
     DisplayName="IPR Material"
@@ -101,7 +99,6 @@
     Type="Boolean"
     ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}"
     Group="CAS Smart Factory"
-    Description="IPR Material"
     />
   <Field
     DisplayName="Batch"
@@ -109,15 +106,13 @@
     Type="Text"
     ID="{500870DA-A1F2-44FD-B34F-B1DF21DCD317}"
     Group="CAS Smart Factory IPR"
-    Description="Batch"
     />
   <Field
     Type="Choice"
-    DisplayName="BatchStatus"
+    DisplayName="Batch Status"
     ID="{CA980625-03DA-4C63-B23A-B60F472CA2B3}"
     Format="Dropdown"
     BaseType="Text"
-    Description="BatchS tatus"
     Name="BatchStatus"
     Group="CAS Smart Factory IPR"
     CanToggleHidden="TRUE">
@@ -135,7 +130,6 @@
     Type="Text"
     ID="{C169E96E-F73B-4A1F-9B0D-BB5FD8782119}"
     Group="CAS Smart Factory IPR"
-    Description="BillDoc"
     />
   <Field
     DisplayName="Blocked"
@@ -143,12 +137,10 @@
     Type="Number"
     ID="{4C65897D-CBD2-4468-8520-50E371EF3A3F}"
     Group="CAS Smart Factory IPR"
-    Description="Blocked"
     />
   <Field
     ResultType="Number"
     LCID="1045"
-    Description="CFTProductivityNormMax"
     DisplayName="CFTProductivityNormMax"
     Type="Calculated"
     ID="{2A6EE086-6D19-429B-A9FF-5F6BF33062B8}"
@@ -165,7 +157,6 @@
     ResultType="Number"
     LCID="1045"
     Format="DateTime"
-    Description="CFTProductivityNormMin"
     DisplayName="CFTProductivityNormMin"
     Type="Calculated"
     ID="{5ADF1294-84C9-44F8-9A47-3CA5AC37B17A}"
@@ -200,28 +191,25 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="ConsentNo"
+    DisplayName="Consent No"
     Name="ConsentNo"
     Type="Text"
     ID="{7E356924-ECC1-4AE2-B5AF-4501388062D8}"
     Group="CAS Smart Factory IPR"
-    Description="ConsentNo"
     />
   <Field
-    DisplayName="DocumentNo"
+    DisplayName="Document No"
     Name="DocumentNo"
     Type="Text"
     ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}"
     Group="CAS Smart Factory IPR"
-    Description="DocumentNo"
     />
   <Field
     Type="Choice"
-    DisplayName="ProductType"
+    DisplayName="Product Type"
     ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}"
     Format="Dropdown"
     BaseType="Text"
-    Description="Material Type"
     Name="ProductType"
     Group="CAS Smart Factory IPR"
     CanToggleHidden="TRUE">
@@ -240,15 +228,13 @@
     Type="Text"
     ID="{7E4F526E-E011-414E-8FDB-6A6CB4738E37}"
     Group="CAS Smart Factory IPR"
-    Description="FormatID"
     />
   <Field
-    DisplayName="InQualityInsp"
+    DisplayName="In Quality Insp"
     Name="InQualityInsp"
     Type="Number"
     ID="{5D27EABE-C74B-4233-9A07-D7389C831E3A}"
     Group="CAS Smart Factory IPR"
-    Description="InQualityInsp"
     />
   <Field
     DisplayName="Quality"
@@ -256,7 +242,6 @@
     Type="Text"
     ID="{D29FAB3C-9144-4655-9C82-DF35995C78F8}"
     Group="CAS Smart Factory IPR"
-    Description="Quality"
     />
   <Field
     DisplayName="Quantity"
@@ -264,15 +249,13 @@
     Type="Number"
     ID="{85512A2C-C60C-400E-AA53-94ED8FBEF321}"
     Group="CAS Smart Factory IPR"
-    Description="Quantity"
     />
   <Field
-    DisplayName="RestrictedUse"
+    DisplayName="Restricted Use"
     Name="RestrictedUse"
     Type="Number"
     ID="{76C04784-3D54-46DB-BB7F-686EB7EF8254}"
     Group="CAS Smart Factory IPR"
-    Description="RestrictedUse"
     />
   <Field
     DisplayName="Location"
@@ -280,7 +263,6 @@
     Type="Text"
     ID="{1F5787F4-8A41-4BD3-B45C-D2BB65465120}"
     Group="CAS Smart Factory IPR"
-    Description="StorLoc"
     />
   <Field
     DisplayName="Unrestricted"
@@ -288,26 +270,23 @@
     Type="Number"
     ID="{A748D4BC-74C0-4F52-90E9-46A9E0140324}"
     Group="CAS Smart Factory IPR"
-    Description="Unrestricted"
     />
   <Field
-    DisplayName="UsageMax"
+    DisplayName="Usage Max"
     Name="UsageMax"
     Type="Number"
     ID="{1D56FC71-6866-4A9F-A9C9-629E91B54AE1}"
     Group="CAS Smart Factory IPR"
-    Description="UsageMax"
     />
   <Field
-    DisplayName="UsageMin"
+    DisplayName="Usage Min"
     Name="UsageMin"
     Type="Number"
     ID="{A5854E29-EF45-49D8-8CF8-8C5C91F1C0C6}"
     Group="CAS Smart Factory IPR"
-    Description="UsageMin"
     />
   <Field
-    DisplayName="WasteRatio"
+    DisplayName="Waste Ratio"
     Name="WasteRatio"
     Percentage="TRUE"
     Min="0"
@@ -315,42 +294,37 @@
     Type="Number"
     ID="{440BD88D-3870-480E-B01E-F934D478593F}"
     Group="CAS Smart Factory IPR"
-    Description="WasteRatio"
     />
   <Field
-    DisplayName="ProductCodeNumber"
+    DisplayName="Product Code Number"
     Name="ProductCodeNumber"
     Type="Text"
     ID="{FAB1E4CF-D883-45A5-B682-97B78EDF1F75}"
     Group="CAS Smart Factory IPR"
-    Description="ProductCodeNumber"
     />
   <Field
-    DisplayName="ProductName"
+    DisplayName="Product Name"
     Name="ProductName"
     Type="Text"
     ID="{D547D6AE-F714-4D76-9CAE-3DD228DA4300}"
     Group="CAS Smart Factory IPR"
-    Description="ProductName"
     />
   <Field
-    DisplayName="CigaretteLenght"
+    DisplayName="Cigarette Lenght"
     Name="CigaretteLenght"
     Type="Text"
     ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}"
     Group="CAS Smart Factory IPR"
-    Description="CigaretteLenght"
     />
   <Field
-    DisplayName="FilterLenght"
+    DisplayName="Filter Lenght"
     Name="FilterLenght"
     Type="Text"
     ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}"
     Group="CAS Smart Factory IPR"
-    Description="FilterLenght"
     />
   <Field
-    DisplayName="DustRatio"
+    DisplayName="Dust Ratio"
     Percentage="TRUE"
     Min="0"
     Max="5"
@@ -358,10 +332,9 @@
     Type="Number"
     ID="{b7afdd32-1537-4091-a802-aa52bf8702d2}"
     Group="CAS Smart Factory IPR"
-    Description="DustRatio"
     />
   <Field
-    DisplayName="SHMentholRatio"
+    DisplayName="SH Menthol Ratio"
     Name="SHMentholRatio"
     Type="Number"
     Percentage="TRUE"
@@ -369,15 +342,13 @@
     Max="5"
     ID="{dd7d6806-45a6-494d-a940-1baae80840a2}"
     Group="CAS Smart Factory IPR"
-    Description="SHMentholRatio"
     />
   <Field
-    DisplayName="SKUDescription"
+    DisplayName="SKU Description"
     Name="SKUDescription"
     Type="Text"
     ID="{F9499FF7-0420-430D-B2B6-672546BA8235}"
     Group="CAS Smart Factory IPR"
-    Description="SKU description"
     />
   <Field
     Type="Choice"
@@ -385,7 +356,6 @@
     ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}"
     Format="Dropdown"
     BaseType="Text"
-    Description="Winding-up"
     Name="ClearingType"
     Group="CAS Smart Factory IPR"
     CanToggleHidden="TRUE">
@@ -419,7 +389,6 @@
     Type="Number"
     ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}"
     Group="CAS Smart Factory IPR"
-    Description="No."
     />
   <Field
     DisplayName="Tobacco Name"
@@ -427,7 +396,6 @@
     Type="Text"
     ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}"
     Group="CAS Smart Factory IPR"
-    Description="Tobacco Name"
     />
   <Field
     DisplayName="Duty Name [PLN]"
@@ -435,7 +403,6 @@
     Type="Text"
     ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}"
     Group="CAS Smart Factory IPR"
-    Description="Duty Name"
     />
   <Field
     DisplayName="VAT Name [PLN]"
@@ -443,7 +410,6 @@
     Type="Text"
     ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}"
     Group="CAS Smart Factory IPR"
-    Description="VAT Name"
     />
   <Field
     DisplayName="Cartons [kg]"
@@ -451,7 +417,6 @@
     Type="Number"
     ID="{EC985ABA-7AA4-4603-86E6-904837CF0F77}"
     Group="CAS Smart Factory IPR"
-    Description="Cartons"
     />
   <Field
     DisplayName="Value"
@@ -459,7 +424,6 @@
     Type="Number"
     ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}"
     Group="CAS Smart Factory IPR"
-    Description="Value"
     />
   <Field
     ID="{E6A94982-F43E-436D-94A5-63C3916455A3}"
@@ -507,7 +471,6 @@
   Type="Number"
   ID="{88259302-82EA-4ADC-90D3-B6B6B7CC3B16}"
   Group="CAS Smart Factory IPR"
-  Description="FG Quantity"
     />
   <Field
     DisplayName="FG Quantity (previous)"
@@ -515,7 +478,6 @@
     Type="Number"
     ID="{A0734EE0-F311-4FD8-A912-333C6F6E9690}"
     Group="CAS Smart Factory IPR"
-    Description="FG Quantity (previous)"
     />
   <Field
     DisplayName="FG Quantity (blocked)"
@@ -523,7 +485,6 @@
     Type="Number"
     ID="{EE831573-9757-4F8C-8DAF-E39E051998F3}"
     Group="CAS Smart Factory IPR"
-    Description="FG Quantity (blocked)"
     />
   <Field
     DisplayName="FG Quantity (available)"
@@ -531,7 +492,6 @@
     Type="Number"
     ID="{69ADEE04-E60C-4871-AAB4-8D12A09CEBC1}"
     Group="CAS Smart Factory IPR"
-    Description="FG Quantity (available)"
     />
   <Field
     DisplayName="Material Quantity"
@@ -539,7 +499,6 @@
     Type="Number"
     ID="{5DFBD671-91CA-498A-8508-7FFCE0FCC909}"
     Group="CAS Smart Factory IPR"
-    Description="Material Quantity"
     />
   <Field
     DisplayName="Material Quantity Previous"
@@ -547,7 +506,6 @@
     Type="Number"
     ID="{6F085CA9-2636-4526-8DF2-3A4B67EEE8DC}"
     Group="CAS Smart Factory IPR"
-    Description="Material Quantity Previous"
     />
   <Field
     DisplayName="Calculated overuse [%]"
@@ -555,7 +513,6 @@
     Type="Number"
     ID="{725952C1-86DA-41C1-8616-6F5B738B2CA0}"
     Group="CAS Smart Factory IPR"
-    Description="Calculated overuse"
     />
   <Field
     DisplayName="Overuse [kg]"
@@ -563,7 +520,6 @@
     Type="Number"
     ID="{36D134B9-A652-43F1-A650-51F62E079775}"
     Group="CAS Smart Factory IPR"
-    Description="Overuse"
     />
   <Field
     DisplayName="Dust [kg]"
@@ -603,7 +559,6 @@
     Type="Text"
     ID="{B523048C-0493-4D33-9166-D336C39F3C90}"
     Group="CAS Smart Factory IPR"
-    Description="Product ID"
     />
   <Field
     DisplayName="Tobacco Quantity [kg]"
@@ -611,7 +566,6 @@
     Type="Number"
     ID="{78638A08-748F-4619-A690-299315659702}"
     Group="CAS Smart Factory IPR"
-    Description="TobaccoQuantity"
     />
   <Field
     DisplayName="SAD Document No."
@@ -619,7 +573,6 @@
     Type="Text"
     ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}"
     Group="CAS Smart Factory IPR"
-    Description="SAD Document No."
     />
   <Field
     DisplayName="IPR Document No."
@@ -627,7 +580,6 @@
     Type="Text"
     ID="{4B9400B7-9A5D-4E55-84BF-7B609CF963F2}"
     Group="CAS Smart Factory IPR"
-    Description="IPR Document No."
     />
   <Field
     DisplayName="Settled quantity [kg]"
@@ -635,7 +587,6 @@
     Type="Number"
     ID="{333AB237-93FB-4910-B2FC-9A08A08643DA}"
     Group="CAS Smart Factory IPR"
-    Description="Settled quantity"
     />
   <Field
     DisplayName="Disposal Status"
@@ -644,8 +595,7 @@
     BaseType="Text"
     CanToggleHidden="TRUE"
     ID="{51E5B961-8234-4009-81C0-C6059298044F}"
-    Group="CAS Smart Factory IPR"
-    Description="Disposal Status">
+    Group="CAS Smart Factory IPR">
     <Default>Dust</Default>
     <CHOICES>
       <CHOICE>Dust</CHOICE>
@@ -670,8 +620,7 @@
     BaseType="Text"
     CanToggleHidden="TRUE"
     ID="{298F8DD7-97D6-4FE0-8A1F-08621BCF807A}"
-    Group="CAS Smart Factory IPR"
-    Description="Customs Status">
+    Group="CAS Smart Factory IPR">
     <Default>Not started</Default>
     <CHOICES>
       <CHOICE>Not started</CHOICE>
@@ -707,7 +656,6 @@
     Type="Number"
     ID="{3F511117-AE6F-40FF-801C-C8765D68E86D}"
     Group="CAS Smart Factory IPR"
-    Description="Tobacco Value"
     />
   <Field
     DisplayName="Remaining quantity [kg]"
@@ -723,6 +671,5 @@
     Type="Text"
     ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}"
     Group="CAS Smart Factory IPR"
-    Description="CustomsProcedure"
     />
 </Elements>
