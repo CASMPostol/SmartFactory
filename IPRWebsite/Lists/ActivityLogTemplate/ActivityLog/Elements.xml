@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Activity Log" OnQuickLaunch="TRUE" TemplateType="10056" Url="Lists/ActivityLog" Description="Activity Log List Instance"></ListInstance>
+</Elements>
