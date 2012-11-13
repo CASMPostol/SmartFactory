@@ -426,6 +426,12 @@
     <None Include="Lists\Reports\StockTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6e8f00c0-2aa8-44f9-bdcb-3ad901f40617}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\SettingsListTemplate\SettingsList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{242e0366-0e82-42c6-b1ea-762139c6bcbf}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\SettingsListTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6d275ed7-4df9-4bda-9544-c587266b6c08}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\SmartFactory\WarehouseTemplate\WarehouseList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4554477a-6759-4b77-ba04-85c085604db0}</SharePointProjectItemId>
     </None>
@@ -739,6 +745,9 @@
     <Content Include="Lists\Reports\StockTemplate\Elements.xml" />
     <Content Include="Lists\Reports\StockTemplate\StockList\Elements.xml" />
     <Content Include="Lists\Reports\StockTemplate\Schema.xml" />
+    <Content Include="Lists\SettingsListTemplate\Elements.xml" />
+    <Content Include="Lists\SettingsListTemplate\Schema.xml" />
+    <Content Include="Lists\SettingsListTemplate\SettingsList\Elements.xml" />
     <Content Include="Lists\SmartFactory\WarehouseTemplate\Elements.xml" />
     <Content Include="Lists\SmartFactory\WarehouseTemplate\WarehouseList\Elements.xml" />
     <Content Include="Lists\SmartFactory\WarehouseTemplate\Schema.xml" />

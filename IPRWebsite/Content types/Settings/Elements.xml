@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x01007860DD9E4A2C4C28A13C4DD2E6F0B710"
+               Name="Settings"
+               Group="CAS Smart Factory IPR"
+               Description="Settings List Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
+    <FieldRefs>
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="Key" Required="TRUE" />
+      <FieldRef ID="{94957CDE-A467-4C5B-A2FD-4714B56DC80D}" Name="KeyValue" Required="TRUE" />
+    </FieldRefs>
+  </ContentType>
+</Elements>
