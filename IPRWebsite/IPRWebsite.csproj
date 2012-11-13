@@ -170,6 +170,9 @@
     <None Include="Content types\Reports\TobaccoBatchSummary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3e38bc27-775d-4bb1-9607-30ef421c0c3b}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Settings\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{547d391f-d7b7-41f7-9081-6a67166a1fcd}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\SmartFactory\City\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3d8face3-f48c-4d05-bca5-8d2a3ef6bcee}</SharePointProjectItemId>
     </None>
@@ -524,6 +527,7 @@
     <Content Include="Content types\Reports\TobaccoBatchSummary\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\Settings\Elements.xml" />
     <Content Include="Content types\SmartFactory\City\Elements.xml" />
     <Content Include="Content types\SmartFactory\Commodity\Elements.xml" />
     <Content Include="Content types\SmartFactory\Country\Elements.xml" />
