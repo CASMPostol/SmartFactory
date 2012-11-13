@@ -26,7 +26,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       return GetCigaretteExportFormCollection( _consignment, documentName, invoice.BillDoc );
     }
     #endregion
-    
+
     #region private forms factory
     //accesor internal set to get access by unit tests framework.
     internal static CigaretteExportFormCollection GetCigaretteExportFormCollection( List<CigaretteExportForm> forms, string documentName, string invoiceNo )
@@ -168,14 +168,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
             entities.SubmitChanges();
             formsList.Add( GetIPRIngredient( _disposal ) );
           }
-          //TODO Material.Export - message is loged during export of FG  http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3371 
-          string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account"; 
+          string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account";
           Anons.Assert( entities, _quantity == 0, "Material.Export", string.Format( _template, material.Batch, _quantity, invoiceNoumber ) );
         }
         else if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.Tobacco )
         {
           _at = "RegularIngredient";
-          RegularIngredient _ri = new RegularIngredient( material.Batch, material.SKU, material.DisposedQuantity( portion ) );
+          RegularIngredient _ri = new RegularIngredient( material.Batch, material.SKU, Convert.ToDouble( material.DisposedQuantity( portion ) ) );
           formsList.Add( _ri );
         }
       }
