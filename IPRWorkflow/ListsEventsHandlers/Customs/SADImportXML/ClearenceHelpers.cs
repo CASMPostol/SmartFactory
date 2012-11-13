@@ -154,6 +154,7 @@ namespace CAS.SmartFactory.IPR.Customs
         _comments = "PCN lookup filed";
         PCNCode _pcn = PCNCode.AddOrGet( entities, clearence.ClearenceProcedure.Value, _iprdata.PCNTariffCode, _iprdata.TobaccoName );
         _at = "new IPRIPR";
+        //TODO SAD analyses error at CreateIPRAccount method error at new IPRIPR. http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3402
         IPRClass _ipr = new IPRClass()
         {
           AccountClosed = false,
