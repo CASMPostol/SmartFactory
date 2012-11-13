@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+  DisplayName="Value"
+  Name="KeyValue"
+  Type="Text"
+  ID="{94957CDE-A467-4C5B-A2FD-4714B56DC80D}"
+  Group="CAS Smart Factory IPR"
+    />
+  <Field
   DisplayName="Tobacco not allocated"
   Name="TobaccoNotAllocated"
   Type="Number"
