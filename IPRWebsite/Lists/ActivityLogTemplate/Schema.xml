@@ -68,7 +68,7 @@
         </ViewFields>
         <Query>
           <OrderBy>
-            <FieldRef Name="Modified" Ascending="FALSE"></FieldRef>
+            <FieldRef Name="ID" Ascending="FALSE"></FieldRef>
           </OrderBy>
         </Query>
       </View>
