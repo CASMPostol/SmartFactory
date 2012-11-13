@@ -225,6 +225,7 @@
     DisplayName="SKU"
     Name="SKU"
     Type="Text"
+    Indexed="TRUE"
     ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}"
     Group="CAS Smart Factory IPR Customs"
     />

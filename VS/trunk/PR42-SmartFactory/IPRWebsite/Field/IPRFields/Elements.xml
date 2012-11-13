@@ -111,6 +111,7 @@
     DisplayName="Batch"
     Name="Batch"
     Type="Text"
+    Indexed="TRUE"
     ID="{500870DA-A1F2-44FD-B34F-B1DF21DCD317}"
     Group="CAS Smart Factory IPR"
     />
@@ -120,6 +121,7 @@
     ID="{CA980625-03DA-4C63-B23A-B60F472CA2B3}"
     Format="Dropdown"
     BaseType="Text"
+    Indexed="TRUE"
     Name="BatchStatus"
     Group="CAS Smart Factory IPR"
     CanToggleHidden="TRUE">
@@ -208,6 +210,7 @@
     DisplayName="Document No"
     Name="DocumentNo"
     Type="Text"
+    Indexed="TRUE"
     ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}"
     Group="CAS Smart Factory IPR"
     />
@@ -599,6 +602,7 @@
     DisplayName="Disposal Status"
     Name="DisposalStatus"
     Type="Choice"
+    Indexed="TRUE"
     BaseType="Text"
     CanToggleHidden="TRUE"
     ID="{51E5B961-8234-4009-81C0-C6059298044F}"
@@ -625,6 +629,7 @@
     Type="Choice"
     Format="Dropdown"
     BaseType="Text"
+    Indexed="TRUE"
     CanToggleHidden="TRUE"
     ID="{298F8DD7-97D6-4FE0-8A1F-08621BCF807A}"
     Group="CAS Smart Factory IPR">
