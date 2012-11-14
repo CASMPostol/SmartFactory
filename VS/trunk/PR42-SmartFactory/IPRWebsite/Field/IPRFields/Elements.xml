@@ -493,6 +493,7 @@
     DisplayName="Overuse [kg]"
     Name="Overuse"
     Type="Number"
+    Decimals="2"
     ID="{36D134B9-A652-43F1-A650-51F62E079775}"
     Group="CAS Smart Factory IPR"
     />
@@ -500,6 +501,7 @@
     DisplayName="Dust [kg]"
     Name="Dust"
     Type="Number"
+    Decimals="2"
     ID="{E00CB825-5594-485D-A232-4DE70F99A939}"
     Group="CAS Smart Factory IPR"
     Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/dust"
@@ -508,6 +510,7 @@
     DisplayName="Waste [kg]"
     Name="Waste"
     Type="Number"
+    Decimals="2"
     ID="{41BDDA92-4D8D-4B1F-8C60-1D3B7AEA6B98}"
     Group="CAS Smart Factory IPR"
     Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/waste"
@@ -516,6 +519,7 @@
     DisplayName="SH Menthol [kg]"
     Name="SHMenthol"
     Type="Number"
+    Decimals="2"
     ID="{762353C4-D601-4461-84FA-EB26F7E314C2}"
     Group="CAS Smart Factory IPR"
     Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/SHMenthol"
@@ -524,6 +528,7 @@
     DisplayName="Tobacco [kg]"
     Name="Tobacco"
     Type="Number"
+    Decimals="2"
     ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}"
     Group="CAS Smart Factory IPR"
     Description="(Material Quantity-Material Quantity Previous)-kolumna'overuse'-kolumna'dust'-kolumna'waste'-kolumna'shmenthol'"
@@ -539,6 +544,7 @@
     DisplayName="Tobacco Quantity [kg]"
     Name="TobaccoQuantity"
     Type="Number"
+    Decimals="2"
     ID="{78638A08-748F-4619-A690-299315659702}"
     Group="CAS Smart Factory IPR"
     />
@@ -560,6 +566,7 @@
     DisplayName="Settled quantity [kg]"
     Name="SettledQuantity"
     Type="Number"
+    Decimals="2"
     ID="{333AB237-93FB-4910-B2FC-9A08A08643DA}"
     Group="CAS Smart Factory IPR"
     />
@@ -609,6 +616,7 @@
     DisplayName="Duty per settled amount [PLN]"
     Name="DutyPerSettledAmount"
     Type="Number"
+    Decimals="2"
     ID="{9B890369-B6CC-403E-A921-F9E686EF094C}"
     Group="CAS Smart Factory IPR"
     />
@@ -616,6 +624,7 @@
     DisplayName="VAT per settled amount [PLN]"
     Name="VATPerSettledAmount"
     Type="Number"
+    Decimals="2"
     ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}"
     Group="CAS Smart Factory IPR"
     />
@@ -638,7 +647,7 @@
     DisplayName="Remaining quantity [kg]"
     Name="RemainingQuantity"
     Type="Number"
-    Decimals="5"
+    Decimals="2"
     ID="{0E24A674-1FE7-4C77-9106-387E12417644}"
     Group="CAS Smart Factory IPR"
     />
