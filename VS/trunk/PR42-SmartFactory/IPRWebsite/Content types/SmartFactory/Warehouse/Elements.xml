@@ -8,10 +8,10 @@
                Inherits="TRUE">
 		<Folder TargetName="_cts/Warehouse" />
 		<FieldRefs>
-			<FieldRef ID="{c042a256-787d-4a6f-8a8a-cf6ab767f12d}" Name="ContentType" />
 			<FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" Required="TRUE" />
-			<FieldRef ID="{9eab9f89-5490-4f0f-b33d-25aa398202c0}" Name="External" Required="TRUE" />
-      <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
+      <FieldRef ID="{50702CE3-5FEE-4683-8F7F-574F4D737F48}" Name="WarehouseName" Required="TRUE" />
+      <FieldRef ID="{FF92B9DC-F23F-455D-9783-D54AF95E3C8F}" Name="Procedure" Required="TRUE" />
+      <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" Required="TRUE" />
 		</FieldRefs>
 	</ContentType>
 </Elements>

@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="Warehouse name"
+    Name="WarehouseName"
+    Type="Text"
+    ID="{50702CE3-5FEE-4683-8F7F-574F4D737F48}"
+    Group="CAS Smart Factory IPR Dictionaries"
+    />
+  <Field
     DisplayName="IPR"
     Name="IsIPR"
     Type="Boolean"
@@ -107,6 +114,15 @@
     Type="DateTime"
     Format="DateOnly"
     DisplayName="Valid to date">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    ID="{241DD617-F4A8-4088-8FA2-EFEE62A58DFE}"
+    Name="ConsentDate"
+    Group="CAS Smart Factory IPR Dictionaries"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Consent Date">
     <Default>[today]</Default>
   </Field>
 </Elements>
