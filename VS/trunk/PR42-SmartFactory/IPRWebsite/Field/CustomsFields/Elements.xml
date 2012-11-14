@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    ID="{C673BBDE-DD86-4BA1-A1B4-BED8137AC479}"
+    Name="SystemID"
+    Type="Text"
+    Group="CAS Smart Factory IPR Customs"
+    DisplayName="System ID"
+    />
+  <Field
     Name="ClearenceProcedure"
     ID="{7D196321-5D5D-4D55-908C-125A2E694670}"
     Type="Choice"
