@@ -14,6 +14,7 @@
       <FieldRef ID="{aa5b5938-e498-458e-9b3b-d19b43d42751}" Name="GrossMass" />
       <FieldRef ID="{ff92b9dc-f23f-455d-9783-d54af95e3c8f}" Name="Procedure" />
       <FieldRef ID="{ef4e42b5-f9da-415a-8e2d-335c0f31cd07}" Name="TotalAmountInvoiced" />
+      <FieldRef ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}" Name="NetMass" />
       <FieldRef ID="{3C43B503-165E-47D1-B931-342AC32AF61F}" Name="SADDocumentIndex" />
     </FieldRefs>
   </ContentType>
