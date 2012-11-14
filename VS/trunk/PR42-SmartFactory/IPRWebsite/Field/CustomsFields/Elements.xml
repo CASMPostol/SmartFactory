@@ -109,13 +109,6 @@
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    Name="GoodsName"
-    Type="Text"
-    ID="{46522ede-4acd-4497-9288-b638748930ab}"
-    DisplayName="GoodsName"
-    Group="CAS Smart Factory IPR Customs"
-    />
-  <Field
     Name="GoodsDescription"
     Type="Text"
     ID="{8566B26C-CC3A-445A-B54E-8D3EE093E577}"
@@ -148,27 +141,6 @@
     Name="BilledQuantity"
     Type="Number"
     ID="{BB77D0AB-0759-4F6A-A8AC-FF064702A62A}"
-    Group="CAS Smart Factory IPR Customs"
-    />
-  <Field
-    DisplayName="BUn"
-    Name="BUn"
-    Type="Text"
-    ID="{3616AB1A-7C13-4247-B5CF-F3043BBA1885}"
-    Group="CAS Smart Factory IPR Customs"
-    />
-  <Field
-    DisplayName="Material"
-    Name="Material"
-    Type="Text"
-    ID="{3AE267C0-9560-4259-9224-572DEF900DD2}"
-    Group="CAS Smart Factory IPR Customs"
-    />
-  <Field
-    DisplayName="BillQtyInSKU"
-    Name="BillQtyInSKU"
-    Type="Number"
-    ID="{2E58F2C1-968B-47FC-8390-36283EBFE205}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field

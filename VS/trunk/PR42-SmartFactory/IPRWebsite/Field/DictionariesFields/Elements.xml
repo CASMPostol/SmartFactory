@@ -8,13 +8,6 @@
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
-    Name="Dummy"
-    ID="{EE5449C9-839E-434F-8EBB-9AC9CE843FF9}"
-    Type="Text"
-    DisplayName="Dummy"
-    Group="CAS Smart Factory IPR"
-    />
-  <Field
     DisplayName="Menthol material"
     Name="MentholMaterial"
     Type="Boolean"
