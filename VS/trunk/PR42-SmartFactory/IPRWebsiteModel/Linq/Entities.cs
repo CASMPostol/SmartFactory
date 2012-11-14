@@ -2127,6 +2127,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Consent", Id="0x0100A7FE6CFCCADBB7409C1F0FA102B9C573")]
 	public partial class Consent : Element {
 		
+		private System.Nullable<System.DateTime> _consentDate;
+		
 		private System.Nullable<System.DateTime> _validFromDate;
 		
 		private System.Nullable<System.DateTime> _validToDate;
@@ -2153,6 +2155,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._iPR.OnChanged += new System.EventHandler(this.OnIPRChanged);
 			this._iPR.OnChanging += new System.EventHandler(this.OnIPRChanging);
 			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ConsentDate", Storage="_consentDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> ConsentDate {
+			get {
+				return this._consentDate;
+			}
+			set {
+				if ((value != this._consentDate)) {
+					this.OnPropertyChanging("ConsentDate", this._consentDate);
+					this._consentDate = value;
+					this.OnPropertyChanged("ConsentDate");
+				}
+			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ValidFromDate", Storage="_validFromDate", FieldType="DateTime")]
@@ -4562,6 +4578,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _grossMass;
 		
+		private System.Nullable<double> _netMass;
+		
+		private string _systemID;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<SADDocumentLib> _sADDocumenLibrarytIndex;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<SADGood> _sADGood;
@@ -4667,6 +4687,34 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this.OnPropertyChanging("GrossMass", this._grossMass);
 					this._grossMass = value;
 					this.OnPropertyChanged("GrossMass");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NetMass", Storage="_netMass", FieldType="Number")]
+		public System.Nullable<double> NetMass {
+			get {
+				return this._netMass;
+			}
+			set {
+				if ((value != this._netMass)) {
+					this.OnPropertyChanging("NetMass", this._netMass);
+					this._netMass = value;
+					this.OnPropertyChanged("NetMass");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SystemID", Storage="_systemID", FieldType="Text")]
+		public string SystemID {
+			get {
+				return this._systemID;
+			}
+			set {
+				if ((value != this._systemID)) {
+					this.OnPropertyChanging("SystemID", this._systemID);
+					this._systemID = value;
+					this.OnPropertyChanged("SystemID");
 				}
 			}
 		}
@@ -4826,6 +4874,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _totalAmountInvoiced;
 		
+		private System.Nullable<double> _netMass;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<Clearence> _clearence;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<SADDuties> _sADDuties;
@@ -4952,6 +5002,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this.OnPropertyChanging("TotalAmountInvoiced", this._totalAmountInvoiced);
 					this._totalAmountInvoiced = value;
 					this.OnPropertyChanged("TotalAmountInvoiced");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NetMass", Storage="_netMass", FieldType="Number")]
+		public System.Nullable<double> NetMass {
+			get {
+				return this._netMass;
+			}
+			set {
+				if ((value != this._netMass)) {
+					this.OnPropertyChanging("NetMass", this._netMass);
+					this._netMass = value;
+					this.OnPropertyChanged("NetMass");
 				}
 			}
 		}
@@ -6185,7 +6249,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Warehouse", Id="0x01001E57547208B49B46B4AA7CB4536B1A55")]
 	public partial class Warehouse : Element {
 		
-		private System.Nullable<bool> _external;
+		private string _warehouseName;
+		
+		private string _procedure;
 		
 		private System.Nullable<ProductType> _productType;
 		
@@ -6199,21 +6265,35 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="External", Storage="_external", Required=true, FieldType="Boolean")]
-		public System.Nullable<bool> External {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WarehouseName", Storage="_warehouseName", Required=true, FieldType="Text")]
+		public string WarehouseName {
 			get {
-				return this._external;
+				return this._warehouseName;
 			}
 			set {
-				if ((value != this._external)) {
-					this.OnPropertyChanging("External", this._external);
-					this._external = value;
-					this.OnPropertyChanged("External");
+				if ((value != this._warehouseName)) {
+					this.OnPropertyChanging("WarehouseName", this._warehouseName);
+					this._warehouseName = value;
+					this.OnPropertyChanged("WarehouseName");
 				}
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Procedure", Storage="_procedure", Required=true, FieldType="Text")]
+		public string Procedure {
+			get {
+				return this._procedure;
+			}
+			set {
+				if ((value != this._procedure)) {
+					this.OnPropertyChanging("Procedure", this._procedure);
+					this._procedure = value;
+					this.OnPropertyChanged("Procedure");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", Required=true, FieldType="Choice")]
 		public System.Nullable<ProductType> ProductType {
 			get {
 				return this._productType;
