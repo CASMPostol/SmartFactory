@@ -128,6 +128,9 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     private static void GetXmlContent( BatchXml xml, Entities edc, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
       SummaryContentInfo contentInfo = new Content( xml.Material, edc, progressChanged );
+      ActionResult _ar = new ActionResult();
+      if ( !contentInfo.Validate( _ar ) )
+        throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( _ar[ 0 ] );
       Batch batch =
           ( from idx in edc.Batch where idx.Batch0.Contains( contentInfo.Product.Batch ) && idx.BatchStatus.Value == BatchStatus.Preliminary select idx ).FirstOrDefault();
       if ( batch == null )
@@ -154,7 +157,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     }
     private class Content: SummaryContentInfo
     {
-      internal Content( BatchMaterialXml[] xml, Entities edc, ProgressChangedEventHandler progressChanged ): base()
+      internal Content( BatchMaterialXml[] xml, Entities edc, ProgressChangedEventHandler progressChanged )
+        : base()
       {
         foreach ( BatchMaterialXml item in xml )
         {
