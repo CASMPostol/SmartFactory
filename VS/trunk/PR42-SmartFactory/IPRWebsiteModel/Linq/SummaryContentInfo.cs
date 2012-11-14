@@ -131,5 +131,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           this[ _item ] += material[ _item ];
       }
     } //SummaryContentInfo
+
+    public bool Validate( ActionResult _ar )
+    {
+      bool _ret = true;
+      foreach ( Material item in this.Values)
+      {
+        if ( item.ProductType.Value != ProductType.IPRTobacco )
+          continue;
+      }
+      return _ret;
+    }
   }
 }
