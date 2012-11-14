@@ -52,18 +52,18 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       {
         edc = new Entities( url );
         String message = String.Format( "Import of the stock message {0} starting.", fileName );
-        Anons.WriteEntry( edc, m_Title, message );
+        ActivityLogCT.WriteEntry( edc, m_Title, message );
         edc.SubmitChanges();
         StockXml document = StockXml.ImportDocument( stream );
         Dokument entry = Element.GetAtIndex<Dokument>( edc.StockLibrary, listIndex );
         IportXml( document, edc, entry, progressChanged );
         progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
-        Anons.WriteEntry( edc, m_Title, "Import of the stock message finished" );
+        ActivityLogCT.WriteEntry( edc, m_Title, "Import of the stock message finished" );
         edc.SubmitChanges();
       }
       catch ( Exception ex )
       {
-        Anons.WriteEntry( edc, "Stock message import error", ex.Message );
+        ActivityLogCT.WriteEntry( edc, "Stock message import error", ex.Message );
       }
       finally
       {
@@ -91,7 +91,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
         }
         catch ( Exception ex )
         {
-          Anons.WriteEntry( edc, "Stock entry import error", ex.Message );
+          ActivityLogCT.WriteEntry( edc, "Stock entry import error", ex.Message );
           errors = true;
         }
       }

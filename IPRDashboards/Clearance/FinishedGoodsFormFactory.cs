@@ -169,7 +169,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
             formsList.Add( GetIPRIngredient( _disposal ) );
           }
           string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account";
-          Anons.Assert( entities, _quantity == 0, "Material.Export", string.Format( _template, material.Batch, _quantity, invoiceNoumber ) );
+          ActivityLogCT.Assert( entities, _quantity == 0, "Material.Export", string.Format( _template, material.Batch, _quantity, invoiceNoumber ) );
         }
         else if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.Tobacco )
         {

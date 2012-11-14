@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     }
     internal void Add2Log(Entities _edc)
     {
-      Anons.WriteEntry(_edc, this.Source, this.Message);
+      ActivityLogCT.WriteEntry( _edc, this.Source, this.Message );
     }
     private IPRDataConsistencyException()
       : base()

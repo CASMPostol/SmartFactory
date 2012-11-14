@@ -51,7 +51,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           FGQuantityPrevious = 0
         };
         edc.Batch.InsertOnSubmit( newBatch );
-        Anons.WriteEntry( edc, m_Source, String.Format( m_LookupFailedAndAddedMessage, batch ) );
+        ActivityLogCT.WriteEntry( edc, m_Source, String.Format( m_LookupFailedAndAddedMessage, batch ) );
       }
       return newBatch;
     }

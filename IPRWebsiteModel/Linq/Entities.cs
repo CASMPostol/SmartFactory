@@ -24,12 +24,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		/// <summary>
-		/// It contains logged messages.
+		/// Activity Log List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Activity Log")]
-		public Microsoft.SharePoint.Linq.EntityList<Anons> ActivityLog {
+		public Microsoft.SharePoint.Linq.EntityList<ActivityLogCT> ActivityLog {
 			get {
-				return this.GetList<Anons>("Activity Log");
+				return this.GetList<ActivityLogCT>("Activity Log");
 			}
 		}
 		
@@ -314,6 +314,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		/// <summary>
+		/// Settings List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Settings")]
+		public Microsoft.SharePoint.Linq.EntityList<Settings> Settings {
+			get {
+				return this.GetList<Settings>("Settings");
+			}
+		}
+		
+		/// <summary>
 		/// SHMentholList
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="SHMenthol")]
@@ -430,6 +440,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADPackage))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADQuantity))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADRequiredDocuments))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Settings))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SHMenthol))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SKUCommonPart))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Stock))]
@@ -568,6 +579,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Utwórz nowy element wiadomości, stan lub inną krótką informację.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Anons", Id="0x0104")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(ActivityLogCT))]
 	public partial class Anons : Element {
 		
 		private string _treść;
@@ -743,9 +755,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// SKU
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
 		public string SKU {
 			get {
@@ -760,9 +769,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Batch
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Batch", Storage="_batch", FieldType="Text")]
 		public string Batch {
 			get {
@@ -1186,9 +1192,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// Batch
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Batch", Storage="_batch0", FieldType="Text")]
 		public string Batch0 {
 			get {
@@ -1203,9 +1206,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// SKU
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
 		public string SKU {
 			get {
@@ -1220,9 +1220,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// FG Quantity
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FGQuantity", Storage="_fGQuantity", FieldType="Number")]
 		public System.Nullable<double> FGQuantity {
 			get {
@@ -1237,9 +1234,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// FG Quantity (previous)
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FGQuantityPrevious", Storage="_fGQuantityPrevious", FieldType="Number")]
 		public System.Nullable<double> FGQuantityPrevious {
 			get {
@@ -1254,9 +1248,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// FG Quantity (blocked)
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FGQuantityBlocked", Storage="_fGQuantityBlocked", FieldType="Number")]
 		public System.Nullable<double> FGQuantityBlocked {
 			get {
@@ -1271,9 +1262,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// FG Quantity (available)
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FGQuantityAvailable", Storage="_fGQuantityAvailable", FieldType="Number")]
 		public System.Nullable<double> FGQuantityAvailable {
 			get {
@@ -1288,9 +1276,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Material Quantity
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="MaterialQuantity", Storage="_materialQuantity", FieldType="Number")]
 		public System.Nullable<double> MaterialQuantity {
 			get {
@@ -1305,9 +1290,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Material Quantity Previous
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="MaterialQuantityPrevious", Storage="_materialQuantityPrevious", FieldType="Number")]
 		public System.Nullable<double> MaterialQuantityPrevious {
 			get {
@@ -1322,9 +1304,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Calculated overuse
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CalculatedOveruse", Storage="_calculatedOveruse", FieldType="Number")]
 		public System.Nullable<double> CalculatedOveruse {
 			get {
@@ -1339,9 +1318,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Overuse
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Overuse", Storage="_overuse", FieldType="Number")]
 		public System.Nullable<double> Overuse {
 			get {
@@ -1536,9 +1512,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// CFTProductivityNormMin
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CFTProductivityNormMin", Storage="_cFTProductivityNormMin", ReadOnly=true, IsCalculated=true, FieldType="Number")]
 		public System.Nullable<double> CFTProductivityNormMin {
 			get {
@@ -1553,9 +1526,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// CFTProductivityNormMax
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CFTProductivityNormMax", Storage="_cFTProductivityNormMax", ReadOnly=true, IsCalculated=true, FieldType="Number")]
 		public System.Nullable<double> CFTProductivityNormMax {
 			get {
@@ -1570,9 +1540,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// UsageMin
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="UsageMin", Storage="_usageMin", FieldType="Number")]
 		public System.Nullable<double> UsageMin {
 			get {
@@ -1587,9 +1554,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// UsageMax
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="UsageMax", Storage="_usageMax", FieldType="Number")]
 		public System.Nullable<double> UsageMax {
 			get {
@@ -1632,9 +1596,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Material Type
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
 		public System.Nullable<ProductType> ProductType {
 			get {
@@ -1649,9 +1610,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// BatchS tatus
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BatchStatus", Storage="_batchStatus", FieldType="Choice")]
 		public System.Nullable<BatchStatus> BatchStatus {
 			get {
@@ -2008,9 +1966,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// DocumentNo
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DocumentNo", Storage="_documentNo", FieldType="Text")]
 		public string DocumentNo {
 			get {
@@ -2042,9 +1997,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Status
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Status", Storage="_status", FieldType="Boolean")]
 		public System.Nullable<bool> Status {
 			get {
@@ -2349,7 +2301,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// CutfillerCoefficient
+	/// Cutfiller Coefficient List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CutfillerCoefficient", Id="0x01001D2AFAE51342C546A5F1677134421FD5")]
 	public partial class CutfillerCoefficient : Element {
@@ -2406,9 +2358,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// CFTProductivityNormMin
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CFTProductivityNormMin", Storage="_cFTProductivityNormMin", ReadOnly=true, IsCalculated=true, FieldType="Number")]
 		public System.Nullable<double> CFTProductivityNormMin {
 			get {
@@ -2423,9 +2372,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// CFTProductivityNormMax
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CFTProductivityNormMax", Storage="_cFTProductivityNormMax", ReadOnly=true, IsCalculated=true, FieldType="Number")]
 		public System.Nullable<double> CFTProductivityNormMax {
 			get {
@@ -2567,9 +2513,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// No.
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="No", Storage="_no", FieldType="Number")]
 		public System.Nullable<double> No {
 			get {
@@ -2584,9 +2527,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// SAD Document No.
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SADDocumentNo", Storage="_sADDocumentNo", FieldType="Text")]
 		public string SADDocumentNo {
 			get {
@@ -2629,9 +2569,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// IPR Document No.
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IPRDocumentNo", Storage="_iPRDocumentNo", FieldType="Text")]
 		public string IPRDocumentNo {
 			get {
@@ -2646,9 +2583,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Settled quantity
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SettledQuantity", Storage="_settledQuantity", FieldType="Number")]
 		public System.Nullable<double> SettledQuantity {
 			get {
@@ -2705,9 +2639,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Tobacco Value
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TobaccoValue", Storage="_tobaccoValue", FieldType="Number")]
 		public System.Nullable<double> TobaccoValue {
 			get {
@@ -2736,9 +2667,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// CustomsProcedure
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsProcedure", Storage="_customsProcedure", FieldType="Text")]
 		public string CustomsProcedure {
 			get {
@@ -2767,9 +2695,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Disposal Status
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DisposalStatus", Storage="_disposalStatus", FieldType="Choice")]
 		public System.Nullable<DisposalStatus> DisposalStatus {
 			get {
@@ -2784,9 +2709,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Customs Status
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsStatus", Storage="_customsStatus", FieldType="Choice")]
 		public System.Nullable<CustomsStatus> CustomsStatus {
 			get {
@@ -2801,9 +2723,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Winding-up
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ClearingType", Storage="_clearingType", FieldType="Choice")]
 		public System.Nullable<ClearingType> ClearingType {
 			get {
@@ -3010,7 +2929,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// Dust
+	/// Dust List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Dust", Id="0x0100E2A6EE8469AA524286812782556DFFF0")]
 	public partial class Dust : Element {
@@ -3035,9 +2954,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// DustRatio
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DustRatio", Storage="_dustRatio", FieldType="Number")]
 		public System.Nullable<double> DustRatio {
 			get {
@@ -3063,9 +2979,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Material Type
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
 		public System.Nullable<ProductType> ProductType {
 			get {
@@ -3128,9 +3041,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// CigaretteLenght
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CigaretteLenght", Storage="_cigaretteLenght", Required=true, FieldType="Text")]
 		public string CigaretteLenght {
 			get {
@@ -3145,9 +3055,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// FilterLenght
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FilterLenght", Storage="_filterLenght", Required=true, FieldType="Text")]
 		public string FilterLenght {
 			get {
@@ -3201,9 +3108,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// SKU description
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKUDescription", Storage="_sKUDescription", FieldType="Text")]
 		public string SKUDescription {
 			get {
@@ -3218,9 +3122,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Quantity
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Quantity", Storage="_quantity", FieldType="Number")]
 		public System.Nullable<double> Quantity {
 			get {
@@ -3235,9 +3136,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// j.m.
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Units", Storage="_units", FieldType="Text")]
 		public string Units {
 			get {
@@ -3252,9 +3150,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Material Type
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
 		public System.Nullable<ProductType> ProductType {
 			get {
@@ -3520,9 +3415,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// DocumentNo
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DocumentNo", Storage="_documentNo", FieldType="Text")]
 		public string DocumentNo {
 			get {
@@ -3565,9 +3457,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Tobacco Name
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TobaccoName", Storage="_tobaccoName", FieldType="Text")]
 		public string TobaccoName {
 			get {
@@ -3596,9 +3485,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// SKU
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
 		public string SKU {
 			get {
@@ -3613,9 +3499,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Batch
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Batch", Storage="_batch", FieldType="Text")]
 		public string Batch {
 			get {
@@ -3630,9 +3513,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Duty Name
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyName", Storage="_dutyName", FieldType="Text")]
 		public string DutyName {
 			get {
@@ -3647,9 +3527,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Cło
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Duty", Storage="_duty", FieldType="Number")]
 		public System.Nullable<double> Duty {
 			get {
@@ -3678,9 +3555,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// VAT Name
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VATName", Storage="_vATName", FieldType="Text")]
 		public string VATName {
 			get {
@@ -3695,9 +3569,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Vat
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VAT", Storage="_vAT", FieldType="Number")]
 		public System.Nullable<double> VAT {
 			get {
@@ -3726,9 +3597,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Net mass
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NetMass", Storage="_netMass", FieldType="Number")]
 		public System.Nullable<double> NetMass {
 			get {
@@ -3757,9 +3625,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Cartons
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Cartons", Storage="_cartons", FieldType="Number")]
 		public System.Nullable<double> Cartons {
 			get {
@@ -3788,9 +3653,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Value
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Value", Storage="_value", FieldType="Number")]
 		public System.Nullable<double> Value {
 			get {
@@ -4288,9 +4150,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// SKU description
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKUDescription", Storage="_sKUDescription", FieldType="Text")]
 		public string SKUDescription {
 			get {
@@ -4305,9 +4164,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// SKU
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
 		public string SKU {
 			get {
@@ -4322,9 +4178,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Batch
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Batch", Storage="_batch", FieldType="Text")]
 		public string Batch {
 			get {
@@ -4339,9 +4192,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Product ID
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductID", Storage="_productID", FieldType="Text")]
 		public string ProductID {
 			get {
@@ -4356,9 +4206,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// StorLoc
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="StorLoc", Storage="_storLoc", FieldType="Text")]
 		public string StorLoc {
 			get {
@@ -4373,9 +4220,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// FG Quantity
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FGQuantity", Storage="_fGQuantity", FieldType="Number")]
 		public System.Nullable<double> FGQuantity {
 			get {
@@ -4390,9 +4234,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// TobaccoQuantity
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TobaccoQuantity", Storage="_tobaccoQuantity", FieldType="Number")]
 		public System.Nullable<double> TobaccoQuantity {
 			get {
@@ -4407,9 +4248,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// j.m.
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Units", Storage="_units", FieldType="Text")]
 		public string Units {
 			get {
@@ -4424,9 +4262,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Overuse
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Overuse", Storage="_overuse", FieldType="Number")]
 		public System.Nullable<double> Overuse {
 			get {
@@ -4509,9 +4344,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Material Type
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
 		public System.Nullable<ProductType> ProductType {
 			get {
@@ -4591,7 +4423,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private string _compensationGood;
 		
-		private string _procedure;
+		private string _requestedProcedure;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
 		
@@ -4615,9 +4447,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// ProductCodeNumber
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductCodeNumber", Storage="_productCodeNumber", FieldType="Text")]
 		public string ProductCodeNumber {
 			get {
@@ -4646,16 +4475,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="RequestedProcedure", Storage="_procedure", FieldType="Text")]
-		public string Procedure {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="RequestedProcedure", Storage="_requestedProcedure", FieldType="Text")]
+		public string RequestedProcedure {
 			get {
-				return this._procedure;
+				return this._requestedProcedure;
 			}
 			set {
-				if ((value != this._procedure)) {
-					this.OnPropertyChanging("Procedure", this._procedure);
-					this._procedure = value;
-					this.OnPropertyChanged("Procedure");
+				if ((value != this._requestedProcedure)) {
+					this.OnPropertyChanging("RequestedProcedure", this._requestedProcedure);
+					this._requestedProcedure = value;
+					this.OnPropertyChanged("RequestedProcedure");
 				}
 			}
 		}
@@ -4923,9 +4752,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// Duty type
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyType", Storage="_dutyType", FieldType="Text")]
 		public string DutyType {
 			get {
@@ -4940,9 +4766,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Amount
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Amount", Storage="_amount", FieldType="Number")]
 		public System.Nullable<double> Amount {
 			get {
@@ -5049,9 +4872,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// PozID
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ItemNo", Storage="_itemNo", FieldType="Number")]
 		public System.Nullable<double> ItemNo {
 			get {
@@ -5066,9 +4886,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// TBD
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GoodsDescription", Storage="_goodsDescription", FieldType="Text")]
 		public string GoodsDescription {
 			get {
@@ -5083,9 +4900,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Kod taryfy PCN
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PCNTariffCode", Storage="_pCNTariffCode", FieldType="Text")]
 		public string PCNTariffCode {
 			get {
@@ -5114,9 +4928,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Procedura celna
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Procedure", Storage="_procedure", FieldType="Text")]
 		public string Procedure {
 			get {
@@ -5131,9 +4942,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Wartość
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TotalAmountInvoiced", Storage="_totalAmountInvoiced", FieldType="Number")]
 		public System.Nullable<double> TotalAmountInvoiced {
 			get {
@@ -5337,9 +5145,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// PozID
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ItemNo", Storage="_itemNo", FieldType="Number")]
 		public System.Nullable<double> ItemNo {
 			get {
@@ -5354,9 +5159,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Rodzaj opakowania
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Package", Storage="_package", FieldType="Text")]
 		public string Package {
 			get {
@@ -5427,9 +5229,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// PozID
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ItemNo", Storage="_itemNo", FieldType="Number")]
 		public System.Nullable<double> ItemNo {
 			get {
@@ -5444,9 +5243,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Net mass
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NetMass", Storage="_netMass", FieldType="Number")]
 		public System.Nullable<double> NetMass {
 			get {
@@ -5461,9 +5257,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// j.m.
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Units", Storage="_units", FieldType="Text")]
 		public string Units {
 			get {
@@ -5532,9 +5325,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// Code
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Code", Storage="_code", FieldType="Text")]
 		public string Code {
 			get {
@@ -5549,9 +5339,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Number
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Number", Storage="_number", FieldType="Text")]
 		public string Number {
 			get {
@@ -5595,7 +5382,40 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// It contains a table of entries describing all the coefficients of menthol usage in cigarettes, including the date of their validity.
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Settings", Id="0x01007860DD9E4A2C4C28A13C4DD2E6F0B710")]
+	public partial class Settings : Element {
+		
+		private string _keyValue;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public Settings() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="KeyValue", Storage="_keyValue", Required=true, FieldType="Text")]
+		public string KeyValue {
+			get {
+				return this._keyValue;
+			}
+			set {
+				if ((value != this._keyValue)) {
+					this.OnPropertyChanging("KeyValue", this._keyValue);
+					this._keyValue = value;
+					this.OnPropertyChanged("KeyValue");
+				}
+			}
+		}
+	}
+	
+	/// <summary>
+	/// SH Menthol List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SHMenthol", Id="0x010029964D9D2D53F84CB1083741C40FA8D1")]
 	public partial class SHMenthol : Element {
@@ -5620,9 +5440,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// SHMentholRatio
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SHMentholRatio", Storage="_sHMentholRatio", Required=true, FieldType="Number")]
 		public System.Nullable<double> SHMentholRatio {
 			get {
@@ -5648,9 +5465,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Material Type
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", Required=true, FieldType="Choice")]
 		public System.Nullable<ProductType> ProductType {
 			get {
@@ -5735,9 +5549,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// SKU
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
 		public string SKU {
 			get {
@@ -5752,9 +5563,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// IPR Material
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="IPRMaterial", Storage="_iPRMaterial", FieldType="Boolean")]
 		public System.Nullable<bool> IPRMaterial {
 			get {
@@ -5769,9 +5577,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Material Type
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
 		public System.Nullable<ProductType> ProductType {
 			get {
@@ -6010,9 +5815,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// SKU
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
 		public string SKU {
 			get {
@@ -6027,9 +5829,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// StorLoc
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="StorLoc", Storage="_storLoc", FieldType="Text")]
 		public string StorLoc {
 			get {
@@ -6044,9 +5843,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// j.m.
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Units", Storage="_units", FieldType="Text")]
 		public string Units {
 			get {
@@ -6061,9 +5857,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Batch
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Batch", Storage="_batch", FieldType="Text")]
 		public string Batch {
 			get {
@@ -6078,9 +5871,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Unrestricted
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Unrestricted", Storage="_unrestricted", FieldType="Number")]
 		public System.Nullable<double> Unrestricted {
 			get {
@@ -6095,9 +5885,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// InQualityInsp
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="InQualityInsp", Storage="_inQualityInsp", FieldType="Number")]
 		public System.Nullable<double> InQualityInsp {
 			get {
@@ -6112,9 +5899,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// RestrictedUse
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="RestrictedUse", Storage="_restrictedUse", FieldType="Number")]
 		public System.Nullable<double> RestrictedUse {
 			get {
@@ -6129,9 +5913,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Blocked
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Blocked", Storage="_blocked", FieldType="Number")]
 		public System.Nullable<double> Blocked {
 			get {
@@ -6146,9 +5927,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Quantity
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Quantity", Storage="_quantity", FieldType="Number")]
 		public System.Nullable<double> Quantity {
 			get {
@@ -6180,9 +5958,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Material Type
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
 		public System.Nullable<ProductType> ProductType {
 			get {
@@ -6253,7 +6028,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// It contains all relevant norms of tobacco usage for cigarette production. Tobacco consumption for the different formats will be entered into the system as the max and min numbers; the user should declare (select from list) an appropriate format for the norm. The list must contain information as to since when the norm has been valid and when it expires.
+	/// Usage List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Usage", Id="0x01000E2260EFB66F324B9CC50EEEC274F5FD")]
 	public partial class Usage : Element {
@@ -6288,9 +6063,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// UsageMin
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="UsageMin", Storage="_usageMin", FieldType="Number")]
 		public System.Nullable<double> UsageMin {
 			get {
@@ -6305,9 +6077,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// UsageMax
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="UsageMax", Storage="_usageMax", FieldType="Number")]
 		public System.Nullable<double> UsageMax {
 			get {
@@ -6411,7 +6180,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// Warehouse
+	/// Utwórz nowy element listy.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Warehouse", Id="0x01001E57547208B49B46B4AA7CB4536B1A55")]
 	public partial class Warehouse : Element {
@@ -6430,9 +6199,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// External
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="External", Storage="_external", Required=true, FieldType="Boolean")]
 		public System.Nullable<bool> External {
 			get {
@@ -6447,9 +6213,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Material Type
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
 		public System.Nullable<ProductType> ProductType {
 			get {
@@ -6466,7 +6229,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// Utwórz nowy element listy.
+	/// Waste List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Waste", Id="0x01002D6DCE3B847D5942ACDD176925283176")]
 	public partial class Waste : Element {
@@ -6491,9 +6254,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// WasteRatio
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="WasteRatio", Storage="_wasteRatio", FieldType="Number")]
 		public System.Nullable<double> WasteRatio {
 			get {
@@ -6519,9 +6279,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// Material Type
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ProductType", Storage="_productType", FieldType="Choice")]
 		public System.Nullable<ProductType> ProductType {
 			get {
@@ -6628,6 +6385,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		#endregion
 		
 		public Country() {
+			this.OnCreated();
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element wiadomości, stan lub inną krótką informację.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="ActivityLogCT", Id="0x0104005C85A6C821F245D582FCC9CDC2D3688C")]
+	public partial class ActivityLogCT : Anons {
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public ActivityLogCT() {
 			this.OnCreated();
 		}
 	}
@@ -6752,9 +6526,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// BillDoc
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="BillDoc", Storage="_billDoc", FieldType="Text")]
 		public string BillDoc {
 			get {
@@ -7068,7 +6839,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// Balance Summary content type
+	/// Balance Summary List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="BalanceSummary", Id="0x0100BC0DDC1827F346ED911D777504830C5200673B96617EA2407484DB22020E9F5289")]
 	public partial class BalanceSummary : ReportsCommonPart {
@@ -7290,7 +7061,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// Cigarette SKU
+	/// Cigarette SKU List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SKUCigarette", Id="0x010014C98F440FB04C679F1D9D39ACC92D8A0029E2E9BC132C4633B01B0DF733A64ADA")]
 	public partial class SKUCigarette : SKUCommonPart {
@@ -7347,9 +7118,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// CigaretteLenght
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CigaretteLenght", Storage="_cigaretteLenght", FieldType="Text")]
 		public string CigaretteLenght {
 			get {
@@ -7364,9 +7132,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		/// <summary>
-		/// FilterLenght
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="FilterLenght", Storage="_filterLenght", FieldType="Text")]
 		public string FilterLenght {
 			get {
@@ -7425,7 +7190,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// Cutfiller SKU
+	/// Cutfiller SKU List Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="SKUCutfiller", Id="0x010014C98F440FB04C679F1D9D39ACC92D8A00AE74B7010F534DB980D221D41D0BCBA1")]
 	public partial class SKUCutfiller : SKUCommonPart {
@@ -7444,9 +7209,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		/// <summary>
-		/// j.m.
-		/// </summary>
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Units", Storage="_units", FieldType="Text")]
 		public string Units {
 			get {

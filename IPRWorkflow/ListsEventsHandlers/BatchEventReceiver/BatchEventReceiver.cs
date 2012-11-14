@@ -69,7 +69,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       {
         using ( Entities _edc = new Entities( _properties.WebUrl ) )
         {
-          Anons.WriteEntry( _edc, "BatchEventReceiver.ItemAdded" + " at " + At, _ex.Message );
+          ActivityLogCT.WriteEntry( _edc, "BatchEventReceiver.ItemAdded" + " at " + At, _ex.Message );
           BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>( _edc.BatchLibrary, _properties.ListItemId );
           _entry.BatchLibraryComments = "Batch message import error";
           _entry.BatchLibraryOK = false;
@@ -95,13 +95,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       try
       {
         progressChanged( null, new ProgressChangedEventArgs( 1, "Importing XML" ) );
-        Anons.WriteEntry( _edc, m_Title, String.Format( m_Message, fileName ) );
+        ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( m_Message, fileName ) );
         _edc.SubmitChanges();
         BatchXml _xml = BatchXml.ImportDocument( stream );
         progressChanged( null, new ProgressChangedEventArgs( 1, "Getting Data" ) );
         GetXmlContent( _xml, _edc, _entry, progressChanged );
         progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
-        Anons.WriteEntry( _edc, m_Title, "Import of the batch message finished" );
+        ActivityLogCT.WriteEntry( _edc, m_Title, "Import of the batch message finished" );
         _edc.SubmitChanges();
       }
       catch ( IPRDataConsistencyException _ex )

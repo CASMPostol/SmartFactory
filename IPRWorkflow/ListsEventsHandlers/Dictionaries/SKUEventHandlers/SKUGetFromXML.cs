@@ -62,7 +62,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
         catch (Exception ex)
         {
           string message = String.Format("Cannot create: {0}:{1} because of the error: {2}", item.GetMaterial(), item.GetMaterialDescription(), ex.Message);
-          Anons.WriteEntry(edc, "SKU entry error", message);
+          ActivityLogCT.WriteEntry( edc, "SKU entry error", message );
         }
       }
       if (entities.Count > 0)
