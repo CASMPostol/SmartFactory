@@ -17,6 +17,8 @@
           <FieldRef Name="ExchangeRate" ID="{2995A5AF-EC77-4FD7-89F8-898B5068A5E4}" />
           <FieldRef Name="GrossMass" ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" />
           <FieldRef Name="SADDocumenLibrarytIndex" ID="{66D3CFD7-0C8F-4BC9-B896-EF9A680E2FC5}" />
+          <FieldRef Name="NetMass" ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}" />
+          <FieldRef Name="SystemID" ID="{C673BBDE-DD86-4BA1-A1B4-BED8137AC479}" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
@@ -52,13 +54,15 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef Name="ReferenceNumber" ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}" />
-          <FieldRef Name="CustomsDebtDate" ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}" />
-          <FieldRef Name="DocumentNumber" ID="{760B5433-5802-47AA-BB65-6438772D78B5}" />
-          <FieldRef Name="Currency" ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" />
-          <FieldRef Name="ExchangeRate" ID="{2995A5AF-EC77-4FD7-89F8-898B5068A5E4}" />
-          <FieldRef Name="GrossMass" ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" />
-          <FieldRef Name="SADDocumenLibrarytIndex" ID="{66D3CFD7-0C8F-4BC9-B896-EF9A680E2FC5}" />
+          <FieldRef Name="ReferenceNumber" />
+          <FieldRef Name="CustomsDebtDate" />
+          <FieldRef Name="DocumentNumber" />
+          <FieldRef Name="Currency" />
+          <FieldRef Name="ExchangeRate" />
+          <FieldRef Name="GrossMass" />
+          <FieldRef Name="SADDocumenLibrarytIndex" />
+          <FieldRef Name="NetMass" />
+          <FieldRef Name="SystemID" />
         </ViewFields>
         <Query>
           <OrderBy>
