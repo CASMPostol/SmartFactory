@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       {
         edc = new Entities(url);
         String message = String.Format("Import of the SKU message {0} starting.", listIndex);
-        Anons.WriteEntry(edc, m_Title, message);
+        ActivityLogCT.WriteEntry( edc, m_Title, message );
         SKUXml xml = SKUXml.ImportDocument(stream);
         Dokument entry = Element.GetAtIndex<Dokument>(edc.SKULibrary, listIndex);
         SKUGetFromXML.GetXmlContent(xml, edc, entry, progressChanged);
@@ -57,13 +57,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       }
       catch (Exception ex)
       {
-        Anons.WriteEntry(edc, "SKU message import error", ex.Message);
+        ActivityLogCT.WriteEntry( edc, "SKU message import error", ex.Message );
       }
       finally
       {
         if (edc != null)
         {
-          Anons.WriteEntry(edc, m_Title, "Import of the message finished");
+          ActivityLogCT.WriteEntry( edc, m_Title, "Import of the message finished" );
           edc.SubmitChangesSilently(RefreshMode.OverwriteCurrentValues);
           edc.Dispose();
         }

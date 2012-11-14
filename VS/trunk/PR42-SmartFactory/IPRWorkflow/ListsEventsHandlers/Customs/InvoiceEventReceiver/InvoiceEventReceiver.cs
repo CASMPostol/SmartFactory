@@ -60,17 +60,17 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
         using ( Entities edc = new Entities( url ) )
         {
           String message = String.Format( "Import of the invoice message {0} starting.", fileName );
-          Anons.WriteEntry( edc, m_Title, message );
+          ActivityLogCT.WriteEntry( edc, m_Title, message );
           InvoiceXml document = InvoiceXml.ImportDocument( stream );
           InvoiceLib entry = Element.GetAtIndex<InvoiceLib>( edc.InvoiceLibrary, listIndex );
           GetXmlContent( document, edc, entry );
-          Anons.WriteEntry( edc, m_Title, "Import of the invoice message finished" );
+          ActivityLogCT.WriteEntry( edc, m_Title, "Import of the invoice message finished" );
         }
       }
       catch ( Exception ex )
       {
         using ( Entities edc = new Entities( url ) )
-          Anons.WriteEntry( edc, "Aborted Invoice message import because of the error", ex.Message );
+          ActivityLogCT.WriteEntry( edc, "Aborted Invoice message import because of the error", ex.Message );
       }
     }
     #endregion
@@ -108,7 +108,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
         {
           _result = false;
           string _msg = "Cannot create new entry for the invoice No={0}/{1}, SKU={2}, because of error: {3}";
-          Anons.WriteEntry( edc, "Invoice import", String.Format( _msg, item.Bill_doc, item.Item, item.Description, ex.Message ) );
+          ActivityLogCT.WriteEntry( edc, "Invoice import", String.Format( _msg, item.Bill_doc, item.Item, item.Description, ex.Message ) );
         }
       }
       return _result;

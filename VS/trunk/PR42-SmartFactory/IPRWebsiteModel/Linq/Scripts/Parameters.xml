@@ -16,7 +16,6 @@
   <List Name="Invoice Library" />
   <List Name="IPR" />
   <List Name="IPR Library" />
-  <List Name="JSOX" />
   <List Name="JSOX Customs Summary" />
   <List Name="JSOX Library" />
   <List Name="JSOX Summary" />
@@ -32,6 +31,7 @@
   <List Name="SAD Package" />
   <List Name="SAD Quantity" />
   <List Name="SAD Required Documents" />
+  <List Name="Settings" />
   <List Name="SHMenthol" />
   <List Name="SKU" />
   <List Name="SKU Library" />
@@ -194,7 +194,7 @@
     <Column Name="Title" Member="Title" />
     <Column Name="ProductCodeNumber" Member="ProductCodeNumber" />
     <Column Name="CompensationGood" Member="CompensationGood" />
-    <Column Name="IsIPR" Member="IsIPR" />
+    <Column Name="RequestedProcedure" Member="RequestedProcedure" />
   </ContentType>
   <ContentType Name="SADGood" Class="SADGood">
     <!--<Column Name="ContentType" Member="ContentType" />-->
@@ -245,6 +245,11 @@
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="EUPrimeMarket" Member="EUPrimeMarket" />
+  </ContentType>
+  <ContentType Name="Settings" Class="Settings">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Title" Member="Title" />
+    <Column Name="KeyValue" Member="KeyValue" />
   </ContentType>
   <ContentType Name="SADPackage" Class="SADPackage">
     <!--<Column Name="ContentType" Member="ContentType" />-->
@@ -534,5 +539,11 @@
     <Column Name="Created_x0020_By" Member="Created_x0020_By" />
     <Column Name="BatchLibraryOK" Member="BatchLibraryOK" />
     <Column Name="BatchLibraryComments" Member="BatchLibraryComments" />
+  </ContentType>
+  <ContentType Name="ActivityLogCT" Class="ActivityLogCT">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Title" Member="Title" />
+    <Column Name="Body" Member="Body" />
+    <Column Name="Expires" Member="Expires" />
   </ContentType>
 </Web>

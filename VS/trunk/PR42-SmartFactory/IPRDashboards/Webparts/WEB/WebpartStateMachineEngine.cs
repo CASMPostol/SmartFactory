@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.WEB
         case ActionResult.Result.NotValidated:
           break;
         case ActionResult.Result.Exception:
-          Anons.WriteEntry( _rslt.ActionException.Source, _rslt.ActionException.Message );
+          ActivityLogCT.WriteEntry( _rslt.ActionException.Source, _rslt.ActionException.Message );
           break;
       }
     }

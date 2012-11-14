@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.IPR.Customs
               //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
               //throw new IPRDataConsistencyException("ItemAdded", "Import of a SAD declaration message failed because the file is empty.", null, "There is no file");
             }
-            Anons mess = new Anons()
+            ActivityLogCT mess = new ActivityLogCT()
             {
               Title = m_Title,
               Treść = String.Format( "Import of the SAD declaration {0} starting.", properties.ListItem.File.ToString() )

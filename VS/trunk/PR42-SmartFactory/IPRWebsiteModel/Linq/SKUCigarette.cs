@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.FilterLenght = filterLenght;
       Format frmt = Format.GetFormatLookup( cigaretteLenght, filterLenght, edc );
       if ( frmt == null )
-        Anons.WriteEntry( edc, m_Source, string.Format( m_FrmtTemplate, this.SKU ) );
+        ActivityLogCT.WriteEntry( edc, m_Source, string.Format( m_FrmtTemplate, this.SKU ) );
       return frmt;
     }
     /// <summary>
@@ -36,7 +36,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 
       if ( String.IsNullOrEmpty( this.PrimeMarket ) )
       {
-        Anons.WriteEntry( edc, m_Source, string.Format( m_PMTemplate, this.Title ) );
+        ActivityLogCT.WriteEntry( edc, m_Source, string.Format( m_PMTemplate, this.Title ) );
         return new Nullable<bool>();
       }
       return !CustomsUnion.CheckIfUnion( this.PrimeMarket, edc );

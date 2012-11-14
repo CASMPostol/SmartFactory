@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           {
             //TODO PCNCode - auto generation value of the column CompensationGood http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3341
             CompensationGood = "Tytoń",
-            Procedure = Entities.RequestedProcedure( procedureCode ),
+            RequestedProcedure = Entities.RequestedProcedure( procedureCode ),
             ProductCodeNumber = productCodeNumber,
             Title = title
           };
@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       string _requestedProcedure = Entities.RequestedProcedure( procedureCode );
       PCNCode _pcn = ( from _pcnx in entities.PCNCode
-                       where ( String.IsNullOrEmpty( _pcnx.Procedure ) || _pcnx.Procedure.Contains( _requestedProcedure ) ) &&
+                       where ( String.IsNullOrEmpty( _pcnx.RequestedProcedure ) || _pcnx.RequestedProcedure.Contains( _requestedProcedure ) ) &&
                              _pcnx.ProductCodeNumber.Contains( productCodeNumber )
                        select _pcnx ).FirstOrDefault();
       return _pcn;
