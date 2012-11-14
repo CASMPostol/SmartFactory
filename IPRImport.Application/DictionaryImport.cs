@@ -194,7 +194,8 @@ namespace CAS.SmartFactory.Management
       {
         Warehouse wrh = new Warehouse
         {
-          External = item.External,
+          //TODO update to the current model.
+          //External = item.External,
           ProductType = item.ProductType.ParseProductType(),
           Title = item.Title
         };

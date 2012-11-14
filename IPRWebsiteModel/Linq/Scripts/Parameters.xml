@@ -167,7 +167,8 @@
   <ContentType Name="Warehouse" Class="Warehouse">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
-    <Column Name="External" Member="External" />
+    <Column Name="WarehouseName" Member="WarehouseName" />
+    <Column Name="Procedure" Member="Procedure" />
     <Column Name="ProductType" Member="ProductType" />
   </ContentType>
   <ContentType Name="Clearence" Class="Clearence">
@@ -205,6 +206,7 @@
     <Column Name="GrossMass" Member="GrossMass" />
     <Column Name="Procedure" Member="Procedure" />
     <Column Name="TotalAmountInvoiced" Member="TotalAmountInvoiced" />
+    <Column Name="NetMass" Member="NetMass" />
     <Column Name="SADDocumentIndex" Member="SADDocumentIndex" />
   </ContentType>
   <ContentType Name="SADDuties" Class="SADDuties">
@@ -288,6 +290,8 @@
     <Column Name="ExchangeRate" Member="ExchangeRate" />
     <Column Name="GrossMass" Member="GrossMass" />
     <Column Name="SADDocumenLibrarytIndex" Member="SADDocumenLibrarytIndex" />
+    <Column Name="NetMass" Member="NetMass" />
+    <Column Name="SystemID" Member="SystemID" />
   </ContentType>
   <ContentType Name="TobaccoBatchSummary" Class="TobaccoBatchSummary">
     <!--<Column Name="ContentType" Member="ContentType" />-->
@@ -296,6 +300,7 @@
   <ContentType Name="Consent" Class="Consent">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
+    <Column Name="ConsentDate" Member="ConsentDate" />
     <Column Name="ValidFromDate" Member="ValidFromDate" />
     <Column Name="ValidToDate" Member="ValidToDate" />
     <Column Name="ProductivityRateMin" Member="ProductivityRateMin" />
