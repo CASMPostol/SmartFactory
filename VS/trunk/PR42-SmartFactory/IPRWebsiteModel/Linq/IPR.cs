@@ -44,6 +44,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from IPR _iprx in edc.IPR where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
     }
+    internal static bool IsAvailable( Entities edc, string batch, double requestedTobacco )
+    {
+      return FindIPRAccountsWithNotAllocatedTobacco(edc, batch).Sum<IPR>(a => a.TobaccoNotAllocated.Value) >= requestedTobacco; 
+    }
     public void AddDisposal( Entities edc, decimal quantity )
     {
       AddDisposal( edc, DisposalEnum.Cartons, ref quantity, null, null );

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using CAS.SharePoint;
+using CAS.SharePoint.Web;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using BatchMaterialXml = CAS.SmartFactory.xml.erp.BatchMaterial;
@@ -94,7 +95,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     {
       try
       {
-        progressChanged( null, new ProgressChangedEventArgs( 1, "Importing XML" ) );
+        progressChanged( null, new ProgressChangedEventArgs( 1, "Importing batch XML file" ) );
         ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( m_Message, fileName ) );
         _edc.SubmitChanges();
         BatchXml _xml = BatchXml.ImportDocument( stream );
@@ -103,6 +104,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
         ActivityLogCT.WriteEntry( _edc, m_Title, "Import of the batch message finished" );
         _edc.SubmitChanges();
+      }
+      catch ( GenericStateMachineEngine.ActionResult _ve )
+      {
+        throw _ve;
       }
       catch ( IPRDataConsistencyException _ex )
       {
@@ -129,8 +134,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     {
       SummaryContentInfo contentInfo = new Content( xml.Material, edc, progressChanged );
       ActionResult _ar = new ActionResult();
-      if ( !contentInfo.Validate( _ar ) )
-        throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( _ar[ 0 ] );
+      if ( !contentInfo.Validate(edc, _ar ) )
+        throw GenericStateMachineEngine.ActionResult.NotValidated( _ar[ 0 ] );
       Batch batch =
           ( from idx in edc.Batch where idx.Batch0.Contains( contentInfo.Product.Batch ) && idx.BatchStatus.Value == BatchStatus.Preliminary select idx ).FirstOrDefault();
       if ( batch == null )

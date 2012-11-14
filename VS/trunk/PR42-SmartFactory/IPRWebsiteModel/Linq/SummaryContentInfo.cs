@@ -130,17 +130,28 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         foreach ( WebsiteModel.Linq.Material.DisposalsEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.Material.DisposalsEnum ) ) )
           this[ _item ] += material[ _item ];
       }
-    } //SummaryContentInfo
-
-    public bool Validate( ActionResult _ar )
+    } //DisposalsAnalisis
+    /// <summary>
+    /// Validates this instance.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="actionResult">The result of validation.</param>
+    /// <returns></returns>
+    public bool Validate( Entities edc, ActionResult actionResult )
     {
       bool _ret = true;
-      foreach ( Material item in this.Values)
+      foreach ( Material item in this.Values )
       {
         if ( item.ProductType.Value != ProductType.IPRTobacco )
           continue;
+        if ( !IPR.IsAvailable( edc, item.Batch, item.TobaccoQuantity.Value ) )
+        {
+          string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, quantity: {2}";
+          actionResult.Add( String.Format( _mssg, item.Batch, item.Material2BatchIndex.Batch0, item.TobaccoQuantity.Value ) );
+          _ret = false;
+        }
       }
       return _ret;
     }
-  }
+  }//SummaryContentInfo
 }
