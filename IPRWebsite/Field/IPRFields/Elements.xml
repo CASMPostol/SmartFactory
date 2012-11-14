@@ -87,13 +87,6 @@
   Required="TRUE"
     />
   <Field
-  DisplayName="Material Description"
-  Name="MaterialDescription"
-  Type="Text"
-  ID="{CF44612E-FDF4-47AD-B730-43F88EE2D9D0}"
-  Group="CAS Smart Factory IPR"
-    />
-  <Field
     DisplayName="External"
     Name="External"
     Type="Boolean"
@@ -200,13 +193,6 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Consent No"
-    Name="ConsentNo"
-    Type="Text"
-    ID="{7E356924-ECC1-4AE2-B5AF-4501388062D8}"
-    Group="CAS Smart Factory IPR"
-    />
-  <Field
     DisplayName="Document No"
     Name="DocumentNo"
     Type="Text"
@@ -233,24 +219,10 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="FormatID"
-    Name="FormatID"
-    Type="Text"
-    ID="{7E4F526E-E011-414E-8FDB-6A6CB4738E37}"
-    Group="CAS Smart Factory IPR"
-    />
-  <Field
     DisplayName="In Quality Insp"
     Name="InQualityInsp"
     Type="Number"
     ID="{5D27EABE-C74B-4233-9A07-D7389C831E3A}"
-    Group="CAS Smart Factory IPR"
-    />
-  <Field
-    DisplayName="Quality"
-    Name="Quality"
-    Type="Text"
-    ID="{D29FAB3C-9144-4655-9C82-DF35995C78F8}"
     Group="CAS Smart Factory IPR"
     />
   <Field
@@ -310,13 +282,6 @@
     Name="ProductCodeNumber"
     Type="Text"
     ID="{FAB1E4CF-D883-45A5-B682-97B78EDF1F75}"
-    Group="CAS Smart Factory IPR"
-    />
-  <Field
-    DisplayName="Product Name"
-    Name="ProductName"
-    Type="Text"
-    ID="{D547D6AE-F714-4D76-9CAE-3DD228DA4300}"
     Group="CAS Smart Factory IPR"
     />
   <Field
@@ -452,17 +417,17 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Duty per unit"
+    DisplayName="Duty per unit [PLN]"
     Name="IPRDutyPerUnit"
-    Decimals="5"
+    Decimals="2"
     Type="Number"
     ID="{0F0388EF-3847-4795-BDE8-CA338B55CDAC}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="VAT per unit"
+    DisplayName="VAT per unit [PLN]"
     Name="IPRVATPerUnit"
-    Decimals="5"
+    Decimals="2"
     Type="Number"
     ID="{6D2D089E-CA30-4875-AE10-D1A86A5C4EF1}"
     Group="CAS Smart Factory IPR"
