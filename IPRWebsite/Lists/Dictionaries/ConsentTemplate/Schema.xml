@@ -10,6 +10,7 @@
                Inherits="TRUE">
         <Folder TargetName="_cts/Consent" />
         <FieldRefs>
+          <FieldRef ID="{241DD617-F4A8-4088-8FA2-EFEE62A58DFE}" Name="ConsentDate" />
           <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />
           <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
           <FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />
@@ -51,6 +52,7 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
+          <FieldRef ID="{241DD617-F4A8-4088-8FA2-EFEE62A58DFE}" Name="ConsentDate" />
           <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />
           <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
           <FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />
