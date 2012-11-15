@@ -144,11 +144,15 @@ namespace CAS.SmartFactory.IPR.Customs
       SADDocumentType declaration = clearence.Clearence2SadGoodID.SADDocumentIndex;
       try
       {
+        if ( WebsiteModel.Linq.IPR.RecordExist( entities, clearence.DocumentNo ) )
+        {
+          string _msg = "IPR record with the same SAD document number: {0} exist";
+          throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _msg, clearence.DocumentNo ) );
+        }
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
         IPRData _iprdata = new IPRData( clearence.Clearence2SadGoodID, _messageType );
         ActionResult _ar = new ActionResult();
-        //TODO Protect against creation of many IPR accounts 
         if ( !_iprdata.Validate( entities, _ar ) )
           throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( _ar[ 0 ] );
         _at = "Consent.Lookup";
@@ -368,8 +372,9 @@ namespace CAS.SmartFactory.IPR.Customs
       #region public
       internal bool Validate( Entities entities, ActionResult _ar )
       {
-        //TODO Protect against creation of many IPR accounts 
-        throw new NotImplementedException();
+        bool _ret = true;
+        //TODO Add validation logic
+        return _ret;
       }
       internal double Cartons { get; private set; }
       internal string Consent { get; private set; }
@@ -390,7 +395,6 @@ namespace CAS.SmartFactory.IPR.Customs
       internal string PCNTariffCode { get; private set; }
       internal string SKU { get; private set; }
       #endregion
-
 
     }
     private static void ClearThroughCustoms( Entities entities, SADGood good )
