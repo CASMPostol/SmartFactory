@@ -136,4 +136,38 @@
     EnforceUniqueValues="False"
     ReadOnly="False"
     />
+<Field
+    Name="ConsentIndex"
+    ID="{BFF3BF37-6B79-400A-932B-CC75D61E79DA}"
+    Type="Lookup"
+    List="Lists/ConsentList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Consent lookup"
+    Group="CAS Smart Factory IPR Dictionaries"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Name="PCNCodeIndex"
+    ID="{24FB05B0-2DD8-4DDC-B6EC-F6721D9F385E}"
+    Type="Lookup"
+    List="Lists/PCNCodeList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="PCNCode lookup"
+    Group="CAS Smart Factory IPR Dictionaries"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>

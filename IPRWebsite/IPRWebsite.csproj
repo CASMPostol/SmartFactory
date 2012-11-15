@@ -70,6 +70,9 @@
     <None Include="Content types\Customs\Clearence\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{baeb8126-42ea-432c-84e1-4c59bfa5f4d1}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Customs\DisposalDeclaration\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{03a490fc-d81c-47d4-bd9e-e9f1004e7af8}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Customs\InvoiceContent\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{82659c79-17e9-4c17-aa69-29c3e6f8d7d1}</SharePointProjectItemId>
     </None>
@@ -193,6 +196,12 @@
     </None>
     <None Include="Field\CustomsLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{75c68259-841b-42c9-995e-b8b02d99dd26}</SharePointProjectItemId>
+    </None>
+    <None Include="Field\CW\CWCustomsFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a79d0c87-604d-47a3-8561-89527db6683c}</SharePointProjectItemId>
+    </None>
+    <None Include="Field\CW\CWCustomsLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9a6f767e-2aa2-4b90-866d-f60cb4a8640f}</SharePointProjectItemId>
     </None>
     <None Include="Field\DictionariesFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a85eb94e-a8f1-4a48-83ff-83eb2211f5bb}</SharePointProjectItemId>
@@ -458,6 +467,9 @@
     <Content Include="Content types\Customs\Clearence\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\Customs\DisposalDeclaration\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Customs\InvoiceContent\Elements.xml" />
     <Content Include="Content types\Customs\InvoiceLib\Elements.xml">
       <SubType>Designer</SubType>
@@ -548,6 +560,13 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Field\CustomsLookupFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Field\CW\CWCustomsFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Field\CW\CWCustomsFields\Sample.txt" />
+    <Content Include="Field\CW\CWCustomsLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Field\DictionariesFields\Elements.xml">
