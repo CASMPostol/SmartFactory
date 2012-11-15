@@ -34,20 +34,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       this.TobaccoNotAllocated += quantity;
     }
-    /// <summary>
-    /// Finds the IPR accounts with not allocated tobacco.
-    /// </summary>
-    /// <param name="edc">The _edc.</param>
-    /// <param name="batch">The _batch.</param>
-    /// <returns></returns>
-    public static List<IPR> FindIPRAccountsWithNotAllocatedTobacco( Entities edc, string batch )
-    {
-      return ( from IPR _iprx in edc.IPR where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
-    }
-    internal static bool IsAvailable( Entities edc, string batch, double requestedTobacco )
-    {
-      return FindIPRAccountsWithNotAllocatedTobacco(edc, batch).Sum<IPR>(a => a.TobaccoNotAllocated.Value) >= requestedTobacco; 
-    }
     public void AddDisposal( Entities edc, decimal quantity )
     {
       AddDisposal( edc, DisposalEnum.Cartons, ref quantity, null, null );
@@ -104,6 +90,30 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           break;
       }
       AddDisposal( edc, _dsposl, ref quantity, material, null );
+    }
+    /// <summary>
+    /// Check if record exists.
+    /// </summary>
+    /// <param name="edc">The <see cref="Entities"/></param>
+    /// <param name="documentNo">The document number.</param>
+    /// <returns></returns>
+    public static bool RecordExist( Entities edc, string documentNo )
+    {
+      return ( from IPR _iprx in edc.IPR where _iprx.DocumentNo.Contains( documentNo ) select _iprx ).Any();
+    }
+    /// <summary>
+    /// Finds the IPR accounts with not allocated tobacco.
+    /// </summary>
+    /// <param name="edc">The _edc.</param>
+    /// <param name="batch">The _batch.</param>
+    /// <returns></returns>
+    public static List<IPR> FindIPRAccountsWithNotAllocatedTobacco( Entities edc, string batch )
+    {
+      return ( from IPR _iprx in edc.IPR where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
+    }
+    internal static bool IsAvailable( Entities edc, string batch, double requestedTobacco )
+    {
+      return FindIPRAccountsWithNotAllocatedTobacco( edc, batch ).Sum<IPR>( a => a.TobaccoNotAllocated.Value ) >= requestedTobacco;
     }
     #endregion
 
