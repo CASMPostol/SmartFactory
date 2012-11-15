@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Field
+    Name="DisposalsDeclaration2BatchIndex"
+    ID="{942E6D2F-0360-4914-8E2F-82CB5255C4B5}"
+    Type="Lookup"
+    List="Lists/BatchList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Batch ID"
+    Group="CAS Smart Factory CW Customs"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Type="Lookup"
+    DisplayName="SKU"
+    List="Lists/BatchList"
+    ShowField="SKU"
+    FieldRef="942E6D2F-0360-4914-8E2F-82CB5255C4B5"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory IPR"
+    ID="{D2B7F7C5-9B2B-4F42-90CC-8A50C406E790}"
+    Name="DisposalDeclaration2BatchSKU_sec"
+    Overwrite="TRUE"
+  />
+</Elements>

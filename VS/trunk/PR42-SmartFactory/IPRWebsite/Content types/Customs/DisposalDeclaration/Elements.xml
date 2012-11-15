@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0100641EF9D66D6B4A05A05A8C38062DFFD8"
+               Name="DisposalDeclaration"
+               Group="CAS Smart Factory CW Customs"
+               Description="My Content Type"
+               Inherits="TRUE"
+               Overwrite="TRUE">
+    <Folder TargetName="_cts/DisposalDeclaration" />
+    <FieldRefs>
+      <FieldRef ID="{31AF4083-FF31-4052-91CB-6B5D2F5BD781}" Name="EntryDate" />
+      <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
+      <FieldRef ID="{D2B7F7C5-9B2B-4F42-90CC-8A50C406E790}" Name="DisposalDeclaration2BatchSKU_sec" />
+      <FieldRef ID="{942E6D2F-0360-4914-8E2F-82CB5255C4B5}" Name="DisposalsDeclaration2BatchIndex" />
+    </FieldRefs>
+  </ContentType>
+</Elements>
