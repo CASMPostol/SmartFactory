@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="DisposalDeclarationTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/DisposalDeclarationTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/" EnableContentTypes="TRUE">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x0100641EF9D66D6B4A05A05A8C38062DFFD8" Name="DisposalDeclaration" Group="CAS Smart Factory CW Customs" Description="My Content Type" Inherits="TRUE" Overwrite="TRUE">
+        <Folder TargetName="_cts/DisposalDeclaration" />
+        <FieldRefs>
+          <FieldRef ID="{31AF4083-FF31-4052-91CB-6B5D2F5BD781}" Name="EntryDate" />
+          <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
+          <FieldRef ID="{D2B7F7C5-9B2B-4F42-90CC-8A50C406E790}" Name="DisposalDeclaration2BatchSKU_sec" />
+          <FieldRef ID="{A8B1A8D2-3A91-4C05-B3B8-F97D21BA383A}" Name="CWDescription" />
+          <FieldRef ID="{942E6D2F-0360-4914-8E2F-82CB5255C4B5}" Name="DisposalsDeclaration2BatchIndex" />
+          <FieldRef ID="{6172934C-1BA3-4F78-ABCF-0F6C87F3EFF1}" Name="DecalredToCleared" />
+          <FieldRef ID="{E9E9BE99-A6F8-4273-B36C-F0C48B23F1E2}" Name="QuantityAvailable" />
+          <FieldRef ID="{D7F79DA4-3A61-4F5E-B154-B1116EB9D688}" Name="PackageAvailable" />
+          <FieldRef ID="{E9DB8ECC-2E65-49C7-A918-ECA19DA4694D}" Name="QuantityToCleared" />
+          <FieldRef ID="{4B239F58-9C69-4E65-B683-CA25C6A326B4}" Name="PackageToCleared" />
+          <FieldRef ID="{2500C123-EC97-4DDE-8116-B05B1BEDEB56}" Name="AddedToClearDeclared" />
+        </FieldRefs>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu"></FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments"></FieldRef>
+          <FieldRef Name="LinkTitle"></FieldRef>
+          <FieldRef Name="EntryDate" />
+          <FieldRef Name="No" />
+          <FieldRef Name="DisposalDeclaration2BatchSKU_sec" />
+          <FieldRef Name="CWDescription" />
+          <FieldRef Name="DisposalsDeclaration2BatchIndex" />
+          <FieldRef Name="DecalredToCleared" />
+          <FieldRef Name="QuantityAvailable" />
+          <FieldRef Name="PackageAvailable" />
+          <FieldRef Name="QuantityToCleared" />
+          <FieldRef Name="PackageToCleared" />
+          <FieldRef Name="AddedToClearDeclared" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

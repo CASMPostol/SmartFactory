@@ -13,6 +13,12 @@
       <FieldRef ID="{D2B7F7C5-9B2B-4F42-90CC-8A50C406E790}" Name="DisposalDeclaration2BatchSKU_sec" />
       <FieldRef ID="{A8B1A8D2-3A91-4C05-B3B8-F97D21BA383A}" Name="CWDescription" />
       <FieldRef ID="{942E6D2F-0360-4914-8E2F-82CB5255C4B5}" Name="DisposalsDeclaration2BatchIndex" />
+      <FieldRef ID="{6172934C-1BA3-4F78-ABCF-0F6C87F3EFF1}" Name="DecalredToCleared" />
+      <FieldRef ID="{E9E9BE99-A6F8-4273-B36C-F0C48B23F1E2}" Name="QuantityAvailable" />
+      <FieldRef ID="{D7F79DA4-3A61-4F5E-B154-B1116EB9D688}" Name="PackageAvailable" />
+      <FieldRef ID="{E9DB8ECC-2E65-49C7-A918-ECA19DA4694D}" Name="QuantityToCleared" />
+      <FieldRef ID="{4B239F58-9C69-4E65-B683-CA25C6A326B4}" Name="PackageToCleared" />
+      <FieldRef ID="{2500C123-EC97-4DDE-8116-B05B1BEDEB56}" Name="AddedToClearDeclared" />
     </FieldRefs>
   </ContentType>
 </Elements>

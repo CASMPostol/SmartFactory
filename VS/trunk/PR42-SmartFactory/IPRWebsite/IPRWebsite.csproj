@@ -246,6 +246,12 @@
     <None Include="Lists\Customs\ClearenceTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{031f1461-73f3-4e13-a5ab-5f19713e19b4}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Customs\DisposalDeclarationTemplate\DisposalDeclarationList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a273c034-e0c1-432d-8c20-0ba817ddf0e7}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Customs\DisposalDeclarationTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e3d7d62f-6dfb-41a7-b1a8-29c60c15c216}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Customs\InvoiceContentTemplate\InvoiceContentList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{090f03b4-7dc8-4864-9eac-ea903a1b571f}</SharePointProjectItemId>
     </None>
@@ -611,6 +617,9 @@
     <Content Include="Lists\Customs\ClearenceTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Customs\DisposalDeclarationTemplate\DisposalDeclarationList\Elements.xml" />
+    <Content Include="Lists\Customs\DisposalDeclarationTemplate\Elements.xml" />
+    <Content Include="Lists\Customs\DisposalDeclarationTemplate\Schema.xml" />
     <Content Include="Lists\Customs\InvoiceContentTemplate\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceContentTemplate\InvoiceContentList\Elements.xml" />
     <Content Include="Lists\Customs\InvoiceContentTemplate\Schema.xml">

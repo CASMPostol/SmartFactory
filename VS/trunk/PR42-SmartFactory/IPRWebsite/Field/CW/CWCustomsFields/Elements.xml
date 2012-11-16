@@ -15,4 +15,40 @@
     DisplayName="Description" 
     Group="CAS Smart Factory CW Customs" 
     Type="Text" />
+  <Field
+    ID="{6172934C-1BA3-4F78-ABCF-0F6C87F3EFF1}"
+    Name="DecalredToCleared"
+    DisplayName="Declared to clear" 
+    Group="CAS Smart Factory CW Customs" 
+    Type="Number" />
+  <Field
+    ID="{E9E9BE99-A6F8-4273-B36C-F0C48B23F1E2}"
+    Name="QuantityAvailable"
+    DisplayName="Quantity available"
+    Group="CAS Smart Factory CW Customs"
+    Type="Number" />
+  <Field
+    ID="{D7F79DA4-3A61-4F5E-B154-B1116EB9D688}"
+    Name="PackageAvailable"
+    DisplayName="Package available"
+    Group="CAS Smart Factory CW Customs"
+    Type="Number" />
+  <Field
+    ID="{E9DB8ECC-2E65-49C7-A918-ECA19DA4694D}"
+    Name="QuantityToCleared"
+    DisplayName="Quantity to clear"
+    Group="CAS Smart Factory CW Customs"
+    Type="Number" />
+  <Field
+    ID="{4B239F58-9C69-4E65-B683-CA25C6A326B4}"
+    Name="PackageToCleared"
+    DisplayName="Package to clear"
+    Group="CAS Smart Factory CW Customs"
+    Type="Number" />
+  <Field
+    ID="{2500C123-EC97-4DDE-8116-B05B1BEDEB56}"
+    Name="AddedToClearDeclared"
+    DisplayName="Added [kg] (To Clear-Declared)"
+    Group="CAS Smart Factory CW Customs"
+    Type="Number" />
 </Elements>
