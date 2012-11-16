@@ -243,6 +243,15 @@
     <Column Name="SHMenthol" Member="SHMenthol" />
     <Column Name="Material2BatchIndex" Member="Material2BatchIndex" />
   </ContentType>
+  <ContentType Name="DisposalDeclaration" Class="DisposalDeclaration">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="Title" Member="Title" />
+    <Column Name="EntryDate" Member="EntryDate" />
+    <Column Name="No" Member="No" />
+    <Column Name="DisposalDeclaration2BatchSKU_sec" Member="DisposalDeclaration2BatchSKU_sec" />
+    <Column Name="CWDescription" Member="CWDescription" />
+    <Column Name="DisposalsDeclaration2BatchIndex" Member="DisposalsDeclaration2BatchIndex" />
+  </ContentType>
   <ContentType Name="CustomsUnion" Class="CustomsUnion">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
