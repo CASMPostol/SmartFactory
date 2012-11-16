@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Disposal Declaration" OnQuickLaunch="TRUE" TemplateType="10058" Url="Lists/DisposalDeclarationList" Description="Disposal Declaration List Instance"></ListInstance>
+</Elements>
