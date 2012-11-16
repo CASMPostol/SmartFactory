@@ -11,6 +11,7 @@
       <FieldRef ID="{31AF4083-FF31-4052-91CB-6B5D2F5BD781}" Name="EntryDate" />
       <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
       <FieldRef ID="{D2B7F7C5-9B2B-4F42-90CC-8A50C406E790}" Name="DisposalDeclaration2BatchSKU_sec" />
+      <FieldRef ID="{A8B1A8D2-3A91-4C05-B3B8-F97D21BA383A}" Name="CWDescription" />
       <FieldRef ID="{942E6D2F-0360-4914-8E2F-82CB5255C4B5}" Name="DisposalsDeclaration2BatchIndex" />
     </FieldRefs>
   </ContentType>
