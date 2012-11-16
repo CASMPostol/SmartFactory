@@ -244,11 +244,11 @@ namespace CAS.SmartFactory.Management
             Settings stg = new Settings
             {
                 Title = item.Title,
-                KeyValue = item.KeyValue,
+                KeyValue = item.KeyValue
             };
-            list.Add(stg);
+            list.Add( stg );
         };
-        edc.Settings.InsertAllOnSubmit (list) ;
+        edc.Settings.InsertAllOnSubmit( list ) ;
     }
     private static ProductType ParseProductType( this string entry )
     {
