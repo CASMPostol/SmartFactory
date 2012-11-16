@@ -162,7 +162,6 @@ namespace CAS.SmartFactory.IPR.Customs
         _comments = "PCN lookup filed";
         PCNCode _pcn = PCNCode.AddOrGet( entities, clearence.ClearenceProcedure.Value, _iprdata.PCNTariffCode, _iprdata.TobaccoName );
         _at = "new IPRClass";
-        //TODO SAD analyses error at CreateIPRAccount method error at new IPRIPR. http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3402
         IPRClass _ipr = new IPRClass()
         {
           AccountClosed = false,
@@ -171,7 +170,7 @@ namespace CAS.SmartFactory.IPR.Customs
           Cartons = _iprdata.Cartons,
           ClearenceIndex = clearence,
           ClosingDate = CAS.SharePoint.Extensions.SPMinimum,
-          //IPR2ConsentTitle = _cnsnt,
+          IPR2ConsentTitle = _cnsnt,
           Currency = declaration.Currency,
           CustomsDebtDate = customsDebtDate,
           DocumentNo = clearence.DocumentNo,
@@ -184,7 +183,7 @@ namespace CAS.SmartFactory.IPR.Customs
           IPRLibraryIndex = declaration.SADDocumenLibrarytIndex,
           NetMass = _iprdata.NetMass,
           OGLValidTo = customsDebtDate + new TimeSpan( Convert.ToInt32( _cnsnt.ConsentPeriod.Value ) * 30, 0, 0, 0 ),
-          //IPR2PCNPCN = _pcn,
+          IPR2PCNPCN = _pcn,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
           TobaccoNotAllocated = _iprdata.GrossMass,
@@ -232,7 +231,7 @@ namespace CAS.SmartFactory.IPR.Customs
           else if ( _messageType == CustomsDocument.DocumentType.PZC )
             GrossMass = _document.GrossMass.HasValue ? _document.GrossMass.Value : good.GrossMass.Value;
           else
-            throw new IPRDataConsistencyException( "IPRData.GetCartons", String.Format( "Unexpected message {0} message", _messageType ), null, "Unexpected message" );
+            throw new IPRDataConsistencyException( "IPRData.GetCartons", String.Format( "Unexpected message {0} type", _messageType ), null, "Unexpected message" );
           _at = "SADQuantity";
           SADQuantity _quantity = good.SADQuantity.FirstOrDefault();
           NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault( 0 );
