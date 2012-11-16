@@ -19,6 +19,7 @@
       <FieldRef ID="{E9DB8ECC-2E65-49C7-A918-ECA19DA4694D}" Name="QuantityToCleared" />
       <FieldRef ID="{4B239F58-9C69-4E65-B683-CA25C6A326B4}" Name="PackageToCleared" />
       <FieldRef ID="{2500C123-EC97-4DDE-8116-B05B1BEDEB56}" Name="AddedToClearDeclared" />
+      <FieldRef ID="{ff92b9dc-f23f-455d-9783-d54af95e3c8f}" Name="Procedure" />
     </FieldRefs>
   </ContentType>
 </Elements>
