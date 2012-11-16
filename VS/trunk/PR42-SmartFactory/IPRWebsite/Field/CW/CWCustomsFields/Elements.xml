@@ -9,6 +9,10 @@
     DisplayName="Entry date">
     <Default>[today]</Default>
   </Field>
-<Module Name="CWCustomsFields"><File Path="CWCustomsFields\Sample.txt" Url="CWCustomsFields/Sample.txt" />
-</Module>
+  <Field
+    ID="{A8B1A8D2-3A91-4C05-B3B8-F97D21BA383A}"
+    Name="CWDescription"
+    DisplayName="Description" 
+    Group="CAS Smart Factory CW Customs" 
+    Type="Text" />
 </Elements>
