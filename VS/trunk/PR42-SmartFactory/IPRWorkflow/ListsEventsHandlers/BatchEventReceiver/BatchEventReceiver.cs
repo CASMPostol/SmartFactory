@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using Microsoft.SharePoint;
 using BatchMaterialXml = CAS.SmartFactory.xml.erp.BatchMaterial;
@@ -53,6 +54,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           At = "SubmitChanges";
           _edc.SubmitChanges();
         }
+      }
+      catch ( InputDataValidationException _idve )
+      {
+        _idve.ReportActionResult( _properties.WebUrl );
       }
       catch ( IPRDataConsistencyException _ex )
       {
@@ -105,6 +110,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         ActivityLogCT.WriteEntry( _edc, m_Title, "Import of the batch message finished" );
         _edc.SubmitChanges();
       }
+      catch ( InputDataValidationException _idve )
+      {
+        throw _idve;
+      }
       catch ( GenericStateMachineEngine.ActionResult _ve )
       {
         throw _ve;
@@ -135,9 +144,9 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
       SummaryContentInfo contentInfo = new Content( xml.Material, edc, progressChanged );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: contentInfo.Validate" ) );
-      ActionResult _ar = new ActionResult();
-      if ( !contentInfo.Validate(edc, _ar ) )
-        throw GenericStateMachineEngine.ActionResult.NotValidated( _ar[ 0 ] );
+      InputDataValidationException _ar = new InputDataValidationException( "Validate failed", "GetXmlContent" );
+      if ( !contentInfo.Validate( edc, _ar ) )
+        throw _ar;
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: batch" ) );
       Batch batch =
           ( from idx in edc.Batch where idx.Batch0.Contains( contentInfo.Product.Batch ) && idx.BatchStatus.Value == BatchStatus.Preliminary select idx ).FirstOrDefault();
