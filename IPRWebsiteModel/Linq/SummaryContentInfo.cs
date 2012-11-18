@@ -137,7 +137,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="edc">The edc.</param>
     /// <param name="actionResult">The result of validation.</param>
     /// <returns></returns>
-    public bool Validate( Entities edc, ActionResult actionResult )
+    public bool Validate( Entities edc, InputDataValidationException actionResult )
     {
       bool _ret = true;
       foreach ( Material item in this.Values )
@@ -147,7 +147,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         if ( !IPR.IsAvailable( edc, item.Batch, item.TobaccoQuantity.Value ) )
         {
           string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, quantity: {2}";
-          actionResult.Add( String.Format( _mssg, item.Batch, Product.Batch, item.TobaccoQuantity.Value ) );
+          actionResult.AddMessage( String.Format( _mssg, item.Batch, Product.Batch, item.TobaccoQuantity.Value ) );
           _ret = false;
         }
       }
