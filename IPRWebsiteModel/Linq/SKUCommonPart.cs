@@ -11,17 +11,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #region public
     public static SKUCommonPart Find( Entities edc, string index )
     {
-      SKUCommonPart newSKU = null;
-      try
-      {
-        newSKU = (
-            from idx in edc.SKU
-            where idx.SKU.Contains( index )
-            orderby idx.Wersja descending
-            select idx ).First();
-      }
-      catch ( Exception ) { }
-      return newSKU;
+      return ( from idx in edc.SKU
+               where idx.SKU.Contains( index )
+               orderby idx.Wersja descending
+               select idx ).FirstOrDefault();
     }
     /// <summary>
     /// Gets the lookup.

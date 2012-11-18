@@ -132,10 +132,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <param name="progressChanged">The progress changed.</param>
     private static void GetXmlContent( BatchXml xml, Entities edc, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
+      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
       SummaryContentInfo contentInfo = new Content( xml.Material, edc, progressChanged );
+      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: contentInfo.Validate" ) );
       ActionResult _ar = new ActionResult();
       if ( !contentInfo.Validate(edc, _ar ) )
         throw GenericStateMachineEngine.ActionResult.NotValidated( _ar[ 0 ] );
+      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: batch" ) );
       Batch batch =
           ( from idx in edc.Batch where idx.Batch0.Contains( contentInfo.Product.Batch ) && idx.BatchStatus.Value == BatchStatus.Preliminary select idx ).FirstOrDefault();
       if ( batch == null )

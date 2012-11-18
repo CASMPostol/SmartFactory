@@ -7,17 +7,14 @@ using CAS.SmartFactory.IPR;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
+  /// <summary>
+  /// Material 
+  /// </summary>
   public partial class Material
   {
-    #region public
-    public struct Ratios
-    {
-      public double dustRatio;
-      public double shMentholRatio;
-      public double wasteRatio;
-    }
+    #region ctor
     public Material( Entities edc, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal tobaccoQuantity, string productID )
-      : base()
+      : this()
     {
       Batch = batch;
       Material2BatchIndex = null;
@@ -31,6 +28,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       ProductID = productID;
       Entities.ProductDescription product = edc.GetProductType( this.SKU, this.StorLoc );
       ProductType = product.productType;
+    }
+    #endregion
+
+    #region public
+    public struct Ratios
+    {
+      public double dustRatio;
+      public double shMentholRatio;
+      public double wasteRatio;
     }
     /// <summary>
     /// Disposalses the analisis.
@@ -161,7 +167,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
     }
     public decimal TobaccoTotal { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
-
     #endregion
 
     #region private
