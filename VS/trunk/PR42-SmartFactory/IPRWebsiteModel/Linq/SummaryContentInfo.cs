@@ -147,7 +147,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         if ( !IPR.IsAvailable( edc, item.Batch, item.TobaccoQuantity.Value ) )
         {
           string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, quantity: {2}";
-          actionResult.Add( String.Format( _mssg, item.Batch, item.Material2BatchIndex.Batch0, item.TobaccoQuantity.Value ) );
+          actionResult.Add( String.Format( _mssg, item.Batch, Product.Batch, item.TobaccoQuantity.Value ) );
           _ret = false;
         }
       }
