@@ -93,7 +93,8 @@ namespace CAS.SmartFactory.Management
           ValidFromDate = item.ValidFromDate,
           ValidToDate = item.ValidToDate,
           ConsentPeriod = item.ConsentPeriod,
-          Title = item.ConsentNo
+          Title = item.ConsentNo,
+          IsIPR = item.IsIPR
         };
         list.Add( cns );
       };

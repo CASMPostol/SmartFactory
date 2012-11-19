@@ -108,6 +108,7 @@
                     <xsd:element minOccurs="1" type="xsd:double" name="ProductivityRateMin"/>
                     <xsd:element minOccurs="1" type="xsd:double" name="ProductivityRateMax"/>
                     <xsd:element minOccurs="1" type="xsd:double" name="ConsentPeriod"/>
+                    <xsd:element minOccurs="1" type="xsd:boolean" name="IsIPR"/>
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
