@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+    ID="{E91A815F-6817-49E2-B9FF-78AA037F0BC9}"
+    Name="CWQuantity"
+    DisplayName="Quantity"
+    Group="CAS Smart Factory CW"
+    Type="Number" />
+  <Field
+    ID="{52B96A16-C283-4CA8-B8D7-68FAB9CB4EC2}"
+    Name="CWPackageUnits"
+    DisplayName="Pakage [units]"
+    Group="CAS Smart Factory CW"
+    Type="Number" />
+  <Field
+    ID="{994D1F12-68AB-4705-9B1E-CD9C4AE55C81}"
+    Name="CWPackageKg"
+    DisplayName="Pakage [kg]"
+    Group="CAS Smart Factory CW"
+    Type="Number" />
+  <Field
+    ID="{7D9B4B6B-BCE7-4B34-9585-92A9CC457BE8}"
+    Name="CWMassPerPackage"
+    DisplayName="Mass per package"
+    Group="CAS Smart Factory CW"
+    Type="Number" />
+  <Field
+    ID="{E88F4464-5EE0-4D9E-A5E3-D585587D3E50}"
+    Name="CWUnitPrice"
+    DisplayName="Unit price"
+    Group="CAS Smart Factory CW"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{C7E2D2E0-E156-456D-84F4-E984BB7EA93E}"
+    Name="CWPzNo"
+    DisplayName="PZ no."
+    Group="CAS Smart Factory CW"
+    Type="Text"/>
+  <Field
+    ID="{A129CBA4-BD84-4198-93B0-49CE4147FCF2}"
+    Name="CWCertificate"
+    DisplayName="Certificate"
+    Group="CAS Smart Factory CW"
+    Type="Text"/>
+  <Field
+    ID="{4B26651A-3321-45F0-A788-CFAE027C1BBD}"
+    Name="CWClosingDate"
+    Group="CAS Smart Factory CW"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Closing date">
+    <Default>[today]</Default>
+  </Field>
+</Elements>
