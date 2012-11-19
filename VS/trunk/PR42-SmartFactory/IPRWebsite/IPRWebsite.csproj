@@ -104,6 +104,9 @@
     <None Include="Content types\Customs\SADRequiredDocuments\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{738095ac-6989-40e9-a3b0-f58d86295a8d}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\CW\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{69edf2f4-64e2-488e-8f65-0913ded7f005}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Dictionaries\Consent\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2896fc51-4f19-41cb-9a1c-8fc41a099c98}</SharePointProjectItemId>
     </None>
@@ -202,6 +205,12 @@
     </None>
     <None Include="Field\CW\CWCustomsLookupFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9a6f767e-2aa2-4b90-866d-f60cb4a8640f}</SharePointProjectItemId>
+    </None>
+    <None Include="Field\CW\CWFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4fb515fd-e8d2-4237-b54c-78e2f30748c9}</SharePointProjectItemId>
+    </None>
+    <None Include="Field\CW\CWLookupFields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{47d139ce-6161-4810-8f0a-a37aafb0513b}</SharePointProjectItemId>
     </None>
     <None Include="Field\DictionariesFields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a85eb94e-a8f1-4a48-83ff-83eb2211f5bb}</SharePointProjectItemId>
@@ -500,6 +509,7 @@
     <Content Include="Content types\Customs\SADRequiredDocuments\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\CW\Elements.xml" />
     <Content Include="Content types\Dictionaries\Consent\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -575,6 +585,8 @@
     <Content Include="Field\CW\CWCustomsLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Field\CW\CWFields\Elements.xml" />
+    <Content Include="Field\CW\CWLookupFields\Elements.xml" />
     <Content Include="Field\DictionariesFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
