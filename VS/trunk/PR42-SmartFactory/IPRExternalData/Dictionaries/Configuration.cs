@@ -445,6 +445,8 @@ namespace CAS.SmartFactory.xml.Dictionaries {
         
         private double consentPeriodField;
         
+        private bool isIPRField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string ConsentNo {
@@ -527,6 +529,16 @@ namespace CAS.SmartFactory.xml.Dictionaries {
             }
             set {
                 this.consentPeriodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsIPR {
+            get {
+                return this.isIPRField;
+            }
+            set {
+                this.isIPRField = value;
             }
         }
     }
