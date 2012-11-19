@@ -28,6 +28,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       ProductID = productID;
       Entities.ProductDescription product = edc.GetProductType( this.SKU, this.StorLoc );
       ProductType = product.productType;
+      Overuse = 0;
+      Dust = 0;
+      SHMenthol = 0;
+      Waste = 0;
     }
     #endregion
 
