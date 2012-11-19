@@ -322,6 +322,12 @@
     <None Include="Lists\Customs\SADRequiredDocumentsTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b35abc17-3532-4292-b725-f4a47db7c049}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\CWTemplate\CWList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{cfba62b2-fffc-4559-85dc-74f033f1786a}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\CWTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d2ec638b-33ee-42d1-8506-1d699f4db7dc}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Dictionaries\ConsentTemplate\ConsentList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{516c810b-68a3-422d-96be-692ff236a6d6}</SharePointProjectItemId>
     </None>
@@ -692,6 +698,9 @@
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
+    <Content Include="Lists\CWTemplate\CWList\Elements.xml" />
+    <Content Include="Lists\CWTemplate\Elements.xml" />
+    <Content Include="Lists\CWTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\ConsentTemplate\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
