@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0101007EBEECC5D33648E991A553ED5EAF0693"
+               Name="CWLib"
+               Group="CAS Smart Factory CW"
+               Description="CWLib Content Type"
+               Inherits="TRUE"
+               Overwrite="TRUE">
+    <FieldRefs>
+    </FieldRefs>
+  </ContentType>
+</Elements>

@@ -31,6 +31,7 @@
           <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
           <FieldRef ID="{4B26651A-3321-45F0-A788-CFAE027C1BBD}" Name="CWClosingDate" />
           <FieldRef ID="{E7EECE11-FC1B-42E9-A165-9FC8351C441F}" Name="CW2PCNTID" />
+          <FieldRef ID="{336B592C-D264-4469-8506-9A2E7FBA4F6B}" Name="CW2PCWLibraryID" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
@@ -87,6 +88,7 @@
           <FieldRef Name="ValidToDate" />
           <FieldRef Name="CWClosingDate" />
           <FieldRef Name="CW2PCNTID" />
+          <FieldRef Name="CW2PCWLibraryID" />
         </ViewFields>
         <Query>
           <OrderBy>
