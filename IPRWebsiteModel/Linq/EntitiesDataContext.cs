@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="_rsult">The _rsult.</param>
     /// <exception cref="System.ApplicationException"></exception>
-    public void ResolveChangeConflicts( ActionResult _rsult )
+    internal void ResolveChangeConflicts( ActionResult _rsult )
     {
       string _cp = "Starting";
       try
