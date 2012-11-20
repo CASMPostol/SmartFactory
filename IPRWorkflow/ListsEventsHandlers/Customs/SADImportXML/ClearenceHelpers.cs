@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
@@ -58,6 +59,10 @@ namespace CAS.SmartFactory.IPR.Customs
           default:
             throw new IPRDataConsistencyException( "Clearence.Associate", "Unexpected message type.", null, "Unexpected message type." );
         }//switch (_documentType
+      }
+      catch ( InputDataValidationException _idce )
+      {
+        throw _idce;
       }
       catch ( IPRDataConsistencyException _iorex )
       {
@@ -136,6 +141,17 @@ namespace CAS.SmartFactory.IPR.Customs
       //TODO CreateCWAccountNotImplementedException 
       throw new NotImplementedException();
     }
+    /// <summary>
+    /// Creates the IPR account.
+    /// </summary>
+    /// <param name="entities">The entities.</param>
+    /// <param name="clearence">The clearence.</param>
+    /// <param name="_messageType">Type of the _message.</param>
+    /// <param name="customsDebtDate">The customs debt date.</param>
+    /// <param name="_comments">The _comments.</param>
+    /// <exception cref="IPRDataConsistencyException">IPR account creation error</exception>
+    /// <exception cref="InputDataValidationException"></exception>
+    /// 
     private static void CreateIPRAccount
       ( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, DateTime customsDebtDate, out string _comments )
     {
@@ -203,6 +219,10 @@ namespace CAS.SmartFactory.IPR.Customs
           _ipr.AddDisposal( entities, Convert.ToDecimal( _iprdata.Cartons ) );
         _at = "new SubmitChanges #2";
         entities.SubmitChanges();
+      }
+      catch ( InputDataValidationException _idve )
+      {
+        throw _idve;
       }
       catch ( GenericStateMachineEngine.ActionResult _ex )
       {
@@ -298,30 +318,32 @@ namespace CAS.SmartFactory.IPR.Customs
         }
       }
       private const string UnrecognizedName = "-- unrecognized name --";
+      /// <summary>
+      /// Analizes the goods description.
+      /// </summary>
+      /// <param name="_GoodsDescription">The _ goods description.</param>
+      /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">Syntax errors in the good description.</exception>
       private void AnalizeGoodsDescription( string _GoodsDescription )
       {
-        string _at = "Started";
-        try
-        {
-          _at = "TobaccoName";
-          string _na = "Not recognized";
-          TobaccoName = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionTobaccoNamePattern, _na );
-          _at = "GradeName";
-          GradeName = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionWGRADEPattern, _na );
-          _at = "SKU";
-          SKU = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionSKUPattern, _na );
-          _at = "Batch";
-          Batch = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionBatchPattern, _na );
-        }
-        catch ( Exception _ex )
-        {
-          string _src = String.Format( "AnalizeGoodsDescription error at {0}", _at );
-          throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
-        }
+        List<string> _sErrors = new List<string>();
+        string _na = "Not recognized";
+        TobaccoName = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionTobaccoNamePattern, _na, _sErrors );
+        GradeName = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionWGRADEPattern, _na, _sErrors );
+        SKU = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionSKUPattern, _na, _sErrors );
+        Batch = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionBatchPattern, _na, _sErrors );
+        if ( _sErrors.Count > 0 )
+          throw new InputDataValidationException( "Syntax errors in the good description.", "AnalizeGoodsDescription", _sErrors );
       }
       #endregion
 
       #region cretor
+      /// <summary>
+      /// Initializes a new instance of the <see cref="IPRData" /> class.
+      /// </summary>
+      /// <param name="good">The good.</param>
+      /// <param name="_messageType">Type of the _message.</param>
+      /// <exception cref="IPRDataConsistencyException">There is not attached any consent document with code = 1PG1/C601</exception>
+      /// <exception cref="InputDataValidationException">Syntax errors in the good description.</exception>
       internal IPRData( SADGood good, CustomsDocument.DocumentType _messageType )
       {
         string _at = "starting";
@@ -354,6 +376,10 @@ namespace CAS.SmartFactory.IPR.Customs
             throw new IPRDataConsistencyException( _src, "There is not attached any consent document with code = 1PG1/C601", _ex, _src );
           }
           AnalizeGoodsDescription( good.GoodsDescription );
+        }
+        catch ( InputDataValidationException _idve )
+        {
+          throw _idve;
         }
         catch ( IPRDataConsistencyException es )
         {
