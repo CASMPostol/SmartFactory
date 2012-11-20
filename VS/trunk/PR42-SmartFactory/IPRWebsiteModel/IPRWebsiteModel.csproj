@@ -57,6 +57,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="InputDataValidationException.cs" />
     <Compile Include="IPRDataConsistencyException.cs" />
+    <Compile Include="Linq\ActionResult.cs" />
     <Compile Include="Linq\ActivityLogCT.cs" />
     <Compile Include="Linq\Batch.cs" />
     <Compile Include="Linq\Clearence.cs" />
@@ -65,12 +66,13 @@
     <Compile Include="Linq\CutfillerCoefficient.cs" />
     <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\Dust.cs" />
+    <Compile Include="Linq\Element.cs" />
     <Compile Include="Linq\Entities.cs" />
-    <Compile Include="Linq\Entities.partial.cs" />
     <Compile Include="Linq\EntitiesDataContext.cs" />
     <Compile Include="Linq\Extensions.cs" />
     <Compile Include="Linq\Format.cs" />
     <Compile Include="Linq\IPR.cs" />
+    <Compile Include="Linq\LinqIPRExtensions.cs" />
     <Compile Include="Linq\Material.cs" />
     <Compile Include="Linq\PCNCode.cs" />
     <Compile Include="Linq\SHMenthol.cs" />

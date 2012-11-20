@@ -56,25 +56,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return newBatch;
     }
     /// <summary>
-    /// Checks if exports is possible.
+    /// Checks if export is possible.
     /// </summary>
     /// <param name="quantity">The quantity to export.</param>
-    /// <returns>Result of <see cref="ActionResult"/></returns>
-    public ActionResult ExportIsPossible( double? quantity )
+    /// <returns>Not empty string if there is a warning.</returns>
+    public string ExportIsPossible( double? quantity )
     {
-      ActionResult _result = new ActionResult();
       if ( !quantity.HasValue )
-      {
-        string _message = String.Format( m_notValidValue, "Quantity" );
-        _result.AddMessage( "ExportPossible", _message );
-      }
+        return "Valid quantity value must be provided";
       else if ( FGQuantityAvailable.Value < quantity.Value )
-      {
-        string _message = String.Format( m_quantityIsUnavailable, this.FGQuantityAvailable.Value );
-        _result.AddMessage( "ExportPossible", _message );
-      }
-      return _result;
+        return String.Format( m_quantityIsUnavailable, this.FGQuantityAvailable.Value );
+      return String.Empty;
     }
+    /// <summary>
+    /// Batches the processing.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="status">The status.</param>
+    /// <param name="contentInfo">The content info.</param>
+    /// <param name="parent">The parent.</param>
+    /// <param name="progressChanged">The progress changed.</param>
     public void BatchProcessing( Entities edc, BatchStatus status, SummaryContentInfo contentInfo, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
       BatchLibraryIndex = parent;
@@ -130,7 +131,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
-    private const string m_notValidValue = "Valid {0} value must be provided";
     private const string m_quantityIsUnavailable = "The requested quantity is unavailable. There is only {0} on the stock.";
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
