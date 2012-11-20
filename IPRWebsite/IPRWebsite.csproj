@@ -104,6 +104,9 @@
     <None Include="Content types\Customs\SADRequiredDocuments\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{738095ac-6989-40e9-a3b0-f58d86295a8d}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\CWDisposal\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{00efd35d-4822-4384-b2ac-8269022fedf9}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\CW\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{69edf2f4-64e2-488e-8f65-0913ded7f005}</SharePointProjectItemId>
     </None>
@@ -322,6 +325,12 @@
     <None Include="Lists\Customs\SADRequiredDocumentsTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b35abc17-3532-4292-b725-f4a47db7c049}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\CWDisposalTemplate\CWDisposalList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2e8e4625-a3a7-4036-9bf1-f28a3e681e3c}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\CWDisposalTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{85aee1b9-58dc-4576-99e0-790efaec1a53}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\CWTemplate\CWList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cfba62b2-fffc-4559-85dc-74f033f1786a}</SharePointProjectItemId>
     </None>
@@ -491,7 +500,9 @@
     <Content Include="Content types\Customs\DisposalDeclaration\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Customs\InvoiceContent\Elements.xml" />
+    <Content Include="Content types\Customs\InvoiceContent\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Customs\InvoiceLib\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -515,7 +526,10 @@
     <Content Include="Content types\Customs\SADRequiredDocuments\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\CW\Elements.xml" />
+    <Content Include="Content types\CWDisposal\Elements.xml" />
+    <Content Include="Content types\CW\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Dictionaries\Consent\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -587,12 +601,15 @@
     <Content Include="Field\CW\CWCustomsFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Field\CW\CWCustomsFields\Sample.txt" />
     <Content Include="Field\CW\CWCustomsLookupFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Field\CW\CWFields\Elements.xml" />
-    <Content Include="Field\CW\CWLookupFields\Elements.xml" />
+    <Content Include="Field\CW\CWFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Field\CW\CWLookupFields\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Field\DictionariesFields\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -698,9 +715,14 @@
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\SADRequiredDocumentsList\Elements.xml" />
     <Content Include="Lists\Customs\SADRequiredDocumentsTemplate\Schema.xml" />
+    <Content Include="Lists\CWDisposalTemplate\CWDisposalList\Elements.xml" />
+    <Content Include="Lists\CWDisposalTemplate\Elements.xml" />
+    <Content Include="Lists\CWDisposalTemplate\Schema.xml" />
     <Content Include="Lists\CWTemplate\CWList\Elements.xml" />
     <Content Include="Lists\CWTemplate\Elements.xml" />
-    <Content Include="Lists\CWTemplate\Schema.xml" />
+    <Content Include="Lists\CWTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\ConsentTemplate\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

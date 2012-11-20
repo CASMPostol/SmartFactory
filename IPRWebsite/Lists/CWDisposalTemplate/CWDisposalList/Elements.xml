@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="CW Disposal" OnQuickLaunch="TRUE" TemplateType="10060" Url="Lists/CWDisposalList" Description="CW Disposal List Instance"></ListInstance>
+</Elements>
