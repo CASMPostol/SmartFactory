@@ -107,6 +107,9 @@
     <None Include="Content types\CWDisposal\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{00efd35d-4822-4384-b2ac-8269022fedf9}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\CWLib\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a9731107-00c2-4288-8d81-d5b590ae78b7}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\CW\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{69edf2f4-64e2-488e-8f65-0913ded7f005}</SharePointProjectItemId>
     </None>
@@ -331,6 +334,12 @@
     <None Include="Lists\CWDisposalTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{85aee1b9-58dc-4576-99e0-790efaec1a53}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\CWLibraryTemplate\CWLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{88fe7730-2239-4058-8be0-18443ac15ed0}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\CWLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{39e668cb-7788-43fa-9639-e12e1fc5e8e0}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\CWTemplate\CWList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cfba62b2-fffc-4559-85dc-74f033f1786a}</SharePointProjectItemId>
     </None>
@@ -527,6 +536,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\CWDisposal\Elements.xml" />
+    <Content Include="Content types\CWLib\Elements.xml" />
     <Content Include="Content types\CW\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -718,6 +728,13 @@
     <Content Include="Lists\CWDisposalTemplate\CWDisposalList\Elements.xml" />
     <Content Include="Lists\CWDisposalTemplate\Elements.xml" />
     <Content Include="Lists\CWDisposalTemplate\Schema.xml" />
+    <Content Include="Lists\CWLibraryTemplate\CWLibrary\Elements.xml" />
+    <Content Include="Lists\CWLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\CWLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\CWLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\CWLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\CWLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\CWLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\CWTemplate\CWList\Elements.xml" />
     <Content Include="Lists\CWTemplate\Elements.xml" />
     <Content Include="Lists\CWTemplate\Schema.xml">

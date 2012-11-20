@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="CW Library" OnQuickLaunch="TRUE" TemplateType="10061" Url="Lists/CWLibrary" Description="CW Library List Instance"></ListInstance>
+</Elements>

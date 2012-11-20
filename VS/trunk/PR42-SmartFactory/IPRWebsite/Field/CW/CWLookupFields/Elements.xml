@@ -77,4 +77,21 @@
     Name="CWDisposal2PCNPCN_sec"
     Overwrite="TRUE"
   />
+<Field
+    Name="CW2PCWLibraryID"
+    ID="{336B592C-D264-4469-8506-9A2E7FBA4F6B}"
+    Type="Lookup"
+    List="Lists/CWLibrary"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="CW Library ID"
+    Group="CAS Smart Factory CW"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
 </Elements>
