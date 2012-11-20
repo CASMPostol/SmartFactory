@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
+using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
@@ -70,10 +71,6 @@ namespace CAS.SmartFactory.IPR.Customs
             {
               ClearenceHelpers.DeclarationProcessing( _sad, edc, _message.MessageRootName(), out _comments );
             }
-            catch ( Exception ex )
-            {
-              throw ex;
-            }
             finally
             {
               entry.SADDocumentLibraryComments = _comments;
@@ -84,6 +81,10 @@ namespace CAS.SmartFactory.IPR.Customs
             _at = "SubmitChanges #2";
             edc.SubmitChanges();
           }
+        }
+        catch ( InputDataValidationException idve )
+        {
+          idve.ReportActionResult( properties.WebUrl, properties.ListItem.File.Name );
         }
         catch ( Exception ex )
         {

@@ -144,9 +144,9 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
       SummaryContentInfo contentInfo = new Content( xml.Material, edc, progressChanged );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: contentInfo.Validate" ) );
-      InputDataValidationException _ar = new InputDataValidationException( "Validate failed", "GetXmlContent" );
-      if ( !contentInfo.Validate( edc, _ar ) )
-        throw _ar;
+      List<string> _ve = new List<string>();
+      if ( _ve.Count > 0 )
+        new InputDataValidationException( "Batch content validate failed", "Get batch XML content", _ve );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: batch" ) );
       Batch batch =
           ( from idx in edc.Batch where idx.Batch0.Contains( contentInfo.Product.Batch ) && idx.BatchStatus.Value == BatchStatus.Preliminary select idx ).FirstOrDefault();

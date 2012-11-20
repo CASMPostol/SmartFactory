@@ -16,9 +16,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// </summary>
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="paramName">The name of the operation that caused the current exception.</param>
-    public InputDataValidationException( string message, string paramName )
+    public InputDataValidationException( string message, string paramName, List<string> errors )
       : base( message, paramName )
-    { }
+    {
+      m_Errors = errors;
+    }
     #region public
     public bool Valid { get { return m_Errors.Count == 0; } }
     /// <summary>
@@ -43,11 +45,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
       }
       catch ( Exception ) { }
     }
-    public void AddMessage( string _message )
-    {
-      m_Errors.Add( _message );
-    }
     #endregion
-    private List<string> m_Errors = new List<string>();
+    private List<string> m_Errors;
   }
 }
