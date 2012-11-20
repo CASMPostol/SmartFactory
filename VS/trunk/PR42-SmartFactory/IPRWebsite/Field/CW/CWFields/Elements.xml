@@ -52,4 +52,64 @@
     DisplayName="Closing date">
     <Default>[today]</Default>
   </Field>
+  <Field
+    ID="{FFE1DBB5-C46E-4621-89C8-EC2545714CBE}"
+    Name="CWDeclaredNetMass"
+    DisplayName="Declared net mass [kg]"
+    Group="CAS Smart Factory CW"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{682E0E80-7CB0-41E1-ABC9-A56A8B717DF5}"
+    Name="CWWz1"
+    DisplayName="WZ 1"
+    Group="CAS Smart Factory CW"
+    Type="Text"/>
+  <Field
+    ID="{BAEE8CB6-3B4C-4EA3-B840-854B87553055}"
+    Name="CWWz2"
+    DisplayName="WZ 2"
+    Group="CAS Smart Factory CW"
+    Type="Text"/>
+  <Field
+    ID="{015ECD5E-AEEA-49BD-815D-14C5B9320A92}"
+    Name="CWWz3"
+    DisplayName="WZ 3"
+    Group="CAS Smart Factory CW"
+    Type="Text"/>
+  <Field
+    ID="{3C6ECCAE-3F37-4E11-B142-A81C764AC67B}"
+    Name="CWAddedKg"
+    DisplayName="Added [kg]"
+    Group="CAS Smart Factory CW"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{B192FD3B-1F56-430B-827F-380BDF778EB0}"
+    Name="CWSettledNetMass"
+    DisplayName="Settled net mass [kg]"
+    Group="CAS Smart Factory CW"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{BA884069-1796-4CC7-AE4F-AD7104FCD965}"
+    Name="CWSettledGrossMass"
+    DisplayName="Settled gross mass [kg]"
+    Group="CAS Smart Factory CW"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{FDA785A6-7402-4DB6-8813-37AD4653E43D}"
+    Name="CWRemainingPackage"
+    DisplayName="Remaining package"
+    Group="CAS Smart Factory CW"
+    Type="Number"
+    Decimals="2"/>
+  <Field
+    ID="{33A5DCEA-73EB-4FDB-933E-91CFC1AE3544}"
+    Name="CWRemainingTobaccoValue"
+    DisplayName="Remaining tobacco value [PLN]"
+    Group="CAS Smart Factory CW"
+    Type="Number"
+    Decimals="3"/>
 </Elements>

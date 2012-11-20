@@ -3,9 +3,9 @@
   <ContentType ID="0x010088DA2CEF2CB74D27B0EE083FAED76D16"
                Name="CW"
                Group="CAS Smart Factory CW"
-                 Description="CW List Content Type"
-                 Overwrite="TRUE"
-                 Inherits="TRUE">
+               Description="CW List Content Type"
+               Overwrite="TRUE"
+               Inherits="TRUE">
     <Folder TargetName="_cts/CW" />
     <FieldRefs>
       <FieldRef ID="{31AF4083-FF31-4052-91CB-6B5D2F5BD781}" Name="EntryDate" />
