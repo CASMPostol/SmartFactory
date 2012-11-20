@@ -52,7 +52,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           };
           _at = "SetUpCalculatedColumns";
           _newDisposal.SetUpCalculatedColumns( CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp );
-          SettledQuantity = Convert.ToDouble( quantity);
+          SettledQuantity = Convert.ToDouble( quantity );
           quantity = 0;
           _at = "InsertOnSubmit";
           entities.Disposal.InsertOnSubmit( _newDisposal );
@@ -110,20 +110,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       try
       {
         _at = "Disposal _lastOne";
-        Disposal _lastOne = ( from _dsp in this.Disposal2IPRIndex.Disposal
-                              where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
-                              orderby _dsp.No.Value descending
-                              select _dsp ).FirstOrDefault<Disposal>();
-        if ( _lastOne == null )
+        IQueryable<Disposal> _lastOne = from _dsp in this.Disposal2IPRIndex.Disposal
+                                        where _dsp.CustomsStatus.Value == Linq.CustomsStatus.Finished
+                                        select _dsp;
+        if ( _lastOne.Count<Disposal>() == 0 )
           this.No = 1;
         else
-          this.No = _lastOne.No++;
+          this.No = _lastOne.Max<Disposal>( dspsl => dspsl.Identyfikator.Value ) + 1;
         PCNCode _pcn = PCNCode.Find( edc, clearence.ClearenceProcedure.Value, productCodeNumber );
         this.SADDocumentNo = documentNo;
         this.SADDate = clearanceDate;
         this.CustomsStatus = Linq.CustomsStatus.Finished;
-        this.Disposal2IPRIndex.AccountBalance -= this.SettledQuantity.Value;
-        this.RemainingQuantity = Disposal2IPRIndex.AccountBalance;
+        double _balance = Convert.ToDouble( Convert.ToDecimal( this.Disposal2IPRIndex.AccountBalance.Value ) - Convert.ToDecimal( this.SettledQuantity.Value ) );
+        this.Disposal2IPRIndex.AccountBalance = _balance;
+        this.RemainingQuantity = _balance;
         if ( this.RemainingQuantity.Value == 0 )
           this.ClearingType = Linq.ClearingType.TotalWindingUp;
         this.CustomsProcedure = Entities.ToString( clearence.ClearenceProcedure.Value );
