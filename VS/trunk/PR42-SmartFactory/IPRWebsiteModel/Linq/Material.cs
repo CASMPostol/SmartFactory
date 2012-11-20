@@ -37,10 +37,22 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region public
+    /// <summary>
+    /// Ratios 
+    /// </summary>
     public struct Ratios
     {
+      /// <summary>
+      /// The dust ratio
+      /// </summary>
       public double dustRatio;
+      /// <summary>
+      /// The sh menthol ratio
+      /// </summary>
       public double shMentholRatio;
+      /// <summary>
+      /// The waste ratio
+      /// </summary>
       public double wasteRatio;
     }
     /// <summary>
@@ -147,10 +159,28 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         }
       }
     }
-    public decimal DisposedQuantity( double portion )
+    /// <summary>
+    /// Get portion of calculated tobacco quantity.
+    /// </summary>
+    /// <param name="portion">The portion.</param>
+    /// <returns>Returns portion of calculated tobacco quantity. i.e. after removing compensation wast, dust, SHMethol, etc.</returns>
+    public decimal CalculatedQuantity( double portion )
     {
       return Convert.ToDecimal( ( this.Tobacco.Value * portion ).RountMass() );
     }
+    /// <summary>
+    /// Get portion of useds tobacco quantity, i.e. tobacco reported by the batch record.
+    /// </summary>
+    /// <param name="portion">Returns portion of used tobacco quantity. i.e. tobacco used for production.</param>
+    /// <returns></returns>
+    public double UsedQuantity( double portion )
+    {
+      return  (this.TobaccoQuantity.Value * portion ).RountMass();
+    }
+    /// <summary>
+    /// Gets the list of disposals.
+    /// </summary>
+    /// <returns></returns>
     public List<Disposal> GetListOfDisposals()
     {
       Linq.DisposalStatus status = this.Material2BatchIndex.ProductType.Value == Linq.ProductType.Cigarette ? DisposalStatus.TobaccoInCigaretes : DisposalStatus.TobaccoInCutfiller;
@@ -171,6 +201,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
     }
+    /// <summary>
+    /// Gets the tobacco total.
+    /// </summary>
+    /// <value>
+    /// The tobacco total.
+    /// </value>
     public decimal TobaccoTotal { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
     #endregion
 

@@ -156,7 +156,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       {
         if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.IPRTobacco )
         {
-          decimal _quantity = material.DisposedQuantity( portion );
+          decimal _quantity = material.CalculatedQuantity( portion );
           _at = "GetListOfDisposals";
           foreach ( Disposal _disposal in material.GetListOfDisposals() )
           {
@@ -173,8 +173,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         }
         else if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.Tobacco )
         {
-          _at = "RegularIngredient"; //TODO Cigarette export problem http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3414 
-          RegularIngredient _ri = new RegularIngredient( material.Batch, material.SKU, Convert.ToDouble( material.DisposedQuantity( portion ) ) );
+          _at = "RegularIngredient";
+          RegularIngredient _ri = new RegularIngredient( material.Batch, material.SKU, material.UsedQuantity( portion ) );
           formsList.Add( _ri );
         }
       }
