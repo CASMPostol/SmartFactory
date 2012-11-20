@@ -32,6 +32,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Dust = 0;
       SHMenthol = 0;
       Waste = 0;
+      Tobacco = 0;
     }
     #endregion
 
