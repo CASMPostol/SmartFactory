@@ -57,7 +57,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       }
       catch ( InputDataValidationException _idve )
       {
-        _idve.ReportActionResult( _properties.WebUrl );
+        _idve.ReportActionResult( _properties.WebUrl, _properties.ListItem.File.Name );
       }
       catch ( IPRDataConsistencyException _ex )
       {
