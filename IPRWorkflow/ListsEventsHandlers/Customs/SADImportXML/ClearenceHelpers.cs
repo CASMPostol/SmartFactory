@@ -168,9 +168,9 @@ namespace CAS.SmartFactory.IPR.Customs
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
         IPRData _iprdata = new IPRData( clearence.Clearence2SadGoodID, _messageType );
-        ActionResult _ar = new ActionResult();
+        List<string> _ar = new List<string> ();
         if ( !_iprdata.Validate( entities, _ar ) )
-          throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.NotValidated( _ar[ 0 ] );
+          throw new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar);
         _at = "Consent.Lookup";
         _comments = "Consent lookup filed";
         Consent _cnsnt = Consent.Lookup( entities, _iprdata.Consent );
@@ -395,7 +395,7 @@ namespace CAS.SmartFactory.IPR.Customs
       #endregion
 
       #region public
-      internal bool Validate( Entities entities, ActionResult _ar )
+      internal bool Validate( Entities entities, List<string> warnnings )
       {
         bool _ret = true;
         //TODO Add validation logic

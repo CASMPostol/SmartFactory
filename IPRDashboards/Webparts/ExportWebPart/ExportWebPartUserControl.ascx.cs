@@ -534,11 +534,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
       {
-        ActionResult _checkResult = item.InvoiceContent2BatchIndex.ExportIsPossible( item.Quantity );
-        if ( _checkResult.Valid )
+        string _checkResult = item.InvoiceContent2BatchIndex.ExportIsPossible( item.Quantity );
+        if ( _checkResult.IsNullOrEmpty() )
           continue;
-        foreach ( var _msg in _checkResult )
-          Controls.Add( ControlExtensions.CreateMessage( _msg ) );
+        Controls.Add( ControlExtensions.CreateMessage( _checkResult ) );
         m_ControlState.UpdateControlState( item );
         string _frmt = "Cannot proceed with export because the invoice item contains eroors {0}.";
         return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Title ) );
