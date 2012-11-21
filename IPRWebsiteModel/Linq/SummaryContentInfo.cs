@@ -17,21 +17,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
     internal decimal TotalTobacco { get; private set; }
     internal void ProcessDisposals
-      ( Entities _edc, Batch _parent, double _dustRatio, double _shMentholRatio, double _wasteRatio, double _overusageCoefficient, ProgressChangedEventHandler _progressChanged )
+      ( Entities edc, Batch parent, double dustRatio, double shMentholRatio, double wasteRatio, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
     {
       if ( Product == null )
         throw new IPRDataConsistencyException( "Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized." );
       try
       {
-        InsertAllOnSubmit( _edc, _parent );
+        InsertAllOnSubmit( edc, parent );
         foreach ( Material _materialX in this.Values )
         {
           if ( _materialX.ProductType.Value != ProductType.IPRTobacco )
             continue;
-          _progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
-          Material.Ratios _mr = new Material.Ratios { dustRatio = _dustRatio, shMentholRatio = _shMentholRatio, wasteRatio = _wasteRatio };
-          _materialX.DisposalsAnalisis( _edc, _mr, _overusageCoefficient );
-          _progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
+          progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
+          Material.Ratios _mr = new Material.Ratios { dustRatio = dustRatio, shMentholRatio = shMentholRatio, wasteRatio = wasteRatio };
+          _materialX.DisposalsAnalisis( edc, _mr, overusageCoefficient );
+          progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
           AccumulatedDisposalsAnalisis.Accumutate( _materialX );
           foreach ( WebsiteModel.Linq.Material.DisposalsEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.Material.DisposalsEnum ) ) )
           {
@@ -39,30 +39,30 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             {
               if ( _materialX[ _item ] <= 0 && ( _item == WebsiteModel.Linq.Material.DisposalsEnum.SHMenthol ) )
                 continue;
-              List<WebsiteModel.Linq.IPR> _accounts = WebsiteModel.Linq.IPR.FindIPRAccountsWithNotAllocatedTobacco( _edc, _materialX.Batch );
+              List<WebsiteModel.Linq.IPR> _accounts = WebsiteModel.Linq.IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, _materialX.Batch );
               if ( _accounts.Count == 0 )
               {
                 string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
-                throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, _materialX.Batch, _parent.Batch0, _item ), null, "IPR unrecognized account" );
+                throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, _materialX.Batch, parent.Batch0, _item ), null, "IPR unrecognized account" );
               }
               decimal _toDispose = _materialX[ _item ];
-              _progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _item, _materialX.Batch ) ) );
+              progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _item, _materialX.Batch ) ) );
               //TODOD  [pr4-3572] Adjust the tobacco usage while importing batch 
               for ( int _aidx = 0; _aidx < _accounts.Count; _aidx++ )
               {
-                _accounts[ _aidx ].AddDisposal( _edc, _item, ref _toDispose, _materialX );
+                _accounts[ _aidx ].AddDisposal( edc, _item, ref _toDispose, _materialX );
                 if ( _toDispose <= 0 )
                   break;
               }
-              _edc.SubmitChanges();
+              edc.SubmitChanges();
             }
             catch ( IPRDataConsistencyException _ex )
             {
-              _ex.Add2Log( _edc );
+              _ex.Add2Log( edc );
             }
           }
-          _progressChanged( this, new ProgressChangedEventArgs( 1, "SubmitChanges" ) );
-          _edc.SubmitChanges();
+          progressChanged( this, new ProgressChangedEventArgs( 1, "SubmitChanges" ) );
+          edc.SubmitChanges();
         }
       }
       catch ( Exception _ex )
