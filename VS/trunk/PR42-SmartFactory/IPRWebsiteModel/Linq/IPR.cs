@@ -86,7 +86,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           _dsposl = DisposalEnum.OverusageInKg;
           break;
         case Material.DisposalsEnum.Tobacco:
-          _dsposl = DisposalEnum.Tobacco;
+          _dsposl = DisposalEnum.TobaccoInCigaretess;
           break;
       }
       AddDisposal( edc, _dsposl, ref quantity, material, null );
@@ -121,13 +121,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>
-    private void AddDisposal( Entities _edc, DisposalEnum _status, ref decimal quantity, Material material, Clearence clearence )
+    private void AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity, Material material, Clearence clearence )
     {
       try
       {
         PCNCode _disposal2PCNID = null;
         Linq.DisposalStatus _typeOfDisposal = default( Linq.DisposalStatus );
-        switch ( _status )
+        switch ( status )
         {
           case DisposalEnum.Cartons:
             _typeOfDisposal = DisposalStatus.Cartons;
@@ -180,7 +180,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           TobaccoValue = new Nullable<double>() //calculated in SetUpCalculatedColumns,
         };
         _newDisposal.SetUpCalculatedColumns( ClearingType.PartialWindingUp );
-        _edc.Disposal.InsertOnSubmit( _newDisposal );
+        edc.Disposal.InsertOnSubmit( _newDisposal );
       }
       catch ( CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult _ex )
       {
@@ -192,7 +192,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           (
             "Disposal for batch= {0} of type={1} at account=={2} creation failed because of error: " + _ex.Message,
             material.Material2BatchIndex.Title,
-            _status,
+            status,
             this.Title
           );
         throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.Exception( _ex, _msg );
