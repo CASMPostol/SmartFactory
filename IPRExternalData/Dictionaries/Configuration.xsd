@@ -76,6 +76,8 @@
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Format_lookup"/>
                     <xsd:element minOccurs="1" type="xsd:double" name="UsageMin"/>
                     <xsd:element minOccurs="1" type="xsd:double" name="UsageMax"/>
+                    <xsd:element minOccurs="1" type="xsd:double" name="CTFUsageMin"/>
+                    <xsd:element minOccurs="1" type="xsd:double" name="CTFUsageMax"/>
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
@@ -103,6 +105,7 @@
                 <xsd:complexType>
                   <xsd:sequence minOccurs="0">
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ConsentNo"/>
+                    <xsd:element minOccurs="0" type="xsd:date" name="ConsentDate"/>
                     <xsd:element minOccurs="0" type="xsd:date" name="ValidFromDate"/>
                     <xsd:element minOccurs="0" type="xsd:date" name="ValidToDate"/>
                     <xsd:element minOccurs="1" type="xsd:double" name="ProductivityRateMin"/>
@@ -124,6 +127,7 @@
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title"/>
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ProductCodeNumber"/>
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="CompensationGood"/>
+                    <xsd:element minOccurs="0" type="xsd:boolean" name="Disposal"/>
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
@@ -137,7 +141,7 @@
                 <xsd:complexType>
                   <xsd:sequence minOccurs="0">
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title"/>
-                    <xsd:element minOccurs="1" type="xsd:boolean" name="External"/>
+                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="WarehouseName"/>
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ProductType"/>
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="ItemType"/>
                   </xsd:sequence>

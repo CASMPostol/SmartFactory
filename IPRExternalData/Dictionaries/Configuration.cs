@@ -356,6 +356,10 @@ namespace CAS.SmartFactory.xml.Dictionaries {
         
         private double usageMaxField;
         
+        private double cTFUsageMinField;
+        
+        private double cTFUsageMaxField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Format_lookup {
@@ -384,6 +388,26 @@ namespace CAS.SmartFactory.xml.Dictionaries {
             }
             set {
                 this.usageMaxField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double CTFUsageMin {
+            get {
+                return this.cTFUsageMinField;
+            }
+            set {
+                this.cTFUsageMinField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double CTFUsageMax {
+            get {
+                return this.cTFUsageMaxField;
+            }
+            set {
+                this.cTFUsageMaxField = value;
             }
         }
     }
@@ -431,6 +455,10 @@ namespace CAS.SmartFactory.xml.Dictionaries {
         
         private string consentNoField;
         
+        private System.DateTime consentDateField;
+        
+        private bool consentDateFieldSpecified;
+        
         private System.DateTime validFromDateField;
         
         private bool validFromDateFieldSpecified;
@@ -455,6 +483,28 @@ namespace CAS.SmartFactory.xml.Dictionaries {
             }
             set {
                 this.consentNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+        public System.DateTime ConsentDate {
+            get {
+                return this.consentDateField;
+            }
+            set {
+                this.consentDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool ConsentDateSpecified {
+            get {
+                return this.consentDateFieldSpecified;
+            }
+            set {
+                this.consentDateFieldSpecified = value;
             }
         }
         
@@ -557,6 +607,10 @@ namespace CAS.SmartFactory.xml.Dictionaries {
         
         private string compensationGoodField;
         
+        private bool disposalField;
+        
+        private bool disposalFieldSpecified;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Title {
@@ -589,6 +643,27 @@ namespace CAS.SmartFactory.xml.Dictionaries {
                 this.compensationGoodField = value;
             }
         }
+        
+        /// <remarks/>
+        public bool Disposal {
+            get {
+                return this.disposalField;
+            }
+            set {
+                this.disposalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DisposalSpecified {
+            get {
+                return this.disposalFieldSpecified;
+            }
+            set {
+                this.disposalFieldSpecified = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -601,7 +676,7 @@ namespace CAS.SmartFactory.xml.Dictionaries {
         
         private string titleField;
         
-        private bool externalField;
+        private string warehouseNameField;
         
         private string productTypeField;
         
@@ -619,12 +694,13 @@ namespace CAS.SmartFactory.xml.Dictionaries {
         }
         
         /// <remarks/>
-        public bool External {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string WarehouseName {
             get {
-                return this.externalField;
+                return this.warehouseNameField;
             }
             set {
-                this.externalField = value;
+                this.warehouseNameField = value;
             }
         }
         

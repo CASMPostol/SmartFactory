@@ -88,13 +88,14 @@ namespace CAS.SmartFactory.Management
       {
         Consent cns = new Consent
         {
+          IsIPR = item.IsIPR,
           ProductivityRateMax = item.ProductivityRateMax,
           ProductivityRateMin = item.ProductivityRateMin,
           ValidFromDate = item.ValidFromDate,
           ValidToDate = item.ValidToDate,
           ConsentPeriod = item.ConsentPeriod,
-          Title = item.ConsentNo,
-          IsIPR = item.IsIPR
+          ConsentDate = item.ConsentDate,
+          Title = item.ConsentNo
         };
         list.Add( cns );
       };
@@ -149,9 +150,10 @@ namespace CAS.SmartFactory.Management
       {
         PCNCode pcn = new PCNCode
         {
+          Disposal = item.Disposal,
           CompensationGood = item.CompensationGood.ParseCompensationGood(),
           ProductCodeNumber = item.ProductCodeNumber,
-          Title = item.Title
+          Title = item.Title, 
         };
         list.Add( pcn );
       };
@@ -182,10 +184,8 @@ namespace CAS.SmartFactory.Management
           FormatIndex = Format.GetFormatLookup( item.Format_lookup, edc ),
           UsageMax = item.UsageMax,
           UsageMin = item.UsageMin,
-          //TODO  [pr4-3560] Usage List - add data and display CFT... column http://itrserver/Bugs/BugDetail.aspx?bid=3560
-          //Schema does not contain definition of this columns.
-          CTFUsageMax = int.MaxValue,
-          CTFUsageMin = int.MinValue
+          CTFUsageMax = item.CTFUsageMax,
+          CTFUsageMin = item.CTFUsageMin
         };
         list.Add( usg );
       };
@@ -198,8 +198,7 @@ namespace CAS.SmartFactory.Management
       {
         Warehouse wrh = new Warehouse
         {
-          //TODO update to the current model.
-          //External = item.External,
+          WarehouseName = item.WarehouseName,
           ProductType = item.ProductType.ParseProductType(),
           Title = item.Title
         };
