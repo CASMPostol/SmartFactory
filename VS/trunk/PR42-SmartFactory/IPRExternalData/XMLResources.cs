@@ -29,18 +29,17 @@ namespace CAS.SmartFactory.xml
     /// </summary>
     /// <param name="documentName">Name of the document.</param>
     /// <returns></returns>
-    public static int? GetRequiredDocumentFinishedGoodExportConsignmentNumber( string documentName )
+    public static int? GetRequiredDocumentFinishedGoodExportConsignmentNumber( string documentName, string pattern )
     {
       int? _cleranceInt = new Nullable<int>();
       try
       {
-        string _cleranceString = documentName.SPValidSubstring().GetFirstCapture( m_RequiredDocumentFinishedGoodExportConsignmentPattern );
+        string _cleranceString = documentName.SPValidSubstring().GetFirstCapture( pattern );
         _cleranceInt = _cleranceString.String2Int();
       }
       catch ( GenericStateMachineEngine.ActionResult ) { }
       return _cleranceInt;
     }
     private const string m_FinishedGoodsExportFormFileName = "Proces technologiczny {0:D7}";
-    private const string m_RequiredDocumentFinishedGoodExportConsignmentPattern = @"(?<=P\w*\b\st\w*\b\s)(\d{7})";
   }
 }

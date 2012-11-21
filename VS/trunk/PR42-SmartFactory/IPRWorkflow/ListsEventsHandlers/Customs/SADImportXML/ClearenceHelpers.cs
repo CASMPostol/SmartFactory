@@ -167,7 +167,7 @@ namespace CAS.SmartFactory.IPR.Customs
         }
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
-        IPRData _iprdata = new IPRData( clearence.Clearence2SadGoodID, _messageType );
+        IPRData _iprdata = new IPRData(entities, clearence.Clearence2SadGoodID, _messageType );
         List<string> _ar = new List<string>();
         if ( !_iprdata.Validate( entities, _ar ) )
           throw new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar );
@@ -323,14 +323,14 @@ namespace CAS.SmartFactory.IPR.Customs
       /// </summary>
       /// <param name="_GoodsDescription">The _ goods description.</param>
       /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">Syntax errors in the good description.</exception>
-      private void AnalizeGoodsDescription( string _GoodsDescription )
+      private void AnalizeGoodsDescription( Entities edc, string _GoodsDescription )
       {
         List<string> _sErrors = new List<string>();
         string _na = "Not recognized";
-        TobaccoName = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionTobaccoNamePattern, _na, _sErrors );
-        GradeName = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionWGRADEPattern, _na, _sErrors );
-        SKU = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionSKUPattern, _na, _sErrors );
-        Batch = _GoodsDescription.GetFirstCapture( CommonDefinition.GoodsDescriptionBatchPattern, _na, _sErrors );
+        TobaccoName = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionTobaccoNamePattern ), _na, _sErrors );
+        GradeName = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionWGRADEPattern ), _na, _sErrors );
+        SKU = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionSKUPattern ), _na, _sErrors );
+        Batch = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionBatchPattern ), _na, _sErrors );
         if ( _sErrors.Count > 0 )
           throw new InputDataValidationException( "Syntax errors in the good description.", "AnalizeGoodsDescription", _sErrors );
       }
@@ -344,7 +344,7 @@ namespace CAS.SmartFactory.IPR.Customs
       /// <param name="_messageType">Type of the _message.</param>
       /// <exception cref="IPRDataConsistencyException">There is not attached any consent document with code = 1PG1/C601</exception>
       /// <exception cref="InputDataValidationException">Syntax errors in the good description.</exception>
-      internal IPRData( SADGood good, CustomsDocument.DocumentType _messageType )
+      internal IPRData( Entities edc, SADGood good, CustomsDocument.DocumentType _messageType )
       {
         string _at = "starting";
         try
@@ -375,7 +375,7 @@ namespace CAS.SmartFactory.IPR.Customs
             string _src = String.Format( "IPR.IPRData creator", _at );
             throw new IPRDataConsistencyException( _src, "There is not attached any consent document with code = 1PG1/C601", _ex, _src );
           }
-          AnalizeGoodsDescription( good.GoodsDescription );
+          AnalizeGoodsDescription( edc, good.GoodsDescription );
         }
         catch ( InputDataValidationException _idve )
         {
@@ -429,7 +429,7 @@ namespace CAS.SmartFactory.IPR.Customs
       {
         if ( _rdx.Code != XMLResources.RequiredDocumentConsignmentCode )
           continue;
-        int? _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( _rdx.Number );
+        int? _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( _rdx.Number, Settings.GetParameter(entities, SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern) );
         if ( _cleranceInt.HasValue )
         {
           Clearence _clearance = Element.GetAtIndex<Clearence>( entities.Clearence, _cleranceInt.Value );
