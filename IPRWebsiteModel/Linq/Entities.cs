@@ -114,12 +114,52 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		/// <summary>
+		/// CW List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="CW")]
+		public Microsoft.SharePoint.Linq.EntityList<CWCW> CW {
+			get {
+				return this.GetList<CWCW>("CW");
+			}
+		}
+		
+		/// <summary>
+		/// CW Disposal List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="CW Disposal")]
+		public Microsoft.SharePoint.Linq.EntityList<CWDisposalCWDisposal> CWDisposal {
+			get {
+				return this.GetList<CWDisposalCWDisposal>("CW Disposal");
+			}
+		}
+		
+		/// <summary>
+		/// CW Library List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="CW Library")]
+		public Microsoft.SharePoint.Linq.EntityList<CWLibraryCWLib> CWLibrary {
+			get {
+				return this.GetList<CWLibraryCWLib>("CW Library");
+			}
+		}
+		
+		/// <summary>
 		/// Disposal List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="Disposal")]
 		public Microsoft.SharePoint.Linq.EntityList<Disposal> Disposal {
 			get {
 				return this.GetList<Disposal>("Disposal");
+			}
+		}
+		
+		/// <summary>
+		/// Disposal Declaration List Instance
+		/// </summary>
+		[Microsoft.SharePoint.Linq.ListAttribute(Name="Disposal Declaration")]
+		public Microsoft.SharePoint.Linq.EntityList<DisposalDeclaration> DisposalDeclaration {
+			get {
+				return this.GetList<DisposalDeclaration>("Disposal Declaration");
 			}
 		}
 		
@@ -426,7 +466,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Consent))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CustomsUnion))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CutfillerCoefficient))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CW))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CWDisposal))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Disposal))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DisposalDeclaration))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Dust))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Format))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(InvoiceContent))]
@@ -450,7 +493,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Waste))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Commodity))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(City))]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(DisposalDeclaration))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(TobaccoBatchSummary))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(Country))]
 	public partial class Element : Microsoft.SharePoint.Linq.ITrackEntityState, Microsoft.SharePoint.Linq.ITrackOriginalValues, System.ComponentModel.INotifyPropertyChanged, System.ComponentModel.INotifyPropertyChanging {
@@ -631,6 +673,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Dokument", Id="0x0101")]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BatchLib))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CWLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(InvoiceLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(JSOXLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADConsignment))]
@@ -1133,6 +1176,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<DisposalDeclaration> _disposalDeclaration;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> _invoiceContent;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Material> _material;
@@ -1178,6 +1223,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._disposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposalSync);
 			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
 			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
+			this._disposalDeclaration = new Microsoft.SharePoint.Linq.EntitySet<DisposalDeclaration>();
+			this._disposalDeclaration.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalDeclaration>>(this.OnDisposalDeclarationSync);
+			this._disposalDeclaration.OnChanged += new System.EventHandler(this.OnDisposalDeclarationChanged);
+			this._disposalDeclaration.OnChanging += new System.EventHandler(this.OnDisposalDeclarationChanging);
 			this._invoiceContent = new Microsoft.SharePoint.Linq.EntitySet<InvoiceContent>();
 			this._invoiceContent.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<InvoiceContent>>(this.OnInvoiceContentSync);
 			this._invoiceContent.OnChanged += new System.EventHandler(this.OnInvoiceContentChanged);
@@ -1705,6 +1754,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="DisposalsDeclaration2BatchIndex", Storage="_disposalDeclaration", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Disposal Declaration")]
+		public Microsoft.SharePoint.Linq.EntitySet<DisposalDeclaration> DisposalDeclaration {
+			get {
+				return this._disposalDeclaration;
+			}
+			set {
+				this._disposalDeclaration.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="InvoiceContent2BatchIndex", Storage="_invoiceContent", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Invoice Content")]
 		public Microsoft.SharePoint.Linq.EntitySet<InvoiceContent> InvoiceContent {
 			get {
@@ -1868,6 +1927,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 			else {
 				e.Item.Disposal2BatchIndex = null;
+			}
+		}
+		
+		private void OnDisposalDeclarationChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("DisposalDeclaration", this._disposalDeclaration.Clone());
+		}
+		
+		private void OnDisposalDeclarationChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("DisposalDeclaration");
+		}
+		
+		private void OnDisposalDeclarationSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<DisposalDeclaration> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.DisposalsDeclaration2BatchIndex = this;
+			}
+			else {
+				e.Item.DisposalsDeclaration2BatchIndex = null;
 			}
 		}
 		
@@ -2445,6 +2521,989 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// <summary>
 	/// Utwórz nowy element listy.
 	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CW", Id="0x010088DA2CEF2CB74D27B0EE083FAED76D16")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CWCW))]
+	public partial class CW : Element {
+		
+		private string _contentType;
+		
+		private System.Nullable<System.DateTime> _entryDate;
+		
+		private string _documentNo;
+		
+		private System.Nullable<System.DateTime> _customsDebtDate;
+		
+		private string _tobaccoName;
+		
+		private string _grade;
+		
+		private string _sKU;
+		
+		private string _batch;
+		
+		private System.Nullable<double> _cWQuantity;
+		
+		private string _units;
+		
+		private System.Nullable<double> _netMass;
+		
+		private System.Nullable<double> _grossMass;
+		
+		private System.Nullable<double> _cWPackageUnits;
+		
+		private System.Nullable<double> _cWPackageKg;
+		
+		private System.Nullable<double> _cWMassPerPackage;
+		
+		private System.Nullable<double> _value;
+		
+		private string _currency;
+		
+		private System.Nullable<double> _cWUnitPrice;
+		
+		private string _cWPzNo;
+		
+		private string _invoiceNo;
+		
+		private System.Nullable<double> _accountBalance;
+		
+		private string _cWCertificate;
+		
+		private System.Nullable<System.DateTime> _validToDate;
+		
+		private System.Nullable<System.DateTime> _cWClosingDate;
+		
+		private System.Nullable<int> _cW2ConsentTitleIdentyfikator;
+		
+		private string _cW2ConsentTitleTitle;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _cW2PCNTID;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<CWLibraryCWLib> _cW2PCWLibraryID;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public CW() {
+			this._cW2PCNTID = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
+			this._cW2PCNTID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnCW2PCNTIDSync);
+			this._cW2PCNTID.OnChanged += new System.EventHandler(this.OnCW2PCNTIDChanged);
+			this._cW2PCNTID.OnChanging += new System.EventHandler(this.OnCW2PCNTIDChanging);
+			this._cW2PCWLibraryID = new Microsoft.SharePoint.Linq.EntityRef<CWLibraryCWLib>();
+			this._cW2PCWLibraryID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWLibraryCWLib>>(this.OnCW2PCWLibraryIDSync);
+			this._cW2PCWLibraryID.OnChanged += new System.EventHandler(this.OnCW2PCWLibraryIDChanged);
+			this._cW2PCWLibraryID.OnChanging += new System.EventHandler(this.OnCW2PCWLibraryIDChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
+		public virtual string ContentType {
+			get {
+				return this._contentType;
+			}
+			set {
+				if ((value != this._contentType)) {
+					this.OnPropertyChanging("ContentType", this._contentType);
+					this._contentType = value;
+					this.OnPropertyChanged("ContentType");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EntryDate", Storage="_entryDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> EntryDate {
+			get {
+				return this._entryDate;
+			}
+			set {
+				if ((value != this._entryDate)) {
+					this.OnPropertyChanging("EntryDate", this._entryDate);
+					this._entryDate = value;
+					this.OnPropertyChanged("EntryDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DocumentNo", Storage="_documentNo", FieldType="Text")]
+		public string DocumentNo {
+			get {
+				return this._documentNo;
+			}
+			set {
+				if ((value != this._documentNo)) {
+					this.OnPropertyChanging("DocumentNo", this._documentNo);
+					this._documentNo = value;
+					this.OnPropertyChanged("DocumentNo");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsDebtDate", Storage="_customsDebtDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> CustomsDebtDate {
+			get {
+				return this._customsDebtDate;
+			}
+			set {
+				if ((value != this._customsDebtDate)) {
+					this.OnPropertyChanging("CustomsDebtDate", this._customsDebtDate);
+					this._customsDebtDate = value;
+					this.OnPropertyChanged("CustomsDebtDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TobaccoName", Storage="_tobaccoName", FieldType="Text")]
+		public string TobaccoName {
+			get {
+				return this._tobaccoName;
+			}
+			set {
+				if ((value != this._tobaccoName)) {
+					this.OnPropertyChanging("TobaccoName", this._tobaccoName);
+					this._tobaccoName = value;
+					this.OnPropertyChanged("TobaccoName");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Grade", Storage="_grade", FieldType="Text")]
+		public string Grade {
+			get {
+				return this._grade;
+			}
+			set {
+				if ((value != this._grade)) {
+					this.OnPropertyChanging("Grade", this._grade);
+					this._grade = value;
+					this.OnPropertyChanged("Grade");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
+		public string SKU {
+			get {
+				return this._sKU;
+			}
+			set {
+				if ((value != this._sKU)) {
+					this.OnPropertyChanging("SKU", this._sKU);
+					this._sKU = value;
+					this.OnPropertyChanged("SKU");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Batch", Storage="_batch", FieldType="Text")]
+		public string Batch {
+			get {
+				return this._batch;
+			}
+			set {
+				if ((value != this._batch)) {
+					this.OnPropertyChanging("Batch", this._batch);
+					this._batch = value;
+					this.OnPropertyChanged("Batch");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWQuantity", Storage="_cWQuantity", FieldType="Number")]
+		public System.Nullable<double> CWQuantity {
+			get {
+				return this._cWQuantity;
+			}
+			set {
+				if ((value != this._cWQuantity)) {
+					this.OnPropertyChanging("CWQuantity", this._cWQuantity);
+					this._cWQuantity = value;
+					this.OnPropertyChanged("CWQuantity");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Units", Storage="_units", FieldType="Text")]
+		public string Units {
+			get {
+				return this._units;
+			}
+			set {
+				if ((value != this._units)) {
+					this.OnPropertyChanging("Units", this._units);
+					this._units = value;
+					this.OnPropertyChanged("Units");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="NetMass", Storage="_netMass", FieldType="Number")]
+		public System.Nullable<double> NetMass {
+			get {
+				return this._netMass;
+			}
+			set {
+				if ((value != this._netMass)) {
+					this.OnPropertyChanging("NetMass", this._netMass);
+					this._netMass = value;
+					this.OnPropertyChanged("NetMass");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="GrossMass", Storage="_grossMass", FieldType="Number")]
+		public System.Nullable<double> GrossMass {
+			get {
+				return this._grossMass;
+			}
+			set {
+				if ((value != this._grossMass)) {
+					this.OnPropertyChanging("GrossMass", this._grossMass);
+					this._grossMass = value;
+					this.OnPropertyChanged("GrossMass");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWPackageUnits", Storage="_cWPackageUnits", FieldType="Number")]
+		public System.Nullable<double> CWPackageUnits {
+			get {
+				return this._cWPackageUnits;
+			}
+			set {
+				if ((value != this._cWPackageUnits)) {
+					this.OnPropertyChanging("CWPackageUnits", this._cWPackageUnits);
+					this._cWPackageUnits = value;
+					this.OnPropertyChanged("CWPackageUnits");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWPackageKg", Storage="_cWPackageKg", FieldType="Number")]
+		public System.Nullable<double> CWPackageKg {
+			get {
+				return this._cWPackageKg;
+			}
+			set {
+				if ((value != this._cWPackageKg)) {
+					this.OnPropertyChanging("CWPackageKg", this._cWPackageKg);
+					this._cWPackageKg = value;
+					this.OnPropertyChanged("CWPackageKg");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWMassPerPackage", Storage="_cWMassPerPackage", FieldType="Number")]
+		public System.Nullable<double> CWMassPerPackage {
+			get {
+				return this._cWMassPerPackage;
+			}
+			set {
+				if ((value != this._cWMassPerPackage)) {
+					this.OnPropertyChanging("CWMassPerPackage", this._cWMassPerPackage);
+					this._cWMassPerPackage = value;
+					this.OnPropertyChanged("CWMassPerPackage");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Value", Storage="_value", FieldType="Number")]
+		public System.Nullable<double> Value {
+			get {
+				return this._value;
+			}
+			set {
+				if ((value != this._value)) {
+					this.OnPropertyChanging("Value", this._value);
+					this._value = value;
+					this.OnPropertyChanged("Value");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Currency", Storage="_currency", FieldType="Text")]
+		public string Currency {
+			get {
+				return this._currency;
+			}
+			set {
+				if ((value != this._currency)) {
+					this.OnPropertyChanging("Currency", this._currency);
+					this._currency = value;
+					this.OnPropertyChanged("Currency");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWUnitPrice", Storage="_cWUnitPrice", FieldType="Number")]
+		public System.Nullable<double> CWUnitPrice {
+			get {
+				return this._cWUnitPrice;
+			}
+			set {
+				if ((value != this._cWUnitPrice)) {
+					this.OnPropertyChanging("CWUnitPrice", this._cWUnitPrice);
+					this._cWUnitPrice = value;
+					this.OnPropertyChanged("CWUnitPrice");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWPzNo", Storage="_cWPzNo", FieldType="Text")]
+		public string CWPzNo {
+			get {
+				return this._cWPzNo;
+			}
+			set {
+				if ((value != this._cWPzNo)) {
+					this.OnPropertyChanging("CWPzNo", this._cWPzNo);
+					this._cWPzNo = value;
+					this.OnPropertyChanged("CWPzNo");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="InvoiceNo", Storage="_invoiceNo", FieldType="Text")]
+		public string InvoiceNo {
+			get {
+				return this._invoiceNo;
+			}
+			set {
+				if ((value != this._invoiceNo)) {
+					this.OnPropertyChanging("InvoiceNo", this._invoiceNo);
+					this._invoiceNo = value;
+					this.OnPropertyChanged("InvoiceNo");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AccountBalance", Storage="_accountBalance", Required=true, FieldType="Number")]
+		public System.Nullable<double> AccountBalance {
+			get {
+				return this._accountBalance;
+			}
+			set {
+				if ((value != this._accountBalance)) {
+					this.OnPropertyChanging("AccountBalance", this._accountBalance);
+					this._accountBalance = value;
+					this.OnPropertyChanged("AccountBalance");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWCertificate", Storage="_cWCertificate", FieldType="Text")]
+		public string CWCertificate {
+			get {
+				return this._cWCertificate;
+			}
+			set {
+				if ((value != this._cWCertificate)) {
+					this.OnPropertyChanging("CWCertificate", this._cWCertificate);
+					this._cWCertificate = value;
+					this.OnPropertyChanged("CWCertificate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ValidToDate", Storage="_validToDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> ValidToDate {
+			get {
+				return this._validToDate;
+			}
+			set {
+				if ((value != this._validToDate)) {
+					this.OnPropertyChanging("ValidToDate", this._validToDate);
+					this._validToDate = value;
+					this.OnPropertyChanged("ValidToDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWClosingDate", Storage="_cWClosingDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> CWClosingDate {
+			get {
+				return this._cWClosingDate;
+			}
+			set {
+				if ((value != this._cWClosingDate)) {
+					this.OnPropertyChanging("CWClosingDate", this._cWClosingDate);
+					this._cWClosingDate = value;
+					this.OnPropertyChanged("CWClosingDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW2ConsentTitle", Storage="_cW2ConsentTitleIdentyfikator", FieldType="Lookup", IsLookupId=true)]
+		public System.Nullable<int> CW2ConsentTitleIdentyfikator {
+			get {
+				return this._cW2ConsentTitleIdentyfikator;
+			}
+			set {
+				if ((value != this._cW2ConsentTitleIdentyfikator)) {
+					this.OnPropertyChanging("CW2ConsentTitleIdentyfikator", this._cW2ConsentTitleIdentyfikator);
+					this._cW2ConsentTitleIdentyfikator = value;
+					this.OnPropertyChanged("CW2ConsentTitleIdentyfikator");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW2ConsentTitle", Storage="_cW2ConsentTitleTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
+		public string CW2ConsentTitleTitle {
+			get {
+				return this._cW2ConsentTitleTitle;
+			}
+			set {
+				if ((value != this._cW2ConsentTitleTitle)) {
+					this.OnPropertyChanging("CW2ConsentTitleTitle", this._cW2ConsentTitleTitle);
+					this._cW2ConsentTitleTitle = value;
+					this.OnPropertyChanged("CW2ConsentTitleTitle");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCNTID", Storage="_cW2PCNTID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
+		public PCNCode CW2PCNTID {
+			get {
+				return this._cW2PCNTID.GetEntity();
+			}
+			set {
+				this._cW2PCNTID.SetEntity(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCWLibraryID", Storage="_cW2PCWLibraryID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="CW Library")]
+		public CWLibraryCWLib CW2PCWLibraryID {
+			get {
+				return this._cW2PCWLibraryID.GetEntity();
+			}
+			set {
+				this._cW2PCWLibraryID.SetEntity(value);
+			}
+		}
+		
+		private void OnCW2PCNTIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CW2PCNTID", this._cW2PCNTID.Clone());
+		}
+		
+		private void OnCW2PCNTIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CW2PCNTID");
+		}
+		
+		private void OnCW2PCNTIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CW.Add(this);
+			}
+			else {
+				e.Item.CW.Remove(this);
+			}
+		}
+		
+		private void OnCW2PCWLibraryIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CW2PCWLibraryID", this._cW2PCWLibraryID.Clone());
+		}
+		
+		private void OnCW2PCWLibraryIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CW2PCWLibraryID");
+		}
+		
+		private void OnCW2PCWLibraryIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWLibraryCWLib> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CW.Add(this);
+			}
+			else {
+				e.Item.CW.Remove(this);
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CWDisposal", Id="0x0100ABB044CC02EA42888FF88537C864C5F2")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CWDisposalCWDisposal))]
+	public partial class CWDisposal : Element {
+		
+		private string _contentType;
+		
+		private System.Nullable<System.DateTime> _entryDate;
+		
+		private System.Nullable<double> _no;
+		
+		private string _sADDocumentNo;
+		
+		private System.Nullable<System.DateTime> _sADDate;
+		
+		private string _tobaccoName;
+		
+		private string _grade;
+		
+		private string _sKU;
+		
+		private string _batch;
+		
+		private System.Nullable<double> _cWDeclaredNetMass;
+		
+		private string _cWWz1;
+		
+		private string _cWWz2;
+		
+		private System.Nullable<double> _cWAddedKg;
+		
+		private string _cWWz3;
+		
+		private System.Nullable<double> _cWSettledNetMass;
+		
+		private System.Nullable<double> _cWSettledGrossMass;
+		
+		private System.Nullable<double> _tobaccoValue;
+		
+		private string _currency;
+		
+		private System.Nullable<double> _remainingQuantity;
+		
+		private System.Nullable<double> _cWRemainingPackage;
+		
+		private System.Nullable<double> _cWRemainingTobaccoValue;
+		
+		private string _customsProcedure;
+		
+		private System.Nullable<double> _dutyPerSettledAmount;
+		
+		private System.Nullable<double> _vATPerSettledAmount;
+		
+		private System.Nullable<double> _dutyAndVAT;
+		
+		private System.Nullable<ClearingType> _clearingType;
+		
+		private System.Nullable<CustomsStatus> _customsStatus;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _cWDisposal2PCNTID;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public CWDisposal() {
+			this._cWDisposal2PCNTID = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
+			this._cWDisposal2PCNTID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnCWDisposal2PCNTIDSync);
+			this._cWDisposal2PCNTID.OnChanged += new System.EventHandler(this.OnCWDisposal2PCNTIDChanged);
+			this._cWDisposal2PCNTID.OnChanging += new System.EventHandler(this.OnCWDisposal2PCNTIDChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
+		public virtual string ContentType {
+			get {
+				return this._contentType;
+			}
+			set {
+				if ((value != this._contentType)) {
+					this.OnPropertyChanging("ContentType", this._contentType);
+					this._contentType = value;
+					this.OnPropertyChanged("ContentType");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EntryDate", Storage="_entryDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> EntryDate {
+			get {
+				return this._entryDate;
+			}
+			set {
+				if ((value != this._entryDate)) {
+					this.OnPropertyChanging("EntryDate", this._entryDate);
+					this._entryDate = value;
+					this.OnPropertyChanged("EntryDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="No", Storage="_no", FieldType="Number")]
+		public System.Nullable<double> No {
+			get {
+				return this._no;
+			}
+			set {
+				if ((value != this._no)) {
+					this.OnPropertyChanging("No", this._no);
+					this._no = value;
+					this.OnPropertyChanged("No");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SADDocumentNo", Storage="_sADDocumentNo", FieldType="Text")]
+		public string SADDocumentNo {
+			get {
+				return this._sADDocumentNo;
+			}
+			set {
+				if ((value != this._sADDocumentNo)) {
+					this.OnPropertyChanging("SADDocumentNo", this._sADDocumentNo);
+					this._sADDocumentNo = value;
+					this.OnPropertyChanged("SADDocumentNo");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SADDate", Storage="_sADDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> SADDate {
+			get {
+				return this._sADDate;
+			}
+			set {
+				if ((value != this._sADDate)) {
+					this.OnPropertyChanging("SADDate", this._sADDate);
+					this._sADDate = value;
+					this.OnPropertyChanged("SADDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TobaccoName", Storage="_tobaccoName", FieldType="Text")]
+		public string TobaccoName {
+			get {
+				return this._tobaccoName;
+			}
+			set {
+				if ((value != this._tobaccoName)) {
+					this.OnPropertyChanging("TobaccoName", this._tobaccoName);
+					this._tobaccoName = value;
+					this.OnPropertyChanged("TobaccoName");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Grade", Storage="_grade", FieldType="Text")]
+		public string Grade {
+			get {
+				return this._grade;
+			}
+			set {
+				if ((value != this._grade)) {
+					this.OnPropertyChanging("Grade", this._grade);
+					this._grade = value;
+					this.OnPropertyChanged("Grade");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="SKU", Storage="_sKU", FieldType="Text")]
+		public string SKU {
+			get {
+				return this._sKU;
+			}
+			set {
+				if ((value != this._sKU)) {
+					this.OnPropertyChanging("SKU", this._sKU);
+					this._sKU = value;
+					this.OnPropertyChanged("SKU");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Batch", Storage="_batch", FieldType="Text")]
+		public string Batch {
+			get {
+				return this._batch;
+			}
+			set {
+				if ((value != this._batch)) {
+					this.OnPropertyChanging("Batch", this._batch);
+					this._batch = value;
+					this.OnPropertyChanged("Batch");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWDeclaredNetMass", Storage="_cWDeclaredNetMass", FieldType="Number")]
+		public System.Nullable<double> CWDeclaredNetMass {
+			get {
+				return this._cWDeclaredNetMass;
+			}
+			set {
+				if ((value != this._cWDeclaredNetMass)) {
+					this.OnPropertyChanging("CWDeclaredNetMass", this._cWDeclaredNetMass);
+					this._cWDeclaredNetMass = value;
+					this.OnPropertyChanged("CWDeclaredNetMass");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWWz1", Storage="_cWWz1", FieldType="Text")]
+		public string CWWz1 {
+			get {
+				return this._cWWz1;
+			}
+			set {
+				if ((value != this._cWWz1)) {
+					this.OnPropertyChanging("CWWz1", this._cWWz1);
+					this._cWWz1 = value;
+					this.OnPropertyChanged("CWWz1");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWWz2", Storage="_cWWz2", FieldType="Text")]
+		public string CWWz2 {
+			get {
+				return this._cWWz2;
+			}
+			set {
+				if ((value != this._cWWz2)) {
+					this.OnPropertyChanging("CWWz2", this._cWWz2);
+					this._cWWz2 = value;
+					this.OnPropertyChanged("CWWz2");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWAddedKg", Storage="_cWAddedKg", FieldType="Number")]
+		public System.Nullable<double> CWAddedKg {
+			get {
+				return this._cWAddedKg;
+			}
+			set {
+				if ((value != this._cWAddedKg)) {
+					this.OnPropertyChanging("CWAddedKg", this._cWAddedKg);
+					this._cWAddedKg = value;
+					this.OnPropertyChanged("CWAddedKg");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWWz3", Storage="_cWWz3", FieldType="Text")]
+		public string CWWz3 {
+			get {
+				return this._cWWz3;
+			}
+			set {
+				if ((value != this._cWWz3)) {
+					this.OnPropertyChanging("CWWz3", this._cWWz3);
+					this._cWWz3 = value;
+					this.OnPropertyChanged("CWWz3");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWSettledNetMass", Storage="_cWSettledNetMass", FieldType="Number")]
+		public System.Nullable<double> CWSettledNetMass {
+			get {
+				return this._cWSettledNetMass;
+			}
+			set {
+				if ((value != this._cWSettledNetMass)) {
+					this.OnPropertyChanging("CWSettledNetMass", this._cWSettledNetMass);
+					this._cWSettledNetMass = value;
+					this.OnPropertyChanged("CWSettledNetMass");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWSettledGrossMass", Storage="_cWSettledGrossMass", FieldType="Number")]
+		public System.Nullable<double> CWSettledGrossMass {
+			get {
+				return this._cWSettledGrossMass;
+			}
+			set {
+				if ((value != this._cWSettledGrossMass)) {
+					this.OnPropertyChanging("CWSettledGrossMass", this._cWSettledGrossMass);
+					this._cWSettledGrossMass = value;
+					this.OnPropertyChanged("CWSettledGrossMass");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="TobaccoValue", Storage="_tobaccoValue", FieldType="Number")]
+		public System.Nullable<double> TobaccoValue {
+			get {
+				return this._tobaccoValue;
+			}
+			set {
+				if ((value != this._tobaccoValue)) {
+					this.OnPropertyChanging("TobaccoValue", this._tobaccoValue);
+					this._tobaccoValue = value;
+					this.OnPropertyChanged("TobaccoValue");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Currency", Storage="_currency", FieldType="Text")]
+		public string Currency {
+			get {
+				return this._currency;
+			}
+			set {
+				if ((value != this._currency)) {
+					this.OnPropertyChanging("Currency", this._currency);
+					this._currency = value;
+					this.OnPropertyChanged("Currency");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="RemainingQuantity", Storage="_remainingQuantity", FieldType="Number")]
+		public System.Nullable<double> RemainingQuantity {
+			get {
+				return this._remainingQuantity;
+			}
+			set {
+				if ((value != this._remainingQuantity)) {
+					this.OnPropertyChanging("RemainingQuantity", this._remainingQuantity);
+					this._remainingQuantity = value;
+					this.OnPropertyChanged("RemainingQuantity");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWRemainingPackage", Storage="_cWRemainingPackage", FieldType="Number")]
+		public System.Nullable<double> CWRemainingPackage {
+			get {
+				return this._cWRemainingPackage;
+			}
+			set {
+				if ((value != this._cWRemainingPackage)) {
+					this.OnPropertyChanging("CWRemainingPackage", this._cWRemainingPackage);
+					this._cWRemainingPackage = value;
+					this.OnPropertyChanged("CWRemainingPackage");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWRemainingTobaccoValue", Storage="_cWRemainingTobaccoValue", FieldType="Number")]
+		public System.Nullable<double> CWRemainingTobaccoValue {
+			get {
+				return this._cWRemainingTobaccoValue;
+			}
+			set {
+				if ((value != this._cWRemainingTobaccoValue)) {
+					this.OnPropertyChanging("CWRemainingTobaccoValue", this._cWRemainingTobaccoValue);
+					this._cWRemainingTobaccoValue = value;
+					this.OnPropertyChanged("CWRemainingTobaccoValue");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsProcedure", Storage="_customsProcedure", FieldType="Text")]
+		public string CustomsProcedure {
+			get {
+				return this._customsProcedure;
+			}
+			set {
+				if ((value != this._customsProcedure)) {
+					this.OnPropertyChanging("CustomsProcedure", this._customsProcedure);
+					this._customsProcedure = value;
+					this.OnPropertyChanged("CustomsProcedure");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyPerSettledAmount", Storage="_dutyPerSettledAmount", FieldType="Number")]
+		public System.Nullable<double> DutyPerSettledAmount {
+			get {
+				return this._dutyPerSettledAmount;
+			}
+			set {
+				if ((value != this._dutyPerSettledAmount)) {
+					this.OnPropertyChanging("DutyPerSettledAmount", this._dutyPerSettledAmount);
+					this._dutyPerSettledAmount = value;
+					this.OnPropertyChanged("DutyPerSettledAmount");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="VATPerSettledAmount", Storage="_vATPerSettledAmount", FieldType="Number")]
+		public System.Nullable<double> VATPerSettledAmount {
+			get {
+				return this._vATPerSettledAmount;
+			}
+			set {
+				if ((value != this._vATPerSettledAmount)) {
+					this.OnPropertyChanging("VATPerSettledAmount", this._vATPerSettledAmount);
+					this._vATPerSettledAmount = value;
+					this.OnPropertyChanged("VATPerSettledAmount");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DutyAndVAT", Storage="_dutyAndVAT", FieldType="Number")]
+		public System.Nullable<double> DutyAndVAT {
+			get {
+				return this._dutyAndVAT;
+			}
+			set {
+				if ((value != this._dutyAndVAT)) {
+					this.OnPropertyChanging("DutyAndVAT", this._dutyAndVAT);
+					this._dutyAndVAT = value;
+					this.OnPropertyChanged("DutyAndVAT");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ClearingType", Storage="_clearingType", FieldType="Choice")]
+		public System.Nullable<ClearingType> ClearingType {
+			get {
+				return this._clearingType;
+			}
+			set {
+				if ((value != this._clearingType)) {
+					this.OnPropertyChanging("ClearingType", this._clearingType);
+					this._clearingType = value;
+					this.OnPropertyChanged("ClearingType");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsStatus", Storage="_customsStatus", FieldType="Choice")]
+		public System.Nullable<CustomsStatus> CustomsStatus {
+			get {
+				return this._customsStatus;
+			}
+			set {
+				if ((value != this._customsStatus)) {
+					this.OnPropertyChanging("CustomsStatus", this._customsStatus);
+					this._customsStatus = value;
+					this.OnPropertyChanged("CustomsStatus");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWDisposal2PCNTID", Storage="_cWDisposal2PCNTID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
+		public PCNCode CWDisposal2PCNTID {
+			get {
+				return this._cWDisposal2PCNTID.GetEntity();
+			}
+			set {
+				this._cWDisposal2PCNTID.SetEntity(value);
+			}
+		}
+		
+		private void OnCWDisposal2PCNTIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CWDisposal2PCNTID", this._cWDisposal2PCNTID.Clone());
+		}
+		
+		private void OnCWDisposal2PCNTIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CWDisposal2PCNTID");
+		}
+		
+		private void OnCWDisposal2PCNTIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CWDisposal.Add(this);
+			}
+			else {
+				e.Item.CWDisposal.Remove(this);
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="Disposal", Id="0x01000FAE27B30BF7FC46886DA88A4D425DEF")]
 	public partial class Disposal : Element {
 		
@@ -2852,10 +3911,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnDisposal2PCNIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.Disposal.Add(this);
+				e.Item.Disposal0.Add(this);
 			}
 			else {
-				e.Item.Disposal.Remove(this);
+				e.Item.Disposal0.Remove(this);
 			}
 		}
 		
@@ -2941,6 +4000,216 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 			else {
 				e.Item.Disposal.Remove(this);
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy element listy.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DisposalDeclaration", Id="0x0100641EF9D66D6B4A05A05A8C38062DFFD8")]
+	public partial class DisposalDeclaration : Element {
+		
+		private System.Nullable<System.DateTime> _entryDate;
+		
+		private System.Nullable<double> _no;
+		
+		private string _cWDescription;
+		
+		private System.Nullable<double> _decalredToCleared;
+		
+		private System.Nullable<double> _quantityAvailable;
+		
+		private System.Nullable<double> _packageAvailable;
+		
+		private System.Nullable<double> _quantityToCleared;
+		
+		private System.Nullable<double> _packageToCleared;
+		
+		private System.Nullable<double> _addedToClearDeclared;
+		
+		private string _procedure;
+		
+		private Microsoft.SharePoint.Linq.EntityRef<Batch> _disposalsDeclaration2BatchIndex;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public DisposalDeclaration() {
+			this._disposalsDeclaration2BatchIndex = new Microsoft.SharePoint.Linq.EntityRef<Batch>();
+			this._disposalsDeclaration2BatchIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch>>(this.OnDisposalsDeclaration2BatchIndexSync);
+			this._disposalsDeclaration2BatchIndex.OnChanged += new System.EventHandler(this.OnDisposalsDeclaration2BatchIndexChanged);
+			this._disposalsDeclaration2BatchIndex.OnChanging += new System.EventHandler(this.OnDisposalsDeclaration2BatchIndexChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EntryDate", Storage="_entryDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> EntryDate {
+			get {
+				return this._entryDate;
+			}
+			set {
+				if ((value != this._entryDate)) {
+					this.OnPropertyChanging("EntryDate", this._entryDate);
+					this._entryDate = value;
+					this.OnPropertyChanged("EntryDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="No", Storage="_no", FieldType="Number")]
+		public System.Nullable<double> No {
+			get {
+				return this._no;
+			}
+			set {
+				if ((value != this._no)) {
+					this.OnPropertyChanging("No", this._no);
+					this._no = value;
+					this.OnPropertyChanged("No");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWDescription", Storage="_cWDescription", FieldType="Text")]
+		public string CWDescription {
+			get {
+				return this._cWDescription;
+			}
+			set {
+				if ((value != this._cWDescription)) {
+					this.OnPropertyChanging("CWDescription", this._cWDescription);
+					this._cWDescription = value;
+					this.OnPropertyChanged("CWDescription");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DecalredToCleared", Storage="_decalredToCleared", FieldType="Number")]
+		public System.Nullable<double> DecalredToCleared {
+			get {
+				return this._decalredToCleared;
+			}
+			set {
+				if ((value != this._decalredToCleared)) {
+					this.OnPropertyChanging("DecalredToCleared", this._decalredToCleared);
+					this._decalredToCleared = value;
+					this.OnPropertyChanged("DecalredToCleared");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="QuantityAvailable", Storage="_quantityAvailable", FieldType="Number")]
+		public System.Nullable<double> QuantityAvailable {
+			get {
+				return this._quantityAvailable;
+			}
+			set {
+				if ((value != this._quantityAvailable)) {
+					this.OnPropertyChanging("QuantityAvailable", this._quantityAvailable);
+					this._quantityAvailable = value;
+					this.OnPropertyChanged("QuantityAvailable");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PackageAvailable", Storage="_packageAvailable", FieldType="Number")]
+		public System.Nullable<double> PackageAvailable {
+			get {
+				return this._packageAvailable;
+			}
+			set {
+				if ((value != this._packageAvailable)) {
+					this.OnPropertyChanging("PackageAvailable", this._packageAvailable);
+					this._packageAvailable = value;
+					this.OnPropertyChanged("PackageAvailable");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="QuantityToCleared", Storage="_quantityToCleared", FieldType="Number")]
+		public System.Nullable<double> QuantityToCleared {
+			get {
+				return this._quantityToCleared;
+			}
+			set {
+				if ((value != this._quantityToCleared)) {
+					this.OnPropertyChanging("QuantityToCleared", this._quantityToCleared);
+					this._quantityToCleared = value;
+					this.OnPropertyChanged("QuantityToCleared");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="PackageToCleared", Storage="_packageToCleared", FieldType="Number")]
+		public System.Nullable<double> PackageToCleared {
+			get {
+				return this._packageToCleared;
+			}
+			set {
+				if ((value != this._packageToCleared)) {
+					this.OnPropertyChanging("PackageToCleared", this._packageToCleared);
+					this._packageToCleared = value;
+					this.OnPropertyChanged("PackageToCleared");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="AddedToClearDeclared", Storage="_addedToClearDeclared", FieldType="Number")]
+		public System.Nullable<double> AddedToClearDeclared {
+			get {
+				return this._addedToClearDeclared;
+			}
+			set {
+				if ((value != this._addedToClearDeclared)) {
+					this.OnPropertyChanging("AddedToClearDeclared", this._addedToClearDeclared);
+					this._addedToClearDeclared = value;
+					this.OnPropertyChanged("AddedToClearDeclared");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Procedure", Storage="_procedure", FieldType="Text")]
+		public string Procedure {
+			get {
+				return this._procedure;
+			}
+			set {
+				if ((value != this._procedure)) {
+					this.OnPropertyChanging("Procedure", this._procedure);
+					this._procedure = value;
+					this.OnPropertyChanged("Procedure");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="DisposalsDeclaration2BatchIndex", Storage="_disposalsDeclaration2BatchIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Batch")]
+		public Batch DisposalsDeclaration2BatchIndex {
+			get {
+				return this._disposalsDeclaration2BatchIndex.GetEntity();
+			}
+			set {
+				this._disposalsDeclaration2BatchIndex.SetEntity(value);
+			}
+		}
+		
+		private void OnDisposalsDeclaration2BatchIndexChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("DisposalsDeclaration2BatchIndex", this._disposalsDeclaration2BatchIndex.Clone());
+		}
+		
+		private void OnDisposalsDeclaration2BatchIndexChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("DisposalsDeclaration2BatchIndex");
+		}
+		
+		private void OnDisposalsDeclaration2BatchIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.DisposalDeclaration.Add(this);
+			}
+			else {
+				e.Item.DisposalDeclaration.Remove(this);
 			}
 		}
 	}
@@ -4462,9 +5731,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private string _compensationGood;
 		
-		private string _requestedProcedure;
+		private System.Nullable<bool> _disposal;
 		
-		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
+		private Microsoft.SharePoint.Linq.EntitySet<CW> _cW;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<CWDisposal> _cWDisposal;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal0;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<IPR> _iPR;
 		
@@ -4475,10 +5748,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		#endregion
 		
 		public PCNCode() {
-			this._disposal = new Microsoft.SharePoint.Linq.EntitySet<Disposal>();
-			this._disposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposalSync);
-			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
-			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
+			this._cW = new Microsoft.SharePoint.Linq.EntitySet<CW>();
+			this._cW.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW>>(this.OnCWSync);
+			this._cW.OnChanged += new System.EventHandler(this.OnCWChanged);
+			this._cW.OnChanging += new System.EventHandler(this.OnCWChanging);
+			this._cWDisposal = new Microsoft.SharePoint.Linq.EntitySet<CWDisposal>();
+			this._cWDisposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWDisposal>>(this.OnCWDisposalSync);
+			this._cWDisposal.OnChanged += new System.EventHandler(this.OnCWDisposalChanged);
+			this._cWDisposal.OnChanging += new System.EventHandler(this.OnCWDisposalChanging);
+			this._disposal0 = new Microsoft.SharePoint.Linq.EntitySet<Disposal>();
+			this._disposal0.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposal0Sync);
+			this._disposal0.OnChanged += new System.EventHandler(this.OnDisposal0Changed);
+			this._disposal0.OnChanging += new System.EventHandler(this.OnDisposal0Changing);
 			this._iPR = new Microsoft.SharePoint.Linq.EntitySet<IPR>();
 			this._iPR.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPRSync);
 			this._iPR.OnChanged += new System.EventHandler(this.OnIPRChanged);
@@ -4514,27 +5795,47 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="RequestedProcedure", Storage="_requestedProcedure", FieldType="Text")]
-		public string RequestedProcedure {
-			get {
-				return this._requestedProcedure;
-			}
-			set {
-				if ((value != this._requestedProcedure)) {
-					this.OnPropertyChanging("RequestedProcedure", this._requestedProcedure);
-					this._requestedProcedure = value;
-					this.OnPropertyChanged("RequestedProcedure");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2PCNID", Storage="_disposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Disposal")]
-		public Microsoft.SharePoint.Linq.EntitySet<Disposal> Disposal {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Disposal", Storage="_disposal", FieldType="Boolean")]
+		public System.Nullable<bool> Disposal {
 			get {
 				return this._disposal;
 			}
 			set {
-				this._disposal.Assign(value);
+				if ((value != this._disposal)) {
+					this.OnPropertyChanging("Disposal", this._disposal);
+					this._disposal = value;
+					this.OnPropertyChanged("Disposal");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCNTID", Storage="_cW", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="CW")]
+		public Microsoft.SharePoint.Linq.EntitySet<CW> CW {
+			get {
+				return this._cW;
+			}
+			set {
+				this._cW.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CWDisposal2PCNTID", Storage="_cWDisposal", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="CW Disposal")]
+		public Microsoft.SharePoint.Linq.EntitySet<CWDisposal> CWDisposal {
+			get {
+				return this._cWDisposal;
+			}
+			set {
+				this._cWDisposal.Assign(value);
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="Disposal2PCNID", Storage="_disposal0", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="Disposal")]
+		public Microsoft.SharePoint.Linq.EntitySet<Disposal> Disposal0 {
+			get {
+				return this._disposal0;
+			}
+			set {
+				this._disposal0.Assign(value);
 			}
 		}
 		
@@ -4548,15 +5849,49 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		private void OnDisposalChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("Disposal", this._disposal.Clone());
+		private void OnCWChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CW", this._cW.Clone());
 		}
 		
-		private void OnDisposalChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("Disposal");
+		private void OnCWChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CW");
 		}
 		
-		private void OnDisposalSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal> e) {
+		private void OnCWSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CW2PCNTID = this;
+			}
+			else {
+				e.Item.CW2PCNTID = null;
+			}
+		}
+		
+		private void OnCWDisposalChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CWDisposal", this._cWDisposal.Clone());
+		}
+		
+		private void OnCWDisposalChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CWDisposal");
+		}
+		
+		private void OnCWDisposalSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWDisposal> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CWDisposal2PCNTID = this;
+			}
+			else {
+				e.Item.CWDisposal2PCNTID = null;
+			}
+		}
+		
+		private void OnDisposal0Changing(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("Disposal0", this._disposal0.Clone());
+		}
+		
+		private void OnDisposal0Changed(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("Disposal0");
+		}
+		
+		private void OnDisposal0Sync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.Disposal2PCNID = this;
 			}
@@ -6461,98 +7796,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// <summary>
 	/// Utwórz nowy element listy.
 	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="DisposalDeclaration", Id="0x0100641EF9D66D6B4A05A05A8C38062DFFD8")]
-	public partial class DisposalDeclaration : Element {
-		
-		private System.Nullable<System.DateTime> _entryDate;
-		
-		private System.Nullable<double> _no;
-		
-		private string _cWDescription;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<Batch> _disposalsDeclaration2BatchIndex;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public DisposalDeclaration() {
-			this._disposalsDeclaration2BatchIndex = new Microsoft.SharePoint.Linq.EntityRef<Batch>();
-			this._disposalsDeclaration2BatchIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch>>(this.OnDisposalsDeclaration2BatchIndexSync);
-			this._disposalsDeclaration2BatchIndex.OnChanged += new System.EventHandler(this.OnDisposalsDeclaration2BatchIndexChanged);
-			this._disposalsDeclaration2BatchIndex.OnChanging += new System.EventHandler(this.OnDisposalsDeclaration2BatchIndexChanging);
-			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EntryDate", Storage="_entryDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> EntryDate {
-			get {
-				return this._entryDate;
-			}
-			set {
-				if ((value != this._entryDate)) {
-					this.OnPropertyChanging("EntryDate", this._entryDate);
-					this._entryDate = value;
-					this.OnPropertyChanged("EntryDate");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="No", Storage="_no", FieldType="Number")]
-		public System.Nullable<double> No {
-			get {
-				return this._no;
-			}
-			set {
-				if ((value != this._no)) {
-					this.OnPropertyChanging("No", this._no);
-					this._no = value;
-					this.OnPropertyChanged("No");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWDescription", Storage="_cWDescription", FieldType="Text")]
-		public string CWDescription {
-			get {
-				return this._cWDescription;
-			}
-			set {
-				if ((value != this._cWDescription)) {
-					this.OnPropertyChanging("CWDescription", this._cWDescription);
-					this._cWDescription = value;
-					this.OnPropertyChanged("CWDescription");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="DisposalsDeclaration2BatchIndex", Storage="_disposalsDeclaration2BatchIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Batch")]
-		public Batch DisposalsDeclaration2BatchIndex {
-			get {
-				return this._disposalsDeclaration2BatchIndex.GetEntity();
-			}
-			set {
-				this._disposalsDeclaration2BatchIndex.SetEntity(value);
-			}
-		}
-		
-		private void OnDisposalsDeclaration2BatchIndexChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("DisposalsDeclaration2BatchIndex", this._disposalsDeclaration2BatchIndex.Clone());
-		}
-		
-		private void OnDisposalsDeclaration2BatchIndexChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("DisposalsDeclaration2BatchIndex");
-		}
-		
-		private void OnDisposalsDeclaration2BatchIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Batch> e) {
-		}
-	}
-	
-	/// <summary>
-	/// Utwórz nowy element listy.
-	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="TobaccoBatchSummary", Id="0x0100A10A60051D134AAC8EA8B57D80FA78F8")]
 	public partial class TobaccoBatchSummary : Element {
 		
@@ -6679,6 +7922,40 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 			else {
 				e.Item.BatchLibraryIndex = null;
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy dokument.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CWLib", Id="0x0101007EBEECC5D33648E991A553ED5EAF0693")]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CWLibraryCWLib))]
+	public partial class CWLib : Dokument {
+		
+		private string _contentType;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public CWLib() {
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
+		public virtual string ContentType {
+			get {
+				return this._contentType;
+			}
+			set {
+				if ((value != this._contentType)) {
+					this.OnPropertyChanging("ContentType", this._contentType);
+					this._contentType = value;
+					this.OnPropertyChanged("ContentType");
+				}
 			}
 		}
 	}
@@ -7158,6 +8435,62 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
+	/// CW List Content Type
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CW", Id="0x010088DA2CEF2CB74D27B0EE083FAED76D16", List="CW")]
+	public partial class CWCW : CW {
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public CWCW() {
+			this.OnCreated();
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string ContentType {
+			get {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CW.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CW.");
+			}
+		}
+	}
+	
+	/// <summary>
+	/// CWDisposal List Content Type
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CWDisposal", Id="0x0100ABB044CC02EA42888FF88537C864C5F2", List="CW Disposal")]
+	public partial class CWDisposalCWDisposal : CWDisposal {
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public CWDisposalCWDisposal() {
+			this.OnCreated();
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string ContentType {
+			get {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CWDisposal.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CWDisposal.");
+			}
+		}
+	}
+	
+	/// <summary>
 	/// JSOX Summary content type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXSummary", Id="0x0100BC0DDC1827F346ED911D777504830C520093C91F91096944EAA9091C44F55FA587")]
@@ -7445,6 +8778,67 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
+	/// CWLib Content Type
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CWLib", Id="0x0101007EBEECC5D33648E991A553ED5EAF0693", List="CW Library")]
+	public partial class CWLibraryCWLib : CWLib {
+		
+		private Microsoft.SharePoint.Linq.EntitySet<CW> _cW;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public CWLibraryCWLib() {
+			this._cW = new Microsoft.SharePoint.Linq.EntitySet<CW>();
+			this._cW.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW>>(this.OnCWSync);
+			this._cW.OnChanged += new System.EventHandler(this.OnCWChanged);
+			this._cW.OnChanging += new System.EventHandler(this.OnCWChanging);
+			this.OnCreated();
+		}
+		
+		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
+		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
+		public override string ContentType {
+			get {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CWLib.");
+			}
+			set {
+				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CWLib.");
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCWLibraryID", Storage="_cW", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="CW")]
+		public Microsoft.SharePoint.Linq.EntitySet<CW> CW {
+			get {
+				return this._cW;
+			}
+			set {
+				this._cW.Assign(value);
+			}
+		}
+		
+		private void OnCWChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CW", this._cW.Clone());
+		}
+		
+		private void OnCWChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CW");
+		}
+		
+		private void OnCWSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CW2PCWLibraryID = this;
+			}
+			else {
+				e.Item.CW2PCWLibraryID = null;
+			}
+		}
+	}
+	
+	/// <summary>
 	/// JSOX Library Content Type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXLib", Id="0x0101002CFEC8BBC3F440D69B724CC2B95FFF93", List="JSOX Library")]
@@ -7544,6 +8938,35 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		_7171 = 256,
 	}
 	
+	public enum ClearingType : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Partial winding-up")]
+		PartialWindingUp = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Total winding-up")]
+		TotalWindingUp = 4,
+	}
+	
+	public enum CustomsStatus : int {
+		
+		None = 0,
+		
+		Invalid = 1,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Not started")]
+		NotStarted = 2,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Started")]
+		Started = 4,
+		
+		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Finished")]
+		Finished = 8,
+	}
+	
 	public enum DisposalStatus : int {
 		
 		None = 0,
@@ -7585,35 +9008,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Tobacco in cutfiller production")]
 		TobaccoInCutfillerProduction = 4096,
-	}
-	
-	public enum CustomsStatus : int {
-		
-		None = 0,
-		
-		Invalid = 1,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Not started")]
-		NotStarted = 2,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Started")]
-		Started = 4,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Finished")]
-		Finished = 8,
-	}
-	
-	public enum ClearingType : int {
-		
-		None = 0,
-		
-		Invalid = 1,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Partial winding-up")]
-		PartialWindingUp = 2,
-		
-		[Microsoft.SharePoint.Linq.ChoiceAttribute(Value="Total winding-up")]
-		TotalWindingUp = 4,
 	}
 	
 	public enum InvoiceContentStatus : int {
