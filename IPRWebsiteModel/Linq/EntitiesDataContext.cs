@@ -27,9 +27,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       catch ( ChangeConflictException )
       {
         foreach ( ObjectChangeConflict changedListItem in this.ChangeConflicts )
-        {
           changedListItem.Resolve( mode );
-        }
         this.SubmitChanges();
       }
     }

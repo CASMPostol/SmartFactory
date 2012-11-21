@@ -16,16 +16,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="productCodeNumber">The product code number.</param>
     /// <param name="title">The title.</param>
     /// <returns></returns>
-    public static PCNCode AddOrGet( Entities entities, ClearenceProcedure procedureCode, string productCodeNumber, string title )
+    public static PCNCode AddOrGet( Entities entities, string productCodeNumber, string title )
     {
-      PCNCode _pcncode = Find( entities, procedureCode, productCodeNumber );
+      PCNCode _pcncode = Find( entities, false, productCodeNumber );
       if ( _pcncode == null )
       {
         _pcncode = new PCNCode()
           {
             //TODO PCNCode - auto generation value of the column CompensationGood http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3341
             CompensationGood = "Tytoń",
-            RequestedProcedure = Entities.RequestedProcedure( procedureCode ),
+            //TODOD PCNCode must be recognized using disposal status http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3416
+            //Disposal = false
             ProductCodeNumber = productCodeNumber,
             Title = title
           };
@@ -37,17 +38,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Finds the specified entities.
     /// </summary>
     /// <param name="entities">The entities.</param>
-    /// <param name="procedureCode">The procedure code.</param>
+    /// <param name="disposal">if set to <c>true</c> if disposal is looked through.</param>
     /// <param name="productCodeNumber">The product code number.</param>
     /// <returns></returns>
-    internal static PCNCode Find( Entities entities, ClearenceProcedure procedureCode, string productCodeNumber )
+    internal static PCNCode Find( Entities entities, bool disposal, string productCodeNumber )
     {
-      string _requestedProcedure = Entities.RequestedProcedure( procedureCode );
-      PCNCode _pcn = ( from _pcnx in entities.PCNCode
-                       where ( String.IsNullOrEmpty( _pcnx.RequestedProcedure ) || _pcnx.RequestedProcedure.Contains( _requestedProcedure ) ) &&
-                             _pcnx.ProductCodeNumber.Contains( productCodeNumber )
-                       select _pcnx ).FirstOrDefault();
-      return _pcn;
+      return ( from _pcnx in entities.PCNCode
+               //TODOD PCNCode must be recognized using disposal status http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3416
+               where _pcnx.ProductCodeNumber.Contains( productCodeNumber ) // &&  _pcnx.Disposal == disposal
+               select _pcnx ).FirstOrDefault();
     }
   }
 }

@@ -168,15 +168,15 @@ namespace CAS.SmartFactory.IPR.Customs
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
         IPRData _iprdata = new IPRData( clearence.Clearence2SadGoodID, _messageType );
-        List<string> _ar = new List<string> ();
+        List<string> _ar = new List<string>();
         if ( !_iprdata.Validate( entities, _ar ) )
-          throw new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar);
+          throw new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar );
         _at = "Consent.Lookup";
         _comments = "Consent lookup filed";
         Consent _cnsnt = Consent.Lookup( entities, _iprdata.Consent );
         _at = "PCNCode.AddOrGet";
         _comments = "PCN lookup filed";
-        PCNCode _pcn = PCNCode.AddOrGet( entities, clearence.ClearenceProcedure.Value, _iprdata.PCNTariffCode, _iprdata.TobaccoName );
+        PCNCode _pcn = PCNCode.AddOrGet( entities, _iprdata.PCNTariffCode, _iprdata.TobaccoName );
         _at = "new IPRClass";
         IPRClass _ipr = new IPRClass()
         {

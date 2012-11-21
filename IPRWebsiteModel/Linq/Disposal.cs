@@ -117,7 +117,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           this.No = 1;
         else
           this.No = _lastOne.Max<Disposal>( dspsl => dspsl.Identyfikator.Value ) + 1;
-        PCNCode _pcn = PCNCode.Find( edc, clearence.ClearenceProcedure.Value, productCodeNumber );
+        PCNCode _pcn = PCNCode.Find( edc, IsDisposal, productCodeNumber );
         this.SADDocumentNo = documentNo;
         this.SADDate = clearanceDate;
         this.CustomsStatus = Linq.CustomsStatus.Finished;
@@ -166,6 +166,33 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private double GetVATNotCleared()
     {
       return Disposal2IPRIndex.VAT.Value - ( from _dec in Disposal2IPRIndex.Disposal where _dec.VATPerSettledAmount.HasValue select new { val = _dec.VATPerSettledAmount.Value } ).Sum( itm => itm.val );
+    }
+    private bool IsDisposal
+    {
+      get
+      {
+        bool _ret = false;
+        switch ( this.DisposalStatus.Value )
+        {
+          case Linq.DisposalStatus.SHMenthol:
+          case Linq.DisposalStatus.Overuse:
+          case Linq.DisposalStatus.Tobacco:
+            _ret = false;
+            break;
+          case Linq.DisposalStatus.Dust:
+          case Linq.DisposalStatus.Waste:
+          case Linq.DisposalStatus.Cartons:
+          case Linq.DisposalStatus.TobaccoInCigaretes:
+          case Linq.DisposalStatus.TobaccoInCigaretesDestinationEU:
+          case Linq.DisposalStatus.TobaccoInCigaretesProduction:
+          case Linq.DisposalStatus.TobaccoInCutfiller:
+          case Linq.DisposalStatus.TobaccoInCutfillerDestinationEU:
+          case Linq.DisposalStatus.TobaccoInCutfillerProduction:
+            _ret = true;
+            break;
+        }
+        return _ret;
+      }
     }
     #endregion
 
