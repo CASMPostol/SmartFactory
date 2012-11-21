@@ -25,8 +25,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           {
             //TODO PCNCode - auto generation value of the column CompensationGood http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3341
             CompensationGood = "Tytoń",
-            //TODOD PCNCode must be recognized using disposal status http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3416
-            //Disposal = false
+            Disposal = false, 
             ProductCodeNumber = productCodeNumber,
             Title = title
           };
@@ -44,8 +43,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal static PCNCode Find( Entities entities, bool disposal, string productCodeNumber )
     {
       return ( from _pcnx in entities.PCNCode
-               //TODOD PCNCode must be recognized using disposal status http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3416
-               where _pcnx.ProductCodeNumber.Contains( productCodeNumber ) // &&  _pcnx.Disposal == disposal
+               where _pcnx.ProductCodeNumber.Contains( productCodeNumber ) &&  _pcnx.Disposal.Value == disposal
                select _pcnx ).FirstOrDefault();
     }
   }
