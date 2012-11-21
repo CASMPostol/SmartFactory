@@ -536,7 +536,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\CWDisposal\Elements.xml" />
-    <Content Include="Content types\CWLib\Elements.xml" />
+    <Content Include="Content types\CWLib\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\CW\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

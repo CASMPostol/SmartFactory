@@ -27,9 +27,9 @@
     </CHOICES>
   </Field>
   <Field
-    ID="{32B34535-E682-446B-B406-A0E73F3483AA}"
-    Name="RequestedProcedure"
-    Type="Text"
+    ID="{6FDA7C52-7943-45D0-8856-ED7AC7AAB4B4}"
+    Name="Disposal"
+    Type="Boolean"
     Group="CAS Smart Factory IPR Customs"
     DisplayName="Procedure"
     />
