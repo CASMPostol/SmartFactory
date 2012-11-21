@@ -85,20 +85,6 @@ namespace CAS.SmartFactory
     {
       return String.IsNullOrEmpty(_val);
     }
-    /// <summary>
-    /// Gets the first capture.
-    /// </summary>
-    /// <param name="_input">The string to be tested for a match. <see cref="string"/>.</param>
-    /// <param name="_pattern">The regular expression pattern to match..</param>
-    /// <returns>The string that match the patern</returns>
-    public static string GetFirstCapture(this string _input, string _pattern)
-    {
-      Match _match = Regex.Match(_input, _pattern, RegexOptions.IgnoreCase);
-      if (_match.Success)
-        return _match.Captures[0].Value;
-      else
-        return "-- unrecognized name --";
-    }
     #endregion
   }
 }
