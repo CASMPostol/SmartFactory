@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.xml
       int? _cleranceInt = new Nullable<int>();
       try
       {
-        string _cleranceString = documentName.SPValidSubstring().GetFirstCapture( XMLResources.m_RequiredDocumentFinishedGoodExportConsignmentPattern );
+        string _cleranceString = documentName.SPValidSubstring().GetFirstCapture( m_RequiredDocumentFinishedGoodExportConsignmentPattern );
         _cleranceInt = _cleranceString.String2Int();
       }
       catch ( GenericStateMachineEngine.ActionResult ) { }
