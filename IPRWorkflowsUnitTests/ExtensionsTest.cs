@@ -62,7 +62,7 @@ namespace IPRWorkflowsUnitTests
     //
     #endregion
 
-    const string _value = "TYTON ODZYLOWANY BRAZIL FLUE CURED VIRGINIA STRIPS                                                                                 GRADE:XBRFCB SKU:12352149 BATCH:0003814564                                       czesciowa likwidacja OGL/362010/00/002494/12";
+    const string _value = "TYTON ODZYLOWANY BRAZIL FLUE CURED VIRGINIA STRIPS                                                                                 GRADE:XBRFCB SKU: 12352149 BATCH: 0003814564                                       czesciowa likwidacja OGL/362010/00/002494/12";
 
     /// <summary>
     ///A test for SPValidSubstring
