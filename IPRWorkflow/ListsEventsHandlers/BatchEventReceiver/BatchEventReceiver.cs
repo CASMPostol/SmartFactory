@@ -142,21 +142,22 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     private static void GetXmlContent( BatchXml xml, Entities edc, BatchLib parent, ProgressChangedEventHandler progressChanged )
     {
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
-      SummaryContentInfo contentInfo = new Content( xml.Material, edc, progressChanged );
+      Content _contentInfo = new Content( xml.Material, edc, progressChanged );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: contentInfo.Validate" ) );
       List<string> _ve = new List<string>();
+      _contentInfo.Validate( edc, _ve );
       if ( _ve.Count > 0 )
-        new InputDataValidationException( "Batch content validate failed", "Get batch XML content", _ve );
+        throw new InputDataValidationException( "Batch content validate failed", "Get batch XML content", _ve );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: batch" ) );
       Batch batch =
-          ( from idx in edc.Batch where idx.Batch0.Contains( contentInfo.Product.Batch ) && idx.BatchStatus.Value == BatchStatus.Preliminary select idx ).FirstOrDefault();
+          ( from idx in edc.Batch where idx.Batch0.Contains( _contentInfo.Product.Batch ) && idx.BatchStatus.Value == BatchStatus.Preliminary select idx ).FirstOrDefault();
       if ( batch == null )
       {
         batch = new Batch();
         edc.Batch.InsertOnSubmit( batch );
       }
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: BatchProcessing" ) );
-      batch.BatchProcessing( edc, GetBatchStatus( xml.Status ), contentInfo, parent, progressChanged );
+      batch.BatchProcessing( edc, GetBatchStatus( xml.Status ), _contentInfo, parent, progressChanged );
     }
     private static BatchStatus GetBatchStatus( xml.erp.BatchStatus batchStatus )
     {
