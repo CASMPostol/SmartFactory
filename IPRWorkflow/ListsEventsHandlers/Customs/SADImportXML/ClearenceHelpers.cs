@@ -197,7 +197,7 @@ namespace CAS.SmartFactory.IPR.Customs
           InvoiceNo = _iprdata.Invoice,
           IPRLibraryIndex = declaration.SADDocumenLibrarytIndex,
           NetMass = _iprdata.NetMass,
-          OGLValidTo = customsDebtDate + new TimeSpan( Convert.ToInt32( _cnsnt.ConsentPeriod.Value ) * 30, 0, 0, 0 ),
+          OGLValidTo = customsDebtDate + _iprdata.ConsentPeriodCalculated,
           IPR2PCNPCN = _pcn,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
@@ -390,7 +390,12 @@ namespace CAS.SmartFactory.IPR.Customs
           string _nr = _rd.Number.Trim();
           this.ConsentLookup = IPR.WebsiteModel.Linq.Consent.Find( edc, _nr );
           if ( this.ConsentLookup == null )
-            m_Warnings.Add( "Cannot find consent document with number: " + _nr );
+          {
+            m_Warnings.Add( "Cannot find consent document with number: " + _nr + ". The Consent period is 90 days");
+            ConsentPeriodCalculated = TimeSpan.FromDays( 90 );
+          }
+          else
+            ConsentPeriodCalculated = TimeSpan.FromDays( Convert.ToInt32( this.ConsentLookup.ConsentPeriod.Value ) * 30 );
         }
       }
       #endregion
@@ -399,12 +404,13 @@ namespace CAS.SmartFactory.IPR.Customs
       //TODO
       internal bool Validate( Entities entities, List<string> warnnings )
       {
-        bool _ret = m_Warnings.Count >0;
-        warnnings.AddRange(m_Warnings);
+        bool _ret = m_Warnings.Count > 0;
+        warnnings.AddRange( m_Warnings );
         return _ret;
       }
       internal double Cartons { get; private set; }
       internal Consent ConsentLookup { get; private set; }
+      internal TimeSpan ConsentPeriodCalculated { get; private set; }
       internal double Duty { get; private set; }
       internal string DutyName { get; private set; }
       internal double DutyPerUnit { get; private set; }
