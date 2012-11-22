@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public static string GetParameter( Entities edc, SettingsEntry index )
     {
-      Settings _ret = ( from _sx in edc.Settings where _sx.Title == index.ToString() select _sx ).FirstOrDefault();
+      Settings _ret = ( from _sx in edc.Settings where _sx.KeyValue.Contains( index.ToString() ) select _sx ).FirstOrDefault();
       if ( _ret == null )
       {
         _ret = new Settings()
@@ -52,15 +52,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         edc.Settings.InsertOnSubmit( _ret );
         edc.SubmitChanges();
       }
-      return _ret.KeyValue;
+      return _ret.Title;
     }
     private static Dictionary<SettingsEntry, string> m_DefaultSettings = new Dictionary<SettingsEntry, string>()
     {
-    {SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern,  @"(?<=P\w*\b\st\w*\b\s)(\d{7})"},
-     {SettingsEntry.GoodsDescriptionTobaccoNamePattern , @"\b(.*)(?=\sGRADE:)"},
-     {SettingsEntry.GoodsDescriptionWGRADEPattern,  @"(?<=\WGRADE:)\W*\b(\w*)"},
-     {SettingsEntry.GoodsDescriptionSKUPattern,  @"(?<=\WSKU:)\W*\b(\d*)"}, 
-     {SettingsEntry.GoodsDescriptionBatchPattern,  @"(?<=\WBatch:)\W*\b(\d*)"}
+       {SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern,  @"(?<=P\w*\b\st\w*\b\s)(\d{7})"},
+       {SettingsEntry.GoodsDescriptionTobaccoNamePattern , @"\b(.*)(?=\sGRADE:)"},
+       {SettingsEntry.GoodsDescriptionWGRADEPattern,  @"(?<=\WGRADE:)\W*\b(\w*)"},
+       {SettingsEntry.GoodsDescriptionSKUPattern,  @"(?<=\WSKU:)\W*\b(\d*)"}, 
+       {SettingsEntry.GoodsDescriptionBatchPattern,  @"(?<=\WBatch:)\W*\b(\d*)"}
     };
   }
 }
