@@ -7,6 +7,7 @@ using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
+using Microsoft.SharePoint.Linq;
 using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.Customs
@@ -151,7 +152,6 @@ namespace CAS.SmartFactory.IPR.Customs
     /// <param name="_comments">The _comments.</param>
     /// <exception cref="IPRDataConsistencyException">IPR account creation error</exception>
     /// <exception cref="InputDataValidationException"></exception>
-    /// 
     private static void CreateIPRAccount
       ( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, DateTime customsDebtDate, out string _comments )
     {
@@ -167,13 +167,12 @@ namespace CAS.SmartFactory.IPR.Customs
         }
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
-        IPRData _iprdata = new IPRData(entities, clearence.Clearence2SadGoodID, _messageType );
+        IPRData _iprdata = new IPRData( entities, clearence.Clearence2SadGoodID, _messageType );
         List<string> _ar = new List<string>();
         if ( !_iprdata.Validate( entities, _ar ) )
           throw new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar );
         _at = "Consent.Lookup";
         _comments = "Consent lookup filed";
-        Consent _cnsnt = Consent.Lookup( entities, _iprdata.Consent );
         _at = "PCNCode.AddOrGet";
         _comments = "PCN lookup filed";
         PCNCode _pcn = PCNCode.AddOrGet( entities, _iprdata.PCNTariffCode, _iprdata.TobaccoName );
@@ -186,7 +185,7 @@ namespace CAS.SmartFactory.IPR.Customs
           Cartons = _iprdata.Cartons,
           ClearenceIndex = clearence,
           ClosingDate = CAS.SharePoint.Extensions.SPMinimum,
-          IPR2ConsentTitle = _cnsnt,
+          IPR2ConsentTitle = _iprdata.ConsentLookup,
           Currency = declaration.Currency,
           CustomsDebtDate = customsDebtDate,
           DocumentNo = clearence.DocumentNo,
@@ -334,6 +333,7 @@ namespace CAS.SmartFactory.IPR.Customs
         if ( _sErrors.Count > 0 )
           throw new InputDataValidationException( "Syntax errors in the good description.", "AnalizeGoodsDescription", _sErrors );
       }
+      private List<string> m_Warnings = new List<string>();
       #endregion
 
       #region cretor
@@ -353,28 +353,13 @@ namespace CAS.SmartFactory.IPR.Customs
           AnalizeGood( good, _messageType );
           AnalizeDutyAndVAT( good );
           _at = "InvoiceNo";
-          this.Invoice = (
-                          from _dx in good.SADRequiredDocuments
-                          let CustomsProcedureCode = _dx.Code.ToUpper()
-                          where CustomsProcedureCode.Contains( "N380" ) || CustomsProcedureCode.Contains( "N935" )
-                          select new { Number = _dx.Number }
-                       ).First().Number;
+          this.Invoice = ( from _dx in good.SADRequiredDocuments
+                           let CustomsProcedureCode = _dx.Code.ToUpper()
+                           where CustomsProcedureCode.Contains( "N380" ) || CustomsProcedureCode.Contains( "N935" )
+                           select new { Number = _dx.Number }
+                          ).First().Number;
           _at = "Consent";
-          try
-          {
-            this.Consent = (
-                    from _dx in good.SADRequiredDocuments
-                    let CustomsProcedureCode = _dx.Code.ToUpper()
-                    where CustomsProcedureCode.Contains( "1PG1" ) || CustomsProcedureCode.Contains( "C601" )
-                    select new { Number = _dx.Number }
-                 ).First().Number.ToUpper();
-
-          }
-          catch ( Exception _ex )
-          {
-            string _src = String.Format( "IPR.IPRData creator", _at );
-            throw new IPRDataConsistencyException( _src, "There is not attached any consent document with code = 1PG1/C601", _ex, _src );
-          }
+          FindConsentRecord( edc, good.SADRequiredDocuments );
           AnalizeGoodsDescription( edc, good.GoodsDescription );
         }
         catch ( InputDataValidationException _idve )
@@ -391,18 +376,35 @@ namespace CAS.SmartFactory.IPR.Customs
           throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
         }
       }
-
+      private void FindConsentRecord( Entities edc, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet )
+      {
+        SADRequiredDocuments _rd = ( from _dx in sadRequiredDocumentsEntitySet
+                                     let CustomsProcedureCode = _dx.Code.ToUpper()
+                                     where CustomsProcedureCode.Contains( "1PG1" ) || CustomsProcedureCode.Contains( "C601" )
+                                     select _dx
+                                    ).FirstOrDefault();
+        if ( _rd == null )
+          m_Warnings.Add( "There is not attached any consent document with code = 1PG1/C601" );
+        else
+        {
+          string _nr = _rd.Number.Trim();
+          this.ConsentLookup = IPR.WebsiteModel.Linq.Consent.Find( edc, _nr );
+          if ( this.ConsentLookup == null )
+            m_Warnings.Add( "Cannot find consent document with number: " + _nr );
+        }
+      }
       #endregion
 
       #region public
+      //TODO
       internal bool Validate( Entities entities, List<string> warnnings )
       {
-        bool _ret = true;
-        //TODO Add validation logic
+        bool _ret = m_Warnings.Count >0;
+        warnnings.AddRange(m_Warnings);
         return _ret;
       }
       internal double Cartons { get; private set; }
-      internal string Consent { get; private set; }
+      internal Consent ConsentLookup { get; private set; }
       internal double Duty { get; private set; }
       internal string DutyName { get; private set; }
       internal double DutyPerUnit { get; private set; }
@@ -429,7 +431,7 @@ namespace CAS.SmartFactory.IPR.Customs
       {
         if ( _rdx.Code != XMLResources.RequiredDocumentConsignmentCode )
           continue;
-        int? _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( _rdx.Number, Settings.GetParameter(entities, SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern) );
+        int? _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( _rdx.Number, Settings.GetParameter( entities, SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern ) );
         if ( _cleranceInt.HasValue )
         {
           Clearence _clearance = Element.GetAtIndex<Clearence>( entities.Clearence, _cleranceInt.Value );
