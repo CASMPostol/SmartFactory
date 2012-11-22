@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+  DisplayName="CTF prod. version"
+  Name="CTFProductivityVersion"
+  Type="Text"
+  ID="{C793A0DF-2B92-45F8-BC90-34D6050EB769}"
+  Group="CAS Smart Factory IPR"
+    />
+  <Field
+  DisplayName="Usage version"
+  Name="UsageVersion"
+  Type="Text"
+  ID="{BFEF16E5-9A39-475C-B1AA-9AAAAAFDE49B}"
+  Group="CAS Smart Factory IPR"
+    />
+  <Field
   DisplayName="Value"
   Name="KeyValue"
   Type="Text"

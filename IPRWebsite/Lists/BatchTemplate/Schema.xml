@@ -43,10 +43,12 @@
           <FieldRef ID="{368c844b-0491-42ae-a102-d888646823fd}" Name="CFTProductivityRateMax" />
           <FieldRef ID="{5adf1294-84c9-44f8-9a47-3ca5ac37b17a}" Name="CFTProductivityNormMin" />
           <FieldRef ID="{2a6ee086-6d19-429b-a9ff-5f6bf33062b8}" Name="CFTProductivityNormMax" />
+          <FieldRef ID="{C793A0DF-2B92-45F8-BC90-34D6050EB769}" Name="CTFProductivityVersion" />
           <FieldRef ID="{a5854e29-ef45-49d8-8cf8-8c5c91f1c0c6}" Name="UsageMin" />
           <FieldRef ID="{1d56fc71-6866-4a9f-a9c9-629e91b54ae1}" Name="UsageMax" />
           <FieldRef ID="{8AEDEE2D-AD68-43C8-9340-D078B73FE1AF}" Name="CTFUsageMin" />
           <FieldRef ID="{3C49CFB3-CCA3-4574-AE30-D422B8DA1C58}" Name="CTFUsageMax" />
+          <FieldRef ID="{BFEF16E5-9A39-475C-B1AA-9AAAAAFDE49B}" Name="UsageVersion" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
@@ -82,43 +84,45 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
-          <FieldRef ID="{ca980625-03da-4c63-b23a-b60f472ca2b3}" Name="BatchStatus" />
-          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
-          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
-          <FieldRef ID="{88259302-82EA-4ADC-90D3-B6B6B7CC3B16}" Name="FGQuantity" />
-          <FieldRef ID="{A0734EE0-F311-4FD8-A912-333C6F6E9690}" Name="FGQuantityPrevious" />
-          <FieldRef ID="{EE831573-9757-4F8C-8DAF-E39E051998F3}" Name="FGQuantityBlocked" />
-          <FieldRef ID="{69ADEE04-E60C-4871-AAB4-8D12A09CEBC1}" Name="FGQuantityAvailable" />
-          <FieldRef ID="{5DFBD671-91CA-498A-8508-7FFCE0FCC909}" Name="MaterialQuantity" />
-          <FieldRef ID="{6F085CA9-2636-4526-8DF2-3A4B67EEE8DC}" Name="MaterialQuantityPrevious" />
-          <FieldRef ID="{725952C1-86DA-41C1-8616-6F5B738B2CA0}" Name="CalculatedOveruse" />
-          <FieldRef ID="{36D134B9-A652-43F1-A650-51F62E079775}" Name="Overuse" />
-          <FieldRef ID="{E00CB825-5594-485D-A232-4DE70F99A939}" Name="Dust" />
-          <FieldRef ID="{41BDDA92-4D8D-4B1F-8C60-1D3B7AEA6B98}" Name="Waste" />
-          <FieldRef ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}" Name="Tobacco" />
-          <FieldRef ID="{762353C4-D601-4461-84FA-EB26F7E314C2}" Name="SHMenthol" />
-          <FieldRef ID="{38CE0A4D-208F-4F49-A344-11728F5B659D}" Name="BatchLibraryIndex" />
-          <FieldRef ID="{43E20C54-3704-4F77-B755-EF45465F4AB2}" Name="CutfillerCoefficientIndex" />
-          <FieldRef ID="{7F22FEC8-C867-49E5-B166-28D4454DE7D7}" Name="SKUIndex" />
-          <FieldRef ID="{2D9D6AB0-3770-4103-B11A-424CACC27C9A}" Name="UsageIndex" />
-          <FieldRef ID="{5674C84E-49A1-4FCE-AA1F-BE89C98CA633}" Name="SHMentholIndex" />
-          <FieldRef ID="{B9FBC416-F875-4C9E-B099-9A14B219015B}" Name="DustIndex" />
-          <FieldRef ID="{CE29CEDB-9FCC-4A9D-9C94-FA6EF041F789}" Name="WasteIndex" />
-          <FieldRef ID="{B4A62D70-8D8E-4231-95E7-754942CD20D6}" Name="BatchSHCooeficiency" />
-          <FieldRef ID="{5730C805-D49F-4846-B24D-62F5F6A31350}" Name="SHCooeficiencyVersion" />
-          <FieldRef ID="{B292C573-B10F-4BD6-BACA-D91E4930B35C}" Name="BatchDustCooeficiency" />
-          <FieldRef ID="{4570E462-BB9A-4CA1-990E-139012A367B6}" Name="DustCooeficiencyVersion"/>
-          <FieldRef ID="{91109161-779F-4D61-AC19-1A7F9E260380}" Name="BatchWasteCooeficiency" />
-          <FieldRef ID="{1493C7F0-D7B4-4E71-85C3-F7C40B530F00}" Name="WasteCooeficiencyVersion" />
-          <FieldRef ID="{8238b9f6-7172-4fad-bebf-b576b9dbd76a}" Name="CFTProductivityRateMin" />
-          <FieldRef ID="{368c844b-0491-42ae-a102-d888646823fd}" Name="CFTProductivityRateMax" />
-          <FieldRef ID="{5adf1294-84c9-44f8-9a47-3ca5ac37b17a}" Name="CFTProductivityNormMin" />
-          <FieldRef ID="{2a6ee086-6d19-429b-a9ff-5f6bf33062b8}" Name="CFTProductivityNormMax" />
-          <FieldRef ID="{a5854e29-ef45-49d8-8cf8-8c5c91f1c0c6}" Name="UsageMin" />
-          <FieldRef ID="{1d56fc71-6866-4a9f-a9c9-629e91b54ae1}" Name="UsageMax" />
-          <FieldRef ID="{8AEDEE2D-AD68-43C8-9340-D078B73FE1AF}" Name="CTFUsageMin" />
-          <FieldRef ID="{3C49CFB3-CCA3-4574-AE30-D422B8DA1C58}" Name="CTFUsageMax" />
+          <FieldRef Name="ProductType" />
+          <FieldRef Name="BatchStatus" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="FGQuantity" />
+          <FieldRef Name="FGQuantityPrevious" />
+          <FieldRef Name="FGQuantityBlocked" />
+          <FieldRef Name="FGQuantityAvailable" />
+          <FieldRef Name="MaterialQuantity" />
+          <FieldRef Name="MaterialQuantityPrevious" />
+          <FieldRef Name="CalculatedOveruse" />
+          <FieldRef Name="Overuse" />
+          <FieldRef Name="Dust" />
+          <FieldRef Name="Waste" />
+          <FieldRef Name="Tobacco" />
+          <FieldRef Name="SHMenthol" />
+          <FieldRef Name="BatchLibraryIndex" />
+          <FieldRef Name="CutfillerCoefficientIndex" />
+          <FieldRef Name="SKUIndex" />
+          <FieldRef Name="UsageIndex" />
+          <FieldRef Name="SHMentholIndex" />
+          <FieldRef Name="DustIndex" />
+          <FieldRef Name="WasteIndex" />
+          <FieldRef Name="BatchSHCooeficiency" />
+          <FieldRef Name="SHCooeficiencyVersion" />
+          <FieldRef Name="BatchDustCooeficiency" />
+          <FieldRef Name="DustCooeficiencyVersion"/>
+          <FieldRef Name="BatchWasteCooeficiency" />
+          <FieldRef Name="WasteCooeficiencyVersion" />
+          <FieldRef Name="CFTProductivityRateMin" />
+          <FieldRef Name="CFTProductivityRateMax" />
+          <FieldRef Name="CFTProductivityNormMin" />
+          <FieldRef Name="CFTProductivityNormMax" />
+          <FieldRef Name="CTFProductivityVersion" />
+          <FieldRef Name="UsageMin" />
+          <FieldRef Name="UsageMax" />
+          <FieldRef Name="CTFUsageMin" />
+          <FieldRef Name="CTFUsageMax" />
+          <FieldRef Name="UsageVersion" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -138,11 +142,11 @@
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{69ADEE04-E60C-4871-AAB4-8D12A09CEBC1}" Name="FGQuantityAvailable" />
-          <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
-          <FieldRef ID="{ca980625-03da-4c63-b23a-b60f472ca2b3}" Name="BatchStatus" />
-          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
-          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
+          <FieldRef Name="FGQuantityAvailable" />
+          <FieldRef Name="ProductType" />
+          <FieldRef Name="BatchStatus" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="SKU" />
         </ViewFields>
         <Query>
           <OrderBy>
