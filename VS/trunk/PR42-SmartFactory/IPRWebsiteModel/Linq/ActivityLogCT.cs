@@ -34,6 +34,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         ActivityLogCT.WriteEntry( edc, source, message );
     }
     /// <summary>
+    /// Writes an entry with the given message text and application-defined event identifier to the event log list.
+    /// </summary>
+    /// <param name="source">The source denominator of the message.</param>
+    /// <param name="message">The string to write to the event log.</param>
+    /// <param name="url">The URL.</param>
+    public static void WriteEntry( string source, string message, string url )
+    {
+      using ( Entities edc = new Entities(url) )
+        ActivityLogCT.WriteEntry( edc, source, message );
+    }
+    /// <summary>
     /// Writes an entry with the given message text and application-defined event identifier to the event log list. 
     /// </summary>
     /// <param name="edc">Provides LINQ (Language Integrated Query) access to, and change tracking for, 
