@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.IPR.WebsiteModel;
@@ -47,13 +46,7 @@ namespace CAS.SmartFactory.IPR.Customs
               //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
               //throw new IPRDataConsistencyException("ItemAdded", "Import of a SAD declaration message failed because the file is empty.", null, "There is no file");
             }
-            ActivityLogCT mess = new ActivityLogCT()
-            {
-              Title = m_Title,
-              Treść = String.Format( "Import of the SAD declaration {0} starting.", properties.ListItem.File.ToString() )
-            };
-            edc.ActivityLog.InsertOnSubmit( mess );
-            edc.SubmitChanges();
+            ActivityLogCT.WriteEntry( String.Format( m_Title, "Import of the SAD declaration {0} starting." ), properties.ListItem.File.Name );
             _at = "GetAtIndex";
             SADDocumentLib entry = Element.GetAtIndex<SADDocumentLib>( edc.SADDocumentLibrary, properties.ListItem.ID );
             entry.SADDocumentLibraryOK = false;
@@ -69,7 +62,10 @@ namespace CAS.SmartFactory.IPR.Customs
             string _comments = String.Empty;
             try
             {
-              ClearenceHelpers.DeclarationProcessing( _sad, edc, _message.MessageRootName(), out _comments );
+              List<InputDataValidationException> warnings = new List<InputDataValidationException>();
+              ClearenceHelpers.DeclarationProcessing( _sad, edc, _message.MessageRootName(), out _comments, warnings );
+              foreach ( var _wrn in warnings )
+                _wrn.ReportActionResult( properties.WebUrl, properties.ListItem.File.Name );
             }
             finally
             {
@@ -80,6 +76,7 @@ namespace CAS.SmartFactory.IPR.Customs
             entry.SADDocumentLibraryComments = _comments;
             _at = "SubmitChanges #2";
             edc.SubmitChanges();
+            ActivityLogCT.WriteEntry( String.Format( m_Title, "Import of the SAD declaration {0} finished." ), properties.ListItem.File.Name );
           }
         }
         catch ( InputDataValidationException idve )
@@ -88,14 +85,6 @@ namespace CAS.SmartFactory.IPR.Customs
         }
         catch ( Exception ex )
         {
-          SPWeb web = properties.Web; //TODO [pr4-3412] SPWeb and SPSite correct use; http://itrserver/Bugs/BugDetail.aspx?bid=3412
-          SPList log = web.Lists.TryGetList( "Activity Log" );
-          if ( log == null )
-          {
-            EventLog.WriteEntry( "CAS.SmartFActory", "Cannot open \"Activity Log\" list", EventLogEntryType.Error, 114 );
-            return;
-          }
-          SPListItem item = log.AddItem();
           string _pattern = "XML import error at {0}.";
           if ( ex is CustomsDataException )
           {
@@ -121,12 +110,10 @@ namespace CAS.SmartFactory.IPR.Customs
           {
             _pattern = "ItemAdded error at {0}.";
           }
-          item[ "Title" ] = String.Format( _pattern, _at );
           string _innerMsg = String.Empty;
           if ( ex.InnerException != null )
             _innerMsg = String.Format( " as the result of {0}.", ex.InnerException.Message );
-          item[ "Body" ] = String.Format( "Message= {0}{1}", ex.Message, _innerMsg );
-          item.UpdateOverwriteVersion();
+          ActivityLogCT.WriteEntry(String.Format( _pattern, _at ), String.Format( "Message= {0}{1}", ex.Message, _innerMsg ));
         }
         finally
         {

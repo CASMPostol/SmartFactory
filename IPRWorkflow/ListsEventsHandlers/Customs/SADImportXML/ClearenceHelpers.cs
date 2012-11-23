@@ -16,7 +16,7 @@ namespace CAS.SmartFactory.IPR.Customs
   {
 
     #region MyRegion
-    internal static void DeclarationProcessing( SADDocumentType _sad, Entities _edc, CustomsDocument.DocumentType _messageType, out string _comments )
+    internal static void DeclarationProcessing( SADDocumentType _sad, Entities _edc, CustomsDocument.DocumentType _messageType, out string _comments, List<InputDataValidationException> warnings )
     {
       string _at = "started";
       _comments = "Clearance association error";
@@ -26,7 +26,7 @@ namespace CAS.SmartFactory.IPR.Customs
         {
           case CustomsDocument.DocumentType.SAD:
           case CustomsDocument.DocumentType.PZC:
-            SADPZCProcessing( _edc, _messageType, _sad, ref _comments, ref _at );
+            SADPZCProcessing( _edc, _messageType, _sad, ref _comments, ref _at, warnings );
             break;
           case CustomsDocument.DocumentType.IE529:
             _at = "ReExportOfGoods";
@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.IPR.Customs
                   _cx.ClearThroughCustoms( _edc );
                   break;
                 case CustomsProcedureCodes.InwardProcessing:
-                  CreateIPRAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, _sad.CustomsDebtDate.Value, out _comments );
+                  CreateIPRAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, _sad.CustomsDebtDate.Value, out _comments, warnings );
                   break;
                 case CustomsProcedureCodes.ReExport:
                 case CustomsProcedureCodes.NoProcedure:
@@ -82,7 +82,7 @@ namespace CAS.SmartFactory.IPR.Customs
     #endregion
 
     #region private
-    private static void SADPZCProcessing( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, ref string _comments, ref string _at )
+    private static void SADPZCProcessing( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, ref string _comments, ref string _at, List<InputDataValidationException> warnings )
     {
       _at = "_customsProcedureCodes";
       foreach ( SADGood _sgx in _sad.SADGood )
@@ -104,7 +104,7 @@ namespace CAS.SmartFactory.IPR.Customs
               if ( _messageType == CustomsDocument.DocumentType.PZC )
               {
                 _at = "CreateIPRAccount";
-                CreateIPRAccount( _edc, _newClearance, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments );
+                CreateIPRAccount( _edc, _newClearance, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments, warnings );
               }
               else
                 _comments = "Document added";
@@ -133,7 +133,6 @@ namespace CAS.SmartFactory.IPR.Customs
           case CustomsProcedureCodes.ReExport:
           default:
             throw new IPRDataConsistencyException( "Clearence.Associate", string.Format( "Unexpected procedure code for the {0} message", _messageType ), null, _wrongProcedure );
-
         }
       } //switch (_customsProcedureCodes)
     }
@@ -153,7 +152,7 @@ namespace CAS.SmartFactory.IPR.Customs
     /// <exception cref="IPRDataConsistencyException">IPR account creation error</exception>
     /// <exception cref="InputDataValidationException"></exception>
     private static void CreateIPRAccount
-      ( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, DateTime customsDebtDate, out string _comments )
+      ( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, DateTime customsDebtDate, out string _comments, List<InputDataValidationException> warnings )
     {
       string _at = "started";
       _comments = "IPR account creation error";
@@ -170,7 +169,7 @@ namespace CAS.SmartFactory.IPR.Customs
         IPRData _iprdata = new IPRData( entities, clearence.Clearence2SadGoodID, _messageType );
         List<string> _ar = new List<string>();
         if ( !_iprdata.Validate( entities, _ar ) )
-          throw new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar );
+          warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
         _at = "Consent.Lookup";
         _comments = "Consent lookup filed";
         _at = "PCNCode.AddOrGet";
@@ -391,7 +390,7 @@ namespace CAS.SmartFactory.IPR.Customs
           this.ConsentLookup = IPR.WebsiteModel.Linq.Consent.Find( edc, _nr );
           if ( this.ConsentLookup == null )
           {
-            m_Warnings.Add( "Cannot find consent document with number: " + _nr + ". The Consent period is 90 days");
+            m_Warnings.Add( "Cannot find consent document with number: " + _nr + ". The Consent period is 90 days" );
             ConsentPeriodCalculated = TimeSpan.FromDays( 90 );
           }
           else
