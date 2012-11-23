@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    DisplayName="Source"
+    Name="ActivitySource"
+    Type="Text"
+    ID="{785E20DF-87DB-42E5-B5A4-448580091272}"
+    Group="CAS Smart Factory IPR Dictionaries"
+    />
+  <Field
+    DisplayName="Priority"
+    Name="ActivityPriority"
+    Type="Text"
+    ID="{AC793B16-F987-4CD2-BC9A-B12A01F61DDC}"
+    Group="CAS Smart Factory IPR Dictionaries"
+    />
+  <Field
     DisplayName="Warehouse name"
     Name="WarehouseName"
     Type="Text"
