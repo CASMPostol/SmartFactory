@@ -46,7 +46,7 @@ namespace CAS.SmartFactory.IPR.Customs
               //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
               //throw new IPRDataConsistencyException("ItemAdded", "Import of a SAD declaration message failed because the file is empty.", null, "There is no file");
             }
-            ActivityLogCT.WriteEntry( String.Format( m_Title, "Import of the SAD declaration {0} starting." ), properties.ListItem.File.Name, properties.WebUrl );
+            ActivityLogCT.WriteEntry( m_Title, String.Format( "Import of the SAD declaration {0} starting." , properties.ListItem.File.Name), properties.WebUrl ) );
             _at = "GetAtIndex";
             SADDocumentLib entry = Element.GetAtIndex<SADDocumentLib>( edc.SADDocumentLibrary, properties.ListItem.ID );
             entry.SADDocumentLibraryOK = false;
@@ -76,7 +76,7 @@ namespace CAS.SmartFactory.IPR.Customs
             entry.SADDocumentLibraryComments = _comments;
             _at = "SubmitChanges #2";
             edc.SubmitChanges();
-            ActivityLogCT.WriteEntry( String.Format( m_Title, "Import of the SAD declaration {0} finished." ), properties.ListItem.File.Name, properties.WebUrl );
+            ActivityLogCT.WriteEntry( m_Title, String.Format( "Import of the SAD declaration {0} finished.", properties.ListItem.File.Name), properties.WebUrl );
           }
         }
         catch ( InputDataValidationException idve )

@@ -403,7 +403,7 @@ namespace CAS.SmartFactory.IPR.Customs
       //TODO
       internal bool Validate( Entities entities, List<string> warnnings )
       {
-        bool _ret = m_Warnings.Count > 0;
+        bool _ret = m_Warnings.Count == 0;
         warnnings.AddRange( m_Warnings );
         return _ret;
       }
