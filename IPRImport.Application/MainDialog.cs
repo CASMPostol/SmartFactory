@@ -26,7 +26,10 @@ namespace CAS.SmartFactory.Management
     private void UpdateToolStrip( object obj, ProgressChangedEventArgs progres )
     {
       m_ToolStripStatusLabel.Text = (string)progres.UserState;
-      m_ToolStripProgressBar.Value += progres.ProgressPercentage;
+      if ( m_ToolStripProgressBar.Value + progres.ProgressPercentage > m_ToolStripProgressBar.Maximum )
+        m_ToolStripProgressBar.Value = 0;
+      else
+        m_ToolStripProgressBar.Value += progres.ProgressPercentage;
       if ( m_fastRefresh )
         this.Refresh();
       if ( m_ToolStripProgressBar.Value >= m_ToolStripProgressBar.Maximum )
