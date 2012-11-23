@@ -33,24 +33,24 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           _materialX.DisposalsAnalisis( edc, _mr, overusageCoefficient );
           progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
           AccumulatedDisposalsAnalisis.Accumutate( _materialX );
-          foreach ( WebsiteModel.Linq.Material.DisposalsEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.Material.DisposalsEnum ) ) )
+          foreach ( WebsiteModel.Linq.Material.DisposalsEnum _kind in Enum.GetValues( typeof( WebsiteModel.Linq.Material.DisposalsEnum ) ) )
           {
             try
             {
-              if ( _materialX[ _item ] <= 0 && ( _item == WebsiteModel.Linq.Material.DisposalsEnum.SHMenthol ) )
+              if ( _materialX[ _kind ] <= 0 && ( ( _kind == WebsiteModel.Linq.Material.DisposalsEnum.SHMenthol ) || ( _kind == WebsiteModel.Linq.Material.DisposalsEnum.OverusageInKg )))
                 continue;
               List<WebsiteModel.Linq.IPR> _accounts = WebsiteModel.Linq.IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, _materialX.Batch );
               if ( _accounts.Count == 0 )
               {
                 string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
-                throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, _materialX.Batch, parent.Batch0, _item ), null, "IPR unrecognized account" );
+                throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, _materialX.Batch, parent.Batch0, _kind ), null, "IPR unrecognized account" );
               }
-              decimal _toDispose = _materialX[ _item ];
-              progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _item, _materialX.Batch ) ) );
+              decimal _toDispose = _materialX[ _kind ];
+              progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _kind, _materialX.Batch ) ) );
               //TODOD  [pr4-3572] Adjust the tobacco usage while importing batch 
               for ( int _aidx = 0; _aidx < _accounts.Count; _aidx++ )
               {
-                _accounts[ _aidx ].AddDisposal( edc, _item, ref _toDispose, _materialX );
+                _accounts[ _aidx ].AddDisposal( edc, _kind, ref _toDispose, _materialX );
                 if ( _toDispose <= 0 )
                   break;
               }
