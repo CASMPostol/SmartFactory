@@ -60,16 +60,21 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{F9499FF7-0420-430D-B2B6-672546BA8235}" Name="SKUDescription" />
-          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
-          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
-          <FieldRef ID="{B523048C-0493-4D33-9166-D336C39F3C90}" Name="ProductID" />
-          <FieldRef ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Name="StorLoc" />
-          <FieldRef ID="{88259302-82EA-4ADC-90D3-B6B6B7CC3B16}" Name="FGQuantity" />
-          <FieldRef ID="{78638A08-748F-4619-A690-299315659702}" Name="TobaccoQuantity" />
-          <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
-          <FieldRef ID="{ad5e7717-4c66-44da-88b1-713762b8b294}" Name="ProductType" />
-          <FieldRef ID="{F2AD5316-859E-43B4-B630-46C28B9523AE}" Name="Material2BatchIndex" />
+          <FieldRef Name="SKUDescription" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="ProductID" />
+          <FieldRef Name="StorLoc" />
+          <FieldRef Name="FGQuantity" />
+          <FieldRef Name="TobaccoQuantity" />
+          <FieldRef Name="Units" />
+          <FieldRef Name="ProductType" />
+          <FieldRef Name="Overuse" />
+          <FieldRef Name="Dust" />
+          <FieldRef Name="Waste" />
+          <FieldRef Name="Tobacco" />
+          <FieldRef Name="SHMenthol" />
+          <FieldRef Name="Material2BatchIndex" />
         </ViewFields>
         <Query>
           <OrderBy>
