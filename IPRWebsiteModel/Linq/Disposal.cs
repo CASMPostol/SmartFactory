@@ -28,7 +28,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         ClearingType _clearingType = Linq.ClearingType.PartialWindingUp;
         decimal _settledQuantity = Convert.ToDecimal( SettledQuantity.Value );
-        if ( !closingBatch && quantity < _settledQuantity )
+        if ( closingBatch )
+          _clearingType = Disposal2IPRIndex.GetClearingType();
+        else if ( quantity < _settledQuantity )
         {
           _at = "_newDisposal";
           Disposal _newDisposal = new Disposal()
