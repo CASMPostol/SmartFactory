@@ -126,7 +126,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       {
         bool _closingBatch = batch.FGQuantityAvailable == invoice.Quantity.Value;
         _at = "FGQuantityAvailable";
-        batch.FGQuantityAvailable -= invoice.Quantity.Value;
+        batch.FGQuantityAvailable = Convert.ToDouble( Convert.ToDecimal( batch.FGQuantityAvailable.Value ) - Convert.ToDecimal( invoice.Quantity.Value ) );
         double _portion = invoice.Quantity.Value / batch.FGQuantity.Value;
         List<Ingredient> _ingredients = new List<Ingredient>();
         _at = "foreach";
@@ -159,7 +159,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
           _at = "GetListOfDisposals";
           foreach ( Disposal _disposal in material.GetListOfDisposals() )
           {
-            if ( _quantity == 0 )
+            if ( !closingBatch && _quantity == 0 )
               break;
             _at = "_disposal.Export(";
             _disposal.Export( entities, clearence, ref _quantity, closingBatch, invoiceNoumber );
@@ -167,8 +167,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
             entities.SubmitChanges();
             formsList.Add( GetIPRIngredient( _disposal ) );
           }
-          string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account";
-          ActivityLogCT.Assert( entities, _quantity == 0, "Material.Export", string.Format( _template, material.Batch, _quantity, invoiceNoumber ) );
+          if ( !closingBatch )
+          {
+            //assertion
+            string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account";
+            ActivityLogCT.Assert( entities, _quantity == 0, "Material.Export", string.Format( _template, material.Batch, _quantity, invoiceNoumber ) );
+          }
         }
         else if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.Tobacco )
         {
