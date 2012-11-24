@@ -122,6 +122,7 @@
       <DependentUpon>Batch.xsd</DependentUpon>
     </Compile>
     <Compile Include="ERP\Batch.partial.cs" />
+    <Compile Include="ERP\BatchMaterial.cs" />
     <Compile Include="ERP\CigarettesMaterial.cs" />
     <Compile Include="ERP\CutfillerMaterial.cs" />
     <Compile Include="ERP\Invoice.cs">

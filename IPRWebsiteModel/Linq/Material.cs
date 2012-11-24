@@ -13,7 +13,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   public partial class Material
   {
     #region ctor
-    public Material( Entities edc, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal tobaccoQuantity, string productID )
+    public Material( Entities edc, Entities.ProductDescription product, string batch, string sku, string storLoc, string skuDescription, string units, decimal fgQuantity, decimal tobaccoQuantity, string productID )
       : this()
     {
       Batch = batch;
@@ -26,7 +26,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       FGQuantity = Convert.ToDouble( fgQuantity );
       TobaccoQuantity = Convert.ToDouble( tobaccoQuantity );
       ProductID = productID;
-      Entities.ProductDescription product = edc.GetProductType( this.SKU, this.StorLoc );
       ProductType = product.productType;
       Overuse = 0;
       Dust = 0;

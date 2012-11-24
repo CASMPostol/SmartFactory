@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CAS.SharePoint;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Linq;
@@ -7,10 +8,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class Entities
   {
+    #region public
     /// <summary>
     /// Initializes a new instance of the <see cref="Entities" /> class.
     /// </summary>
-    public Entities() : base( SPContext.Current.Web.Url ) { }
+    public Entities() : this( SPContext.Current.Web.Url ) { }
     /// <summary>
     /// Persists to the content database changes made by the current user to one or more lists using the specified failure mode;
     /// or, if a concurrency conflict is found, populates the <see cref="P:Microsoft.SharePoint.Linq.DataContext.ChangeConflicts"/> property.
@@ -137,7 +139,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       return _value;
     }
-    internal class ProductDescription
+    /// <summary>
+    /// ProductDescription
+    /// </summary>
+    public class ProductDescription
     {
       internal ProductType productType;
       internal bool IPRMaterial;
@@ -152,33 +157,79 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         : this( type, ipr, null )
       { }
     }
-    //TODO Batch processing - product recognition improvement  http://cas_sp:11225/sites/awt/Lists/TaskList/DispForm.aspx?ID=3362
-    internal ProductDescription GetProductType( string sku, string location )
+    /// <summary>
+    /// Gets the type of the product.
+    /// </summary>
+    /// <param name="sku">The sku.</param>
+    /// <param name="location">The warehouse.</param>
+    /// <returns></returns>
+    public ProductDescription GetProductType( string sku, string location )
     {
+      ProductDescription _ret = null;
       SKUCommonPart entity = SKUCommonPart.Find( this, sku );
       if ( entity != null )
-        return new ProductDescription( entity.ProductType.GetValueOrDefault( ProductType.Other ), entity.IPRMaterial.GetValueOrDefault( false ), entity );
-      Warehouse wrh = Linq.Warehouse.Find( this, location );
-      if ( wrh != null )
+        _ret = new ProductDescription( entity.ProductType.GetValueOrDefault( ProductType.Other ), entity.IPRMaterial.GetValueOrDefault( false ), entity );
+      else
+        _ret = GetProductType( location );
+      return _ret;
+    }
+    /// <summary>
+    /// Gets the type of the product.
+    /// </summary>
+    /// <param name="sku">The sku.</param>
+    /// <param name="location">The warehouse.</param>
+    /// <param name="isFinishedGood">if set to <c>true</c> it is finished good.</param>
+    /// <returns></returns>
+    /// <exception cref="InputDataValidationException">Cannot find finisched good in the SKU dictionary;Get Product Type</exception>
+    public ProductDescription GetProductType( string sku, string location, bool isFinishedGood )
+    {
+      ProductDescription _ret = null;
+      if ( isFinishedGood )
       {
-        switch ( wrh.ProductType )
+        SKUCommonPart entity = SKUCommonPart.Find( this, sku );
+        if ( entity == null )
         {
-          case ProductType.Tobacco:
-            return new ProductDescription( ProductType.Tobacco, false );
-          case ProductType.IPRTobacco:
-            return new ProductDescription( ProductType.IPRTobacco, true );
-          case ProductType.Invalid:
-          case ProductType.Cutfiller:
-          case ProductType.Cigarette:
-          case ProductType.Other:
-          default:
-            break;
+          List<String> _errors = new List<string>();
+          string _mssg = String.Format( "Cannot find finisched good {0}", sku );
+          _errors.Add( _mssg );
+          throw new InputDataValidationException( "Cannot find finisched good in the SKU dictionary", "Get Product Type", _errors );
         }
+        _ret = new ProductDescription( entity.ProductType.GetValueOrDefault( ProductType.Other ), entity.IPRMaterial.GetValueOrDefault( false ), entity );
       }
-      return new ProductDescription( ProductType.Other, false );
+      else
+        _ret = GetProductType( location );
+      return _ret;
+    }
+    #endregion
+    
+    #region private
+    private ProductDescription GetProductType( string location )
+    {
+      ProductDescription _ret = new ProductDescription( ProductType.Other, false );
+      Warehouse wrh = Linq.Warehouse.Find( this, location );
+      if ( wrh == null )
+        return _ret;
+      switch ( wrh.ProductType )
+      {
+        case ProductType.Tobacco:
+          _ret = new ProductDescription( ProductType.Tobacco, false );
+          break;
+        case ProductType.IPRTobacco:
+          _ret = new ProductDescription( ProductType.IPRTobacco, true );
+          break;
+        case ProductType.Invalid:
+        case ProductType.Cutfiller:
+        case ProductType.Cigarette:
+        case ProductType.Other:
+        default:
+          break;
+      }
+      return _ret;
     }
     private const string m_Source = "Data Context";
     private const string m_WrongProductTypeMessage = "I cannot recognize product type of the stock entry SKU: {0} in location: {1}";
+    #endregion
+
   }
 }
 

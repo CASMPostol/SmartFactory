@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           {
             try
             {
-              if ( _materialX[ _kind ] <= 0 && ( ( _kind == WebsiteModel.Linq.Material.DisposalsEnum.SHMenthol ) || ( _kind == WebsiteModel.Linq.Material.DisposalsEnum.OverusageInKg )))
+              if ( _materialX[ _kind ] <= 0 && ( ( _kind == WebsiteModel.Linq.Material.DisposalsEnum.SHMenthol ) || ( _kind == WebsiteModel.Linq.Material.DisposalsEnum.OverusageInKg ) ) )
                 continue;
               List<WebsiteModel.Linq.IPR> _accounts = WebsiteModel.Linq.IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, _materialX.Batch );
               if ( _accounts.Count == 0 )
@@ -98,11 +98,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         base.Add( value.GetKey(), value );
       }
     }
-    protected void CheckConsistence()
-    {
-      if ( Product == null )
-        throw new IPRDataConsistencyException( "Processing disposals", "Unrecognized finished good", null, "CheckConsistence error" );
-    }
     protected SummaryContentInfo()
     {
       AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
@@ -136,9 +131,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="edc">The edc.</param>
     /// <param name="actionResult">The result of validation.</param>
     /// <returns></returns>
-    public bool Validate( Entities edc, List<string> actionResult )
+    public void Validate( Entities edc, List<string> actionResult )
     {
-      bool _ret = true;
+      if ( Product == null )
+        actionResult.Add( "Unrecognized finished good" );
       foreach ( Material item in this.Values )
       {
         if ( item.ProductType.Value != ProductType.IPRTobacco )
@@ -147,10 +143,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         {
           string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, quantity: {2} kg";
           actionResult.Add( String.Format( _mssg, item.Batch, Product.Batch, item.TobaccoQuantity.Value ) );
-          _ret = false;
         }
       }
-      return _ret;
     }
   }//SummaryContentInfo
 }

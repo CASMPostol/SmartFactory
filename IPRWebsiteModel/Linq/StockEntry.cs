@@ -26,7 +26,5 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return;
       this.BatchIndex = Linq.Batch.GetOrCreatePreliminary(edc, this.Batch);
     }
-    //private const string m_Source = "Stock Entry";
-    //private const string m_WrongProductTypeMessage = "I cannot recognize product type of the stock entry SKU: {0} in location: {1}";
   }
 }

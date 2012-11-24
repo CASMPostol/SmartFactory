@@ -39,14 +39,17 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         {
           BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>( _edc.BatchLibrary, _properties.ListItemId );
           At = "ImportBatchFromXml";
-          ImportBatchFromXml
-            (
-              _edc,
-              _properties.ListItem.File.OpenBinaryStream(),
-              _entry,
-              _properties.ListItem.File.ToString(),
-              ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; }
-            );
+          BatchXml _xml = ImportBatchFromXml
+               (
+                 _edc,
+                 _properties.ListItem.File.OpenBinaryStream(),
+                 _properties.ListItem.File.ToString(),
+                 ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; }
+               );
+          At = "Getting Data";
+          GetXmlContent( _xml, _edc, _entry, ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; } );
+          At = "Submiting Changes";
+          ActivityLogCT.WriteEntry( _edc, m_Title, "Import of the batch message finished" );
           At = "ListItem assign";
           _entry.BatchLibraryOK = true;
           _entry.BatchLibraryComments = "Batch message import succeeded.";
@@ -95,7 +98,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <param name="fileName">Name of the file.</param>
     /// <param name="progressChanged">The progress changed delegate <see cref="ProgressChangedEventHandler" />.</param>
     /// <exception cref="IPRDataConsistencyException"></exception>
-    public static void ImportBatchFromXml( Entities edc, Stream stream, BatchLib entry, string fileName, ProgressChangedEventHandler progressChanged )
+    public static BatchXml ImportBatchFromXml( Entities edc, Stream stream, string fileName, ProgressChangedEventHandler progressChanged )
     {
       try
       {
@@ -108,22 +111,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         _xml.Validate( Settings.GetParameter( edc, SettingsEntry.BatchNumberPattern ), _validationErrors );
         if ( _validationErrors.Count > 0 )
           throw new InputDataValidationException( "Batch content validate failed", "XML sysntax validation", _validationErrors );
-        progressChanged( null, new ProgressChangedEventArgs( 1, "Getting Data" ) );
-        GetXmlContent( _xml, edc, entry, progressChanged );
-        progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
-        ActivityLogCT.WriteEntry( edc, m_Title, "Import of the batch message finished" );
-      }
-      catch ( InputDataValidationException _idve )
-      {
-        throw _idve;
-      }
-      catch ( GenericStateMachineEngine.ActionResult _ve )
-      {
-        throw _ve;
-      }
-      catch ( IPRDataConsistencyException _ex )
-      {
-        throw _ex;
+        return _xml;
       }
       catch ( Exception ex )
       {
@@ -183,13 +171,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       {
         foreach ( BatchMaterialXml item in xml )
         {
-          Material _newMaterial = new Material( edc, item.Batch, item.Material, item.Stor__Loc, item.Material_description, item.Unit, item.Quantity, item.Quantity_calculated, item.material_group );
+          Entities.ProductDescription product = edc.GetProductType( item.Material, item.Stor__Loc, item.IsFinishedGood );
+          Material _newMaterial = new Material( edc, product, item.Batch, item.Material, item.Stor__Loc, item.Material_description, item.Unit, item.Quantity, item.Quantity_calculated, item.material_group );
           progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "SKU={0}", _newMaterial.SKU ) ) );
           Add( _newMaterial );
         }
-        progressChanged( this, new ProgressChangedEventArgs( 1, "CheckConsistence" ) );
-        CheckConsistence();
-        progressChanged( this, new ProgressChangedEventArgs( 1, "SummaryContentInfo created" ) );
       }
     }
     private const string m_Source = "Batch processing";
