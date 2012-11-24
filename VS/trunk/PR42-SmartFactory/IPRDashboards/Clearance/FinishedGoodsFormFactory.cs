@@ -42,7 +42,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       return _ret;
     }
     internal static CigaretteExportForm GetCigaretteExportForm
-       ( CutfillerCoefficient cc, Batch batch, InvoiceContent invoice, double portion, List<Ingredient> ingredients, string documentName, ref int subdocumentNo, ClearenceProcedure procedure )
+       ( Batch batch, InvoiceContent invoice, double portion, List<Ingredient> ingredients, string documentName, ref int subdocumentNo, ClearenceProcedure procedure )
     {
       CigaretteExportForm _ret = new CigaretteExportForm();
       if ( batch == null )
@@ -63,12 +63,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       _ret.FinishedGoodSKUDescription = batch.SKUIndex.Title();
       _ret.MaterialTotal = ( batch.Tobacco.GetValueOrDefault( -1 ) * portion ).RountMass();
       _ret.ProductFormat = batch.SKUIndex.FormatIndex.Title();
-      _ret.CTFUsageMin = cc.CFTProductivityRateMin.GetValueOrDefault( -1 ) * 100;
-      _ret.CTFUsageMax = cc.CFTProductivityRateMax.GetValueOrDefault( -1 ) * 100;
-      _ret.CTFUsagePerUnitMin = cc.CFTProductivityRateMin.GetValueOrDefault( -1 );
-      _ret.CTFUsagePerUnitMax = cc.CFTProductivityRateMax.GetValueOrDefault( -1 );
-      _ret.CTFUsagePer1MFinishedGoodsMin = batch.UsageIndex.CTFUsageMin.GetValueOrDefault( -1 );
-      _ret.CTFUsagePer1MFinishedGoodsMax = batch.UsageIndex.CTFUsageMax.GetValueOrDefault( -1 );
+      _ret.CTFUsageMin = batch.CFTProductivityRateMin.GetValueOrDefault( -1 ) * 100;
+      _ret.CTFUsageMax = batch.CFTProductivityRateMax.GetValueOrDefault( -1 ) * 100;
+      _ret.CTFUsagePerUnitMin = batch.CFTProductivityRateMin.GetValueOrDefault( -1 );
+      _ret.CTFUsagePerUnitMax = batch.CFTProductivityRateMax.GetValueOrDefault( -1 );
+      _ret.CTFUsagePer1MFinishedGoodsMin = batch.CTFUsageMin.GetValueOrDefault( -1 );
+      _ret.CTFUsagePer1MFinishedGoodsMax = batch.CTFUsageMax.GetValueOrDefault( -1 );
       _ret.WasteCoefficient = batch.BatchWasteCooeficiency.GetValueOrDefault( -1 ) + batch.BatchDustCooeficiency.GetValueOrDefault( -1 );
       switch ( batch.ProductType.Value )
       {
@@ -132,10 +132,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         _at = "foreach";
         foreach ( Material _materialIdx in batch.Material )
           ExportMaterial( _materialIdx, entities, _ingredients, clearence, _closingBatch, invoice.InvoiceIndex.BillDoc, _portion );
-        _at = "CutfillerCoefficient";
-        CutfillerCoefficient _cc = ( from _ccx in entities.CutfillerCoefficient orderby _ccx.Identyfikator descending select _ccx ).First();
         _at = "_exportConsignment";
-        CigaretteExportForm _form = GetCigaretteExportForm( _cc, batch, invoice, _portion, _ingredients, documentName, ref subdocumentNo, clearence.ClearenceProcedure.Value );
+        CigaretteExportForm _form = GetCigaretteExportForm( batch, invoice, _portion, _ingredients, documentName, ref subdocumentNo, clearence.ClearenceProcedure.Value );
         formsList.Add( _form );
       }
       catch ( ApplicationError _ar )
