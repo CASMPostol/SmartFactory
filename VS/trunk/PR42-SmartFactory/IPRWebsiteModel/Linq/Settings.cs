@@ -29,7 +29,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// The goods description batch pattern
     /// </summary>
-    GoodsDescriptionBatchPattern
+    GoodsDescriptionBatchPattern,
+    /// <summary>
+    /// Batch Number Pattern
+    /// </summary>
+    BatchNumberPattern
   }
   public partial class Settings
   {
@@ -60,7 +64,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
        {SettingsEntry.GoodsDescriptionTobaccoNamePattern , @"\b(.*)(?=\sGRADE:)"},
        {SettingsEntry.GoodsDescriptionWGRADEPattern,  @"(?<=\WGRADE:)\W*\b(\w*)"},
        {SettingsEntry.GoodsDescriptionSKUPattern,  @"(?<=\WSKU:)\W*\b(\d*)"}, 
-       {SettingsEntry.GoodsDescriptionBatchPattern,  @"(?<=\WBatch:)\W*\b(\d*)"}
+       {SettingsEntry.GoodsDescriptionBatchPattern,  @"(?<=\WBatch:)\W*\b(\d*)"},
+       {SettingsEntry.BatchNumberPattern,   @"\b(000\d{7})"}
     };
   }
 }

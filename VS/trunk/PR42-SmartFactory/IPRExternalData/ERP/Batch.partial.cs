@@ -1,6 +1,9 @@
 ﻿using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Linq;
+using CAS.SharePoint;
+using System;
 
 namespace CAS.SmartFactory.xml.erp
 {
@@ -14,6 +17,10 @@ namespace CAS.SmartFactory.xml.erp
         return (Batch)serializer.Deserialize(reader);
       }
     }
-
+    public void Validate( string pattern, System.Collections.Generic.List<string> _validationErrors )
+    {
+      foreach ( BatchMaterial _material in Material.AsEnumerable<BatchMaterial>() )
+        _material.Batch = _material.Batch.GetFirstCapture( pattern, String.Empty, _validationErrors );
+    }
   }
 }

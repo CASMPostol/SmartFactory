@@ -47,7 +47,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
               }
               decimal _toDispose = _materialX[ _kind ];
               progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _kind, _materialX.Batch ) ) );
-              //TODOD  [pr4-3572] Adjust the tobacco usage while importing batch 
               for ( int _aidx = 0; _aidx < _accounts.Count; _aidx++ )
               {
                 _accounts[ _aidx ].AddDisposal( edc, _kind, ref _toDispose, _materialX );

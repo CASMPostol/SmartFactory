@@ -89,25 +89,29 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <summary>
     /// Imports the batch from XML.
     /// </summary>
-    /// <param name="_edc">The _edc.</param>
+    /// <param name="edc">The _edc.</param>
     /// <param name="stream">The stream.</param>
-    /// <param name="_entry">The _entry.</param>
+    /// <param name="entry">The _entry.</param>
     /// <param name="fileName">Name of the file.</param>
     /// <param name="progressChanged">The progress changed delegate <see cref="ProgressChangedEventHandler" />.</param>
     /// <exception cref="IPRDataConsistencyException"></exception>
-    public static void ImportBatchFromXml( Entities _edc, Stream stream, BatchLib _entry, string fileName, ProgressChangedEventHandler progressChanged )
+    public static void ImportBatchFromXml( Entities edc, Stream stream, BatchLib entry, string fileName, ProgressChangedEventHandler progressChanged )
     {
       try
       {
-        progressChanged( null, new ProgressChangedEventArgs( 1, "Importing batch XML file" ) );
-        ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( m_Message, fileName ) );
-        _edc.SubmitChanges();
+        string _Message = String.Format( m_Message, fileName );
+        progressChanged( null, new ProgressChangedEventArgs( 1, _Message ) );
+        ActivityLogCT.WriteEntry( edc, m_Title, _Message );
         BatchXml _xml = BatchXml.ImportDocument( stream );
+        progressChanged( null, new ProgressChangedEventArgs( 1, "XML sysntax validation" ) );
+        List<string> _validationErrors = new List<string>();
+        _xml.Validate( Settings.GetParameter( edc, SettingsEntry.BatchNumberPattern ), _validationErrors );
+        if ( _validationErrors.Count > 0 )
+          throw new InputDataValidationException( "Batch content validate failed", "XML sysntax validation", _validationErrors );
         progressChanged( null, new ProgressChangedEventArgs( 1, "Getting Data" ) );
-        GetXmlContent( _xml, _edc, _entry, progressChanged );
+        GetXmlContent( _xml, edc, entry, progressChanged );
         progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
-        ActivityLogCT.WriteEntry( _edc, m_Title, "Import of the batch message finished" );
-        _edc.SubmitChanges();
+        ActivityLogCT.WriteEntry( edc, m_Title, "Import of the batch message finished" );
       }
       catch ( InputDataValidationException _idve )
       {
@@ -143,10 +147,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
       Content _contentInfo = new Content( xml.Material, edc, progressChanged );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: contentInfo.Validate" ) );
-      List<string> _ve = new List<string>();
-      _contentInfo.Validate( edc, _ve );
-      if ( _ve.Count > 0 )
-        throw new InputDataValidationException( "Batch content validate failed", "Get batch XML content", _ve );
+      List<string> _validationErrors = new List<string>();
+      _contentInfo.Validate( edc, _validationErrors );
+      if ( _validationErrors.Count > 0 )
+        throw new InputDataValidationException( "Batch content validate failed", "XML content validation", _validationErrors );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: batch" ) );
       Batch batch =
           ( from idx in edc.Batch where idx.Batch0.Contains( _contentInfo.Product.Batch ) && idx.BatchStatus.Value == BatchStatus.Preliminary select idx ).FirstOrDefault();
