@@ -89,8 +89,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: interconnect" ) );
       //interconnect 
       SKUIndex = SKUCommonPart.GetLookup( edc, contentInfo.Product.SKU );
-      CutfillerCoefficientIndex = CutfillerCoefficient.GetLookup( edc );
-      UsageIndex = Usage.GetLookup( SKUIndex.FormatIndex, edc );
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
       //Coefficients
       DustIndex = Linq.Dust.GetLookup( ProductType.Value, edc );
@@ -102,9 +100,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       WasteIndex = Linq.Waste.GetLookup( ProductType.Value, edc );
       BatchWasteCooeficiency = WasteIndex.WasteRatio;
       WasteCooeficiencyVersion = WasteIndex.Wersja;
+      CutfillerCoefficient _cc =  CutfillerCoefficient.GetLookup( edc );
+      CutfillerCoefficientIndex = _cc;
+      this.CFTProductivityNormMax = _cc.CFTProductivityNormMax;
+      this.CFTProductivityNormMin = _cc.CFTProductivityNormMin;
+      this.CFTProductivityRateMax = _cc.CFTProductivityRateMax;
+      this.CFTProductivityRateMin = _cc.CFTProductivityRateMin;
+      Usage _usage = Usage.GetLookup( SKUIndex.FormatIndex, edc );
+      UsageIndex = _usage;
+      this.CTFUsageMax = _usage.CTFUsageMax;
+      this.CTFUsageMin = _usage.CTFUsageMin;
+      this.UsageMin = _usage.UsageMin;
+      this.UsageMin = _usage.UsageMin;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
       //processing
-      CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageIndex.UsageMax.Value, UsageIndex.UsageMin.Value );
+      CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageMax.Value, UsageMin.Value );
       FGQuantityAvailable = FGQuantity;
       FGQuantityBlocked = 0;
       FGQuantityPrevious = 0; //TODO [pr4-3421] Intermediate batches processing http://itrserver/Bugs/BugDetail.aspx?bid=3421
