@@ -7,9 +7,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   public partial class SKUCigarette
   {
     #region public
-    #endregion
-
-    #region private
     /// <summary>
     /// Gets the format lookup.
     /// </summary>
