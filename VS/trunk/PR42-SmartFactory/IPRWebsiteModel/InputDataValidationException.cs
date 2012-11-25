@@ -14,10 +14,22 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// </summary>
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="paramName">The name of the operation that caused the current exception.</param>
+    /// <param name="errors">The list of errors.</param>
     public InputDataValidationException( string message, string paramName, List<string> errors )
       : base( message, paramName )
     {
       m_Errors = errors;
+    }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InputDataValidationException" /> class.
+    /// </summary>
+    /// <param name="message">The error message that explains the reason for the exception.</param>
+    /// <param name="paramName">The name of the operation that caused the current exception.</param>
+    /// <param name="error">The error to be reported.</param>
+    public InputDataValidationException( string message, string paramName, string error )
+      : base( message, paramName )
+    {
+      m_Errors = new List<string>() { error };
     }
     #region public
     public bool Valid { get { return m_Errors.Count == 0; } }
