@@ -140,29 +140,56 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       if ( _validationErrors.Count > 0 )
         throw new InputDataValidationException( "Batch content validate failed", "XML content validation", _validationErrors );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: batch" ) );
-      Batch batch =
-          ( from idx in edc.Batch where idx.Batch0.Contains( _contentInfo.Product.Batch ) && idx.BatchStatus.Value == BatchStatus.Preliminary select idx ).FirstOrDefault();
-      if ( batch == null )
+      IQueryable<Batch> _batches = ( from idx in edc.Batch where idx.Batch0.Contains( _contentInfo.Product.Batch ) select idx );
+      Batch batch = null;
+      BatchStatus _newBtachStatus = GetBatchStatus( xml.Status );
+      List<string> _warnings = new List<string>();
+      switch ( _newBtachStatus )
       {
-        batch = new Batch();
-        edc.Batch.InsertOnSubmit( batch );
+        case BatchStatus.Progress:
+          throw new InputDataValidationException( "Wrong status of the input batch", "Get Xml Content", "The status of Progress is not implemented yet" );
+        case BatchStatus.Intermediate:
+          throw new InputDataValidationException( "Wrong status of the input batch", "Get Xml Content", "The status of Intermediate is not implemented yet" );
+        case BatchStatus.Final:
+          if ( _batches.Count<Batch>() == 0 )
+          {
+            batch = new Batch();
+            edc.Batch.InsertOnSubmit( batch );
+          }
+          else if ( _batches.Where<Batch>( prdc => prdc.BatchStatus.Value == BatchStatus.Final ).Any<Batch>() )
+          {
+            string _ptrn = "The batch {0} has been analyzed already.";
+            throw new InputDataValidationException( "Wrong status of the input batch", "Get Xml Content", String.Format( _ptrn, _contentInfo.Product.Batch ) );
+          }
+          else if ( _batches.Count<Batch>() == 1 )
+          {
+            batch = _batches.FirstOrDefault<Batch>();
+            if ( batch.BatchStatus.Value != BatchStatus.Preliminary )
+              throw new IPRDataConsistencyException( "GetXmlContent", "Wrong batch status - internal error", null, "InternalBufferOverflowException error" );
+            progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: BatchProcessing" ) );
+            batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged );
+          }
+          else
+            throw new InputDataValidationException( "Wrong status of the input batch", "Get Xml Content", "The association of many batches is not implemented yet." );
+          break;
       }
-      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: BatchProcessing" ) );
-      batch.BatchProcessing( edc, GetBatchStatus( xml.Status ), _contentInfo, parent, progressChanged );
     }
     private static BatchStatus GetBatchStatus( xml.erp.BatchStatus batchStatus )
     {
+      BatchStatus _status = default( BatchStatus );
       switch ( batchStatus )
       {
         case xml.erp.BatchStatus.Final:
-          return BatchStatus.Final;
+          _status = BatchStatus.Final;
+          break;
         case xml.erp.BatchStatus.Intermediate:
-          return BatchStatus.Intermediate;
+          _status = BatchStatus.Intermediate;
+          break;
         case xml.erp.BatchStatus.Progress:
-          return BatchStatus.Progress;
-        default:
-          return BatchStatus.Preliminary;
+          _status = BatchStatus.Progress;
+          break;
       }
+      return _status;
     }
     private class Content: SummaryContentInfo
     {
