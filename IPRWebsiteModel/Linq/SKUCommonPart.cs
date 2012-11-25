@@ -29,10 +29,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="filterLenght">The filter lenght.</param>
     /// <param name="edc">The edc.</param>
     /// <param name="warnings">The warnings.</param>
-    public void ProcessData( string cigaretteLenght, string filterLenght, Entities edc, List<String> warnings )
+    public bool ProcessData( string cigaretteLenght, string filterLenght, Entities edc, List<String> warnings )
     {
       this.FormatIndex = GetFormatLookup( cigaretteLenght, filterLenght, edc, warnings );
       this.IPRMaterial = GetIPRMaterial( edc );
+      return FormatIndex != null;
     }
     /// <summary>
     /// Gets the format lookup.

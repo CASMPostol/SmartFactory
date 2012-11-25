@@ -57,7 +57,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
             continue;
           _newEntries++;
           SKUCommonPart sku = creator( item, parent, edc, warnings );
-          entities.Add( sku );
+          if ( sku != null )
+            entities.Add( sku );
         }
         catch ( Exception ex )
         {
@@ -88,7 +89,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
         MentholMaterial = _menthol,
         PrimeMarket = xmlDocument.Prime_Market,
       };
-      _ret.ProcessData( xmlDocument.Cigarette_Length, xmlDocument.Filter_Segment_Length, edc, warnings );
+      if ( !_ret.ProcessData( xmlDocument.Cigarette_Length, xmlDocument.Filter_Segment_Length, edc, warnings ) )
+        return null;
       SKUGetFromXML.UpdateSKUCommonPart( _ret, xmlDocument, parent );
       return _ret;
     }
@@ -99,7 +101,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
         ProductType = ProductType.Cutfiller,
         BlendPurpose = String.IsNullOrEmpty( xmlDocument.BlendPurpose ) ? String.Empty : xmlDocument.BlendPurpose
       };
-      _ret.ProcessData( String.Empty, String.Empty, edc, warnings );
+      if ( !_ret.ProcessData( String.Empty, String.Empty, edc, warnings ) )
+        return null;
       SKUGetFromXML.UpdateSKUCommonPart( _ret, xmlDocument, parent );
       return _ret;
     }
