@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CigarettesMaterialxML = CAS.SmartFactory.xml.erp.CigarettesMaterial;
 using CutfillerMaterialxML = CAS.SmartFactory.xml.erp.CutfillerMaterial;
@@ -12,65 +13,72 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
   internal static class SKUGetFromXML
   {
     #region public
-    internal static void UpdateSKUCommonPart(SKUCommonPart skuCommonPart, MaterialXml xml, Dokument parent)
-    {
-      skuCommonPart.SKULibraryIndex = parent;
-      skuCommonPart.SKU = xml.GetMaterial();
-      skuCommonPart.Title = xml.GetMaterialDescription();
-    }
     internal static void GetXmlContent
-      (SKUXml xmlDocument, Entities edc, Dokument entry, ProgressChangedEventHandler progressChanged)
+      ( SKUXml xmlDocument, Entities edc, Dokument entry, ProgressChangedEventHandler progressChanged )
     {
-      switch (xmlDocument.Type)
+      switch ( xmlDocument.Type )
       {
         case CAS.SmartFactory.xml.erp.SKU.SKUType.Cigarettes:
           GetXmlContent(
             xmlDocument.GetMaterial(),
             edc,
             entry,
-            (MaterialXml xml, Dokument lib, Entities context) => { return SKUCigarette((CigarettesMaterialxML)xml, lib, context); },
-            progressChanged);
+            ( MaterialXml xml, Dokument lib, Entities context, List<String> warnings ) => { return SKUCigarette( (CigarettesMaterialxML)xml, lib, context, warnings ); },
+            progressChanged );
           break;
         case CAS.SmartFactory.xml.erp.SKU.SKUType.Cutfiller:
           GetXmlContent(
             xmlDocument.GetMaterial(),
             edc,
             entry,
-            ( MaterialXml xml, Dokument lib, Entities context ) => { return SKUCutfiller( (CutfillerMaterialxML)xml, lib, context ); }, progressChanged );
+            ( MaterialXml xml, Dokument lib, Entities context, List<String> warnings ) => { return SKUCutfiller( (CutfillerMaterialxML)xml, lib, context, warnings ); }, progressChanged );
           break;
       }
     }
     #endregion
 
     #region private
-    private delegate SKUCommonPart CreateMaterialXml(MaterialXml xml, Dokument lib, Entities context);
+    private delegate SKUCommonPart CreateMaterialXml( MaterialXml xml, Dokument lib, Entities context, List<String> warnings );
     private static void GetXmlContent
-      (MaterialXml[] material, Entities edc, Dokument parent, CreateMaterialXml creator, ProgressChangedEventHandler progressChanged)
+      ( MaterialXml[] material, Entities edc, Dokument parent, CreateMaterialXml creator, ProgressChangedEventHandler progressChanged )
     {
       List<SKUCommonPart> entities = new List<SKUCommonPart>();
-      foreach (MaterialXml item in material)
+      List<string> warnings = new List<string>();
+      int _entries = 0;
+      int _newEntries = 0;
+      foreach ( MaterialXml item in material )
       {
         try
         {
-          progressChanged(null, new ProgressChangedEventArgs(1, "Processing: " + item.GetMaterial()));
+          _entries++;
+          progressChanged( null, new ProgressChangedEventArgs( 1, "Processing: " + item.GetMaterial() ) );
           SKUCommonPart entity = SKUCommonPart.Find( edc, item.GetMaterial() );
-          if (entity != null)
+          if ( entity != null )
             continue;
-          SKUCommonPart sku = creator(item, parent, edc);
-          entities.Add(sku);
+          _newEntries++;
+          SKUCommonPart sku = creator( item, parent, edc, warnings );
+          entities.Add( sku );
         }
-        catch (Exception ex)
+        catch ( Exception ex )
         {
-          string message = String.Format("Cannot create: {0}:{1} because of the error: {2}", item.GetMaterial(), item.GetMaterialDescription(), ex.Message);
+          string message = String.Format( "Cannot create: {0}:{1} because of the error: {2}", item.GetMaterial(), item.GetMaterialDescription(), ex.Message );
           ActivityLogCT.WriteEntry( edc, "SKU entry error", message );
         }
       }
-      if (entities.Count > 0)
-        edc.SKU.InsertAllOnSubmit(entities);
+      if ( entities.Count > 0 )
+      {
+        edc.SKU.InsertAllOnSubmit( entities );
+        progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
+        edc.SubmitChanges();
+      }
+      string _pattern = "Finished content analysis, there are {0} entries, {1} new entries, {2} erroneous entries";
+      ActivityLogCT.WriteEntry( "XML content analysis", String.Format( _pattern, _entries, _newEntries, warnings.Count ), edc.Web );
+      if ( warnings.Count > 0 )
+        throw new InputDataValidationException( "SKU message import errors.", "XML import", warnings );
     }
-    private static SKUCigarette SKUCigarette( CigarettesMaterialxML xmlDocument, Dokument parent, Entities edc )
+    private static SKUCigarette SKUCigarette( CigarettesMaterialxML xmlDocument, Dokument parent, Entities edc, List<String> warnings )
     {
-      bool _menthol = xmlDocument.Menthol.StartsWith( "M" );
+      bool _menthol = xmlDocument.IsMenthol;
       SKUCigarette _ret = new SKUCigarette()
       {
         ProductType = ProductType.Cigarette,
@@ -80,20 +88,26 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
         MentholMaterial = _menthol,
         PrimeMarket = xmlDocument.Prime_Market,
       };
-      _ret.ProcessData( xmlDocument.Cigarette_Length, xmlDocument.Filter_Segment_Length, edc );
+      _ret.ProcessData( xmlDocument.Cigarette_Length, xmlDocument.Filter_Segment_Length, edc, warnings );
       SKUGetFromXML.UpdateSKUCommonPart( _ret, xmlDocument, parent );
       return _ret;
     }
-    private static SKUCutfiller SKUCutfiller( CutfillerMaterialxML xmlDocument, Dokument parent, Entities edc )
+    private static SKUCutfiller SKUCutfiller( CutfillerMaterialxML xmlDocument, Dokument parent, Entities edc, List<String> warnings )
     {
       SKUCutfiller _ret = new SKUCutfiller()
       {
         ProductType = ProductType.Cutfiller,
         BlendPurpose = String.IsNullOrEmpty( xmlDocument.BlendPurpose ) ? String.Empty : xmlDocument.BlendPurpose
       };
-      _ret.ProcessData( String.Empty, String.Empty, edc );
+      _ret.ProcessData( String.Empty, String.Empty, edc, warnings );
       SKUGetFromXML.UpdateSKUCommonPart( _ret, xmlDocument, parent );
       return _ret;
+    }
+    private static void UpdateSKUCommonPart( SKUCommonPart skuCommonPart, MaterialXml xml, Dokument parent )
+    {
+      skuCommonPart.SKULibraryIndex = parent;
+      skuCommonPart.SKU = xml.GetMaterial();
+      skuCommonPart.Title = xml.GetMaterialDescription();
     }
     private const string m_Source = "SKU Processing";
     private const string m_Message = "I cannot find material with SKU: {0}";
