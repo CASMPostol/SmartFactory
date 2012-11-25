@@ -28,12 +28,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="cigaretteLenght">The cigarette lenght.</param>
     /// <param name="filterLenght">The filter lenght.</param>
     /// <param name="edc">The edc.</param>
-    public void ProcessData( string cigaretteLenght, string filterLenght, Entities edc )
+    /// <param name="warnings">The warnings.</param>
+    public void ProcessData( string cigaretteLenght, string filterLenght, Entities edc, List<String> warnings )
     {
-      this.FormatIndex = GetFormatLookup( cigaretteLenght, filterLenght, edc );
+      this.FormatIndex = GetFormatLookup( cigaretteLenght, filterLenght, edc, warnings );
       this.IPRMaterial = GetIPRMaterial( edc );
     }
-    internal protected abstract Format GetFormatLookup( string cigaretteLenght, string filterLenght, Entities edc );
+    /// <summary>
+    /// Gets the format lookup.
+    /// </summary>
+    /// <param name="cigaretteLenght">The cigarette lenght.</param>
+    /// <param name="filterLenght">The filter lenght.</param>
+    /// <param name="edc">The edc.</param>
+    /// <param name="warnings">The warnings.</param>
+    /// <returns></returns>
+    internal protected abstract Format GetFormatLookup( string cigaretteLenght, string filterLenght, Entities edc, List<String> warnings );
+    /// <summary>
+    /// Gets the IPR material.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <returns></returns>
     internal protected abstract bool? GetIPRMaterial( Entities edc );
     #endregion
 

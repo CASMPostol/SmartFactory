@@ -13,14 +13,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="cigaretteLenght">The cigarette lenght.</param>
     /// <param name="filterLenght">The filter lenght.</param>
     /// <param name="edc">The edc.</param>
+    /// <param name="warnings">The warnings.</param>
     /// <returns></returns>
-    internal protected override Format GetFormatLookup( string cigaretteLenght, string filterLenght, Entities edc )
+    internal protected override Format GetFormatLookup( string cigaretteLenght, string filterLenght, Entities edc, List<String> warnings )
     {
       this.CigaretteLenght = cigaretteLenght;
       this.FilterLenght = filterLenght;
-      Format frmt = Format.GetFormatLookup( cigaretteLenght, filterLenght, edc );
+      Format frmt = Format.FindFormatLookup( cigaretteLenght, filterLenght, edc );
       if ( frmt == null )
-        ActivityLogCT.WriteEntry( edc, m_Source, string.Format( m_FrmtTemplate, this.SKU ) );
+        warnings.Add(String.Format( "Cannot find the format cigarette length: {0}/filter segment length: {1}", cigaretteLenght, filterLenght ));
       return frmt;
     }
     /// <summary>

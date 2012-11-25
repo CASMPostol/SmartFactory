@@ -81,29 +81,29 @@ namespace CAS.SmartFactory.Management
     }
     private void m_SKUReadButton_Click( object sender, EventArgs e )
     {
-      m_fastRefresh = true;
-      Stream strm = OpenFile();
-      if ( strm == null )
-      {
-        m_ToolStripStatusLabel.Text = String.Empty;
-        return;
-      }
-      try
-      {
-        m_ToolStripStatusLabel.Text = "Reading Data";
-        m_ToolStripProgressBar.Value = 0;
-        SKUEventHandlers.SKUEvetReceiher( strm, m_URLTextBox.Text.Trim(), 0, m_OpenFileDialog.FileName, UpdateToolStrip );
-        SetDone();
-      }
-      catch ( Exception ex )
-      {
-        MessageBox.Show( ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error );
-      }
-      finally
-      {
-        if ( strm != null )
-          strm.Dispose();
-      }
+      //m_fastRefresh = true;
+      //Stream strm = OpenFile();
+      //if ( strm == null )
+      //{
+      //  m_ToolStripStatusLabel.Text = String.Empty;
+      //  return;
+      //}
+      //try
+      //{
+      //  m_ToolStripStatusLabel.Text = "Reading Data";
+      //  m_ToolStripProgressBar.Value = 0;
+      //  SKUEventHandlers.SKUEvetReceiher( strm, m_URLTextBox.Text.Trim(), 0, m_OpenFileDialog.FileName, UpdateToolStrip );
+      //  SetDone();
+      //}
+      //catch ( Exception ex )
+      //{
+      //  MessageBox.Show( ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error );
+      //}
+      //finally
+      //{
+      //  if ( strm != null )
+      //    strm.Dispose();
+      //}
     }
     private void m_GetStockButton_Click( object sender, EventArgs e )
     {

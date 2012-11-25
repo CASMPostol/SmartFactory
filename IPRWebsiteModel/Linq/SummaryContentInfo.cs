@@ -14,6 +14,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #region public
 
     public Material Product { get; private set; }
+    public SKUCommonPart SKULookup {get; private set;}
     public DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
     internal decimal TotalTobacco { get; private set; }
     internal void ProcessDisposals
@@ -135,6 +136,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if ( Product == null )
         actionResult.Add( "Unrecognized finished good" );
+      SKULookup = SKUCommonPart.Find( edc, Product.SKU );
+      if (SKULookup == null)
+      {
+        string _msg = "Cannot find finished good SKU={0} in the SKU dictionary - dictionary update is required";
+        actionResult.Add( String.Format( _msg, Product.SKU ) );
+      }
       foreach ( Material item in this.Values )
       {
         if ( item.ProductType.Value != ProductType.IPRTobacco )

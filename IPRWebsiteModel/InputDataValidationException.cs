@@ -35,7 +35,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
         using ( Entities _edc = new Entities( url ) )
         {
           string _title = "Input Data Validation Errors";
-          string _msg = String.Format( "The import of the file {3} encountered a problem at operation {0} because of: {1}. List of {2} problems are reported.", ParamName, Message, m_Errors.Count, FileName );
+          string _msg = String.Format( "The import of the file {3} encountered a problem at operation <b>{0}</b> because of: {1}. List of {2} problems are reported.", ParamName, Message, m_Errors.Count, FileName );
           _edc.ActivityLog.InsertOnSubmit( new ActivityLogCT() { Title = _title, Treść = _msg, Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) } );
           foreach ( string _err in m_Errors )
             _edc.ActivityLog.InsertOnSubmit( new ActivityLogCT() { Title = _title, Treść = _err, Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 ) } );

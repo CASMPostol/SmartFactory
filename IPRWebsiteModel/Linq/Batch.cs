@@ -88,7 +88,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       ProductType = contentInfo.Product.ProductType;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: interconnect" ) );
       //interconnect 
-      SKUIndex = SKUCommonPart.GetLookup( edc, contentInfo.Product.SKU );
+      SKUIndex = contentInfo.SKULookup;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
       //Coefficients
       DustIndex = Linq.Dust.GetLookup( ProductType.Value, edc );
