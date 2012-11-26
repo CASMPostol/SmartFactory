@@ -111,7 +111,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.CTFUsageMax = _usage.CTFUsageMax;
       this.CTFUsageMin = _usage.CTFUsageMin;
       this.UsageMin = _usage.UsageMin;
-      this.UsageMin = _usage.UsageMin;
+      this.UsageMax = _usage.UsageMax;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
       //processing
       CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageMax.Value, UsageMin.Value );
