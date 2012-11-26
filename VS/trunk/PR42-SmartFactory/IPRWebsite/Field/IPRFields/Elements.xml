@@ -25,6 +25,7 @@
   DisplayName="Tobacco not allocated"
   Name="TobaccoNotAllocated"
   Type="Number"
+  Decimals="2"
   ID="{8C385B9F-6442-4FB5-8258-961C9A723492}"
   Group="CAS Smart Factory IPR"
     />
@@ -39,6 +40,7 @@
   DisplayName="Waste Cooeficient"
   Name="BatchWasteCooeficiency"
   Type="Number"
+  Decimals="2"
   ID="{91109161-779F-4D61-AC19-1A7F9E260380}"
   Group="CAS Smart Factory IPR"
     />
@@ -53,6 +55,7 @@
   DisplayName="Dust Cooeficient"
   Name="BatchDustCooeficiency"
   Type="Number"
+  Decimals="2"
   ID="{B292C573-B10F-4BD6-BACA-D91E4930B35C}"
   Group="CAS Smart Factory IPR"
     />
@@ -67,6 +70,7 @@
   DisplayName="SH Cooeficient"
   Name="BatchSHCooeficiency"
   Type="Number"
+  Decimals="2"
   ID="{B4A62D70-8D8E-4231-95E7-754942CD20D6}"
   Group="CAS Smart Factory IPR"
     />
@@ -96,6 +100,7 @@
   DisplayName="Account balance"
   Name="AccountBalance"
   Type="Number"
+  Decimals="2"
   ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}"
   Group="CAS Smart Factory IPR"
   Required="TRUE"
@@ -151,6 +156,7 @@
     DisplayName="Blocked"
     Name="Blocked"
     Type="Number"
+    Decimals="2"
     ID="{4C65897D-CBD2-4468-8520-50E371EF3A3F}"
     Group="CAS Smart Factory IPR"
     />
@@ -236,6 +242,7 @@
     DisplayName="In Quality Insp"
     Name="InQualityInsp"
     Type="Number"
+    Decimals="2"
     ID="{5D27EABE-C74B-4233-9A07-D7389C831E3A}"
     Group="CAS Smart Factory IPR"
     />
@@ -243,6 +250,7 @@
     DisplayName="Quantity"
     Name="Quantity"
     Type="Number"
+    Decimals="2"
     ID="{85512A2C-C60C-400E-AA53-94ED8FBEF321}"
     Group="CAS Smart Factory IPR"
     />
@@ -250,6 +258,7 @@
     DisplayName="Restricted Use"
     Name="RestrictedUse"
     Type="Number"
+    Decimals="2"
     ID="{76C04784-3D54-46DB-BB7F-686EB7EF8254}"
     Group="CAS Smart Factory IPR"
     />
@@ -264,6 +273,7 @@
     DisplayName="Unrestricted"
     Name="Unrestricted"
     Type="Number"
+    Decimals="2"
     ID="{A748D4BC-74C0-4F52-90E9-46A9E0140324}"
     Group="CAS Smart Factory IPR"
     />
@@ -404,6 +414,7 @@
     DisplayName="Cartons [kg]"
     Name="Cartons"
     Type="Number"
+    Decimals="2"
     ID="{EC985ABA-7AA4-4603-86E6-904837CF0F77}"
     Group="CAS Smart Factory IPR"
     />
@@ -411,6 +422,7 @@
     DisplayName="Value"
     Name="Value"
     Type="Number"
+    Decimals="3"
     ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}"
     Group="CAS Smart Factory IPR"
     />
@@ -458,6 +470,7 @@
   DisplayName="FG Quantity [KU/kg]"
   Name="FGQuantity"
   Type="Number"
+  Decimals="2"
   ID="{88259302-82EA-4ADC-90D3-B6B6B7CC3B16}"
   Group="CAS Smart Factory IPR"
     />
@@ -465,6 +478,7 @@
     DisplayName="FG Quantity (previous)"
     Name="FGQuantityPrevious"
     Type="Number"
+    Decimals="2"
     ID="{A0734EE0-F311-4FD8-A912-333C6F6E9690}"
     Group="CAS Smart Factory IPR"
     />
@@ -472,6 +486,7 @@
     DisplayName="FG Quantity (blocked)"
     Name="FGQuantityBlocked"
     Type="Number"
+    Decimals="2"
     ID="{EE831573-9757-4F8C-8DAF-E39E051998F3}"
     Group="CAS Smart Factory IPR"
     />
@@ -479,6 +494,7 @@
     DisplayName="FG Quantity (available)"
     Name="FGQuantityAvailable"
     Type="Number"
+    Decimals="2"
     ID="{69ADEE04-E60C-4871-AAB4-8D12A09CEBC1}"
     Group="CAS Smart Factory IPR"
     />
@@ -486,6 +502,7 @@
     DisplayName="Material Quantity"
     Name="MaterialQuantity"
     Type="Number"
+    Decimals="2"
     ID="{5DFBD671-91CA-498A-8508-7FFCE0FCC909}"
     Group="CAS Smart Factory IPR"
     />
@@ -493,6 +510,7 @@
     DisplayName="Material Quantity Previous"
     Name="MaterialQuantityPrevious"
     Type="Number"
+    Decimals="2"
     ID="{6F085CA9-2636-4526-8DF2-3A4B67EEE8DC}"
     Group="CAS Smart Factory IPR"
     />
@@ -507,6 +525,7 @@
     DisplayName="Overuse [kg]"
     Name="Overuse"
     Type="Number"
+    Decimals="2"
     ID="{36D134B9-A652-43F1-A650-51F62E079775}"
     Group="CAS Smart Factory IPR"
     />
@@ -514,6 +533,7 @@
     DisplayName="Dust [kg]"
     Name="Dust"
     Type="Number"
+    Decimals="2"
     ID="{E00CB825-5594-485D-A232-4DE70F99A939}"
     Group="CAS Smart Factory IPR"
     Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/dust"
@@ -522,6 +542,7 @@
     DisplayName="Waste [kg]"
     Name="Waste"
     Type="Number"
+    Decimals="2"
     ID="{41BDDA92-4D8D-4B1F-8C60-1D3B7AEA6B98}"
     Group="CAS Smart Factory IPR"
     Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/waste"
@@ -530,6 +551,7 @@
     DisplayName="SH Menthol [kg]"
     Name="SHMenthol"
     Type="Number"
+    Decimals="2"
     ID="{762353C4-D601-4461-84FA-EB26F7E314C2}"
     Group="CAS Smart Factory IPR"
     Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/SHMenthol"
@@ -538,6 +560,7 @@
     DisplayName="Tobacco [kg]"
     Name="Tobacco"
     Type="Number"
+    Decimals="2"
     ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}"
     Group="CAS Smart Factory IPR"
     Description="(Material Quantity-Material Quantity Previous)-kolumna'overuse'-kolumna'dust'-kolumna'waste'-kolumna'shmenthol'"
@@ -649,6 +672,7 @@
     DisplayName="Tobacco Value"
     Name="TobaccoValue"
     Type="Number"
+    Decimals="3"
     ID="{3F511117-AE6F-40FF-801C-C8765D68E86D}"
     Group="CAS Smart Factory IPR"
     />
