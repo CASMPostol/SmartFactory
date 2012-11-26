@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -11,12 +9,62 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// </summary>
   public abstract class SummaryContentInfo: SortedList<string, Material>
   {
-    #region public
+    #region ctor
+    public SummaryContentInfo()
+    {
+      AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
+    }
+    #endregion
 
+    #region public
+    /// <summary>
+    /// Contains all materials sorted using the following key: SKU,Batch,Location.
+    /// </summary>
+    public class DisposalsAnalisis: SortedList<Material.DisposalsEnum, decimal>
+    {
+      internal DisposalsAnalisis()
+      {
+        foreach ( WebsiteModel.Linq.Material.DisposalsEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.Material.DisposalsEnum ) ) )
+          this.Add( _item, 0 );
+      }
+      internal void Accumutate( Material material )
+      {
+        foreach ( WebsiteModel.Linq.Material.DisposalsEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.Material.DisposalsEnum ) ) )
+          this[ _item ] += material[ _item ];
+      }
+    } //DisposalsAnalisis
+    /// <summary>
+    /// Gets the product.
+    /// </summary>
+    /// <value>
+    /// The product.
+    /// </value>
     public Material Product { get; private set; }
-    public SKUCommonPart SKULookup {get; private set;}
+    /// <summary>
+    /// Gets the SKU lookup.
+    /// </summary>
+    /// <value>
+    /// The SKU lookup.
+    /// </value>
+    public SKUCommonPart SKULookup { get; private set; }
+    /// <summary>
+    /// Gets the accumulated disposals analisis.
+    /// </summary>
+    /// <value>
+    /// The accumulated disposals analisis.
+    /// </value>
     public DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
     internal decimal TotalTobacco { get; private set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SummaryContentInfo" /> class.
+    /// </summary>
+    /// <param name="newOne">The new <see cref="Batch"/>.</param>
+    /// <param name="oldOne">The old <see cref="Batch"/>.</param>
+    public void Subtract( Batch oldOne )
+    {
+      foreach ( Material _mix in oldOne.Material )
+        Subtract( _mix );
+    }
     internal void ProcessDisposals
       ( Entities edc, Batch parent, double dustRatio, double shMentholRatio, double wasteRatio, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
     {
@@ -70,6 +118,33 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw new IPRDataConsistencyException( "Material.ProcessDisposals", _ex.Message, _ex, "Disposal processing error" );
       }
     }
+    /// <summary>
+    /// Validates this instance.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="actionResult">The result of validation.</param>
+    /// <returns></returns>
+    public void Validate( Entities edc, List<string> actionResult )
+    {
+      if ( Product == null )
+        actionResult.Add( "Unrecognized finished good" );
+      SKULookup = SKUCommonPart.Find( edc, Product.SKU );
+      if ( SKULookup == null )
+      {
+        string _msg = "Cannot find finished good SKU={0} in the SKU dictionary - dictionary update is required";
+        actionResult.Add( String.Format( _msg, Product.SKU ) );
+      }
+      foreach ( Material item in this.Values )
+      {
+        if ( item.ProductType.Value != ProductType.IPRTobacco )
+          continue;
+        if ( !IPR.IsAvailable( edc, item.Batch, item.TobaccoQuantity.Value ) )
+        {
+          string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, quantity: {2} kg";
+          actionResult.Add( String.Format( _mssg, item.Batch, Product.Batch, item.TobaccoQuantity.Value ) );
+        }
+      }
+    }
     #endregion
 
     #region private
@@ -99,59 +174,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         base.Add( value.GetKey(), value );
       }
     }
-    protected SummaryContentInfo()
+    private void Subtract( Material _mix )
     {
-      AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
+      Material ce = null;
+      if ( ce.ProductType == ProductType.IPRTobacco || ce.ProductType == ProductType.Tobacco )
+        TotalTobacco -= ce.TobaccoTotal;
+      if ( this.TryGetValue( ce.GetKey(), out ce ) )
+      {
+        ce.FGQuantity -= ce.FGQuantity;
+        ce.TobaccoQuantity -= ce.TobaccoQuantity;
+      }
     }
     private void InsertAllOnSubmit( Entities edc, Batch parent )
     {
-      foreach ( var item in Values )
+      foreach ( Material item in Values )
         item.Material2BatchIndex = parent;
       edc.Material.InsertAllOnSubmit( this.Values );
     }
     #endregion
-    /// <summary>
-    /// Contains all materials sorted using the following key: SKU,Batch,Location.
-    /// </summary>
-    public class DisposalsAnalisis: SortedList<Material.DisposalsEnum, decimal>
-    {
-      public DisposalsAnalisis()
-      {
-        foreach ( WebsiteModel.Linq.Material.DisposalsEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.Material.DisposalsEnum ) ) )
-          this.Add( _item, 0 );
-      }
-      internal void Accumutate( Material material )
-      {
-        foreach ( WebsiteModel.Linq.Material.DisposalsEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.Material.DisposalsEnum ) ) )
-          this[ _item ] += material[ _item ];
-      }
-    } //DisposalsAnalisis
-    /// <summary>
-    /// Validates this instance.
-    /// </summary>
-    /// <param name="edc">The edc.</param>
-    /// <param name="actionResult">The result of validation.</param>
-    /// <returns></returns>
-    public void Validate( Entities edc, List<string> actionResult )
-    {
-      if ( Product == null )
-        actionResult.Add( "Unrecognized finished good" );
-      SKULookup = SKUCommonPart.Find( edc, Product.SKU );
-      if (SKULookup == null)
-      {
-        string _msg = "Cannot find finished good SKU={0} in the SKU dictionary - dictionary update is required";
-        actionResult.Add( String.Format( _msg, Product.SKU ) );
-      }
-      foreach ( Material item in this.Values )
-      {
-        if ( item.ProductType.Value != ProductType.IPRTobacco )
-          continue;
-        if ( !IPR.IsAvailable( edc, item.Batch, item.TobaccoQuantity.Value ) )
-        {
-          string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, quantity: {2} kg";
-          actionResult.Add( String.Format( _mssg, item.Batch, Product.Batch, item.TobaccoQuantity.Value ) );
-        }
-      }
-    }
   }//SummaryContentInfo
 }

@@ -134,7 +134,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     {
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
       Content _contentInfo = new Content( xml.Material, edc, progressChanged );
-      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: contentInfo.Validate" ) );
+      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: Validate" ) );
+
       List<string> _validationErrors = new List<string>();
       _contentInfo.Validate( edc, _validationErrors );
       if ( _validationErrors.Count > 0 )
@@ -149,7 +150,18 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         case BatchStatus.Progress:
           throw new InputDataValidationException( "Wrong status of the input batch", "Get Xml Content", "The status of Progress is not implemented yet" );
         case BatchStatus.Intermediate:
-          throw new InputDataValidationException( "Wrong status of the input batch", "Get Xml Content", "The status of Intermediate is not implemented yet" );
+          if ( _batches.Count<Batch>() == 0 )
+          {
+            batch = new Batch();
+            edc.Batch.InsertOnSubmit( batch );
+            batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged );
+          }
+          else if ( _batches.Where<Batch>( prdc => prdc.BatchStatus.Value == BatchStatus.Final ).Any<Batch>() )
+          {
+            string _ptrn = "The batch {0} has been analyzed already.";
+            throw new InputDataValidationException( "Wrong status of the input batch", "Get Xml Content", String.Format( _ptrn, _contentInfo.Product.Batch ) );
+          }
+          break;
         case BatchStatus.Final:
           if ( _batches.Count<Batch>() == 0 )
           {
