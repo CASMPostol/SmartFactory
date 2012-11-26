@@ -102,8 +102,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     {
       try
       {
+        progressChanged( null, new ProgressChangedEventArgs( 1, "ImportBatchFromXml starting" ) );
         string _Message = String.Format( m_Message, fileName );
-        progressChanged( null, new ProgressChangedEventArgs( 1, _Message ) );
         ActivityLogCT.WriteEntry( edc, m_Title, _Message );
         BatchXml _xml = BatchXml.ImportDocument( stream );
         progressChanged( null, new ProgressChangedEventArgs( 1, "XML sysntax validation" ) );
@@ -155,6 +155,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           {
             batch = new Batch();
             edc.Batch.InsertOnSubmit( batch );
+            batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged );
           }
           else if ( _batches.Where<Batch>( prdc => prdc.BatchStatus.Value == BatchStatus.Final ).Any<Batch>() )
           {
