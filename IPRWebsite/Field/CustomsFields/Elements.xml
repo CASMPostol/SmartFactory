@@ -31,7 +31,7 @@
     Name="Disposal"
     Type="Boolean"
     Group="CAS Smart Factory IPR Customs"
-    DisplayName="Procedure"
+    DisplayName="Disposal"
     />
   <Field
     ID="{AFDC5724-5183-4FC9-A07F-CF6BB18EBBBA}"
@@ -111,6 +111,7 @@
   <Field
     Name="GrossMass"
     Type="Number"
+    Decimals="2"
     ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}"
     DisplayName="Gross mass [kg]"
     Group="CAS Smart Factory IPR Customs"
@@ -133,6 +134,7 @@
     DisplayName="Amount"
     Name="Amount"
     Type="Number"
+    Decimals="2"
     ID="{1A8DEAD6-163D-45BB-B278-E946F49C071B}"
     Group="CAS Smart Factory IPR Customs"
     />
@@ -147,6 +149,7 @@
     DisplayName="Billed Quantity"
     Name="BilledQuantity"
     Type="Number"
+    Decimals="2"
     ID="{BB77D0AB-0759-4F6A-A8AC-FF064702A62A}"
     Group="CAS Smart Factory IPR Customs"
     />
@@ -154,7 +157,7 @@
     DisplayName="Duty [PLN]"
     Name="Duty"
     Type="Number"
-    Decimals="0"
+    Decimals="2"
     ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}"
     Group="CAS Smart Factory IPR Customs"
     />
@@ -169,6 +172,7 @@
     DisplayName="Net mass [kg]"
     Name="NetMass"
     Type="Number"
+    Decimals="2"
     ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}"
     Group="CAS Smart Factory IPR Customs"
     />
@@ -212,6 +216,7 @@
     DisplayName="Total amount invoiced"
     Name="TotalAmountInvoiced"
     Type="Number"
+    Decimals="2"
     ID="{EF4E42B5-F9DA-415A-8E2D-335C0F31CD07}"
     Group="CAS Smart Factory IPR Customs"
     />
@@ -226,7 +231,7 @@
     DisplayName="VAT [PLN]"
     Name="VAT"
     Type="Number"
-    Decimals="0"
+    Decimals="2"
     ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}"
     Group="CAS Smart Factory IPR Customs"
     />
