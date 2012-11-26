@@ -174,7 +174,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public double UsedQuantity( double portion )
     {
-      return  (this.TobaccoQuantity.Value * portion ).RountMass();
+      return ( this.TobaccoQuantity.Value * portion ).RountMass();
     }
     /// <summary>
     /// Gets the list of disposals.
@@ -207,6 +207,33 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The tobacco total.
     /// </value>
     public decimal TobaccoTotal { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
+    /// <summary>
+    /// Creates shedow copy of the <see cref="Material"/> where quantities are negative, and compensation goods have value of 0.
+    /// </summary>
+    /// <param name="batch">The batch to be assigned to the lookup.</param>
+    /// <returns></returns>
+    public Material ReverseShedowCopy( )
+    {
+      Material _ret = new Material()
+      {
+        Batch = this.Batch,
+        Dust = 0,
+        FGQuantity = - this.FGQuantity,
+        Material2BatchIndex = null,
+        Overuse = 0,
+        ProductID = this.ProductID,
+        ProductType = this.ProductType,
+        SHMenthol = 0,
+        SKU = this.SKU,
+        SKUDescription = this.SKUDescription,
+        StorLoc = this.StorLoc,
+        Title = this.Title,
+        Tobacco = 0,
+        TobaccoQuantity = - this.TobaccoQuantity,
+        Waste = 0
+      };
+      return _ret;
+    }
     #endregion
 
     #region private
