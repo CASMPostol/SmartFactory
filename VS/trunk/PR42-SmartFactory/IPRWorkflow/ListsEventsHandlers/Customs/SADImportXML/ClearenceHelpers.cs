@@ -437,17 +437,19 @@ namespace CAS.SmartFactory.IPR.Customs
         if ( _rdx.Code != XMLResources.RequiredDocumentConsignmentCode )
           continue;
         int? _cleranceInt = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( _rdx.Number, Settings.GetParameter( entities, SettingsEntry.RequiredDocumentFinishedGoodExportConsignmentPattern ) );
-        if ( _cleranceInt.HasValue )
-        {
-          Clearence _clearance = Element.GetAtIndex<Clearence>( entities.Clearence, _cleranceInt.Value );
-          _clearance.ClearThroughCustoms( entities, good );
-          _ifAny = true;
-        }
+        if ( !_cleranceInt.HasValue )
+          continue;
+        Clearence _clearance = Element.GetAtIndex<Clearence>( entities.Clearence, _cleranceInt.Value );
+        _clearance.ClearThroughCustoms( entities, good );
+        _ifAny = true;
       }// foreach 
       if ( !_ifAny )
       {
-        string _template = "Cannot find required document code ={0} for customs document = {1}/ref={2}";
-        throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _template, good.SADDocumentIndex.DocumentNumber, good.SADDocumentIndex.ReferenceNumber ) );
+        string _template = "Cannot find required document code={0} for customs document = {1}/ref={2}";
+        throw new InputDataValidationException(
+          String.Format( _template, XMLResources.RequiredDocumentConsignmentCode, good.SADDocumentIndex.DocumentNumber, good.SADDocumentIndex.ReferenceNumber ),
+          "SAD Required Documents",
+          "clear through castoms fatal error" );
       }
     }
     /// <summary>

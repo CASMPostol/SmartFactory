@@ -68,8 +68,10 @@ namespace IPRExternalDataTest
     {
       int number = new Random().Next( 1, 9999999 ); 
       string documentName = XMLResources.FinishedGoodsExportFormFileName( number );
-      Nullable<int> actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( documentName );
+      Nullable<int> actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( documentName, @"\bP\w+\s+t\w+\s+(\d{7})" );
       Assert.AreEqual( number, actual );
+      actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( "sasa sasasa sasasa", @"\bP\w+\s+t\w+\s+(\d{7})" );
+      Assert.IsFalse( actual.HasValue );
     }
   }
 }
