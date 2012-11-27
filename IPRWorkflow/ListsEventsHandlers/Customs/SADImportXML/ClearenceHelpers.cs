@@ -210,6 +210,7 @@ namespace CAS.SmartFactory.IPR.Customs
         };
         _at = "new InsertOnSubmit";
         entities.IPR.InsertOnSubmit( _ipr );
+        clearence.Status = true;
         _at = "new SubmitChanges #1";
         entities.SubmitChanges();
         _ipr.Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, _ipr.Identyfikator );
