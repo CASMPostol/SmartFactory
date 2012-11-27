@@ -6,6 +6,7 @@
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
   <xsl:variable name="FoarmatOfFloat" >###.##0,00</xsl:variable>
+  <xsl:variable name="FoarmatOfFloatPrices" >###.##0,000</xsl:variable>
   <xsl:variable name="FoarmatOfdate" >dd-MM-yyyy</xsl:variable>
   <xsl:template match="/" >
     <html>
@@ -52,12 +53,16 @@
         <th>Ilość</th>
         <th>Wartość</th>
         <th>Waluta</th>
+        <th>&#160;</th>
       </tr>
       <xsl:apply-templates select="cas:AccountDescription" />
       <tr>
         <td colspan="5">Suma</td>
         <td>
           <xsl:value-of select="cas:Total"/>
+        </td>
+        <td>
+          &#160;
         </td>
         <td>
           &#160;
@@ -101,6 +106,9 @@
       <td>
         &#160;
       </td>
+      <td>
+        &#160;
+      </td>
     </tr>
   </xsl:template>
   <xsl:template match="cas:MaterialRecords">
@@ -121,7 +129,7 @@
         <xsl:value-of select="cas:MaterialBatch"/>
       </td>
       <td>
-        <xsl:value-of select="format-number(cas:UnitPrice, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:UnitPrice, $FoarmatOfFloatPrices, 'pl')"/>
       </td>
       <td>
         <xsl:value-of select="format-number(cas:Qantity, $FoarmatOfFloat, 'pl')"/>
@@ -131,6 +139,9 @@
       </td>
       <td>
         <xsl:value-of select="cas:Currency"/>
+      </td>
+      <td>
+        &#160;
       </td>
     </tr>
   </xsl:template>

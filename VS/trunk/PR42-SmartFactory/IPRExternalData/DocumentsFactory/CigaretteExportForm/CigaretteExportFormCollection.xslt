@@ -14,10 +14,10 @@
         <title>Zbiorczy proces technologiczny produkcji papierosów na eksport</title>
         <style type="text/css">
           td, p, li { font-size:10pt; }
-          h4 { font-size:11pt; }
+          h3 { font-size:11pt; }
           th { font-size:11pt; }
-          h3 { font-size:12pt; }
-          h2 { font-size:14pt; text-align:center; }
+          h2 { font-size:12pt; }
+          h1 { font-size:14pt; text-align:center; }
         </style>
       </head>
       <body>
@@ -51,9 +51,9 @@
     </html>
   </xsl:template>
   <xsl:template match="cas:CigaretteExportFormCollection">
-    <h2>
+    <h1>
       Procesy technologiczne (<xsl:value-of select="cas:NumberOfDocuments"/> x batch) dla papierosów z faktury nr <xsl:value-of select="cas:InvoiceNo"/>
-    </h2>
+    </h1>
     <p>
       Dokument zbiorczy nr: <xsl:value-of select="cas:DocumentNo" />
     </p>
@@ -61,9 +61,9 @@
   </xsl:template>
   <xsl:template match="cas:CigaretteExportForm">
     <div>
-      <h3>
-        <xsl:number></xsl:number>. Proces technologiczny produkcji papierosów na eksport
-      </h3>
+      <h2>
+        Proces technologiczny produkcji papierosów na eksport
+      </h2>
       <table border="1" cellspacing="0" cellpadding="0">
         <tr>
           <td>Dokument nr:</td>
@@ -120,9 +120,9 @@
           </td>
         </tr>
       </table>
-      <h3>I.	Charakterystyka ogólna procesu technologicznego:</h3>
+      <h2>I.	Charakterystyka ogólna procesu technologicznego:</h2>
       <p>Przedstawiony niżej proces technologiczny obejmuje wykonanie papierosów z przeznaczeniem na eksport, z tytoni importowanych dla potrzeb firmy JTI i obejmuje dwa etapy:</p>
-      <h4>1. Wykonanie krajanki tytoniowej z tytoni i żył tytoniowych importowanych objętych procedurą uszlachetniania czynnego wg zestawienia:</h4>
+      <h3>1. Wykonanie krajanki tytoniowej z tytoni i żył tytoniowych importowanych objętych procedurą uszlachetniania czynnego wg zestawienia:</h3>
       <table border="1" cellspacing="0" cellpadding="0">
         <tr align="center" >
           <th>Lp.</th>
@@ -209,9 +209,9 @@
         <li>Suszenie</li>
         <li>Odbiór krajanki w opakowania</li>
       </ol>
-      <h4>
+      <h3>
         2. Wykonanie i spakowanie papierosów za użytkiem materiałów nie objętych procedurą uszlachetniania czynnego.
-      </h4>
+      </h3>
       <p>Z krajanki tytoniowej wymienionej w pkt. 1 oraz innych materiałów uformowany zostaje papieros oraz spakowany w opakowanie jednostkowe i zbiorcze na maszynach znajdujących się w JTI Polska Sp. z o.o., Zakład w Gostkowie.</p>
       <h2>II.	Określenia parametrów wagowych obrabianego materiału</h2>
       <ol>
@@ -250,10 +250,10 @@
         <xsl:value-of select="cas:Currency"/>
       </td>
       <td align="right">
-        <xsl:value-of select="format-number(cas:IPRMaterialDutyTotal, $FoarmatOfFloatPrices, 'pl')"/>
+        <xsl:value-of select="format-number(cas:IPRMaterialDutyTotal, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td align="right">
-        <xsl:value-of select="format-number(cas:IPRMaterialVATTotal, $FoarmatOfFloatPrices, 'pl')"/>
+        <xsl:value-of select="format-number(cas:IPRMaterialVATTotal, $FoarmatOfFloat, 'pl')"/>
       </td>
     </tr>
   </xsl:template>
@@ -294,10 +294,10 @@
         <xsl:value-of select="cas:Currency"/>
       </td>
       <td>
-        <xsl:value-of select="format-number(cas:Duty, $FoarmatOfFloatPrices, 'pl')"/>
+        <xsl:value-of select="format-number(cas:Duty, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
-        <xsl:value-of select="format-number(cas:VAT, $FoarmatOfFloatPrices, 'pl')"/>
+        <xsl:value-of select="format-number(cas:VAT, $FoarmatOfFloat, 'pl')"/>
       </td>
     </tr>
   </xsl:template>
