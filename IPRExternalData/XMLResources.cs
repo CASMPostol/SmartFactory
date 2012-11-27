@@ -31,14 +31,8 @@ namespace CAS.SmartFactory.xml
     /// <returns></returns>
     public static int? GetRequiredDocumentFinishedGoodExportConsignmentNumber( string documentName, string pattern )
     {
-      int? _cleranceInt = new Nullable<int>();
-      try
-      {
-        string _cleranceString = documentName.SPValidSubstring().GetFirstCapture( pattern );
-        _cleranceInt = _cleranceString.String2Int();
-      }
-      catch ( GenericStateMachineEngine.ActionResult ) { }
-      return _cleranceInt;
+      string _cleranceString = documentName.SPValidSubstring().GetFirstCapture( pattern, "NA" );
+      return _cleranceString.String2Int();
     }
     private const string m_FinishedGoodsExportFormFileName = "Proces technologiczny {0:D7}";
   }
