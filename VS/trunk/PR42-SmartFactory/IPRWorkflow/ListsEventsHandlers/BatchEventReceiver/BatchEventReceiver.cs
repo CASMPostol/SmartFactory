@@ -100,25 +100,16 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     /// <exception cref="IPRDataConsistencyException"></exception>
     public static BatchXml ImportBatchFromXml( Entities edc, Stream stream, string fileName, ProgressChangedEventHandler progressChanged )
     {
-      try
-      {
-        progressChanged( null, new ProgressChangedEventArgs( 1, "ImportBatchFromXml starting" ) );
-        string _Message = String.Format( m_Message, fileName );
-        ActivityLogCT.WriteEntry( edc, m_Title, _Message );
-        BatchXml _xml = BatchXml.ImportDocument( stream );
-        progressChanged( null, new ProgressChangedEventArgs( 1, "XML sysntax validation" ) );
-        List<string> _validationErrors = new List<string>();
-        _xml.Validate( Settings.GetParameter( edc, SettingsEntry.BatchNumberPattern ), _validationErrors );
-        if ( _validationErrors.Count > 0 )
-          throw new InputDataValidationException( "Batch content validate failed", "XML sysntax validation", _validationErrors );
-        return _xml;
-      }
-      catch ( Exception ex )
-      {
-        string _src = "BatchEventReceiver.ImportBatchFromXml";
-        string _Comments = "Batch message import error";
-        throw new IPRDataConsistencyException( _src, ex.Message, ex, _Comments );
-      }
+      progressChanged( null, new ProgressChangedEventArgs( 1, "ImportBatchFromXml.starting" ) );
+      string _Message = String.Format( m_Message, fileName );
+      ActivityLogCT.WriteEntry( edc, m_Title, _Message );
+      BatchXml _xml = BatchXml.ImportDocument( stream );
+      progressChanged( null, new ProgressChangedEventArgs( 1, "ImportBatchFromXml.Validate" ) );
+      List<string> _validationErrors = new List<string>();
+      _xml.Validate( Settings.GetParameter( edc, SettingsEntry.BatchNumberPattern ), _validationErrors );
+      if ( _validationErrors.Count > 0 )
+        throw new InputDataValidationException( "Batch XML message validation failed", "XML sysntax validation", _validationErrors );
+      return _xml;
     }
     #endregion
 
