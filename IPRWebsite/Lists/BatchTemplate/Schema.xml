@@ -27,12 +27,7 @@
           <FieldRef ID="{27F1B8C8-6E63-482A-8A25-0904FAB70CB7}" Name="Tobacco" />
           <FieldRef ID="{762353C4-D601-4461-84FA-EB26F7E314C2}" Name="SHMenthol" />
           <FieldRef ID="{38CE0A4D-208F-4F49-A344-11728F5B659D}" Name="BatchLibraryIndex" />
-          <FieldRef ID="{43E20C54-3704-4F77-B755-EF45465F4AB2}" Name="CutfillerCoefficientIndex" />
           <FieldRef ID="{7F22FEC8-C867-49E5-B166-28D4454DE7D7}" Name="SKUIndex" />
-          <FieldRef ID="{2D9D6AB0-3770-4103-B11A-424CACC27C9A}" Name="UsageIndex" />
-          <FieldRef ID="{5674C84E-49A1-4FCE-AA1F-BE89C98CA633}" Name="SHMentholIndex" />
-          <FieldRef ID="{B9FBC416-F875-4C9E-B099-9A14B219015B}" Name="DustIndex" />
-          <FieldRef ID="{CE29CEDB-9FCC-4A9D-9C94-FA6EF041F789}" Name="WasteIndex" />
           <FieldRef ID="{B4A62D70-8D8E-4231-95E7-754942CD20D6}" Name="BatchSHCooeficiency" />
           <FieldRef ID="{5730C805-D49F-4846-B24D-62F5F6A31350}" Name="SHCooeficiencyVersion" />
           <FieldRef ID="{B292C573-B10F-4BD6-BACA-D91E4930B35C}" Name="BatchDustCooeficiency" />
@@ -101,12 +96,7 @@
           <FieldRef Name="Tobacco" />
           <FieldRef Name="SHMenthol" />
           <FieldRef Name="BatchLibraryIndex" />
-          <FieldRef Name="CutfillerCoefficientIndex" />
           <FieldRef Name="SKUIndex" />
-          <FieldRef Name="UsageIndex" />
-          <FieldRef Name="SHMentholIndex" />
-          <FieldRef Name="DustIndex" />
-          <FieldRef Name="WasteIndex" />
           <FieldRef Name="BatchSHCooeficiency" />
           <FieldRef Name="SHCooeficiencyVersion" />
           <FieldRef Name="BatchDustCooeficiency" />
