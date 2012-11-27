@@ -266,25 +266,25 @@ namespace IPRDashboardsTest
       string _masterDocumentName = "CigaretteExportFormCollection";
       string _invoiceNumber = "INV987654";
       int _position = 1;
-      List<XmlCigaretteExportForm> cigaretteExportFormList = new List<XmlCigaretteExportForm>();
-      CigaretteExportForm _cigaretteExportForm = FinishedGoodsFormFactory.GetCigaretteExportForm( _cc, _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, ClearenceProcedure._3151 );
-      cigaretteExportFormList.Add( _cigaretteExportForm );
-      _cigaretteExportForm = FinishedGoodsFormFactory.GetCigaretteExportForm( _cc, _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, ClearenceProcedure._4071 );
-      cigaretteExportFormList.Add( _cigaretteExportForm );
-      CigaretteExportFormCollection target = FinishedGoodsFormFactory.GetCigaretteExportFormCollection( cigaretteExportFormList, _masterDocumentName, _invoiceNumber );
-      XmlSerializer _srlzr = new XmlSerializer( typeof( CigaretteExportFormCollection ) );
-      XmlWriterSettings _setting = new XmlWriterSettings()
-      {
-        Indent = true,
-        IndentChars = "  ",
-        NewLineChars = "\r\n"
-      };
-      using ( XmlWriter file = XmlWriter.Create( _masterDocumentName + ".xml", _setting ) )
-      {
-        file.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" href=\"CigaretteExportFormCollection.xslt\"" );
-        _srlzr.Serialize( file, target );
-        Assert.IsTrue( true, "Success" );
-      }
+      //List<XmlCigaretteExportForm> cigaretteExportFormList = new List<XmlCigaretteExportForm>();
+      //CigaretteExportForm _cigaretteExportForm = FinishedGoodsFormFactory.GetCigaretteExportForm( _cc, _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, ClearenceProcedure._3151 );
+      //cigaretteExportFormList.Add( _cigaretteExportForm );
+      //_cigaretteExportForm = FinishedGoodsFormFactory.GetCigaretteExportForm( _cc, _batch, invoice, 0.5, ingridients, _masterDocumentName, ref _position, ClearenceProcedure._4071 );
+      //cigaretteExportFormList.Add( _cigaretteExportForm );
+      //CigaretteExportFormCollection target = FinishedGoodsFormFactory.GetCigaretteExportFormCollection( cigaretteExportFormList, _masterDocumentName, _invoiceNumber );
+      //XmlSerializer _srlzr = new XmlSerializer( typeof( CigaretteExportFormCollection ) );
+      //XmlWriterSettings _setting = new XmlWriterSettings()
+      //{
+      //  Indent = true,
+      //  IndentChars = "  ",
+      //  NewLineChars = "\r\n"
+      //};
+      //using ( XmlWriter file = XmlWriter.Create( _masterDocumentName + ".xml", _setting ) )
+      //{
+      //  file.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" href=\"CigaretteExportFormCollection.xslt\"" );
+      //  _srlzr.Serialize( file, target );
+      //  Assert.IsTrue( true, "Success" );
+      //}
     }
   }
 }
