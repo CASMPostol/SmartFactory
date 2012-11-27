@@ -438,6 +438,7 @@
     <Content Include="DocumentsFactory\Disposals\WasteFormStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DocumentsFactory\DutyReliefAccount\RequestForAccountClearence.xslt" />
     <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
   </ItemGroup>
   <ItemGroup>
