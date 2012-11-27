@@ -59,7 +59,7 @@ namespace IPRExternalDataTest
     //}
     //
     #endregion
-
+    private const string m_Pattern = @"\bP\w+\s+t\w+\s+(\d{7})";
     /// <summary>
     ///A test for FinishedGoodsExportFormFileName
     ///</summary>
@@ -68,9 +68,9 @@ namespace IPRExternalDataTest
     {
       int number = new Random().Next( 1, 9999999 ); 
       string documentName = XMLResources.FinishedGoodsExportFormFileName( number );
-      Nullable<int> actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( documentName, @"\bP\w+\s+t\w+\s+(\d{7})" );
+      Nullable<int> actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( documentName, m_Pattern );
       Assert.AreEqual( number, actual );
-      actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( "sasa sasasa sasasa", @"\bP\w+\s+t\w+\s+(\d{7})" );
+      actual = XMLResources.GetRequiredDocumentFinishedGoodExportConsignmentNumber( "sasa sasasa sasasa", m_Pattern );
       Assert.IsFalse( actual.HasValue );
     }
   }
