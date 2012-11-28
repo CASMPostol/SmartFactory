@@ -139,6 +139,12 @@
           <FieldRef Name="SKU" />
         </ViewFields>
         <Query>
+          <Where>
+            <Neq>
+              <FieldRef Name="FGQuantityAvailable" />
+              <Value Type="Number">0</Value>
+            </Neq>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
