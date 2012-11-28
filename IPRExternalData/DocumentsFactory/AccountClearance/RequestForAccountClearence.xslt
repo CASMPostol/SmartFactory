@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:ms="urn:schemas-microsoft-com:xslt"
-    xmlns:cas="http://CAS.SmartFactory.xml.DocumentsFactory.Disposals/DutyReliefAccount.xsd"
+    xmlns:cas="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/AccountClearance.xsd"
 >
   <xsl:output method="html" indent="yes"/>
   <xsl:decimal-format name="pl" decimal-separator=',' grouping-separator='.' />
@@ -25,10 +25,10 @@
         <table border="0" width="100%">
           <tr>
             <td align="left">
-              Dokument: <xsl:value-of select="cas:DocumentContent/cas:DocumentNo"/>
+              Dokument: <xsl:value-of select="cas:RequestContent/cas:DocumentNo"/>
             </td>
             <td align="right">
-              Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentContent/cas:DocumentDate, $FoarmatOfdate)"/>
+              Gostków Stary, <xsl:value-of select="ms:format-date(cas:RequestContent/cas:DocumentDate, $FoarmatOfdate)"/>
             </td>
           </tr>
         </table>
@@ -38,7 +38,7 @@
              91-341 Łódź
           </b>
         </p>
-        <xsl:apply-templates select="cas:DocumentContent" />
+        <xsl:apply-templates select="cas:RequestContent" />
         <table border="0" width="100%">
           <tr>
             <td>
@@ -58,35 +58,64 @@
       </body>
     </html>
   </xsl:template>
-  <xsl:template match="cas:DocumentContent">
+  <xsl:template match="cas:RequestContent">
     <h1>
       Wniosek o rozliczenie towaru objętego procedurą uszlachetniania czynnego
     </h1>
-    <table  border="1" cellspacing="0" cellpadding="0">
+    <table border="1" cellspacing="0" cellpadding="0" width="100%">
       <tr>
         <th>Nr SAD wprowadzającego</th>
         <th>SKU</th>
         <th>Batch</th>
         <th>Ilość w kg</th>
       </tr>
-      <xsl:apply-templates select="cas:XX" />
-    </table>
-    <table  border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td align="left">[nr dokumentu] z dnia [Data] ważne do dnia [Data]</td>
+        <td>
+          <xsl:value-of select="cas:EntryDocumentNo"/>
+        </td>
+        <td>
+          <xsl:value-of select="cas:SKU"/>
+        </td>
+        <td>
+          <xsl:value-of select="cas:Batch"/>
+        </td>
+        <td align="right">
+          <xsl:value-of select="cas:NetMass"/>
+        </td>
+    </tr>
+    </table>
+    <br/>
+    <table  border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tr>
+        <td align="left"><xsl:value-of select="cas:ConsentNo"/> z dnia <xsl:value-of select="ms:format-date(cas:ConsentDate, $FoarmatOfdate)"/> ważne do dnia <xsl:value-of select="ms:format-date(cas:ValidToDate, $FoarmatOfdate)"/>
+      </td>
         <td align="right">Procedura: [3151], [4051]</td>
       </tr>
     </table>
-    <table border="1" cellspacing="0" cellpadding="0">
+    <br/>
+    <table border="1" cellspacing="0" cellpadding="0" width="100%">
       <tr>
         <th>Nr SAD wywozowego</th>
         <th>Data</th>
         <th>Ilość zużytego towaru w kg</th>
         <th>Ilość pozostałego towaru w kg</th>
       </tr>
-      <xsl:apply-templates select="cas:XX2" />
       <tr>
-        <td colspan="4">
+        <td>
+          &#160;
+        </td>
+        <td>
+          &#160;
+        </td>
+        <td>
+          &#160;
+        </td>
+        <td>
+          &#160;
+        </td>
+      </tr>
+      <tr>
+        <td align="center" colspan="4">
           <b>
             WEDŁUG ZAŁĄCZONEGO WYDRUKU Z KSIĄŻKI U.CZ.
             NR [nr dokumentu]
