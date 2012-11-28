@@ -761,7 +761,9 @@
     <Content Include="Lists\Dictionaries\CutfillerCoefficientTemplate\Schema.xml" />
     <Content Include="Lists\Dictionaries\DustTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\DustTemplate\DustList\Elements.xml" />
-    <Content Include="Lists\Dictionaries\DustTemplate\Schema.xml" />
+    <Content Include="Lists\Dictionaries\DustTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Dictionaries\FormatTemplate\Elements.xml" />
     <Content Include="Lists\Dictionaries\FormatTemplate\FormatList\Elements.xml" />
     <Content Include="Lists\Dictionaries\FormatTemplate\Schema.xml" />
