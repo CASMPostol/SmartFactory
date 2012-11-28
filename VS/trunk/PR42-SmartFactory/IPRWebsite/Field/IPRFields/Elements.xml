@@ -137,9 +137,8 @@
     Name="BatchStatus"
     Group="CAS Smart Factory IPR"
     CanToggleHidden="TRUE">
-    <Default>Preliminary</Default>
+    <Default>Progress</Default>
     <CHOICES>
-      <CHOICE>Preliminary</CHOICE>
       <CHOICE>Progress</CHOICE>
       <CHOICE>Intermediate</CHOICE>
       <CHOICE>Final</CHOICE>

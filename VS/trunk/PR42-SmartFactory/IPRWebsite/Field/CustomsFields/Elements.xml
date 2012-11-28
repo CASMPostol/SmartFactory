@@ -73,7 +73,6 @@
     <Default>OK</Default>
     <CHOICES>
       <CHOICE>OK</CHOICE>
-      <CHOICE>Batch not found</CHOICE>
       <CHOICE>Not enough Qnt.</CHOICE>
     </CHOICES>
   </Field>
