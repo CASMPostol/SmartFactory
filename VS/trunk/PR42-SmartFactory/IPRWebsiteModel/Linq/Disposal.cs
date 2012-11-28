@@ -118,7 +118,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         if ( _lastOne.Count<Disposal>() == 0 )
           this.No = 1;
         else
-          this.No = _lastOne.Max<Disposal>( dspsl => dspsl.Identyfikator.Value ) + 1;
+          this.No = _lastOne.Max<Disposal>( dspsl => dspsl.No.Value ) + 1;
         PCNCode _pcn = PCNCode.Find( edc, IsDisposal, productCodeNumber );
         this.SADDocumentNo = documentNo;
         this.SADDate = clearanceDate;
