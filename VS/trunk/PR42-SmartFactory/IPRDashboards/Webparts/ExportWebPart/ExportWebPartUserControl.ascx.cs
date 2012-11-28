@@ -534,7 +534,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       InvoiceLib _invoice = Element.GetAtIndex<InvoiceLib>( m_DataContextManagement.DataContext.InvoiceLibrary, m_ControlState.InvoiceID );
       foreach ( InvoiceContent item in _invoice.InvoiceContent )
       {
-        string _checkResult = item.InvoiceContent2BatchIndex.ExportIsPossible( item.Quantity );
+        string _checkResult = item.ExportIsPossible( m_DataContextManagement.DataContext, item.Quantity );
         if ( _checkResult.IsNullOrEmpty() )
           continue;
         Controls.Add( ControlExtensions.CreateMessage( _checkResult ) );

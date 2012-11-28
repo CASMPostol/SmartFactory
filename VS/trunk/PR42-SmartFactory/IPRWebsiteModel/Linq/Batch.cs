@@ -30,20 +30,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <exception cref="System.ArgumentNullException">The source is null.</exception>
     public static IQueryable<Batch> FindAll( Entities edc, string index )
     {
-      return from batch in edc.Batch where batch.Batch0.Contains( index ) && batch.BatchStatus !=Linq.BatchStatus.Progress orderby batch.Identyfikator descending select batch;
+      return from batch in edc.Batch where batch.Batch0.Contains( index ) && batch.BatchStatus != Linq.BatchStatus.Progress orderby batch.Identyfikator descending select batch;
     }
-    /// <summary>
-    /// Checks if export is possible.
-    /// </summary>
-    /// <param name="quantity">The quantity to export.</param>
-    /// <returns>Not empty string if there is a warning.</returns>
-    public string ExportIsPossible( double? quantity )
+    public static double CumulatedAvailable( IQueryable<Batch> batches )
     {
-      if ( !quantity.HasValue )
-        return "Valid quantity value must be provided";
-      else if ( FGQuantityAvailable.Value < quantity.Value )
-        return String.Format( m_quantityIsUnavailable, this.FGQuantityAvailable.Value );
-      return String.Empty;
+      return batches.Sum<Batch>( x => x.FGQuantityAvailable.Value );
     }
     /// <summary>
     /// Batches the processing.
@@ -118,7 +109,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
-    private const string m_quantityIsUnavailable = "The requested quantity is unavailable. There is only {0} on the stock.";
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be uploaded.";
