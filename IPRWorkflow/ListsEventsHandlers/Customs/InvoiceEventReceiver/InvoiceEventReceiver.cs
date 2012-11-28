@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
@@ -77,7 +78,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
       catch ( Exception ex )
       {
         ActivityLogCT.WriteEntry( "Aborted Invoice message import because of the error", ex.Message, url );
-        ActivityLogCT.WriteEntry( m_Title, "Import of the invoice message failed", url);
+        ActivityLogCT.WriteEntry( m_Title, "Import of the invoice message failed", url );
       }
     }
     #endregion
@@ -135,24 +136,25 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
       edc.SubmitChanges();
       return _result;
     }
-    private static InvoiceContent CreateInvoiceContent( Entities edc, InvoiceLib parent, InvoiceItemXml item, List<string> warnings )
+    private static InvoiceContent CreateInvoiceContent( Entities edc, InvoiceLib parent, InvoiceItemXml item, List<string> errors )
     {
-      Batch _batch = Batch.FindLookup( edc, item.Batch );
-      if ( _batch == null )
+      IQueryable<Batch> _batches = Batch.FindAll( edc, item.Batch );
+      if ( _batches.Count<Batch>() == 0 )
       {
-        warnings.Add( String.Format( "Cannot find batch {0} for stock record {1}.", item.Batch, item.Description ) );
+        errors.Add( String.Format( "Cannot find batch {0} for stock record {1}.", item.Batch, item.Description ) );
         return null;
       }
       InvoiceContentStatus _invoiceContentStatus = InvoiceContentStatus.OK;
       double? _Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
-      if ( !_batch.Available( _Quantity.Value ) )
+      if ( !( _batches.Sum<Batch>( x => x.FGQuantityAvailable.Value ) < _Quantity.Value ) )
         _invoiceContentStatus = InvoiceContentStatus.NotEnoughQnt;
+      Batch _oldestBatch = _batches.First<Batch>();
       return new InvoiceContent()
       {
-        InvoiceContent2BatchIndex = _batch,
+        InvoiceContent2BatchIndex = _oldestBatch,
         InvoiceIndex = parent,
         SKUDescription = item.Description,
-        ProductType = _batch.ProductType,
+        ProductType = _oldestBatch.ProductType,
         Quantity = _Quantity,
         Units = item.BUn,
         Title = "Creating",

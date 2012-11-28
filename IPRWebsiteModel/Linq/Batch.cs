@@ -22,6 +22,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return ( from batch in edc.Batch where batch.Batch0.Contains( index ) orderby batch.Identyfikator descending select batch ).FirstOrDefault();
     }
     /// <summary>
+    /// Gets the lookup.
+    /// </summary>
+    /// <param name="edc">The <see cref="Entities"/> instance.</param>
+    /// <param name="index">The index of the entry we are lookin for.</param>
+    /// <returns>The most recent <see cref="Batch"/> object.</returns>
+    /// <exception cref="System.ArgumentNullException">The source is null.</exception>
+    public static IQueryable<Batch> FindAll( Entities edc, string index )
+    {
+      return from batch in edc.Batch where batch.Batch0.Contains( index ) && batch.BatchStatus !=Linq.BatchStatus.Progress orderby batch.Identyfikator descending select batch;
+    }
+    /// <summary>
     /// Checks if export is possible.
     /// </summary>
     /// <param name="quantity">The quantity to export.</param>
