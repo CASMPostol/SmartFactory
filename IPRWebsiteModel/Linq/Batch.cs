@@ -19,14 +19,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <exception cref="System.ArgumentNullException">The source is null.</exception>
     public static Batch FindLookup( Entities edc, string index )
     {
-      try
-      {
-        return ( from batch in edc.Batch where batch.Batch0.Contains( index ) orderby batch.Identyfikator descending select batch ).FirstOrDefault();
-      }
-      catch ( Exception ex )
-      {
-        throw new IPRDataConsistencyException( m_Source, String.Format( m_LookupFailedMessage, index ), ex, "Cannot find batch" );
-      }
+      return ( from batch in edc.Batch where batch.Batch0.Contains( index ) orderby batch.Identyfikator descending select batch ).FirstOrDefault();
     }
     /// <summary>
     /// Checks if export is possible.
@@ -73,7 +66,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       WasteIndex = Linq.Waste.GetLookup( ProductType.Value, edc );
       BatchWasteCooeficiency = WasteIndex.WasteRatio;
       WasteCooeficiencyVersion = WasteIndex.Wersja;
-      CutfillerCoefficient _cc =  CutfillerCoefficient.GetLookup( edc );
+      CutfillerCoefficient _cc = CutfillerCoefficient.GetLookup( edc );
       CutfillerCoefficientIndex = _cc;
       this.CFTProductivityNormMax = _cc.CFTProductivityNormMax;
       this.CFTProductivityNormMin = _cc.CFTProductivityNormMin;
