@@ -58,12 +58,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Initializes a new instance of the <see cref="SummaryContentInfo" /> class.
     /// </summary>
-    /// <param name="newOne">The new <see cref="Batch"/>.</param>
-    /// <param name="oldOne">The old <see cref="Batch"/>.</param>
+    /// <param name="oldOne">The old <see cref="Batch" />.</param>
     public void Subtract( Batch oldOne )
     {
+      List<string> _warnings = new List<string>();
       foreach ( Material _mix in oldOne.Material )
-        Subtract( _mix );
+        Subtract( _mix, _warnings );
+      if ( _warnings.Count == 0 )
+        return;
+      string _msg = String.Format( " problems to associate intermediate batch with {0}", oldOne.Batch0 );
+      throw new InputDataValidationException( _msg, "Subtract", _warnings );
     }
     internal void ProcessDisposals
       ( Entities edc, Batch parent, double dustRatio, double shMentholRatio, double wasteRatio, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
@@ -122,8 +126,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Validates this instance.
     /// </summary>
     /// <param name="edc">The edc.</param>
-    /// <param name="_validationErrors">The result of validation.</param>
-    /// <returns></returns>
+    /// <exception cref="InputDataValidationException">Batch content validate failed;XML content validation</exception>
     public void Validate( Entities edc )
     {
       List<string> _validationErrors = new List<string>();
@@ -177,16 +180,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         base.Add( value.GetKey(), value );
       }
     }
-    private void Subtract( Material _mix )
+    private void Subtract( Material value, List<string> _warnings )
     {
-      Material ce = null;
-      if ( ce.ProductType == ProductType.IPRTobacco || ce.ProductType == ProductType.Tobacco )
-        TotalTobacco -= ce.TobaccoTotal;
-      if ( this.TryGetValue( ce.GetKey(), out ce ) )
+      if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
+        TotalTobacco -= value.TobaccoTotal;
+      if ( this.TryGetValue( value.GetKey(), out value ) )
       {
-        ce.FGQuantity -= ce.FGQuantity;
-        ce.TobaccoQuantity -= ce.TobaccoQuantity;
+        value.FGQuantity -= value.FGQuantity;
+        value.TobaccoQuantity -= value.TobaccoQuantity;
       }
+      else
+        _warnings.Add( String.Format( "Cannot find material {0} to subtract", value.GetKey() ) );
     }
     private void InsertAllOnSubmit( Entities edc, Batch parent )
     {
