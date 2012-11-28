@@ -122,17 +122,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Validates this instance.
     /// </summary>
     /// <param name="edc">The edc.</param>
-    /// <param name="actionResult">The result of validation.</param>
+    /// <param name="_validationErrors">The result of validation.</param>
     /// <returns></returns>
-    public void Validate( Entities edc, List<string> actionResult )
+    public void Validate( Entities edc )
     {
+      List<string> _validationErrors = new List<string>();
       if ( Product == null )
-        actionResult.Add( "Unrecognized finished good" );
+        _validationErrors.Add( "Unrecognized finished good" );
       SKULookup = SKUCommonPart.Find( edc, Product.SKU );
       if ( SKULookup == null )
       {
         string _msg = "Cannot find finished good SKU={0} in the SKU dictionary - dictionary update is required";
-        actionResult.Add( String.Format( _msg, Product.SKU ) );
+        _validationErrors.Add( String.Format( _msg, Product.SKU ) );
       }
       foreach ( Material item in this.Values )
       {
@@ -141,9 +142,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         if ( !IPR.IsAvailable( edc, item.Batch, item.TobaccoQuantity.Value ) )
         {
           string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, quantity: {2} kg";
-          actionResult.Add( String.Format( _mssg, item.Batch, Product.Batch, item.TobaccoQuantity.Value ) );
+          _validationErrors.Add( String.Format( _mssg, item.Batch, Product.Batch, item.TobaccoQuantity.Value ) );
         }
       }
+      if ( _validationErrors.Count > 0 )
+        throw new InputDataValidationException( "Batch content validate failed", "XML content validation", _validationErrors );
     }
     #endregion
 
