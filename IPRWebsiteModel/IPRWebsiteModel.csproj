@@ -71,6 +71,7 @@
     <Compile Include="Linq\EntitiesDataContext.cs" />
     <Compile Include="Linq\Extensions.cs" />
     <Compile Include="Linq\Format.cs" />
+    <Compile Include="Linq\InvoiceContent.cs" />
     <Compile Include="Linq\IPR.cs" />
     <Compile Include="Linq\LinqIPRExtensions.cs" />
     <Compile Include="Linq\Material.cs" />
