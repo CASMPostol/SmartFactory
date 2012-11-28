@@ -72,10 +72,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
       catch ( CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException _iove )
       {
         _iove.ReportActionResult( url, fileName );
+        ActivityLogCT.WriteEntry( m_Title, "Import of the invoice message failed", url );
       }
       catch ( Exception ex )
       {
         ActivityLogCT.WriteEntry( "Aborted Invoice message import because of the error", ex.Message, url );
+        ActivityLogCT.WriteEntry( m_Title, "Import of the invoice message failed", url);
       }
     }
     #endregion
@@ -83,17 +85,26 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     #region private
     internal static void GetXmlContent( InvoiceXml xml, Entities edc, InvoiceLib entry )
     {
-      bool _ok = GetXmlContent( xml.Item, edc, entry );
       entry.ClearenceIndex = null;
-      entry.InvoiceLibraryStatus = _ok;
       entry.InvoiceLibraryReadOnly = false;
-      edc.SubmitChanges();
+      entry.BillDoc = String.Empty.NotAvailable();
+      try
+      {
+        entry.InvoiceLibraryStatus = GetXmlContent( xml.Item, edc, entry );
+        edc.SubmitChanges();
+      }
+      catch ( Exception ex )
+      {
+        entry.InvoiceLibraryStatus = false;
+        edc.SubmitChanges();
+        throw ex;
+      }
     }
     private static bool GetXmlContent( InvoiceItemXml[] invoiceEntries, Entities edc, InvoiceLib parent )
     {
-      bool _result = true;
       List<InvoiceContent> _invcs = new List<InvoiceContent>();
       List<string> _warnings = new List<string>();
+      bool _result = true;
       foreach ( InvoiceItemXml item in invoiceEntries )
       {
         try
@@ -111,12 +122,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
         }
         catch ( Exception ex )
         {
-          _result = false;
           string _msg = "Cannot create new entry for the invoice No={0}/{1}, SKU={2}, because of error: {3}";
           _warnings.Add( String.Format( _msg, item.Bill_doc, item.Item, item.Description, ex.Message ) );
         }
       }
-      if ( _warnings.Count > 1 )
+      if ( _warnings.Count > 0 )
         throw new InputDataValidationException( "there are fatal errors in the XML message.", "GetBatchLookup", _warnings );
       edc.InvoiceContent.InsertAllOnSubmit( _invcs );
       edc.SubmitChanges();
