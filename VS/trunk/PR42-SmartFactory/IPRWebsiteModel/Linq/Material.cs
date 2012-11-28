@@ -212,13 +212,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="batch">The batch to be assigned to the lookup.</param>
     /// <returns></returns>
-    public Material ReverseShedowCopy( )
+    public Material ReverseShedowCopy()
     {
       Material _ret = new Material()
       {
         Batch = this.Batch,
         Dust = 0,
-        FGQuantity = - this.FGQuantity,
+        FGQuantity = -this.FGQuantity,
         Material2BatchIndex = null,
         Overuse = 0,
         ProductID = this.ProductID,
@@ -229,7 +229,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         StorLoc = this.StorLoc,
         Title = this.Title,
         Tobacco = 0,
-        TobaccoQuantity = - this.TobaccoQuantity,
+        TobaccoQuantity = -this.TobaccoQuantity,
         Waste = 0
       };
       return _ret;

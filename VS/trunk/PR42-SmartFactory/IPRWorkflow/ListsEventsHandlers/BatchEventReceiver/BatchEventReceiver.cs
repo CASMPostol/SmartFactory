@@ -127,10 +127,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       Content _contentInfo = new Content( xml.Material, edc, progressChanged );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: Validate" ) );
 
-      List<string> _validationErrors = new List<string>();
-      _contentInfo.Validate( edc, _validationErrors );
-      if ( _validationErrors.Count > 0 )
-        throw new InputDataValidationException( "Batch content validate failed", "XML content validation", _validationErrors );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: batch" ) );
       IQueryable<Batch> _batches = ( from idx in edc.Batch where idx.Batch0.Contains( _contentInfo.Product.Batch ) select idx );
       Batch batch = null;
@@ -143,6 +139,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         case BatchStatus.Intermediate:
           if ( _batches.Count<Batch>() == 0 )
           {
+            _contentInfo.Validate( edc );
             batch = new Batch();
             edc.Batch.InsertOnSubmit( batch );
             batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged );
@@ -156,6 +153,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         case BatchStatus.Final:
           if ( _batches.Count<Batch>() == 0 )
           {
+            _contentInfo.Validate( edc );
             batch = new Batch();
             edc.Batch.InsertOnSubmit( batch );
             batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged );
@@ -168,8 +166,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           else if ( _batches.Count<Batch>() == 1 )
           {
             batch = _batches.FirstOrDefault<Batch>();
-            if ( batch.BatchStatus.Value != BatchStatus.Preliminary )
-              throw new IPRDataConsistencyException( "GetXmlContent", "Wrong batch status - internal error", null, "InternalBufferOverflowException error" );
             progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: BatchProcessing" ) );
             batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged );
           }

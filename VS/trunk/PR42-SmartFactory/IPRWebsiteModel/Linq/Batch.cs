@@ -29,33 +29,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
     }
     /// <summary>
-    /// Gets an existing <see cref="Batch"/> or create preliminary.
-    /// </summary>
-    /// <param name="edc">The edc.</param>
-    /// <param name="batch">The batch.</param>
-    /// <returns></returns>
-    public static Batch GetOrCreatePreliminary( Entities edc, string batch )
-    {
-      Batch newBatch = FindLookup( edc, batch );
-      if ( newBatch == null )
-      {
-        newBatch = new Batch()
-        {
-          Batch0 = batch,
-          BatchStatus = Linq.BatchStatus.Preliminary,
-          Title = "Preliminary batch: " + batch,
-          ProductType = Linq.ProductType.Invalid,
-          FGQuantityAvailable = 0,
-          FGQuantityBlocked = 0,
-          FGQuantity = 0,
-          FGQuantityPrevious = 0
-        };
-        edc.Batch.InsertOnSubmit( newBatch );
-        ActivityLogCT.WriteEntry( edc, m_Source, String.Format( m_LookupFailedAndAddedMessage, batch ) );
-      }
-      return newBatch;
-    }
-    /// <summary>
     /// Checks if export is possible.
     /// </summary>
     /// <param name="quantity">The quantity to export.</param>

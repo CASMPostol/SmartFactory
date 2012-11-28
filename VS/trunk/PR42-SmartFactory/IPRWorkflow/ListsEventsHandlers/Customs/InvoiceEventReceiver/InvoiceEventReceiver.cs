@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using CAS.SharePoint;
+using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml;
 using Microsoft.SharePoint;
@@ -67,10 +69,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
           ActivityLogCT.WriteEntry( edc, m_Title, "Import of the invoice message finished" );
         }
       }
+      catch ( CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException _iove )
+      {
+        _iove.ReportActionResult( url, fileName );
+      }
       catch ( Exception ex )
       {
-        using ( Entities edc = new Entities( url ) )
-          ActivityLogCT.WriteEntry( edc, "Aborted Invoice message import because of the error", ex.Message );
+        ActivityLogCT.WriteEntry( "Aborted Invoice message import because of the error", ex.Message, url );
       }
     }
     #endregion
@@ -87,40 +92,50 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     private static bool GetXmlContent( InvoiceItemXml[] invoiceEntries, Entities edc, InvoiceLib parent )
     {
       bool _result = true;
+      List<InvoiceContent> _invcs = new List<InvoiceContent>();
+      List<string> _warnings = new List<string>();
       foreach ( InvoiceItemXml item in invoiceEntries )
       {
-        InvoiceContent _ic = null;
         try
         {
-          _ic = CreateInvoiceContent( edc, parent, item );
+          InvoiceContent _ic = CreateInvoiceContent( edc, parent, item, _warnings );
+          if ( _ic == null )
+            continue;
+          _invcs.Add( _ic );
           _result &= _ic.InvoiceContentStatus.Value == InvoiceContentStatus.OK;
           if ( parent.BillDoc.IsNullOrEmpty() )
           {
             parent.BillDoc = item.Bill_doc.ToString();
             parent.InvoiceCreationDate = item.Created_on;
           }
-          edc.InvoiceContent.InsertOnSubmit( _ic );
-          edc.SubmitChanges();
-          _ic.CreateTitle();
-          edc.SubmitChanges();
         }
         catch ( Exception ex )
         {
           _result = false;
           string _msg = "Cannot create new entry for the invoice No={0}/{1}, SKU={2}, because of error: {3}";
-          ActivityLogCT.WriteEntry( edc, "Invoice import", String.Format( _msg, item.Bill_doc, item.Item, item.Description, ex.Message ) );
+          _warnings.Add( String.Format( _msg, item.Bill_doc, item.Item, item.Description, ex.Message ) );
         }
       }
+      if ( _warnings.Count > 1 )
+        throw new InputDataValidationException( "there are fatal errors in the XML message.", "GetBatchLookup", _warnings );
+      edc.InvoiceContent.InsertAllOnSubmit( _invcs );
+      edc.SubmitChanges();
+      foreach ( InvoiceContent _ic in _invcs )
+        _ic.CreateTitle();
+      edc.SubmitChanges();
       return _result;
     }
-    private static InvoiceContent CreateInvoiceContent( Entities edc, InvoiceLib parent, InvoiceItemXml item )
+    private static InvoiceContent CreateInvoiceContent( Entities edc, InvoiceLib parent, InvoiceItemXml item, List<string> warnings )
     {
-      Batch _batch = Batch.GetOrCreatePreliminary( edc, item.Batch );
+      Batch _batch = Batch.FindLookup( edc, item.Batch );
+      if ( _batch == null )
+      {
+        warnings.Add( String.Format( "Cannot find batch {0} for stock record {1}.", item.Batch, item.Description ) );
+        return null;
+      }
       InvoiceContentStatus _invoiceContentStatus = InvoiceContentStatus.OK;
       double? _Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
-      if ( _batch.BatchStatus.Value == BatchStatus.Preliminary )
-        _invoiceContentStatus = InvoiceContentStatus.BatchNotFound;
-      else if ( !_batch.Available( _Quantity.Value ) )
+      if ( !_batch.Available( _Quantity.Value ) )
         _invoiceContentStatus = InvoiceContentStatus.NotEnoughQnt;
       return new InvoiceContent()
       {
