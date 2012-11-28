@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RequestContent xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/AccountClearance.xsd">
+  <DocumentDate>1900-01-01</DocumentDate>
+  <DocumentNo>DocumentNo1</DocumentNo>
+  <EntryDocumentNo>EntryDocumentNo1</EntryDocumentNo>
+  <CustomsDebtDate>1900-01-01</CustomsDebtDate>
+  <SKU>SKU1</SKU>
+  <Batch>Batch1</Batch>
+  <Grade>Grade1</Grade>
+  <NetMass>1</NetMass>
+  <PCN>PCN1</PCN>
+  <ConsentDate>1900-01-01T01:01:01+01:00</ConsentDate>
+  <ValidFromDate>1900-01-01T01:01:01+01:00</ValidFromDate>
+  <ValidToDate>1900-01-01T01:01:01+01:00</ValidToDate>
+  <ProductivityRateMin>1</ProductivityRateMin>
+  <ProductivityRateMax>1</ProductivityRateMax>
+  <ConsentPeriod>1</ConsentPeriod>
+  <ConsentNo>ConsentNo1</ConsentNo>
+  <Duty>1</Duty>
+  <DutyPerUnit>1</DutyPerUnit>
+  <VAT>1</VAT>
+  <VATPerUnit>1</VATPerUnit>
+  <GrossMass>1</GrossMass>
+  <Cartons>1</Cartons>
+</RequestContent>

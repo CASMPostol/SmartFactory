@@ -5,19 +5,27 @@
       <xs:sequence>
         <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
         <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
-        <xs:element minOccurs="0" maxOccurs="1" name="Request" type="tns:RequestForAccountClearance" />
-        <xs:element minOccurs="0" maxOccurs="1" name="Balance" type="tns:AccountBalance" />
+        <xs:element minOccurs="0" maxOccurs="1" name="EntryDocumentNo" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="CustomsDebtDate" type="xs:date" />
+        <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Grade" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="NetMass" type="xs:double" />
+        <xs:element minOccurs="0" maxOccurs="1" name="PCN" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ConsentDate" type="xs:dateTime" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ValidFromDate" type="xs:dateTime" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ValidToDate" type="xs:dateTime" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ProductivityRateMin" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ProductivityRateMax" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ConsentPeriod" type="xs:double" />
+        <xs:element minOccurs="0" maxOccurs="1" name="ConsentNo" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="Duty" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="DutyPerUnit" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="VAT" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="VATPerUnit" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="GrossMass" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="Cartons" type="xs:double" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:complexType name="RequestForAccountClearance">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="CustomsDebtDate" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="NetMass" type="xs:double" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="AccountBalance" />
 </xs:schema>
