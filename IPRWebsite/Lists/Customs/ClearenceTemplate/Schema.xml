@@ -52,13 +52,13 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
-          <FieldRef ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}" Name="ReferenceNumber" />
-          <FieldRef ID="{CE7B596A-FE29-4F30-A0F2-043CB359B599}" Name="Status" />
-          <FieldRef ID="{109482BF-107F-44C3-9CD8-6AC9C1FAB851}" Name="SADConsignmentLibraryIndex" />
-          <FieldRef ID="{0F8D4217-D9F2-4065-8F0D-04E727B3C24B}" Name="ProcedureCode" />
-          <FieldRef ID="{7D196321-5D5D-4D55-908C-125A2E694670}" Name="ClearenceProcedure" />
-          <FieldRef ID="{64E1ED0D-0694-4BA9-83EC-40DE68451B9B}" Name="Clearence2SadGoodID" />
+          <FieldRef Name="DocumentNo" />
+          <FieldRef Name="ReferenceNumber" />
+          <FieldRef Name="Status" />
+          <FieldRef Name="SADConsignmentLibraryIndex" />
+          <FieldRef Name="ProcedureCode" />
+          <FieldRef Name="ClearenceProcedure" />
+          <FieldRef Name="Clearence2SadGoodID" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -78,9 +78,8 @@
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
-          <FieldRef ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}" Name="ReferenceNumber" />
-          <FieldRef ID="{7D196321-5D5D-4D55-908C-125A2E694670}" Name="ClearenceProcedure" />
+          <FieldRef Name="ClearenceProcedure" />
+          <FieldRef Name="Created" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -89,38 +88,43 @@
           </OrderBy>
           <Where>
             <And>
-              <Or>
+              <And>
                 <Or>
                   <Or>
+                    <Or>
+                      <Eq>
+                        <FieldRef Name="ProcedureCode" />
+                        <Value Type="Text">Tobacco</Value>
+                      </Eq>
+                      <Eq>
+                        <FieldRef Name="ProcedureCode" />
+                        <Value Type="Text">TobaccoNotAllocated</Value>
+                      </Eq>
+                    </Or>
+                    <Or>
+                      <Eq>
+                        <FieldRef Name="ProcedureCode" />
+                        <Value Type="Text">Dust</Value>
+                      </Eq>
+                      <Eq>
+                        <FieldRef Name="ProcedureCode" />
+                        <Value Type="Text">Waste</Value>
+                      </Eq>
+                    </Or>
+                  </Or>
                     <Eq>
                       <FieldRef Name="ProcedureCode" />
-                      <Value Type="Text">Tobacco</Value>
-                    </Eq>
-                    <Eq>
-                      <FieldRef Name="ProcedureCode" />
-                      <Value Type="Text">TobaccoNotAllocated</Value>
+                      <Value Type="Text">Cartons</Value>
                     </Eq>
                   </Or>
-                  <Or>
-                    <Eq>
-                      <FieldRef Name="ProcedureCode" />
-                      <Value Type="Text">Dust</Value>
-                    </Eq>
-                    <Eq>
-                      <FieldRef Name="ProcedureCode" />
-                      <Value Type="Text">Waste</Value>
-                    </Eq>
-                  </Or>
-                </Or>
-                  <Eq>
-                    <FieldRef Name="ProcedureCode" />
-                    <Value Type="Text">Cartons</Value>
-                  </Eq>
-                </Or>
-              <Eq>
-                <FieldRef Name="Status" />
-                <Value Type="Boolean">No</Value>
-              </Eq>
+                <Eq>
+                  <FieldRef Name="Status" />
+                  <Value Type="Boolean">No</Value>
+                </Eq>
+              </And>
+              <IsNull>
+                <FieldRef Name="SADConsignmentLibraryIndex" />
+              </IsNull>
             </And>
           </Where>
         </Query>
