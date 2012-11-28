@@ -423,6 +423,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DocumentsFactory\AccountClearance\RequestForAccountClearence.xslt" />
     <Content Include="DocumentsFactory\BalanceSheet\BalanceSheetCollection.xslt" />
     <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xml">
       <SubType>Designer</SubType>
@@ -449,13 +450,14 @@
     <Content Include="DocumentsFactory\Disposals\WasteFormStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\DutyReliefAccount\RequestForAccountClearence.xslt" />
     <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DocumentsFactory\DutyReliefAccount\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
