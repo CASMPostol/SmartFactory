@@ -99,11 +99,9 @@ namespace IPRDashboardsTest
         BatchLibraryIndex = null,
         BatchStatus = BatchStatus.Final,
         CalculatedOveruse = 0,
-        CutfillerCoefficientIndex = null,
         DustCooeficiencyVersion = 1,
         BatchDustCooeficiency = 1,
         Dust = 1.1,
-        DustIndex = null,
         FGQuantityAvailable = 1000,
         FGQuantityBlocked = 0,
         FGQuantity = _quantity,
@@ -115,15 +113,12 @@ namespace IPRDashboardsTest
         SHCooeficiencyVersion = 1,
         BatchSHCooeficiency = 0.01234567,
         SHMenthol = 1.3,
-        SHMentholIndex = null,
         SKU = "SKU1234567890",
         SKUIndex = _sku,
         StockEntry = null,
         WasteCooeficiencyVersion = 1,
         Waste = 1.3,
-        UsageIndex = new Usage() { CTFUsageMax = 1.23, CTFUsageMin = 0.9876, UsageMax = 1234.45, UsageMin = 987.65, FormatIndex = null },
         BatchWasteCooeficiency = 0.012345678,
-        WasteIndex = null,
         Title = "Testing batch"
       };
       _batch.Tobacco = _batch.MaterialQuantity.Value - _batch.SHMenthol.Value - _batch.Dust.Value - _batch.Waste.Value;

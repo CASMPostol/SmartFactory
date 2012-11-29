@@ -59,27 +59,27 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       SKUIndex = contentInfo.SKULookup;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
       //Coefficients
-      DustIndex = Linq.Dust.GetLookup( ProductType.Value, edc );
+      Dust DustIndex = Linq.Dust.GetLookup( ProductType.Value, edc );
       BatchDustCooeficiency = DustIndex.DustRatio;
       DustCooeficiencyVersion = DustIndex.Wersja;
-      SHMentholIndex = Linq.SHMenthol.GetLookup( ProductType.Value, edc );
+      SHMenthol SHMentholIndex = Linq.SHMenthol.GetLookup( ProductType.Value, edc );
       BatchSHCooeficiency = SHMentholIndex.SHMentholRatio;
       SHCooeficiencyVersion = SHMentholIndex.Wersja;
-      WasteIndex = Linq.Waste.GetLookup( ProductType.Value, edc );
+      Waste WasteIndex = Linq.Waste.GetLookup( ProductType.Value, edc );
       BatchWasteCooeficiency = WasteIndex.WasteRatio;
       WasteCooeficiencyVersion = WasteIndex.Wersja;
       CutfillerCoefficient _cc = CutfillerCoefficient.GetLookup( edc );
-      CutfillerCoefficientIndex = _cc;
       this.CFTProductivityNormMax = _cc.CFTProductivityNormMax;
       this.CFTProductivityNormMin = _cc.CFTProductivityNormMin;
       this.CFTProductivityRateMax = _cc.CFTProductivityRateMax;
       this.CFTProductivityRateMin = _cc.CFTProductivityRateMin;
+      this.CFTProdVersion = _cc.Wersja;
       Usage _usage = Usage.GetLookup( SKUIndex.FormatIndex, edc );
-      UsageIndex = _usage;
       this.CTFUsageMax = _usage.CTFUsageMax;
       this.CTFUsageMin = _usage.CTFUsageMin;
       this.UsageMin = _usage.UsageMin;
       this.UsageMax = _usage.UsageMax;
+      this.UsageVersion = _usage.Wersja;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
       //processing
       CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageMax.Value, UsageMin.Value );
