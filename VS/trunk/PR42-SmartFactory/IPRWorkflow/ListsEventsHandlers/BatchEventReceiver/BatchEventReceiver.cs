@@ -126,38 +126,35 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
       Content _contentInfo = new Content( xml.Material, edc, progressChanged );
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: batch" ) );
-      IQueryable<Batch> _batches = ( from idx in edc.Batch where idx.Batch0.Contains( _contentInfo.Product.Batch ) select idx );
-      Batch batch = new Batch();
+      Batch _batch = Batch.FindLookup( edc, _contentInfo.Product.Batch );
       List<string> _warnings = new List<string>();
       BatchStatus _newBtachStatus = GetBatchStatus( xml.Status );
+      bool _newBatch = false;
       switch ( _newBtachStatus )
       {
         case BatchStatus.Progress:
           throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", "The status of Progress is not implemented yet" );
         case BatchStatus.Intermediate:
         case BatchStatus.Final:
-          if ( _batches.Count<Batch>() == 1 )
+          if ( _batch != null )
           {
-            if ( _newBtachStatus == BatchStatus.Intermediate )
-            {
-              string _ptrn = "The intermidiate batch {0} has been analyzed already.";
-              throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", String.Format( _ptrn, _contentInfo.Product.Batch ) );
-            }
-            Batch _ib = _batches.FirstOrDefault<Batch>( _bx => batch.BatchStatus.Value == BatchStatus.Intermediate );
-            if ( _ib.BatchStatus.Value != BatchStatus.Intermediate )
+            if ( _batch.BatchStatus.Value != BatchStatus.Intermediate )
             {
               string _ptrn = "The final batch {0} has been analyzed already.";
               throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", String.Format( _ptrn, _contentInfo.Product.Batch ) );
             }
             progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: Subtract" ) );
-            _contentInfo.Subtract( _ib );
           }
-          else if ( _batches.Count<Batch>() > 1 )
-            throw new InputDataValidationException( "Wrong status of the input batch", "Get Xml Content", "The association of many batches is not implemented yet." );
+          else
+          {
+            _batch = new Batch();
+            _newBatch = true;
+          }
           progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: Validate" ) );
-          _contentInfo.Validate( edc );
-          edc.Batch.InsertOnSubmit( batch );
-          batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged );
+          _contentInfo.Validate( edc, _batch.Disposal );
+          if ( _newBatch )
+            edc.Batch.InsertOnSubmit( _batch );
+          _batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged );
           break;
       }
     }
@@ -191,6 +188,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           Add( _newMaterial );
         }
       }
+
     }
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";

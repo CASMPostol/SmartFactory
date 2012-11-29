@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -55,20 +56,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </value>
     public DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
     internal decimal TotalTobacco { get; private set; }
-    /// <summary>
-    /// Initializes a new instance of the <see cref="SummaryContentInfo" /> class.
-    /// </summary>
-    /// <param name="oldOne">The old <see cref="Batch" />.</param>
-    public void Subtract( Batch oldOne )
-    {
-      List<string> _warnings = new List<string>();
-      foreach ( Material _mix in oldOne.Material )
-        Subtract( _mix, _warnings );
-      if ( _warnings.Count == 0 )
-        return;
-      string _msg = String.Format( " problems to associate intermediate batch with {0}", oldOne.Batch0 );
-      throw new InputDataValidationException( _msg, "Subtract", _warnings );
-    }
+    ///// <summary>
+    ///// Initializes a new instance of the <see cref="SummaryContentInfo" /> class.
+    ///// </summary>
+    ///// <param name="oldOne">The old <see cref="Batch" />.</param>
+    //public void Subtract( Batch oldOne )
+    //{
+    //  List<string> _warnings = new List<string>();
+    //  foreach ( Material _mix in oldOne.Material )
+    //    Subtract( _mix, _warnings );
+    //  if ( _warnings.Count == 0 )
+    //    return;
+    //  string _msg = String.Format( " problems to associate intermediate batch with {0}", oldOne.Batch0 );
+    //  throw new InputDataValidationException( _msg, "Subtract", _warnings );
+    //}
     internal void ProcessDisposals
       ( Entities edc, Batch parent, double dustRatio, double shMentholRatio, double wasteRatio, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
     {
@@ -127,7 +128,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The edc.</param>
     /// <exception cref="InputDataValidationException">Batch content validate failed;XML content validation</exception>
-    public void Validate( Entities edc )
+    public void Validate( Entities edc, Microsoft.SharePoint.Linq.EntitySet<Disposal> disposals )
     {
       List<string> _validationErrors = new List<string>();
       if ( Product == null )
@@ -138,14 +139,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         string _msg = "Cannot find finished good SKU={0} in the SKU dictionary - dictionary update is required";
         _validationErrors.Add( String.Format( _msg, Product.SKU ) );
       }
-      foreach ( Material item in this.Values )
+      Dictionary<string, decimal> _materials = ( from _mx in this.Values
+                                                 where _mx.ProductType.Value == Linq.ProductType.IPRTobacco
+                                                 select new { BatchId = _mx.Batch, quantity = _mx.TobaccoTotal } ).ToDictionary( k => k.BatchId, v => v.quantity );
+      foreach ( Disposal _dx in disposals )
+        if ( !_materials.Keys.Contains<string>( _dx.Disposal2BatchIndex.Batch0 ) )
+          _materials.Add( _dx.Disposal2BatchIndex.Batch0, Convert.ToDecimal( _dx.SettledQuantity.Value ) );
+        else
+          _materials[ _dx.Disposal2BatchIndex.Batch0 ] -= Convert.ToDecimal( _dx.SettledQuantity.Value );
+      foreach ( var item in _materials )
       {
-        if ( item.ProductType.Value != ProductType.IPRTobacco )
-          continue;
-        if ( !IPR.IsAvailable( edc, item.Batch, item.TobaccoQuantity.Value ) )
+        if ( !IPR.IsAvailable( edc, item.Key, Convert.ToDouble( item.Value ) ) )
         {
           string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, quantity: {2} kg";
-          _validationErrors.Add( String.Format( _mssg, item.Batch, Product.Batch, item.TobaccoQuantity.Value ) );
+          _validationErrors.Add( String.Format( _mssg, item.Key, Product.Batch, item.Value ) );
         }
       }
       if ( _validationErrors.Count > 0 )
