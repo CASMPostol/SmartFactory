@@ -109,6 +109,7 @@
     <Column Name="Disposal2BatchIndex" Member="Disposal2BatchIndex" />
     <Column Name="Disposal2IPRIndex" Member="Disposal2IPRIndex" />
     <Column Name="Disposal2MaterialIndex" Member="Disposal2MaterialIndex" />
+    <Column Name="Disposal2InvoiceContentIndex" Member="Disposal2InvoiceContentIndex" />
     <Column Name="Created" Member="Created" />
     <Column Name="Author" Member="Author" />
   </ContentType>
@@ -561,12 +562,7 @@
     <Column Name="Tobacco" Member="Tobacco" />
     <Column Name="SHMenthol" Member="SHMenthol" />
     <Column Name="BatchLibraryIndex" Member="BatchLibraryIndex" />
-    <Column Name="CutfillerCoefficientIndex" Member="CutfillerCoefficientIndex" />
     <Column Name="SKUIndex" Member="SKUIndex" />
-    <Column Name="UsageIndex" Member="UsageIndex" />
-    <Column Name="SHMentholIndex" Member="SHMentholIndex" />
-    <Column Name="DustIndex" Member="DustIndex" />
-    <Column Name="WasteIndex" Member="WasteIndex" />
     <Column Name="BatchSHCooeficiency" Member="BatchSHCooeficiency" />
     <Column Name="SHCooeficiencyVersion" Member="SHCooeficiencyVersion" />
     <Column Name="BatchDustCooeficiency" Member="BatchDustCooeficiency" />
@@ -577,10 +573,12 @@
     <Column Name="CFTProductivityRateMax" Member="CFTProductivityRateMax" />
     <Column Name="CFTProductivityNormMin" Member="CFTProductivityNormMin" />
     <Column Name="CFTProductivityNormMax" Member="CFTProductivityNormMax" />
+    <Column Name="CTFProductivityVersion" Member="CTFProductivityVersion" />
     <Column Name="UsageMin" Member="UsageMin" />
     <Column Name="UsageMax" Member="UsageMax" />
     <Column Name="CTFUsageMin" Member="CTFUsageMin" />
     <Column Name="CTFUsageMax" Member="CTFUsageMax" />
+    <Column Name="UsageVersion" Member="UsageVersion" />
   </ContentType>
   <ContentType Name="JSOXLib" Class="JSOXLib">
     <Column Name="ContentType" Member="ContentType" />
@@ -640,5 +638,7 @@
     <Column Name="Title" Member="Title" />
     <Column Name="Body" Member="Body" />
     <Column Name="Expires" Member="Expires" />
+    <Column Name="ActivityPriority" Member="ActivityPriority" />
+    <Column Name="ActivitySource" Member="ActivitySource" />
   </ContentType>
 </Web>

@@ -180,7 +180,6 @@ namespace CAS.SmartFactory.Management
       {
         Usage usg = new Usage
         {
-          Batch = null,
           FormatIndex = Format.GetFormatLookup( item.Format_lookup, edc ),
           UsageMax = item.UsageMax,
           UsageMin = item.UsageMin,
@@ -213,7 +212,6 @@ namespace CAS.SmartFactory.Management
       {
         Waste wst = new Waste
         {
-          Batch = null,
           ProductType = item.ProductType.ParseProductType(),
           WasteRatio = item.WasteRatio
         };
