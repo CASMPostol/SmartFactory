@@ -25,6 +25,11 @@
         <xs:element minOccurs="1" maxOccurs="1" name="VATPerUnit" type="xs:double" />
         <xs:element minOccurs="1" maxOccurs="1" name="GrossMass" type="xs:double" />
         <xs:element minOccurs="1" maxOccurs="1" name="Cartons" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="TobaccoName" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ConsentNo" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="DutyName" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="VATName" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="InvoiceNo" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
