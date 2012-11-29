@@ -35,6 +35,7 @@
       <FieldRef ID="{5F667AC8-B2AB-4482-B3C9-54DEB82A8DC7}" Name="Disposal2BatchIndex" />
       <FieldRef ID="{C0A4DD0E-A06E-40D4-BFE1-682D3C071AC1}" Name="Disposal2IPRIndex" />
       <FieldRef ID="{D9074909-785D-480D-944D-D9A813D9C97D}" Name="Disposal2MaterialIndex" />
+      <FieldRef ID="{A1711488-2BB4-428F-8F08-210D206F0CA1}" Name="Disposal2InvoiceContentIndex" />
       <FieldRef ID="{8c06beca-0777-48f7-91c7-6da68bc07b69}" Name="Created"/>
       <FieldRef ID="{1df5e554-ec7e-46a6-901d-d85a3881cb18}" Name="Author" />
 		</FieldRefs>

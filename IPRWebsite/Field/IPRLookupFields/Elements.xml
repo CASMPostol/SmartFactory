@@ -1,6 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    Name="Disposal2InvoiceContentIndex"
+    ID="{A1711488-2BB4-428F-8F08-210D206F0CA1}"
+    Type="Lookup"
+    List="Lists/InvoiceContentList"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="Invoice content ID"
+    Group="CAS Smart Factory IPR"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
     Name="Disposal2MaterialIndex"
     ID="{D9074909-785D-480D-944D-D9A813D9C97D}"
     Type="Lookup"
