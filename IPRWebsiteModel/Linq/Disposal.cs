@@ -20,8 +20,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="quantity">The quantity.</param>
     /// <param name="closingBatch">if set to <c>true</c> the batch is to be closed.</param>
     /// <param name="invoiceNoumber">The invoice noumber.</param>
+    /// <param name="invoiceContent">Content of the invoice.</param>
     /// <exception cref="ApplicationError">if any internal exception has to be catched.</exception>
-    public void Export( Entities entities, Clearence clearence, ref decimal quantity, bool closingBatch, string invoiceNoumber )
+    public void Export( Entities entities, Clearence clearence, ref decimal quantity, bool closingBatch, string invoiceNoumber, InvoiceContent invoiceContent )
     {
       string _at = "Startting";
       try
@@ -67,7 +68,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           quantity -= _settledQuantity;
         }
         _at = "StartClearance";
-        StartClearance( _clearingType, invoiceNoumber, clearence );
+        StartClearance( _clearingType, invoiceNoumber, clearence, invoiceContent );
       }
       catch ( Exception _ex )
       {
@@ -148,9 +149,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="clearingType">Type of the clearing.</param>
     /// <param name="invoiceNoumber">The invoice noumber.</param>
     /// <param name="clearence">The clearence.</param>
-    private void StartClearance( ClearingType clearingType, string invoiceNoumber, Clearence clearence )
+    private void StartClearance( ClearingType clearingType, string invoiceNoumber, Clearence clearence, InvoiceContent invoiceContent )
     {
       this.Disposal2ClearenceIndex = clearence;
+      this.Disposal2InvoiceContentIndex = invoiceContent;
       this.CustomsStatus = Linq.CustomsStatus.Started;
       this.ClearingType = clearingType;
       this.CustomsProcedure = Entities.ToString( clearence.ClearenceProcedure.Value );
