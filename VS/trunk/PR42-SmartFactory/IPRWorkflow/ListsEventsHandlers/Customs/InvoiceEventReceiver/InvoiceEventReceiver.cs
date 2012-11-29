@@ -138,23 +138,22 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     }
     private static InvoiceContent CreateInvoiceContent( Entities edc, InvoiceLib parent, InvoiceItemXml item, List<string> errors )
     {
-      IQueryable<Batch> _batches = Batch.FindAll( edc, item.Batch );
-      if ( _batches.Count<Batch>() == 0 )
+      Batch _batch = Batch.FindLookup( edc, item.Batch );
+      if ( _batch == null )
       {
         errors.Add( String.Format( "Cannot find batch {0} for stock record {1}.", item.Batch, item.Description ) );
         return null;
       }
       InvoiceContentStatus _invoiceContentStatus = InvoiceContentStatus.OK;
       double? _Quantity = item.Bill_qty_in_SKU.ConvertToDouble();
-      if ( !( _batches.Sum<Batch>( x => x.FGQuantityAvailable.Value ) < _Quantity.Value ) )
+      if ( _batch.FGQuantityAvailable.Value < _Quantity.Value )
         _invoiceContentStatus = InvoiceContentStatus.NotEnoughQnt;
-      Batch _oldestBatch = _batches.First<Batch>();
       return new InvoiceContent()
       {
-        InvoiceContent2BatchIndex = _oldestBatch,
+        InvoiceContent2BatchIndex = _batch,
         InvoiceIndex = parent,
         SKUDescription = item.Description,
-        ProductType = _oldestBatch.ProductType,
+        ProductType = _batch.ProductType,
         Quantity = _Quantity,
         Units = item.BUn,
         Title = "Creating",

@@ -19,8 +19,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if ( !quantity.HasValue )
         return "Valid quantity value must be provided";
-      IQueryable<Batch> _batches = Batch.FindAll( edc, InvoiceContent2BatchIndex.Batch0 );
-      double _availableQuantity = Batch.CumulatedAvailable(_batches);
+      Batch _batch = Batch.FindLookup( edc, InvoiceContent2BatchIndex.Batch0 );
+      double _availableQuantity = _batch.FGQuantityAvailable.Value;
       if ( _availableQuantity < quantity.Value )
         return String.Format( m_quantityIsUnavailable, _availableQuantity );
       return String.Empty;
