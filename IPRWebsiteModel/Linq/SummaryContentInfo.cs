@@ -83,18 +83,24 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         //InsertAllOnSubmit( edc, parent );
         List<Material> _newMaterialList = new List<Material>();
+        Material.Ratios _mr = new Material.Ratios { dustRatio = dustRatio, shMentholRatio = shMentholRatio, wasteRatio = wasteRatio };
         foreach ( Material _materialX in this.Values )
         {
           progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
           Material _oldMAterial = _materialX.ReplaceByExistingOne( parent.Material, _newMaterialList, parent );
-          Material.Ratios _mr = new Material.Ratios { dustRatio = dustRatio, shMentholRatio = shMentholRatio, wasteRatio = wasteRatio };
-          _oldMAterial.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
-          progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
-          AccumulatedDisposalsAnalisis.Accumutate( _oldMAterial );
-          _oldMAterial.UpdateDisposals( edc, parent, progressChanged );
-          progressChanged( this, new ProgressChangedEventArgs( 1, "SubmitChanges" ) );
+          if ( _oldMAterial.ProductType.Value == ProductType.IPRTobacco )
+          {
+            progressChanged( this, new ProgressChangedEventArgs( 1, "CalculateCompensationComponents" ) );
+            _oldMAterial.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
+            progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
+            AccumulatedDisposalsAnalisis.Accumutate( _oldMAterial );
+            _oldMAterial.UpdateDisposals( edc, parent, progressChanged );
+          }
           if ( _newMaterialList.Count > 0 )
+          {
+            progressChanged( this, new ProgressChangedEventArgs( 1, "InsertAllOnSubmit" ) );
             edc.Material.InsertAllOnSubmit( _newMaterialList );
+          }
         }
       }
       catch ( Exception _ex )
