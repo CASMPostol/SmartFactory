@@ -22,13 +22,19 @@
         </style>
       </head>
       <body>
-        <table border="0" width="100%">
+        <xsl:apply-templates select="cas:RequestContent" />
+      </body>
+    </html>
+  </xsl:template>
+  <xsl:template match="cas:RequestContent">
+    <!--RequestForAccountClearence-->
+    <table border="0" width="100%">
           <tr>
             <td align="left">
-              Dokument: <xsl:value-of select="cas:RequestContent/cas:DocumentNo"/>
+              Dokument: <xsl:value-of select="cas:DocumentNo" />
             </td>
             <td align="right">
-              Gostków Stary, <xsl:value-of select="ms:format-date(cas:RequestContent/cas:DocumentDate, $FoarmatOfdate)"/>
+              Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)" />
             </td>
           </tr>
         </table>
@@ -38,27 +44,6 @@
              91-341 Łódź
           </b>
         </p>
-        <xsl:apply-templates select="cas:RequestContent" />
-        <table border="0" width="100%">
-          <tr>
-            <td>
-              <p align="right" height="50px" valign="bottom">
-                .............................................
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p align="right">
-                Imię i Nazwisko
-              </p>
-            </td>
-          </tr>
-        </table>
-      </body>
-    </html>
-  </xsl:template>
-  <xsl:template match="cas:RequestContent">
     <h1>
       Wniosek o rozliczenie towaru objętego procedurą uszlachetniania czynnego
     </h1>
@@ -123,7 +108,34 @@
         </td>
       </tr>
     </table>
+    <table border="0" width="100%">
+          <tr>
+            <td>
+              <p align="right" height="50px" valign="bottom">
+                .............................................
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="right">
+                Imię i Nazwisko
+              </p>
+            </td>
+          </tr>
+        </table>
     <br/>
+    <!--AccountBallanceReport-->
+    <table border="0" width="100%">
+          <tr>
+            <td align="left">
+              Dokument: <xsl:value-of select="cas:DocumentNo" />
+            </td>
+            <td align="right">
+              Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)" />
+            </td>
+          </tr>
+        </table>
     <h1>KSIEGA USZLACHETNIANIA CZYNNEGO – PRZYWÓZ</h1>
     <p>Numer Zezwolenia <xsl:value-of select="cas:ConsentNo"/></p>
     <table border="1" cellspacing="0" cellpadding="0" width="100%">
@@ -171,7 +183,7 @@
           Przypadający VAT
         </td>
         <td valign="top">
-          Przypadający VAt na j. m.
+          Przypadający VAT na j. m.
         </td>
         <td valign="top">
           Ilość netto [w kg]
@@ -389,5 +401,21 @@
         </td>
       </tr>
     </table>
+    <table border="0" width="100%">
+          <tr>
+            <td>
+              <p align="right" height="50px" valign="bottom">
+                .............................................
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p align="right">
+                Imię i Nazwisko
+              </p>
+            </td>
+          </tr>
+        </table>
   </xsl:template>
 </xsl:stylesheet>
