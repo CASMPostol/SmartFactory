@@ -137,7 +137,7 @@
         </ViewFields>
         <Query>
           <OrderBy>
-            <FieldRef Name="ID">
+            <FieldRef Name="No" Ascending="TRUE">
             </FieldRef>
           </OrderBy>
           <Where>
