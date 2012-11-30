@@ -8,10 +8,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   public partial class IPR
   {
     #region public
-    /// <summary>
-    /// Enumerated kinds of Disposal 
-    /// </summary>
-    public enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco, TobaccoInCigaretess, Cartons };
+
     /// <summary>
     /// Gets the type of the clearing.
     /// </summary>
@@ -68,28 +65,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="status">The _status.</param>
     /// <param name="quantity">The quantity.</param>
     /// <param name="material">The material.</param>
-    public void AddDisposal( Entities edc, Material.DisposalsEnum status, ref decimal quantity, Material material )
+    public void AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity, Material material )
     {
       DisposalEnum _dsposl = default( DisposalEnum );
-      switch ( status )
-      {
-        case Material.DisposalsEnum.Dust:
-          _dsposl = DisposalEnum.Dust;
-          break;
-        case Material.DisposalsEnum.SHMenthol:
-          _dsposl = DisposalEnum.SHMenthol;
-          break;
-        case Material.DisposalsEnum.Waste:
-          _dsposl = DisposalEnum.Waste;
-          break;
-        case Material.DisposalsEnum.OverusageInKg:
-          _dsposl = DisposalEnum.OverusageInKg;
-          break;
-        case Material.DisposalsEnum.Tobacco:
-          _dsposl = DisposalEnum.TobaccoInCigaretess;
-          break;
-      }
-      AddDisposal( edc, _dsposl, ref quantity, material, null );
+      AddDisposal( edc, status, ref quantity, material, null );
     }
     /// <summary>
     /// Check if record exists.
@@ -115,6 +94,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return FindIPRAccountsWithNotAllocatedTobacco( edc, batch ).Sum<IPR>( a => a.TobaccoNotAllocated.Value ) >= requestedTobacco;
     }
+    internal decimal TobaccoNotAllocatedDec { get { return Convert.ToDecimal( this.TobaccoNotAllocated.Value ); } }
     #endregion
 
     #region private
@@ -125,34 +105,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       try
       {
-        PCNCode _disposal2PCNID = null;
-        Linq.DisposalStatus _typeOfDisposal = default( Linq.DisposalStatus );
-        switch ( status )
-        {
-          case DisposalEnum.Cartons:
-            _typeOfDisposal = DisposalStatus.Cartons;
-            break;
-          case DisposalEnum.Dust:
-            _typeOfDisposal = DisposalStatus.Dust;
-            break;
-          case DisposalEnum.SHMenthol:
-            _typeOfDisposal = DisposalStatus.SHMenthol;
-            break;
-          case DisposalEnum.Waste:
-            _typeOfDisposal = DisposalStatus.Waste;
-            break;
-          case DisposalEnum.OverusageInKg:
-            _typeOfDisposal = DisposalStatus.Overuse;
-            break;
-          case DisposalEnum.TobaccoInCigaretess:
-            _typeOfDisposal = DisposalStatus.TobaccoInCigaretes;
-            _disposal2PCNID = IPR2PCNPCN;
-            break;
-          case DisposalEnum.Tobacco:
-            _typeOfDisposal = DisposalStatus.Tobacco;
-            _disposal2PCNID = IPR2PCNPCN;
-            break;
-        }
+        Linq.DisposalStatus _typeOfDisposal = Entities.GetDisposalStatus( status );
         double _toDispose = Withdraw( ref quantity );
         Disposal _newDisposal = new Disposal()
         {
@@ -164,7 +117,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           Disposal2IPRIndex = this,
           Disposal2MaterialIndex = material,
           DisposalStatus = _typeOfDisposal,
-          Disposal2PCNID = _disposal2PCNID,
+          Disposal2PCNID = null, //will be assigned during claring through custom
           DutyAndVAT = new Nullable<double>(),  // calculated in SetUpCalculatedColumns,
           DutyPerSettledAmount = new Nullable<double>(),  // calculated in SetUpCalculatedColumns,
           InvoiceNo = String.Empty.NotAvailable(), //To be assigned during finished goods export.

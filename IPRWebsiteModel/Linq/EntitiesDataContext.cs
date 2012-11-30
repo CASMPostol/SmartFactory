@@ -6,6 +6,10 @@ using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
+  /// <summary>
+  /// Enumerated kinds of Disposal 
+  /// </summary>
+  public enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco, TobaccoInCigaretess, Cartons };
   public partial class Entities
   {
     #region public
@@ -200,8 +204,39 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _ret = GetProductType( location );
       return _ret;
     }
+
+    internal static DisposalStatus GetDisposalStatus( DisposalEnum status )
+    {
+      Linq.DisposalStatus _typeOfDisposal = default( Linq.DisposalStatus );
+      switch ( status )
+      {
+        case DisposalEnum.Cartons:
+          _typeOfDisposal = DisposalStatus.Cartons;
+          break;
+        case DisposalEnum.Dust:
+          _typeOfDisposal = DisposalStatus.Dust;
+          break;
+        case DisposalEnum.SHMenthol:
+          _typeOfDisposal = DisposalStatus.SHMenthol;
+          break;
+        case DisposalEnum.Waste:
+          _typeOfDisposal = DisposalStatus.Waste;
+          break;
+        case DisposalEnum.OverusageInKg:
+          _typeOfDisposal = DisposalStatus.Overuse;
+          break;
+        case DisposalEnum.TobaccoInCigaretess:
+          _typeOfDisposal = DisposalStatus.TobaccoInCigaretes;
+          break;
+        case DisposalEnum.Tobacco:
+          _typeOfDisposal = DisposalStatus.Tobacco;
+          break;
+      }
+      return _typeOfDisposal;
+    }
+
     #endregion
-    
+
     #region private
     private ProductDescription GetProductType( string location )
     {

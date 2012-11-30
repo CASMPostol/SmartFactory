@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CAS.SharePoint;
 using CAS.SharePoint.Web;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -140,6 +142,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw GenericStateMachineEngine.ActionResult.Exception( _ex, String.Format( _template, this.Title, this.Identyfikator.Value, _ex.Message, _at ) );
       }
     }
+    internal static List<Disposal> Disposals( EntitySet<Disposal> disposlas, DisposalEnum _kind )
+    {
+      return disposlas.Where<Disposal>( x => x.DisposalStatus.Value == Entities.GetDisposalStatus( _kind ) ).ToList<Disposal>();
+    }
+    internal void Adjust( ref decimal _toDispose )
+    {
+      if ( this.CustomsStatus.Value == Linq.CustomsStatus.NotStarted )
+      {
+        decimal _2Add = this.Disposal2IPRIndex.TobaccoNotAllocatedDec - _toDispose;
+        if ( _2Add <= 0 )
+          return;
+        this.SettledQuantity = Convert.ToDouble( this.SettledQuantityDec + _2Add );
+        _toDispose -= _2Add;
+      }
+      else
+        ;
+    }
     #endregion
 
     #region private
@@ -200,5 +219,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     #endregion
 
+
+    private decimal SettledQuantityDec { get { return Convert.ToDecimal( this.SettledQuantity ); } }
   }
 }

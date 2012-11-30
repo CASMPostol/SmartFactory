@@ -125,7 +125,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
     {
       progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: starting" ) );
       Content _contentInfo = new Content( xml.Material, edc, progressChanged );
-      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: batch" ) );
+      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: FindLookup" ) );
       Batch _batch = Batch.FindLookup( edc, _contentInfo.Product.Batch );
       List<string> _warnings = new List<string>();
       BatchStatus _newBtachStatus = GetBatchStatus( xml.Status );

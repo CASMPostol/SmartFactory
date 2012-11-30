@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -21,16 +22,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Contains all materials sorted using the following key: SKU,Batch,Location.
     /// </summary>
-    public class DisposalsAnalisis: SortedList<Material.DisposalsEnum, decimal>
+    public class DisposalsAnalisis: SortedList<DisposalEnum, decimal>
     {
       internal DisposalsAnalisis()
       {
-        foreach ( WebsiteModel.Linq.Material.DisposalsEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.Material.DisposalsEnum ) ) )
+        foreach ( WebsiteModel.Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
           this.Add( _item, 0 );
       }
       internal void Accumutate( Material material )
       {
-        foreach ( WebsiteModel.Linq.Material.DisposalsEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.Material.DisposalsEnum ) ) )
+        foreach ( WebsiteModel.Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
           this[ _item ] += material[ _item ];
       }
     } //DisposalsAnalisis
@@ -77,43 +78,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw new IPRDataConsistencyException( "Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized." );
       try
       {
-        InsertAllOnSubmit( edc, parent );
+        //InsertAllOnSubmit( edc, parent );
+        List<Material> _newMaterials = new List<Material>();
         foreach ( Material _materialX in this.Values )
         {
           if ( _materialX.ProductType.Value != ProductType.IPRTobacco )
             continue;
           progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
+          Material _oldMAterial = _materialX.ReplaceByExistingOne( parent.Material, _newMaterials );
           Material.Ratios _mr = new Material.Ratios { dustRatio = dustRatio, shMentholRatio = shMentholRatio, wasteRatio = wasteRatio };
-          _materialX.DisposalsAnalisis( edc, _mr, overusageCoefficient );
+          _oldMAterial.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
           progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
-          AccumulatedDisposalsAnalisis.Accumutate( _materialX );
-          foreach ( WebsiteModel.Linq.Material.DisposalsEnum _kind in Enum.GetValues( typeof( WebsiteModel.Linq.Material.DisposalsEnum ) ) )
-          {
-            try
-            {
-              if ( _materialX[ _kind ] <= 0 && ( ( _kind == WebsiteModel.Linq.Material.DisposalsEnum.SHMenthol ) || ( _kind == WebsiteModel.Linq.Material.DisposalsEnum.OverusageInKg ) ) )
-                continue;
-              List<WebsiteModel.Linq.IPR> _accounts = WebsiteModel.Linq.IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, _materialX.Batch );
-              if ( _accounts.Count == 0 )
-              {
-                string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
-                throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, _materialX.Batch, parent.Batch0, _kind ), null, "IPR unrecognized account" );
-              }
-              decimal _toDispose = _materialX[ _kind ];
-              progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _kind, _materialX.Batch ) ) );
-              for ( int _aidx = 0; _aidx < _accounts.Count; _aidx++ )
-              {
-                _accounts[ _aidx ].AddDisposal( edc, _kind, ref _toDispose, _materialX );
-                if ( _toDispose <= 0 )
-                  break;
-              }
-              edc.SubmitChanges();
-            }
-            catch ( IPRDataConsistencyException _ex )
-            {
-              _ex.Add2Log( edc );
-            }
-          }
+          AccumulatedDisposalsAnalisis.Accumutate( _oldMAterial );
+          _oldMAterial.UpdateDisposals( edc, parent, progressChanged );
           progressChanged( this, new ProgressChangedEventArgs( 1, "SubmitChanges" ) );
           edc.SubmitChanges();
         }
@@ -123,12 +100,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw new IPRDataConsistencyException( "Material.ProcessDisposals", _ex.Message, _ex, "Disposal processing error" );
       }
     }
+
     /// <summary>
     /// Validates this instance.
     /// </summary>
     /// <param name="edc">The edc.</param>
     /// <exception cref="InputDataValidationException">Batch content validate failed;XML content validation</exception>
-    public void Validate( Entities edc, Microsoft.SharePoint.Linq.EntitySet<Disposal> disposals )
+    public void Validate( Entities edc, EntitySet<Disposal> disposals )
     {
       List<string> _validationErrors = new List<string>();
       if ( Product == null )
@@ -141,20 +119,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       Dictionary<string, decimal> _materials = ( from _mx in this.Values
                                                  where _mx.ProductType.Value == Linq.ProductType.IPRTobacco
-                                                 select new { BatchId = _mx.Batch, quantity = _mx.TobaccoTotal } ).ToDictionary( k => k.BatchId, v => v.quantity );
+                                                 select new { batchId = _mx.Batch, quantity = _mx.TobaccoTotal } ).ToDictionary( k => k.batchId, v => v.quantity );
       foreach ( Disposal _dx in disposals )
         if ( !_materials.Keys.Contains<string>( _dx.Disposal2BatchIndex.Batch0 ) )
           _materials.Add( _dx.Disposal2BatchIndex.Batch0, Convert.ToDecimal( _dx.SettledQuantity.Value ) );
         else
           _materials[ _dx.Disposal2BatchIndex.Batch0 ] -= Convert.ToDecimal( _dx.SettledQuantity.Value );
-      foreach ( var item in _materials )
-      {
-        if ( !IPR.IsAvailable( edc, item.Key, Convert.ToDouble( item.Value ) ) )
+      foreach ( var _qutty in _materials )
+        if ( !IPR.IsAvailable( edc, _qutty.Key, Convert.ToDouble( _qutty.Value ) ) )
         {
           string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, quantity: {2} kg";
-          _validationErrors.Add( String.Format( _mssg, item.Key, Product.Batch, item.Value ) );
+          _validationErrors.Add( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value ) );
         }
-      }
       if ( _validationErrors.Count > 0 )
         throw new InputDataValidationException( "Batch content validate failed", "XML content validation", _validationErrors );
     }
