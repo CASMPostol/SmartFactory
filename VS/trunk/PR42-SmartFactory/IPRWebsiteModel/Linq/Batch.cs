@@ -41,11 +41,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       FGQuantity = contentInfo.Product.FGQuantity;
       MaterialQuantity = Convert.ToDouble( contentInfo.TotalTobacco );
       ProductType = contentInfo.Product.ProductType;
-      progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: interconnect" ) );
-      //interconnect 
       SKUIndex = contentInfo.SKULookup;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: Coefficients" ) );
-      //Coefficients
+      //Dependences
       Dust DustIndex = Linq.Dust.GetLookup( ProductType.Value, edc );
       BatchDustCooeficiency = DustIndex.DustRatio;
       DustCooeficiencyVersion = DustIndex.Wersja;
@@ -79,19 +77,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _shmcf = ( (SKUCigarette)SKUIndex ).MentholMaterial.Value ? SHMentholIndex.SHMentholRatio.Value : 0;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
       contentInfo.ProcessDisposals( edc, this, DustIndex.DustRatio.Value, _shmcf, WasteIndex.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
-      Dust = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.Material.DisposalsEnum.Dust ] );
-      SHMenthol = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.Material.DisposalsEnum.SHMenthol ] );
-      Waste = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.Material.DisposalsEnum.Waste ] );
-      Tobacco = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.Material.DisposalsEnum.Tobacco ] );
-      Overuse = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.Material.DisposalsEnum.OverusageInKg ] );
-      foreach ( var _invoice in InvoiceContent )
-      {
-        _invoice.CreateTitle();
-        if ( this.Available( _invoice.Quantity.Value ) )
-          _invoice.InvoiceContentStatus = InvoiceContentStatus.OK;
-        else
-          _invoice.InvoiceContentStatus = InvoiceContentStatus.NotEnoughQnt;
-      }
+      Dust = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.DisposalEnum.Dust ] );
+      SHMenthol = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.DisposalEnum.SHMenthol ] );
+      Waste = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.DisposalEnum.Waste ] );
+      Tobacco = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.DisposalEnum.Tobacco ] );
+      Overuse = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.DisposalEnum.OverusageInKg ] );
     }
     #endregion
 

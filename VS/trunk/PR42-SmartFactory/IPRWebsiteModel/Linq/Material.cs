@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -60,7 +61,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="edc">The edc.</param>
     /// <param name="ratios">The ratios.</param>
     /// <param name="overusage">The overusage.</param>
-    public void DisposalsAnalisis( Entities edc, Ratios ratios, double overusage )
+    public void CalculateCompensationComponents( Entities edc, Ratios ratios, double overusage )
     {
       decimal material = Convert.ToDecimal( this.TobaccoQuantity );
       List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, Batch );
@@ -68,40 +69,40 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         material = Convert.ToDecimal( _accounts[ 0 ].TobaccoNotAllocated.Value );
       if ( overusage > 0 )
       {
-        decimal _overuseInKg = this[ DisposalsEnum.OverusageInKg ] = ( material * Convert.ToDecimal( overusage ) ).RountMass();
+        decimal _overuseInKg = this[ DisposalEnum.OverusageInKg ] = ( material * Convert.ToDecimal( overusage ) ).RountMass();
         material -= _overuseInKg;
       }
-      decimal _dust = this[ DisposalsEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).RountMass();
-      decimal _shMenthol = this[ DisposalsEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).RountMass();
-      decimal _waste = this[ DisposalsEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).RountMass();
-      this[ DisposalsEnum.Tobacco ] = material - _shMenthol - _waste - _dust;
+      decimal _dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).RountMass();
+      decimal _shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).RountMass();
+      decimal _waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).RountMass();
+      this[ DisposalEnum.Tobacco ] = material - _shMenthol - _waste - _dust;
     }
     /// <summary>
     /// 
     /// </summary>
-    public enum DisposalsEnum
-    {
-      /// <summary>
-      /// The dust
-      /// </summary>
-      Dust,
-      /// <summary>
-      /// The SH menthol
-      /// </summary>
-      SHMenthol,
-      /// <summary>
-      /// The waste
-      /// </summary>
-      Waste,
-      /// <summary>
-      /// The overusage in kg
-      /// </summary>
-      OverusageInKg,
-      /// <summary>
-      /// The tobacco
-      /// </summary>
-      Tobacco
-    };
+    //public enum DisposalsEnum
+    //{
+    //  /// <summary>
+    //  /// The dust
+    //  /// </summary>
+    //  Dust,
+    //  /// <summary>
+    //  /// The SH menthol
+    //  /// </summary>
+    //  SHMenthol,
+    //  /// <summary>
+    //  /// The waste
+    //  /// </summary>
+    //  Waste,
+    //  /// <summary>
+    //  /// The overusage in kg
+    //  /// </summary>
+    //  OverusageInKg,
+    //  /// <summary>
+    //  /// The tobacco
+    //  /// </summary>
+    //  Tobacco
+    //};
     /// <summary>
     /// Gets the <see cref="System.Decimal" /> at the specified index.
     /// </summary>
@@ -110,27 +111,29 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </value>
     /// <param name="index">The index.</param>
     /// <returns></returns>
-    public decimal this[ DisposalsEnum index ]
+    public decimal this[ DisposalEnum index ]
     {
       get
       {
         double _ret = default( double );
         switch ( index )
         {
-          case DisposalsEnum.Dust:
+          case DisposalEnum.Dust:
             _ret = this.Dust.Value;
             break;
-          case DisposalsEnum.SHMenthol:
+          case DisposalEnum.SHMenthol:
             _ret = this.SHMenthol.Value;
             break;
-          case DisposalsEnum.Waste:
+          case DisposalEnum.Waste:
             _ret = this.Waste.Value;
             break;
-          case DisposalsEnum.OverusageInKg:
+          case DisposalEnum.OverusageInKg:
             _ret = this.Overuse.Value;
             break;
-          case DisposalsEnum.Tobacco:
+          case DisposalEnum.Tobacco:
             _ret = this.Tobacco.Value;
+            break;
+          default:
             break;
         }
         return Convert.ToDecimal( _ret );
@@ -140,20 +143,22 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         double _val = Convert.ToDouble( value );
         switch ( index )
         {
-          case DisposalsEnum.Dust:
+          case DisposalEnum.Dust:
             this.Dust = _val;
             break;
-          case DisposalsEnum.SHMenthol:
+          case DisposalEnum.SHMenthol:
             this.SHMenthol = _val;
             break;
-          case DisposalsEnum.Waste:
+          case DisposalEnum.Waste:
             this.Waste = _val;
             break;
-          case DisposalsEnum.OverusageInKg:
+          case DisposalEnum.OverusageInKg:
             this.Overuse = _val;
             break;
-          case DisposalsEnum.Tobacco:
+          case DisposalEnum.Tobacco:
             this.Tobacco = _val;
+            break;
+          default:
             break;
         }
       }
@@ -207,33 +212,59 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The tobacco total.
     /// </value>
     public decimal TobaccoTotal { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
-    /// <summary>
-    /// Creates shedow copy of the <see cref="Material"/> where quantities are negative, and compensation goods have value of 0.
-    /// </summary>
-    /// <param name="batch">The batch to be assigned to the lookup.</param>
-    /// <returns></returns>
-    public Material ReverseShedowCopy()
+    internal Material ReplaceByExistingOne( EntitySet<Material> materials, List<Material> _newMaterials )
     {
-      Material _ret = new Material()
+      Material _old = ( from _mx in materials where _mx.Batch.Contains( this.Batch ) select _mx ).FirstOrDefault<Material>();
+      if ( _old == null )
       {
-        Batch = this.Batch,
-        Dust = 0,
-        FGQuantity = -this.FGQuantity,
-        Material2BatchIndex = null,
-        Overuse = 0,
-        ProductID = this.ProductID,
-        ProductType = this.ProductType,
-        SHMenthol = 0,
-        SKU = this.SKU,
-        SKUDescription = this.SKUDescription,
-        StorLoc = this.StorLoc,
-        Title = this.Title,
-        Tobacco = 0,
-        TobaccoQuantity = -this.TobaccoQuantity,
-        Waste = 0
-      };
+        _newMaterials.Add( this );
+        return this;
+      }
+      Material _ret = _old;
+      _ret.FGQuantity = this.FGQuantity;
+      _ret.TobaccoQuantity = this.TobaccoQuantity;
       return _ret;
     }
+    internal void UpdateDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
+    {
+      foreach ( WebsiteModel.Linq.DisposalEnum _kind in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
+      {
+        try
+        {
+          if ( _kind == DisposalEnum.TobaccoInCigaretess || _kind == DisposalEnum.Cartons )
+            continue;
+          if ( ( ( _kind == DisposalEnum.SHMenthol ) || ( _kind == DisposalEnum.OverusageInKg ) ) && this[ _kind ] <= 0 )
+            continue;
+          decimal _toDispose = this[ _kind ];
+          List<Disposal> _disposals = Linq.Disposal.Disposals( this.Disposal, _kind );
+          foreach ( Linq.Disposal _dx in _disposals)
+          {
+            _dx.Adjust( ref _toDispose );
+            if ( _toDispose <= 0 )
+              throw new Updated();
+          }
+          progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _kind, this.Batch ) ) );
+          List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, this.Batch );
+          for ( int _aidx = 0; _aidx < _accounts.Count; _aidx++ )
+          {
+            _accounts[ _aidx ].AddDisposal( edc, _kind, ref _toDispose, this );
+            if ( _toDispose <= 0 )
+              throw new Updated();
+          }
+          string _mssg = "Cannot find IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
+          throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, this.Batch, parent.Batch0, _kind ), null, "IPR unrecognized account" );
+        }
+        catch ( Updated )
+        {
+          edc.SubmitChanges();
+        }
+        catch ( IPRDataConsistencyException _ex )
+        {
+          _ex.Add2Log( edc );
+        }
+      }
+    }
+    private class Updated: Exception { }
     #endregion
 
     #region private
