@@ -149,11 +149,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       if ( this.CustomsStatus.Value != Linq.CustomsStatus.NotStarted )
         return;
-      decimal _2Add = this.Disposal2IPRIndex.TobaccoNotAllocatedDec - _toDispose;
-      if ( _2Add <= 0 )
+      if ( this.Disposal2IPRIndex.TobaccoNotAllocated.Value <= 0 )
         return;
+      decimal _diff = _toDispose - this.SettledQuantityDec;
+      decimal _2Add = Math.Min( _diff, this.Disposal2IPRIndex.TobaccoNotAllocatedDec );
       this.SettledQuantity = Convert.ToDouble( this.SettledQuantityDec + _2Add );
       _toDispose -= _2Add;
+      this.Disposal2IPRIndex.TobaccoNotAllocated -= Convert.ToDouble( _diff );
+      this.SetUpCalculatedColumns( Linq.ClearingType.PartialWindingUp );
+    }
+    internal decimal SettledQuantityDec
+    {
+      get { return Convert.ToDecimal( this.SettledQuantity ); }
+      set { this.SettledQuantity = Convert.ToDouble( value ); }
     }
     #endregion
 
@@ -213,7 +221,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return _ret;
       }
     }
-    private decimal SettledQuantityDec { get { return Convert.ToDecimal( this.SettledQuantity ); } }
     #endregion
 
   }
