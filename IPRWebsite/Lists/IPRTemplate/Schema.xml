@@ -79,40 +79,41 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{B666BBEE-46EC-4E0D-B782-68BC5E9B561A}" Name="IPR2ConsentTitle" />
-          <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />
-          <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
-          <FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />
-          <FieldRef ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}" Name="ProductivityRateMax" />
-          <FieldRef ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}" Name="ConsentPeriod" />
-          <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
-          <FieldRef ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}" Name="CustomsDebtDate" />
-          <FieldRef ID="{4D811640-9BD7-4E6D-B081-08B84B6C8123}" Name="OGLValidTo" />
-          <FieldRef ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}" Name="TobaccoName" />
-          <FieldRef ID="{01F8D41D-F043-4C23-8D7E-FA7BDAC4B8A0}" Name="Grade" />
-          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
-          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
-          <FieldRef ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}" Name="DutyName" />
-          <FieldRef ID="{A71AE110-34D7-4468-A64E-00BD0B4A76D5}" Name="Duty" />
-          <FieldRef ID="{0F0388EF-3847-4795-BDE8-CA338B55CDAC}" Name="IPRDutyPerUnit" />
-          <FieldRef ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}" Name="VATName" />
-          <FieldRef ID="{1C4FC96E-0E0C-4DBF-96FB-FEC8E079D18B}" Name="VAT"/>
-          <FieldRef ID="{6D2D089E-CA30-4875-AE10-D1A86A5C4EF1}" Name="IPRVATPerUnit" />
-          <FieldRef ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}" Name="NetMass" />
-          <FieldRef ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" Name="GrossMass" />
-          <FieldRef ID="{EC985ABA-7AA4-4603-86E6-904837CF0F77}" Name="Cartons" />
-          <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
-          <FieldRef ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}" Name="Value" />
-          <FieldRef ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}" Name="Currency" />
-          <FieldRef ID="{AEB25DE4-D291-4EAC-B397-8FF3E387A609}" Name="IPRUnitPrice" />
-          <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
-          <FieldRef ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}" Name="AccountBalance" />
-          <FieldRef ID="{8C385B9F-6442-4FB5-8258-961C9A723492}" Name="TobaccoNotAllocated" />
-          <FieldRef ID="{FDFA2B02-4073-4A29-B694-4CF4001A5357}" Name="IPR2PCNPCN" />
-          <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
-          <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
-          <FieldRef ID="{787756CE-4DEB-46DB-B092-BAED5DBAFA86}" Name="IPRLibraryIndex" />
-          <FieldRef ID="{2291900F-0EE8-4A1D-9FA1-92F8DB60AF41}" Name="AccountClosed" />
+          <FieldRef Name="IPR2ConsentTitle" />
+          <FieldRef Name="ValidFromDate" />
+          <FieldRef Name="ValidToDate" />
+          <FieldRef Name="ProductivityRateMin" />
+          <FieldRef Name="ProductivityRateMax" />
+          <FieldRef Name="ConsentPeriod" />
+          <FieldRef Name="DocumentNo" />
+          <FieldRef Name="CustomsDebtDate" />
+          <FieldRef Name="OGLValidTo" />
+          <FieldRef Name="TobaccoName" />
+          <FieldRef Name="Grade" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="DutyName" />
+          <FieldRef Name="Duty" />
+          <FieldRef Name="IPRDutyPerUnit" />
+          <FieldRef Name="VATName" />
+          <FieldRef Name="VAT"/>
+          <FieldRef Name="IPRVATPerUnit" />
+          <FieldRef Name="NetMass" />
+          <FieldRef Name="GrossMass" />
+          <FieldRef Name="Cartons" />
+          <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="Value" />
+          <FieldRef Name="Currency" />
+          <FieldRef Name="IPRUnitPrice" />
+          <FieldRef Name="ClosingDate" />
+          <FieldRef Name="AccountBalance" />
+          <FieldRef Name="TobaccoNotAllocated" />
+          <FieldRef Name="IPR2PCNPCN" />
+          <FieldRef Name="JSOXIndex" />
+          <FieldRef Name="ClearenceIndex" />
+          <FieldRef Name="IPRLibraryIndex" />
+          <FieldRef Name="AccountClosed" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -132,15 +133,15 @@
         <ViewFields>
           <FieldRef Name="Title">
           </FieldRef>
-          <FieldRef ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}" Name="CustomsDebtDate" />
-          <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
-          <FieldRef ID="{01F8D41D-F043-4C23-8D7E-FA7BDAC4B8A0}" Name="Grade" />
-          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
-          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
-          <FieldRef ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}" Name="NetMass" />
-          <FieldRef ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}" Name="AccountBalance" />
-          <FieldRef ID="{EC985ABA-7AA4-4603-86E6-904837CF0F77}" Name="Cartons" />
-          <FieldRef ID="{2291900F-0EE8-4A1D-9FA1-92F8DB60AF41}" Name="AccountClosed" />
+          <FieldRef Name="CustomsDebtDate" />
+          <FieldRef Name="DocumentNo" />
+          <FieldRef Name="Grade" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="NetMass" />
+          <FieldRef Name="AccountBalance" />
+          <FieldRef Name="Cartons" />
+          <FieldRef Name="AccountClosed" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -160,24 +161,24 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">1</RowLimit>
         <ViewFields>
-          <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
-          <FieldRef ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}" Name="CustomsDebtDate" />
-          <FieldRef ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}" Name="TobaccoName" />
-          <FieldRef ID="{01F8D41D-F043-4C23-8D7E-FA7BDAC4B8A0}" Name="Grade" />
-          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
-          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
-          <FieldRef ID="{FDFA2B02-4073-4A29-B694-4CF4001A5357}" Name="IPR2PCNPCN" />
-          <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
-          <FieldRef ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}" Name="DutyName" />
-          <FieldRef ID="{0F0388EF-3847-4795-BDE8-CA338B55CDAC}" Name="IPRDutyPerUnit" />
-          <FieldRef ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}" Name="VATName" />
-          <FieldRef ID="{6D2D089E-CA30-4875-AE10-D1A86A5C4EF1}" Name="IPRVATPerUnit" />
-          <FieldRef ID="{DB454782-449A-4EC5-B0CD-55A7D7AF3428}" Name="NetMass" />
-          <FieldRef ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}" Name="GrossMass" />
-          <FieldRef ID="{EC985ABA-7AA4-4603-86E6-904837CF0F77}" Name="Cartons" />
-          <FieldRef ID="{B666BBEE-46EC-4E0D-B782-68BC5E9B561A}" Name="IPR2ConsentTitle" />
-          <FieldRef ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}" Name="ProductivityRateMin" />
-          <FieldRef ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}" Name="ProductivityRateMax" />
+          <FieldRef Name="DocumentNo" />
+          <FieldRef Name="CustomsDebtDate" />
+          <FieldRef Name="TobaccoName" />
+          <FieldRef Name="Grade" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="IPR2PCNPCN" />
+          <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="DutyName" />
+          <FieldRef Name="IPRDutyPerUnit" />
+          <FieldRef Name="VATName" />
+          <FieldRef Name="IPRVATPerUnit" />
+          <FieldRef Name="NetMass" />
+          <FieldRef Name="GrossMass" />
+          <FieldRef Name="Cartons" />
+          <FieldRef Name="IPR2ConsentTitle" />
+          <FieldRef Name="ProductivityRateMin" />
+          <FieldRef Name="ProductivityRateMax" />
         </ViewFields>
         <Query>
           <OrderBy>

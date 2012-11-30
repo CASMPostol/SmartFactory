@@ -71,40 +71,39 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <FieldRef Name="Attachments">
-          </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
-          <FieldRef ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}" Name="SADDocumentNo" />
-          <FieldRef ID="{1CBC328D-A936-4125-A6C6-A2E0E956D250}" Name="SADDate" />
-          <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
-          <FieldRef ID="{4B9400B7-9A5D-4E55-84BF-7B609CF963F2}" Name="IPRDocumentNo" />
-          <FieldRef ID="{333AB237-93FB-4910-B2FC-9A08A08643DA}" Name="SettledQuantity" />
-          <FieldRef ID="{51E5B961-8234-4009-81C0-C6059298044F}" Name="DisposalStatus" />
-          <FieldRef ID="{298F8DD7-97D6-4FE0-8A1F-08621BCF807A}" Name="CustomsStatus" />
-          <FieldRef ID="{D627706D-419D-4C96-8B2E-3D5A2A9DF09F}" Name="Disposal2BatchSKU_sec"/>
-          <FieldRef ID="{646992B5-B37B-40B0-8035-91A15A42E088}" Name="Disposal2BatchBatch_sec" />
-          <FieldRef ID="{9B890369-B6CC-403E-A921-F9E686EF094C}" Name="DutyPerSettledAmount" />
-          <FieldRef ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}" Name="VATPerSettledAmount" />
-          <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />
-          <FieldRef ID="{3F511117-AE6F-40FF-801C-C8765D68E86D}" Name="TobaccoValue" />
-          <FieldRef ID="{1D6BC072-6075-4E21-9271-B19B52F96D1C}" Name="Disposal2IPRCurrency_sec" />
-          <FieldRef ID="{0E24A674-1FE7-4C77-9106-387E12417644}" Name="RemainingQuantity" />
-          <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
-          <FieldRef ID="{5B25CD17-51A4-4807-86DE-56B773C7DEB7}" Name="Disposal2PCNID" />
-          <FieldRef ID="{1075A488-94A3-4937-9806-264381DE1542}" Name="PCNCompensationGood" />
-          <FieldRef ID="{03524E3C-0A1F-4FFD-9AA5-154BDF15922B}" Name="Disposal2PCNPCN_sec" />
-          <FieldRef ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Name="ClearingType" />
-          <FieldRef ID="{10C39E4D-192E-4FB7-8A14-A8CE732B41D7}" Name="Disposal2IPRBatch_sec" />
-          <FieldRef ID="{AD5CAC03-2C3B-4E43-90AD-4E5C9A80B76C}" Name="Disposal2ClearenceIndex" />
-          <FieldRef ID="{6E87DAC8-1B60-4246-97E1-9D0DC221F268}" Name="JSOXCustomsSummaryIndex" />
-          <FieldRef ID="{5F667AC8-B2AB-4482-B3C9-54DEB82A8DC7}" Name="Disposal2BatchIndex" />
-          <FieldRef ID="{C0A4DD0E-A06E-40D4-BFE1-682D3C071AC1}" Name="Disposal2IPRIndex" />
-          <FieldRef ID="{D9074909-785D-480D-944D-D9A813D9C97D}" Name="Disposal2MaterialIndex" />
-          <FieldRef ID="{A1711488-2BB4-428F-8F08-210D206F0CA1}" Name="Disposal2InvoiceContentIndex" />
-          <FieldRef ID="{8c06beca-0777-48f7-91c7-6da68bc07b69}" Name="Created"/>
-          <FieldRef ID="{1df5e554-ec7e-46a6-901d-d85a3881cb18}" Name="Author" />
+          <FieldRef Name="No" />
+          <FieldRef Name="SADDocumentNo" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="IPRDocumentNo" />
+          <FieldRef Name="SettledQuantity" />
+          <FieldRef Name="DisposalStatus" />
+          <FieldRef Name="CustomsStatus" />
+          <FieldRef Name="Disposal2BatchSKU_sec"/>
+          <FieldRef Name="Disposal2BatchBatch_sec" />
+          <FieldRef Name="DutyPerSettledAmount" />
+          <FieldRef Name="VATPerSettledAmount" />
+          <FieldRef Name="DutyAndVAT" />
+          <FieldRef Name="TobaccoValue" />
+          <FieldRef Name="Disposal2IPRCurrency_sec" />
+          <FieldRef Name="RemainingQuantity" />
+          <FieldRef Name="CustomsProcedure" />
+          <FieldRef Name="Disposal2PCNID" />
+          <FieldRef Name="PCNCompensationGood" />
+          <FieldRef Name="Disposal2PCNPCN_sec" />
+          <FieldRef Name="ClearingType" />
+          <FieldRef Name="Disposal2IPRBatch_sec" />
+          <FieldRef Name="Disposal2ClearenceIndex" />
+          <FieldRef Name="JSOXCustomsSummaryIndex" />
+          <FieldRef Name="Disposal2BatchIndex" />
+          <FieldRef Name="Disposal2IPRIndex" />
+          <FieldRef Name="Disposal2MaterialIndex" />
+          <FieldRef Name="Disposal2InvoiceContentIndex" />
+          <FieldRef Name="Created"/>
+          <FieldRef Name="Author" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -122,18 +121,18 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
-          <FieldRef ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}" Name="SADDocumentNo" />
-          <FieldRef ID="{1CBC328D-A936-4125-A6C6-A2E0E956D250}" Name="SADDate" />
-          <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
-          <FieldRef ID="{333AB237-93FB-4910-B2FC-9A08A08643DA}" Name="SettledQuantity" />
-          <FieldRef ID="{9B890369-B6CC-403E-A921-F9E686EF094C}" Name="DutyPerSettledAmount" />
-          <FieldRef ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}" Name="VATPerSettledAmount" />
-          <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />
-          <FieldRef ID="{0E24A674-1FE7-4C77-9106-387E12417644}" Name="RemainingQuantity" />
-          <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
-          <FieldRef ID="{1075A488-94A3-4937-9806-264381DE1542}" Name="PCNCompensationGood" />
-          <FieldRef ID="{03524E3C-0A1F-4FFD-9AA5-154BDF15922B}" Name="Disposal2PCNPCN_sec" />
+          <FieldRef Name="No" />
+          <FieldRef Name="SADDocumentNo" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="SettledQuantity" />
+          <FieldRef Name="DutyPerSettledAmount" />
+          <FieldRef Name="VATPerSettledAmount" />
+          <FieldRef Name="DutyAndVAT" />
+          <FieldRef Name="RemainingQuantity" />
+          <FieldRef Name="CustomsProcedure" />
+          <FieldRef Name="PCNCompensationGood" />
+          <FieldRef Name="Disposal2PCNPCN_sec" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -157,18 +156,18 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <FieldRef ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}" Name="No" />
-          <FieldRef ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}" Name="SADDocumentNo" />
-          <FieldRef ID="{1CBC328D-A936-4125-A6C6-A2E0E956D250}" Name="SADDate" />
-          <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
-          <FieldRef ID="{333AB237-93FB-4910-B2FC-9A08A08643DA}" Name="SettledQuantity" />
-          <FieldRef ID="{9B890369-B6CC-403E-A921-F9E686EF094C}" Name="DutyPerSettledAmount" />
-          <FieldRef ID="{6AA3AB04-1DC6-4E5A-8602-BC0B06F9386A}" Name="VATPerSettledAmount" />
-          <FieldRef ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}" Name="DutyAndVAT" />
-          <FieldRef ID="{0E24A674-1FE7-4C77-9106-387E12417644}" Name="RemainingQuantity" />
-          <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
-          <FieldRef ID="{1075A488-94A3-4937-9806-264381DE1542}" Name="PCNCompensationGood" />
-          <FieldRef ID="{03524E3C-0A1F-4FFD-9AA5-154BDF15922B}" Name="Disposal2PCNPCN_sec" />
+          <FieldRef Name="No" />
+          <FieldRef Name="SADDocumentNo" />
+          <FieldRef Name="SADDate" />
+          <FieldRef Name="InvoiceNo" />
+          <FieldRef Name="SettledQuantity" />
+          <FieldRef Name="DutyPerSettledAmount" />
+          <FieldRef Name="VATPerSettledAmount" />
+          <FieldRef Name="DutyAndVAT" />
+          <FieldRef Name="RemainingQuantity" />
+          <FieldRef Name="CustomsProcedure" />
+          <FieldRef Name="PCNCompensationGood" />
+          <FieldRef Name="Disposal2PCNPCN_sec" />
         </ViewFields>
         <Query>
           <GroupBy Collapse="FALSE">
