@@ -113,6 +113,7 @@
           <FieldRef Name="CTFUsageMin" />
           <FieldRef Name="CTFUsageMax" />
           <FieldRef Name="UsageVersion" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <OrderBy>

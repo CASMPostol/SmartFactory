@@ -75,6 +75,7 @@
           <FieldRef Name="Tobacco" />
           <FieldRef Name="SHMenthol" />
           <FieldRef Name="Material2BatchIndex" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <OrderBy>
