@@ -12,7 +12,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   public abstract class SummaryContentInfo: SortedList<string, Material>
   {
     #region ctor
-    public SummaryContentInfo()
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SummaryContentInfo" /> class.
+    /// </summary>
+    protected SummaryContentInfo()
     {
       AccumulatedDisposalsAnalisis = new DisposalsAnalisis();
     }
@@ -82,18 +85,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         List<Material> _newMaterialList = new List<Material>();
         foreach ( Material _materialX in this.Values )
         {
-          if ( _materialX.ProductType.Value != ProductType.IPRTobacco )
-            continue;
           progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
-          Material _oldMAterial = _materialX.ReplaceByExistingOne( parent.Material, _newMaterialList );
+          Material _oldMAterial = _materialX.ReplaceByExistingOne( parent.Material, _newMaterialList, parent );
           Material.Ratios _mr = new Material.Ratios { dustRatio = dustRatio, shMentholRatio = shMentholRatio, wasteRatio = wasteRatio };
           _oldMAterial.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
           progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
           AccumulatedDisposalsAnalisis.Accumutate( _oldMAterial );
           _oldMAterial.UpdateDisposals( edc, parent, progressChanged );
           progressChanged( this, new ProgressChangedEventArgs( 1, "SubmitChanges" ) );
-          if (_newMaterialList.Count > 0)
-          edc.Material.InsertAllOnSubmit(_newMaterialList);
+          if ( _newMaterialList.Count > 0 )
+            edc.Material.InsertAllOnSubmit( _newMaterialList );
         }
       }
       catch ( Exception _ex )
@@ -106,6 +107,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Validates this instance.
     /// </summary>
     /// <param name="edc">The edc.</param>
+    /// <param name="disposals">The disposals.</param>
     /// <exception cref="InputDataValidationException">Batch content validate failed;XML content validation</exception>
     public void Validate( Entities edc, EntitySet<Disposal> disposals )
     {

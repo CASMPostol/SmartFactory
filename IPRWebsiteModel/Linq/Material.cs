@@ -212,11 +212,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The tobacco total.
     /// </value>
     public decimal TobaccoTotal { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
-    internal Material ReplaceByExistingOne( EntitySet<Material> materials, List<Material> _newMaterials )
+    internal Material ReplaceByExistingOne( EntitySet<Material> materials, List<Material> _newMaterials, Linq.Batch parent )
     {
       Material _old = ( from _mx in materials where _mx.Batch.Contains( this.Batch ) select _mx ).FirstOrDefault<Material>();
       if ( _old == null )
       {
+        this.Material2BatchIndex = parent;
         _newMaterials.Add( this );
         return this;
       }
