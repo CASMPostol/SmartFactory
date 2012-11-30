@@ -75,7 +75,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal _dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).RountMass();
       decimal _shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).RountMass();
       decimal _waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).RountMass();
-      this[ DisposalEnum.Tobacco ] = material - _shMenthol - _waste - _dust;
+      this[ DisposalEnum.TobaccoInCigaretess ] = material - _shMenthol - _waste - _dust;
     }
     /// <summary>
     /// 
@@ -130,7 +130,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           case DisposalEnum.OverusageInKg:
             _ret = this.Overuse.Value;
             break;
-          case DisposalEnum.Tobacco:
+          case DisposalEnum.TobaccoInCigaretess:
             _ret = this.Tobacco.Value;
             break;
           default:
@@ -155,7 +155,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           case DisposalEnum.OverusageInKg:
             this.Overuse = _val;
             break;
-          case DisposalEnum.Tobacco:
+          case DisposalEnum.TobaccoInCigaretess:
             this.Tobacco = _val;
             break;
           default:
@@ -232,17 +232,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         try
         {
-          if ( _kind == DisposalEnum.TobaccoInCigaretess || _kind == DisposalEnum.Cartons )
+          if ( _kind == DisposalEnum.Tobacco || _kind == DisposalEnum.Cartons )
             continue;
           if ( ( ( _kind == DisposalEnum.SHMenthol ) || ( _kind == DisposalEnum.OverusageInKg ) ) && this[ _kind ] <= 0 )
             continue;
           decimal _toDispose = this[ _kind ];
           List<Disposal> _disposals = Linq.Disposal.Disposals( this.Disposal, _kind );
-          foreach ( Linq.Disposal _dx in _disposals )
+          if ( _disposals.Count<Disposal>() > 0 )
           {
-            _dx.Adjust( ref _toDispose );
-            if ( _toDispose <= 0 )
-              throw new Updated();
+            _toDispose -= _disposals.Sum<Disposal>( x => x.SettledQuantityDec );
+            foreach ( Linq.Disposal _dx in _disposals )
+            {
+              _dx.Adjust( ref _toDispose );
+              if ( _toDispose <= 0 )
+                throw new Updated();
+            }
           }
           progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _kind, this.Batch ) ) );
           List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, this.Batch );
