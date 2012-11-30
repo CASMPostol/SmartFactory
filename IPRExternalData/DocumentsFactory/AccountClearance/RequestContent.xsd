@@ -33,4 +33,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="DisposalContent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="No" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="SADDocumentNo" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="SADDate" type="xs:dateTime" />
+        <xs:element minOccurs="1" maxOccurs="1" name="InvoiceNo" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="SettledQuantity" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="DutyPerSettledAmount" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="VATPerSettledAmount" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="DutyAndVAT" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="RemainingQuantity" type="xs:double" />
+        <xs:element minOccurs="1" maxOccurs="1" name="CustomsProcedure" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ProductCodeNumber" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
