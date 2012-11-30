@@ -13,7 +13,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   public partial class Disposal
   {
     #region public
-
     /// <summary>
     /// Exports the specified entities.
     /// </summary>
@@ -148,16 +147,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void Adjust( ref decimal _toDispose )
     {
-      if ( this.CustomsStatus.Value == Linq.CustomsStatus.NotStarted )
-      {
-        decimal _2Add = this.Disposal2IPRIndex.TobaccoNotAllocatedDec - _toDispose;
-        if ( _2Add <= 0 )
-          return;
-        this.SettledQuantity = Convert.ToDouble( this.SettledQuantityDec + _2Add );
-        _toDispose -= _2Add;
-      }
-      else
-        ;
+      if ( this.CustomsStatus.Value != Linq.CustomsStatus.NotStarted )
+        return;
+      decimal _2Add = this.Disposal2IPRIndex.TobaccoNotAllocatedDec - _toDispose;
+      if ( _2Add <= 0 )
+        return;
+      this.SettledQuantity = Convert.ToDouble( this.SettledQuantityDec + _2Add );
+      _toDispose -= _2Add;
     }
     #endregion
 
@@ -217,9 +213,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return _ret;
       }
     }
+    private decimal SettledQuantityDec { get { return Convert.ToDecimal( this.SettledQuantity ); } }
     #endregion
 
-
-    private decimal SettledQuantityDec { get { return Convert.ToDecimal( this.SettledQuantity ); } }
   }
 }
