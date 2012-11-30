@@ -237,7 +237,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             continue;
           decimal _toDispose = this[ _kind ];
           List<Disposal> _disposals = Linq.Disposal.Disposals( this.Disposal, _kind );
-          foreach ( Linq.Disposal _dx in _disposals)
+          foreach ( Linq.Disposal _dx in _disposals )
           {
             _dx.Adjust( ref _toDispose );
             if ( _toDispose <= 0 )
@@ -254,10 +254,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           string _mssg = "Cannot find IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
           throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, this.Batch, parent.Batch0, _kind ), null, "IPR unrecognized account" );
         }
-        catch ( Updated )
-        {
-          edc.SubmitChanges();
-        }
+        catch ( Updated ) { }
         catch ( IPRDataConsistencyException _ex )
         {
           _ex.Add2Log( edc );

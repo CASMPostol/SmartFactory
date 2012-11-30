@@ -79,20 +79,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       try
       {
         //InsertAllOnSubmit( edc, parent );
-        List<Material> _newMaterials = new List<Material>();
+        List<Material> _newMaterialList = new List<Material>();
         foreach ( Material _materialX in this.Values )
         {
           if ( _materialX.ProductType.Value != ProductType.IPRTobacco )
             continue;
           progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
-          Material _oldMAterial = _materialX.ReplaceByExistingOne( parent.Material, _newMaterials );
+          Material _oldMAterial = _materialX.ReplaceByExistingOne( parent.Material, _newMaterialList );
           Material.Ratios _mr = new Material.Ratios { dustRatio = dustRatio, shMentholRatio = shMentholRatio, wasteRatio = wasteRatio };
           _oldMAterial.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
           progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
           AccumulatedDisposalsAnalisis.Accumutate( _oldMAterial );
           _oldMAterial.UpdateDisposals( edc, parent, progressChanged );
           progressChanged( this, new ProgressChangedEventArgs( 1, "SubmitChanges" ) );
-          edc.SubmitChanges();
+          if (_newMaterialList.Count > 0)
+          edc.Material.InsertAllOnSubmit(_newMaterialList);
         }
       }
       catch ( Exception _ex )

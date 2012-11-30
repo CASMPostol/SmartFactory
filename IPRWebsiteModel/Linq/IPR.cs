@@ -67,7 +67,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="material">The material.</param>
     public void AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity, Material material )
     {
-      DisposalEnum _dsposl = default( DisposalEnum );
       AddDisposal( edc, status, ref quantity, material, null );
     }
     /// <summary>
