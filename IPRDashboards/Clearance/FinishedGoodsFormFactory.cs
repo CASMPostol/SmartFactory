@@ -20,7 +20,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       int _position = 1;
       List<CigaretteExportForm> _consignment = new List<CigaretteExportForm>();
       foreach ( InvoiceContent item in invoice.InvoiceContent )
-        ExportInvoiceEntry( item, entities, _consignment, clearance, documentName, ref _position );
+        ExportInvoiceEntry( item, entities, _consignment, documentName, ref _position );
       invoice.InvoiceLibraryReadOnly = true;
       invoice.ClearenceIndex = clearance;
       return GetCigaretteExportFormCollection( _consignment, documentName, invoice.BillDoc );
@@ -41,9 +41,9 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       };
       return _ret;
     }
-    internal static CigaretteExportForm GetCigaretteExportForm
-       ( Batch batch, InvoiceContent invoice, double portion, List<Ingredient> ingredients, string documentName, ref int subdocumentNo, ClearenceProcedure procedure )
+    internal static CigaretteExportForm GetCigaretteExportForm( Batch batch, InvoiceContent invoice, List<Ingredient> ingredients, string documentName, ref int subdocumentNo, ClearenceProcedure procedure )
     {
+      double _portion = invoice.Quantity.Value / batch.FGQuantity.Value;
       CigaretteExportForm _ret = new CigaretteExportForm();
       if ( batch == null )
         throw new ArgumentNullException( "Batch cannot be null" );
@@ -52,16 +52,16 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       if ( invoice == null )
         throw new ArgumentNullException( "Invoice cannot be null" );
       _ret.DocumentNo = String.Format( GlobalDefinitions.CigaretteExportFormNamePatern, documentName, subdocumentNo++ );
-      _ret.DustKg = ( batch.Dust.GetValueOrDefault( -1 ) * portion ).RountMass();
+      _ret.DustKg = ( batch.Dust.GetValueOrDefault( -1 ) * _portion ).RountMass();
       CountExportFormTotals( ingredients, _ret );
-      _ret.Portion = portion;
+      _ret.Portion = _portion;
       _ret.CustomsProcedure = Entities.ToString( procedure );
       _ret.FinishedGoodBatch = batch.Batch0;
       _ret.FinishedGoodQantity = invoice.Quantity.GetValueOrDefault( 0 );
       _ret.FinishedGoodUnit = invoice.Units.GetLocalizedString();
       _ret.FinishedGoodSKU = batch.SKUIndex.SKU;
       _ret.FinishedGoodSKUDescription = batch.SKUIndex.Title();
-      _ret.MaterialTotal = ( batch.Tobacco.GetValueOrDefault( -1 ) * portion ).RountMass();
+      _ret.MaterialTotal = ( batch.Tobacco.GetValueOrDefault( -1 ) * _portion ).RountMass();
       _ret.ProductFormat = batch.SKUIndex.FormatIndex.Title();
       _ret.CTFUsageMin = batch.CFTProductivityRateMin.GetValueOrDefault( -1 ) * 100;
       _ret.CTFUsageMax = batch.CFTProductivityRateMax.GetValueOrDefault( -1 ) * 100;
@@ -84,8 +84,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         default:
           throw new ApplicationError( "InvoiceLib.CigaretteExportForm", "Product", "Wrong ProductType", null );
       }
-      _ret.SHMentholKg = ( batch.SHMenthol.GetValueOrDefault( -1 ) * portion ).RountMass();
-      _ret.WasteKg = ( batch.Waste.GetValueOrDefault( -1 ) * portion ).RountMass();
+      _ret.SHMentholKg = ( batch.SHMenthol.GetValueOrDefault( -1 ) * _portion ).RountMass();
+      _ret.WasteKg = ( batch.Waste.GetValueOrDefault( -1 ) * _portion ).RountMass();
       _ret.IPRRestMaterialQantityTotal = _ret.DustKg + _ret.SHMentholKg + _ret.WasteKg;
       _ret.TobaccoTotal = ( _ret.IPTMaterialQuantityTotal + _ret.RegularMaterialQuantityTotal + _ret.IPRRestMaterialQantityTotal ).RountMass();
       return _ret;
@@ -118,7 +118,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
 
     #region private
     private static void ExportInvoiceEntry
-      ( InvoiceContent invoice, Entities entities, List<CigaretteExportForm> formsList, Clearence clearence, string documentName, ref int subdocumentNo )
+      ( InvoiceContent invoice, Entities entities, List<CigaretteExportForm> formsList, string documentName, ref int subdocumentNo )
     {
       string _at = "beginning";
       Batch batch = invoice.InvoiceContent2BatchIndex;
@@ -127,13 +127,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         bool _closingBatch = batch.FGQuantityAvailable == invoice.Quantity.Value;
         _at = "FGQuantityAvailable";
         batch.FGQuantityAvailable = Convert.ToDouble( Convert.ToDecimal( batch.FGQuantityAvailable.Value ) - Convert.ToDecimal( invoice.Quantity.Value ) );
-        double _portion = invoice.Quantity.Value / batch.FGQuantity.Value;
         List<Ingredient> _ingredients = new List<Ingredient>();
         _at = "foreach";
         foreach ( Material _materialIdx in batch.Material )
-          ExportMaterial( _materialIdx, entities, _ingredients, clearence, _closingBatch, invoice.InvoiceIndex.BillDoc, _portion, invoice );
+          ExportMaterial( entities, _materialIdx, _ingredients, _closingBatch, invoice );
         _at = "_exportConsignment";
-        CigaretteExportForm _form = GetCigaretteExportForm( batch, invoice, _portion, _ingredients, documentName, ref subdocumentNo, clearence.ClearenceProcedure.Value );
+        CigaretteExportForm _form = GetCigaretteExportForm( batch, invoice, _ingredients, documentName, ref subdocumentNo, invoice.InvoiceIndex.ClearenceIndex.ClearenceProcedure.Value );
         formsList.Add( _form );
       }
       catch ( ApplicationError _ar )
@@ -146,36 +145,25 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         throw new ApplicationError( "Batch.Export", _at, String.Format( _tmpl, batch.Batch0, _ex.Message ), _ex );
       }
     }
-    private static void ExportMaterial( Material material, Entities entities, List<Ingredient> formsList, Clearence clearence, bool closingBatch, string invoiceNoumber, double portion, InvoiceContent invoiceContent )
+    private static void ExportMaterial
+      ( Entities entities, Material material, List<Ingredient> formsList, bool closingBatch, InvoiceContent invoiceContent )
     {
       string _at = "Beginning";
       try
       {
         if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.IPRTobacco )
         {
-          decimal _quantity = material.CalculatedQuantity( portion );
-          _at = "GetListOfDisposals";
-          foreach ( Disposal _disposal in material.GetListOfDisposals() )
-          {
-            if ( !closingBatch && _quantity == 0 )
-              break;
-            _at = "_disposal.Export(";
-            _disposal.Export( entities, clearence, ref _quantity, closingBatch, invoiceNoumber, invoiceContent );
-            _at = "SubmitChanges";
-            entities.SubmitChanges();
-            formsList.Add( GetIPRIngredient( _disposal ) );
-          }
-          if ( !closingBatch )
-          {
-            //assertion
-            string _template = "It is imposible the find the material {0} of {1} kg for invoice {2} on any IPR account";
-            ActivityLogCT.Assert( entities, _quantity == 0, "Material.Export", string.Format( _template, material.Batch, _quantity, invoiceNoumber ) );
-          }
+          List<Disposal> _dspsls = new List<Disposal>();
+          material.Export( entities, closingBatch, invoiceContent, _dspsls );
+          _at = "SubmitChanges";
+          entities.SubmitChanges();
+          foreach ( Disposal _dx in _dspsls )
+            formsList.Add( GetIPRIngredient( _dx ) );
         }
         else if ( material.ProductType.Value == IPR.WebsiteModel.Linq.ProductType.Tobacco )
         {
           _at = "RegularIngredient";
-          RegularIngredient _ri = new RegularIngredient( material.Batch, material.SKU, material.UsedQuantity( portion ) );
+          RegularIngredient _ri = new RegularIngredient( material.Batch, material.SKU, Convert.ToDouble( material.CalculatedQuantity( invoiceContent ) ) );
           formsList.Add( _ri );
         }
       }
@@ -189,6 +177,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         throw new ApplicationError( "Material.Export", _at, String.Format( _tmpl, material.Material2BatchIndex.Title, _ex.Message ), _ex );
       }
     }
+
     private static void CountExportFormTotals( List<Ingredient> ingredients, CigaretteExportForm form )
     {
       form.Ingredients = ingredients.ToArray();

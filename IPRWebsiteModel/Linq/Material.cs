@@ -40,7 +40,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Ratios 
     /// </summary>
-    public struct Ratios
+    internal struct Ratios
     {
       /// <summary>
       /// The dust ratio
@@ -61,12 +61,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="edc">The edc.</param>
     /// <param name="ratios">The ratios.</param>
     /// <param name="overusage">The overusage.</param>
-    public void CalculateCompensationComponents( Entities edc, Ratios ratios, double overusage )
+    internal void CalculateCompensationComponents( Entities edc, Ratios ratios, double overusage )
     {
       decimal material = Convert.ToDecimal( this.TobaccoQuantity );
       List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, Batch );
       if ( _accounts.Count == 1 && Math.Abs( Convert.ToDecimal( _accounts[ 0 ].TobaccoNotAllocated.Value ) - material ) < 1 )
-        material = Convert.ToDecimal( _accounts[ 0 ].TobaccoNotAllocated.Value );
+        material = _accounts[ 0 ].TobaccoNotAllocatedDec;
       if ( overusage > 0 )
       {
         decimal _overuseInKg = this[ DisposalEnum.OverusageInKg ] = ( material * Convert.ToDecimal( overusage ) ).RountMass();
@@ -166,20 +166,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Get portion of calculated tobacco quantity.
     /// </summary>
-    /// <param name="portion">The portion.</param>
-    /// <returns>Returns portion of calculated tobacco quantity. i.e. after removing compensation wast, dust, SHMethol, etc.</returns>
-    public decimal CalculatedQuantity( double portion )
+    /// <param name="invoice">The invoice.</param>
+    /// <returns>
+    /// Returns portion of calculated tobacco quantity. i.e. after removing compensation wast, dust, SHMethol, etc.
+    /// </returns>
+    public decimal CalculatedQuantity( InvoiceContent invoice )
     {
-      return Convert.ToDecimal( ( this.Tobacco.Value * portion ).RountMass() );
-    }
-    /// <summary>
-    /// Get portion of useds tobacco quantity, i.e. tobacco reported by the batch record.
-    /// </summary>
-    /// <param name="portion">Returns portion of used tobacco quantity. i.e. tobacco used for production.</param>
-    /// <returns></returns>
-    public double UsedQuantity( double portion )
-    {
-      return ( this.TobaccoQuantity.Value * portion ).RountMass();
+      return Convert.ToDecimal( ( this.Tobacco.Value * invoice.Quantity.Value / this.Material2BatchIndex.FGQuantity.Value ).RountMass() );
     }
     /// <summary>
     /// Gets the list of disposals.
@@ -212,9 +205,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The tobacco total.
     /// </value>
     public decimal TobaccoTotal { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
-    internal Material ReplaceByExistingOne( EntitySet<Material> materials, List<Material> _newMaterials, Linq.Batch parent )
+    public void Export( Entities entities, bool closingBatch, InvoiceContent invoiceContent, List<Disposal> disposals )
     {
-      Material _old = ( from _mx in materials where _mx.Batch.Contains( this.Batch ) select _mx ).FirstOrDefault<Material>();
+      decimal _quantity = this.CalculatedQuantity( invoiceContent );
+      foreach ( Disposal _disposalX in this.GetListOfDisposals() )
+      {
+        if ( !closingBatch && _quantity == 0 )
+          break;
+        _disposalX.Export( entities, ref _quantity, closingBatch, invoiceContent );
+        disposals.Add( _disposalX );
+      }
+      if ( _quantity == 0 )
+        return;
+      string _error = String.Format(
+        "There are {0} kg of material {1}/Id={2} that cannot be found for invoice {3}/Content Id={4}.",
+        _quantity, this.Batch, this.Identyfikator, invoiceContent.InvoiceIndex.BillDoc, invoiceContent.Identyfikator.Value );
+      throw new CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException( "internal error: it is imposible to mark as exported the material", "Material export`", _error );
+    }
+    internal Material ReplaceByExistingOne( List<Material> _newMaterials, Linq.Batch parent )
+    {
+      Material _old = ( from _mx in parent.Material where _mx.Batch.Contains( this.Batch ) select _mx ).FirstOrDefault<Material>();
       if ( _old == null )
       {
         this.Material2BatchIndex = parent;
@@ -237,10 +247,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           if ( ( ( _kind == DisposalEnum.SHMenthol ) || ( _kind == DisposalEnum.OverusageInKg ) ) && this[ _kind ] <= 0 )
             continue;
           decimal _toDispose = this[ _kind ];
-          List<Disposal> _disposals = Linq.Disposal.Disposals( this.Disposal, _kind );
+          IQueryable<Disposal> _disposals = Linq.Disposal.Disposals( this.Disposal, _kind );
           if ( _disposals.Count<Disposal>() > 0 )
           {
             _toDispose -= _disposals.Sum<Disposal>( x => x.SettledQuantityDec );
+            _disposals = _disposals.Where( v => v.CustomsStatus.Value == CustomsStatus.NotStarted );
             foreach ( Linq.Disposal _dx in _disposals )
             {
               _dx.Adjust( ref _toDispose );
@@ -249,13 +260,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             }
           }
           progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _kind, this.Batch ) ) );
-          List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, this.Batch );
-          for ( int _aidx = 0; _aidx < _accounts.Count; _aidx++ )
-          {
-            _accounts[ _aidx ].AddDisposal( edc, _kind, ref _toDispose, this );
-            if ( _toDispose <= 0 )
-              throw new Updated();
-          }
+          AddNewDisposals( edc, _kind, ref _toDispose );
+          if ( _toDispose <= 0 )
+            return;
           string _mssg = "Cannot find IPR account to dispose the tobacco of {3} kg: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
           throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, this.Batch, parent.Batch0, _kind, _toDispose ), null, "IPR unrecognized account" );
         }
@@ -266,10 +273,31 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         }
       }
     }
-    private class Updated: Exception { }
+    internal void AddNewDisposals( Entities edc, Linq.DisposalEnum _kind, ref decimal _toDispose )
+    {
+      List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, this.Batch );
+      for ( int _aidx = 0; _aidx < _accounts.Count; _aidx++ )
+      {
+        Disposal _dsl = _accounts[ _aidx ].AddDisposal( edc, _kind, ref _toDispose );
+        _dsl.Material = this;
+        if ( _toDispose <= 0 )
+          return;
+      }
+    }
+    internal void AddNewDisposals( Entities edc, Linq.DisposalEnum _kind, ref decimal _toDispose, InvoiceContent invoiceContent )
+    {
+      List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, this.Batch );
+      foreach ( IPR _iprx in _accounts )
+      {
+        _iprx.AddDisposal( edc, _kind, ref _toDispose, this, invoiceContent );
+        if ( _toDispose <= 0 )
+          break;
+      }
+    }
     #endregion
 
     #region private
+    private class Updated: Exception { }
     private const string m_keyForam = "{0}:{1}:{2}";
     #endregion
 

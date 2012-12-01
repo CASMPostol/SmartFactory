@@ -29,12 +29,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       internal DisposalsAnalisis()
       {
-        foreach ( WebsiteModel.Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
+        foreach ( Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
           this.Add( _item, 0 );
       }
       internal void Accumutate( Material material )
       {
-        foreach ( WebsiteModel.Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
+        foreach ( Linq.DisposalEnum _item in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
           this[ _item ] += material[ _item ];
       }
     } //DisposalsAnalisis
@@ -60,21 +60,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </value>
     public DisposalsAnalisis AccumulatedDisposalsAnalisis { get; private set; }
     internal decimal TotalTobacco { get; private set; }
-    ///// <summary>
-    ///// Initializes a new instance of the <see cref="SummaryContentInfo" /> class.
-    ///// </summary>
-    ///// <param name="oldOne">The old <see cref="Batch" />.</param>
-    //public void Subtract( Batch oldOne )
-    //{
-    //  List<string> _warnings = new List<string>();
-    //  foreach ( Material _mix in oldOne.Material )
-    //    Subtract( _mix, _warnings );
-    //  if ( _warnings.Count == 0 )
-    //    return;
-    //  string _msg = String.Format( " problems to associate intermediate batch with {0}", oldOne.Batch0 );
-    //  throw new InputDataValidationException( _msg, "Subtract", _warnings );
-    //}
-    internal void ProcessDisposals
+    internal void ProcessMaterials
       ( Entities edc, Batch parent, double dustRatio, double shMentholRatio, double wasteRatio, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
     {
       if ( Product == null )
@@ -87,14 +73,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         foreach ( Material _materialX in this.Values )
         {
           progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
-          Material _oldMAterial = _materialX.ReplaceByExistingOne( parent.Material, _newMaterialList, parent );
+          Material _oldMAterial = _materialX.ReplaceByExistingOne( _newMaterialList, parent );
           if ( _oldMAterial.ProductType.Value == ProductType.IPRTobacco )
           {
             progressChanged( this, new ProgressChangedEventArgs( 1, "CalculateCompensationComponents" ) );
             _oldMAterial.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
             progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
             AccumulatedDisposalsAnalisis.Accumutate( _oldMAterial );
-            _oldMAterial.UpdateDisposals( edc, parent, progressChanged );
           }
           if ( _newMaterialList.Count > 0 )
           {
@@ -108,7 +93,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw new IPRDataConsistencyException( "Material.ProcessDisposals", _ex.Message, _ex, "Disposal processing error" );
       }
     }
-
+    internal void UpdateNotStartedDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
+    {
+      progressChanged( this, new ProgressChangedEventArgs( 1, "UpdateDisposals" ) );
+      foreach ( Material _materialX in this.Values )
+        _materialX.UpdateDisposals( edc, parent, progressChanged );
+    }
     /// <summary>
     /// Validates this instance.
     /// </summary>
