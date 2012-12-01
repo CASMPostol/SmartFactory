@@ -12,18 +12,79 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// </summary>
   public partial class Disposal
   {
+
+    #region ctor
+    internal Disposal( IPR ipr, Linq.DisposalStatus _typeOfDisposal, decimal _toDispose )
+      : this()
+    {
+      ClearingType = Linq.ClearingType.PartialWindingUp;
+      CustomsProcedure = String.Empty.NotAvailable();
+      CustomsStatus = Linq.CustomsStatus.NotStarted;
+      Disposal2IPRIndex = ipr;
+      DisposalStatus = _typeOfDisposal;
+      Disposal2PCNID = null; //will be assigned during claring through custom
+      DutyAndVAT = new Nullable<double>();  // calculated in SetUpCalculatedColumns,
+      DutyPerSettledAmount = new Nullable<double>();  // calculated in SetUpCalculatedColumns,
+      InvoiceNo = String.Empty.NotAvailable(); //To be assigned during finished goods export.
+      IPRDocumentNo = String.Empty.NotAvailable();
+      JSOXCustomsSummaryIndex = null;
+      No = new Nullable<double>();
+      RemainingQuantity = new Nullable<double>(); //To be set during sad processing
+      SADDate = Extensions.SPMinimum;
+      SADDocumentNo = String.Empty.NotAvailable();
+      SettledQuantityDec = _toDispose;
+      Title = String.Empty; // calculated in SetUpCalculatedColumns,
+      VATPerSettledAmount = new Nullable<double>(); //calculated in SetUpCalculatedColumns,
+      TobaccoValue = new Nullable<double>(); //calculated in SetUpCalculatedColumns, 
+      SetUpCalculatedColumns( Linq.ClearingType.PartialWindingUp );
+    }
+    internal Material Material
+    {
+      set
+      {
+        if ( value == null )
+          throw new ArgumentNullException( "Clearence cannot be null" );
+        Disposal2BatchIndex = value.Material2BatchIndex;
+        Disposal2MaterialIndex = value;
+      }
+    }
+    internal Clearence Clearance
+    {
+      set
+      {
+        if ( value == null )
+          throw new ArgumentNullException( "Clearence cannot be null" );
+        if (this.CustomsStatus.Value != Linq.CustomsStatus.NotStarted)
+          throw new ArgumentException("Clearance can be assigned ony to NoStarted disposals - internal fatal error.");
+        this.CustomsStatus = Linq.CustomsStatus.Started;
+        this.CustomsProcedure = Entities.ToString( value.ClearenceProcedure.Value );
+        this.Disposal2ClearenceIndex = value;
+        this.SADDocumentNo = value.DocumentNo;
+        this.SADDate = value.CustomsDebtDate;
+        this.CustomsProcedure = Entities.ToString( value.ClearenceProcedure.Value );
+      }
+    }
+    internal InvoiceContent InvoicEContent
+    {
+      set
+      {
+        this.Clearance = value.InvoiceIndex.ClearenceIndex;
+        this.Disposal2InvoiceContentIndex = value;
+        this.InvoiceNo = value.InvoiceIndex.BillDoc;
+      }
+    }
+    #endregion
+
     #region public
     /// <summary>
     /// Exports the specified entities.
     /// </summary>
     /// <param name="entities">The entities.</param>
-    /// <param name="clearence">The clearence.</param>
     /// <param name="quantity">The quantity.</param>
     /// <param name="closingBatch">if set to <c>true</c> the batch is to be closed.</param>
-    /// <param name="invoiceNoumber">The invoice noumber.</param>
     /// <param name="invoiceContent">Content of the invoice.</param>
     /// <exception cref="ApplicationError">if any internal exception has to be catched.</exception>
-    public void Export( Entities entities, Clearence clearence, ref decimal quantity, bool closingBatch, string invoiceNoumber, InvoiceContent invoiceContent )
+    public void Export( Entities entities, ref decimal quantity, bool closingBatch, InvoiceContent invoiceContent )
     {
       string _at = "Startting";
       try
@@ -35,27 +96,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         else if ( quantity < _settledQuantity )
         {
           _at = "_newDisposal";
-          Disposal _newDisposal = new Disposal()
-          {
-            Disposal2BatchIndex = Disposal2BatchIndex,
-            Disposal2ClearenceIndex = null,
-            ClearingType = CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp,
-            CustomsStatus = Linq.CustomsStatus.NotStarted,
-            CustomsProcedure = "N/A",
-            DisposalStatus = DisposalStatus,
-            InvoiceNo = "N/A",
-            IPRDocumentNo = "N/A",
-            Disposal2IPRIndex = Disposal2IPRIndex,
-            Disposal2PCNID = Disposal2PCNID,
-            JSOXCustomsSummaryIndex = null,
-            Disposal2MaterialIndex = Disposal2MaterialIndex,
-            No = int.MaxValue,
-            SADDate = CAS.SharePoint.Extensions.SPMinimum,
-            SADDocumentNo = "N/A",
-            SettledQuantity = Convert.ToDouble( _settledQuantity - quantity )
-          };
+          Disposal _newDisposal = new Disposal( Disposal2IPRIndex, DisposalStatus.Value, _settledQuantity - quantity );
+          _newDisposal.Material = this.Disposal2MaterialIndex;
           _at = "SetUpCalculatedColumns";
-          _newDisposal.SetUpCalculatedColumns( CAS.SmartFactory.IPR.WebsiteModel.Linq.ClearingType.PartialWindingUp );
+          _newDisposal.SetUpCalculatedColumns( Linq.ClearingType.PartialWindingUp );
           SettledQuantity = Convert.ToDouble( quantity );
           quantity = 0;
           _at = "InsertOnSubmit";
@@ -69,7 +113,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           quantity -= _settledQuantity;
         }
         _at = "StartClearance";
-        StartClearance( _clearingType, invoiceNoumber, clearence, invoiceContent );
+        StartClearance( _clearingType, invoiceContent );
       }
       catch ( Exception _ex )
       {
@@ -108,7 +152,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw GenericStateMachineEngine.ActionResult.Exception( ex, @"CAS.SmartFactory.IPR.WebsiteModel.Linq\SetUpCalculatedColumns" );
       }
     }
-    internal void ClearThroughCustoms( Entities edc, string documentNo, Clearence clearence, DateTime clearanceDate, string productCodeNumber )
+    internal void FinishClearingThroughCustoms( Entities edc, SADGood sadGood )
     {
       string _at = "starting";
       try
@@ -121,19 +165,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           this.No = 1;
         else
           this.No = _lastOne.Max<Disposal>( dspsl => dspsl.No.Value ) + 1;
-        PCNCode _pcn = PCNCode.Find( edc, IsDisposal, productCodeNumber );
-        this.SADDocumentNo = documentNo;
-        this.SADDate = clearanceDate;
+        AssignSADGood( edc, sadGood );
         this.CustomsStatus = Linq.CustomsStatus.Finished;
         double _balance = Convert.ToDouble( Convert.ToDecimal( this.Disposal2IPRIndex.AccountBalance.Value ) - Convert.ToDecimal( this.SettledQuantity.Value ) );
         this.Disposal2IPRIndex.AccountBalance = _balance;
         this.RemainingQuantity = _balance;
         if ( this.RemainingQuantity.Value == 0 )
           this.ClearingType = Linq.ClearingType.TotalWindingUp;
-        this.CustomsProcedure = Entities.ToString( clearence.ClearenceProcedure.Value );
         _at = "PCNCode _tobaccoPCN ";
-        this.Disposal2PCNID = _pcn;
-        this.Disposal2ClearenceIndex = clearence;
       }
       catch ( Exception _ex )
       {
@@ -141,21 +180,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw GenericStateMachineEngine.ActionResult.Exception( _ex, String.Format( _template, this.Title, this.Identyfikator.Value, _ex.Message, _at ) );
       }
     }
-    internal static List<Disposal> Disposals( EntitySet<Disposal> disposlas, DisposalEnum _kind )
+    internal static IQueryable<Disposal> Disposals( EntitySet<Disposal> disposlas, DisposalEnum _kind )
     {
-      return disposlas.Where<Disposal>( x => x.DisposalStatus.Value == Entities.GetDisposalStatus( _kind ) ).ToList<Disposal>();
+      return disposlas.Where<Disposal>( x => x.DisposalStatus.Value == Entities.GetDisposalStatus( _kind ) );
     }
     internal void Adjust( ref decimal _toDispose )
     {
-      if ( this.CustomsStatus.Value != Linq.CustomsStatus.NotStarted )
-        return;
-      if ( this.Disposal2IPRIndex.TobaccoNotAllocated.Value <= 0 )
-        return;
-      decimal _diff = _toDispose - this.SettledQuantityDec;
-      decimal _2Add = Math.Min( _diff, this.Disposal2IPRIndex.TobaccoNotAllocatedDec );
-      this.SettledQuantity = Convert.ToDouble( this.SettledQuantityDec + _2Add );
-      _toDispose -= _2Add;
-      this.Disposal2IPRIndex.TobaccoNotAllocated -= Convert.ToDouble( _diff );
+      this.SettledQuantityDec += this.Disposal2IPRIndex.Withdraw( ref _toDispose, this.SettledQuantityDec );
       this.SetUpCalculatedColumns( Linq.ClearingType.PartialWindingUp );
     }
     internal decimal SettledQuantityDec
@@ -166,22 +197,27 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
+    private void AssignSADGood( Entities edc, SADGood sadGood )
+    {
+      string productCodeNumber = sadGood.PCNTariffCode;
+      PCNCode _pcn = PCNCode.Find( edc, IsDisposal, productCodeNumber );
+      this.Disposal2PCNID = _pcn;
+      this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
+      this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
+    }
     /// <summary>
     /// Starts the clearance.
     /// </summary>
     /// <param name="clearingType">Type of the clearing.</param>
-    /// <param name="invoiceNoumber">The invoice noumber.</param>
     /// <param name="clearence">The clearence.</param>
-    private void StartClearance( ClearingType clearingType, string invoiceNoumber, Clearence clearence, InvoiceContent invoiceContent )
+    /// <param name="invoiceContent">Content of the invoice.</param>
+    private void StartClearance( ClearingType clearingType, InvoiceContent invoiceContent )
     {
-      this.Disposal2ClearenceIndex = clearence;
-      this.Disposal2InvoiceContentIndex = invoiceContent;
-      this.CustomsStatus = Linq.CustomsStatus.Started;
+      this.InvoicEContent = invoiceContent;
       this.ClearingType = clearingType;
-      this.CustomsProcedure = Entities.ToString( clearence.ClearenceProcedure.Value );
-      this.InvoiceNo = invoiceNoumber;
       this.SetUpCalculatedColumns( ClearingType.Value );
     }
+
     private double GetDutyNotCleared()
     {
       return Disposal2IPRIndex.Duty.Value - ( from _dec in Disposal2IPRIndex.Disposal where _dec.DutyPerSettledAmount.HasValue select new { val = _dec.DutyPerSettledAmount.Value } ).Sum( itm => itm.val );

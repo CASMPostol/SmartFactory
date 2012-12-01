@@ -24,25 +24,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Clears through customs.
     /// </summary>
     /// <param name="entities">The entities.</param>
-    public void ClearThroughCustoms( Entities entities )
+    public void FinishClearingThroughCustoms( Entities entities )
     {
       SADDocumentType sadDocument = Clearence2SadGoodID.SADDocumentIndex;
       DocumentNo = sadDocument.DocumentNumber;
       ReferenceNumber = sadDocument.ReferenceNumber;
       Status = true;
       foreach ( Disposal _disposal in Disposal )
-        _disposal.ClearThroughCustoms( entities, sadDocument.DocumentNumber, this, sadDocument.CustomsDebtDate.Value, Clearence2SadGoodID.PCNTariffCode );
+        _disposal.FinishClearingThroughCustoms( entities, Clearence2SadGoodID );
     }
     /// <summary>
     /// Clears through customs.
     /// </summary>
     /// <param name="entities">The entities.</param>
     /// <param name="sadGood">The sad good.</param>
-    public void ClearThroughCustoms( Entities entities, SADGood sadGood )
+    public void FinishClearingThroughCustoms( Entities entities, SADGood sadGood )
     {
       Clearence2SadGoodID = sadGood;
-      ClearThroughCustoms( entities );
+      FinishClearingThroughCustoms( entities );
     }
+    public DateTime CustomsDebtDate { get { return Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value; } }
     /// <summary>
     /// Creatas the clearence.
     /// </summary>

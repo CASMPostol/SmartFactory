@@ -33,10 +33,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     public void AddDisposal( Entities edc, decimal quantity )
     {
-      AddDisposal( edc, DisposalEnum.Cartons, ref quantity, null, null );
+      AddDisposal( edc, DisposalEnum.Cartons, ref quantity );
       if ( quantity > 0 )
       {
-        string _msg = String.Format( "Cannot add Disposal to IPR {0} because because the there is not material on tje IPR.", this.Identyfikator.Value );
+        string _msg = String.Format( "Cannot add Disposal to IPR {0} because there is not material on tje IPR.", this.Identyfikator.Value );
         throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.Exception
           ( new CAS.SharePoint.ApplicationError( "CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal", "_qunt > 0", _msg, null ), _msg );
       }
@@ -50,7 +50,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt > 0;null</exception>
     public void AddDisposal( Entities edc, decimal quantity, Clearence clearence )
     {
-      AddDisposal( edc, DisposalEnum.Tobacco, ref quantity, null, clearence );
+      Disposal _dsp = AddDisposal( edc, DisposalEnum.Tobacco, ref quantity );
+      _dsp.Clearance = clearence;
       if ( quantity > 0 )
       {
         string _msg = String.Format( "Cannot add Disposal to IPR  {0} because because the there is not material on tje IPR.", this.Identyfikator.Value );
@@ -58,16 +59,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           ( new CAS.SharePoint.ApplicationError( "CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal", "_qunt > 0", _msg, null ), _msg );
       }
     }
-    /// <summary>
-    /// Insert on submit the disposal.
-    /// </summary>
-    /// <param name="edc">The _edc.</param>
-    /// <param name="status">The _status.</param>
-    /// <param name="quantity">The quantity.</param>
-    /// <param name="material">The material.</param>
-    public void AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity, Material material )
+    internal void AddDisposal( Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material, InvoiceContent invoiceContent )
     {
-      AddDisposal( edc, status, ref quantity, material, null );
+      Disposal _dsp = AddDisposal( edc, _kind, ref _toDispose );
+      _dsp.Material = material;
+      _dsp.InvoicEContent = invoiceContent;
+      SADGood _sg = invoiceContent.InvoiceIndex.ClearenceIndex.Clearence2SadGoodID;
+      if ( _sg != null )
+        _dsp.FinishClearingThroughCustoms( edc, _sg );
     }
     /// <summary>
     /// Check if record exists.
@@ -89,79 +88,43 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from IPR _iprx in edc.IPR where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
     }
+    #endregion
+
+    #region ubternal
     internal static bool IsAvailable( Entities edc, string batch, double requestedTobacco )
     {
       return FindIPRAccountsWithNotAllocatedTobacco( edc, batch ).Sum<IPR>( a => a.TobaccoNotAllocated.Value ) >= requestedTobacco;
     }
-    internal decimal TobaccoNotAllocatedDec { get { return Convert.ToDecimal( this.TobaccoNotAllocated.Value ); } }
-    #endregion
-
-    #region private
-    /// <summary>
-    /// Contains calculated data required to create IPR account
-    /// </summary>
-    private void AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity, Material material, Clearence clearence )
-    {
-      try
-      {
-        Linq.DisposalStatus _typeOfDisposal = Entities.GetDisposalStatus( status );
-        double _toDispose = Withdraw( ref quantity );
-        Disposal _newDisposal = new Disposal()
-        {
-          ClearingType = Linq.ClearingType.PartialWindingUp,
-          CustomsStatus = clearence == null ? Linq.CustomsStatus.NotStarted : CustomsStatus.Started,
-          CustomsProcedure = clearence == null ? string.Empty.NotAvailable() : Entities.ToString( clearence.ClearenceProcedure.Value ),
-          Disposal2BatchIndex = material == null ? null : material.Material2BatchIndex,
-          Disposal2ClearenceIndex = clearence,
-          Disposal2IPRIndex = this,
-          Disposal2MaterialIndex = material,
-          DisposalStatus = _typeOfDisposal,
-          Disposal2PCNID = null, //will be assigned during claring through custom
-          DutyAndVAT = new Nullable<double>(),  // calculated in SetUpCalculatedColumns,
-          DutyPerSettledAmount = new Nullable<double>(),  // calculated in SetUpCalculatedColumns,
-          InvoiceNo = String.Empty.NotAvailable(), //To be assigned during finished goods export.
-          IPRDocumentNo = String.Empty.NotAvailable(), // to be assigned while sad processing
-          JSOXCustomsSummaryIndex = null,
-          No = new Nullable<double>(),
-          RemainingQuantity = new Nullable<double>(), //To be set during sad processing
-          SADDate = Extensions.SPMinimum,
-          SADDocumentNo = String.Empty.NotAvailable(),
-          SettledQuantity = _toDispose,
-          Title = String.Empty, // calculated in SetUpCalculatedColumns,
-          VATPerSettledAmount = new Nullable<double>(), //calculated in SetUpCalculatedColumns,
-          TobaccoValue = new Nullable<double>() //calculated in SetUpCalculatedColumns,
-        };
-        _newDisposal.SetUpCalculatedColumns( ClearingType.PartialWindingUp );
-        edc.Disposal.InsertOnSubmit( _newDisposal );
-      }
-      catch ( CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult _ex )
-      {
-        throw _ex;
-      }
-      catch ( Exception _ex )
-      {
-        string _msg = String.Format
-          (
-            "Disposal for batch= {0} of type={1} at account=={2} creation failed because of error: " + _ex.Message,
-            material.Material2BatchIndex.Title,
-            status,
-            this.Title
-          );
-        throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.Exception( _ex, _msg );
-      }
-    }
+    internal decimal TobaccoNotAllocatedDec { get { return Convert.ToDecimal( this.TobaccoNotAllocated.Value ); } set { this.TobaccoNotAllocated = Convert.ToDouble( value ); } }
     /// <summary>
     /// Withdraws the specified quantity.
     /// </summary>
     /// <param name="quantity">The quantity.</param>
+    /// <param name="max">The maximum quantity to be reverted to the record if <paramref name="quantity"/> is less then 0.</param>
     /// <returns></returns>
-    private double Withdraw( ref decimal quantity )
+    internal decimal Withdraw( ref decimal quantity, decimal max )
     {
-      double _toDispose;
-      _toDispose = Math.Min( Convert.ToDouble( quantity ), this.TobaccoNotAllocated.Value );
-      this.TobaccoNotAllocated -= _toDispose;
-      quantity -= Convert.ToDecimal( _toDispose );
+      decimal _toDispose = 0;
+      if ( quantity > 0 )
+        _toDispose = Math.Min( quantity, this.TobaccoNotAllocatedDec );
+      else
+        _toDispose = Math.Max( max, Convert.ToDecimal( this.NetMass.Value ) - this.TobaccoNotAllocatedDec );
+      this.TobaccoNotAllocatedDec -= _toDispose;
+      quantity -= _toDispose;
       return _toDispose;
+    }
+    #endregion
+    #region private
+    /// <summary>
+    /// Contains calculated data required to create IPR account
+    /// </summary>
+    internal Disposal AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity )
+    {
+      Linq.DisposalStatus _typeOfDisposal = Entities.GetDisposalStatus( status );
+      decimal _toDispose = Withdraw( ref quantity, 0 );
+      Disposal _newDisposal = new Disposal( this, _typeOfDisposal, _toDispose );
+      edc.Disposal.InsertOnSubmit( _newDisposal );
+      return _newDisposal;
     }
     #endregion
 

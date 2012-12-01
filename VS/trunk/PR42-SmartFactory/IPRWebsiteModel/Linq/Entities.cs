@@ -5078,7 +5078,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 				e.Item.IPRIndex = null;
 			}
 		}
-	}
+
+  }
 	
 	/// <summary>
 	/// Utwórz nowy element listy.

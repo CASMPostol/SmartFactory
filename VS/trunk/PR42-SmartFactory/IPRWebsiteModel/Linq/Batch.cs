@@ -76,12 +76,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( ( SKUIndex is SKUCigarette ) && ( (SKUCigarette)SKUIndex ).MentholMaterial.Value )
         _shmcf = ( (SKUCigarette)SKUIndex ).MentholMaterial.Value ? SHMentholIndex.SHMentholRatio.Value : 0;
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: ProcessDisposals" ) );
-      contentInfo.ProcessDisposals( edc, this, DustIndex.DustRatio.Value, _shmcf, WasteIndex.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
-      Dust = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.DisposalEnum.Dust ] );
-      SHMenthol = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.DisposalEnum.SHMenthol ] );
-      Waste = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.DisposalEnum.Waste ] );
-      Tobacco = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.DisposalEnum.Tobacco ] );
-      Overuse = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ WebsiteModel.Linq.DisposalEnum.OverusageInKg ] );
+      contentInfo.ProcessMaterials( edc, this, DustIndex.DustRatio.Value, _shmcf, WasteIndex.WasteRatio.Value, CalculatedOveruse.GetValueOrDefault( 0 ), progressChanged );
+      Dust = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.Dust ] );
+      SHMenthol = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.SHMenthol ] );
+      Waste = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.Waste ] );
+      Tobacco = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.TobaccoInCigaretess ] );
+      Overuse = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.OverusageInKg ] );
+      foreach ( InvoiceContent _ix in this.InvoiceContent )
+        _ix.UpdateExportedDisposals( edc );
+      contentInfo.UpdateNotStartedDisposals( edc, this, progressChanged );
     }
     #endregion
 

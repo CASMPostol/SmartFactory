@@ -44,7 +44,7 @@ namespace CAS.SmartFactory.IPR.Customs
               switch ( _cx.ProcedureCode.RequestedProcedure() )
               {
                 case CustomsProcedureCodes.FreeCirculation:
-                  _cx.ClearThroughCustoms( _edc );
+                  _cx.FinishClearingThroughCustoms( _edc );
                   break;
                 case CustomsProcedureCodes.InwardProcessing:
                   CreateIPRAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, _sad.CustomsDebtDate.Value, out _comments, warnings );
@@ -441,7 +441,7 @@ namespace CAS.SmartFactory.IPR.Customs
         if ( !_cleranceInt.HasValue )
           continue;
         Clearence _clearance = Element.GetAtIndex<Clearence>( entities.Clearence, _cleranceInt.Value );
-        _clearance.ClearThroughCustoms( entities, good );
+        _clearance.FinishClearingThroughCustoms( entities, good );
         _ifAny = true;
       }// foreach 
       if ( !_ifAny )
