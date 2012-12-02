@@ -54,11 +54,16 @@
       <HintPath>..\..\PR44-SharePoint\SharePoint\bin\Debug\CAS.SharePoint.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SharePoint.WorkflowActions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Workflow.Activities" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Workflow.Runtime" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
@@ -79,6 +84,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Workflows\IPRClosing\IPRClosing.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Workflows\IPRClosing\IPRClosing.Designer.cs">
+      <DependentUpon>IPRClosing.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +113,15 @@
     </None>
     <None Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e8d364ea-bf70-4d56-a5b2-880a07138cc4}</SharePointProjectItemId>
+    </None>
+    <None Include="Workflows\IPRClosing\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a284012e-5195-447e-857d-8827927bec2f}</SharePointProjectItemId>
+    </None>
+    <None Include="Workflows\WorkflowHistory\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a5b4886f-752e-4e87-89b8-8e85f20e6756}</SharePointProjectItemId>
+    </None>
+    <None Include="Workflows\WorkflowTasks\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{869adc3b-1ba5-4001-b666-cb8a4e8d55c0}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +149,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\Elements.xml" />
+    <Content Include="Workflows\IPRClosing\Elements.xml" />
+    <Content Include="Workflows\WorkflowHistory\Elements.xml" />
+    <Content Include="Workflows\WorkflowTasks\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IPRExternalData\IPRExternalData.csproj">
@@ -143,6 +166,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
