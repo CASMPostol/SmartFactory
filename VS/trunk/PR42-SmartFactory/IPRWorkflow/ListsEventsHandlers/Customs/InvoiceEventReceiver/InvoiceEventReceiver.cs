@@ -42,7 +42,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
         properties.ListItem.File.OpenBinaryStream(),
         properties.WebUrl,
         properties.ListItem.ID,
-        properties.ListItem.File.ToString(),
+        properties.ListItem.File.Name,
         ( object obj, ProgressChangedEventArgs progres ) => { return; }
       );
       this.EventFiringEnabled = true;
@@ -88,7 +88,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     {
       entry.ClearenceIndex = null;
       entry.InvoiceLibraryReadOnly = false;
-      entry.BillDoc = String.Empty.NotAvailable();
       try
       {
         entry.InvoiceLibraryStatus = GetXmlContent( xml.Item, edc, entry );
@@ -96,6 +95,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
       }
       catch ( Exception ex )
       {
+        entry.BillDoc = String.Empty.NotAvailable();
         entry.InvoiceLibraryStatus = false;
         edc.SubmitChanges();
         throw ex;
