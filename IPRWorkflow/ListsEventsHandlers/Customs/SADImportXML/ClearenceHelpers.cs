@@ -37,7 +37,13 @@ namespace CAS.SmartFactory.IPR.Customs
             break;
           case CustomsDocument.DocumentType.CLNE:
             _at = "FimdClearence";
-            foreach ( Clearence _cx in Clearence.GetClearence( _edc, _sad.ReferenceNumber ) )
+            IQueryable<Clearence> _clrncs = Clearence.GetClearence( _edc, _sad.ReferenceNumber );
+            if ( ( from _cx in _clrncs where _cx.Clearence2SadGoodID == null select _cx ).Any<Clearence>() )
+            {
+              string _error = String.Format( "SAD with reference number: {0} must be imported first", _sad.ReferenceNumber );
+              throw new InputDataValidationException( "CLNE message cannot be processed befor SAD", "DeclarationProcessing", _error );
+            }
+            foreach ( Clearence _cx in _clrncs )
             {
               _cx.DocumentNo = _sad.DocumentNumber;
               _at = "switch RequestedProcedure";
@@ -82,57 +88,57 @@ namespace CAS.SmartFactory.IPR.Customs
     #endregion
 
     #region private
-    private static void SADPZCProcessing( Entities _edc, CustomsDocument.DocumentType _messageType, SADDocumentType _sad, ref string _comments, ref string _at, List<InputDataValidationException> warnings )
+    private static void SADPZCProcessing( Entities edc, CustomsDocument.DocumentType messageType, SADDocumentType sad, ref string comments, ref string at, List<InputDataValidationException> warnings )
     {
-      _at = "_customsProcedureCodes";
-      foreach ( SADGood _sgx in _sad.SADGood )
+      at = "_customsProcedureCodes";
+      foreach ( SADGood _sgx in sad.SADGood )
       {
         CustomsProcedureCodes _customsProcedureCodes = _sgx.Procedure.RequestedProcedure();
         switch ( _customsProcedureCodes )
         {
           case CustomsProcedureCodes.FreeCirculation:
-            _at = "FimdClearence";
-            if ( _messageType == CustomsDocument.DocumentType.PZC )
-              ClearThroughCustoms( _edc, _sgx );
+            at = "FimdClearence";
+            if ( messageType == CustomsDocument.DocumentType.PZC )
+              ClearThroughCustoms( edc, _sgx );
             else
-              _comments = "Document added";
+              comments = "Document added";
             break;
           case CustomsProcedureCodes.InwardProcessing:
             {
-              _at = "NewClearence";
-              Clearence _newClearance = Clearence.CreataClearence( _edc, "InwardProcessing", ClearenceProcedure._5171, _sgx );
-              if ( _messageType == CustomsDocument.DocumentType.PZC )
+              at = "NewClearence";
+              Clearence _newClearance = Clearence.CreataClearence( edc, "InwardProcessing", ClearenceProcedure._5171, _sgx );
+              if ( messageType == CustomsDocument.DocumentType.PZC )
               {
-                _at = "CreateIPRAccount";
-                CreateIPRAccount( _edc, _newClearance, CustomsDocument.DocumentType.PZC, _sad.CustomsDebtDate.Value, out _comments, warnings );
+                at = "CreateIPRAccount";
+                CreateIPRAccount( edc, _newClearance, CustomsDocument.DocumentType.PZC, sad.CustomsDebtDate.Value, out comments, warnings );
               }
               else
-                _comments = "Document added";
+                comments = "Document added";
               break;
             }
           case CustomsProcedureCodes.CustomsWarehousingProcedure:
-            _at = "NewClearence";
+            at = "NewClearence";
             Clearence _newWarehousinClearance = new Clearence()
             {
-              DocumentNo = _sad.DocumentNumber,
-              ReferenceNumber = _sad.ReferenceNumber,
+              DocumentNo = sad.DocumentNumber,
+              ReferenceNumber = sad.ReferenceNumber,
               SADConsignmentLibraryIndex = null,
               ProcedureCode = "CustomsWarehousingProcedure",
               Status = false,
               //[pr4-3738] CustomsProcedureCodes.CustomsWarehousingProcedure 7100 must be added http://itrserver/Bugs/BugDetail.aspx?bid=3738
               ClearenceProcedure = ClearenceProcedure._7100,
             };
-            _at = "InsertOnSubmit";
-            _edc.Clearence.InsertOnSubmit( _newWarehousinClearance );
-            if ( _messageType == CustomsDocument.DocumentType.PZC )
-              CreateCWAccount( _edc, _sad, _sgx );// TODO CreateStockRecord  
+            at = "InsertOnSubmit";
+            edc.Clearence.InsertOnSubmit( _newWarehousinClearance );
+            if ( messageType == CustomsDocument.DocumentType.PZC )
+              CreateCWAccount( edc, sad, _sgx );// TODO CreateStockRecord  
             else
-              _comments = "Document added";
+              comments = "Document added";
             break;
           case CustomsProcedureCodes.NoProcedure:
           case CustomsProcedureCodes.ReExport:
           default:
-            throw new IPRDataConsistencyException( "Clearence.Associate", string.Format( "Unexpected procedure code for the {0} message", _messageType ), null, _wrongProcedure );
+            throw new IPRDataConsistencyException( "Clearence.Associate", string.Format( "Unexpected procedure code for the {0} message", messageType ), null, _wrongProcedure );
         }
       } //switch (_customsProcedureCodes)
     }

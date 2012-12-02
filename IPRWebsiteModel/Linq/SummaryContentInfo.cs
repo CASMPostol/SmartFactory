@@ -102,8 +102,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Validates this instance.
     /// </summary>
-    /// <param name="edc">The edc.</param>
-    /// <param name="disposals">The disposals.</param>
+    /// <param name="edc">The <see cref="Entities"/>.</param>
+    /// <param name="disposals">The list of disposals created already.</param>
     /// <exception cref="InputDataValidationException">Batch content validate failed;XML content validation</exception>
     public void Validate( Entities edc, EntitySet<Disposal> disposals )
     {
@@ -121,11 +121,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                                                  select new { batchId = _mx.Batch, quantity = _mx.TobaccoTotal } ).ToDictionary( k => k.batchId, v => v.quantity );
       foreach ( Disposal _dx in disposals )
         if ( !_materials.Keys.Contains<string>( _dx.Disposal2BatchIndex.Batch0 ) )
-          _materials.Add( _dx.Disposal2BatchIndex.Batch0, Convert.ToDecimal( _dx.SettledQuantity.Value ) );
+          _materials.Add( _dx.Disposal2BatchIndex.Batch0, _dx.SettledQuantityDec );
         else
-          _materials[ _dx.Disposal2BatchIndex.Batch0 ] -= Convert.ToDecimal( _dx.SettledQuantity.Value );
+          _materials[ _dx.Disposal2BatchIndex.Batch0 ] -= _dx.SettledQuantityDec;
       foreach ( var _qutty in _materials )
-        if ( !IPR.IsAvailable( edc, _qutty.Key, Convert.ToDouble( _qutty.Value ) ) )
+        if ( !IPR.IsAvailable( edc, _qutty.Key, _qutty.Value ) )
         {
           string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, quantity: {2} kg";
           _validationErrors.Add( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value ) );
