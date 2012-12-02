@@ -39,13 +39,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
         {
           BatchLib _entry = _entry = Element.GetAtIndex<BatchLib>( _edc.BatchLibrary, _properties.ListItemId );
           At = "ImportBatchFromXml";
-          BatchXml _xml = ImportBatchFromXml
-               (
-                 _edc,
-                 _properties.ListItem.File.OpenBinaryStream(),
-                 _properties.ListItem.File.ToString(),
-                 ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; }
-               );
+          BatchXml _xml = default( BatchXml );
+          using ( Stream _stream = _properties.ListItem.File.OpenBinaryStream() )
+            _xml = ImportBatchFromXml( _edc, _stream, _properties.ListItem.File.Name,
+                                     ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; } );
           At = "Getting Data";
           GetXmlContent( _xml, _edc, _entry, ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; } );
           At = "Submiting Changes";
@@ -143,7 +140,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
               string _ptrn = "The final batch {0} has been analyzed already.";
               throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", String.Format( _ptrn, _contentInfo.Product.Batch ) );
             }
-            progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: Subtract" ) );
           }
           else
           {

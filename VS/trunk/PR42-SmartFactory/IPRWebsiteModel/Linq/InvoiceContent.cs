@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         Material _mtrl = _dsp.Disposal2MaterialIndex;
         decimal _2Add = _mtrl.CalculatedQuantity( this ) - _gx.Sum<Disposal>( v => v.SettledQuantityDec );
         IEnumerable<Disposal> _sorted = from _dx in _gx
-                                        orderby _dx.SettledQuantityDec
+                                        orderby _dx.SettledQuantityDec ascending
                                         select _dx;
         foreach ( Disposal _dx in _sorted )
         {

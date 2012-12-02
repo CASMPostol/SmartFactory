@@ -18,19 +18,25 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return this.TobaccoNotAllocated == 0 &&
         (
           from _dec in this.Disposal
-          where _dec.CustomsStatus.Value == CustomsStatus.NotStarted
+          where _dec.CustomsStatus.Value != CustomsStatus.Finished
           select _dec
         ).Count() == 1 ? ClearingType.TotalWindingUp : ClearingType.PartialWindingUp;
     }
     /// <summary>
     /// Reverts the withdraw.
     /// </summary>
-    /// <param name="nullable">The nullable.</param>
+    /// <param name="quantity">The quantity.</param>
     /// <exception cref="System.NotImplementedException"></exception>
     public void RevertWithdraw( double quantity )
     {
       this.TobaccoNotAllocated += quantity;
     }
+    /// <summary>
+    /// Adds the disposal.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="quantity">The quantity.</param>
+    /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt > 0;null</exception>
     public void AddDisposal( Entities edc, decimal quantity )
     {
       AddDisposal( edc, DisposalEnum.Cartons, ref quantity );
@@ -68,6 +74,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( _sg != null )
         _dsp.FinishClearingThroughCustoms( edc, _sg );
     }
+    internal void AddDisposal( Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material )
+    {
+      Disposal _dsp = AddDisposal( edc, _kind, ref _toDispose );
+      _dsp.Material = material;
+    }
     /// <summary>
     /// Check if record exists.
     /// </summary>
@@ -90,10 +101,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     #endregion
 
-    #region ubternal
-    internal static bool IsAvailable( Entities edc, string batch, double requestedTobacco )
+    #region internal
+    internal static bool IsAvailable( Entities edc, string batch, decimal requestedTobacco )
     {
-      return FindIPRAccountsWithNotAllocatedTobacco( edc, batch ).Sum<IPR>( a => a.TobaccoNotAllocated.Value ) >= requestedTobacco;
+      return FindIPRAccountsWithNotAllocatedTobacco( edc, batch ).Sum<IPR>( a => a.TobaccoNotAllocatedDec ) >= requestedTobacco;
     }
     internal decimal TobaccoNotAllocatedDec { get { return Convert.ToDecimal( this.TobaccoNotAllocated.Value ); } set { this.TobaccoNotAllocated = Convert.ToDouble( value ); } }
     /// <summary>
@@ -108,18 +119,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( quantity > 0 )
         _toDispose = Math.Min( quantity, this.TobaccoNotAllocatedDec );
       else
-        _toDispose = Math.Max( max, Convert.ToDecimal( this.NetMass.Value ) - this.TobaccoNotAllocatedDec );
+        _toDispose = Math.Max( quantity, max );
       this.TobaccoNotAllocatedDec -= _toDispose;
       quantity -= _toDispose;
       return _toDispose;
     }
     #endregion
+
     #region private
     /// <summary>
     /// Contains calculated data required to create IPR account
     /// </summary>
-    internal Disposal AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity )
+    private Disposal AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity )
     {
+      if ( quantity <= 0 )
+        throw new ArgumentException( "IPR.AddDisposal - quantity <= 0" );
       Linq.DisposalStatus _typeOfDisposal = Entities.GetDisposalStatus( status );
       decimal _toDispose = Withdraw( ref quantity, 0 );
       Disposal _newDisposal = new Disposal( this, _typeOfDisposal, _toDispose );

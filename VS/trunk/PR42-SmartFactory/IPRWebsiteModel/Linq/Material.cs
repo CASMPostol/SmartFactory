@@ -276,10 +276,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void AddNewDisposals( Entities edc, Linq.DisposalEnum _kind, ref decimal _toDispose )
     {
       List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, this.Batch );
-      for ( int _aidx = 0; _aidx < _accounts.Count; _aidx++ )
+      foreach ( IPR _iprx in _accounts )
       {
-        Disposal _dsl = _accounts[ _aidx ].AddDisposal( edc, _kind, ref _toDispose );
-        _dsl.Material = this;
+        _iprx.AddDisposal( edc, _kind, ref _toDispose, this );
         if ( _toDispose <= 0 )
           return;
       }
