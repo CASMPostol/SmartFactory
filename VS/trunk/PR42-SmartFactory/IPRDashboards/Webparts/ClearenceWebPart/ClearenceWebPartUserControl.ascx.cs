@@ -634,7 +634,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private void QueryAvailable()
     {
       DateTime? _start = m_AllDate.Checked || m_StartDateTimeControl.IsDateEmpty ? new Nullable<DateTime>() : m_StartDateTimeControl.SelectedDate.Date;
-      DateTime? _finish = m_AllDate.Checked || m_EndTimeControl1.IsDateEmpty ? new Nullable<DateTime>() : m_EndTimeControl1.SelectedDate.Date;
+      DateTime? _finish = m_AllDate.Checked || m_EndTimeControl1.IsDateEmpty ? new Nullable<DateTime>() : m_EndTimeControl1.SelectedDate.Date + TimeSpan.FromDays(1);
       string _currency = m_SelectCurrencyRadioButtonList.SelectedValue.Contains( "All" ) ? String.Empty : m_SelectCurrencyRadioButtonList.SelectedValue;
       List<Selection.SelectionTableRowWraper> _available = null;
       switch ( SelectedGroup )
@@ -665,7 +665,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
                let _batch = _iprx.Batch
                where ( !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 ) &&
                      ( !start.HasValue || _iprx.CustomsDebtDate >= start.Value ) &&
-                     ( !finisch.HasValue || _iprx.CustomsDebtDate <= finisch.Value ) &&
+                     ( !finisch.HasValue || _iprx.CustomsDebtDate < finisch.Value ) &&
                      ( String.IsNullOrEmpty( currency ) || _iprx.Currency.Contains( currency ) )
                orderby _batch ascending
                select new Selection.SelectionTableRowWraper( _iprx ) ).ToList();
@@ -686,12 +686,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
                select new Selection.SelectionTableRowWraper( _dspslx ) ).ToList();
       if ( creationDataFilter )
         _ret = ( from _itmx in _ret
-                 where ( !start.HasValue || _itmx.Created >= start ) && ( !finisch.HasValue || _itmx.Created <= finisch )
+                 where ( !start.HasValue || _itmx.Created >= start ) && ( !finisch.HasValue || _itmx.Created < finisch )
                  orderby _itmx.Created ascending
                  select _itmx ).ToList();
       else
         _ret = ( from _itmx in _ret
-                 where ( !start.HasValue || _itmx.DebtDate >= start ) && ( !finisch.HasValue || _itmx.DebtDate <= finisch )
+                 where ( !start.HasValue || _itmx.DebtDate >= start ) && ( !finisch.HasValue || _itmx.DebtDate < finisch )
                  orderby _itmx.DebtDate ascending
                  select _itmx ).ToList();
       return _ret;
