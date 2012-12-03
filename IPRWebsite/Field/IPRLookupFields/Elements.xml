@@ -108,7 +108,7 @@
     UnlimitedLengthInDocumentLibrary="FALSE"
     Group="CAS Smart Factory IPR"
     ID="{943E6032-64E1-4178-A3B4-A72868ECE2C4}"
-    Name="Disposal2IPROGL_sec"
+    Name="Disposal2IPRBatch_sec"
     Overwrite="TRUE"
   />
   <Field
