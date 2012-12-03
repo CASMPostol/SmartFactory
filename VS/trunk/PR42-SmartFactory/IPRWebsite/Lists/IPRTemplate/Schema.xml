@@ -317,6 +317,11 @@
           <FieldRef Name="ProductivityRateMax" />
         </ViewFields>
         <Query>
+          <Where>
+            <IsNotNull>
+              <FieldRef Name="IPRLibraryIndex" />
+            </IsNotNull>
+          </Where>
           <OrderBy>
             <FieldRef Name="ID">
             </FieldRef>
