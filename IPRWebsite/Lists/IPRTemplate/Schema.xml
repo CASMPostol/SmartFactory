@@ -75,16 +75,8 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">30</RowLimit>
         <ViewFields>
-          <FieldRef Name="Attachments">
-          </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef Name="IPR2ConsentTitle" />
-          <FieldRef Name="ValidFromDate" />
-          <FieldRef Name="ValidToDate" />
-          <FieldRef Name="ProductivityRateMin" />
-          <FieldRef Name="ProductivityRateMax" />
-          <FieldRef Name="ConsentPeriod" />
           <FieldRef Name="DocumentNo" />
           <FieldRef Name="CustomsDebtDate" />
           <FieldRef Name="OGLValidTo" />
@@ -92,27 +84,31 @@
           <FieldRef Name="Grade" />
           <FieldRef Name="SKU" />
           <FieldRef Name="Batch" />
+          <FieldRef Name="IPR2PCNPCN" />
+          <FieldRef Name="InvoiceNo" />
           <FieldRef Name="DutyName" />
-          <FieldRef Name="Duty" />
           <FieldRef Name="IPRDutyPerUnit" />
           <FieldRef Name="VATName" />
-          <FieldRef Name="VAT"/>
           <FieldRef Name="IPRVATPerUnit" />
           <FieldRef Name="NetMass" />
           <FieldRef Name="GrossMass" />
           <FieldRef Name="Cartons" />
-          <FieldRef Name="InvoiceNo" />
           <FieldRef Name="Value" />
-          <FieldRef Name="Currency" />
           <FieldRef Name="IPRUnitPrice" />
-          <FieldRef Name="ClosingDate" />
+          <FieldRef Name="Currency" />
           <FieldRef Name="AccountBalance" />
           <FieldRef Name="TobaccoNotAllocated" />
-          <FieldRef Name="IPR2PCNPCN" />
-          <FieldRef Name="JSOXIndex" />
+          <FieldRef Name="ClosingDate" />
+          <FieldRef Name="AccountClosed" />
+          <FieldRef Name="IPR2ConsentTitle" />
+          <FieldRef Name="ValidFromDate" />
+          <FieldRef Name="ValidToDate" />
+          <FieldRef Name="ConsentPeriod" />
+          <FieldRef Name="ProductivityRateMin" />
+          <FieldRef Name="ProductivityRateMax" />
           <FieldRef Name="ClearenceIndex" />
           <FieldRef Name="IPRLibraryIndex" />
-          <FieldRef Name="AccountClosed" />
+          <FieldRef Name="JSOXIndex" />
           <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
