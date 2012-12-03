@@ -222,7 +222,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _quantity, this.Batch, this.Identyfikator, invoiceContent.InvoiceIndex.BillDoc, invoiceContent.Identyfikator.Value );
       throw new CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException( "internal error: it is imposible to mark as exported the material", "Material export`", _error );
     }
-    internal Material ReplaceByExistingOne( List<Material> _newMaterials, Linq.Batch parent )
+    internal Material ReplaceByExistingOne( SummaryContentInfo summaryContentInfo, List<Material> _newMaterials, Linq.Batch parent )
     {
       Material _old = ( from _mx in parent.Material where _mx.Batch.Contains( this.Batch ) select _mx ).FirstOrDefault<Material>();
       if ( _old == null )
@@ -231,6 +231,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _newMaterials.Add( this );
         return this;
       }
+      summaryContentInfo.Values.Remove( this );
+      summaryContentInfo.Add( _old.GetKey(), _old );
       Material _ret = _old;
       _ret.FGQuantity = this.FGQuantity;
       _ret.TobaccoQuantity = this.TobaccoQuantity;
