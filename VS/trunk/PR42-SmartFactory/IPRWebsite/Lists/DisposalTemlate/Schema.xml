@@ -31,6 +31,7 @@
           <FieldRef ID="{1075A488-94A3-4937-9806-264381DE1542}" Name="PCNCompensationGood" />
           <FieldRef ID="{03524E3C-0A1F-4FFD-9AA5-154BDF15922B}" Name="Disposal2PCNPCN_sec" />
           <FieldRef ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}" Name="ClearingType" />
+          <FieldRef ID="{10C39E4D-192E-4FB7-8A14-A8CE732B41D7}" Name="Disposal2IPROGL_sec" />
           <FieldRef ID="{10C39E4D-192E-4FB7-8A14-A8CE732B41D7}" Name="Disposal2IPRBatch_sec" />
           <FieldRef ID="{AD5CAC03-2C3B-4E43-90AD-4E5C9A80B76C}" Name="Disposal2ClearenceIndex" />
           <FieldRef ID="{6E87DAC8-1B60-4246-97E1-9D0DC221F268}" Name="JSOXCustomsSummaryIndex" />
@@ -73,34 +74,33 @@
         <ViewFields>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef Name="No" />
           <FieldRef Name="SADDocumentNo" />
           <FieldRef Name="SADDate" />
           <FieldRef Name="InvoiceNo" />
-          <FieldRef Name="IPRDocumentNo" />
           <FieldRef Name="SettledQuantity" />
-          <FieldRef Name="DisposalStatus" />
+          <FieldRef Name="RemainingQuantity" />
           <FieldRef Name="CustomsStatus" />
+          <FieldRef Name="DisposalStatus" />
           <FieldRef Name="Disposal2BatchSKU_sec"/>
           <FieldRef Name="Disposal2BatchBatch_sec" />
+          <FieldRef Name="Disposal2IPROGL_sec" />
+          <FieldRef Name="Disposal2IPRBatch_sec" />
           <FieldRef Name="DutyPerSettledAmount" />
           <FieldRef Name="VATPerSettledAmount" />
           <FieldRef Name="DutyAndVAT" />
           <FieldRef Name="TobaccoValue" />
           <FieldRef Name="Disposal2IPRCurrency_sec" />
-          <FieldRef Name="RemainingQuantity" />
           <FieldRef Name="CustomsProcedure" />
-          <FieldRef Name="Disposal2PCNID" />
-          <FieldRef Name="PCNCompensationGood" />
           <FieldRef Name="Disposal2PCNPCN_sec" />
+          <FieldRef Name="PCNCompensationGood" />
+          <FieldRef Name="Disposal2PCNID" />
           <FieldRef Name="ClearingType" />
-          <FieldRef Name="Disposal2IPRBatch_sec" />
-          <FieldRef Name="Disposal2ClearenceIndex" />
-          <FieldRef Name="JSOXCustomsSummaryIndex" />
-          <FieldRef Name="Disposal2BatchIndex" />
           <FieldRef Name="Disposal2IPRIndex" />
+          <FieldRef Name="Disposal2BatchIndex" />
           <FieldRef Name="Disposal2MaterialIndex" />
           <FieldRef Name="Disposal2InvoiceContentIndex" />
+          <FieldRef Name="Disposal2ClearenceIndex" />
+          <FieldRef Name="JSOXCustomsSummaryIndex" />
           <FieldRef Name="Created"/>
           <FieldRef Name="Author" />
           <FieldRef Name="_UIVersionString" />

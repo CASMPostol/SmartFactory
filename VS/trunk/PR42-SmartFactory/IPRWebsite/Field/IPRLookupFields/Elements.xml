@@ -26,7 +26,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="Material lookup"
+    DisplayName="Material ID"
     Group="CAS Smart Factory IPR"
     Required="True"
     Hidden="False"
@@ -43,7 +43,7 @@
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
     RelationshipDeleteBehavior="None"
-    DisplayName="Batch lookup"
+    DisplayName="Batch ID"
     Group="CAS Smart Factory IPR"
     Required="True"
     Hidden="False"
@@ -87,6 +87,19 @@
     />
   <Field
     Type="Lookup"
+    DisplayName="OGL"
+    List="Lists/IPRList"
+    ShowField="DocumentNo"
+    FieldRef="C0A4DD0E-A06E-40D4-BFE1-682D3C071AC1"
+    ReadOnly="TRUE"
+    UnlimitedLengthInDocumentLibrary="FALSE"
+    Group="CAS Smart Factory IPR"
+    ID="{10C39E4D-192E-4FB7-8A14-A8CE732B41D7}"
+    Name="Disposal2IPROGL_sec"
+    Overwrite="TRUE"
+  />
+  <Field
+    Type="Lookup"
     DisplayName="Batch"
     List="Lists/IPRList"
     ShowField="Batch"
@@ -94,8 +107,8 @@
     ReadOnly="TRUE"
     UnlimitedLengthInDocumentLibrary="FALSE"
     Group="CAS Smart Factory IPR"
-    ID="{10C39E4D-192E-4FB7-8A14-A8CE732B41D7}"
-    Name="Disposal2IPRBatch_sec"
+    ID="{943E6032-64E1-4178-A3B4-A72868ECE2C4}"
+    Name="Disposal2IPROGL_sec"
     Overwrite="TRUE"
   />
   <Field
