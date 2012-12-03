@@ -40,7 +40,7 @@
   DisplayName="Waste Cooeficient"
   Name="BatchWasteCooeficiency"
   Type="Number"
-  Decimals="2"
+  Decimals="4"
   ID="{91109161-779F-4D61-AC19-1A7F9E260380}"
   Group="CAS Smart Factory IPR"
     />
@@ -55,7 +55,7 @@
   DisplayName="Dust Cooeficient"
   Name="BatchDustCooeficiency"
   Type="Number"
-  Decimals="2"
+  Decimals="4"
   ID="{B292C573-B10F-4BD6-BACA-D91E4930B35C}"
   Group="CAS Smart Factory IPR"
     />
@@ -70,7 +70,7 @@
   DisplayName="SH Cooeficient"
   Name="BatchSHCooeficiency"
   Type="Number"
-  Decimals="2"
+  Decimals="4"
   ID="{B4A62D70-8D8E-4231-95E7-754942CD20D6}"
   Group="CAS Smart Factory IPR"
     />
