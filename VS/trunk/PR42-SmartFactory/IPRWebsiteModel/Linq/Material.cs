@@ -262,7 +262,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _kind, this.Batch ) ) );
           AddNewDisposals( edc, _kind, ref _toDispose );
           if ( _toDispose <= 0 )
-            return;
+            throw new Updated();
           string _mssg = "Cannot find IPR account to dispose the tobacco of {3} kg: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
           throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, this.Batch, parent.Batch0, _kind, _toDispose ), null, "IPR unrecognized account" );
         }
