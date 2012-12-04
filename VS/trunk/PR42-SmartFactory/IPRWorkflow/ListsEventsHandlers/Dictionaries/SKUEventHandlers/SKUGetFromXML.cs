@@ -55,10 +55,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
           SKUCommonPart entity = SKUCommonPart.Find( edc, item.GetMaterial() );
           if ( entity != null )
             continue;
-          _newEntries++;
           SKUCommonPart sku = creator( item, parent, edc, warnings );
           if ( sku != null )
+          {
+            _newEntries++;
             entities.Add( sku );
+          }
         }
         catch ( Exception ex )
         {
