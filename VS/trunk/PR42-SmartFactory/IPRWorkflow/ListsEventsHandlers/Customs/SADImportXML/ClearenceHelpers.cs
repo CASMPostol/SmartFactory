@@ -202,7 +202,7 @@ namespace CAS.SmartFactory.IPR.Customs
           InvoiceNo = _iprdata.Invoice,
           IPRLibraryIndex = declaration.SADDocumenLibrarytIndex,
           NetMass = _iprdata.NetMass,
-          OGLValidTo = customsDebtDate + _iprdata.ConsentPeriodCalculated,
+          OGLValidTo = customsDebtDate + TimeSpan.FromDays( _iprdata.ConsentLookup.ConsentPeriod.Value ),
           IPR2PCNPCN = _pcn,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
@@ -212,7 +212,12 @@ namespace CAS.SmartFactory.IPR.Customs
           Value = _iprdata.Value,
           VATName = _iprdata.VATName,
           VAT = _iprdata.VAT,
-          IPRVATPerUnit = _iprdata.VATPerUnit
+          IPRVATPerUnit = _iprdata.VATPerUnit,
+          ProductivityRateMax = _iprdata.ConsentLookup.ProductivityRateMax,
+          ProductivityRateMin = _iprdata.ConsentLookup.ProductivityRateMin,
+          ValidFromDate = _iprdata.ConsentLookup.ValidFromDate,
+          ValidToDate = _iprdata.ConsentLookup.ValidToDate,
+          ConsentPeriod = _iprdata.ConsentLookup.ConsentPeriod,
         };
         _at = "new InsertOnSubmit";
         entities.IPR.InsertOnSubmit( _ipr );
@@ -398,10 +403,15 @@ namespace CAS.SmartFactory.IPR.Customs
           if ( this.ConsentLookup == null )
           {
             m_Warnings.Add( "Cannot find consent document with number: " + _nr + ". The Consent period is 90 days" );
-            ConsentPeriodCalculated = TimeSpan.FromDays( 90 );
+            this.ConsentLookup = new Consent()
+            {
+              ConsentDate = CAS.SharePoint.Extensions.DateTimeNull,
+              ConsentPeriod = TimeSpan.FromDays( 90 ).TotalDays,
+              IsIPR = true,
+              ValidFromDate = CAS.SharePoint.Extensions.DateTimeNull,
+              ValidToDate = CAS.SharePoint.Extensions.DateTimeNull
+            };
           }
-          else
-            ConsentPeriodCalculated = TimeSpan.FromDays( Convert.ToInt32( this.ConsentLookup.ConsentPeriod.Value ) * 30 );
         }
       }
       #endregion
@@ -416,7 +426,6 @@ namespace CAS.SmartFactory.IPR.Customs
       }
       internal double Cartons { get; private set; }
       internal Consent ConsentLookup { get; private set; }
-      internal TimeSpan ConsentPeriodCalculated { get; private set; }
       internal double Duty { get; private set; }
       internal string DutyName { get; private set; }
       internal double DutyPerUnit { get; private set; }
