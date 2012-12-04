@@ -19,10 +19,10 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
     {
       int _position = 1;
       List<CigaretteExportForm> _consignment = new List<CigaretteExportForm>();
-      foreach ( InvoiceContent item in invoice.InvoiceContent )
-        ExportInvoiceEntry( item, entities, _consignment, documentName, ref _position );
-      invoice.InvoiceLibraryReadOnly = true;
       invoice.ClearenceIndex = clearance;
+      invoice.InvoiceLibraryReadOnly = true;
+      foreach ( InvoiceContent item in invoice.InvoiceContent )
+        ExportInvoiceEntry( entities, item, _consignment, documentName, ref _position );
       return GetCigaretteExportFormCollection( _consignment, documentName, invoice.BillDoc );
     }
     #endregion
@@ -118,7 +118,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
 
     #region private
     private static void ExportInvoiceEntry
-      ( InvoiceContent invoice, Entities entities, List<CigaretteExportForm> formsList, string documentName, ref int subdocumentNo )
+      ( Entities entities, InvoiceContent invoice, List<CigaretteExportForm> formsList, string documentName, ref int subdocumentNo )
     {
       string _at = "beginning";
       Batch batch = invoice.InvoiceContent2BatchIndex;

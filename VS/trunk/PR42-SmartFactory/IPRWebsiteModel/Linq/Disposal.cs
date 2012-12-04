@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       set
       {
         if ( value == null )
-          throw new ArgumentNullException( "Clearence cannot be null" );
+          throw new ArgumentNullException( "Material", "Material cannot be null" );
         Disposal2BatchIndex = value.Material2BatchIndex;
         Disposal2MaterialIndex = value;
       }
@@ -57,7 +57,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       set
       {
         if ( value == null )
-          throw new ArgumentNullException( "Clearence cannot be null" );
+          throw new ArgumentNullException( "Clearance", "Clearence cannot be null" );
         if ( this.CustomsStatus.Value != Linq.CustomsStatus.NotStarted )
           throw new ArgumentException( "Clearance can be assigned ony to NoStarted disposals - internal fatal error." );
         this.CustomsStatus = Linq.CustomsStatus.Started;
@@ -103,12 +103,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           }
           else
             quantity -= this.SettledQuantityDec;
+        _at = "InvoicEContent";
         this.InvoicEContent = invoiceContent;
         this.SetUpCalculatedColumns();
       }
       catch ( Exception _ex )
       {
-        throw new ApplicationError( @"CAS.SmartFactory.IPR.WebsiteModel.Linq.Export", _at, _ex.Message, _ex );
+        throw new ApplicationError( @"CAS.SmartFactory.IPR.WebsiteModel.Linq.Disposal.Export", _at, _ex.Message, _ex );
       }
     }
     internal void FinishClearingThroughCustoms( Entities edc, SADGood sadGood )
