@@ -60,15 +60,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="overusage">The overusage.</param>
     internal void CalculateCompensationComponents( Entities edc, Ratios ratios, double overusage )
     {
-      decimal material = Convert.ToDecimal( this.TobaccoQuantity );
       List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, Batch );
-      if ( _accounts.Count == 1 && Math.Abs( Convert.ToDecimal( _accounts[ 0 ].TobaccoNotAllocated.Value ) - material ) < 1 )
-        material = _accounts[ 0 ].TobaccoNotAllocatedDec;
+      if ( _accounts.Count == 1 && Math.Abs( _accounts[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) < 1 )
+        TobaccoQuantity = _accounts[ 0 ].TobaccoNotAllocated;
+      decimal material = TobaccoQuantityDec;
+      decimal _overuseInKg = 0;
       if ( overusage > 0 )
       {
-        decimal _overuseInKg = this[ DisposalEnum.OverusageInKg ] = ( material * Convert.ToDecimal( overusage ) ).RountMass();
+        _overuseInKg = this[ DisposalEnum.OverusageInKg ] = ( TobaccoQuantityDec * Convert.ToDecimal( overusage ) ).RountMass();
         material -= _overuseInKg;
       }
+      else
+        this[ DisposalEnum.OverusageInKg ] = 0;
       decimal _dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).RountMass();
       decimal _shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).RountMass();
       decimal _waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).RountMass();
@@ -175,7 +178,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <value>
     /// The tobacco total.
     /// </value>
-    public decimal TobaccoTotal { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
+    internal decimal TobaccoQuantityDec { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
     public void Export( Entities entities, bool closingBatch, InvoiceContent invoiceContent, List<Disposal> disposals )
     {
       decimal _quantity = this.CalculatedQuantity( invoiceContent );
