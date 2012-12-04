@@ -69,25 +69,31 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         //InsertAllOnSubmit( edc, parent );
         List<Material> _newMaterialList = new List<Material>();
+        List<Material> _oldMaterialList = new List<Material>();
         Material.Ratios _mr = new Material.Ratios { dustRatio = dustRatio, shMentholRatio = shMentholRatio, wasteRatio = wasteRatio };
         List<Material> _copyThis = new List<Material>();
         _copyThis.AddRange( this.Values );
-        foreach ( Material _materialX in _copyThis)
+        foreach ( Material _materialX in _copyThis )
         {
           progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
-          Material _oldMAterial = _materialX.ReplaceByExistingOne( this, _newMaterialList, parent );
-          if ( _oldMAterial.ProductType.Value == ProductType.IPRTobacco )
+          Material _material = _materialX.ReplaceByExistingOne( _oldMaterialList, _newMaterialList, parent );
+          if ( _material.ProductType.Value == ProductType.IPRTobacco )
           {
             progressChanged( this, new ProgressChangedEventArgs( 1, "CalculateCompensationComponents" ) );
-            _oldMAterial.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
+            _material.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
             progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
-            AccumulatedDisposalsAnalisis.Accumutate( _oldMAterial );
+            AccumulatedDisposalsAnalisis.Accumutate( _material );
           }
           if ( _newMaterialList.Count > 0 )
           {
             progressChanged( this, new ProgressChangedEventArgs( 1, "InsertAllOnSubmit" ) );
             edc.Material.InsertAllOnSubmit( _newMaterialList );
           }
+        }
+        foreach ( Material _omx in _oldMaterialList )
+        {
+          this.Remove( _omx.GetKey() );
+          this.Add( _omx.GetKey(), _omx );
         }
       }
       catch ( Exception _ex )
