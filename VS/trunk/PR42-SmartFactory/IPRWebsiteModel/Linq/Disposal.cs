@@ -66,6 +66,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         this.SADDocumentNo = value.DocumentNo;
         this.SADDate = value.CustomsDebtDate;
         this.CustomsProcedure = Entities.ToString( value.ClearenceProcedure.Value );
+        CalculateDutyAndVat();
       }
     }
     internal InvoiceContent InvoicEContent
@@ -105,12 +106,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             quantity -= this.SettledQuantityDec;
         _at = "InvoicEContent";
         this.InvoicEContent = invoiceContent;
-        this.SetUpCalculatedColumns();
+        this.CalculateDutyAndVat();
       }
       catch ( Exception _ex )
       {
         throw new ApplicationError( @"CAS.SmartFactory.IPR.WebsiteModel.Linq.Disposal.Export", _at, _ex.Message, _ex );
       }
+    }
+    internal void ClearThroughCustom()
+    {
+      CustomsStatus = Linq.CustomsStatus.Started;
     }
     internal void FinishClearingThroughCustoms( Entities edc, SADGood sadGood )
     {
@@ -133,7 +138,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           this.ClearingType = Linq.ClearingType.TotalWindingUp;
         this.CustomsStatus = Linq.CustomsStatus.Finished;
         this.ClearingType = Disposal2IPRIndex.GetClearingType();
-        SetUpCalculatedColumns();
+        CalculateDutyAndVat();
       }
       catch ( Exception _ex )
       {
@@ -161,7 +166,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Calculate values of columns: Title, DutyPerSettledAmount, VATPerSettledAmount, TobaccoValue, DutyAndVAT.
     /// </summary>
     /// <param name="clearingType">Type of the clearing.</param>
-    private void SetUpCalculatedColumns()
+    private void CalculateDutyAndVat()
     {
       try
       {
