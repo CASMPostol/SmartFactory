@@ -73,7 +73,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
         edc.SubmitChanges();
       }
       string _pattern = "Finished content analysis, there are {0} entries, {1} new entries, {2} erroneous entries";
-      ActivityLogCT.WriteEntry( "XML content analysis", String.Format( _pattern, _entries, _newEntries, warnings.Count ), edc.Web );
+      ActivityLogCT.WriteEntry( "SKU Message Import", String.Format( _pattern, _entries, _newEntries, warnings.Count ), edc.Web );
       if ( warnings.Count > 0 )
         throw new InputDataValidationException( "SKU message import errors.", "XML import", warnings );
     }
