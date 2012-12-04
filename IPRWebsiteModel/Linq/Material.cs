@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using CAS.SharePoint;
-using CAS.SmartFactory.IPR;
-using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -77,32 +74,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal _waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).RountMass();
       this[ DisposalEnum.TobaccoInCigaretess ] = material - _shMenthol - _waste - _dust;
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    //public enum DisposalsEnum
-    //{
-    //  /// <summary>
-    //  /// The dust
-    //  /// </summary>
-    //  Dust,
-    //  /// <summary>
-    //  /// The SH menthol
-    //  /// </summary>
-    //  SHMenthol,
-    //  /// <summary>
-    //  /// The waste
-    //  /// </summary>
-    //  Waste,
-    //  /// <summary>
-    //  /// The overusage in kg
-    //  /// </summary>
-    //  OverusageInKg,
-    //  /// <summary>
-    //  /// The tobacco
-    //  /// </summary>
-    //  Tobacco
-    //};
     /// <summary>
     /// Gets the <see cref="System.Decimal" /> at the specified index.
     /// </summary>
@@ -222,7 +193,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _quantity, this.Batch, this.Identyfikator, invoiceContent.InvoiceIndex.BillDoc, invoiceContent.Identyfikator.Value );
       throw new CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException( "internal error: it is imposible to mark as exported the material", "Material export`", _error );
     }
-    internal Material ReplaceByExistingOne( SummaryContentInfo summaryContentInfo, List<Material> _newMaterials, Linq.Batch parent )
+    internal Material ReplaceByExistingOne( List<Material> _oldMaterials, List<Material> _newMaterials, Linq.Batch parent )
     {
       Material _old = ( from _mx in parent.Material where _mx.Batch.Contains( this.Batch ) select _mx ).FirstOrDefault<Material>();
       if ( _old == null )
@@ -231,9 +202,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _newMaterials.Add( this );
         return this;
       }
-      summaryContentInfo.Values.Remove( this );
-      summaryContentInfo.Add( _old.GetKey(), _old );
       Material _ret = _old;
+      _oldMaterials.Add( _old );
       _ret.FGQuantity = this.FGQuantity;
       _ret.TobaccoQuantity = this.TobaccoQuantity;
       return _ret;
