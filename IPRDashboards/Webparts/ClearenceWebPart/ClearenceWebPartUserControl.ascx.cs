@@ -588,9 +588,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
             break;
         }
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
-        CurrentClearence.SADConsignmentLibraryIndex = _sadConsignment;
-        foreach ( Disposal _dspsl in CurrentClearence.Disposal )
-          _dspsl.CustomsStatus = CustomsStatus.Started;
+        CurrentClearence.ClearThroughCustom( _sadConsignment );
         m_DataContextManagement.DataContext.SubmitChanges();
         return GenericStateMachineEngine.ActionResult.Success;
       }

@@ -76,6 +76,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       entities.SubmitChanges();
       return _newClearence;
     }
+    public void ClearThroughCustom( SADConsignment _sadConsignment )
+    {
+      SADConsignmentLibraryIndex = _sadConsignment;
+      foreach ( Disposal _dspsl in Disposal )
+        _dspsl.ClearThroughCustom();
+    }
     #endregion
 
     #region private
@@ -97,6 +103,5 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       base.OnPropertyChanged( propertyName );
     }
     #endregion
-
   }
 }
