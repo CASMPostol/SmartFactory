@@ -94,7 +94,7 @@
     ReadOnly="TRUE"
     UnlimitedLengthInDocumentLibrary="FALSE"
     Group="CAS Smart Factory IPR"
-    ID="{10C39E4D-192E-4FB7-8A14-A8CE732B41D7}"
+    ID="{97EA5720-211F-487A-97BC-C69FA68BD994}"
     Name="Disposal2IPROGL_sec"
     Overwrite="TRUE"
   />
@@ -107,7 +107,7 @@
     ReadOnly="TRUE"
     UnlimitedLengthInDocumentLibrary="FALSE"
     Group="CAS Smart Factory IPR"
-    ID="{943E6032-64E1-4178-A3B4-A72868ECE2C4}"
+    ID="{10C39E4D-192E-4FB7-8A14-A8CE732B41D7}"
     Name="Disposal2IPRBatch_sec"
     Overwrite="TRUE"
   />
