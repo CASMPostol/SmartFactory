@@ -1148,7 +1148,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _cFTProductivityNormMax;
 		
-		private System.Nullable<double> _cFTProdVersion;
+		private System.Nullable<double> _cFTProductivityVersion;
 		
 		private System.Nullable<double> _usageMin;
 		
@@ -1564,16 +1564,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CFTProductivityVersion", Storage="_cFTProdVersion", FieldType="Number")]
-		public System.Nullable<double> CFTProdVersion {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CFTProductivityVersion", Storage="_cFTProductivityVersion", FieldType="Number")]
+		public System.Nullable<double> CFTProductivityVersion {
 			get {
-				return this._cFTProdVersion;
+				return this._cFTProductivityVersion;
 			}
 			set {
-				if ((value != this._cFTProdVersion)) {
-					this.OnPropertyChanging("CFTProdVersion", this._cFTProdVersion);
-					this._cFTProdVersion = value;
-					this.OnPropertyChanged("CFTProdVersion");
+				if ((value != this._cFTProductivityVersion)) {
+					this.OnPropertyChanging("CFTProductivityVersion", this._cFTProductivityVersion);
+					this._cFTProductivityVersion = value;
+					this.OnPropertyChanged("CFTProductivityVersion");
 				}
 			}
 		}
@@ -5078,8 +5078,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 				e.Item.IPRIndex = null;
 			}
 		}
-
-  }
+	}
 	
 	/// <summary>
 	/// Utwórz nowy element listy.
