@@ -103,6 +103,7 @@
     <Column Name="PCNCompensationGood" Member="PCNCompensationGood" />
     <Column Name="Disposal2PCNPCN_sec" Member="Disposal2PCNPCN_sec" />
     <Column Name="ClearingType" Member="ClearingType" />
+    <Column Name="Disposal2IPROGL_sec" Member="Disposal2IPROGL_sec" />
     <Column Name="Disposal2IPRBatch_sec" Member="Disposal2IPRBatch_sec" />
     <Column Name="Disposal2ClearenceIndex" Member="Disposal2ClearenceIndex" />
     <Column Name="JSOXCustomsSummaryIndex" Member="JSOXCustomsSummaryIndex" />
