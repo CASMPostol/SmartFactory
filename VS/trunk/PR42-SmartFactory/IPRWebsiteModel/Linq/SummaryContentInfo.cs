@@ -126,7 +126,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       Dictionary<string, decimal> _materials = ( from _mx in this.Values
                                                  where _mx.ProductType.Value == Linq.ProductType.IPRTobacco
-                                                 select new { batchId = _mx.Batch, quantity = _mx.TobaccoTotal } ).ToDictionary( k => k.batchId, v => v.quantity );
+                                                 select new { batchId = _mx.Batch, quantity = _mx.TobaccoQuantityDec } ).ToDictionary( k => k.batchId, v => v.quantity );
       foreach ( Disposal _dx in disposals )
         if ( !_materials.Keys.Contains<string>( _dx.Disposal2BatchIndex.Batch0 ) )
           _materials.Add( _dx.Disposal2BatchIndex.Batch0, _dx.SettledQuantityDec );
@@ -155,7 +155,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       Material ce = null;
       if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
-        TotalTobacco += value.TobaccoTotal;
+        TotalTobacco += value.TobaccoQuantityDec;
       if ( this.TryGetValue( value.GetKey(), out ce ) )
       {
         ce.FGQuantity += value.FGQuantity;
@@ -173,7 +173,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private void Subtract( Material value, List<string> _warnings )
     {
       if ( value.ProductType == ProductType.IPRTobacco || value.ProductType == ProductType.Tobacco )
-        TotalTobacco -= value.TobaccoTotal;
+        TotalTobacco -= value.TobaccoQuantityDec;
       if ( this.TryGetValue( value.GetKey(), out value ) )
       {
         value.FGQuantity -= value.FGQuantity;
