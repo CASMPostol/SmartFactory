@@ -15,7 +15,7 @@ namespace CAS.SmartFactory.IPR.Customs
   internal static class ClearenceHelpers
   {
 
-    #region MyRegion
+    #region public
     internal static void DeclarationProcessing( SADDocumentType _sad, Entities _edc, CustomsDocument.DocumentType _messageType, out string _comments, List<InputDataValidationException> warnings )
     {
       string _at = "started";
@@ -206,7 +206,7 @@ namespace CAS.SmartFactory.IPR.Customs
           IPR2PCNPCN = _pcn,
           SKU = _iprdata.SKU,
           TobaccoName = _iprdata.TobaccoName,
-          TobaccoNotAllocated = _iprdata.GrossMass,
+          TobaccoNotAllocated = _iprdata.NetMass,
           Title = "-- creating -- ",
           IPRUnitPrice = _iprdata.UnitPrice,
           Value = _iprdata.Value,

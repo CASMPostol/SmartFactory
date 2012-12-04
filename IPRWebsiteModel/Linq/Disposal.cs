@@ -131,10 +131,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         else
           this.No = _lastOne.Max<Disposal>( dspsl => dspsl.No.Value ) + 1;
         AssignSADGood( edc, sadGood );
-        double _balance = Convert.ToDouble( Convert.ToDecimal( this.Disposal2IPRIndex.AccountBalance.Value ) - Convert.ToDecimal( this.SettledQuantity.Value ) );
-        this.Disposal2IPRIndex.AccountBalance = _balance;
-        this.RemainingQuantity = _balance;
-        if ( this.RemainingQuantity.Value == 0 )
+        decimal _balance = 0;
+        if ( this.DisposalStatus.Value == Linq.DisposalStatus.Cartons )
+          _balance = Convert.ToDecimal( this.Disposal2IPRIndex.AccountBalance.Value );
+        else
+          _balance = Convert.ToDecimal( this.Disposal2IPRIndex.AccountBalance.Value ) - this.SettledQuantityDec;
+        this.Disposal2IPRIndex.AccountBalance = this.RemainingQuantity = Convert.ToDouble( _balance );
+        if ( _balance == 0 )
           this.ClearingType = Linq.ClearingType.TotalWindingUp;
         this.CustomsStatus = Linq.CustomsStatus.Finished;
         this.ClearingType = Disposal2IPRIndex.GetClearingType();
