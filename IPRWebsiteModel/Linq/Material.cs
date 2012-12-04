@@ -179,6 +179,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The tobacco total.
     /// </value>
     internal decimal TobaccoQuantityDec { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
+    /// <summary>
+    /// Exports the specified entities.
+    /// </summary>
+    /// <param name="entities">The entities.</param>
+    /// <param name="closingBatch">if set to <c>true</c> [closing batch].</param>
+    /// <param name="invoiceContent">Content of the invoice.</param>
+    /// <param name="disposals">The disposals.</param>
+    /// <exception cref="CAS">internal error: it is imposible to mark as exported the material;Material export`</exception>
     public void Export( Entities entities, bool closingBatch, InvoiceContent invoiceContent, List<Disposal> disposals )
     {
       decimal _quantity = this.CalculatedQuantity( invoiceContent );
@@ -219,8 +227,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         {
           if ( _kind == DisposalEnum.Tobacco || _kind == DisposalEnum.Cartons )
             continue;
-          if ( ( ( _kind == DisposalEnum.SHMenthol ) || ( _kind == DisposalEnum.OverusageInKg ) ) && this[ _kind ] <= 0 )
-            continue;
           decimal _toDispose = this[ _kind ];
           IQueryable<Disposal> _disposals = Linq.Disposal.Disposals( this.Disposal, _kind );
           if ( _disposals.Count<Disposal>() > 0 )
@@ -231,17 +237,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             {
               _dx.Adjust( ref _toDispose );
               if ( _toDispose <= 0 )
-                throw new Updated();
+                break;
             }
+            continue;
           }
           progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _kind, this.Batch ) ) );
+          if ( ( ( _kind == DisposalEnum.SHMenthol ) || ( _kind == DisposalEnum.OverusageInKg ) ) && this[ _kind ] <= 0 )
+            continue;
           AddNewDisposals( edc, _kind, ref _toDispose );
           if ( _toDispose <= 0 )
-            throw new Updated();
+            continue;
           string _mssg = "Cannot find IPR account to dispose the tobacco of {3} kg: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
           throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, this.Batch, parent.Batch0, _kind, _toDispose ), null, "IPR unrecognized account" );
         }
-        catch ( Updated ) { }
         catch ( IPRDataConsistencyException _ex )
         {
           _ex.Add2Log( edc );
@@ -271,7 +279,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
-    private class Updated: Exception { }
     private const string m_keyForam = "{0}:{1}:{2}";
     #endregion
 
