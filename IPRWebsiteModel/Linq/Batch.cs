@@ -58,7 +58,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.CFTProductivityNormMin = _cc.CFTProductivityNormMin;
       this.CFTProductivityRateMax = _cc.CFTProductivityRateMax;
       this.CFTProductivityRateMin = _cc.CFTProductivityRateMin;
-      this.CFTProdVersion = _cc.Wersja;
+      this.CFTProductivityVersion = _cc.Wersja;
       Usage _usage = Usage.GetLookup( SKUIndex.FormatIndex, edc );
       this.CTFUsageMax = _usage.CTFUsageMax;
       this.CTFUsageMin = _usage.CTFUsageMin;

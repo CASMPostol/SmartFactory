@@ -573,7 +573,7 @@
     <Column Name="CFTProductivityRateMax" Member="CFTProductivityRateMax" />
     <Column Name="CFTProductivityNormMin" Member="CFTProductivityNormMin" />
     <Column Name="CFTProductivityNormMax" Member="CFTProductivityNormMax" />
-    <Column Name="CTFProductivityVersion" Member="CTFProductivityVersion" />
+    <Column Name="CFTProductivityVersion" Member="CFTProductivityVersion" />
     <Column Name="UsageMin" Member="UsageMin" />
     <Column Name="UsageMax" Member="UsageMax" />
     <Column Name="CTFUsageMin" Member="CTFUsageMin" />
