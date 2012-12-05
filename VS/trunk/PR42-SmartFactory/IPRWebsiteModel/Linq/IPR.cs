@@ -93,6 +93,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from IPR _iprx in edc.IPR where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
     }
+    public double DutyPerUnit { get { return this.Duty.Value / this.NetMass.Value; } }
+    public double VATPerUnit { get { return this.VAT.Value / this.NetMass.Value; } }
     #endregion
 
     #region internal
