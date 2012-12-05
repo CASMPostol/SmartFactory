@@ -37,10 +37,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="edc">The edc.</param>
     /// <param name="quantity">The quantity.</param>
     /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt > 0;null</exception>
-    public void AddDisposal( Entities edc )
+    public void AddDisposal( Entities edc, decimal quantity )
     {
-      decimal _0Quantity = 0;
-      AddDisposal( edc, DisposalEnum.Cartons, ref _0Quantity );
+      AddDisposal( edc, DisposalEnum.Cartons, ref quantity );
     }
     /// <summary>
     /// Insert on submit the disposal.
@@ -130,7 +129,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       if ( quantity <= 0 && status != DisposalEnum.Cartons )
         throw new ArgumentException( "IPR.AddDisposal - quantity <= 0" );
       Linq.DisposalStatus _typeOfDisposal = Entities.GetDisposalStatus( status );
-      decimal _toDispose = Withdraw( ref quantity, 0 );
+      decimal _toDispose = 0;
+      if ( status == DisposalEnum.Cartons )
+      {
+        _toDispose = quantity;
+        quantity = 0;
+      }
+      else
+        _toDispose = Withdraw( ref quantity, 0 );
       Disposal _newDisposal = new Disposal( this, _typeOfDisposal, _toDispose );
       edc.Disposal.InsertOnSubmit( _newDisposal );
       return _newDisposal;
