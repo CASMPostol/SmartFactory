@@ -50,6 +50,10 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
     /// Cigarette export form name
     /// </summary>
     public const string CigaretteExportFormName = "CigaretteExportFormCollection";
+    /// <summary>
+    /// The request for account clearence name
+    /// </summary>
+    public static string RequestForAccountClearenceName = "RequestForAccountClearence";
   }
 }
 
