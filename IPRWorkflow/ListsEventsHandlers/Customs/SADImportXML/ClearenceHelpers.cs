@@ -227,7 +227,7 @@ namespace CAS.SmartFactory.IPR.Customs
         _ipr.Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, _ipr.Identyfikator );
         _at = "AddDisposal";
         if ( _iprdata.Cartons > 0 )
-          _ipr.AddDisposal( entities );
+          _ipr.AddDisposal( entities, Convert.ToDecimal( _iprdata.Cartons )  );
         _at = "new SubmitChanges #2";
         entities.SubmitChanges();
       }
