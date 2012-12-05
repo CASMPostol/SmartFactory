@@ -65,9 +65,9 @@
     <Reference Include="Microsoft.SharePoint.Security" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clearance\ConsignmentFactory.cs" />
     <Compile Include="Clearance\DisposalsFormFactory.cs" />
     <Compile Include="Clearance\FinishedGoodsFormFactory.cs" />
+    <Compile Include="Clearance\SPDocumentFactory.cs" />
     <Compile Include="CommonDefinitions.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
