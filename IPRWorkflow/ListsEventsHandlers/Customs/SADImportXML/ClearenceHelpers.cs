@@ -185,7 +185,7 @@ namespace CAS.SmartFactory.IPR.Customs
         IPRClass _ipr = new IPRClass()
         {
           AccountClosed = false,
-          AccountBalance = _iprdata.GrossMass,
+          AccountBalance = _iprdata.NetMass,
           Batch = _iprdata.Batch,
           Cartons = _iprdata.Cartons,
           ClearenceIndex = clearence,
@@ -226,7 +226,7 @@ namespace CAS.SmartFactory.IPR.Customs
         entities.SubmitChanges();
         _ipr.Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, _ipr.Identyfikator );
         if ( _iprdata.Cartons > 0 )
-          _ipr.AddDisposal( entities, Convert.ToDecimal( _iprdata.Cartons ) );
+          _ipr.AddDisposal( entities );
         _at = "new SubmitChanges #2";
         entities.SubmitChanges();
       }
