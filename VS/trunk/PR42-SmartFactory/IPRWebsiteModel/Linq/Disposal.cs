@@ -116,6 +116,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void ClearThroughCustom()
     {
       CustomsStatus = Linq.CustomsStatus.Started;
+      CalculateDutyAndVat();
     }
     internal void FinishClearingThroughCustoms( Entities edc, SADGood sadGood )
     {
