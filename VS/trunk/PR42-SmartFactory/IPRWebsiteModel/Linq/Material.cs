@@ -231,15 +231,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           IQueryable<Disposal> _disposals = Linq.Disposal.Disposals( this.Disposal, _kind );
           if ( _disposals.Count<Disposal>() > 0 )
           {
+            bool _break = false;
             _toDispose -= _disposals.Sum<Disposal>( x => x.SettledQuantityDec );
             _disposals = _disposals.Where( v => v.CustomsStatus.Value == CustomsStatus.NotStarted );
             foreach ( Linq.Disposal _dx in _disposals )
             {
               _dx.Adjust( ref _toDispose );
               if ( _toDispose <= 0 )
+              {
+                _break = true;
                 break;
+              }
             }
-            continue;
+            if ( _break )
+              continue;
           }
           progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "AddDisposal {0}, batch {1}", _kind, this.Batch ) ) );
           if ( ( ( _kind == DisposalEnum.SHMenthol ) || ( _kind == DisposalEnum.OverusageInKg ) ) && this[ _kind ] <= 0 )
