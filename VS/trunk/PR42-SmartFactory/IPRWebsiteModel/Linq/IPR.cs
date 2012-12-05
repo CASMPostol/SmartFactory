@@ -37,15 +37,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="edc">The edc.</param>
     /// <param name="quantity">The quantity.</param>
     /// <exception cref="CAS">CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal;_qunt > 0;null</exception>
-    public void AddDisposal( Entities edc, decimal quantity )
+    public void AddDisposal( Entities edc )
     {
-      AddDisposal( edc, DisposalEnum.Cartons, ref quantity );
-      if ( quantity > 0 )
-      {
-        string _msg = String.Format( "Cannot add Disposal to IPR {0} because there is not material on tje IPR.", this.Identyfikator.Value );
-        throw CAS.SharePoint.Web.GenericStateMachineEngine.ActionResult.Exception
-          ( new CAS.SharePoint.ApplicationError( "CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal", "_qunt > 0", _msg, null ), _msg );
-      }
+      decimal _0Quantity = 0;
+      AddDisposal( edc, DisposalEnum.Cartons, ref _0Quantity );
     }
     /// <summary>
     /// Insert on submit the disposal.
