@@ -380,7 +380,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         
         private string customsProcedureField;
         
-        private double productCodeNumberField;
+        private string productCodeNumberField;
         
         /// <uwagi/>
         public double No {
@@ -483,7 +483,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        public double ProductCodeNumber {
+        public string ProductCodeNumber {
             get {
                 return this.productCodeNumberField;
             }

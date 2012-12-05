@@ -35,5 +35,10 @@ namespace CAS.SmartFactory.xml
       return _cleranceString.String2Int();
     }
     private const string m_FinishedGoodsExportFormFileName = "Proces technologiczny {0:D7}";
+
+    public static string RequestForAccountClearenceDocumentName( int p )
+    {
+      throw new NotImplementedException();
+    }
   }
 }
