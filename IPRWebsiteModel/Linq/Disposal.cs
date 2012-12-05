@@ -73,8 +73,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       set
       {
-        this.Clearance = value.InvoiceIndex.ClearenceIndex;
+        if ( value == null )
+          throw new ArgumentNullException( "InvoicEContent", "InvoicEContent cannot be null" );
         this.Disposal2InvoiceContentIndex = value;
+        this.Clearance = value.InvoiceIndex.ClearenceIndex;
         this.InvoiceNo = value.InvoiceIndex.BillDoc;
       }
     }
