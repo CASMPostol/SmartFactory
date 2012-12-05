@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonDefinition.cs" />
+    <Compile Include="DocumentsFactory\AccountClearanceFactory.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IPRDataConsistencyException.cs" />
     <Compile Include="ListsEventsHandlers\BatchEventReceiver\BatchEventReceiver.cs" />
