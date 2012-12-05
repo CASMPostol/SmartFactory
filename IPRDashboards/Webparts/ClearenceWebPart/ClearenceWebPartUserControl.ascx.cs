@@ -571,7 +571,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           case Group.TobaccoNotAllocated:
             DocumentContent _newTobaccoDoc =
               DisposalsFormFactory.GetTobaccoFreeCirculationFormContent( CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName );
-            _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName, CompensatiionGood.Tobacco );
+            _sadConsignmentIdentifier = SPDocumentFactory.Prepare( SPContext.Current.Web, _newTobaccoDoc, _masterDocumentName, CompensatiionGood.Tobacco );
             break;
           case Group.Waste:
           case Group.Dust:
@@ -579,12 +579,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
               DisposalsFormFactory.GetDustWasteFormContent( CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName );
             CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ?
               CompensatiionGood.Waste : CompensatiionGood.Dust;
-            _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood );
+            _sadConsignmentIdentifier = SPDocumentFactory.Prepare( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood );
             break;
           case Group.Cartons:
             DocumentContent _newBoxFormContent =
               DisposalsFormFactory.GetBoxFormContent( CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName );
-            _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, CompensatiionGood.Cartons );
+            _sadConsignmentIdentifier = SPDocumentFactory.Prepare( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, CompensatiionGood.Cartons );
             break;
         }
         SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );

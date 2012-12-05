@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
   /// <summary>
   /// Dokument Extension
   /// </summary>
-  internal static class ConsignmentFactory
+  internal static class SPDocumentFactory
   {
     internal static int Prepare( SPWeb site, CigaretteExportFormCollection _consignment, string fileName )
     {
