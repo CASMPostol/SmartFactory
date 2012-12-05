@@ -107,7 +107,7 @@
                             <asp:BoundField DataField="Batch" HeaderText="Batch" SortExpression="Batch" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                             <asp:BoundField DataField="UnitPrice" DataFormatString="{0:F3}" HeaderText="Unit price" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                             <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" SortExpression="Currency" ItemStyle-HorizontalAlign="Right" />
-                            <asp:TemplateField HeaderText="Quantity" SortExpression="Quantity" ItemStyle-HorizontalAlign="Right">
+                            <asp:TemplateField HeaderText="Quantity [kg]" SortExpression="Quantity" ItemStyle-HorizontalAlign="Right">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="QuantityNewValue" runat="server" Text='<%# Bind("Quantity") %>'></asp:TextBox>
                                 </EditItemTemplate>
@@ -128,8 +128,9 @@
                             </asp:TemplateField>
                             <asp:CommandField HeaderText="" ShowEditButton="True" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" EditText="Split" UpdateText="Select" />
                         </Columns>
+                        <PagerSettings Mode="NumericFirstLast" />
                     </SharePoint:SPGridView>
-                    <SharePoint:SPGridViewPager ID="m_AvailableGridViewPager" GridViewId="m_AvailableGridView" runat="server" />
+                    <%--<SharePoint:SPGridViewPager ID="m_AvailableGridViewPager" GridViewId="m_AvailableGridView" runat="server" />--%>
                     <asp:Label ID="m_AvailableGridViewQuntitySumLabel" CssClass="Label" runat="server" />
                 </asp:Panel>
             </asp:TableCell>
@@ -170,7 +171,7 @@
                             <asp:BoundField DataField="Batch" HeaderText="Batch" ReadOnly="true" SortExpression="Batch" ItemStyle-HorizontalAlign="Right" />
                             <asp:BoundField DataField="UnitPrice" HeaderText="Unit price" DataFormatString="{0:F3}" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                             <asp:BoundField DataField="Currency" HeaderText="Currency" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
-                            <asp:BoundField DataField="Quantity" HeaderText="Quantity" DataFormatString="{0:F2}" ReadOnly="false" ItemStyle-HorizontalAlign="Right" />
+                            <asp:BoundField DataField="Quantity" HeaderText="Quantity [kg]" DataFormatString="{0:F2}" ReadOnly="false" ItemStyle-HorizontalAlign="Right" />
                             <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" SortExpression="Status" ItemStyle-HorizontalAlign="Right" />
                             <asp:BoundField DataField="Created" HeaderText="Created" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                             <asp:TemplateField HeaderText="ID" SortExpression="ID" Visible="False">
@@ -183,8 +184,9 @@
                             </asp:TemplateField>
                             <asp:CommandField HeaderText="" ShowEditButton="false" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" />
                         </Columns>
+                        <PagerSettings Mode="NumericFirstLast" />
                     </SharePoint:SPGridView>
-                    <SharePoint:SPGridViewPager ID="m_AssignedGridViewPager" GridViewId="m_AssignedGridView" runat="server" />
+                    <%--<SharePoint:SPGridViewPager ID="m_AssignedGridViewPager" GridViewId="m_AssignedGridView" runat="server" />--%>
                     <asp:Label ID="m_AssignedGridViewQuantitySumLabel" CssClass="Label" runat="server" />
                 </asp:Panel>
             </asp:TableCell>

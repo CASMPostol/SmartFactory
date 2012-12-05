@@ -178,7 +178,7 @@
             <FieldRef Name="CustomsStatus" />
           </GroupBy>
           <OrderBy>
-            <FieldRef Name="ID">
+            <FieldRef Name="No" Ascending="TRUE">
             </FieldRef>
           </OrderBy>
         </Query>
