@@ -204,7 +204,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _ret = GetProductType( location );
       return _ret;
     }
-
     internal static DisposalStatus GetDisposalStatus( DisposalEnum status )
     {
       Linq.DisposalStatus _typeOfDisposal = default( Linq.DisposalStatus );
@@ -234,7 +233,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       return _typeOfDisposal;
     }
-
+    public static string IPRLibraryName = "IPR Library";
     #endregion
 
     #region private

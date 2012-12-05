@@ -388,6 +388,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
                 this.disposalsColectionField = value;
             }
         }
+
     }
     
     /// <uwagi/>
