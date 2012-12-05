@@ -48,7 +48,7 @@
             <xs:element minOccurs="1" maxOccurs="1" name="DutyAndVAT" type="xs:double" />
             <xs:element minOccurs="1" maxOccurs="1" name="RemainingQuantity" type="xs:double" />
             <xs:element minOccurs="0" maxOccurs="1" name="CustomsProcedure" type="xs:string" />
-            <xs:element minOccurs="1" maxOccurs="1" name="ProductCodeNumber" type="xs:double" />
+            <xs:element minOccurs="0" maxOccurs="1" name="ProductCodeNumber" type="xs:string" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
