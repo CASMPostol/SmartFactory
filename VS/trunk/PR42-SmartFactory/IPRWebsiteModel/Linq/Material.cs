@@ -197,7 +197,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _disposalX.Export( entities, ref _quantity, closingBatch, invoiceContent );
         disposals.Add( _disposalX );
       }
-      if ( _quantity == 0 )
+      if ( closingBatch || _quantity == 0 )
         return;
       string _error = String.Format(
         "There are {0} kg of material {1}/Id={2} that cannot be found for invoice {3}/Content Id={4}.",
