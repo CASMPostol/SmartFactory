@@ -116,10 +116,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal decimal Withdraw( ref decimal quantity, decimal max )
     {
       decimal _toDispose = 0;
-      if ( quantity > 0 )
+      if ( quantity >= 0 )
         _toDispose = Math.Min( quantity, this.TobaccoNotAllocatedDec );
       else
-        _toDispose = Math.Max( quantity, max );
+        _toDispose = Math.Max( quantity, -max );
       this.TobaccoNotAllocatedDec -= _toDispose;
       quantity -= _toDispose;
       return _toDispose;
