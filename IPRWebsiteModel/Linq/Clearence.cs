@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Clearence2SadGoodID = sadGood;
       FinishClearingThroughCustoms( entities );
     }
-    public DateTime CustomsDebtDate { get { return Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value; } }
+    public DateTime CustomsDebtDate { get { return Clearence2SadGoodID == null ? Extensions.DateTimeNull : Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value; } }
     /// <summary>
     /// Creatas the clearence.
     /// </summary>
