@@ -70,8 +70,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         
         private string tobaccoNameField;
         
-        private string consentNo1Field;
-        
         private string dutyNameField;
         
         private string vATNameField;
@@ -81,7 +79,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         private ArrayOfDIsposalsDisposalsArray[] disposalsColectionField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
         public System.DateTime DocumentDate {
             get {
                 return this.documentDateField;
@@ -92,7 +90,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
         public string DocumentNo {
             get {
                 return this.documentNoField;
@@ -103,7 +100,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
         public string EntryDocumentNo {
             get {
                 return this.entryDocumentNoField;
@@ -114,7 +110,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date", Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
         public System.DateTime CustomsDebtDate {
             get {
                 return this.customsDebtDateField;
@@ -125,7 +121,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
         public string SKU {
             get {
                 return this.sKUField;
@@ -136,7 +131,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
         public string Batch {
             get {
                 return this.batchField;
@@ -147,7 +141,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
         public string Grade {
             get {
                 return this.gradeField;
@@ -158,7 +151,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
         public double NetMass {
             get {
                 return this.netMassField;
@@ -169,7 +161,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
         public string PCN {
             get {
                 return this.pCNField;
@@ -180,7 +171,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
         public System.DateTime ConsentDate {
             get {
                 return this.consentDateField;
@@ -191,7 +181,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
         public System.DateTime ValidFromDate {
             get {
                 return this.validFromDateField;
@@ -202,7 +191,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
         public System.DateTime ValidToDate {
             get {
                 return this.validToDateField;
@@ -213,7 +201,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
         public double ProductivityRateMin {
             get {
                 return this.productivityRateMinField;
@@ -224,7 +211,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
         public double ProductivityRateMax {
             get {
                 return this.productivityRateMaxField;
@@ -235,7 +221,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
         public double ConsentPeriod {
             get {
                 return this.consentPeriodField;
@@ -246,7 +231,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
         public string ConsentNo {
             get {
                 return this.consentNoField;
@@ -257,7 +241,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
         public double Duty {
             get {
                 return this.dutyField;
@@ -268,7 +251,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
         public double DutyPerUnit {
             get {
                 return this.dutyPerUnitField;
@@ -279,7 +261,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
         public double VAT {
             get {
                 return this.vATField;
@@ -290,7 +271,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=19)]
         public double VATPerUnit {
             get {
                 return this.vATPerUnitField;
@@ -301,7 +281,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=20)]
         public double GrossMass {
             get {
                 return this.grossMassField;
@@ -312,7 +291,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=21)]
         public double Cartons {
             get {
                 return this.cartonsField;
@@ -323,7 +301,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
         public string TobaccoName {
             get {
                 return this.tobaccoNameField;
@@ -334,18 +311,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute("ConsentNo", Order=23)]
-        public string ConsentNo1 {
-            get {
-                return this.consentNo1Field;
-            }
-            set {
-                this.consentNo1Field = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
         public string DutyName {
             get {
                 return this.dutyNameField;
@@ -356,7 +321,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
         public string VATName {
             get {
                 return this.vATNameField;
@@ -367,7 +331,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=26)]
         public string InvoiceNo {
             get {
                 return this.invoiceNoField;
@@ -378,7 +341,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=27)]
         [System.Xml.Serialization.XmlArrayItemAttribute("DisposalsArray", IsNullable=false)]
         public ArrayOfDIsposalsDisposalsArray[] DisposalsColection {
             get {
@@ -388,7 +350,6 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
                 this.disposalsColectionField = value;
             }
         }
-
     }
     
     /// <uwagi/>
