@@ -546,7 +546,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       Clearence _newClearance = Clearence.CreataClearence( m_DataContextManagement.DataContext, "FinischedGoodsExport", ClearenceProcedure._3151 );
       string _masterDocumentName = XMLResources.FinishedGoodsExportFormFileName( _newClearance.Identyfikator.Value );
       CigaretteExportFormCollection _cefc = FinishedGoodsFormFactory.GetFormContent( m_DataContextManagement.DataContext, _invoice, _newClearance, _masterDocumentName );
-      int _sadConsignmentIdentifier = ConsignmentFactory.Prepare( SPContext.Current.Web, _cefc, _masterDocumentName );
+      int _sadConsignmentIdentifier = SPDocumentFactory.Prepare( SPContext.Current.Web, _cefc, _masterDocumentName );
       SADConsignment _sadConsignment = Element.GetAtIndex<SADConsignment>( m_DataContextManagement.DataContext.SADConsignment, _sadConsignmentIdentifier );
       _newClearance.SADConsignmentLibraryIndex = _sadConsignment;
       m_DataContextManagement.DataContext.SubmitChanges();
