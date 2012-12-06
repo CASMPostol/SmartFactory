@@ -135,6 +135,7 @@
           <FieldRef Name="CustomsProcedure" />
           <FieldRef Name="PCNCompensationGood" />
           <FieldRef Name="Disposal2PCNPCN_sec" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -172,6 +173,7 @@
           <FieldRef Name="CustomsProcedure" />
           <FieldRef Name="PCNCompensationGood" />
           <FieldRef Name="Disposal2PCNPCN_sec" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <GroupBy Collapse="FALSE">
@@ -206,6 +208,7 @@
           <FieldRef Name="CustomsProcedure" />
           <FieldRef Name="PCNCompensationGood" />
           <FieldRef Name="Disposal2PCNPCN_sec" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <OrderBy>

@@ -176,6 +176,7 @@
           <FieldRef Name="IPR2ConsentTitle" />
           <FieldRef Name="ProductivityRateMin" />
           <FieldRef Name="ProductivityRateMax" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -247,6 +248,7 @@
           <FieldRef Name="IPR2ConsentTitle" />
           <FieldRef Name="ProductivityRateMin" />
           <FieldRef Name="ProductivityRateMax" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <OrderBy>
@@ -315,6 +317,7 @@
           <FieldRef Name="IPR2ConsentTitle" />
           <FieldRef Name="ProductivityRateMin" />
           <FieldRef Name="ProductivityRateMax" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <Where>
