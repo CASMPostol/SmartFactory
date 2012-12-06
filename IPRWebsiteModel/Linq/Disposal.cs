@@ -205,6 +205,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.Disposal2PCNID = _pcn;
       this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
       this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
+      this.CustomsProcedure = sadGood.Procedure;
     }
     private double GetDutyNotCleared()
     {
