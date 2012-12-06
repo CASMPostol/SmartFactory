@@ -19,18 +19,18 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
     /// </summary>
     public override void ItemAdded( SPItemEventProperties properties )
     {
-      if ( !properties.List.Title.Contains( "SKU Library" ) )
-      {
-        //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
-        base.ItemAdded( properties );
-        return;
-      }
-      string At = String.Empty;
+      string At = "SKU Library";
       try
       {
+        if ( !properties.List.Title.Contains( "SKU Library" ) )
+        {
+          //TODO  [pr4-3435] Item add event - selective handling mechanism. http://itrserver/Bugs/BugDetail.aspx?bid=3435
+          base.ItemAdded( properties );
+          return;
+        }
+        this.EventFiringEnabled = false;
         if ( properties.ListItem.File == null )
           throw new System.ArgumentException( "Import of SKU xml message failed because the file is empty.", "File" );
-        this.EventFiringEnabled = false;
         At = "using";
         using ( Stream _strm = properties.ListItem.File.OpenBinaryStream() )
         using ( Entities edc = new Entities( properties.WebUrl ) )
