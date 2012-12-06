@@ -143,8 +143,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         this.Disposal2IPRIndex.AccountBalance = this.RemainingQuantity = Convert.ToDouble( _balance );
         if ( _balance == 0 )
           this.ClearingType = Linq.ClearingType.TotalWindingUp;
+        else
+          this.ClearingType = Linq.ClearingType.PartialWindingUp;
         this.CustomsStatus = Linq.CustomsStatus.Finished;
-        this.ClearingType = Disposal2IPRIndex.GetClearingType();
         CalculateDutyAndVat();
       }
       catch ( Exception _ex )
@@ -179,18 +180,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         if ( this.DisposalStatus.Value == Linq.DisposalStatus.Cartons )
           return;
         double _portion = SettledQuantity.Value / Disposal2IPRIndex.NetMass.Value;
-        if ( this.ClearingType.Value == Linq.ClearingType.PartialWindingUp )
-        {
-          DutyPerSettledAmount = ( Disposal2IPRIndex.Duty.Value * _portion ).RoundCurrency();
-          VATPerSettledAmount = ( Disposal2IPRIndex.VAT.Value * _portion ).RoundCurrency();
-          TobaccoValue = ( Disposal2IPRIndex.Value.Value * _portion ).RoundCurrency();
-        }
-        else
-        {
-          DutyPerSettledAmount = GetDutyNotCleared();
-          VATPerSettledAmount = GetVATNotCleared();
-          TobaccoValue = GetPriceNotCleared();
-        }
+        //if ( this.ClearingType.Value == Linq.ClearingType.PartialWindingUp )
+        //{
+        DutyPerSettledAmount = ( Disposal2IPRIndex.Duty.Value * _portion ).RoundCurrency();
+        VATPerSettledAmount = ( Disposal2IPRIndex.VAT.Value * _portion ).RoundCurrency();
+        TobaccoValue = ( Disposal2IPRIndex.Value.Value * _portion ).RoundCurrency();
+        //}
+        //else
+        //{
+        //  DutyPerSettledAmount = GetDutyNotCleared();
+        //  VATPerSettledAmount = GetVATNotCleared();
+        //  TobaccoValue = GetPriceNotCleared();
+        //}
         DutyAndVAT = DutyPerSettledAmount.Value + VATPerSettledAmount.Value;
       }
       catch ( Exception ex )
