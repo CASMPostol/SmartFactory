@@ -361,7 +361,7 @@
           Rodzaj wysyłanego towaru kompensacyjnego
         </td>
       </tr>
-      <xsl:apply-templates select="cas:XX" />
+      <xsl:apply-templates select="cas:DisposalsColection" />
       <tr>
         <td colspan="4" valign="top">
           Razen
@@ -417,5 +417,57 @@
             </td>
           </tr>
         </table>
+  </xsl:template>
+  <xsl:template match="cas:DisposalsColection">
+    <xsl:apply-templates select="cas:DisposalsArray"/>
+  </xsl:template>
+  <xsl:template match="cas:DisposalsArray">
+    <tr>
+      <td>
+        <xsl:value-of select="cas:No"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:SADDocumentNo"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:SADDate"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:InvoiceNo"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:SettledQuantity"/>
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td>
+        brak
+      </td>
+      <td>
+        <xsl:value-of select="cas:DutyPerSettledAmount"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:VATPerSettledAmount"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:DutyAndVAT"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:RemainingQuantity"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:CustomsProcedure"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:ProductCodeNumber"/>
+      </td>
+    </tr>
   </xsl:template>
 </xsl:stylesheet>

@@ -22,4 +22,49 @@
   <VATPerUnit>1</VATPerUnit>
   <GrossMass>1</GrossMass>
   <Cartons>1</Cartons>
+  <TobaccoName>TobaccoName1</TobaccoName>
+  <DutyName>DutyName1</DutyName>
+  <VATName>VATName1</VATName>
+  <InvoiceNo>InvoiceNo1</InvoiceNo>
+  <DisposalsColection>
+    <DisposalsArray>
+      <No>1</No>
+      <SADDocumentNo>SADDocumentNo1</SADDocumentNo>
+      <SADDate>1900-01-01T01:01:01+01:00</SADDate>
+      <InvoiceNo>InvoiceNo1</InvoiceNo>
+      <SettledQuantity>1</SettledQuantity>
+      <DutyPerSettledAmount>1</DutyPerSettledAmount>
+      <VATPerSettledAmount>1</VATPerSettledAmount>
+      <DutyAndVAT>1</DutyAndVAT>
+      <RemainingQuantity>1</RemainingQuantity>
+      <CustomsProcedure>CustomsProcedure1</CustomsProcedure>
+      <ProductCodeNumber>ProductCodeNumber1</ProductCodeNumber>
+    </DisposalsArray>
+    <DisposalsArray>
+      <No>-1.7976931348623157E+308</No>
+      <SADDocumentNo>SADDocumentNo2</SADDocumentNo>
+      <SADDate>0001-01-01T00:00:00+01:00</SADDate>
+      <InvoiceNo>InvoiceNo2</InvoiceNo>
+      <SettledQuantity>-1.7976931348623157E+308</SettledQuantity>
+      <DutyPerSettledAmount>-1.7976931348623157E+308</DutyPerSettledAmount>
+      <VATPerSettledAmount>-1.7976931348623157E+308</VATPerSettledAmount>
+      <DutyAndVAT>-1.7976931348623157E+308</DutyAndVAT>
+      <RemainingQuantity>-1.7976931348623157E+308</RemainingQuantity>
+      <CustomsProcedure>CustomsProcedure2</CustomsProcedure>
+      <ProductCodeNumber>ProductCodeNumber2</ProductCodeNumber>
+    </DisposalsArray>
+    <DisposalsArray>
+      <No>1.7976931348623157E+308</No>
+      <SADDocumentNo>SADDocumentNo3</SADDocumentNo>
+      <SADDate>9999-12-31T23:59:59.9999999+01:00</SADDate>
+      <InvoiceNo>InvoiceNo3</InvoiceNo>
+      <SettledQuantity>1.7976931348623157E+308</SettledQuantity>
+      <DutyPerSettledAmount>1.7976931348623157E+308</DutyPerSettledAmount>
+      <VATPerSettledAmount>1.7976931348623157E+308</VATPerSettledAmount>
+      <DutyAndVAT>1.7976931348623157E+308</DutyAndVAT>
+      <RemainingQuantity>1.7976931348623157E+308</RemainingQuantity>
+      <CustomsProcedure>CustomsProcedure3</CustomsProcedure>
+      <ProductCodeNumber>ProductCodeNumber3</ProductCodeNumber>
+    </DisposalsArray>
+  </DisposalsColection>
 </RequestContent>
