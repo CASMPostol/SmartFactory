@@ -115,9 +115,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw new ApplicationError( @"CAS.SmartFactory.IPR.WebsiteModel.Linq.Disposal.Export", _at, _ex.Message, _ex );
       }
     }
-    internal void ClearThroughCustom()
+    internal void ClearThroughCustom( ClearenceProcedure procedure )
     {
       CustomsStatus = Linq.CustomsStatus.Started;
+      CustomsProcedure = Entities.ToString( procedure );
       CalculateDutyAndVat();
     }
     internal void FinishClearingThroughCustoms( Entities edc, SADGood sadGood )
@@ -171,7 +172,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Calculate values of columns: Title, DutyPerSettledAmount, VATPerSettledAmount, TobaccoValue, DutyAndVAT.
     /// </summary>
-    /// <param name="clearingType">Type of the clearing.</param>
     private void CalculateDutyAndVat()
     {
       try

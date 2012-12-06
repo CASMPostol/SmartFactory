@@ -43,6 +43,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Clearence2SadGoodID = sadGood;
       FinishClearingThroughCustoms( entities );
     }
+    /// <summary>
+    /// Gets the customs debt date.
+    /// </summary>
+    /// <value>
+    /// The customs debt date.
+    /// </value>
     public DateTime CustomsDebtDate { get { return Clearence2SadGoodID == null ? Extensions.DateTimeNull : Clearence2SadGoodID.SADDocumentIndex.CustomsDebtDate.Value; } }
     /// <summary>
     /// Creatas the clearence.
@@ -76,11 +82,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       entities.SubmitChanges();
       return _newClearence;
     }
-    public void ClearThroughCustom( SADConsignment _sadConsignment )
+    /// <summary>
+    /// Clears the through custom.
+    /// </summary>
+    /// <param name="sadConsignment">The _sad consignment.</param>
+    public void ClearThroughCustom( SADConsignment sadConsignment )
     {
-      SADConsignmentLibraryIndex = _sadConsignment;
+      SADConsignmentLibraryIndex = sadConsignment;
       foreach ( Disposal _dspsl in Disposal )
-        _dspsl.ClearThroughCustom();
+        _dspsl.ClearThroughCustom( this.ClearenceProcedure.Value );
     }
     #endregion
 
