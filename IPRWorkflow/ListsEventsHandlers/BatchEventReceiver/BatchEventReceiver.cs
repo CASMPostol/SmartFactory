@@ -150,7 +150,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           _contentInfo.Validate( edc, _batch.Disposal );
           if ( _newBatch )
             edc.Batch.InsertOnSubmit( _batch );
-          _batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged );
+          _batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged, _newBatch );
           break;
       }
     }

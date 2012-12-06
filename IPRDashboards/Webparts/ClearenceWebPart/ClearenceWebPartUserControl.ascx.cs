@@ -575,15 +575,12 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
             break;
           case Group.Waste:
           case Group.Dust:
-            DocumentContent _newDustWasteDoc =
-              DisposalsFormFactory.GetDustWasteFormContent( CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName );
-            CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ?
-              CompensatiionGood.Waste : CompensatiionGood.Dust;
+            DocumentContent _newDustWasteDoc = DisposalsFormFactory.GetDustWasteFormContent( CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName );
+            CompensatiionGood _compensatiionGood = SelectedGroup == Group.Waste ? CompensatiionGood.Waste : CompensatiionGood.Dust;
             _sadConsignmentIdentifier = SPDocumentFactory.Prepare( SPContext.Current.Web, _newDustWasteDoc, _masterDocumentName, _compensatiionGood );
             break;
           case Group.Cartons:
-            DocumentContent _newBoxFormContent =
-              DisposalsFormFactory.GetBoxFormContent( CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName );
+            DocumentContent _newBoxFormContent = DisposalsFormFactory.GetBoxFormContent( CurrentClearence.Disposal, CurrentClearence.ClearenceProcedure.Value, _masterDocumentName );
             _sadConsignmentIdentifier = SPDocumentFactory.Prepare( SPContext.Current.Web, _newBoxFormContent, _masterDocumentName, CompensatiionGood.Cartons );
             break;
         }
@@ -632,7 +629,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     private void QueryAvailable()
     {
       DateTime? _start = m_AllDate.Checked || m_StartDateTimeControl.IsDateEmpty ? new Nullable<DateTime>() : m_StartDateTimeControl.SelectedDate.Date;
-      DateTime? _finish = m_AllDate.Checked || m_EndTimeControl1.IsDateEmpty ? new Nullable<DateTime>() : m_EndTimeControl1.SelectedDate.Date + TimeSpan.FromDays(1);
+      DateTime? _finish = m_AllDate.Checked || m_EndTimeControl1.IsDateEmpty ? new Nullable<DateTime>() : m_EndTimeControl1.SelectedDate.Date + TimeSpan.FromDays( 1 );
       string _currency = m_SelectCurrencyRadioButtonList.SelectedValue.Contains( "All" ) ? String.Empty : m_SelectCurrencyRadioButtonList.SelectedValue;
       List<Selection.SelectionTableRowWraper> _available = null;
       switch ( SelectedGroup )
