@@ -39,6 +39,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Batch0 = contentInfo.Product.Batch;
       SKU = contentInfo.Product.SKU;
       Title = String.Format( "{0} SKU: {1}; Batch: {2}", contentInfo.Product.ProductType, SKU, Batch0 );
+      FGQuantityAvailable = newBatch ? contentInfo.Product.FGQuantity : contentInfo.Product.FGQuantity - FGQuantity + FGQuantityAvailable;
       FGQuantity = contentInfo.Product.FGQuantity;
       MaterialQuantity = Convert.ToDouble( contentInfo.TotalTobacco );
       ProductType = contentInfo.Product.ProductType;
@@ -69,7 +70,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
       //processing
       CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageMax.Value, UsageMin.Value );
-      FGQuantityAvailable = newBatch ? FGQuantity : FGQuantityAvailable;
       MaterialQuantityPrevious = 0;
       double _shmcf = 0;
       if ( ( SKUIndex is SKUCigarette ) && ( (SKUCigarette)SKUIndex ).MentholMaterial.Value )
