@@ -31,7 +31,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="contentInfo">The content info.</param>
     /// <param name="parent">The parent.</param>
     /// <param name="progressChanged">The progress changed.</param>
-    public void BatchProcessing( Entities edc, BatchStatus status, SummaryContentInfo contentInfo, BatchLib parent, ProgressChangedEventHandler progressChanged )
+    /// <param name="newBatch">if set to <c>true</c> it is new batch.</param>
+    public void BatchProcessing( Entities edc, BatchStatus status, SummaryContentInfo contentInfo, BatchLib parent, ProgressChangedEventHandler progressChanged, bool newBatch )
     {
       BatchLibraryIndex = parent;
       BatchStatus = status;
@@ -68,9 +69,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       progressChanged( this, new ProgressChangedEventArgs( 1, "BatchProcessing: processing" ) );
       //processing
       CalculatedOveruse = GetOverusage( MaterialQuantity.Value, FGQuantity.Value, UsageMax.Value, UsageMin.Value );
-      FGQuantityAvailable = FGQuantity;
-      FGQuantityBlocked = 0;
-      FGQuantityPrevious = 0; //TODO [pr4-3421] Intermediate batches processing http://itrserver/Bugs/BugDetail.aspx?bid=3421
+      FGQuantityAvailable = newBatch ? FGQuantity : FGQuantityAvailable;
       MaterialQuantityPrevious = 0;
       double _shmcf = 0;
       if ( ( SKUIndex is SKUCigarette ) && ( (SKUCigarette)SKUIndex ).MentholMaterial.Value )
@@ -111,7 +110,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return 0;
     }
     #endregion
-
 
   }
 }
