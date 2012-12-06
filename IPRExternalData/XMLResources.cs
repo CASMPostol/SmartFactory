@@ -34,11 +34,11 @@ namespace CAS.SmartFactory.xml
       string _cleranceString = documentName.SPValidSubstring().GetFirstCapture( pattern, "NA" );
       return _cleranceString.String2Int();
     }
-    private const string m_FinishedGoodsExportFormFileName = "Proces technologiczny {0:D7}";
-
-    public static string RequestForAccountClearenceDocumentName( int p )
+    public static string RequestForAccountClearenceDocumentName( int number )
     {
-      throw new NotImplementedException();
+      return String.Format( m_RequestForAccountClearenceDocumentName.GetLocalizedString(), number );
     }
+    private const string m_FinishedGoodsExportFormFileName = "Proces technologiczny {0:D7}";
+    private const string m_RequestForAccountClearenceDocumentName = "Account Clearence Application {0:D7}";
   }
 }
