@@ -10,19 +10,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #region public
 
     /// <summary>
-    /// Gets the type of the clearing.
-    /// </summary>
-    /// <returns></returns>
-    public ClearingType GetClearingType()
-    {
-      return this.TobaccoNotAllocated == 0 &&
-        (
-          from _dec in this.Disposal
-          where _dec.CustomsStatus.Value != CustomsStatus.Finished
-          select _dec
-        ).Count() == 1 ? ClearingType.TotalWindingUp : ClearingType.PartialWindingUp;
-    }
-    /// <summary>
     /// Reverts the withdraw.
     /// </summary>
     /// <param name="quantity">The quantity.</param>
