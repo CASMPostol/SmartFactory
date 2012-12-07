@@ -64,7 +64,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       ( Entities edc, Batch parent, double dustRatio, double shMentholRatio, double wasteRatio, double overusageCoefficient, ProgressChangedEventHandler progressChanged )
     {
       if ( Product == null )
-        throw new IPRDataConsistencyException( "Material.ProcessDisposals", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized." );
+        throw new IPRDataConsistencyException( "SummaryContentInfo.ProcessMaterials", "Summary content info has unassigned Product property", null, "Wrong batch - product is unrecognized." );
       try
       {
         //InsertAllOnSubmit( edc, parent );
@@ -98,7 +98,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       catch ( Exception _ex )
       {
-        throw new IPRDataConsistencyException( "Material.ProcessDisposals", _ex.Message, _ex, "Disposal processing error" );
+        throw new IPRDataConsistencyException( "SummaryContentInfo.ProcessMaterials", _ex.Message, _ex, "Disposal processing error" );
       }
     }
     internal void UpdateNotStartedDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )

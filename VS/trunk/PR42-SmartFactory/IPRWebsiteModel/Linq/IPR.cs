@@ -116,7 +116,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private Disposal AddDisposal( Entities edc, DisposalEnum status, ref decimal quantity )
     {
       if ( quantity <= 0 && status != DisposalEnum.Cartons )
-        throw new ArgumentException( "IPR.AddDisposal - quantity <= 0" );
+        throw new ArgumentException( "IPR.AddDisposal(Entities, DisposalEnum, ref decimal): internal consistency check quantity <= 0", "quantity" );
       Linq.DisposalStatus _typeOfDisposal = Entities.GetDisposalStatus( status );
       decimal _toDispose = 0;
       if ( status == DisposalEnum.Cartons )
