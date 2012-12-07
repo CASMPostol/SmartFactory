@@ -77,10 +77,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         {
           progressChanged( this, new ProgressChangedEventArgs( 1, "DisposalsAnalisis" ) );
           Material _material = _materialX.ReplaceByExistingOne( _oldMaterialList, _newMaterialList, parent );
+          progressChanged( this, new ProgressChangedEventArgs( 1, "CalculateCompensationComponents" ) );
+          _material.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
           if ( _material.ProductType.Value == ProductType.IPRTobacco )
           {
-            progressChanged( this, new ProgressChangedEventArgs( 1, "CalculateCompensationComponents" ) );
-            _material.CalculateCompensationComponents( edc, _mr, overusageCoefficient );
             progressChanged( this, new ProgressChangedEventArgs( 1, "AccumulatedDisposalsAnalisis" ) );
             AccumulatedDisposalsAnalisis.Accumutate( _material );
           }
