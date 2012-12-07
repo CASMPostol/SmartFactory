@@ -55,8 +55,8 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         ArrayOfDIsposalsDisposalsArray _item = new ArrayOfDIsposalsDisposalsArray()
         {
           CustomsProcedure = _dx.CustomsProcedure,
-          DutyAndVAT = _dx.DutyAndVAT.Value,
-          DutyPerSettledAmount = _dx.DutyPerSettledAmount.Value,
+          DutyAndVAT = _dx.DutyAndVAT.GetValueOrDefault( 0 ),
+          DutyPerSettledAmount = _dx.DutyPerSettledAmount.GetValueOrDefault( 0 ),
           InvoiceNo = _dx.InvoiceNo,
           No = _dx.No.Value,
           ProductCodeNumber = _dx.Disposal2PCNID.ProductCodeNumber,
@@ -64,7 +64,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           SADDate = _dx.SADDate.Value,
           SADDocumentNo = _dx.SADDocumentNo,
           SettledQuantity = _dx.SettledQuantity.Value,
-          VATPerSettledAmount = _dx.VATPerSettledAmount.Value
+          VATPerSettledAmount = _dx.VATPerSettledAmount.GetValueOrDefault( 0 )
         };
         _arry.Add( _item );
       }
