@@ -118,16 +118,7 @@ namespace CAS.SmartFactory.IPR.Customs
             }
           case CustomsProcedureCodes.CustomsWarehousingProcedure:
             at = "NewClearence";
-            Clearence _newWarehousinClearance = new Clearence()
-            {
-              DocumentNo = sad.DocumentNumber,
-              ReferenceNumber = sad.ReferenceNumber,
-              SADConsignmentLibraryIndex = null,
-              ProcedureCode = "CustomsWarehousingProcedure",
-              Status = false,
-              //[pr4-3738] CustomsProcedureCodes.CustomsWarehousingProcedure 7100 must be added http://itrserver/Bugs/BugDetail.aspx?bid=3738
-              ClearenceProcedure = ClearenceProcedure._7100,
-            };
+            Clearence _newWarehousinClearance = Clearence.CreataClearence( edc, "CustomsWarehousingProcedure", ClearenceProcedure._7100, _sgx );
             at = "InsertOnSubmit";
             edc.Clearence.InsertOnSubmit( _newWarehousinClearance );
             if ( messageType == CustomsDocument.DocumentType.PZC )
@@ -227,7 +218,7 @@ namespace CAS.SmartFactory.IPR.Customs
         _ipr.Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, _ipr.Identyfikator );
         _at = "AddDisposal";
         if ( _iprdata.Cartons > 0 )
-          _ipr.AddDisposal( entities, Convert.ToDecimal( _iprdata.Cartons )  );
+          _ipr.AddDisposal( entities, Convert.ToDecimal( _iprdata.Cartons ) );
         _at = "new SubmitChanges #2";
         entities.SubmitChanges();
       }
