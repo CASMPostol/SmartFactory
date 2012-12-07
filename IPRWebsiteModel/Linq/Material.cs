@@ -60,6 +60,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="overusage">The overusage.</param>
     internal void CalculateCompensationComponents( Entities edc, Ratios ratios, double overusage )
     {
+      if ( this.ProductType.Value == Linq.ProductType.IPRTobacco || this.ProductType.Value == Linq.ProductType.Tobacco )
+        return;
       if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
       {
         List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, Batch );
