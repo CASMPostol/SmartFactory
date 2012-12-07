@@ -244,6 +244,7 @@
           <FieldRef Name="NetMass" />
           <FieldRef Name="GrossMass" />
           <FieldRef Name="Cartons" />
+          <FieldRef Name="AccountBalance" />
           <FieldRef Name="TobaccoNotAllocated" />
           <FieldRef Name="IPR2ConsentTitle" />
           <FieldRef Name="ProductivityRateMin" />
@@ -313,6 +314,7 @@
           <FieldRef Name="NetMass" />
           <FieldRef Name="GrossMass" />
           <FieldRef Name="Cartons" />
+          <FieldRef Name="AccountBalance" />
           <FieldRef Name="TobaccoNotAllocated" />
           <FieldRef Name="IPR2ConsentTitle" />
           <FieldRef Name="ProductivityRateMin" />
