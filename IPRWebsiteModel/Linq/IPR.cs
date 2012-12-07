@@ -7,8 +7,63 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class IPR
   {
-    #region public
 
+    #region ctor
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IPR" /> class.
+    /// </summary>
+    /// <param name="_iprdata">The _iprdata.</param>
+    /// <param name="clearence">The clearence.</param>
+    /// <param name="declaration">The declaration.</param>
+    /// <param name="customsDebtDate">The customs debt date.</param>
+    public IPR( Account.AccountData _iprdata, Clearence clearence, SADDocumentType declaration, DateTime customsDebtDate )
+      : this()
+    {
+      AccountClosed = false;
+      AccountBalance = _iprdata.NetMass;
+      Batch = _iprdata.Batch;
+      Cartons = _iprdata.Cartons;
+      ClearenceIndex = clearence;
+      ClosingDate = CAS.SharePoint.Extensions.SPMinimum;
+      IPR2ConsentTitle = _iprdata.ConsentLookup;
+      Currency = declaration.Currency;
+      CustomsDebtDate = customsDebtDate;
+      DocumentNo = clearence.DocumentNo;
+      Duty = _iprdata.Duty;
+      DutyName = _iprdata.DutyName;
+      IPRDutyPerUnit = _iprdata.DutyPerUnit;
+      Grade = _iprdata.GradeName;
+      GrossMass = _iprdata.GrossMass;
+      InvoiceNo = _iprdata.Invoice;
+      IPRLibraryIndex = declaration.SADDocumenLibrarytIndex;
+      NetMass = _iprdata.NetMass;
+      OGLValidTo = customsDebtDate + TimeSpan.FromDays( _iprdata.ConsentLookup.ConsentPeriod.Value );
+      IPR2PCNPCN = _iprdata.PCNTariffCode;
+      SKU = _iprdata.SKU;
+      TobaccoName = _iprdata.TobaccoName;
+      TobaccoNotAllocated = _iprdata.NetMass;
+      Title = "-- creating -- ";
+      IPRUnitPrice = _iprdata.UnitPrice;
+      Value = _iprdata.Value;
+      VATName = _iprdata.VATName;
+      VAT = _iprdata.VAT;
+      IPRVATPerUnit = _iprdata.VATPerUnit;
+      ProductivityRateMax = _iprdata.ConsentLookup.ProductivityRateMax;
+      ProductivityRateMin = _iprdata.ConsentLookup.ProductivityRateMin;
+      ValidFromDate = _iprdata.ConsentLookup.ValidFromDate;
+      ValidToDate = _iprdata.ConsentLookup.ValidToDate;
+      ConsentPeriod = _iprdata.ConsentLookup.ConsentPeriod;
+    }
+    #endregion
+
+    #region public
+    /// <summary>
+    /// Updates the title.
+    /// </summary>
+    public void UpdateTitle()
+    {
+      Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, Identyfikator.Value );
+    }
     /// <summary>
     /// Reverts the withdraw.
     /// </summary>
@@ -46,20 +101,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           ( new CAS.SharePoint.ApplicationError( "CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal", "_qunt > 0", _msg, null ), _msg );
       }
     }
-    internal void AddDisposal( Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material, InvoiceContent invoiceContent )
-    {
-      Disposal _dsp = AddDisposal( edc, _kind, ref _toDispose );
-      _dsp.Material = material;
-      _dsp.InvoicEContent = invoiceContent;
-      SADGood _sg = invoiceContent.InvoiceIndex.ClearenceIndex.Clearence2SadGoodID;
-      if ( _sg != null )
-        _dsp.FinishClearingThroughCustoms( edc, _sg );
-    }
-    internal void AddDisposal( Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material )
-    {
-      Disposal _dsp = AddDisposal( edc, _kind, ref _toDispose );
-      _dsp.Material = material;
-    }
     /// <summary>
     /// Check if record exists.
     /// </summary>
@@ -80,11 +121,37 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from IPR _iprx in edc.IPR where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
     }
+    /// <summary>
+    /// Gets the duty per unit.
+    /// </summary>
+    /// <value>
+    /// The duty per unit.
+    /// </value>
     public double DutyPerUnit { get { return this.Duty.Value / this.NetMass.Value; } }
+    /// <summary>
+    /// Gets the VAT per unit.
+    /// </summary>
+    /// <value>
+    /// The VAT per unit.
+    /// </value>
     public double VATPerUnit { get { return this.VAT.Value / this.NetMass.Value; } }
     #endregion
 
     #region internal
+    internal void AddDisposal( Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material, InvoiceContent invoiceContent )
+    {
+      Disposal _dsp = AddDisposal( edc, _kind, ref _toDispose );
+      _dsp.Material = material;
+      _dsp.InvoicEContent = invoiceContent;
+      SADGood _sg = invoiceContent.InvoiceIndex.ClearenceIndex.Clearence2SadGoodID;
+      if ( _sg != null )
+        _dsp.FinishClearingThroughCustoms( edc, _sg );
+    }
+    internal void AddDisposal( Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material )
+    {
+      Disposal _dsp = AddDisposal( edc, _kind, ref _toDispose );
+      _dsp.Material = material;
+    }
     internal static bool IsAvailable( Entities edc, string batch, decimal requestedTobacco )
     {
       return FindIPRAccountsWithNotAllocatedTobacco( edc, batch ).Sum<IPR>( a => a.TobaccoNotAllocatedDec ) >= requestedTobacco;

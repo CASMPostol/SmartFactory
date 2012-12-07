@@ -5,6 +5,7 @@ using CAS.SharePoint;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq.Account;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
 using Microsoft.SharePoint.Linq;
@@ -119,10 +120,8 @@ namespace CAS.SmartFactory.IPR.Customs
           case CustomsProcedureCodes.CustomsWarehousingProcedure:
             at = "NewClearence";
             Clearence _newWarehousinClearance = Clearence.CreataClearence( edc, "CustomsWarehousingProcedure", ClearenceProcedure._7100, _sgx );
-            at = "InsertOnSubmit";
-            edc.Clearence.InsertOnSubmit( _newWarehousinClearance );
             if ( messageType == CustomsDocument.DocumentType.PZC )
-              CreateCWAccount( edc, sad, _sgx );// TODO CreateStockRecord  
+              CreateCWAccount( edc, sad, _sgx );
             else
               comments = "Document added";
             break;
@@ -163,59 +162,20 @@ namespace CAS.SmartFactory.IPR.Customs
         }
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
-        IPRData _iprdata = new IPRData( entities, clearence.Clearence2SadGoodID, _messageType );
+        AccountData _iprdata = new IPRAccountData( entities, clearence.Clearence2SadGoodID, _messageType );
         List<string> _ar = new List<string>();
         if ( !_iprdata.Validate( entities, _ar ) )
           warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
         _at = "Consent.Lookup";
         _comments = "Consent lookup filed";
-        _at = "PCNCode.AddOrGet";
-        _comments = "PCN lookup filed";
-        PCNCode _pcn = PCNCode.AddOrGet( entities, _iprdata.PCNTariffCode, _iprdata.TobaccoName );
         _at = "new IPRClass";
-        IPRClass _ipr = new IPRClass()
-        {
-          AccountClosed = false,
-          AccountBalance = _iprdata.NetMass,
-          Batch = _iprdata.Batch,
-          Cartons = _iprdata.Cartons,
-          ClearenceIndex = clearence,
-          ClosingDate = CAS.SharePoint.Extensions.SPMinimum,
-          IPR2ConsentTitle = _iprdata.ConsentLookup,
-          Currency = declaration.Currency,
-          CustomsDebtDate = customsDebtDate,
-          DocumentNo = clearence.DocumentNo,
-          Duty = _iprdata.Duty,
-          DutyName = _iprdata.DutyName,
-          IPRDutyPerUnit = _iprdata.DutyPerUnit,
-          Grade = _iprdata.GradeName,
-          GrossMass = _iprdata.GrossMass,
-          InvoiceNo = _iprdata.Invoice,
-          IPRLibraryIndex = declaration.SADDocumenLibrarytIndex,
-          NetMass = _iprdata.NetMass,
-          OGLValidTo = customsDebtDate + TimeSpan.FromDays( _iprdata.ConsentLookup.ConsentPeriod.Value ),
-          IPR2PCNPCN = _pcn,
-          SKU = _iprdata.SKU,
-          TobaccoName = _iprdata.TobaccoName,
-          TobaccoNotAllocated = _iprdata.NetMass,
-          Title = "-- creating -- ",
-          IPRUnitPrice = _iprdata.UnitPrice,
-          Value = _iprdata.Value,
-          VATName = _iprdata.VATName,
-          VAT = _iprdata.VAT,
-          IPRVATPerUnit = _iprdata.VATPerUnit,
-          ProductivityRateMax = _iprdata.ConsentLookup.ProductivityRateMax,
-          ProductivityRateMin = _iprdata.ConsentLookup.ProductivityRateMin,
-          ValidFromDate = _iprdata.ConsentLookup.ValidFromDate,
-          ValidToDate = _iprdata.ConsentLookup.ValidToDate,
-          ConsentPeriod = _iprdata.ConsentLookup.ConsentPeriod,
-        };
+        IPRClass _ipr = new IPRClass( _iprdata, clearence, declaration, customsDebtDate );
         _at = "new InsertOnSubmit";
         entities.IPR.InsertOnSubmit( _ipr );
         clearence.Status = true;
         _at = "new SubmitChanges #1";
         entities.SubmitChanges();
-        _ipr.Title = String.Format( "IPR-{0:D4}{1:D6}", DateTime.Today.Year, _ipr.Identyfikator );
+        _ipr.UpdateTitle();
         _at = "AddDisposal";
         if ( _iprdata.Cartons > 0 )
           _ipr.AddDisposal( entities, Convert.ToDecimal( _iprdata.Cartons ) );
@@ -238,203 +198,30 @@ namespace CAS.SmartFactory.IPR.Customs
       }
       _comments = "IPR account created";
     }
-    private class IPRData
+    private class IPRAccountData: AccountData
     {
-      #region private
-      private void AnalizeGood( SADGood good, CustomsDocument.DocumentType _messageType )
-      {
-        string _at = "Started";
-        try
-        {
-          _at = "GrossMass";
-          SADDocumentType _document = good.SADDocumentIndex;
-          if ( _messageType == CustomsDocument.DocumentType.SAD )
-            GrossMass = good.GrossMass.HasValue ? good.GrossMass.Value : _document.GrossMass.Value;
-          else if ( _messageType == CustomsDocument.DocumentType.PZC )
-            GrossMass = _document.GrossMass.HasValue ? _document.GrossMass.Value : good.GrossMass.Value;
-          else
-            throw new IPRDataConsistencyException( "IPRData.GetCartons", String.Format( "Unexpected message {0} type", _messageType ), null, "Unexpected message" );
-          _at = "SADQuantity";
-          SADQuantity _quantity = good.SADQuantity.FirstOrDefault();
-          NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault( 0 );
-          _at = "Cartons";
-          SADPackage _packagex = good.SADPackage.First();
-          if ( _packagex.Package.ToUpper().Contains( "CT" ) )
-            Cartons = GrossMass - NetMass;
-          else
-            Cartons = 0;
-        }
-        catch ( Exception _ex )
-        {
-          string _src = String.Format( "AnalizeGood error at {0}", _at );
-          throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
-        }
-      }
-      private void AnalizeDutyAndVAT( SADGood good )
-      {
-        string _at = "Started";
-        try
-        {
-          Duty = 0;
-          VAT = 0;
-          DutyName = string.Empty;
-          VATName = string.Empty;
-          foreach ( SADDuties _duty in good.SADDuties )
-          {
-            _at = "switch " + _duty.DutyType;
-            switch ( _duty.DutyType )
-            {
-              //Duty
-              case "A10":
-              case "A00":
-              case "A20":
-                Duty += _duty.Amount.Value;
-                _at = "DutyName";
-                DutyName += String.Format( "{0}={1:F2}; ", _duty.DutyType, _duty.Amount.Value );
-                break;
-              //VAT
-              case "B00":
-              case "B10":
-              case "B20":
-                VAT += _duty.Amount.Value;
-                _at = "VATName";
-                VATName += String.Format( "{0}={1:F2}; ", _duty.DutyType, _duty.Amount.Value );
-                break;
-              default:
-                break;
-            }
-          }
-          _at = "DutyPerUnit";
-          DutyPerUnit = Duty / NetMass;
-          _at = "VATPerUnit";
-          VATPerUnit = VAT / NetMass;
-          _at = "Value";
-          Value = good.TotalAmountInvoiced.Value;
-          _at = "UnitPrice";
-          UnitPrice = Value / NetMass;
-        }
-        catch ( Exception _ex )
-        {
-          string _src = String.Format( "AnalizeDutyAndVAT error at {0}", _at );
-          throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
-        }
-      }
-      private const string UnrecognizedName = "-- unrecognized name --";
-      /// <summary>
-      /// Analizes the goods description.
-      /// </summary>
-      /// <param name="_GoodsDescription">The _ goods description.</param>
-      /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">Syntax errors in the good description.</exception>
-      private void AnalizeGoodsDescription( Entities edc, string _GoodsDescription )
-      {
-        List<string> _sErrors = new List<string>();
-        string _na = "Not recognized";
-        TobaccoName = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionTobaccoNamePattern ), _na, _sErrors );
-        GradeName = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionWGRADEPattern ), _na, _sErrors );
-        SKU = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionSKUPattern ), _na, _sErrors );
-        Batch = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionBatchPattern ), _na, _sErrors );
-        if ( _sErrors.Count > 0 )
-          throw new InputDataValidationException( "Syntax errors in the good description.", "AnalizeGoodsDescription", _sErrors );
-      }
-      private List<string> m_Warnings = new List<string>();
-      #endregion
 
-      #region cretor
-      /// <summary>
-      /// Initializes a new instance of the <see cref="IPRData" /> class.
-      /// </summary>
-      /// <param name="good">The good.</param>
-      /// <param name="_messageType">Type of the _message.</param>
-      /// <exception cref="IPRDataConsistencyException">There is not attached any consent document with code = 1PG1/C601</exception>
-      /// <exception cref="InputDataValidationException">Syntax errors in the good description.</exception>
-      internal IPRData( Entities edc, SADGood good, CustomsDocument.DocumentType _messageType )
+      internal IPRAccountData( Entities edc, SADGood good, CustomsDocument.DocumentType _messageType ) :
+        base( edc, good, Convert2MessageType( _messageType ) )
+      { }
+      internal static MessageType Convert2MessageType( CustomsDocument.DocumentType type )
       {
-        string _at = "starting";
-        try
+        MessageType _ret = default( MessageType );
+        switch ( type )
         {
-          PCNTariffCode = good.PCNTariffCode;
-          AnalizeGood( good, _messageType );
-          AnalizeDutyAndVAT( good );
-          _at = "InvoiceNo";
-          this.Invoice = ( from _dx in good.SADRequiredDocuments
-                           let CustomsProcedureCode = _dx.Code.ToUpper()
-                           where CustomsProcedureCode.Contains( "N380" ) || CustomsProcedureCode.Contains( "N935" )
-                           select new { Number = _dx.Number }
-                          ).First().Number;
-          _at = "Consent";
-          FindConsentRecord( edc, good.SADRequiredDocuments );
-          AnalizeGoodsDescription( edc, good.GoodsDescription );
+          case CustomsDocument.DocumentType.SAD:
+            _ret = MessageType.SAD;
+            break;
+          case CustomsDocument.DocumentType.PZC:
+            _ret = MessageType.SAD;
+            break;
+          case CustomsDocument.DocumentType.IE529:
+          case CustomsDocument.DocumentType.CLNE:
+          default:
+            throw new ArgumentException( "Out of range value for CustomsDocument.DocumentType argument in Convert2MessageType ", "type" );
         }
-        catch ( InputDataValidationException _idve )
-        {
-          throw _idve;
-        }
-        catch ( IPRDataConsistencyException es )
-        {
-          throw es;
-        }
-        catch ( Exception _ex )
-        {
-          string _src = String.Format( "IPR.IPRData creator error at {0}", _at );
-          throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
-        }
-      }
-      private void FindConsentRecord( Entities edc, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet )
-      {
-        SADRequiredDocuments _rd = ( from _dx in sadRequiredDocumentsEntitySet
-                                     let CustomsProcedureCode = _dx.Code.ToUpper()
-                                     where CustomsProcedureCode.Contains( "1PG1" ) || CustomsProcedureCode.Contains( "C601" )
-                                     select _dx
-                                    ).FirstOrDefault();
-        if ( _rd == null )
-          m_Warnings.Add( "There is not attached any consent document with code = 1PG1/C601" );
-        else
-        {
-          string _nr = _rd.Number.Trim();
-          this.ConsentLookup = IPR.WebsiteModel.Linq.Consent.Find( edc, _nr );
-          if ( this.ConsentLookup == null )
-          {
-            m_Warnings.Add( "Cannot find consent document with number: " + _nr + ". The Consent period is 90 days" );
-            this.ConsentLookup = new Consent()
-            {
-              ConsentDate = CAS.SharePoint.Extensions.DateTimeNull,
-              ConsentPeriod = TimeSpan.FromDays( 90 ).TotalDays,
-              IsIPR = true,
-              ValidFromDate = CAS.SharePoint.Extensions.DateTimeNull,
-              ValidToDate = CAS.SharePoint.Extensions.DateTimeNull
-            };
-          }
-        }
-      }
-      #endregion
-
-      #region public
-      //TODO
-      internal bool Validate( Entities entities, List<string> warnnings )
-      {
-        bool _ret = m_Warnings.Count == 0;
-        warnnings.AddRange( m_Warnings );
         return _ret;
       }
-      internal double Cartons { get; private set; }
-      internal Consent ConsentLookup { get; private set; }
-      internal double Duty { get; private set; }
-      internal string DutyName { get; private set; }
-      internal double DutyPerUnit { get; private set; }
-      internal string GradeName { get; private set; }
-      internal double GrossMass { get; private set; }
-      internal string Invoice { get; private set; }
-      internal double NetMass { get; private set; }
-      internal string TobaccoName { get; private set; }
-      internal double UnitPrice { get; private set; }
-      internal double Value { get; private set; }
-      internal string VATName { get; private set; }
-      internal double VAT { get; private set; }
-      internal double VATPerUnit { get; private set; }
-      internal string Batch { get; private set; }
-      internal string PCNTariffCode { get; private set; }
-      internal string SKU { get; private set; }
-      #endregion
 
     }
     private static void ClearThroughCustoms( Entities entities, SADGood good )
