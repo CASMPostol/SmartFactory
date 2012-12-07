@@ -81,14 +81,10 @@
           </FieldRef>
           <FieldRef Name="ProductType" />
           <FieldRef Name="BatchStatus" />
-          <FieldRef Name="Batch" />
           <FieldRef Name="SKU" />
           <FieldRef Name="FGQuantity" />
-          <FieldRef Name="FGQuantityPrevious" />
-          <FieldRef Name="FGQuantityBlocked" />
           <FieldRef Name="FGQuantityAvailable" />
           <FieldRef Name="MaterialQuantity" />
-          <FieldRef Name="MaterialQuantityPrevious" />
           <FieldRef Name="CalculatedOveruse" />
           <FieldRef Name="Overuse" />
           <FieldRef Name="Dust" />

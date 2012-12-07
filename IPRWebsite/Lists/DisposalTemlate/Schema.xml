@@ -107,8 +107,8 @@
         </ViewFields>
         <Query>
           <OrderBy>
-            <FieldRef Name="ID">
-            </FieldRef>
+            <FieldRef Name="Disposal2IPRIndex" Ascending="FALSE" />
+            <FieldRef Name="No" Ascending="TRUE" />
           </OrderBy>
         </Query>
         <ParameterBindings>
