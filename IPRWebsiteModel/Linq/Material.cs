@@ -60,9 +60,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="overusage">The overusage.</param>
     internal void CalculateCompensationComponents( Entities edc, Ratios ratios, double overusage )
     {
-      List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, Batch );
-      if ( _accounts.Count == 1 && Math.Abs( _accounts[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) < 1 )
-        TobaccoQuantity = _accounts[ 0 ].TobaccoNotAllocated;
+      if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
+      {
+        List<IPR> _accounts = IPR.FindIPRAccountsWithNotAllocatedTobacco( edc, Batch );
+        if ( _accounts.Count == 1 && Math.Abs( _accounts[ 0 ].TobaccoNotAllocated.Value - TobaccoQuantity.Value ) < 1 )
+          TobaccoQuantity = _accounts[ 0 ].TobaccoNotAllocated;
+      }
       decimal material = TobaccoQuantityDec;
       decimal _overuseInKg = 0;
       if ( overusage > 0 )
@@ -72,9 +75,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       else
         this[ DisposalEnum.OverusageInKg ] = 0;
-      decimal _dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).RountMass();
-      decimal _shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).RountMass();
-      decimal _waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).RountMass();
+      decimal _dust = this[ DisposalEnum.Dust ] = 0;
+      decimal _shMenthol = this[ DisposalEnum.SHMenthol ] = 0;
+      decimal _waste = this[ DisposalEnum.Waste ] = 0;
+      if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
+      {
+        _dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).RountMass();
+        _shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).RountMass();
+        _waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).RountMass();
+      }
       this[ DisposalEnum.TobaccoInCigaretess ] = material - _shMenthol - _waste - _dust;
     }
     /// <summary>
