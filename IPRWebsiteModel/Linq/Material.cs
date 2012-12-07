@@ -60,7 +60,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="overusage">The overusage.</param>
     internal void CalculateCompensationComponents( Entities edc, Ratios ratios, double overusage )
     {
-      if ( this.ProductType.Value == Linq.ProductType.IPRTobacco || this.ProductType.Value == Linq.ProductType.Tobacco )
+      if ( !( this.ProductType.Value == Linq.ProductType.IPRTobacco || this.ProductType.Value == Linq.ProductType.Tobacco ) )
         return;
       if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
       {
@@ -224,14 +224,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _newMaterials.Add( this );
         return this;
       }
-      Material _ret = _old;
       _oldMaterials.Add( _old );
-      _ret.FGQuantity = this.FGQuantity;
-      _ret.TobaccoQuantity = this.TobaccoQuantity;
-      return _ret;
+      _old.FGQuantity = this.FGQuantity;
+      _old.TobaccoQuantity = this.TobaccoQuantity;
+      return _old;
     }
     internal void UpdateDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
     {
+      if ( this.ProductType.Value != Linq.ProductType.IPRTobacco )
+        return;
       foreach ( WebsiteModel.Linq.DisposalEnum _kind in Enum.GetValues( typeof( WebsiteModel.Linq.DisposalEnum ) ) )
       {
         try
@@ -264,7 +265,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           if ( _toDispose <= 0 )
             continue;
           string _mssg = "Cannot find IPR account to dispose the tobacco of {3} kg: Tobacco batch: {0}, fg batch: {1}, disposal: {2}";
-          throw new IPRDataConsistencyException( "Material.ProcessDisposals", String.Format( _mssg, this.Batch, parent.Batch0, _kind, _toDispose ), null, "IPR unrecognized account" );
+          throw new IPRDataConsistencyException( "Material.UpdateDisposals", String.Format( _mssg, this.Batch, parent.Batch0, _kind, _toDispose ), null, "IPR unrecognized account" );
         }
         catch ( IPRDataConsistencyException _ex )
         {
