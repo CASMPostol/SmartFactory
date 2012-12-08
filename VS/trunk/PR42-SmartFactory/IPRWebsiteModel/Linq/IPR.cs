@@ -12,47 +12,50 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Initializes a new instance of the <see cref="IPR" /> class.
     /// </summary>
-    /// <param name="_iprdata">The _iprdata.</param>
+    /// <param name="entities">The entities.</param>
+    /// <param name="iprdata">The _iprdata.</param>
     /// <param name="clearence">The clearence.</param>
     /// <param name="declaration">The declaration.</param>
     /// <param name="customsDebtDate">The customs debt date.</param>
-    public IPR( Account.AccountData _iprdata, Clearence clearence, SADDocumentType declaration, DateTime customsDebtDate )
+    public IPR( Entities entities, Account.IPRAccountData iprdata, Clearence clearence, SADDocumentType declaration, DateTime customsDebtDate )
       : this()
     {
       AccountClosed = false;
-      AccountBalance = _iprdata.NetMass;
-      Batch = _iprdata.Batch;
-      Cartons = _iprdata.Cartons;
+      AccountBalance = iprdata.NetMass;
+      Batch = iprdata.Batch;
+      Cartons = iprdata.CartonsMass;
       ClearenceIndex = clearence;
       ClosingDate = CAS.SharePoint.Extensions.SPMinimum;
-      IPR2ConsentTitle = _iprdata.ConsentLookup;
+      IPR2ConsentTitle = iprdata.ConsentLookup;
       Currency = declaration.Currency;
       CustomsDebtDate = customsDebtDate;
       DocumentNo = clearence.DocumentNo;
-      Duty = _iprdata.Duty;
-      DutyName = _iprdata.DutyName;
-      IPRDutyPerUnit = _iprdata.DutyPerUnit;
-      Grade = _iprdata.GradeName;
-      GrossMass = _iprdata.GrossMass;
-      InvoiceNo = _iprdata.Invoice;
+      Duty = iprdata.Duty;
+      DutyName = iprdata.DutyName;
+      IPRDutyPerUnit = iprdata.DutyPerUnit;
+      Grade = iprdata.GradeName;
+      GrossMass = iprdata.GrossMass;
+      InvoiceNo = iprdata.Invoice;
       IPRLibraryIndex = declaration.SADDocumenLibrarytIndex;
-      NetMass = _iprdata.NetMass;
-      OGLValidTo = customsDebtDate + TimeSpan.FromDays( _iprdata.ConsentLookup.ConsentPeriod.Value );
-      IPR2PCNPCN = _iprdata.PCNTariffCode;
-      SKU = _iprdata.SKU;
-      TobaccoName = _iprdata.TobaccoName;
-      TobaccoNotAllocated = _iprdata.NetMass;
+      NetMass = iprdata.NetMass;
+      OGLValidTo = customsDebtDate + TimeSpan.FromDays( iprdata.ConsentLookup.ConsentPeriod.Value );
+      IPR2PCNPCN = iprdata.PCNTariffCode;
+      SKU = iprdata.SKU;
+      TobaccoName = iprdata.TobaccoName;
+      TobaccoNotAllocated = iprdata.NetMass;
       Title = "-- creating -- ";
-      IPRUnitPrice = _iprdata.UnitPrice;
-      Value = _iprdata.Value;
-      VATName = _iprdata.VATName;
-      VAT = _iprdata.VAT;
-      IPRVATPerUnit = _iprdata.VATPerUnit;
-      ProductivityRateMax = _iprdata.ConsentLookup.ProductivityRateMax;
-      ProductivityRateMin = _iprdata.ConsentLookup.ProductivityRateMin;
-      ValidFromDate = _iprdata.ConsentLookup.ValidFromDate;
-      ValidToDate = _iprdata.ConsentLookup.ValidToDate;
-      ConsentPeriod = _iprdata.ConsentLookup.ConsentPeriod;
+      IPRUnitPrice = iprdata.UnitPrice;
+      Value = iprdata.Value;
+      VATName = iprdata.VATName;
+      VAT = iprdata.VAT;
+      IPRVATPerUnit = iprdata.VATPerUnit;
+      ProductivityRateMax = iprdata.ConsentLookup.ProductivityRateMax;
+      ProductivityRateMin = iprdata.ConsentLookup.ProductivityRateMin;
+      ValidFromDate = iprdata.ConsentLookup.ValidFromDate;
+      ValidToDate = iprdata.ConsentLookup.ValidToDate;
+      ConsentPeriod = iprdata.ConsentLookup.ConsentPeriod;
+      if ( iprdata.CartonsMass > 0 )
+        AddDisposal( entities, Convert.ToDecimal( iprdata.CartonsMass ) );
     }
     #endregion
 

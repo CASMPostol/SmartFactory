@@ -145,6 +145,7 @@ namespace CAS.SmartFactory.IPR.Customs
     /// <param name="_messageType">Type of the _message.</param>
     /// <param name="customsDebtDate">The customs debt date.</param>
     /// <param name="_comments">The _comments.</param>
+    /// <param name="warnings">The warnings.</param>
     /// <exception cref="IPRDataConsistencyException">IPR account creation error</exception>
     /// <exception cref="InputDataValidationException"></exception>
     private static void CreateIPRAccount
@@ -162,23 +163,20 @@ namespace CAS.SmartFactory.IPR.Customs
         }
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
-        AccountData _iprdata = new IPRAccountData( entities, clearence.Clearence2SadGoodID, _messageType );
+        IPRAccountData _iprdata = new IPRAccountData( entities, clearence.Clearence2SadGoodID, Convert2MessageType( _messageType ) );
         List<string> _ar = new List<string>();
         if ( !_iprdata.Validate( entities, _ar ) )
           warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
         _at = "Consent.Lookup";
         _comments = "Consent lookup filed";
         _at = "new IPRClass";
-        IPRClass _ipr = new IPRClass( _iprdata, clearence, declaration, customsDebtDate );
+        IPRClass _ipr = new IPRClass( entities, _iprdata, clearence, declaration, customsDebtDate );
         _at = "new InsertOnSubmit";
         entities.IPR.InsertOnSubmit( _ipr );
         clearence.Status = true;
         _at = "new SubmitChanges #1";
         entities.SubmitChanges();
         _ipr.UpdateTitle();
-        _at = "AddDisposal";
-        if ( _iprdata.Cartons > 0 )
-          _ipr.AddDisposal( entities, Convert.ToDecimal( _iprdata.Cartons ) );
         _at = "new SubmitChanges #2";
         entities.SubmitChanges();
       }
@@ -198,31 +196,23 @@ namespace CAS.SmartFactory.IPR.Customs
       }
       _comments = "IPR account created";
     }
-    private class IPRAccountData: AccountData
+    private static AccountData.MessageType Convert2MessageType( CustomsDocument.DocumentType type )
     {
-
-      internal IPRAccountData( Entities edc, SADGood good, CustomsDocument.DocumentType _messageType ) :
-        base( edc, good, Convert2MessageType( _messageType ) )
-      { }
-      internal static MessageType Convert2MessageType( CustomsDocument.DocumentType type )
+      AccountData.MessageType _ret = default( AccountData.MessageType );
+      switch ( type )
       {
-        MessageType _ret = default( MessageType );
-        switch ( type )
-        {
-          case CustomsDocument.DocumentType.SAD:
-            _ret = MessageType.SAD;
-            break;
-          case CustomsDocument.DocumentType.PZC:
-            _ret = MessageType.SAD;
-            break;
-          case CustomsDocument.DocumentType.IE529:
-          case CustomsDocument.DocumentType.CLNE:
-          default:
-            throw new ArgumentException( "Out of range value for CustomsDocument.DocumentType argument in Convert2MessageType ", "type" );
-        }
-        return _ret;
+        case CustomsDocument.DocumentType.SAD:
+          _ret = AccountData.MessageType.SAD;
+          break;
+        case CustomsDocument.DocumentType.PZC:
+          _ret = AccountData.MessageType.SAD;
+          break;
+        case CustomsDocument.DocumentType.IE529:
+        case CustomsDocument.DocumentType.CLNE:
+        default:
+          throw new ArgumentException( "Out of range value for CustomsDocument.DocumentType argument in Convert2MessageType ", "type" );
       }
-
+      return _ret;
     }
     private static void ClearThroughCustoms( Entities entities, SADGood good )
     {

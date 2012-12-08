@@ -316,7 +316,7 @@
     <Column Name="SystemID" Member="SystemID" />
   </ContentType>
   <ContentType Name="CW" Class="CW">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="EntryDate" Member="EntryDate" />
     <Column Name="CW2ConsentTitle" Member="CW2ConsentTitle" />
@@ -362,7 +362,7 @@
     <Column Name="IsIPR" Member="IsIPR" />
   </ContentType>
   <ContentType Name="CWDisposal" Class="CWDisposal">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="EntryDate" Member="EntryDate" />
     <Column Name="No" Member="No" />
@@ -582,7 +582,7 @@
     <Column Name="UsageVersion" Member="UsageVersion" />
   </ContentType>
   <ContentType Name="JSOXLib" Class="JSOXLib">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
@@ -628,7 +628,7 @@
     <Column Name="BatchLibraryComments" Member="BatchLibraryComments" />
   </ContentType>
   <ContentType Name="CWLib" Class="CWLib">
-    <Column Name="ContentType" Member="ContentType" />
+    <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FileLeafRef" Member="FileLeafRef" />
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
