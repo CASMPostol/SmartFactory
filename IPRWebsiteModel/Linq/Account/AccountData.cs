@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.SharePoint.Linq;
 using CAS.SharePoint;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
 {
@@ -12,8 +11,63 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
   /// </summary>
   public abstract class AccountData
   {
+
+    #region cretor
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AccountData" /> class.
+    /// </summary>
+    /// <param name="edc">The <see cref="Entities" /> object.</param>
+    /// <param name="good">The good.</param>
+    /// <param name="messageType">Type of the customs message.</param>
+    /// <exception cref="IPRDataConsistencyException">There is not attached any consent document with code = 1PG1/C601</exception>
+    /// <exception cref="InputDataValidationException">Syntax errors in the good description.</exception>
+    protected AccountData( Entities edc, SADGood good, MessageType messageType )
+    {
+      string _at = "starting";
+      try
+      {
+        AnalizeGood( good, messageType );
+        _at = "Value";
+        Value = good.TotalAmountInvoiced.Value;
+        _at = "UnitPrice";
+        UnitPrice = Value / NetMass;
+        _at = "Invoice";
+        this.Invoice = ( from _dx in good.SADRequiredDocuments
+                         let CustomsProcedureCode = _dx.Code.ToUpper()
+                         where CustomsProcedureCode.Contains( "N380" ) || CustomsProcedureCode.Contains( "N935" )
+                         select new { Number = _dx.Number }
+                        ).First().Number;
+        _at = "FindConsentRecord";
+        FindConsentRecord( edc, good.SADRequiredDocuments );
+        _at = "AnalizeGoodsDescription";
+        AnalizeGoodsDescription( edc, good.GoodsDescription );
+        _at = "PCN lookup filed";
+        PCNTariffCode = PCNCode.AddOrGet( edc, good.PCNTariffCode, TobaccoName );
+      }
+      catch ( InputDataValidationException _idve )
+      {
+        throw _idve;
+      }
+      catch ( IPRDataConsistencyException es )
+      {
+        throw es;
+      }
+      catch ( Exception _ex )
+      {
+        string _src = String.Format( "IPR.IPRData creator error at {0}", _at );
+        throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
+      }
+    }
+    #endregion
+
     #region private
-    private void AnalizeGood( SADGood good, MessageType _messageType )
+    /// <summary>
+    /// Analizes the good.
+    /// </summary>
+    /// <param name="good">The good.</param>
+    /// <param name="_messageType">Type of the _message.</param>
+    /// <exception cref="IPRDataConsistencyException"></exception>
+    protected internal virtual void AnalizeGood( SADGood good, MessageType _messageType )
     {
       string _at = "Started";
       try
@@ -33,11 +87,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         SADQuantity _quantity = good.SADQuantity.FirstOrDefault();
         NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault( 0 );
         _at = "Cartons";
-        SADPackage _packagex = good.SADPackage.First();
-        if ( _packagex.Package.ToUpper().Contains( "CT" ) )
-          Cartons = GrossMass - NetMass;
-        else
-          Cartons = 0;
       }
       catch ( Exception _ex )
       {
@@ -45,60 +94,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
       }
     }
-    private void AnalizeDutyAndVAT( SADGood good )
-    {
-      string _at = "Started";
-      try
-      {
-        Duty = 0;
-        VAT = 0;
-        DutyName = string.Empty;
-        VATName = string.Empty;
-        foreach ( SADDuties _duty in good.SADDuties )
-        {
-          _at = "switch " + _duty.DutyType;
-          switch ( _duty.DutyType )
-          {
-            //Duty
-            case "A10":
-            case "A00":
-            case "A20":
-              Duty += _duty.Amount.Value;
-              _at = "DutyName";
-              DutyName += String.Format( "{0}={1:F2}; ", _duty.DutyType, _duty.Amount.Value );
-              break;
-            //VAT
-            case "B00":
-            case "B10":
-            case "B20":
-              VAT += _duty.Amount.Value;
-              _at = "VATName";
-              VATName += String.Format( "{0}={1:F2}; ", _duty.DutyType, _duty.Amount.Value );
-              break;
-            default:
-              break;
-          }
-        }
-        _at = "DutyPerUnit";
-        DutyPerUnit = Duty / NetMass;
-        _at = "VATPerUnit";
-        VATPerUnit = VAT / NetMass;
-        _at = "Value";
-        Value = good.TotalAmountInvoiced.Value;
-        _at = "UnitPrice";
-        UnitPrice = Value / NetMass;
-      }
-      catch ( Exception _ex )
-      {
-        string _src = String.Format( "AnalizeDutyAndVAT error at {0}", _at );
-        throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
-      }
-    }
     private const string UnrecognizedName = "-- unrecognized name --";
     /// <summary>
     /// Analizes the goods description.
     /// </summary>
+    /// <param name="edc">The edc.</param>
     /// <param name="_GoodsDescription">The _ goods description.</param>
+    /// <exception cref="InputDataValidationException">Syntax errors in the good description.;AnalizeGoodsDescription</exception>
     /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">Syntax errors in the good description.</exception>
     private void AnalizeGoodsDescription( Entities edc, string _GoodsDescription )
     {
@@ -141,52 +143,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     }
     #endregion
 
-    #region cretor
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="AccountData" /> class.
-    /// </summary>
-    /// <param name="edc">The edc.</param>
-    /// <param name="good">The good.</param>
-    /// <param name="_messageType">Type of the _message.</param>
-    /// <exception cref="IPRDataConsistencyException">There is not attached any consent document with code = 1PG1/C601</exception>
-    /// <exception cref="InputDataValidationException">Syntax errors in the good description.</exception>
-    protected AccountData( Entities edc, SADGood good, MessageType _messageType )
-    {
-      string _at = "starting";
-      try
-      {
-        AnalizeGood( good, _messageType );
-        AnalizeDutyAndVAT( good );
-        _at = "Invoice";
-        this.Invoice = ( from _dx in good.SADRequiredDocuments
-                         let CustomsProcedureCode = _dx.Code.ToUpper()
-                         where CustomsProcedureCode.Contains( "N380" ) || CustomsProcedureCode.Contains( "N935" )
-                         select new { Number = _dx.Number }
-                        ).First().Number;
-        _at = "FindConsentRecord";
-        FindConsentRecord( edc, good.SADRequiredDocuments );
-        _at = "AnalizeGoodsDescription";
-        AnalizeGoodsDescription( edc, good.GoodsDescription );
-        _at = "PCN lookup filed";
-        PCNTariffCode = PCNCode.AddOrGet( edc, good.PCNTariffCode, TobaccoName );
-      }
-      catch ( InputDataValidationException _idve )
-      {
-        throw _idve;
-      }
-      catch ( IPRDataConsistencyException es )
-      {
-        throw es;
-      }
-      catch ( Exception _ex )
-      {
-        string _src = String.Format( "IPR.IPRData creator error at {0}", _at );
-        throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
-      }
-    }
-    #endregion
-
     #region public
     /// <summary>
     /// Message Type
@@ -214,11 +170,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       warnnings.AddRange( m_Warnings );
       return _ret;
     }
-    public double Cartons { get; private set; }
     internal Consent ConsentLookup { get; private set; }
-    internal double Duty { get; private set; }
-    internal string DutyName { get; private set; }
-    internal double DutyPerUnit { get; private set; }
     internal string GradeName { get; private set; }
     internal double GrossMass { get; private set; }
     internal string Invoice { get; private set; }
@@ -226,14 +178,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     internal string TobaccoName { get; private set; }
     internal double UnitPrice { get; private set; }
     internal double Value { get; private set; }
-    internal string VATName { get; private set; }
-    internal double VAT { get; private set; }
-    internal double VATPerUnit { get; private set; }
     internal string Batch { get; private set; }
     internal PCNCode PCNTariffCode { get; private set; }
     internal string SKU { get; private set; }
     #endregion
 
   }
-
 }

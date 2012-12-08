@@ -58,6 +58,8 @@
     <Compile Include="InputDataValidationException.cs" />
     <Compile Include="IPRDataConsistencyException.cs" />
     <Compile Include="Linq\Account\AccountData.cs" />
+    <Compile Include="Linq\Account\CWAccountData.cs" />
+    <Compile Include="Linq\Account\IPRAccountData.cs" />
     <Compile Include="Linq\ActionResult.cs" />
     <Compile Include="Linq\ActivityLogCT.cs" />
     <Compile Include="Linq\Batch.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Linq\Consent.cs" />
     <Compile Include="Linq\CustomsUnion.cs" />
     <Compile Include="Linq\CutfillerCoefficient.cs" />
+    <Compile Include="Linq\CW.cs" />
     <Compile Include="Linq\Disposal.cs" />
     <Compile Include="Linq\Dust.cs" />
     <Compile Include="Linq\Element.cs" />
