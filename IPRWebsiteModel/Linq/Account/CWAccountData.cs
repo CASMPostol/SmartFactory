@@ -5,22 +5,29 @@ using System.Text;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
 {
+  /// <summary>
+  /// Customs Warehouse Account Record Data
+  /// </summary>
   public class CWAccountData: AccountData
   {
 
     public CWAccountData( Entities edc, SADGood good, MessageType messageType )
       : base( edc, good, messageType )
     {
-
+      //TODO how to assign values. More info required.
     }
-    public CWLibraryCWLib cwLibraryID { get; set; }
-    public string CWCertificate { get; set; }
-    public double? CWMassPerPackage { get; set; }
-    public double? CWPackageKg { get; set; }
-    public double? CWPackageUnits { get; set; }
-    public string CWPzNo { get; set; }
-    public double? CWQuantity { get; set; }
-    public DateTime? EntryDate { get; set; }
-    public string Units { get; set; }
+    internal CWLibraryCWLib cwLibraryID { get; private set; }
+    internal string CWCertificate { get; private set; }
+    internal double? CWMassPerPackage { get; private set; }
+    internal double? CWPackageKg { get; private set; }
+    internal double? CWPackageUnits { get; private set; }
+    internal string CWPzNo { get; private set; }
+    internal double? CWQuantity { get; private set; }
+    internal DateTime? EntryDate { get; private set; }
+    internal string Units { get; private set; }
+    protected internal override Consent.CustomsProcess Process
+    {
+      get { return Consent.CustomsProcess.cw; }
+    }
   }
 }

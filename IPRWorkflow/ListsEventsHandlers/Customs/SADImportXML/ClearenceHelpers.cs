@@ -54,11 +54,13 @@ namespace CAS.SmartFactory.IPR.Customs
                   _cx.FinishClearingThroughCustoms( _edc );
                   break;
                 case CustomsProcedureCodes.InwardProcessing:
-                  CreateIPRAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, _sad.CustomsDebtDate.Value, out _comments, warnings );
+                  CreateIPRAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, out _comments, warnings );
+                  break;
+                case CustomsProcedureCodes.CustomsWarehousingProcedure:
+                  CreateCWAccount( _edc, _cx, CustomsDocument.DocumentType.SAD, out _comments, warnings );
                   break;
                 case CustomsProcedureCodes.ReExport:
                 case CustomsProcedureCodes.NoProcedure:
-                case CustomsProcedureCodes.CustomsWarehousingProcedure:
                 default:
                   throw new IPRDataConsistencyException( "Clearence.Associate", "Unexpected procedure code for CLNE message", null, _wrongProcedure );
               }
@@ -111,7 +113,7 @@ namespace CAS.SmartFactory.IPR.Customs
               if ( messageType == CustomsDocument.DocumentType.PZC )
               {
                 at = "CreateIPRAccount";
-                CreateIPRAccount( edc, _newClearance, CustomsDocument.DocumentType.PZC, sad.CustomsDebtDate.Value, out comments, warnings );
+                CreateIPRAccount( edc, _newClearance, CustomsDocument.DocumentType.PZC, out comments, warnings );
               }
               else
                 comments = "Document added";
@@ -121,7 +123,7 @@ namespace CAS.SmartFactory.IPR.Customs
             at = "NewClearence";
             Clearence _newWarehousinClearance = Clearence.CreataClearence( edc, "CustomsWarehousingProcedure", ClearenceProcedure._7100, _sgx );
             if ( messageType == CustomsDocument.DocumentType.PZC )
-              CreateCWAccount( edc, sad, _sgx );
+              CreateCWAccount( edc, _newWarehousinClearance, CustomsDocument.DocumentType.PZC, out comments, warnings );
             else
               comments = "Document added";
             break;
@@ -132,10 +134,53 @@ namespace CAS.SmartFactory.IPR.Customs
         }
       } //switch (_customsProcedureCodes)
     }
-    private static void CreateCWAccount( Entities _edc, SADDocumentType _sad, SADGood _sgx )
+    private static void CreateCWAccount( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, out string _comments, List<InputDataValidationException> warnings )
     {
-      //TODO CreateCWAccountNotImplementedException 
-      throw new NotImplementedException();
+      string _at = "started";
+      _comments = "IPR account creation error";
+      string _referenceNumber = String.Empty;
+      try
+      {
+        SADDocumentType declaration = clearence.Clearence2SadGoodID.SADDocumentIndex;
+        _referenceNumber = declaration.ReferenceNumber;
+        if ( WebsiteModel.Linq.IPR.RecordExist( entities, clearence.DocumentNo ) )
+        {
+          string _msg = "IPR record with the same SAD document number: {0} exist";
+          throw GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _msg, clearence.DocumentNo ) );
+        }
+        _at = "newIPRData";
+        _comments = "Inconsistent or incomplete data to create IPR account";
+        CWAccountData _accountData = new CWAccountData( entities, clearence.Clearence2SadGoodID, Convert2MessageType( _messageType ) );
+        List<string> _ar = new List<string>();
+        if ( !_accountData.Validate( entities, _ar ) )
+          warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
+        _comments = "Consent lookup filed";
+        _at = "new IPRClass";
+        CWCW _cw = new CWCW( _accountData, clearence, declaration );
+        _at = "new InsertOnSubmit";
+        entities.CW.InsertOnSubmit( _cw );
+        clearence.Status = true;
+        _at = "new SubmitChanges #1";
+        entities.SubmitChanges();
+        _cw.UpdateTitle();
+        _at = "new SubmitChanges #2";
+        entities.SubmitChanges();
+      }
+      catch ( InputDataValidationException _idve )
+      {
+        throw _idve;
+      }
+      catch ( GenericStateMachineEngine.ActionResult _ex )
+      {
+        _ex.Message.Insert( 0, String.Format( "Message={0}, Reference={1}; ", _messageType, _referenceNumber ) );
+        throw _ex;
+      }
+      catch ( Exception _ex )
+      {
+        string _src = String.Format( "CreateIPRAccount method error at {0}", _at );
+        throw new IPRDataConsistencyException( _src, _ex.Message, _ex, "IPR account creation error" );
+      }
+      _comments = "IPR account created";
     }
     /// <summary>
     /// Creates the IPR account.
@@ -149,13 +194,15 @@ namespace CAS.SmartFactory.IPR.Customs
     /// <exception cref="IPRDataConsistencyException">IPR account creation error</exception>
     /// <exception cref="InputDataValidationException"></exception>
     private static void CreateIPRAccount
-      ( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, DateTime customsDebtDate, out string _comments, List<InputDataValidationException> warnings )
+      ( Entities entities, Clearence clearence, CustomsDocument.DocumentType _messageType, out string _comments, List<InputDataValidationException> warnings )
     {
       string _at = "started";
       _comments = "IPR account creation error";
-      SADDocumentType declaration = clearence.Clearence2SadGoodID.SADDocumentIndex;
+      string _referenceNumber = String.Empty;
       try
       {
+        SADDocumentType declaration = clearence.Clearence2SadGoodID.SADDocumentIndex;
+        _referenceNumber = declaration.ReferenceNumber;
         if ( WebsiteModel.Linq.IPR.RecordExist( entities, clearence.DocumentNo ) )
         {
           string _msg = "IPR record with the same SAD document number: {0} exist";
@@ -167,10 +214,9 @@ namespace CAS.SmartFactory.IPR.Customs
         List<string> _ar = new List<string>();
         if ( !_iprdata.Validate( entities, _ar ) )
           warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
-        _at = "Consent.Lookup";
         _comments = "Consent lookup filed";
         _at = "new IPRClass";
-        IPRClass _ipr = new IPRClass( entities, _iprdata, clearence, declaration, customsDebtDate );
+        IPRClass _ipr = new IPRClass( entities, _iprdata, clearence, declaration );
         _at = "new InsertOnSubmit";
         entities.IPR.InsertOnSubmit( _ipr );
         clearence.Status = true;
@@ -186,7 +232,7 @@ namespace CAS.SmartFactory.IPR.Customs
       }
       catch ( GenericStateMachineEngine.ActionResult _ex )
       {
-        _ex.Message.Insert( 0, String.Format( "Message={0}, Reference={1}; ", _messageType, declaration.ReferenceNumber ) );
+        _ex.Message.Insert( 0, String.Format( "Message={0}, Reference={1}; ", _messageType, _referenceNumber ) );
         throw _ex;
       }
       catch ( Exception _ex )

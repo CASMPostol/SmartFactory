@@ -26,6 +26,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       string _at = "starting";
       try
       {
+        DateTime _customsDebtDate = good.SADDocumentIndex.CustomsDebtDate.Value;
+        this.CustomsDebtDate = _customsDebtDate;
         AnalizeGood( good, messageType );
         _at = "Value";
         Value = good.TotalAmountInvoiced.Value;
@@ -38,7 +40,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
                          select new { Number = _dx.Number }
                         ).First().Number;
         _at = "FindConsentRecord";
-        FindConsentRecord( edc, good.SADRequiredDocuments );
+        FindConsentRecord( edc, good.SADRequiredDocuments, _customsDebtDate );
         _at = "AnalizeGoodsDescription";
         AnalizeGoodsDescription( edc, good.GoodsDescription );
         _at = "PCN lookup filed";
@@ -114,7 +116,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         throw new InputDataValidationException( "Syntax errors in the good description.", "AnalizeGoodsDescription", _sErrors );
     }
     private List<string> m_Warnings = new List<string>();
-    private void FindConsentRecord( Entities edc, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet )
+    private void FindConsentRecord( Entities edc, EntitySet<SADRequiredDocuments> sadRequiredDocumentsEntitySet, DateTime customsDebtDate )
     {
       SADRequiredDocuments _rd = ( from _dx in sadRequiredDocumentsEntitySet
                                    let CustomsProcedureCode = _dx.Code.ToUpper()
@@ -122,7 +124,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
                                    select _dx
                                   ).FirstOrDefault();
       if ( _rd == null )
+      {
         m_Warnings.Add( "There is not attached any consent document with code = 1PG1/C601" );
+        this.ConsentLookup = Consent.DefaultConsent( edc, Process, String.Empty.NotAvailable() );
+      }
       else
       {
         string _nr = _rd.Number.Trim();
@@ -130,17 +135,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         if ( this.ConsentLookup == null )
         {
           m_Warnings.Add( "Cannot find consent document with number: " + _nr + ". The Consent period is 90 days" );
-          this.ConsentLookup = new Consent()
-          {
-            ConsentDate = CAS.SharePoint.Extensions.DateTimeNull,
-            ConsentPeriod = TimeSpan.FromDays( 90 ).TotalDays,
-            IsIPR = true,
-            ValidFromDate = CAS.SharePoint.Extensions.DateTimeNull,
-            ValidToDate = CAS.SharePoint.Extensions.DateTimeNull
-          };
+          this.ConsentLookup = Consent.DefaultConsent( edc, Process, _nr );
         }
       }
+      ValidToDate = customsDebtDate + TimeSpan.FromDays( ConsentLookup.ConsentPeriod.Value );
     }
+    protected internal abstract Consent.CustomsProcess Process { get; }
     #endregion
 
     #region public
@@ -171,6 +171,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       return _ret;
     }
     internal Consent ConsentLookup { get; private set; }
+    internal DateTime CustomsDebtDate { get; private set; }
     internal string GradeName { get; private set; }
     internal double GrossMass { get; private set; }
     internal string Invoice { get; private set; }
@@ -181,6 +182,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     internal string Batch { get; private set; }
     internal PCNCode PCNTariffCode { get; private set; }
     internal string SKU { get; private set; }
+    internal DateTime ValidToDate { get; private set; }
     #endregion
 
   }

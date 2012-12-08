@@ -3,11 +3,14 @@ using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
 {
+  
   /// <summary>
-  /// IPRAccountData
+  /// Invard Processing Account Record Data
   /// </summary>
   public class IPRAccountData: AccountData
   {
+    
+    #region ctor
     /// <summary>
     /// Initializes a new instance of the <see cref="IPRAccountData" /> class.
     /// </summary>
@@ -19,6 +22,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       AnalizeDutyAndVAT( good );
     }
+    #endregion
+
+    #region CW Data
     internal double CartonsMass { get; private set; }
     internal double Duty { get; private set; }
     internal string DutyName { get; private set; }
@@ -26,7 +32,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     internal string VATName { get; private set; }
     internal double VAT { get; private set; }
     internal double VATPerUnit { get; private set; }
+    #endregion
 
+    #region private
     private void AnalizeDutyAndVAT( SADGood good )
     {
       string _at = "Started";
@@ -86,6 +94,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       else
         CartonsMass = 0;
     }
+    protected internal override Consent.CustomsProcess Process
+    {
+      get { return Consent.CustomsProcess.cw; }
+    }
+    #endregion
+
   }
 
 }
