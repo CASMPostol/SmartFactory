@@ -6,49 +6,54 @@ using CAS.SharePoint;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
-  public partial class CW
+  public partial class CWCW
   {
-    public CW( Account.CWAccountData iprdata, Clearence clearence, SADDocumentType declaration, DateTime customsDebtDate )
+    public CWCW( Account.CWAccountData data, Clearence clearence, SADDocumentType declaration )
       : this()
     {
-      this.AccountBalance = iprdata.NetMass;
-      this.Batch = iprdata.Batch;
-      ConsentPeriod = iprdata.ConsentLookup.ConsentPeriod;
+      this.AccountBalance = data.NetMass;
+      this.Batch = data.Batch;
+      ConsentPeriod = data.ConsentLookup.ConsentPeriod;
       this.CW2Clearence = clearence;
       //ClosingDate = CAS.SharePoint.Extensions.SPMinimum;
       this.Currency = declaration.Currency;
-      this.CW2Consent = iprdata.ConsentLookup;
+      this.CW2Consent = data.ConsentLookup;
       //TODO this.CW2ConsentTitleIdentyfikator == 
-      this.CW2ConsentTitleTitle = iprdata.ConsentLookup.Title;
-      this.CW2PCNTID = iprdata.PCNTariffCode;
-      this.CW2PCWLibraryID = iprdata.cwLibraryID;
-      this.CWCertificate = iprdata.CWCertificate;
-      this.CustomsDebtDate = customsDebtDate;
+      this.CW2ConsentTitleTitle = data.ConsentLookup.Title;
+      this.CW2PCNTID = data.PCNTariffCode;
+      this.CW2PCWLibraryID = data.cwLibraryID;
+      this.CWCertificate = data.CWCertificate;
+      this.CustomsDebtDate = data.CustomsDebtDate;
       this.CWClosingDate = Extensions.DateTimeNull;
-      this.CWMassPerPackage = iprdata.CWMassPerPackage;
-      this.CWPackageKg = iprdata.CWPackageKg;
-      this.CWPackageUnits = iprdata.CWPackageUnits;
-      this.CWPzNo = iprdata.CWPzNo;
-      this.CWQuantity = iprdata.CWQuantity;
-      this.CWUnitPrice = iprdata.UnitPrice;
+      this.CWMassPerPackage = data.CWMassPerPackage;
+      this.CWPackageKg = data.CWPackageKg;
+      this.CWPackageUnits = data.CWPackageUnits;
+      this.CWPzNo = data.CWPzNo;
+      this.CWQuantity = data.CWQuantity;
+      this.CWUnitPrice = data.UnitPrice;
       this.DocumentNo = clearence.DocumentNo;
-      this.EntryDate = iprdata.EntryDate;
-      this.Grade = iprdata.GradeName;
-      this.GrossMass = iprdata.GrossMass;
-      this.InvoiceNo = iprdata.Invoice;
+      this.EntryDate = data.EntryDate;
+      this.Grade = data.GradeName;
+      this.GrossMass = data.GrossMass;
+      this.InvoiceNo = data.Invoice;
       //this.IPRLibraryIndex = declaration.SADDocumenLibrarytIndex;
-      NetMass = iprdata.NetMass;
-      SKU = iprdata.SKU;
-      TobaccoName = iprdata.TobaccoName;
+      NetMass = data.NetMass;
+      SKU = data.SKU;
+      TobaccoName = data.TobaccoName;
       Title = "-- creating -- ";
-      this.Units = iprdata.Units;
-      ValidToDate = customsDebtDate + TimeSpan.FromDays( iprdata.ConsentLookup.ConsentPeriod.Value );
-      this.Value = iprdata.Value;
+      this.Units = data.Units;
+      ValidToDate = data.CustomsDebtDate;
+      this.Value = data.Value;
     }
     public Clearence CW2Clearence { get; set; }
     public Consent CW2Consent { get; private set; }
     public double? ConsentPeriod { get; set; }
     public CWLibraryCWLib CW2Library { get; set; }
 
+
+    public void UpdateTitle()
+    {
+      throw new NotImplementedException();
+    }
   }
 }

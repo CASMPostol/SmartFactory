@@ -16,8 +16,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="iprdata">The _iprdata.</param>
     /// <param name="clearence">The clearence.</param>
     /// <param name="declaration">The declaration.</param>
-    /// <param name="customsDebtDate">The customs debt date.</param>
-    public IPR( Entities entities, Account.IPRAccountData iprdata, Clearence clearence, SADDocumentType declaration, DateTime customsDebtDate )
+    public IPR( Entities entities, Account.IPRAccountData iprdata, Clearence clearence, SADDocumentType declaration )
       : this()
     {
       AccountClosed = false;
@@ -28,7 +27,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       ClosingDate = CAS.SharePoint.Extensions.SPMinimum;
       IPR2ConsentTitle = iprdata.ConsentLookup;
       Currency = declaration.Currency;
-      CustomsDebtDate = customsDebtDate;
+      CustomsDebtDate = iprdata.CustomsDebtDate;
       DocumentNo = clearence.DocumentNo;
       Duty = iprdata.Duty;
       DutyName = iprdata.DutyName;
@@ -38,7 +37,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       InvoiceNo = iprdata.Invoice;
       IPRLibraryIndex = declaration.SADDocumenLibrarytIndex;
       NetMass = iprdata.NetMass;
-      OGLValidTo = customsDebtDate + TimeSpan.FromDays( iprdata.ConsentLookup.ConsentPeriod.Value );
+      OGLValidTo = iprdata.ValidToDate;
       IPR2PCNPCN = iprdata.PCNTariffCode;
       SKU = iprdata.SKU;
       TobaccoName = iprdata.TobaccoName;
