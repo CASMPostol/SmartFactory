@@ -44,15 +44,6 @@
     Group="CAS Smart Factory CW"
     Type="Text"/>
   <Field
-    ID="{4B26651A-3321-45F0-A788-CFAE027C1BBD}"
-    Name="CWClosingDate"
-    Group="CAS Smart Factory CW"
-    Type="DateTime"
-    Format="DateOnly"
-    DisplayName="Closing date">
-    <Default>[today]</Default>
-  </Field>
-  <Field
     ID="{FFE1DBB5-C46E-4621-89C8-EC2545714CBE}"
     Name="CWDeclaredNetMass"
     DisplayName="Declared net mass [kg]"

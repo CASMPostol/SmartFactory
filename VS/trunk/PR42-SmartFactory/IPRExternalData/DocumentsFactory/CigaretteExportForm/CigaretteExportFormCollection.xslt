@@ -288,7 +288,7 @@
         </xsl:choose>
       </td>
       <td>
-        <xsl:value-of select="format-number(cas:TobaccoValue, $FoarmatOfFloatPrices, 'pl')"/>
+        <xsl:value-of select="format-number(cas:TobaccoValue, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
         <xsl:value-of select="cas:Currency"/>
