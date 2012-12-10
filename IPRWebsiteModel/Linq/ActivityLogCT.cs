@@ -14,13 +14,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <summary>
     /// Creates an entry with the given message text and application-defined event identifier to the event log list.
     /// </summary>
-    /// <param name="source">The source denominator of the message.</param>
+    /// <param name="title">The title.</param>
     /// <param name="message">The string to write to the event log.</param>
-    public ActivityLogCT( string source, string message )
-      : base()
+    /// <param name="level">Specifies what messages to output for the.</param>
+    /// <param name="source">The source denominator of the message.</param>
+    public ActivityLogCT( string title, string message, TraceLevel level, string source  )
+      : this()
     {
-      Title = source;
+      Title = title;
       Treść = message;
+      this.ActivityPriority = level.ToString();
+      this.ActivitySource = source;
       this.Wygasa = DateTime.Now + new TimeSpan( 2, 0, 0, 0 );
     }
     /// <summary>
@@ -41,7 +45,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="url">The URL.</param>
     public static void WriteEntry( string source, string message, string url )
     {
-      using ( Entities edc = new Entities(url) )
+      using ( Entities edc = new Entities( url ) )
         ActivityLogCT.WriteEntry( edc, source, message );
     }
     /// <summary>
@@ -58,7 +62,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         EventLog.WriteEntry( "CAS.SmartFActory", "Cannot open \"Event Log List\" list", EventLogEntryType.Error, 114 );
         return;
       }
-      ActivityLogCT log = new ActivityLogCT( source, message );
+      ActivityLogCT log = new ActivityLogCT( source, message, TraceLevel.Error, "ActivityLogCT" );
       edc.ActivityLog.InsertOnSubmit( log );
       edc.SubmitChangesSilently( Microsoft.SharePoint.Linq.RefreshMode.OverwriteCurrentValues );
     }
