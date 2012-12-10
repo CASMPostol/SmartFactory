@@ -10,6 +10,9 @@
     <FieldRefs>
       <FieldRef ID="{31AF4083-FF31-4052-91CB-6B5D2F5BD781}" Name="EntryDate" />
       <FieldRef ID="{95CEEEBC-DF04-468E-BB3A-BC51F5E11F64}" Name="CW2ConsentTitle" />
+      <FieldRef ID="{7BF919F9-500D-4584-A5AC-AC03D705D2B1}" Name="ValidFromDate" />
+      <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
+      <FieldRef ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}" Name="ConsentPeriod" />
       <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
       <FieldRef ID="{FE3B4425-FBF7-474A-9CFA-BD2F27F13E17}" Name="CustomsDebtDate" />
       <FieldRef ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}" Name="TobaccoName" />
@@ -32,7 +35,7 @@
       <FieldRef ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}" Name="AccountBalance" />
       <FieldRef ID="{A129CBA4-BD84-4198-93B0-49CE4147FCF2}" Name="CWCertificate" />
       <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
-      <FieldRef ID="{4B26651A-3321-45F0-A788-CFAE027C1BBD}" Name="CWClosingDate" />
+      <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
       <FieldRef ID="{E7EECE11-FC1B-42E9-A165-9FC8351C441F}" Name="CW2PCNTID" />
       <FieldRef ID="{336B592C-D264-4469-8506-9A2E7FBA4F6B}" Name="CW2PCWLibraryID" />
     </FieldRefs>
