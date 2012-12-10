@@ -9,7 +9,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   /// <summary>
   /// Enumerated kinds of Disposal 
   /// </summary>
-  public enum DisposalEnum { Dust, SHMenthol, Waste, OverusageInKg, Tobacco, TobaccoInCigaretess, Cartons };
+  public enum DisposalEnum { OverusageInKg, TobaccoInCigaretess, Dust, SHMenthol, Waste, Tobacco, Cartons };
   public partial class Entities
   {
     #region public
