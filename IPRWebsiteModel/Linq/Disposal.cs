@@ -161,6 +161,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void Adjust( ref decimal _toDispose )
     {
       this.SettledQuantityDec += this.Disposal2IPRIndex.Withdraw( ref _toDispose, this.SettledQuantityDec );
+      CalculateDutyAndVat();
     }
     internal decimal SettledQuantityDec
     {
