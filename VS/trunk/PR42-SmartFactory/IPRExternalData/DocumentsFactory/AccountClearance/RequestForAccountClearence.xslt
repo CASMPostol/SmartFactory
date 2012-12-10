@@ -65,7 +65,7 @@
           <xsl:value-of select="cas:Batch"/>
         </td>
         <td align="right">
-          <xsl:value-of select="cas:NetMass"/>
+          <xsl:value-of select="format-number(cas:NetMass, $FoarmatOfFloat, 'pl')"/>
         </td>
     </tr>
     </table>
@@ -142,7 +142,7 @@
       <tr>
         <td colspan="5">Numer ewidencji SAD</td>
         <td colspan="5">Data powstania długu celnego</td>
-        <td colspan="6">Współczynnik produktywności od ok <xsl:value-of select="cas:ProductivityRateMin"/> do ok <xsl:value-of select="cas:ProductivityRateMax"/></td>
+        <td colspan="6">Współczynnik produktywności od ok <xsl:value-of select="cas:ProductivityRateMin"/> % do ok <xsl:value-of select="cas:ProductivityRateMax"/> %</td>
       </tr>
       <tr>
         <td colspan="5">
@@ -250,7 +250,7 @@
       </tr>
       <tr>
         <td valign="top">
-          x
+          1
         </td>
         <td>
           &#160;
@@ -268,7 +268,7 @@
           <xsl:value-of select="cas:PCN"/>
         </td>
         <td valign="top">
-          [invoice]
+          <xsl:value-of select="cas:InvoiceNo"/>
         </td>
         <td valign="top">
           [pozycja sad]
@@ -277,22 +277,22 @@
           <xsl:value-of select="cas:Duty"/>
         </td>
         <td valign="top">
-          <xsl:value-of select="cas:DutyPerUnit"/>
+          <xsl:value-of select="format-number(cas:DutyPerUnit, $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
           <xsl:value-of select="cas:VAT"/>
         </td>
         <td valign="top">
-          <xsl:value-of select="cas:VATPerUnit"/>
+          <xsl:value-of select="format-number(cas:VATPerUnit, $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
-          <xsl:value-of select="cas:NetMass"/>
+          <xsl:value-of select="format-number(cas:NetMass, $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
-          <xsl:value-of select="cas:GrossMass"/>
+          <xsl:value-of select="format-number(cas:GrossMass, $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
-          <xsl:value-of select="cas:Cartons"/>
+          <xsl:value-of select="format-number(cas:Cartons, $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
           [norma]
@@ -427,7 +427,7 @@
         <xsl:value-of select="cas:No"/>
       </td>
       <td>
-        <xsl:value-of select="cas:SADDocumentNo"/>
+        <xsl:value-of select="ms:format-date(cas:SADDocumentNo, $FoarmatOfdate)"/>
       </td>
       <td>
         <xsl:value-of select="cas:SADDate"/>
@@ -436,7 +436,7 @@
         <xsl:value-of select="cas:InvoiceNo"/>
       </td>
       <td>
-        <xsl:value-of select="cas:SettledQuantity"/>
+        <xsl:value-of select="format-number(cas:SettledQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
         &#160;
@@ -451,16 +451,16 @@
         brak
       </td>
       <td>
-        <xsl:value-of select="cas:DutyPerSettledAmount"/>
+        <xsl:value-of select="format-number(cas:DutyPerSettledAmount, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
-        <xsl:value-of select="cas:VATPerSettledAmount"/>
+        <xsl:value-of select="format-number(cas:VATPerSettledAmount, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
-        <xsl:value-of select="cas:DutyAndVAT"/>
+        <xsl:value-of select="format-number(cas:DutyAndVAT, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
-        <xsl:value-of select="cas:RemainingQuantity"/>
+        <xsl:value-of select="format-number(cas:RemainingQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
         <xsl:value-of select="cas:CustomsProcedure"/>
