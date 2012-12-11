@@ -423,7 +423,9 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DocumentsFactory\AccountClearance\RequestContent.xml" />
+    <Content Include="DocumentsFactory\AccountClearance\RequestContent.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DocumentsFactory\AccountClearance\RequestForAccountClearence.xslt">
       <SubType>Designer</SubType>
     </Content>
