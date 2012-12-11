@@ -1,12 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ContentType ID="0x0101001DF8B050E523400BAA45A84C96B5D8AD"
-               Name="IPRLib"
-               Group="CAS Smart Factory IPR"
-               Description="IPR Library Content Type"
-               Overwrite="TRUE"
-               Inherits="TRUE">
+  <ContentType ID="0x0101001DF8B050E523400BAA45A84C96B5D8AD" Name="IPRLib" Group="CAS Smart Factory IPR" Description="IPR Library Content Type" Overwrite="TRUE" Inherits="TRUE">
     <FieldRefs>
+      <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" DisplayName="Document No" Name="DocumentNo" />
     </FieldRefs>
   </ContentType>
 </Elements>

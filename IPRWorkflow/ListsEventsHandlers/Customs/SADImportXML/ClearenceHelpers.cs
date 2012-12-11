@@ -156,7 +156,7 @@ namespace CAS.SmartFactory.IPR.Customs
           warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
         _comments = "Consent lookup filed";
         _at = "new IPRClass";
-        CWCW _cw = new CWCW( _accountData, clearence, declaration );
+        CW _cw = new CW( _accountData, clearence, declaration );
         _at = "new InsertOnSubmit";
         entities.CW.InsertOnSubmit( _cw );
         clearence.Status = true;
