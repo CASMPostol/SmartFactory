@@ -239,7 +239,19 @@
     </table>
   </xsl:template>
   <xsl:template match="cas:AmountOfMoney">
-    <xsl:apply-templates select="cas:ArrayOfTotals" />
+    <tr>
+      <td>
+        <table width="100%">
+          <xsl:apply-templates select="cas:ArrayOfTotals" />
+        </table>
+      </td>
+      <td align="right">
+        <xsl:value-of select="format-number(sum(cas:ArrayOfTotals/cas:IPRMaterialDutyTotal), $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="right">
+        <xsl:value-of select="format-number(sum(cas:ArrayOfTotals/cas:IPRMaterialVATTotal), $FoarmatOfFloat, 'pl')"/>
+      </td>
+    </tr>
   </xsl:template>
   <xsl:template match="cas:ArrayOfTotals" >
     <tr align="right" >
@@ -249,15 +261,8 @@
       <td align="right">
         <xsl:value-of select="cas:Currency"/>
       </td>
-      <td align="right">
-        <xsl:value-of select="format-number(cas:IPRMaterialDutyTotal, $FoarmatOfFloat, 'pl')"/>
-      </td>
-      <td align="right">
-        <xsl:value-of select="format-number(cas:IPRMaterialVATTotal, $FoarmatOfFloat, 'pl')"/>
-      </td>
     </tr>
-  </xsl:template>
-    
+  </xsl:template>   
   <xsl:template match="cas:IPRIngredient" >
     <tr align="right" >
       <td>
