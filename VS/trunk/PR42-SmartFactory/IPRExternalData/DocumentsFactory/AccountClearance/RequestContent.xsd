@@ -29,11 +29,13 @@
         <xs:element minOccurs="0" maxOccurs="1" name="DutyName" type="xs:string" />
         <xs:element minOccurs="0" maxOccurs="1" name="VATName" type="xs:string" />
         <xs:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="xs:string" />
-        <xs:element minOccurs="0" maxOccurs="1" name="DisposalsColection" type="tns:ArrayOfDIsposals" />
+        <xs:element minOccurs="1" maxOccurs="1" name="VATDutyTotal" type="xs:decimal" />
+        <xs:element minOccurs="0" maxOccurs="1" name="DisposalsColection" type="tns:ArrayOfArrayOfDIsposalsDisposalsArray" />
+        <xs:element minOccurs="0" maxOccurs="1" name="PCNRecord" type="tns:ArrayOfProductCodeNumberDesscription" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:complexType name="ArrayOfDIsposals">
+  <xs:complexType name="ArrayOfArrayOfDIsposalsDisposalsArray">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalsArray">
         <xs:complexType>
@@ -52,6 +54,17 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfProductCodeNumberDesscription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductCodeNumberDesscription" nillable="true" type="tns:ProductCodeNumberDesscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductCodeNumberDesscription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CodeNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
