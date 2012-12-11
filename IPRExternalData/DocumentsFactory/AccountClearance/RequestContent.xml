@@ -26,6 +26,7 @@
   <DutyName>DutyName1</DutyName>
   <VATName>VATName1</VATName>
   <InvoiceNo>InvoiceNo1</InvoiceNo>
+  <VATDutyTotal>1</VATDutyTotal>
   <DisposalsColection>
     <DisposalsArray>
       <No>1</No>
@@ -67,4 +68,12 @@
       <ProductCodeNumber>ProductCodeNumber3</ProductCodeNumber>
     </DisposalsArray>
   </DisposalsColection>
+  <PCNRecord>
+    <ProductCodeNumberDesscription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+    <ProductCodeNumberDesscription>
+      <CodeNumber>CodeNumber1</CodeNumber>
+      <Description>Description1</Description>
+    </ProductCodeNumberDesscription>
+    <ProductCodeNumberDesscription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+  </PCNRecord>
 </RequestContent>

@@ -152,6 +152,9 @@
     <None Include="Content types\Disposal\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{56158b8c-8462-4a3b-911c-d00a0b580331}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\IPRLib\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5516516c-4abe-42e7-ac7a-426fdb6dbf9a}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\IPR\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{725238fe-cddd-422a-a613-bd8e07fbfe0e}</SharePointProjectItemId>
     </None>
@@ -416,8 +419,11 @@
     <None Include="Lists\DisposalTemlate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1262eb21-6b5b-422d-a06a-ea0da998d51d}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\IPRLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{9c8f2898-e1f2-4d5f-9998-321391e553b9}</SharePointProjectItemId>
+    <None Include="Lists\IPRLibraryTemplate\IPRLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{966fae5c-35da-45fa-b24a-88066c94466a}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\IPRLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5c620482-8275-43b0-af5d-c1a973180375}</SharePointProjectItemId>
     </None>
     <None Include="Lists\IPRTemplate\IPRList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ce08fa6c-05cc-4f86-8c44-c946df0a290f}</SharePointProjectItemId>
@@ -571,6 +577,7 @@
     <Content Include="Content types\Disposal\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\IPRLib\Elements.xml" />
     <Content Include="Content types\IPR\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -794,7 +801,13 @@
     <Content Include="Lists\DisposalTemlate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\IPRLibrary\Elements.xml" />
+    <Content Include="Lists\IPRLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\IPRLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\IPRLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\IPRLibraryTemplate\IPRLibrary\Elements.xml" />
+    <Content Include="Lists\IPRLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\IPRLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\IPRLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\IPRTemplate\Elements.xml" />
     <Content Include="Lists\IPRTemplate\IPRList\Elements.xml" />
     <Content Include="Lists\IPRTemplate\Schema.xml">
