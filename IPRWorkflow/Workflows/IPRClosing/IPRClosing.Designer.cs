@@ -32,11 +32,12 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
       System.Workflow.ComponentModel.ActivityBind activitybind4 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind5 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind6 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.Activities.CodeCondition codecondition1 = new System.Workflow.Activities.CodeCondition();
       System.Workflow.ComponentModel.ActivityBind activitybind7 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.ComponentModel.ActivityBind activitybind9 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
+      System.Workflow.Activities.CodeCondition codecondition1 = new System.Workflow.Activities.CodeCondition();
       System.Workflow.ComponentModel.ActivityBind activitybind8 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind10 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
+      System.Workflow.ComponentModel.ActivityBind activitybind9 = new System.Workflow.ComponentModel.ActivityBind();
       this.LogFinalMessageToHistory = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.Closeing = new System.Workflow.Activities.CodeActivity();
       this.LogClosingMessageToHistory = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -59,9 +60,11 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
       activitybind2.Path = "LogFinalMessageToHistory_HistoryOutcome";
       this.LogFinalMessageToHistory.Name = "LogFinalMessageToHistory";
       this.LogFinalMessageToHistory.OtherData = "";
-      this.LogFinalMessageToHistory.UserId = -1;
+      activitybind3.Name = "IPRClosing";
+      activitybind3.Path = "workflowProperties.OriginatorUser.ID";
       this.LogFinalMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind2 ) ) );
       this.LogFinalMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind1 ) ) );
+      this.LogFinalMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind3 ) ) );
       // 
       // Closeing
       // 
@@ -77,26 +80,26 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
       this.LogClosingMessageToHistory.HistoryOutcome = "Close starting";
       this.LogClosingMessageToHistory.Name = "LogClosingMessageToHistory";
       this.LogClosingMessageToHistory.OtherData = "";
-      activitybind3.Name = "IPRClosing";
-      activitybind3.Path = "workflowProperties.OriginatorUser.ID";
-      this.LogClosingMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind3 ) ) );
+      activitybind4.Name = "IPRClosing";
+      activitybind4.Path = "workflowProperties.OriginatorUser.ID";
+      this.LogClosingMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind4 ) ) );
       // 
       // LogWarningMessageToHistory
       // 
       this.LogWarningMessageToHistory.Description = "Log Warning Message To History";
       this.LogWarningMessageToHistory.Duration = System.TimeSpan.Parse( "-10675199.02:48:05.4775808" );
       this.LogWarningMessageToHistory.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-      activitybind4.Name = "IPRClosing";
-      activitybind4.Path = "LogWarningMessageToHistory_HistoryDescription";
       activitybind5.Name = "IPRClosing";
-      activitybind5.Path = "LogWarningMessageToHistory_HistoryOutcome";
+      activitybind5.Path = "LogWarningMessageToHistory_HistoryDescription";
+      activitybind6.Name = "IPRClosing";
+      activitybind6.Path = "LogWarningMessageToHistory_HistoryOutcome";
       this.LogWarningMessageToHistory.Name = "LogWarningMessageToHistory";
       this.LogWarningMessageToHistory.OtherData = "";
-      activitybind6.Name = "IPRClosing";
-      activitybind6.Path = "workflowProperties.OriginatorUser.ID";
-      this.LogWarningMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind6 ) ) );
-      this.LogWarningMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind4 ) ) );
-      this.LogWarningMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind5 ) ) );
+      activitybind7.Name = "IPRClosing";
+      activitybind7.Path = "workflowProperties.OriginatorUser.ID";
+      this.LogWarningMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind7 ) ) );
+      this.LogWarningMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind5 ) ) );
+      this.LogWarningMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind6 ) ) );
       // 
       // ClosingSequence
       // 
@@ -142,11 +145,11 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
       this.LogStartingMessageToHistory.HistoryOutcome = "Starting";
       this.LogStartingMessageToHistory.Name = "LogStartingMessageToHistory";
       this.LogStartingMessageToHistory.OtherData = "";
-      activitybind7.Name = "IPRClosing";
-      activitybind7.Path = "workflowProperties.OriginatorUser.ID";
-      this.LogStartingMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind7 ) ) );
-      activitybind9.Name = "IPRClosing";
-      activitybind9.Path = "workflowId";
+      activitybind8.Name = "IPRClosing";
+      activitybind8.Path = "workflowProperties.OriginatorUser.ID";
+      this.LogStartingMessageToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind8 ) ) );
+      activitybind10.Name = "IPRClosing";
+      activitybind10.Path = "workflowId";
       // 
       // onWorkflowActivated1
       // 
@@ -155,10 +158,10 @@ namespace CAS.SmartFactory.IPR.Workflows.IPRClosing
       this.onWorkflowActivated1.CorrelationToken = correlationtoken1;
       this.onWorkflowActivated1.EventName = "OnWorkflowActivated";
       this.onWorkflowActivated1.Name = "onWorkflowActivated1";
-      activitybind8.Name = "IPRClosing";
-      activitybind8.Path = "workflowProperties";
-      this.onWorkflowActivated1.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind9 ) ) );
-      this.onWorkflowActivated1.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind8 ) ) );
+      activitybind9.Name = "IPRClosing";
+      activitybind9.Path = "workflowProperties";
+      this.onWorkflowActivated1.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind10 ) ) );
+      this.onWorkflowActivated1.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind9 ) ) );
       // 
       // IPRClosing
       // 
