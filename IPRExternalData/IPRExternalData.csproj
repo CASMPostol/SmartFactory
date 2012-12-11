@@ -108,6 +108,12 @@
     <Compile Include="DocumentsFactory\AccountClearance\RequestContent.xsd.cs">
       <DependentUpon>RequestContent.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DocumentsFactory\BalanceSheet\BalanceSheetContent.cs">
+      <DependentUpon>BalanceSheetContent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsFactory\BalanceSheet\BalanceSheetContent.xsd.cs">
+      <DependentUpon>BalanceSheetContent.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.cs">
       <DependentUpon>CigaretteExportFormCollection.xsd</DependentUpon>
     </Compile>
@@ -374,6 +380,11 @@
     <None Include="DocumentsFactory\AccountClearance\RequestContent.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="DocumentsFactory\BalanceSheet\BalanceSheetContent.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DocumentsFactory\BalanceSheet\GoCS.ps1" />
+    <None Include="DocumentsFactory\BalanceSheet\GoXSD.ps1" />
     <None Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xsd">
       <SubType>Designer</SubType>
     </None>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BalanceSheetContent" type="tns:BalanceSheetContent" />
+
+  <xs:complexType name="BalanceSheetContent" >
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="IPRStoc" type="tns:IPRStocContent" />
+      <xs:element minOccurs="0" maxOccurs="1" name="JSOX" type="tns:JSOXContenet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPRStocContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BatchList" type="tns:ArrayOfIPRStockBatchListRow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfIPRStockBatchListRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPRStockBatchListRow" nillable="true" type="tns:IPRStockBatchListRow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPRStockBatchListRow" />
+  <xs:complexType name="JSOXContenet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="JSOCClearance" type="tns:ArrayOfJSOCClearanceContent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfJSOCClearanceContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOCClearanceContent" nillable="true" type="tns:JSOCClearanceContent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="JSOCClearanceContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Disposal" type="tns:ArrayOfDisposalRow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDisposalRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalRow" nillable="true" type="tns:DisposalRow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DisposalRow" />
+</xs:schema>
