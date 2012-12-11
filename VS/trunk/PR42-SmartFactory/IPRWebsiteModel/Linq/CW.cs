@@ -6,25 +6,24 @@ using CAS.SharePoint;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
-  public partial class CWCW
+  public partial class CW
   {
-    public CWCW( Account.CWAccountData data, Clearence clearence, SADDocumentType declaration )
+    public CW( Account.CWAccountData data, Clearence clearence, SADDocumentType declaration )
       : this()
     {
       this.AccountBalance = data.NetMass;
       this.Batch = data.Batch;
-      ConsentPeriod = data.ConsentLookup.ConsentPeriod;
+      this.ConsentPeriod = data.ConsentLookup.ConsentPeriod;
       this.CW2Clearence = clearence;
-      //ClosingDate = CAS.SharePoint.Extensions.SPMinimum;
+      this.ClosingDate = Extensions.DateTimeNull;
       this.Currency = declaration.Currency;
       this.CW2Consent = data.ConsentLookup;
       //TODO this.CW2ConsentTitleIdentyfikator == 
       this.CW2ConsentTitleTitle = data.ConsentLookup.Title;
       this.CW2PCNTID = data.PCNTariffCode;
-      this.CW2PCWLibraryID = data.cwLibraryID;
+      this.CW2PCWLibraryID = data.CWLibraryID;
       this.CWCertificate = data.CWCertificate;
       this.CustomsDebtDate = data.CustomsDebtDate;
-      this.CWClosingDate = Extensions.DateTimeNull;
       this.CWMassPerPackage = data.CWMassPerPackage;
       this.CWPackageKg = data.CWPackageKg;
       this.CWPackageUnits = data.CWPackageUnits;
@@ -47,13 +46,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     public Clearence CW2Clearence { get; set; }
     public Consent CW2Consent { get; private set; }
-    public double? ConsentPeriod { get; set; }
-    public CWLibraryCWLib CW2Library { get; set; }
-
 
     public void UpdateTitle()
     {
-      throw new NotImplementedException();
+      Title = String.Format( "CW-{0:D4}{1:D6}", this.EntryDate.Value.Year, Identyfikator.Value );
     }
   }
 }

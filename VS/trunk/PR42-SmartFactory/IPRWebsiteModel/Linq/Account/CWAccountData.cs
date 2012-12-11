@@ -16,7 +16,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       //TODO how to assign values. More info required.
     }
-    internal CWLibraryCWLib cwLibraryID { get; private set; }
+    internal CWLib CWLibraryID { get; private set; }
     internal string CWCertificate { get; private set; }
     internal double? CWMassPerPackage { get; private set; }
     internal double? CWPackageKg { get; private set; }

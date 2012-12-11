@@ -25,34 +25,36 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Cartons = iprdata.CartonsMass;
       ClearenceIndex = clearence;
       ClosingDate = CAS.SharePoint.Extensions.SPMinimum;
-      IPR2ConsentTitle = iprdata.ConsentLookup;
+      ConsentPeriod = iprdata.ConsentLookup.ConsentPeriod;
       Currency = declaration.Currency;
       CustomsDebtDate = iprdata.CustomsDebtDate;
       DocumentNo = clearence.DocumentNo;
       Duty = iprdata.Duty;
       DutyName = iprdata.DutyName;
-      IPRDutyPerUnit = iprdata.DutyPerUnit;
       Grade = iprdata.GradeName;
       GrossMass = iprdata.GrossMass;
       InvoiceNo = iprdata.Invoice;
-      IPRLibraryIndex = declaration.SADDocumenLibrarytIndex;
+      IPRDutyPerUnit = iprdata.DutyPerUnit;
+      IPRLibraryIndex = null;
+      IPR2ConsentTitle = iprdata.ConsentLookup;
+      IPR2PCNPCN = iprdata.PCNTariffCode;
+      IPRUnitPrice = iprdata.UnitPrice;
+      IPRVATPerUnit = iprdata.VATPerUnit;
+      this.JSOXIndex = null;
+      this.JSOXSummary = null;
       NetMass = iprdata.NetMass;
       OGLValidTo = iprdata.ValidToDate;
-      IPR2PCNPCN = iprdata.PCNTariffCode;
+      ProductivityRateMax = iprdata.ConsentLookup.ProductivityRateMax;
+      ProductivityRateMin = iprdata.ConsentLookup.ProductivityRateMin;
       SKU = iprdata.SKU;
       TobaccoName = iprdata.TobaccoName;
       TobaccoNotAllocated = iprdata.NetMass;
       Title = "-- creating -- ";
-      IPRUnitPrice = iprdata.UnitPrice;
       Value = iprdata.Value;
       VATName = iprdata.VATName;
       VAT = iprdata.VAT;
-      IPRVATPerUnit = iprdata.VATPerUnit;
-      ProductivityRateMax = iprdata.ConsentLookup.ProductivityRateMax;
-      ProductivityRateMin = iprdata.ConsentLookup.ProductivityRateMin;
       ValidFromDate = iprdata.ConsentLookup.ValidFromDate;
       ValidToDate = iprdata.ConsentLookup.ValidToDate;
-      ConsentPeriod = iprdata.ConsentLookup.ConsentPeriod;
       if ( iprdata.CartonsMass > 0 )
         AddDisposal( entities, Convert.ToDecimal( iprdata.CartonsMass ) );
     }
@@ -123,20 +125,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from IPR _iprx in edc.IPR where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
     }
-    /// <summary>
-    /// Gets the duty per unit.
-    /// </summary>
-    /// <value>
-    /// The duty per unit.
-    /// </value>
-    public double DutyPerUnit { get { return this.Duty.Value / this.NetMass.Value; } }
-    /// <summary>
-    /// Gets the VAT per unit.
-    /// </summary>
-    /// <value>
-    /// The VAT per unit.
-    /// </value>
-    public double VATPerUnit { get { return this.VAT.Value / this.NetMass.Value; } }
     #endregion
 
     #region internal

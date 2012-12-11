@@ -320,6 +320,9 @@
     <Column Name="Title" Member="Title" />
     <Column Name="EntryDate" Member="EntryDate" />
     <Column Name="CW2ConsentTitle" Member="CW2ConsentTitle" />
+    <Column Name="ValidFromDate" Member="ValidFromDate" />
+    <Column Name="ValidToDate" Member="ValidToDate" />
+    <Column Name="ConsentPeriod" Member="ConsentPeriod" />
     <Column Name="DocumentNo" Member="DocumentNo" />
     <Column Name="CustomsDebtDate" Member="CustomsDebtDate" />
     <Column Name="TobaccoName" Member="TobaccoName" />
@@ -341,8 +344,7 @@
     <Column Name="InvoiceNo" Member="InvoiceNo" />
     <Column Name="AccountBalance" Member="AccountBalance" />
     <Column Name="CWCertificate" Member="CWCertificate" />
-    <Column Name="ValidToDate" Member="ValidToDate" />
-    <Column Name="CWClosingDate" Member="CWClosingDate" />
+    <Column Name="ClosingDate" Member="ClosingDate" />
     <Column Name="CW2PCNTID" Member="CW2PCNTID" />
     <Column Name="CW2PCWLibraryID" Member="CW2PCWLibraryID" />
   </ContentType>
@@ -580,6 +582,14 @@
     <Column Name="CTFUsageMin" Member="CTFUsageMin" />
     <Column Name="CTFUsageMax" Member="CTFUsageMax" />
     <Column Name="UsageVersion" Member="UsageVersion" />
+  </ContentType>
+  <ContentType Name="IPRLib" Class="IPRLib">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="DocumentNo" Member="DocumentNo" />
   </ContentType>
   <ContentType Name="JSOXLib" Class="JSOXLib">
     <!--<Column Name="ContentType" Member="ContentType" />-->

@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         DocumentNo = documentNo,
         Duty = ipr.Duty.Value,
         DutyName = ipr.DutyName,
-        DutyPerUnit = ipr.DutyPerUnit,
+        DutyPerUnit = ipr.IPRDutyPerUnit.Value,
         EntryDocumentNo = ipr.DocumentNo,
         Grade = ipr.Grade,
         GrossMass = ipr.GrossMass.Value,
@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         ValidToDate = ipr.ValidToDate.Value,
         VAT = ipr.VAT.Value,
         VATName = ipr.VATName,
-        VATPerUnit = ipr.VATPerUnit
+        VATPerUnit = ipr.IPRVATPerUnit.Value
       };
       return _ret;
     }

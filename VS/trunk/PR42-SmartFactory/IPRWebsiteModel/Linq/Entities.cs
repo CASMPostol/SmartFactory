@@ -117,9 +117,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		/// CW List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="CW")]
-		public Microsoft.SharePoint.Linq.EntityList<CWCW> CW {
+		public Microsoft.SharePoint.Linq.EntityList<CW> CW {
 			get {
-				return this.GetList<CWCW>("CW");
+				return this.GetList<CW>("CW");
 			}
 		}
 		
@@ -127,9 +127,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		/// CW Disposal List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="CW Disposal")]
-		public Microsoft.SharePoint.Linq.EntityList<CWDisposalCWDisposal> CWDisposal {
+		public Microsoft.SharePoint.Linq.EntityList<CWDisposal> CWDisposal {
 			get {
-				return this.GetList<CWDisposalCWDisposal>("CW Disposal");
+				return this.GetList<CWDisposal>("CW Disposal");
 			}
 		}
 		
@@ -137,9 +137,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		/// CW Library List Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="CW Library")]
-		public Microsoft.SharePoint.Linq.EntityList<CWLibraryCWLib> CWLibrary {
+		public Microsoft.SharePoint.Linq.EntityList<CWLib> CWLibrary {
 			get {
-				return this.GetList<CWLibraryCWLib>("CW Library");
+				return this.GetList<CWLib>("CW Library");
 			}
 		}
 		
@@ -214,12 +214,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		/// <summary>
-		/// IPR files collection
+		/// IPR Library Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="IPR Library")]
-		public Microsoft.SharePoint.Linq.EntityList<Dokument> IPRLibrary {
+		public Microsoft.SharePoint.Linq.EntityList<IPRLib> IPRLibrary {
 			get {
-				return this.GetList<Dokument>("IPR Library");
+				return this.GetList<IPRLib>("IPR Library");
 			}
 		}
 		
@@ -237,9 +237,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		/// JSOX Library Instance
 		/// </summary>
 		[Microsoft.SharePoint.Linq.ListAttribute(Name="JSOX Library")]
-		public Microsoft.SharePoint.Linq.EntityList<JSOXLibraryJSOXLib> JSOXLibrary {
+		public Microsoft.SharePoint.Linq.EntityList<JSOXLib> JSOXLibrary {
 			get {
-				return this.GetList<JSOXLibraryJSOXLib>("JSOX Library");
+				return this.GetList<JSOXLib>("JSOX Library");
 			}
 		}
 		
@@ -675,6 +675,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(BatchLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CWLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(InvoiceLib))]
+	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(IPRLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(JSOXLib))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADConsignment))]
 	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(SADDocumentLib))]
@@ -2356,12 +2357,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Utwórz nowy element listy.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CW", Id="0x010088DA2CEF2CB74D27B0EE083FAED76D16")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CWCW))]
 	public partial class CW : Element {
 		
-		private string _contentType;
-		
 		private System.Nullable<System.DateTime> _entryDate;
+		
+		private System.Nullable<System.DateTime> _validFromDate;
+		
+		private System.Nullable<System.DateTime> _validToDate;
+		
+		private System.Nullable<double> _consentPeriod;
 		
 		private string _documentNo;
 		
@@ -2403,9 +2407,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private string _cWCertificate;
 		
-		private System.Nullable<System.DateTime> _validToDate;
-		
-		private System.Nullable<System.DateTime> _cWClosingDate;
+		private System.Nullable<System.DateTime> _closingDate;
 		
 		private System.Nullable<int> _cW2ConsentTitleIdentyfikator;
 		
@@ -2413,7 +2415,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _cW2PCNTID;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<CWLibraryCWLib> _cW2PCWLibraryID;
+		private Microsoft.SharePoint.Linq.EntityRef<CWLib> _cW2PCWLibraryID;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2426,25 +2428,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._cW2PCNTID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnCW2PCNTIDSync);
 			this._cW2PCNTID.OnChanged += new System.EventHandler(this.OnCW2PCNTIDChanged);
 			this._cW2PCNTID.OnChanging += new System.EventHandler(this.OnCW2PCNTIDChanging);
-			this._cW2PCWLibraryID = new Microsoft.SharePoint.Linq.EntityRef<CWLibraryCWLib>();
-			this._cW2PCWLibraryID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWLibraryCWLib>>(this.OnCW2PCWLibraryIDSync);
+			this._cW2PCWLibraryID = new Microsoft.SharePoint.Linq.EntityRef<CWLib>();
+			this._cW2PCWLibraryID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWLib>>(this.OnCW2PCWLibraryIDSync);
 			this._cW2PCWLibraryID.OnChanged += new System.EventHandler(this.OnCW2PCWLibraryIDChanged);
 			this._cW2PCWLibraryID.OnChanging += new System.EventHandler(this.OnCW2PCWLibraryIDChanging);
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public virtual string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EntryDate", Storage="_entryDate", FieldType="DateTime")]
@@ -2457,6 +2445,48 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this.OnPropertyChanging("EntryDate", this._entryDate);
 					this._entryDate = value;
 					this.OnPropertyChanged("EntryDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ValidFromDate", Storage="_validFromDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> ValidFromDate {
+			get {
+				return this._validFromDate;
+			}
+			set {
+				if ((value != this._validFromDate)) {
+					this.OnPropertyChanging("ValidFromDate", this._validFromDate);
+					this._validFromDate = value;
+					this.OnPropertyChanged("ValidFromDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ValidToDate", Storage="_validToDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> ValidToDate {
+			get {
+				return this._validToDate;
+			}
+			set {
+				if ((value != this._validToDate)) {
+					this.OnPropertyChanging("ValidToDate", this._validToDate);
+					this._validToDate = value;
+					this.OnPropertyChanged("ValidToDate");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ConsentPeriod", Storage="_consentPeriod", FieldType="Number")]
+		public System.Nullable<double> ConsentPeriod {
+			get {
+				return this._consentPeriod;
+			}
+			set {
+				if ((value != this._consentPeriod)) {
+					this.OnPropertyChanging("ConsentPeriod", this._consentPeriod);
+					this._consentPeriod = value;
+					this.OnPropertyChanged("ConsentPeriod");
 				}
 			}
 		}
@@ -2741,30 +2771,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ValidToDate", Storage="_validToDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> ValidToDate {
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ClosingDate", Storage="_closingDate", FieldType="DateTime")]
+		public System.Nullable<System.DateTime> ClosingDate {
 			get {
-				return this._validToDate;
+				return this._closingDate;
 			}
 			set {
-				if ((value != this._validToDate)) {
-					this.OnPropertyChanging("ValidToDate", this._validToDate);
-					this._validToDate = value;
-					this.OnPropertyChanged("ValidToDate");
-				}
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CWClosingDate", Storage="_cWClosingDate", FieldType="DateTime")]
-		public System.Nullable<System.DateTime> CWClosingDate {
-			get {
-				return this._cWClosingDate;
-			}
-			set {
-				if ((value != this._cWClosingDate)) {
-					this.OnPropertyChanging("CWClosingDate", this._cWClosingDate);
-					this._cWClosingDate = value;
-					this.OnPropertyChanged("CWClosingDate");
+				if ((value != this._closingDate)) {
+					this.OnPropertyChanging("ClosingDate", this._closingDate);
+					this._closingDate = value;
+					this.OnPropertyChanged("ClosingDate");
 				}
 			}
 		}
@@ -2808,7 +2824,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCWLibraryID", Storage="_cW2PCWLibraryID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="CW Library")]
-		public CWLibraryCWLib CW2PCWLibraryID {
+		public CWLib CW2PCWLibraryID {
 			get {
 				return this._cW2PCWLibraryID.GetEntity();
 			}
@@ -2842,7 +2858,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnPropertyChanged("CW2PCWLibraryID");
 		}
 		
-		private void OnCW2PCWLibraryIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWLibraryCWLib> e) {
+		private void OnCW2PCWLibraryIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWLib> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.CW.Add(this);
 			}
@@ -2856,10 +2872,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Utwórz nowy element listy.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CWDisposal", Id="0x0100ABB044CC02EA42888FF88537C864C5F2")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CWDisposalCWDisposal))]
 	public partial class CWDisposal : Element {
-		
-		private string _contentType;
 		
 		private System.Nullable<System.DateTime> _entryDate;
 		
@@ -2927,20 +2940,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._cWDisposal2PCNTID.OnChanged += new System.EventHandler(this.OnCWDisposal2PCNTIDChanged);
 			this._cWDisposal2PCNTID.OnChanging += new System.EventHandler(this.OnCWDisposal2PCNTIDChanging);
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public virtual string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="EntryDate", Storage="_entryDate", FieldType="DateTime")]
@@ -4456,11 +4455,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _iPR2PCNPCN;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<JSOXLibraryJSOXLib> _jSOXIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<JSOXLib> _jSOXIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Clearence> _clearenceIndex;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _iPRLibraryIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<IPRLib> _iPRLibraryIndex;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<JSOXSummary> _jSOXSummary;
 		
@@ -4483,16 +4482,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._iPR2PCNPCN.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnIPR2PCNPCNSync);
 			this._iPR2PCNPCN.OnChanged += new System.EventHandler(this.OnIPR2PCNPCNChanged);
 			this._iPR2PCNPCN.OnChanging += new System.EventHandler(this.OnIPR2PCNPCNChanging);
-			this._jSOXIndex = new Microsoft.SharePoint.Linq.EntityRef<JSOXLibraryJSOXLib>();
-			this._jSOXIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLibraryJSOXLib>>(this.OnJSOXIndexSync);
+			this._jSOXIndex = new Microsoft.SharePoint.Linq.EntityRef<JSOXLib>();
+			this._jSOXIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLib>>(this.OnJSOXIndexSync);
 			this._jSOXIndex.OnChanged += new System.EventHandler(this.OnJSOXIndexChanged);
 			this._jSOXIndex.OnChanging += new System.EventHandler(this.OnJSOXIndexChanging);
 			this._clearenceIndex = new Microsoft.SharePoint.Linq.EntityRef<Clearence>();
 			this._clearenceIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Clearence>>(this.OnClearenceIndexSync);
 			this._clearenceIndex.OnChanged += new System.EventHandler(this.OnClearenceIndexChanged);
 			this._clearenceIndex.OnChanging += new System.EventHandler(this.OnClearenceIndexChanging);
-			this._iPRLibraryIndex = new Microsoft.SharePoint.Linq.EntityRef<Dokument>();
-			this._iPRLibraryIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument>>(this.OnIPRLibraryIndexSync);
+			this._iPRLibraryIndex = new Microsoft.SharePoint.Linq.EntityRef<IPRLib>();
+			this._iPRLibraryIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPRLib>>(this.OnIPRLibraryIndexSync);
 			this._iPRLibraryIndex.OnChanged += new System.EventHandler(this.OnIPRLibraryIndexChanged);
 			this._iPRLibraryIndex.OnChanging += new System.EventHandler(this.OnIPRLibraryIndexChanging);
 			this._jSOXSummary = new Microsoft.SharePoint.Linq.EntitySet<JSOXSummary>();
@@ -4939,7 +4938,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="JSOXIndex", Storage="_jSOXIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JSOX Library")]
-		public JSOXLibraryJSOXLib JSOXIndex {
+		public JSOXLib JSOXIndex {
 			get {
 				return this._jSOXIndex.GetEntity();
 			}
@@ -4959,7 +4958,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPRLibraryIndex", Storage="_iPRLibraryIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="IPR Library")]
-		public Dokument IPRLibraryIndex {
+		public IPRLib IPRLibraryIndex {
 			get {
 				return this._iPRLibraryIndex.GetEntity();
 			}
@@ -5037,7 +5036,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnPropertyChanged("JSOXIndex");
 		}
 		
-		private void OnJSOXIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLibraryJSOXLib> e) {
+		private void OnJSOXIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLib> e) {
 		}
 		
 		private void OnClearenceIndexChanging(object sender, System.EventArgs e) {
@@ -5059,7 +5058,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnPropertyChanged("IPRLibraryIndex");
 		}
 		
-		private void OnIPRLibraryIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Dokument> e) {
+		private void OnIPRLibraryIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPRLib> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.IPR.Add(this);
+			}
+			else {
+				e.Item.IPR.Remove(this);
+			}
 		}
 		
 		private void OnJSOXSummaryChanging(object sender, System.EventArgs e) {
@@ -5102,7 +5107,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<JSOXLibraryJSOXLib> _jSOXIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<JSOXLib> _jSOXIndex;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -5115,8 +5120,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._disposal.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Disposal>>(this.OnDisposalSync);
 			this._disposal.OnChanged += new System.EventHandler(this.OnDisposalChanged);
 			this._disposal.OnChanging += new System.EventHandler(this.OnDisposalChanging);
-			this._jSOXIndex = new Microsoft.SharePoint.Linq.EntityRef<JSOXLibraryJSOXLib>();
-			this._jSOXIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLibraryJSOXLib>>(this.OnJSOXIndexSync);
+			this._jSOXIndex = new Microsoft.SharePoint.Linq.EntityRef<JSOXLib>();
+			this._jSOXIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLib>>(this.OnJSOXIndexSync);
 			this._jSOXIndex.OnChanged += new System.EventHandler(this.OnJSOXIndexChanged);
 			this._jSOXIndex.OnChanging += new System.EventHandler(this.OnJSOXIndexChanging);
 			this.OnCreated();
@@ -5231,7 +5236,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="JSOXIndex", Storage="_jSOXIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JSOX Library")]
-		public JSOXLibraryJSOXLib JSOXIndex {
+		public JSOXLib JSOXIndex {
 			get {
 				return this._jSOXIndex.GetEntity();
 			}
@@ -5265,7 +5270,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnPropertyChanged("JSOXIndex");
 		}
 		
-		private void OnJSOXIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLibraryJSOXLib> e) {
+		private void OnJSOXIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLib> e) {
 		}
 	}
 	
@@ -7730,10 +7735,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// Utwórz nowy dokument.
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CWLib", Id="0x0101007EBEECC5D33648E991A553ED5EAF0693")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(CWLibraryCWLib))]
 	public partial class CWLib : Dokument {
 		
-		private string _contentType;
+		private Microsoft.SharePoint.Linq.EntitySet<CW> _cW;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -7742,20 +7746,37 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		#endregion
 		
 		public CWLib() {
+			this._cW = new Microsoft.SharePoint.Linq.EntitySet<CW>();
+			this._cW.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW>>(this.OnCWSync);
+			this._cW.OnChanged += new System.EventHandler(this.OnCWChanged);
+			this._cW.OnChanging += new System.EventHandler(this.OnCWChanging);
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public virtual string ContentType {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCWLibraryID", Storage="_cW", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="CW")]
+		public Microsoft.SharePoint.Linq.EntitySet<CW> CW {
 			get {
-				return this._contentType;
+				return this._cW;
 			}
 			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
+				this._cW.Assign(value);
+			}
+		}
+		
+		private void OnCWChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CW", this._cW.Clone());
+		}
+		
+		private void OnCWChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CW");
+		}
+		
+		private void OnCWSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CW2PCWLibraryID = this;
+			}
+			else {
+				e.Item.CW2PCWLibraryID = null;
 			}
 		}
 	}
@@ -7920,11 +7941,74 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	/// <summary>
 	/// Utwórz nowy dokument.
 	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXLib", Id="0x0101002CFEC8BBC3F440D69B724CC2B95FFF93")]
-	[Microsoft.SharePoint.Linq.DerivedEntityClassAttribute(Type=typeof(JSOXLibraryJSOXLib))]
-	public partial class JSOXLib : Dokument {
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="IPRLib", Id="0x0101001DF8B050E523400BAA45A84C96B5D8AD")]
+	public partial class IPRLib : Dokument {
 		
-		private string _contentType;
+		private string _documentNo;
+		
+		private Microsoft.SharePoint.Linq.EntitySet<IPR> _iPR;
+		
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate();
+		partial void OnCreated();
+		#endregion
+		
+		public IPRLib() {
+			this._iPR = new Microsoft.SharePoint.Linq.EntitySet<IPR>();
+			this._iPR.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPRSync);
+			this._iPR.OnChanged += new System.EventHandler(this.OnIPRChanged);
+			this._iPR.OnChanging += new System.EventHandler(this.OnIPRChanging);
+			this.OnCreated();
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="DocumentNo", Storage="_documentNo", FieldType="Text")]
+		public string DocumentNo {
+			get {
+				return this._documentNo;
+			}
+			set {
+				if ((value != this._documentNo)) {
+					this.OnPropertyChanging("DocumentNo", this._documentNo);
+					this._documentNo = value;
+					this.OnPropertyChanged("DocumentNo");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPRLibraryIndex", Storage="_iPR", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="IPR")]
+		public Microsoft.SharePoint.Linq.EntitySet<IPR> IPR {
+			get {
+				return this._iPR;
+			}
+			set {
+				this._iPR.Assign(value);
+			}
+		}
+		
+		private void OnIPRChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("IPR", this._iPR.Clone());
+		}
+		
+		private void OnIPRChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("IPR");
+		}
+		
+		private void OnIPRSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.IPRLibraryIndex = this;
+			}
+			else {
+				e.Item.IPRLibraryIndex = null;
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Utwórz nowy dokument.
+	/// </summary>
+	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXLib", Id="0x0101002CFEC8BBC3F440D69B724CC2B95FFF93")]
+	public partial class JSOXLib : Dokument {
 		
 		private Microsoft.SharePoint.Linq.EntityRef<Dokument> _jSOXLibrary2BalanceLibraryID;
 		
@@ -7940,20 +8024,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this._jSOXLibrary2BalanceLibraryID.OnChanged += new System.EventHandler(this.OnJSOXLibrary2BalanceLibraryIDChanged);
 			this._jSOXLibrary2BalanceLibraryID.OnChanging += new System.EventHandler(this.OnJSOXLibrary2BalanceLibraryIDChanging);
 			this.OnCreated();
-		}
-		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="ContentType", Storage="_contentType", FieldType="Computed")]
-		public virtual string ContentType {
-			get {
-				return this._contentType;
-			}
-			set {
-				if ((value != this._contentType)) {
-					this.OnPropertyChanging("ContentType", this._contentType);
-					this._contentType = value;
-					this.OnPropertyChanged("ContentType");
-				}
-			}
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="JSOXLibrary2BalanceLibraryID", Storage="_jSOXLibrary2BalanceLibraryID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Balance Library")]
@@ -8235,62 +8305,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 	}
 	
 	/// <summary>
-	/// CW List Content Type
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CW", Id="0x010088DA2CEF2CB74D27B0EE083FAED76D16", List="CW")]
-	public partial class CWCW : CW {
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public CWCW() {
-			this.OnCreated();
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string ContentType {
-			get {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CW.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CW.");
-			}
-		}
-	}
-	
-	/// <summary>
-	/// CWDisposal List Content Type
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CWDisposal", Id="0x0100ABB044CC02EA42888FF88537C864C5F2", List="CW Disposal")]
-	public partial class CWDisposalCWDisposal : CWDisposal {
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public CWDisposalCWDisposal() {
-			this.OnCreated();
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string ContentType {
-			get {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CWDisposal.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CWDisposal.");
-			}
-		}
-	}
-	
-	/// <summary>
 	/// JSOX Summary content type
 	/// </summary>
 	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXSummary", Id="0x0100BC0DDC1827F346ED911D777504830C520093C91F91096944EAA9091C44F55FA587")]
@@ -8300,7 +8314,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private System.Nullable<int> _balanceIndexIdentyfikator;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<JSOXLibraryJSOXLib> _jSOXIndex;
+		private Microsoft.SharePoint.Linq.EntityRef<JSOXLib> _jSOXIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<IPR> _iPRIndex;
 		
@@ -8311,8 +8325,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		#endregion
 		
 		public JSOXSummary() {
-			this._jSOXIndex = new Microsoft.SharePoint.Linq.EntityRef<JSOXLibraryJSOXLib>();
-			this._jSOXIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLibraryJSOXLib>>(this.OnJSOXIndexSync);
+			this._jSOXIndex = new Microsoft.SharePoint.Linq.EntityRef<JSOXLib>();
+			this._jSOXIndex.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLib>>(this.OnJSOXIndexSync);
 			this._jSOXIndex.OnChanged += new System.EventHandler(this.OnJSOXIndexChanged);
 			this._jSOXIndex.OnChanging += new System.EventHandler(this.OnJSOXIndexChanging);
 			this._iPRIndex = new Microsoft.SharePoint.Linq.EntityRef<IPR>();
@@ -8351,7 +8365,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		}
 		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="JSOXIndex", Storage="_jSOXIndex", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="JSOX Library")]
-		public JSOXLibraryJSOXLib JSOXIndex {
+		public JSOXLib JSOXIndex {
 			get {
 				return this._jSOXIndex.GetEntity();
 			}
@@ -8378,7 +8392,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnPropertyChanged("JSOXIndex");
 		}
 		
-		private void OnJSOXIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLibraryJSOXLib> e) {
+		private void OnJSOXIndexSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<JSOXLib> e) {
 		}
 		
 		private void OnIPRIndexChanging(object sender, System.EventArgs e) {
@@ -8573,95 +8587,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this._blendPurpose = value;
 					this.OnPropertyChanged("BlendPurpose");
 				}
-			}
-		}
-	}
-	
-	/// <summary>
-	/// CWLib Content Type
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="CWLib", Id="0x0101007EBEECC5D33648E991A553ED5EAF0693", List="CW Library")]
-	public partial class CWLibraryCWLib : CWLib {
-		
-		private Microsoft.SharePoint.Linq.EntitySet<CW> _cW;
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public CWLibraryCWLib() {
-			this._cW = new Microsoft.SharePoint.Linq.EntitySet<CW>();
-			this._cW.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW>>(this.OnCWSync);
-			this._cW.OnChanged += new System.EventHandler(this.OnCWChanged);
-			this._cW.OnChanging += new System.EventHandler(this.OnCWChanging);
-			this.OnCreated();
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string ContentType {
-			get {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CWLib.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości CWLib.");
-			}
-		}
-		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCWLibraryID", Storage="_cW", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="CW")]
-		public Microsoft.SharePoint.Linq.EntitySet<CW> CW {
-			get {
-				return this._cW;
-			}
-			set {
-				this._cW.Assign(value);
-			}
-		}
-		
-		private void OnCWChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("CW", this._cW.Clone());
-		}
-		
-		private void OnCWChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("CW");
-		}
-		
-		private void OnCWSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW> e) {
-			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CW2PCWLibraryID = this;
-			}
-			else {
-				e.Item.CW2PCWLibraryID = null;
-			}
-		}
-	}
-	
-	/// <summary>
-	/// JSOX Library Content Type
-	/// </summary>
-	[Microsoft.SharePoint.Linq.ContentTypeAttribute(Name="JSOXLib", Id="0x0101002CFEC8BBC3F440D69B724CC2B95FFF93", List="JSOX Library")]
-	public partial class JSOXLibraryJSOXLib : JSOXLib {
-		
-		#region Extensibility Method Definitions
-		partial void OnLoaded();
-		partial void OnValidate();
-		partial void OnCreated();
-		#endregion
-		
-		public JSOXLibraryJSOXLib() {
-			this.OnCreated();
-		}
-		
-		[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-		[Microsoft.SharePoint.Linq.RemovedColumnAttribute()]
-		public override string ContentType {
-			get {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości JSOXLib.");
-			}
-			set {
-				throw new System.InvalidOperationException("Pole ContentType zostało usunięte z typu zawartości JSOXLib.");
 			}
 		}
 	}
