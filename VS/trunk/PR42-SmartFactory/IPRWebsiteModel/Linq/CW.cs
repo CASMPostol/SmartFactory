@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CAS.SharePoint;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
@@ -18,7 +15,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.ClosingDate = Extensions.DateTimeNull;
       this.Currency = declaration.Currency;
       this.CW2Consent = data.ConsentLookup;
-      //TODO this.CW2ConsentTitleIdentyfikator == 
+      this.CW2ConsentTitleIdentyfikator = data.ConsentLookup.Identyfikator.Value;
       this.CW2ConsentTitleTitle = data.ConsentLookup.Title;
       this.CW2PCNTID = data.PCNTariffCode;
       this.CW2PCWLibraryID = data.CWLibraryID;
@@ -35,13 +32,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.Grade = data.GradeName;
       this.GrossMass = data.GrossMass;
       this.InvoiceNo = data.Invoice;
-      //this.IPRLibraryIndex = declaration.SADDocumenLibrarytIndex;
-      NetMass = data.NetMass;
-      SKU = data.SKU;
-      TobaccoName = data.TobaccoName;
-      Title = "-- creating -- ";
+      this.NetMass = data.NetMass;
+      this.SKU = data.SKU;
+      this.TobaccoName = data.TobaccoName;
+      this.Title = "-- creating -- ";
       this.Units = data.Units;
-      ValidToDate = data.CustomsDebtDate;
+      this.ValidToDate = data.CustomsDebtDate;
       this.Value = data.Value;
     }
     public Clearence CW2Clearence { get; set; }
