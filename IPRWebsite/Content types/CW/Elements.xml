@@ -36,7 +36,7 @@
       <FieldRef ID="{A129CBA4-BD84-4198-93B0-49CE4147FCF2}" Name="CWCertificate" />
       <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
       <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
-      <FieldRef ID="{E7EECE11-FC1B-42E9-A165-9FC8351C441F}" Name="CW2PCNTID" />
+      <FieldRef ID="{A74C7285-7B32-43F9-9602-5C77EF6D265A}" Name="CW2PCNID" />
       <FieldRef ID="{336B592C-D264-4469-8506-9A2E7FBA4F6B}" Name="CW2PCWLibraryID" />
     </FieldRefs>
   </ContentType>

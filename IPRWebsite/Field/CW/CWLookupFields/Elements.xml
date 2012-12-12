@@ -18,8 +18,8 @@
     ReadOnly="False"
     />
   <Field
-    Name="CW2PCNTID"
-    ID="{E7EECE11-FC1B-42E9-A165-9FC8351C441F}"
+    Name="CW2PCNID"
+    ID="{A74C7285-7B32-43F9-9602-5C77EF6D265A}"
     Type="Lookup"
     List="Lists/PCNCodeList"
     ShowField="ID"
@@ -39,7 +39,7 @@
     DisplayName="CN tariff code"
     List="Lists/PCNCodeList"
     ShowField="ProductCodeNumber"
-    FieldRef="E7EECE11-FC1B-42E9-A165-9FC8351C441F"
+    FieldRef="A74C7285-7B32-43F9-9602-5C77EF6D265A"
     ReadOnly="TRUE"
     UnlimitedLengthInDocumentLibrary="FALSE"
     Group="CAS Smart Factory CW"
