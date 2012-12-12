@@ -34,7 +34,7 @@
           <FieldRef ID="{05A2C176-9A58-449D-B2E6-84F3C5B32307}" Name="ValidToDate" />
           <FieldRef ID="{E6A94982-F43E-436D-94A5-63C3916455A3}" Name="ClosingDate" />
           <FieldRef ID="{A74C7285-7B32-43F9-9602-5C77EF6D265A}" Name="CW2PCNID" />
-          <FieldRef ID="{336B592C-D264-4469-8506-9A2E7FBA4F6B}" Name="CW2PCWLibraryID" />
+          <FieldRef ID="{336B592C-D264-4469-8506-9A2E7FBA4F6B}" Name="CW2CWLibraryID" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
