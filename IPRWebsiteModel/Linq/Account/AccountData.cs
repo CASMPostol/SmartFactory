@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         this.CustomsDebtDate = _customsDebtDate;
         AnalizeGood( good, messageType );
         _at = "Value";
-        Value = good.TotalAmountInvoiced.Value;
+        Value = good.TotalAmountInvoiced.GetValueOrDefault( 0 );
         _at = "UnitPrice";
         UnitPrice = Value / NetMass;
         _at = "Invoice";
@@ -67,16 +67,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     /// Analizes the good.
     /// </summary>
     /// <param name="good">The good.</param>
-    /// <param name="_messageType">Type of the _message.</param>
+    /// <param name="messageType">Type of the _message.</param>
     /// <exception cref="IPRDataConsistencyException"></exception>
-    protected internal virtual void AnalizeGood( SADGood good, MessageType _messageType )
+    protected internal virtual void AnalizeGood( SADGood good, MessageType messageType )
     {
       string _at = "Started";
       try
       {
         _at = "GrossMass";
         SADDocumentType _document = good.SADDocumentIndex;
-        switch ( _messageType )
+        switch ( messageType )
         {
           case MessageType.PZC:
             GrossMass = _document.GrossMass.HasValue ? _document.GrossMass.Value : good.GrossMass.Value;
@@ -86,9 +86,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
             break;
         }
         _at = "SADQuantity";
-        SADQuantity _quantity = good.SADQuantity.FirstOrDefault();
-        NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault( 0 );
-        _at = "Cartons";
+        GetNetMass( good );
       }
       catch ( Exception _ex )
       {
@@ -96,22 +94,27 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
         throw new IPRDataConsistencyException( _src, _ex.Message, _ex, _src );
       }
     }
+    /// <summary>
+    /// Gets the net mass.
+    /// </summary>
+    /// <param name="good">The good.</param>
+    protected internal abstract void GetNetMass( SADGood good );
     private const string UnrecognizedName = "-- unrecognized name --";
     /// <summary>
     /// Analizes the goods description.
     /// </summary>
     /// <param name="edc">The edc.</param>
-    /// <param name="_GoodsDescription">The _ goods description.</param>
+    /// <param name="goodsDescription">The _ goods description.</param>
     /// <exception cref="InputDataValidationException">Syntax errors in the good description.;AnalizeGoodsDescription</exception>
     /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">Syntax errors in the good description.</exception>
-    private void AnalizeGoodsDescription( Entities edc, string _GoodsDescription )
+    protected virtual void AnalizeGoodsDescription( Entities edc, string goodsDescription )
     {
       List<string> _sErrors = new List<string>();
       string _na = "Not recognized";
-      TobaccoName = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionTobaccoNamePattern ), _na, _sErrors );
-      GradeName = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionWGRADEPattern ), _na, _sErrors );
-      SKU = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionSKUPattern ), _na, _sErrors );
-      Batch = _GoodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionBatchPattern ), _na, _sErrors );
+      TobaccoName = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionTobaccoNamePattern ), _na, _sErrors );
+      GradeName = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionWGRADEPattern ), _na, _sErrors );
+      SKU = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionSKUPattern ), _na, _sErrors );
+      Batch = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionBatchPattern ), _na, _sErrors );
       if ( _sErrors.Count > 0 )
         throw new InputDataValidationException( "Syntax errors in the good description.", "AnalizeGoodsDescription", _sErrors );
     }
@@ -138,8 +141,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
           this.ConsentLookup = Consent.DefaultConsent( edc, Process, _nr );
         }
       }
-      ValidToDate = customsDebtDate + TimeSpan.FromDays( ConsentLookup.ConsentPeriod.Value );
+      ValidToDate = customsDebtDate + TimeSpan.FromDays( ConsentLookup.ConsentPeriod.Value ); //TODO different for CW !!!
     }
+    /// <summary>
+    /// Gets the process.
+    /// </summary>
+    /// <value>
+    /// The process.
+    /// </value>
     protected internal abstract Consent.CustomsProcess Process { get; }
     #endregion
 
@@ -175,7 +184,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     internal string GradeName { get; private set; }
     internal double GrossMass { get; private set; }
     internal string Invoice { get; private set; }
-    internal double NetMass { get; private set; }
+    internal double NetMass { get; set; }
     internal string TobaccoName { get; private set; }
     internal double UnitPrice { get; private set; }
     internal double Value { get; private set; }

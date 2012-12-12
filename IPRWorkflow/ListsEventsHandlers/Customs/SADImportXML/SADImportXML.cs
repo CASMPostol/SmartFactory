@@ -137,6 +137,7 @@ namespace CAS.SmartFactory.IPR.Customs
             DocumentNumber = document.GetDocumentNumber(),
             ExchangeRate = document.GetExchangeRate(),
             GrossMass = document.GetGrossMass(),
+            NetMass = 0, //TODO remove column is useless
             ReferenceNumber = document.GetReferenceNumber()
           };
         edc.SADDocument.InsertOnSubmit( newRow );
@@ -168,6 +169,7 @@ namespace CAS.SmartFactory.IPR.Customs
             GoodsDescription = _description,
             PCNTariffCode = _doc.GetPCNTariffCode(),
             GrossMass = _doc.GetGrossMass(),
+            NetMass = _doc.GetNetMass(),
             Procedure = _doc.GetProcedure(),
             TotalAmountInvoiced = _doc.GetTotalAmountInvoiced(),
             ItemNo = _doc.GetItemNo()
