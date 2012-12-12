@@ -440,7 +440,9 @@
     <Content Include="DocumentsFactory\AccountClearance\RequestForAccountClearence.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\BalanceSheet\BalanceSheetCollection.xslt" />
+    <Content Include="DocumentsFactory\BalanceSheet\BalanceSheetCollection.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -466,7 +468,9 @@
     <Content Include="DocumentsFactory\Disposals\WasteFormStylesheet.xslt">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt" />
+    <Content Include="DocumentsFactory\JSOXReport\JSOXReportCollection.xslt">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

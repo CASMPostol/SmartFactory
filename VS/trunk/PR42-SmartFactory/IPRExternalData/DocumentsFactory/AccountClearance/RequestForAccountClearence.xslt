@@ -271,16 +271,16 @@
           <xsl:value-of select="cas:InvoiceNo"/>
         </td>
         <td valign="top">
-          [pozycja sad]
+          1
         </td>
         <td valign="top">
-          <xsl:value-of select="cas:Duty"/>
+          <xsl:value-of select="cas:DutyName"/>
         </td>
         <td valign="top">
           <xsl:value-of select="format-number(cas:DutyPerUnit, $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
-          <xsl:value-of select="cas:VAT"/>
+          <xsl:value-of select="cas:VATName"/>
         </td>
         <td valign="top">
           <xsl:value-of select="format-number(cas:VATPerUnit, $FoarmatOfFloat, 'pl')"/>
@@ -311,7 +311,7 @@
         </td>
         <td colspan="11" valign="top">
           Rodzaj towaru kompensacyjnego<br/>
-          [wszystkie kody pcn towarów]
+          <xsl:apply-templates select="cas:PCNRecord" />
         </td>
       </tr>
       <tr>
@@ -367,37 +367,37 @@
           Razen
         </td>
         <td valign="top">
-          
+          &#160;
         </td>
         <td valign="top">
-
+          &#160;
         </td>
         <td valign="top">
-
+          &#160;
         </td>
         <td valign="top">
-
+          &#160;
         </td>
         <td valign="top">
-
+          &#160;
         </td>
         <td valign="top">
-
+          <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:DutyPerSettledAmount), $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
-
+          <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:VATPerSettledAmount), $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
-
+          <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:DutyAndVAT), $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
-
+          &#160;
         </td>
         <td valign="top">
-
+          &#160;
         </td>
         <td valign="top">
-
+          &#160;
         </td>
       </tr>
     </table>
@@ -427,10 +427,10 @@
         <xsl:value-of select="cas:No"/>
       </td>
       <td>
-        <xsl:value-of select="ms:format-date(cas:SADDocumentNo, $FoarmatOfdate)"/>
+        <xsl:value-of select="cas:SADDocumentNo"/>
       </td>
       <td>
-        <xsl:value-of select="cas:SADDate"/>
+        <xsl:value-of select="ms:format-date(cas:SADDate, $FoarmatOfdate)"/>
       </td>
       <td>
         <xsl:value-of select="cas:InvoiceNo"/>
@@ -448,7 +448,10 @@
         &#160;
       </td>
       <td>
-        brak
+        <xsl:choose>
+          <xsl:when test="cas:ProductCodeNumber='4819100000'">&#160;</xsl:when>
+          <xsl:when test="not(cas:ProductCodeNumber='4819100000')"><xsl:value-of select="format-number(cas:SettledQuantity, $FoarmatOfFloat, 'pl')"/></xsl:when>
+        </xsl:choose>  
       </td>
       <td>
         <xsl:value-of select="format-number(cas:DutyPerSettledAmount, $FoarmatOfFloat, 'pl')"/>
@@ -467,6 +470,21 @@
       </td>
       <td>
         <xsl:value-of select="cas:ProductCodeNumber"/>
+      </td>
+    </tr>
+  </xsl:template>
+  <xsl:template match="cas:PCNRecord">
+    <table border="0" cellspacing="0" cellpadding="0" align="left">
+      <xsl:apply-templates select="cas:ProductCodeNumberDesscription"/>
+    </table>
+  </xsl:template>
+  <xsl:template match="cas:ProductCodeNumberDesscription">
+    <tr>
+      <td>
+        <xsl:value-of select="cas:CodeNumber"/>
+      </td>
+      <td>
+        <xsl:value-of select="cas:Description"/>
       </td>
     </tr>
   </xsl:template>
