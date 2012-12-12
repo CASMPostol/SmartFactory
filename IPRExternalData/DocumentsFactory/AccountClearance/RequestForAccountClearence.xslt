@@ -149,7 +149,7 @@
           <xsl:value-of select="cas:EntryDocumentNo"/>
         </td>
         <td colspan="5">
-          <xsl:value-of select="cas:CustomsDebtDate"/>
+          <xsl:value-of select="ms:format-date(cas:CustomsDebtDate, $FoarmatOfdate)"/>
         </td>
         <td colspan="6">
           Norma
