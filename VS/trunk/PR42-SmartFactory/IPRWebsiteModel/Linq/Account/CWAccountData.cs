@@ -14,6 +14,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     public CWAccountData( Entities edc, SADGood good, MessageType messageType )
       : base( edc, good, messageType )
     {
+      this.CWCertificate = "TBD";
+      this.CWMassPerPackage = 0;
+      this.CWPackageKg = 0;
+      this.CWPackageUnits = 0;
+      this.CWPzNo = "TBD";
+      this.CWQuantity = 0;
+      this.EntryDate = DateTime.Today.Date;
+      this.Units = "TBT";
       //TODO how to assign values. More info required.
     }
     internal string CWCertificate { get; private set; }  //TODO from Required documents. 
