@@ -78,7 +78,7 @@
     Overwrite="TRUE"
   />
 <Field
-    Name="CW2PCWLibraryID"
+    Name="CW2CWLibraryID"
     ID="{336B592C-D264-4469-8506-9A2E7FBA4F6B}"
     Type="Lookup"
     List="Lists/CWLibrary"
