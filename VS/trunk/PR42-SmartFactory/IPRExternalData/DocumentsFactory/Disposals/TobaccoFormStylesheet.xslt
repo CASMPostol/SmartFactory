@@ -58,10 +58,10 @@
       <xsl:apply-templates select="cas:AccountDescription" />
       <tr>
         <td colspan="5">Suma</td>
-        <td>
+        <td align="right">
           <xsl:value-of select="cas:TotalQuantity"/>
         </td>
-        <td>
+        <td align="right">
           <xsl:value-of select="cas:TotalValue"/>
         </td>
         <td>
@@ -97,10 +97,10 @@
       <td>
         &#160;
       </td>
-      <td>
+      <td align="right">
         <xsl:value-of select="format-number(cas:TotalQuantity, $FormatOfFloat, 'pl')"/>
       </td>
-      <td>
+      <td align="right">
           <xsl:value-of select="format-number(cas:TotalValue, $FormatOfFloat, 'pl')" />
       </td>
       <td>
@@ -128,13 +128,13 @@
       <td>
         <xsl:value-of select="cas:MaterialBatch"/>
       </td>
-      <td>
+      <td align="right">
         <xsl:value-of select="format-number(cas:UnitPrice, $FormatOfFloatPrices, 'pl')"/>
       </td>
-      <td>
+      <td align="right">
         <xsl:value-of select="format-number(cas:Qantity, $FormatOfFloat, 'pl')"/>
       </td>
-      <td>
+      <td align="right">
         <xsl:value-of select="format-number(cas:TobaccoValue, $FormatOfFloat, 'pl')"/>
       </td>
       <td>
