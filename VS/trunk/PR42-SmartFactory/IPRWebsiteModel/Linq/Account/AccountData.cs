@@ -129,19 +129,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
       if ( _rd == null )
       {
         m_Warnings.Add( "There is not attached any consent document with code = 1PG1/C601" );
-        this.ConsentLookup = Consent.DefaultConsent( edc, Process, String.Empty.NotAvailable() );
+        CreateDefaultConsent( edc, String.Empty.NotAvailable() );
       }
       else
       {
         string _nr = _rd.Number.Trim();
         this.ConsentLookup = Consent.Find( edc, _nr );
         if ( this.ConsentLookup == null )
-        {
-          m_Warnings.Add( "Cannot find consent document with number: " + _nr + ". The Consent period is 90 days" );
-          this.ConsentLookup = Consent.DefaultConsent( edc, Process, _nr );
-        }
+          CreateDefaultConsent( edc, _nr );
       }
       ValidToDate = customsDebtDate + TimeSpan.FromDays( ConsentLookup.ConsentPeriod.Value ); //TODO different for CW !!!
+    }
+
+    private void CreateDefaultConsent( Entities edc, string _nr )
+    {
+      this.ConsentLookup = Consent.DefaultConsent( edc, Process, _nr );
+      string _msg = "Cannot find consent document with number: {0}. The Consent period is {1} months";
+      m_Warnings.Add( String.Format( _msg, _nr, this.ConsentLookup.ConsentPeriod ) );
     }
     /// <summary>
     /// Gets the process.
