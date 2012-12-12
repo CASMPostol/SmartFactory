@@ -39,33 +39,33 @@
       <DutyAndVAT>1</DutyAndVAT>
       <RemainingQuantity>1</RemainingQuantity>
       <CustomsProcedure>CustomsProcedure1</CustomsProcedure>
-      <ProductCodeNumber>ProductCodeNumber1</ProductCodeNumber>
+      <ProductCodeNumber>4819100000</ProductCodeNumber>
     </DisposalsArray>
     <DisposalsArray>
       <No>-1.7976931348623157E+308</No>
       <SADDocumentNo>SADDocumentNo2</SADDocumentNo>
       <SADDate>0001-01-01T00:00:00+01:00</SADDate>
       <InvoiceNo>InvoiceNo2</InvoiceNo>
-      <SettledQuantity>-1.7976931348623157E+308</SettledQuantity>
-      <DutyPerSettledAmount>-1.7976931348623157E+308</DutyPerSettledAmount>
+      <SettledQuantity>345</SettledQuantity>
+      <DutyPerSettledAmount>10</DutyPerSettledAmount>
       <VATPerSettledAmount>-1.7976931348623157E+308</VATPerSettledAmount>
       <DutyAndVAT>-1.7976931348623157E+308</DutyAndVAT>
       <RemainingQuantity>-1.7976931348623157E+308</RemainingQuantity>
       <CustomsProcedure>CustomsProcedure2</CustomsProcedure>
-      <ProductCodeNumber>ProductCodeNumber2</ProductCodeNumber>
+      <ProductCodeNumber>4834342</ProductCodeNumber>
     </DisposalsArray>
     <DisposalsArray>
       <No>1.7976931348623157E+308</No>
       <SADDocumentNo>SADDocumentNo3</SADDocumentNo>
       <SADDate>9999-12-31T23:59:59.9999999+01:00</SADDate>
       <InvoiceNo>InvoiceNo3</InvoiceNo>
-      <SettledQuantity>1.7976931348623157E+308</SettledQuantity>
-      <DutyPerSettledAmount>1.7976931348623157E+308</DutyPerSettledAmount>
+      <SettledQuantity>1.79</SettledQuantity>
+      <DutyPerSettledAmount>20</DutyPerSettledAmount>
       <VATPerSettledAmount>1.7976931348623157E+308</VATPerSettledAmount>
       <DutyAndVAT>1.7976931348623157E+308</DutyAndVAT>
       <RemainingQuantity>1.7976931348623157E+308</RemainingQuantity>
       <CustomsProcedure>CustomsProcedure3</CustomsProcedure>
-      <ProductCodeNumber>ProductCodeNumber3</ProductCodeNumber>
+      <ProductCodeNumber>4819100001</ProductCodeNumber>
     </DisposalsArray>
   </DisposalsColection>
   <PCNRecord>
