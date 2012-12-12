@@ -186,13 +186,13 @@
           Przypadający VAT na j. m.
         </td>
         <td valign="top">
-          Ilość netto [w kg]
+          Ilość netto [kg]
         </td>
         <td valign="top">
-          Ilość brutto [w kg]
+          Ilość brutto [kg]
         </td>
         <td valign="top">
-          Kartony [w kg]
+          Kartony [kg]
         </td>
         <td valign="top">
           Norma (1-towar kompensacyjny właściwy - netto/brutto)
@@ -367,7 +367,7 @@
           Razen
         </td>
         <td valign="top">
-          &#160;
+          <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledQuantity), $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
           &#160;
@@ -379,7 +379,7 @@
           &#160;
         </td>
         <td valign="top">
-          &#160;
+          <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledQuantity)-cas:Cartons, $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
           <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:DutyPerSettledAmount), $FoarmatOfFloat, 'pl')"/>
