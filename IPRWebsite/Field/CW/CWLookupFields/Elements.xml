@@ -4,7 +4,7 @@
     Name="CW2ConsentTitle"
     ID="{95CEEEBC-DF04-468E-BB3A-BC51F5E11F64}"
     Type="Lookup"
-    List="Lists/ConsentlList"
+    List="Lists/ConsentList"
     ShowField="Title"
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
