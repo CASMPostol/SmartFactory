@@ -135,12 +135,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         else
           this.No = _lastOne.Max<Disposal>( dspsl => dspsl.No.Value ) + 1;
         AssignSADGood( edc, sadGood );
-        decimal _balance = 0;
-        if ( this.DisposalStatus.Value == Linq.DisposalStatus.Cartons )
-          _balance = Convert.ToDecimal( this.Disposal2IPRIndex.AccountBalance.Value );
-        else
-          _balance = Convert.ToDecimal( this.Disposal2IPRIndex.AccountBalance.Value ) - this.SettledQuantityDec;
-        this.Disposal2IPRIndex.AccountBalance = this.RemainingQuantity = Convert.ToDouble( _balance );
+        decimal _balance = CalculateRemainingQuantity();
         if ( _balance == 0 )
           this.ClearingType = Linq.ClearingType.TotalWindingUp;
         else
@@ -154,6 +149,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         throw GenericStateMachineEngine.ActionResult.Exception( _ex, String.Format( _template, this.Title, this.Identyfikator.Value, _ex.Message, _at ) );
       }
     }
+    internal decimal CalculateRemainingQuantity()
+    {
+      decimal _balance = 0;
+      if ( this.DisposalStatus.Value == Linq.DisposalStatus.Cartons )
+        _balance = Convert.ToDecimal( this.Disposal2IPRIndex.AccountBalance.Value );
+      else
+        _balance = Convert.ToDecimal( this.Disposal2IPRIndex.AccountBalance.Value ) - this.SettledQuantityDec;
+      this.Disposal2IPRIndex.AccountBalance = this.RemainingQuantity = Convert.ToDouble( _balance );
+      return _balance;
+    }
     internal static IQueryable<Disposal> Disposals( EntitySet<Disposal> disposlas, DisposalEnum _kind )
     {
       return disposlas.Where<Disposal>( x => x.DisposalStatus.Value == Entities.GetDisposalStatus( _kind ) );
@@ -162,6 +167,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       this.SettledQuantityDec += this.Disposal2IPRIndex.Withdraw( ref _toDispose, this.SettledQuantityDec );
       CalculateDutyAndVat();
+      if ( this.CustomsStatus.Value == Linq.CustomsStatus.Finished) 
+        this.Disposal2IPRIndex.RecalculateClearedRecords(this.No.Value);
     }
     internal decimal SettledQuantityDec
     {
