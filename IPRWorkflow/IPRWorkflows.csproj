@@ -87,6 +87,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Workflows\CreateReport\CreateReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Workflows\CreateReport\CreateReport.Designer.cs">
+      <DependentUpon>CreateReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Workflows\IPRClosing\IPRClosing.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </None>
     <None Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e8d364ea-bf70-4d56-a5b2-880a07138cc4}</SharePointProjectItemId>
+    </None>
+    <None Include="Workflows\CreateReport\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{987ca766-cf76-4093-9935-f97d2effc69f}</SharePointProjectItemId>
     </None>
     <None Include="Workflows\IPRClosing\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a284012e-5195-447e-857d-8827927bec2f}</SharePointProjectItemId>
@@ -151,6 +160,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\Elements.xml" />
+    <Content Include="Workflows\CreateReport\Elements.xml" />
     <Content Include="Workflows\IPRClosing\Elements.xml" />
     <Content Include="Workflows\WorkflowHistory\Elements.xml" />
     <Content Include="Workflows\WorkflowTasks\Elements.xml" />
