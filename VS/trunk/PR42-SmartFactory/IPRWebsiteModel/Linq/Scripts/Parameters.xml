@@ -345,8 +345,8 @@
     <Column Name="AccountBalance" Member="AccountBalance" />
     <Column Name="CWCertificate" Member="CWCertificate" />
     <Column Name="ClosingDate" Member="ClosingDate" />
-    <Column Name="CW2PCNTID" Member="CW2PCNTID" />
-    <Column Name="CW2PCWLibraryID" Member="CW2PCWLibraryID" />
+    <Column Name="CW2PCNID" Member="CW2PCNID" />
+    <Column Name="CW2CWLibraryID" Member="CW2CWLibraryID" />
   </ContentType>
   <ContentType Name="TobaccoBatchSummary" Class="TobaccoBatchSummary">
     <!--<Column Name="ContentType" Member="ContentType" />-->

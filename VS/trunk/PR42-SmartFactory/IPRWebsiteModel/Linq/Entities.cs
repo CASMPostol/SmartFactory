@@ -2086,6 +2086,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private System.Nullable<bool> _isIPR;
 		
+		private Microsoft.SharePoint.Linq.EntitySet<CW> _cW;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<IPR> _iPR;
 		
 		#region Extensibility Method Definitions
@@ -2095,6 +2097,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		#endregion
 		
 		public Consent() {
+			this._cW = new Microsoft.SharePoint.Linq.EntitySet<CW>();
+			this._cW.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW>>(this.OnCWSync);
+			this._cW.OnChanged += new System.EventHandler(this.OnCWChanged);
+			this._cW.OnChanging += new System.EventHandler(this.OnCWChanging);
 			this._iPR = new Microsoft.SharePoint.Linq.EntitySet<IPR>();
 			this._iPR.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<IPR>>(this.OnIPRSync);
 			this._iPR.OnChanged += new System.EventHandler(this.OnIPRChanged);
@@ -2200,6 +2206,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2ConsentTitle", Storage="_cW", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="CW")]
+		public Microsoft.SharePoint.Linq.EntitySet<CW> CW {
+			get {
+				return this._cW;
+			}
+			set {
+				this._cW.Assign(value);
+			}
+		}
+		
 		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="IPR2ConsentTitle", Storage="_iPR", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="IPR")]
 		public Microsoft.SharePoint.Linq.EntitySet<IPR> IPR {
 			get {
@@ -2207,6 +2223,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 			set {
 				this._iPR.Assign(value);
+			}
+		}
+		
+		private void OnCWChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CW", this._cW.Clone());
+		}
+		
+		private void OnCWChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CW");
+		}
+		
+		private void OnCWSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CW2ConsentTitle = this;
+			}
+			else {
+				e.Item.CW2ConsentTitle = null;
 			}
 		}
 		
@@ -2409,13 +2442,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private System.Nullable<System.DateTime> _closingDate;
 		
-		private System.Nullable<int> _cW2ConsentTitleIdentyfikator;
+		private Microsoft.SharePoint.Linq.EntityRef<Consent> _cW2ConsentTitle;
 		
-		private string _cW2ConsentTitleTitle;
+		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _cW2PCNID;
 		
-		private Microsoft.SharePoint.Linq.EntityRef<PCNCode> _cW2PCNTID;
-		
-		private Microsoft.SharePoint.Linq.EntityRef<CWLib> _cW2PCWLibraryID;
+		private Microsoft.SharePoint.Linq.EntityRef<CWLib> _cW2CWLibraryID;
 		
 		#region Extensibility Method Definitions
 		partial void OnLoaded();
@@ -2424,14 +2455,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		#endregion
 		
 		public CW() {
-			this._cW2PCNTID = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
-			this._cW2PCNTID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnCW2PCNTIDSync);
-			this._cW2PCNTID.OnChanged += new System.EventHandler(this.OnCW2PCNTIDChanged);
-			this._cW2PCNTID.OnChanging += new System.EventHandler(this.OnCW2PCNTIDChanging);
-			this._cW2PCWLibraryID = new Microsoft.SharePoint.Linq.EntityRef<CWLib>();
-			this._cW2PCWLibraryID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWLib>>(this.OnCW2PCWLibraryIDSync);
-			this._cW2PCWLibraryID.OnChanged += new System.EventHandler(this.OnCW2PCWLibraryIDChanged);
-			this._cW2PCWLibraryID.OnChanging += new System.EventHandler(this.OnCW2PCWLibraryIDChanging);
+			this._cW2ConsentTitle = new Microsoft.SharePoint.Linq.EntityRef<Consent>();
+			this._cW2ConsentTitle.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent>>(this.OnCW2ConsentTitleSync);
+			this._cW2ConsentTitle.OnChanged += new System.EventHandler(this.OnCW2ConsentTitleChanged);
+			this._cW2ConsentTitle.OnChanging += new System.EventHandler(this.OnCW2ConsentTitleChanging);
+			this._cW2PCNID = new Microsoft.SharePoint.Linq.EntityRef<PCNCode>();
+			this._cW2PCNID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode>>(this.OnCW2PCNIDSync);
+			this._cW2PCNID.OnChanged += new System.EventHandler(this.OnCW2PCNIDChanged);
+			this._cW2PCNID.OnChanging += new System.EventHandler(this.OnCW2PCNIDChanging);
+			this._cW2CWLibraryID = new Microsoft.SharePoint.Linq.EntityRef<CWLib>();
+			this._cW2CWLibraryID.OnSync += new System.EventHandler<Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWLib>>(this.OnCW2CWLibraryIDSync);
+			this._cW2CWLibraryID.OnChanged += new System.EventHandler(this.OnCW2CWLibraryIDChanged);
+			this._cW2CWLibraryID.OnChanging += new System.EventHandler(this.OnCW2CWLibraryIDChanging);
 			this.OnCreated();
 		}
 		
@@ -2785,63 +2820,45 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW2ConsentTitle", Storage="_cW2ConsentTitleIdentyfikator", FieldType="Lookup", IsLookupId=true)]
-		public System.Nullable<int> CW2ConsentTitleIdentyfikator {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2ConsentTitle", Storage="_cW2ConsentTitle", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="Consent")]
+		public Consent CW2ConsentTitle {
 			get {
-				return this._cW2ConsentTitleIdentyfikator;
+				return this._cW2ConsentTitle.GetEntity();
 			}
 			set {
-				if ((value != this._cW2ConsentTitleIdentyfikator)) {
-					this.OnPropertyChanging("CW2ConsentTitleIdentyfikator", this._cW2ConsentTitleIdentyfikator);
-					this._cW2ConsentTitleIdentyfikator = value;
-					this.OnPropertyChanged("CW2ConsentTitleIdentyfikator");
-				}
+				this._cW2ConsentTitle.SetEntity(value);
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CW2ConsentTitle", Storage="_cW2ConsentTitleTitle", ReadOnly=true, FieldType="Lookup", IsLookupValue=true)]
-		public string CW2ConsentTitleTitle {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCNID", Storage="_cW2PCNID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
+		public PCNCode CW2PCNID {
 			get {
-				return this._cW2ConsentTitleTitle;
+				return this._cW2PCNID.GetEntity();
 			}
 			set {
-				if ((value != this._cW2ConsentTitleTitle)) {
-					this.OnPropertyChanging("CW2ConsentTitleTitle", this._cW2ConsentTitleTitle);
-					this._cW2ConsentTitleTitle = value;
-					this.OnPropertyChanged("CW2ConsentTitleTitle");
-				}
+				this._cW2PCNID.SetEntity(value);
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCNTID", Storage="_cW2PCNTID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="PCN Code")]
-		public PCNCode CW2PCNTID {
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2CWLibraryID", Storage="_cW2CWLibraryID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="CW Library")]
+		public CWLib CW2CWLibraryID {
 			get {
-				return this._cW2PCNTID.GetEntity();
+				return this._cW2CWLibraryID.GetEntity();
 			}
 			set {
-				this._cW2PCNTID.SetEntity(value);
+				this._cW2CWLibraryID.SetEntity(value);
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCWLibraryID", Storage="_cW2PCWLibraryID", MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Single, List="CW Library")]
-		public CWLib CW2PCWLibraryID {
-			get {
-				return this._cW2PCWLibraryID.GetEntity();
-			}
-			set {
-				this._cW2PCWLibraryID.SetEntity(value);
-			}
+		private void OnCW2ConsentTitleChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CW2ConsentTitle", this._cW2ConsentTitle.Clone());
 		}
 		
-		private void OnCW2PCNTIDChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("CW2PCNTID", this._cW2PCNTID.Clone());
+		private void OnCW2ConsentTitleChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CW2ConsentTitle");
 		}
 		
-		private void OnCW2PCNTIDChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("CW2PCNTID");
-		}
-		
-		private void OnCW2PCNTIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
+		private void OnCW2ConsentTitleSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<Consent> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.CW.Add(this);
 			}
@@ -2850,15 +2867,32 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		private void OnCW2PCWLibraryIDChanging(object sender, System.EventArgs e) {
-			this.OnPropertyChanging("CW2PCWLibraryID", this._cW2PCWLibraryID.Clone());
+		private void OnCW2PCNIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CW2PCNID", this._cW2PCNID.Clone());
 		}
 		
-		private void OnCW2PCWLibraryIDChanged(object sender, System.EventArgs e) {
-			this.OnPropertyChanged("CW2PCWLibraryID");
+		private void OnCW2PCNIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CW2PCNID");
 		}
 		
-		private void OnCW2PCWLibraryIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWLib> e) {
+		private void OnCW2PCNIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<PCNCode> e) {
+			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
+				e.Item.CW.Add(this);
+			}
+			else {
+				e.Item.CW.Remove(this);
+			}
+		}
+		
+		private void OnCW2CWLibraryIDChanging(object sender, System.EventArgs e) {
+			this.OnPropertyChanging("CW2CWLibraryID", this._cW2CWLibraryID.Clone());
+		}
+		
+		private void OnCW2CWLibraryIDChanged(object sender, System.EventArgs e) {
+			this.OnPropertyChanged("CW2CWLibraryID");
+		}
+		
+		private void OnCW2CWLibraryIDSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CWLib> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
 				e.Item.CW.Add(this);
 			}
@@ -5681,7 +5715,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			}
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCNTID", Storage="_cW", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="CW")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCNID", Storage="_cW", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="CW")]
 		public Microsoft.SharePoint.Linq.EntitySet<CW> CW {
 			get {
 				return this._cW;
@@ -5731,10 +5765,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnCWSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CW2PCNTID = this;
+				e.Item.CW2PCNID = this;
 			}
 			else {
-				e.Item.CW2PCNTID = null;
+				e.Item.CW2PCNID = null;
 			}
 		}
 		
@@ -7753,7 +7787,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 			this.OnCreated();
 		}
 		
-		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2PCWLibraryID", Storage="_cW", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="CW")]
+		[Microsoft.SharePoint.Linq.AssociationAttribute(Name="CW2CWLibraryID", Storage="_cW", ReadOnly=true, MultivalueType=Microsoft.SharePoint.Linq.AssociationType.Backward, List="CW")]
 		public Microsoft.SharePoint.Linq.EntitySet<CW> CW {
 			get {
 				return this._cW;
@@ -7773,10 +7807,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private void OnCWSync(object sender, Microsoft.SharePoint.Linq.AssociationChangedEventArgs<CW> e) {
 			if ((Microsoft.SharePoint.Linq.AssociationChangedState.Added == e.State)) {
-				e.Item.CW2PCWLibraryID = this;
+				e.Item.CW2CWLibraryID = this;
 			}
 			else {
-				e.Item.CW2PCWLibraryID = null;
+				e.Item.CW2CWLibraryID = null;
 			}
 		}
 	}
