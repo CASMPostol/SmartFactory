@@ -3,13 +3,13 @@ using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
 {
-  
+
   /// <summary>
   /// Invard Processing Account Record Data
   /// </summary>
   public class IPRAccountData: AccountData
   {
-    
+
     #region ctor
     /// <summary>
     /// Initializes a new instance of the <see cref="IPRAccountData" /> class.
@@ -98,8 +98,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       get { return Consent.CustomsProcess.cw; }
     }
+    protected internal override void GetNetMass( SADGood good )
+    {
+      SADQuantity _quantity = good.SADQuantity.FirstOrDefault();
+      NetMass = _quantity == null ? 0 : _quantity.NetMass.GetValueOrDefault( 0 );
+    }
     #endregion
 
   }
-
 }

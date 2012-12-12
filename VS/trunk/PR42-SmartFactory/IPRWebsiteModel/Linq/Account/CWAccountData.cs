@@ -16,18 +16,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     {
       //TODO how to assign values. More info required.
     }
-    internal CWLib CWLibraryID { get; private set; }
-    internal string CWCertificate { get; private set; }
-    internal double? CWMassPerPackage { get; private set; }
-    internal double? CWPackageKg { get; private set; }
-    internal double? CWPackageUnits { get; private set; }
-    internal string CWPzNo { get; private set; }
-    internal double? CWQuantity { get; private set; }
-    internal DateTime? EntryDate { get; private set; }
-    internal string Units { get; private set; }
+    internal string CWCertificate { get; private set; }  //TODO from Required documents. 
+    internal double? CWMassPerPackage { get; private set; } //TODO Calculated
+    internal double? CWPackageKg { get; private set; } // Good description
+    internal double? CWPackageUnits { get; private set; } //Good description
+    internal string CWPzNo { get; private set; } // Manualy
+    internal double? CWQuantity { get; private set; } //Good descriptionc
+    internal DateTime? EntryDate { get; private set; } // Today ?
+    internal string Units { get; private set; } //TODO Good description - ??
+    protected internal override void GetNetMass( SADGood good )
+    {
+      NetMass = good.NetMass.GetValueOrDefault( 0 );
+    }
     protected internal override Consent.CustomsProcess Process
     {
       get { return Consent.CustomsProcess.cw; }
+    }
+    protected override void AnalizeGoodsDescription( Entities edc, string goodsDescription )
+    {
+      base.AnalizeGoodsDescription( edc, goodsDescription );
+      CWQuantity = 0; //TODO
     }
   }
 }
