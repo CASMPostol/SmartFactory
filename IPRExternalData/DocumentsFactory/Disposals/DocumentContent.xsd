@@ -38,8 +38,8 @@
       <xs:element minOccurs="0" maxOccurs="1" name="MaterialBatch" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="FinishedGoodBatch" type="xs:string" />
       <xs:element minOccurs="1" maxOccurs="1" name="Qantity" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="UnitPrice" nillable="true" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TobaccoValue" nillable="true" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="UnitPrice" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoValue" type="xs:double" />
       <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

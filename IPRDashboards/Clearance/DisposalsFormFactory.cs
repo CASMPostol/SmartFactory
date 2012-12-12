@@ -13,8 +13,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
     #region internal
     internal static DocumentContent GetBoxFormContent( IQueryable<Disposal> disposals, ClearenceProcedure customProcedureCode, string documentNo )
     {
-      DateTime endDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value);
-      DateTime startDate = disposals.Min( x => x.Disposal2IPRIndex.CustomsDebtDate.Value);
+      DateTime endDate = disposals.Max( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
+      DateTime startDate = disposals.Min( x => x.Disposal2IPRIndex.CustomsDebtDate.Value );
       MaterialsOnOneAccount _materials = CreateMaterialRecords( disposals );
       return new DocumentContent()
       {
@@ -24,7 +24,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         DocumentNo = documentNo,
         EndDate = endDate.Date,
         StartDate = startDate.Date,
-        Total = _materials.Total
+        TotalQuantity = _materials.TotalQuantity, 
+        TotalValue = _materials.TotalValue
       };
     }
     internal static DocumentContent GetTobaccoFreeCirculationFormContent( IQueryable<Disposal> disposals, ClearenceProcedure customProcedureCode, string documentNo )
@@ -49,13 +50,15 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
                                                         orderby _ogl ascending
                                                         group _disx by _ogl;
       List<MaterialsOnOneAccount> _group = new List<MaterialsOnOneAccount>();
-      double _total = 0;
+      double _totalQuantity = 0;
+      double _totalValue = 0;
       foreach ( IGrouping<string, Disposal> _gx in _groups )
       {
         IEnumerable<Disposal> _dspslsInGroup = from _dspslx in _gx select _dspslx;
         MaterialsOnOneAccount _mona = CreateMaterialRecords( _dspslsInGroup );
         _group.Add( _mona );
-        _total += _mona.Total;
+        _totalValue += _mona.TotalValue;
+        _totalQuantity += _mona.TotalQuantity;
       }
       return new DocumentContent()
       {
@@ -65,25 +68,29 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
         DocumentNo = documentNo,
         EndDate = endDate.Date,
         StartDate = startDate.Date,
-        Total = _total
+        TotalQuantity = _totalQuantity,
+        TotalValue = _totalValue
       };
     }
-    private static MaterialsOnOneAccount CreateMaterialRecords( IEnumerable<Disposal> _dspslsInGroup )
+    private static MaterialsOnOneAccount CreateMaterialRecords( IEnumerable<Disposal> dspslsInGroup )
     {
-      double _subTotal = 0;
-      MaterialRecord[] _materialRecords = GetListOfMaterials( _dspslsInGroup, ref _subTotal );
+      double _subTotalQuantity = 0;
+      double _subTotalValue = 0;
+      MaterialRecord[] _materialRecords = GetListOfMaterials( dspslsInGroup, ref _subTotalQuantity, ref _subTotalValue );
       return new MaterialsOnOneAccount()
         {
-          Total = _subTotal,
+          TotalQuantity = _subTotalQuantity,
+          TotalValue = _subTotalValue,
           MaterialRecords = _materialRecords,
         };
     }
-    private static MaterialRecord[] GetListOfMaterials( IEnumerable<Disposal> _disposals, ref double _subTotal )
+    private static MaterialRecord[] GetListOfMaterials( IEnumerable<Disposal> disposals, ref double subTotalQuantity, ref double subTotalValue )
     {
       List<MaterialRecord> _dustRecord = new List<MaterialRecord>();
-      foreach ( Disposal _dx in _disposals )
+      foreach ( Disposal _dx in disposals )
       {
-        _subTotal += _dx.SettledQuantity.Value;
+        subTotalQuantity += _dx.SettledQuantity.Value;
+        subTotalValue += _dx.TobaccoValue.Value;
         MaterialRecord _newRecord = new MaterialRecord()
         {
           Qantity = _dx.SettledQuantity.GetValueOrDefault( 0 ),
@@ -92,10 +99,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
           FinishedGoodBatch = _dx.Disposal2BatchIndex == null ? String.Empty : _dx.Disposal2BatchIndex.Batch0,
           MaterialBatch = _dx.Disposal2IPRIndex.Batch,
           MaterialSKU = _dx.Disposal2IPRIndex.SKU,
-          UnitPrice = _dx.Disposal2IPRIndex.IPRUnitPrice,
-          UnitPriceSpecified = _dx.Disposal2IPRIndex.IPRUnitPrice.HasValue,
-          TobaccoValue = _dx.TobaccoValue, 
-          TobaccoValueSpecified = _dx.TobaccoValue.HasValue,
+          UnitPrice = _dx.Disposal2IPRIndex.IPRUnitPrice.GetValueOrDefault( 0 ),
+          TobaccoValue = _dx.TobaccoValue.GetValueOrDefault( 0 ),
           Currency = _dx.Disposal2IPRIndex.Currency
         };
         _dustRecord.Add( _newRecord );
