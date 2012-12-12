@@ -3,22 +3,29 @@ using CAS.SharePoint;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
+  /// <summary>
+  /// Customs Warehouse
+  /// </summary>
   public partial class CW
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CW" /> class.
+    /// </summary>
+    /// <param name="data">The data.</param>
+    /// <param name="clearence">The clearence.</param>
+    /// <param name="declaration">The declaration.</param>
     public CW( Account.CWAccountData data, Clearence clearence, SADDocumentType declaration )
       : this()
     {
       this.AccountBalance = data.NetMass;
       this.Batch = data.Batch;
       this.ConsentPeriod = data.ConsentLookup.ConsentPeriod;
-      this.CW2Clearence = clearence;
+      //this.CW2Clearence = clearence;
       this.ClosingDate = Extensions.DateTimeNull;
       this.Currency = "PLN";
-      //this.CW2Consent = data.ConsentLookup;
-      //this.CW2ConsentTitleIdentyfikator = data.ConsentLookup.Identyfikator.Value;
-      //this.CW2ConsentTitleTitle = data.ConsentLookup.Title;
-      //this.CW2PCNTID = data.PCNTariffCode;
-      this.CW2PCWLibraryID = null;
+      this.CW2ConsentTitle = data.ConsentLookup; 
+      this.CW2PCNID = data.PCNTariffCode;
+      this.CW2CWLibraryID = null;
       this.CWCertificate = data.CWCertificate;
       this.CustomsDebtDate = data.CustomsDebtDate;
       this.CWMassPerPackage = data.CWMassPerPackage;
@@ -40,9 +47,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.ValidToDate = data.CustomsDebtDate;
       this.Value = data.Value;
     }
-    public Clearence CW2Clearence { get; set; }
-    public Consent CW2Consent { get; private set; }
-
+    /// <summary>
+    /// Updates the title.
+    /// </summary>
     public void UpdateTitle()
     {
       Title = String.Format( "CW-{0:D4}{1:D6}", this.EntryDate.Value.Year, Identyfikator.Value );
