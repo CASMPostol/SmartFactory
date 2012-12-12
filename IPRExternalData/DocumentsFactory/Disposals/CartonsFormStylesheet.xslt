@@ -95,7 +95,7 @@
      <td>
        <xsl:value-of select="ms:format-date(cas:Date, $FoarmatOfdate)"/>
      </td>
-     <td>
+     <td align="right">
        <xsl:value-of select="format-number(cas:Qantity, $FoarmatOfFloat, 'pl')"/>
      </td>
    </tr>

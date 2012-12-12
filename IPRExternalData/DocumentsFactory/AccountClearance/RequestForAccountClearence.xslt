@@ -276,22 +276,22 @@
         <td valign="top">
           <xsl:value-of select="cas:DutyName"/>
         </td>
-        <td valign="top">
+        <td valign="top" align="right">
           <xsl:value-of select="format-number(cas:DutyPerUnit, $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
           <xsl:value-of select="cas:VATName"/>
         </td>
-        <td valign="top">
+        <td valign="top" align="right">
           <xsl:value-of select="format-number(cas:VATPerUnit, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td valign="top">
+        <td valign="top" align="right">
           <xsl:value-of select="format-number(cas:NetMass, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td valign="top">
+        <td valign="top" align="right">
           <xsl:value-of select="format-number(cas:GrossMass, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td valign="top">
+        <td valign="top" align="right">
           <xsl:value-of select="format-number(cas:Cartons, $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
@@ -366,7 +366,7 @@
         <td colspan="4" valign="top">
           Razen
         </td>
-        <td valign="top">
+        <td valign="top" align="right">
           <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledQuantity), $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
@@ -378,16 +378,16 @@
         <td valign="top">
           &#160;
         </td>
-        <td valign="top">
+        <td valign="top" align="right">
           <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledQuantity)-cas:Cartons, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td valign="top">
+        <td valign="top" align="right">
           <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:DutyPerSettledAmount), $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td valign="top">
+        <td valign="top" align="right">
           <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:VATPerSettledAmount), $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td valign="top">
+        <td valign="top" align="right">
           <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:DutyAndVAT), $FoarmatOfFloat, 'pl')"/>
         </td>
         <td valign="top">
@@ -435,7 +435,7 @@
       <td>
         <xsl:value-of select="cas:InvoiceNo"/>
       </td>
-      <td>
+      <td align="right">
         <xsl:value-of select="format-number(cas:SettledQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
@@ -447,22 +447,22 @@
       <td>
         &#160;
       </td>
-      <td>
+      <td align="right">
         <xsl:choose>
           <xsl:when test="cas:ProductCodeNumber='4819100000'">&#160;</xsl:when>
           <xsl:when test="not(cas:ProductCodeNumber='4819100000')"><xsl:value-of select="format-number(cas:SettledQuantity, $FoarmatOfFloat, 'pl')"/></xsl:when>
         </xsl:choose>  
       </td>
-      <td>
+      <td align="right">
         <xsl:value-of select="format-number(cas:DutyPerSettledAmount, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td>
+      <td align="right">
         <xsl:value-of select="format-number(cas:VATPerSettledAmount, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td>
+      <td align="right">
         <xsl:value-of select="format-number(cas:DutyAndVAT, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td>
+      <td align="right">
         <xsl:value-of select="format-number(cas:RemainingQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>

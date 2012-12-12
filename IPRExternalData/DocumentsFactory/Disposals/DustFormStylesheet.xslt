@@ -112,7 +112,7 @@
     <td>
       <xsl:value-of select="cas:FinishedGoodBatch"/>
     </td>
-    <td>
+    <td align="right">
       <xsl:value-of select="format-number(cas:Qantity, $FoarmatOfFloat, 'pl')"/>
     </td>
     </tr>
