@@ -59,10 +59,10 @@
       <tr>
         <td colspan="5">Suma</td>
         <td align="right">
-          <xsl:value-of select="cas:TotalQuantity"/>
+          <xsl:value-of select="format-number(cas:TotalQuantity, $FormatOfFloat, 'pl')"/>
         </td>
         <td align="right">
-          <xsl:value-of select="cas:TotalValue"/>
+          <xsl:value-of select="format-number(cas:TotalValue, $FormatOfFloat, 'pl')"/>
         </td>
         <td>
           &#160;

@@ -61,7 +61,7 @@
       <tr>
         <td colspan="3">Suma końcowa</td>
         <td align="right" colspan="3">
-          <xsl:value-of select="format-number(cas:Total, $FoarmatOfFloat, 'pl')" />
+          <xsl:value-of select="format-number(cas:TotalQuantity, $FoarmatOfFloat, 'pl')" />
         </td>
       </tr>
     </table>
@@ -88,7 +88,7 @@
         Suma częściowa
       </td>
       <td colspan="5" align="right">
-        <xsl:value-of select="format-number(cas:Total, $FoarmatOfFloat, 'pl')"/>
+        <xsl:value-of select="format-number(cas:TotalQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
     </tr>
   </xsl:template>
