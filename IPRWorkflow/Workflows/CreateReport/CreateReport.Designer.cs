@@ -50,10 +50,10 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       this.ValidationFailedLog = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.MainReportCreationSequence = new System.Workflow.Activities.SequenceActivity();
       this.ValiationFailedBypassIfElseBranch = new System.Workflow.Activities.IfElseBranchActivity();
-      this.IfValidatedBranch = new System.Workflow.Activities.IfElseBranchActivity();
+      this.ValidatedBranch = new System.Workflow.Activities.IfElseBranchActivity();
       this.ValidateActivity = new System.Workflow.Activities.CodeActivity();
       this.StartingValidationLog = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
-      this.CreateReportRecortsActivity = new System.Workflow.Activities.CodeActivity();
+      this.CreateReportRecordsActivity = new System.Workflow.Activities.CodeActivity();
       this.StartingLog = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.IfValidatedActivity = new System.Workflow.Activities.IfElseActivity();
       this.ValidationSequence = new System.Workflow.Activities.SequenceActivity();
@@ -167,13 +167,13 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       this.ValiationFailedBypassIfElseBranch.Activities.Add( this.ValidationFailedLog );
       this.ValiationFailedBypassIfElseBranch.Name = "ValiationFailedBypassIfElseBranch";
       // 
-      // IfValidatedBranch
+      // ValidatedBranch
       // 
-      this.IfValidatedBranch.Activities.Add( this.MainReportCreationSequence );
+      this.ValidatedBranch.Activities.Add( this.MainReportCreationSequence );
       codecondition2.Condition += new System.EventHandler<System.Workflow.Activities.ConditionalEventArgs>( this.Validated );
-      this.IfValidatedBranch.Condition = codecondition2;
-      this.IfValidatedBranch.Description = "If Validated Branch";
-      this.IfValidatedBranch.Name = "IfValidatedBranch";
+      this.ValidatedBranch.Condition = codecondition2;
+      this.ValidatedBranch.Description = "If Validated Branch";
+      this.ValidatedBranch.Name = "ValidatedBranch";
       // 
       // ValidateActivity
       // 
@@ -192,16 +192,16 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       activitybind5.Path = "workflowProperties.OriginatorUser.ID";
       this.StartingValidationLog.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind5 ) ) );
       // 
-      // CreateReportRecortsActivity
+      // CreateReportRecordsActivity
       // 
-      this.CreateReportRecortsActivity.Name = "CreateReportRecortsActivity";
-      this.CreateReportRecortsActivity.ExecuteCode += new System.EventHandler( this.CreateRecorts );
+      this.CreateReportRecordsActivity.Name = "CreateReportRecordsActivity";
+      this.CreateReportRecordsActivity.ExecuteCode += new System.EventHandler( this.CreateRecorts );
       // 
       // StartingLog
       // 
       this.StartingLog.Duration = System.TimeSpan.Parse( "-10675199.02:48:05.4775808" );
       this.StartingLog.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowStarted;
-      this.StartingLog.HistoryDescription = "";
+      this.StartingLog.HistoryDescription = "Starting reports creation process.";
       this.StartingLog.HistoryOutcome = "Starting";
       this.StartingLog.Name = "StartingLog";
       this.StartingLog.OtherData = "";
@@ -211,7 +211,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       // 
       // IfValidatedActivity
       // 
-      this.IfValidatedActivity.Activities.Add( this.IfValidatedBranch );
+      this.IfValidatedActivity.Activities.Add( this.ValidatedBranch );
       this.IfValidatedActivity.Activities.Add( this.ValiationFailedBypassIfElseBranch );
       this.IfValidatedActivity.Name = "IfValidatedActivity";
       // 
@@ -224,7 +224,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       // CreateListsItems
       // 
       this.CreateListsItems.Activities.Add( this.StartingLog );
-      this.CreateListsItems.Activities.Add( this.CreateReportRecortsActivity );
+      this.CreateListsItems.Activities.Add( this.CreateReportRecordsActivity );
       this.CreateListsItems.Name = "CreateListsItems";
       activitybind8.Name = "CreateReport";
       activitybind8.Path = "workflowId";
@@ -273,7 +273,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
 
     private IfElseBranchActivity ValiationFailedBypassIfElseBranch;
 
-    private IfElseBranchActivity IfValidatedBranch;
+    private IfElseBranchActivity ValidatedBranch;
 
     private CodeActivity ValidateActivity;
 
@@ -291,13 +291,17 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
 
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity StartingCalculateReportsActivity;
 
-    private CodeActivity CreateReportRecortsActivity;
+    private CodeActivity CreateReportRecordsActivity;
 
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity StartingLog;
 
     private SequenceActivity CreateListsItems;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated CreateReportActivated;
+
+
+
+
 
 
 
