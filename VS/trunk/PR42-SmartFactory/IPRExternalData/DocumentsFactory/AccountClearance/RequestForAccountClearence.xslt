@@ -253,7 +253,7 @@
           1
         </td>
         <td>
-          &#160;
+          <xsl:value-of select="cas:TobaccoName"/>
         </td>
         <td valign="top">
           <xsl:value-of select="cas:Grade"/>
