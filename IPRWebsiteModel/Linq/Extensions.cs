@@ -7,13 +7,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   internal static class LinqExtensions
   {
-    public static ProductType ParseProductType(this string entry)
+    public static ProductType ParseProductType( this string entry )
     {
       try
       {
-        return (ProductType)Enum.Parse(typeof(Linq.ProductType), entry);
+        return (ProductType)Enum.Parse( typeof( Linq.ProductType ), entry );
       }
-      catch (Exception)
+      catch ( Exception )
       {
         return ProductType.None;
       }
@@ -35,17 +35,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="library">The library.</param>
     /// <returns></returns>
-    public static Dokument GetTopMostDocumentLookup(this  EntityList<Dokument> library)
+    public static Dokument FindTopMostDocumentLookup( this  EntityList<Dokument> library )
     {
-      try
-      {
-        return (from idx in library orderby idx.Identyfikator descending select idx).First();
-      }
-      catch (Exception ex)
-      {
-        string msg = "Cannot find a library";
-        throw new IPRDataConsistencyException("Extensions - GetTopMostDocumentLookup", msg, ex, "Dokument lookup error");
-      }
+      return ( from idx in library orderby idx.Identyfikator descending select idx ).FirstOrDefault();
     }
   }
 }

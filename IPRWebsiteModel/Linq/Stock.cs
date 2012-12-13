@@ -11,7 +11,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       : this()
     {
       this.StockLibraryIndex = entry;
-      this.BalanceLibraryIndex = edc.StockLibrary.GetTopMostDocumentLookup();
+      this.BalanceLibraryIndex = edc.StockLibrary.FindTopMostDocumentLookup();
       this.Title = ""; //TODO What to assign to it http://itrserver/Bugs/BugDetail.aspx?bid=2910
     }
   }

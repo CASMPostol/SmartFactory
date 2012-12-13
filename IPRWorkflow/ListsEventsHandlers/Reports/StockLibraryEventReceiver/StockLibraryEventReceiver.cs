@@ -37,11 +37,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       //}
       IportStockFromXML
         (
-        properties.ListItem.File.OpenBinaryStream(),
-        properties.WebUrl,
-        properties.ListItem.ID,
-        properties.ListItem.File.ToString(),
-        ( object obj, ProgressChangedEventArgs progres ) => { return; }
+          properties.ListItem.File.OpenBinaryStream(),
+          properties.WebUrl,
+          properties.ListItem.ID,
+          properties.ListItem.File.Name,
+          ( object obj, ProgressChangedEventArgs progres ) => { return; }
         );
       this.EventFiringEnabled = true;
       base.ItemAdded( properties );
@@ -59,17 +59,18 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
     {
       try
       {
-        using ( Entities edc = new Entities( url ) )
+        using ( Entities _edc = new Entities( url ) )
         {
-          String message = String.Format( "Import of the stock message {0} starting.", fileName );
-          ActivityLogCT.WriteEntry( edc, m_Title, message );
-          edc.SubmitChanges();
+          String _message = String.Format( "Import of the stock message {0} starting.", fileName );
+          ActivityLogCT.WriteEntry( _edc, m_Title, _message );
+          _edc.SubmitChanges();
           StockXml document = StockXml.ImportDocument( stream );
-          Dokument entry = Element.GetAtIndex<Dokument>( edc.StockLibrary, listIndex );
-          IportXml( document, edc, entry, progressChanged );
+          Dokument entry = Element.GetAtIndex<Dokument>( _edc.StockLibrary, listIndex );
+          IportXml( document, _edc, entry, progressChanged );
           progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
-          edc.SubmitChanges();
-          ActivityLogCT.WriteEntry( edc, m_Title, "Import of the stock message finished" );
+          _edc.SubmitChanges();
+          _message = String.Format( "Import of the stock message {0} finished.", fileName );
+          ActivityLogCT.WriteEntry( _edc, m_Title, _message );
         }
       }
       catch ( CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException _iove )
@@ -90,18 +91,18 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       edc.Stock.InsertOnSubmit( newStock );
       List<StockEntry> stockEntities = new List<StockEntry>();
       List<string> _warnings = new List<string>();
-      foreach ( StockXmlRow item in document.Row )
+      foreach ( StockXmlRow _row in document.Row )
       {
         try
         {
-          StockEntry nse = CreateStockEntry( item, newStock );
+          StockEntry nse = CreateStockEntry( _row, newStock );
           nse.ProcessEntry( edc, _warnings );
-          progressChanged( item, new ProgressChangedEventArgs( 1, item.Material ) );
+          progressChanged( _row, new ProgressChangedEventArgs( 1, _row.Material ) );
           stockEntities.Add( nse );
         }
         catch ( Exception ex )
         {
-          _warnings.Add( String.Format( "Stock entry {1} fatal import error: {0}", ex.ToString(), item.MaterialDescription ) );
+          _warnings.Add( String.Format( "Stock entry {1} fatal import error: {0}", ex.ToString(), _row.MaterialDescription ) );
         }
       }
       if ( _warnings.Count > 0 )
