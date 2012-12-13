@@ -90,7 +90,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Clearance
       foreach ( Disposal _dx in disposals )
       {
         subTotalQuantity += _dx.SettledQuantity.Value;
-        subTotalValue += _dx.TobaccoValue.Value;
+        subTotalValue += _dx.TobaccoValue.GetValueOrDefault( 0 );
         MaterialRecord _newRecord = new MaterialRecord()
         {
           Qantity = _dx.SettledQuantity.GetValueOrDefault( 0 ),
