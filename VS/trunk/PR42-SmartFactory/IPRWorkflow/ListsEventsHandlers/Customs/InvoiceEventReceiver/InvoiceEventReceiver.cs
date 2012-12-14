@@ -104,7 +104,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
     private static bool GetXmlContent( InvoiceItemXml[] invoiceEntries, Entities edc, InvoiceLib parent )
     {
       List<InvoiceContent> _invcs = new List<InvoiceContent>();
-      List<string> _warnings = new List<string>();
+      ErrorsList _warnings = new ErrorsList();
       bool _result = true;
       foreach ( InvoiceItemXml item in invoiceEntries )
       {

@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The edc.</param>
     /// <param name="warnings">The warnings.</param>
-    public void ProcessEntry( Entities edc, List<string> warnings )
+    public void ProcessEntry( Entities edc, ErrorsList warnings )
     {
       GetProductType( edc );
       GetBatchLookup( edc, warnings );
@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.ProductType = product.productType;
       this.IPRType = product.IPRMaterial;
     }
-    private void GetBatchLookup( Entities edc, List<string> warnings )
+    private void GetBatchLookup( Entities edc, ErrorsList warnings )
     {
       if ( ProductType != Linq.ProductType.Cigarette && ProductType != Linq.ProductType.Cutfiller )
         return;
@@ -32,7 +32,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.BatchIndex = Linq.Batch.FindLookup( edc, this.Batch );
       if ( this.BatchIndex != null )
         return;
-      warnings.Add(String.Format( "Cannot find batch {0} for stock record {1}.", this.Batch, this.Title ));
+      warnings.Add( String.Format( "Cannot find batch:{0}/sku: {1} for stock record {2} for the stock location:{3}.", this.Batch, this.SKU, this.Title, this.StorLoc ), false );
     }
   }
 }

@@ -31,7 +31,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
             xmlDocument.GetMaterial(),
             edc,
             entry,
-            ( MaterialXml xml, Dokument lib, Entities context, List<String> warnings ) => { return SKUCutfiller( (CutfillerMaterialxML)xml, lib, context, warnings ); }, progressChanged );
+            ( MaterialXml xml, Dokument lib, Entities context, List<String> warnings ) => { return SKUCutfiller( (CutfillerMaterialxML)xml, lib, context, warnings ); }, 
+            progressChanged );
           break;
       }
     }
@@ -43,7 +44,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
       ( MaterialXml[] material, Entities edc, Dokument parent, CreateMaterialXml creator, ProgressChangedEventHandler progressChanged )
     {
       List<SKUCommonPart> entities = new List<SKUCommonPart>();
-      List<string> warnings = new List<string>();
+      ErrorsList warnings = new ErrorsList();
       int _entries = 0;
       int _newEntries = 0;
       foreach ( MaterialXml item in material )

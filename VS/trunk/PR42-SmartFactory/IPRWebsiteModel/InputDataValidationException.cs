@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel
@@ -15,7 +14,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="paramName">The name of the operation that caused the current exception.</param>
     /// <param name="errors">The list of errors.</param>
-    public InputDataValidationException( string message, string paramName, List<string> errors )
+    public InputDataValidationException( string message, string paramName, ErrorsList errors )
       : base( message, paramName )
     {
       m_Errors = errors;
@@ -26,13 +25,46 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="paramName">The name of the operation that caused the current exception.</param>
     /// <param name="error">The error to be reported.</param>
-    public InputDataValidationException( string message, string paramName, string error )
+    /// <param name="fatal">if set to <c>true</c> the list contain fatal erros.</param>
+    public InputDataValidationException( string message, string paramName, string error, bool fatal )
       : base( message, paramName )
     {
-      m_Errors = new List<string>() { error };
+      m_Errors = new ErrorsList();
+      m_Errors.Add( error, fatal );
     }
     #region public
-    public bool Valid { get { return m_Errors.Count == 0; } }
+    /// <summary>
+    /// Gets a value indicating whether this <see cref="InputDataValidationException" /> is valid.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if valid; otherwise, <c>false</c>.
+    /// </value>
+    public Result Valid
+    {
+      get
+      {
+        if ( m_Errors.Fatal )
+          return Result.FatalErrors;
+        if ( m_Errors.Count == 0 )
+          return Result.Warnings;
+        return Result.Success;
+      }
+    }
+    public enum Result
+    {
+      /// <summary>
+      /// The success
+      /// </summary>
+      Success,
+      /// <summary>
+      /// The warnings
+      /// </summary>
+      Warnings,
+      /// <summary>
+      /// The fatal errors
+      /// </summary>
+      FatalErrors
+    }
     /// <summary>
     /// Reports the action result.
     /// </summary>
@@ -57,6 +89,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
       catch ( Exception ) { }
     }
     #endregion
-    private List<string> m_Errors;
+
+    #region private
+    private ErrorsList m_Errors;
+    #endregion
+
   }
 }

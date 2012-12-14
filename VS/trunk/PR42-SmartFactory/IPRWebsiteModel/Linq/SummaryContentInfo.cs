@@ -115,7 +115,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <exception cref="InputDataValidationException">Batch content validate failed;XML content validation</exception>
     public void Validate( Entities edc, EntitySet<Disposal> disposals )
     {
-      List<string> _validationErrors = new List<string>();
+      ErrorsList _validationErrors = new ErrorsList();
       if ( Product == null )
         _validationErrors.Add( "Unrecognized finished good" );
       SKULookup = SKUCommonPart.Find( edc, Product.SKU );

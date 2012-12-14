@@ -170,9 +170,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public ProductDescription GetProductType( string sku, string location )
     {
       ProductDescription _ret = null;
-      SKUCommonPart entity = SKUCommonPart.Find( this, sku );
-      if ( entity != null )
-        _ret = new ProductDescription( entity.ProductType.GetValueOrDefault( ProductType.Other ), entity.IPRMaterial.GetValueOrDefault( false ), entity );
+      SKUCommonPart _sku = SKUCommonPart.Find( this, sku );
+      if ( _sku != null )
+        _ret = new ProductDescription( _sku.ProductType.GetValueOrDefault( ProductType.Other ), _sku.IPRMaterial.GetValueOrDefault( false ), _sku );
       else
         _ret = GetProductType( location );
       return _ret;
@@ -193,10 +193,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         SKUCommonPart entity = SKUCommonPart.Find( this, sku );
         if ( entity == null )
         {
-          List<String> _errors = new List<string>();
           string _mssg = String.Format( "Cannot find finisched good {0}", sku );
-          _errors.Add( _mssg );
-          throw new InputDataValidationException( "Cannot find finisched good in the SKU dictionary", "Get Product Type", _errors );
+          throw new InputDataValidationException( "Cannot find finisched good in the SKU dictionary", "Get Product Type", _mssg, true );
         }
         _ret = new ProductDescription( entity.ProductType.GetValueOrDefault( ProductType.Other ), entity.IPRMaterial.GetValueOrDefault( false ), entity );
       }

@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Account
     /// <exception cref="CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException">Syntax errors in the good description.</exception>
     protected virtual void AnalizeGoodsDescription( Entities edc, string goodsDescription )
     {
-      List<string> _sErrors = new List<string>();
+      ErrorsList _sErrors = new ErrorsList();
       string _na = "Not recognized";
       TobaccoName = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionTobaccoNamePattern ), _na, _sErrors );
       GradeName = goodsDescription.GetFirstCapture( Settings.GetParameter( edc, SettingsEntry.GoodsDescriptionWGRADEPattern ), _na, _sErrors );

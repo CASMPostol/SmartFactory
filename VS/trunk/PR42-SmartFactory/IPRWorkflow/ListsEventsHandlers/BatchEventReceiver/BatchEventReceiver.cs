@@ -102,7 +102,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       ActivityLogCT.WriteEntry( edc, m_Title, _Message );
       BatchXml _xml = BatchXml.ImportDocument( stream );
       progressChanged( null, new ProgressChangedEventArgs( 1, "ImportBatchFromXml.Validate" ) );
-      List<string> _validationErrors = new List<string>();
+      ErrorsList _validationErrors = new ErrorsList();
       _xml.Validate( Settings.GetParameter( edc, SettingsEntry.BatchNumberPattern ), _validationErrors );
       if ( _validationErrors.Count > 0 )
         throw new InputDataValidationException( "Batch XML message validation failed", "XML sysntax validation", _validationErrors );
@@ -130,7 +130,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
       switch ( _newBtachStatus )
       {
         case BatchStatus.Progress:
-          throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", "The status of Progress is not implemented yet" );
+          throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", "The status of Progress is not implemented yet", true );
         case BatchStatus.Intermediate:
         case BatchStatus.Final:
           if ( _batch != null )
@@ -138,7 +138,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
             if ( _batch.BatchStatus.Value != BatchStatus.Intermediate )
             {
               string _ptrn = "The final batch {0} has been analyzed already.";
-              throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", String.Format( _ptrn, _contentInfo.Product.Batch ) );
+              throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", String.Format( _ptrn, _contentInfo.Product.Batch ), true );
             }
           }
           else
