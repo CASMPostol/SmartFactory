@@ -8,6 +8,7 @@
                Inherits="TRUE">
     <Folder TargetName="_cts/ReportsCommonPart" />
     <FieldRefs>
+      <FieldRef ID="{7E9D625D-14FA-4626-9412-14BCD2BCE8E6}" Name="DocumentNo" />
       <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
       <FieldRef ID="{500870DA-A1F2-44FD-B34F-B1DF21DCD317}" Name="Batch" />
       <FieldRef ID="{ECF7BF3D-B3E5-40B6-B7B3-5D843DD18B19}" Name="TobaccoEnteredIntoIPR" />
