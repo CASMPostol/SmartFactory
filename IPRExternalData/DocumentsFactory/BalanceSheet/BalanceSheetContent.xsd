@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd" elementFormDefault="qualified" targetNamespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="BalanceSheetContent" type="tns:BalanceSheetContent" />
-
   <xs:complexType name="BalanceSheetContent" >
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="SituationAtDate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="StartDate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="IPRStock" type="tns:IPRStockContent" />
       <xs:element minOccurs="0" maxOccurs="1" name="JSOX" type="tns:JSOXContenet" />
     </xs:sequence>
@@ -61,6 +62,12 @@
   <xs:complexType name="ArrayOfDisposalRow">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalRow" nillable="true" type="tns:DisposalRow" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ExportOrFreeCirculationSAD" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EntryDocumentNo" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SADDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CompensationGood" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalAmount" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="DisposalRow" />
