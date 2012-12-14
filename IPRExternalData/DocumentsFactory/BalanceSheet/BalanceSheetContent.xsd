@@ -14,6 +14,15 @@
   <xs:complexType name="IPRStockContent">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="BatchList" type="tns:ArrayOfIPRStockBatchListRow" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalIPRBook" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalSHWasteOveruseCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalDustCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalTobaccoAvailable" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalTobaccoInWarehouse" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalTobaccoInCigarettesWarehouse" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalTobaccoInCigarettesProduction" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalTobaccoInCutfillerWarehouse" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalBalance" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfIPRStockBatchListRow">
