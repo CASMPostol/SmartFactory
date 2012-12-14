@@ -4,11 +4,11 @@
 
   <xs:complexType name="BalanceSheetContent" >
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="IPRStoc" type="tns:IPRStocContent" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPRStock" type="tns:IPRStockContent" />
       <xs:element minOccurs="0" maxOccurs="1" name="JSOX" type="tns:JSOXContenet" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="IPRStocContent">
+  <xs:complexType name="IPRStockContent">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="BatchList" type="tns:ArrayOfIPRStockBatchListRow" />
     </xs:sequence>
@@ -21,15 +21,15 @@
   <xs:complexType name="IPRStockBatchListRow" />
   <xs:complexType name="JSOXContenet">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="JSOCClearance" type="tns:ArrayOfJSOCClearanceContent" />
+      <xs:element minOccurs="0" maxOccurs="1" name="JSOXClearance" type="tns:ArrayOfJSOXClearanceContent" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="ArrayOfJSOCClearanceContent">
+  <xs:complexType name="ArrayOfJSOXClearanceContent">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOCClearanceContent" nillable="true" type="tns:JSOCClearanceContent" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOXClearanceContent" nillable="true" type="tns:JSOXClearanceContent" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="JSOCClearanceContent">
+  <xs:complexType name="JSOXClearanceContent">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Disposal" type="tns:ArrayOfDisposalRow" />
     </xs:sequence>
