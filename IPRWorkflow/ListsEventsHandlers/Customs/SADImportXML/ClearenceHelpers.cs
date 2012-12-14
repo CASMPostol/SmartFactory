@@ -42,7 +42,7 @@ namespace CAS.SmartFactory.IPR.Customs
             if ( ( from _cx in _clrncs where _cx.Clearence2SadGoodID == null select _cx ).Any<Clearence>() )
             {
               string _error = String.Format( "SAD with reference number: {0} must be imported first", _sad.ReferenceNumber );
-              throw new InputDataValidationException( "CLNE message cannot be processed befor SAD", "DeclarationProcessing", _error );
+              throw new InputDataValidationException( "CLNE message cannot be processed befor SAD", "DeclarationProcessing", _error, true );
             }
             foreach ( Clearence _cx in _clrncs )
             {
@@ -151,7 +151,7 @@ namespace CAS.SmartFactory.IPR.Customs
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
         CWAccountData _accountData = new CWAccountData( entities, clearence.Clearence2SadGoodID, Convert2MessageType( _messageType ) );
-        List<string> _ar = new List<string>();
+        ErrorsList _ar = new ErrorsList();
         if ( !_accountData.Validate( entities, _ar ) )
           warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
         _comments = "Consent lookup filed";
@@ -211,7 +211,7 @@ namespace CAS.SmartFactory.IPR.Customs
         _at = "newIPRData";
         _comments = "Inconsistent or incomplete data to create IPR account";
         IPRAccountData _iprdata = new IPRAccountData( entities, clearence.Clearence2SadGoodID, Convert2MessageType( _messageType ) );
-        List<string> _ar = new List<string>();
+        ErrorsList _ar = new ErrorsList();
         if ( !_iprdata.Validate( entities, _ar ) )
           warnings.Add( new InputDataValidationException( "Inconsistent or incomplete data to create IPR account", "Create IPR Account", _ar ) );
         _comments = "Consent lookup filed";
@@ -280,7 +280,7 @@ namespace CAS.SmartFactory.IPR.Customs
         throw new InputDataValidationException(
           String.Format( _template, XMLResources.RequiredDocumentConsignmentCode, good.SADDocumentIndex.DocumentNumber, good.SADDocumentIndex.ReferenceNumber ),
           "SAD Required Documents",
-          "clear through castoms fatal error" );
+          "clear through castoms fatal error", true );
       }
     }
     /// <summary>

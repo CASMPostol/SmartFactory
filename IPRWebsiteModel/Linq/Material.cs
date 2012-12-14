@@ -213,7 +213,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       string _error = String.Format(
         "There are {0} kg of material {1}/Id={2} that cannot be found for invoice {3}/Content Id={4}.",
         _quantity, this.Batch, this.Identyfikator, invoiceContent.InvoiceIndex.BillDoc, invoiceContent.Identyfikator.Value );
-      throw new CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException( "internal error: it is imposible to mark as exported the material", "Material export`", _error );
+      throw new CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException( "internal error: it is imposible to mark as exported the material", "Material export`", _error, false );
     }
     internal Material ReplaceByExistingOne( List<Material> _oldMaterials, List<Material> _newMaterials, Linq.Batch parent )
     {

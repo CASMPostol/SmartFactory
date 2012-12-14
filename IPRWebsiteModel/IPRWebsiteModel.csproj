@@ -54,6 +54,7 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorsList.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="InputDataValidationException.cs" />
     <Compile Include="IPRDataConsistencyException.cs" />
