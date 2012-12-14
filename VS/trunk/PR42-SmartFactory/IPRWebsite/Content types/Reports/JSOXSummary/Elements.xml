@@ -8,6 +8,8 @@
                Inherits="TRUE">
     <Folder TargetName="_cts/JSOXSummary" />
     <FieldRefs>
+      <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
+      <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
       <FieldRef ID="{789DF765-E837-459E-943B-FFEFB702BCC4}" Name="OGLIntroduction" />
       <FieldRef ID="{1B3056C4-7586-490C-814A-C63571E95B80}" Name="BalanceIndex" />
       <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
