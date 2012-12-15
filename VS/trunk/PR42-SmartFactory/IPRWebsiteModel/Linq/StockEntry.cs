@@ -25,6 +25,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       get
       {
+        if ( this.BatchIndex == null )
+          throw new ArgumentNullException( "BatchIndex" );
         string _mtmp = "Inconsistent quantity for the: batch {0}/sku: {1} for stock record {2}; quantity stock: {3}/batch: {4}.";
         return String.Format( _mtmp, this.Batch, this.SKU, this.Title, this.Quantity.Value, this.BatchIndex.FGQuantityAvailable.Value );
       }
