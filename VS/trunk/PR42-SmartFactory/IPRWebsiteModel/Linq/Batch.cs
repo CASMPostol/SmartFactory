@@ -59,6 +59,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       SKU = contentInfo.Product.SKU;
       Title = String.Format( "{0} SKU: {1}; Batch: {2}", contentInfo.Product.ProductType, SKU, Batch0 );
       FGQuantityAvailable = newBatch ? contentInfo.Product.FGQuantity : contentInfo.Product.FGQuantity - FGQuantity + FGQuantityAvailable;
+      if (FGQuantityAvailable <0)
+        throw new ArgumentException("FGQuantityAvailable", "FGQuantityAvailable cannot be less then 0"); 
       FGQuantity = contentInfo.Product.FGQuantity;
       MaterialQuantity = Convert.ToDouble( contentInfo.TotalTobacco );
       ProductType = contentInfo.Product.ProductType;
