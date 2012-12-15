@@ -14,14 +14,33 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Gets the lookup.
     /// </summary>
     /// <param name="edc">The <see cref="Entities" /> instance.</param>
+    /// <param name="batch">The index of the entry we are lookin for.</param>
+    /// <returns>
+    /// The most recent <see cref="Batch" /> object.
+    /// </returns>
+    /// <exception cref="System.ArgumentNullException">The source is null.</exception>
+    public static Batch FindLookup( Entities edc, string batch )
+    {
+      return ( from _batchX in edc.Batch 
+               where _batchX.Batch0.Contains( batch ) && _batchX.BatchStatus != Linq.BatchStatus.Progress
+               orderby _batchX.Identyfikator.Value
+               select _batchX ).FirstOrDefault();
+    }
+    /// <summary>
+    /// Gets the lookup.
+    /// </summary>
+    /// <param name="edc">The <see cref="Entities" /> instance.</param>
     /// <param name="index">The index of the entry we are lookin for.</param>
     /// <returns>
     /// The most recent <see cref="Batch" /> object.
     /// </returns>
     /// <exception cref="System.ArgumentNullException">The source is null.</exception>
-    public static Batch FindLookup( Entities edc, string index )
+    public static Batch FindStockToBatchLookup( Entities edc, string batch )
     {
-      return ( from batch in edc.Batch where batch.Batch0.Contains( index ) && batch.BatchStatus != Linq.BatchStatus.Progress select batch ).FirstOrDefault();
+      return ( from _batchX in edc.Batch 
+               where _batchX.Batch0.Contains( batch )
+               orderby _batchX.Identyfikator.Value 
+               ascending select _batchX ).FirstOrDefault();
     }
     /// <summary>
     /// Batches the processing.
