@@ -52,6 +52,12 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
           int _problems = 0;
           foreach ( StockEntry _sex in _stock.FinishedGoodsNotProcessed( _edc ) )
           {
+            Batch _batchLookup = Batch.FindStockToBatchLookup( _edc, _sex.Batch );
+            if ( _batchLookup != null )
+            {
+              _sex.BatchIndex = _batchLookup;
+              continue;
+            }
             ActivityLogCT.WriteEntry( _edc, "CreateReport", _sex.NoMachingBatcgWarningMessage );
             _problems++;
           }
@@ -63,7 +69,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
           if ( !ValidationPaased )
           {
             ValidationPaased = false;
-            string _mtmplt = "Data validation failed. There are {0} reported problem that must be resolved to start report calculation procedure. Details you can find on the application log.";
+            string _mtmplt = "Data validation failed. There are {0} reported problems that must be resolved to start report calculation procedure. Details you can find on the application log.";
             ValidationFailedLog_HistoryDescription = String.Format( _mtmplt, _problems );
           }
         }

@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return;
       if ( !IPRType.GetValueOrDefault( false ) )
         return;
-      this.BatchIndex = Linq.Batch.FindLookup( edc, this.Batch );
+      this.BatchIndex = Linq.Batch.FindStockToBatchLookup( edc, this.Batch );
       if ( this.BatchIndex != null )
         return;
       warnings.Add( NoMachingBatcgWarningMessage, false );
