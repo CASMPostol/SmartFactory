@@ -139,7 +139,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           _validationErrors.Add( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value ) );
         }
       if ( _validationErrors.Count > 0 )
-        throw new InputDataValidationException( "Batch content validate failed", "XML content validation", _validationErrors );
+        throw new InputDataValidationException( "Batch content validation failed", "XML content validation", _validationErrors );
     }
     #endregion
 

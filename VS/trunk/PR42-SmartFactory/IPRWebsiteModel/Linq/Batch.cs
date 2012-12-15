@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <exception cref="System.ArgumentNullException">The source is null.</exception>
     public static Batch FindLookup( Entities edc, string batch )
     {
-      return ( from _batchX in edc.Batch 
+      return ( from _batchX in edc.Batch
                where _batchX.Batch0.Contains( batch ) && _batchX.BatchStatus != Linq.BatchStatus.Progress
                orderby _batchX.Identyfikator.Value
                select _batchX ).FirstOrDefault();
@@ -37,10 +37,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <exception cref="System.ArgumentNullException">The source is null.</exception>
     public static Batch FindStockToBatchLookup( Entities edc, string batch )
     {
-      return ( from _batchX in edc.Batch 
+      return ( from _batchX in edc.Batch
                where _batchX.Batch0.Contains( batch )
-               orderby _batchX.Identyfikator.Value 
-               ascending select _batchX ).FirstOrDefault();
+               orderby _batchX.Identyfikator.Value
+               ascending
+               select _batchX ).FirstOrDefault();
     }
     /// <summary>
     /// Batches the processing.
@@ -59,8 +60,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       SKU = contentInfo.Product.SKU;
       Title = String.Format( "{0} SKU: {1}; Batch: {2}", contentInfo.Product.ProductType, SKU, Batch0 );
       FGQuantityAvailable = newBatch ? contentInfo.Product.FGQuantity : contentInfo.Product.FGQuantity - FGQuantity + FGQuantityAvailable;
-      if (FGQuantityAvailable <0)
-        throw new ArgumentException("FGQuantityAvailable", "FGQuantityAvailable cannot be less then 0"); 
+      if ( FGQuantityAvailable < 0 )
+        throw new ArgumentException( "FGQuantityAvailable", "FGQuantityAvailable cannot be less then 0" );
       FGQuantity = contentInfo.Product.FGQuantity;
       MaterialQuantity = Convert.ToDouble( contentInfo.TotalTobacco );
       ProductType = contentInfo.Product.ProductType;
@@ -102,6 +103,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Waste = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.Waste ] );
       Tobacco = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.TobaccoInCigaretess ] );
       Overuse = Convert.ToDouble( contentInfo.AccumulatedDisposalsAnalisis[ Linq.DisposalEnum.OverusageInKg ] );
+      if ( this.BatchStatus.Value == Linq.BatchStatus.Progress )
+        return;
       foreach ( InvoiceContent _ix in this.InvoiceContent )
         _ix.UpdateExportedDisposals( edc );
       contentInfo.UpdateNotStartedDisposals( edc, this, progressChanged );
