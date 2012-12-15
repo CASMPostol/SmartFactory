@@ -169,12 +169,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public ProductDescription GetProductType( string sku, string location )
     {
-      ProductDescription _ret = null;
+      ProductDescription _ret = new ProductDescription( ProductType.Other, false );
+      Warehouse _Warehouse = Linq.Warehouse.Find( this, location );
+      if ( _Warehouse == null )
+        return _ret;
       SKUCommonPart _sku = SKUCommonPart.Find( this, sku );
       if ( _sku != null )
         _ret = new ProductDescription( _sku.ProductType.GetValueOrDefault( ProductType.Other ), _sku.IPRMaterial.GetValueOrDefault( false ), _sku );
       else
-        _ret = GetProductType( location );
+        _ret = GetProductType( _Warehouse );
       return _ret;
     }
     /// <summary>
@@ -199,7 +202,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _ret = new ProductDescription( entity.ProductType.GetValueOrDefault( ProductType.Other ), entity.IPRMaterial.GetValueOrDefault( false ), entity );
       }
       else
-        _ret = GetProductType( location );
+        _ret = GetProductType( Linq.Warehouse.Find( this, location ) );
       return _ret;
     }
     internal static DisposalStatus GetDisposalStatus( DisposalEnum status )
@@ -235,13 +238,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region private
-    private ProductDescription GetProductType( string location )
+    private ProductDescription GetProductType( Warehouse location )
     {
       ProductDescription _ret = new ProductDescription( ProductType.Other, false );
-      Warehouse wrh = Linq.Warehouse.Find( this, location );
-      if ( wrh == null )
+      if ( location == null )
         return _ret;
-      switch ( wrh.ProductType )
+      switch ( location.ProductType )
       {
         case ProductType.Tobacco:
           _ret = new ProductDescription( ProductType.Tobacco, false );
