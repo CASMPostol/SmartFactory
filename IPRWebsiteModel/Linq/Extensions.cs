@@ -30,14 +30,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     //    return CompensationGood.Invalid;
     //  }
     //}
-    /// <summary>
-    /// Gets the top most document lookup.
-    /// </summary>
-    /// <param name="library">The library.</param>
-    /// <returns></returns>
-    public static Dokument FindTopMostDocumentLookup( this  EntityList<Dokument> library )
-    {
-      return ( from idx in library orderby idx.Identyfikator descending select idx ).FirstOrDefault();
-    }
+    ///// <summary>
+    ///// Gets the top most document lookup.
+    ///// </summary>
+    ///// <param name="library">The library.</param>
+    ///// <returns></returns>
+    //public static Dokument FindTopMostDocumentLookup( this  EntityList<Dokument> library )
+    //{
+    //  return ( from idx in library orderby idx.Identyfikator descending select idx ).FirstOrDefault();
+    //}
   }
 }
