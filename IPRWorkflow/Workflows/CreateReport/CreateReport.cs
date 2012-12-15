@@ -49,25 +49,32 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
         using ( Entities _edc = new Entities( this.workflowProperties.WebUrl ) )
         {
           Stock _stock = Element.GetAtIndex<Stock>( _edc.Stock, workflowProperties.ItemId );
-          ValidationPaased = true;
+          int _problems = 0;
           foreach ( StockEntry _sex in _stock.FinishedGoodsNotProcessed( _edc ) )
           {
             ActivityLogCT.WriteEntry( _edc, "CreateReport", _sex.NoMachingBatcgWarningMessage );
-            ValidationPaased = false;
+            _problems++;
           }
-          foreach ( StockEntry _sex in _stock.FinishedGoodsNotBalanced( _edc ) )
+          foreach ( StockEntry _senbx in _stock.FinishedGoodsNotBalanced( _edc ) )
           {
-            ActivityLogCT.WriteEntry( _edc, "CreateReport", _sex.NoMachingQuantityWarningMessage );
+            ActivityLogCT.WriteEntry( _edc, "CreateReport", _senbx.NoMachingQuantityWarningMessage );
+            _problems++;
+          }
+          if ( !ValidationPaased )
+          {
             ValidationPaased = false;
+            string _mtmplt = "Data validation failed. There are {0} reported problem that must be resolved to start report calculation procedure. Details you can find on the application log.";
+            ValidationFailedLog_HistoryDescription = String.Format( _mtmplt, _problems );
           }
         }
       }
-      catch ( Exception )
+      catch ( Exception _ex )
       {
-
-        throw;
+        string _patt = "Cannot validate data because of a fata error {0} at: {1}";
+        ValidationFailedLog_HistoryDescription = String.Format( _patt, _ex.Message, _ex.StackTrace );
       }
     }
+    public String ValidationFailedLog_HistoryDescription = default( System.String );
     private bool ValidationPaased = false;
     private void Validated( object sender, ConditionalEventArgs e )
     {
@@ -78,7 +85,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
     #region MainReportCreationSequence
     private void CalculateReports( object sender, EventArgs e )
     {
-      CalculationPassed = false;
+      CalculationPassed = true;
     }
     private bool CalculationPassed = false;
     private void Calculated( object sender, ConditionalEventArgs e )
@@ -90,6 +97,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
 
     }
     #endregion
+
 
   }
 }

@@ -44,8 +44,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public IQueryable<StockEntry> FinishedGoodsNotBalanced( Entities edc )
     {
       return from _sex in this.StockEntry
-             where ( _sex.ProductType.Value == ProductType.Cigarette ) || ( _sex.ProductType.Value == ProductType.Cutfiller ) &&
-                   _sex.IPRType.Value && _sex.BatchIndex != null &&
+             where ( ( _sex.ProductType.Value == ProductType.Cigarette ) || ( _sex.ProductType.Value == ProductType.Cutfiller ) ) &&
+                   _sex.IPRType.Value &&
+                   _sex.BatchIndex != null &&
                    _sex.Quantity.Value != _sex.BatchIndex.FGQuantityAvailable.Value
              select _sex;
     }

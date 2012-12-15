@@ -31,12 +31,13 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       System.Workflow.Activities.CodeCondition codecondition1 = new System.Workflow.Activities.CodeCondition();
       System.Workflow.ComponentModel.ActivityBind activitybind3 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind4 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.Activities.CodeCondition codecondition2 = new System.Workflow.Activities.CodeCondition();
       System.Workflow.ComponentModel.ActivityBind activitybind5 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.Activities.CodeCondition codecondition2 = new System.Workflow.Activities.CodeCondition();
       System.Workflow.ComponentModel.ActivityBind activitybind6 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.ComponentModel.ActivityBind activitybind8 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
       System.Workflow.ComponentModel.ActivityBind activitybind7 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind9 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
+      System.Workflow.ComponentModel.ActivityBind activitybind8 = new System.Workflow.ComponentModel.ActivityBind();
       this.CalculatioFailedLog = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.ReportCreatedLog = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.CreateReportActivity = new System.Workflow.Activities.CodeActivity();
@@ -147,13 +148,15 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       // 
       this.ValidationFailedLog.Duration = System.TimeSpan.Parse( "-10675199.02:48:05.4775808" );
       this.ValidationFailedLog.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowCompleted;
-      this.ValidationFailedLog.HistoryDescription = "";
+      activitybind4.Name = "CreateReport";
+      activitybind4.Path = "ValidationFailedLog_HistoryDescription";
       this.ValidationFailedLog.HistoryOutcome = "Validation Failed";
       this.ValidationFailedLog.Name = "ValidationFailedLog";
       this.ValidationFailedLog.OtherData = "";
-      activitybind4.Name = "CreateReport";
-      activitybind4.Path = "workflowProperties.OriginatorUser.ID";
-      this.ValidationFailedLog.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind4 ) ) );
+      activitybind5.Name = "CreateReport";
+      activitybind5.Path = "workflowProperties.OriginatorUser.ID";
+      this.ValidationFailedLog.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind5 ) ) );
+      this.ValidationFailedLog.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind4 ) ) );
       // 
       // MainReportCreationSequence
       // 
@@ -184,13 +187,13 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       // 
       this.StartingValidationLog.Duration = System.TimeSpan.Parse( "-10675199.02:48:05.4775808" );
       this.StartingValidationLog.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
-      this.StartingValidationLog.HistoryDescription = "";
+      this.StartingValidationLog.HistoryDescription = "Starting data validation procedure.";
       this.StartingValidationLog.HistoryOutcome = "Validating";
       this.StartingValidationLog.Name = "StartingValidationLog";
       this.StartingValidationLog.OtherData = "";
-      activitybind5.Name = "CreateReport";
-      activitybind5.Path = "workflowProperties.OriginatorUser.ID";
-      this.StartingValidationLog.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind5 ) ) );
+      activitybind6.Name = "CreateReport";
+      activitybind6.Path = "workflowProperties.OriginatorUser.ID";
+      this.StartingValidationLog.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind6 ) ) );
       // 
       // CreateReportRecordsActivity
       // 
@@ -205,9 +208,9 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       this.StartingLog.HistoryOutcome = "Starting";
       this.StartingLog.Name = "StartingLog";
       this.StartingLog.OtherData = "";
-      activitybind6.Name = "CreateReport";
-      activitybind6.Path = "workflowProperties.OriginatorUser.ID";
-      this.StartingLog.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind6 ) ) );
+      activitybind7.Name = "CreateReport";
+      activitybind7.Path = "workflowProperties.OriginatorUser.ID";
+      this.StartingLog.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind7 ) ) );
       // 
       // IfValidatedActivity
       // 
@@ -226,8 +229,8 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       this.CreateListsItems.Activities.Add( this.StartingLog );
       this.CreateListsItems.Activities.Add( this.CreateReportRecordsActivity );
       this.CreateListsItems.Name = "CreateListsItems";
-      activitybind8.Name = "CreateReport";
-      activitybind8.Path = "workflowId";
+      activitybind9.Name = "CreateReport";
+      activitybind9.Path = "workflowId";
       // 
       // CreateReportActivated
       // 
@@ -237,10 +240,10 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       this.CreateReportActivated.Description = "Create requiring reports";
       this.CreateReportActivated.EventName = "OnWorkflowActivated";
       this.CreateReportActivated.Name = "CreateReportActivated";
-      activitybind7.Name = "CreateReport";
-      activitybind7.Path = "workflowProperties";
-      this.CreateReportActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind8 ) ) );
-      this.CreateReportActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind7 ) ) );
+      activitybind8.Name = "CreateReport";
+      activitybind8.Path = "workflowProperties";
+      this.CreateReportActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind9 ) ) );
+      this.CreateReportActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind8 ) ) );
       // 
       // CreateReport
       // 
@@ -298,6 +301,8 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
     private SequenceActivity CreateListsItems;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated CreateReportActivated;
+
+
 
 
 
