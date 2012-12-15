@@ -14,6 +14,7 @@ using System.Workflow.Activities.Rules;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.WorkflowActions;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 
 namespace CAS.SmartFactory.IPR.Workflows.CreateReport
 {
@@ -43,7 +44,29 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
     #region ValidationSequence
     private void Validate( object sender, EventArgs e )
     {
-      ValidationPaased = false;
+      try
+      {
+        using ( Entities _edc = new Entities( this.workflowProperties.WebUrl ) )
+        {
+          Stock _stock = Element.GetAtIndex<Stock>( _edc.Stock, workflowProperties.ItemId );
+          ValidationPaased = true;
+          foreach ( StockEntry _sex in _stock.FinishedGoodsNotProcessed( _edc ) )
+          {
+            ActivityLogCT.WriteEntry( _edc, "CreateReport", _sex.NoMachingBatcgWarningMessage );
+            ValidationPaased = false;
+          }
+          foreach ( StockEntry _sex in _stock.FinishedGoodsNotBalanced( _edc ) )
+          {
+            ActivityLogCT.WriteEntry( _edc, "CreateReport", _sex.NoMachingQuantityWarningMessage );
+            ValidationPaased = false;
+          }
+        }
+      }
+      catch ( Exception )
+      {
+
+        throw;
+      }
     }
     private bool ValidationPaased = false;
     private void Validated( object sender, ConditionalEventArgs e )

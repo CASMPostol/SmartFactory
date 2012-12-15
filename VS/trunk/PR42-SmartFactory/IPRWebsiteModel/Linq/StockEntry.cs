@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -16,6 +13,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       GetProductType( edc );
       GetBatchLookup( edc, warnings );
+    }
+    public string NoMachingBatcgWarningMessage
+    {
+      get
+      {
+        return String.Format( "Cannot find batch:{0}/sku: {1} for stock record {2} on the stock location:{3}.", this.Batch, this.SKU, this.Title, this.StorLoc );
+      }
+    }
+    public string NoMachingQuantityWarningMessage
+    {
+      get
+      {
+        string _mtmp = "Inconsistent quantity for the: batch {0}/sku: {1} for stock record {2}; quantity stock: {3}/batch: {4}.";
+        return String.Format( _mtmp, this.Batch, this.SKU, this.Title, this.Quantity.Value, this.BatchIndex.FGQuantityAvailable.Value );
+      }
     }
     private void GetProductType( Entities edc )
     {
@@ -32,7 +44,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.BatchIndex = Linq.Batch.FindLookup( edc, this.Batch );
       if ( this.BatchIndex != null )
         return;
-      warnings.Add( String.Format( "Cannot find batch:{0}/sku: {1} for stock record {2} for the stock location:{3}.", this.Batch, this.SKU, this.Title, this.StorLoc ), false );
+      warnings.Add( NoMachingBatcgWarningMessage, false );
     }
   }
 }
