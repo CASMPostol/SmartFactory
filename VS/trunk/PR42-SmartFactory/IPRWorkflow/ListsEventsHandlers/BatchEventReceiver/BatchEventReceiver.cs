@@ -183,8 +183,9 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           progressChanged( this, new ProgressChangedEventArgs( 1, String.Format( "SKU={0}", _newMaterial.SKU ) ) );
           Add( _newMaterial );
         }
+        if ( Product == null )
+          throw new InputDataValidationException( "Unrecognized finished good", "Product", "Wrong Batch XML message", true );
       }
-
     }
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
