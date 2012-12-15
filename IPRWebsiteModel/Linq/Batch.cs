@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
@@ -108,6 +109,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( InvoiceContent _ix in this.InvoiceContent )
         _ix.UpdateExportedDisposals( edc );
       contentInfo.UpdateNotStartedDisposals( edc, this, progressChanged );
+    }
+    internal void GetDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
+    {
+      if (edc.ObjectTrackingEnabled)
+        throw new ApplicationException( "At Batch.GetDisposals the ObjectTrackingEnabled is set." );
+      if ( this.BatchStatus.Value != Linq.BatchStatus.Progress )
+        throw new ApplicationException( "At Batch.GetDisposals the BatchStatus != Linq.BatchStatus.Progress" );
+      progressChanged( this, new ProgressChangedEventArgs( 1, "UpdateDisposals" ) );
+      foreach ( Material _materialX in this.Material )
+        _materialX.UpdateDisposals( edc, parent, progressChanged );
     }
     #endregion
 
