@@ -105,6 +105,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           ( new CAS.SharePoint.ApplicationError( "CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal", "_qunt > 0", _msg, null ), _msg );
       }
     }
+
+    #region static
+    public static IQueryable<IPR> GetAllNew4JSOX( Entities edc )
+    {
+      return from _iprx in edc.IPR where _iprx.JSOXIndex == null select _iprx;
+    }
     /// <summary>
     /// Check if record exists.
     /// </summary>
@@ -125,6 +131,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from IPR _iprx in edc.IPR where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
     }
+    #endregion
+
     #endregion
 
     #region internal
@@ -166,8 +174,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void RecalculateClearedRecords( double startIndex )
     {
-      if (this.AccountClosed.Value)
-        throw new ApplicationException("IPR.RecalculateClearedRecords cannot be excuted for closed account");
+      if ( this.AccountClosed.Value )
+        throw new ApplicationException( "IPR.RecalculateClearedRecords cannot be excuted for closed account" );
       List<Disposal> _2Calculate = ( from _dx in this.Disposal where _dx.CustomsStatus.Value == Linq.CustomsStatus.Finished orderby _dx.No.Value ascending select _dx ).ToList<Disposal>();
       this.AccountBalance = this.NetMass;
       foreach ( Disposal _dx in _2Calculate )

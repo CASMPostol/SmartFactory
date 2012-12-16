@@ -175,6 +175,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       get { return Convert.ToDecimal( this.SettledQuantity ); }
       set { this.SettledQuantity = Convert.ToDouble( value ); }
     }
+
+    #region static
+    internal static IQueryable<Disposal> GetEntries4JSOX( Entities edc )
+    {
+      return from _dspx in edc.Disposal 
+             where (_dspx.JSOXCustomsSummaryIndex == null ) && (_dspx.CustomsStatus.Value == Linq.CustomsStatus.Started)
+             orderby _dspx.Disposal2IPRIndex.Title select _dspx;
+    }
+    #endregion
+
     #endregion
 
     #region private
