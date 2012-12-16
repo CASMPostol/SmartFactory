@@ -110,7 +110,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _ix.UpdateExportedDisposals( edc );
       contentInfo.UpdateNotStartedDisposals( edc, this, progressChanged );
     }
-    internal void GetDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
+    internal void AddProgressDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
     {
       if (edc.ObjectTrackingEnabled)
         throw new ApplicationException( "At Batch.GetDisposals the ObjectTrackingEnabled is set." );

@@ -78,6 +78,7 @@
     <Compile Include="Linq\Format.cs" />
     <Compile Include="Linq\InvoiceContent.cs" />
     <Compile Include="Linq\IPR.cs" />
+    <Compile Include="Linq\JSOXCustomsSummary.cs" />
     <Compile Include="Linq\LinqIPRExtensions.cs" />
     <Compile Include="Linq\Material.cs" />
     <Compile Include="Linq\PCNCode.cs" />
