@@ -192,18 +192,18 @@
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
-    Name="SADConsignmentNo"
+    Name="IntroducingSADNo"
     ID="{0F90D8BC-23A5-48B8-8089-B91E5ABB5BAE}"
     Type="Text"
-    DisplayName="SAD Consignment No."
+    DisplayName="Introducing SAD No."
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
-    Name="SADConsignmentDate"
+    Name="IntroducingSADDate"
     ID="{F16E6D8E-E665-4063-8612-0D0976F82B3B}"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="SAD Consignment Date"
+    DisplayName="Introducing SAD Date"
     Group="CAS Smart Factory IPR Reports">
     <Default>[today]</Default>
   </Field>
