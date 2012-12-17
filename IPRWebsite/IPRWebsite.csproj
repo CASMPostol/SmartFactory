@@ -179,8 +179,8 @@
     <None Include="Content types\Reports\StockEntry\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{04ff6c8d-1184-497b-acad-65c061b435df}</SharePointProjectItemId>
     </None>
-    <None Include="Content types\Reports\Stock\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{3298cd6e-b3d7-4019-ae34-9cbf1fb82db7}</SharePointProjectItemId>
+    <None Include="Content types\Reports\StockLib\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{09eed3c4-2b86-4b34-bdc7-dca4a5bf5ac1}</SharePointProjectItemId>
     </None>
     <None Include="Content types\Reports\TobaccoBatchSummary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3e38bc27-775d-4bb1-9607-30ef421c0c3b}</SharePointProjectItemId>
@@ -471,8 +471,11 @@
     <None Include="Lists\Reports\StockEntryTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d4f5bbeb-ca18-416b-a62b-45a1d8806129}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Reports\StockLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{1021a00f-50e6-413f-ae99-859e73b92bd6}</SharePointProjectItemId>
+    <None Include="Lists\Reports\StockLibraryTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b34f635b-5f95-4434-a75e-5ee33f406b44}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\StockLibraryTemplate\StockLibrary\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{cbe84303-42b8-46f2-939f-5bccfbb5deeb}</SharePointProjectItemId>
     </None>
     <None Include="Lists\Reports\StockTemplate\StockList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b0d1f943-226c-411b-8363-3be922be2f2e}</SharePointProjectItemId>
@@ -587,16 +590,16 @@
     <Content Include="Content types\Reports\BalanceSummary\Elements.xml" />
     <Content Include="Content types\Reports\JSOXCustomsSummary\Elements.xml" />
     <Content Include="Content types\Reports\JSOXLib\Elements.xml" />
-    <Content Include="Content types\Reports\JSOXSummary\Elements.xml" />
+    <Content Include="Content types\Reports\JSOXSummary\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Reports\ReportsCommonPart\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Reports\StockEntry\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content types\Reports\Stock\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Content types\Reports\StockLib\Elements.xml" />
     <Content Include="Content types\Reports\TobaccoBatchSummary\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -846,7 +849,13 @@
     <Content Include="Lists\Reports\StockEntryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\StockEntryTemplate\StockEntryList\Elements.xml" />
     <Content Include="Lists\Reports\StockEntryTemplate\Schema.xml" />
-    <Content Include="Lists\Reports\StockLibrary\Elements.xml" />
+    <Content Include="Lists\Reports\StockLibraryTemplate\EditDlg.htm" />
+    <Content Include="Lists\Reports\StockLibraryTemplate\Elements.xml" />
+    <Content Include="Lists\Reports\StockLibraryTemplate\FileDlg.htm" />
+    <Content Include="Lists\Reports\StockLibraryTemplate\Repair.aspx" />
+    <Content Include="Lists\Reports\StockLibraryTemplate\Schema.xml" />
+    <Content Include="Lists\Reports\StockLibraryTemplate\StockLibrary\Elements.xml" />
+    <Content Include="Lists\Reports\StockLibraryTemplate\Upload.aspx" />
     <Content Include="Lists\Reports\StockTemplate\Elements.xml" />
     <Content Include="Lists\Reports\StockTemplate\StockList\Elements.xml" />
     <Content Include="Lists\Reports\StockTemplate\Schema.xml" />

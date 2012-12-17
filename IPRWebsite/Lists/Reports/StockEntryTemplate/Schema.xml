@@ -22,7 +22,7 @@
           <FieldRef ID="{B31967C9-30E2-44CC-BB55-C9C3F8A64EEB}" Name="IPRType" />
           <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="ProductType" />
           <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
-          <FieldRef ID="{6D5D5BFD-84C0-44A0-B8E2-C3C994748DA5}" Name="StockIndex" />
+          <FieldRef ID="{44A7C743-E3C0-4426-94B3-A639903E5EAD}" Name="StockLibraryIndex" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
@@ -57,19 +57,19 @@
           </FieldRef>
           <FieldRef Name="LinkTitle">
           </FieldRef>
-          <FieldRef ID="{619A086C-BA11-4C40-A19D-CF3F0C503A2C}" Name="SKU" />
-          <FieldRef ID="{1f5787f4-8a41-4bd3-b45c-d2bb65465120}" Name="StorLoc" />
-          <FieldRef ID="{dd3eefd0-c2b4-411d-b0ce-e72b2484dd5a}" Name="Units" />
-          <FieldRef ID="{500870da-a1f2-44fd-b34f-b1df21dcd317}" Name="Batch" />
-          <FieldRef ID="{A748D4BC-74C0-4F52-90E9-46A9E0140324}" Name="Unrestricted" />
-          <FieldRef ID="{5D27EABE-C74B-4233-9A07-D7389C831E3A}" Name="InQualityInsp" />
-          <FieldRef ID="{76C04784-3D54-46DB-BB7F-686EB7EF8254}" Name="RestrictedUse" />
-          <FieldRef ID="{4C65897D-CBD2-4468-8520-50E371EF3A3F}" Name="Blocked" />
-          <FieldRef ID="{85512A2C-C60C-400E-AA53-94ED8FBEF321}" Name="Quantity" />
-          <FieldRef ID="{B31967C9-30E2-44CC-BB55-C9C3F8A64EEB}" Name="IPRType" />
-          <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="ProductType" />
-          <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
-          <FieldRef ID="{6D5D5BFD-84C0-44A0-B8E2-C3C994748DA5}" Name="StockIndex" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="StorLoc" />
+          <FieldRef Name="Units" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="Unrestricted" />
+          <FieldRef Name="InQualityInsp" />
+          <FieldRef Name="RestrictedUse" />
+          <FieldRef Name="Blocked" />
+          <FieldRef Name="Quantity" />
+          <FieldRef Name="IPRType" />
+          <FieldRef Name="ProductType" />
+          <FieldRef Name="BatchIndex" />
+          <FieldRef Name="StockLibraryIndex" />
         </ViewFields>
         <Query>
           <OrderBy>
