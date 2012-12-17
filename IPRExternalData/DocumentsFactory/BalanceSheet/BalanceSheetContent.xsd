@@ -57,8 +57,8 @@
   <xs:complexType name="JSOXClearanceContent">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Disposal" type="tns:ArrayOfDisposalRow" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PreviusMonthDate" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PreviusMonthQuantity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PreviousMonthDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PreviousMonthQuantity" type="xs:double" />
       <xs:element minOccurs="0" maxOccurs="1" name="IntroducingDateStart" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="IntroducingDateEnd" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="IntroducingQuantity" type="xs:double" />

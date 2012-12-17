@@ -13,7 +13,7 @@
       <FieldRef ID="{5BA601FA-60E5-452C-8D40-832083C03201}" Name="TobaccoInCigarettesProduction" />
       <FieldRef ID="{ADFF97EF-0414-477C-AF48-D1DEF14D8C5E}" Name="TobaccoInCutfillerWarehouse" />
       <FieldRef ID="{D341520E-A826-4C16-A8ED-8325153B7D49}" Name="Balance" />
-      <FieldRef ID="{40C6B34C-EE93-4282-A6A7-AFEF69F43220}" Name="BalanceLibraryIndex" />
+      <FieldRef ID="{0292BCA0-756E-4A7A-B0AC-9D481C2E3F4E}" Name="Balance2JSOXLibraryIndex" />
     </FieldRefs>
   </ContentType>
 </Elements>

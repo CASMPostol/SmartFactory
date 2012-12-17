@@ -7,7 +7,7 @@
                Overwrite="TRUE"
                Inherits="TRUE">
     <FieldRefs>
-      <FieldRef ID="{8C8163F5-2741-461D-80FA-EBFC56B9701B}" Name="Stock2BalanceLibraryIndex" />
+      <FieldRef ID="{8C8163F5-2741-461D-80FA-EBFC56B9701B}" Name="Stock2JSOXLibraryIndex" />
     </FieldRefs>
   </ContentType>
 </Elements>

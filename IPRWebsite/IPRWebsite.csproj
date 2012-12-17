@@ -437,10 +437,6 @@
     <None Include="Lists\MaterialTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bc130d79-4589-48c5-9d68-4cd7b8763ed5}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Reports\BalanceLibrary\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e86b6345-ec06-4949-b684-e9db11b1e1c7}</SharePointProjectItemId>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Lists\Reports\BalanceSummaryTemplate\BalanceSummaryList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8e4b55a5-e5f2-4b9d-886e-09cc9b6992a3}</SharePointProjectItemId>
     </None>
@@ -821,7 +817,6 @@
     <Content Include="Lists\MaterialTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Lists\Reports\BalanceLibrary\Elements.xml" />
     <Content Include="Lists\Reports\BalanceSummaryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\BalanceSummaryTemplate\BalanceSummaryList\Elements.xml" />
     <Content Include="Lists\Reports\BalanceSummaryTemplate\Schema.xml">
