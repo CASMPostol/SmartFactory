@@ -9,7 +9,19 @@
                Inherits="TRUE"
                Overwrite="TRUE">
         <FieldRefs>
-          <FieldRef Name="JSOXLibrary2BalanceLibraryID" ID="{299DEB36-16FC-47FA-8FDF-A1C1318A95C6}" />
+          <FieldRef ID="{E9FBAC6E-7006-4AD8-A2F6-E43866AB0366}" Name="PreviousMonthDate" />
+          <FieldRef ID="{29DEC9CD-3959-4B99-91CA-5E8C273D9639}" Name="PreviousMonthQuantity" />
+          <FieldRef ID="{768238D4-A390-4079-B73D-2092A4A24E77}" Name="IntroducingDateStart" />
+          <FieldRef ID="{C4843D92-DD90-4892-A7C1-E56FC2D639C3}" Name="IntroducingDateEnd" />
+          <FieldRef ID="{423DC171-8077-4961-97F5-523D367C51F2}" Name="IntroducingQuantity" />
+          <FieldRef ID="{CA313379-3245-4869-B7CE-CD7C31BA8C0C}" Name="OutboundDateStart" />
+          <FieldRef ID="{D2FD20AA-458C-4D67-9847-93BC8E997337}" Name="OutboundDateEnd" />
+          <FieldRef ID="{C868B97A-68B5-41CF-A386-5E005E937F06}" Name="OutboundQuantity" />
+          <FieldRef ID="{03B5CC3D-5348-4B19-83B7-F9B409F1ED7E}" Name="BalanceDate" />
+          <FieldRef ID="{8FAC0EF4-C921-408A-B2B1-F50A0B20E2AA}" Name="BalanceQuantity" />
+          <FieldRef ID="{041AB995-3657-426F-AB3B-882866EF65A0}" Name="SituationDate" />
+          <FieldRef ID="{526127DD-E68E-4FE1-B7A9-04081028CC0A}" Name="SituationQuantity" />
+          <FieldRef ID="{A1ABFEB1-BA15-4EB6-B18E-2E701FA8B843}" Name="ReassumeQuantity" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
@@ -45,7 +57,19 @@
           <FieldRef Name="LinkFilename"></FieldRef>
           <FieldRef Name="Modified"></FieldRef>
           <FieldRef Name="Editor"></FieldRef>
-          <FieldRef Name="JSOXLibrary2BalanceLibraryID" />
+          <FieldRef Name="PreviousMonthDate" />
+          <FieldRef Name="PreviousMonthQuantity" />
+          <FieldRef Name="IntroducingDateStart" />
+          <FieldRef Name="IntroducingDateEnd" />
+          <FieldRef Name="IntroducingQuantity" />
+          <FieldRef Name="OutboundDateStart" />
+          <FieldRef Name="OutboundDateEnd" />
+          <FieldRef Name="OutboundQuantity" />
+          <FieldRef Name="BalanceDate" />
+          <FieldRef Name="BalanceQuantity" />
+          <FieldRef Name="SituationDate" />
+          <FieldRef Name="SituationQuantity" />
+          <FieldRef Name="ReassumeQuantity" />
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />

@@ -4,7 +4,7 @@
     <ContentTypes>
       <ContentType ID="0x0101001A9445DBA29F4E1DB1813989F34483DF" Name="StockLib" Group="CAS Smart Factory IPR Reports" Description="Stock Library Content Type" Overwrite="TRUE" Inherits="TRUE">
         <FieldRefs>
-          <FieldRef ID="{8C8163F5-2741-461D-80FA-EBFC56B9701B}" Name="Stock2BalanceLibraryIndex" />
+          <FieldRef ID="{8C8163F5-2741-461D-80FA-EBFC56B9701B}" Name="Stock2JSOXLibraryIndex" />
         </FieldRefs>
       </ContentType>
     </ContentTypes>
@@ -41,7 +41,7 @@
           <FieldRef Name="LinkFilename"></FieldRef>
           <FieldRef Name="Modified"></FieldRef>
           <FieldRef Name="Editor"></FieldRef>
-          <FieldRef Name="Stock2BalanceLibraryIndex" />
+          <FieldRef Name="Stock2JSOXLibraryIndex" />
         </ViewFields>
         <ParameterBindings>
           <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noitemsinview_doclibrary)" />

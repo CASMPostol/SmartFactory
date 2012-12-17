@@ -235,4 +235,109 @@
     DisplayName="OGL Introduction"
     Group="CAS Smart Factory IPR Reports"
     />
+  <Field
+    Name="PreviousMonthDate"
+    ID="{E9FBAC6E-7006-4AD8-A2F6-E43866AB0366}"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Previous Month Date"
+    Group="CAS Smart Factory IPR Reports">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Type="Number"
+    Decimals="2"
+    DisplayName="Previous Month Quantity"
+    ID="{29DEC9CD-3959-4B99-91CA-5E8C273D9639}"
+    Name="PreviousMonthQuantity"
+    Group="CAS Smart Factory IPR Reports" />
+  <Field
+    Name="IntroducingDateStart"
+    ID="{768238D4-A390-4079-B73D-2092A4A24E77}"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Introducing Date Start"
+    Group="CAS Smart Factory IPR Reports">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Name="IntroducingDateEnd"
+    ID="{C4843D92-DD90-4892-A7C1-E56FC2D639C3}"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Introducing Date End"
+    Group="CAS Smart Factory IPR Reports">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Type="Number"
+    Decimals="2"
+    DisplayName="Introducing Quantity"
+    ID="{423DC171-8077-4961-97F5-523D367C51F2}"
+    Name="IntroducingQuantity"
+    Group="CAS Smart Factory IPR Reports" />
+  <Field
+    Name="OutboundDateStart"
+    ID="{CA313379-3245-4869-B7CE-CD7C31BA8C0C}"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Outbound Date Start"
+    Group="CAS Smart Factory IPR Reports">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Name="OutboundDateEnd"
+    ID="{D2FD20AA-458C-4D67-9847-93BC8E997337}"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Outbound Date End"
+    Group="CAS Smart Factory IPR Reports">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Type="Number"
+    Decimals="2"
+    DisplayName="Outbound Quantity"
+    ID="{C868B97A-68B5-41CF-A386-5E005E937F06}"
+    Name="OutboundQuantity"
+    Group="CAS Smart Factory IPR Reports" />
+  <Field
+    Name="BalanceDate"
+    ID="{03B5CC3D-5348-4B19-83B7-F9B409F1ED7E}"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Balance Date"
+    Group="CAS Smart Factory IPR Reports">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Type="Number"
+    Decimals="2"
+    DisplayName="Balance Quantity"
+    ID="{8FAC0EF4-C921-408A-B2B1-F50A0B20E2AA}"
+    Name="BalanceQuantity"
+    Group="CAS Smart Factory IPR Reports" />
+  <Field
+    Name="SituationDate"
+    ID="{041AB995-3657-426F-AB3B-882866EF65A0}"
+    Type="DateTime"
+    Format="DateOnly"
+    DisplayName="Situation Date"
+    Group="CAS Smart Factory IPR Reports">
+    <Default>[today]</Default>
+  </Field>
+  <Field
+    Type="Number"
+    Decimals="2"
+    DisplayName="Situation Quantity"
+    ID="{526127DD-E68E-4FE1-B7A9-04081028CC0A}"
+    Name="SituationQuantity"
+    Group="CAS Smart Factory IPR Reports" />
+  <Field
+    Type="Number"
+    Decimals="2"
+    DisplayName="Reassume Quantity"
+    ID="{A1ABFEB1-BA15-4EB6-B18E-2E701FA8B843}"
+    Name="ReassumeQuantity"
+    Group="CAS Smart Factory IPR Reports" />
 </Elements>
