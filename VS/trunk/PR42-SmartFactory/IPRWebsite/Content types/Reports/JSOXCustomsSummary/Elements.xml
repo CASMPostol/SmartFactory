@@ -11,8 +11,8 @@
       <FieldRef ID="{0D1243D7-75A7-47EB-A17E-E82C15AEA206}" Name="ExportOrFreeCirculationSAD" />
       <FieldRef ID="{1CBC328D-A936-4125-A6C6-A2E0E956D250}" Name="SADDate" />
       <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />
-      <FieldRef ID="{0F90D8BC-23A5-48B8-8089-B91E5ABB5BAE}" Name="SADConsignmentNo" />
-      <FieldRef ID="{F16E6D8E-E665-4063-8612-0D0976F82B3B}" Name="SADConsignmentDate" />
+      <FieldRef ID="{0F90D8BC-23A5-48B8-8089-B91E5ABB5BAE}" Name="IntroducingSADNo" />
+      <FieldRef ID="{F16E6D8E-E665-4063-8612-0D0976F82B3B}" Name="IntroducingSADDate" />
       <FieldRef ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Name="CompensationGood" />
       <FieldRef ID="{035F50FD-F71B-452B-8F44-7A4DB2486A8E}" Name="TotalAmount" />
       <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
