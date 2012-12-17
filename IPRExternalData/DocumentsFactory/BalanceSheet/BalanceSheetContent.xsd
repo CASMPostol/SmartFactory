@@ -57,6 +57,19 @@
   <xs:complexType name="JSOXClearanceContent">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="Disposal" type="tns:ArrayOfDisposalRow" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PreviusMonthDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PreviusMonthQuantity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IntroducingDateStart" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IntroducingDateEnd" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IntroducingQuantity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OutboundDateStart" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OutboundDateEnd" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OutboundQuantity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BalanceDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BalanceQuantity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SituationDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SituationQuantity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReassumeQuantity" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfDisposalRow">
