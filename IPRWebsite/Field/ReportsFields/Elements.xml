@@ -201,10 +201,12 @@
   <Field
     Name="SADConsignmentDate"
     ID="{F16E6D8E-E665-4063-8612-0D0976F82B3B}"
-    Type="Text"
+    Type="DateTime"
+    Format="DateOnly"
     DisplayName="SAD Consignment Date"
-    Group="CAS Smart Factory IPR Reports"
-    />
+    Group="CAS Smart Factory IPR Reports">
+    <Default>[today]</Default>
+  </Field>
   <Field
     Type="Text"
     DisplayName="Compensation Good"
