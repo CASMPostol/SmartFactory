@@ -20,7 +20,7 @@
       <FieldRef ID="{B31967C9-30E2-44CC-BB55-C9C3F8A64EEB}" Name="IPRType" />
       <FieldRef ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}" Name="ProductType" />
       <FieldRef ID="{6B3AF163-C404-433F-9801-047C12B9EE42}" Name="BatchIndex" />
-      <FieldRef ID="{6D5D5BFD-84C0-44A0-B8E2-C3C994748DA5}" Name="StockIndex" />
+      <FieldRef ID="{44A7C743-E3C0-4426-94B3-A639903E5EAD}" Name="StockLibraryIndex" />
     </FieldRefs>
   </ContentType>
 </Elements>
