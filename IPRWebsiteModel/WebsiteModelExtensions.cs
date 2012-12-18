@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// </summary>
     /// <param name="value">The value to be rounded.</param>
     /// <returns>The <paramref name="value"/> rounded; the number of fractional digits in the return value is 2.</returns>
-    public static double RountMass( this double value )
+    public static double Rount2Decimals( this double value )
     {
       return Math.Round( value, 2 );
     }
@@ -21,7 +21,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     /// </summary>
     /// <param name="value">The value to be rounded.</param>
     /// <returns>The <paramref name="value"/> rounded; the number of fractional digits in the return value is 2.</returns>
-    public static decimal RountMass( this decimal value )
+    public static decimal Rount2Decimals( this decimal value )
     {
       return Math.Round( value, 2 );
     }
