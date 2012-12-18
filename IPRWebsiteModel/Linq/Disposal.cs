@@ -158,14 +158,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void Adjust( ref decimal _toDispose )
     {
       this.SettledQuantityDec += this.Disposal2IPRIndex.Withdraw( ref _toDispose, this.SettledQuantityDec );
-      if ( this.CustomsStatus.Value == Linq.CustomsStatus.Finished) 
-        this.Disposal2IPRIndex.RecalculateClearedRecords(this.No.Value);
+      if ( this.CustomsStatus.Value == Linq.CustomsStatus.Finished )
+        this.Disposal2IPRIndex.RecalculateClearedRecords( this.No.Value );
     }
     internal decimal SettledQuantityDec
     {
       get { return Convert.ToDecimal( this.SettledQuantity ); }
-      set 
-      { 
+      set
+      {
         this.SettledQuantity = Convert.ToDouble( value );
         CalculateDutyAndVat();
       }
@@ -174,9 +174,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #region static
     internal static IQueryable<Disposal> GetEntries4JSOX( Entities edc )
     {
-      return from _dspx in edc.Disposal 
-             where (_dspx.JSOXCustomsSummaryIndex == null ) && (_dspx.CustomsStatus.Value == Linq.CustomsStatus.Started)
-             orderby _dspx.Disposal2IPRIndex.Title select _dspx;
+      return from _dspx in edc.Disposal
+             where ( _dspx.JSOXCustomsSummaryIndex == null ) && ( _dspx.CustomsStatus.Value == Linq.CustomsStatus.Started )
+             orderby _dspx.Disposal2IPRIndex.Title
+             select _dspx;
     }
     #endregion
 
@@ -216,6 +217,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       string productCodeNumber = sadGood.PCNTariffCode;
       PCNCode _pcn = PCNCode.Find( edc, IsDisposal, productCodeNumber );
+      if ( _pcn == null )
+      {
+        string _mtmp = "Cannot find pcn code: {0} for the good: {1} with IsDisposal set to{3}";
+        throw new InputDataValidationException( 
+            "wrong PCN code in customs message", "PCN Code",
+            string.Format( _mtmp, productCodeNumber, sadGood.GoodsDescription, IsDisposal ), 
+            true);
+      }
       this.Disposal2PCNID = _pcn;
       this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
       this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
