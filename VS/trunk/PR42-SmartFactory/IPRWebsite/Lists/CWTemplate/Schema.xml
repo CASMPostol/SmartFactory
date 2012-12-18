@@ -93,7 +93,7 @@
           <FieldRef Name="ValidToDate" />
           <FieldRef Name="ClosingDate" />
           <FieldRef Name="CW2PCNID" />
-          <FieldRef Name="CW2PCWLibraryID" />
+          <FieldRef Name="CW2CWLibraryID" />
         </ViewFields>
         <Query>
           <OrderBy>
