@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       {
         using ( Entities _edc = new Entities( this.workflowProperties.WebUrl ) )
         {
-          Stock _stock = Element.GetAtIndex<Stock>( _edc.Stock, workflowProperties.ItemId );
+          StockLib _stock = Element.GetAtIndex<StockLib>( _edc.StockLibrary, workflowProperties.ItemId );
           int _problems = 0;
           foreach ( StockEntry _sex in _stock.FinishedGoodsNotProcessed( _edc ) )
           {

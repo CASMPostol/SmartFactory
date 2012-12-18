@@ -63,7 +63,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
           String _message = String.Format( "Import of the stock message {0} starting.", fileName );
           ActivityLogCT.WriteEntry( _edc, m_Source, _message );
           StockXml document = StockXml.ImportDocument( stream );
-          Dokument entry = Element.GetAtIndex<Dokument>( _edc.StockLibrary, listIndex );
+          StockLib entry = Element.GetAtIndex<StockLib>( _edc.StockLibrary, listIndex );
           ErrorsList _warnings = new ErrorsList();
           IportXml( document, _edc, entry, _warnings, progressChanged );
           InputDataValidationException _exc = new InputDataValidationException( "there are errors in the stockm XML message.", "GetBatchLookup", _warnings );
@@ -96,16 +96,14 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
     #endregion
 
     #region private
-    private static void IportXml( StockXml document, Entities edc, Dokument entry, ErrorsList _warnings, ProgressChangedEventHandler progressChanged )
+    private static void IportXml( StockXml document, Entities edc, StockLib parent, ErrorsList _warnings, ProgressChangedEventHandler progressChanged )
     {
-      Stock newStock = new Stock( entry, edc );
-      edc.Stock.InsertOnSubmit( newStock );
       List<StockEntry> stockEntities = new List<StockEntry>();
       foreach ( StockXmlRow _row in document.Row )
       {
         try
         {
-          StockEntry nse = CreateStockEntry( _row, newStock );
+          StockEntry nse = CreateStockEntry( _row, parent );
           nse.ProcessEntry( edc, _warnings );
           progressChanged( _row, new ProgressChangedEventArgs( 1, _row.Material ) );
           stockEntities.Add( nse );
@@ -118,11 +116,11 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       if ( stockEntities.Count > 0 )
         edc.StockEntry.InsertAllOnSubmit( stockEntities );
     }
-    private static StockEntry CreateStockEntry( StockXmlRow xml, Stock parent )
+    private static StockEntry CreateStockEntry( StockXmlRow xml, StockLib parent )
     {
       return new StockEntry()
       {
-        StockIndex = parent,
+        StockLibraryIndex = parent,
         Batch = xml.Batch,
         Blocked = xml.Blocked,
         InQualityInsp = xml.InQualityInsp,
