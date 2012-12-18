@@ -23,7 +23,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Disposal2IPRIndex = ipr;
       DisposalStatus = _typeOfDisposal;
       Disposal2PCNID = null; //will be assigned during claring through custom
-      DutyAndVAT = new Nullable<double>();  // calculated in SetUpCalculatedColumns,
       DutyPerSettledAmount = new Nullable<double>();  // calculated in SetUpCalculatedColumns,
       InvoiceNo = String.Empty.NotAvailable(); //To be assigned during finished goods export.
       IPRDocumentNo = String.Empty.NotAvailable();
@@ -33,9 +32,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       SADDate = Extensions.SPMinimum;
       SADDocumentNo = String.Empty.NotAvailable();
       SettledQuantityDec = _toDispose;
-      Title = String.Empty; // calculated in SetUpCalculatedColumns,
-      VATPerSettledAmount = new Nullable<double>(); //calculated in SetUpCalculatedColumns,
-      TobaccoValue = new Nullable<double>(); //calculated in SetUpCalculatedColumns, 
       string _titleTmplt = "Disposal: {0} of material {1}";
       Title = String.Format( _titleTmplt, this.DisposalStatus.Value.ToString(), this.Disposal2IPRIndex.Batch );
     }
@@ -66,7 +62,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         this.SADDocumentNo = value.DocumentNo;
         this.SADDate = value.CustomsDebtDate;
         this.CustomsProcedure = Entities.ToString( value.ClearenceProcedure.Value );
-        CalculateDutyAndVat();
       }
     }
     internal InvoiceContent InvoicEContent
@@ -108,7 +103,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             quantity -= this.SettledQuantityDec;
         _at = "InvoicEContent";
         this.InvoicEContent = invoiceContent;
-        this.CalculateDutyAndVat();
       }
       catch ( Exception _ex )
       {
@@ -119,7 +113,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       CustomsStatus = Linq.CustomsStatus.Started;
       CustomsProcedure = Entities.ToString( procedure );
-      CalculateDutyAndVat();
     }
     internal void FinishClearingThroughCustoms( Entities edc, SADGood sadGood )
     {
@@ -141,7 +134,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         else
           this.ClearingType = Linq.ClearingType.PartialWindingUp;
         this.CustomsStatus = Linq.CustomsStatus.Finished;
-        CalculateDutyAndVat();
       }
       catch ( Exception _ex )
       {
@@ -166,14 +158,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal void Adjust( ref decimal _toDispose )
     {
       this.SettledQuantityDec += this.Disposal2IPRIndex.Withdraw( ref _toDispose, this.SettledQuantityDec );
-      CalculateDutyAndVat();
       if ( this.CustomsStatus.Value == Linq.CustomsStatus.Finished) 
         this.Disposal2IPRIndex.RecalculateClearedRecords(this.No.Value);
     }
     internal decimal SettledQuantityDec
     {
       get { return Convert.ToDecimal( this.SettledQuantity ); }
-      set { this.SettledQuantity = Convert.ToDouble( value ); }
+      set 
+      { 
+        this.SettledQuantity = Convert.ToDouble( value );
+        CalculateDutyAndVat();
+      }
     }
 
     #region static
