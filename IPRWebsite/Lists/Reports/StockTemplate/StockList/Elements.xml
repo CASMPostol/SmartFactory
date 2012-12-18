@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Stock"
-                OnQuickLaunch="TRUE"
-                TemplateType="10020"
-                Url="Lists/StockList"
-                Description="Stock List Instance">
-  </ListInstance>
-</Elements>

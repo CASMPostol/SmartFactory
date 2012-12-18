@@ -473,12 +473,6 @@
     <None Include="Lists\Reports\StockLibraryTemplate\StockLibrary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cbe84303-42b8-46f2-939f-5bccfbb5deeb}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\Reports\StockTemplate\StockList\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{b0d1f943-226c-411b-8363-3be922be2f2e}</SharePointProjectItemId>
-    </None>
-    <None Include="Lists\Reports\StockTemplate\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{6e8f00c0-2aa8-44f9-bdcb-3ad901f40617}</SharePointProjectItemId>
-    </None>
     <None Include="Lists\SettingsListTemplate\SettingsList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{242e0366-0e82-42c6-b1ea-762139c6bcbf}</SharePointProjectItemId>
     </None>
@@ -584,7 +578,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content types\Reports\BalanceSummary\Elements.xml" />
-    <Content Include="Content types\Reports\JSOXCustomsSummary\Elements.xml" />
+    <Content Include="Content types\Reports\JSOXCustomsSummary\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content types\Reports\JSOXLib\Elements.xml" />
     <Content Include="Content types\Reports\JSOXSummary\Elements.xml">
       <SubType>Designer</SubType>
@@ -851,9 +847,6 @@
     <Content Include="Lists\Reports\StockLibraryTemplate\Schema.xml" />
     <Content Include="Lists\Reports\StockLibraryTemplate\StockLibrary\Elements.xml" />
     <Content Include="Lists\Reports\StockLibraryTemplate\Upload.aspx" />
-    <Content Include="Lists\Reports\StockTemplate\Elements.xml" />
-    <Content Include="Lists\Reports\StockTemplate\StockList\Elements.xml" />
-    <Content Include="Lists\Reports\StockTemplate\Schema.xml" />
     <Content Include="Lists\SettingsListTemplate\Elements.xml" />
     <Content Include="Lists\SettingsListTemplate\Schema.xml" />
     <Content Include="Lists\SettingsListTemplate\SettingsList\Elements.xml" />
