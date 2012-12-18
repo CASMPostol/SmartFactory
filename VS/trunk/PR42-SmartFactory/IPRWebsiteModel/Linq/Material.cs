@@ -72,7 +72,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal _overuseInKg = 0;
       if ( overusage > 0 )
       {
-        _overuseInKg = this[ DisposalEnum.OverusageInKg ] = ( TobaccoQuantityDec * Convert.ToDecimal( overusage ) ).RountMass();
+        _overuseInKg = this[ DisposalEnum.OverusageInKg ] = ( TobaccoQuantityDec * Convert.ToDecimal( overusage ) ).Rount2Decimals();
         material -= _overuseInKg;
       }
       else
@@ -82,9 +82,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal _waste = this[ DisposalEnum.Waste ] = 0;
       if ( this.ProductType.Value == Linq.ProductType.IPRTobacco )
       {
-        _dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).RountMass();
-        _shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).RountMass();
-        _waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).RountMass();
+        _dust = this[ DisposalEnum.Dust ] = ( material * Convert.ToDecimal( ratios.dustRatio ) ).Rount2Decimals();
+        _shMenthol = this[ DisposalEnum.SHMenthol ] = ( material * Convert.ToDecimal( ratios.shMentholRatio ) ).Rount2Decimals();
+        _waste = this[ DisposalEnum.Waste ] = ( material * Convert.ToDecimal( ratios.wasteRatio ) ).Rount2Decimals();
       }
       this[ DisposalEnum.TobaccoInCigaretess ] = material - _shMenthol - _waste - _dust;
     }
@@ -157,7 +157,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </returns>
     public decimal CalculatedQuantity( InvoiceContent invoice )
     {
-      return Convert.ToDecimal( ( this.Tobacco.Value * invoice.Quantity.Value / this.Material2BatchIndex.FGQuantity.Value ).RountMass() );
+      return Convert.ToDecimal( ( this.Tobacco.Value * invoice.Quantity.Value / this.Material2BatchIndex.FGQuantity.Value ).Rount2Decimals() );
     }
     /// <summary>
     /// Gets the list of disposals.

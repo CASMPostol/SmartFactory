@@ -196,9 +196,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         double _portion = SettledQuantity.Value / Disposal2IPRIndex.NetMass.Value;
         //if ( this.ClearingType.Value == Linq.ClearingType.PartialWindingUp )
         //{
-        DutyPerSettledAmount = ( Disposal2IPRIndex.Duty.Value * _portion ).RoundCurrency();
-        VATPerSettledAmount = ( Disposal2IPRIndex.VAT.Value * _portion ).RoundCurrency();
-        TobaccoValue = ( Disposal2IPRIndex.Value.Value * _portion ).RoundCurrency();
+        DutyPerSettledAmount = ( Disposal2IPRIndex.Duty.Value * _portion ).Rount2Decimals();
+        VATPerSettledAmount = ( Disposal2IPRIndex.VAT.Value * _portion ).Rount2Decimals();
+        TobaccoValue = ( Disposal2IPRIndex.Value.Value * _portion ).Rount2Decimals();
         //}
         //else
         //{
@@ -206,7 +206,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         //  VATPerSettledAmount = GetVATNotCleared();
         //  TobaccoValue = GetPriceNotCleared();
         //}
-        DutyAndVAT = DutyPerSettledAmount.Value + VATPerSettledAmount.Value;
+        DutyAndVAT = (DutyPerSettledAmount.Value + VATPerSettledAmount.Value).Rount2Decimals();
       }
       catch ( Exception ex )
       {
