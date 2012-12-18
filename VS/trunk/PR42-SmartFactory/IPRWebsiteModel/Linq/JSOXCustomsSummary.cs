@@ -22,8 +22,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           ExportOrFreeCirculationSAD = _dspx.SADDocumentNo,
           InvoiceNo = _dspx.InvoiceNo,
           JSOXIndex = parent,
-          SADConsignmentDate = _dspx.Disposal2IPRIndex.CustomsDebtDate.ToString(), //TODO Wrong  type of SADConsignmentDate
-          SADConsignmentNo = _dspx.Disposal2IPRIndex.DocumentNo,
+          IntroducingSADDate = _dspx.Disposal2IPRIndex.CustomsDebtDate.Value.Date, 
+          IntroducingSADNo = _dspx.Disposal2IPRIndex.DocumentNo,
           SADDate = _dspx.SADDate,
           TotalAmount = _dspx.SettledQuantity,
           Title = "Creating"
@@ -38,7 +38,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 
     private void CreateTitle()
     {
-      this.Title = this.SADConsignmentNo;
+      this.Title = this.IntroducingSADNo;
     }
   }
 }

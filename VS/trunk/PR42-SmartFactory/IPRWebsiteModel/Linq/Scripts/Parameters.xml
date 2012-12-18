@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0"?>
 <Web xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Class="Entities" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal">
   <List Name="Activity Log" />
-  <List Name="Balance Library" />
   <List Name="Balance Summary" />
   <List Name="Batch" />
   <List Name="Batch Library" />
@@ -40,7 +39,6 @@
   <List Name="SKU" />
   <List Name="SKU Library" />
   <!--<List Name="Solution Gallery" />-->
-  <List Name="Stock" />
   <List Name="Stock Entry" />
   <List Name="Stock Library" />
   <!--<List Name="Style Library" />-->
@@ -70,7 +68,7 @@
     <Column Name="IPRType" Member="IPRType" />
     <Column Name="ProductType" Member="ProductType" />
     <Column Name="BatchIndex" Member="BatchIndex" />
-    <Column Name="StockIndex" Member="StockIndex" />
+    <Column Name="StockLibraryIndex" Member="StockLibraryIndex" />
   </ContentType>
   <ContentType Name="Usage" Class="Usage">
     <Column Name="FormatIndex" Member="FormatIndex" />
@@ -157,12 +155,6 @@
     <Column Name="NetMass" Member="NetMass" />
     <Column Name="Units" Member="Units" />
     <Column Name="SADQuantity2SADGoodID" Member="SADQuantity2SADGoodID" />
-  </ContentType>
-  <ContentType Name="Stock" Class="Stock">
-    <!--<Column Name="ContentType" Member="ContentType" />-->
-    <Column Name="Title" Member="Title" />
-    <Column Name="StockLibraryIndex" Member="StockLibraryIndex" />
-    <Column Name="BalanceLibraryIndex" Member="BalanceLibraryIndex" />
   </ContentType>
   <ContentType Name="CutfillerCoefficient" Class="CutfillerCoefficient">
     <Column Name="CFTProductivityRateMin" Member="CFTProductivityRateMin" />
@@ -436,6 +428,7 @@
   <ContentType Name="ReportsCommonPart" Class="ReportsCommonPart">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
+    <Column Name="DocumentNo" Member="DocumentNo" />
     <Column Name="SKU" Member="SKU" />
     <Column Name="Batch" Member="Batch" />
     <Column Name="TobaccoEnteredIntoIPR" Member="TobaccoEnteredIntoIPR" />
@@ -461,6 +454,7 @@
   <ContentType Name="BalanceSummary" Class="BalanceSummary">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
+    <Column Name="DocumentNo" Member="DocumentNo" />
     <Column Name="SKU" Member="SKU" />
     <Column Name="Batch" Member="Batch" />
     <Column Name="TobaccoEnteredIntoIPR" Member="TobaccoEnteredIntoIPR" />
@@ -487,11 +481,12 @@
     <Column Name="TobaccoInCigarettesProduction" Member="TobaccoInCigarettesProduction" />
     <Column Name="TobaccoInCutfillerWarehouse" Member="TobaccoInCutfillerWarehouse" />
     <Column Name="Balance" Member="Balance" />
-    <Column Name="BalanceLibraryIndex" Member="BalanceLibraryIndex" />
+    <Column Name="Balance2JSOXLibraryIndex" Member="Balance2JSOXLibraryIndex" />
   </ContentType>
   <ContentType Name="JSOXSummary" Class="JSOXSummary">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
+    <Column Name="DocumentNo" Member="DocumentNo" />
     <Column Name="SKU" Member="SKU" />
     <Column Name="Batch" Member="Batch" />
     <Column Name="TobaccoEnteredIntoIPR" Member="TobaccoEnteredIntoIPR" />
@@ -513,6 +508,8 @@
     <Column Name="PureTobaccoCSNotStarted" Member="PureTobaccoCSNotStarted" />
     <Column Name="TobaccoUsedInTheProduction" Member="TobaccoUsedInTheProduction" />
     <Column Name="TobaccoToBeUsedInTheProduction" Member="TobaccoToBeUsedInTheProduction" />
+    <Column Name="CustomsProcedure" Member="CustomsProcedure" />
+    <Column Name="InvoiceNo" Member="InvoiceNo" />
     <Column Name="OGLIntroduction" Member="OGLIntroduction" />
     <Column Name="BalanceIndex" Member="BalanceIndex" />
     <Column Name="JSOXIndex" Member="JSOXIndex" />
@@ -524,8 +521,8 @@
     <Column Name="ExportOrFreeCirculationSAD" Member="ExportOrFreeCirculationSAD" />
     <Column Name="SADDate" Member="SADDate" />
     <Column Name="InvoiceNo" Member="InvoiceNo" />
-    <Column Name="SADConsignmentNo" Member="SADConsignmentNo" />
-    <Column Name="SADConsignmentDate" Member="SADConsignmentDate" />
+    <Column Name="IntroducingSADNo" Member="IntroducingSADNo" />
+    <Column Name="IntroducingSADDate" Member="IntroducingSADDate" />
     <Column Name="CompensationGood" Member="CompensationGood" />
     <Column Name="TotalAmount" Member="TotalAmount" />
     <Column Name="JSOXIndex" Member="JSOXIndex" />
@@ -583,6 +580,14 @@
     <Column Name="CTFUsageMax" Member="CTFUsageMax" />
     <Column Name="UsageVersion" Member="UsageVersion" />
   </ContentType>
+  <ContentType Name="StockLib" Class="StockLib">
+    <!--<Column Name="ContentType" Member="ContentType" />-->
+    <Column Name="FileLeafRef" Member="FileLeafRef" />
+    <Column Name="Title" Member="Title" />
+    <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
+    <Column Name="Created_x0020_By" Member="Created_x0020_By" />
+    <Column Name="Stock2JSOXLibraryIndex" Member="Stock2JSOXLibraryIndex" />
+  </ContentType>
   <ContentType Name="IPRLib" Class="IPRLib">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="FileLeafRef" Member="FileLeafRef" />
@@ -597,7 +602,19 @@
     <Column Name="Title" Member="Title" />
     <Column Name="Modified_x0020_By" Member="Modified_x0020_By" />
     <Column Name="Created_x0020_By" Member="Created_x0020_By" />
-    <Column Name="JSOXLibrary2BalanceLibraryID" Member="JSOXLibrary2BalanceLibraryID" />
+    <Column Name="PreviousMonthDate" Member="PreviousMonthDate" />
+    <Column Name="PreviousMonthQuantity" Member="PreviousMonthQuantity" />
+    <Column Name="IntroducingDateStart" Member="IntroducingDateStart" />
+    <Column Name="IntroducingDateEnd" Member="IntroducingDateEnd" />
+    <Column Name="IntroducingQuantity" Member="IntroducingQuantity" />
+    <Column Name="OutboundDateStart" Member="OutboundDateStart" />
+    <Column Name="OutboundDateEnd" Member="OutboundDateEnd" />
+    <Column Name="OutboundQuantity" Member="OutboundQuantity" />
+    <Column Name="BalanceDate" Member="BalanceDate" />
+    <Column Name="BalanceQuantity" Member="BalanceQuantity" />
+    <Column Name="SituationDate" Member="SituationDate" />
+    <Column Name="SituationQuantity" Member="SituationQuantity" />
+    <Column Name="ReassumeQuantity" Member="ReassumeQuantity" />
   </ContentType>
   <ContentType Name="SADConsignment" Class="SADConsignment">
     <!--<Column Name="ContentType" Member="ContentType" />-->

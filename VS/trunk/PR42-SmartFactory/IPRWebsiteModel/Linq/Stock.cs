@@ -6,14 +6,8 @@ using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
-  public partial class Stock
+  public partial class StockLib
   {
-    public Stock( Dokument entry, Entities edc )
-      : this()
-    {
-      this.StockLibraryIndex = entry;
-      this.Title = entry.Nazwa; //TODO What to assign to it http://itrserver/Bugs/BugDetail.aspx?bid=2910
-    }
     /// <summary>
     /// List of all IPR finished goods.
     /// </summary>
