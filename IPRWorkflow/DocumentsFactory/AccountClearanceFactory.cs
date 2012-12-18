@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CAS.SharePoint;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.AccountClearance;
@@ -12,14 +11,16 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
 {
   internal static class AccountClearanceFactory
   {
-    public static RequestContent CreateRequestContent( IPRClass ipr, string documentNo )
+    #region public
+    internal static RequestContent CreateRequestContent( IPRClass ipr, string documentNo )
     {
+      ProductCodeNumberDesscription[] _pcnArray = CreateArrayOfProductCodeNumberDesscription( ipr.Disposal );
       ArrayOfDIsposalsDisposalsArray[] _disposalsColection = CreateArrayOfDIsposalsDisposalsArray( ipr.Disposal );
       RequestContent _ret = new RequestContent()
       {
         Batch = ipr.Batch,
         Cartons = ipr.Cartons.Value,
-        ConsentDate = ipr.IPR2ConsentTitle.ConsentDate.Value,
+        ConsentDate = ipr.IPR2ConsentTitle.ValidFromDate.Value,
         ConsentNo = ipr.IPR2ConsentTitle.Title,
         ConsentPeriod = ipr.ConsentPeriod.Value,
         CustomsDebtDate = ipr.CustomsDebtDate.Value,
@@ -35,6 +36,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         InvoiceNo = ipr.InvoiceNo,
         NetMass = ipr.NetMass.Value,
         PCN = ipr.IPR2PCNPCN.ProductCodeNumber,
+        PCNRecord = _pcnArray,
         ProductivityRateMax = ipr.ProductivityRateMax.Value,
         ProductivityRateMin = ipr.ProductivityRateMin.Value,
         SKU = ipr.SKU,
@@ -43,14 +45,37 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         ValidToDate = ipr.ValidToDate.Value,
         VAT = ipr.VAT.Value,
         VATName = ipr.VATName,
-        VATPerUnit = ipr.IPRVATPerUnit.Value
+        VATPerUnit = ipr.IPRVATPerUnit.Value, 
+        VATDutyTotal = ipr.VATDec + ipr.DutyDec
       };
       return _ret;
+    }
+    #endregion
+
+    #region private
+    private static ProductCodeNumberDesscription[] CreateArrayOfProductCodeNumberDesscription( EntitySet<Disposal> disposals )
+    {
+      Dictionary<string, ProductCodeNumberDesscription> _ret = new Dictionary<string, ProductCodeNumberDesscription>();
+      foreach ( Disposal _dx in disposals.OrderBy<Disposal, double>( x => x.No.Value ) )
+      {
+        if ( _dx.Disposal2PCNID == null )
+          throw new ArgumentNullException( "Disposal2PCNID", "PCN code has to be recognized for all disposals" );
+        if ( !_ret.ContainsKey( _dx.Disposal2PCNID.ProductCodeNumber ) )
+        {
+          ProductCodeNumberDesscription _new = new ProductCodeNumberDesscription()
+          {
+            CodeNumber = _dx.Disposal2PCNID.ProductCodeNumber,
+            Description = _dx.Disposal2PCNID.CompensationGood
+          };
+          _ret.Add( _new.CodeNumber, _new );
+        }
+      }
+      return _ret.Values.OrderBy<ProductCodeNumberDesscription, string>( x => x.CodeNumber ).ToArray<ProductCodeNumberDesscription>();
     }
     private static ArrayOfDIsposalsDisposalsArray[] CreateArrayOfDIsposalsDisposalsArray( EntitySet<Disposal> disposals )
     {
       List<ArrayOfDIsposalsDisposalsArray> _arry = new List<ArrayOfDIsposalsDisposalsArray>();
-      foreach ( Disposal _dx in disposals )
+      foreach ( Disposal _dx in disposals.OrderBy<Disposal, double>( x => x.No.Value ) )
       {
         ArrayOfDIsposalsDisposalsArray _item = new ArrayOfDIsposalsDisposalsArray()
         {
@@ -70,6 +95,8 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       }
       return _arry.ToArray();
     }
+    #endregion
+
   }
 }
 

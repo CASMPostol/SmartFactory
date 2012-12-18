@@ -30,12 +30,12 @@
         <xs:element minOccurs="0" maxOccurs="1" name="VATName" type="xs:string" />
         <xs:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="VATDutyTotal" type="xs:decimal" />
-        <xs:element minOccurs="0" maxOccurs="1" name="DisposalsColection" type="tns:ArrayOfArrayOfDIsposalsDisposalsArray" />
+        <xs:element minOccurs="0" maxOccurs="1" name="DisposalsColection" type="tns:ArrayOfDIsposals" />
         <xs:element minOccurs="0" maxOccurs="1" name="PCNRecord" type="tns:ArrayOfProductCodeNumberDesscription" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:complexType name="ArrayOfArrayOfDIsposalsDisposalsArray">
+  <xs:complexType name="ArrayOfDIsposals">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalsArray">
         <xs:complexType>
