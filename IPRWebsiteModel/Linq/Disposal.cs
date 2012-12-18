@@ -56,7 +56,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           throw new ArgumentNullException( "Clearance", "Clearence cannot be null" );
         if ( this.CustomsStatus.Value != Linq.CustomsStatus.NotStarted )
           throw new ArgumentException( "Clearance can be assigned ony to NoStarted disposals - internal fatal error." );
-        this.CustomsStatus = Linq.CustomsStatus.Started;
         this.CustomsProcedure = Entities.ToString( value.ClearenceProcedure.Value );
         this.Disposal2ClearenceIndex = value;
         this.SADDocumentNo = value.DocumentNo;
@@ -72,6 +71,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           throw new ArgumentNullException( "InvoicEContent", "InvoicEContent cannot be null" );
         this.Disposal2InvoiceContentIndex = value;
         this.Clearance = value.InvoiceIndex.ClearenceIndex;
+        this.CustomsStatus = Linq.CustomsStatus.Started;
         this.InvoiceNo = value.InvoiceIndex.BillDoc;
       }
     }
