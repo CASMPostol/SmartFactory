@@ -48,7 +48,7 @@ namespace CAS.SmartFactory.IPR.Customs
             {
               _cx.DocumentNo = _sad.DocumentNumber;
               _at = "switch RequestedProcedure";
-              switch ( _cx.ProcedureCode.RequestedProcedure() )
+              switch ( _cx.ClearenceProcedure.Value.RequestedProcedure() )
               {
                 case CustomsProcedureCodes.FreeCirculation:
                   _cx.FinishClearingThroughCustoms( _edc );
@@ -91,6 +91,30 @@ namespace CAS.SmartFactory.IPR.Customs
     #endregion
 
     #region private
+    private static CustomsProcedureCodes RequestedProcedure( this ClearenceProcedure value )
+    {
+      CustomsProcedureCodes _ret = default( CustomsProcedureCodes );
+      switch ( value )
+      {
+        case ClearenceProcedure._3151:
+        case ClearenceProcedure._3171:
+          _ret = CustomsProcedureCodes.NoProcedure;
+          break;
+        case ClearenceProcedure._4051:
+        case ClearenceProcedure._4071:
+          _ret = CustomsProcedureCodes.FreeCirculation;
+          break;
+        case ClearenceProcedure._5100:
+        case ClearenceProcedure._5171:
+          _ret = CustomsProcedureCodes.InwardProcessing;
+          break;
+        case ClearenceProcedure._7100:
+        case ClearenceProcedure._7171:
+          _ret = CustomsProcedureCodes.CustomsWarehousingProcedure;
+          break;
+      }
+      return _ret;
+    }
     private static void SADPZCProcessing( Entities edc, CustomsDocument.DocumentType messageType, SADDocumentType sad, ref string comments, ref string at, List<InputDataValidationException> warnings )
     {
       at = "_customsProcedureCodes";
