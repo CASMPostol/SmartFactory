@@ -5,7 +5,6 @@ using System.IO;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using Microsoft.SharePoint;
-using Microsoft.SharePoint.Linq;
 using StockXml = CAS.SmartFactory.xml.erp.Stock;
 using StockXmlRow = CAS.SmartFactory.xml.erp.StockRow;
 
