@@ -105,6 +105,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           ( new CAS.SharePoint.ApplicationError( "CAS.SmartFactory.IPR.WebsiteModel.Linq.AddDisposal", "_qunt > 0", _msg, null ), _msg );
       }
     }
+    /// <summary>
+    /// Gets the VAT as decimal value.
+    /// </summary>
+    /// <value>
+    /// The VAT.
+    /// </value>
+    public decimal VATDec { get { return Convert.ToDecimal( this.VAT.Value ); } }
+    /// <summary>
+    /// Gets the duty as decimal value.
+    /// </summary>
+    /// <value>
+    /// The duty.
+    /// </value>
+    public decimal DutyDec { get { return Convert.ToDecimal( this.Duty.Value ); } }
 
     #region static
     public static IQueryable<IPR> GetAllNew4JSOX( Entities edc )
