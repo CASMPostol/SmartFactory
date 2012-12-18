@@ -59,7 +59,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           DutyPerSettledAmount = _dx.DutyPerSettledAmount.GetValueOrDefault( 0 ),
           InvoiceNo = _dx.InvoiceNo,
           No = _dx.No.Value,
-          ProductCodeNumber = _dx.Disposal2PCNID.ProductCodeNumber,
+          ProductCodeNumber = _dx.Disposal2PCNID == null ? String.Empty.NotAvailable() : _dx.Disposal2PCNID.ProductCodeNumber,
           RemainingQuantity = _dx.RemainingQuantity.Value,
           SADDate = _dx.SADDate.Value,
           SADDocumentNo = _dx.SADDocumentNo,
