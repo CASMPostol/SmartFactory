@@ -37,14 +37,15 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
       //  Anons.WriteEntry(edc, m_Title, "Import of an invoice xml message failed because the file is empty.");
       //  return;
       //}
-      IportInvoiceFromXml
-      (
-        properties.ListItem.File.OpenBinaryStream(),
-        properties.WebUrl,
-        properties.ListItem.ID,
-        properties.ListItem.File.Name,
-        ( object obj, ProgressChangedEventArgs progres ) => { return; }
-      );
+      using ( Stream _str = properties.ListItem.File.OpenBinaryStream() )
+        IportInvoiceFromXml
+        (
+          _str,
+          properties.WebUrl,
+          properties.ListItem.ID,
+          properties.ListItem.File.Name,
+          ( object obj, ProgressChangedEventArgs progres ) => { return; }
+        );
       this.EventFiringEnabled = true;
       base.ItemAdded( properties );
     }

@@ -34,14 +34,15 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Reports
       //  edc.SubmitChanges();
       //  return;
       //}
-      IportStockFromXML
-        (
-          properties.ListItem.File.OpenBinaryStream(),
-          properties.WebUrl,
-          properties.ListItem.ID,
-          properties.ListItem.File.Name,
-          ( object obj, ProgressChangedEventArgs progres ) => { return; }
-        );
+      using ( Stream _str = properties.ListItem.File.OpenBinaryStream() )
+        IportStockFromXML
+          (
+            _str,
+            properties.WebUrl,
+            properties.ListItem.ID,
+            properties.ListItem.File.Name,
+            ( object obj, ProgressChangedEventArgs progres ) => { return; }
+          );
       this.EventFiringEnabled = true;
       base.ItemAdded( properties );
     }

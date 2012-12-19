@@ -7,6 +7,7 @@
         <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
         <Class>CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries.SKUEventHandlers</Class>
         <SequenceNumber>10000</SequenceNumber>
+        <Synchronization>Asynchronous</Synchronization>
       </Receiver>
   </Receivers>
 </Elements>

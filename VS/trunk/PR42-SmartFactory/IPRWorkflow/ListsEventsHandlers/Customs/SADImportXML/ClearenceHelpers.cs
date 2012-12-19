@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CAS.SharePoint;
 using CAS.SharePoint.Web;
 using CAS.SmartFactory.IPR.WebsiteModel;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq.Account;
 using CAS.SmartFactory.xml;
 using CAS.SmartFactory.xml.Customs;
-using Microsoft.SharePoint.Linq;
 using IPRClass = CAS.SmartFactory.IPR.WebsiteModel.Linq.IPR;
 
 namespace CAS.SmartFactory.IPR.Customs
@@ -17,7 +15,7 @@ namespace CAS.SmartFactory.IPR.Customs
   {
 
     #region public
-    internal static void DeclarationProcessing( SADDocumentType _sad, Entities _edc, CustomsDocument.DocumentType _messageType, out string _comments, List<InputDataValidationException> warnings )
+    internal static void DeclarationProcessing( SADDocumentType _sad, Entities _edc, CustomsDocument.DocumentType _messageType, ref string _comments, List<InputDataValidationException> warnings )
     {
       string _at = "started";
       _comments = "Clearance association error";
