@@ -14,7 +14,7 @@
           Wniosek o rozliczenie towaru objętego procedurą uszlachetniania czynnego
         </title>
         <style type="text/css">
-          td, p, li { font-size:10pt; }
+          td, p, li { font-size:9pt; }
           h3 { font-size:11pt; }
           th { font-size:11pt; }
           h2 { font-size:12pt; }
@@ -110,15 +110,15 @@
     </table>
     <table border="0" width="100%">
           <tr>
-            <td>
-              <p align="right" height="50px" valign="bottom">
+            <td align="right" height="50" valign="bottom">
+              <p>
                 .............................................
               </p>
             </td>
           </tr>
           <tr>
-            <td>
-              <p align="right">
+            <td align="right">
+              <p>
                 Imię i Nazwisko
               </p>
             </td>
@@ -403,15 +403,15 @@
     </table>
     <table border="0" width="100%">
           <tr>
-            <td>
-              <p align="right" height="50px" valign="bottom">
+            <td align="right" height="50" valign="bottom">
+              <p>
                 .............................................
               </p>
             </td>
           </tr>
           <tr>
-            <td>
-              <p align="right">
+            <td align="right">
+              <p>
                 Imię i Nazwisko
               </p>
             </td>
@@ -481,10 +481,7 @@
   <xsl:template match="cas:ProductCodeNumberDesscription">
     <tr>
       <td>
-        <xsl:value-of select="cas:CodeNumber"/>
-      </td>
-      <td>
-        <xsl:value-of select="cas:Description"/>
+        <xsl:value-of select="cas:CodeNumber"/> - <xsl:value-of select="cas:Description"/>
       </td>
     </tr>
   </xsl:template>
