@@ -133,8 +133,8 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           if ( _batch != null )
             throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", "The status of Progress is not allowed if any batch has been imported previouly", true );
           _batch = new Batch();
+            _newBatch = true;
           _contentInfo.Validate( edc, _batch.Disposal );
-
             break;
         case BatchStatus.Intermediate:
         case BatchStatus.Final:
