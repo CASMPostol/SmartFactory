@@ -14,7 +14,7 @@
       <Assembly>$SharePoint.Project.AssemblyFullName$</Assembly>
       <Class>CAS.SmartFactory.IPR.Customs.SADImportXML</Class>
       <SequenceNumber>1000</SequenceNumber>
-      <Synchronization>Synchronous</Synchronization>
+      <Synchronization>Asynchronous</Synchronization>
     </Receiver>
   </Receivers>
 </Elements>
