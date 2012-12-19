@@ -134,7 +134,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
             throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", "The status of Progress is not allowed if any batch has been imported previouly", true );
           _batch = new Batch();
           _newBatch = true;
-          _contentInfo.Validate( edc, _batch.Disposal );
           break;
         case BatchStatus.Intermediate:
         case BatchStatus.Final:
@@ -151,13 +150,13 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
             _batch = new Batch();
             _newBatch = true;
           }
-          progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: Validate" ) );
-          _contentInfo.Validate( edc, _batch.Disposal );
-          if ( _newBatch )
-            edc.Batch.InsertOnSubmit( _batch );
-          _batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged, _newBatch );
           break;
       }
+      progressChanged( null, new ProgressChangedEventArgs( 1, "GetXmlContent: Validate" ) );
+      _contentInfo.Validate( edc, _batch.Disposal );
+      if ( _newBatch )
+        edc.Batch.InsertOnSubmit( _batch );
+      _batch.BatchProcessing( edc, _newBtachStatus, _contentInfo, parent, progressChanged, _newBatch );
     }
     private static BatchStatus GetBatchStatus( xml.erp.BatchStatus batchStatus )
     {

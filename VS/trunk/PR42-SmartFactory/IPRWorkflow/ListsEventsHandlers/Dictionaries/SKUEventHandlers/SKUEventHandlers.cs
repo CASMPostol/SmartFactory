@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
           Dokument entry = Element.GetAtIndex<Dokument>( edc.SKULibrary, properties.ListItem.ID );
           At = "GetXmlContent";
           SKUGetFromXML.GetXmlContent( xml, edc, entry, ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; } );
-          ActivityLogCT.WriteEntry( edc, m_Title, "Import of the message finished" );
+          ActivityLogCT.WriteEntry( edc, m_Title, String.Format( "Import of the sku message {0} finished", properties.ListItem.File.Name ) );
         }
       }
       catch ( InputDataValidationException _ioex )
