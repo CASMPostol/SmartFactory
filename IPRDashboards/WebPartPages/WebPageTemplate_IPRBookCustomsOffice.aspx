@@ -48,9 +48,9 @@
 </asp:Content>
 
 <asp:Content ID="PageTitle" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
-    <asp:Literal ID="m_PageTitle" runat="server" Text="KSIĘGA USZLACHETNIANIA CZYNNEGO" />
+    <asp:Literal ID="m_PageTitle" runat="server" Text="IPR Customs Office" />
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-    <asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="KSIĘGA USZLACHETNIANIA CZYNNEGO" />
+    <asp:Literal ID="m_PageTitleInTitleArea" runat="server" Text="IPR Customs Office" />
 </asp:Content>
