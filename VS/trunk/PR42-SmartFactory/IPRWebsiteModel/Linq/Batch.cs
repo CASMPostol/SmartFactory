@@ -119,6 +119,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _ix.UpdateExportedDisposals( edc );
       contentInfo.UpdateNotStartedDisposals( edc, this, progressChanged );
     }
+    internal string DanglingBatchWarningMessage
+    {
+      get
+      {
+        string _msg = "Stock mismatch; the batch {0} is not reported on the stock. Correct your stock and try again.";
+        return String.Format( _msg, this.Title );
+      }
+    }
     internal void AddProgressDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
     {
       if ( edc.ObjectTrackingEnabled )
@@ -154,7 +162,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return 0;
     }
     #endregion
-
   }
 }
 
