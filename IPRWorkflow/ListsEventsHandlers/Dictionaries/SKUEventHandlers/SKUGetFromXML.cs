@@ -75,10 +75,10 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Dictionaries
         progressChanged( null, new ProgressChangedEventArgs( 1, "Submiting Changes" ) );
         edc.SubmitChanges();
       }
-      string _pattern = "Finished content analysis, there are {0} entries, {1} new entries, {2} erroneous entries";
-      ActivityLogCT.WriteEntry( "SKU Message Import", String.Format( _pattern, _entries, _newEntries, warnings.Count ), edc.Web );
       if ( warnings.Count > 0 )
         throw new InputDataValidationException( "SKU message import errors.", "XML import", warnings );
+      string _pattern = "Finished content analysis, there are {0} entries, {1} new entries, {2} erroneous entries";
+      ActivityLogCT.WriteEntry( "SKU Message Import", String.Format( _pattern, _entries, _newEntries, warnings.Count ), edc.Web );
     }
     private static SKUCigarette SKUCigarette( CigarettesMaterialxML xmlDocument, Dokument parent, Entities edc, List<String> warnings )
     {
