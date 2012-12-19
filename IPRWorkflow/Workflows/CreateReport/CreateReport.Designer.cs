@@ -205,7 +205,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
       // ValidateActivity
       // 
       this.ValidateActivity.Name = "ValidateActivity";
-      this.ValidateActivity.ExecuteCode += new System.EventHandler( this.Validate );
+      this.ValidateActivity.ExecuteCode += new System.EventHandler( this.AssociateWithBatches );
       // 
       // StartingValidationLog
       // 

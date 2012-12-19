@@ -29,35 +29,18 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
     #endregion
 
     #region ValidationSequence
-    private void Validate( object sender, EventArgs e )
+    private void AssociateWithBatches( object sender, EventArgs e )
     {
       try
       {
         using ( Entities _edc = new Entities( this.workflowProperties.WebUrl ) )
         {
           StockLib _stock = Element.GetAtIndex<StockLib>( _edc.StockLibrary, workflowProperties.ItemId );
-          int _problems = 0;
-          foreach ( StockEntry _sex in _stock.FinishedGoodsNotProcessed( _edc ) )
-          {
-            Batch _batchLookup = Batch.FindStockToBatchLookup( _edc, _sex.Batch );
-            if ( _batchLookup != null )
-            {
-              _sex.BatchIndex = _batchLookup;
-              continue;
-            }
-            ActivityLogCT.WriteEntry( _edc, "CreateReport", _sex.NoMachingBatcgWarningMessage );
-            _problems++;
-          }
-          foreach ( StockEntry _senbx in _stock.FinishedGoodsNotBalanced( _edc ) )
-          {
-            ActivityLogCT.WriteEntry( _edc, "CreateReport", _senbx.NoMachingQuantityWarningMessage );
-            _problems++;
-          }
+          ValidationPaased = _stock.Validate( _edc );
           if ( !ValidationPaased )
           {
-            ValidationPaased = false;
-            string _mtmplt = "Data validation failed. There are {0} reported problems that must be resolved to start report calculation procedure. Details you can find on the application log.";
-            ValidationFailedLog_HistoryDescription = String.Format( _mtmplt, _problems );
+            string _mtmplt = "Data validation failed. There are problems reported that must be resolved to start calculation procedure. Details you can find on the application log.";
+            ValidationFailedLog_HistoryDescription = _mtmplt;
           }
         }
       }
@@ -67,6 +50,7 @@ namespace CAS.SmartFactory.IPR.Workflows.CreateReport
         ValidationFailedLog_HistoryDescription = String.Format( _patt, _ex.Message, _ex.StackTrace );
       }
     }
+
     public String ValidationFailedLog_HistoryDescription = default( System.String );
     private bool ValidationPaased = false;
     private void Validated( object sender, ConditionalEventArgs e )
