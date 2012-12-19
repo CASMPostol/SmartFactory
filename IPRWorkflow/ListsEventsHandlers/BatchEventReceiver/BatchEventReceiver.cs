@@ -146,11 +146,6 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
               string _ptrn = "The final batch {0} has been analyzed already.";
               throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", String.Format( _ptrn, _contentInfo.Product.Batch ), true );
             }
-            if ( !( ( _batch.FGQuantity.Value - _batch.FGQuantityAvailable.Value ) > _contentInfo.Product.FGQuantity.Value ) )
-            {
-              string _ptrn = "The previous batch {0} has quantity of finisched good greater then the new one - it looks like wrong messages sequence.";
-              throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", String.Format( _ptrn, _contentInfo.Product.Batch ), true );
-            }
           }
           else
           {

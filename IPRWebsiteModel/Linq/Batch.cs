@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
@@ -60,9 +59,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Batch0 = contentInfo.Product.Batch;
       SKU = contentInfo.Product.SKU;
       Title = String.Format( "{0} SKU: {1}; Batch: {2}", contentInfo.Product.ProductType, SKU, Batch0 );
-      FGQuantityAvailable = newBatch ? contentInfo.Product.FGQuantity : contentInfo.Product.FGQuantity - FGQuantity + FGQuantityAvailable;
-      if ( FGQuantityAvailable < 0 )
-        throw new ArgumentException( "FGQuantityAvailable", "FGQuantityAvailable cannot be less then 0" );
+      if ( newBatch )
+        FGQuantityAvailable = contentInfo.Product.FGQuantity;
+      else
+      {
+        double _diff = contentInfo.Product.FGQuantity.Value - FGQuantity.Value;
+        double _available = FGQuantityAvailable.Value;
+        if ( _diff + _available >= 0 )
+        {
+          string _ptrn = "The previous batch {0} has quantity of finisched good greater then the new one - it looks like wrong messages sequence. Available={1}, Diff={2}";
+          throw new InputDataValidationException( "wrong status of the input batch", "BatchProcessing", String.Format( _ptrn, contentInfo.Product.Batch, _available, _diff ), true );
+        }
+        FGQuantityAvailable = _diff + _available;
+      }
       FGQuantity = contentInfo.Product.FGQuantity;
       MaterialQuantity = Convert.ToDouble( contentInfo.TotalTobacco );
       ProductType = contentInfo.Product.ProductType;
@@ -112,7 +121,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void AddProgressDisposals( Entities edc, Batch parent, ProgressChangedEventHandler progressChanged )
     {
-      if (edc.ObjectTrackingEnabled)
+      if ( edc.ObjectTrackingEnabled )
         throw new ApplicationException( "At Batch.GetDisposals the ObjectTrackingEnabled is set." );
       if ( this.BatchStatus.Value != Linq.BatchStatus.Progress )
         throw new ApplicationException( "At Batch.GetDisposals the BatchStatus != Linq.BatchStatus.Progress" );
