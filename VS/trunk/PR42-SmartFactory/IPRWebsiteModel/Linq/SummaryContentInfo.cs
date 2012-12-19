@@ -128,17 +128,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                                                  where _mx.ProductType.Value == Linq.ProductType.IPRTobacco
                                                  select new { batchId = _mx.Batch, quantity = _mx.TobaccoQuantityDec } ).ToDictionary( k => k.batchId, v => v.quantity );
       foreach ( Disposal _dx in disposals )
-        if ( !_materials.Keys.Contains<string>( _dx.Disposal2BatchIndex.Batch0 ) )
-          _materials.Add( _dx.Disposal2BatchIndex.Batch0, _dx.SettledQuantityDec );
+        if ( !_materials.Keys.Contains<string>( _dx.Disposal2IPRIndex.Batch ) )
+          _materials.Add( _dx.Disposal2IPRIndex.Batch, _dx.SettledQuantityDec );
         else
-          _materials[ _dx.Disposal2BatchIndex.Batch0 ] -= _dx.SettledQuantityDec;
+          _materials[ _dx.Disposal2IPRIndex.Batch ] -= _dx.SettledQuantityDec;
       foreach ( var _qutty in _materials )
       {
         decimal _diff = IPR.IsAvailable( edc, _qutty.Key, _qutty.Value );
-        if ( Math.Abs(_diff) > 1 )  //TODO add common cheking point and get data from settings.
+        if ( _diff < -1 )  //TODO add common cheking point and get data from settings.
         {
-          string _mssg = "Cannot find any IPR account to dispose the tobacco quantity {3}: Tobacco batch: {0}, fg batch: {1}, quantity: {2} kg";
-          _validationErrors.Add( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value, _diff ) );
+          string _mssg = "Cannot find any IPR account to dispose the quantity {3}: Tobacco batch: {0}, fg batch: {1}, quantity to dispose: {2} kg";
+          _validationErrors.Add( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value, - _diff ) );
         }
       }
       if ( _validationErrors.Count > 0 )

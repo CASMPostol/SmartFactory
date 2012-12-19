@@ -50,7 +50,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           _entry.BatchLibraryComments = "Batch message import succeeded.";
           At = "SubmitChanges";
           _edc.SubmitChanges();
-          ActivityLogCT.WriteEntry( _edc, m_Title, "Import of the batch message finished" );
+          ActivityLogCT.WriteEntry( _edc, m_Title, String.Format( "Import of the batch {0} message finished", _properties.ListItem.File.Name ) );
         }
       }
       catch ( InputDataValidationException _idve )
@@ -133,9 +133,9 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
           if ( _batch != null )
             throw new InputDataValidationException( "wrong status of the input batch", "Get Xml Content", "The status of Progress is not allowed if any batch has been imported previouly", true );
           _batch = new Batch();
-            _newBatch = true;
+          _newBatch = true;
           _contentInfo.Validate( edc, _batch.Disposal );
-            break;
+          break;
         case BatchStatus.Intermediate:
         case BatchStatus.Final:
           if ( _batch != null )
