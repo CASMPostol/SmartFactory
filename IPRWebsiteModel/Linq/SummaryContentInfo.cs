@@ -133,11 +133,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         else
           _materials[ _dx.Disposal2BatchIndex.Batch0 ] -= _dx.SettledQuantityDec;
       foreach ( var _qutty in _materials )
-        if ( !IPR.IsAvailable( edc, _qutty.Key, _qutty.Value ) )
+      {
+        decimal _diff = IPR.IsAvailable( edc, _qutty.Key, _qutty.Value );
+        if ( Math.Abs(_diff) > 1 )  //TODO add common cheking point and get data from settings.
         {
-          string _mssg = "Cannot find any IPR account to dispose the tobacco: Tobacco batch: {0}, fg batch: {1}, quantity: {2} kg";
-          _validationErrors.Add( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value ) );
+          string _mssg = "Cannot find any IPR account to dispose the tobacco quantity {3}: Tobacco batch: {0}, fg batch: {1}, quantity: {2} kg";
+          _validationErrors.Add( String.Format( _mssg, _qutty.Key, Product.Batch, _qutty.Value, _diff ) );
         }
+      }
       if ( _validationErrors.Count > 0 )
         throw new InputDataValidationException( "Batch content validation failed", "XML content validation", _validationErrors );
     }
