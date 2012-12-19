@@ -65,7 +65,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         double _diff = contentInfo.Product.FGQuantity.Value - FGQuantity.Value;
         double _available = FGQuantityAvailable.Value;
-        if ( _diff + _available >= 0 )
+        if ( _diff + _available < 0 )
         {
           string _ptrn = "The previous batch {0} has quantity of finisched good greater then the new one - it looks like wrong messages sequence. Available={1}, Diff={2}";
           throw new InputDataValidationException( "wrong status of the input batch", "BatchProcessing", String.Format( _ptrn, contentInfo.Product.Batch, _available, _diff ), true );
