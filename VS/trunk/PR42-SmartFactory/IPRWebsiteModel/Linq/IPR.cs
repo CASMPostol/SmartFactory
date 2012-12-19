@@ -164,9 +164,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       Disposal _dsp = AddDisposal( edc, _kind, ref _toDispose );
       _dsp.Material = material;
     }
-    internal static bool IsAvailable( Entities edc, string batch, decimal requestedTobacco )
+    internal static decimal IsAvailable( Entities edc, string batch, decimal requestedTobacco )
     {
-      return FindIPRAccountsWithNotAllocatedTobacco( edc, batch ).Sum<IPR>( a => a.TobaccoNotAllocatedDec ) >= requestedTobacco;
+      return FindIPRAccountsWithNotAllocatedTobacco( edc, batch ).Sum<IPR>( a => a.TobaccoNotAllocatedDec ) - requestedTobacco;
     }
     internal decimal TobaccoNotAllocatedDec { get { return Convert.ToDecimal( this.TobaccoNotAllocated.Value ); } set { this.TobaccoNotAllocated = Convert.ToDouble( value ); } }
     /// <summary>
