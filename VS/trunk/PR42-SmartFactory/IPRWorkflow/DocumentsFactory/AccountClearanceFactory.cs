@@ -65,7 +65,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           ProductCodeNumberDesscription _new = new ProductCodeNumberDesscription()
           {
             CodeNumber = _dx.Disposal2PCNID.ProductCodeNumber,
-            Description = _dx.Disposal2PCNID.CompensationGood
+            Description = _dx.Disposal2PCNID.Title
           };
           _ret.Add( _new.CodeNumber, _new );
         }
