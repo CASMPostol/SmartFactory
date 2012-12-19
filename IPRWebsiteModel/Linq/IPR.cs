@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CAS.SharePoint;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -119,8 +118,21 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// The duty.
     /// </value>
     public decimal DutyDec { get { return Convert.ToDecimal( this.Duty.Value ); } }
+    internal decimal NetMassDec { get { return Convert.ToDecimal( this.NetMass.Value ); } }
 
     #region static
+    /// <summary>
+    /// Gets all open account.
+    /// </summary>
+    /// <param name="edc">The <see cref="Entities"/>.</param>
+    /// <returns></returns>
+    public static IQueryable<IPR> GetAllOpen( Entities edc )
+    {
+      return from _iprx in edc.IPR
+             where !_iprx.AccountClosed.Value
+             orderby _iprx.CustomsDebtDate.Value
+             select _iprx;
+    }
     public static IQueryable<IPR> GetAllNew4JSOX( Entities edc )
     {
       return from _iprx in edc.IPR where _iprx.JSOXIndex == null select _iprx;
