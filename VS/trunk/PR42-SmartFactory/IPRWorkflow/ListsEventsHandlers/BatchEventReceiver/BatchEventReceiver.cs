@@ -45,13 +45,12 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers
                                      ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; } );
           At = "Getting Data";
           GetXmlContent( _xml, _edc, _entry, ( object obj, ProgressChangedEventArgs progres ) => { At = (string)progres.UserState; } );
-          At = "Submiting Changes";
-          ActivityLogCT.WriteEntry( _edc, m_Title, "Import of the batch message finished" );
           At = "ListItem assign";
           _entry.BatchLibraryOK = true;
           _entry.BatchLibraryComments = "Batch message import succeeded.";
           At = "SubmitChanges";
           _edc.SubmitChanges();
+          ActivityLogCT.WriteEntry( _edc, m_Title, "Import of the batch message finished" );
         }
       }
       catch ( InputDataValidationException _idve )
