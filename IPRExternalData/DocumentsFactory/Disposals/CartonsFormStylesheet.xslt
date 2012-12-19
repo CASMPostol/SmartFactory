@@ -75,14 +75,6 @@
  </xsl:template>
  <xsl:template match="cas:MaterialsOnOneAccount">
    <xsl:apply-templates select="cas:MaterialRecords" />
-   <tr>
-     <td colspan="2">
-       Suma częściowa
-     </td>
-     <td align="right">
-       <xsl:value-of select="format-number(cas:TotalQuantity, $FoarmatOfFloat, 'pl')"/>
-     </td>
-   </tr>
  </xsl:template>
  <xsl:template match="cas:MaterialRecords">
    <xsl:apply-templates select="cas:MaterialRecord" />
