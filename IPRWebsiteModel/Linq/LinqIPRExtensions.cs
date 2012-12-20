@@ -55,5 +55,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return _val == null ? "NotApplicable".GetLocalizedString() : _val.Title.NotAvailable();
     }
+    public static DateTime Min( DateTime dateTime1, DateTime dateTime2 )
+    {
+      return dateTime1 < dateTime2 ? dateTime1 : dateTime2;
+    }
+    public static DateTime Max( DateTime dateTime1, DateTime dateTime2 )
+    {
+      return dateTime1 > dateTime2 ? dateTime1 : dateTime2;
+    }
+
   }
 }
