@@ -146,7 +146,7 @@
       <tr>
         <td colspan="5">Numer ewidencji SAD</td>
         <td colspan="5">Data powstania długu celnego</td>
-        <td colspan="6">Współczynnik produktywności od ok <xsl:value-of select="cas:ProductivityRateMin"/> % do ok <xsl:value-of select="cas:ProductivityRateMax"/> %</td>
+        <td colspan="4">Współczynnik produktywności od ok <xsl:value-of select="cas:ProductivityRateMin"/> % do ok <xsl:value-of select="cas:ProductivityRateMax"/> %</td>
       </tr>
       <tr>
         <td colspan="5">
@@ -155,7 +155,7 @@
         <td colspan="5">
           <xsl:value-of select="ms:format-date(cas:CustomsDebtDate, $FoarmatOfdate)"/>
         </td>
-        <td colspan="6">
+        <td colspan="4">
           Norma
         </td>
       </tr>

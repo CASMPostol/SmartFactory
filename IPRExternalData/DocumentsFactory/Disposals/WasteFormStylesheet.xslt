@@ -14,7 +14,7 @@
           Zestawienie ilości odpadów tytoniowych powstałych przy produkcji papierosów
         </title>
         <style type="text/css">
-          p  { font-size:12pt; }
+          p  { font-size:11pt; }
           td { font-size:10pt; }
           th { font-size:11pt; }
           h2 { font-size:14pt; text-align:center; }
@@ -24,7 +24,11 @@
         <table border="0" width="100%">
           <tr>
             <td align="left">
-              Dokument: <xsl:value-of select="cas:DocumentContent/cas:DocumentNo"/>
+              <p>
+                Dokument: <b>
+                <xsl:value-of select="cas:DocumentContent/cas:DocumentNo"/>
+              </b>
+              </p>
             </td>
             <td align="right">
               Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentContent/cas:DocumentDate, $FoarmatOfdate)"/>
@@ -58,9 +62,17 @@
           </tr>
           <xsl:apply-templates select="cas:AccountDescription" />
           <tr>
-            <td colspan="3">Suma końcowa</td>
+            <td colspan="3">
+              <p>
+                <b>Suma końcowa</b>
+              </p>
+            </td>
             <td colspan="3" align="right">
-              <xsl:value-of select="format-number(cas:TotalQuantity, $FoarmatOfFloat, 'pl')" />
+              <p>
+                <b>
+                  <xsl:value-of select="format-number(cas:TotalQuantity, $FoarmatOfFloat, 'pl')" />
+                </b>
+              </p>
             </td>
           </tr>
         </table>
