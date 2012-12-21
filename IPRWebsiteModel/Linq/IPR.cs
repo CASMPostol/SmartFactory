@@ -155,7 +155,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <returns></returns>
     public static List<IPR> FindIPRAccountsWithNotAllocatedTobacco( Entities edc, string batch )
     {
-      return ( from IPR _iprx in edc.IPR where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0 orderby _iprx.Identyfikator ascending select _iprx ).ToList();
+      return ( from IPR _iprx in edc.IPR
+               where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0
+               orderby _iprx.CustomsDebtDate.Value ascending, _iprx.DocumentNo ascending
+               select _iprx ).ToList();
     }
     #endregion
 
