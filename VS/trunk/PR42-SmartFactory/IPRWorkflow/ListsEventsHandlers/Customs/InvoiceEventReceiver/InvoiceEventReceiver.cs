@@ -68,7 +68,7 @@ namespace CAS.SmartFactory.IPR.ListsEventsHandlers.Customs
           InvoiceXml document = InvoiceXml.ImportDocument( stream );
           InvoiceLib entry = Element.GetAtIndex<InvoiceLib>( edc.InvoiceLibrary, listIndex );
           GetXmlContent( document, edc, entry );
-          ActivityLogCT.WriteEntry( edc, m_Title, "Import of the invoice message finished" );
+          ActivityLogCT.WriteEntry( edc, m_Title, String.Format( "Import of the invoice message {0} finished", fileName ) );
         }
       }
       catch ( CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException _iove )
