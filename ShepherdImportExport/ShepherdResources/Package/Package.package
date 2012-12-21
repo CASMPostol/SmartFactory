@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="f1d15e0a-6b67-430f-8bb9-f30b506f2726" solutionId="f1d15e0a-6b67-430f-8bb9-f30b506f2726" resetWebServer="true" title="CAS SmartFactory Shepherd Resource" description="CAS SmartFactory Shepherd Resources collection package." name="CASShepherdResources" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="2318b8be-6ea4-4f02-bae4-24233c4a39e0" />
+  </features>
+  <projectItems>
+    <projectItemReference itemId="177fcce8-b946-46d9-96d5-88e3de0b93b1" />
+  </projectItems>
+</package>
