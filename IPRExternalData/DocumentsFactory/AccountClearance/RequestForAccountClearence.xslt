@@ -34,7 +34,7 @@
             <td align="left">
               <p>
                 Dokument: 
-                 <xsl:value-of select="cas:DocumentName" /><b><xsl:value-of select="cas:DocumentNo" /></b>
+                 <b><xsl:value-of select="cas:DocumentName" /></b>
               </p>
             </td>
             <td align="right">
@@ -133,7 +133,7 @@
     <table border="0" width="100%">
           <tr>
             <td align="left">
-              Dokument: <xsl:value-of select="cas:DocumentName" /><b><xsl:value-of select="cas:DocumentNo" /></b>
+              Dokument: <b><xsl:value-of select="cas:DocumentName" /></b>
             </td>
             <td align="right">
               Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)" />
