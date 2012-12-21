@@ -38,7 +38,7 @@
           <FieldRef ID="{368c844b-0491-42ae-a102-d888646823fd}" Name="CFTProductivityRateMax" />
           <FieldRef ID="{5adf1294-84c9-44f8-9a47-3ca5ac37b17a}" Name="CFTProductivityNormMin" />
           <FieldRef ID="{2a6ee086-6d19-429b-a9ff-5f6bf33062b8}" Name="CFTProductivityNormMax" />
-          <FieldRef ID="{C793A0DF-2B92-45F8-BC90-34D6050EB769}" Name="CTFProductivityVersion" />
+          <FieldRef ID="{C793A0DF-2B92-45F8-BC90-34D6050EB769}" Name="CFTProductivityVersion" />
           <FieldRef ID="{a5854e29-ef45-49d8-8cf8-8c5c91f1c0c6}" Name="UsageMin" />
           <FieldRef ID="{1d56fc71-6866-4a9f-a9c9-629e91b54ae1}" Name="UsageMax" />
           <FieldRef ID="{8AEDEE2D-AD68-43C8-9340-D078B73FE1AF}" Name="CTFUsageMin" />
@@ -103,7 +103,7 @@
           <FieldRef Name="CFTProductivityRateMax" />
           <FieldRef Name="CFTProductivityNormMin" />
           <FieldRef Name="CFTProductivityNormMax" />
-          <FieldRef Name="CTFProductivityVersion" />
+          <FieldRef Name="CFTProductivityVersion" />
           <FieldRef Name="UsageMin" />
           <FieldRef Name="UsageMax" />
           <FieldRef Name="CTFUsageMin" />
@@ -183,7 +183,7 @@
           <FieldRef Name="CFTProductivityRateMax" />
           <FieldRef Name="CFTProductivityNormMin" />
           <FieldRef Name="CFTProductivityNormMax" />
-          <FieldRef Name="CTFProductivityVersion" />
+          <FieldRef Name="CFTProductivityVersion" />
           <FieldRef Name="UsageMin" />
           <FieldRef Name="UsageMax" />
           <FieldRef Name="CTFUsageMin" />
