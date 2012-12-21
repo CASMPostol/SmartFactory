@@ -133,7 +133,7 @@
     <table border="0" width="100%">
           <tr>
             <td align="left">
-              Dokument: <xsl:value-of select="cas:DocumentNo" />
+              Dokument: <xsl:value-of select="cas:DocumentName" /><b><xsl:value-of select="cas:DocumentNo" /></b>
             </td>
             <td align="right">
               Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)" />
@@ -177,20 +177,20 @@
         </td>
         <td align="center" valign="top">
           [typ cła] <br/>
-          Przypadające cło [PLN]
+          Przypadające cło
         </td>
         <td align="center" valign="top">
           [typ vat]<br/>
-          Przypadający VAT [PLN]
+          Przypadający VAT
         </td>
         <td align="center" valign="top">
-          Ilość netto [kg]
+          Ilość netto
         </td>
         <td align="center" valign="top">
-          Ilość brutto [kg]
+          Ilość brutto
         </td>
         <td align="center" valign="top">
-          Kartony [kg]
+          Kartony
         </td>
         <td align="center" valign="top">
           Norma (1-towar kompensacyjny właściwy - netto/brutto)
@@ -198,7 +198,7 @@
       </tr>
       <tr>
         <td align="center" valign="top">
-          <b>1</b>
+          &#160;
         </td>
         <td align="center" valign="top">
           Nazwa tytoniu
@@ -213,31 +213,31 @@
           Batch
         </td>
         <td align="center" valign="top">
-          3
+          &#160;
         </td>
         <td>
           &#160;
         </td>
         <td align="center" valign="top">
-          4
-        </td>
-        <td align="center" valign="top">
-          5
-        </td>
-        <td align="center" valign="top">
-          7
-        </td>
-        <td align="center" valign="top">
-          9
-        </td>
-        <td align="center" valign="top">
-          10
-        </td>
-        <td>
           &#160;
         </td>
         <td align="center" valign="top">
-          11
+          [PLN]
+        </td>
+        <td align="center" valign="top">
+          [PLN]
+        </td>
+        <td align="center" valign="top">
+          [kg]
+        </td>
+        <td align="center" valign="top">
+          [kg]
+        </td>
+        <td>
+          [kg]
+        </td>
+        <td align="center" valign="top">
+          &#160;
         </td>
       </tr>
       <tr>
@@ -301,59 +301,112 @@
         </td>
       </tr>
       <tr>
-        <td valign="top">
+        <td align="center" valign="top">
           Lp.
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Nr SAD wywozowego
         </td>
-        <td valign="top" >
+        <td align="center" valign="top" >
           Data
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Faktura
         </td>
-        <td valign="top">
-          Liczba towarów kompensacyjnych wywożonych [kg]
+        <td align="center" valign="top">
+          Liczba towarów kompensa-cyjnych wywożonych
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Strata [kg]
         </td>
-        <td valign="top">
-          Ilość odpadów powstających przy wytworzeniu towarów kompensacyjnych [kg]
+        <td align="center" valign="top">
+          Ilość odpadów powstających przy wytworzeniu towarów kompensa-cyjnych
         </td>
-        <td valign="top">
-          Liczba odpadów wywożonych (w przeliczeniu na surowiec) [kg]
+        <td align="center" valign="top">
+          Liczba odpadów wywożonych (w przeliczeniu na surowiec)
         </td>
-        <td valign="top">
-          Liczba zużytego surowca do rozliczenia [kg]
+        <td align="center" valign="top">
+          Liczba zużytego surowca do rozliczenia
         </td>
-        <td valign="top">
-          Przypadająca kwota zwrotu cła lub zwolnienia zabezpieczenia [PLN]
+        <td align="center" valign="top">
+          Przypadająca kwota zwrotu cła lub zwolnienia zabezpieczenia
         </td>
-        <td valign="top">
-          Przypadająca kwota zwrotu VAT lub zwolnienie zabezpieczenia [PLN]
+        <td align="center" valign="top">
+          Przypadająca kwota zwrotu VAT lub zwolnienie zabezpieczenia
         </td>
-        <td valign="top">
-          Suma Cła i VAT [PLN]
+        <td align="center" valign="top">
+          Suma Cła i VAT
         </td>
-        <td valign="top">
-          Liczba surowca pozostałego do rozliczenia [kg]
+        <td align="center" valign="top">
+          Liczba surowca pozostałego do rozliczenia
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Rodzaj procedury celnej
         </td>
+        <td align="center" valign="top">
+          Rodzaj wysyłanego towaru kompensa-cyjnego
+        </td>
+      </tr>
+      <tr>
         <td valign="top">
-          Rodzaj wysyłanego towaru kompensacyjnego
+          &#160;
+        </td>
+        <td valign="top">
+          &#160;
+        </td>
+        <td valign="top" >
+          &#160;
+        </td>
+        <td align="center" valign="top">
+          &#160;
+        </td>
+        <td align="center" valign="top">
+          [kg]
+        </td>
+        <td align="center" valign="top">
+          [kg]
+        </td>
+        <td align="center" valign="top">
+          [kg]
+        </td>
+        <td align="center" valign="top">
+          [kg]
+        </td>
+        <td align="center" valign="top">
+          [kg]
+        </td>
+        <td align="center" valign="top">
+          [PLN]
+        </td>
+        <td align="center" valign="top">
+          [PLN]
+        </td>
+        <td align="center" valign="top">
+          [PLN]
+        </td>
+        <td align="center" valign="top">
+          [kg]
+        </td>
+        <td valign="top">
+          &#160;
+        </td>
+        <td valign="top">
+          &#160;
         </td>
       </tr>
       <xsl:apply-templates select="cas:DisposalsColection" />
       <tr>
         <td colspan="4" valign="top">
-          Razem
+          <p>
+            <b>Razem</b>
+          </p>
         </td>
-        <td valign="top" align="right">
-          <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledQuantity), $FoarmatOfFloat, 'pl')"/>
+        <td valign="top"  align="center">
+          <p>
+            <b>
+              <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledQuantity), $FoarmatOfFloat, 'pl')"/>
+            </b>
+          </p>
         </td>
         <td valign="top">
           &#160;
@@ -364,17 +417,33 @@
         <td valign="top">
           &#160;
         </td>
-        <td valign="top" align="right">
-          <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledQuantity)-cas:Cartons, $FoarmatOfFloat, 'pl')"/>
+        <td valign="top"  align="center">
+          <p>
+            <b>
+              <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:SettledQuantity)-cas:Cartons, $FoarmatOfFloat, 'pl')"/>
+            </b>
+          </p>
         </td>
-        <td valign="top" align="right">
-          <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:DutyPerSettledAmount), $FoarmatOfFloat, 'pl')"/>
+        <td valign="top"  align="center">
+          <p>
+            <b>
+              <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:DutyPerSettledAmount), $FoarmatOfFloat, 'pl')"/>
+            </b>
+          </p>
         </td>
-        <td valign="top" align="right">
-          <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:VATPerSettledAmount), $FoarmatOfFloat, 'pl')"/>
+        <td valign="top"  align="center">
+          <p>
+            <b>
+              <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:VATPerSettledAmount), $FoarmatOfFloat, 'pl')"/>
+            </b>
+          </p>
         </td>
-        <td valign="top" align="right">
-          <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:DutyAndVAT), $FoarmatOfFloat, 'pl')"/>
+        <td valign="top"  align="center">
+          <p>
+            <b>
+              <xsl:value-of select="format-number(sum(cas:DisposalsColection/cas:DisposalsArray/cas:DutyAndVAT), $FoarmatOfFloat, 'pl')"/>
+            </b>
+          </p>
         </td>
         <td valign="top">
           &#160;
@@ -409,19 +478,19 @@
   </xsl:template>
   <xsl:template match="cas:DisposalsArray">
     <tr>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:No"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:SADDocumentNo"/>
       </td>
-      <td>
+      <td align="center" nowrap="true">
         <xsl:value-of select="ms:format-date(cas:SADDate, $FoarmatOfdate)"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:InvoiceNo"/>
       </td>
-      <td align="right">
+      <td  align="center">
         <xsl:value-of select="format-number(cas:SettledQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
@@ -433,42 +502,36 @@
       <td>
         &#160;
       </td>
-      <td align="right">
+      <td align="center">
         <xsl:choose>
           <xsl:when test="cas:ProductCodeNumber='4819100000'">&#160;</xsl:when>
           <xsl:when test="not(cas:ProductCodeNumber='4819100000')"><xsl:value-of select="format-number(cas:SettledQuantity, $FoarmatOfFloat, 'pl')"/></xsl:when>
         </xsl:choose>  
       </td>
-      <td align="right">
+      <td align="center">
         <xsl:value-of select="format-number(cas:DutyPerSettledAmount, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td align="right">
+      <td align="center">
         <xsl:value-of select="format-number(cas:VATPerSettledAmount, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td align="right">
+      <td align="center">
         <xsl:value-of select="format-number(cas:DutyAndVAT, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td align="right">
+      <td align="center">
         <xsl:value-of select="format-number(cas:RemainingQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:CustomsProcedure"/>
       </td>
-      <td>
+      <td align="center">
         <xsl:value-of select="cas:ProductCodeNumber"/>
       </td>
     </tr>
   </xsl:template>
   <xsl:template match="cas:PCNRecord">
-    <table border="0" cellspacing="0" cellpadding="0" align="left">
       <xsl:apply-templates select="cas:ProductCodeNumberDesscription"/>
-    </table>
   </xsl:template>
   <xsl:template match="cas:ProductCodeNumberDesscription">
-    <tr>
-      <td>
-        <xsl:value-of select="cas:CodeNumber"/> - <xsl:value-of select="cas:Description"/>
-      </td>
-    </tr>
+        <xsl:value-of select="cas:CodeNumber"/> - <xsl:value-of select="cas:Description"/>;&#160;
   </xsl:template>
 </xsl:stylesheet>
