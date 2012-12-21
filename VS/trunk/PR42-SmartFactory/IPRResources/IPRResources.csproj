@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="IPRResources.zreproj" />
     <None Include="key.snk" />
     <None Include="Package\Package.package">
       <PackageId>{dd2238df-7284-43e5-80b3-4b66fe1a363e}</PackageId>
