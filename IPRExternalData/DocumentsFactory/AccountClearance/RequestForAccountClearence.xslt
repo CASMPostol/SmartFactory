@@ -14,7 +14,8 @@
           Wniosek o rozliczenie towaru objętego procedurą uszlachetniania czynnego
         </title>
         <style type="text/css">
-          td, p, li { font-size:9pt; }
+          td, li { font-size:9pt; }
+          p  { font-size:11pt; }
           h3 { font-size:11pt; }
           th { font-size:11pt; }
           h2 { font-size:12pt; }
@@ -31,7 +32,10 @@
     <table border="0" width="100%">
           <tr>
             <td align="left">
-              Dokument: <xsl:value-of select="cas:DocumentNo" />
+              <p>
+                Dokument: 
+                 <xsl:value-of select="cas:DocumentName" /><b><xsl:value-of select="cas:DocumentNo" /></b>
+              </p>
             </td>
             <td align="right">
               Gostków Stary, <xsl:value-of select="ms:format-date(cas:DocumentDate, $FoarmatOfdate)" />
@@ -45,7 +49,7 @@
           </b>
         </p>
     <h1>
-      Wniosek o rozliczenie towaru objętego procedurą uszlachetniania czynnego
+      Wniosek nr <xsl:value-of select="cas:DocumentNo" /> o rozliczenie towaru objętego procedurą uszlachetniania czynnego
     </h1>
     <table border="1" cellspacing="0" cellpadding="0" width="100%">
       <tr>
@@ -156,95 +160,83 @@
         </td>
       </tr>
       <tr>
-        <td>
+        <td align="center">
           Lp.
         </td>
-        <td colspan="4" valign="top">
+        <td align="center" colspan="4" valign="top">
           Nazwa towaru
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Kod taryfy PCN
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Faktura nr
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Pozycja SAD
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           [typ cła] <br/>
           Przypadające cło [PLN]
         </td>
-        <td valign="top" bgcolor="#ffff00">
-          Przypadające cło na j. m.
-        </td>
-        <td valign="top">
+        <td align="center" valign="top">
           [typ vat]<br/>
           Przypadający VAT [PLN]
         </td>
-        <td valign="top" bgcolor="#ffff00">
-          Przypadający VAT na j. m.
-        </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Ilość netto [kg]
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Ilość brutto [kg]
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Kartony [kg]
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Norma (1-towar kompensacyjny właściwy - netto/brutto)
         </td>
       </tr>
       <tr>
-        <td valign="top">
+        <td align="center" valign="top">
           <b>1</b>
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Nazwa tytoniu
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Typ
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           SKU
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           Batch
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           3
         </td>
         <td>
           &#160;
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           4
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           5
         </td>
-        <td valign="top" bgcolor="#ffff00">
-          6
-        </td>
-        <td valign="top">
+        <td align="center" valign="top">
           7
         </td>
-        <td valign="top" bgcolor="#ffff00">
-          8
-        </td>
-        <td valign="top">
+        <td align="center" valign="top">
           9
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           10
         </td>
         <td>
           &#160;
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           11
         </td>
       </tr>
@@ -252,49 +244,43 @@
         <td valign="top">
           1
         </td>
-        <td>
+        <td align="center">
           <xsl:value-of select="cas:TobaccoName"/>
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           <xsl:value-of select="cas:Grade"/>
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           <xsl:value-of select="cas:SKU"/>
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           <xsl:value-of select="cas:Batch"/>
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           <xsl:value-of select="cas:PCN"/>
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           <xsl:value-of select="cas:InvoiceNo"/>
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           1
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           <xsl:value-of select="cas:DutyName"/>
         </td>
-        <td valign="top" align="right" bgcolor="#ffff00">
-          <xsl:value-of select="format-number(cas:DutyPerUnit, $FoarmatOfFloat, 'pl')"/>
-        </td>
-        <td valign="top">
+        <td align="center" valign="top">
           <xsl:value-of select="cas:VATName"/>
         </td>
-        <td valign="top" align="right" bgcolor="#ffff00">
-          <xsl:value-of select="format-number(cas:VATPerUnit, $FoarmatOfFloat, 'pl')"/>
-        </td>
-        <td valign="top" align="right">
+        <td align="center" valign="top">
           <xsl:value-of select="format-number(cas:NetMass, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td valign="top" align="right">
+        <td align="center" valign="top">
           <xsl:value-of select="format-number(cas:GrossMass, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td valign="top" align="right">
+        <td align="center" valign="top">
           <xsl:value-of select="format-number(cas:Cartons, $FoarmatOfFloat, 'pl')"/>
         </td>
-        <td valign="top">
+        <td align="center" valign="top">
           [norma]
         </td>
       </tr>
