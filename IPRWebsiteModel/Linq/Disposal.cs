@@ -206,7 +206,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         //  VATPerSettledAmount = GetVATNotCleared();
         //  TobaccoValue = GetPriceNotCleared();
         //}
-        DutyAndVAT = (DutyPerSettledAmount.Value + VATPerSettledAmount.Value).Rount2Decimals();
+        DutyAndVAT = ( DutyPerSettledAmount.Value + VATPerSettledAmount.Value ).Rount2Decimals();
       }
       catch ( Exception ex )
       {
@@ -216,16 +216,38 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private void AssignSADGood( Entities edc, SADGood sadGood )
     {
       string productCodeNumber = sadGood.PCNTariffCode;
-      PCNCode _pcn = PCNCode.Find( edc, IsDisposal, productCodeNumber );
-      if ( _pcn == null )
+      switch ( this.DisposalStatus.Value )
       {
-        string _mtmp = "Cannot find pcn code: {0} for the good: {1} with IsDisposal set to{3}";
-        throw new InputDataValidationException( 
-            "wrong PCN code in customs message", "PCN Code",
-            string.Format( _mtmp, productCodeNumber, sadGood.GoodsDescription, IsDisposal ), 
-            true);
+        case Linq.DisposalStatus.SHMenthol:
+        case Linq.DisposalStatus.Tobacco:
+        case Linq.DisposalStatus.Overuse:
+          this.Disposal2PCNID = Disposal2IPRIndex.IPR2PCNPCN;
+          break;
+        case Linq.DisposalStatus.Dust:
+        case Linq.DisposalStatus.Waste:
+        case Linq.DisposalStatus.Cartons:
+        case Linq.DisposalStatus.TobaccoInCigaretes:
+        case Linq.DisposalStatus.TobaccoInCigaretesDestinationEU:
+        case Linq.DisposalStatus.TobaccoInCigaretesProduction:
+        case Linq.DisposalStatus.TobaccoInCutfiller:
+        case Linq.DisposalStatus.TobaccoInCutfillerDestinationEU:
+        case Linq.DisposalStatus.TobaccoInCutfillerProduction:
+          PCNCode _pcn = PCNCode.Find( edc, IsDisposal, productCodeNumber );
+          if ( _pcn == null )
+          {
+            string _mtmp = "Cannot find pcn code: {0} for the good: {1} with IsDisposal set to {3}";
+            throw new InputDataValidationException(
+                "wrong PCN code in customs message", "PCN Code",
+                string.Format( _mtmp, productCodeNumber, sadGood.GoodsDescription, IsDisposal ),
+                true );
+          }
+          this.Disposal2PCNID = _pcn;
+          break;
+        case Linq.DisposalStatus.Invalid:
+        case Linq.DisposalStatus.None:
+        default:
+          break;
       }
-      this.Disposal2PCNID = _pcn;
       this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
       this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
       this.CustomsProcedure = sadGood.Procedure;
