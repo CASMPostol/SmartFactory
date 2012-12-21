@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="OutboundOwner" xml:space="preserve">
+		<value>Outbound Owner</value>
+	</data>
+	<data name="InboundOwner" xml:space="preserve">
+		<value>Inbound Owner</value>
+	</data>
+	<data name="Vendor" xml:space="preserve">
+		<value>Vendor</value>
+	</data>
+	<data name="Forwarder" xml:space="preserve">
+		<value>Forwarder</value>
+	</data>
+	<data name="Escort" xml:space="preserve">
+		<value>Escort</value>
+	</data>
+	<data name="Gate" xml:space="preserve">
+		<value>Gate</value>
+	</data>
+	<data name="OutboundCoordinator" xml:space="preserve">
+		<value>Outbound Coordinator</value>
+	</data>
+	<data name="Operator" xml:space="preserve">
+		<value>Operator</value>
+	</data>
+	<data name="Supervisor" xml:space="preserve">
+		<value>Supervisor</value>
+	</data>
+	<data name="Drivers" xml:space="preserve">
+		<value>Drivers</value>
+	</data>
+	<data name="Trucks" xml:space="preserve">
+		<value>Trucks</value>
+	</data>
+	<data name="ViewInbounds" xml:space="preserve">
+		<value>View Inbounds</value>
+	</data>
+	<data name="ViewOutbounds" xml:space="preserve">
+		<value>View Outbounds</value>
+	</data>
+	<data name="Trailers" xml:space="preserve">
+		<value>Trailers</value>
+	</data>
+	<data name="PO_No" xml:space="preserve">
+		<value>PO No.</value>
+	</data>
+	<data name="DeliveryNumber" xml:space="preserve">
+		<value>Delivery No.</value>
+	</data>
+	<data name="ShippingNumber" xml:space="preserve">
+		<value>Shipment No.</value>
+	</data>
+	<data name="ReportExceptionTemplate" xml:space="preserve">
+		<value>The current operation has been interrupted by error {0}</value>
+	</data>
+	<data name="UpdateTimeSlotreleaseBookinProblem" xml:space="preserve">
+		<value>Cannot release the previous booking</value>
+	</data>
+	<data name="Shipping" xml:space="preserve">
+		<value>Shipment</value>
+	</data>
+	<data name="ShowSelectTimeSlot" xml:space="preserve">
+		<value>-- Select time slot --</value>
+	</data>
+	<data name="ShowShippingLocked" xml:space="preserve">
+		<value>-- Shipment locked --</value>
+	</data>
+	<data name="SetInterconnectionDataTimeSlotInUse" xml:space="preserve">
+		<value>Time slot is in use but it is selected as free</value>
+	</data>
+	<data name="SetInterconnectionDataItIsTooLate" xml:space="preserve">
+		<value>It is too late to change the schedule</value>
+	</data>
+	<data name="TrailerConditionDropdownSelect" xml:space="preserve">
+		<value> -- Select trailer condition  --</value>
+	</data>
+	<data name="TrailerConditionDropdownUnacceptable" xml:space="preserve">
+		<value>1 - Unacceptable</value>
+	</data>
+	<data name="TrailerConditionDropdownBad" xml:space="preserve">
+		<value>2 - Bad</value>
+	</data>
+	<data name="TrailerConditionDropdownPoor" xml:space="preserve">
+		<value>3 - Poor</value>
+	</data>
+	<data name="TrailerConditionDropdownGood" xml:space="preserve">
+		<value>4 - Good</value>
+	</data>
+	<data name="TrailerConditionDropdownExcellent" xml:space="preserve">
+		<value>5 - Excellent</value>
+	</data>
+	<data name="InterfaceStateViewState" xml:space="preserve">
+		<value>View</value>
+	</data>
+	<data name="InterfaceStateEditState" xml:space="preserve">
+		<value>Edit</value>
+	</data>
+	<data name="InterfaceStateNewState" xml:space="preserve">
+		<value>New</value>
+	</data>
+	<data name="NewDataEventHandlerErrorMesage" xml:space="preserve">
+		<value>User interface update error for shipment {0} with message: {1}</value>
+	</data>
+	<data name="RemoveDriverButtonErrorMessage" xml:space="preserve">
+		<value>Remove driver error: {0}</value>
+	</data>
+	<data name="AddDriverButtonErrorMessage" xml:space="preserve">
+		<value>Add driver error: {0}</value>
+	</data>
+	<data name="TruckDropDownErrorMessage" xml:space="preserve">
+		<value>Truck selection error: {0}</value>
+	</data>
+	<data name="TrailerDropDownErrorMessage" xml:space="preserve">
+		<value>Trailer selection error: {0}</value>
+	</data>
+	<data name="UpdatetrailerNotSelected" xml:space="preserve">
+		<value>Update error: trailer is not selected</value>
+	</data>
+	<data name="CreateuserMustBeExternalPartner" xml:space="preserve">
+		<value>Current user must be an external partner</value>
+	</data>
+	<data name="DeletetrailerIsNotSelected" xml:space="preserve">
+		<value>Delete error: trailer is not selected</value>
+	</data>
+	<data name="MustBeProvided" xml:space="preserve">
+		<value>- must be provided</value>
+	</data>
+	<data name="UpdateDriverNotSelected" xml:space="preserve">
+		<value>Update error: driver is not selected</value>
+	</data>
+	<data name="DeleteDriverNotSelected" xml:space="preserve">
+		<value>Delete error: driver is not selected</value>
+	</data>
+	<data name="UpdateTruckNotSelected" xml:space="preserve">
+		<value>Update error: truck is not selected</value>
+	</data>
+	<data name="DeleteTruckNotSelected" xml:space="preserve">
+		<value>Delete error: truck is not selected</value>
+	</data>
+	<data name="Loads" xml:space="preserve">
+		<value>Loads</value>
+	</data>
+	<data name="LoadDescriptionGridViewPalletType" xml:space="preserve">
+		<value>Pallet type</value>
+	</data>
+	<data name="LoadDescriptionGridViewPalletsQty" xml:space="preserve">
+		<value>Pallet Qty.</value>
+	</data>
+	<data name="LoadDescriptionGridViewCommodity" xml:space="preserve">
+		<value>Commodity</value>
+	</data>
+	<data name="DeliveryNumberBoundFieldHeaderText" xml:space="preserve">
+		<value>PO/Delivery No.</value>
+	</data>
+	<data name="MarketTitleBoundFieldHeaderText" xml:space="preserve">
+		<value>Market</value>
+	</data>
+	<data name="DeliveryNumberBoundFieldHeaderTextOut" xml:space="preserve">
+		<value>Delivery No.</value>
+	</data>
+	<data name="DeliveryNumberBoundFieldHeaderTextIn" xml:space="preserve">
+		<value>PO No.</value>
+	</data>
+	<data name="UpdateLoadingErrorMessage" xml:space="preserve">
+		<value>Cannot update the loading because of error: {0}</value>
+	</data>
+	<data name="PalletTypeEuro" xml:space="preserve">
+		<value>Euro </value>
+	</data>
+	<data name="PalletTypeIndustrial" xml:space="preserve">
+		<value>Industrial</value>
+	</data>
+	<data name="PalletTypeOther" xml:space="preserve">
+		<value>Other</value>
+	</data>
+	<data name="CannotDisplayTimeSlots" xml:space="preserve">
+		<value>Cannot display time slots because: </value>
+	</data>
+	<data name="FormatHourMinutes" xml:space="preserve">
+		<value>{0:HH:mm}</value>
+	</data>
+	<data name="WrongValue" xml:space="preserve">
+		<value>Wrong value of {0}</value>
+	</data>
+	<data name="SelectFromList" xml:space="preserve">
+		<value> -- Select from list -- </value>
+	</data>
+	<data name="NotApplicable" xml:space="preserve">
+		<value>N/A</value>
+	</data>
+	<data name="ShipmentModified" xml:space="preserve">
+		<value>The Shipment at current state {0} has been modified by {1} and the schedule wiil be updated.</value>
+	</data>
+	<data name="ShippingAssociatedPartner" xml:space="preserve">
+		<value>Shipment does not has associated partner - the report is aborted</value>
+	</data>
+	<data name="MakePerformanceReportDataInconsistent" xml:space="preserve">
+		<value>Data is inconsistent - there is no time slot allocated to the shipment</value>
+	</data>
+	<data name="RequestDataTrucktrailerDrivers" xml:space="preserve">
+		<value>Truck, trailer and drivers detailed information must be provided in {0} min up to {1:g}</value>
+	</data>
+	<data name="Remainder" xml:space="preserve">
+		<value>Reminder</value>
+	</data>
+	<data name="Warnning" xml:space="preserve">
+		<value>Warning !!!</value>
+	</data>
+	<data name="LastCall" xml:space="preserve">
+		<value>It is last call !!!</value>
+	</data>
+	<data name="ShipmentCancelled" xml:space="preserve">
+		<value>Warning !!! The Shipment has been canceled by {0}</value>
+	</data>
+	<data name="TruckLateCallDriver" xml:space="preserve">
+		<value>Warning !!! The truck is late. Call the driver: {0}</value>
+	</data>
+	<data name="NewImeoutForShipment" xml:space="preserve">
+		<value>New timeout at: {0} is set up for the shipment {1} at state {2}</value>
+	</data>
+	<data name="TimeoutExpired" xml:space="preserve">
+		<value>Timeout expired at {0:g}</value>
+	</data>
+	<data name="ShipmentDelayed" xml:space="preserve">
+		<value>Shipment delayed: </value>
+	</data>
+	<data name="DataRequestShipment" xml:space="preserve">
+		<value>Data request for shipment: </value>
+	</data>
+	<data name="ShipmentCanceled" xml:space="preserve">
+		<value>Shipment canceled: </value>
+	</data>
+	<data name="SendingWarningMessage" xml:space="preserve">
+		<value>Sending {4} warning message To: {0}, CC: {1}, From: {2}, Subject: {3}</value>
+	</data>
+	<data name="AssertionCarrierFailedToEmpty" xml:space="preserve">
+		<value>Assertion Carrier failed: To is empty</value>
+	</data>
+	<data name="ESCORTPONFileName" xml:space="preserve">
+		<value>ESCORT PO No {0}.docx</value>
+	</data>
+	<data name="SealProtocolFileName" xml:space="preserve">
+		<value>Seal Protocol No {0}.docx</value>
+	</data>
+	<data name="FREIGHTPOFileName" xml:space="preserve">
+		<value>FREIGHT PO No {0}.docx</value>
+	</data>
+	<data name="Cars" xml:space="preserve">
+		<value>Car</value>
+	</data>
+</root>

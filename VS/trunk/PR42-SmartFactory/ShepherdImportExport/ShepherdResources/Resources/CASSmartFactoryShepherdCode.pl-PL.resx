@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="OutboundOwner" xml:space="preserve">
+		<value>Właściciel wysyłek</value>
+	</data>
+	<data name="InboundOwner" xml:space="preserve">
+		<value>Właściciel dostaw</value>
+	</data>
+	<data name="Vendor" xml:space="preserve">
+		<value>Dostawca</value>
+	</data>
+	<data name="Forwarder" xml:space="preserve">
+		<value>Spedytor</value>
+	</data>
+	<data name="Escort" xml:space="preserve">
+		<value>Eskorta</value>
+	</data>
+	<data name="Gate" xml:space="preserve">
+		<value>Brama</value>
+	</data>
+	<data name="OutboundCoordinator" xml:space="preserve">
+		<value>Koordynator wysyłek</value>
+	</data>
+	<data name="Operator" xml:space="preserve">
+		<value>Operator</value>
+	</data>
+	<data name="Supervisor" xml:space="preserve">
+		<value>Nadzorca</value>
+	</data>
+	<data name="Drivers" xml:space="preserve">
+		<value>Kierowcy</value>
+	</data>
+	<data name="Trucks" xml:space="preserve">
+		<value>Samochody</value>
+	</data>
+	<data name="ViewInbounds" xml:space="preserve">
+		<value>Dostawy - podgląd</value>
+	</data>
+	<data name="ViewOutbounds" xml:space="preserve">
+		<value>Wysyłki - podgląd</value>
+	</data>
+	<data name="Trailers" xml:space="preserve">
+		<value>Naczepy</value>
+	</data>
+	<data name="PO_No" xml:space="preserve">
+		<value>Zamówienie nr</value>
+	</data>
+	<data name="DeliveryNumber" xml:space="preserve">
+		<value>Wydanie nr</value>
+	</data>
+	<data name="ShippingNumber" xml:space="preserve">
+		<value>Operacja nr</value>
+	</data>
+	<data name="ReportExceptionTemplate" xml:space="preserve">
+		<value>Bieżąca operacja została przerwana w wyniku błędu {0}</value>
+	</data>
+	<data name="UpdateTimeSlotreleaseBookinProblem" xml:space="preserve">
+		<value>Nie można zwolnić poprzedniej rezerwacji</value>
+	</data>
+	<data name="Shipping" xml:space="preserve">
+		<value>Operacja</value>
+	</data>
+	<data name="ShowSelectTimeSlot" xml:space="preserve">
+		<value>-- Wybierz okno czasowe --</value>
+	</data>
+	<data name="ShowShippingLocked" xml:space="preserve">
+		<value>-- Operacja zablokowana --</value>
+	</data>
+	<data name="SetInterconnectionDataTimeSlotInUse" xml:space="preserve">
+		<value>Okno czasowe jest w użyciu, ale zostało wybrane jako wolne</value>
+	</data>
+	<data name="SetInterconnectionDataItIsTooLate" xml:space="preserve">
+		<value>Jest zbyt późno, by zmienić harmonogram</value>
+	</data>
+	<data name="TrailerConditionDropdownSelect" xml:space="preserve">
+		<value> -- Wybierz stan naczepy --</value>
+	</data>
+	<data name="TrailerConditionDropdownUnacceptable" xml:space="preserve">
+		<value>1 - Niedopuszczalny</value>
+	</data>
+	<data name="TrailerConditionDropdownBad" xml:space="preserve">
+		<value>2 - Zły</value>
+	</data>
+	<data name="TrailerConditionDropdownPoor" xml:space="preserve">
+		<value>3 - Słaby</value>
+	</data>
+	<data name="TrailerConditionDropdownGood" xml:space="preserve">
+		<value>4 - Dobry</value>
+	</data>
+	<data name="TrailerConditionDropdownExcellent" xml:space="preserve">
+		<value>5 - Bardzo dobry</value>
+	</data>
+	<data name="InterfaceStateViewState" xml:space="preserve">
+		<value>Widok</value>
+	</data>
+	<data name="InterfaceStateEditState" xml:space="preserve">
+		<value>Edycja</value>
+	</data>
+	<data name="InterfaceStateNewState" xml:space="preserve">
+		<value>Nowy</value>
+	</data>
+	<data name="NewDataEventHandlerErrorMesage" xml:space="preserve">
+		<value>Błąd aktualizacji interfejsu użytkownika dla operacji {0} z komunikatem: {1}</value>
+	</data>
+	<data name="RemoveDriverButtonErrorMessage" xml:space="preserve">
+		<value>Błąd usuwania kierowcy: {0}</value>
+	</data>
+	<data name="AddDriverButtonErrorMessage" xml:space="preserve">
+		<value>Błąd dodawania kierowcy: {0}</value>
+	</data>
+	<data name="TruckDropDownErrorMessage" xml:space="preserve">
+		<value>Błąd wyboru samochodu: {0}</value>
+	</data>
+	<data name="TrailerDropDownErrorMessage" xml:space="preserve">
+		<value>Błąd wyboru naczepy: {0}</value>
+	</data>
+	<data name="UpdatetrailerNotSelected" xml:space="preserve">
+		<value>Błąd aktualizacji: naczepa nie została wybrana</value>
+	</data>
+	<data name="CreateuserMustBeExternalPartner" xml:space="preserve">
+		<value>Bieżący użytkownik musi być partnerem zewnetrznym</value>
+	</data>
+	<data name="DeletetrailerIsNotSelected" xml:space="preserve">
+		<value>Usuń błąd: naczepa nie została wybrana</value>
+	</data>
+	<data name="MustBeProvided" xml:space="preserve">
+		<value>- należy uzupełnić</value>
+	</data>
+	<data name="UpdateDriverNotSelected" xml:space="preserve">
+		<value>Błąd aktualizacji: kierowca nie został wybrany</value>
+	</data>
+	<data name="DeleteDriverNotSelected" xml:space="preserve">
+		<value>Usuń błąd: kierowca nie został wybrany</value>
+	</data>
+	<data name="UpdateTruckNotSelected" xml:space="preserve">
+		<value>Błąd aktualizacji: samochód nie został wybrany</value>
+	</data>
+	<data name="DeleteTruckNotSelected" xml:space="preserve">
+		<value>Usuń błąd: samochód nie został wybrany</value>
+	</data>
+	<data name="Loads" xml:space="preserve">
+		<value>Ładunki</value>
+	</data>
+	<data name="LoadDescriptionGridViewPalletType" xml:space="preserve">
+		<value>Rodzaj palet</value>
+	</data>
+	<data name="LoadDescriptionGridViewPalletsQty" xml:space="preserve">
+		<value>Ilość palet</value>
+	</data>
+	<data name="LoadDescriptionGridViewCommodity" xml:space="preserve">
+		<value>Towar</value>
+	</data>
+	<data name="DeliveryNumberBoundFieldHeaderText" xml:space="preserve">
+		<value>Zamówienie/Wydanie nr</value>
+	</data>
+	<data name="MarketTitleBoundFieldHeaderText" xml:space="preserve">
+		<value>Rynek</value>
+	</data>
+	<data name="DeliveryNumberBoundFieldHeaderTextOut" xml:space="preserve">
+		<value>Wydanie nr</value>
+	</data>
+	<data name="DeliveryNumberBoundFieldHeaderTextIn" xml:space="preserve">
+		<value>Zamówienie nr</value>
+	</data>
+	<data name="UpdateLoadingErrorMessage" xml:space="preserve">
+		<value>Nie można zaktualizować załadunku z powodu błędu: {0}</value>
+	</data>
+	<data name="PalletTypeEuro" xml:space="preserve">
+		<value>europalety</value>
+	</data>
+	<data name="PalletTypeIndustrial" xml:space="preserve">
+		<value>przemysłowe</value>
+	</data>
+	<data name="PalletTypeOther" xml:space="preserve">
+		<value>inne</value>
+	</data>
+	<data name="CannotDisplayTimeSlots" xml:space="preserve">
+		<value>Nie można wyświetlić okien czasowych, ponieważ: </value>
+	</data>
+	<data name="FormatHourMinutes" xml:space="preserve">
+		<value>{0:HH:mm}</value>
+	</data>
+	<data name="WrongValue" xml:space="preserve">
+		<value>Błędna wartość {0}</value>
+	</data>
+	<data name="SelectFromList" xml:space="preserve">
+		<value> -- Wybierz z listy --</value>
+	</data>
+	<data name="NotApplicable" xml:space="preserve">
+		<value>nie dotyczy</value>
+	</data>
+	<data name="ShipmentModified" xml:space="preserve">
+		<value>Operacja przy aktualnym w stanie {0} została zmodyfikowana przez {1} i harmonogram zostanie zaktualizowany.</value>
+	</data>
+	<data name="ShippingAssociatedPartner" xml:space="preserve">
+		<value>Z operacją nie jest skojarzony partner - raport zostaje przerwany</value>
+	</data>
+	<data name="MakePerformanceReportDataInconsistent" xml:space="preserve">
+		<value>Dane są niespójne - okno czasowe nie zostało przypisane do operacji</value>
+	</data>
+	<data name="Remainder" xml:space="preserve">
+		<value>Przypomnienie</value>
+	</data>
+	<data name="Warnning" xml:space="preserve">
+		<value>Ostrzeżenie !!!</value>
+	</data>
+	<data name="LastCall" xml:space="preserve">
+		<value>Ostatnie wezwanie !!!</value>
+	</data>
+	<data name="ShipmentCancelled" xml:space="preserve">
+		<value>Ostrzeżenie !!! Operacja została anulowana przez {0}.</value>
+	</data>
+	<data name="TruckLateCallDriver" xml:space="preserve">
+		<value>Ostrzeżenie !!! Ciężarówka jest opóźniona. Skontaktuj się z kierowcą: {0}</value>
+	</data>
+	<data name="NewImeoutForShipment" xml:space="preserve">
+		<value>Zadano nowy limit czasowyna: {0} dla operacji {1} w stanie {2}</value>
+	</data>
+	<data name="TimeoutExpired" xml:space="preserve">
+		<value>Limit czasu upłynął o {0:g}</value>
+	</data>
+	<data name="ShipmentDelayed" xml:space="preserve">
+		<value>Operacja opóźniona: </value>
+	</data>
+	<data name="DataRequestShipment" xml:space="preserve">
+		<value>Żądanie danych do operacji: </value>
+	</data>
+	<data name="ShipmentCanceled" xml:space="preserve">
+		<value>Operacja anulowana: </value>
+	</data>
+	<data name="SendingWarningMessage" xml:space="preserve">
+		<value>Wysyłanie  komunikatu ostrzegawczego {4} Do: {0}, DW: {1}, Od: {2}, Temat: {3}</value>
+	</data>
+	<data name="AssertionCarrierFailedToEmpty" xml:space="preserve">
+		<value>Assertion Carrier failed: To is empty</value>
+	</data>
+	<data name="ESCORTPONFileName" xml:space="preserve">
+		<value>ESCORT PO No {0}.docx</value>
+	</data>
+	<data name="SealProtocolFileName" xml:space="preserve">
+		<value>Seal Protocol No {0}.docx</value>
+	</data>
+	<data name="RequestDataTrucktrailerDrivers" xml:space="preserve">
+		<value>Uzupełnić szczegółowe informacje dot. samochodu, naczepy i kierowców w ciągu {0} min. do {1:g}</value>
+	</data>
+	<data name="FREIGHTPOFileName" xml:space="preserve">
+		<value>FREIGHT PO No {0}.docx</value>
+	</data>
+	<data name="Cars" xml:space="preserve">
+		<value>Samochód</value>
+	</data>
+</root>

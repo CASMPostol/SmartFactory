@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Abort" xml:space="preserve">
+    <value>Przerwij</value>
+  </data>
+	<data name="AddDrivers" xml:space="preserve">
+    <value>&gt;&gt;</value>
+  </data>
+	<data name="AddNew" xml:space="preserve">
+    <value>Dodaj nowy</value>
+  </data>
+	<data name="AllDrivers" xml:space="preserve">
+    <value>Kierowcy:</value>
+  </data>
+	<data name="Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+	<data name="Comments" xml:space="preserve">
+    <value>Uwagi</value>
+  </data>
+	<data name="ContainerNumber" xml:space="preserve">
+    <value>Kontener nr</value>
+  </data>
+	<data name="Destination" xml:space="preserve">
+    <value>Miejsce przeznaczenia</value>
+  </data>
+	<data name="DockNumber" xml:space="preserve">
+    <value>Rampa nr</value>
+  </data>
+	<data name="Edit" xml:space="preserve">
+    <value>Edytuj</value>
+  </data>
+	<data name="EditRouteEscort" xml:space="preserve">
+    <value>Edytuj trasę/eskortę</value>
+  </data>
+	<data name="EditRouteEscortToolTip" xml:space="preserve">
+    <value>Zaznacz, aby wybrać trasę i przypisać eskortę</value>
+  </data>
+	<data name="ETA" xml:space="preserve">
+    <value>ETA</value>
+  </data>
+	<data name="ETAToolTip" xml:space="preserve">
+    <value>Szacunkowy czas przybycia</value>
+  </data>
+	<data name="PONumber" xml:space="preserve">
+    <value>Zamówienie nr</value>
+  </data>
+	<data name="RemoveDrivers" xml:space="preserve">
+    <value>&lt;&lt;</value>
+  </data>
+	<data name="Route" xml:space="preserve">
+    <value>Trasa</value>
+  </data>
+	<data name="RouteEscortEditing" xml:space="preserve">
+    <value>Edycja trasy/eskorty</value>
+  </data>
+	<data name="RouteEscortEditingToolTip" xml:space="preserve">
+    <value>Zaznacz, aby umożliwić edycję</value>
+  </data>
+	<data name="Save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+	<data name="SecurityEscort" xml:space="preserve">
+    <value>Eskorta</value>
+  </data>
+	<data name="SecurityRequired" xml:space="preserve">
+    <value>Wymagana eskorta</value>
+  </data>
+	<data name="SelectCity" xml:space="preserve">
+    <value>--  Wybierz miasto z listy --</value>
+  </data>
+	<data name="SelectedDrivers" xml:space="preserve">
+    <value>Wybrani kierowcy:</value>
+  </data>
+	<data name="SelectVendor" xml:space="preserve">
+    <value>--  Wybierz dostawcę z listy --</value>
+  </data>
+	<data name="Shipping" xml:space="preserve">
+    <value>Operacja nr</value>
+  </data>
+	<data name="TimeSlot" xml:space="preserve">
+    <value>Okno czasowe</value>
+  </data>
+	<data name="TimeSlotToolTip" xml:space="preserve">
+    <value>Wybierz z kalendarza okno czasowe, aby zaplanować operację </value>
+  </data>
+	<data name="Trailer" xml:space="preserve">
+    <value>Naczepa</value>
+  </data>
+	<data name="TrailerComments" xml:space="preserve">
+    <value>Uwagi  naczepa</value>
+  </data>
+	<data name="TrailerCommentsToolTip" xml:space="preserve">
+    <value>Dodaj uwagę o stanie naczepy</value>
+  </data>
+	<data name="TrailerCondition" xml:space="preserve">
+    <value>Stan naczepy</value>
+  </data>
+	<data name="TransportUnitType" xml:space="preserve">
+    <value>Jednostka transportowa</value>
+  </data>
+	<data name="Truck" xml:space="preserve">
+    <value>Samochód dostawczy</value>
+  </data>
+	<data name="Warehouse" xml:space="preserve">
+    <value>Magazyn</value>
+  </data>
+	<data name="WarehouseToolTip" xml:space="preserve">
+    <value>Wybierz magazyn, a następnie okno czasowe z kalendarza, aby zaplanować operację</value>
+  </data>
+	<data name="Arrived" xml:space="preserve">
+    <value>Dotarł</value>
+  </data>
+	<data name="CMRNo" xml:space="preserve">
+    <value>CMR No.</value>
+  </data>
+	<data name="CommentsTrailerToolTip" xml:space="preserve">
+    <value>Uwaga pozwalająca łatwo zidentyfikować naczepę</value>
+  </data>
+	<data name="Commodity" xml:space="preserve">
+    <value>Towar</value>
+  </data>
+	<data name="Delete" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+	<data name="Driver" xml:space="preserve">
+    <value>Kierowca</value>
+  </data>
+	<data name="DriverToolTip" xml:space="preserve">
+    <value>Imię i nazwisko kierowcy</value>
+  </data>
+	<data name="Enters" xml:space="preserve">
+    <value>Wjechał</value>
+  </data>
+	<data name="GoodsQty" xml:space="preserve">
+    <value>Ilość towaru</value>
+  </data>
+	<data name="IDNumber" xml:space="preserve">
+    <value>Dokument nr</value>
+  </data>
+	<data name="IDNumberToolTip" xml:space="preserve">
+    <value>Numer dokumentu tożsamości kierowcy </value>
+  </data>
+	<data name="InvoiceNo" xml:space="preserve">
+    <value>Faktura nr</value>
+  </data>
+	<data name="Leaves" xml:space="preserve">
+    <value>Wyjechał</value>
+  </data>
+	<data name="Market" xml:space="preserve">
+    <value>Rynek</value>
+  </data>
+	<data name="Mobile" xml:space="preserve">
+    <value>Tel. kom.</value>
+  </data>
+	<data name="MobileToolTip" xml:space="preserve">
+    <value>Numer telefonu komórkowego kierowcy</value>
+  </data>
+	<data name="PalletQty" xml:space="preserve">
+    <value>Ilość palet</value>
+  </data>
+	<data name="PalletType" xml:space="preserve">
+    <value>Rodzaj palet</value>
+  </data>
+	<data name="PODelNo" xml:space="preserve">
+    <value>Zamówienie/Wydanie nr</value>
+  </data>
+	<data name="TrailerToolTip" xml:space="preserve">
+    <value>Numer rejestracyjny naczepy</value>
+  </data>
+	<data name="TruckCommentsToolTip" xml:space="preserve">
+    <value>Uwaga pozwalająca łatwo zidentyfikować samochód</value>
+  </data>
+	<data name="TruckPlateNo" xml:space="preserve">
+    <value>Nr rej. samochodu</value>
+  </data>
+	<data name="TruckPlateNoToolTip" xml:space="preserve">
+    <value>Nr rejestracyjny samochodu</value>
+  </data>
+	<data name="Undo" xml:space="preserve">
+    <value>Unieważnij</value>
+  </data>
+	<data name="VehicleType" xml:space="preserve">
+    <value>Rodzaj pojazdu</value>
+  </data>
+	<data name="VehicleTypeToolTip" xml:space="preserve">
+    <value>Wybierz rodzaj pojazdu: samochód dostawczy, furgonetka, samochód eskorty</value>
+  </data>
+	<data name="TrailerPlateNo" xml:space="preserve">
+    <value>Nr rej. naczepy</value>
+  </data>
+	<data name="AvailableTimeSlotsToolTip" xml:space="preserve">
+    <value>Dostępne okna czasowe</value>
+  </data>
+	<data name="ShowDoubleTimeslots" xml:space="preserve">
+    <value>Pokaż podwójne okna czasowe</value>
+  </data>
+	<data name="Escort" xml:space="preserve">
+    <value>Eskorta</value>
+  </data>
+	<data name="Forwarder" xml:space="preserve">
+    <value>Spedytor</value>
+  </data>
+	<data name="Gate" xml:space="preserve">
+    <value>Brama</value>
+  </data>
+	<data name="InboundOwner" xml:space="preserve">
+    <value>Właściciel dostaw</value>
+  </data>
+	<data name="ManageResources" xml:space="preserve">
+    <value>Zarządzaj zasobami</value>
+  </data>
+	<data name="Operator" xml:space="preserve">
+    <value>Operator</value>
+  </data>
+	<data name="OutboundCoordinator" xml:space="preserve">
+    <value>Koordynator wysyłek</value>
+  </data>
+	<data name="OutboundOwner" xml:space="preserve">
+    <value>Właściciel wysyłek</value>
+  </data>
+	<data name="Supervisor" xml:space="preserve">
+    <value>Nadzorca</value>
+  </data>
+	<data name="Vendor" xml:space="preserve">
+    <value>Dostawca</value>
+  </data>
+	<data name="ViewInbounds" xml:space="preserve">
+    <value>Dostawy - podgląd</value>
+  </data>
+	<data name="ViewOutbounds" xml:space="preserve">
+    <value>Wysyłki - podgląd</value>
+  </data>
+	<data name="CreateTimeSlots" xml:space="preserve">
+    <value>Utwórz okna czasowe</value>
+  </data>
+	<data name="Duration" xml:space="preserve">
+    <value>Czas trwania</value>
+  </data>
+	<data name="DurationDes" xml:space="preserve">
+    <value>Wybierz przez ile tygodni chcesz tworzyć okna czasowe</value>
+  </data>
+	<data name="SelectDay" xml:space="preserve">
+    <value>Wybierz dzień</value>
+  </data>
+	<data name="SelectDayDes" xml:space="preserve">
+    <value>Wybierz dzień kiedy chcesz rozpocząć tworzenie okien czasowych</value>
+  </data>
+	<data name="SelectMonth" xml:space="preserve">
+    <value>Wybierz miesiąc</value>
+  </data>
+	<data name="SelectMonthDes" xml:space="preserve">
+    <value>Wybierz miesiąc kiedy chcesz rozpocząć tworzenie okien czasowych</value>
+  </data>
+	<data name="SelectYear" xml:space="preserve">
+    <value>Wybierz rok</value>
+  </data>
+	<data name="SelectYearDes" xml:space="preserve">
+    <value>Wybierz rok kiedy chcesz rozpocząć tworzenie okien czasowych</value>
+  </data>
+	<data name="StartWorkflow" xml:space="preserve">
+    <value>Rozpocznij</value>
+  </data>
+	<data name="FooterText" xml:space="preserve">
+    <value>Designed and created by CAS</value>
+  </data>
+</root>

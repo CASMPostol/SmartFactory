@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="f1d15e0a-6b67-430f-8bb9-f30b506f2726" ResetWebServer="TRUE" Title="CAS SmartFactory Shepherd Resource" Description="CAS SmartFactory Shepherd Resources collection package." SharePointProductVersion="14.0">
+  <ApplicationResourceFiles>
+    <App_GlobalResourceFile Location="ShepherdResources\GlobalResources\CASSmartFactoryShepherd.resx" />
+    <App_GlobalResourceFile Location="ShepherdResources\GlobalResources\CASSmartFactoryShepherd.en-US.resx" />
+    <App_GlobalResourceFile Location="ShepherdResources\GlobalResources\CASSmartFactoryShepherd.pl-PL.resx" />
+  </ApplicationResourceFiles>
+  <RootFiles>
+    <RootFile Location="Resources\CASSmartFactoryShepherd.resx" />
+    <RootFile Location="Resources\CASSmartFactoryShepherd.pl-PL.resx" />
+    <RootFile Location="Resources\CASSmartFactoryShepherd.en-US.resx" />
+    <RootFile Location="Resources\CASSmartFactoryShepherdCode.resx" />
+    <RootFile Location="Resources\CASSmartFactoryShepherdCode.pl-PL.resx" />
+    <RootFile Location="Resources\CASSmartFactoryShepherdCode.en-US.resx" />
+  </RootFiles>
+  <FeatureManifests>
+    <FeatureManifest Location="ShepherdResources_ShepherdResources\Feature.xml" />
+  </FeatureManifests>
+</Solution>
