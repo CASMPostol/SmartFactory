@@ -6,10 +6,10 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
 
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Workflow
-     Name="IPR Closing"
-     Description="Close IPR accounr"
-     Id="a5254465-e358-41a9-a95d-225fa412e6ec"
-     CodeBesideClass="CAS.SmartFactory.IPR.Workflows.IPRClosing.IPRClosing"
+     Name="JSOX Report"
+     Description="Creates JSOX Report"
+     Id="e700531e-4cfa-4f49-a00c-9f641d9d1d0e"
+     CodeBesideClass="CAS.SmartFactory.IPR.Workflows.JSOXReport.JSOXReport"
      CodeBesideAssembly="$assemblyname$">
     <Categories/>
     <MetaData>
