@@ -27,7 +27,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         end = LinqIPRExtensions.Max( end, _dspx.SADDate.GetValueOrDefault( DateTime.MinValue ) );
         JSOXCustomsSummary _newItem = new JSOXCustomsSummary()
         {
-          CompensationGood = _dspx.Disposal2PCNID.CompensationGood,
+          CompensationGood = _dspx.Disposal2PCNID == null ? "TBD" : _dspx.Disposal2PCNID.CompensationGood,
           ExportOrFreeCirculationSAD = _dspx.SADDocumentNo,
           InvoiceNo = _dspx.InvoiceNo,
           JSOXIndex = parent,
@@ -42,6 +42,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _newItem.CreateTitle();
         _newEntries.Add( _newItem );
       }
+      edc.JSOXCustomsSummary.InsertAllOnSubmit( _newEntries );
       return _ret;
     }
 

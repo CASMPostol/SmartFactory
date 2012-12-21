@@ -169,9 +169,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\Elements.xml" />
-    <Content Include="Workflows\CreateReport\Elements.xml" />
-    <Content Include="Workflows\IPRClosing\Elements.xml" />
-    <Content Include="Workflows\JSOXReport\Elements.xml" />
+    <Content Include="Workflows\CreateReport\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Workflows\IPRClosing\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Workflows\JSOXReport\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Workflows\WorkflowHistory\Elements.xml" />
     <Content Include="Workflows\WorkflowTasks\Elements.xml" />
   </ItemGroup>

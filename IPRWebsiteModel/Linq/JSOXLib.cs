@@ -18,11 +18,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public void JSOXReport( Entities edc )
     {
       //Previous
-      JSOXLib _prev = Previous( edc ).FirstOrDefault<JSOXLib>();
-      if ( _prev == null )
-        throw new InputDataValidationException( "Cannot find previous JSOX report", "JSOXReport", "The JSOX reports lis is empty", true );
-      this.PreviousMonthDate = _prev.SituationDate;
-      this.PreviousMonthQuantity = _prev.SituationQuantity;
+      JSOXLib _prev = new JSOXLib();
+      JSOXReport( edc, _prev );
+      edc.JSOXLibrary.InsertOnSubmit( _prev );
+    }
+    private void JSOXReport( Entities edc, JSOXLib previous )
+    {
+
+      this.PreviousMonthDate = previous.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
+      this.PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( 0 );
 
       //Introducing
       DateTime _thisIntroducingDateStart = DateTime.MaxValue;
@@ -42,7 +46,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.OutboundDateStart = _thisOutboundDateStart;
 
       //Balance
-      decimal _thisBalanceQuantity = Convert.ToDecimal( _prev.SituationQuantity ) + _introducingQuantity - _outQuantity;
+      decimal _thisBalanceQuantity = Convert.ToDecimal( previous.SituationQuantity ) + _introducingQuantity - _outQuantity;
       this.BalanceDate = DateTime.Today.Date;
       this.BalanceQuantity = _thisBalanceQuantity.Convert2Double2Decimals();
 

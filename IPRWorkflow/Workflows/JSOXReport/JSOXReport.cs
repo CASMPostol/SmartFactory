@@ -35,13 +35,15 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
         using ( Entities edc = new Entities( workflowProperties.WebUrl ) )
         {
           JSOXLib _list = Element.GetAtIndex<JSOXLib>( edc.JSOXLibrary, workflowProperties.ItemId );
+          _list.JSOXReport( edc );
+          edc.SubmitChanges();
         }
       }
       catch ( Exception ex )
       {
-
-        EndLogToHistory_HistoryDescription = "Fatal error: {0}";
-        EndLogToHistory_HistoryOutcome = "Exception";
+        EndLogToHistory_HistoryOutcome = "Closing fatal error";
+        string _patt = "Cannot create JSOX report sheet because of fata error {0} at {1}";
+        EndLogToHistory_HistoryDescription = String.Format( _patt, ex.Message, ex.StackTrace );
       }
     }
     public String EndLogToHistory_HistoryOutcome = default( System.String );
