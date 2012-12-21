@@ -175,7 +175,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal static IQueryable<Disposal> GetEntries4JSOX( Entities edc )
     {
       return from _dspx in edc.Disposal
-             where ( _dspx.JSOXCustomsSummaryIndex == null ) && ( _dspx.CustomsStatus.Value == Linq.CustomsStatus.Started )
+             where ( _dspx.DisposalStatus.Value != Linq.DisposalStatus.Cartons ) &&
+                   ( _dspx.JSOXCustomsSummaryIndex == null ) &&
+                   ( ( _dspx.CustomsStatus.Value == Linq.CustomsStatus.Started ) || ( _dspx.CustomsStatus.Value == Linq.CustomsStatus.Finished ) )
              orderby _dspx.Disposal2IPRIndex.Title
              select _dspx;
     }
