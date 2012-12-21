@@ -4,7 +4,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
-        <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="DocumentNo" type="xs:int" />
         <xs:element minOccurs="0" maxOccurs="1" name="DocumentName" type="xs:string" />
         <xs:element minOccurs="0" maxOccurs="1" name="EntryDocumentNo" type="xs:string" />
         <xs:element minOccurs="1" maxOccurs="1" name="CustomsDebtDate" type="xs:date" />

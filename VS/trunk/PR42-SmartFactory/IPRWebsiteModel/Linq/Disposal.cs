@@ -215,7 +215,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     private void AssignSADGood( Entities edc, SADGood sadGood )
     {
-      string productCodeNumber = sadGood.PCNTariffCode;
       switch ( this.DisposalStatus.Value )
       {
         case Linq.DisposalStatus.SHMenthol:
@@ -232,13 +231,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         case Linq.DisposalStatus.TobaccoInCutfiller:
         case Linq.DisposalStatus.TobaccoInCutfillerDestinationEU:
         case Linq.DisposalStatus.TobaccoInCutfillerProduction:
-          PCNCode _pcn = PCNCode.Find( edc, IsDisposal, productCodeNumber );
+          string _productCodeNumber = sadGood.PCNTariffCode;
+          PCNCode _pcn = PCNCode.Find( edc, IsDisposal, _productCodeNumber );
           if ( _pcn == null )
           {
             string _mtmp = "Cannot find pcn code: {0} for the good: {1} with IsDisposal set to {3}";
             throw new InputDataValidationException(
                 "wrong PCN code in customs message", "PCN Code",
-                string.Format( _mtmp, productCodeNumber, sadGood.GoodsDescription, IsDisposal ),
+                string.Format( _mtmp, _productCodeNumber, sadGood.GoodsDescription, IsDisposal ),
                 true );
           }
           this.Disposal2PCNID = _pcn;
