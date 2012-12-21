@@ -5,6 +5,9 @@ using System.Text;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel
 {
+  /// <summary>
+  /// Website Model Extensions
+  /// </summary>
   public static class WebsiteModelExtensions
   {
     /// <summary>
@@ -24,6 +27,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel
     public static decimal Rount2Decimals( this decimal value )
     {
       return Math.Round( value, 2 );
+    }
+    /// <summary>
+    ///   Converts the value of the specified decimal number to an equivalent double-precision floating-point 
+    ///   number and rounts it to 2 fractional digits in the return value.
+    /// </summary>
+    /// <param name="value">The value to be converted.</param>
+    /// <returns>The <paramref name="value"/> converted and rounded; the number of fractional digits in the return value is 2.</returns>
+    public static double Convert2Double2Decimals( this decimal value )
+    {
+      return Math.Round( Convert.ToDouble( value ), 2 );
     }
     /// <summary>
     /// Rounts the mass upper.

@@ -122,22 +122,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 
     #region static
     /// <summary>
-    /// Gets all open account.
-    /// </summary>
-    /// <param name="edc">The <see cref="Entities"/>.</param>
-    /// <returns></returns>
-    public static IQueryable<IPR> GetAllOpen( Entities edc )
-    {
-      return from _iprx in edc.IPR
-             where !_iprx.AccountClosed.Value
-             orderby _iprx.CustomsDebtDate.Value
-             select _iprx;
-    }
-    public static IQueryable<IPR> GetAllNew4JSOX( Entities edc )
-    {
-      return from _iprx in edc.IPR where _iprx.JSOXIndex == null select _iprx;
-    }
-    /// <summary>
     /// Check if record exists.
     /// </summary>
     /// <param name="edc">The <see cref="Entities"/></param>
@@ -159,6 +143,47 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                where _iprx.Batch.Contains( batch ) && !_iprx.AccountClosed.Value && _iprx.TobaccoNotAllocated.Value > 0
                orderby _iprx.CustomsDebtDate.Value ascending, _iprx.DocumentNo ascending
                select _iprx ).ToList();
+    }
+    /// <summary>
+    /// Gets the introducing quantity.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="parent">The parent.</param>
+    /// <param name="dateStart">The date start.</param>
+    /// <param name="dateEnd">The date end.</param>
+    /// <returns></returns>
+    public static decimal GetIntroducingData( Entities edc, JSOXLib parent, out DateTime dateStart, out DateTime dateEnd )
+    {
+      decimal _ret = 0;
+      dateEnd = DateTime.MinValue;
+      dateStart = DateTime.MaxValue;
+      foreach ( IPR _iprx in IPR.GetAllNew4JSOX( edc ) )
+      {
+        _iprx.JSOXIndex = parent;
+        _ret += _iprx.NetMassDec;
+        dateEnd = LinqIPRExtensions.Max( _iprx.CustomsDebtDate.Value.Date, dateEnd );
+        dateStart = LinqIPRExtensions.Min( _iprx.CustomsDebtDate.Value.Date, dateStart );
+      }
+      return _ret;
+    }
+    /// <summary>
+    /// Gets the current situation.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="parent">The parent.</param>
+    /// <param name="dateStart">The date start.</param>
+    /// <param name="dateEnd">The date end.</param>
+    /// <returns></returns>
+    public static decimal GetCurrentSituationData( Entities edc, out DateTime dateEnd )
+    {
+      decimal _ret = 0;
+      dateEnd = DateTime.MinValue;
+      foreach ( IPR _iprx in IPR.GetAllOpen4JSOX( edc ) )
+      {
+        _ret += _iprx.AccountBalanceDec;
+        dateEnd = LinqIPRExtensions.Max( _iprx.CustomsDebtDate.Value.Date, dateEnd );
+      }
+      return _ret;
     }
     #endregion
 
@@ -233,6 +258,23 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       edc.Disposal.InsertOnSubmit( _newDisposal );
       return _newDisposal;
     }
+    private static IQueryable<IPR> GetAllNew4JSOX( Entities edc )
+    {
+      return from _iprx in edc.IPR where _iprx.JSOXIndex == null select _iprx;
+    }
+    /// <summary>
+    /// Gets all open account.
+    /// </summary>
+    /// <param name="edc">The <see cref="Entities"/>.</param>
+    /// <returns></returns>
+    private static IQueryable<IPR> GetAllOpen4JSOX( Entities edc )
+    {
+      return from _iprx in edc.IPR
+             where !_iprx.AccountClosed.Value
+             orderby _iprx.CustomsDebtDate.Value
+             select _iprx;
+    }
+    private decimal AccountBalanceDec { get { return Convert.ToDecimal( AccountBalance.Value ); } }
     #endregion
 
   }

@@ -99,6 +99,12 @@
     <Compile Include="Workflows\IPRClosing\IPRClosing.Designer.cs">
       <DependentUpon>IPRClosing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Workflows\JSOXReport\JSOXReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Workflows\JSOXReport\JSOXReport.Designer.cs">
+      <DependentUpon>JSOXReport.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ListsEventsHandlers\Customs\SADImportXML\SharePointProjectItem.spdata">
@@ -127,6 +133,9 @@
     </None>
     <None Include="Workflows\IPRClosing\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a284012e-5195-447e-857d-8827927bec2f}</SharePointProjectItemId>
+    </None>
+    <None Include="Workflows\JSOXReport\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e6265aaf-b6ca-4fb5-801f-90ae5b122fa1}</SharePointProjectItemId>
     </None>
     <None Include="Workflows\WorkflowHistory\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a5b4886f-752e-4e87-89b8-8e85f20e6756}</SharePointProjectItemId>
@@ -162,6 +171,7 @@
     <Content Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\Elements.xml" />
     <Content Include="Workflows\CreateReport\Elements.xml" />
     <Content Include="Workflows\IPRClosing\Elements.xml" />
+    <Content Include="Workflows\JSOXReport\Elements.xml" />
     <Content Include="Workflows\WorkflowHistory\Elements.xml" />
     <Content Include="Workflows\WorkflowTasks\Elements.xml" />
   </ItemGroup>
