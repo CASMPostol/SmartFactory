@@ -88,6 +88,41 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Batch and material" DefaultView="FALSE" MobileView="FALSE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="BatchAndMaterial.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">15</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="SKUDescription" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="ProductID" />
+          <FieldRef Name="StorLoc" />
+          <FieldRef Name="FGQuantity" />
+          <FieldRef Name="TobaccoQuantity" />
+          <FieldRef Name="Units" />
+          <FieldRef Name="ProductType" />
+          <FieldRef Name="Overuse" />
+          <FieldRef Name="Dust" />
+          <FieldRef Name="Waste" />
+          <FieldRef Name="Tobacco" />
+          <FieldRef Name="SHMenthol" />
+          <FieldRef Name="Material2BatchIndex" />
+          <FieldRef Name="_UIVersionString" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
     </Views>
     <Forms>
       <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />

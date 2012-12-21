@@ -122,7 +122,7 @@
           <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
         </ParameterBindings>
       </View>
-      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Export - batch" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSe" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Export_Batch.aspx">
+      <View BaseViewID="2" Type="HTML" WebPartZoneID="Main" DisplayName="Export - batch" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="Export_Batch.aspx">
         <Toolbar Type="None" />
         <XslLink Default="TRUE">main.xsl</XslLink>
         <RowLimit Paged="TRUE">15</RowLimit>
@@ -134,6 +134,62 @@
           <FieldRef Name="BatchStatus" />
           <FieldRef Name="Batch" />
           <FieldRef Name="SKU" />
+        </ViewFields>
+        <Query>
+          <Where>
+            <Neq>
+              <FieldRef Name="FGQuantityAvailable" />
+              <Value Type="Number">0</Value>
+            </Neq>
+          </Where>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="3" Type="HTML" WebPartZoneID="Main" DisplayName="Batch and material" DefaultView="FALSE" MobileView="TRUE" MobileDefaultView="FALSE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="BatchAndMaterial.aspx">
+        <Toolbar Type="None" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">15</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="ProductType" />
+          <FieldRef Name="BatchStatus" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="FGQuantity" />
+          <FieldRef Name="FGQuantityAvailable" />
+          <FieldRef Name="MaterialQuantity" />
+          <FieldRef Name="CalculatedOveruse" />
+          <FieldRef Name="Overuse" />
+          <FieldRef Name="Dust" />
+          <FieldRef Name="Waste" />
+          <FieldRef Name="Tobacco" />
+          <FieldRef Name="SHMenthol" />
+          <FieldRef Name="BatchLibraryIndex" />
+          <FieldRef Name="SKUIndex" />
+          <FieldRef Name="BatchSHCooeficiency" />
+          <FieldRef Name="SHCooeficiencyVersion" />
+          <FieldRef Name="BatchDustCooeficiency" />
+          <FieldRef Name="DustCooeficiencyVersion"/>
+          <FieldRef Name="BatchWasteCooeficiency" />
+          <FieldRef Name="WasteCooeficiencyVersion" />
+          <FieldRef Name="CFTProductivityRateMin" />
+          <FieldRef Name="CFTProductivityRateMax" />
+          <FieldRef Name="CFTProductivityNormMin" />
+          <FieldRef Name="CFTProductivityNormMax" />
+          <FieldRef Name="CTFProductivityVersion" />
+          <FieldRef Name="UsageMin" />
+          <FieldRef Name="UsageMax" />
+          <FieldRef Name="CTFUsageMin" />
+          <FieldRef Name="CTFUsageMax" />
+          <FieldRef Name="UsageVersion" />
+          <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
           <Where>
