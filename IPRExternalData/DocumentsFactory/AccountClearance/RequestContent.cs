@@ -26,7 +26,9 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         
         private System.DateTime documentDateField;
         
-        private string documentNoField;
+        private int documentNoField;
+        
+        private string documentNameField;
         
         private string entryDocumentNoField;
         
@@ -94,12 +96,22 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.AccountClearance {
         }
         
         /// <uwagi/>
-        public string DocumentNo {
+        public int DocumentNo {
             get {
                 return this.documentNoField;
             }
             set {
                 this.documentNoField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public string DocumentName {
+            get {
+                return this.documentNameField;
+            }
+            set {
+                this.documentNameField = value;
             }
         }
         

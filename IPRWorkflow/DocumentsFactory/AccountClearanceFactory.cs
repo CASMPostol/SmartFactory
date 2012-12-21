@@ -12,7 +12,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
   internal static class AccountClearanceFactory
   {
     #region public
-    internal static RequestContent CreateRequestContent( IPRClass ipr, string documentNo )
+    internal static RequestContent CreateRequestContent( IPRClass ipr, int documentNo, string documentName )
     {
       ProductCodeNumberDesscription[] _pcnArray = CreateArrayOfProductCodeNumberDesscription( ipr.Disposal );
       ArrayOfDIsposalsDisposalsArray[] _disposalsColection = CreateArrayOfDIsposalsDisposalsArray( ipr.Disposal );
@@ -26,6 +26,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         CustomsDebtDate = ipr.CustomsDebtDate.Value,
         DisposalsColection = _disposalsColection,
         DocumentDate = DateTime.Today.Date,
+        DocumentName = documentName,
         DocumentNo = documentNo,
         Duty = ipr.Duty.Value,
         DutyName = ipr.DutyName,
@@ -45,7 +46,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         ValidToDate = ipr.ValidToDate.Value,
         VAT = ipr.VAT.Value,
         VATName = ipr.VATName,
-        VATPerUnit = ipr.IPRVATPerUnit.Value, 
+        VATPerUnit = ipr.IPRVATPerUnit.Value,
         VATDutyTotal = ipr.VATDec + ipr.DutyDec
       };
       return _ret;
