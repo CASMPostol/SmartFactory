@@ -8,8 +8,13 @@
       <xs:element minOccurs="1" maxOccurs="1" name="SituationAtDate" type="xs:date" />
       <xs:element minOccurs="1" maxOccurs="1" name="StartDate" type="xs:date" />
       <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IPRStock" type="tns:IPRStockContent" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPRStock" type="tns:ArrayOfIPRStockContent" />
       <xs:element minOccurs="0" maxOccurs="1" name="JSOX" type="tns:JSOContent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfIPRStockContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPRStockContent" nillable="true" type="tns:IPRStockContent" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="IPRStockContent">
