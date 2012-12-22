@@ -15,6 +15,8 @@ using Microsoft.SharePoint;
 using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint.WorkflowActions;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
+using CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet;
+using CAS.SmartFactory.IPR.DocumentsFactory;
 
 namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
 {
@@ -35,7 +37,11 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
         using ( Entities edc = new Entities( workflowProperties.WebUrl ) )
         {
           JSOXLib _list = Element.GetAtIndex<JSOXLib>( edc.JSOXLibrary, workflowProperties.ItemId );
-          _list.JSOXReport( edc );
+          _list.UpdateJSOXReport( edc );
+          string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( _list.Identyfikator.Value );
+          BalanceSheetContent _content = DocumentsFactory.BalanceSheetContentFactory.CreateRequestContent( _list, _list.Identyfikator.Value, _documentName );
+          int _id = SPDocumentFactory.Prepare( this.workflowProperties.Web, _content, _documentName );
+
           edc.SubmitChanges();
         }
       }
