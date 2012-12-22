@@ -24,7 +24,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       return _ret;
     }
 
-    private static JSOXContenet GetJSOX()
+    private static JSOContent GetJSOX()
     {
       throw new NotImplementedException();
     }
@@ -33,5 +33,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     {
       throw new NotImplementedException();
     }
+
+
   }
 }
