@@ -5,83 +5,79 @@
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="DocumentDate" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="DocumentNo" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SituationAtDate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SituationAtDate" type="xs:date" />
       <xs:element minOccurs="1" maxOccurs="1" name="StartDate" type="xs:date" />
       <xs:element minOccurs="1" maxOccurs="1" name="EndDate" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="IPRStock" type="tns:IPRStockContent" />
-      <xs:element minOccurs="0" maxOccurs="1" name="JSOX" type="tns:JSOXContenet" />
+      <xs:element minOccurs="0" maxOccurs="1" name="JSOX" type="tns:JSOContent" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="IPRStockContent">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="BatchList" type="tns:ArrayOfIPRStockBatchListRow" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalIPRBook" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalSHWasteOveruseCSNotStarted" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalDustCSNotStarted" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalTobaccoAvailable" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalTobaccoInWarehouse" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalTobaccoInCigarettesWarehouse" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalTobaccoInCigarettesProduction" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalTobaccoInCutfillerWarehouse" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalBalance" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IPRList" type="tns:ArrayOfIPRRow" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalIPRBook" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalSHWasteOveruseCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalDustCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoAvailable" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCigarettesWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCigarettesProduction" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalTobaccoInCutfillerWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalBalance" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="ArrayOfIPRStockBatchListRow">
+  <xs:complexType name="ArrayOfIPRRow">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPRStockBatchListRow" nillable="true" type="tns:IPRStockBatchListRow" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPRRow" nillable="true" type="tns:IPRRow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IPRRow">
+    <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="EntryDocumentNo" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="SKU" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Batch" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IPRBook" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SHWasteOveruseCSNotStarted" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="DustCSNotStarted" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TobaccoAvailable" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TobaccoInWarehouse" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TobaccoInCigarettesWarehouse" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TobaccoInCigarettesProduction" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TobaccoInCutfillerWarehouse" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Balance" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IPRBook" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SHWasteOveruseCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DustCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoAvailable" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoInWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoInCigarettesWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoInCigarettesProduction" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TobaccoInCutfillerWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Balance" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="IPRStockBatchListRow" />
-  <xs:complexType name="JSOXContenet">
+  <xs:complexType name="JSOContent">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="JSOXClearance" type="tns:ArrayOfJSOXClearanceContent" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="ArrayOfJSOXClearanceContent">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="JSOXClearanceContent" nillable="true" type="tns:JSOXClearanceContent" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="JSOXClearanceContent">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Disposal" type="tns:ArrayOfDisposalRow" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PreviousMonthDate" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="PreviousMonthQuantity" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IntroducingDateStart" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IntroducingDateEnd" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="IntroducingQuantity" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OutboundDateStart" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OutboundDateEnd" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="OutboundQuantity" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="BalanceDate" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="BalanceQuantity" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SituationDate" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SituationQuantity" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="ReassumeQuantity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Disposals" type="tns:ArrayOfDisposalRow" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PreviousMonthDate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PreviousMonthQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IntroducingDateStart" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IntroducingDateEnd" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IntroducingQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OutboundDateStart" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OutboundDateEnd" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OutboundQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BalanceDate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BalanceQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SituationDate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SituationQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ReassumeQuantity" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfDisposalRow">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalRow" nillable="true" type="tns:DisposalRow" />
-      <xs:element minOccurs="0" maxOccurs="1" name="ExportOrFreeCirculationSAD" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="EntryDocumentNo" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SADDate" type="xs:date" />
-      <xs:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="CompensationGood" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="TotalAmount" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="DisposalRow" />
+  <xs:complexType name="DisposalRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ExportOrFreeCirculationSAD" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EntryDocumentNo" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SADDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CompensationGood" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>
