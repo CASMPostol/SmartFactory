@@ -235,6 +235,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return _typeOfDisposal;
     }
     public static string IPRLibraryName = "IPR Library";
+    public static string JSOXLibraryName = "JSOX Library";
     #endregion
 
     #region private

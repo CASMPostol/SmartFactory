@@ -30,6 +30,23 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
       }
       return _docFile;
     }
+    internal static void WriteXmlFile<type>( SPFile docFile, type object2Serialize, string stylesheetName )
+    {
+      XmlSerializer _srlzr = new XmlSerializer( typeof( type ) );
+      XmlWriterSettings _setting = new XmlWriterSettings()
+      {
+        Indent = true,
+        IndentChars = "  ",
+        NewLineChars = "\r\n"
+      };
+      using ( Stream _docStrm = docFile.OpenBinaryStream() )
+      using ( XmlWriter _file = XmlWriter.Create( _docStrm, _setting ) )
+      {
+        _file.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" " + String.Format( "href=\"{0}.xslt\"", stylesheetName ) );
+        _srlzr.Serialize( _file, object2Serialize );
+      }
+      docFile.Update();
+    }
     /// <summary>
     /// Dust form stylesheet name
     /// </summary>
@@ -54,6 +71,10 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
     /// The request for account clearence name
     /// </summary>
     public static string RequestForAccountClearenceName = "RequestForAccountClearence";
+    /// <summary>
+    /// The balance sheet content name
+    /// </summary>
+    public static string BalanceSheetContentName = "BalanceSheetCollection";
   }
 }
 

@@ -38,7 +38,12 @@ namespace CAS.SmartFactory.xml
     {
       return String.Format( m_RequestForAccountClearenceDocumentName.GetLocalizedString(), number );
     }
+    public static string RequestForBalanceSheetDocumentName( int number )
+    {
+      return String.Format( m_RequestForAccountClearenceDocumentName.GetLocalizedString(), number );
+    }
     private const string m_FinishedGoodsExportFormFileName = "Proces technologiczny {0:D7}";
     private const string m_RequestForAccountClearenceDocumentName = "Account Clearence Application {0:D7}";
+    private const string m_RequestForBalanceSheetCollectionDocumentName = "Balance Sheet {0:D7}";
   }
 }
