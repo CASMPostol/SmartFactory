@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         private System.DateTime endDateField;
         
-        private IPRStockContent iPRStockField;
+        private IPRStockContent[] iPRStockField;
         
         private JSOContent jSOXField;
         
@@ -93,7 +93,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        public IPRStockContent IPRStock {
+        public IPRStockContent[] IPRStock {
             get {
                 return this.iPRStockField;
             }
