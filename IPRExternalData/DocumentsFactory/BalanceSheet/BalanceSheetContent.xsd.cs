@@ -20,5 +20,14 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet
     {
       return DocumentNames.CreateXmlFile<BalanceSheetContent>( destinationCollection, fileName, this, DocumentNames.BalanceSheetContentName );
     }
+    /// <summary>
+    /// Updates the document.
+    /// </summary>
+    /// <param name="docFile">The doc file.</param>
+    public void UpdateDocument( SPFile docFile )
+    {
+      DocumentNames.WriteXmlFile<BalanceSheetContent>( docFile, this, DocumentNames.BalanceSheetContentName );
+    }
+
   }
 }

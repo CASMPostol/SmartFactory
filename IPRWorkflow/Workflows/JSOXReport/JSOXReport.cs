@@ -29,20 +29,17 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
 
     public Guid workflowId = default( System.Guid );
     public SPWorkflowActivationProperties workflowProperties = new SPWorkflowActivationProperties();
-
     private void CreateReport( object sender, EventArgs e )
     {
       try
       {
-        using ( Entities edc = new Entities( workflowProperties.WebUrl ) )
+        using ( Entities edc = new Entities( workflowProperties.WebUrl ) { ObjectTrackingEnabled = false } )
         {
           JSOXLib _list = Element.GetAtIndex<JSOXLib>( edc.JSOXLibrary, workflowProperties.ItemId );
           _list.UpdateJSOXReport( edc );
           string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( _list.Identyfikator.Value );
           BalanceSheetContent _content = DocumentsFactory.BalanceSheetContentFactory.CreateRequestContent( _list, _list.Identyfikator.Value, _documentName );
-          int _id = SPDocumentFactory.Prepare( this.workflowProperties.Web, _content, _documentName );
-
-          edc.SubmitChanges();
+          _content.UpdateDocument( workflowProperties.Item.File );
         }
       }
       catch ( Exception ex )
