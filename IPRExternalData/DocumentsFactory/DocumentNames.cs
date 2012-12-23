@@ -39,12 +39,13 @@ namespace CAS.SmartFactory.xml.DocumentsFactory
         IndentChars = "  ",
         NewLineChars = "\r\n"
       };
-      using ( Stream _docStrm = docFile.OpenBinaryStream() )
+      using ( Stream _docStrm = new MemoryStream( 30000 ) )
       using ( XmlWriter _file = XmlWriter.Create( _docStrm, _setting ) )
       {
         _file.WriteProcessingInstruction( "xml-stylesheet", "type=\"text/xsl\" " + String.Format( "href=\"{0}.xslt\"", stylesheetName ) );
         _srlzr.Serialize( _file, object2Serialize );
       }
+      docFile.SaveBinary( _docStrm );
       docFile.Update();
     }
     /// <summary>
