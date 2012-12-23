@@ -29,9 +29,10 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
       System.Workflow.ComponentModel.ActivityBind activitybind1 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind2 = new System.Workflow.ComponentModel.ActivityBind();
       System.Workflow.ComponentModel.ActivityBind activitybind3 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.ComponentModel.ActivityBind activitybind5 = new System.Workflow.ComponentModel.ActivityBind();
-      System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
       System.Workflow.ComponentModel.ActivityBind activitybind4 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.ComponentModel.ActivityBind activitybind6 = new System.Workflow.ComponentModel.ActivityBind();
+      System.Workflow.Runtime.CorrelationToken correlationtoken1 = new System.Workflow.Runtime.CorrelationToken();
+      System.Workflow.ComponentModel.ActivityBind activitybind5 = new System.Workflow.ComponentModel.ActivityBind();
       this.EndLogToHistory = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
       this.JSOXCreateAivity = new System.Workflow.Activities.CodeActivity();
       this.StartingLogToHistory = new Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity();
@@ -47,9 +48,11 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
       activitybind2.Path = "EndLogToHistory_HistoryOutcome";
       this.EndLogToHistory.Name = "EndLogToHistory";
       this.EndLogToHistory.OtherData = "";
-      this.EndLogToHistory.UserId = -1;
+      activitybind3.Name = "JSOXReport";
+      activitybind3.Path = "workflowProperties.OriginatorUser.ID";
       this.EndLogToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind2 ) ) );
       this.EndLogToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind1 ) ) );
+      this.EndLogToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind3 ) ) );
       // 
       // JSOXCreateAivity
       // 
@@ -65,11 +68,11 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
       this.StartingLogToHistory.HistoryOutcome = "Starting";
       this.StartingLogToHistory.Name = "StartingLogToHistory";
       this.StartingLogToHistory.OtherData = "";
-      activitybind3.Name = "JSOXReport";
-      activitybind3.Path = "workflowProperties.OriginatorUser.ID";
-      this.StartingLogToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind3 ) ) );
-      activitybind5.Name = "JSOXReport";
-      activitybind5.Path = "workflowId";
+      activitybind4.Name = "JSOXReport";
+      activitybind4.Path = "workflowProperties.OriginatorUser.ID";
+      this.StartingLogToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind4 ) ) );
+      activitybind6.Name = "JSOXReport";
+      activitybind6.Path = "workflowId";
       // 
       // onWorkflowActivated
       // 
@@ -78,10 +81,10 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
       this.onWorkflowActivated.CorrelationToken = correlationtoken1;
       this.onWorkflowActivated.EventName = "OnWorkflowActivated";
       this.onWorkflowActivated.Name = "onWorkflowActivated";
-      activitybind4.Name = "JSOXReport";
-      activitybind4.Path = "workflowProperties";
-      this.onWorkflowActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind5 ) ) );
-      this.onWorkflowActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind4 ) ) );
+      activitybind5.Name = "JSOXReport";
+      activitybind5.Path = "workflowProperties";
+      this.onWorkflowActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind6 ) ) );
+      this.onWorkflowActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind5 ) ) );
       // 
       // JSOXReport
       // 
@@ -103,6 +106,7 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity StartingLogToHistory;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated;
+
 
 
 
