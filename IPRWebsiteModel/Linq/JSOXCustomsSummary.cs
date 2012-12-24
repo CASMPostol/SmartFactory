@@ -19,12 +19,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       decimal _ret = 0;
       List<JSOXCustomsSummary> _newEntries = new List<JSOXCustomsSummary>();
-      start = DateTime.MaxValue;
-      end = DateTime.MinValue;
+      start = LinqIPRExtensions.DateTimeMaxValue;
+      end = LinqIPRExtensions.DateTimeMinValue;
       foreach ( Disposal _dspx in Linq.Disposal.GetEntries4JSOX( edc ) )
       {
-        start = LinqIPRExtensions.Min( start, _dspx.SADDate.GetValueOrDefault( DateTime.MaxValue ) );
-        end = LinqIPRExtensions.Max( end, _dspx.SADDate.GetValueOrDefault( DateTime.MinValue ) );
+        start = LinqIPRExtensions.Min( start, _dspx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMaxValue ) );
+        end = LinqIPRExtensions.Max( end, _dspx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMinValue ) );
         JSOXCustomsSummary _newItem = new JSOXCustomsSummary()
         {
           CompensationGood = _dspx.Disposal2PCNID == null ? "TBD" : _dspx.Disposal2PCNID.CompensationGood,

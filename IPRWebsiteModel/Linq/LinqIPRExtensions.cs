@@ -63,6 +63,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return dateTime1 > dateTime2 ? dateTime1 : dateTime2;
     }
+    internal static DateTime DateTimeMaxValue = DateTime.Today + TimeSpan.FromDays( 3000 );
+    internal static DateTime DateTimeMinValue = DateTime.Today - TimeSpan.FromDays( 3000 );
 
   }
 }
