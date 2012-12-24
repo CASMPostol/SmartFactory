@@ -100,10 +100,10 @@
     <Compile Include="Workflows\IPRClosing\IPRClosing.Designer.cs">
       <DependentUpon>IPRClosing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Workflows\JSOXReport\JSOXReport.cs">
+    <Compile Include="Workflows\JSOXUpdataReport\JSOXReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Workflows\JSOXReport\JSOXReport.Designer.cs">
+    <Compile Include="Workflows\JSOXUpdataReport\JSOXReport.Designer.cs">
       <DependentUpon>JSOXReport.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -135,7 +135,7 @@
     <None Include="Workflows\IPRClosing\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a284012e-5195-447e-857d-8827927bec2f}</SharePointProjectItemId>
     </None>
-    <None Include="Workflows\JSOXReport\SharePointProjectItem.spdata">
+    <None Include="Workflows\JSOXUpdataReport\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e6265aaf-b6ca-4fb5-801f-90ae5b122fa1}</SharePointProjectItemId>
     </None>
     <None Include="Workflows\WorkflowHistory\SharePointProjectItem.spdata">
@@ -176,7 +176,7 @@
     <Content Include="Workflows\IPRClosing\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Workflows\JSOXReport\Elements.xml">
+    <Content Include="Workflows\JSOXUpdataReport\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Workflows\WorkflowHistory\Elements.xml" />
