@@ -155,8 +155,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public static decimal GetIntroducingData( Entities edc, JSOXLib parent, out DateTime dateStart, out DateTime dateEnd )
     {
       decimal _ret = 0;
-      dateEnd = DateTime.MinValue;
-      dateStart = DateTime.MaxValue;
+      dateEnd = LinqIPRExtensions.DateTimeMinValue;
+      dateStart = LinqIPRExtensions.DateTimeMaxValue;
       foreach ( IPR _iprx in IPR.GetAllNew4JSOX( edc ) )
       {
         _iprx.JSOXIndex = parent;
@@ -170,14 +170,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// Gets the current situation.
     /// </summary>
     /// <param name="edc">The edc.</param>
-    /// <param name="parent">The parent.</param>
-    /// <param name="dateStart">The date start.</param>
     /// <param name="dateEnd">The date end.</param>
     /// <returns></returns>
     public static decimal GetCurrentSituationData( Entities edc, out DateTime dateEnd )
     {
       decimal _ret = 0;
-      dateEnd = DateTime.MinValue;
+      dateEnd = LinqIPRExtensions.DateTimeMinValue;
       foreach ( IPR _iprx in IPR.GetAllOpen4JSOX( edc ) )
       {
         _ret += _iprx.AccountBalanceDec;

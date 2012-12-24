@@ -38,7 +38,13 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
         EndLogToHistory_HistoryDescription = String.Format( _patt, ex.Message, ex.StackTrace );
       }
     }
+    /// <summary>
+    /// The end log to history outcome
+    /// </summary>
     public String EndLogToHistory_HistoryOutcome = "Finisched";
+    /// <summary>
+    /// The end log to history description
+    /// </summary>
     public String EndLogToHistory_HistoryDescription = default( System.String );
   }
 }

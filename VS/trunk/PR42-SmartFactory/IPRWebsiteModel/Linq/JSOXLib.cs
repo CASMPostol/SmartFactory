@@ -32,8 +32,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
 
       //Introducing
-      DateTime _thisIntroducingDateStart = m_DateTimeMaxValue;
-      DateTime _thisIntroducingDateEnd = m_DateTimeMinValue;
+      DateTime _thisIntroducingDateStart = LinqIPRExtensions.DateTimeMaxValue;
+      DateTime _thisIntroducingDateEnd = LinqIPRExtensions.DateTimeMinValue;
       //TODO IPR reverse lookup required - summ already added IPR account
       decimal _introducingQuantity = IPR.GetIntroducingData( edc, this, out _thisIntroducingDateStart, out _thisIntroducingDateEnd );
       this.IntroducingDateStart = _thisIntroducingDateStart;
@@ -41,8 +41,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.IntroducingQuantity = _introducingQuantity.Convert2Double2Decimals();
 
       //Outbound
-      DateTime _thisOutboundDateEnd = m_DateTimeMinValue;
-      DateTime _thisOutboundDateStart = m_DateTimeMaxValue;
+      DateTime _thisOutboundDateEnd = LinqIPRExtensions.DateTimeMinValue;
+      DateTime _thisOutboundDateStart = LinqIPRExtensions.DateTimeMaxValue;
       //TODO JSOXCustomsSummary reverse lookup - summ already added disposals account
       decimal _outQuantity = JSOXCustomsSummary.CreateEntries( edc, this, out _thisOutboundDateStart, out _thisOutboundDateEnd );
       this.OutboundQuantity = _outQuantity.Convert2Double2Decimals();
@@ -68,8 +68,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 
     #region private
     private IQueryable<JSOXLib> Previous( Entities edc ) { return from _jsx in edc.JSOXLibrary orderby _jsx.BalanceDate.Value descending select _jsx; }
-    private DateTime m_DateTimeMaxValue = DateTime.Today + TimeSpan.FromDays( 3000 );
-    private DateTime m_DateTimeMinValue = DateTime.Today - TimeSpan.FromDays( 3000 );
     #endregion
 
   }
