@@ -63,7 +63,7 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
       // StartingLogToHistory
       // 
       this.StartingLogToHistory.Duration = System.TimeSpan.Parse( "-10675199.02:48:05.4775808" );
-      this.StartingLogToHistory.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowComment;
+      this.StartingLogToHistory.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowStarted;
       this.StartingLogToHistory.HistoryDescription = "JSOX creation starting";
       this.StartingLogToHistory.HistoryOutcome = "Starting";
       this.StartingLogToHistory.Name = "StartingLogToHistory";
@@ -106,6 +106,7 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity StartingLogToHistory;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated;
+
 
 
 
