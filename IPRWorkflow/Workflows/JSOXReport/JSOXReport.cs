@@ -19,15 +19,16 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
     {
       try
       {
+        BalanceSheetContent _content = null;
         using ( Entities edc = new Entities( workflowProperties.WebUrl ) )
         {
           JSOXLib _list = Element.GetAtIndex<JSOXLib>( edc.JSOXLibrary, workflowProperties.ItemId );
           _list.UpdateJSOXReport( edc );
-          string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( _list.Identyfikator.Value );
-          BalanceSheetContent _content = DocumentsFactory.BalanceSheetContentFactory.CreateRequestContent( _list, _list.Identyfikator.Value, _documentName );
-          _content.UpdateDocument( workflowProperties.Item.File );
           edc.SubmitChanges();
+          string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( _list.Identyfikator.Value );
+          _content = DocumentsFactory.BalanceSheetContentFactory.CreateRequestContent( _list, _documentName );
         }
+        _content.UpdateDocument( workflowProperties.Item.File );
         workflowProperties.List.Update();
         EndLogToHistory_HistoryDescription = "Report updated successfully";
       }
@@ -36,6 +37,7 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
         EndLogToHistory_HistoryOutcome = "Closing fatal error";
         string _patt = "Cannot create JSOX report sheet because of fata error {0} at {1}";
         EndLogToHistory_HistoryDescription = String.Format( _patt, ex.Message, ex.StackTrace );
+        EndLogToHistory.EventId = SPWorkflowHistoryEventType.WorkflowError;
       }
     }
     /// <summary>

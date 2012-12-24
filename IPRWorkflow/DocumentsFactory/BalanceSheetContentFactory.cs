@@ -8,7 +8,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
 {
   internal class BalanceSheetContentFactory
   {
-    internal static BalanceSheetContent CreateRequestContent( JSOXLib list, int documentNo, string documentName )
+    internal static BalanceSheetContent CreateRequestContent( JSOXLib list, string documentName )
     {
       BalanceSheetContent _ret = new BalanceSheetContent()
       {
