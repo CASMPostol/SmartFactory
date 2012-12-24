@@ -100,11 +100,17 @@
     <Compile Include="Workflows\IPRClosing\IPRClosing.Designer.cs">
       <DependentUpon>IPRClosing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Workflows\JSOXUpdataReport\JSOXReport.cs">
+    <Compile Include="Workflows\JSOXCreateReport\JSOXCreateReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Workflows\JSOXUpdataReport\JSOXReport.Designer.cs">
-      <DependentUpon>JSOXReport.cs</DependentUpon>
+    <Compile Include="Workflows\JSOXCreateReport\JSOXCreateReport.Designer.cs">
+      <DependentUpon>JSOXCreateReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Workflows\JSOXUpdataReport\JSOXUpdateReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Workflows\JSOXUpdataReport\JSOXUpdateReport.Designer.cs">
+      <DependentUpon>JSOXUpdateReport.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -135,8 +141,11 @@
     <None Include="Workflows\IPRClosing\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a284012e-5195-447e-857d-8827927bec2f}</SharePointProjectItemId>
     </None>
+    <None Include="Workflows\JSOXCreateReport\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b6c496d9-f4c2-48f6-ab18-19c8e373dcc9}</SharePointProjectItemId>
+    </None>
     <None Include="Workflows\JSOXUpdataReport\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e6265aaf-b6ca-4fb5-801f-90ae5b122fa1}</SharePointProjectItemId>
+      <SharePointProjectItemId>{8960307d-b2f7-49e5-b809-84f7183d7bd8}</SharePointProjectItemId>
     </None>
     <None Include="Workflows\WorkflowHistory\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a5b4886f-752e-4e87-89b8-8e85f20e6756}</SharePointProjectItemId>
@@ -176,6 +185,7 @@
     <Content Include="Workflows\IPRClosing\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Workflows\JSOXCreateReport\Elements.xml" />
     <Content Include="Workflows\JSOXUpdataReport\Elements.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -22,6 +22,21 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
+    internal static BalanceSheetContent CreateEmptyRequestContent()
+    {
+      DateTime _default = DateTime.Today.Date;
+      BalanceSheetContent _ret = new BalanceSheetContent()
+      {
+        DocumentDate = _default,
+        DocumentNo = "Temporal report.",
+        EndDate = _default,
+        IPRStock = null,
+        JSOX = null,
+        SituationAtDate = _default,
+        StartDate = _default
+      };
+      return _ret;
+    }
     private static JSOContent GetJSOX( JSOXLib list )
     {
       JSOContent _ret = new JSOContent()
@@ -110,7 +125,6 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       }
       return _ret.ToArray<IPRRow>();
     }
-
   }
   //TODO to be removed 
   internal static class BalanceSheetContentFactoryExtensions
