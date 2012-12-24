@@ -11,18 +11,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 
     #region public
     /// <summary>
-    /// JSOX report.
+    /// Updates the JSOX report.
     /// </summary>
-    /// <param name="edc">The <see cref="Entities"/>.</param>
-    /// <exception cref="InputDataValidationException">Cannot find previous JSOX report; JSOXReport;The JSOX reports lis is empty;true</exception>
-    public void JSOXReport( Entities edc )
+    /// <param name="edc">The edc.</param>
+    /// <param name="previous">The previous report.</param>
+    public void UpdateJSOXReport( Entities edc, JSOXLib previous )
     {
-      ////Previous
-      //JSOXLib _prev = new JSOXLib();
-      //JSOXReport( edc, _prev );
-      //edc.JSOXLibrary.InsertOnSubmit( _prev );
-      //this.PreviousMonthDate = previous.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
-      //this.PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( 0 );
+      PreviousMonthDate = this.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
+      PreviousMonthQuantity = this.SituationQuantity.GetValueOrDefault( 0 );
+      UpdateJSOXReport( edc );
     }
     /// <summary>
     /// Updates the JSOX report.
