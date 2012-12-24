@@ -12,9 +12,9 @@ using System.Workflow.Runtime;
 using System.Workflow.Activities;
 using System.Workflow.Activities.Rules;
 
-namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
+namespace CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport
 {
-  public sealed partial class JSOXReport
+  public sealed partial class JSOXUpdateReport
   {
     #region Designer generated code
 
@@ -42,13 +42,13 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
       // 
       this.EndLogToHistory.Duration = System.TimeSpan.Parse( "-10675199.02:48:05.4775808" );
       this.EndLogToHistory.EventId = Microsoft.SharePoint.Workflow.SPWorkflowHistoryEventType.WorkflowCompleted;
-      activitybind1.Name = "JSOXReport";
+      activitybind1.Name = "JSOXUpdateReport";
       activitybind1.Path = "EndLogToHistory_HistoryDescription";
-      activitybind2.Name = "JSOXReport";
+      activitybind2.Name = "JSOXUpdateReport";
       activitybind2.Path = "EndLogToHistory_HistoryOutcome";
       this.EndLogToHistory.Name = "EndLogToHistory";
       this.EndLogToHistory.OtherData = "";
-      activitybind3.Name = "JSOXReport";
+      activitybind3.Name = "JSOXUpdateReport";
       activitybind3.Path = "workflowProperties.OriginatorUser.ID";
       this.EndLogToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryOutcomeProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind2 ) ) );
       this.EndLogToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.HistoryDescriptionProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind1 ) ) );
@@ -68,31 +68,33 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
       this.StartingLogToHistory.HistoryOutcome = "Starting";
       this.StartingLogToHistory.Name = "StartingLogToHistory";
       this.StartingLogToHistory.OtherData = "";
-      activitybind4.Name = "JSOXReport";
+      activitybind4.Name = "JSOXUpdateReport";
       activitybind4.Path = "workflowProperties.OriginatorUser.ID";
       this.StartingLogToHistory.SetBinding( Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity.UserIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind4 ) ) );
-      activitybind6.Name = "JSOXReport";
+      activitybind6.Name = "JSOXUpdateReport";
       activitybind6.Path = "workflowId";
       // 
       // onWorkflowActivated
       // 
-      correlationtoken1.Name = "workflowToken";
-      correlationtoken1.OwnerActivityName = "JSOXReport";
+      correlationtoken1.Name = "JSOXWorkflowToken";
+      correlationtoken1.OwnerActivityName = "JSOXUpdateReport";
       this.onWorkflowActivated.CorrelationToken = correlationtoken1;
+      this.onWorkflowActivated.Description = "JSOX Update Report";
       this.onWorkflowActivated.EventName = "OnWorkflowActivated";
       this.onWorkflowActivated.Name = "onWorkflowActivated";
-      activitybind5.Name = "JSOXReport";
+      activitybind5.Name = "JSOXUpdateReport";
       activitybind5.Path = "workflowProperties";
+      this.onWorkflowActivated.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>( this.onWorkflowActivated_Invoked );
       this.onWorkflowActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind6 ) ) );
       this.onWorkflowActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind5 ) ) );
       // 
-      // JSOXReport
+      // JSOXUpdateReport
       // 
       this.Activities.Add( this.onWorkflowActivated );
       this.Activities.Add( this.StartingLogToHistory );
       this.Activities.Add( this.JSOXCreateAivity );
       this.Activities.Add( this.EndLogToHistory );
-      this.Name = "JSOXReport";
+      this.Name = "JSOXUpdateReport";
       this.CanModifyActivities = false;
 
     }
@@ -106,10 +108,6 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity StartingLogToHistory;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated;
-
-
-
-
 
 
 

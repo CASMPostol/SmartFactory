@@ -4,11 +4,11 @@ using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet;
 using Microsoft.SharePoint.Workflow;
 
-namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
+namespace CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport
 {
-  public sealed partial class JSOXReport: SequentialWorkflowActivity
+  public sealed partial class JSOXUpdateReport: SequentialWorkflowActivity
   {
-    public JSOXReport()
+    public JSOXUpdateReport()
     {
       InitializeComponent();
     }
@@ -48,5 +48,10 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXReport
     /// The end log to history description
     /// </summary>
     public String EndLogToHistory_HistoryDescription = default( System.String );
+
+    private void onWorkflowActivated_Invoked( object sender, ExternalDataEventArgs e )
+    {
+
+    }
   }
 }

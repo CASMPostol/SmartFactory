@@ -9,7 +9,7 @@ Name="[NAME]" ==> Name="MyWorkflow" -->
      Name="JSOX Report"
      Description="Creates JSOX Report"
      Id="e700531e-4cfa-4f49-a00c-9f641d9d1d0e"
-     CodeBesideClass="CAS.SmartFactory.IPR.Workflows.JSOXReport.JSOXReport"
+     CodeBesideClass="CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport.JSOXUpdateReport"
      CodeBesideAssembly="$assemblyname$">
     <Categories/>
     <MetaData>
