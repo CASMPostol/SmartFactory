@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0"?>
 <Web xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Class="Entities" AccessModifier="Public" xmlns="http://schemas.microsoft.com/SharePoint/2009/spmetal">
   <List Name="Activity Log" />
-  <List Name="Balance Summary" />
+  <List Name="Balance Batch" />
+  <List Name="Balance IPR" />
   <List Name="Batch" />
   <List Name="Batch Library" />
   <List Name="Clearence" />
@@ -21,7 +22,6 @@
   <List Name="IPR Library" />
   <List Name="JSOX Customs Summary" />
   <List Name="JSOX Library" />
-  <List Name="JSOX Summary" />
   <!--<List Name="List Template Gallery" />-->
   <!--<List Name="Master Page Gallery" />-->
   <List Name="Material" />
@@ -420,7 +420,7 @@
     <Column Name="AccountBalance" Member="AccountBalance" />
     <Column Name="TobaccoNotAllocated" Member="TobaccoNotAllocated" />
     <Column Name="IPR2PCNPCN" Member="IPR2PCNPCN" />
-    <Column Name="JSOXIndex" Member="JSOXIndex" />
+    <Column Name="IPR2JSOXIndex" Member="IPR2JSOXIndex" />
     <Column Name="ClearenceIndex" Member="ClearenceIndex" />
     <Column Name="IPRLibraryIndex" Member="IPRLibraryIndex" />
     <Column Name="AccountClosed" Member="AccountClosed" />
@@ -451,7 +451,7 @@
     <Column Name="TobaccoUsedInTheProduction" Member="TobaccoUsedInTheProduction" />
     <Column Name="TobaccoToBeUsedInTheProduction" Member="TobaccoToBeUsedInTheProduction" />
   </ContentType>
-  <ContentType Name="BalanceSummary" Class="BalanceSummary">
+  <ContentType Name="BalanceBatch" Class="BalanceBatch">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="DocumentNo" Member="DocumentNo" />
@@ -483,7 +483,7 @@
     <Column Name="Balance" Member="Balance" />
     <Column Name="Balance2JSOXLibraryIndex" Member="Balance2JSOXLibraryIndex" />
   </ContentType>
-  <ContentType Name="JSOXSummary" Class="JSOXSummary">
+  <ContentType Name="BalanceIPR" Class="BalanceIPR">
     <!--<Column Name="ContentType" Member="ContentType" />-->
     <Column Name="Title" Member="Title" />
     <Column Name="DocumentNo" Member="DocumentNo" />
@@ -511,8 +511,8 @@
     <Column Name="CustomsProcedure" Member="CustomsProcedure" />
     <Column Name="InvoiceNo" Member="InvoiceNo" />
     <Column Name="OGLIntroduction" Member="OGLIntroduction" />
-    <Column Name="BalanceIndex" Member="BalanceIndex" />
-    <Column Name="JSOXIndex" Member="JSOXIndex" />
+    <Column Name="BalanceBatchIndex" Member="BalanceBatchIndex" />
+    <Column Name="BalanceIPR2JSOXIndex" Member="BalanceIPR2JSOXIndex" />
     <Column Name="IPRIndex" Member="IPRIndex" />
   </ContentType>
   <ContentType Name="JSOXCustomsSummary" Class="JSOXCustomsSummary">
@@ -525,7 +525,7 @@
     <Column Name="IntroducingSADDate" Member="IntroducingSADDate" />
     <Column Name="CompensationGood" Member="CompensationGood" />
     <Column Name="TotalAmount" Member="TotalAmount" />
-    <Column Name="JSOXIndex" Member="JSOXIndex" />
+    <Column Name="JSOXCustomsSummary2JSOXIndex" Member="JSOXCustomsSummary2JSOXIndex" />
   </ContentType>
   <ContentType Name="SADRequiredDocuments" Class="SADRequiredDocuments">
     <!--<Column Name="ContentType" Member="ContentType" />-->

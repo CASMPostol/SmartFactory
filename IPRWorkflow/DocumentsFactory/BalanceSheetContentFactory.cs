@@ -78,11 +78,11 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       }
       return _ret.ToArray<DisposalRow>();
     }
-    private static IPRStockContent[] GetIPRStock( IQueryable<BalanceSummary> collection )
+    private static IPRStockContent[] GetIPRStock( IQueryable<BalanceBatch> collection )
     {
       List<IPRStockContent> _ret = new List<IPRStockContent>();
       if ( collection != null )
-        foreach ( BalanceSummary _bsx in collection )
+        foreach ( BalanceBatch _bsx in collection )
         {
           IPRStockContent _new = new IPRStockContent()
             {
@@ -101,10 +101,10 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         }
       return _ret.ToArray<IPRStockContent>();
     }
-    private static IPRRow[] GetIPRList( IQueryable<JSOXSummary> collection )
+    private static IPRRow[] GetIPRList( IQueryable<BalanceIPR> collection )
     {
       List<IPRRow> _ret = new List<IPRRow>();
-      foreach ( JSOXSummary _item in collection )
+      foreach ( BalanceIPR _item in collection )
       {
         IPRRow _new = new IPRRow()
         {

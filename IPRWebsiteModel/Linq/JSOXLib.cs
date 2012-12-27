@@ -31,8 +31,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       //Introducing
       DateTime _thisIntroducingDateStart = LinqIPRExtensions.DateTimeMaxValue;
       DateTime _thisIntroducingDateEnd = LinqIPRExtensions.DateTimeMinValue;
-      //TODO IPR reverse lookup required - summ already added IPR account
-      decimal _introducingQuantity = IPR.GetIntroducingData( edc, this, out _thisIntroducingDateStart, out _thisIntroducingDateEnd );
+      decimal _introducingQuantity = Linq.IPR.GetIntroducingData( edc, this, out _thisIntroducingDateStart, out _thisIntroducingDateEnd );
       this.IntroducingDateStart = _thisIntroducingDateStart;
       this.IntroducingDateEnd = _thisIntroducingDateEnd;
       this.IntroducingQuantity = _introducingQuantity.Convert2Double2Decimals();
@@ -40,8 +39,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       //Outbound
       DateTime _thisOutboundDateEnd = LinqIPRExtensions.DateTimeMinValue;
       DateTime _thisOutboundDateStart = LinqIPRExtensions.DateTimeMaxValue;
-      //TODO JSOXCustomsSummary reverse lookup - summ already added disposals account
-      decimal _outQuantity = JSOXCustomsSummary.CreateEntries( edc, this, out _thisOutboundDateStart, out _thisOutboundDateEnd );
+      decimal _outQuantity = Linq.JSOXCustomsSummary.CreateEntries( edc, this, out _thisOutboundDateStart, out _thisOutboundDateEnd );
       this.OutboundQuantity = _outQuantity.Convert2Double2Decimals();
       this.OutboundDateEnd = _thisOutboundDateEnd;
       this.OutboundDateStart = _thisOutboundDateStart;
@@ -53,7 +51,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 
       //Situation at
       DateTime _thisSituationDate;
-      decimal _thisSituationQuantity = IPR.GetCurrentSituationData( edc, out _thisSituationDate );
+      decimal _thisSituationQuantity = Linq.IPR.GetCurrentSituationData( edc, out _thisSituationDate );
       this.SituationDate = _thisSituationDate;
       this.SituationQuantity = _thisSituationQuantity.Convert2Double2Decimals();
 

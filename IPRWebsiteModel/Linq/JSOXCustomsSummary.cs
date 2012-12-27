@@ -30,7 +30,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           CompensationGood = _dspx.Disposal2PCNID == null ? "TBD" : _dspx.Disposal2PCNID.CompensationGood,
           ExportOrFreeCirculationSAD = _dspx.SADDocumentNo,
           InvoiceNo = _dspx.InvoiceNo,
-          JSOXIndex = parent,
+          JSOXCustomsSummary2JSOXIndex = parent,
           IntroducingSADDate = _dspx.Disposal2IPRIndex.CustomsDebtDate.Value.Date,
           IntroducingSADNo = _dspx.Disposal2IPRIndex.DocumentNo,
           SADDate = _dspx.SADDate,
@@ -42,6 +42,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _newItem.CreateTitle();
         _newEntries.Add( _newItem );
       }
+      foreach ( JSOXCustomsSummary _jcsx in parent.JSOXCustomsSummary )
+      {
+        start = LinqIPRExtensions.Min( start, _jcsx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMaxValue ) );
+        end = LinqIPRExtensions.Max( end, _jcsx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMinValue ) );
+        _ret += _jcsx.SettledQuantityDec;
+      }
       edc.JSOXCustomsSummary.InsertAllOnSubmit( _newEntries );
       return _ret;
     }
@@ -50,5 +56,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       this.Title = this.IntroducingSADNo;
     }
+    private decimal SettledQuantityDec { get { return Convert.ToDecimal( this.TotalAmount.Value ); } }
+
   }
 }
