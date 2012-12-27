@@ -4,175 +4,175 @@
     Name="TobaccoEnteredIntoIPR"
     ID="{ECF7BF3D-B3E5-40B6-B7B3-5D843DD18B19}"
     Type="Number"
-    DisplayName="Tobacco entered into IPR"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoEnteredIntoIPR"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="TobaccoCSFinished"
     ID="{C5727534-8FD5-43C7-A1D4-14F7759A4D7F}"
     Type="Number"
-    DisplayName="Tobacco (CS - finished)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoCSFinished"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="TobaccoInFGCSStarted"
     ID="{D9A43A0B-6058-45FE-B17E-FCE2D2B68F00}"
     Type="Number"
-    DisplayName="Tobacco in FG (CS - started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoInFGCSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="DustCSStarted"
     ID="{259D6299-703C-4C7E-8B9C-3A6E699AECDC}"
     Type="Number"
-    DisplayName="Dust (CS - started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="WasteCSStarted"
     ID="{53B8AE24-354A-4E2D-AAD2-792A2611B4AB}"
     Type="Number"
-    DisplayName="Waste (CS - started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_WasteCSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="SHMentholCSStarted"
     ID="{5E1AB76D-319C-4E05-932D-FCD0427FD90D}"
     Type="Number"
-    DisplayName="SH Menthol (CS - started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHMentholCSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="OveruseCSStarted"
     ID="{53F5CC88-8D20-4983-9D3B-B2DFCED84E75}"
     Type="Number"
-    DisplayName="Overuse (CS - started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_OveruseCSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="PureTobaccoCSStarted"
     ID="{63460CC1-5E98-40AD-B397-0DEFB5D7B30A}"
     Type="Number"
-    DisplayName="Pure tobacco (CS - started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_PureTobaccoCSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="IPRBook"
     ID="{1984248F-B28C-46B9-8A5B-1FA889CA6C19}"
     Type="Number"
-    DisplayName="IPR book"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_IPRBook"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="WasteCSNotStarted"
     ID="{60F39E6B-3F9B-4EFF-B23A-415C6C2F0697}"
     Type="Number"
-    DisplayName="Waste (CS - not started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_WasteCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="SHMentholCSNotStarted"
     ID="{058A1544-7568-4200-AA24-3D241A556372}"
     Type="Number"
-    DisplayName="SH Menthol (CS - not started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHMentholCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="OveruseCSNotStarted"
     ID="{7975EDC7-6647-4948-AA72-5665B3D0587E}"
     Type="Number"
-    DisplayName="Overuse (CS - not started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_OveruseCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="SHWasteOveruseCSNotStarted"
     ID="{0BFC8F01-34C1-4E57-996B-5CE86BE152C4}"
     Type="Number"
-    DisplayName="SH, Waste, Overuse (CS - not started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHWasteOveruseCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="DustCSNotStarted"
     ID="{8448C159-547D-4524-A0EE-9E4B43284F07}"
     Type="Number"
-    DisplayName="Dust (CS - not started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_DustCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="TobaccoAvailable"
     ID="{A0E79811-844C-4614-8EEC-AE76CBF1609E}"
     Type="Number"
-    DisplayName="Tobacco Available"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoAvailable"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="TobaccoInFGCSNotStarted"
     ID="{09D8F5DD-B676-4B39-9529-947391B8C78F}"
     Type="Number"
-    DisplayName="Tobacco Ain FG (CS - not started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoInFGCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="PureTobaccoCSNotStarted"
     ID="{65F982E8-3C59-4A27-9EF6-D87948624D63}"
     Type="Number"
-    DisplayName="Pure tobacco (CS - not started)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_PureTobaccoCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="TobaccoUsedInTheProduction"
     ID="{2BE8F347-0979-42C2-A021-832891FC786A}"
     Type="Number"
-    DisplayName="Tobacco used in the production"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoUsedInProduction"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="TobaccoToBeUsedInTheProduction"
     ID="{12BF2F51-FADB-48CE-9948-290A72FEFB0F}"
     Type="Number"
-    DisplayName="Tobacco to be used in the production"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoToBeUsedInProduction"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="TobaccoInWarehouse"
     ID="{54C90F3E-3C47-4B04-9793-EE1395939864}"
     Type="Number"
-    DisplayName="Tobacco in Warehouse"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoInWarehouse"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="TobaccoInCigarettesWarehouse"
     ID="{5683B652-DF3A-4988-A253-7535AE34003A}"
     Type="Number"
-    DisplayName="Tobacco in Cigarettes Warehouse"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Tobacco_InCigarettesWarehouse"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="TobaccoInCigarettesProduction"
     ID="{5BA601FA-60E5-452C-8D40-832083C03201}"
     Type="Number"
-    DisplayName="Tobacco in Cigarettes Production"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoInCigarettesProduction"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="TobaccoInCutfillerWarehouse"
     ID="{ADFF97EF-0414-477C-AF48-D1DEF14D8C5E}"
     Type="Number"
-    DisplayName="Tobacco in Cutfiller Warehouse"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoInCutfillerWarehouse"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="Balance"
     ID="{D341520E-A826-4C16-A8ED-8325153B7D49}"
     Type="Number"
-    DisplayName="Balance"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Balance"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="ExportOrFreeCirculationSAD"
     ID="{0D1243D7-75A7-47EB-A17E-E82C15AEA206}"
     Type="Text"
-    DisplayName="Export or Free Circulation SAD"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ExportOrFCSAD"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
@@ -180,7 +180,7 @@
     ID="{1CBC328D-A936-4125-A6C6-A2E0E956D250}"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="SAD Date"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SADDate"
     Group="CAS Smart Factory IPR Reports">
     <Default>[today]</Default>
   </Field>
@@ -188,14 +188,14 @@
     Name="InvoiceNo"
     ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}"
     Type="Text"
-    DisplayName="Invoice No."
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_InvoiceNo"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
     Name="IntroducingSADNo"
     ID="{0F90D8BC-23A5-48B8-8089-B91E5ABB5BAE}"
     Type="Text"
-    DisplayName="Introducing SAD No."
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_IntroSADNo"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
@@ -203,7 +203,7 @@
     ID="{F16E6D8E-E665-4063-8612-0D0976F82B3B}"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Introducing SAD Date"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_IntroSADDate"
     Group="CAS Smart Factory IPR Reports">
     <Default>[today]</Default>
   </Field>
@@ -211,17 +211,17 @@
     Type="Text"
     DisplayName="Compensation Good"
     ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}"
-    Name="CompensationGood"
+    Name="$Resources:CASSmartFactoryIPR,CAS_CompensationGood"
     Group="CAS Smart Factory IPR Reports" />
   <Field
     Name="TotalAmount"
     ID="{035F50FD-F71B-452B-8F44-7A4DB2486A8E}"
     Type="Number"
-    DisplayName="Total Amount"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TotalAmmount"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
-      DisplayName="IPR Type"
+      DisplayName="$Resources:CASSmartFactoryIPR,CAS_IPRType"
       Name="IPRType"
       Type="Boolean"
       ID="{B31967C9-30E2-44CC-BB55-C9C3F8A64EEB}"
@@ -232,7 +232,7 @@
     Name="OGLIntroduction"
     ID="{789DF765-E837-459E-943B-FFEFB702BCC4}"
     Type="Text"
-    DisplayName="OGL Introduction"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_OGLIntroduction"
     Group="CAS Smart Factory IPR Reports"
     />
   <Field
@@ -240,14 +240,14 @@
     ID="{E9FBAC6E-7006-4AD8-A2F6-E43866AB0366}"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Previous Month Date"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_PreviosMonthDate"
     Group="CAS Smart Factory IPR Reports">
     <Default>[today]</Default>
   </Field>
   <Field
     Type="Number"
     Decimals="2"
-    DisplayName="Previous Month Quantity"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_PreviusMonthQuantity"
     ID="{29DEC9CD-3959-4B99-91CA-5E8C273D9639}"
     Name="PreviousMonthQuantity"
     Group="CAS Smart Factory IPR Reports" />
@@ -256,7 +256,7 @@
     ID="{768238D4-A390-4079-B73D-2092A4A24E77}"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Introducing Date Start"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_IntroDateStart"
     Group="CAS Smart Factory IPR Reports">
     <Default>[today]</Default>
   </Field>
@@ -265,14 +265,14 @@
     ID="{C4843D92-DD90-4892-A7C1-E56FC2D639C3}"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Introducing Date End"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_IntroDateEnd"
     Group="CAS Smart Factory IPR Reports">
     <Default>[today]</Default>
   </Field>
   <Field
     Type="Number"
     Decimals="2"
-    DisplayName="Introducing Quantity"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_IntroQuantity"
     ID="{423DC171-8077-4961-97F5-523D367C51F2}"
     Name="IntroducingQuantity"
     Group="CAS Smart Factory IPR Reports" />
@@ -281,7 +281,7 @@
     ID="{CA313379-3245-4869-B7CE-CD7C31BA8C0C}"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Outbound Date Start"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_OutboundDateStart"
     Group="CAS Smart Factory IPR Reports">
     <Default>[today]</Default>
   </Field>
@@ -290,14 +290,14 @@
     ID="{D2FD20AA-458C-4D67-9847-93BC8E997337}"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Outbound Date End"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_OutboundDateEnd"
     Group="CAS Smart Factory IPR Reports">
     <Default>[today]</Default>
   </Field>
   <Field
     Type="Number"
     Decimals="2"
-    DisplayName="Outbound Quantity"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_OutboundQuantity"
     ID="{C868B97A-68B5-41CF-A386-5E005E937F06}"
     Name="OutboundQuantity"
     Group="CAS Smart Factory IPR Reports" />
@@ -306,14 +306,14 @@
     ID="{03B5CC3D-5348-4B19-83B7-F9B409F1ED7E}"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Balance Date"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_BalanceDate"
     Group="CAS Smart Factory IPR Reports">
     <Default>[today]</Default>
   </Field>
   <Field
     Type="Number"
     Decimals="2"
-    DisplayName="Balance Quantity"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_BalanceQuantity"
     ID="{8FAC0EF4-C921-408A-B2B1-F50A0B20E2AA}"
     Name="BalanceQuantity"
     Group="CAS Smart Factory IPR Reports" />
@@ -322,21 +322,21 @@
     ID="{041AB995-3657-426F-AB3B-882866EF65A0}"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Situation Date"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SituationDate"
     Group="CAS Smart Factory IPR Reports">
     <Default>[today]</Default>
   </Field>
   <Field
     Type="Number"
     Decimals="2"
-    DisplayName="Situation Quantity"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SituationQuantity"
     ID="{526127DD-E68E-4FE1-B7A9-04081028CC0A}"
     Name="SituationQuantity"
     Group="CAS Smart Factory IPR Reports" />
   <Field
     Type="Number"
     Decimals="2"
-    DisplayName="Reassume Quantity"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ReassumeQuantity"
     ID="{A1ABFEB1-BA15-4EB6-B18E-2E701FA8B843}"
     Name="ReassumeQuantity"
     Group="CAS Smart Factory IPR Reports" />
