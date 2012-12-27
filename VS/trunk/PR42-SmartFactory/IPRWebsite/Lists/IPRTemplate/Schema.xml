@@ -108,7 +108,7 @@
           <FieldRef Name="ProductivityRateMax" />
           <FieldRef Name="ClearenceIndex" />
           <FieldRef Name="IPRLibraryIndex" />
-          <FieldRef Name="JSOXIndex" />
+          <FieldRef Name="IPR2JSOXIndex" />
           <FieldRef Name="_UIVersionString" />
         </ViewFields>
         <Query>
