@@ -161,6 +161,12 @@
     <None Include="Content types\Material\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{36410db9-ddc6-4730-9f67-ffc3b8e6eebb}</SharePointProjectItemId>
     </None>
+    <None Include="Content types\Reports\BalanceBatch\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ed460dff-95c0-4134-9345-1a948ececcfa}</SharePointProjectItemId>
+    </None>
+    <None Include="Content types\Reports\BalanceIPR\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c3698fce-9663-49dd-bb36-90804135f135}</SharePointProjectItemId>
+    </None>
     <None Include="Content types\Reports\JSOXCustomsSummary\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8ce9bf17-26d5-420d-b599-2fd4e0e9bf31}</SharePointProjectItemId>
     </None>
@@ -431,6 +437,12 @@
     <None Include="Lists\MaterialTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bc130d79-4589-48c5-9d68-4cd7b8763ed5}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Reports\BalanceIPRTemplate\Balance IPR\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{524a14cb-79a6-413d-b66e-3301c09ac590}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\BalanceIPRTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8be6de0d-7132-4269-b29f-01fd4def1a1c}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Reports\JSOXCustomsSummaryTemplate\JSOXCustomsSummaryList\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fe974d84-8961-4c55-afa6-ec327fe50476}</SharePointProjectItemId>
     </None>
@@ -559,6 +571,8 @@
     <Content Include="Content types\Material\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content types\Reports\BalanceBatch\Elements.xml" />
+    <Content Include="Content types\Reports\BalanceIPR\Elements.xml" />
     <Content Include="Content types\Reports\JSOXCustomsSummary\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -791,6 +805,9 @@
     <Content Include="Lists\MaterialTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Reports\BalanceIPRTemplate\Balance IPR\Elements.xml" />
+    <Content Include="Lists\Reports\BalanceIPRTemplate\Elements.xml" />
+    <Content Include="Lists\Reports\BalanceIPRTemplate\Schema.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\JSOXCustomsSummaryList\Elements.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Schema.xml">

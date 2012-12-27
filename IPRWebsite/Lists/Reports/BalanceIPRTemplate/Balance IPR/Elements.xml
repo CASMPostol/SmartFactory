@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Balance IPR" OnQuickLaunch="TRUE" TemplateType="10020" Url="Lists/BalanceIPRList" Description="Balance IPR List Instance"></ListInstance>
+</Elements>

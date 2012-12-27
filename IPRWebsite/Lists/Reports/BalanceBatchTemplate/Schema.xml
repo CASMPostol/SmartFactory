@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" Title="BalanceBatchTemplate" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/BalanceBatchTemplate" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/" EnableContentTypes="TRUE">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x0100bc0ddc1827f346ed911d777504830c5200673b96617ea2407484db22020e9f5289" Name="BalanceBatch" Group="CAS Smart Factory IPR Reports" Description="Balance Batch List Content Type" Overwrite="TRUE" Inherits="TRUE">
+        <Folder TargetName="_cts/BalanceBatch" />
+        <FieldRefs>
+          <FieldRef ID="{54C90F3E-3C47-4B04-9793-EE1395939864}" Name="TobaccoInWarehouse" />
+          <FieldRef ID="{5683B652-DF3A-4988-A253-7535AE34003A}" Name="TobaccoInCigarettesWarehouse" />
+          <FieldRef ID="{5BA601FA-60E5-452C-8D40-832083C03201}" Name="TobaccoInCigarettesProduction" />
+          <FieldRef ID="{ADFF97EF-0414-477C-AF48-D1DEF14D8C5E}" Name="TobaccoInCutfillerWarehouse" />
+          <FieldRef ID="{D341520E-A826-4C16-A8ED-8325153B7D49}" Name="Balance" />
+          <FieldRef ID="{0292BCA0-756E-4A7A-B0AC-9D481C2E3F4E}" Name="Balance2JSOXLibraryIndex" />
+        </FieldRefs>
+      </ContentType>
+    </ContentTypes>
+    <Fields>
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu"></FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Attachments"></FieldRef>
+          <FieldRef Name="LinkTitle"></FieldRef>
+          <FieldRef Name="TobaccoInWarehouse" />
+          <FieldRef Name="TobaccoInCigarettesWarehouse" />
+          <FieldRef Name="TobaccoInCigarettesProduction" />
+          <FieldRef Name="TobaccoInCutfillerWarehouse" />
+          <FieldRef Name="Balance" />
+          <FieldRef Name="Balance2JSOXLibraryIndex" />
+          <FieldRef Name="DocumentNo" />
+          <FieldRef Name="SKU" />
+          <FieldRef Name="Batch" />
+          <FieldRef Name="TobaccoEnteredIntoIPR" />
+          <FieldRef Name="TobaccoCSFinished" />
+          <FieldRef Name="TobaccoInFGCSStarted" />
+          <FieldRef Name="DustCSStarted" />
+          <FieldRef Name="WasteCSStarted" />
+          <FieldRef Name="SHMentholCSStarted" />
+          <FieldRef Name="OveruseCSStarted" />
+          <FieldRef Name="PureTobaccoCSStarted" />
+          <FieldRef Name="IPRBook" />
+          <FieldRef Name="WasteCSNotStarted" />
+          <FieldRef Name="SHMentholCSNotStarted" />
+          <FieldRef Name="OveruseCSNotStarted" />
+          <FieldRef Name="SHWasteOveruseCSNotStarted" />
+          <FieldRef Name="DustCSNotStarted" />
+          <FieldRef Name="TobaccoAvailable" />
+          <FieldRef Name="TobaccoInFGCSNotStarted" />
+          <FieldRef Name="PureTobaccoCSNotStarted" />
+          <FieldRef Name="TobaccoUsedInTheProduction" />
+          <FieldRef Name="TobaccoToBeUsedInTheProduction" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID"></FieldRef>
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>
