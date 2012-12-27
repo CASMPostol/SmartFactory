@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <ContentType ID="0x0100bc0ddc1827f346ed911d777504830c520093c91f91096944eaa9091c44f55fa587"
-               Name="JSOXSummary"
+               Name="BalanceIPR"
                Group="CAS Smart Factory IPR Reports"
-               Description="JSOX Summary content type"
+               Description="Balance IPR content type"
                Overwrite="TRUE"
                Inherits="TRUE">
-    <Folder TargetName="_cts/JSOXSummary" />
+    <Folder TargetName="_cts/BalanceIPR" />
     <FieldRefs>
       <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
       <FieldRef ID="{D41C0F0B-A4A9-4D19-BD42-78D3DE4A22EC}" Name="InvoiceNo" />

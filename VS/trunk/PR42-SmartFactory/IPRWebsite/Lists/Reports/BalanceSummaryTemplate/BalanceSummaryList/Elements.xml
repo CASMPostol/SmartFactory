@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Balance Summary"
-                OnQuickLaunch="TRUE"
-                TemplateType="10025"
-                Url="Lists/BalanceSummaryList"
-                Description="Balance Summary List Instance">
-  </ListInstance>
-</Elements>

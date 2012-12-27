@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="JSOX Summary"
-                OnQuickLaunch="TRUE"
-                TemplateType="10024"
-                Url="Lists/JSOXSummaryList"
-                Description="JSOX Summary List Instance">
-  </ListInstance>
-</Elements>
