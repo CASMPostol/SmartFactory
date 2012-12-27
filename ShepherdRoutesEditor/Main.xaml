@@ -1,7 +1,7 @@
-﻿<Window x:Class="RounteEditor.MainWindow"
+﻿<Window x:Class="CAS.SmartFactory.Shepherd.RouteEditor.Main"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Main" Height="300" Width="300">
     <Grid>
         
     </Grid>
