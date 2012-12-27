@@ -18,10 +18,10 @@
     ReadOnly="False"
     />
   <Field
-    Name="BalanceIndex"
+    Name="BalanceBatchIndex"
     ID="{1B3056C4-7586-490C-814A-C63571E95B80}"
     Type="Lookup"
-    List="Lists/BalanceList"
+    List="Lists/BalanceBatchList"
     ShowField="ID"
     UnlimitedLengthInDocumentLibrary="False"
     Indexed="True"
