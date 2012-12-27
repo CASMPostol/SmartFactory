@@ -2,5 +2,6 @@
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="dd2238df-7284-43e5-80b3-4b66fe1a363e" solutionId="dd2238df-7284-43e5-80b3-4b66fe1a363e" resetWebServer="false" name="IPRResources" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <projectItems>
     <projectItemReference itemId="1d1e4ecd-9bbf-4ec9-8ecc-dc6a2acfbfaa" />
+    <projectItemReference itemId="27aa2165-8967-4b11-a735-7ae3e5885124" />
   </projectItems>
 </package>

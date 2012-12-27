@@ -1,49 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
-    DisplayName="Source"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Source"
     Name="ActivitySource"
     Type="Text"
     ID="{785E20DF-87DB-42E5-B5A4-448580091272}"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
-    DisplayName="Priority"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Priority"
     Name="ActivityPriority"
     Type="Text"
     ID="{AC793B16-F987-4CD2-BC9A-B12A01F61DDC}"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
-    DisplayName="Warehouse name"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_WarehouseName"
     Name="WarehouseName"
     Type="Text"
     ID="{50702CE3-5FEE-4683-8F7F-574F4D737F48}"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
-    DisplayName="IPR"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_IPR"
     Name="IsIPR"
     Type="Boolean"
     ID="{3F474B3D-760E-4045-BA80-7D3A7CFAAFFF}"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
-    DisplayName="Menthol material"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_MentholMaterial"
     Name="MentholMaterial"
     Type="Boolean"
     ID="{8E757B00-B79F-4B4F-A510-485635AEA6C0}"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
-    DisplayName="CTFUsageMax"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CFTUsageMax"
     Name="CTFUsageMax"
     Type="Number"
     ID="{3C49CFB3-CCA3-4574-AE30-D422B8DA1C58}"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
-    DisplayName="CTFUsageMin"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CFTUsageMin"
     Name="CTFUsageMin"
     Type="Number"
     ID="{8AEDEE2D-AD68-43C8-9340-D078B73FE1AF}"
@@ -53,63 +53,63 @@
     Name="ConsentPeriod"
     ID="{DA5A1735-E0C6-44CF-AECA-490C6E17498A}"
     Type="Number"
-    DisplayName="Consent period"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ConsentPeriod"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
     Name="EUPrimeMarket"
     ID="{C5AEA337-BDDC-4F77-AF0C-A8C925B6BB5B}"
     Type="Text"
-    DisplayName="EU Prime Market"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_EUPrimeMarket"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
     Name="BlendPurpose"
     ID="{EFB4D543-B0D4-4371-A1DC-24F0EB576021}"
     Type="Text"
-    DisplayName="Blend Purpose"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_BlendPurpose"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
     Name="Menthol"
     ID="{97EE3235-0816-43E7-AB77-AF9D4E040DF1}"
     Type="Text"
-    DisplayName="Menthol"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Menthol"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
     Name="PrimeMarket"
     ID="{FEF25D85-B84C-4E2E-B5AD-21970B6351F5}"
     Type="Text"
-    DisplayName="Prime Market"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_PrimeMarket"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
     Name="Brand"
     ID="{65BBF47E-B763-4421-8FF2-2C66A66EA900}"
     Type="Text"
-    DisplayName="Brand"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Brand"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
     Name="Family"
     ID="{37C6BB68-8EDF-4C0D-ADAC-3C26766EB3F7}"
     Type="Text"
-    DisplayName="Family"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Family"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
     Name="ProductivityRateMin"
     ID="{1aa3f9ef-db97-4d04-ab24-2eedfa21640b}"
     Type="Number"
-    DisplayName="Productivity rate - min"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ProdRateMin"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
     Name="ProductivityRateMax"
     ID="{307e36d5-baf2-48c0-a150-7b3a96a0214f}"
     Type="Number"
-    DisplayName="Productivity rate - max"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ProdRateMax"
     Group="CAS Smart Factory IPR Dictionaries"
     />
   <Field
@@ -118,7 +118,7 @@
     Group="CAS Smart Factory IPR Dictionaries"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Valid from date">
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ValidFromDate">
     <Default>[today]</Default>
   </Field>
   <Field
@@ -127,7 +127,7 @@
     Group="CAS Smart Factory IPR Dictionaries"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Valid to date">
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ValidToDAte">
     <Default>[today]</Default>
   </Field>
   <Field
@@ -136,7 +136,7 @@
     Group="CAS Smart Factory IPR Dictionaries"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Consent Date">
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ConsentDate">
     <Default>[today]</Default>
   </Field>
 </Elements>

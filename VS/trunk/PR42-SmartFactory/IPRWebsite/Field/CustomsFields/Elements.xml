@@ -5,13 +5,13 @@
     Name="SystemID"
     Type="Text"
     Group="CAS Smart Factory IPR Customs"
-    DisplayName="System ID"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SystemID"
     />
   <Field
     Name="ClearenceProcedure"
     ID="{7D196321-5D5D-4D55-908C-125A2E694670}"
     Type="Choice"
-    DisplayName="Procedure"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Procedure"
     Group="CAS Smart Factory IPR Customs"
     >
     <Default>4051</Default>
@@ -31,28 +31,28 @@
     Name="Disposal"
     Type="Boolean"
     Group="CAS Smart Factory IPR Customs"
-    DisplayName="Disposal"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Disposal"
     />
   <Field
     ID="{AFDC5724-5183-4FC9-A07F-CF6BB18EBBBA}"
     Name="IsExport"
     Type="Boolean"
     Group="CAS Smart Factory IPR Customs"
-    DisplayName="Export"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Export"
     />
   <Field
     ID="{DBD5FAFA-1965-4F2E-B97F-EB7273B3C540}"
     Name="InvoiceLibraryReadOnly"
     Type="Boolean"
     Group="CAS Smart Factory IPR Customs"
-    DisplayName="Read only"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ReadOnly"
     />
   <Field
     ID="{F4D8033F-3BC8-4903-BA9C-9F09E45EE005}"
     Name="InvoiceLibraryStatus"
     Type="Boolean"
     Group="CAS Smart Factory IPR Customs"
-    DisplayName="OK"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_OK"
     />
   <Field
     ID="{3A9F901C-8EB2-430A-A056-6438D3CD5900}"
@@ -60,14 +60,14 @@
     Group="CAS Smart Factory IPR Customs"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Creation date">
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CreationDate">
     <Default>[today]</Default>
   </Field>
   <Field
     Name="InvoiceContentStatus"
     ID="{BA635D4D-4917-40BA-83A1-566C2D3C23F5}"
     Type="Choice"
-    DisplayName="Status"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Status"
     Group="CAS Smart Factory IPR Customs"
     >
     <Default>OK</Default>
@@ -80,7 +80,7 @@
     Name="ReferenceNumber"
     ID="{8C9856B8-0ED9-42E8-99A2-9C58AA31810E}"
     Type="Text"
-    DisplayName="Reference Number"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SADDocumentRefNo"
     Group="CAS Smart Factory IPR Customs"
     Indexed="True"
     Description="SAD Document Reference Number - box 7."
@@ -90,21 +90,21 @@
     Name="DocumentNumber"
     ID="{760B5433-5802-47AA-BB65-6438772D78B5}"
     Type="Text"
-    DisplayName="DocumentNumber"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_DocumentNo"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
     Name="Currency"
     ID="{91F0305A-9F13-468A-85CA-1AE1C859DBD7}"
     Type="Text"
-    DisplayName="Currency"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Currency"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
     Name="ExchangeRate"
     ID="{2995A5AF-EC77-4FD7-89F8-898B5068A5E4}"
     Type="Number"
-    DisplayName="Exchange rate"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ExchangeRate"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
@@ -112,25 +112,25 @@
     Type="Number"
     Decimals="2"
     ID="{AA5B5938-E498-458E-9B3B-D19B43D42751}"
-    DisplayName="Gross mass [kg]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_GrossMass"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
     Name="GoodsDescription"
     Type="Text"
     ID="{8566B26C-CC3A-445A-B54E-8D3EE093E577}"
-    DisplayName="Goods Description"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_GoodsDescription"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Duty type"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_DutyType"
     Name="DutyType"
     Type="Text"
     ID="{6EA6E99D-21C1-4527-8D92-C3DF4060485A}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Amount"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Amount"
     Name="Amount"
     Type="Number"
     Decimals="2"
@@ -138,14 +138,14 @@
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Code"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Code"
     Name="Code"
     Type="Text"
     ID="{DB36BA74-4C91-4793-9AB2-A48CE633CCBE}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Billed Quantity"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_BilledQuantity"
     Name="BilledQuantity"
     Type="Number"
     Decimals="2"
@@ -153,7 +153,7 @@
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Duty [PLN]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Duty"
     Name="Duty"
     Type="Number"
     Decimals="2"
@@ -161,14 +161,14 @@
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Item No"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ItemNo"
     Name="ItemNo"
     Type="Number"
     ID="{FFFDD6D0-160F-43A2-BFF0-C27CA9DE1FD1}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Net mass [kg]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_NetMass"
     Name="NetMass"
     Type="Number"
     Decimals="2"
@@ -176,35 +176,35 @@
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Number"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Number"
     Name="Number"
     Type="Text"
     ID="{12104636-B615-4F4E-A0B9-23158B9ADAD8}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Package"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Package"
     Name="Package"
     Type="Text"
     ID="{218A57CA-6AAD-4C08-8B14-7BB92323CB68}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="PCN tariff code"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_PCNTariffCode"
     Name="PCNTariffCode"
     Type="Text"
     ID="{4E14F686-584A-4EE8-9784-4B7AA4DCD1E7}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Procedure"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Procedure"
     Name="Procedure"
     Type="Text"
     ID="{FF92B9DC-F23F-455D-9783-D54AF95E3C8F}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="SKU"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SKU"
     Name="SKU"
     Type="Text"
     Indexed="TRUE"
@@ -212,7 +212,7 @@
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Total amount invoiced"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TotalAmountInvoiced"
     Name="TotalAmountInvoiced"
     Type="Number"
     Decimals="2"
@@ -220,14 +220,14 @@
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Units"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Units"
     Name="Units"
     Type="Text"
     ID="{DD3EEFD0-C2B4-411D-B0CE-E72B2484DD5A}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="VAT [PLN]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_VAT"
     Name="VAT"
     Type="Number"
     Decimals="2"
@@ -235,28 +235,28 @@
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Status"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Status"
     Name="Status"
     Type="Boolean"
     ID="{CE7B596A-FE29-4F30-A0F2-043CB359B599}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="OK"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_OK"
     Name="SADDocumentLibraryOK"
     Type="Boolean"
     ID="{89422377-9695-4FC8-88C2-B6FECC24E4D4}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Comments"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Comments"
     Name="SADDocumentLibraryComments"
     Type="Text"
     ID="{F6AA27B5-972F-432A-B637-BF726D701168}"
     Group="CAS Smart Factory IPR Customs"
     />
   <Field
-    DisplayName="Procedure code"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ProcedureCode"
     Name="ProcedureCode"
     Type="Text"
     ID="{0F8D4217-D9F2-4065-8F0D-04E727B3C24B}"
