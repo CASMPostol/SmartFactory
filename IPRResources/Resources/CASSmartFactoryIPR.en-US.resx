@@ -694,7 +694,7 @@
     <value>Waste [kg]</value>
   </data>
   <data name="CAS_WasteCoefficientVer" xml:space="preserve">
-    <value>Waste coefficient</value>
+    <value>Waste coefficient ver.</value>
   </data>
   <data name="CAS_WasteCSNotStarted" xml:space="preserve">
     <value>Waste (CS - not started)</value>
@@ -704,5 +704,8 @@
   </data>
   <data name="CAS_WasteRatio" xml:space="preserve">
     <value>Waste ratio</value>
+  </data>
+  <data name="CAS_WasteCoefficient" xml:space="preserve">
+    <value>Waste coefficient</value>
   </data>
 </root>

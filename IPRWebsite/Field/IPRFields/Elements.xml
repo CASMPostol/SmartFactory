@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
-  DisplayName="CFT prod. version"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_CFTProdVer"
   Name="CFTProductivityVersion"
   Type="Number"
   ID="{C793A0DF-2B92-45F8-BC90-34D6050EB769}"
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="Usage version"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_UsageVer"
   Name="UsageVersion"
   Type="Number"
   ID="{BFEF16E5-9A39-475C-B1AA-9AAAAAFDE49B}"
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="Value"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_Value"
   Name="KeyValue"
   Type="Text"
   ID="{94957CDE-A467-4C5B-A2FD-4714B56DC80D}"
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="Tobacco not allocated"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoNotAllocated"
   Name="TobaccoNotAllocated"
   Type="Number"
   Decimals="2"
@@ -30,14 +30,14 @@
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="Waste Coeficient Version"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_WasteCoefficientVer"
   Name="WasteCooeficiencyVersion"
   Type="Number"
   ID="{1493C7F0-D7B4-4E71-85C3-F7C40B530F00}"
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="Waste Cooeficient"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_WasteCoefficient"
   Name="BatchWasteCooeficiency"
   Type="Number"
   Decimals="4"

@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <ContentType ID="0x0100bc0ddc1827f346ed911d777504830c5200673b96617ea2407484db22020e9f5289"
-               Name="BalanceSummary"
+               Name="BalanceBatch"
                Group="CAS Smart Factory IPR Reports"
-               Description="Balance Summary List Content Type"
+               Description="Balance Batch List Content Type"
                Overwrite="TRUE"
                Inherits="TRUE">
-    <Folder TargetName="_cts/BalanceSummary" />
+    <Folder TargetName="_cts/BalanceBatch" />
     <FieldRefs>
       <FieldRef ID="{54C90F3E-3C47-4B04-9793-EE1395939864}" Name="TobaccoInWarehouse" />
       <FieldRef ID="{5683B652-DF3A-4988-A253-7535AE34003A}" Name="TobaccoInCigarettesWarehouse" />
