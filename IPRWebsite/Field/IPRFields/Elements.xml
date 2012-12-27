@@ -45,14 +45,14 @@
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="Dust Coeficient Version"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_DustCoefficientVer"
   Name="DustCooeficiencyVersion"
   Type="Number"
   ID="{4570E462-BB9A-4CA1-990E-139012A367B6}"
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="Dust Cooeficient"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_DustCoefficient"
   Name="BatchDustCooeficiency"
   Type="Number"
   Decimals="4"
@@ -60,14 +60,14 @@
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="SH Coeficient Version"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHCoefficientVer"
   Name="SHCooeficiencyVersion"
   Type="Number"
   ID="{5730C805-D49F-4846-B24D-62F5F6A31350}"
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="SH Cooeficient"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHCoefficientVer"
   Name="BatchSHCooeficiency"
   Type="Number"
   Decimals="4"
@@ -75,21 +75,21 @@
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="OK"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_OK"
   Name="BatchLibraryOK"
   Type="Boolean"
   ID="{2790A828-BA38-4E76-8982-2AE749152FB3}"
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="Comments"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_Comments"
   Name="BatchLibraryComments"
   Type="Text"
   ID="{C89D9DC1-1632-46FC-8F0D-6FF78CF9CC5D}"
   Group="CAS Smart Factory IPR Customs"
     />
   <Field
-  DisplayName="Account closed"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_AccountClosed"
   Name="AccountClosed"
   Type="Boolean"
   ID="{2291900F-0EE8-4A1D-9FA1-92F8DB60AF41}"
@@ -97,7 +97,7 @@
   Required="TRUE"
     />
   <Field
-  DisplayName="Account balance"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_AccountBalance"
   Name="AccountBalance"
   Type="Number"
   Decimals="2"
@@ -106,21 +106,21 @@
   Required="TRUE"
     />
   <Field
-    DisplayName="External"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_External"
     Name="External"
     Type="Boolean"
     ID="{9EAB9F89-5490-4F0F-B33D-25AA398202C0}"
     Group="CAS Smart Factory"
     />
   <Field
-    DisplayName="IPR Material"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_IPRMaterial"
     Name="IPRMaterial"
     Type="Boolean"
     ID="{EF284845-C1D8-44EF-A2B1-D9E73FD9EF1C}"
     Group="CAS Smart Factory"
     />
   <Field
-    DisplayName="Batch"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Batch"
     Name="Batch"
     Type="Text"
     Indexed="TRUE"
@@ -129,7 +129,7 @@
     />
   <Field
     Type="Choice"
-    DisplayName="Batch Status"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_BatchStatus"
     ID="{CA980625-03DA-4C63-B23A-B60F472CA2B3}"
     Format="Dropdown"
     BaseType="Text"
@@ -145,7 +145,7 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="BillDoc"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_BillDoc"
     Name="BillDoc"
     Type="Text"
     ID="{C169E96E-F73B-4A1F-9B0D-BB5FD8782119}"
@@ -162,7 +162,7 @@
   <Field
     ResultType="Number"
     LCID="1045"
-    DisplayName="CFTProductivityNormMax"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CFTNormMax"
     Type="Calculated"
     ID="{2A6EE086-6D19-429B-A9FF-5F6BF33062B8}"
     Name="CFTProductivityNormMax"
@@ -178,7 +178,7 @@
     ResultType="Number"
     LCID="1045"
     Format="DateTime"
-    DisplayName="CFTProductivityNormMin"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CFTNormMin"
     Type="Calculated"
     ID="{5ADF1294-84C9-44F8-9A47-3CA5AC37B17A}"
     Name="CFTProductivityNormMin"
@@ -212,7 +212,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Document No"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_DocumentNo"
     Name="DocumentNo"
     Type="Text"
     Indexed="TRUE"
@@ -221,7 +221,7 @@
     />
   <Field
     Type="Choice"
-    DisplayName="Product Type"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ProductType"
     ID="{AD5E7717-4C66-44DA-88B1-713762B8B294}"
     Format="Dropdown"
     BaseType="Text"
@@ -238,7 +238,7 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="In Quality Insp"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_InQualityInsp"
     Name="InQualityInsp"
     Type="Number"
     Decimals="2"
@@ -246,7 +246,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Quantity"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Quantity"
     Name="Quantity"
     Type="Number"
     Decimals="2"
@@ -254,7 +254,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Restricted Use"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_RestrictedUSe"
     Name="RestrictedUse"
     Type="Number"
     Decimals="2"
@@ -262,14 +262,14 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Location"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Location"
     Name="StorLoc"
     Type="Text"
     ID="{1F5787F4-8A41-4BD3-B45C-D2BB65465120}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Unrestricted"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Unrestricted"
     Name="Unrestricted"
     Type="Number"
     Decimals="2"
@@ -277,21 +277,21 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Usage Max"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_UsageMax"
     Name="UsageMax"
     Type="Number"
     ID="{1D56FC71-6866-4A9F-A9C9-629E91B54AE1}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Usage Min"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_UsageMin"
     Name="UsageMin"
     Type="Number"
     ID="{A5854E29-EF45-49D8-8CF8-8C5C91F1C0C6}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Waste Ratio"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_WasteRatio"
     Name="WasteRatio"
     Percentage="TRUE"
     Min="0"
@@ -301,28 +301,28 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Product Code Number"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_PCN"
     Name="ProductCodeNumber"
     Type="Text"
     ID="{FAB1E4CF-D883-45A5-B682-97B78EDF1F75}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Cigarette Lenght"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CigaretteLenght"
     Name="CigaretteLenght"
     Type="Text"
     ID="{AB755A0A-A98F-4F58-91E9-A5AFB1152429}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Filter Lenght"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_FilterLenght"
     Name="FilterLenght"
     Type="Text"
     ID="{7C8A0B7A-55D7-4CB6-8E38-D1E84360B487}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Dust Ratio"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_DustRatio"
     Percentage="TRUE"
     Min="0"
     Max="5"
@@ -332,7 +332,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="SH Menthol Ratio"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHMentholRatio"
     Name="SHMentholRatio"
     Type="Number"
     Percentage="TRUE"
@@ -342,7 +342,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="SKU Description"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SKUDescription"
     Name="SKUDescription"
     Type="Text"
     ID="{F9499FF7-0420-430D-B2B6-672546BA8235}"
@@ -350,7 +350,7 @@
     />
   <Field
     Type="Choice"
-    DisplayName="Clearing Type"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ClearingType"
     ID="{69E74E2D-BA07-48AE-8944-13CBBF99DD25}"
     Format="Dropdown"
     BaseType="Text"
@@ -369,7 +369,7 @@
     Group="CAS Smart Factory IPR"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Customs debt date">
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CustomsDebtDate">
     <Default>[today]</Default>
   </Field>
   <Field
@@ -378,39 +378,39 @@
     Group="CAS Smart Factory IPR"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="OGL valid to">
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_OGLValidTo">
     <Default>[today]</Default>
   </Field>
   <Field
-    DisplayName="No."
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_No"
     Name="No"
     Type="Number"
     ID="{661EC112-F8F2-4CDA-88B4-A822F5099CA2}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Tobacco Name"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoName"
     Name="TobaccoName"
     Type="Text"
     ID="{39BF8BA0-19DE-49FB-AE9A-892A518F9C52}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Duty Name [PLN]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_DutyName"
     Name="DutyName"
     Type="Text"
     ID="{30DC9FA3-9E24-479C-AE70-B2C0D194CB36}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="VAT Name [PLN]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_VATName"
     Name="VATName"
     Type="Text"
     ID="{BBA456AC-91B9-425D-8DE7-40C311AEB345}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Cartons [kg]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Cartons"
     Name="Cartons"
     Type="Number"
     Decimals="2"
@@ -418,7 +418,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Value"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Value"
     Name="Value"
     Type="Number"
     Decimals="3"
@@ -431,18 +431,18 @@
     Group="CAS Smart Factory IPR"
     Type="DateTime"
     Format="DateOnly"
-    DisplayName="Closing Date">
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ClosingDate">
     <Default>[today]</Default>
   </Field>
   <Field
-    DisplayName="Grade"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Grade"
     Name="Grade"
     Type="Text"
     ID="{01F8D41D-F043-4C23-8D7E-FA7BDAC4B8A0}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Duty per unit [PLN]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_DutyPerUnit"
     Name="IPRDutyPerUnit"
     Decimals="2"
     Type="Number"
@@ -450,7 +450,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="VAT per unit [PLN]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_VatPerUnit"
     Name="IPRVATPerUnit"
     Decimals="2"
     Type="Number"
@@ -458,7 +458,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Unit price"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_UnitPrice"
     Name="IPRUnitPrice"
     Decimals="2"
     Type="Number"
@@ -466,7 +466,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="FG Quantity [KU/kg]"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_FGQ"
   Name="FGQuantity"
   Type="Number"
   Decimals="2"
@@ -474,7 +474,7 @@
   Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="FG Quantity (previous)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_FGQPrevius"
     Name="FGQuantityPrevious"
     Type="Number"
     Decimals="2"
@@ -482,7 +482,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="FG Quantity (blocked)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_FGQBlocked"
     Name="FGQuantityBlocked"
     Type="Number"
     Decimals="2"
@@ -490,7 +490,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="FG Quantity (available)"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_FGQAvailable"
     Name="FGQuantityAvailable"
     Type="Number"
     Decimals="2"
@@ -498,7 +498,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Material Quantity"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_MaterialQuantity"
     Name="MaterialQuantity"
     Type="Number"
     Decimals="2"
@@ -506,7 +506,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Material Quantity Previous"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_MaterialQuantityPrevious"
     Name="MaterialQuantityPrevious"
     Type="Number"
     Decimals="2"
@@ -514,7 +514,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Calculated overuse"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CalculatedOveruse"
     Name="CalculatedOveruse"
     Type="Number"
     Decimals="4"
@@ -522,7 +522,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Overuse [kg]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Overuse"
     Name="Overuse"
     Type="Number"
     Decimals="2"
@@ -530,7 +530,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Dust [kg]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Dust"
     Name="Dust"
     Type="Number"
     Decimals="2"
@@ -539,7 +539,7 @@
     Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/dust"
     />
   <Field
-    DisplayName="Waste [kg]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Waste"
     Name="Waste"
     Type="Number"
     Decimals="2"
@@ -548,7 +548,7 @@
     Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/waste"
     />
   <Field
-    DisplayName="SH Menthol [kg]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHMenthol"
     Name="SHMenthol"
     Type="Number"
     Decimals="2"
@@ -557,7 +557,7 @@
     Description="(Material Quantity-Material Quantity Previous-kolumna'overuse')*xls/Dictionaries/SHMenthol"
     />
   <Field
-    DisplayName="Tobacco [kg]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_Tobacco"
     Name="Tobacco"
     Type="Number"
     Decimals="2"
@@ -566,14 +566,14 @@
     Description="(Material Quantity-Material Quantity Previous)-kolumna'overuse'-kolumna'dust'-kolumna'waste'-kolumna'shmenthol'"
     />
   <Field
-    DisplayName="Product ID"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ProductID"
     Name="ProductID"
     Type="Text"
     ID="{B523048C-0493-4D33-9166-D336C39F3C90}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Tobacco Quantity [kg]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoQuantity"
     Name="TobaccoQuantity"
     Type="Number"
     Decimals="2"
@@ -581,21 +581,21 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="SAD Document No."
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SADDocumentNo"
     Name="SADDocumentNo"
     Type="Text"
     ID="{E94071CD-B982-45CF-9E1F-A28D4C0B0FC1}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="IPR Document No."
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_IPRDocumentNo"
     Name="IPRDocumentNo"
     Type="Text"
     ID="{4B9400B7-9A5D-4E55-84BF-7B609CF963F2}"
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Settled quantity [kg]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_SettledQuantity"
     Name="SettledQuantity"
     Type="Number"
     Decimals="2"
@@ -603,7 +603,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Disposal Status"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_DisposalStatus"
     Name="DisposalStatus"
     Type="Choice"
     Indexed="TRUE"
@@ -628,7 +628,7 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="Customs Status"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CustomsStatus"
     Name="CustomsStatus"
     Type="Choice"
     Format="Dropdown"
@@ -645,7 +645,7 @@
     </CHOICES>
   </Field>
   <Field
-    DisplayName="Duty per settled amount [PLN]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_DutyPerAmount"
     Name="DutyPerSettledAmount"
     Type="Number"
     Decimals="2"
@@ -653,7 +653,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="VAT per settled amount [PLN]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_VATPerAmount"
     Name="VATPerSettledAmount"
     Type="Number"
     Decimals="2"
@@ -661,7 +661,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Duty and VAT [PLN]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_DutyVAT"
     Decimals="2"
     Type="Number"
     ID="{E7D69AE8-AEAC-4A9F-A597-87A7957950B8}"
@@ -669,7 +669,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Tobacco Value"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoVAlue"
     Name="TobaccoValue"
     Type="Number"
     Decimals="3"
@@ -677,7 +677,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Remaining quantity [kg]"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_RemainingQuantity"
     Name="RemainingQuantity"
     Type="Number"
     Decimals="2"
@@ -685,7 +685,7 @@
     Group="CAS Smart Factory IPR"
     />
   <Field
-    DisplayName="Customs Procedure"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CustomsProcedure"
     Name="CustomsProcedure"
     Type="Text"
     ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}"

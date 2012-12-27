@@ -708,4 +708,7 @@
   <data name="CAS_WasteCoefficient" xml:space="preserve">
     <value>Waste coefficient</value>
   </data>
+  <data name="CAS_OGLValidTo" xml:space="preserve">
+    <value>OGL valid to</value>
+  </data>
 </root>
