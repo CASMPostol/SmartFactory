@@ -39,8 +39,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       IPR2PCNPCN = iprdata.PCNTariffCode;
       IPRUnitPrice = iprdata.UnitPrice;
       IPRVATPerUnit = iprdata.VATPerUnit;
-      this.JSOXIndex = null;
-      this.JSOXSummary = null;
+      this.IPR2JSOXIndex= null;
       NetMass = iprdata.NetMass;
       OGLValidTo = iprdata.ValidToDate;
       ProductivityRateMax = iprdata.ConsentLookup.ProductivityRateMax;
@@ -159,7 +158,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       dateStart = LinqIPRExtensions.DateTimeMaxValue;
       foreach ( IPR _iprx in IPR.GetAllNew4JSOX( edc ) )
       {
-        _iprx.JSOXIndex = parent;
+        _iprx.IPR2JSOXIndex = parent;
+        _ret += _iprx.NetMassDec;
+        dateEnd = LinqIPRExtensions.Max( _iprx.CustomsDebtDate.Value.Date, dateEnd );
+        dateStart = LinqIPRExtensions.Min( _iprx.CustomsDebtDate.Value.Date, dateStart );
+      }
+      foreach ( IPR _iprx in parent.IPR )
+      {
         _ret += _iprx.NetMassDec;
         dateEnd = LinqIPRExtensions.Max( _iprx.CustomsDebtDate.Value.Date, dateEnd );
         dateStart = LinqIPRExtensions.Min( _iprx.CustomsDebtDate.Value.Date, dateStart );
@@ -258,7 +263,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     private static IQueryable<IPR> GetAllNew4JSOX( Entities edc )
     {
-      return from _iprx in edc.IPR where _iprx.JSOXIndex == null select _iprx;
+      return from _iprx in edc.IPR where _iprx.IPR2JSOXIndex == null select _iprx;
     }
     /// <summary>
     /// Gets all open account.
