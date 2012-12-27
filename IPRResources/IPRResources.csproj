@@ -51,6 +51,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GlobalResources\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{27aa2165-8967-4b11-a735-7ae3e5885124}</SharePointProjectItemId>
+    </None>
     <None Include="IPRResources.zreproj" />
     <None Include="key.snk" />
     <None Include="Package\Package.package">
@@ -64,12 +67,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\" />
+    <EmbeddedResource Include="GlobalResources\CASSmartFactoryIPR.en-US.resx" />
+    <EmbeddedResource Include="GlobalResources\CASSmartFactoryIPR.pl-PL.resx" />
+    <EmbeddedResource Include="GlobalResources\CASSmartFactoryIPR.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\CASSmartFactoryIPR.en-US.resx" />
     <Content Include="Resources\CASSmartFactoryIPR.pl-PL.resx" />
     <Content Include="Resources\CASSmartFactoryIPR.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
