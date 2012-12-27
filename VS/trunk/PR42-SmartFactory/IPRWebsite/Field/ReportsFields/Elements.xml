@@ -209,9 +209,9 @@
   </Field>
   <Field
     Type="Text"
-    DisplayName="Compensation Good"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_CompensationGood"
     ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}"
-    Name="$Resources:CASSmartFactoryIPR,CAS_CompensationGood"
+    Name="CompensationGood"
     Group="CAS Smart Factory IPR Reports" />
   <Field
     Name="TotalAmount"
