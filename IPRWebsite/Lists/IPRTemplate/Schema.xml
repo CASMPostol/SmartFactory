@@ -40,7 +40,7 @@
           <FieldRef ID="{6979EFB8-2614-49B7-9482-5869CE4F3108}" Name="AccountBalance" />
           <FieldRef ID="{8C385B9F-6442-4FB5-8258-961C9A723492}" Name="TobaccoNotAllocated" />
           <FieldRef ID="{FDFA2B02-4073-4A29-B694-4CF4001A5357}" Name="IPR2PCNPCN" />
-          <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
+          <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="IPR2JSOXIndex" />
           <FieldRef ID="{C5FA63A7-DC74-4B2F-94EB-AE877DBCCCEF}" Name="ClearenceIndex" />
           <FieldRef ID="{787756CE-4DEB-46DB-B092-BAED5DBAFA86}" Name="IPRLibraryIndex" />
           <FieldRef ID="{2291900F-0EE8-4A1D-9FA1-92F8DB60AF41}" Name="AccountClosed" />

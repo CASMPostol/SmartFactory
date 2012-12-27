@@ -35,8 +35,25 @@
     ReadOnly="False"
     />
   <Field
-    Name="JSOXIndex"
+    Name="IPR2JSOXIndex"
     ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}"
+    Type="Lookup"
+    List="Lists/JSOXLibrary"
+    ShowField="ID"
+    UnlimitedLengthInDocumentLibrary="False"
+    Indexed="True"
+    RelationshipDeleteBehavior="None"
+    DisplayName="JSOX Library lookup"
+    Group="CAS Smart Factory IPR Reports"
+    Required="True"
+    Hidden="False"
+    DisplaceOnUpgrade="True"
+    EnforceUniqueValues="False"
+    ReadOnly="False"
+    />
+  <Field
+    Name="JSOXCustomsSummary2JSOXIndex"
+    ID="{0216FCB4-1D41-4729-9745-19AB078088A4}"
     Type="Lookup"
     List="Lists/JSOXLibrary"
     ShowField="ID"
