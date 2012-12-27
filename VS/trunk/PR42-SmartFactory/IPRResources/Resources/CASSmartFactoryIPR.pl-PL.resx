@@ -705,6 +705,9 @@
   <data name="CAS_WasteRatio" xml:space="preserve">
     <value>Wskaźnik odpadów</value>
   </data>
+  <data name="CAS_InvoiceNo" xml:space="preserve">
+    <value>Faktura nr</value>
+  </data>
   <data name="CAS_OGLValidTo" xml:space="preserve">
     <value>OGL ważny do</value>
   </data>

@@ -643,7 +643,7 @@
     <value>Tobacco value</value>
   </data>
   <data name="CAS_TotalAmmount" xml:space="preserve">
-    <value>Totalamount</value>
+    <value>Total amount</value>
   </data>
   <data name="CAS_TotalAmountInvoiced" xml:space="preserve">
     <value>Total amount invoiced</value>
@@ -704,6 +704,9 @@
   </data>
   <data name="CAS_WasteRatio" xml:space="preserve">
     <value>Waste ratio</value>
+  </data>
+  <data name="CAS_InvoiceNo" xml:space="preserve">
+    <value>Invoice No.</value>
   </data>
   <data name="CAS_OGLValidTo" xml:space="preserve">
     <value>OGL valid to</value>
