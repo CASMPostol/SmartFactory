@@ -437,6 +437,12 @@
     <None Include="Lists\MaterialTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bc130d79-4589-48c5-9d68-4cd7b8763ed5}</SharePointProjectItemId>
     </None>
+    <None Include="Lists\Reports\BalanceBatchTemplate\BalanceBatchList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a8cb3d6b-a839-4ffb-b31f-170f802cebf6}</SharePointProjectItemId>
+    </None>
+    <None Include="Lists\Reports\BalanceBatchTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6d8953a5-236f-4306-a7e5-162b175330c6}</SharePointProjectItemId>
+    </None>
     <None Include="Lists\Reports\BalanceIPRTemplate\Balance IPR\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{524a14cb-79a6-413d-b66e-3301c09ac590}</SharePointProjectItemId>
     </None>
@@ -805,6 +811,9 @@
     <Content Include="Lists\MaterialTemplate\Schema.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Lists\Reports\BalanceBatchTemplate\BalanceBatchList\Elements.xml" />
+    <Content Include="Lists\Reports\BalanceBatchTemplate\Elements.xml" />
+    <Content Include="Lists\Reports\BalanceBatchTemplate\Schema.xml" />
     <Content Include="Lists\Reports\BalanceIPRTemplate\Balance IPR\Elements.xml" />
     <Content Include="Lists\Reports\BalanceIPRTemplate\Elements.xml" />
     <Content Include="Lists\Reports\BalanceIPRTemplate\Schema.xml" />

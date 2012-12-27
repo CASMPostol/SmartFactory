@@ -15,7 +15,7 @@
       <FieldRef ID="{F16E6D8E-E665-4063-8612-0D0976F82B3B}" Name="IntroducingSADDate" />
       <FieldRef ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Name="CompensationGood" />
       <FieldRef ID="{035F50FD-F71B-452B-8F44-7A4DB2486A8E}" Name="TotalAmount" />
-      <FieldRef ID="{5D491F29-CA90-4D15-9B54-58FC967B3597}" Name="JSOXIndex" />
+      <FieldRef ID="{0216FCB4-1D41-4729-9745-19AB078088A4}" Name="JSOXCustomsSummary2JSOXIndex" />
      </FieldRefs>
   </ContentType>
 </Elements>
