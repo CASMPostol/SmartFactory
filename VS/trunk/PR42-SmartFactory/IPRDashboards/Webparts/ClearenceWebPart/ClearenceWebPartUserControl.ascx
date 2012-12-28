@@ -128,9 +128,8 @@
                             </asp:TemplateField>
                             <asp:CommandField HeaderText="" ShowEditButton="True" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" EditText="Split" UpdateText="Select" />
                         </Columns>
-                        <PagerSettings Mode="NumericFirstLast" />
                     </SharePoint:SPGridView>
-                    <%--<SharePoint:SPGridViewPager ID="m_AvailableGridViewPager" GridViewId="m_AvailableGridView" runat="server" />--%>
+                    <SharePoint:SPGridViewPager ID="m_AvailableGridViewPager" GridViewId="m_AvailableGridView" runat="server" />
                     <asp:Label ID="m_AvailableGridViewQuntitySumLabel" CssClass="Label" runat="server" />
                 </asp:Panel>
             </asp:TableCell>
@@ -184,9 +183,8 @@
                             </asp:TemplateField>
                             <asp:CommandField HeaderText="" ShowEditButton="false" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" />
                         </Columns>
-                        <PagerSettings Mode="NumericFirstLast" />
                     </SharePoint:SPGridView>
-                    <%--<SharePoint:SPGridViewPager ID="m_AssignedGridViewPager" GridViewId="m_AssignedGridView" runat="server" />--%>
+                    <SharePoint:SPGridViewPager ID="m_AssignedGridViewPager" GridViewId="m_AssignedGridView" runat="server" />
                     <asp:Label ID="m_AssignedGridViewQuantitySumLabel" CssClass="Label" runat="server" />
                 </asp:Panel>
             </asp:TableCell>
