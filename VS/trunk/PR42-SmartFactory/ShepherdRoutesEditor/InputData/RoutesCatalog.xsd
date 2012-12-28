@@ -9,20 +9,20 @@
   <xsd:element name="RoutesCatalog">
     <xsd:complexType>
       <xsd:sequence minOccurs="1" maxOccurs="1">
-        <xsd:element nillable="true" name="CommodityTable">
+        <xsd:element nillable="true" minOccurs="0"  name="CommodityTable">
           <xsd:complexType>
             <xsd:sequence minOccurs="0">
-              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="false" name="CommodityRow" >
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="CommodityRow" >
                 <xsd:complexType>
                   <xsd:sequence minOccurs="0">
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Title" />
+                    <xsd:element minOccurs="0" type="xsd:string" name="Title" />
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-        <xsd:element nillable="true" name="GlobalPricelist">
+        <xsd:element nillable="true" minOccurs="0" name="GlobalPricelist">
           <xsd:complexType>
             <xsd:sequence minOccurs="0">
               <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="Route" >
@@ -31,7 +31,7 @@
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Material_Master__Reference" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Material_Master_Short_Text" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Business_description" />
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Freight_Payer__I_C__MainLeg" />
+                    <xsd:element minOccurs="1"  maxOccurs="1" type="xsd:int" name="Freight_Payer__I_C__MainLeg" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Remarks" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Commodity" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="SAP_Dept_Plant" />
@@ -47,9 +47,9 @@
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Buying_Incoterm" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Selling_Incoterm" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Vendor" />
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Vendor_number" />
+                    <xsd:element minOccurs="0" maxOccurs="1" type="xsd:int" name="Vendor_number" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Carrier" />
-                    <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Transport_Quantity" />
+                    <xsd:element minOccurs="0" maxOccurs="1" nillable="true" type="xsd:int" name="Transport_Quantity" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Equipment_Type__UoM" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:integer" name="Total_Cost_per_UoM" />
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Currency" />
@@ -105,7 +105,7 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-        <xsd:element nillable="true" name="MarketTable">
+        <xsd:element nillable="true" minOccurs="0" name="MarketTable">
           <xsd:complexType>
             <xsd:sequence minOccurs="0">
               <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="Market" >
@@ -121,10 +121,10 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-        <xsd:element nillable="true" name="PartnersTable">
+        <xsd:element nillable="true" minOccurs="0" name="PartnersTable">
           <xsd:complexType>
             <xsd:sequence minOccurs="0">
-              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="false" name="PartnersRow" >
+              <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="PartnersRow" >
                 <xsd:complexType>
                   <xsd:sequence minOccurs="0">
                     <xsd:element minOccurs="0" nillable="true" type="xsd:string" name="Name" />

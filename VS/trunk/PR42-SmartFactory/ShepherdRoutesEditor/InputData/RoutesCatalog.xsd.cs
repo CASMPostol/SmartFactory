@@ -11,7 +11,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData
     /// </summary>
     /// <param name="documetStream">The documet stream.</param>
     /// <returns></returns>
-    static public PreliminaryDataRoute ImportDocument(Stream documetStream)
+    static public RoutesCatalog ImportDocument( Stream documetStream )
     {
       XmlSerializer serializer = new XmlSerializer( typeof( RoutesCatalog ) );
       return (RoutesCatalog)serializer.Deserialize( documetStream );
@@ -20,42 +20,22 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData
     /// Imports the data.
     /// </summary>
     /// <param name="_URL">The _ URL.</param>
-    public void ImportData(string _URL)
+    public void ImportData( string _URL, bool TestingData )
     {
-      using (EntitiesDataDictionary _dictionary = new EntitiesDataDictionary(_URL))
+      using ( EntitiesDataDictionary _dictionary = new EntitiesDataDictionary( _URL ) )
       {
-        foreach ( RoutesCatalog _Commodity in this.CommodityTable )
-        {
-          _dictionary.AddCommodity(_Commodity);
-        }
-        foreach (PreliminaryDataRouteWarehouseRow _warehouse in this.WarehouseTable)
-        {
-          _dictionary.AddWarehouse(_warehouse);
-        }
-        foreach (PreliminaryDataRouteShippingPointRow _shippingPoint in this.ShippingPointTable)
-        {
-          _dictionary.AddShippingPoint(_shippingPoint);
-        }
-        foreach ( RoutesCatalog _partner in this.PartnersTable )
-        {
-          _dictionary.AddPartner(_partner, TestingData);
-        }
-        foreach (PreliminaryDataRoutePayersRow _payer in this.PayersTable)
-        {
-          _dictionary.AddFreightPayer(_payer, TestingData);
-        }
-        foreach ( RoutesCatalog _rt in this.GlobalPricelist )
-        {
-          _dictionary.AddRoute(_rt, TestingData);
-        }
-        foreach ( RoutesCatalog _market in this.MarketTable )
-        {
-          _dictionary.AddMarket(_market);
-        }
-        foreach (PreliminaryDataRouteRole _role in this.DistributionList)
-        {
-          _dictionary.AddRole(_role, TestingData);
-        }
+        if ( this.CommodityTable != null )
+          foreach ( RoutesCatalogCommodityRow _Commodity in this.CommodityTable )
+            _dictionary.AddCommodity( _Commodity );
+        if ( this.PartnersTable != null )
+          foreach ( RoutesCatalogPartnersRow _partner in this.PartnersTable )
+          _dictionary.AddPartner( _partner, TestingData );
+        if ( this.GlobalPricelist != null )
+          foreach ( RoutesCatalogRoute _rt in this.GlobalPricelist )
+          _dictionary.AddRoute( _rt, TestingData );
+        if ( this.MarketTable != null )
+          foreach ( RoutesCatalogMarket _market in this.MarketTable )
+          _dictionary.AddMarket( _market );
       }
     }
   }
