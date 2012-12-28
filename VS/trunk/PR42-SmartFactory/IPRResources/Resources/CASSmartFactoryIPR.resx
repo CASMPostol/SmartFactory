@@ -714,4 +714,7 @@
   <data name="CAS_WasteCoefficient" xml:space="preserve">
     <value>Waste coefficient</value>
   </data>
+  <data name="CAS_FGBatch" xml:space="preserve">
+    <value>FG batch</value>
+  </data>
 </root>

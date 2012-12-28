@@ -714,4 +714,7 @@
   <data name="CAS_WasteCoefficient" xml:space="preserve">
     <value>Wskaźnik odpadów</value>
   </data>
+  <data name="CAS_FGBatch" xml:space="preserve">
+    <value>Batch PG</value>
+  </data>
 </root>
