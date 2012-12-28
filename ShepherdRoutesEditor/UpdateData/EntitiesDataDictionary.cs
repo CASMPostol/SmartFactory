@@ -4,7 +4,7 @@ using System.Linq;
 using CAS.SmartFactory.Shepherd.ImportDataModel;
 using Microsoft.SharePoint.Linq;
 
-namespace CAS.SmartFactory.Shepherd.Entities
+namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
 {
 
   public class EntitiesDataDictionary : IDisposable

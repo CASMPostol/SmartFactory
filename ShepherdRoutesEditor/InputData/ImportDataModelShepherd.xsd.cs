@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
-using CAS.SmartFactory.Shepherd.Entities;
+using CAS.SmartFactory.Shepherd.RouteEditor.UpdateData;
 
 namespace CAS.SmartFactory.Shepherd.ImportDataModel
 {
