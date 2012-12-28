@@ -34,7 +34,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData {
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("CommodityRow", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("CommodityRow")]
         public RoutesCatalogCommodityRow[] CommodityTable {
             get {
                 return this.commodityTableField;
@@ -70,7 +70,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData {
         
         /// <uwagi/>
         [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("PartnersRow", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("PartnersRow")]
         public RoutesCatalogPartnersRow[] PartnersTable {
             get {
                 return this.partnersTableField;
@@ -92,7 +92,6 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData {
         private string titleField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string Title {
             get {
                 return this.titleField;
@@ -117,7 +116,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData {
         
         private string business_descriptionField;
         
-        private string freight_Payer__I_C__MainLegField;
+        private int freight_Payer__I_C__MainLegField;
         
         private string remarksField;
         
@@ -149,11 +148,15 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData {
         
         private string vendorField;
         
-        private string vendor_numberField;
+        private int vendor_numberField;
+        
+        private bool vendor_numberFieldSpecified;
         
         private string carrierField;
         
-        private string transport_QuantityField;
+        private System.Nullable<int> transport_QuantityField;
+        
+        private bool transport_QuantityFieldSpecified;
         
         private string equipment_Type__UoMField;
         
@@ -293,8 +296,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
-        public string Freight_Payer__I_C__MainLeg {
+        public int Freight_Payer__I_C__MainLeg {
             get {
                 return this.freight_Payer__I_C__MainLegField;
             }
@@ -469,13 +471,23 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
-        public string Vendor_number {
+        public int Vendor_number {
             get {
                 return this.vendor_numberField;
             }
             set {
                 this.vendor_numberField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool Vendor_numberSpecified {
+            get {
+                return this.vendor_numberFieldSpecified;
+            }
+            set {
+                this.vendor_numberFieldSpecified = value;
             }
         }
         
@@ -491,13 +503,24 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.InputData {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", IsNullable=true)]
-        public string Transport_Quantity {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Transport_Quantity {
             get {
                 return this.transport_QuantityField;
             }
             set {
                 this.transport_QuantityField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool Transport_QuantitySpecified {
+            get {
+                return this.transport_QuantityFieldSpecified;
+            }
+            set {
+                this.transport_QuantityFieldSpecified = value;
             }
         }
         
