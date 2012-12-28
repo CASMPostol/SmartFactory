@@ -63,6 +63,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Extensions.cs" />
+    <Compile Include="InputData\RoutesCatalog.cs">
+      <DependentUpon>RoutesCatalog.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="InputData\RoutesCatalog.xsd.cs">
+      <DependentUpon>RoutesCatalog.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UpdateData\Entities.cs" />
     <Compile Include="UpdateData\EntitiesDataDictionary.cs" />
     <Page Include="Main.xaml">
@@ -72,12 +78,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="InputData\ImportDataModelShepherd.cs">
-      <DependentUpon>ImportDataModelShepherd.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="InputData\ImportDataModelShepherd.xsd.cs">
-      <DependentUpon>ImportDataModelShepherd.xsd</DependentUpon>
     </Compile>
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -101,9 +101,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="InputData\ImportDataModelShepherd.xsd">
+    <None Include="InputData\RoutesCatalog.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="InputData\Scripts\CreateCS.ps1" />
     <None Include="key.snk" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

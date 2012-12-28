@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xsd:schema id="PreliminaryDataRoute"
-    targetNamespace="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd"
+    targetNamespace="http://cas.eu/schemas/Shepherd/RoutesCatalog.xsd"
     elementFormDefault="qualified"
-    xmlns="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd"
-    xmlns:mstns="http://cas.eu/schemas/Shepherd/PreliminaryDataRoute.xsd"
+    xmlns="http://cas.eu/schemas/Shepherd/RoutesCatalog.xsd"
+    xmlns:mstns="http://cas.eu/schemas/Shepherd/RoutesCatalog.xsd"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-  <xsd:element name="PreliminaryDataRoute">
+  <xsd:element name="RoutesCatalog">
     <xsd:complexType>
       <xsd:sequence minOccurs="1" maxOccurs="1">
         <xsd:element nillable="true" name="CommodityTable">
