@@ -22,6 +22,22 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
     public Main()
     {
       InitializeComponent();
+      URLTextBox.Text = Properties.Settings.Default.URL;
+    }
+
+    private void UpdateRoutesButton_Click( object sender, RoutedEventArgs e )
+    {
+      try
+      {
+        using ( UpdateData.EntitiesDataContext edc = new UpdateData.EntitiesDataContext( this.URLTextBox.Text ) )
+        {
+          Microsoft.SharePoint.Linq.EntityList<UpdateData.Currency> _curr = edc.Currency;
+        }
+      }
+      catch ( Exception ex )
+      {
+        MessageBox.Show( ex.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error );
+      }
     }
   }
 }

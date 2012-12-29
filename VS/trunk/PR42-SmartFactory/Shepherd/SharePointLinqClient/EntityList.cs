@@ -29,7 +29,7 @@ namespace Microsoft.SharePoint.Linq
       this.m_DataContext = dataContext;
       this.m_ListName = listName;
       // Prepare a reference to the list of "DevLeap Contacts"
-      m_list = dataContext.m_RootWeb.Lists.GetByTitle( "DevLeap Contacts" );
+      m_list = dataContext.m_RootWeb.Lists.GetByTitle( listName );
       dataContext.m_ClientContext.Load( m_list );
       // Execute the prepared commands against the target ClientContext
       dataContext.m_ClientContext.ExecuteQuery();
@@ -42,18 +42,38 @@ namespace Microsoft.SharePoint.Linq
       dataContext.m_ClientContext.ExecuteQuery();
       foreach ( ListItem _ix in m_allItems )
       {
-        TEntity _mei = new TEntity();
-        Dictionary<string, MemberInfo> _mmbrs = _mei.GetType().GetMembers( BindingFlags.GetProperty | BindingFlags.GetField ).ToDictionary<MemberInfo, string>( _mi => _mi.Name );
-        foreach ( MemberInfo _ax in from _pidx in _mmbrs where _pidx.Value.MemberType == MemberTypes.Property select _pidx.Value )
+        TEntity _newEntity = new TEntity();
+        m_allItemsEntities.Add( _newEntity );
+        AssignValues( _newEntity, _newEntity.GetType(), name => _ix[ name ] );
+      }
+    }
+
+    private static void AssignValues( object _newEntity, Type type, Func<string, object> getValue )
+    {
+      BindingFlags _flgs = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.GetField | BindingFlags.Public | BindingFlags.NonPublic;
+      Dictionary<string, MemberInfo> _mmbrs = ( from _midx in type.GetMembers( _flgs ) 
+                                                where _midx.MemberType == MemberTypes.Field || _midx.MemberType == MemberTypes.Property 
+                                                select _midx ).ToDictionary<MemberInfo, string>( _mi => _mi.Name );
+      foreach ( MemberInfo _ax in from _pidx in _mmbrs where _pidx.Value.MemberType == MemberTypes.Property select _pidx.Value )
+      {
+        foreach ( var _cax in _ax.GetCustomAttributes( false ) )
         {
-          foreach ( ColumnAttribute _cax in _ax.GetCustomAttributes( typeof( ColumnAttribute ), false ) )
+          if ( _cax is ColumnAttribute )
           {
-            FieldInfo _strg = _mmbrs[ _cax.Storage ] as FieldInfo;
-            object value = _ix[ _cax.Name ];
-            _strg.SetValue( _mei, value );
+            ColumnAttribute _ca = _cax as ColumnAttribute;
+            FieldInfo _strg = _mmbrs[ _ca.Storage ] as FieldInfo;
+            object value = getValue( _ca.Name );
+            _strg.SetValue( _newEntity, value );
+          }
+          else if ( _cax is AssociationAttribute )
+          {
+            AssociationAttribute _aa = _cax as AssociationAttribute;
+
           }
         }
       }
+      if ( type.BaseType != typeof( Object ) )
+        AssignValues( _newEntity, type.BaseType, getValue );
     }
     // Summary:
     //     Registers a disconnected or "detached" entity with the object tracking system
