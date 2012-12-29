@@ -1,24 +1,32 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
+using Microsoft.SharePoint.Client;
 
 namespace Microsoft.SharePoint.Linq
 {
   // Summary:
-  //     Provides LINQ (Language Integrated Query) access to, and change tracking
-  //     for, the lists and document libraries of a Windows SharePoint Services "14"
-  //     Web site.
+  //    
+  /// <summary>
+  ///  Provides client site LINQ (Language Integrated Query) access to, and change tracking for, the lists and document libraries of a Windows SharePoint Services "14" Web site.
+  /// </summary>
   public class DataContext: IDisposable
   {
-    // Summary:
-    //     Initializes a new instance of the Microsoft.SharePoint.Linq.DataContext class
-    //     that provides access and change tracking for the specified Web site.
-    //
-    // Parameters:
-    //   requestUrl:
-    //     The URL of a Windows SharePoint Services "14" Web site.
-    public DataContext( string requestUrl )  { throw new NotImplementedException(); } 
 
+    #region public
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DataContext" /> class.
+    /// </summary>
+    /// <param name="requestUrl">The URL of a Windows SharePoint Services "14" Web site that provides client site access and change tracking for the specified Web site..</param>
+    public DataContext( string requestUrl )
+    {
+      // Open the current ClientContext
+      m_ClientContext = new ClientContext( requestUrl );
+      m_site = m_ClientContext.Site;
+      m_ClientContext.Load<Site>( m_site );
+      m_RootWeb = m_site.RootWeb;
+      m_ClientContext.Load<Web>( m_RootWeb );
+    }
     // Summary:
     //     Gets a collection of objects that represent discrepancies between the current
     //     client value and the current database value of a field in a list item.
@@ -59,22 +67,7 @@ namespace Microsoft.SharePoint.Linq
     //
     // Returns:
     //     A System.String that represents the full URL of the Web site.
-    public string Web { get { throw new NotImplementedException(); } }
-
-    // Summary:
-    //     Releases all managed and unmanaged resources used by the Microsoft.SharePoint.Linq.DataContext
-    //     object.
-    public void Dispose() { throw new NotImplementedException(); }
-    //
-    // Summary:
-    //     Releases all unmanaged resources used by the Microsoft.SharePoint.Linq.DataContext
-    //     object and possibly also the managed resources as specified.
-    //
-    // Parameters:
-    //   disposing:
-    //     true to release both managed and unmanaged resources, false to release only
-    //     unmanaged resources.
-    protected virtual void Dispose( bool disposing ) { throw new NotImplementedException(); }
+    public string Web { get { return m_ClientContext.Url; } }
     //
     // Summary:
     //     Returns an object that represents the specified list and is queryable by
@@ -90,7 +83,12 @@ namespace Microsoft.SharePoint.Linq
     //
     // Returns:
     //     An Microsoft.SharePoint.Linq.EntityList<TEntity> that represents the list.
-    public virtual EntityList<T> GetList<T>( string listName ) { throw new NotImplementedException(); }
+    public virtual EntityList<T> GetList<T>( string listName )
+       where T: class, new()
+    {
+      EntityList<T> _ret = new EntityList<T>( this, listName );
+      return _ret;
+    }
     //
     // Summary:
     //     Refreshes a collection of entities with the latest data from the content
@@ -230,5 +228,68 @@ namespace Microsoft.SharePoint.Linq
     //   Microsoft.SharePoint.Linq.ChangeConflictException:
     //     There is a concurrency conflict.
     public void SubmitChanges( ConflictMode failureMode, bool systemUpdate ) { throw new NotImplementedException(); }
+    #endregion
+
+    #region IDisposing
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public void Dispose()
+    {
+      Dispose( true );
+      // This object will be cleaned up by the Dispose method. 
+      // Therefore, you should call GC.SupressFinalize to 
+      // take this object off the finalization queue 
+      // and prevent finalization code for this object 
+      // from executing a second time.
+      GC.SuppressFinalize( this );
+    }
+
+    //
+    /// <summary>
+    /// Releases unmanaged and - optionally - managed resources.  Dispose(bool disposing) executes in two distinct scenarios. 
+    /// If disposing equals true, the method has been called directly or indirectly by a user's code. Managed and unmanaged resources
+    /// can be disposed. If disposing equals false, the method has been called by the runtime from inside the finalizer 
+    /// and you should not reference other objects. Only unmanaged resources can be disposed. 
+    /// </summary>
+    /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+    protected virtual void Dispose( bool disposing )
+    {
+      // Check to see if Dispose has already been called. 
+      if ( !this.disposed )
+      {
+        // If disposing equals true, dispose all managed 
+        // and unmanaged resources. 
+        if ( disposing )
+        {
+          // Dispose managed resources.
+          m_ClientContext.Dispose();
+        }
+        // Note disposing has been done.
+        disposed = true;
+      }
+    }
+    // Use C# destructor syntax for finalization code. 
+    // This destructor will run only if the Dispose method 
+    // does not get called. 
+    // It gives your base class the opportunity to finalize. 
+    // Do not provide destructors in types derived from this class.
+    ~DataContext()
+    {
+      // Do not re-create Dispose clean-up code here. 
+      // Calling Dispose(false) is optimal in terms of 
+      // readability and maintainability.
+      Dispose( false );
+    }
+    // Track whether Dispose has been called. 
+    private bool disposed = false;
+    #endregion
+
+    #region private
+    internal ClientContext m_ClientContext = default( ClientContext );
+    internal Site m_site { get; set; }
+    internal Web m_RootWeb { get; set; }
+    #endregion
+
   }
 }
