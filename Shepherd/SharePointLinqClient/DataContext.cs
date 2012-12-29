@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.SharePoint.Client;
+using System.Linq;
 
 namespace Microsoft.SharePoint.Linq
 {
-  // Summary:
-  //    
   /// <summary>
   ///  Provides client site LINQ (Language Integrated Query) access to, and change tracking for, the lists and document libraries of a Windows SharePoint Services "14" Web site.
   /// </summary>
@@ -86,7 +86,10 @@ namespace Microsoft.SharePoint.Linq
     public virtual EntityList<T> GetList<T>( string listName )
        where T: class, new()
     {
+      if ( m_AllLists.ContainsKey( listName ) )
+        return (EntityList<T>)m_AllLists[ listName ];
       EntityList<T> _ret = new EntityList<T>( this, listName );
+      m_AllLists.Add( listName, _ret );
       return _ret;
     }
     //
@@ -179,7 +182,10 @@ namespace Microsoft.SharePoint.Linq
     //
     //   Microsoft.SharePoint.Linq.ChangeConflictException:
     //     There is a concurrency conflict.
-    public void SubmitChanges() { throw new NotImplementedException(); }
+    public void SubmitChanges()
+    {
+      m_ClientContext.ExecuteQuery();
+    }
     //
     // Summary:
     //     Persists to the content database changes made by the current user to one
@@ -228,6 +234,10 @@ namespace Microsoft.SharePoint.Linq
     //   Microsoft.SharePoint.Linq.ChangeConflictException:
     //     There is a concurrency conflict.
     public void SubmitChanges( ConflictMode failureMode, bool systemUpdate ) { throw new NotImplementedException(); }
+    #endregion
+
+    #region internal
+
     #endregion
 
     #region IDisposing
@@ -289,6 +299,7 @@ namespace Microsoft.SharePoint.Linq
     internal ClientContext m_ClientContext = default( ClientContext );
     internal Site m_site { get; set; }
     internal Web m_RootWeb { get; set; }
+    private Dictionary<string, IEnumerable> m_AllLists = new Dictionary<string, IEnumerable>();
     #endregion
 
   }
