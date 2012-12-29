@@ -22,5 +22,17 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://casmp/sites/S43")]
+        public string URL {
+            get {
+                return ((string)(this["URL"]));
+            }
+            set {
+                this["URL"] = value;
+            }
+        }
     }
 }
