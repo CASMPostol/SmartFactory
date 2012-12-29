@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CAS.SmartFactory.Shepherd.RouteEditor.UpdateData;
 
 namespace CAS.SmartFactory.Shepherd.RouteEditor
 {
@@ -32,6 +33,15 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
         using ( UpdateData.EntitiesDataContext edc = new UpdateData.EntitiesDataContext( this.URLTextBox.Text ) )
         {
           Microsoft.SharePoint.Linq.EntityList<UpdateData.Currency> _curr = edc.Currency;
+          Microsoft.SharePoint.Linq.EntityList<UpdateData.Currency> _curr2 = edc.Currency;
+          Currency _newItem = new Currency()
+          {
+            ExchangeRate = 321.0,
+            Tytuł = "New test Item"
+          };
+          _curr.InsertOnSubmit( _newItem );
+          edc.SubmitChanges();
+
         }
       }
       catch ( Exception ex )
