@@ -60,6 +60,7 @@
     <Compile Include="DataContext.cs" />
     <Compile Include="DerivedEntityClassAttribute.cs" />
     <Compile Include="EntityList.cs" />
+    <Compile Include="EntityListData.cs" />
     <Compile Include="EntityRef.cs" />
     <Compile Include="EntitySet.cs" />
     <Compile Include="EntityState.cs" />

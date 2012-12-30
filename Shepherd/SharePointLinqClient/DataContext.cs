@@ -185,6 +185,8 @@ namespace Microsoft.SharePoint.Linq
     //     There is a concurrency conflict.
     public void SubmitChanges()
     {
+      foreach ( EntityListData _elx in m_AllLists.Values )
+        _elx.SubmitChanges();
       m_ClientContext.ExecuteQuery();
     }
     //
@@ -300,7 +302,7 @@ namespace Microsoft.SharePoint.Linq
     internal ClientContext m_ClientContext = default( ClientContext );
     internal Site m_site { get; set; }
     internal Web m_RootWeb { get; set; }
-    private Dictionary<string, IEnumerable> m_AllLists = new Dictionary<string, IEnumerable>();
+    private Dictionary<string, EntityListData> m_AllLists = new Dictionary<string, EntityListData>();
     #endregion
 
   }
