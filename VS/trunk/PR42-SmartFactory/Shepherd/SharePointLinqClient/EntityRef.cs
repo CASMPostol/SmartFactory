@@ -48,7 +48,7 @@ namespace Microsoft.SharePoint.Linq
     // Returns:
     //     A System.Object that represents the entity that is stored in a private field
     //     of this Microsoft.SharePoint.Linq.EntityRef<TEntity> object.
-    public TEntity GetEntity() { throw new NotImplementedException(); }
+    public TEntity GetEntity() { return m_Lookup; }
     //
     // Summary:
     //     Sets the entity to which this Microsoft.SharePoint.Linq.EntityRef<TEntity>
@@ -58,11 +58,28 @@ namespace Microsoft.SharePoint.Linq
     //   entity:
     //     The entity to which the Microsoft.SharePoint.Linq.EntityRef<TEntity> is being
     //     pointed.
-    public void SetEntity( TEntity entity ) { throw new NotImplementedException(); }
+    public void SetEntity( TEntity entity )
+    {
+      if ( entity == m_Lookup )
+        return;
+      if ( OnChanging != null )
+        OnChanging( this, new EventArgs() );
+      //TODO remove old and add new.
+      m_FieldLookupValue = DataContext.GetFieldLookupValue( entity );
+      if ( OnSync != null )
+
+        OnSync( this, new AssociationChangedEventArgs<TEntity>( entity, AssociationChangedState.Added ) ); //TODO 
+      if ( OnChanged != null )
+        OnChanged( this, new EventArgs() );
+    }
 
     #region IAssociationAttribute Members
     AssociationAttribute DataContext.IAssociationAttribute.AssociationAttribute { get; set; }
-    FieldLookupValue DataContext.IAssociationAttribute.Lookup { get; set; }
+    FieldLookupValue DataContext.IAssociationAttribute.Lookup { get { return m_FieldLookupValue; } set { m_FieldLookupValue = value; } }
     #endregion
+
+    private TEntity m_Lookup = default( TEntity );
+    private FieldLookupValue m_FieldLookupValue = default( FieldLookupValue );
+
   }
 }

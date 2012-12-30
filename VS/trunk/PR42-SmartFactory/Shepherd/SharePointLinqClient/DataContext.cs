@@ -315,5 +315,10 @@ namespace Microsoft.SharePoint.Linq
     private Dictionary<string, EntityListData> m_AllLists = new Dictionary<string, EntityListData>();
     #endregion
 
+
+    internal static FieldLookupValue GetFieldLookupValue<TEntity>( TEntity entity )
+    {
+      throw new NotImplementedException();
+    }
   }
 }
