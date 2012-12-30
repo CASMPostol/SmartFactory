@@ -27,6 +27,7 @@ namespace Microsoft.SharePoint.Linq
       m_ClientContext.Load<Site>( m_site );
       m_RootWeb = m_site.RootWeb;
       m_ClientContext.Load<Web>( m_RootWeb );
+      this.ObjectTrackingEnabled = true;
     }
     // Summary:
     //     Gets a collection of objects that represent discrepancies between the current
@@ -54,12 +55,12 @@ namespace Microsoft.SharePoint.Linq
     // Returns:
     //     A System.IO.TextWriter that can be called to write the CAML query.
     public TextWriter Log { get; set; }
-    //
-    // Summary:
-    //     Gets or sets a value that indicates whether changes in objects are tracked.
-    //
-    // Returns:
-    //     true, if changes are tracked; false otherwise.
+    /// <summary>
+    /// Gets or sets a value that indicates whether changes in objects are tracked..
+    /// </summary>
+    /// <value>
+    /// <c>true, if changes are tracked; false otherwise.</c>.
+    /// </value>
     public bool ObjectTrackingEnabled { get; set; }
     //
     // Summary:
@@ -186,8 +187,13 @@ namespace Microsoft.SharePoint.Linq
     public void SubmitChanges()
     {
       foreach ( EntityListData _elx in m_AllLists.Values )
-        _elx.SubmitChanges();
+        _elx.SubmitingChanges();
       m_ClientContext.ExecuteQuery();
+      foreach ( EntityListData _elx in m_AllLists.Values )
+        _elx.SubmitedChanges();
+      m_ClientContext.ExecuteQuery();
+      foreach ( EntityListData _elx in m_AllLists.Values )
+        _elx.SubmitedChanges();
     }
     //
     // Summary:
