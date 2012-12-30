@@ -1,8 +1,16 @@
 ﻿using System;
+using Microsoft.SharePoint.Client;
 
 namespace Microsoft.SharePoint.Linq
 {
-  public class EntityRef<TEntity> where TEntity: class
+  // Summary:
+  //     Provides for deferred loading and relationship maintenance for the singleton
+  //     side of a one-to-many relationship.
+  //
+  // Type parameters:
+  //   TEntity:
+  //     The type of the entity on the singleton side of the relationship.
+  public class EntityRef<TEntity>: DataContext.IAssociationAttribute where TEntity: class
   {
     // Summary:
     //     Initializes a new instance of the Microsoft.SharePoint.Linq.EntityRef<TEntity>
@@ -51,5 +59,10 @@ namespace Microsoft.SharePoint.Linq
     //     The entity to which the Microsoft.SharePoint.Linq.EntityRef<TEntity> is being
     //     pointed.
     public void SetEntity( TEntity entity ) { throw new NotImplementedException(); }
+
+    #region IAssociationAttribute Members
+    AssociationAttribute DataContext.IAssociationAttribute.AssociationAttribute { get; set; }
+    FieldLookupValue DataContext.IAssociationAttribute.Lookup { get; set; }
+    #endregion
   }
 }

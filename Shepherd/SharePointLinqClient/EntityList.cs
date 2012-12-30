@@ -38,7 +38,7 @@ namespace Microsoft.SharePoint.Linq
       {
         TEntity _newEntity = new TEntity();
         Associate( _newEntity, _listItemx );
-        AssignValues( _newEntity, _newEntity.GetType(), name => _listItemx[ name ] );
+        AssignValues2Entity( _newEntity, _newEntity.GetType(), name => _listItemx.FieldValues.ContainsKey( name ) ? _listItemx[ name ] : null );
         _newEntity.PropertyChanging += _newEntity_PropertyChanging;
         _newEntity.PropertyChanged += _newEntity_PropertyChanged;
         _newEntity.EntityState = EntityState.Unchanged;
@@ -249,7 +249,6 @@ namespace Microsoft.SharePoint.Linq
 
     #region private
     private List<TEntity> m_allListItems = new List<TEntity>();
-    private DataContext m_DataContext = default( DataContext );
     private string m_ListName = String.Empty;
     private ListItemCollection m_allItems = default( ListItemCollection );
     private List<TEntity> m_allItemsEntities = new List<TEntity>();

@@ -1,10 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.SharePoint.Linq
 {
+  // Summary:
+  //     Provides data for the OnChanged event of Microsoft.SharePoint.Linq.EntityRef<TEntity>,
+  //     Microsoft.SharePoint.Linq.EntitySet<TEntity>, or Microsoft.SharePoint.Linq.LookupList<T>.
+  //
+  // Type parameters:
+  //   T:
+  //     The type of the the entity involved in the change.
   public class AssociationChangedEventArgs<T>: EventArgs
   {
     // Summary:

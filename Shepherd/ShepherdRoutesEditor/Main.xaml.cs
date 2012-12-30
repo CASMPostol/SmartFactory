@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CAS.SmartFactory.Shepherd.RouteEditor.UpdateData;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.RouteEditor
 {
@@ -25,15 +26,17 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       InitializeComponent();
       URLTextBox.Text = Properties.Settings.Default.URL;
     }
-    private Random  m_RandomValue = new Random( 12345 );
+    private Random m_RandomValue = new Random( 12345 );
     private void UpdateRoutesButton_Click( object sender, RoutedEventArgs e )
     {
       try
       {
         using ( UpdateData.EntitiesDataContext edc = new UpdateData.EntitiesDataContext( this.URLTextBox.Text ) )
         {
-          Microsoft.SharePoint.Linq.EntityList<UpdateData.Currency> _curr = edc.Currency;
-          Microsoft.SharePoint.Linq.EntityList<UpdateData.Currency> _curr2 = edc.Currency;
+          EntityList<UpdateData.CityType> _city = edc.City;
+          EntityList<UpdateData.CountryType> _Countr = edc.Country;
+          EntityList<UpdateData.Currency> _curr = edc.Currency;
+          EntityList<UpdateData.Currency> _curr2 = edc.Currency;
           if ( _curr != _curr2 )
             ErrorList.Items.Add( "Entities are not equal" );
           foreach ( var item in _curr )
@@ -54,7 +57,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       catch ( Exception _ex )
       {
         MessageBox.Show( _ex.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error );
-        ErrorList.Items.Add( String.Format( "Catched Exception {0}.", _ex.Message) );
+        ErrorList.Items.Add( String.Format( "Catched Exception {0}.", _ex.Message ) );
         this.UpdateLayout();
       }
     }
