@@ -7,5 +7,6 @@
         <Button Name="UpdateRoutesButton" Click="UpdateRoutesButton_Click"
                 Content="Update routes" HorizontalAlignment="Left" Height="35" Margin="10,40,0,0" VerticalAlignment="Top" Width="272" ToolTip="Import xml file and update existing routes, cities, countries and marekts lists">
         </Button>
+        <ListBox Name="ErrorList" Height="180" Margin="10,80,10,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

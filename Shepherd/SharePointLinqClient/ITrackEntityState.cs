@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace Microsoft.SharePoint.Linq
 {
+  /// <summary>
+  /// Enables participation in the object tracking system of the LINQ to SharePoint provider.
+  /// </summary>
   public interface ITrackEntityState
   {
+    /// <summary>
+    /// Gets or sets a value that indicates the changed status of the entity.
+    /// </summary>
+    /// <value>
+    /// An <see cref="Microsoft.SharePoint.Linq.EntityState"/> value that indicates the changed status of an entity.
+    /// </value>
     EntityState EntityState { get; set; }
-
   }
 }

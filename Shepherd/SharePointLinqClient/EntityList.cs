@@ -10,20 +10,14 @@ using SPCList = Microsoft.SharePoint.Client.List;
 
 namespace Microsoft.SharePoint.Linq
 {
-  // Summary:
-  //     Represents a Windows SharePoint Services "14" list that can be queried with
-  //     Language Integrated Query (LINQ).
-  //
-  // Type parameters:
-  //   TEntity:
-  //     The content type of the list items.
+  /// <summary>
+  /// Represents a Windows SharePoint Services "14" list that can be queried with Language Integrated Query (LINQ).
+  /// </summary>
+  /// <typeparam name="TEntity">The content type of the list items.</typeparam>
   public sealed class EntityList<TEntity>: EntityListData, IOrderedQueryable<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>, IOrderedQueryable, IQueryable, IEnumerable
     where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
-    private DataContext m_DataContext;
-    private string m_ListName;
-    private ListItemCollection m_allItems = default( ListItemCollection );
-    private List<TEntity> m_allItemsEntities = new List<TEntity>();
+    #region ctor
     internal EntityList( DataContext dataContext, string listName )
     {
       this.m_DataContext = dataContext;
@@ -40,17 +34,19 @@ namespace Microsoft.SharePoint.Linq
       dataContext.m_ClientContext.Load( m_allItems );
       // Execute the prepared command against the target ClientContext
       dataContext.m_ClientContext.ExecuteQuery();
-      foreach ( ListItem _ix in m_allItems )
+      foreach ( ListItem _listItemx in m_allItems )
       {
         TEntity _newEntity = new TEntity();
-        m_allItemsEntities.Add( _newEntity );
-        AssignValues( _newEntity, _newEntity.GetType(), name => _ix[ name ] );
+        Associate( _newEntity, _listItemx );
+        AssignValues( _newEntity, _newEntity.GetType(), name => _listItemx[ name ] );
         _newEntity.PropertyChanging += _newEntity_PropertyChanging;
         _newEntity.PropertyChanged += _newEntity_PropertyChanged;
         _newEntity.EntityState = EntityState.Unchanged;
       }
     }
+    #endregion
 
+    #region public
     // Summary:
     //     Registers a disconnected or "detached" entity with the object tracking system
     //     of the Microsoft.SharePoint.Linq.DataContext object associated with the list.
@@ -123,33 +119,30 @@ namespace Microsoft.SharePoint.Linq
     //     the internal ID of at least one member of entities that is used by the object
     //     tracking system.
     public void InsertAllOnSubmit( IEnumerable<TEntity> entities ) { throw new NotImplementedException(); }
-    //
-    // Summary:
-    //     Marks the specified entity for insertion into the list on the next call of
-    //     Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges.
-    //
-    // Parameters:
-    //   entity:
-    //     The entity to be marked for insertion.
-    //
-    // Exceptions:
-    //   System.ArgumentNullException:
-    //     entity is null.
-    //
-    //   System.InvalidOperationException:
-    //     Object tracking is not enabled for the Microsoft.SharePoint.Linq.DataContext
-    //     object.- or -entity is not of the same type as the list items.- or -entity
-    //     has been deleted.- or -entity has been updated.- or -There is a problem with
-    //     the internal ID of entity that is used by the object tracking system.
+    /// <summary>
+    /// Marks the specified entity for insertion into the list on the next call of <see cref="Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges"/>.
+    /// </summary>
+    /// <param name="entity">The entity.</param>
+    /// <exception cref="System.ArgumentNullException">entity is null.</exception>
+    /// <exception cref="System.InvalidOperationException">Object tracking is not enabled for the <see cref="Microsoft.SharePoint.Linq.DataContext"/> object.
+    /// - or -
+    /// entity is not of the same type as the list items.
+    /// - or -
+    /// entity has been deleted.
+    /// - or -
+    /// entity has been updated. 
+    /// - or -
+    /// There is a problem with the internal ID of entity that is used by the object tracking system.
+    /// </exception>
     public void InsertOnSubmit( TEntity entity )
     {
+      if ( !m_DataContext.ObjectTrackingEnabled )
+        throw new InvalidOperationException( "Object tracking is not enabled for the DataContext object" );
       if ( entity == null )
         throw new ArgumentNullException( "entity", "entity is null." );
-      m_EntitieAssociations.Add( m_allItems.Count, null );
-      m_allListItems.Add( entity );
+      Associate( entity, null );
       entity.EntityState = EntityState.ToBeInserted;
     }
-    private List<TEntity> m_allListItems = new List<TEntity>();
     //
     // Summary:
     //     Marks the specified entities to be put in the Recycle Bin on the next call
@@ -201,6 +194,7 @@ namespace Microsoft.SharePoint.Linq
     // Returns:
     //     An System.Linq.IQueryable<T> object that can be cast to Microsoft.SharePoint.Linq.EntityList<TEntity>.
     public IQueryable<TEntity> ScopeToFolder( string folderUrl, bool recursive ) { throw new NotImplementedException(); }
+    #endregion
 
     #region IQueryable Members
     /// <summary>
@@ -233,45 +227,32 @@ namespace Microsoft.SharePoint.Linq
     #endregion
 
     #region IEnumerable Members
-    //
-    // Summary:
-    //     Returns an enumerator that iterates through the Microsoft.SharePoint.Linq.EntityList<TEntity>.
-    //
-    // Returns:
-    //     An System.Collections.Generic.IEnumerator<T> that can be used to iterate
-    //     the list.
-    public IEnumerator<TEntity> GetEnumerator() { return (IEnumerator<TEntity>)this.GetEnumerator(); }
+    /// <summary>
+    /// Returns an enumerator that iterates through the <see cref="Microsoft.SharePoint.Linq.EntityList<TEntity>"/>.
+    /// </summary>
+    /// <returns>An <see cref="System.Collections.Generic.IEnumerator<TEntity>"/>  that can be used to iterate the list.</returns>
+    public IEnumerator<TEntity> GetEnumerator()
+    {
+      return m_allListItems.GetEnumerator();
+    }
+    /// <summary>
+    /// Returns an enumerator that iterates through a collection.
+    /// </summary>
+    /// <returns>
+    /// An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
+    /// </returns>
     IEnumerator IEnumerable.GetEnumerator()
     {
-      throw new NotImplementedException();
+      return m_allListItems.GetEnumerator();
     }
     #endregion
 
     #region private
-    private static void AssignValues( object entity, Type type, Func<string, object> getValue )
-    {
-      Dictionary<string, MemberInfo> _mmbrs = GetMembers( type );
-      foreach ( MemberInfo _ax in from _pidx in _mmbrs where _pidx.Value.MemberType == MemberTypes.Property select _pidx.Value )
-      {
-        foreach ( var _cax in _ax.GetCustomAttributes( false ) )
-        {
-          if ( _cax is ColumnAttribute )
-          {
-            ColumnAttribute _ca = _cax as ColumnAttribute;
-            FieldInfo _strg = _mmbrs[ _ca.Storage ] as FieldInfo;
-            object value = getValue( _ca.Name );
-            _strg.SetValue( entity, value );
-          }
-          else if ( _cax is AssociationAttribute )
-          {
-            AssociationAttribute _aa = _cax as AssociationAttribute;
-            //TODO development
-          }
-        }
-      }
-      if ( type.BaseType != typeof( Object ) )
-        AssignValues( entity, type.BaseType, getValue );
-    }
+    private List<TEntity> m_allListItems = new List<TEntity>();
+    private DataContext m_DataContext = default( DataContext );
+    private string m_ListName = String.Empty;
+    private ListItemCollection m_allItems = default( ListItemCollection );
+    private List<TEntity> m_allItemsEntities = new List<TEntity>();
     private void _newEntity_PropertyChanged( object sender, PropertyChangedEventArgs e )
     {
       ITrackEntityState _entity = sender as ITrackEntityState;
@@ -283,9 +264,19 @@ namespace Microsoft.SharePoint.Linq
     {
       //Do nothing
     }
-    protected override ITrackEntityState GetEntity( int key )
+    /// <summary>
+    /// Gets the entity.
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <returns></returns>
+    internal protected override ITrackEntityState GetEntity( int key )
     {
       return m_allListItems[ key ];
+    }
+    private void Associate( TEntity entity, ListItem listItem )
+    {
+      m_EntitieAssociations.Add( m_allListItems.Count, listItem );
+      m_allListItems.Add( entity );
     }
     #endregion
   }

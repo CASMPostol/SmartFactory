@@ -25,7 +25,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       InitializeComponent();
       URLTextBox.Text = Properties.Settings.Default.URL;
     }
-
+    private Random  m_RandomValue = new Random( 12345 );
     private void UpdateRoutesButton_Click( object sender, RoutedEventArgs e )
     {
       try
@@ -34,19 +34,28 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
         {
           Microsoft.SharePoint.Linq.EntityList<UpdateData.Currency> _curr = edc.Currency;
           Microsoft.SharePoint.Linq.EntityList<UpdateData.Currency> _curr2 = edc.Currency;
+          if ( _curr != _curr2 )
+            ErrorList.Items.Add( "Entities are not equal" );
+          foreach ( var item in _curr )
+          {
+            ErrorList.Items.Add( String.Format( "Title={0}, ID = {1}, Rate={2}.", item.Tytuł, item.Identyfikator, item.ExchangeRate ) );
+            item.ExchangeRate = m_RandomValue.NextDouble();
+          }
+          this.UpdateLayout();
           Currency _newItem = new Currency()
           {
-            ExchangeRate = 321.0,
+            ExchangeRate = m_RandomValue.NextDouble(),
             Tytuł = "New test Item"
           };
           _curr.InsertOnSubmit( _newItem );
           edc.SubmitChanges();
-
         }
       }
-      catch ( Exception ex )
+      catch ( Exception _ex )
       {
-        MessageBox.Show( ex.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error );
+        MessageBox.Show( _ex.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error );
+        ErrorList.Items.Add( String.Format( "Catched Exception {0}.", _ex.Message) );
+        this.UpdateLayout();
       }
     }
   }
