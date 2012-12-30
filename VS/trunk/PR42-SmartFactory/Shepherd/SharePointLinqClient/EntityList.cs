@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -17,7 +18,7 @@ namespace Microsoft.SharePoint.Linq
   //   TEntity:
   //     The content type of the list items.
   public sealed class EntityList<TEntity>: IOrderedQueryable<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>, IOrderedQueryable, IQueryable, IEnumerable
-    where TEntity: class, new()
+    where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
     private DataContext m_DataContext;
     private string m_ListName;
@@ -45,8 +46,12 @@ namespace Microsoft.SharePoint.Linq
         TEntity _newEntity = new TEntity();
         m_allItemsEntities.Add( _newEntity );
         AssignValues( _newEntity, _newEntity.GetType(), name => _ix[ name ] );
+        _newEntity.PropertyChanging += _newEntity_PropertyChanging;
+        _newEntity.PropertyChanged += _newEntity_PropertyChanged;
+        _newEntity.EntityState = EntityState.Unchanged;
       }
     }
+
     // Summary:
     //     Registers a disconnected or "detached" entity with the object tracking system
     //     of the Microsoft.SharePoint.Linq.DataContext object associated with the list.
@@ -143,8 +148,8 @@ namespace Microsoft.SharePoint.Linq
         throw new ArgumentNullException( "entity", "entity is null." );
       ListItem item = m_list.AddItem( new ListItemCreationInformation() );
       GetValues( entity, typeof( TEntity ), ( na, val ) => item[ na ] = val );
+      entity.EntityState = EntityState.ToBeInserted;
       item.Update();
-
     }
     //
     // Summary:
@@ -244,7 +249,7 @@ namespace Microsoft.SharePoint.Linq
     #endregion
 
     #region private
-    private static void AssignValues( object _newEntity, Type type, Func<string, object> getValue )
+    private static void AssignValues( object entity, Type type, Func<string, object> getValue )
     {
       Dictionary<string, MemberInfo> _mmbrs = GetMembers( type );
       foreach ( MemberInfo _ax in from _pidx in _mmbrs where _pidx.Value.MemberType == MemberTypes.Property select _pidx.Value )
@@ -256,17 +261,17 @@ namespace Microsoft.SharePoint.Linq
             ColumnAttribute _ca = _cax as ColumnAttribute;
             FieldInfo _strg = _mmbrs[ _ca.Storage ] as FieldInfo;
             object value = getValue( _ca.Name );
-            _strg.SetValue( _newEntity, value );
+            _strg.SetValue( entity, value );
           }
           else if ( _cax is AssociationAttribute )
           {
             AssociationAttribute _aa = _cax as AssociationAttribute;
-
+            //TODO development
           }
         }
       }
       if ( type.BaseType != typeof( Object ) )
-        AssignValues( _newEntity, type.BaseType, getValue );
+        AssignValues( entity, type.BaseType, getValue );
     }
     private static void GetValues( object entity, Type type, Method<string, object> assign )
     {
@@ -285,10 +290,10 @@ namespace Microsoft.SharePoint.Linq
           else if ( _cax is AssociationAttribute )
           {
             AssociationAttribute _aa = _cax as AssociationAttribute;
+            //TODO development
           }
       if ( type.BaseType != typeof( Object ) )
         GetValues( entity, type.BaseType, assign );
-
     }
     private static Dictionary<string, MemberInfo> GetMembers( Type type )
     {
@@ -297,6 +302,17 @@ namespace Microsoft.SharePoint.Linq
                                                 where _midx.MemberType == MemberTypes.Field || _midx.MemberType == MemberTypes.Property
                                                 select _midx ).ToDictionary<MemberInfo, string>( _mi => _mi.Name );
       return _mmbrs;
+    }
+    private void _newEntity_PropertyChanged( object sender, PropertyChangedEventArgs e )
+    {
+      ITrackEntityState _entity = sender as ITrackEntityState;
+      if ( _entity == null )
+        throw new ArgumentNullException( "sender", "PropertyChanged must be called from ITrackEntityState" );
+      _entity.EntityState = EntityState.ToBeUpdated;
+    }
+    private void _newEntity_PropertyChanging( object sender, PropertyChangingEventArgs e )
+    {
+      //Do nothing
     }
     private delegate void Method<T1, T2>( T1 arg1, T2 arg2 );
     #endregion
