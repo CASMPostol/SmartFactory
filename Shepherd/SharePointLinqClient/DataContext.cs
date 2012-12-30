@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.SharePoint.Client;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Microsoft.SharePoint.Linq
 {
@@ -84,7 +85,7 @@ namespace Microsoft.SharePoint.Linq
     // Returns:
     //     An Microsoft.SharePoint.Linq.EntityList<TEntity> that represents the list.
     public virtual EntityList<T> GetList<T>( string listName )
-       where T: class, new()
+       where T: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
       if ( m_AllLists.ContainsKey( listName ) )
         return (EntityList<T>)m_AllLists[ listName ];
