@@ -23,13 +23,13 @@ namespace Microsoft.SharePoint.Linq
             if ( item.Value != null )
               throw new ApplicationException( "Inconsistent content of association table, ToBeInserted should not has associated ListItem" );
             _newListItem = m_list.AddItem( new ListItemCreationInformation() );
-            GetValues( (ITrackOriginalValues)_entity, _entity.GetType(), ( na, val ) => _newListItem[ na ] = val );
+            GetValuesFromEntity( (ITrackOriginalValues)_entity, _entity.GetType(), ( na, val ) => _newListItem[ na ] = val );
             _newListItem.Update();
             break;
           case EntityState.ToBeUpdated:
             if ( item.Value == null )
               throw new ArgumentNullException( "VAlue", "Inconsistent content of association table, ToBeUpdated should has associated ListItem" );
-            GetValues( (ITrackOriginalValues)_entity, _entity.GetType(), ( na, val ) => item.Value[ na ] = val );
+            GetValuesFromEntity( (ITrackOriginalValues)_entity, _entity.GetType(), ( na, val ) => item.Value[ na ] = val );
             item.Value.Update();
             break;
           case EntityState.Unchanged:
@@ -53,12 +53,12 @@ namespace Microsoft.SharePoint.Linq
             if ( item.Value == null )
               throw new ArgumentNullException( "Value", "Inconsistent content of association table while excuting SubmitedChanges, ToBeUpdated/ToBeInserted should has associated ListItem" );
             _entity.EntityState = EntityState.ToBeUpdated;
-            item.Value.Update();
+            m_DataContext.m_ClientContext.Load( item.Value );
             break;
           case EntityState.ToBeUpdated:
             if ( item.Value == null )
               throw new ArgumentNullException( "Value", "Inconsistent content of association table while excuting SubmitedChanges, ToBeUpdated/ToBeInserted should has associated ListItem" );
-            AssignValues( _entity, _entity.GetType(), name => item.Value[ name ] );
+            AssignValues2Entity( _entity, _entity.GetType(), name => item.Value.FieldValues.ContainsKey( name ) ? item.Value[ name ] : null );
             _entity.EntityState = EntityState.Unchanged;
             break;
           case EntityState.Unchanged:
@@ -71,7 +71,7 @@ namespace Microsoft.SharePoint.Linq
     }
     internal protected abstract ITrackEntityState GetEntity( int key );
     internal protected Dictionary<int, ListItem> m_EntitieAssociations = new Dictionary<int, ListItem>();
-    private static void GetValues( ITrackOriginalValues entity, Type type, Method<string, object> assign )
+    private static void GetValuesFromEntity( ITrackOriginalValues entity, Type type, Method<string, object> assign )
     {
       Dictionary<string, MemberInfo> _mmbrs = GetMembers( type );
       foreach ( MemberInfo _ax in from _memeberidx in _mmbrs where _memeberidx.Value.MemberType == MemberTypes.Property select _memeberidx.Value )
@@ -95,9 +95,9 @@ namespace Microsoft.SharePoint.Linq
             break;
           }
       if ( type.BaseType != typeof( Object ) )
-        GetValues( entity, type.BaseType, assign );
+        GetValuesFromEntity( entity, type.BaseType, assign );
     }
-    internal protected static void AssignValues( object entity, Type type, Func<string, object> getValue )
+    internal protected static void AssignValues2Entity( object entity, Type type, Func<string, object> getValue )
     {
       Dictionary<string, MemberInfo> _mmbrs = GetMembers( type );
       foreach ( MemberInfo _ax in from _pidx in _mmbrs where _pidx.Value.MemberType == MemberTypes.Property select _pidx.Value )
@@ -114,12 +114,29 @@ namespace Microsoft.SharePoint.Linq
           else if ( _cax is AssociationAttribute )
           {
             AssociationAttribute _aa = _cax as AssociationAttribute;
+            FieldInfo _strg = _mmbrs[ _aa.Storage ] as FieldInfo;
+            object value = _strg.GetValue( entity );
+            switch ( _aa.MultivalueType )
+            {
+              case AssociationType.Backward:
+              case AssociationType.Single:
+                FieldLookupValue _lookup = (FieldLookupValue)getValue( _aa.Name );
+                DataContext.IAssociationAttribute _etity = (DataContext.IAssociationAttribute)value;
+                _etity.AssociationAttribute = _aa;
+                _etity.Lookup = _lookup;
+                break;
+              case AssociationType.Multi:
+              case AssociationType.None:
+              default:
+                throw new NotImplementedException( String.Format( "AssignValues2Entity does not supports {0}.", _aa.MultivalueType ) );
+            }
+
             //TODO development
           }
         }
       }
       if ( type.BaseType != typeof( Object ) )
-        AssignValues( entity, type.BaseType, getValue );
+        AssignValues2Entity( entity, type.BaseType, getValue );
     }
     private static Dictionary<string, MemberInfo> GetMembers( Type type )
     {
@@ -130,6 +147,8 @@ namespace Microsoft.SharePoint.Linq
       return _mmbrs;
     }
     private delegate void Method<T1, T2>( T1 arg1, T2 arg2 );
-    internal protected SPCList m_list = default( SPCList );
+    protected internal SPCList m_list = default( SPCList );
+    protected internal DataContext m_DataContext = default( DataContext );
+
   }
 }

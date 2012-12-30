@@ -3,10 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.SharePoint.Client;
 
 namespace Microsoft.SharePoint.Linq
 {
-  public class EntitySet<TEntity>: List<TEntity>, ICollection<TEntity>, IOrderedQueryable<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>, IOrderedQueryable, IQueryable, IList, ICollection, IEnumerable, ICloneable where TEntity: class
+  // Summary:
+  //     Provides for deferred loading and relationship maintenance for the “many”
+  //     side of one-to-many and many-to-many relationships
+  //
+  // Type parameters:
+  //   TEntity:
+  //     The type of the member of the collection.
+  public class EntitySet<TEntity>:
+    List<TEntity>, DataContext.IAssociationAttribute, ICollection<TEntity>, IOrderedQueryable<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>, IOrderedQueryable, IQueryable, IList, ICollection, IEnumerable, ICloneable
+    where TEntity: class
   {
     // Summary:
     //     Initializes a new instance of the Microsoft.SharePoint.Linq.EntitySet<TEntity>
@@ -92,22 +102,23 @@ namespace Microsoft.SharePoint.Linq
     public void Remove( object value ) { throw new NotImplementedException(); }
 
     #region IQueryable Members
-
     public Type ElementType
     {
-      get { throw new NotImplementedException(); }
+      get { return typeof( TEntity ); }
     }
-
     public System.Linq.Expressions.Expression Expression
     {
       get { throw new NotImplementedException(); }
     }
-
     public IQueryProvider Provider
     {
       get { throw new NotImplementedException(); }
     }
+    #endregion
 
+    #region IAssociationAttribute Members
+    AssociationAttribute DataContext.IAssociationAttribute.AssociationAttribute { get; set; }
+    FieldLookupValue DataContext.IAssociationAttribute.Lookup { get; set; }
     #endregion
   }
 }

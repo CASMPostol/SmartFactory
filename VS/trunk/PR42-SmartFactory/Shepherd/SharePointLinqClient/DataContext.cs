@@ -246,7 +246,11 @@ namespace Microsoft.SharePoint.Linq
     #endregion
 
     #region internal
-
+    internal interface IAssociationAttribute
+    {
+      AssociationAttribute AssociationAttribute { get; set; }
+      FieldLookupValue Lookup { get; set; }
+    }
     #endregion
 
     #region IDisposing
