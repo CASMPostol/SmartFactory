@@ -14,17 +14,17 @@
     <asp:Table ID="m_Table" runat="server" CssClass="Table">
         <asp:TableRow>
             <asp:TableCell VerticalAlign="Top">
-                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="Edit invoice / quantity"
+                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_EditInvoiceQuantity%>"
                     ID="m_InvoicePanel">
                     <asp:Table ID="m_InvoiceTable" runat="server" CssClass="Table">
                         <asp:TableRow>
                             <asp:TableCell ColumnSpan="2">
-                                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="Invoice"
+                                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Invoice%>"
                                     ID="m_EditInvoicePanel">
                                         <asp:Table runat="server">
                                             <asp:TableRow>
                                                 <asp:TableCell>
-                                                    <asp:Label ID="m_InvoiceLabel" runat="server" CssClass="Label" Text="Invoice" />
+                                                    <asp:Label ID="m_InvoiceLabel" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Invoice%>" />
                                                 </asp:TableCell>
                                                 <asp:TableCell>
                                                     <asp:TextBox ID="m_InvoiceTextBox" runat="server" CssClass="TextBox" Enabled="false" />
@@ -32,7 +32,7 @@
                                             </asp:TableRow>
                                             <asp:TableRow>
                                                 <asp:TableCell>
-                                                    <asp:Label ID="m_InvoiceContentLabel" runat="server" CssClass="Label" Text="Invoice Item" />
+                                                    <asp:Label ID="m_InvoiceContentLabel" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_InvoiceItem%>" />
                                                 </asp:TableCell>
                                                 <asp:TableCell>
                                                     <asp:TextBox ID="m_InvoiceContentTextBox" runat="server" CssClass="TextBox" Enabled="false" />
@@ -44,14 +44,14 @@
                         </asp:TableRow>
                         <asp:TableRow>
                             <asp:TableCell ColumnSpan="2">
-                                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="Export procedure"
+                                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_ExportProcedure%>"
                                     ID="m_ExportProcedurePanel">
                                         <asp:Table ID="m_ExportProcedureTable" runat="server">
                                             <asp:TableRow>
                                                 <asp:TableCell>
                                                     <asp:RadioButtonList ID="m_ExportProcedureRadioButtonList" runat="server">
-                                                        <asp:ListItem Enabled="true" Selected="True" Text="Export " Value="Export"></asp:ListItem>
-                                                        <asp:ListItem Enabled="true" Selected="False" Text="Revert to Fee Circulation" Value="Revert"></asp:ListItem>
+                                                        <asp:ListItem Enabled="true" Selected="True" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Export%> " Value="Export"></asp:ListItem>
+                                                        <asp:ListItem Enabled="true" Selected="False" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_RevertToFC%>" Value="Revert"></asp:ListItem>
                                                     </asp:RadioButtonList>
                                                 </asp:TableCell>
                                             </asp:TableRow>
@@ -61,12 +61,12 @@
                         </asp:TableRow>
                         <asp:TableRow>
                             <asp:TableCell ColumnSpan="2">
-                                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="EditBatch"
+                                <asp:Panel runat="server" BorderColor="ActiveCaptionText" GroupingText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_EditBatch%>"
                                     ID="m_EditBatchPanel">
                                     <asp:Table ID="m_EditBatchTable" runat="server">
                                         <asp:TableRow>
                                             <asp:TableCell>
-                                                <asp:Label ID="m_EditBatchLabel" runat="server" CssClass="Label" Text="Change Batch" />
+                                                <asp:Label ID="m_EditBatchLabel" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_ChangeBatch%>" />
                                             </asp:TableCell>
                                             <asp:TableCell>
                                                 <asp:CheckBox ID="m_EditBatchCheckBox" runat="server" AutoPostBack="true" />
@@ -74,7 +74,7 @@
                                         </asp:TableRow>
                                         <asp:TableRow>
                                             <asp:TableCell>
-                                                <asp:Label ID="m_BatchLabel" runat="server" CssClass="Label" Text="Batch" />
+                                                <asp:Label ID="m_BatchLabel" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Batch%>" />
                                             </asp:TableCell>
                                             <asp:TableCell>
                                                 <asp:TextBox ID="m_BatchTextBox" runat="server" CssClass="TextBox" Enabled="false" />
@@ -86,7 +86,7 @@
                         </asp:TableRow>
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:Label ID="m_InvoiceQuantityLabel" runat="server" CssClass="Label" Text="Quantity" />
+                                <asp:Label ID="m_InvoiceQuantityLabel" runat="server" CssClass="Label" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Quantity%>" />
                             </asp:TableCell>
                             <asp:TableCell>
                                 <asp:TextBox ID="m_InvoiceQuantityTextBox" runat="server" CssClass="TextBox" />
@@ -96,22 +96,22 @@
                     <asp:Table ID="m_InvoiceButtonsTable" runat="server" CssClass="Table">
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="Button" Text="Add New" ID="m_NewButton" />
+                                <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_AddNew%>" ID="m_NewButton" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="Button" Text="Edit" ID="m_EditButton" />
+                                <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Edit%>" ID="m_EditButton" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="Button" Text="Save" ID="m_SaveButton" />
+                                <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Save%>" ID="m_SaveButton" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="Button" Text="Delete" ID="m_DeleteButton" />
+                                <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Delete%>" ID="m_DeleteButton" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="Button" Text="Cancel" ID="m_CancelButton" />
+                                <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Cancel%>" ID="m_CancelButton" />
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:Button runat="server" CssClass="Button" Text="Export" ID="m_ExportButton" ToolTip="It will disable edition of the invoice and starts the export procedure."  />
+                                <asp:Button runat="server" CssClass="Button" Text="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Export%>" ID="m_ExportButton" ToolTip="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_ExportToolTip%>"  />
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>
