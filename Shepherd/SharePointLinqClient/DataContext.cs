@@ -246,10 +246,18 @@ namespace Microsoft.SharePoint.Linq
     #endregion
 
     #region internal
+    internal interface IRegister
+    {
+      void RegisterInContext( DataContext DataContext, AssociationAttribute AssociationAttribute );
+    }
     internal interface IAssociationAttribute
     {
-      AssociationAttribute AssociationAttribute { get; set; }
       FieldLookupValue Lookup { get; set; }
+    }
+    internal FieldLookupValue GetFieldLookupValue<TEntity>( string listName, object entity )
+      where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+    {
+      return GetList<TEntity>( listName ).GetFieldLookupValue( entity );
     }
     #endregion
 
@@ -315,10 +323,5 @@ namespace Microsoft.SharePoint.Linq
     private Dictionary<string, EntityListData> m_AllLists = new Dictionary<string, EntityListData>();
     #endregion
 
-
-    internal static FieldLookupValue GetFieldLookupValue<TEntity>( TEntity entity )
-    {
-      throw new NotImplementedException();
-    }
   }
 }

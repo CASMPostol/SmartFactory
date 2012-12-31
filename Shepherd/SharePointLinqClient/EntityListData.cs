@@ -10,6 +10,7 @@ namespace Microsoft.SharePoint.Linq
 {
   public abstract class EntityListData
   {
+
     internal void SubmitingChanges()
     {
       Dictionary<int, ListItem> _newEntitieAssociations = new Dictionary<int, ListItem>();
@@ -23,13 +24,13 @@ namespace Microsoft.SharePoint.Linq
             if ( item.Value != null )
               throw new ApplicationException( "Inconsistent content of association table, ToBeInserted should not has associated ListItem" );
             _newListItem = m_list.AddItem( new ListItemCreationInformation() );
-            GetValuesFromEntity( (ITrackOriginalValues)_entity, _entity.GetType(), ( na, val ) => _newListItem[ na ] = val );
+            GetValuesFromEntity( (ITrackOriginalValues)_entity, ( na, val ) => _newListItem[ na ] = val );
             _newListItem.Update();
             break;
           case EntityState.ToBeUpdated:
             if ( item.Value == null )
               throw new ArgumentNullException( "VAlue", "Inconsistent content of association table, ToBeUpdated should has associated ListItem" );
-            GetValuesFromEntity( (ITrackOriginalValues)_entity, _entity.GetType(), ( na, val ) => item.Value[ na ] = val );
+            GetValuesFromEntity( (ITrackOriginalValues)_entity, ( na, val ) => item.Value[ na ] = val );
             item.Value.Update();
             break;
           case EntityState.Unchanged:
@@ -58,7 +59,7 @@ namespace Microsoft.SharePoint.Linq
           case EntityState.ToBeUpdated:
             if ( item.Value == null )
               throw new ArgumentNullException( "Value", "Inconsistent content of association table while excuting SubmitedChanges, ToBeUpdated/ToBeInserted should has associated ListItem" );
-            AssignValues2Entity( _entity, _entity.GetType(), name => item.Value.FieldValues.ContainsKey( name ) ? item.Value[ name ] : null );
+            AssignValues2Entity( _entity, item.Value.FieldValues );
             _entity.EntityState = EntityState.Unchanged;
             break;
           case EntityState.Unchanged:
@@ -71,74 +72,56 @@ namespace Microsoft.SharePoint.Linq
     }
     internal protected abstract ITrackEntityState GetEntity( int key );
     internal protected Dictionary<int, ListItem> m_EntitieAssociations = new Dictionary<int, ListItem>();
-    private static void GetValuesFromEntity( ITrackOriginalValues entity, Type type, Method<string, object> assign )
+    private void GetValuesFromEntity( ITrackOriginalValues entity, Method<string, object> assign )
     {
-      Dictionary<string, MemberInfo> _mmbrs = GetMembers( type );
-      foreach ( MemberInfo _ax in from _memeberidx in _mmbrs where _memeberidx.Value.MemberType == MemberTypes.Property select _memeberidx.Value )
-        foreach ( var _cax in _ax.GetCustomAttributes( false ) )
-          if ( _cax is ColumnAttribute )
-          {
-            if ( !entity.OriginalValues.ContainsKey( _ax.Name ) )
-              continue;
-            ColumnAttribute _ca = _cax as ColumnAttribute;
-            if ( _ca.ReadOnly )
-              throw new InvalidOperationException( "Readonly value cannot be changed" );
-            PropertyInfo _info = _ax as PropertyInfo;
-            object value = _info.GetValue( entity, null );
-            assign( _ca.Name, value );
-            break;
-          }
-          else if ( _cax is AssociationAttribute )
-          {
-            AssociationAttribute _aa = _cax as AssociationAttribute;
-            //TODO development
-            break;
-          }
-      if ( type.BaseType != typeof( Object ) )
-        GetValuesFromEntity( entity, type.BaseType, assign );
-    }
-    internal protected static void AssignValues2Entity( object entity, Type type, Func<string, object> getValue )
-    {
-      Dictionary<string, MemberInfo> _mmbrs = GetMembers( type );
-      foreach ( MemberInfo _ax in from _pidx in _mmbrs where _pidx.Value.MemberType == MemberTypes.Property select _pidx.Value )
+      Dictionary<string, StorageItem> _storageDic = m_StorageDescription.ToDictionary<StorageItem, string>( key => key.PropertyName );
+      foreach ( var item in entity.OriginalValues )
       {
-        foreach ( var _cax in _ax.GetCustomAttributes( false ) )
+        StorageItem _storageItem = _storageDic[ item.Key ];
+        object _value = _storageItem.Storage.GetValue( entity );
+        if ( _storageItem.Association )
         {
-          if ( _cax is ColumnAttribute )
-          {
-            ColumnAttribute _ca = _cax as ColumnAttribute;
-            FieldInfo _strg = _mmbrs[ _ca.Storage ] as FieldInfo;
-            object value = getValue( _ca.Name );
-            _strg.SetValue( entity, value );
-          }
-          else if ( _cax is AssociationAttribute )
-          {
-            AssociationAttribute _aa = _cax as AssociationAttribute;
-            FieldInfo _strg = _mmbrs[ _aa.Storage ] as FieldInfo;
-            object value = _strg.GetValue( entity );
-            switch ( _aa.MultivalueType )
-            {
-              case AssociationType.Backward:
-              case AssociationType.Single:
-                FieldLookupValue _lookup = (FieldLookupValue)getValue( _aa.Name );
-                DataContext.IAssociationAttribute _etity = (DataContext.IAssociationAttribute)value;
-                _etity.AssociationAttribute = _aa;
-                _etity.Lookup = _lookup;
-                break;
-              case AssociationType.Multi:
-              case AssociationType.None:
-              default:
-                throw new NotImplementedException( String.Format( "AssignValues2Entity does not supports {0}.", _aa.MultivalueType ) );
-            }
-
-            //TODO development
-          }
+          AssociationAttribute _attr = (AssociationAttribute)_storageItem.Description;
+          if ( _attr.MultivalueType != AssociationType.Single )
+            throw new ApplicationException( "Unexpected MultivalueType in the GetValuesFromEntity" );
+          _value = ( (DataContext.IAssociationAttribute)_value ).Lookup;
         }
+        assign( item.Key, _value );
       }
-      if ( type.BaseType != typeof( Object ) )
-        AssignValues2Entity( entity, type.BaseType, getValue );
     }
-    private static Dictionary<string, MemberInfo> GetMembers( Type type )
+    protected internal class StorageItem
+    {
+      internal StorageItem( string propertyName, bool association, DataAttribute description, FieldInfo storage )
+      {
+        PropertyName = propertyName;
+        Association = association;
+        Description = description;
+        Storage = storage;
+      }
+      internal string PropertyName { get; private set; }
+      internal bool Association { get; private set; }
+      internal DataAttribute Description { get; private set; }
+      internal FieldInfo Storage { get; private set; }
+    }
+    protected internal List<StorageItem> m_StorageDescription = new List<StorageItem>();
+    protected internal void AssignValues2Entity<TEntity>( TEntity _newEntity, Dictionary<string, object> values )
+      where TEntity: class
+    {
+      Dictionary<string, StorageItem> _storageDic = m_StorageDescription.ToDictionary<StorageItem, string>( key => key.Description.Name );
+      foreach ( KeyValuePair<string, object> _item in values )
+      {
+        StorageItem _storage = _storageDic[ _item.Key ];
+        if ( _storage.Association )
+        {
+          DataContext.IAssociationAttribute _itemRef = (DataContext.IAssociationAttribute)_storage.Storage.GetValue( _newEntity );
+          _itemRef.Lookup = (FieldLookupValue)_item.Value;
+        }
+        else
+          _storage.Storage.SetValue( _newEntity, _item.Value );
+      }
+    }
+
+    protected internal static Dictionary<string, MemberInfo> GetMembers( Type type )
     {
       BindingFlags _flgs = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.GetField | BindingFlags.Public | BindingFlags.NonPublic;
       Dictionary<string, MemberInfo> _mmbrs = ( from _midx in type.GetMembers( _flgs )
@@ -149,6 +132,5 @@ namespace Microsoft.SharePoint.Linq
     private delegate void Method<T1, T2>( T1 arg1, T2 arg2 );
     protected internal SPCList m_list = default( SPCList );
     protected internal DataContext m_DataContext = default( DataContext );
-
   }
 }
