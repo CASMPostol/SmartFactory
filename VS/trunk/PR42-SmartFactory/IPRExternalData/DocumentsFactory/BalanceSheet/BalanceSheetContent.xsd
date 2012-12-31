@@ -34,6 +34,15 @@
   <xs:complexType name="ArrayOfIPRRow">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="IPRRow" nillable="true" type="tns:IPRRow" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalIPRBook" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalSHWasteOveruseCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalDustCSNotStarted" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalTobaccoAvailable" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalTobaccoInWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalTobaccoInCigarettesWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalTobaccoInCigarettesProduction" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalTobaccoInCutfillerWarehouse" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalBalance" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="IPRRow">
@@ -73,6 +82,7 @@
   <xs:complexType name="ArrayOfDisposalRow">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalRow" nillable="true" type="tns:DisposalRow" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="DisposalRow">
@@ -82,7 +92,9 @@
       <xs:element minOccurs="1" maxOccurs="1" name="SADDate" type="xs:date" />
       <xs:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="CompensationGood" type="xs:string" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Procedure" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Quantity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Balance" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
