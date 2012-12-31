@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BalanceSheetContent xmlns="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd">
+  <DocumentDate>1900-01-01</DocumentDate>
+  <DocumentNo>DocumentNo1</DocumentNo>
+  <SituationAtDate>1900-01-01</SituationAtDate>
+  <StartDate>1900-01-01</StartDate>
+  <EndDate>1900-01-01</EndDate>
+  <IPRStock>
+    <IPRStockContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+    <IPRStockContent>
+      <IPRList>
+        <IPRRow>
+          <EntryDocumentNo>EntryDocumentNo1</EntryDocumentNo>
+          <SKU>SKU1</SKU>
+          <Batch>Batch1</Batch>
+          <IPRBook>1</IPRBook>
+          <SHWasteOveruseCSNotStarted>1</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>1</DustCSNotStarted>
+          <TobaccoAvailable>1</TobaccoAvailable>
+          <TobaccoInWarehouse>1</TobaccoInWarehouse>
+          <TobaccoInCigarettesWarehouse>1</TobaccoInCigarettesWarehouse>
+          <TobaccoInCigarettesProduction>1</TobaccoInCigarettesProduction>
+          <TobaccoInCutfillerWarehouse>1</TobaccoInCutfillerWarehouse>
+          <Balance>1</Balance>
+        </IPRRow>
+      </IPRList>
+      <TotalIPRBook>1</TotalIPRBook>
+      <TotalSHWasteOveruseCSNotStarted>1</TotalSHWasteOveruseCSNotStarted>
+      <TotalDustCSNotStarted>1</TotalDustCSNotStarted>
+      <TotalTobaccoAvailable>1</TotalTobaccoAvailable>
+      <TotalTobaccoInWarehouse>1</TotalTobaccoInWarehouse>
+      <TotalTobaccoInCigarettesWarehouse>1</TotalTobaccoInCigarettesWarehouse>
+      <TotalTobaccoInCigarettesProduction>1</TotalTobaccoInCigarettesProduction>
+      <TotalTobaccoInCutfillerWarehouse>1</TotalTobaccoInCutfillerWarehouse>
+      <TotalBalance>1</TotalBalance>
+    </IPRStockContent>
+    <IPRStockContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+  </IPRStock>
+  <JSOX>
+    <Disposals>
+      <DisposalRow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+      <DisposalRow>
+        <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD1</ExportOrFreeCirculationSAD>
+        <EntryDocumentNo>EntryDocumentNo1</EntryDocumentNo>
+        <SADDate>1900-01-01</SADDate>
+        <InvoiceNo>InvoiceNo1</InvoiceNo>
+        <CompensationGood>CompensationGood1</CompensationGood>
+        <TotalAmount>1</TotalAmount>
+      </DisposalRow>
+      <DisposalRow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+    </Disposals>
+    <PreviousMonthDate>1900-01-01</PreviousMonthDate>
+    <PreviousMonthQuantity>1</PreviousMonthQuantity>
+    <IntroducingDateStart>1900-01-01</IntroducingDateStart>
+    <IntroducingDateEnd>1900-01-01</IntroducingDateEnd>
+    <IntroducingQuantity>1</IntroducingQuantity>
+    <OutboundDateStart>1900-01-01</OutboundDateStart>
+    <OutboundDateEnd>1900-01-01</OutboundDateEnd>
+    <OutboundQuantity>1</OutboundQuantity>
+    <BalanceDate>1900-01-01</BalanceDate>
+    <BalanceQuantity>1</BalanceQuantity>
+    <SituationDate>1900-01-01</SituationDate>
+    <SituationQuantity>1</SituationQuantity>
+    <ReassumeQuantity>1</ReassumeQuantity>
+  </JSOX>
+</BalanceSheetContent>
