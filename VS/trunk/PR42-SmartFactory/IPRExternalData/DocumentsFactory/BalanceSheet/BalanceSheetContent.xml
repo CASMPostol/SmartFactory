@@ -38,7 +38,6 @@
   </IPRStock>
   <JSOX>
     <Disposals>
-      <DisposalRow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
       <DisposalRow>
         <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD1</ExportOrFreeCirculationSAD>
         <EntryDocumentNo>EntryDocumentNo1</EntryDocumentNo>
@@ -47,7 +46,6 @@
         <CompensationGood>CompensationGood1</CompensationGood>
         <TotalAmount>1</TotalAmount>
       </DisposalRow>
-      <DisposalRow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
     </Disposals>
     <PreviousMonthDate>1900-01-01</PreviousMonthDate>
     <PreviousMonthQuantity>1</PreviousMonthQuantity>
