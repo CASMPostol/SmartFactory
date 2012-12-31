@@ -5,16 +5,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class JSOXCustomsSummary
   {
-    /// <summary>
-    /// Creates the entries.
-    /// </summary>
-    /// <param name="edc">The <see cref="Entities"/>.</param>
-    /// <param name="parent">The parent library.</param>
-    /// <returns>Returns total sum of settled quantity fro all disposals.</returns>
-    internal static decimal CreateEntries( Entities edc, JSOXLib jSOXLib, out DateTime? nullable1, out DateTime? nullable2 )
-    {
-      throw new NotImplementedException();
-    }
     internal static decimal CreateEntries( Entities edc, JSOXLib parent, out DateTime start, out DateTime end )
     {
       decimal _ret = 0;

@@ -22,6 +22,7 @@ namespace Microsoft.SharePoint.Linq
     {
       this.m_DataContext = dataContext;
       this.m_ListName = listName;
+      CreateStorageDescription( typeof( TEntity ) );
       // Prepare a reference to the list of "DevLeap Contacts"
       m_list = dataContext.m_RootWeb.Lists.GetByTitle( listName );
       dataContext.m_ClientContext.Load( m_list );
@@ -30,18 +31,19 @@ namespace Microsoft.SharePoint.Linq
       // Prepare a query for all items in the list
       CamlQuery query = new CamlQuery();
       query.ViewXml = "<View/>";
-      m_allItems = m_list.GetItems( query );
-      dataContext.m_ClientContext.Load( m_allItems );
+      m_ListItemCollection = m_list.GetItems( query );
+      dataContext.m_ClientContext.Load( m_ListItemCollection );
       // Execute the prepared command against the target ClientContext
       dataContext.m_ClientContext.ExecuteQuery();
-      foreach ( ListItem _listItemx in m_allItems )
+      foreach ( ListItem _listItemx in m_ListItemCollection )
       {
         TEntity _newEntity = new TEntity();
         Associate( _newEntity, _listItemx );
-        AssignValues2Entity( _newEntity, _newEntity.GetType(), name => _listItemx.FieldValues.ContainsKey( name ) ? _listItemx[ name ] : null );
         _newEntity.PropertyChanging += _newEntity_PropertyChanging;
         _newEntity.PropertyChanged += _newEntity_PropertyChanged;
         _newEntity.EntityState = EntityState.Unchanged;
+        AssignValues2Entity( _newEntity, _listItemx.FieldValues );
+        //AssignValues2Entity( _newEntity, _newEntity.GetType(), name => _listItemx.FieldValues.ContainsKey( name ) ? _listItemx[ name ] : null );
       }
     }
     #endregion
@@ -233,7 +235,7 @@ namespace Microsoft.SharePoint.Linq
     /// <returns>An <see cref="System.Collections.Generic.IEnumerator<TEntity>"/>  that can be used to iterate the list.</returns>
     public IEnumerator<TEntity> GetEnumerator()
     {
-      return m_allListItems.GetEnumerator();
+      return ( from _ix in m_allListItems select _ix.Value ).GetEnumerator();
     }
     /// <summary>
     /// Returns an enumerator that iterates through a collection.
@@ -243,15 +245,14 @@ namespace Microsoft.SharePoint.Linq
     /// </returns>
     IEnumerator IEnumerable.GetEnumerator()
     {
-      return m_allListItems.GetEnumerator();
+      return ( from _ix in m_allListItems select _ix.Value ).GetEnumerator();
     }
     #endregion
 
     #region private
-    private List<TEntity> m_allListItems = new List<TEntity>();
+    private Dictionary<int, TEntity> m_allListItems = new Dictionary<int, TEntity>();
     private string m_ListName = String.Empty;
-    private ListItemCollection m_allItems = default( ListItemCollection );
-    private List<TEntity> m_allItemsEntities = new List<TEntity>();
+    private ListItemCollection m_ListItemCollection = default( ListItemCollection );
     private void _newEntity_PropertyChanged( object sender, PropertyChangedEventArgs e )
     {
       ITrackEntityState _entity = sender as ITrackEntityState;
@@ -274,9 +275,41 @@ namespace Microsoft.SharePoint.Linq
     }
     private void Associate( TEntity entity, ListItem listItem )
     {
-      m_EntitieAssociations.Add( m_allListItems.Count, listItem );
-      m_allListItems.Add( entity );
+      m_EntitieAssociations.Add( entity.GetHashCode(), listItem );
+      m_allListItems.Add( entity.GetHashCode(), entity );
+      RegisterEntity( entity, m_DataContext );
     }
+    internal FieldLookupValue GetFieldLookupValue<TEntity>( TEntity entity )
+    {
+      FieldLookupValue _ret = new FieldLookupValue()
+      {
+        LookupId = m_EntitieAssociations[ entity.GetHashCode() ].Id
+      };
+      return _ret;
+    }
+    private void RegisterEntity( TEntity entity, DataContext DataContext )
+    {
+      foreach ( StorageItem _item in from _six in m_StorageDescription where _six.Association select _six )
+      {
+        DataContext.IRegister _ListRef = (DataContext.IRegister)_item.Storage.GetValue( entity );
+        _ListRef.RegisterInContext( DataContext, (AssociationAttribute)_item.Description );
+      }
+    }
+    private void CreateStorageDescription( Type type )
+    {
+      Dictionary<string, MemberInfo> _mmbrs = GetMembers( type );
+      foreach ( MemberInfo _ax in from _pidx in _mmbrs where _pidx.Value.MemberType == MemberTypes.Property select _pidx.Value )
+      {
+        foreach ( DataAttribute _cax in _ax.GetCustomAttributes( false ).Where<object>( at => at is DataAttribute ) )
+        {
+          StorageItem _newStorageItem = new StorageItem( _ax.Name, _cax is AssociationAttribute, _cax, _mmbrs[ _cax.Storage ] as FieldInfo );
+          m_StorageDescription.Add( _newStorageItem );
+        }
+      }
+      if ( type.BaseType != typeof( Object ) )
+        CreateStorageDescription( type.BaseType );
+    }
+
     #endregion
   }
 }
