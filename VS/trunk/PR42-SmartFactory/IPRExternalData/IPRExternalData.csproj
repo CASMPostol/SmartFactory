@@ -443,6 +443,7 @@
     <Content Include="DocumentsFactory\BalanceSheet\BalanceSheetCollection.xslt">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DocumentsFactory\BalanceSheet\BalanceSheetContent.xml" />
     <Content Include="DocumentsFactory\CigaretteExportForm\CigaretteExportFormCollection.xml">
       <SubType>Designer</SubType>
     </Content>
