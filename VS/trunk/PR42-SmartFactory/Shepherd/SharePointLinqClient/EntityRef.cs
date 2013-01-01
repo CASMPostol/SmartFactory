@@ -5,12 +5,15 @@ using Microsoft.SharePoint.Client;
 namespace Microsoft.SharePoint.Linq
 {
   // Summary:
-  //     Provides for deferred loading and relationship maintenance for the singleton
-  //     side of a one-to-many relationship.
+  //    
   //
   // Type parameters:
   //   TEntity:
   //     The type of the entity on the singleton side of the relationship.
+  /// <summary>
+  ///  Provides for deferred loading and relationship maintenance for the singleton side of a one-to-many relationship.
+  /// </summary>
+  /// <typeparam name="TEntity"> The type of the entity on the singleton side of the relationship.</typeparam>
   public class EntityRef<TEntity>: DataContext.IAssociationAttribute, DataContext.IRegister
     where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
@@ -82,7 +85,7 @@ namespace Microsoft.SharePoint.Linq
     #endregion
 
     #region IRegister Members
-    public void RegisterInContext( DataContext dataContext, AssociationAttribute associationAttribute )
+    void DataContext.IRegister.RegisterInContext( DataContext dataContext, AssociationAttribute associationAttribute )
     {
       m_DataContext = dataContext;
       m_AssociationAttribute = associationAttribute;

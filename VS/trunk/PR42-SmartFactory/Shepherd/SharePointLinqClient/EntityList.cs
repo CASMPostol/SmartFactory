@@ -23,7 +23,7 @@ namespace Microsoft.SharePoint.Linq
       this.m_DataContext = dataContext;
       this.m_ListName = listName;
       CreateStorageDescription( typeof( TEntity ) );
-      // Prepare a reference to the list of "DevLeap Contacts"
+      // Prepare a reference to the list
       m_list = dataContext.m_RootWeb.Lists.GetByTitle( listName );
       dataContext.m_ClientContext.Load( m_list );
       // Execute the prepared commands against the target ClientContext
@@ -31,19 +31,16 @@ namespace Microsoft.SharePoint.Linq
       // Prepare a query for all items in the list
       CamlQuery query = new CamlQuery();
       query.ViewXml = "<View/>";
-      m_ListItemCollection = m_list.GetItems( query );
+      ListItemCollection m_ListItemCollection = m_list.GetItems( query );
       dataContext.m_ClientContext.Load( m_ListItemCollection );
       // Execute the prepared command against the target ClientContext
       dataContext.m_ClientContext.ExecuteQuery();
       foreach ( ListItem _listItemx in m_ListItemCollection )
       {
         TEntity _newEntity = new TEntity();
-        Associate( _newEntity, _listItemx );
-        _newEntity.PropertyChanging += _newEntity_PropertyChanging;
-        _newEntity.PropertyChanged += _newEntity_PropertyChanged;
-        _newEntity.EntityState = EntityState.Unchanged;
+        RegisterEntity( _newEntity, dataContext, _listItemx );
         AssignValues2Entity( _newEntity, _listItemx.FieldValues );
-        //AssignValues2Entity( _newEntity, _newEntity.GetType(), name => _listItemx.FieldValues.ContainsKey( name ) ? _listItemx[ name ] : null );
+        _newEntity.EntityState = EntityState.Unchanged;
       }
     }
     #endregion
@@ -100,27 +97,26 @@ namespace Microsoft.SharePoint.Linq
     //     Object tracking is not enabled for the Microsoft.SharePoint.Linq.DataContext
     //     object.- or -entity is not of the same type as the list items.
     public void DeleteOnSubmit( TEntity entity ) { throw new NotImplementedException(); }
-    //
-    // Summary:
-    //     Marks the specified entities for insertion into the list on the next call
-    //     of Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges.
-    //
-    // Parameters:
-    //   entities:
-    //     The entities to be inserted.
-    //
-    // Exceptions:
-    //   System.ArgumentNullException:
-    //     At least one member of entities is null.
-    //
-    //   System.InvalidOperationException:
-    //     Object tracking is not enabled for the Microsoft.SharePoint.Linq.DataContext
-    //     object.- or -At least one member of entities is not of the same type as the
-    //     list items.- or -At least one member of entities has been deleted.- or -At
-    //     least one member of entities has been updated.- or -There is a problem with
-    //     the internal ID of at least one member of entities that is used by the object
-    //     tracking system.
-    public void InsertAllOnSubmit( IEnumerable<TEntity> entities ) { throw new NotImplementedException(); }
+    /// <summary>
+    /// Marks the specified entities for insertion into the list on the next call of Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges
+    /// </summary>
+    /// <param name="entities">The entities to be inserted.</param>
+    /// <exception cref="System.ArgumentNullException">entity is null.</exception>
+    /// <exception cref="System.InvalidOperationException">Object tracking is not enabled for the <see cref="Microsoft.SharePoint.Linq.DataContext"/> object.
+    /// - or -
+    /// entity is not of the same type as the list items.
+    /// - or -
+    /// entity has been deleted.
+    /// - or -
+    /// entity has been updated. 
+    /// - or -
+    /// There is a problem with the internal ID of entity that is used by the object tracking system.
+    /// </exception>
+    public void InsertAllOnSubmit( IEnumerable<TEntity> entities )
+    {
+      foreach ( TEntity _item in entities )
+        InsertOnSubmit( _item );
+    }
     /// <summary>
     /// Marks the specified entity for insertion into the list on the next call of <see cref="Overload:Microsoft.SharePoint.Linq.DataContext.SubmitChanges"/>.
     /// </summary>
@@ -142,7 +138,7 @@ namespace Microsoft.SharePoint.Linq
         throw new InvalidOperationException( "Object tracking is not enabled for the DataContext object" );
       if ( entity == null )
         throw new ArgumentNullException( "entity", "entity is null." );
-      Associate( entity, null );
+      RegisterEntity( entity, m_DataContext, null );
       entity.EntityState = EntityState.ToBeInserted;
     }
     //
@@ -196,6 +192,14 @@ namespace Microsoft.SharePoint.Linq
     // Returns:
     //     An System.Linq.IQueryable<T> object that can be cast to Microsoft.SharePoint.Linq.EntityList<TEntity>.
     public IQueryable<TEntity> ScopeToFolder( string folderUrl, bool recursive ) { throw new NotImplementedException(); }
+    internal FieldLookupValue GetFieldLookupValue( TEntity entity )
+    {
+      FieldLookupValue _ret = new FieldLookupValue()
+      {
+        LookupId = m_EntitieAssociations[ entity ].Id
+      };
+      return _ret;
+    }
     #endregion
 
     #region IQueryable Members
@@ -235,7 +239,7 @@ namespace Microsoft.SharePoint.Linq
     /// <returns>An <see cref="System.Collections.Generic.IEnumerator<TEntity>"/>  that can be used to iterate the list.</returns>
     public IEnumerator<TEntity> GetEnumerator()
     {
-      return ( from _ix in m_allListItems select _ix.Value ).GetEnumerator();
+      return ( from _ix in m_EntitieAssociations select _ix.Key ).Cast<TEntity>().GetEnumerator();
     }
     /// <summary>
     /// Returns an enumerator that iterates through a collection.
@@ -245,14 +249,12 @@ namespace Microsoft.SharePoint.Linq
     /// </returns>
     IEnumerator IEnumerable.GetEnumerator()
     {
-      return ( from _ix in m_allListItems select _ix.Value ).GetEnumerator();
+      return ( from _ix in m_EntitieAssociations select _ix.Key ).Cast<TEntity>().GetEnumerator();
     }
     #endregion
 
     #region private
-    private Dictionary<int, TEntity> m_allListItems = new Dictionary<int, TEntity>();
     private string m_ListName = String.Empty;
-    private ListItemCollection m_ListItemCollection = default( ListItemCollection );
     private void _newEntity_PropertyChanged( object sender, PropertyChangedEventArgs e )
     {
       ITrackEntityState _entity = sender as ITrackEntityState;
@@ -264,35 +266,16 @@ namespace Microsoft.SharePoint.Linq
     {
       //Do nothing
     }
-    /// <summary>
-    /// Gets the entity.
-    /// </summary>
-    /// <param name="key">The key.</param>
-    /// <returns></returns>
-    internal protected override ITrackEntityState GetEntity( int key )
+    private void RegisterEntity( TEntity entity, DataContext DataContext, ListItem listItem )
     {
-      return m_allListItems[ key ];
-    }
-    private void Associate( TEntity entity, ListItem listItem )
-    {
-      m_EntitieAssociations.Add( entity.GetHashCode(), listItem );
-      m_allListItems.Add( entity.GetHashCode(), entity );
-      RegisterEntity( entity, m_DataContext );
-    }
-    internal FieldLookupValue GetFieldLookupValue<TEntity>( TEntity entity )
-    {
-      FieldLookupValue _ret = new FieldLookupValue()
-      {
-        LookupId = m_EntitieAssociations[ entity.GetHashCode() ].Id
-      };
-      return _ret;
-    }
-    private void RegisterEntity( TEntity entity, DataContext DataContext )
-    {
+      m_EntitieAssociations.Add( entity, listItem );
+      entity.PropertyChanging += _newEntity_PropertyChanging;
+      entity.PropertyChanged += _newEntity_PropertyChanged;
       foreach ( StorageItem _item in from _six in m_StorageDescription where _six.Association select _six )
       {
+        AssociationAttribute _ass = (AssociationAttribute)_item.Description;
         DataContext.IRegister _ListRef = (DataContext.IRegister)_item.Storage.GetValue( entity );
-        _ListRef.RegisterInContext( DataContext, (AssociationAttribute)_item.Description );
+        _ListRef.RegisterInContext( DataContext, _ass );
       }
     }
     private void CreateStorageDescription( Type type )
@@ -309,7 +292,14 @@ namespace Microsoft.SharePoint.Linq
       if ( type.BaseType != typeof( Object ) )
         CreateStorageDescription( type.BaseType );
     }
-
+    protected internal static Dictionary<string, MemberInfo> GetMembers( Type type )
+    {
+      BindingFlags _flgs = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.GetField | BindingFlags.Public | BindingFlags.NonPublic;
+      Dictionary<string, MemberInfo> _mmbrs = ( from _midx in type.GetMembers( _flgs )
+                                                where _midx.MemberType == MemberTypes.Field || _midx.MemberType == MemberTypes.Property
+                                                select _midx ).ToDictionary<MemberInfo, string>( _mi => _mi.Name );
+      return _mmbrs;
+    }
     #endregion
   }
 }

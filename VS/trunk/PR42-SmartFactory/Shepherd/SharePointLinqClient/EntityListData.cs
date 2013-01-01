@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Microsoft.SharePoint.Client;
 using SPCList = Microsoft.SharePoint.Client.List;
 
@@ -13,10 +12,10 @@ namespace Microsoft.SharePoint.Linq
 
     internal void SubmitingChanges()
     {
-      Dictionary<int, ListItem> _newEntitieAssociations = new Dictionary<int, ListItem>();
+      Dictionary<ITrackEntityState, ListItem> _newEntitieAssociations = new Dictionary<ITrackEntityState, ListItem>();
       foreach ( var item in m_EntitieAssociations )
       {
-        ITrackEntityState _entity = GetEntity( item.Key );
+        ITrackEntityState _entity =  item.Key;
         ListItem _newListItem = item.Value;
         switch ( _entity.EntityState )
         {
@@ -47,7 +46,7 @@ namespace Microsoft.SharePoint.Linq
     {
       foreach ( var item in m_EntitieAssociations )
       {
-        ITrackEntityState _entity = GetEntity( item.Key );
+        ITrackEntityState _entity = item.Key;
         switch ( _entity.EntityState )
         {
           case EntityState.ToBeInserted:
@@ -70,8 +69,38 @@ namespace Microsoft.SharePoint.Linq
         }
       }
     }
-    internal protected abstract ITrackEntityState GetEntity( int key );
-    internal protected Dictionary<int, ListItem> m_EntitieAssociations = new Dictionary<int, ListItem>();
+    private class EntityEqualityComparer: IEqualityComparer<ITrackEntityState>
+    {
+      #region IEqualityComparer<object> Members
+      public bool Equals( ITrackEntityState x, ITrackEntityState y )
+      {
+        return x == y;
+      }
+      public int GetHashCode( ITrackEntityState obj )
+      {
+        return obj.GetHashCode();
+      }
+      #endregion
+    }
+    protected internal class StorageItem
+    {
+      internal StorageItem( string propertyName, bool association, DataAttribute description, FieldInfo storage )
+      {
+        PropertyName = propertyName;
+        Association = association;
+        Description = description;
+        Storage = storage;
+      }
+      internal string PropertyName { get; private set; }
+      internal bool Association { get; private set; }
+      internal DataAttribute Description { get; private set; }
+      internal FieldInfo Storage { get; private set; }
+    }
+    protected internal List<StorageItem> m_StorageDescription = new List<StorageItem>();
+    internal protected Dictionary<ITrackEntityState, ListItem> m_EntitieAssociations = new Dictionary<ITrackEntityState, ListItem>( new EntityEqualityComparer() );
+    private delegate void Method<T1, T2>( T1 arg1, T2 arg2 );
+    protected internal SPCList m_list = default( SPCList );
+    protected internal DataContext m_DataContext = default( DataContext );
     private void GetValuesFromEntity( ITrackOriginalValues entity, Method<string, object> assign )
     {
       Dictionary<string, StorageItem> _storageDic = m_StorageDescription.ToDictionary<StorageItem, string>( key => key.PropertyName );
@@ -89,21 +118,6 @@ namespace Microsoft.SharePoint.Linq
         assign( item.Key, _value );
       }
     }
-    protected internal class StorageItem
-    {
-      internal StorageItem( string propertyName, bool association, DataAttribute description, FieldInfo storage )
-      {
-        PropertyName = propertyName;
-        Association = association;
-        Description = description;
-        Storage = storage;
-      }
-      internal string PropertyName { get; private set; }
-      internal bool Association { get; private set; }
-      internal DataAttribute Description { get; private set; }
-      internal FieldInfo Storage { get; private set; }
-    }
-    protected internal List<StorageItem> m_StorageDescription = new List<StorageItem>();
     protected internal void AssignValues2Entity<TEntity>( TEntity _newEntity, Dictionary<string, object> values )
       where TEntity: class
     {
@@ -120,17 +134,5 @@ namespace Microsoft.SharePoint.Linq
           _storage.Storage.SetValue( _newEntity, _item.Value );
       }
     }
-
-    protected internal static Dictionary<string, MemberInfo> GetMembers( Type type )
-    {
-      BindingFlags _flgs = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.GetField | BindingFlags.Public | BindingFlags.NonPublic;
-      Dictionary<string, MemberInfo> _mmbrs = ( from _midx in type.GetMembers( _flgs )
-                                                where _midx.MemberType == MemberTypes.Field || _midx.MemberType == MemberTypes.Property
-                                                select _midx ).ToDictionary<MemberInfo, string>( _mi => _mi.Name );
-      return _mmbrs;
-    }
-    private delegate void Method<T1, T2>( T1 arg1, T2 arg2 );
-    protected internal SPCList m_list = default( SPCList );
-    protected internal DataContext m_DataContext = default( DataContext );
   }
 }
