@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using Microsoft.SharePoint.Client;
-using System.Linq;
-using System.ComponentModel;
 
 namespace Microsoft.SharePoint.Linq
 {
@@ -254,7 +253,7 @@ namespace Microsoft.SharePoint.Linq
     {
       FieldLookupValue Lookup { get; set; }
     }
-    internal FieldLookupValue GetFieldLookupValue<TEntity>( string listName, object entity )
+    internal FieldLookupValue GetFieldLookupValue<TEntity>( string listName, TEntity entity )
       where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
     {
       return GetList<TEntity>( listName ).GetFieldLookupValue( entity );
