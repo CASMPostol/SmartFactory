@@ -132,6 +132,25 @@ namespace Microsoft.SharePoint.Linq
           DataContext.IAssociationAttribute _itemRef = (DataContext.IAssociationAttribute)_storage.Storage.GetValue( _newEntity );
           _itemRef.Lookup = (FieldLookupValue)_item.Value;
         }
+        else if ( ( (ColumnAttribute)_storage.Description ).IsLookupId )
+        {
+          if ( _item.Value == null )
+            continue;
+          _storage.Storage.SetValue( _newEntity, ( (Client.FieldUserValue)_item.Value ).LookupId );
+        }
+        else if ( ( (ColumnAttribute)_storage.Description ).FieldType.Contains( "Choice" ) )
+        {
+          object _enumValue = null;
+          try
+          {
+            Type[] _types = _storage.Storage.FieldType.GetGenericArguments();
+            if ( _types.Length != 1 && !( _types[ 0 ] is Enum ) )
+              throw new ApplicationException( "Unexpected type in the AssignValues2Entity" );
+            _enumValue = Enum.Parse( _types[ 0 ], (string)_item.Value, true );
+            _storage.Storage.SetValue( _newEntity, _enumValue );
+          }
+          catch ( Exception ) { }
+        }
         else
           _storage.Storage.SetValue( _newEntity, _item.Value );
       }

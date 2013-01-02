@@ -295,6 +295,9 @@ namespace Microsoft.SharePoint.Linq
           DataAttribute _dataAttribute = _cax as DataAttribute;
           if ( _cax == null )
             continue;
+          ColumnAttribute _columnAttribute = _cax as ColumnAttribute;
+          if ( _columnAttribute != null && _columnAttribute.IsLookupValue )
+            continue;
           StorageItem _newStorageItem = new StorageItem( _ax.Name, _cax is AssociationAttribute, _dataAttribute, _mmbrs[ _dataAttribute.Storage ] as FieldInfo );
           m_StorageDescription.Add( _newStorageItem );
         }
