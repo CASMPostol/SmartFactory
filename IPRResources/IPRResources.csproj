@@ -51,6 +51,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\CASSmartFactoryIPRCode.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CASSmartFactoryIPRCode.Designer.cs</LastGenOutput>
+    </Content>
     <None Include="GlobalResources\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{27aa2165-8967-4b11-a735-7ae3e5885124}</SharePointProjectItemId>
     </None>
@@ -70,6 +74,8 @@
     <EmbeddedResource Include="GlobalResources\CASSmartFactoryIPR.en-US.resx" />
     <EmbeddedResource Include="GlobalResources\CASSmartFactoryIPR.pl-PL.resx" />
     <EmbeddedResource Include="GlobalResources\CASSmartFactoryIPR.resx" />
+    <Content Include="Resources\CASSmartFactoryIPRCode.pl-PL.resx" />
+    <Content Include="Resources\CASSmartFactoryIPRCode.en-US.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\CASSmartFactoryIPR.en-US.resx" />
