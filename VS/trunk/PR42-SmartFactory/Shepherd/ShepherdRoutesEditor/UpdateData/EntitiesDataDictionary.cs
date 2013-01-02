@@ -17,7 +17,6 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     {
       m_EDC.SubmitChanges();
       m_EDC.Dispose();
-      ;
     }
     internal void AddCommodity( RoutesCatalogCommodityRow _CommodityRow )
     {
@@ -134,6 +133,18 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
         throw new ApplicationException( String.Format( _format, _market.DestinationCity, _market.Market, ex.Message ) );
       }
     }
+
+    internal void GetDictionaries()
+    {
+      foreach ( Commodity _cmdty in m_EDC.Commodity )
+        Add<string, Commodity>( m_CommodityCommodity, _cmdty.Tytuł, _cmdty, false );
+      foreach ( Partner _prtnr in m_EDC.Partner )
+        Add<string, Partner>( m_Partner, _prtnr.Tytuł, _prtnr, false );
+      foreach ( var _cntry in m_EDC.Country )
+        Add<string, CountryType>( m_CountryClass, _cntry.Tytuł, _cntry, false );
+      foreach ( CityType _cty in m_EDC.City )
+        Add<string, CityType>( m_CityType, _cty.Tytuł, _cty, false );
+    }
     #region private
 
     #region helpers
@@ -185,8 +196,14 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
       _EDC.InsertOnSubmit( _elmnt );
       return _elmnt;
     }
+    private void Add<TKey, TEntity>( Dictionary<TKey, TEntity> _dictionary, TKey _key, TEntity entity, bool _testData )
+    {
+      if ( _dictionary.Keys.Contains( _key ) )
+        throw new ArgumentOutOfRangeException( _key.ToString(), String.Format( "Duplicated key: {0}.", _key.ToString() ) );
+      _dictionary.Add( _key, entity );
+    }
     private type GetOrAdd<kType, type>( EntityList<type> _EDC, Dictionary<kType, type> _dictionary, kType _key, bool _testData )
-      where type: Element, new()
+    where type: Element, new()
     {
       //TODO if ( _key.IsNullOrEmpty() )
       //  _key = EmptyKey;
