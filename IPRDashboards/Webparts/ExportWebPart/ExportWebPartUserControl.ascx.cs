@@ -514,13 +514,13 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
       try
       {
         if ( m_ExportProcedureRadioButtonList.SelectedIndex < 0 )
-          return GenericStateMachineEngine.ActionResult.NotValidated( "Customs procedure must  be selected" );
+            return GenericStateMachineEngine.ActionResult.NotValidated("CustomsProcedureMustBeSelected".GetLocalizedString());
         switch ( m_ExportProcedureRadioButtonList.SelectedValue )
         {
           case "Export":
             return Export();
           case "Revert":
-            return GenericStateMachineEngine.ActionResult.Exception( new NotImplementedException( "Revert FG to free circulation is not implemented yet" ), "ClearThroughCustom" );
+            return GenericStateMachineEngine.ActionResult.Exception(new NotImplementedException("RevertFGTofreeCirculationIsNotImplementedYet".GetLocalizedString()), "ClearThroughCustom");
         }
       }
       catch ( Exception ex )
@@ -539,7 +539,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           continue;
         Controls.Add( ControlExtensions.CreateMessage( _checkResult ) );
         m_ControlState.UpdateControlState( item );
-        string _frmt = "Cannot proceed with export because the invoice item contains eroors {0}.";
+        string _frmt = "CannotProceedWithExportBecauseTheInvoiceItemContainsErrors{0}".GetLocalizedString();
         return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Title ) );
       }
       _invoice.InvoiceLibraryStatus = true;

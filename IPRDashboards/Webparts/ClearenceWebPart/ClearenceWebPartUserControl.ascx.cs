@@ -425,7 +425,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
         ListItem _cs = m_SelectGroupRadioButtonList.Items.FindByValue( CurrentClearence.ProcedureCode );
         if ( _cs == null )
         {
-          this.ShowActionResult( GenericStateMachineEngine.ActionResult.NotValidated( "This clearance cannot be edited - it is not compensation good clearance." ) );
+            this.ShowActionResult(GenericStateMachineEngine.ActionResult.NotValidated("ThisClearanceCannotBeEditedItIsNotCompensationGoodClearance".GetLocalizedString()));
           m_ControlState.ReadOnly = true;
           m_ControlState.ClearanceID = String.Empty;
           m_ControlState.ClearanceTitle = String.Empty;
@@ -696,7 +696,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       get
       {
         if ( m_ProcedureRadioButtonList.SelectedIndex < 0 )
-          throw GenericStateMachineEngine.ActionResult.NotValidated( "Customs procedure must  be selected" );
+            throw GenericStateMachineEngine.ActionResult.NotValidated("CustomsProcedureMustBeSelected".GetLocalizedString());
         switch ( m_ProcedureRadioButtonList.SelectedValue )
         {
           case "4051":
@@ -704,7 +704,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
           case "3151":
             return ClearenceProcedure._3151;
           default:
-            throw GenericStateMachineEngine.ActionResult.Exception( null, "Internal error - wrong Customs procedure is is selected" );
+            throw GenericStateMachineEngine.ActionResult.Exception(null, "InternalErrorWrongCustomsProcedureIsSelected".GetLocalizedString());
         }
       }
     }
@@ -795,7 +795,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       if ( !_sender.FilterFieldValue.IsNullOrEmpty() )
       {
         e.Cancel = true;
-        string _msg = "Spiting entry is not supported when filtering. Use \"Period \" filter instead.";
+        string _msg = "SplittingEntryIsNotSupportedWhenFiltering".GetLocalizedString();
         m_AvailablePanel.Controls.Add( ControlExtensions.CreateMessage( _msg ) );
         return;
       }
@@ -803,7 +803,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
       if ( Selection.SelectionTableRow.IsDisposal( _idLabel.Text ) )
       {
         e.Cancel = true;
-        string _msg = "Splitting the item for the selected goods group is not allowed.";
+        string _msg = "SplittingTheItemForTheSelectedGoodsGroupIsNotAllowed".GetLocalizedString();
         m_AvailablePanel.Controls.Add( ControlExtensions.CreateMessage( _msg ) );
         return;
       }
