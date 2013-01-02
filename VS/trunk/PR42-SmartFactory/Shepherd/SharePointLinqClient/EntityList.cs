@@ -200,6 +200,11 @@ namespace Microsoft.SharePoint.Linq
       };
       return _ret;
     }
+    internal TEntity GetFieldLookupValue( FieldLookupValue fieldLookupValue )
+    {
+      Dictionary<int, KeyValuePair<ITrackEntityState, ListItem>> _idDictionary = m_EntitieAssociations.ToDictionary( key => key.Value.Id );
+      return (TEntity)_idDictionary[ fieldLookupValue.LookupId ].Key;
+    }
     #endregion
 
     #region IQueryable Members
@@ -283,9 +288,14 @@ namespace Microsoft.SharePoint.Linq
       Dictionary<string, MemberInfo> _mmbrs = GetMembers( type );
       foreach ( MemberInfo _ax in from _pidx in _mmbrs where _pidx.Value.MemberType == MemberTypes.Property select _pidx.Value )
       {
-        foreach ( DataAttribute _cax in _ax.GetCustomAttributes( false ).Where<object>( at => at is DataAttribute ) )
+        foreach ( Attribute _cax in _ax.GetCustomAttributes( false ) )
         {
-          StorageItem _newStorageItem = new StorageItem( _ax.Name, _cax is AssociationAttribute, _cax, _mmbrs[ _cax.Storage ] as FieldInfo );
+          if ( _cax is RemovedColumnAttribute )
+            continue;
+          DataAttribute _dataAttribute = _cax as DataAttribute;
+          if ( _cax == null )
+            continue;
+          StorageItem _newStorageItem = new StorageItem( _ax.Name, _cax is AssociationAttribute, _dataAttribute, _mmbrs[ _dataAttribute.Storage ] as FieldInfo );
           m_StorageDescription.Add( _newStorageItem );
         }
       }

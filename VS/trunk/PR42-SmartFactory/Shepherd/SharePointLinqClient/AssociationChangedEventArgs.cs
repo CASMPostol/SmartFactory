@@ -9,7 +9,7 @@ namespace Microsoft.SharePoint.Linq
   // Type parameters:
   //   T:
   //     The type of the the entity involved in the change.
-  public class AssociationChangedEventArgs<T>: EventArgs
+  public class AssociationChangedEventArgs<TEntity>: EventArgs
   {
     // Summary:
     //     Initializes a new instance of the Microsoft.SharePoint.Linq.AssociationChangedEventArgs<T>
@@ -21,14 +21,17 @@ namespace Microsoft.SharePoint.Linq
     //
     //   state:
     //     An object that specifies the type of change.
-    public AssociationChangedEventArgs( T item, AssociationChangedState state ) { throw new NotImplementedException(); }
-
+    public AssociationChangedEventArgs( TEntity item, AssociationChangedState state )
+    {
+      m_Entity = item;
+      m_State = state;
+    }
     // Summary:
     //     Gets the entity involved in the change.
     //
     // Returns:
     //     A T that represents the entity involved in the change.
-    public T Item { get { throw new NotImplementedException(); } }
+    public TEntity Item { get { return m_Entity; } }
     //
     // Summary:
     //     Gets the type of change.
@@ -36,7 +39,9 @@ namespace Microsoft.SharePoint.Linq
     // Returns:
     //     An Microsoft.SharePoint.Linq.AssociationChangedState that specifies the type
     //     of change.
-    public AssociationChangedState State { get { throw new NotImplementedException(); } }
+    public AssociationChangedState State { get { return m_State; } }
 
+    private AssociationChangedState m_State = default( AssociationChangedState );
+    private TEntity m_Entity = default( TEntity );
   }
 }

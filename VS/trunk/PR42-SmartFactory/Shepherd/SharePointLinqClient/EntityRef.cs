@@ -17,11 +17,15 @@ namespace Microsoft.SharePoint.Linq
   public class EntityRef<TEntity>: DataContext.IAssociationAttribute, DataContext.IRegister
     where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
   {
+
+    #region ctor
     // Summary:
     //     Initializes a new instance of the Microsoft.SharePoint.Linq.EntityRef<TEntity>
     //     class.
     public EntityRef() { }
+    #endregion
 
+    #region public
     // Summary:
     //     Raised after a change to this Microsoft.SharePoint.Linq.EntityRef<TEntity>
     //     object.
@@ -36,7 +40,6 @@ namespace Microsoft.SharePoint.Linq
     //     Raised when the Microsoft.SharePoint.Linq.EntityRef<TEntity> object is synchronized
     //     with the entity it represents.
     public event EventHandler<AssociationChangedEventArgs<TEntity>> OnSync;
-
     // Summary:
     //     Creates a shallow copy of the Microsoft.SharePoint.Linq.EntityRef<TEntity>.
     //
@@ -44,7 +47,10 @@ namespace Microsoft.SharePoint.Linq
     //     A System.Object (castable Microsoft.SharePoint.Linq.EntityRef<TEntity>) whose
     //     property values refer to the same objects as the property values of this
     //     Microsoft.SharePoint.Linq.EntityRef<TEntity>.
-    public object Clone() { throw new NotImplementedException(); }
+    public object Clone()
+    {
+      return MemberwiseClone();
+    }
     //
     // Summary:
     //     Returns the entity that is wrapped by this Microsoft.SharePoint.Linq.EntityRef<TEntity>
@@ -79,9 +85,19 @@ namespace Microsoft.SharePoint.Linq
       if ( OnChanged != null )
         OnChanged( this, new EventArgs() );
     }
+    #endregion
 
     #region IAssociationAttribute Members
-    FieldLookupValue DataContext.IAssociationAttribute.Lookup { get { return m_FieldLookupValue; } set { m_FieldLookupValue = value; } }
+    FieldLookupValue DataContext.IAssociationAttribute.Lookup
+    {
+      get { return m_FieldLookupValue; }
+      set
+      {
+        m_FieldLookupValue = value;
+        TEntity _entity = m_DataContext.GetFieldLookupValue<TEntity>( m_AssociationAttribute.List, m_FieldLookupValue );
+        SetEntity( _entity );
+      }
+    }
     #endregion
 
     #region IRegister Members
