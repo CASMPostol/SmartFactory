@@ -70,13 +70,10 @@ namespace Microsoft.SharePoint.Linq
     /// <exception cref="System.InvalidOperationException">The object is not registered in the context.</exception>
     public void SetEntity( TEntity entity )
     {
-      if ( !m_InContext )
-        throw new InvalidOperationException( "The object is not registered in the context." );
       if ( entity == m_Lookup )
         return;
       if ( OnChanging != null )
         OnChanging( this, new EventArgs() );
-      m_FieldLookupValue = m_DataContext.GetFieldLookupValue<TEntity>( m_AssociationAttribute.List, entity );
       if ( OnSync != null && m_Lookup != null )
         OnSync( this, new AssociationChangedEventArgs<TEntity>( entity, AssociationChangedState.Removed ) );
       m_Lookup = entity;
@@ -90,11 +87,13 @@ namespace Microsoft.SharePoint.Linq
     #region IAssociationAttribute Members
     FieldLookupValue DataContext.IAssociationAttribute.Lookup
     {
-      get { return m_FieldLookupValue; }
+      get
+      {
+        return m_DataContext.GetFieldLookupValue<TEntity>( m_AssociationAttribute.List, m_Lookup );
+      }
       set
       {
-        m_FieldLookupValue = value;
-        TEntity _entity = m_DataContext.GetFieldLookupValue<TEntity>( m_AssociationAttribute.List, m_FieldLookupValue );
+        TEntity _entity = m_DataContext.GetFieldLookupValue<TEntity>( m_AssociationAttribute.List, value );
         SetEntity( _entity );
       }
     }
@@ -112,7 +111,6 @@ namespace Microsoft.SharePoint.Linq
     #region private
     private bool m_InContext = false;
     private TEntity m_Lookup = default( TEntity );
-    private FieldLookupValue m_FieldLookupValue = default( FieldLookupValue );
     private DataContext m_DataContext = default( DataContext );
     private AssociationAttribute m_AssociationAttribute = default( AssociationAttribute );
     #endregion
