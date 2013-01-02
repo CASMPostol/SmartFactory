@@ -15,7 +15,7 @@ namespace Microsoft.SharePoint.Linq
       Dictionary<ITrackEntityState, ListItem> _newEntitieAssociations = new Dictionary<ITrackEntityState, ListItem>();
       foreach ( var item in m_EntitieAssociations )
       {
-        ITrackEntityState _entity =  item.Key;
+        ITrackEntityState _entity = item.Key;
         ListItem _newListItem = item.Value;
         switch ( _entity.EntityState )
         {
@@ -115,7 +115,7 @@ namespace Microsoft.SharePoint.Linq
             throw new ApplicationException( "Unexpected MultivalueType in the GetValuesFromEntity" );
           _value = ( (DataContext.IAssociationAttribute)_value ).Lookup;
         }
-        assign( item.Key, _value );
+        assign( _storageItem.Description.Name, _value );
       }
     }
     protected internal void AssignValues2Entity<TEntity>( TEntity _newEntity, Dictionary<string, object> values )
@@ -124,6 +124,8 @@ namespace Microsoft.SharePoint.Linq
       Dictionary<string, StorageItem> _storageDic = m_StorageDescription.ToDictionary<StorageItem, string>( key => key.Description.Name );
       foreach ( KeyValuePair<string, object> _item in values )
       {
+        if ( !_storageDic.ContainsKey( _item.Key ) )
+          continue;
         StorageItem _storage = _storageDic[ _item.Key ];
         if ( _storage.Association )
         {

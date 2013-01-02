@@ -258,6 +258,14 @@ namespace Microsoft.SharePoint.Linq
     {
       return GetList<TEntity>( listName ).GetFieldLookupValue( entity );
     }
+    internal TEntity GetFieldLookupValue<TEntity>( string listName, FieldLookupValue fieldLookupValue )
+      where TEntity: class, ITrackEntityState, ITrackOriginalValues, INotifyPropertyChanged, INotifyPropertyChanging, new()
+    {
+      return GetList<TEntity>( listName ).GetFieldLookupValue( fieldLookupValue );
+    }
+    internal ClientContext m_ClientContext = default( ClientContext );
+    internal Site m_site { get; set; }
+    internal Web m_RootWeb { get; set; }
     #endregion
 
     #region IDisposing
@@ -316,11 +324,9 @@ namespace Microsoft.SharePoint.Linq
     #endregion
 
     #region private
-    internal ClientContext m_ClientContext = default( ClientContext );
-    internal Site m_site { get; set; }
-    internal Web m_RootWeb { get; set; }
     private Dictionary<string, EntityListData> m_AllLists = new Dictionary<string, EntityListData>();
     #endregion
+
 
   }
 }
