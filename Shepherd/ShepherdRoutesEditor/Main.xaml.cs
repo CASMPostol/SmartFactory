@@ -35,6 +35,15 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
         {
           EntityList<UpdateData.CityType> _city = edc.City;
           EntityList<UpdateData.CountryType> _Countr = edc.Country;
+          foreach ( CountryType _countre in _Countr )
+          {
+            CityType _newCity = new CityType()
+            {
+              CountryTitle = _countre,
+              Tytuł = "New City"
+            };
+            _city.InsertOnSubmit( _newCity );
+          }
           EntityList<UpdateData.Currency> _curr = edc.Currency;
           EntityList<UpdateData.Currency> _curr2 = edc.Currency;
           if ( _curr != _curr2 )
