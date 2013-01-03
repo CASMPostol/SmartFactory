@@ -703,7 +703,7 @@
     <value>Odpad w trakcie odprawy [kg]</value>
   </data>
 	<data name="CAS_WasteRatio" xml:space="preserve">
-    <value>Wskaźnik odpadów</value>
+    <value>Wskaźnik odpadów [%]</value>
   </data>
 	<data name="CAS_InvoiceNo" xml:space="preserve">
     <value>Faktura nr</value>
