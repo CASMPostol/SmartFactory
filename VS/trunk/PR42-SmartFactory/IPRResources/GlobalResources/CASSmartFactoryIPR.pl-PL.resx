@@ -289,7 +289,7 @@
     <value>Księga uszlachetniania czynnego - Urząd Celny</value>
   </data>
 	<data name="CAS_ASPX_IPRDBCA" xml:space="preserve">
-    <value>Księga uszlachetniania czynnego - zamknięte konta</value>
+    <value>Księga uszlachetniania czynnego - konta zamknięte</value>
   </data>
 	<data name="CAS_ASPX_Period" xml:space="preserve">
     <value>Okres</value>
