@@ -36,35 +36,38 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       {
         using ( EntitiesDataDictionary edc = new EntitiesDataDictionary( this.URLTextBox.Text ) )
         {
+          ErrorList.Items.Add( "Starting read current data from selected site." );
           edc.GetDictionaries();
-          ErrorList.Items.Add( "Imported data from current site" );
+          ErrorList.Items.Add( "Data from current site has been read" );
           OpenFileDialog _mofd = new OpenFileDialog()
           {
             CheckFileExists = true,
             CheckPathExists = true,
             Filter = "XML Documents|*.XML|XML Documents|*.xml|All files |*.*",
-             DefaultExt = ".xml",
-              AddExtension = true, 
-             
+            DefaultExt = ".xml",
+            AddExtension = true,
           };
           _mofd.ShowDialog();
           RoutesCatalog _catalog = default( RoutesCatalog );
           using ( Stream _file = _mofd.OpenFile() )
-          {
             _catalog = RoutesCatalog.ImportDocument( _file );
-            if ( _catalog.CommodityTable != null )
-              foreach ( var item in _catalog.CommodityTable )
-                edc.AddCommodity( item );
-            if ( _catalog.PartnersTable != null )
-              foreach ( var item in _catalog.PartnersTable )
-                edc.AddPartner( item, false );
-            if ( _catalog.MarketTable != null )
-              foreach ( var item in _catalog.MarketTable )
-                edc.AddMarket( item );
-            if ( _catalog.GlobalPricelist != null )
-              foreach ( var item in _catalog.GlobalPricelist )
-                edc.AddRoute( item, false );
-          }
+          ErrorList.Items.Add( "Starting data ipdate" );
+          if ( _catalog.CommodityTable != null )
+            foreach ( var item in _catalog.CommodityTable )
+              edc.AddCommodity( item );
+          ErrorList.Items.Add( "Commodity updated." );
+          if ( _catalog.PartnersTable != null )
+            foreach ( var item in _catalog.PartnersTable )
+              edc.AddPartner( item, false );
+          ErrorList.Items.Add( "Partners updated." );
+          if ( _catalog.MarketTable != null )
+            foreach ( var item in _catalog.MarketTable )
+              edc.AddMarket( item );
+          ErrorList.Items.Add( "Market updated." );
+          if ( _catalog.GlobalPricelist != null )
+            foreach ( var item in _catalog.GlobalPricelist )
+              edc.AddRoute( item, false );
+          ErrorList.Items.Add( "GlobalPricelist updated." );
         }
       }
       catch ( Exception _ex )

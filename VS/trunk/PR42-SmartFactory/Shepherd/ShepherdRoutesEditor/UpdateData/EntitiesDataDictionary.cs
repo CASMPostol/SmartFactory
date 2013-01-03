@@ -20,19 +20,19 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     }
     internal void AddCommodity( RoutesCatalogCommodityRow _CommodityRow )
     {
-      GetOrAdd<string, Commodity>( m_EDC.Commodity, m_CommodityCommodity, _CommodityRow.Title, false );
+      GetOrAdd<Commodity>( m_EDC.Commodity, m_CommodityCommodity, _CommodityRow.Title, false );
     }
     internal void AddPartner( RoutesCatalogPartnersRow _partner, bool _testData )
     {
       if ( m_Partner.ContainsKey( _partner.Name ) )
         return;
-      Partner _prtnr = Create<string, Partner>( m_EDC.Partner, m_Partner, _partner.Name, _testData );
+      Partner _prtnr = Create<Partner>( m_EDC.Partner, m_Partner, _partner.Name, _testData );
       _prtnr.EmailAddress = DummyEmail( _partner.E_Mail, "AdresEMail", _testData );
       _prtnr.CellPhone = DummyName( _partner.Mobile, "Mobile", _testData );
       _prtnr.ServiceType = ParseServiceType( _partner.ServiceType );
       _prtnr.WorkPhone = DummyName( _partner.BusinessPhone, "BusinessPhone", _testData );
       _prtnr.VendorNumber = DummyName( _partner.NumberFromSAP, "NumberFromSAP", _testData );
-      _prtnr.Partner2WarehouseTitle = GetOrAdd<string, Warehouse>( m_EDC.Warehouse, m_Warehouse, _partner.Warehouse, false );
+      _prtnr.Partner2WarehouseTitle = GetOrAdd<Warehouse>( m_EDC.Warehouse, m_Warehouse, _partner.Warehouse, false );
     }
     internal void AddRoute( RoutesCatalogRoute _route, bool _testData )
     {
@@ -40,15 +40,15 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
       {
         ServiceType _service = GetService( _route );
         Partner _prtnr = GetOrAddJTIPartner( _service, _route.Vendor.Trim(), _testData );
-        FreightPayer _freightPayer = GetOrAdd<int, FreightPayer>( m_EDC.FreightPayer, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg, _testData );
+        FreightPayer _freightPayer = GetOrAdd<FreightPayer>( m_EDC.FreightPayer, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg.ToString(), _testData );
         CityType _CityType = GetOrAddCity( _route.Dest_City, _route.Dest_Country, null );
-        Currency _Currency = GetOrAdd<string, Currency>( m_EDC.Currency, m_Currency, _route.Currency, false );
-        ShipmentType _ShipmentType = GetOrAdd<string, ShipmentType>( m_EDC.ShipmentType, m_ShipmentType, _route.ShipmentType, false );
-        CarrierType _CarrierCarrierType = GetOrAdd<string, CarrierType>( m_EDC.Carrier, m_CarrierCarrierType, _route.Carrier, false );
-        TranspotUnit _TranspotUnit = GetOrAdd<string, TranspotUnit>( m_EDC.TransportUnitType, m_TranspotUnit, _route.Equipment_Type__UoM, false );
-        SAPDestinationPlant _SAPDestinationPlant = GetOrAdd<string, SAPDestinationPlant>( m_EDC.SAPDestinationPlant, m_SAPDestinationPlant, _route.SAP_Dest_Plant, false );
-        BusienssDescription _busnessDscrptn = GetOrAdd<string, BusienssDescription>( m_EDC.BusinessDescription, m_BusinessDescription, _route.Business_description, false );
-        Commodity _cmdty = GetOrAdd<string, Commodity>( m_EDC.Commodity, m_CommodityCommodity, _route.Commodity, false );
+        Currency _Currency = GetOrAdd<Currency>( m_EDC.Currency, m_Currency, _route.Currency, false );
+        ShipmentType _ShipmentType = GetOrAdd<ShipmentType>( m_EDC.ShipmentType, m_ShipmentType, _route.ShipmentType, false );
+        CarrierType _CarrierCarrierType = GetOrAdd<CarrierType>( m_EDC.Carrier, m_CarrierCarrierType, _route.Carrier, false );
+        TranspotUnit _TranspotUnit = GetOrAdd<TranspotUnit>( m_EDC.TransportUnitType, m_TranspotUnit, _route.Equipment_Type__UoM, false );
+        SAPDestinationPlant _SAPDestinationPlant = GetOrAdd<SAPDestinationPlant>( m_EDC.SAPDestinationPlant, m_SAPDestinationPlant, _route.SAP_Dest_Plant, false );
+        BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>( m_EDC.BusinessDescription, m_BusinessDescription, _route.Business_description, false );
+        Commodity _cmdty = GetOrAdd<Commodity>( m_EDC.Commodity, m_CommodityCommodity, _route.Commodity, false );
         string _sku = _route.Material_Master__Reference;
         string _title = String.Format( "2013 To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity );
         switch ( _service )
@@ -113,7 +113,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     {
       try
       {
-        Market _mrkt = GetOrAdd<string, Market>( m_EDC.Market, m_MarketMarket, _market.Market, false );
+        Market _mrkt = GetOrAdd<Market>( m_EDC.Market, m_MarketMarket, _market.Market, false );
         CityType _CityType = GetOrAddCity( _market.DestinationCity, _market.DestinationCountry, _market.Area );
         string _dstName = DestinationMarketKey( _mrkt, _CityType );
         if ( m_DestinationMarket.ContainsKey( _dstName ) )
@@ -147,7 +147,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
       foreach ( CityType _cty in m_EDC.City )
         Add<string, CityType>( m_CityType, _cty.Tytuł, _cty, false );
       foreach ( FreightPayer _frpyr in m_EDC.FreightPayer )
-        Add<int, FreightPayer>( m_FreightPayer, Int32.Parse( _frpyr.Tytuł ), _frpyr, false );
+        Add<string, FreightPayer>( m_FreightPayer, _frpyr.Tytuł, _frpyr, false );
       foreach ( Currency _curr in m_EDC.Currency )
         Add<string, Currency>( m_Currency, _curr.Tytuł, _curr, false );
       foreach ( var _bdsc in m_EDC.BusinessDescription )
@@ -212,12 +212,12 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     #endregion
 
     #region data management
-    private type Create<kType, type>( EntityList<type> _EDC, Dictionary<kType, type> _dictionary, kType _key, bool _testData )
+    private type Create<type>( EntityList<type> _EDC, Dictionary<string, type> _dictionary, string _key, bool _testData )
       where type: Element, new()
     {
+      type _elmnt = new type() { Tytuł = _testData ? EmptyKey : _key };
       if ( _dictionary.Keys.Contains( _key ) )
-        throw new ArgumentOutOfRangeException( _key.ToString(), String.Format( "Duplicated key: {0}.", _key.ToString() ) );
-      type _elmnt = new type() { Tytuł = _testData ? EmptyKey : _key.ToString() };
+        _key = String.Format( "Duplicated name: {0} [{1}]", _key, EmptyKey );
       _dictionary.Add( _key, _elmnt );
       _EDC.InsertOnSubmit( _elmnt );
       return _elmnt;
@@ -225,18 +225,18 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     private void Add<TKey, TEntity>( Dictionary<TKey, TEntity> _dictionary, TKey _key, TEntity entity, bool _testData )
     {
       if ( _dictionary.Keys.Contains( _key ) )
-        throw new ArgumentOutOfRangeException( _key.ToString(), String.Format( "Duplicated key: {0}.", _key.ToString() ) );
+        return;
       _dictionary.Add( _key, entity );
     }
-    private type GetOrAdd<kType, type>( EntityList<type> _EDC, Dictionary<kType, type> _dictionary, kType _key, bool _testData )
-    where type: Element, new()
+    private type GetOrAdd<type>( EntityList<type> _EDC, Dictionary<string, type> _dictionary, string _key, bool _testData )
+      where type: Element, new()
     {
       //TODO if ( _key.IsNullOrEmpty() )
       //  _key = EmptyKey;
       if ( _dictionary.ContainsKey( _key ) )
         return _dictionary[ _key ];
       else
-        return Create<kType, type>( _EDC, _dictionary, _key, _testData );
+        return Create<type>( _EDC, _dictionary, _key, _testData );
     }
     private Partner GetOrAddJTIPartner( ServiceType _st, string _partner, bool _testData )
     {
@@ -244,7 +244,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
         return m_Partner[ _partner ];
       else
       {
-        Partner _prtnr = Create<string, Partner>( m_EDC.Partner, m_Partner, _partner, _testData );
+        Partner _prtnr = Create<Partner>( m_EDC.Partner, m_Partner, _partner, _testData );
         _prtnr.ServiceType = _st;
         return _prtnr;
       }
@@ -258,7 +258,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
         _countryClass.CountryGroup = _area;
       if ( m_CityType.ContainsKey( _city ) )
         return m_CityType[ _city ];
-      CityType _prtnr = Create<string, CityType>( m_EDC.City, m_CityType, _city, false );
+      CityType _prtnr = Create<CityType>( m_EDC.City, m_CityType, _city, false );
       _prtnr.CountryTitle = _countryClass;
       return _prtnr;
     }
@@ -286,7 +286,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
 
     #region Dictionaries
     private Dictionary<string, Partner> m_Partner = new Dictionary<string, Partner>();
-    private Dictionary<int, FreightPayer> m_FreightPayer = new Dictionary<int, FreightPayer>();
+    private Dictionary<string, FreightPayer> m_FreightPayer = new Dictionary<string, FreightPayer>();
     private Dictionary<string, CityType> m_CityType = new Dictionary<string, CityType>();
     private Dictionary<string, CountryType> m_CountryClass = new Dictionary<string, CountryType>();
     private Dictionary<string, Currency> m_Currency = new Dictionary<string, Currency>();
