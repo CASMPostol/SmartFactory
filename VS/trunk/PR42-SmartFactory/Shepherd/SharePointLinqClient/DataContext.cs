@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using Microsoft.SharePoint.Client;
 
 namespace Microsoft.SharePoint.Linq
@@ -188,11 +189,6 @@ namespace Microsoft.SharePoint.Linq
       foreach ( EntityListData _elx in m_AllLists.Values )
         _elx.SubmitingChanges();
       m_ClientContext.ExecuteQuery();
-      foreach ( EntityListData _elx in m_AllLists.Values )
-        _elx.SubmitedChanges();
-      m_ClientContext.ExecuteQuery();
-      foreach ( EntityListData _elx in m_AllLists.Values )
-        _elx.SubmitedChanges();
     }
     //
     // Summary:

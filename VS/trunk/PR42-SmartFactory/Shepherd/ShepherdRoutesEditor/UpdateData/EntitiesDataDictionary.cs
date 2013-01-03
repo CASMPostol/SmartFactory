@@ -20,24 +20,22 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     }
     internal void AddCommodity( RoutesCatalogCommodityRow _CommodityRow )
     {
-      Commodity _c = Create<string, Commodity>( m_EDC.Commodity, m_CommodityCommodity, _CommodityRow.Title, false );
+      GetOrAdd<string, Commodity>( m_EDC.Commodity, m_CommodityCommodity, _CommodityRow.Title, false );
     }
     internal void AddPartner( RoutesCatalogPartnersRow _partner, bool _testData )
     {
+      if ( m_Partner.ContainsKey( _partner.Name ) )
+        return;
       Partner _prtnr = Create<string, Partner>( m_EDC.Partner, m_Partner, _partner.Name, _testData );
       _prtnr.EmailAddress = DummyEmail( _partner.E_Mail, "AdresEMail", _testData );
       _prtnr.CellPhone = DummyName( _partner.Mobile, "Mobile", _testData );
-      ;
       _prtnr.ServiceType = ParseServiceType( _partner.ServiceType );
       _prtnr.WorkPhone = DummyName( _partner.BusinessPhone, "BusinessPhone", _testData );
-      ;
       _prtnr.VendorNumber = DummyName( _partner.NumberFromSAP, "NumberFromSAP", _testData );
-      ;
       _prtnr.Partner2WarehouseTitle = GetOrAdd<string, Warehouse>( m_EDC.Warehouse, m_Warehouse, _partner.Warehouse, false );
     }
     internal void AddRoute( RoutesCatalogRoute _route, bool _testData )
     {
-
       try
       {
         ServiceType _service = GetService( _route );
@@ -49,10 +47,10 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
         CarrierType _CarrierCarrierType = GetOrAdd<string, CarrierType>( m_EDC.Carrier, m_CarrierCarrierType, _route.Carrier, false );
         TranspotUnit _TranspotUnit = GetOrAdd<string, TranspotUnit>( m_EDC.TransportUnitType, m_TranspotUnit, _route.Equipment_Type__UoM, false );
         SAPDestinationPlant _SAPDestinationPlant = GetOrAdd<string, SAPDestinationPlant>( m_EDC.SAPDestinationPlant, m_SAPDestinationPlant, _route.SAP_Dest_Plant, false );
-        BusienssDescription _busnessDscrptn = GetOrAdd<string, BusienssDescription>( m_EDC.BusinessDescription, m_BusinessDescription, _route.Business_description, false );
+        BusienssDescription _busnessDscrptn = GetOrAdd<string, BusienssDescription>( m_EDC.BusinessDescription, m_BusinessDescription, "2013-" + _route.Business_description, false );
         Commodity _cmdty = GetOrAdd<string, Commodity>( m_EDC.Commodity, m_CommodityCommodity, _route.Commodity, false );
         string _sku = _route.Material_Master__Reference;
-        string _title = String.Format( "To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity );
+        string _title = String.Format( "2013 To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity );
         switch ( _service )
         {
           case ServiceType.Forwarder:
@@ -138,12 +136,30 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     {
       foreach ( Commodity _cmdty in m_EDC.Commodity )
         Add<string, Commodity>( m_CommodityCommodity, _cmdty.Tytuł, _cmdty, false );
+      foreach ( Warehouse _wrse in m_EDC.Warehouse )
+        Add<string, Warehouse>( m_Warehouse, _wrse.Tytuł, _wrse, false );
       foreach ( Partner _prtnr in m_EDC.Partner )
         Add<string, Partner>( m_Partner, _prtnr.Tytuł, _prtnr, false );
       foreach ( var _cntry in m_EDC.Country )
         Add<string, CountryType>( m_CountryClass, _cntry.Tytuł, _cntry, false );
       foreach ( CityType _cty in m_EDC.City )
         Add<string, CityType>( m_CityType, _cty.Tytuł, _cty, false );
+      foreach ( FreightPayer _frpyr in m_EDC.FreightPayer )
+        Add<int, FreightPayer>( m_FreightPayer, Int32.Parse( _frpyr.Tytuł ), _frpyr, false );
+      foreach ( Currency _curr in m_EDC.Currency )
+        Add<string, Currency>( m_Currency, _curr.Tytuł, _curr, false );
+      foreach ( var _bdsc in m_EDC.BusinessDescription )
+        Add<string, BusienssDescription>( m_BusinessDescription, _bdsc.Tytuł, _bdsc, false );
+      foreach ( ShipmentType _shpmnt in m_EDC.ShipmentType )
+        Add<string, ShipmentType>( m_ShipmentType, _shpmnt.Tytuł, _shpmnt, false );
+      foreach ( CarrierType _crr in m_EDC.Carrier )
+        Add<string, CarrierType>( m_CarrierCarrierType, _crr.Tytuł, _crr, false );
+      foreach ( TranspotUnit _tu in m_EDC.TransportUnitType )
+        Add<string, TranspotUnit>( m_TranspotUnit, _tu.Tytuł, _tu, false );
+      foreach ( SAPDestinationPlant _sdp in m_EDC.SAPDestinationPlant )
+        Add<string, SAPDestinationPlant>( m_SAPDestinationPlant, _sdp.Tytuł, _sdp, false );
+      foreach ( Market _mrkt in m_EDC.Market )
+        Add<string, Market>( m_MarketMarket, _mrkt.Tytuł, _mrkt, false );
     }
     #region private
 

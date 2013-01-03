@@ -194,14 +194,17 @@ namespace Microsoft.SharePoint.Linq
     public IQueryable<TEntity> ScopeToFolder( string folderUrl, bool recursive ) { throw new NotImplementedException(); }
     internal FieldLookupValue GetFieldLookupValue( TEntity entity )
     {
+
       FieldLookupValue _ret = new FieldLookupValue()
       {
-        LookupId = m_EntitieAssociations[ entity ].Id
+        LookupId = entity == null ? -1 : m_EntitieAssociations[ entity ].Id
       };
       return _ret;
     }
     internal TEntity GetFieldLookupValue( FieldLookupValue fieldLookupValue )
     {
+      if ( fieldLookupValue.LookupId < 0 )
+        return null;
       Dictionary<int, KeyValuePair<ITrackEntityState, ListItem>> _idDictionary = m_EntitieAssociations.ToDictionary( key => key.Value.Id );
       return (TEntity)_idDictionary[ fieldLookupValue.LookupId ].Key;
     }
@@ -293,7 +296,7 @@ namespace Microsoft.SharePoint.Linq
           if ( _cax is RemovedColumnAttribute )
             continue;
           DataAttribute _dataAttribute = _cax as DataAttribute;
-          if ( _cax == null )
+          if ( _dataAttribute == null )
             continue;
           ColumnAttribute _columnAttribute = _cax as ColumnAttribute;
           if ( _columnAttribute != null && _columnAttribute.IsLookupValue )

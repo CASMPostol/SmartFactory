@@ -9,7 +9,6 @@ namespace Microsoft.SharePoint.Linq
 {
   public abstract class EntityListData
   {
-
     internal void SubmitingChanges()
     {
       Dictionary<ITrackEntityState, ListItem> _newEntitieAssociations = new Dictionary<ITrackEntityState, ListItem>();
@@ -41,33 +40,6 @@ namespace Microsoft.SharePoint.Linq
         _newEntitieAssociations.Add( item.Key, _newListItem );
       }
       m_EntitieAssociations = _newEntitieAssociations;
-    }
-    internal void SubmitedChanges()
-    {
-      foreach ( var item in m_EntitieAssociations )
-      {
-        ITrackEntityState _entity = item.Key;
-        switch ( _entity.EntityState )
-        {
-          case EntityState.ToBeInserted:
-            if ( item.Value == null )
-              throw new ArgumentNullException( "Value", "Inconsistent content of association table while excuting SubmitedChanges, ToBeUpdated/ToBeInserted should has associated ListItem" );
-            _entity.EntityState = EntityState.ToBeUpdated;
-            m_DataContext.m_ClientContext.Load( item.Value );
-            break;
-          case EntityState.ToBeUpdated:
-            if ( item.Value == null )
-              throw new ArgumentNullException( "Value", "Inconsistent content of association table while excuting SubmitedChanges, ToBeUpdated/ToBeInserted should has associated ListItem" );
-            AssignValues2Entity( _entity, item.Value.FieldValues );
-            _entity.EntityState = EntityState.Unchanged;
-            break;
-          case EntityState.Unchanged:
-          case EntityState.ToBeRecycled:
-          case EntityState.ToBeDeleted:
-          case EntityState.Deleted:
-            break;
-        }
-      }
     }
     private class EntityEqualityComparer: IEqualityComparer<ITrackEntityState>
     {
@@ -129,6 +101,8 @@ namespace Microsoft.SharePoint.Linq
         StorageItem _storage = _storageDic[ _item.Key ];
         if ( _storage.Association )
         {
+          if ( _item.Value == null )
+            continue;
           DataContext.IAssociationAttribute _itemRef = (DataContext.IAssociationAttribute)_storage.Storage.GetValue( _newEntity );
           _itemRef.Lookup = (FieldLookupValue)_item.Value;
         }
@@ -144,9 +118,21 @@ namespace Microsoft.SharePoint.Linq
           try
           {
             Type[] _types = _storage.Storage.FieldType.GetGenericArguments();
-            if ( _types.Length != 1 && !( _types[ 0 ] is Enum ) )
+            if ( _types.Length != 1 )
               throw new ApplicationException( "Unexpected type in the AssignValues2Entity" );
-            _enumValue = Enum.Parse( _types[ 0 ], (string)_item.Value, true );
+            FieldInfo[] _fields = _types[ 0 ].GetFields();
+            Dictionary<string, string> _values = new Dictionary<string, string>();
+            foreach ( FieldInfo _fld in _fields )
+            {
+              object[] _attrbts = _fld.GetCustomAttributes( false );
+              foreach ( Attribute _attr in _attrbts )
+              {
+                ChoiceAttribute _ca = _attr as ChoiceAttribute;
+                if ( _ca != null )
+                  _values.Add( _ca.Value, _fld.Name );
+              }
+            }
+            _enumValue = Enum.Parse( _types[ 0 ], _values[ (string)_item.Value ], true );
             _storage.Storage.SetValue( _newEntity, _enumValue );
           }
           catch ( Exception ) { }
