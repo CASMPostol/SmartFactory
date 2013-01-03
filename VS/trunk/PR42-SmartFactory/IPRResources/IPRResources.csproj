@@ -49,17 +49,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\CASSmartFactoryIPRCode.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CASSmartFactoryIPRCode.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Features\IPRResources\IPRResources.Template.xml">
+      <DependentUpon>IPRResources.feature</DependentUpon>
+    </Content>
     <Content Include="Resources\CASSmartFactoryIPRCode.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CASSmartFactoryIPRCode.Designer.cs</LastGenOutput>
     </Content>
+    <None Include="Features\IPRResources\IPRResources.feature">
+      <FeatureId>{536545bb-aaa2-4f08-a050-274a3de9e39e}</FeatureId>
+    </None>
     <None Include="GlobalResources\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{27aa2165-8967-4b11-a735-7ae3e5885124}</SharePointProjectItemId>
     </None>
@@ -87,9 +88,7 @@
     <Content Include="Resources\CASSmartFactoryIPR.pl-PL.resx" />
     <Content Include="Resources\CASSmartFactoryIPR.resx" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
