@@ -194,7 +194,6 @@ namespace Microsoft.SharePoint.Linq
     public IQueryable<TEntity> ScopeToFolder( string folderUrl, bool recursive ) { throw new NotImplementedException(); }
     internal FieldLookupValue GetFieldLookupValue( TEntity entity )
     {
-
       FieldLookupValue _ret = new FieldLookupValue()
       {
         LookupId = entity == null ? -1 : m_EntitieAssociations[ entity ].Id
@@ -205,7 +204,8 @@ namespace Microsoft.SharePoint.Linq
     {
       if ( fieldLookupValue.LookupId < 0 )
         return null;
-      Dictionary<int, KeyValuePair<ITrackEntityState, ListItem>> _idDictionary = m_EntitieAssociations.ToDictionary( key => key.Value.Id );
+      int _dumyKey = -1;
+      Dictionary<int, KeyValuePair<ITrackEntityState, ListItem>> _idDictionary = m_EntitieAssociations.ToDictionary( key => key.Value == null ? _dumyKey-- : key.Value.Id );
       return (TEntity)_idDictionary[ fieldLookupValue.LookupId ].Key;
     }
     #endregion
@@ -268,7 +268,18 @@ namespace Microsoft.SharePoint.Linq
       ITrackEntityState _entity = sender as ITrackEntityState;
       if ( _entity == null )
         throw new ArgumentNullException( "sender", "PropertyChanged must be called from ITrackEntityState" );
-      _entity.EntityState = EntityState.ToBeUpdated;
+      switch ( _entity.EntityState )
+      {
+        case EntityState.Unchanged:
+          _entity.EntityState = EntityState.ToBeUpdated;
+          break;
+        case EntityState.ToBeInserted:
+        case EntityState.ToBeUpdated:
+        case EntityState.ToBeRecycled:
+        case EntityState.ToBeDeleted:
+        case EntityState.Deleted:
+          break;
+      }
     }
     private void _newEntity_PropertyChanging( object sender, PropertyChangingEventArgs e )
     {

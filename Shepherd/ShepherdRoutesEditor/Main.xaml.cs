@@ -42,7 +42,10 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
           {
             CheckFileExists = true,
             CheckPathExists = true,
-            Filter = "XML Documents|*.xml |All files |*.*"
+            Filter = "XML Documents|*.XML|XML Documents|*.xml|All files |*.*",
+             DefaultExt = ".xml",
+              AddExtension = true, 
+             
           };
           _mofd.ShowDialog();
           RoutesCatalog _catalog = default( RoutesCatalog );
@@ -58,7 +61,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
             if ( _catalog.MarketTable != null )
               foreach ( var item in _catalog.MarketTable )
                 edc.AddMarket( item );
-            if ( _catalog.GlobalPricelist == null )
+            if ( _catalog.GlobalPricelist != null )
               foreach ( var item in _catalog.GlobalPricelist )
                 edc.AddRoute( item, false );
           }

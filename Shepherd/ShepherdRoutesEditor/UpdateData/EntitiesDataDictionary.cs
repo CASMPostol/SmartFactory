@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
         CarrierType _CarrierCarrierType = GetOrAdd<string, CarrierType>( m_EDC.Carrier, m_CarrierCarrierType, _route.Carrier, false );
         TranspotUnit _TranspotUnit = GetOrAdd<string, TranspotUnit>( m_EDC.TransportUnitType, m_TranspotUnit, _route.Equipment_Type__UoM, false );
         SAPDestinationPlant _SAPDestinationPlant = GetOrAdd<string, SAPDestinationPlant>( m_EDC.SAPDestinationPlant, m_SAPDestinationPlant, _route.SAP_Dest_Plant, false );
-        BusienssDescription _busnessDscrptn = GetOrAdd<string, BusienssDescription>( m_EDC.BusinessDescription, m_BusinessDescription, "2013-" + _route.Business_description, false );
+        BusienssDescription _busnessDscrptn = GetOrAdd<string, BusienssDescription>( m_EDC.BusinessDescription, m_BusinessDescription, _route.Business_description, false );
         Commodity _cmdty = GetOrAdd<string, Commodity>( m_EDC.Commodity, m_CommodityCommodity, _route.Commodity, false );
         string _sku = _route.Material_Master__Reference;
         string _title = String.Format( "2013 To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity );
@@ -115,13 +115,16 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
       {
         Market _mrkt = GetOrAdd<string, Market>( m_EDC.Market, m_MarketMarket, _market.Market, false );
         CityType _CityType = GetOrAddCity( _market.DestinationCity, _market.DestinationCountry, _market.Area );
-        string _dstName = String.Format( "{0} in {1}", _CityType.Tytuł, _mrkt.Tytuł );
+        string _dstName = DestinationMarketKey( _mrkt, _CityType );
+        if ( m_DestinationMarket.ContainsKey( _dstName ) )
+          return;
         DestinationMarket _DestinationMarket = new DestinationMarket()
           {
             //Tytuł = _dstName,
             DestinationMarket2CityTitle = _CityType,
             MarketTitle = _mrkt
           };
+        m_DestinationMarket.Add( _dstName, _DestinationMarket );
         m_EDC.DestinationMarket.InsertOnSubmit( _DestinationMarket );
         m_EDC.SubmitChanges();
       }
@@ -131,7 +134,6 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
         throw new ApplicationException( String.Format( _format, _market.DestinationCity, _market.Market, ex.Message ) );
       }
     }
-
     internal void GetDictionaries()
     {
       foreach ( Commodity _cmdty in m_EDC.Commodity )
@@ -160,7 +162,15 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
         Add<string, SAPDestinationPlant>( m_SAPDestinationPlant, _sdp.Tytuł, _sdp, false );
       foreach ( Market _mrkt in m_EDC.Market )
         Add<string, Market>( m_MarketMarket, _mrkt.Tytuł, _mrkt, false );
+      foreach ( DestinationMarket _dstm in m_EDC.DestinationMarket )
+      {
+        string _key = DestinationMarketKey( _dstm.MarketTitle, _dstm.DestinationMarket2CityTitle );
+        if ( m_DestinationMarket.ContainsKey( _key ) )
+          continue;
+        m_DestinationMarket.Add( _key, _dstm );
+      }
     }
+
     #region private
 
     #region helpers
@@ -253,8 +263,17 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
       return _prtnr;
     }
     private EntitiesDataContext m_EDC;
-    private short m_EmptyKeyIdx = 0;
-    private string EmptyKey { get { return String.Format( "EmptyKey{0}", m_EmptyKeyIdx++ ); } }
+    private static short m_EmptyKeyIdx = 0;
+    private static string EmptyKey { get { return String.Format( "EmptyKey{0}", m_EmptyKeyIdx++ ); } }
+    private static string DestinationMarketKey( Market mrkt, CityType city )
+    {
+      string _dstName = String.Format( "{0} in {1}", EntityEmptyKey( city ), EntityEmptyKey( mrkt ) );
+      return _dstName;
+    }
+    private static string EntityEmptyKey( Element entity )
+    {
+      return entity == null ? EmptyKey : entity.Tytuł;
+    }
     private string DummyName( string _text, string _replacement, bool _testData )
     {
       return _testData ? String.Format( "{0} {1}", _replacement, m_EmptyKeyIdx++ ) : _text;
@@ -281,6 +300,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     private Dictionary<string, ShippingPoint> m_ShippingPoint = new Dictionary<string, ShippingPoint>();
     private Dictionary<string, BusienssDescription> m_BusinessDescription = new Dictionary<string, BusienssDescription>();
     private Dictionary<string, DistributionList> m_DistributionList = new Dictionary<string, DistributionList>();
+    private Dictionary<string, DestinationMarket> m_DestinationMarket = new Dictionary<string, DestinationMarket>();
     #endregion
 
     #endregion

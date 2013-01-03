@@ -37,6 +37,7 @@ namespace Microsoft.SharePoint.Linq
           case EntityState.Deleted:
             break;
         }
+        _entity.EntityState = EntityState.Unchanged;
         _newEntitieAssociations.Add( item.Key, _newListItem );
       }
       m_EntitieAssociations = _newEntitieAssociations;

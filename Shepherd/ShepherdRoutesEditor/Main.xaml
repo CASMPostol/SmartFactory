@@ -4,12 +4,12 @@
         Title="Main" Height="300" Width="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="41*"/>
-            <RowDefinition Height="229*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="223*"/>
         </Grid.RowDefinitions>
-        <TextBox Name="URLTextBox" Margin="10,10,10,0" TextWrapping="Wrap" Text="Site URL" Background="White" ToolTip="Enter your website URL"/>
+        <TextBox Name="URLTextBox" Margin="10,10,10,0" TextWrapping="Wrap" Text="Site URL" Background="White" ToolTip="Enter your website URL" Height="31" VerticalAlignment="Top"/>
         <Button Name="UpdateRoutesButton" Click="UpdateRoutesButton_Click"
-                Content="Update routes" Margin="10,9,10,179" ToolTip="Import xml file and update existing routes, cities, countries and marekts lists" Grid.Row="1"/>
+                Content="Update routes" Margin="10,9,10,0" ToolTip="Import xml file and update existing routes, cities, countries and marekts lists" Grid.Row="1" Height="41" VerticalAlignment="Top"/>
         <ListBox Name="ErrorList" Margin="10,55,10,10" Grid.Row="1"/>
     </Grid>
 </Window>
