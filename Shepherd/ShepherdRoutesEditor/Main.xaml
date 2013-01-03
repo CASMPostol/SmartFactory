@@ -3,9 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Main" Height="300" Width="300">
     <Grid>
-        <TextBox Name="URLTextBox" Margin="10,10,10,235" TextWrapping="Wrap" Text="Site URL" Background="White" ToolTip="Enter your website URL"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="229*"/>
+        </Grid.RowDefinitions>
+        <TextBox Name="URLTextBox" Margin="10,10,10,0" TextWrapping="Wrap" Text="Site URL" Background="White" ToolTip="Enter your website URL"/>
         <Button Name="UpdateRoutesButton" Click="UpdateRoutesButton_Click"
-                Content="Update routes" Height="35" Margin="10,40,10,0" VerticalAlignment="Top" ToolTip="Import xml file and update existing routes, cities, countries and marekts lists"/>
-        <ListBox Name="ErrorList" Height="180" Margin="10,80,10,0" VerticalAlignment="Top"/>
+                Content="Update routes" Margin="10,9,10,179" ToolTip="Import xml file and update existing routes, cities, countries and marekts lists" Grid.Row="1"/>
+        <ListBox Name="ErrorList" Margin="10,55,10,10" Grid.Row="1"/>
     </Grid>
 </Window>
