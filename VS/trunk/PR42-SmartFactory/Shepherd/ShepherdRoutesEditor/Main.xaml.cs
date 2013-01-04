@@ -47,7 +47,11 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
             DefaultExt = ".xml",
             AddExtension = true,
           };
-          _mofd.ShowDialog();
+          if (!_mofd.ShowDialog().GetValueOrDefault(false))
+          {
+            ErrorList.Items.Add( "Operation aborted by the user." );
+            return;
+          }
           RoutesCatalog _catalog = default( RoutesCatalog );
           using ( Stream _file = _mofd.OpenFile() )
             _catalog = RoutesCatalog.ImportDocument( _file );

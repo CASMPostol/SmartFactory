@@ -79,16 +79,22 @@ namespace Microsoft.SharePoint.Linq
       Dictionary<string, StorageItem> _storageDic = m_StorageDescription.ToDictionary<StorageItem, string>( key => key.PropertyName );
       foreach ( var item in entity.OriginalValues )
       {
-        StorageItem _storageItem = _storageDic[ item.Key ];
-        object _value = _storageItem.Storage.GetValue( entity );
-        if ( _storageItem.Association )
+        StorageItem _storage = _storageDic[ item.Key ];
+        object _value = _storage.Storage.GetValue( entity );
+        if ( _storage.Association )
         {
-          AssociationAttribute _attr = (AssociationAttribute)_storageItem.Description;
+          AssociationAttribute _attr = (AssociationAttribute)_storage.Description;
           if ( _attr.MultivalueType != AssociationType.Single )
             throw new ApplicationException( "Unexpected MultivalueType in the GetValuesFromEntity" );
           _value = ( (DataContext.IAssociationAttribute)_value ).Lookup;
         }
-        assign( _storageItem.Description.Name, _value );
+        else if ( ( (ColumnAttribute)_storage.Description ).FieldType.Contains( "Choice" ) )
+        {
+          Dictionary<string, string> _values = new Dictionary<string, string>();
+          Type _type = GetEnumValues( _storage, _values, true );
+          _value = _values[ _value.ToString() ];
+        }
+        assign( _storage.Description.Name, _value );
       }
     }
     protected internal void AssignValues2Entity<TEntity>( TEntity _newEntity, Dictionary<string, object> values )
@@ -115,32 +121,36 @@ namespace Microsoft.SharePoint.Linq
         }
         else if ( ( (ColumnAttribute)_storage.Description ).FieldType.Contains( "Choice" ) )
         {
-          object _enumValue = null;
-          try
-          {
-            Type[] _types = _storage.Storage.FieldType.GetGenericArguments();
-            if ( _types.Length != 1 )
-              throw new ApplicationException( "Unexpected type in the AssignValues2Entity" );
-            FieldInfo[] _fields = _types[ 0 ].GetFields();
-            Dictionary<string, string> _values = new Dictionary<string, string>();
-            foreach ( FieldInfo _fld in _fields )
-            {
-              object[] _attrbts = _fld.GetCustomAttributes( false );
-              foreach ( Attribute _attr in _attrbts )
-              {
-                ChoiceAttribute _ca = _attr as ChoiceAttribute;
-                if ( _ca != null )
-                  _values.Add( _ca.Value, _fld.Name );
-              }
-            }
-            _enumValue = Enum.Parse( _types[ 0 ], _values[ (string)_item.Value ], true );
-            _storage.Storage.SetValue( _newEntity, _enumValue );
-          }
-          catch ( Exception ) { }
+          Dictionary<string, string> _values = new Dictionary<string, string>();
+          Type _type = GetEnumValues( _storage, _values, false );
+          object _enumValue = Enum.Parse( _type, _values[ (string)_item.Value ], true );
+          _storage.Storage.SetValue( _newEntity, _enumValue );
         }
         else
           _storage.Storage.SetValue( _newEntity, _item.Value );
       }
+    }
+    private static Type GetEnumValues( StorageItem _storage, Dictionary<string, string> _values, bool fildNameIsKey )
+    {
+      Type[] _types = _storage.Storage.FieldType.GetGenericArguments();
+      if ( _types.Length != 1 )
+        throw new ApplicationException( "Unexpected type in the AssignValues2Entity" );
+      FieldInfo[] _fields = _types[ 0 ].GetFields();
+      foreach ( FieldInfo _fld in _fields )
+      {
+        object[] _attrbts = _fld.GetCustomAttributes( false );
+        foreach ( Attribute _attr in _attrbts )
+        {
+          ChoiceAttribute _ca = _attr as ChoiceAttribute;
+          if ( _ca == null )
+            continue;
+          if ( fildNameIsKey )
+            _values.Add( _fld.Name, _ca.Value );
+          else
+            _values.Add( _ca.Value, _fld.Name );
+        }
+      }
+      return _types[ 0 ];
     }
   }
 }
