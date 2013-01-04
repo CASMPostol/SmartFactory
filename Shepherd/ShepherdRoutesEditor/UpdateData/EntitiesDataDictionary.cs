@@ -251,14 +251,18 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     }
     private CityType GetOrAddCity( string _city, string _country, string _area )
     {
+      CityType _prtnr = default( CityType );
+      if ( m_CityDictionary.ContainsKey( _city ) )
+        _prtnr = m_CityDictionary[ _city ];
+      else
+        _prtnr = Create<CityType>( m_EDC.City, m_CityDictionary, _city, false );
+      if ( _prtnr.CountryTitle != null )
+        return _prtnr;
       if ( _country.IsNullOrEmpty() )
         _country = "Country-" + EmptyKey;
       CountryType _countryClass = GetOrAdd( m_EDC.Country, m_CountryClass, _country, false );
       if ( _countryClass.CountryGroup.IsNullOrEmpty() && !_area.IsNullOrEmpty() )
         _countryClass.CountryGroup = _area;
-      if ( m_CityDictionary.ContainsKey( _city ) )
-        return m_CityDictionary[ _city ];
-      CityType _prtnr = Create<CityType>( m_EDC.City, m_CityDictionary, _city, false );
       _prtnr.CountryTitle = _countryClass;
       return _prtnr;
     }

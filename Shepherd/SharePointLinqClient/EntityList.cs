@@ -19,10 +19,10 @@ namespace Microsoft.SharePoint.Linq
   {
     #region ctor
     internal EntityList( DataContext dataContext, string listName )
+      : base( typeof( TEntity ) )
     {
       this.m_DataContext = dataContext;
       this.m_ListName = listName;
-      CreateStorageDescription( typeof( TEntity ) );
       // Prepare a reference to the list
       m_list = dataContext.m_RootWeb.Lists.GetByTitle( listName );
       dataContext.m_ClientContext.Load( m_list );
@@ -296,36 +296,6 @@ namespace Microsoft.SharePoint.Linq
         DataContext.IRegister _ListRef = (DataContext.IRegister)_item.Storage.GetValue( entity );
         _ListRef.RegisterInContext( DataContext, _ass );
       }
-    }
-    private void CreateStorageDescription( Type type )
-    {
-      Dictionary<string, MemberInfo> _mmbrs = GetMembers( type );
-      foreach ( MemberInfo _ax in from _pidx in _mmbrs where _pidx.Value.MemberType == MemberTypes.Property select _pidx.Value )
-      {
-        foreach ( Attribute _cax in _ax.GetCustomAttributes( false ) )
-        {
-          if ( _cax is RemovedColumnAttribute )
-            continue;
-          DataAttribute _dataAttribute = _cax as DataAttribute;
-          if ( _dataAttribute == null )
-            continue;
-          ColumnAttribute _columnAttribute = _cax as ColumnAttribute;
-          if ( _columnAttribute != null && _columnAttribute.IsLookupValue )
-            continue;
-          StorageItem _newStorageItem = new StorageItem( _ax.Name, _cax is AssociationAttribute, _dataAttribute, _mmbrs[ _dataAttribute.Storage ] as FieldInfo );
-          m_StorageDescription.Add( _newStorageItem );
-        }
-      }
-      if ( type.BaseType != typeof( Object ) )
-        CreateStorageDescription( type.BaseType );
-    }
-    protected internal static Dictionary<string, MemberInfo> GetMembers( Type type )
-    {
-      BindingFlags _flgs = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.GetField | BindingFlags.Public | BindingFlags.NonPublic;
-      Dictionary<string, MemberInfo> _mmbrs = ( from _midx in type.GetMembers( _flgs )
-                                                where _midx.MemberType == MemberTypes.Field || _midx.MemberType == MemberTypes.Property
-                                                select _midx ).ToDictionary<MemberInfo, string>( _mi => _mi.Name );
-      return _mmbrs;
     }
     #endregion
   }
