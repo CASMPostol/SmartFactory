@@ -41,7 +41,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
         ServiceType _service = GetService( _route );
         Partner _prtnr = GetOrAddJTIPartner( _service, _route.Vendor.Trim(), _testData );
         FreightPayer _freightPayer = GetOrAdd<FreightPayer>( m_EDC.FreightPayer, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg.ToString(), _testData );
-        CityType _CityType = GetOrAddCity( _route.Dest_City, _route.Dest_Country, null );
+        CityType _CityType = GetOrAddCity( _route.Dest_City.Trim(), _route.Dest_Country.Trim(), "Unknown" );
         Currency _Currency = GetOrAdd<Currency>( m_EDC.Currency, m_Currency, _route.Currency, false );
         ShipmentType _ShipmentType = GetOrAdd<ShipmentType>( m_EDC.ShipmentType, m_ShipmentType, _route.ShipmentType, false );
         CarrierType _CarrierCarrierType = GetOrAdd<CarrierType>( m_EDC.Carrier, m_CarrierCarrierType, _route.Carrier, false );
@@ -145,7 +145,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
       foreach ( var _cntry in m_EDC.Country )
         Add<string, CountryType>( m_CountryClass, _cntry.Tytuł, _cntry, false );
       foreach ( CityType _cty in m_EDC.City )
-        Add<string, CityType>( m_CityType, _cty.Tytuł, _cty, false );
+        Add<string, CityType>( m_CityDictionary, _cty.Tytuł, _cty, false );
       foreach ( FreightPayer _frpyr in m_EDC.FreightPayer )
         Add<string, FreightPayer>( m_FreightPayer, _frpyr.Tytuł, _frpyr, false );
       foreach ( Currency _curr in m_EDC.Currency )
@@ -256,9 +256,9 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
       CountryType _countryClass = GetOrAdd( m_EDC.Country, m_CountryClass, _country, false );
       if ( _countryClass.CountryGroup.IsNullOrEmpty() && !_area.IsNullOrEmpty() )
         _countryClass.CountryGroup = _area;
-      if ( m_CityType.ContainsKey( _city ) )
-        return m_CityType[ _city ];
-      CityType _prtnr = Create<CityType>( m_EDC.City, m_CityType, _city, false );
+      if ( m_CityDictionary.ContainsKey( _city ) )
+        return m_CityDictionary[ _city ];
+      CityType _prtnr = Create<CityType>( m_EDC.City, m_CityDictionary, _city, false );
       _prtnr.CountryTitle = _countryClass;
       return _prtnr;
     }
@@ -287,7 +287,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     #region Dictionaries
     private Dictionary<string, Partner> m_Partner = new Dictionary<string, Partner>();
     private Dictionary<string, FreightPayer> m_FreightPayer = new Dictionary<string, FreightPayer>();
-    private Dictionary<string, CityType> m_CityType = new Dictionary<string, CityType>();
+    private Dictionary<string, CityType> m_CityDictionary = new Dictionary<string, CityType>();
     private Dictionary<string, CountryType> m_CountryClass = new Dictionary<string, CountryType>();
     private Dictionary<string, Currency> m_Currency = new Dictionary<string, Currency>();
     private Dictionary<string, ShipmentType> m_ShipmentType = new Dictionary<string, ShipmentType>();
