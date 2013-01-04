@@ -188,7 +188,6 @@ namespace Microsoft.SharePoint.Linq
     {
       foreach ( EntityListData _elx in m_AllLists.Values )
         _elx.SubmitingChanges();
-      m_ClientContext.ExecuteQuery();
     }
     //
     // Summary:
@@ -241,6 +240,11 @@ namespace Microsoft.SharePoint.Linq
     #endregion
 
     #region internal
+    internal void SubmitChanges( string listName )
+    {
+      if ( m_AllLists.ContainsKey( listName ) )
+        m_AllLists[ listName ].SubmitingChanges();
+    }
     internal interface IRegister
     {
       void RegisterInContext( DataContext DataContext, AssociationAttribute AssociationAttribute );
@@ -262,6 +266,10 @@ namespace Microsoft.SharePoint.Linq
     internal ClientContext m_ClientContext = default( ClientContext );
     internal Site m_site { get; set; }
     internal Web m_RootWeb { get; set; }
+    internal void ExecuteQuery()
+    {
+      m_ClientContext.ExecuteQuery();
+    }
     #endregion
 
     #region IDisposing
@@ -322,7 +330,5 @@ namespace Microsoft.SharePoint.Linq
     #region private
     private Dictionary<string, EntityListData> m_AllLists = new Dictionary<string, EntityListData>();
     #endregion
-
-
   }
 }

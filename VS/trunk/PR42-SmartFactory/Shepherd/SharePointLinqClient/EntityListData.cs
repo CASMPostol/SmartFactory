@@ -7,10 +7,18 @@ using SPCList = Microsoft.SharePoint.Client.List;
 
 namespace Microsoft.SharePoint.Linq
 {
+  /// <summary>
+  /// Entity List Data
+  /// </summary>
   public abstract class EntityListData
   {
+    public EntityListData( Type tEntity )
+    {
+      CreateStorageDescription( tEntity );
+    }
     internal void SubmitingChanges()
     {
+      SubmitingChanges4Parents();
       Dictionary<ITrackEntityState, ListItem> _newEntitieAssociations = new Dictionary<ITrackEntityState, ListItem>();
       foreach ( var item in m_EntitieAssociations )
       {
@@ -41,6 +49,19 @@ namespace Microsoft.SharePoint.Linq
         _newEntitieAssociations.Add( item.Key, _newListItem );
       }
       m_EntitieAssociations = _newEntitieAssociations;
+      m_DataContext.ExecuteQuery();
+    }
+    private void SubmitingChanges4Parents()
+    {
+      foreach ( StorageItem _si in m_StorageDescription )
+      {
+        if ( !_si.Association )
+          continue;
+        AssociationAttribute _atr = (AssociationAttribute)_si.Description;
+        if ( _atr.MultivalueType != AssociationType.Single )
+          continue;
+        m_DataContext.SubmitChanges( _atr.List );
+      };
     }
     private class EntityEqualityComparer: IEqualityComparer<ITrackEntityState>
     {
@@ -152,5 +173,36 @@ namespace Microsoft.SharePoint.Linq
       }
       return _types[ 0 ];
     }
+    private void CreateStorageDescription( Type type )
+    {
+      Dictionary<string, MemberInfo> _mmbrs = GetMembers( type );
+      foreach ( MemberInfo _ax in from _pidx in _mmbrs where _pidx.Value.MemberType == MemberTypes.Property select _pidx.Value )
+      {
+        foreach ( Attribute _cax in _ax.GetCustomAttributes( false ) )
+        {
+          if ( _cax is RemovedColumnAttribute )
+            continue;
+          DataAttribute _dataAttribute = _cax as DataAttribute;
+          if ( _dataAttribute == null )
+            continue;
+          ColumnAttribute _columnAttribute = _cax as ColumnAttribute;
+          if ( _columnAttribute != null && _columnAttribute.IsLookupValue )
+            continue;
+          StorageItem _newStorageItem = new StorageItem( _ax.Name, _cax is AssociationAttribute, _dataAttribute, _mmbrs[ _dataAttribute.Storage ] as FieldInfo );
+          m_StorageDescription.Add( _newStorageItem );
+        }
+      }
+      if ( type.BaseType != typeof( Object ) )
+        CreateStorageDescription( type.BaseType );
+    }
+    private static Dictionary<string, MemberInfo> GetMembers( Type type )
+    {
+      BindingFlags _flgs = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.GetField | BindingFlags.Public | BindingFlags.NonPublic;
+      Dictionary<string, MemberInfo> _mmbrs = ( from _midx in type.GetMembers( _flgs )
+                                                where _midx.MemberType == MemberTypes.Field || _midx.MemberType == MemberTypes.Property
+                                                select _midx ).ToDictionary<MemberInfo, string>( _mi => _mi.Name );
+      return _mmbrs;
+    }
+
   }
 }
