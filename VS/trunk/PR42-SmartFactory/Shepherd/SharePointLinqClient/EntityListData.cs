@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Microsoft.SharePoint.Client;
@@ -15,9 +16,15 @@ namespace Microsoft.SharePoint.Linq
     public EntityListData( Type tEntity )
     {
       CreateStorageDescription( tEntity );
+      Unchaged = true;
     }
     internal void SubmitingChanges()
     {
+      if ( Unchaged )
+      {
+        Debug.Assert( ( from _x in m_EntitieAssociations where _x.Key.EntityState != EntityState.Unchanged select _x ).Any(), "Wrong value of Unchanged in the SubmitingChanges" );
+        return;
+      }
       SubmitingChanges4Parents();
       Dictionary<ITrackEntityState, ListItem> _newEntitieAssociations = new Dictionary<ITrackEntityState, ListItem>();
       foreach ( var item in m_EntitieAssociations )
@@ -50,17 +57,15 @@ namespace Microsoft.SharePoint.Linq
       }
       m_EntitieAssociations = _newEntitieAssociations;
       m_DataContext.ExecuteQuery();
+      Unchaged = true;
     }
     private void SubmitingChanges4Parents()
     {
       foreach ( StorageItem _si in m_StorageDescription )
       {
-        if ( !_si.Association )
+        if ( !_si.IsLookup )
           continue;
-        AssociationAttribute _atr = (AssociationAttribute)_si.Description;
-        if ( _atr.MultivalueType != AssociationType.Single )
-          continue;
-        m_DataContext.SubmitChanges( _atr.List );
+        m_DataContext.SubmitChanges( ( (AssociationAttribute)_si.Description ).List );
       };
     }
     private class EntityEqualityComparer: IEqualityComparer<ITrackEntityState>
@@ -78,10 +83,10 @@ namespace Microsoft.SharePoint.Linq
     }
     protected internal class StorageItem
     {
-      internal StorageItem( string propertyName, bool association, DataAttribute description, FieldInfo storage )
+      internal StorageItem( string propertyName, DataAttribute description, FieldInfo storage )
       {
         PropertyName = propertyName;
-        Association = association;
+        Association = description is AssociationAttribute;
         Description = description;
         Storage = storage;
       }
@@ -89,6 +94,15 @@ namespace Microsoft.SharePoint.Linq
       internal bool Association { get; private set; }
       internal DataAttribute Description { get; private set; }
       internal FieldInfo Storage { get; private set; }
+      internal bool IsLookup
+      {
+        get
+        {
+          if ( !Association )
+            return false;
+          return ( (AssociationAttribute)Description ).MultivalueType == AssociationType.Single;
+        }
+      }
     }
     protected internal List<StorageItem> m_StorageDescription = new List<StorageItem>();
     internal protected Dictionary<ITrackEntityState, ListItem> m_EntitieAssociations = new Dictionary<ITrackEntityState, ListItem>( new EntityEqualityComparer() );
@@ -104,9 +118,7 @@ namespace Microsoft.SharePoint.Linq
         object _value = _storage.Storage.GetValue( entity );
         if ( _storage.Association )
         {
-          AssociationAttribute _attr = (AssociationAttribute)_storage.Description;
-          if ( _attr.MultivalueType != AssociationType.Single )
-            throw new ApplicationException( "Unexpected MultivalueType in the GetValuesFromEntity" );
+          Debug.Assert( _storage.IsLookup, "Unexpected MultivalueType in the GetValuesFromEntity. Expected is lookup, but the filde is reverse lookup" );
           _value = ( (DataContext.IAssociationAttribute)_value ).Lookup;
         }
         else if ( ( (ColumnAttribute)_storage.Description ).FieldType.Contains( "Choice" ) )
@@ -129,6 +141,7 @@ namespace Microsoft.SharePoint.Linq
         StorageItem _storage = _storageDic[ _item.Key ];
         if ( _storage.Association )
         {
+          Debug.Assert( _storage.IsLookup, "Unexpected assignment to reverse lookup" );
           if ( _item.Value == null )
             continue;
           DataContext.IAssociationAttribute _itemRef = (DataContext.IAssociationAttribute)_storage.Storage.GetValue( _newEntity );
@@ -188,7 +201,7 @@ namespace Microsoft.SharePoint.Linq
           ColumnAttribute _columnAttribute = _cax as ColumnAttribute;
           if ( _columnAttribute != null && _columnAttribute.IsLookupValue )
             continue;
-          StorageItem _newStorageItem = new StorageItem( _ax.Name, _cax is AssociationAttribute, _dataAttribute, _mmbrs[ _dataAttribute.Storage ] as FieldInfo );
+          StorageItem _newStorageItem = new StorageItem( _ax.Name, _dataAttribute, _mmbrs[ _dataAttribute.Storage ] as FieldInfo );
           m_StorageDescription.Add( _newStorageItem );
         }
       }
@@ -203,6 +216,12 @@ namespace Microsoft.SharePoint.Linq
                                                 select _midx ).ToDictionary<MemberInfo, string>( _mi => _mi.Name );
       return _mmbrs;
     }
-
+    /// <summary>
+    /// Gets or sets a value indicating whether this <see cref="EntityListData" /> is unchaged.
+    /// </summary>
+    /// <value>
+    ///   <c>true</c> if unchaged; otherwise, <c>false</c>.
+    /// </value>
+    protected internal bool Unchaged { get; set; }
   }
 }
