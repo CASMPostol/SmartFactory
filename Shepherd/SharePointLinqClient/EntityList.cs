@@ -39,8 +39,11 @@ namespace Microsoft.SharePoint.Linq
       foreach ( ListItem _listItemx in m_ListItemCollection )
       {
         TEntity _newEntity = new TEntity();
-        RegisterEntity( _newEntity, dataContext, _listItemx );
+        m_EntitieAssociations.Add( _newEntity, _listItemx );
+        AddMetadata( dataContext, _newEntity );
         AssignValues2Entity( _newEntity, _listItemx.FieldValues );
+        _newEntity.PropertyChanging += _newEntity_PropertyChanging;
+        _newEntity.PropertyChanged += _newEntity_PropertyChanged;
         _newEntity.EntityState = EntityState.Unchanged;
       }
     }
@@ -139,8 +142,11 @@ namespace Microsoft.SharePoint.Linq
         throw new InvalidOperationException( "Object tracking is not enabled for the DataContext object" );
       if ( entity == null )
         throw new ArgumentNullException( "entity", "entity is null." );
-      RegisterEntity( entity, m_DataContext, null );
+      m_EntitieAssociations.Add( entity, null );
+      AddMetadata( m_DataContext, entity );
       entity.EntityState = EntityState.ToBeInserted;
+      entity.PropertyChanging += _newEntity_PropertyChanging;
+      entity.PropertyChanged += _newEntity_PropertyChanged;
       Unchaged = false;
     }
     //
@@ -290,16 +296,13 @@ namespace Microsoft.SharePoint.Linq
     {
       //Do nothing
     }
-    private void RegisterEntity( TEntity entity, DataContext DataContext, ListItem listItem )
+    private void AddMetadata( DataContext dataContext, TEntity _newEntity )
     {
-      m_EntitieAssociations.Add( entity, listItem );
-      entity.PropertyChanging += _newEntity_PropertyChanging;
-      entity.PropertyChanged += _newEntity_PropertyChanged;
       foreach ( StorageItem _item in from _six in m_StorageDescription where _six.IsLookup select _six )
       {
         AssociationAttribute _ass = (AssociationAttribute)_item.Description;
-        DataContext.IRegister _ListRef = (DataContext.IRegister)_item.Storage.GetValue( entity );
-        _ListRef.RegisterInContext( DataContext, _ass );
+        DataContext.IRegister _entityRef = (DataContext.IRegister)_item.Storage.GetValue( _newEntity );
+        _entityRef.RegisterInContext( dataContext, _ass );
       }
     }
     #endregion
