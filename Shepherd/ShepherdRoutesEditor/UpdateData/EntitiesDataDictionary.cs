@@ -129,7 +129,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
           CityType _CityType = GetOrAddCity( _market.DestinationCity, _market.DestinationCountry, _market.Area );
           string _dstName = DestinationMarketKey( _mrkt, _CityType );
           if ( m_DestinationMarket.ContainsKey( _dstName ) )
-            return;
+            continue;
           DestinationMarket _DestinationMarket = new DestinationMarket()
             {
               //Tytuł = _dstName,
