@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -140,6 +141,7 @@ namespace Microsoft.SharePoint.Linq
         throw new ArgumentNullException( "entity", "entity is null." );
       RegisterEntity( entity, m_DataContext, null );
       entity.EntityState = EntityState.ToBeInserted;
+      Unchaged = false;
     }
     //
     // Summary:
@@ -198,6 +200,7 @@ namespace Microsoft.SharePoint.Linq
       {
         LookupId = entity == null ? -1 : m_EntitieAssociations[ entity ].Id
       };
+      Debug.Assert( _ret.LookupId > 0, "Unexpected null reference to existing Entity" );
       return _ret;
     }
     internal TEntity GetFieldLookupValue( FieldLookupValue fieldLookupValue )
@@ -206,6 +209,7 @@ namespace Microsoft.SharePoint.Linq
         return null;
       int _dumyKey = -1;
       Dictionary<int, KeyValuePair<ITrackEntityState, ListItem>> _idDictionary = m_EntitieAssociations.ToDictionary( key => key.Value == null ? _dumyKey-- : key.Value.Id );
+      Debug.Assert( _idDictionary.ContainsKey( fieldLookupValue.LookupId ), "Cannot find lookup" );
       return (TEntity)_idDictionary[ fieldLookupValue.LookupId ].Key;
     }
     #endregion
@@ -265,6 +269,7 @@ namespace Microsoft.SharePoint.Linq
     private string m_ListName = String.Empty;
     private void _newEntity_PropertyChanged( object sender, PropertyChangedEventArgs e )
     {
+      Unchaged = false;
       ITrackEntityState _entity = sender as ITrackEntityState;
       if ( _entity == null )
         throw new ArgumentNullException( "sender", "PropertyChanged must be called from ITrackEntityState" );
@@ -290,7 +295,7 @@ namespace Microsoft.SharePoint.Linq
       m_EntitieAssociations.Add( entity, listItem );
       entity.PropertyChanging += _newEntity_PropertyChanging;
       entity.PropertyChanged += _newEntity_PropertyChanged;
-      foreach ( StorageItem _item in from _six in m_StorageDescription where _six.Association select _six )
+      foreach ( StorageItem _item in from _six in m_StorageDescription where _six.IsLookup select _six )
       {
         AssociationAttribute _ass = (AssociationAttribute)_item.Description;
         DataContext.IRegister _ListRef = (DataContext.IRegister)_item.Storage.GetValue( entity );

@@ -14,8 +14,7 @@ namespace Microsoft.SharePoint.Linq
   //   TEntity:
   //     The type of the member of the collection.
   public class EntitySet<TEntity>:
-    List<TEntity>, DataContext.IAssociationAttribute, DataContext.IRegister,
-    ICollection<TEntity>, IOrderedQueryable<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>, IOrderedQueryable, IQueryable, IList, ICollection, IEnumerable, ICloneable
+    List<TEntity>, ICollection<TEntity>, IOrderedQueryable<TEntity>, IQueryable<TEntity>, IEnumerable<TEntity>, IOrderedQueryable, IQueryable, IList, ICollection, IEnumerable, ICloneable
     where TEntity: class
   {
     // Summary:
@@ -128,25 +127,6 @@ namespace Microsoft.SharePoint.Linq
     {
       get { throw new NotImplementedException(); }
     }
-    #endregion
-
-    #region IRegister Members
-    void DataContext.IRegister.RegisterInContext( DataContext dataContext, AssociationAttribute associationAttribute )
-    {
-      m_DataContext = dataContext;
-      m_AssociationAttribute = associationAttribute;
-      m_InContext = true;
-    }
-    #endregion
-
-    #region IAssociationAttribute Members
-    FieldLookupValue DataContext.IAssociationAttribute.Lookup { get; set; }
-    #endregion
-
-    #region private
-    private bool m_InContext = false;
-    private DataContext m_DataContext = default( DataContext );
-    private AssociationAttribute m_AssociationAttribute = default( AssociationAttribute );
     #endregion
 
   }
