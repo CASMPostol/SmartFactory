@@ -6,135 +6,148 @@ using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
 {
-
   public class EntitiesDataDictionary: IDisposable
   {
-    public EntitiesDataDictionary( string _url )
+
+    #region internal
+    internal EntitiesDataDictionary( string _url )
     {
       m_EDC = new EntitiesDataContext( _url );
     }
-    public void Dispose()
+    internal void ImportTable( RoutesCatalogCommodityRow[] routesCatalogCommodityRow )
     {
-      m_EDC.SubmitChanges();
-      m_EDC.Dispose();
-    }
-    internal void AddCommodity( RoutesCatalogCommodityRow _CommodityRow )
-    {
-      GetOrAdd<Commodity>( m_EDC.Commodity, m_CommodityCommodity, _CommodityRow.Title, false );
-    }
-    internal void AddPartner( RoutesCatalogPartnersRow _partner, bool _testData )
-    {
-      if ( m_Partner.ContainsKey( _partner.Name ) )
+      if ( routesCatalogCommodityRow == null )
         return;
-      Partner _prtnr = Create<Partner>( m_EDC.Partner, m_Partner, _partner.Name, _testData );
-      _prtnr.EmailAddress = DummyEmail( _partner.E_Mail, "AdresEMail", _testData );
-      _prtnr.CellPhone = DummyName( _partner.Mobile, "Mobile", _testData );
-      _prtnr.ServiceType = ParseServiceType( _partner.ServiceType );
-      _prtnr.WorkPhone = DummyName( _partner.BusinessPhone, "BusinessPhone", _testData );
-      _prtnr.VendorNumber = DummyName( _partner.NumberFromSAP, "NumberFromSAP", _testData );
-      _prtnr.Partner2WarehouseTitle = GetOrAdd<Warehouse>( m_EDC.Warehouse, m_Warehouse, _partner.Warehouse, false );
+      foreach ( RoutesCatalogCommodityRow _CommodityRow in routesCatalogCommodityRow )
+        GetOrAdd<Commodity>( m_EDC.Commodity, m_CommodityCommodity, _CommodityRow.Title, false );
     }
-    internal void AddRoute( RoutesCatalogRoute _route, bool _testData )
+    internal void ImportTable( RoutesCatalogPartnersRow[] routesCatalogPartnersRow, bool _testData )
     {
-      try
+      if ( routesCatalogPartnersRow == null )
+        return;
+      foreach ( RoutesCatalogPartnersRow _partner in routesCatalogPartnersRow )
       {
-        ServiceType _service = GetService( _route );
-        Partner _prtnr = GetOrAddJTIPartner( _service, _route.Vendor.Trim(), _testData );
-        FreightPayer _freightPayer = GetOrAdd<FreightPayer>( m_EDC.FreightPayer, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg.ToString(), _testData );
-        CityType _CityType = GetOrAddCity( _route.Dest_City.Trim(), _route.Dest_Country.Trim(), "Unknown" );
-        Currency _Currency = GetOrAdd<Currency>( m_EDC.Currency, m_Currency, _route.Currency, false );
-        ShipmentType _ShipmentType = GetOrAdd<ShipmentType>( m_EDC.ShipmentType, m_ShipmentType, _route.ShipmentType, false );
-        CarrierType _CarrierCarrierType = GetOrAdd<CarrierType>( m_EDC.Carrier, m_CarrierCarrierType, _route.Carrier, false );
-        TranspotUnit _TranspotUnit = GetOrAdd<TranspotUnit>( m_EDC.TransportUnitType, m_TranspotUnit, _route.Equipment_Type__UoM, false );
-        SAPDestinationPlant _SAPDestinationPlant = GetOrAdd<SAPDestinationPlant>( m_EDC.SAPDestinationPlant, m_SAPDestinationPlant, _route.SAP_Dest_Plant, false );
-        BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>( m_EDC.BusinessDescription, m_BusinessDescription, _route.Business_description, false );
-        Commodity _cmdty = GetOrAdd<Commodity>( m_EDC.Commodity, m_CommodityCommodity, _route.Commodity, false );
-        string _sku = _route.Material_Master__Reference;
-        string _title = String.Format( "2013 To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity );
-        switch ( _service )
+        if ( m_Partner.ContainsKey( _partner.Name ) )
+          return;
+        Partner _prtnr = Create<Partner>( m_EDC.Partner, m_Partner, _partner.Name, _testData );
+        _prtnr.EmailAddress = DummyEmail( _partner.E_Mail, "AdresEMail", _testData );
+        _prtnr.CellPhone = DummyName( _partner.Mobile, "Mobile", _testData );
+        _prtnr.ServiceType = ParseServiceType( _partner.ServiceType );
+        _prtnr.WorkPhone = DummyName( _partner.BusinessPhone, "BusinessPhone", _testData );
+        _prtnr.VendorNumber = DummyName( _partner.NumberFromSAP, "NumberFromSAP", _testData );
+        _prtnr.Partner2WarehouseTitle = GetOrAdd<Warehouse>( m_EDC.Warehouse, m_Warehouse, _partner.Warehouse, false );
+      }
+    }
+    internal void ImportTable( RoutesCatalogRoute[] routesCatalogRoute, bool _testData )
+    {
+      if ( routesCatalogRoute == null )
+        return;
+      foreach ( RoutesCatalogRoute _route in routesCatalogRoute )
+      {
+        try
         {
-          case ServiceType.Forwarder:
-            Route _rt = new Route()
-            {
-              Route2BusinessDescriptionTitle = _busnessDscrptn,
-              CarrierTitle = _CarrierCarrierType,
-              Route2CityTitle = _CityType,
-              DepartureCity = _route.Dept_City,
-              CurrencyTitle = _Currency,
-              FreightPayerTitle = _freightPayer,
-              GoodsHandlingPO = _route.PO_NUMBER,
-              MaterialMaster = _sku,
-              DeparturePort = _route.Port_of_Dept,
-              RemarkMM = _route.Remarks,
-              SAPDestinationPlantTitle = _SAPDestinationPlant,
-              ShipmentTypeTitle = _ShipmentType,
-              Tytuł = _title,
-              TransportCosts = _testData ? 4567.8 : _route.Total_Cost_per_UoM.String2Double(),
-              TransportUnitTypeTitle = _TranspotUnit,
-              PartnerTitle = _prtnr,
-              Route2Commodity = _cmdty,
-              Incoterm = _route.Selling_Incoterm
-            };
-            m_EDC.Route.InsertOnSubmit( _rt );
-            break;
-          case ServiceType.SecurityEscortProvider:
-            SecurityEscortCatalog _sec = new SecurityEscortCatalog()
-            {
-              SecurityEscortCatalog2BusinessDescriptionTitle = _busnessDscrptn,
-              CurrencyTitle = _Currency,
-              EscortDestination = _route.Dest_City,
-              FreightPayerTitle = _freightPayer,
-              MaterialMaster = _sku,
-              RemarkMM = _route.Remarks,
-              SecurityCost = _testData ? 345.6 : _route.Total_Cost_per_UoM.String2Double(),
-              SecurityEscrotPO = _route.PO_NUMBER,
-              Tytuł = _title,
-              PartnerTitle = _prtnr
-            };
-            m_EDC.SecurityEscortRoute.InsertOnSubmit( _sec );
-            break;
-          case ServiceType.VendorAndForwarder:
-          case ServiceType.None:
-          case ServiceType.Invalid:
-          case ServiceType.Vendor:
-          default:
-            break;
+          ServiceType _service = GetService( _route );
+          Partner _prtnr = GetOrAddJTIPartner( _service, _route.Vendor.Trim(), _testData );
+          FreightPayer _freightPayer = GetOrAdd<FreightPayer>( m_EDC.FreightPayer, m_FreightPayer, _route.Freight_Payer__I_C__MainLeg.ToString(), _testData );
+          CityType _CityType = GetOrAddCity( _route.Dest_City.Trim(), _route.Dest_Country.Trim(), "Unknown" );
+          Currency _Currency = GetOrAdd<Currency>( m_EDC.Currency, m_Currency, _route.Currency, false );
+          ShipmentType _ShipmentType = GetOrAdd<ShipmentType>( m_EDC.ShipmentType, m_ShipmentType, _route.ShipmentType, false );
+          CarrierType _CarrierCarrierType = GetOrAdd<CarrierType>( m_EDC.Carrier, m_CarrierCarrierType, _route.Carrier, false );
+          TranspotUnit _TranspotUnit = GetOrAdd<TranspotUnit>( m_EDC.TransportUnitType, m_TranspotUnit, _route.Equipment_Type__UoM, false );
+          SAPDestinationPlant _SAPDestinationPlant = GetOrAdd<SAPDestinationPlant>( m_EDC.SAPDestinationPlant, m_SAPDestinationPlant, _route.SAP_Dest_Plant, false );
+          BusienssDescription _busnessDscrptn = GetOrAdd<BusienssDescription>( m_EDC.BusinessDescription, m_BusinessDescription, _route.Business_description, false );
+          Commodity _cmdty = GetOrAdd<Commodity>( m_EDC.Commodity, m_CommodityCommodity, _route.Commodity, false );
+          string _sku = _route.Material_Master__Reference;
+          string _title = String.Format( "2013 To: {0}, by: {1}, of: {2}", _CityType.Tytuł, _prtnr.Tytuł, _route.Commodity );
+          switch ( _service )
+          {
+            case ServiceType.Forwarder:
+              Route _rt = new Route()
+              {
+                Route2BusinessDescriptionTitle = _busnessDscrptn,
+                CarrierTitle = _CarrierCarrierType,
+                Route2CityTitle = _CityType,
+                DepartureCity = _route.Dept_City,
+                CurrencyTitle = _Currency,
+                FreightPayerTitle = _freightPayer,
+                GoodsHandlingPO = _route.PO_NUMBER,
+                MaterialMaster = _sku,
+                DeparturePort = _route.Port_of_Dept,
+                RemarkMM = _route.Remarks,
+                SAPDestinationPlantTitle = _SAPDestinationPlant,
+                ShipmentTypeTitle = _ShipmentType,
+                Tytuł = _title,
+                TransportCosts = _testData ? 4567.8 : _route.Total_Cost_per_UoM.String2Double(),
+                TransportUnitTypeTitle = _TranspotUnit,
+                PartnerTitle = _prtnr,
+                Route2Commodity = _cmdty,
+                Incoterm = _route.Selling_Incoterm
+              };
+              m_EDC.Route.InsertOnSubmit( _rt );
+              break;
+            case ServiceType.SecurityEscortProvider:
+              SecurityEscortCatalog _sec = new SecurityEscortCatalog()
+              {
+                SecurityEscortCatalog2BusinessDescriptionTitle = _busnessDscrptn,
+                CurrencyTitle = _Currency,
+                EscortDestination = _route.Dest_City,
+                FreightPayerTitle = _freightPayer,
+                MaterialMaster = _sku,
+                RemarkMM = _route.Remarks,
+                SecurityCost = _testData ? 345.6 : _route.Total_Cost_per_UoM.String2Double(),
+                SecurityEscrotPO = _route.PO_NUMBER,
+                Tytuł = _title,
+                PartnerTitle = _prtnr
+              };
+              m_EDC.SecurityEscortRoute.InsertOnSubmit( _sec );
+              break;
+            case ServiceType.VendorAndForwarder:
+            case ServiceType.None:
+            case ServiceType.Invalid:
+            case ServiceType.Vendor:
+            default:
+              break;
+          }
+        }
+        catch ( Exception ex )
+        {
+          string _format = "Cannot add route data SKU={0} Description={1} because of import Error= {2}";
+          throw new ApplicationException( String.Format( _format, _route.Material_Master_Short_Text, _route.Business_description, ex.Message ) );
         }
         m_EDC.SubmitChanges();
-
-      }
-      catch ( Exception ex )
-      {
-        string _format = "Cannot add route data SKU={0} Description={1} because of import Error= {2}";
-        throw new ApplicationException( String.Format( _format, _route.Material_Master_Short_Text, _route.Business_description, ex.Message ) );
       }
     }
-    internal void AddMarket( RoutesCatalogMarket _market )
+    internal void ImportTable( RoutesCatalogMarket[] routesCatalogMarket )
     {
-      try
+      if ( routesCatalogMarket == null )
+        return;
+      foreach ( RoutesCatalogMarket _market in routesCatalogMarket )
       {
-        Market _mrkt = GetOrAdd<Market>( m_EDC.Market, m_MarketMarket, _market.Market, false );
-        CityType _CityType = GetOrAddCity( _market.DestinationCity, _market.DestinationCountry, _market.Area );
-        string _dstName = DestinationMarketKey( _mrkt, _CityType );
-        if ( m_DestinationMarket.ContainsKey( _dstName ) )
-          return;
-        DestinationMarket _DestinationMarket = new DestinationMarket()
-          {
-            //Tytuł = _dstName,
-            DestinationMarket2CityTitle = _CityType,
-            MarketTitle = _mrkt
-          };
-        m_DestinationMarket.Add( _dstName, _DestinationMarket );
-        m_EDC.DestinationMarket.InsertOnSubmit( _DestinationMarket );
+        try
+        {
+          Market _mrkt = GetOrAdd<Market>( m_EDC.Market, m_MarketMarket, _market.Market, false );
+          CityType _CityType = GetOrAddCity( _market.DestinationCity, _market.DestinationCountry, _market.Area );
+          string _dstName = DestinationMarketKey( _mrkt, _CityType );
+          if ( m_DestinationMarket.ContainsKey( _dstName ) )
+            return;
+          DestinationMarket _DestinationMarket = new DestinationMarket()
+            {
+              //Tytuł = _dstName,
+              DestinationMarket2CityTitle = _CityType,
+              MarketTitle = _mrkt
+            };
+          m_DestinationMarket.Add( _dstName, _DestinationMarket );
+          m_EDC.DestinationMarket.InsertOnSubmit( _DestinationMarket );
+        }
+        catch ( Exception ex )
+        {
+          string _format = "Cannot add market data DestinationCity={0} Market={1} because of import Error= {2}";
+          throw new ApplicationException( String.Format( _format, _market.DestinationCity, _market.Market, ex.Message ) );
+        }
         m_EDC.SubmitChanges();
       }
-      catch ( Exception ex )
-      {
-        string _format = "Cannot add market data DestinationCity={0} Market={1} because of import Error= {2}";
-        throw new ApplicationException( String.Format( _format, _market.DestinationCity, _market.Market, ex.Message ) );
-      }
     }
-    internal void GetDictionaries()
+    internal void ReadSiteContent()
     {
       foreach ( Commodity _cmdty in m_EDC.Commodity )
         Add<string, Commodity>( m_CommodityCommodity, _cmdty.Tytuł, _cmdty, false );
@@ -170,7 +183,12 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
         m_DestinationMarket.Add( _key, _dstm );
       }
     }
-
+    internal void SubmitChages()
+    {
+      m_EDC.SubmitChanges();
+    }
+    #endregion    
+    
     #region private
 
     #region helpers
@@ -307,6 +325,13 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor.UpdateData
     private Dictionary<string, DestinationMarket> m_DestinationMarket = new Dictionary<string, DestinationMarket>();
     #endregion
 
+    #endregion
+
+    #region IDisposable
+    public void Dispose()
+    {
+      m_EDC.Dispose();
+    }
     #endregion
 
   }
