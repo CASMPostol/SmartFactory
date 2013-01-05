@@ -22,9 +22,10 @@ namespace Microsoft.SharePoint.Linq
     {
       if ( Unchaged )
       {
-        Debug.Assert( ( from _x in m_EntitieAssociations where _x.Key.EntityState != EntityState.Unchanged select _x ).Any(), "Wrong value of Unchanged in the SubmitingChanges" );
+        Debug.Assert( !( from _x in m_EntitieAssociations where _x.Key.EntityState != EntityState.Unchanged select _x ).Any(), "Wrong value of Unchanged in the SubmitingChanges - expected false" );
         return;
       }
+      Debug.Assert( ( from _x in m_EntitieAssociations where _x.Key.EntityState != EntityState.Unchanged select _x ).Any(), "Wrong value of Unchanged in the SubmitingChanges - expected true" );
       SubmitingChanges4Parents();
       Dictionary<ITrackEntityState, ListItem> _newEntitieAssociations = new Dictionary<ITrackEntityState, ListItem>();
       foreach ( var item in m_EntitieAssociations )
@@ -129,6 +130,7 @@ namespace Microsoft.SharePoint.Linq
         }
         assign( _storage.Description.Name, _value );
       }
+      entity.OriginalValues.Clear();
     }
     protected internal void AssignValues2Entity<TEntity>( TEntity _newEntity, Dictionary<string, object> values )
       where TEntity: class

@@ -37,7 +37,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
         using ( EntitiesDataDictionary edc = new EntitiesDataDictionary( this.URLTextBox.Text ) )
         {
           ErrorList.Items.Add( "Starting read current data from selected site." );
-          edc.GetDictionaries();
+          edc.ReadSiteContent();
           ErrorList.Items.Add( "Data from current site has been read" );
           OpenFileDialog _mofd = new OpenFileDialog()
           {
@@ -47,7 +47,7 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
             DefaultExt = ".xml",
             AddExtension = true,
           };
-          if (!_mofd.ShowDialog().GetValueOrDefault(false))
+          if ( !_mofd.ShowDialog().GetValueOrDefault( false ) )
           {
             ErrorList.Items.Add( "Operation aborted by the user." );
             return;
@@ -56,21 +56,14 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
           using ( Stream _file = _mofd.OpenFile() )
             _catalog = RoutesCatalog.ImportDocument( _file );
           ErrorList.Items.Add( "Starting data ipdate" );
-          if ( _catalog.CommodityTable != null )
-            foreach ( var item in _catalog.CommodityTable )
-              edc.AddCommodity( item );
+          edc.ImportTable( _catalog.CommodityTable );
           ErrorList.Items.Add( "Commodity updated." );
-          if ( _catalog.PartnersTable != null )
-            foreach ( var item in _catalog.PartnersTable )
-              edc.AddPartner( item, false );
+          edc.ImportTable( _catalog.PartnersTable, false );
           ErrorList.Items.Add( "Partners updated." );
-          if ( _catalog.MarketTable != null )
-            foreach ( var item in _catalog.MarketTable )
-              edc.AddMarket( item );
+          edc.ImportTable( _catalog.MarketTable );
           ErrorList.Items.Add( "Market updated." );
-          if ( _catalog.GlobalPricelist != null )
-            foreach ( var item in _catalog.GlobalPricelist )
-              edc.AddRoute( item, false );
+          edc.ImportTable( _catalog.GlobalPricelist, false );
+          edc.SubmitChages();
           ErrorList.Items.Add( "GlobalPricelist updated." );
         }
       }
