@@ -29,7 +29,11 @@ namespace CAS.SmartFactory.Shepherd.RouteEditor
       InitializeComponent();
       URLTextBox.Text = Properties.Settings.Default.URL;
     }
-    private Random m_RandomValue = new Random( 12345 );
+    protected override void OnClosing( System.ComponentModel.CancelEventArgs e )
+    {
+      base.OnClosing( e );
+      Properties.Settings.Default.URL = URLTextBox.Text;
+    }
     private void UpdateRoutesButton_Click( object sender, RoutedEventArgs e )
     {
       try
