@@ -547,11 +547,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         private double quantityField;
         
-        private bool quantityFieldSpecified;
-        
         private double balanceField;
-        
-        private bool balanceFieldSpecified;
         
         /// <uwagi/>
         public string ExportOrFreeCirculationSAD {
@@ -625,34 +621,12 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool QuantitySpecified {
-            get {
-                return this.quantityFieldSpecified;
-            }
-            set {
-                this.quantityFieldSpecified = value;
-            }
-        }
-        
-        /// <uwagi/>
         public double Balance {
             get {
                 return this.balanceField;
             }
             set {
                 this.balanceField = value;
-            }
-        }
-        
-        /// <uwagi/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool BalanceSpecified {
-            get {
-                return this.balanceFieldSpecified;
-            }
-            set {
-                this.balanceFieldSpecified = value;
             }
         }
     }
