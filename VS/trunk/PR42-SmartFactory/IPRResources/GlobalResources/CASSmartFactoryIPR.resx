@@ -294,4 +294,10 @@
 	<data name="CAS_ASPX_Period" xml:space="preserve">
     <value>Period</value>
   </data>
+	<data name="CAS_ASPX_Select" xml:space="preserve">
+		<value>Select</value>
+	</data>
+	<data name="CAS_ASPX_Split" xml:space="preserve">
+		<value>Split</value>
+	</data>
 </root>

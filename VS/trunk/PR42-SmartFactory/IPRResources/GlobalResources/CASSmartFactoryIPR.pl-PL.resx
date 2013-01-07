@@ -294,4 +294,10 @@
 	<data name="CAS_ASPX_Period" xml:space="preserve">
     <value>Okres</value>
   </data>
+	<data name="CAS_ASPX_Select" xml:space="preserve">
+		<value>Wybierz</value>
+	</data>
+	<data name="CAS_ASPX_Split" xml:space="preserve">
+		<value>Podziel</value>
+	</data>
 </root>
