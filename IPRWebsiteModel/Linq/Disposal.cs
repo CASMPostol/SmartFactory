@@ -253,10 +253,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.SADDocumentNo = sadGood.SADDocumentIndex.DocumentNumber;
       this.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
       this.CustomsProcedure = sadGood.Procedure;
-      if (this.JSOXCustomsSummaryIndex == null)
+      if ( this.JSOXCustomsSummaryIndex == null )
         return;
       JSOXCustomsSummaryIndex.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
       JSOXCustomsSummaryIndex.ExportOrFreeCirculationSAD = sadGood.SADDocumentIndex.DocumentNumber;
+      this.JSOXCustomsSummaryIndex.CompensationGood = this.Disposal2PCNID.CompensationGood;
+      //TODO Update JSOXCustomsSummary after SAD import; Remaining =  .....
     }
     private double GetDutyNotCleared()
     {
