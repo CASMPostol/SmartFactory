@@ -43,7 +43,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       {
         BalanceDate = list.BalanceDate.GetValueOrDefault(),
         BalanceQuantity = list.BalanceQuantity.GetValueOrDefault(),
-        Disposals = GetDisposals( null ),
+        Disposals = GetDisposals( list.JSOXCustomsSummary ),
         IntroducingDateEnd = list.IntroducingDateEnd.GetValueOrDefault(),
         IntroducingDateStart = list.IntroducingDateStart.GetValueOrDefault(),
         IntroducingQuantity = list.IntroducingQuantity.GetValueOrDefault(),
@@ -58,10 +58,22 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
-    private static DisposalRow[] GetDisposals( IQueryable<JSOXCustomsSummary> collection )
+    private static ArrayOfDisposalRow GetDisposals( IQueryable<JSOXCustomsSummary> collection )
     {
       if ( collection == null )
-        return new DisposalRow[] { };
+        throw new ArgumentNullException( "collection", "GetDisposals cannot have collection null" );
+      decimal _total = 0;
+      DisposalRow[] _rows = GetDisposalRowArray( collection, out _total );
+      ArrayOfDisposalRow _ret = new ArrayOfDisposalRow()
+      {
+        DisposalRow = _rows,
+        TotalAmount = Convert.ToDouble( _total )
+      };
+      return _ret;
+    }
+    private static DisposalRow[] GetDisposalRowArray( IQueryable<JSOXCustomsSummary> collection, out decimal _total )
+    {
+      _total = 0;
       List<DisposalRow> _ret = new List<DisposalRow>();
       foreach ( JSOXCustomsSummary _jx in collection )
       {
@@ -72,9 +84,12 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           ExportOrFreeCirculationSAD = _jx.ExportOrFreeCirculationSAD,
           InvoiceNo = _jx.InvoiceNo,
           SADDate = _jx.SADDate.GetValueOrDefault(),
-          TotalAmount = _jx.TotalAmount.GetValueOrDefault()
+          Quantity = _jx.TotalAmount.GetValueOrDefault(),
+          Balance = -1, //TODO remaining quantity
+          Procedure = "TBD"
         };
         _ret.Add( _new );
+        _total += Convert.ToDecimal( _new.Quantity );
       }
       return _ret.ToArray<DisposalRow>();
     }
@@ -86,7 +101,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         {
           IPRStockContent _new = new IPRStockContent()
             {
-              IPRList = GetIPRList( null ),
+              IPRList = GetIPRList( _bsx.BalanceIPR ),
               TotalBalance = _bsx.Balance.GetValueOrDefault(),
               TotalDustCSNotStarted = _bsx.DustCSNotStarted.GetValueOrDefault(),
               TotalIPRBook = _bsx.IPRBook.GetValueOrDefault(),
@@ -101,9 +116,10 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         }
       return _ret.ToArray<IPRStockContent>();
     }
-    private static IPRRow[] GetIPRList( IQueryable<BalanceIPR> collection )
+    private static ArrayOfIPRRow GetIPRList( IQueryable<BalanceIPR> collection )
     {
-      List<IPRRow> _ret = new List<IPRRow>();
+      ArrayOfIPRRow _ArrayOfIPRRow = new ArrayOfIPRRow();
+      List<IPRRow> _iprRows = new List<IPRRow>();
       foreach ( BalanceIPR _item in collection )
       {
         IPRRow _new = new IPRRow()
@@ -121,9 +137,11 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           TobaccoInCutfillerWarehouse = -1,
           TobaccoInWarehouse = _item.TobaccoAvailable.GetValueOrDefault()
         };
-        _ret.Add( _new );
+        _iprRows.Add( _new );
+
       }
-      return _ret.ToArray<IPRRow>();
+      _ArrayOfIPRRow.IPRRow = _iprRows.ToArray<IPRRow>();
+      return _ArrayOfIPRRow;
     }
   }
   //TODO to be removed 

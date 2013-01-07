@@ -121,7 +121,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
     public partial class IPRStockContent {
         
-        private IPRRow[] iPRListField;
+        private ArrayOfIPRRow iPRListField;
         
         private double totalIPRBookField;
         
@@ -142,7 +142,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         private double totalBalanceField;
         
         /// <uwagi/>
-        public IPRRow[] IPRList {
+        public ArrayOfIPRRow IPRList {
             get {
                 return this.iPRListField;
             }
@@ -238,6 +238,136 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
             }
             set {
                 this.totalBalanceField = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
+    public partial class ArrayOfIPRRow {
+        
+        private IPRRow[] iPRRowField;
+        
+        private double subtotalIPRBookField;
+        
+        private double subtotalSHWasteOveruseCSNotStartedField;
+        
+        private double subtotalDustCSNotStartedField;
+        
+        private double subtotalTobaccoAvailableField;
+        
+        private double subtotalTobaccoInWarehouseField;
+        
+        private double subtotalTobaccoInCigarettesWarehouseField;
+        
+        private double subtotalTobaccoInCigarettesProductionField;
+        
+        private double subtotalTobaccoInCutfillerWarehouseField;
+        
+        private double subtotalBalanceField;
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute("IPRRow", IsNullable=true)]
+        public IPRRow[] IPRRow {
+            get {
+                return this.iPRRowField;
+            }
+            set {
+                this.iPRRowField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double SubtotalIPRBook {
+            get {
+                return this.subtotalIPRBookField;
+            }
+            set {
+                this.subtotalIPRBookField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double SubtotalSHWasteOveruseCSNotStarted {
+            get {
+                return this.subtotalSHWasteOveruseCSNotStartedField;
+            }
+            set {
+                this.subtotalSHWasteOveruseCSNotStartedField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double SubtotalDustCSNotStarted {
+            get {
+                return this.subtotalDustCSNotStartedField;
+            }
+            set {
+                this.subtotalDustCSNotStartedField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double SubtotalTobaccoAvailable {
+            get {
+                return this.subtotalTobaccoAvailableField;
+            }
+            set {
+                this.subtotalTobaccoAvailableField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double SubtotalTobaccoInWarehouse {
+            get {
+                return this.subtotalTobaccoInWarehouseField;
+            }
+            set {
+                this.subtotalTobaccoInWarehouseField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double SubtotalTobaccoInCigarettesWarehouse {
+            get {
+                return this.subtotalTobaccoInCigarettesWarehouseField;
+            }
+            set {
+                this.subtotalTobaccoInCigarettesWarehouseField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double SubtotalTobaccoInCigarettesProduction {
+            get {
+                return this.subtotalTobaccoInCigarettesProductionField;
+            }
+            set {
+                this.subtotalTobaccoInCigarettesProductionField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double SubtotalTobaccoInCutfillerWarehouse {
+            get {
+                return this.subtotalTobaccoInCutfillerWarehouseField;
+            }
+            set {
+                this.subtotalTobaccoInCutfillerWarehouseField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double SubtotalBalance {
+            get {
+                return this.subtotalBalanceField;
+            }
+            set {
+                this.subtotalBalanceField = value;
             }
         }
     }
@@ -413,7 +543,15 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         
         private string compensationGoodField;
         
-        private double totalAmountField;
+        private string procedureField;
+        
+        private double quantityField;
+        
+        private bool quantityFieldSpecified;
+        
+        private double balanceField;
+        
+        private bool balanceFieldSpecified;
         
         /// <uwagi/>
         public string ExportOrFreeCirculationSAD {
@@ -467,6 +605,82 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
+        public string Procedure {
+            get {
+                return this.procedureField;
+            }
+            set {
+                this.procedureField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double Quantity {
+            get {
+                return this.quantityField;
+            }
+            set {
+                this.quantityField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool QuantitySpecified {
+            get {
+                return this.quantityFieldSpecified;
+            }
+            set {
+                this.quantityFieldSpecified = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double Balance {
+            get {
+                return this.balanceField;
+            }
+            set {
+                this.balanceField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool BalanceSpecified {
+            get {
+                return this.balanceFieldSpecified;
+            }
+            set {
+                this.balanceFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
+    public partial class ArrayOfDisposalRow {
+        
+        private DisposalRow[] disposalRowField;
+        
+        private double totalAmountField;
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute("DisposalRow", IsNullable=true)]
+        public DisposalRow[] DisposalRow {
+            get {
+                return this.disposalRowField;
+            }
+            set {
+                this.disposalRowField = value;
+            }
+        }
+        
+        /// <uwagi/>
         public double TotalAmount {
             get {
                 return this.totalAmountField;
@@ -485,7 +699,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
     public partial class JSOContent {
         
-        private DisposalRow[] disposalsField;
+        private ArrayOfDisposalRow disposalsField;
         
         private System.DateTime previousMonthDateField;
         
@@ -514,7 +728,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         private double reassumeQuantityField;
         
         /// <uwagi/>
-        public DisposalRow[] Disposals {
+        public ArrayOfDisposalRow Disposals {
             get {
                 return this.disposalsField;
             }
