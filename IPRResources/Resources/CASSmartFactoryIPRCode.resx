@@ -138,7 +138,7 @@
 	<data name="CannotProceedWithExportBecauseTheInvoiceItemContainsErrors{0}" xml:space="preserve">
 		<value>Cannot proceed with export because the invoice item contains errors {0}.</value>
 	</data>
-	<data name="ImportOfTheSKUMessage{0}Starting" xml:space="preserve">
-		<value>Import of the SKU message {0} starting.</value>
+	<data name="Quantity_{0:F2}" xml:space="preserve">
+		<value>Quantity {0:F2}</value>
 	</data>
 </root>

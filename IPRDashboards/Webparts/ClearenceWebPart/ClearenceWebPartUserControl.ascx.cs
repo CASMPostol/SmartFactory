@@ -602,8 +602,8 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ClearenceWebPart
     {
       double _availableSum = m_ControlState.AvailableItems.SelectionTable.Count > 0 ? ( from _avrx in m_ControlState.AvailableItems.SelectionTable select _avrx ).Sum( x => x.Quantity ) : 0;
       double _assignedSum = m_ControlState.AssignedItems.SelectionTable.Count > 0 ? ( from _avrx in m_ControlState.AssignedItems.SelectionTable select _avrx ).Sum( x => x.Quantity ) : 0;
-      m_AvailableGridViewQuntitySumLabel.Text = String.Format( "Quantity {0:F2}", _availableSum );
-      m_AssignedGridViewQuantitySumLabel.Text = String.Format( "Quantity {0:F2}", _assignedSum );
+      m_AvailableGridViewQuntitySumLabel.Text = String.Format( "Quantity_{0:F2}".GetLocalizedString(), _availableSum );
+      m_AssignedGridViewQuantitySumLabel.Text = String.Format( "Quantity_{0:F2}".GetLocalizedString(), _assignedSum );
       m_ClearenceTextBox.Text = m_ControlState.ClearanceTitle;
       return GenericStateMachineEngine.ActionResult.Success;
     }

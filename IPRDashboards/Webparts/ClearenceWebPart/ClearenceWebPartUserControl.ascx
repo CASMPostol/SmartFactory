@@ -116,8 +116,8 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
-                            <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
-                            <asp:BoundField DataField="Created" HeaderText="Created" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                            <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Status%>" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                            <asp:BoundField DataField="Created" HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Created%>" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                             <asp:TemplateField HeaderText="ID" SortExpression="ID" Visible="False">
                                 <EditItemTemplate>
                                     <asp:Label ID="IDEditLabel" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
@@ -126,7 +126,7 @@
                                     <asp:Label ID="IDItemLabel" runat="server" Text='<%# Bind("ID") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:CommandField HeaderText="" ShowEditButton="True" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" EditText="Split" UpdateText="Select" />
+                            <asp:CommandField HeaderText="" ShowEditButton="True" ShowSelectButton="True" ItemStyle-HorizontalAlign="Right" EditText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Split%>" UpdateText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Select%>" />
                         </Columns>
                     </SharePoint:SPGridView>
                     <SharePoint:SPGridViewPager ID="m_AvailableGridViewPager" GridViewId="m_AvailableGridView" runat="server" />
@@ -171,8 +171,8 @@
                             <asp:BoundField DataField="UnitPrice" HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_UnitPrice%>" DataFormatString="{0:F3}" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                             <asp:BoundField DataField="Currency" HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Currency%>" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                             <asp:BoundField DataField="Quantity" HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_QuantityKG%>" DataFormatString="{0:F2}" ReadOnly="false" ItemStyle-HorizontalAlign="Right" />
-                            <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" SortExpression="Status" ItemStyle-HorizontalAlign="Right" />
-                            <asp:BoundField DataField="Created" HeaderText="Created" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
+                            <asp:BoundField DataField="Status" HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Status%>" ReadOnly="true" SortExpression="Status" ItemStyle-HorizontalAlign="Right" />
+                            <asp:BoundField DataField="Created" HeaderText="<%$Resources:CASSmartFactoryIPR,CAS_ASPX_Created%>" ReadOnly="true" ItemStyle-HorizontalAlign="Right" />
                             <asp:TemplateField HeaderText="ID" SortExpression="ID" Visible="False">
                                 <EditItemTemplate>
                                     <asp:Label ID="IDEditLabel" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
