@@ -17,6 +17,8 @@
           <FieldRef ID="{F16E6D8E-E665-4063-8612-0D0976F82B3B}" Name="IntroducingSADDate" />
           <FieldRef ID="{7A251C12-8E16-4BF1-9236-84D1A2D92E27}" Name="CompensationGood" />
           <FieldRef ID="{035F50FD-F71B-452B-8F44-7A4DB2486A8E}" Name="TotalAmount" />
+          <FieldRef ID="{0E24A674-1FE7-4C77-9106-387E12417644}" Name="RemainingQuantity" />
+          <FieldRef ID="{561EF73A-DDB8-4B66-BADB-540C80CD83E6}" Name="CustomsProcedure" />
           <FieldRef ID="{0216FCB4-1D41-4729-9745-19AB078088A4}" Name="JSOXCustomsSummary2JSOXIndex" />
         </FieldRefs>
       </ContentType>
@@ -60,6 +62,8 @@
           <FieldRef Name="IntroducingSADDate" />
           <FieldRef Name="CompensationGood" />
           <FieldRef Name="TotalAmount" />
+          <FieldRef Name="RemainingQuantity" />
+          <FieldRef Name="CustomsProcedure" />
           <FieldRef Name="JSOXCustomsSummary2JSOXIndex" />
         </ViewFields>
         <Query>
