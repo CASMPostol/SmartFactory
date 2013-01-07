@@ -5,12 +5,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class JSOXCustomsSummary
   {
-    internal static decimal CreateEntries( Entities edc, JSOXLib parent, out DateTime start, out DateTime end )
+    internal static decimal GetOutboundQuantity( Entities edc, JSOXLib parent, out DateTime start, out DateTime end )
     {
       decimal _ret = 0;
       List<JSOXCustomsSummary> _newEntries = new List<JSOXCustomsSummary>();
       start = LinqIPRExtensions.DateTimeMaxValue;
       end = LinqIPRExtensions.DateTimeMinValue;
+      foreach ( JSOXCustomsSummary _jcsx in parent.JSOXCustomsSummary )
+      {
+        start = LinqIPRExtensions.Min( start, _jcsx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMaxValue ) );
+        end = LinqIPRExtensions.Max( end, _jcsx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMinValue ) );
+        _ret += _jcsx.SettledQuantityDec;
+      }
       foreach ( Disposal _dspx in Linq.Disposal.GetEntries4JSOX( edc ) )
       {
         start = LinqIPRExtensions.Min( start, _dspx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMaxValue ) );
@@ -31,12 +37,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _dspx.JSOXCustomsSummaryIndex = _newItem;
         _newItem.CreateTitle();
         _newEntries.Add( _newItem );
-      }
-      foreach ( JSOXCustomsSummary _jcsx in parent.JSOXCustomsSummary )
-      {
-        start = LinqIPRExtensions.Min( start, _jcsx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMaxValue ) );
-        end = LinqIPRExtensions.Max( end, _jcsx.SADDate.GetValueOrDefault( LinqIPRExtensions.DateTimeMinValue ) );
-        _ret += _jcsx.SettledQuantityDec;
       }
       edc.JSOXCustomsSummary.InsertAllOnSubmit( _newEntries );
       return _ret;
