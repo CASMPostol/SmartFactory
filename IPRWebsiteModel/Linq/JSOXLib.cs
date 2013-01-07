@@ -39,7 +39,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       //Outbound
       DateTime _thisOutboundDateEnd = LinqIPRExtensions.DateTimeMinValue;
       DateTime _thisOutboundDateStart = LinqIPRExtensions.DateTimeMaxValue;
-      decimal _outQuantity = Linq.JSOXCustomsSummary.CreateEntries( edc, this, out _thisOutboundDateStart, out _thisOutboundDateEnd );
+      decimal _outQuantity = Linq.JSOXCustomsSummary.GetOutboundQuantity( edc, this, out _thisOutboundDateStart, out _thisOutboundDateEnd );
       this.OutboundQuantity = _outQuantity.Convert2Double2Decimals();
       this.OutboundDateEnd = _thisOutboundDateEnd;
       this.OutboundDateStart = _thisOutboundDateStart;
