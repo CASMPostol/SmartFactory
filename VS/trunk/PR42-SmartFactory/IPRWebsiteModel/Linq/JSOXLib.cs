@@ -17,8 +17,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="previous">The previous report.</param>
     public void UpdateJSOXReport( Entities edc, JSOXLib previous )
     {
-      PreviousMonthDate = this.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
-      PreviousMonthQuantity = this.SituationQuantity.GetValueOrDefault( -1 );
+      PreviousMonthDate = previous.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
+      PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( -1 );
       UpdateJSOXReport( edc );
     }
     /// <summary>
