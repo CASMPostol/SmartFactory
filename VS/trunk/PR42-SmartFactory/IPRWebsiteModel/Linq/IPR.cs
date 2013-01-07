@@ -156,15 +156,15 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       decimal _ret = 0;
       dateEnd = LinqIPRExtensions.DateTimeMinValue;
       dateStart = LinqIPRExtensions.DateTimeMaxValue;
-      foreach ( IPR _iprx in IPR.GetAllNew4JSOX( edc ) )
+      foreach ( IPR _iprx in parent.IPR )
       {
-        _iprx.IPR2JSOXIndex = parent;
         _ret += _iprx.NetMassDec;
         dateEnd = LinqIPRExtensions.Max( _iprx.CustomsDebtDate.Value.Date, dateEnd );
         dateStart = LinqIPRExtensions.Min( _iprx.CustomsDebtDate.Value.Date, dateStart );
       }
-      foreach ( IPR _iprx in parent.IPR )
+      foreach ( IPR _iprx in IPR.GetAllNew4JSOX( edc ) )
       {
+        _iprx.IPR2JSOXIndex = parent;
         _ret += _iprx.NetMassDec;
         dateEnd = LinqIPRExtensions.Max( _iprx.CustomsDebtDate.Value.Date, dateEnd );
         dateStart = LinqIPRExtensions.Min( _iprx.CustomsDebtDate.Value.Date, dateStart );
