@@ -18,7 +18,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     public void UpdateJSOXReport( Entities edc, JSOXLib previous )
     {
       PreviousMonthDate = this.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
-      PreviousMonthQuantity = this.SituationQuantity.GetValueOrDefault( 0 );
+      PreviousMonthQuantity = this.SituationQuantity.GetValueOrDefault( -1 );
       UpdateJSOXReport( edc );
     }
     /// <summary>
@@ -52,7 +52,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       //Situation at
       DateTime _thisSituationDate;
       decimal _thisSituationQuantity = Linq.IPR.GetCurrentSituationData( edc, out _thisSituationDate );
-      this.SituationDate = _thisSituationDate;
+      this.SituationDate = DateTime.Today.Date;
       this.SituationQuantity = _thisSituationQuantity.Convert2Double2Decimals();
 
       //Reassume
