@@ -93,8 +93,8 @@
       <xs:element minOccurs="0" maxOccurs="1" name="InvoiceNo" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="CompensationGood" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Procedure" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Quantity" type="xs:double" />
-      <xs:element minOccurs="0" maxOccurs="1" name="Balance" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Balance" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

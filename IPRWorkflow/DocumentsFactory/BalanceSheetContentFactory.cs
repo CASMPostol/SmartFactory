@@ -124,7 +124,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       {
         IPRRow _new = new IPRRow()
         {
-          Balance = -1,
+          Balance = -1, //TODO
           Batch = _item.Batch,
           DustCSNotStarted = _item.DustCSNotStarted.GetValueOrDefault(),
           EntryDocumentNo = _item.DocumentNo,
@@ -138,7 +138,15 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           TobaccoInWarehouse = _item.TobaccoAvailable.GetValueOrDefault()
         };
         _iprRows.Add( _new );
-
+        _ArrayOfIPRRow.SubtotalBalance += _new.Balance;
+        _ArrayOfIPRRow.SubtotalDustCSNotStarted += _new.DustCSNotStarted;
+        _ArrayOfIPRRow.SubtotalIPRBook += _new.IPRBook;
+        _ArrayOfIPRRow.SubtotalSHWasteOveruseCSNotStarted += _new.SHWasteOveruseCSNotStarted;
+        _ArrayOfIPRRow.SubtotalTobaccoAvailable += _new.TobaccoAvailable;
+        _ArrayOfIPRRow.SubtotalTobaccoInCigarettesProduction += _new.TobaccoInCigarettesProduction;
+        _ArrayOfIPRRow.SubtotalTobaccoInCigarettesWarehouse += _new.TobaccoInCutfillerWarehouse;
+        _ArrayOfIPRRow.SubtotalTobaccoInCutfillerWarehouse += _new.TobaccoInCutfillerWarehouse;
+        _ArrayOfIPRRow.SubtotalTobaccoInWarehouse += _new.TobaccoInWarehouse;
       }
       _ArrayOfIPRRow.IPRRow = _iprRows.ToArray<IPRRow>();
       return _ArrayOfIPRRow;
