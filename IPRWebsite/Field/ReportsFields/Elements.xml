@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Field
+    ID="{C7181A4C-C658-4CBF-8D08-FF46F8BE092B}"
+    Name="JSOXLibraryReadOnly"
+    Type="Boolean"
+    Group="CAS Smart Factory IPR Customs"
+    DisplayName="$Resources:CASSmartFactoryIPR,CAS_ReadOnly"
+    />
+  <Field
     Name="TobaccoEnteredIntoIPR"
     ID="{ECF7BF3D-B3E5-40B6-B7B3-5D843DD18B19}"
     Type="Number"
