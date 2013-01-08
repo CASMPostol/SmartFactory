@@ -5141,6 +5141,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _totalAmount;
 		
+		private System.Nullable<double> _remainingQuantity;
+		
+		private string _customsProcedure;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<Disposal> _disposal;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<JSOXLib> _jSOXCustomsSummary2JSOXIndex;
@@ -5257,6 +5261,34 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this.OnPropertyChanging("TotalAmount", this._totalAmount);
 					this._totalAmount = value;
 					this.OnPropertyChanged("TotalAmount");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="RemainingQuantity", Storage="_remainingQuantity", FieldType="Number")]
+		public System.Nullable<double> RemainingQuantity {
+			get {
+				return this._remainingQuantity;
+			}
+			set {
+				if ((value != this._remainingQuantity)) {
+					this.OnPropertyChanging("RemainingQuantity", this._remainingQuantity);
+					this._remainingQuantity = value;
+					this.OnPropertyChanged("RemainingQuantity");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="CustomsProcedure", Storage="_customsProcedure", FieldType="Text")]
+		public string CustomsProcedure {
+			get {
+				return this._customsProcedure;
+			}
+			set {
+				if ((value != this._customsProcedure)) {
+					this.OnPropertyChanging("CustomsProcedure", this._customsProcedure);
+					this._customsProcedure = value;
+					this.OnPropertyChanged("CustomsProcedure");
 				}
 			}
 		}
@@ -8722,6 +8754,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private string _oGLIntroduction;
 		
+		private System.Nullable<double> _balance;
+		
 		private Microsoft.SharePoint.Linq.EntityRef<BalanceBatch> _balanceBatchIndex;
 		
 		private Microsoft.SharePoint.Linq.EntityRef<JSOXLib> _balanceIPR2JSOXIndex;
@@ -8788,6 +8822,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this.OnPropertyChanging("OGLIntroduction", this._oGLIntroduction);
 					this._oGLIntroduction = value;
 					this.OnPropertyChanged("OGLIntroduction");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="Balance", Storage="_balance", FieldType="Number")]
+		public System.Nullable<double> Balance {
+			get {
+				return this._balance;
+			}
+			set {
+				if ((value != this._balance)) {
+					this.OnPropertyChanging("Balance", this._balance);
+					this._balance = value;
+					this.OnPropertyChanged("Balance");
 				}
 			}
 		}
