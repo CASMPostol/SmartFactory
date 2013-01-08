@@ -816,7 +816,9 @@
     <Content Include="Lists\Reports\BalanceBatchTemplate\Schema.xml" />
     <Content Include="Lists\Reports\BalanceIPRTemplate\Balance IPR\Elements.xml" />
     <Content Include="Lists\Reports\BalanceIPRTemplate\Elements.xml" />
-    <Content Include="Lists\Reports\BalanceIPRTemplate\Schema.xml" />
+    <Content Include="Lists\Reports\BalanceIPRTemplate\Schema.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Elements.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\JSOXCustomsSummaryList\Elements.xml" />
     <Content Include="Lists\Reports\JSOXCustomsSummaryTemplate\Schema.xml">

@@ -6,7 +6,6 @@
   <StartDate>1900-01-01</StartDate>
   <EndDate>1900-01-01</EndDate>
   <IPRStock>
-    <IPRStockContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
     <IPRStockContent>
       <IPRList>
         <IPRRow>
@@ -23,6 +22,15 @@
           <TobaccoInCutfillerWarehouse>1</TobaccoInCutfillerWarehouse>
           <Balance>1</Balance>
         </IPRRow>
+        <SubtotalIPRBook>1</SubtotalIPRBook>
+        <SubtotalSHWasteOveruseCSNotStarted>1</SubtotalSHWasteOveruseCSNotStarted>
+        <SubtotalDustCSNotStarted>1</SubtotalDustCSNotStarted>
+        <SubtotalTobaccoAvailable>1</SubtotalTobaccoAvailable>
+        <SubtotalTobaccoInWarehouse>1</SubtotalTobaccoInWarehouse>
+        <SubtotalTobaccoInCigarettesWarehouse>1</SubtotalTobaccoInCigarettesWarehouse>
+        <SubtotalTobaccoInCigarettesProduction>1</SubtotalTobaccoInCigarettesProduction>
+        <SubtotalTobaccoInCutfillerWarehouse>1</SubtotalTobaccoInCutfillerWarehouse>
+        <SubtotalBalance>1</SubtotalBalance>
       </IPRList>
       <TotalIPRBook>1</TotalIPRBook>
       <TotalSHWasteOveruseCSNotStarted>1</TotalSHWasteOveruseCSNotStarted>
@@ -34,7 +42,6 @@
       <TotalTobaccoInCutfillerWarehouse>1</TotalTobaccoInCutfillerWarehouse>
       <TotalBalance>1</TotalBalance>
     </IPRStockContent>
-    <IPRStockContent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
   </IPRStock>
   <JSOX>
     <Disposals>
@@ -44,8 +51,11 @@
         <SADDate>1900-01-01</SADDate>
         <InvoiceNo>InvoiceNo1</InvoiceNo>
         <CompensationGood>CompensationGood1</CompensationGood>
-        <TotalAmount>1</TotalAmount>
+        <Procedure>Procedure1</Procedure>
+        <Quantity>1</Quantity>
+        <Balance>1</Balance>
       </DisposalRow>
+      <TotalAmount>1</TotalAmount>
     </Disposals>
     <PreviousMonthDate>1900-01-01</PreviousMonthDate>
     <PreviousMonthQuantity>1</PreviousMonthQuantity>

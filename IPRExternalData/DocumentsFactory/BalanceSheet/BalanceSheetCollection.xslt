@@ -122,9 +122,6 @@
   </xsl:template>
   <xsl:template match="cas:IPRStockContent">
     <xsl:apply-templates select="cas:IPRList"/>
-  </xsl:template>
-  <xsl:template match="cas:IPRList">
-    <xsl:apply-templates select="cas:IPRRow" />
     <tr>
       <td>
         SUMA
@@ -161,6 +158,41 @@
       </td>
       <td align="center">
         <xsl:value-of select="format-number(cas:TotalBalance, $FoarmatOfFloat, 'pl')"/>
+      </td>
+    </tr>
+  </xsl:template>
+  <xsl:template match="cas:IPRList">
+    <xsl:apply-templates select="cas:IPRRow" />
+    <tr>
+      <td colspan="3">
+        SUMA CZĘŚCIOWA
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:SubtotalIPRBook, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:SubtotalSHWasteOveruseCSNotStarted, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:SubtotalDustCSNotStarted, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:SubtotalTobaccoAvailable, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:SubtotalTobaccoInWarehouse, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:SubtotalTobaccoInCigarettesWarehouse, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:SubtotalTobaccoInCigarettesProduction, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:SubtotalTobaccoInCutfillerWarehouse, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:SubtotalBalance, $FoarmatOfFloat, 'pl')"/>
       </td>
     </tr>
   </xsl:template>
@@ -312,7 +344,7 @@
         &#160;
       </td>
       <td align="center">
-        [TOTAL AMOUNT]
+        <xsl:value-of select="format-number(cas:TotalAmount, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
         &#160;
@@ -337,13 +369,13 @@
         <xsl:value-of select="cas:CompensationGood"/>
       </td>
       <td align="center">
-        [PROCEDURE]
+        <xsl:value-of select="cas:Procedure"/>
       </td>
       <td align="center">
-        [QUANTITY]
+        <xsl:value-of select="format-number(cas:Quantity, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td align="center">
-        [BALANCE]
+        <xsl:value-of select="format-number(cas:Balance, $FoarmatOfFloat, 'pl')"/>
       </td>
     </tr>
   </xsl:template>
