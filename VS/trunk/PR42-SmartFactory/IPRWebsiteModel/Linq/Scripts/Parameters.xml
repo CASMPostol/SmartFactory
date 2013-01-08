@@ -511,6 +511,7 @@
     <Column Name="CustomsProcedure" Member="CustomsProcedure" />
     <Column Name="InvoiceNo" Member="InvoiceNo" />
     <Column Name="OGLIntroduction" Member="OGLIntroduction" />
+    <Column Name="Balance" Member="Balance" />
     <Column Name="BalanceBatchIndex" Member="BalanceBatchIndex" />
     <Column Name="BalanceIPR2JSOXIndex" Member="BalanceIPR2JSOXIndex" />
     <Column Name="IPRIndex" Member="IPRIndex" />
@@ -525,6 +526,8 @@
     <Column Name="IntroducingSADDate" Member="IntroducingSADDate" />
     <Column Name="CompensationGood" Member="CompensationGood" />
     <Column Name="TotalAmount" Member="TotalAmount" />
+    <Column Name="RemainingQuantity" Member="RemainingQuantity" />
+    <Column Name="CustomsProcedure" Member="CustomsProcedure" />
     <Column Name="JSOXCustomsSummary2JSOXIndex" Member="JSOXCustomsSummary2JSOXIndex" />
   </ContentType>
   <ContentType Name="SADRequiredDocuments" Class="SADRequiredDocuments">
