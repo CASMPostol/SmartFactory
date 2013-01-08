@@ -127,12 +127,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           this.No = 1;
         else
           this.No = _lastOne.Max<Disposal>( dspsl => dspsl.No.Value ) + 1;
-        AssignSADGood( edc, sadGood );
         decimal _balance = CalculateRemainingQuantity();
         if ( _balance == 0 )
           this.ClearingType = Linq.ClearingType.TotalWindingUp;
         else
           this.ClearingType = Linq.ClearingType.PartialWindingUp;
+        AssignSADGood( edc, sadGood );
         this.CustomsStatus = Linq.CustomsStatus.Finished;
       }
       catch ( Exception _ex )
@@ -255,10 +255,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.CustomsProcedure = sadGood.Procedure;
       if ( this.JSOXCustomsSummaryIndex == null )
         return;
-      JSOXCustomsSummaryIndex.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
-      JSOXCustomsSummaryIndex.ExportOrFreeCirculationSAD = sadGood.SADDocumentIndex.DocumentNumber;
+      this.JSOXCustomsSummaryIndex.SADDate = sadGood.SADDocumentIndex.CustomsDebtDate;
+      this.JSOXCustomsSummaryIndex.ExportOrFreeCirculationSAD = sadGood.SADDocumentIndex.DocumentNumber;
       this.JSOXCustomsSummaryIndex.CompensationGood = this.Disposal2PCNID.CompensationGood;
-      //TODO Update JSOXCustomsSummary after SAD import; Remaining =  .....
+      this.JSOXCustomsSummaryIndex.RemainingQuantity = this.RemainingQuantity;
     }
     private double GetDutyNotCleared()
     {

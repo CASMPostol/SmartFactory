@@ -31,7 +31,9 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           IntroducingSADNo = _dspx.Disposal2IPRIndex.DocumentNo,
           SADDate = _dspx.SADDate,
           TotalAmount = _dspx.SettledQuantity,
-          Title = "Creating"
+          Title = "Creating",
+          CustomsProcedure = _dspx.CustomsProcedure,
+          RemainingQuantity = _dspx.RemainingQuantity
         };
         _ret += _dspx.SettledQuantityDec;
         _dspx.JSOXCustomsSummaryIndex = _newItem;
