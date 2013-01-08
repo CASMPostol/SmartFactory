@@ -20,6 +20,7 @@
       <FieldRef ID="{041AB995-3657-426F-AB3B-882866EF65A0}" Name="SituationDate" />
       <FieldRef ID="{526127DD-E68E-4FE1-B7A9-04081028CC0A}" Name="SituationQuantity" />
       <FieldRef ID="{A1ABFEB1-BA15-4EB6-B18E-2E701FA8B843}" Name="ReassumeQuantity" />
+      <FieldRef ID="{C7181A4C-C658-4CBF-8D08-FF46F8BE092B}" Name="JSOXLibraryReadOnly" />
     </FieldRefs>
   </ContentType>
 </Elements>
