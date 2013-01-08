@@ -33,7 +33,7 @@
   </xs:complexType>
   <xs:complexType name="ArrayOfIPRRow">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPRRow" type="tns:IPRRow" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IPRRow" nillable="true" type="tns:IPRRow" />
       <xs:element minOccurs="1" maxOccurs="1" name="SubtotalIPRBook" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="SubtotalSHWasteOveruseCSNotStarted" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="SubtotalDustCSNotStarted" type="xs:double" />
@@ -79,10 +79,16 @@
       <xs:element minOccurs="1" maxOccurs="1" name="ReassumeQuantity" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="ArrayOfDisposalRow">
+  <xs:complexType name="ArrayOfDisposalList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalRow" type="tns:ArrayOfDisposalRows" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDisposalRows">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalRow" type="tns:DisposalRow" />
-      <xs:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SubtotalQuantity" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="DisposalRow">
