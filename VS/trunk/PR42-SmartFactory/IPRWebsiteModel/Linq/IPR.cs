@@ -223,7 +223,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         get { return Convert.ToDouble( base[ index ] ); }
       }
-
       internal Balance( IPR record )
       {
         foreach ( ValueKey _vkx in Enum.GetValues( typeof( ValueKey ) ) )
@@ -300,7 +299,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         }
         #endregion
         base[ ValueKey.TobaccoEnteredIntoIPR ] = record.NetMassDec;
-        base[ ValueKey.IPRBook ] = record.NetMassDec;
+        base[ ValueKey.IPRBook ] = IPRBook;
+        base[ ValueKey.SHWasteOveruseCSNotStarted ] = SHWasteOveruseCSNotStarted;
+        base[ ValueKey.TobaccoAvailable ] = TobaccoAvailable;
+        base[ ValueKey.TobaccoUsedInTheProduction ] = TobaccoUsedInTheProduction;
+        base[ ValueKey.TobaccoToBeUsedInTheProduction ] = base[ ValueKey.TobaccoEnteredIntoIPR ] - base[ ValueKey.TobaccoUsedInTheProduction ];
       }
       private decimal IPRBook
       {
@@ -315,6 +318,38 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             base[ ValueKey.SHMentholCSStarted ] -
             base[ ValueKey.OveruseCSStarted ] -
             base[ ValueKey.PureTobaccoCSStarted ];
+        }
+      }
+      private decimal SHWasteOveruseCSNotStarted
+      {
+        get
+        {
+          return
+            base[ ValueKey.WasteCSNotStarted ] +
+            base[ ValueKey.SHMentholCSNotStarted ] +
+            base[ ValueKey.OveruseCSNotStarted ] +
+            base[ ValueKey.PureTobaccoCSNotStarted ];
+        }
+      }
+      public decimal TobaccoAvailable
+      {
+        get
+        {
+          return
+            base[ ValueKey.IPRBook ] -
+            base[ ValueKey.SHWasteOveruseCSNotStarted ] -
+            base[ ValueKey.DustCSNotStarted ];
+        }
+      }
+      private decimal TobaccoUsedInTheProduction
+      {
+        get
+        {
+          return
+            base[ ValueKey.TobaccoInFGCSNotStarted ] +
+            base[ ValueKey.DustCSNotStarted ] +
+            base[ ValueKey.SHWasteOveruseCSNotStarted ] +
+            base[ ValueKey.IPRBook ];
         }
       }
     }
