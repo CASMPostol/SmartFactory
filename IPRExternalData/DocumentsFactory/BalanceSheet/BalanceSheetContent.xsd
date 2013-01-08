@@ -63,7 +63,7 @@
   </xs:complexType>
   <xs:complexType name="JSOContent">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="Disposals" type="tns:ArrayOfDisposalRow" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Disposals" type="tns:ArrayOfDisposalList" />
       <xs:element minOccurs="1" maxOccurs="1" name="PreviousMonthDate" type="xs:date" />
       <xs:element minOccurs="1" maxOccurs="1" name="PreviousMonthQuantity" type="xs:double" />
       <xs:element minOccurs="1" maxOccurs="1" name="IntroducingDateStart" type="xs:date" />
@@ -81,7 +81,7 @@
   </xs:complexType>
   <xs:complexType name="ArrayOfDisposalList">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalRow" type="tns:ArrayOfDisposalRows" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalRows" type="tns:ArrayOfDisposalRows" />
       <xs:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
