@@ -326,7 +326,7 @@
       </table>
   </xsl:template>
   <xsl:template match="cas:Disposals">
-    <xsl:apply-templates select="cas:DisposalRow" />
+    <xsl:apply-templates select="cas:DisposalRows" />
     <tr>
       <td colspan="2">
         Total
@@ -345,6 +345,32 @@
       </td>
       <td align="center">
         <xsl:value-of select="format-number(cas:TotalAmount, $FoarmatOfFloat, 'pl')"/>
+      </td>
+      <td>
+        &#160;
+      </td>
+    </tr>
+  </xsl:template>
+  <xsl:template match="cas:DisposalRows">
+    <xsl:apply-templates select="cas:DisposalRow" />
+    <tr>
+      <td colspan="2">
+        Subtotal
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td>
+        &#160;
+      </td>
+      <td align="center">
+        <xsl:value-of select="format-number(cas:SubtotalQuantity, $FoarmatOfFloat, 'pl')"/>
       </td>
       <td>
         &#160;

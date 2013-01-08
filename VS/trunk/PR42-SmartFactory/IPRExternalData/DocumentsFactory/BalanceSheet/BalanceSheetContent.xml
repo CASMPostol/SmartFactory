@@ -8,6 +8,7 @@
   <IPRStock>
     <IPRStockContent>
       <IPRList>
+        <IPRRow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
         <IPRRow>
           <EntryDocumentNo>EntryDocumentNo1</EntryDocumentNo>
           <SKU>SKU1</SKU>
@@ -22,6 +23,7 @@
           <TobaccoInCutfillerWarehouse>1</TobaccoInCutfillerWarehouse>
           <Balance>1</Balance>
         </IPRRow>
+        <IPRRow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
         <SubtotalIPRBook>1</SubtotalIPRBook>
         <SubtotalSHWasteOveruseCSNotStarted>1</SubtotalSHWasteOveruseCSNotStarted>
         <SubtotalDustCSNotStarted>1</SubtotalDustCSNotStarted>
@@ -42,19 +44,197 @@
       <TotalTobaccoInCutfillerWarehouse>1</TotalTobaccoInCutfillerWarehouse>
       <TotalBalance>1</TotalBalance>
     </IPRStockContent>
+    <IPRStockContent>
+      <IPRList>
+        <IPRRow>
+          <EntryDocumentNo>EntryDocumentNo2</EntryDocumentNo>
+          <SKU>SKU2</SKU>
+          <Batch>Batch2</Batch>
+          <IPRBook>-1.7976931348623157E+308</IPRBook>
+          <SHWasteOveruseCSNotStarted>-1.7976931348623157E+308</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>-1.7976931348623157E+308</DustCSNotStarted>
+          <TobaccoAvailable>-1.7976931348623157E+308</TobaccoAvailable>
+          <TobaccoInWarehouse>-1.7976931348623157E+308</TobaccoInWarehouse>
+          <TobaccoInCigarettesWarehouse>-1.7976931348623157E+308</TobaccoInCigarettesWarehouse>
+          <TobaccoInCigarettesProduction>-1.7976931348623157E+308</TobaccoInCigarettesProduction>
+          <TobaccoInCutfillerWarehouse>-1.7976931348623157E+308</TobaccoInCutfillerWarehouse>
+          <Balance>-1.7976931348623157E+308</Balance>
+        </IPRRow>
+        <IPRRow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+        <IPRRow>
+          <EntryDocumentNo>EntryDocumentNo3</EntryDocumentNo>
+          <SKU>SKU3</SKU>
+          <Batch>Batch3</Batch>
+          <IPRBook>1.7976931348623157E+308</IPRBook>
+          <SHWasteOveruseCSNotStarted>1.7976931348623157E+308</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>1.7976931348623157E+308</DustCSNotStarted>
+          <TobaccoAvailable>1.7976931348623157E+308</TobaccoAvailable>
+          <TobaccoInWarehouse>1.7976931348623157E+308</TobaccoInWarehouse>
+          <TobaccoInCigarettesWarehouse>1.7976931348623157E+308</TobaccoInCigarettesWarehouse>
+          <TobaccoInCigarettesProduction>1.7976931348623157E+308</TobaccoInCigarettesProduction>
+          <TobaccoInCutfillerWarehouse>1.7976931348623157E+308</TobaccoInCutfillerWarehouse>
+          <Balance>1.7976931348623157E+308</Balance>
+        </IPRRow>
+        <SubtotalIPRBook>-1.7976931348623157E+308</SubtotalIPRBook>
+        <SubtotalSHWasteOveruseCSNotStarted>-1.7976931348623157E+308</SubtotalSHWasteOveruseCSNotStarted>
+        <SubtotalDustCSNotStarted>-1.7976931348623157E+308</SubtotalDustCSNotStarted>
+        <SubtotalTobaccoAvailable>-1.7976931348623157E+308</SubtotalTobaccoAvailable>
+        <SubtotalTobaccoInWarehouse>-1.7976931348623157E+308</SubtotalTobaccoInWarehouse>
+        <SubtotalTobaccoInCigarettesWarehouse>-1.7976931348623157E+308</SubtotalTobaccoInCigarettesWarehouse>
+        <SubtotalTobaccoInCigarettesProduction>-1.7976931348623157E+308</SubtotalTobaccoInCigarettesProduction>
+        <SubtotalTobaccoInCutfillerWarehouse>-1.7976931348623157E+308</SubtotalTobaccoInCutfillerWarehouse>
+        <SubtotalBalance>-1.7976931348623157E+308</SubtotalBalance>
+      </IPRList>
+      <TotalIPRBook>-1.7976931348623157E+308</TotalIPRBook>
+      <TotalSHWasteOveruseCSNotStarted>-1.7976931348623157E+308</TotalSHWasteOveruseCSNotStarted>
+      <TotalDustCSNotStarted>-1.7976931348623157E+308</TotalDustCSNotStarted>
+      <TotalTobaccoAvailable>-1.7976931348623157E+308</TotalTobaccoAvailable>
+      <TotalTobaccoInWarehouse>-1.7976931348623157E+308</TotalTobaccoInWarehouse>
+      <TotalTobaccoInCigarettesWarehouse>-1.7976931348623157E+308</TotalTobaccoInCigarettesWarehouse>
+      <TotalTobaccoInCigarettesProduction>-1.7976931348623157E+308</TotalTobaccoInCigarettesProduction>
+      <TotalTobaccoInCutfillerWarehouse>-1.7976931348623157E+308</TotalTobaccoInCutfillerWarehouse>
+      <TotalBalance>-1.7976931348623157E+308</TotalBalance>
+    </IPRStockContent>
+    <IPRStockContent>
+      <IPRList>
+        <IPRRow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+        <IPRRow>
+          <EntryDocumentNo>EntryDocumentNo4</EntryDocumentNo>
+          <SKU>SKU4</SKU>
+          <Batch>Batch4</Batch>
+          <IPRBook>-0.10000002384185791</IPRBook>
+          <SHWasteOveruseCSNotStarted>-0.10000002384185791</SHWasteOveruseCSNotStarted>
+          <DustCSNotStarted>-0.10000002384185791</DustCSNotStarted>
+          <TobaccoAvailable>-0.10000002384185791</TobaccoAvailable>
+          <TobaccoInWarehouse>-0.10000002384185791</TobaccoInWarehouse>
+          <TobaccoInCigarettesWarehouse>-0.10000002384185791</TobaccoInCigarettesWarehouse>
+          <TobaccoInCigarettesProduction>-0.10000002384185791</TobaccoInCigarettesProduction>
+          <TobaccoInCutfillerWarehouse>-0.10000002384185791</TobaccoInCutfillerWarehouse>
+          <Balance>-0.10000002384185791</Balance>
+        </IPRRow>
+        <IPRRow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+        <SubtotalIPRBook>1.7976931348623157E+308</SubtotalIPRBook>
+        <SubtotalSHWasteOveruseCSNotStarted>1.7976931348623157E+308</SubtotalSHWasteOveruseCSNotStarted>
+        <SubtotalDustCSNotStarted>1.7976931348623157E+308</SubtotalDustCSNotStarted>
+        <SubtotalTobaccoAvailable>1.7976931348623157E+308</SubtotalTobaccoAvailable>
+        <SubtotalTobaccoInWarehouse>1.7976931348623157E+308</SubtotalTobaccoInWarehouse>
+        <SubtotalTobaccoInCigarettesWarehouse>1.7976931348623157E+308</SubtotalTobaccoInCigarettesWarehouse>
+        <SubtotalTobaccoInCigarettesProduction>1.7976931348623157E+308</SubtotalTobaccoInCigarettesProduction>
+        <SubtotalTobaccoInCutfillerWarehouse>1.7976931348623157E+308</SubtotalTobaccoInCutfillerWarehouse>
+        <SubtotalBalance>1.7976931348623157E+308</SubtotalBalance>
+      </IPRList>
+      <TotalIPRBook>1.7976931348623157E+308</TotalIPRBook>
+      <TotalSHWasteOveruseCSNotStarted>1.7976931348623157E+308</TotalSHWasteOveruseCSNotStarted>
+      <TotalDustCSNotStarted>1.7976931348623157E+308</TotalDustCSNotStarted>
+      <TotalTobaccoAvailable>1.7976931348623157E+308</TotalTobaccoAvailable>
+      <TotalTobaccoInWarehouse>1.7976931348623157E+308</TotalTobaccoInWarehouse>
+      <TotalTobaccoInCigarettesWarehouse>1.7976931348623157E+308</TotalTobaccoInCigarettesWarehouse>
+      <TotalTobaccoInCigarettesProduction>1.7976931348623157E+308</TotalTobaccoInCigarettesProduction>
+      <TotalTobaccoInCutfillerWarehouse>1.7976931348623157E+308</TotalTobaccoInCutfillerWarehouse>
+      <TotalBalance>1.7976931348623157E+308</TotalBalance>
+    </IPRStockContent>
   </IPRStock>
   <JSOX>
     <Disposals>
-      <DisposalRow>
-        <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD1</ExportOrFreeCirculationSAD>
-        <EntryDocumentNo>EntryDocumentNo1</EntryDocumentNo>
-        <SADDate>1900-01-01</SADDate>
-        <InvoiceNo>InvoiceNo1</InvoiceNo>
-        <CompensationGood>CompensationGood1</CompensationGood>
-        <Procedure>Procedure1</Procedure>
-        <Quantity>1</Quantity>
-        <Balance>1</Balance>
-      </DisposalRow>
+      <DisposalRows>
+        <DisposalRow>
+          <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD1</ExportOrFreeCirculationSAD>
+          <EntryDocumentNo>EntryDocumentNo1</EntryDocumentNo>
+          <SADDate>1900-01-01</SADDate>
+          <InvoiceNo>InvoiceNo1</InvoiceNo>
+          <CompensationGood>CompensationGood1</CompensationGood>
+          <Procedure>Procedure1</Procedure>
+          <Quantity>1</Quantity>
+          <Balance>1</Balance>
+        </DisposalRow>
+        <DisposalRow>
+          <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD2</ExportOrFreeCirculationSAD>
+          <EntryDocumentNo>EntryDocumentNo2</EntryDocumentNo>
+          <SADDate>0001-01-01</SADDate>
+          <InvoiceNo>InvoiceNo2</InvoiceNo>
+          <CompensationGood>CompensationGood2</CompensationGood>
+          <Procedure>Procedure2</Procedure>
+          <Quantity>-1.7976931348623157E+308</Quantity>
+          <Balance>-1.7976931348623157E+308</Balance>
+        </DisposalRow>
+        <DisposalRow>
+          <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD3</ExportOrFreeCirculationSAD>
+          <EntryDocumentNo>EntryDocumentNo3</EntryDocumentNo>
+          <SADDate>9999-12-31</SADDate>
+          <InvoiceNo>InvoiceNo3</InvoiceNo>
+          <CompensationGood>CompensationGood3</CompensationGood>
+          <Procedure>Procedure3</Procedure>
+          <Quantity>1.7976931348623157E+308</Quantity>
+          <Balance>1.7976931348623157E+308</Balance>
+        </DisposalRow>
+        <SubtotalQuantity>1</SubtotalQuantity>
+      </DisposalRows>
+      <DisposalRows>
+        <DisposalRow>
+          <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD4</ExportOrFreeCirculationSAD>
+          <EntryDocumentNo>EntryDocumentNo4</EntryDocumentNo>
+          <SADDate>1899-11-30</SADDate>
+          <InvoiceNo>InvoiceNo4</InvoiceNo>
+          <CompensationGood>CompensationGood4</CompensationGood>
+          <Procedure>Procedure4</Procedure>
+          <Quantity>-0.10000002384185791</Quantity>
+          <Balance>-0.10000002384185791</Balance>
+        </DisposalRow>
+        <DisposalRow>
+          <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD5</ExportOrFreeCirculationSAD>
+          <EntryDocumentNo>EntryDocumentNo5</EntryDocumentNo>
+          <SADDate>1900-02-02</SADDate>
+          <InvoiceNo>InvoiceNo5</InvoiceNo>
+          <CompensationGood>CompensationGood5</CompensationGood>
+          <Procedure>Procedure5</Procedure>
+          <Quantity>2.1000000238418579</Quantity>
+          <Balance>2.1000000238418579</Balance>
+        </DisposalRow>
+        <DisposalRow>
+          <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD6</ExportOrFreeCirculationSAD>
+          <EntryDocumentNo>EntryDocumentNo6</EntryDocumentNo>
+          <SADDate>0001-02-02</SADDate>
+          <InvoiceNo>InvoiceNo6</InvoiceNo>
+          <CompensationGood>CompensationGood6</CompensationGood>
+          <Procedure>Procedure6</Procedure>
+          <Quantity>-1.7976931348623157E+308</Quantity>
+          <Balance>-1.7976931348623157E+308</Balance>
+        </DisposalRow>
+        <SubtotalQuantity>-1.7976931348623157E+308</SubtotalQuantity>
+      </DisposalRows>
+      <DisposalRows>
+        <DisposalRow>
+          <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD7</ExportOrFreeCirculationSAD>
+          <EntryDocumentNo>EntryDocumentNo7</EntryDocumentNo>
+          <SADDate>9999-11-29</SADDate>
+          <InvoiceNo>InvoiceNo7</InvoiceNo>
+          <CompensationGood>CompensationGood7</CompensationGood>
+          <Procedure>Procedure7</Procedure>
+          <Quantity>1.7976931348623157E+308</Quantity>
+          <Balance>1.7976931348623157E+308</Balance>
+        </DisposalRow>
+        <DisposalRow>
+          <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD8</ExportOrFreeCirculationSAD>
+          <EntryDocumentNo>EntryDocumentNo8</EntryDocumentNo>
+          <SADDate>1899-10-29</SADDate>
+          <InvoiceNo>InvoiceNo8</InvoiceNo>
+          <CompensationGood>CompensationGood8</CompensationGood>
+          <Procedure>Procedure8</Procedure>
+          <Quantity>-1.2000000476837158</Quantity>
+          <Balance>-1.2000000476837158</Balance>
+        </DisposalRow>
+        <DisposalRow>
+          <ExportOrFreeCirculationSAD>ExportOrFreeCirculationSAD9</ExportOrFreeCirculationSAD>
+          <EntryDocumentNo>EntryDocumentNo9</EntryDocumentNo>
+          <SADDate>1900-03-06</SADDate>
+          <InvoiceNo>InvoiceNo9</InvoiceNo>
+          <CompensationGood>CompensationGood9</CompensationGood>
+          <Procedure>Procedure9</Procedure>
+          <Quantity>3.2000000476837158</Quantity>
+          <Balance>3.2000000476837158</Balance>
+        </DisposalRow>
+        <SubtotalQuantity>1.7976931348623157E+308</SubtotalQuantity>
+      </DisposalRows>
       <TotalAmount>1</TotalAmount>
     </Disposals>
     <PreviousMonthDate>1900-01-01</PreviousMonthDate>
