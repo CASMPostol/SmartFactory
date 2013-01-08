@@ -85,8 +85,8 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
           InvoiceNo = _jx.InvoiceNo,
           SADDate = _jx.SADDate.GetValueOrDefault(),
           Quantity = _jx.TotalAmount.GetValueOrDefault(),
-          Balance = -1, //TODO remaining quantity
-          Procedure = "TBD"
+          Balance = _jx.RemainingQuantity.GetValueOrDefault(),
+          Procedure = _jx.CustomsProcedure
         };
         _ret.Add( _new );
         _total += Convert.ToDecimal( _new.Quantity );
@@ -124,7 +124,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       {
         IPRRow _new = new IPRRow()
         {
-          Balance = -1, //TODO
+          Balance = _item.Balance.GetValueOrDefault(),
           Batch = _item.Batch,
           DustCSNotStarted = _item.DustCSNotStarted.GetValueOrDefault(),
           EntryDocumentNo = _item.DocumentNo,
