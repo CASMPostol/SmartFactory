@@ -39,7 +39,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       IPR2PCNPCN = iprdata.PCNTariffCode;
       IPRUnitPrice = iprdata.UnitPrice;
       IPRVATPerUnit = iprdata.VATPerUnit;
-      this.IPR2JSOXIndex= null;
+      this.IPR2JSOXIndex = null;
       NetMass = iprdata.NetMass;
       OGLValidTo = iprdata.ValidToDate;
       ProductivityRateMax = iprdata.ConsentLookup.ProductivityRateMax;
@@ -193,6 +193,131 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region internal
+    internal class Balance: Dictionary<IPR.Balance.ValueKey, decimal>
+    {
+      internal enum ValueKey
+      {
+        DustCSNotStarted,
+        DustCSStarted,
+        OveruseCSNotStarted,
+        OveruseCSStarted,
+        PureTobaccoCSNotStarted,
+        PureTobaccoCSStarted,
+        SHMentholCSNotStarted,
+        SHMentholCSStarted,
+        TobaccoCSFinished,
+        TobaccoInFGCSNotStarted,
+        TobaccoInFGCSStarted,
+        WasteCSNotStarted,
+        WasteCSStarted,
+
+        //calculated
+        IPRBook,
+        SHWasteOveruseCSNotStarted,
+        TobaccoAvailable,
+        TobaccoEnteredIntoIPR,
+        TobaccoToBeUsedInTheProduction,
+        TobaccoUsedInTheProduction
+      }
+      internal new double this[ ValueKey index ]
+      {
+        get { return Convert.ToDouble( base[ index ] ); }
+      }
+
+      internal Balance( IPR record )
+      {
+        foreach ( ValueKey _vkx in Enum.GetValues( typeof( ValueKey ) ) )
+          base[ _vkx ] = 0;
+        #region totals
+        foreach ( Disposal _dspx in record.Disposal )
+        {
+          switch ( _dspx.CustomsStatus.Value )
+          {
+            case CustomsStatus.NotStarted:
+              switch ( _dspx.DisposalStatus.Value )
+              {
+                case DisposalStatus.Dust:
+                  base[ ValueKey.DustCSNotStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.SHMenthol:
+                  base[ ValueKey.SHMentholCSNotStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.Waste:
+                  base[ ValueKey.WasteCSNotStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.Overuse:
+                  base[ ValueKey.OveruseCSNotStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.Tobacco:
+                  base[ ValueKey.PureTobaccoCSNotStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.TobaccoInCigaretes:
+                  base[ ValueKey.TobaccoInFGCSNotStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.Cartons:
+                case DisposalStatus.TobaccoInCigaretesDestinationEU:
+                case DisposalStatus.TobaccoInCigaretesProduction:
+                case DisposalStatus.TobaccoInCutfiller:
+                case DisposalStatus.TobaccoInCutfillerDestinationEU:
+                case DisposalStatus.TobaccoInCutfillerProduction:
+                  break;
+              }
+              break;
+            case CustomsStatus.Started:
+              switch ( _dspx.DisposalStatus.Value )
+              {
+                case DisposalStatus.Dust:
+                  base[ ValueKey.DustCSStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.SHMenthol:
+                  base[ ValueKey.SHMentholCSStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.Waste:
+                  base[ ValueKey.WasteCSStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.Overuse:
+                  base[ ValueKey.OveruseCSStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.Tobacco:
+                  base[ ValueKey.PureTobaccoCSStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.TobaccoInCigaretes:
+                  base[ ValueKey.TobaccoInFGCSStarted ] += _dspx.SettledQuantityDec;
+                  break;
+                case DisposalStatus.Cartons:
+                case DisposalStatus.TobaccoInCigaretesDestinationEU:
+                case DisposalStatus.TobaccoInCigaretesProduction:
+                case DisposalStatus.TobaccoInCutfiller:
+                case DisposalStatus.TobaccoInCutfillerDestinationEU:
+                case DisposalStatus.TobaccoInCutfillerProduction:
+                  break;
+              }
+              break;
+            case CustomsStatus.Finished:
+              base[ ValueKey.TobaccoCSFinished ] += _dspx.SettledQuantityDec;
+              break;
+          }
+        }
+        #endregion
+        base[ ValueKey.TobaccoEnteredIntoIPR ] = record.NetMassDec;
+        base[ ValueKey.IPRBook ] = record.NetMassDec;
+      }
+      private decimal IPRBook
+      {
+        get
+        {
+          return
+            base[ ValueKey.TobaccoEnteredIntoIPR ] -
+            base[ ValueKey.TobaccoCSFinished ] -
+            base[ ValueKey.TobaccoInFGCSStarted ] -
+            base[ ValueKey.DustCSStarted ] -
+            base[ ValueKey.WasteCSStarted ] -
+            base[ ValueKey.SHMentholCSStarted ] -
+            base[ ValueKey.OveruseCSStarted ] -
+            base[ ValueKey.PureTobaccoCSStarted ];
+        }
+      }
+    }
     internal void AddDisposal( Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material, InvoiceContent invoiceContent )
     {
       Disposal _dsp = AddDisposal( edc, _kind, ref _toDispose );
