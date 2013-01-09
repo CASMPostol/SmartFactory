@@ -5,38 +5,41 @@ using System.Text;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
-  public partial class BalanceIPR
+  partial class BalanceBatch
   {
-    internal IPR.Balance Update()
+    internal void Update( IGrouping<string, IPR> grouping )
     {
-      if ( this.IPRIndex == null )
-        throw new ArgumentNullException( "IPRIndex", "IPRIndex for Balance IPR cannot be null" );
-      IPR.Balance _ret = new IPR.Balance( this.IPRIndex );
-      Update( _ret );
-      return _ret;
-    }
-    public static IPR.Balance CreateBalanceIPR( Entities edc, IPR _iprAccount, BalanceBatch parent, JSOXLib masterReport )
-    {
-      IPR.Balance _balnce = new IPR.Balance( _iprAccount );
-      BalanceIPR _newItem = new BalanceIPR()
+      Dictionary<string, IPR> _iprList = grouping.ToDictionary( x => x.DocumentNo );
+      List<string> _processed = new List<string>();
+      foreach ( BalanceIPR _blncx in this.BalanceIPR )
       {
-        Balance = -1,
-        BalanceBatchIndex = parent,
-        BalanceIPR2JSOXIndex = masterReport,
-        Batch = _iprAccount.Batch,
-        CustomsProcedure = _iprAccount.ClearenceIndex.ClearenceProcedure.ToString(),
-        DocumentNo = _iprAccount.DocumentNo,
-        InvoiceNo = _iprAccount.InvoiceNo,
-        IPRIndex = _iprAccount,
-        OGLIntroduction = _iprAccount.DocumentNo,
-        SKU = _iprAccount.SKU,
-        Title = "Creating",
-      };
-      edc.BalanceIPR.InsertOnSubmit( _newItem );
-      _newItem.Update( _balnce );
-      return _balnce;
+        if ( _iprList.ContainsKey( _blncx.DocumentNo ) )
+        {
+          IPR.Balance _blnc = _blncx.Update();
+          _processed.Add( _blncx.DocumentNo );
+        }
+        else
+          ;
+      }
     }
-    private void Update( IPR.Balance _balnce )
+    internal static void Create( Entities edc, IGrouping<string, IPR> _grpx, JSOXLib parent )
+    {
+      List<IPR.Balance> _blnces = new List<IPR.Balance>();
+      BalanceBatch _newBB = new BalanceBatch()
+      {
+        Balance2JSOXLibraryIndex = parent,
+        Batch = _grpx.Key,
+        Title = "creating",
+      };
+      IPR.BalanceTotals _totals = new IPR.BalanceTotals();
+      foreach ( IPR _iprx in _grpx )
+      {
+        IPR.Balance _newBipr = Linq.BalanceIPR.CreateBalanceIPR( edc, _iprx, _newBB, parent );
+        _totals.Sum( _newBipr );
+      }
+      _newBB.Update( _totals );
+    }
+    private void Update( IPR.BalanceTotals _balnce )
     {
       DustCSNotStarted = _balnce[ IPR.ValueKey.DustCSNotStarted ];
       DustCSStarted = _balnce[ IPR.ValueKey.DustCSStarted ];
