@@ -196,7 +196,7 @@
     <value>CFT usage (max) [kg]</value>
   </data>
 	<data name="CAS_CFTUsageMin" xml:space="preserve">
-    <value>CFT usage (min)</value>
+    <value>CFT usage (min) [kg]</value>
   </data>
 	<data name="CAS_CigaretteLenght" xml:space="preserve">
     <value>Cigarette lenght</value>
@@ -717,7 +717,7 @@
 	<data name="CAS_FGBatch" xml:space="preserve">
     <value>FG batch</value>
   </data>
-	<data name="CAS_CFTUSageMin" xml:space="preserve">
+	<data name="CAS_CFTUsageMin" xml:space="preserve">
 		<value>CFT usage (min) [kg]</value>
 	</data>
 </root>
