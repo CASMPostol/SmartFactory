@@ -124,7 +124,7 @@
     <value>Account closed</value>
   </data>
 	<data name="CAS_Amount" xml:space="preserve">
-    <value>Amount [kg]</value>
+    <value>Amount [KU/kg]</value>
   </data>
 	<data name="CAS_Balance" xml:space="preserve">
     <value>Balance</value>
@@ -232,7 +232,7 @@
     <value>Consent period</value>
   </data>
 	<data name="CAS_CreationDate" xml:space="preserve">
-    <value>Creation date</value>
+    <value>Document date</value>
   </data>
 	<data name="CAS_CSStarted" xml:space="preserve">
     <value>Dust (CS - started) [kg]</value>
@@ -256,7 +256,7 @@
     <value>Disposal status</value>
   </data>
 	<data name="CAS_DocumentNo" xml:space="preserve">
-    <value>Document No.</value>
+    <value>Introduction OGL No.</value>
   </data>
 	<data name="CAS_Dust" xml:space="preserve">
     <value>Dust [kg]</value>
@@ -271,13 +271,13 @@
     <value>Dust (CS - not started) [kg]</value>
   </data>
 	<data name="CAS_DustRatio" xml:space="preserve">
-    <value>Dust ratio [kg]</value>
+    <value>Dust ratio</value>
   </data>
 	<data name="CAS_Duty" xml:space="preserve">
     <value>Duty [PLN]</value>
   </data>
 	<data name="CAS_DutyName" xml:space="preserve">
-    <value>Duty name [PLN]</value>
+    <value>Duty [PLN]</value>
   </data>
 	<data name="CAS_DutyPerAmount" xml:space="preserve">
     <value>Duty per settled amount [PLN]</value>
@@ -340,7 +340,7 @@
     <value>Gross mass [kg]</value>
   </data>
 	<data name="CAS_InQualityInsp" xml:space="preserve">
-    <value>In quality insp. [KU/kg]</value>
+    <value>In quality insp.</value>
   </data>
 	<data name="CAS_IntroDateEnd" xml:space="preserve">
     <value>Introducing date end</value>
@@ -457,7 +457,7 @@
     <value>Package</value>
   </data>
 	<data name="CAS_PCN" xml:space="preserve">
-    <value>Product Code Number</value>
+    <value>PCN</value>
   </data>
 	<data name="CAS_PCNCodeLink" xml:space="preserve">
     <value>PCN Code lookup</value>
@@ -559,7 +559,7 @@
     <value>SH Menthol (CS - started) [kg]</value>
   </data>
 	<data name="CAS_SHMentholRatio" xml:space="preserve">
-    <value>SH Menthol Ratio [%]</value>
+    <value>SH Menthol Ratio</value>
   </data>
 	<data name="CAS_SHWasteOveruseCSNotStarted" xml:space="preserve">
     <value>SH, Waste, Overuse (CS - not started) [kg]</value>
@@ -703,7 +703,7 @@
     <value>Waste (CS - started) [kg]</value>
   </data>
 	<data name="CAS_WasteRatio" xml:space="preserve">
-    <value>Waste ratio [%]</value>
+    <value>Waste ratio</value>
   </data>
 	<data name="CAS_WasteCoefficient" xml:space="preserve">
     <value>Waste ratio [%]</value>

@@ -124,7 +124,7 @@
     <value>Konto zamknięte</value>
   </data>
 	<data name="CAS_Amount" xml:space="preserve">
-    <value>Ilość [kg]</value>
+    <value>Ilość [KU/kg]</value>
   </data>
 	<data name="CAS_Balance" xml:space="preserve">
     <value>Bilans</value>
@@ -220,19 +220,19 @@
     <value>Towar kompensacyjny</value>
   </data>
 	<data name="CAS_ConsentDate" xml:space="preserve">
-    <value>Data zezwolenia</value>
+    <value>Data dok. zezwolenia</value>
   </data>
 	<data name="CAS_ConsentLink" xml:space="preserve">
     <value>Zezwolenie</value>
   </data>
 	<data name="CAS_ConsentNo" xml:space="preserve">
-    <value>Nr. Zezwolenia</value>
+    <value>Zezwolenie nr</value>
   </data>
 	<data name="CAS_ConsentPeriod" xml:space="preserve">
     <value>Okres ważności zezwolenia</value>
   </data>
 	<data name="CAS_CreationDate" xml:space="preserve">
-    <value>Data utworzenia</value>
+    <value>Data dokumentu</value>
   </data>
 	<data name="CAS_CSStarted" xml:space="preserve">
     <value>Pyły w trakcie doprawy [kg]</value>
@@ -256,7 +256,7 @@
     <value>Status dyspozycji</value>
   </data>
 	<data name="CAS_DocumentNo" xml:space="preserve">
-    <value>Dokument nr</value>
+    <value>OGL wprowadzenia</value>
   </data>
 	<data name="CAS_Dust" xml:space="preserve">
     <value>Pył [kg]</value>
@@ -271,13 +271,13 @@
     <value>Pyły (CS - not started) [kg]</value>
   </data>
 	<data name="CAS_DustRatio" xml:space="preserve">
-    <value>Wskaźnik pyłu [kg]</value>
+    <value>Wskaźnik pyłu</value>
   </data>
 	<data name="CAS_Duty" xml:space="preserve">
     <value>Cło [PLN]</value>
   </data>
 	<data name="CAS_DutyName" xml:space="preserve">
-    <value>Nazwa cła [PLN]</value>
+    <value>Cło [PLN]</value>
   </data>
 	<data name="CAS_DutyPerAmount" xml:space="preserve">
     <value>Cło na j.m. [PLN]</value>
@@ -313,7 +313,7 @@
     <value>Ilość PG [KU/kg]</value>
   </data>
 	<data name="CAS_FGQAvailable" xml:space="preserve">
-    <value>Ilość towaru gotowego [KU/kg]</value>
+    <value>Ilość PG (dostępna) [KU/kg]</value>
   </data>
 	<data name="CAS_FGQBlocked" xml:space="preserve">
     <value>Ilość PG (zablokowana) [KU/kg]</value>
@@ -340,7 +340,7 @@
     <value>Masa brutto [kg]</value>
   </data>
 	<data name="CAS_InQualityInsp" xml:space="preserve">
-    <value>Badanie jakości [KU/kg]</value>
+    <value>Badanie jakości</value>
   </data>
 	<data name="CAS_IntroDateEnd" xml:space="preserve">
     <value>Wprowadzenia - koniec</value>
@@ -457,7 +457,7 @@
     <value>Rodzaj opakowania</value>
   </data>
 	<data name="CAS_PCN" xml:space="preserve">
-    <value>Numer kod produktu</value>
+    <value>Kod PCN</value>
   </data>
 	<data name="CAS_PCNCodeLink" xml:space="preserve">
     <value>Kod PCN</value>
@@ -526,13 +526,13 @@
     <value>Data SAD</value>
   </data>
 	<data name="CAS_SADDocumentLibLink" xml:space="preserve">
-    <value>Bioblioteka dokumentów SAD</value>
+    <value>Bioblioteka dok. SAD</value>
   </data>
 	<data name="CAS_SADDocumentLink" xml:space="preserve">
     <value>Dokument SAD</value>
   </data>
 	<data name="CAS_SADDocumentNo" xml:space="preserve">
-    <value>Nr Dokumentu SAD</value>
+    <value>SAD wyprowadzenia nr</value>
   </data>
 	<data name="CAS_SADDocumentRefNo" xml:space="preserve">
     <value>Nr referencyjny</value>
@@ -559,7 +559,7 @@
     <value>SH Menthol w trakcie odprawy [kg]</value>
   </data>
 	<data name="CAS_SHMentholRatio" xml:space="preserve">
-    <value>Wskaźnik SH Menthol [%]</value>
+    <value>Wskaźnik SH Menthol</value>
   </data>
 	<data name="CAS_SHWasteOveruseCSNotStarted" xml:space="preserve">
     <value>SH, odpady, przepał (CS - not started) [kg]</value>
@@ -664,13 +664,13 @@
     <value>Zużynie (min) [kg]</value>
   </data>
 	<data name="CAS_UsageVer" xml:space="preserve">
-    <value>Zużycie wer.</value>
+    <value>Zużycie (wer.)</value>
   </data>
 	<data name="CAS_ValidFromDate" xml:space="preserve">
-    <value>Ważny od dnia</value>
+    <value>Dok. ważny od dnia</value>
   </data>
 	<data name="CAS_ValidToDAte" xml:space="preserve">
-    <value>Ważny do dnia</value>
+    <value>Dok. ważny do dnia</value>
   </data>
 	<data name="CAS_Value" xml:space="preserve">
     <value>Wartość</value>
@@ -703,7 +703,7 @@
     <value>Odpad w trakcie odprawy [kg]</value>
   </data>
 	<data name="CAS_WasteRatio" xml:space="preserve">
-    <value>Wskaźnik odpadów [%]</value>
+    <value>Wskaźnik odpadów</value>
   </data>
 	<data name="CAS_InvoiceNo" xml:space="preserve">
     <value>Faktura nr</value>

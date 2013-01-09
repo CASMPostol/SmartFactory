@@ -187,7 +187,7 @@
     <value>Edit</value>
   </data>
 	<data name="CAS_ASPX_EditInvoiceQuantity" xml:space="preserve">
-    <value>Edit invoice / quantity</value>
+    <value>Edit</value>
   </data>
 	<data name="CAS_ASPX_EditBatch" xml:space="preserve">
     <value>Edit batch</value>
@@ -199,7 +199,7 @@
     <value>Export</value>
   </data>
 	<data name="CAS_ASPX_ExportProcedure" xml:space="preserve">
-    <value>Export procedure</value>
+    <value>Procedure</value>
   </data>
 	<data name="CAS_ASPX_Filters" xml:space="preserve">
     <value>Filters</value>
