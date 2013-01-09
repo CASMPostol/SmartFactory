@@ -717,4 +717,34 @@
 	<data name="CAS_FGBatch" xml:space="preserve">
     <value>Batch PG</value>
   </data>
+	<data name="CAS_ASPX_ClearenceList" xml:space="preserve">
+		<value>Likwidacja</value>
+	</data>
+	<data name="CAS_ASPX_ClearenceManager" xml:space="preserve">
+		<value>Likwidacja - menadżer</value>
+	</data>
+	<data name="CAS_ASPX_InvoiceLibrary" xml:space="preserve">
+		<value>Faktury</value>
+	</data>
+	<data name="CAS_ASPX_InvoiceContentList" xml:space="preserve">
+		<value>Zawartość faktury</value>
+	</data>
+	<data name="CAS_ASPX_BatchList" xml:space="preserve">
+		<value>Batch</value>
+	</data>
+	<data name="CAS_ASPX_ExportManager" xml:space="preserve">
+		<value>Eksport - menadżer</value>
+	</data>
+	<data name="CAS_ASPX_IPRClosedAccounts" xml:space="preserve">
+		<value>Księga uszlachetniania czynnego - konta zamknięte</value>
+	</data>
+	<data name="CAS_ASPX_IPRExport" xml:space="preserve">
+		<value>Księga uszlachetniania czynnego - wywóz</value>
+	</data>
+	<data name="CAS_ASPX_IPRImport" xml:space="preserve">
+		<value>Księga uszlachetniania czynnego - przywóz</value>
+	</data>
+	<data name="CAS_ASPX_IPRList" xml:space="preserve">
+		<value>Księga uszlachetniania czynnego</value>
+	</data>
 </root>

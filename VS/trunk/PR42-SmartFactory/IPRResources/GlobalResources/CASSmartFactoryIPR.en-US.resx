@@ -303,4 +303,7 @@
 	<data name="CAS_ASPX_IPRClosedDashboard" xml:space="preserve">
 		<value>IPR Book - closed accounts</value>
 	</data>
+	<data name="CAS_ASPX_IPRCustomsOfficeDashboard" xml:space="preserve">
+		<value>IPR Book - closed accounts</value>
+	</data>
 </root>
