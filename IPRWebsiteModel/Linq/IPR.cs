@@ -193,32 +193,57 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region internal
-    internal class Balance: Dictionary<IPR.Balance.ValueKey, decimal>
+    public enum ValueKey
     {
-      internal enum ValueKey
-      {
-        DustCSNotStarted,
-        DustCSStarted,
-        OveruseCSNotStarted,
-        OveruseCSStarted,
-        PureTobaccoCSNotStarted,
-        PureTobaccoCSStarted,
-        SHMentholCSNotStarted,
-        SHMentholCSStarted,
-        TobaccoCSFinished,
-        TobaccoInFGCSNotStarted,
-        TobaccoInFGCSStarted,
-        WasteCSNotStarted,
-        WasteCSStarted,
+      DustCSNotStarted,
+      DustCSStarted,
+      OveruseCSNotStarted,
+      OveruseCSStarted,
+      PureTobaccoCSNotStarted,
+      PureTobaccoCSStarted,
+      SHMentholCSNotStarted,
+      SHMentholCSStarted,
+      TobaccoCSFinished,
+      TobaccoInFGCSNotStarted,
+      TobaccoInFGCSStarted,
+      WasteCSNotStarted,
+      WasteCSStarted,
 
-        //calculated
-        IPRBook,
-        SHWasteOveruseCSNotStarted,
-        TobaccoAvailable,
-        TobaccoEnteredIntoIPR,
-        TobaccoToBeUsedInTheProduction,
-        TobaccoUsedInTheProduction
+      //calculated
+      IPRBook,
+      SHWasteOveruseCSNotStarted,
+      TobaccoAvailable,
+      TobaccoEnteredIntoIPR,
+      TobaccoToBeUsedInTheProduction,
+      TobaccoUsedInTheProduction
+    }
+    public class BalanceTotals: Dictionary<IPR.ValueKey, decimal>
+    {
+      internal new double this[ ValueKey index ]
+      {
+        get { return Convert.ToDouble( base[ index ] ); }
       }
+      internal BalanceTotals( IGrouping<string, IPR> group ):this()
+      {
+        foreach ( IPR _iprx in group )
+        {
+          Balance _newBlnce = new Balance( _iprx );
+          Sum( _newBlnce );
+        }
+      }
+      public BalanceTotals()
+      {
+        foreach ( ValueKey _vkx in Enum.GetValues( typeof( ValueKey ) ) )
+          base[ _vkx ] = 0;
+      }
+      public void Sum( Balance balance )
+      {
+        foreach ( ValueKey _vkx in Enum.GetValues( typeof( ValueKey ) ) )
+          base[ _vkx ] = balance.Base[ _vkx ];
+      }
+    }
+    public class Balance: Dictionary<IPR.ValueKey, decimal>
+    {
       internal new double this[ ValueKey index ]
       {
         get { return Convert.ToDouble( base[ index ] ); }
@@ -305,6 +330,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         base[ ValueKey.TobaccoUsedInTheProduction ] = TobaccoUsedInTheProduction;
         base[ ValueKey.TobaccoToBeUsedInTheProduction ] = base[ ValueKey.TobaccoEnteredIntoIPR ] - base[ ValueKey.TobaccoUsedInTheProduction ];
       }
+      internal Dictionary<IPR.ValueKey, decimal> Base { get { return this; } }
       private decimal IPRBook
       {
         get
@@ -430,7 +456,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The <see cref="Entities"/>.</param>
     /// <returns></returns>
-    private static IQueryable<IPR> GetAllOpen4JSOX( Entities edc )
+    internal static IQueryable<IPR> GetAllOpen4JSOX( Entities edc )
     {
       return from _iprx in edc.IPR
              where !_iprx.AccountClosed.Value
