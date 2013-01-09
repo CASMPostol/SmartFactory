@@ -187,7 +187,7 @@
     <value>Edycja</value>
   </data>
 	<data name="CAS_ASPX_EditInvoiceQuantity" xml:space="preserve">
-    <value>Edytuj fakturę/ilość</value>
+    <value>Edytuj</value>
   </data>
 	<data name="CAS_ASPX_EditBatch" xml:space="preserve">
     <value>Edytuj batch</value>
@@ -199,7 +199,7 @@
     <value>Eksport</value>
   </data>
 	<data name="CAS_ASPX_ExportProcedure" xml:space="preserve">
-    <value>Procedura eksportowa</value>
+    <value>Procedura</value>
   </data>
 	<data name="CAS_ASPX_Filters" xml:space="preserve">
     <value>Filtry</value>
@@ -238,13 +238,13 @@
     <value>Usuń wszystkie</value>
   </data>
 	<data name="CAS_ASPX_RemoveAllToolTip" xml:space="preserve">
-    <value>Usuń wszystkie pozycje z listy przypisanych</value>
+    <value>Usuń wszystkie pozycje z listy przypisanych.</value>
   </data>
 	<data name="CAS_ASPX_RemoveDisplayed" xml:space="preserve">
     <value>Usuń wyświetlone</value>
   </data>
 	<data name="CAS_ASPX_RemoveDisplayedToolTip" xml:space="preserve">
-    <value>Usuń wyświetlone pozycje z listy przypisanych</value>
+    <value>Usuń wyświetlone pozycje z listy przypisanych.</value>
   </data>
 	<data name="CAS_ASPX_RevertToFC" xml:space="preserve">
     <value>Dopuszczenie do obrotu</value>
