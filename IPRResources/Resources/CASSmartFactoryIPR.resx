@@ -736,7 +736,7 @@
     <value>Export manager</value>
   </data>
 	<data name="CAS_ASPX_IPRClosedAccounts" xml:space="preserve">
-    <value>IPR accounts - closed</value>
+    <value>Księga uszlachetniania czynnego - konta zamknięte</value>
   </data>
 	<data name="CAS_ASPX_IPRImport" xml:space="preserve">
     <value>Księga uszlachetniania czynnego - przywóz</value>
