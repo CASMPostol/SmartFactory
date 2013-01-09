@@ -7,7 +7,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Clearence Manager</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_ClearenceManager;</property>
         <property name="Description" type="string">Clearence Manager web part.</property>
       </properties>
     </data>

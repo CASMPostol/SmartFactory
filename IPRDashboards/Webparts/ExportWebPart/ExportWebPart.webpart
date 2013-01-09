@@ -7,7 +7,7 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">ExportWebPart</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_ExportManager;</property>
         <property name="Description" type="string">My Visual WebPart</property>
       </properties>
     </data>

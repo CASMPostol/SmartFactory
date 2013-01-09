@@ -720,4 +720,34 @@
 	<data name="CAS_CFTUsageMin" xml:space="preserve">
 		<value>CFT usage (min) [kg]</value>
 	</data>
+	<data name="CAS_ASPX_ClearenceList" xml:space="preserve">
+		<value>Clearence</value>
+	</data>
+	<data name="CAS_ASPX_ClearenceManager" xml:space="preserve">
+		<value>Clearence manager</value>
+	</data>
+	<data name="CAS_ASPX_InvoiceLibrary" xml:space="preserve">
+		<value>Invoices</value>
+	</data>
+	<data name="CAS_ASPX_InvoiceContentList" xml:space="preserve">
+		<value>Invoice content</value>
+	</data>
+	<data name="CAS_ASPX_BatchList" xml:space="preserve">
+		<value>Batch</value>
+	</data>
+	<data name="CAS_ASPX_ExportManager" xml:space="preserve">
+		<value>Export manager</value>
+	</data>
+	<data name="CAS_ASPX_IPRClosedAccounts" xml:space="preserve">
+		<value>IPR accounts - closed</value>
+	</data>
+	<data name="CAS_ASPX_IPRImport" xml:space="preserve">
+		<value>Księga uszlachetniania czynnego - przywóz</value>
+	</data>
+	<data name="CAS_ASPX_IPRExport" xml:space="preserve">
+		<value>Księga uszlachetniania czynnego - wywóz</value>
+	</data>
+	<data name="CAS_ASPX_IPRList" xml:space="preserve">
+		<value>Księga uszlachetniania czynnego</value>
+	</data>
 </root>

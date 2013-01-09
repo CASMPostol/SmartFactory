@@ -12,7 +12,7 @@
          </metaData>
          <data>
          <properties>
-         <property name="Title" type="string">Invoices</property>
+         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_InvoiceLibrary;</property>
          <property name="TitleUrl" type="string">ExportDashboard.aspx</property>
          <property name="AllowConnect" type="bool">True</property>
          </properties>
@@ -31,7 +31,7 @@
          </metaData>
          <data>
          <properties>
-         <property name="Title" type="string">Invoice content</property>
+         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_InvoiceContentList;</property>
          <property name="TitleUrl" type="string">ExportDashboard.aspx</property>
          <property name="AllowConnect" type="bool">True</property>
          </properties>
@@ -50,7 +50,7 @@
          </metaData>
          <data>
          <properties>
-         <property name="Title" type="string">Batch</property>
+         <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_BatchList;</property>
          <property name="TitleUrl" type="string">ExportDashboard.aspx</property>
          <property name="AllowConnect" type="bool">True</property>
          </properties>
@@ -68,8 +68,8 @@
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Export manager</property>
-        <property name="Description" type="string">Export manager</property>
+        <property name="Title" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_ExportManager;</property>
+        <property name="Description" type="string">$Resources:CASSmartFactoryIPR,CAS_ASPX_ExportManager; web part.</property>
       </properties>
     </data>
   </webPart>
