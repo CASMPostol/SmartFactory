@@ -282,15 +282,6 @@
 	<data name="CAS_ASPX_ExportDB" xml:space="preserve">
     <value>Export</value>
   </data>
-	<data name="CAS_ASPX_IPRDB" xml:space="preserve">
-    <value>IPR</value>
-  </data>
-	<data name="CAS_ASPX_IPRDBCO" xml:space="preserve">
-    <value>IPR - Customs Office</value>
-  </data>
-	<data name="CAS_ASPX_IPRDBCA" xml:space="preserve">
-    <value>IPR - Closed Accounts</value>
-  </data>
 	<data name="CAS_ASPX_Period" xml:space="preserve">
     <value>Period</value>
   </data>
@@ -299,5 +290,17 @@
 	</data>
 	<data name="CAS_ASPX_Split" xml:space="preserve">
 		<value>Split</value>
+	</data>
+	<data name="CAS_ASPX_ClearenceDashboard" xml:space="preserve">
+		<value>Clearence dashboard</value>
+	</data>
+	<data name="CAS_ASPX_ExportDashboard" xml:space="preserve">
+		<value>Export dashboard</value>
+	</data>
+	<data name="CAS_ASPX_IPRDashboard" xml:space="preserve">
+		<value>IPR Book</value>
+	</data>
+	<data name="CAS_ASPX_IPRClosedDashboard" xml:space="preserve">
+		<value>IPR Book - closed accounts</value>
 	</data>
 </root>
