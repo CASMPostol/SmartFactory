@@ -193,7 +193,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     #endregion
 
     #region internal
-    public enum ValueKey
+    internal enum ValueKey
     {
       DustCSNotStarted,
       DustCSStarted,
@@ -217,37 +217,37 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       TobaccoToBeUsedInTheProduction,
       TobaccoUsedInTheProduction
     }
-    public class BalanceTotals: Dictionary<IPR.ValueKey, decimal>
+    /// <summary>
+    /// Balance Totals
+    /// </summary>
+    internal class BalanceTotals: Dictionary<ValueKey, decimal>
     {
-      internal new double this[ ValueKey index ]
-      {
-        get { return Convert.ToDouble( base[ index ] ); }
-      }
-      internal BalanceTotals( IGrouping<string, IPR> group ):this()
-      {
-        foreach ( IPR _iprx in group )
-        {
-          Balance _newBlnce = new Balance( _iprx );
-          Sum( _newBlnce );
-        }
-      }
-      public BalanceTotals()
+      /// <summary>
+      /// Initializes a new instance of the <see cref="BalanceTotals" /> class.
+      /// </summary>
+      internal BalanceTotals()
       {
         foreach ( ValueKey _vkx in Enum.GetValues( typeof( ValueKey ) ) )
           base[ _vkx ] = 0;
       }
-      public void Sum( Balance balance )
+      internal new double this[ ValueKey index ]
+      {
+        get { return Convert.ToDouble( base[ index ] ); }
+      }
+      internal Dictionary<IPR.ValueKey, decimal> Base { get { return this; } }
+      /// <summary>
+      /// Adds the specified balance.
+      /// </summary>
+      /// <param name="balance">The balance.</param>
+      internal void Add( Balance balance )
       {
         foreach ( ValueKey _vkx in Enum.GetValues( typeof( ValueKey ) ) )
           base[ _vkx ] = balance.Base[ _vkx ];
       }
     }
-    public class Balance: Dictionary<IPR.ValueKey, decimal>
+    internal class Balance: Dictionary<IPR.ValueKey, decimal>
     {
-      internal new double this[ ValueKey index ]
-      {
-        get { return Convert.ToDouble( base[ index ] ); }
-      }
+      #region ctor
       internal Balance( IPR record )
       {
         foreach ( ValueKey _vkx in Enum.GetValues( typeof( ValueKey ) ) )
@@ -330,7 +330,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         base[ ValueKey.TobaccoUsedInTheProduction ] = TobaccoUsedInTheProduction;
         base[ ValueKey.TobaccoToBeUsedInTheProduction ] = base[ ValueKey.TobaccoEnteredIntoIPR ] - base[ ValueKey.TobaccoUsedInTheProduction ];
       }
+      #endregion
+
+      #region internal
+      internal new double this[ ValueKey index ]
+      {
+        get { return Convert.ToDouble( base[ index ] ); }
+      }
       internal Dictionary<IPR.ValueKey, decimal> Base { get { return this; } }
+      #endregion
+
+      #region private
       private decimal IPRBook
       {
         get
@@ -377,6 +387,47 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             base[ ValueKey.SHWasteOveruseCSNotStarted ] +
             base[ ValueKey.IPRBook ];
         }
+      }
+      #endregion
+
+    }
+    internal enum StockValueKey
+    {
+      Balance,
+      TobaccoInCigarettesProduction,
+      TobaccoInCigarettesWarehouse,
+      TobaccoInCutfillerWarehouse,
+      TobaccoInWarehouse
+    }
+    internal class BalanceStock: Dictionary<StockValueKey, decimal>
+    {
+      internal BalanceStock()
+      {
+        foreach ( StockValueKey _vkx in Enum.GetValues( typeof( StockValueKey ) ) )
+          base[ _vkx ] = 0;
+      }
+      internal new double this[ StockValueKey index ]
+      {
+        get { return Convert.ToDouble( base[ index ] ); }
+      }
+      internal void CalculateBalance( decimal TobaccoInFGCSNotStarted, decimal TobaccoAvailable )
+      {
+        base[ StockValueKey.TobaccoInCigarettesWarehouse ] = TobaccoInFGCSNotStarted;
+        base[ StockValueKey.Balance ] =
+          TobaccoAvailable -
+          base[ StockValueKey.TobaccoInCigarettesProduction ] -
+          base[ StockValueKey.TobaccoInCigarettesWarehouse ] -
+          base[ StockValueKey.TobaccoInCutfillerWarehouse ] -
+          base[ StockValueKey.TobaccoInWarehouse ];
+      }
+    }
+    internal class BalanceStockDictionary: Dictionary<string, BalanceStock>
+    {
+      internal BalanceStock GetOrDefault( string batch )
+      {
+        if ( !this.ContainsKey( batch ) )
+          this.Add( batch, new BalanceStock() );
+        return this[ batch ];
       }
     }
     internal void AddDisposal( Entities edc, DisposalEnum _kind, ref decimal _toDispose, Material material, InvoiceContent invoiceContent )

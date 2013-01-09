@@ -1,65 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   partial class BalanceBatch
   {
-    internal void Update( IGrouping<string, IPR> grouping )
+    internal static void Create( Entities edc, IGrouping<string, IPR> _grpx, JSOXLib parent, IPR.BalanceStock balanceStock )
     {
-      Dictionary<string, IPR> _iprList = grouping.ToDictionary( x => x.DocumentNo );
-      List<string> _processed = new List<string>();
-      foreach ( BalanceIPR _blncx in this.BalanceIPR )
-      {
-        if ( _iprList.ContainsKey( _blncx.DocumentNo ) )
-        {
-          IPR.Balance _blnc = _blncx.Update();
-          _processed.Add( _blncx.DocumentNo );
-        }
-        else
-          ;
-      }
-    }
-    internal static void Create( Entities edc, IGrouping<string, IPR> _grpx, JSOXLib parent )
-    {
-      List<IPR.Balance> _blnces = new List<IPR.Balance>();
+      IPR _firsTIPR = _grpx.FirstOrDefault<IPR>();
       BalanceBatch _newBB = new BalanceBatch()
       {
         Balance2JSOXLibraryIndex = parent,
         Batch = _grpx.Key,
         Title = "creating",
+        SKU = _firsTIPR == null ? "NA" : _firsTIPR.SKU,
       };
-      IPR.BalanceTotals _totals = new IPR.BalanceTotals();
-      foreach ( IPR _iprx in _grpx )
-      {
-        IPR.Balance _newBipr = Linq.BalanceIPR.CreateBalanceIPR( edc, _iprx, _newBB, parent );
-        _totals.Sum( _newBipr );
-      }
-      _newBB.Update( _totals );
+      edc.BalanceBatch.InsertOnSubmit( _newBB );
+      _newBB.Update( edc, _grpx, balanceStock );
     }
-    private void Update( IPR.BalanceTotals _balnce )
+    internal void Update( Entities edc, IGrouping<string, IPR> grouping, IPR.BalanceStock balanceStock)
     {
-      DustCSNotStarted = _balnce[ IPR.ValueKey.DustCSNotStarted ];
-      DustCSStarted = _balnce[ IPR.ValueKey.DustCSStarted ];
-      IPRBook = _balnce[ IPR.ValueKey.IPRBook ];
-      OveruseCSNotStarted = _balnce[ IPR.ValueKey.OveruseCSNotStarted ];
-      OveruseCSStarted = _balnce[ IPR.ValueKey.OveruseCSStarted ];
-      PureTobaccoCSNotStarted = _balnce[ IPR.ValueKey.PureTobaccoCSNotStarted ];
-      PureTobaccoCSStarted = _balnce[ IPR.ValueKey.PureTobaccoCSStarted ];
-      SHMentholCSNotStarted = _balnce[ IPR.ValueKey.SHMentholCSNotStarted ];
-      SHMentholCSStarted = _balnce[ IPR.ValueKey.SHMentholCSStarted ];
-      SHWasteOveruseCSNotStarted = _balnce[ IPR.ValueKey.SHWasteOveruseCSNotStarted ];
-      TobaccoAvailable = _balnce[ IPR.ValueKey.TobaccoAvailable ];
-      TobaccoCSFinished = _balnce[ IPR.ValueKey.TobaccoCSFinished ];
-      TobaccoEnteredIntoIPR = _balnce[ IPR.ValueKey.TobaccoEnteredIntoIPR ];
-      TobaccoInFGCSNotStarted = _balnce[ IPR.ValueKey.TobaccoInFGCSNotStarted ];
-      TobaccoInFGCSStarted = _balnce[ IPR.ValueKey.TobaccoInFGCSStarted ];
-      TobaccoToBeUsedInTheProduction = _balnce[ IPR.ValueKey.TobaccoToBeUsedInTheProduction ];
-      TobaccoUsedInTheProduction = _balnce[ IPR.ValueKey.TobaccoUsedInTheProduction ];
-      WasteCSNotStarted = _balnce[ IPR.ValueKey.WasteCSNotStarted ];
-      WasteCSStarted = _balnce[ IPR.ValueKey.WasteCSStarted ];
+      Dictionary<string, IPR> _iprDictionary = grouping.ToDictionary( x => x.DocumentNo );
+      List<string> _processed = new List<string>();
+      IPR.BalanceTotals _totals = new IPR.BalanceTotals();
+      foreach ( BalanceIPR _blncIPRx in this.BalanceIPR )
+      {
+        if ( _iprDictionary.ContainsKey( _blncIPRx.DocumentNo ) )
+        {
+          IPR.Balance _newBipr = _blncIPRx.Update();
+          _totals.Add( _newBipr );
+        }
+        else
+          edc.BalanceIPR.DeleteOnSubmit( _blncIPRx );
+        _processed.Add( _blncIPRx.DocumentNo );
+      }
+      foreach ( string _dcn in _processed )
+        _iprDictionary.Remove( _dcn );
+      foreach ( IPR _iprx in _iprDictionary.Values )
+      {
+        IPR.Balance _newBipr = Linq.BalanceIPR.Create( edc, _iprx, this, this.Balance2JSOXLibraryIndex );
+        _totals.Add( _newBipr );
+      }
+      DustCSNotStarted = _totals[ IPR.ValueKey.DustCSNotStarted ];
+      DustCSStarted = _totals[ IPR.ValueKey.DustCSStarted ];
+      IPRBook = _totals[ IPR.ValueKey.IPRBook ];
+      OveruseCSNotStarted = _totals[ IPR.ValueKey.OveruseCSNotStarted ];
+      OveruseCSStarted = _totals[ IPR.ValueKey.OveruseCSStarted ];
+      PureTobaccoCSNotStarted = _totals[ IPR.ValueKey.PureTobaccoCSNotStarted ];
+      PureTobaccoCSStarted = _totals[ IPR.ValueKey.PureTobaccoCSStarted ];
+      SHMentholCSNotStarted = _totals[ IPR.ValueKey.SHMentholCSNotStarted ];
+      SHMentholCSStarted = _totals[ IPR.ValueKey.SHMentholCSStarted ];
+      SHWasteOveruseCSNotStarted = _totals[ IPR.ValueKey.SHWasteOveruseCSNotStarted ];
+      TobaccoAvailable = _totals[ IPR.ValueKey.TobaccoAvailable ];
+      TobaccoCSFinished = _totals[ IPR.ValueKey.TobaccoCSFinished ];
+      TobaccoEnteredIntoIPR = _totals[ IPR.ValueKey.TobaccoEnteredIntoIPR ];
+      TobaccoInFGCSNotStarted = _totals[ IPR.ValueKey.TobaccoInFGCSNotStarted ];
+      TobaccoInFGCSStarted = _totals[ IPR.ValueKey.TobaccoInFGCSStarted ];
+      TobaccoToBeUsedInTheProduction = _totals[ IPR.ValueKey.TobaccoToBeUsedInTheProduction ];
+      TobaccoUsedInTheProduction = _totals[ IPR.ValueKey.TobaccoUsedInTheProduction ];
+      WasteCSNotStarted = _totals[ IPR.ValueKey.WasteCSNotStarted ];
+      WasteCSStarted = _totals[ IPR.ValueKey.WasteCSStarted ];
+      //
+      balanceStock.CalculateBalance( _totals.Base[ IPR.ValueKey.TobaccoInFGCSNotStarted ], _totals.Base[ IPR.ValueKey.TobaccoAvailable ] );
+      this.Balance = balanceStock[ IPR.StockValueKey.Balance ];
+      this.TobaccoInCigarettesProduction = balanceStock[ IPR.StockValueKey.TobaccoInCigarettesProduction ];
+      this.TobaccoInCigarettesWarehouse = balanceStock[ IPR.StockValueKey.TobaccoInCigarettesWarehouse ];
+      this.TobaccoInCutfillerWarehouse = balanceStock[ IPR.StockValueKey.TobaccoInCutfillerWarehouse ];
+      this.TobaccoInWarehouse = balanceStock[ IPR.StockValueKey.TobaccoInWarehouse ];
     }
   }
 }

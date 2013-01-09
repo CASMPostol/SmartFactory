@@ -1,23 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class BalanceIPR
   {
-    internal IPR.Balance Update()
+    internal static IPR.Balance Create( Entities edc, IPR _iprAccount, BalanceBatch parent, JSOXLib masterReport )
     {
-      if ( this.IPRIndex == null )
-        throw new ArgumentNullException( "IPRIndex", "IPRIndex for Balance IPR cannot be null" );
-      IPR.Balance _ret = new IPR.Balance( this.IPRIndex );
-      Update( _ret );
-      return _ret;
-    }
-    public static IPR.Balance CreateBalanceIPR( Entities edc, IPR _iprAccount, BalanceBatch parent, JSOXLib masterReport )
-    {
-      IPR.Balance _balnce = new IPR.Balance( _iprAccount );
       BalanceIPR _newItem = new BalanceIPR()
       {
         Balance = -1,
@@ -33,11 +21,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         Title = "Creating",
       };
       edc.BalanceIPR.InsertOnSubmit( _newItem );
-      _newItem.Update( _balnce );
-      return _balnce;
+      return _newItem.Update();
     }
-    private void Update( IPR.Balance _balnce )
+    internal IPR.Balance Update()
     {
+      if ( this.IPRIndex == null )
+        throw new ArgumentNullException( "IPRIndex", "IPRIndex for Balance IPR cannot be null" );
+      IPR.Balance _balnce = new IPR.Balance( this.IPRIndex );
       DustCSNotStarted = _balnce[ IPR.ValueKey.DustCSNotStarted ];
       DustCSStarted = _balnce[ IPR.ValueKey.DustCSStarted ];
       IPRBook = _balnce[ IPR.ValueKey.IPRBook ];
@@ -57,6 +47,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       TobaccoUsedInTheProduction = _balnce[ IPR.ValueKey.TobaccoUsedInTheProduction ];
       WasteCSNotStarted = _balnce[ IPR.ValueKey.WasteCSNotStarted ];
       WasteCSStarted = _balnce[ IPR.ValueKey.WasteCSStarted ];
+      return _balnce;
     }
   }
 }

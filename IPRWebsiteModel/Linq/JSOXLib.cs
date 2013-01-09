@@ -21,29 +21,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       PreviousMonthDate = previous.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
       PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( -1 );
       UpdateJSOXReport( edc );
-
     }
-    //internal Dictionary<string, BalanceTotals> CalculateBalanceBatch( Entities edc )
-    //{
-    //  IQueryable<IGrouping<string, IPR>> _accountGroups = from _iprx in IPR.GetAllOpen4JSOX( edc ) group _iprx by _iprx.Batch;
-    //  Dictionary<string, BalanceTotals> _ret = new Dictionary<string, BalanceTotals>();
-    //  foreach ( IGrouping<string, IPR> _btchx in _accountGroups )
-    //    _ret.Add( _btchx.Key, new BalanceTotals( _btchx ) );
-    //  return _ret;
-    //}
-
     /// <summary>
     /// Updates the JSOX report.
     /// </summary>
     /// <param name="edc">The edc.</param>
     public void UpdateJSOXReport( Entities edc )
     {
+      Linq.IPR.BalanceStockDictionary _balanceStock = new Linq.IPR.BalanceStockDictionary();
       Dictionary<string, IGrouping<string, IPR>> _accountGroups = ( from _iprx in Linq.IPR.GetAllOpen4JSOX( edc ) group _iprx by _iprx.Batch ).ToDictionary( x => x.Key );
       List<string> _processed = new List<string>();
       foreach ( BalanceBatch _bbx in BalanceBatch )
       {
         if ( _accountGroups.ContainsKey( _bbx.Batch ) )
-          _bbx.Update( _accountGroups[ _bbx.Batch ] );
+          _bbx.Update( edc, _accountGroups[ _bbx.Batch ], _balanceStock.GetOrDefault( _bbx.Batch ) );
         else
           edc.BalanceBatch.DeleteOnSubmit( _bbx );
         _processed.Add( _bbx.Batch );
@@ -51,7 +42,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( string _btchx in _processed )
         _accountGroups.Remove( _btchx );
       foreach ( var _grpx in _accountGroups )
-        Linq.BalanceBatch.Create( edc, _grpx.Value, this );
+        Linq.BalanceBatch.Create( edc, _grpx.Value, this, _balanceStock.GetOrDefault( _grpx.Key ));
 
       //Introducing
       DateTime _thisIntroducingDateStart = LinqIPRExtensions.DateTimeMaxValue;
