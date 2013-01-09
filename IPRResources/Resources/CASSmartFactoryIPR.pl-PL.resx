@@ -195,7 +195,7 @@
 	<data name="CAS_CFTUsageMax" xml:space="preserve">
     <value>Norma zużycia krajanki (max) [kg]</value>
   </data>
-	<data name="CAS_CFTUSageMin" xml:space="preserve">
+	<data name="CAS_CFTUsageMin" xml:space="preserve">
     <value>Norma zużycia krajanki (min) [kg]</value>
   </data>
 	<data name="CAS_CigaretteLenght" xml:space="preserve">
