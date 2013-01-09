@@ -282,15 +282,6 @@
 	<data name="CAS_ASPX_ExportDB" xml:space="preserve">
     <value>Eksport</value>
   </data>
-	<data name="CAS_ASPX_IPRDB" xml:space="preserve">
-    <value>Księga uszlachetniania czynnego</value>
-  </data>
-	<data name="CAS_ASPX_IPRDBCO" xml:space="preserve">
-    <value>Księga uszlachetniania czynnego - Urząd Celny</value>
-  </data>
-	<data name="CAS_ASPX_IPRDBCA" xml:space="preserve">
-    <value>Księga uszlachetniania czynnego - konta zamknięte</value>
-  </data>
 	<data name="CAS_ASPX_Period" xml:space="preserve">
     <value>Okres</value>
   </data>
@@ -299,5 +290,20 @@
 	</data>
 	<data name="CAS_ASPX_Split" xml:space="preserve">
 		<value>Podziel</value>
+	</data>
+	<data name="CAS_ASPX_ClearenceDashboard" xml:space="preserve">
+		<value>Kokpit - likwidacja</value>
+	</data>
+	<data name="CAS_ASPX_ExportDashboard" xml:space="preserve">
+		<value>Kokpit - eksport</value>
+	</data>
+	<data name="CAS_ASPX_IPRDashboard" xml:space="preserve">
+		<value>Księga uszlachetniania czynnego</value>
+	</data>
+	<data name="CAS_ASPX_IPRClosedDashboard" xml:space="preserve">
+		<value>Księga uszlachetniania czynnego - konta zamknięte</value>
+	</data>
+	<data name="CAS_ASPX_IPRCustomsOfficeDashboard" xml:space="preserve">
+		<value>Księga uszlachetniania czynnego - Urząd Celny</value>
 	</data>
 </root>

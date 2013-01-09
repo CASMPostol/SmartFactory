@@ -16,7 +16,7 @@
     <userSetting name="mpostol@HQ.RecentFiles">C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.pl-PL.resx###***###C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherd.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherd.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherd.pl-PL.resx###***###C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.en-US.resx;C:\vs\Projects\SmartFactory\PR42-SmartFactory\ShepherdResources\Resources\CASSmartFactoryShepherdCode.pl-PL.resx</userSetting>
     <userSetting name="bwojciechowski@HQ.FindText">
     </userSetting>
-    <userSetting name="bwojciechowski@HQ.RecentFiles">C:\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.resx;C:\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.en-US.resx;C:\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.pl-PL.resx</userSetting>
+    <userSetting name="bwojciechowski@HQ.RecentFiles">D:\CAS\Repo\PR42-SmartFactory\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.resx;D:\CAS\Repo\PR42-SmartFactory\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.en-US.resx;D:\CAS\Repo\PR42-SmartFactory\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.pl-PL.resx</userSetting>
     <userSetting name="banuszczyk@HQ.FindText">shipping</userSetting>
     <userSetting name="banuszczyk@HQ.RecentFiles">C:\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.resx;C:\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.en-US.resx;C:\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.pl-PL.resx</userSetting>
     <userSetting name="akubiak@HQ.FindText">
@@ -27,9 +27,9 @@
   </configuration>
   <fileGroups>
     <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="29261b4d-0ad2-41b9-95f9-84be4eb17e98">
-      <file filePath="GlobalResources\CASSmartFactoryShepherd.resx" absoluteFilePath="C:\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.resx" uniqueID="84bd47d2-902b-4b02-9dcd-a445d981066c" />
-      <file filePath="GlobalResources\CASSmartFactoryShepherd.en-US.resx" absoluteFilePath="C:\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.en-US.resx" uniqueID="7f16502b-9505-4df1-ac99-8fce19d7ff3c" />
-      <file filePath="GlobalResources\CASSmartFactoryShepherd.pl-PL.resx" absoluteFilePath="C:\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.pl-PL.resx" uniqueID="b49dbf20-5914-4fbd-8fe1-eded7ddcb08f" />
+      <file filePath="GlobalResources\CASSmartFactoryShepherd.resx" absoluteFilePath="D:\CAS\Repo\PR42-SmartFactory\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.resx" uniqueID="84bd47d2-902b-4b02-9dcd-a445d981066c" />
+      <file filePath="GlobalResources\CASSmartFactoryShepherd.en-US.resx" absoluteFilePath="D:\CAS\Repo\PR42-SmartFactory\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.en-US.resx" uniqueID="7f16502b-9505-4df1-ac99-8fce19d7ff3c" />
+      <file filePath="GlobalResources\CASSmartFactoryShepherd.pl-PL.resx" absoluteFilePath="D:\CAS\Repo\PR42-SmartFactory\ShepherdResources\GlobalResources\CASSmartFactoryShepherd.pl-PL.resx" uniqueID="b49dbf20-5914-4fbd-8fe1-eded7ddcb08f" />
       <remarks>
       </remarks>
     </fileGroup>
