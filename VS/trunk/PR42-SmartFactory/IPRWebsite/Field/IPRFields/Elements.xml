@@ -40,7 +40,7 @@
   DisplayName="$Resources:CASSmartFactoryIPR,CAS_WasteCoefficient"
   Name="BatchWasteCooeficiency"
   Type="Number"
-  Decimals="4"
+  Percentage="TRUE"
   ID="{91109161-779F-4D61-AC19-1A7F9E260380}"
   Group="CAS Smart Factory IPR"
     />
@@ -55,7 +55,7 @@
   DisplayName="$Resources:CASSmartFactoryIPR,CAS_DustCoefficient"
   Name="BatchDustCooeficiency"
   Type="Number"
-  Decimals="4"
+  Percentage="TRUE"
   ID="{B292C573-B10F-4BD6-BACA-D91E4930B35C}"
   Group="CAS Smart Factory IPR"
     />
@@ -67,10 +67,10 @@
   Group="CAS Smart Factory IPR"
     />
   <Field
-  DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHCoefficientVer"
+  DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHCoefficient"
   Name="BatchSHCooeficiency"
   Type="Number"
-  Decimals="4"
+  Percentage="TRUE"
   ID="{B4A62D70-8D8E-4231-95E7-754942CD20D6}"
   Group="CAS Smart Factory IPR"
     />
@@ -517,7 +517,7 @@
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_CalculatedOveruse"
     Name="CalculatedOveruse"
     Type="Number"
-    Decimals="4"
+    Percentage="TRUE"
     ID="{725952C1-86DA-41C1-8616-6F5B738B2CA0}"
     Group="CAS Smart Factory IPR"
     />
