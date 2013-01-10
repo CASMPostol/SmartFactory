@@ -137,6 +137,19 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( Material _materialX in this.Material )
         _materialX.UpdateDisposals( edc, parent, progressChanged );
     }
+    internal void GetInventory( Balance.StockDictionary _balanceStock, Balance.StockDictionary.StockValueKey _key )
+    {
+      switch ( this.BatchStatus.Value )
+      {
+        case Linq.BatchStatus.Progress:
+          foreach ( Material _mtx in Material )
+            _mtx.GetInventory( _balanceStock, _key );
+          break;
+        case Linq.BatchStatus.Intermediate:
+        case Linq.BatchStatus.Final:
+          break;
+      }
+    }
     #endregion
 
     #region private
@@ -162,6 +175,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return 0;
     }
     #endregion
+
   }
 }
 

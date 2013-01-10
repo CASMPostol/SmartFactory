@@ -293,6 +293,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           break;
       }
     }
+    internal void GetInventory( Balance.StockDictionary _balanceStock, Balance.StockDictionary.StockValueKey _key )
+    {
+      switch ( this.ProductType.Value )
+      {
+        case Linq.ProductType.Cutfiller:
+        case Linq.ProductType.Cigarette:
+        case Linq.ProductType.Tobacco:
+        case Linq.ProductType.Other:
+          break;
+        case Linq.ProductType.IPRTobacco:
+          _balanceStock.Sum( this.TobaccoQuantityDec, this.Batch, _key );
+          break;
+      }
+    }
     #endregion
 
     #region private

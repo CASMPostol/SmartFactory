@@ -36,12 +36,22 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
           base[ StockValueKey.TobaccoInCutfillerWarehouse ] -
           base[ StockValueKey.TobaccoInWarehouse ];
       }
+      internal Dictionary<StockValueKey, decimal> Base { get { return this; } }
     }
     internal BalanceStock GetOrDefault( string batch )
     {
       if ( !this.ContainsKey( batch ) )
         this.Add( batch, new BalanceStock() );
       return this[ batch ];
+    }
+    internal void Sum( decimal quantity, string batch, StockValueKey _key )
+    {
+      BalanceStock _bs = GetOrDefault( batch );
+      _bs.Base[ _key ] += quantity;
+    }
+    internal void Sum( double quantity, string batch, StockValueKey _key )
+    {
+      Sum( quantity, batch, _key );
     }
   }
 }

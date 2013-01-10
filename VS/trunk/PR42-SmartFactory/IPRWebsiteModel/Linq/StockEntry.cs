@@ -31,6 +31,26 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return String.Format( _mtmp, this.Batch, this.SKU, this.Title, this.Quantity.Value, this.BatchIndex.FGQuantityAvailable.Value );
       }
     }
+    internal void GetInventory( Balance.StockDictionary _balanceStock )
+    {
+      switch ( ProductType.Value )
+      {
+        case Linq.ProductType.Cutfiller:
+          if ( IPRType.Value && BatchIndex != null )
+            BatchIndex.GetInventory( _balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCutfillerWarehouse );
+            break;
+        case Linq.ProductType.Cigarette:
+          if ( IPRType.Value && BatchIndex != null )
+            BatchIndex.GetInventory( _balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCigarettesProduction );
+          break;
+        case Linq.ProductType.IPRTobacco:
+          _balanceStock.Sum( this.Quantity.Value, this.Batch, Balance.StockDictionary.StockValueKey.TobaccoInWarehouse );
+          break;
+        case Linq.ProductType.Tobacco:
+        case Linq.ProductType.Other:
+          break;
+      }
+    }
     private void GetProductType( Entities edc )
     {
       Entities.ProductDescription product = edc.GetProductType( this.SKU, this.StorLoc );
