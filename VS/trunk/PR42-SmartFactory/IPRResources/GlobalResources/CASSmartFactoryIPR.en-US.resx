@@ -306,4 +306,7 @@
 	<data name="CAS_ASPX_IPRCustomsOfficeDashboard" xml:space="preserve">
 		<value>IPR Book - closed accounts</value>
 	</data>
+	<data name="CAS_ASPX_HomePage" xml:space="preserve">
+		<value>IPR Home Page</value>
+	</data>
 </root>

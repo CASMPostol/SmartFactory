@@ -747,7 +747,4 @@
 	<data name="CAS_ASPX_IPRList" xml:space="preserve">
 		<value>Księga uszlachetniania czynnego</value>
 	</data>
-	<data name="CAS_ASPX_HomePage" xml:space="preserve">
-		<value>IPR Strona Główna</value>
-	</data>
 </root>
