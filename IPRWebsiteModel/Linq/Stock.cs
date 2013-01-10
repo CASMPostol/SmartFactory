@@ -45,6 +45,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
              where ( _sex.ProductType.Value == ProductType.Cigarette ) || ( _sex.ProductType.Value == ProductType.Cutfiller ) && _sex.IPRType.Value
              select _sex;
     }
+    internal void GetInventory( Balance.StockDictionary balanceStock )
+    {
+      foreach ( StockEntry _sex in StockEntry )
+        _sex.GetInventory( balanceStock );
+    }
     /// <summary>
     /// List of all IPR finished goods that have not batch associated.
     /// </summary>

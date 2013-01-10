@@ -21,15 +21,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       PreviousMonthDate = previous.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
       PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( -1 );
-      UpdateJSOXReport( edc );
+      UpdateBalanceReport( edc, null );
     }
-    /// <summary>
-    /// Updates the JSOX report.
-    /// </summary>
-    /// <param name="edc">The edc.</param>
-    public void UpdateJSOXReport( Entities edc )
+    private void UpdateBalanceReport( Entities edc, StockLib stock )
     {
       StockDictionary _balanceStock = new StockDictionary();
+      if ( stock == null )
+        stock.GetInventory( _balanceStock ); 
       Dictionary<string, IGrouping<string, IPR>> _accountGroups = ( from _iprx in Linq.IPR.GetAllOpen4JSOX( edc ) group _iprx by _iprx.Batch ).ToDictionary( x => x.Key );
       List<string> _processed = new List<string>();
       foreach ( BalanceBatch _bbx in BalanceBatch )
