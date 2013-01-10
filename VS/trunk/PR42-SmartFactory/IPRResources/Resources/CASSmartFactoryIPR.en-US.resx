@@ -133,7 +133,7 @@
     <value>Balance date</value>
   </data>
 	<data name="CAS_BalanceLink" xml:space="preserve">
-    <value>Balance lookup</value>
+    <value>Balance ID</value>
   </data>
 	<data name="CAS_BalanceQuantity" xml:space="preserve">
     <value>Balance quantity [kg]</value>
@@ -151,7 +151,7 @@
     <value>Batch Library lD</value>
   </data>
 	<data name="CAS_BatchLink" xml:space="preserve">
-    <value>Batch lookup</value>
+    <value>Batch ID</value>
   </data>
 	<data name="CAS_BatchStatus" xml:space="preserve">
     <value>Batch status</value>
@@ -223,7 +223,7 @@
     <value>Consent date</value>
   </data>
 	<data name="CAS_ConsentLink" xml:space="preserve">
-    <value>Consent lookup</value>
+    <value>Consent ID</value>
   </data>
 	<data name="CAS_ConsentNo" xml:space="preserve">
     <value>Consent No.</value>
@@ -361,7 +361,7 @@
     <value>Invoice content ID</value>
   </data>
 	<data name="CAS_InvoiceLink" xml:space="preserve">
-    <value>Invoice lookup</value>
+    <value>Invoice ID</value>
   </data>
 	<data name="CAS_IPR" xml:space="preserve">
     <value>IPR</value>
@@ -379,7 +379,7 @@
     <value>IPR Library ID</value>
   </data>
 	<data name="CAS_IPRLink" xml:space="preserve">
-    <value>IPR lookup</value>
+    <value>IPR ID</value>
   </data>
 	<data name="CAS_IPRMaterial" xml:space="preserve">
     <value>IPR material</value>
@@ -391,13 +391,13 @@
     <value>Item No.</value>
   </data>
 	<data name="CAS_JSOXCSLink" xml:space="preserve">
-    <value>JSOX Customs Summary lookup</value>
+    <value>JSOX Customs Summary ID</value>
   </data>
 	<data name="CAS_JSOXLibID" xml:space="preserve">
     <value>JSOX Library ID</value>
   </data>
 	<data name="CAS_JSOXLibLink" xml:space="preserve">
-    <value>JSOX Library lookup</value>
+    <value>JSOX Library ID</value>
   </data>
 	<data name="CAS_Location" xml:space="preserve">
     <value>Location</value>
@@ -460,13 +460,13 @@
     <value>PCN</value>
   </data>
 	<data name="CAS_PCNCodeLink" xml:space="preserve">
-    <value>PCN Code lookup</value>
+    <value>PCN Code ID</value>
   </data>
 	<data name="CAS_PCNID" xml:space="preserve">
     <value>PCN ID</value>
   </data>
 	<data name="CAS_PCNTariffCode" xml:space="preserve">
-    <value>PCN code</value>
+    <value>PCN </value>
   </data>
 	<data name="CAS_PreviosMonthDate" xml:space="preserve">
     <value>Previous month date</value>
@@ -499,10 +499,10 @@
     <value>Product type</value>
   </data>
 	<data name="CAS_PureTobaccoCSNotStarted" xml:space="preserve">
-    <value>Pure tobacco (CS - not started) [kg]</value>
+    <value>Tobacco (CS - not started) [kg]</value>
   </data>
 	<data name="CAS_PureTobaccoCSStarted" xml:space="preserve">
-    <value>Pure tobacco (CS - started) [kg]</value>
+    <value>Tobacco (CS - started) [kg]</value>
   </data>
 	<data name="CAS_Quantity" xml:space="preserve">
     <value>Quantity [kg]</value>
@@ -520,7 +520,7 @@
     <value>Restricted use</value>
   </data>
 	<data name="CAS_SADConsignmentLibLink" xml:space="preserve">
-    <value>SAD Consignment Library lookup</value>
+    <value>SAD Consignment Library ID</value>
   </data>
 	<data name="CAS_SADDate" xml:space="preserve">
     <value>SAD date</value>
@@ -577,10 +577,10 @@
     <value>SKU description</value>
   </data>
 	<data name="CAS_SKULibLink" xml:space="preserve">
-    <value>SKU Library lookup</value>
+    <value>SKU Library ID</value>
   </data>
 	<data name="CAS_SKULink" xml:space="preserve">
-    <value>SKU lookup</value>
+    <value>SKU ID</value>
   </data>
 	<data name="CAS_Source" xml:space="preserve">
     <value>Source</value>
@@ -589,7 +589,7 @@
     <value>Status</value>
   </data>
 	<data name="CAS_StockLibLink" xml:space="preserve">
-    <value>Stock Library lookup</value>
+    <value>Stock Library ID</value>
   </data>
 	<data name="CAS_SystemID" xml:space="preserve">
     <value>System ID</value>
@@ -607,7 +607,7 @@
     <value>Tobacco (CS - finished) [kg]</value>
   </data>
 	<data name="CAS_TobaccoEnteredIntoIPR" xml:space="preserve">
-    <value>Tobacco entered into IPR [kg]</value>
+    <value>Tobacco intoroduced [kg]</value>
   </data>
 	<data name="CAS_TobaccoInCigarettesProduction" xml:space="preserve">
     <value>Tobacco in cigarettes production [kg]</value>
@@ -631,13 +631,13 @@
     <value>Tobacco not allocated [kg]</value>
   </data>
 	<data name="CAS_TobaccoQuantity" xml:space="preserve">
-    <value>Tobacco Quantity [kg]</value>
+    <value>Tobacco quantity [kg]</value>
   </data>
 	<data name="CAS_TobaccoToBeUsedInProduction" xml:space="preserve">
-    <value>Tobacco to be used in the production</value>
+    <value>Tobacco not allocated [kg]</value>
   </data>
 	<data name="CAS_TobaccoUsedInProduction" xml:space="preserve">
-    <value>Tobacco used in the production</value>
+    <value>Tobacco disposed [kg]</value>
   </data>
 	<data name="CAS_TobaccoVAlue" xml:space="preserve">
     <value>Tobacco value</value>
@@ -646,7 +646,7 @@
     <value>Quantity [kg]</value>
   </data>
 	<data name="CAS_TotalAmountInvoiced" xml:space="preserve">
-    <value>Total amount invoiced</value>
+    <value>Wartość</value>
   </data>
 	<data name="CAS_UnitPrice" xml:space="preserve">
     <value>Unit price</value>
@@ -679,7 +679,7 @@
     <value>VAT value [PLN]</value>
   </data>
 	<data name="CAS_VATName" xml:space="preserve">
-    <value>VAT[PLN]</value>
+    <value>VAT [PLN]</value>
   </data>
 	<data name="CAS_VATPerAmount" xml:space="preserve">
     <value>VAT per settled amount [PLN]</value>
