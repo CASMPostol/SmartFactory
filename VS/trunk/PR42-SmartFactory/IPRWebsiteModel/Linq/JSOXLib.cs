@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -28,7 +29,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="edc">The edc.</param>
     public void UpdateJSOXReport( Entities edc )
     {
-      Linq.IPR.BalanceStockDictionary _balanceStock = new Linq.IPR.BalanceStockDictionary();
+      StockDictionary _balanceStock = new StockDictionary();
       Dictionary<string, IGrouping<string, IPR>> _accountGroups = ( from _iprx in Linq.IPR.GetAllOpen4JSOX( edc ) group _iprx by _iprx.Batch ).ToDictionary( x => x.Key );
       List<string> _processed = new List<string>();
       foreach ( BalanceBatch _bbx in BalanceBatch )
