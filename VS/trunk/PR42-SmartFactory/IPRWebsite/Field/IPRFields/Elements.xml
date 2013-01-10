@@ -41,6 +41,7 @@
   Name="BatchWasteCooeficiency"
   Type="Number"
   Percentage="TRUE"
+  Decimals="2"
   ID="{91109161-779F-4D61-AC19-1A7F9E260380}"
   Group="CAS Smart Factory IPR"
     />
@@ -56,6 +57,7 @@
   Name="BatchDustCooeficiency"
   Type="Number"
   Percentage="TRUE"
+  Decimals="2"
   ID="{B292C573-B10F-4BD6-BACA-D91E4930B35C}"
   Group="CAS Smart Factory IPR"
     />
@@ -71,6 +73,7 @@
   Name="BatchSHCooeficiency"
   Type="Number"
   Percentage="TRUE"
+  Decimals="2"
   ID="{B4A62D70-8D8E-4231-95E7-754942CD20D6}"
   Group="CAS Smart Factory IPR"
     />
@@ -197,6 +200,7 @@
     Percentage="TRUE"
     Min="0"
     Max="5"
+    Decimals="2"
     ID="{368C844B-0491-42AE-A102-D888646823FD}"
     Group="CAS Smart Factory IPR"
     StaticName="CFTProductivityRateMax"
@@ -208,6 +212,7 @@
     Percentage="TRUE"
     Min="0"
     Max="5"
+    Decimals="2"
     ID="{8238B9F6-7172-4FAD-BEBF-B576B9DBD76A}"
     Group="CAS Smart Factory IPR"
     />
@@ -297,6 +302,7 @@
     Min="0"
     Max="5"
     Type="Number"
+    Decimals="2"
     ID="{440BD88D-3870-480E-B01E-F934D478593F}"
     Group="CAS Smart Factory IPR"
     />
@@ -328,6 +334,7 @@
     Max="5"
     Name="DustRatio"
     Type="Number"
+    Decimals="2"
     ID="{b7afdd32-1537-4091-a802-aa52bf8702d2}"
     Group="CAS Smart Factory IPR"
     />
@@ -338,6 +345,7 @@
     Percentage="TRUE"
     Min="0"
     Max="5"
+    Decimals="2"
     ID="{dd7d6806-45a6-494d-a940-1baae80840a2}"
     Group="CAS Smart Factory IPR"
     />
@@ -421,7 +429,7 @@
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_Value"
     Name="Value"
     Type="Number"
-    Decimals="3"
+    Decimals="2"
     ID="{DE38C643-C8BC-4469-8D2F-266BF236F6D1}"
     Group="CAS Smart Factory IPR"
     />
@@ -517,6 +525,7 @@
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_CalculatedOveruse"
     Name="CalculatedOveruse"
     Type="Number"
+    Decimals="2"
     Percentage="TRUE"
     ID="{725952C1-86DA-41C1-8616-6F5B738B2CA0}"
     Group="CAS Smart Factory IPR"

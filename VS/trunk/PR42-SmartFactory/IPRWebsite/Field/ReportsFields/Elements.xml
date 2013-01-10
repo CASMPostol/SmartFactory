@@ -11,6 +11,7 @@
     Name="TobaccoEnteredIntoIPR"
     ID="{ECF7BF3D-B3E5-40B6-B7B3-5D843DD18B19}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoEnteredIntoIPR"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -18,6 +19,7 @@
     Name="TobaccoCSFinished"
     ID="{C5727534-8FD5-43C7-A1D4-14F7759A4D7F}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoCSFinished"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -25,6 +27,7 @@
     Name="TobaccoInFGCSStarted"
     ID="{D9A43A0B-6058-45FE-B17E-FCE2D2B68F00}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoInFGCSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -32,6 +35,7 @@
     Name="DustCSStarted"
     ID="{259D6299-703C-4C7E-8B9C-3A6E699AECDC}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_CSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -39,6 +43,7 @@
     Name="WasteCSStarted"
     ID="{53B8AE24-354A-4E2D-AAD2-792A2611B4AB}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_WasteCSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -46,6 +51,7 @@
     Name="SHMentholCSStarted"
     ID="{5E1AB76D-319C-4E05-932D-FCD0427FD90D}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHMentholCSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -53,6 +59,7 @@
     Name="OveruseCSStarted"
     ID="{53F5CC88-8D20-4983-9D3B-B2DFCED84E75}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_OveruseCSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -60,6 +67,7 @@
     Name="PureTobaccoCSStarted"
     ID="{63460CC1-5E98-40AD-B397-0DEFB5D7B30A}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_PureTobaccoCSStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -67,6 +75,7 @@
     Name="IPRBook"
     ID="{1984248F-B28C-46B9-8A5B-1FA889CA6C19}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_IPRBook"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -74,6 +83,7 @@
     Name="WasteCSNotStarted"
     ID="{60F39E6B-3F9B-4EFF-B23A-415C6C2F0697}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_WasteCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -81,6 +91,7 @@
     Name="SHMentholCSNotStarted"
     ID="{058A1544-7568-4200-AA24-3D241A556372}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHMentholCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -88,6 +99,7 @@
     Name="OveruseCSNotStarted"
     ID="{7975EDC7-6647-4948-AA72-5665B3D0587E}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_OveruseCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -95,6 +107,7 @@
     Name="SHWasteOveruseCSNotStarted"
     ID="{0BFC8F01-34C1-4E57-996B-5CE86BE152C4}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_SHWasteOveruseCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -102,6 +115,7 @@
     Name="DustCSNotStarted"
     ID="{8448C159-547D-4524-A0EE-9E4B43284F07}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_DustCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -109,6 +123,7 @@
     Name="TobaccoAvailable"
     ID="{A0E79811-844C-4614-8EEC-AE76CBF1609E}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoAvailable"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -116,6 +131,7 @@
     Name="TobaccoInFGCSNotStarted"
     ID="{09D8F5DD-B676-4B39-9529-947391B8C78F}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoInFGCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -123,6 +139,7 @@
     Name="PureTobaccoCSNotStarted"
     ID="{65F982E8-3C59-4A27-9EF6-D87948624D63}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_PureTobaccoCSNotStarted"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -130,6 +147,7 @@
     Name="TobaccoUsedInTheProduction"
     ID="{2BE8F347-0979-42C2-A021-832891FC786A}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoUsedInProduction"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -137,6 +155,7 @@
     Name="TobaccoToBeUsedInTheProduction"
     ID="{12BF2F51-FADB-48CE-9948-290A72FEFB0F}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoToBeUsedInProduction"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -144,6 +163,7 @@
     Name="TobaccoInWarehouse"
     ID="{54C90F3E-3C47-4B04-9793-EE1395939864}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoInWarehouse"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -151,6 +171,7 @@
     Name="TobaccoInCigarettesWarehouse"
     ID="{5683B652-DF3A-4988-A253-7535AE34003A}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_Tobacco_InCigarettesWarehouse"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -158,6 +179,7 @@
     Name="TobaccoInCigarettesProduction"
     ID="{5BA601FA-60E5-452C-8D40-832083C03201}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoInCigarettesProduction"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -165,6 +187,7 @@
     Name="TobaccoInCutfillerWarehouse"
     ID="{ADFF97EF-0414-477C-AF48-D1DEF14D8C5E}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_TobaccoInCutfillerWarehouse"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -172,6 +195,7 @@
     Name="Balance"
     ID="{D341520E-A826-4C16-A8ED-8325153B7D49}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_Balance"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -179,6 +203,7 @@
     Name="ExportOrFreeCirculationSAD"
     ID="{0D1243D7-75A7-47EB-A17E-E82C15AEA206}"
     Type="Text"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_ExportOrFCSAD"
     Group="CAS Smart Factory IPR Reports"
     />
@@ -224,6 +249,7 @@
     Name="TotalAmount"
     ID="{035F50FD-F71B-452B-8F44-7A4DB2486A8E}"
     Type="Number"
+    Decimals="2"
     DisplayName="$Resources:CASSmartFactoryIPR,CAS_TotalAmmount"
     Group="CAS Smart Factory IPR Reports"
     />
