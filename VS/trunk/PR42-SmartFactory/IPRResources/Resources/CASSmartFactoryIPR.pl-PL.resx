@@ -124,7 +124,7 @@
     <value>Konto zamknięte</value>
   </data>
 	<data name="CAS_Amount" xml:space="preserve">
-    <value>Ilość [KU/kg]</value>
+    <value>Ilość</value>
   </data>
 	<data name="CAS_Balance" xml:space="preserve">
     <value>Bilans</value>
@@ -133,7 +133,7 @@
     <value>Data bilansu</value>
   </data>
 	<data name="CAS_BalanceLink" xml:space="preserve">
-    <value>Bilans</value>
+    <value>Bilans </value>
   </data>
 	<data name="CAS_BalanceQuantity" xml:space="preserve">
     <value>Bilans [kg]</value>
@@ -148,7 +148,7 @@
     <value>Batch ID</value>
   </data>
 	<data name="CAS_BatchLibLink" xml:space="preserve">
-    <value>Biblioteka Batch</value>
+    <value>Biblioteka Batch ID</value>
   </data>
 	<data name="CAS_BatchLink" xml:space="preserve">
     <value>Batch</value>
@@ -202,7 +202,7 @@
     <value>Długość papierosa</value>
   </data>
 	<data name="CAS_ClearenceLink" xml:space="preserve">
-    <value>Likwidacja</value>
+    <value>Odprawa ID</value>
   </data>
 	<data name="CAS_ClearingType" xml:space="preserve">
     <value>Likwidacja</value>
@@ -229,7 +229,7 @@
     <value>Zezwolenie nr</value>
   </data>
 	<data name="CAS_ConsentPeriod" xml:space="preserve">
-    <value>Okres ważności zezwolenia</value>
+    <value>Okres rozliczenia konta [mies.]</value>
   </data>
 	<data name="CAS_CreationDate" xml:space="preserve">
     <value>Data dokumentu</value>
@@ -256,7 +256,7 @@
     <value>Status dyspozycji</value>
   </data>
 	<data name="CAS_DocumentNo" xml:space="preserve">
-    <value>OGL wprowadzenia</value>
+    <value>SAD wprowadzenia nr</value>
   </data>
 	<data name="CAS_Dust" xml:space="preserve">
     <value>Pył [kg]</value>
@@ -376,7 +376,7 @@
     <value>IPR ID</value>
   </data>
 	<data name="CAS_IPRLibLink" xml:space="preserve">
-    <value>Bilbioteka IPR</value>
+    <value>Bilbioteka IPR ID</value>
   </data>
 	<data name="CAS_IPRLink" xml:space="preserve">
     <value>IPR </value>
@@ -526,10 +526,10 @@
     <value>Data SAD</value>
   </data>
 	<data name="CAS_SADDocumentLibLink" xml:space="preserve">
-    <value>Bioblioteka dok. SAD</value>
+    <value>Bioblioteka dok. SAD ID</value>
   </data>
 	<data name="CAS_SADDocumentLink" xml:space="preserve">
-    <value>Dokument SAD</value>
+    <value>Dokument SAD ID</value>
   </data>
 	<data name="CAS_SADDocumentNo" xml:space="preserve">
     <value>SAD wyprowadzenia nr</value>
@@ -643,7 +643,7 @@
     <value>Wartość tytoni</value>
   </data>
 	<data name="CAS_TotalAmmount" xml:space="preserve">
-    <value>Suma [kg]</value>
+    <value>Ilość [kg]</value>
   </data>
 	<data name="CAS_TotalAmountInvoiced" xml:space="preserve">
     <value>Wartość</value>
@@ -718,10 +718,10 @@
     <value>Batch PG</value>
   </data>
 	<data name="CAS_ASPX_ClearenceList" xml:space="preserve">
-		<value>Likwidacja</value>
+		<value>Odprawa</value>
 	</data>
 	<data name="CAS_ASPX_ClearenceManager" xml:space="preserve">
-		<value>Likwidacja - menadżer</value>
+		<value>Menadżer odpraw</value>
 	</data>
 	<data name="CAS_ASPX_InvoiceLibrary" xml:space="preserve">
 		<value>Faktury</value>
@@ -733,7 +733,7 @@
 		<value>Batch</value>
 	</data>
 	<data name="CAS_ASPX_ExportManager" xml:space="preserve">
-		<value>Eksport - menadżer</value>
+		<value>Menadżer eksportu</value>
 	</data>
 	<data name="CAS_ASPX_IPRClosedAccounts" xml:space="preserve">
 		<value>Księga uszlachetniania czynnego - konta zamknięte</value>

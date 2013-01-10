@@ -124,7 +124,7 @@
     <value>Account closed</value>
   </data>
 	<data name="CAS_Amount" xml:space="preserve">
-    <value>Amount [KU/kg]</value>
+    <value>Amount</value>
   </data>
 	<data name="CAS_Balance" xml:space="preserve">
     <value>Balance</value>
@@ -148,7 +148,7 @@
     <value>Batch ID</value>
   </data>
 	<data name="CAS_BatchLibLink" xml:space="preserve">
-    <value>Batch Library lookup</value>
+    <value>Batch Library lD</value>
   </data>
 	<data name="CAS_BatchLink" xml:space="preserve">
     <value>Batch lookup</value>
@@ -202,7 +202,7 @@
     <value>Cigarette lenght</value>
   </data>
 	<data name="CAS_ClearenceLink" xml:space="preserve">
-    <value>Clearence List lookup</value>
+    <value>Clearence List ID</value>
   </data>
 	<data name="CAS_ClearingType" xml:space="preserve">
     <value>Clearing type</value>
@@ -229,7 +229,7 @@
     <value>Consent No.</value>
   </data>
 	<data name="CAS_ConsentPeriod" xml:space="preserve">
-    <value>Consent period</value>
+    <value>Consent period [month]</value>
   </data>
 	<data name="CAS_CreationDate" xml:space="preserve">
     <value>Document date</value>
@@ -256,7 +256,7 @@
     <value>Disposal status</value>
   </data>
 	<data name="CAS_DocumentNo" xml:space="preserve">
-    <value>Introduction OGL No.</value>
+    <value>Introducing SAD No.</value>
   </data>
 	<data name="CAS_Dust" xml:space="preserve">
     <value>Dust [kg]</value>
@@ -328,7 +328,7 @@
     <value>Filter lenght</value>
   </data>
 	<data name="CAS_FormatLink" xml:space="preserve">
-    <value>Format lookup</value>
+    <value>Format </value>
   </data>
 	<data name="CAS_GoodsDescription" xml:space="preserve">
     <value>Goods description</value>
@@ -376,7 +376,7 @@
     <value>IPR ID</value>
   </data>
 	<data name="CAS_IPRLibLink" xml:space="preserve">
-    <value>IPR Library lookup</value>
+    <value>IPR Library ID</value>
   </data>
 	<data name="CAS_IPRLink" xml:space="preserve">
     <value>IPR lookup</value>
@@ -526,10 +526,10 @@
     <value>SAD date</value>
   </data>
 	<data name="CAS_SADDocumentLibLink" xml:space="preserve">
-    <value>SAD Document Library lookup</value>
+    <value>SAD Document Library ID</value>
   </data>
 	<data name="CAS_SADDocumentLink" xml:space="preserve">
-    <value>SAD Document lookup</value>
+    <value>SAD Document ID</value>
   </data>
 	<data name="CAS_SADDocumentNo" xml:space="preserve">
     <value>SAD Document No.</value>
@@ -544,10 +544,10 @@
     <value>Settled quantity [kg]</value>
   </data>
 	<data name="CAS_SHCoefficient" xml:space="preserve">
-    <value>SH ratio [%]</value>
+    <value>SH Menthol ratio [%]</value>
   </data>
 	<data name="CAS_SHCoefficientVer" xml:space="preserve">
-    <value>SH ratio ver.</value>
+    <value>SH Menthol ratio ver.</value>
   </data>
 	<data name="CAS_SHMenthol" xml:space="preserve">
     <value>SH Menthol [kg]</value>
@@ -559,7 +559,7 @@
     <value>SH Menthol (CS - started) [kg]</value>
   </data>
 	<data name="CAS_SHMentholRatio" xml:space="preserve">
-    <value>SH Menthol Ratio</value>
+    <value>SH Menthol ratio</value>
   </data>
 	<data name="CAS_SHWasteOveruseCSNotStarted" xml:space="preserve">
     <value>SH, Waste, Overuse (CS - not started) [kg]</value>
@@ -643,7 +643,7 @@
     <value>Tobacco value</value>
   </data>
 	<data name="CAS_TotalAmmount" xml:space="preserve">
-    <value>Total amount [kg]</value>
+    <value>Quantity [kg]</value>
   </data>
 	<data name="CAS_TotalAmountInvoiced" xml:space="preserve">
     <value>Total amount invoiced</value>
