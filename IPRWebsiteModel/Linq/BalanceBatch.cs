@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   partial class BalanceBatch
   {
-    internal static void Create( Entities edc, IGrouping<string, IPR> _grpx, JSOXLib parent, IPR.BalanceStock balanceStock )
+    internal static void Create( Entities edc, IGrouping<string, IPR> _grpx, JSOXLib parent, StockDictionary.BalanceStock balanceStock )
     {
       IPR _firsTIPR = _grpx.FirstOrDefault<IPR>();
       BalanceBatch _newBB = new BalanceBatch()
@@ -18,11 +20,11 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       edc.BalanceBatch.InsertOnSubmit( _newBB );
       _newBB.Update( edc, _grpx, balanceStock );
     }
-    internal void Update( Entities edc, IGrouping<string, IPR> grouping, IPR.BalanceStock balanceStock)
+    internal void Update( Entities edc, IGrouping<string, IPR> grouping, StockDictionary.BalanceStock balanceStock )
     {
       Dictionary<string, IPR> _iprDictionary = grouping.ToDictionary( x => x.DocumentNo );
       List<string> _processed = new List<string>();
-      IPR.BalanceTotals _totals = new IPR.BalanceTotals();
+      BalanceTotals _totals = new BalanceTotals();
       foreach ( BalanceIPR _blncIPRx in this.BalanceIPR )
       {
         if ( _iprDictionary.ContainsKey( _blncIPRx.DocumentNo ) )
@@ -62,11 +64,39 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       WasteCSStarted = _totals[ IPR.ValueKey.WasteCSStarted ];
       //
       balanceStock.CalculateBalance( _totals.Base[ IPR.ValueKey.TobaccoInFGCSNotStarted ], _totals.Base[ IPR.ValueKey.TobaccoAvailable ] );
-      this.Balance = balanceStock[ IPR.StockValueKey.Balance ];
-      this.TobaccoInCigarettesProduction = balanceStock[ IPR.StockValueKey.TobaccoInCigarettesProduction ];
-      this.TobaccoInCigarettesWarehouse = balanceStock[ IPR.StockValueKey.TobaccoInCigarettesWarehouse ];
-      this.TobaccoInCutfillerWarehouse = balanceStock[ IPR.StockValueKey.TobaccoInCutfillerWarehouse ];
-      this.TobaccoInWarehouse = balanceStock[ IPR.StockValueKey.TobaccoInWarehouse ];
+      this.Balance = balanceStock[ StockDictionary.StockValueKey.Balance ];
+      this.TobaccoInCigarettesProduction = balanceStock[ StockDictionary.StockValueKey.TobaccoInCigarettesProduction ];
+      this.TobaccoInCigarettesWarehouse = balanceStock[ StockDictionary.StockValueKey.TobaccoInCigarettesWarehouse ];
+      this.TobaccoInCutfillerWarehouse = balanceStock[ StockDictionary.StockValueKey.TobaccoInCutfillerWarehouse ];
+      this.TobaccoInWarehouse = balanceStock[ StockDictionary.StockValueKey.TobaccoInWarehouse ];
+    }
+    /// <summary>
+    /// Balance Totals
+    /// </summary>
+    private class BalanceTotals: Dictionary<IPR.ValueKey, decimal>
+    {
+      /// <summary>
+      /// Initializes a new instance of the <see cref="BalanceTotals" /> class.
+      /// </summary>
+      internal BalanceTotals()
+      {
+        foreach ( IPR.ValueKey _vkx in Enum.GetValues( typeof( IPR.ValueKey ) ) )
+          base[ _vkx ] = 0;
+      }
+      internal new double this[ IPR.ValueKey index ]
+      {
+        get { return Convert.ToDouble( base[ index ] ); }
+      }
+      internal Dictionary<IPR.ValueKey, decimal> Base { get { return this; } }
+      /// <summary>
+      /// Adds the specified balance.
+      /// </summary>
+      /// <param name="balance">The balance.</param>
+      internal void Add( IPR.Balance balance )
+      {
+        foreach ( IPR.ValueKey _vkx in Enum.GetValues( typeof( IPR.ValueKey ) ) )
+          base[ _vkx ] = balance.Base[ _vkx ];
+      }
     }
   }
 }
