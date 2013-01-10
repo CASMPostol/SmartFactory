@@ -306,4 +306,7 @@
 	<data name="CAS_ASPX_IPRCustomsOfficeDashboard" xml:space="preserve">
 		<value>Księga uszlachetniania czynnego - Urząd Celny</value>
 	</data>
+	<data name="CAS_ASPX_HomePage" xml:space="preserve">
+		<value>IPR Strona Główna</value>
+	</data>
 </root>
