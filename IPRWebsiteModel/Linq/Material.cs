@@ -184,13 +184,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return String.Format( m_keyForam, SKU, Batch, this.StorLoc );
     }
     /// <summary>
-    /// Gets the tobacco total.
-    /// </summary>
-    /// <value>
-    /// The tobacco total.
-    /// </value>
-    internal decimal TobaccoQuantityDec { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
-    /// <summary>
     /// Exports the specified entities.
     /// </summary>
     /// <param name="entities">The entities.</param>
@@ -215,6 +208,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _quantity, this.Batch, this.Identyfikator, invoiceContent.InvoiceIndex.BillDoc, invoiceContent.Identyfikator.Value );
       throw new CAS.SmartFactory.IPR.WebsiteModel.InputDataValidationException( "internal error: it is imposible to mark as exported the material", "Material export`", _error, false );
     }
+    #endregion
+
+    #region internal
+    /// <summary>
+    /// Gets the tobacco total.
+    /// </summary>
+    /// <value>
+    /// The tobacco total.
+    /// </value>
+    internal decimal TobaccoQuantityDec { get { return Convert.ToDecimal( this.TobaccoQuantity.GetValueOrDefault( 0 ) ); } }
     internal Material ReplaceByExistingOne( List<Material> _oldMaterials, List<Material> _newMaterials, Linq.Batch parent )
     {
       Material _old = ( from _mx in parent.Material where _mx.Batch.Contains( this.Batch ) select _mx ).FirstOrDefault<Material>();
@@ -293,7 +296,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           break;
       }
     }
-    internal void GetInventory( Balance.StockDictionary _balanceStock, Balance.StockDictionary.StockValueKey _key )
+    internal void GetInventory( Balance.StockDictionary balanceStock, Balance.StockDictionary.StockValueKey key )
     {
       switch ( this.ProductType.Value )
       {
@@ -303,7 +306,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         case Linq.ProductType.Other:
           break;
         case Linq.ProductType.IPRTobacco:
-          _balanceStock.Sum( this.TobaccoQuantityDec, this.Batch, _key );
+          balanceStock.Sum( this.TobaccoQuantityDec, this.Batch, key );
           break;
       }
     }

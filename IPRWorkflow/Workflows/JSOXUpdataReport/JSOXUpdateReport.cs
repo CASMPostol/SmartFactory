@@ -23,7 +23,7 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport
         using ( Entities edc = new Entities( workflowProperties.WebUrl ) )
         {
           JSOXLib _list = Element.GetAtIndex<JSOXLib>( edc.JSOXLibrary, workflowProperties.ItemId );
-          _list.UpdateJSOXReport( edc, null );
+          _list.UpdateBalanceReport( edc );
           edc.SubmitChanges();
           string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( _list.Identyfikator.Value );
           _content = DocumentsFactory.BalanceSheetContentFactory.CreateRequestContent( _list, _documentName );

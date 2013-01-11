@@ -4,6 +4,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class StockEntry
   {
+    #region internal
     /// <summary>
     /// Processes the entry.
     /// </summary>
@@ -14,6 +15,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       GetProductType( edc );
       GetBatchLookup( edc, warnings );
     }
+    /// <summary>
+    /// Gets the no maching batcg warning message.
+    /// </summary>
+    /// <value>
+    /// The no maching batcg warning message.
+    /// </value>
     public string NoMachingBatcgWarningMessage
     {
       get
@@ -21,6 +28,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return String.Format( "Cannot find batch:{0}/sku: {1} for stock record {2} on the stock location:{3}.", this.Batch, this.SKU, this.Title, this.StorLoc );
       }
     }
+    /// <summary>
+    /// Gets the no maching quantity warning message.
+    /// </summary>
+    /// <value>
+    /// The no maching quantity warning message.
+    /// </value>
+    /// <exception cref="System.ArgumentNullException">BatchIndex</exception>
     public string NoMachingQuantityWarningMessage
     {
       get
@@ -31,26 +45,29 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return String.Format( _mtmp, this.Batch, this.SKU, this.Title, this.Quantity.Value, this.BatchIndex.FGQuantityAvailable.Value );
       }
     }
-    internal void GetInventory( Balance.StockDictionary _balanceStock )
+    internal void GetInventory( Balance.StockDictionary balanceStock )
     {
       switch ( ProductType.Value )
       {
         case Linq.ProductType.Cutfiller:
           if ( IPRType.Value && BatchIndex != null )
-            BatchIndex.GetInventory( _balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCutfillerWarehouse );
-            break;
+            BatchIndex.GetInventory( balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCutfillerWarehouse );
+          break;
         case Linq.ProductType.Cigarette:
           if ( IPRType.Value && BatchIndex != null )
-            BatchIndex.GetInventory( _balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCigarettesProduction );
+            BatchIndex.GetInventory( balanceStock, Balance.StockDictionary.StockValueKey.TobaccoInCigarettesProduction );
           break;
         case Linq.ProductType.IPRTobacco:
-          _balanceStock.Sum( this.Quantity.Value, this.Batch, Balance.StockDictionary.StockValueKey.TobaccoInWarehouse );
+          balanceStock.Sum( this.Quantity.Value, this.Batch, Balance.StockDictionary.StockValueKey.TobaccoInWarehouse );
           break;
         case Linq.ProductType.Tobacco:
         case Linq.ProductType.Other:
           break;
       }
     }
+    #endregion
+
+    #region private
     private void GetProductType( Entities edc )
     {
       Entities.ProductDescription product = edc.GetProductType( this.SKU, this.StorLoc );
@@ -68,5 +85,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return;
       warnings.Add( NoMachingBatcgWarningMessage, false );
     }
+    #endregion
+
   }
 }

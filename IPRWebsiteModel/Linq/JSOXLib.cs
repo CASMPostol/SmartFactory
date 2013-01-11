@@ -21,13 +21,27 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       PreviousMonthDate = previous.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
       PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( -1 );
-      UpdateBalanceReport( edc, null );
+      UpdateBalanceReport( edc );
     }
-    private void UpdateBalanceReport( Entities edc, StockLib stock )
+    /// <summary>
+    /// Updates the balance report.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    public void UpdateBalanceReport( Entities edc )
+    {
+      Linq.StockLib _stock = this.StockLib.FirstOrDefault<Linq.StockLib>();
+      UpdateBalanceReport( edc, _stock );
+    }
+    /// <summary>
+    /// Updates the balance report.
+    /// </summary>
+    /// <param name="edc">The edc.</param>
+    /// <param name="stock">The stock.</param>
+    public void UpdateBalanceReport( Entities edc, StockLib stock )
     {
       StockDictionary _balanceStock = new StockDictionary();
-      if ( stock == null )
-        stock.GetInventory( _balanceStock ); 
+      if ( stock != null )
+        stock.GetInventory( _balanceStock );
       Dictionary<string, IGrouping<string, IPR>> _accountGroups = ( from _iprx in Linq.IPR.GetAllOpen4JSOX( edc ) group _iprx by _iprx.Batch ).ToDictionary( x => x.Key );
       List<string> _processed = new List<string>();
       foreach ( BalanceBatch _bbx in BalanceBatch )
@@ -41,7 +55,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( string _btchx in _processed )
         _accountGroups.Remove( _btchx );
       foreach ( var _grpx in _accountGroups )
-        Linq.BalanceBatch.Create( edc, _grpx.Value, this, _balanceStock.GetOrDefault( _grpx.Key ));
+        Linq.BalanceBatch.Create( edc, _grpx.Value, this, _balanceStock.GetOrDefault( _grpx.Key ) );
 
       //Introducing
       DateTime _thisIntroducingDateStart = LinqIPRExtensions.DateTimeMaxValue;

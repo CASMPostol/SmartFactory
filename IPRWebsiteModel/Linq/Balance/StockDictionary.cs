@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
 {
@@ -44,14 +42,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance
         this.Add( batch, new BalanceStock() );
       return this[ batch ];
     }
-    internal void Sum( decimal quantity, string batch, StockValueKey _key )
+    internal void Sum( decimal quantity, string batch, StockValueKey key )
     {
       BalanceStock _bs = GetOrDefault( batch );
-      _bs.Base[ _key ] += quantity;
+      _bs.Base[ key ] += quantity;
     }
-    internal void Sum( double quantity, string batch, StockValueKey _key )
+    internal void Sum( double quantity, string batch, StockValueKey key )
     {
-      Sum( quantity, batch, _key );
+      Sum( Convert.ToDecimal( quantity ), batch, key );
     }
   }
 }
