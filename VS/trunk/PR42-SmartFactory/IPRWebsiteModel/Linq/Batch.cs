@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using CAS.SmartFactory.IPR.WebsiteModel.Linq.Balance;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -137,13 +138,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( Material _materialX in this.Material )
         _materialX.UpdateDisposals( edc, parent, progressChanged );
     }
-    internal void GetInventory( Balance.StockDictionary _balanceStock, Balance.StockDictionary.StockValueKey _key )
+    internal void GetInventory( StockDictionary balanceStock, StockDictionary.StockValueKey key )
     {
       switch ( this.BatchStatus.Value )
       {
         case Linq.BatchStatus.Progress:
           foreach ( Material _mtx in Material )
-            _mtx.GetInventory( _balanceStock, _key );
+            _mtx.GetInventory( balanceStock, key );
           break;
         case Linq.BatchStatus.Intermediate:
         case Linq.BatchStatus.Final:
