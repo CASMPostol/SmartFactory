@@ -84,7 +84,6 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport
       this.onWorkflowActivated.Name = "onWorkflowActivated";
       activitybind5.Name = "JSOXUpdateReport";
       activitybind5.Path = "workflowProperties";
-      this.onWorkflowActivated.Invoked += new System.EventHandler<System.Workflow.Activities.ExternalDataEventArgs>( this.onWorkflowActivated_Invoked );
       this.onWorkflowActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowIdProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind6 ) ) );
       this.onWorkflowActivated.SetBinding( Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated.WorkflowPropertiesProperty, ( (System.Workflow.ComponentModel.ActivityBind)( activitybind5 ) ) );
       // 
@@ -108,6 +107,7 @@ namespace CAS.SmartFactory.IPR.Workflows.JSOXUpdateReport
     private Microsoft.SharePoint.WorkflowActions.LogToHistoryListActivity StartingLogToHistory;
 
     private Microsoft.SharePoint.WorkflowActions.OnWorkflowActivated onWorkflowActivated;
+
 
 
 

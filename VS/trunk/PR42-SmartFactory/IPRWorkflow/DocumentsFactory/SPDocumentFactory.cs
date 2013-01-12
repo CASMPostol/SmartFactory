@@ -28,7 +28,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         throw GetApplicationError( ex, _stt );
       }
     }
-    internal static int Prepare( SPWeb site, BalanceSheetContent content, string fileName )
+    internal static SPFile Prepare( SPWeb site, BalanceSheetContent content, string fileName )
     {
       string _stt = "Starting";
       try
@@ -36,8 +36,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         _stt = "SPDocumentLibrary";
         SPDocumentLibrary _lib = (SPDocumentLibrary)site.Lists[ Entities.JSOXLibraryName ];
         _stt = "AddDocument2Collection";
-        SPFile _docFile = content.AddDocument2Collection( _lib.RootFolder.Files, fileName );
-        return _docFile.Item.ID;
+        return content.AddDocument2Collection( _lib.RootFolder.Files, fileName );
       }
       catch ( Exception ex )
       {
