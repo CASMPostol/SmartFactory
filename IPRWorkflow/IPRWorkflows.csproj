@@ -88,12 +88,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="Workflows\CreateReport\CreateReport.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Workflows\CreateReport\CreateReport.Designer.cs">
-      <DependentUpon>CreateReport.cs</DependentUpon>
-    </Compile>
     <Compile Include="Workflows\IPRClosing\IPRClosing.cs">
       <SubType>Component</SubType>
     </Compile>

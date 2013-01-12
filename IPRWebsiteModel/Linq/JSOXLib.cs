@@ -17,7 +17,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The edc.</param>
     /// <param name="previous">The previous report.</param>
-    public void UpdateJSOXReport( Entities edc, JSOXLib previous )
+    public void CreateJSOXReport( Entities edc, JSOXLib previous )
     {
       PreviousMonthDate = previous.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
       PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( -1 );
@@ -29,19 +29,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <param name="edc">The edc.</param>
     public void UpdateBalanceReport( Entities edc )
     {
-      Linq.StockLib _stock = this.StockLib.FirstOrDefault<Linq.StockLib>();
-      UpdateBalanceReport( edc, _stock );
-    }
-    /// <summary>
-    /// Updates the balance report.
-    /// </summary>
-    /// <param name="edc">The edc.</param>
-    /// <param name="stock">The stock.</param>
-    public void UpdateBalanceReport( Entities edc, StockLib stock )
-    {
       StockDictionary _balanceStock = new StockDictionary();
-      if ( stock != null )
-        stock.GetInventory( _balanceStock );
+      Linq.StockLib _stock = this.StockLib.FirstOrDefault<Linq.StockLib>();
+      if ( _stock == null )
+        _stock = Linq.StockLib.Find( edc );
+      if ( _stock != null )
+        _stock.GetInventory( edc, _balanceStock );
       Dictionary<string, IGrouping<string, IPR>> _accountGroups = ( from _iprx in Linq.IPR.GetAllOpen4JSOX( edc ) group _iprx by _iprx.Batch ).ToDictionary( x => x.Key );
       List<string> _processed = new List<string>();
       foreach ( BalanceBatch _bbx in BalanceBatch )
@@ -88,10 +81,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.ReassumeQuantity = ( _thisBalanceQuantity - _thisSituationQuantity ).Convert2Double2Decimals();
 
     }
-    #endregion
-
-    #region private
-    private IQueryable<JSOXLib> Previous( Entities edc ) { return from _jsx in edc.JSOXLibrary orderby _jsx.BalanceDate.Value descending select _jsx; }
     #endregion
 
   }

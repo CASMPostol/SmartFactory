@@ -1,14 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using CAS.SmartFactory.IPR;
-using System.Linq;
+﻿using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
   public partial class StockLib
   {
-    public bool Validate( Entities edc )
+
+    #region internal
+    internal static StockLib Find( Entities edc )
+    {
+      return ( from _stcx in edc.StockLibrary
+               where _stcx.Stock2JSOXLibraryIndex == null
+               orderby _stcx.Identyfikator.Value descending
+               select _stcx ).FirstOrDefault<StockLib>();
+    }
+    internal void GetInventory( Entities edc, Balance.StockDictionary balanceStock )
+    {
+      if ( !Validate( edc ) )
+      {
+        string _mtmplt = "Data validation failed. There are problems reported that must be resolved to start calculation procedure. Details you can find on the application log.";
+        ActivityLogCT.WriteEntry( "GetInventory Validatoion", _mtmplt );
+      }
+      foreach ( StockEntry _sex in StockEntry )
+        _sex.GetInventory( balanceStock );
+    }
+    #endregion
+
+    #region private
+    private bool Validate( Entities edc )
     {
       int _problems = 0;
       foreach ( StockEntry _sex in this.FinishedGoodsNotProcessed( edc ) )
@@ -33,22 +51,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _problems++;
       }
       return _problems > 0;
-    }
-    /// <summary>
-    /// List of all IPR finished goods.
-    /// </summary>
-    /// <param name="edc">The <see cref="Entities"/>.</param>
-    /// <returns></returns>
-    public IQueryable<StockEntry> FinishedGoods( Entities edc )
-    {
-      return from _sex in this.StockEntry
-             where ( _sex.ProductType.Value == ProductType.Cigarette ) || ( _sex.ProductType.Value == ProductType.Cutfiller ) && _sex.IPRType.Value
-             select _sex;
-    }
-    internal void GetInventory( Balance.StockDictionary balanceStock )
-    {
-      foreach ( StockEntry _sex in StockEntry )
-        _sex.GetInventory( balanceStock );
     }
     /// <summary>
     /// List of all IPR finished goods that have not batch associated.
@@ -81,5 +83,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return from _btx in edc.Batch where _btx.FGQuantityAvailable.Value > 0 && _btx.StockEntry.Count<StockEntry>() == 0 select _btx;
     }
+    #endregion
+
   }
 }

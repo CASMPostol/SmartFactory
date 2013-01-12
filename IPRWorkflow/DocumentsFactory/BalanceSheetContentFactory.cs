@@ -3,12 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet;
+using Microsoft.SharePoint;
 
 namespace CAS.SmartFactory.IPR.DocumentsFactory
 {
-  internal class BalanceSheetContentFactory
+
+  internal static class BalanceSheetContentFactory
   {
-    internal static BalanceSheetContent CreateRequestContent( JSOXLib list, string documentName )
+    #region public
+    internal static void CreateReport( SPWeb web, string webUrl, int jsoxLibItemId )
+    {
+      BalanceSheetContent _content = DocumentsFactory.BalanceSheetContentFactory.CreateEmptyRequestContent();
+      string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( jsoxLibItemId + 1 );
+      SPFile _newFile = SPDocumentFactory.Prepare( web, _content, _documentName );
+      _newFile.DocumentLibrary.Update();
+      using ( Entities _edc = new Entities( webUrl ) )
+      {
+        JSOXLib _old = Element.GetAtIndex<JSOXLib>( _edc.JSOXLibrary, jsoxLibItemId );
+        JSOXLib _current = Element.GetAtIndex<JSOXLib>( _edc.JSOXLibrary, _newFile.Item.ID );
+        _current.CreateJSOXReport( _edc, _old );
+        _edc.SubmitChanges();
+        _content = DocumentsFactory.BalanceSheetContentFactory.CreateRequestContent( _current, _documentName );
+      }
+      _content.UpdateDocument( _newFile );
+      _newFile.DocumentLibrary.Update();
+    }
+    internal static void UpdateReport( SPListItem listItem, string WebUrl, int jsoxLibItemId )
+    {
+      BalanceSheetContent _content = null;
+      using ( Entities edc = new Entities( WebUrl ) )
+      {
+        JSOXLib _current = Element.GetAtIndex<JSOXLib>( edc.JSOXLibrary, jsoxLibItemId );
+        _current.UpdateBalanceReport( edc );
+        edc.SubmitChanges();
+        string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( _current.Identyfikator.Value );
+        _content = DocumentsFactory.BalanceSheetContentFactory.CreateRequestContent( _current, _documentName );
+      }
+      _content.UpdateDocument( listItem.File );
+      listItem.Update();
+    }
+    #endregion
+
+    #region private
+    private static BalanceSheetContent CreateRequestContent( JSOXLib list, string documentName )
     {
       BalanceSheetContent _ret = new BalanceSheetContent()
       {
@@ -22,7 +59,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
-    internal static BalanceSheetContent CreateEmptyRequestContent()
+    private static BalanceSheetContent CreateEmptyRequestContent()
     {
       DateTime _default = DateTime.Today.Date;
       BalanceSheetContent _ret = new BalanceSheetContent()
@@ -151,13 +188,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       _ArrayOfIPRRow.IPRRow = _iprRows.ToArray<IPRRow>();
       return _ArrayOfIPRRow;
     }
-  }
-  //TODO to be removed 
-  internal static class BalanceSheetContentFactoryExtensions
-  {
-    private static double GetValueOrDefault( this double? value )
-    {
-      return value.HasValue ? value.GetValueOrDefault() : -999;
-    }
+    #endregion
+
   }
 }
