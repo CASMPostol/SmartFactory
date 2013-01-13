@@ -539,7 +539,7 @@ namespace CAS.SmartFactory.IPR.Dashboards.Webparts.ExportWebPart
           continue;
         Controls.Add( ControlExtensions.CreateMessage( _checkResult ) );
         m_ControlState.UpdateControlState( item );
-        string _frmt = "CannotProceedWithExportBecauseTheInvoiceItemContainsErrors{0}".GetLocalizedString();
+        string _frmt = "CannotProceedWithExportBecauseTheInvoiceItemContainsErrors".GetLocalizedString();
         return GenericStateMachineEngine.ActionResult.NotValidated( String.Format( _frmt, item.Title ) );
       }
       _invoice.InvoiceLibraryStatus = true;
