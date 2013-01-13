@@ -4,6 +4,7 @@ using System.Linq;
 using CAS.SmartFactory.IPR.WebsiteModel.Linq;
 using CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.DocumentsFactory
 {
@@ -80,7 +81,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       {
         BalanceDate = list.BalanceDate.GetValueOrDefault(),
         BalanceQuantity = list.BalanceQuantity.GetValueOrDefault(),
-        Disposals = GetDisposals( list.JSOXCustomsSummary ),
+        Disposals = GetDisposalsList( list.JSOXCustomsSummary ),
         IntroducingDateEnd = list.IntroducingDateEnd.GetValueOrDefault(),
         IntroducingDateStart = list.IntroducingDateStart.GetValueOrDefault(),
         IntroducingQuantity = list.IntroducingQuantity.GetValueOrDefault(),
@@ -95,20 +96,45 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
-    private static ArrayOfDisposalRow GetDisposals( IQueryable<JSOXCustomsSummary> collection )
+    private static ArrayOfDisposalList GetDisposalsList( EntitySet<JSOXCustomsSummary> entitySet )
     {
-      if ( collection == null )
-        throw new ArgumentNullException( "collection", "GetDisposals cannot have collection null" );
       decimal _total = 0;
-      DisposalRow[] _rows = GetDisposalRowArray( collection, out _total );
-      ArrayOfDisposalRow _ret = new ArrayOfDisposalRow()
+      ArrayOfDisposalRows[] _arrayOfDisposalRows = GetArrayOfDisposalRows( entitySet, out _total );
+      ArrayOfDisposalList _ret = new ArrayOfDisposalList()
       {
-        DisposalRow = _rows,
+        DisposalRows = _arrayOfDisposalRows,
         TotalAmount = Convert.ToDouble( _total )
       };
       return _ret;
     }
-    private static DisposalRow[] GetDisposalRowArray( IQueryable<JSOXCustomsSummary> collection, out decimal _total )
+    private static ArrayOfDisposalRows[] GetArrayOfDisposalRows( EntitySet<JSOXCustomsSummary> collection, out decimal total )
+    {
+      IQueryable<IGrouping<string, JSOXCustomsSummary>> _customsGroup = from _grpx in collection group _grpx by _grpx.ExportOrFreeCirculationSAD;
+      List<ArrayOfDisposalRows> _ret = new List<ArrayOfDisposalRows>();
+      decimal _total = 0;
+      foreach ( IGrouping<string, JSOXCustomsSummary> _grpx in _customsGroup )
+      {
+        decimal _subTotal = 0;
+        _ret.Add( GetDisposals( _grpx, out _subTotal ) );
+        _total += _subTotal;
+      }
+      total = _total;
+      return _ret.ToArray();
+    }
+    private static ArrayOfDisposalRows GetDisposals( IGrouping<string, JSOXCustomsSummary> collection, out decimal total )
+    {
+      if ( collection == null )
+        throw new ArgumentNullException( "collection", "GetDisposals cannot have collection null" );
+      total = 0;
+      DisposalRow[] _rows = GetDisposalRowArray( collection, out total );
+      ArrayOfDisposalRows _ret = new ArrayOfDisposalRows()
+      {
+        DisposalRow = _rows,
+        SubtotalQuantity = Convert.ToDouble( total )
+      };
+      return _ret;
+    }
+    private static DisposalRow[] GetDisposalRowArray( IGrouping<string, JSOXCustomsSummary> collection, out decimal _total )
     {
       _total = 0;
       List<DisposalRow> _ret = new List<DisposalRow>();

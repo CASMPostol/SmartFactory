@@ -88,7 +88,7 @@
   <xs:complexType name="ArrayOfDisposalRows">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="DisposalRow" type="tns:DisposalRow" />
-      <xs:element minOccurs="0" maxOccurs="1" name="SubtotalQuantity" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SubtotalQuantity" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="DisposalRow">

@@ -93,6 +93,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         }
         
         /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
         public IPRStockContent[] IPRStock {
             get {
                 return this.iPRStockField;
@@ -271,7 +272,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         private double subtotalBalanceField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute("IPRRow", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute("IPRRow")]
         public IPRRow[] IPRRow {
             get {
                 return this.iPRRowField;
@@ -637,20 +638,54 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
-    public partial class ArrayOfDisposalRow {
+    public partial class ArrayOfDisposalRows {
         
         private DisposalRow[] disposalRowField;
         
-        private double totalAmountField;
+        private double subtotalQuantityField;
         
         /// <uwagi/>
-        [System.Xml.Serialization.XmlElementAttribute("DisposalRow", IsNullable=true)]
+        [System.Xml.Serialization.XmlElementAttribute("DisposalRow")]
         public DisposalRow[] DisposalRow {
             get {
                 return this.disposalRowField;
             }
             set {
                 this.disposalRowField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double SubtotalQuantity {
+            get {
+                return this.subtotalQuantityField;
+            }
+            set {
+                this.subtotalQuantityField = value;
+            }
+        }
+    }
+    
+    /// <uwagi/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
+    public partial class ArrayOfDisposalList {
+        
+        private ArrayOfDisposalRows[] disposalRowsField;
+        
+        private double totalAmountField;
+        
+        /// <uwagi/>
+        [System.Xml.Serialization.XmlElementAttribute("DisposalRows")]
+        public ArrayOfDisposalRows[] DisposalRows {
+            get {
+                return this.disposalRowsField;
+            }
+            set {
+                this.disposalRowsField = value;
             }
         }
         
@@ -673,7 +708,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
     public partial class JSOContent {
         
-        private ArrayOfDisposalRow disposalsField;
+        private ArrayOfDisposalList disposalsField;
         
         private System.DateTime previousMonthDateField;
         
@@ -702,7 +737,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         private double reassumeQuantityField;
         
         /// <uwagi/>
-        public ArrayOfDisposalRow Disposals {
+        public ArrayOfDisposalList Disposals {
             get {
                 return this.disposalsField;
             }
