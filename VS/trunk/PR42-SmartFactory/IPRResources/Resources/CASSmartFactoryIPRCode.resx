@@ -141,4 +141,13 @@
 	<data name="Quantity_{0:F2}" xml:space="preserve">
 		<value>Quantity {0:F2}</value>
 	</data>
+	<data name="XMLResources_FinishedGoodsExportFormFileName" xml:space="preserve">
+		<value>Proces technologiczny {0:D7}</value>
+	</data>
+	<data name="XMLResources_RequestForAccountClearence" xml:space="preserve">
+		<value>Wniosek o zamknięcie {0:D7}</value>
+	</data>
+	<data name="XMLResources_JsoxBalanceReport" xml:space="preserve">
+		<value>Bilans {0:D7}</value>
+	</data>
 </root>
