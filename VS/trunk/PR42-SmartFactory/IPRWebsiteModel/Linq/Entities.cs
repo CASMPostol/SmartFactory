@@ -8006,6 +8006,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 		
 		private System.Nullable<double> _reassumeQuantity;
 		
+		private System.Nullable<bool> _jSOXLibraryReadOnly;
+		
 		private Microsoft.SharePoint.Linq.EntitySet<IPR> _iPR;
 		
 		private Microsoft.SharePoint.Linq.EntitySet<JSOXCustomsSummary> _jSOXCustomsSummary;
@@ -8224,6 +8226,20 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 					this.OnPropertyChanging("ReassumeQuantity", this._reassumeQuantity);
 					this._reassumeQuantity = value;
 					this.OnPropertyChanged("ReassumeQuantity");
+				}
+			}
+		}
+		
+		[Microsoft.SharePoint.Linq.ColumnAttribute(Name="JSOXLibraryReadOnly", Storage="_jSOXLibraryReadOnly", FieldType="Boolean")]
+		public System.Nullable<bool> JSOXLibraryReadOnly {
+			get {
+				return this._jSOXLibraryReadOnly;
+			}
+			set {
+				if ((value != this._jSOXLibraryReadOnly)) {
+					this.OnPropertyChanging("JSOXLibraryReadOnly", this._jSOXLibraryReadOnly);
+					this._jSOXLibraryReadOnly = value;
+					this.OnPropertyChanged("JSOXLibraryReadOnly");
 				}
 			}
 		}

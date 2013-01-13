@@ -21,6 +21,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       PreviousMonthDate = previous.SituationDate.GetValueOrDefault( DateTime.Today.Date - TimeSpan.FromDays( 30 ) );
       PreviousMonthQuantity = previous.SituationQuantity.GetValueOrDefault( -1 );
+      this.JSOXLibraryReadOnly = false;
       UpdateBalanceReport( edc );
     }
     /// <summary>
