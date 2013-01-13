@@ -618,6 +618,7 @@
     <Column Name="SituationDate" Member="SituationDate" />
     <Column Name="SituationQuantity" Member="SituationQuantity" />
     <Column Name="ReassumeQuantity" Member="ReassumeQuantity" />
+    <Column Name="JSOXLibraryReadOnly" Member="JSOXLibraryReadOnly" />
   </ContentType>
   <ContentType Name="SADConsignment" Class="SADConsignment">
     <!--<Column Name="ContentType" Member="ContentType" />-->
