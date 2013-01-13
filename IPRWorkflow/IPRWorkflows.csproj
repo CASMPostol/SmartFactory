@@ -129,9 +129,6 @@
     <None Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e8d364ea-bf70-4d56-a5b2-880a07138cc4}</SharePointProjectItemId>
     </None>
-    <None Include="Workflows\CreateReport\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{987ca766-cf76-4093-9935-f97d2effc69f}</SharePointProjectItemId>
-    </None>
     <None Include="Workflows\IPRClosing\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a284012e-5195-447e-857d-8827927bec2f}</SharePointProjectItemId>
     </None>
@@ -173,9 +170,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ListsEventsHandlers\Reports\StockLibraryEventReceiver\Elements.xml" />
-    <Content Include="Workflows\CreateReport\Elements.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Workflows\IPRClosing\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
