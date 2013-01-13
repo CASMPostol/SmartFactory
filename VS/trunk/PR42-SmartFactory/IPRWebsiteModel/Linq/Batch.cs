@@ -40,8 +40,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     {
       return ( from _batchX in edc.Batch
                where _batchX.Batch0.Contains( batch )
-               orderby _batchX.Identyfikator.Value
-               ascending
+               orderby _batchX.Identyfikator.Value descending
                select _batchX ).FirstOrDefault();
     }
     /// <summary>
@@ -151,6 +150,17 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           break;
       }
     }
+    internal void CheckQuantity( System.Collections.Generic.List<string> _warnings )
+    {
+      decimal _onStock = 0;
+      foreach ( var _stock in this.StockEntry )
+        _onStock += Convert.ToDecimal( _stock.Quantity );
+      if ( Convert.ToDecimal( this.FGQuantityAvailable ) != _onStock )
+      {
+        string _msg = string.Format( m_noMachingQuantityWarningMessage, Convert.ToDecimal( this.FGQuantityAvailable ) - _onStock, this.ProductType, this.Batch0, this.SKU );
+        _warnings.Add( _msg );
+      }
+    }
     #endregion
 
     #region private
@@ -175,6 +185,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return _ret / _materialQuantity; //Underusage
       return 0;
     }
+    private string m_noMachingQuantityWarningMessage = "Inconsistent quantity {0} of the product: {1} batch:{2}/sku: {3} on the stock.";
     #endregion
 
   }

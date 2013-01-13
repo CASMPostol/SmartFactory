@@ -28,23 +28,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return String.Format( "Cannot find batch:{0}/sku: {1} for stock record {2} on the stock location:{3}.", this.Batch, this.SKU, this.Title, this.StorLoc );
       }
     }
-    /// <summary>
-    /// Gets the no maching quantity warning message.
-    /// </summary>
-    /// <value>
-    /// The no maching quantity warning message.
-    /// </value>
-    /// <exception cref="System.ArgumentNullException">BatchIndex</exception>
-    public string NoMachingQuantityWarningMessage
-    {
-      get
-      {
-        if ( this.BatchIndex == null )
-          throw new ArgumentNullException( "BatchIndex" );
-        string _mtmp = "Inconsistent quantity for the: batch {0}/sku: {1} for stock record {2}; quantity stock: {3}/batch: {4}.";
-        return String.Format( _mtmp, this.Batch, this.SKU, this.Title, this.Quantity.Value, this.BatchIndex.FGQuantityAvailable.Value );
-      }
-    }
     internal void GetInventory( Balance.StockDictionary balanceStock )
     {
       switch ( ProductType.Value )

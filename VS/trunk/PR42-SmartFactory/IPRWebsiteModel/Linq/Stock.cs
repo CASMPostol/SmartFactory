@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
 {
@@ -29,41 +30,51 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private bool Validate( Entities edc )
     {
       int _problems = 0;
-      foreach ( StockEntry _sex in this.FinishedGoodsNotProcessed( edc ) )
+      List<Batch> _batches = new List<Batch>();
+      foreach ( StockEntry _sex in this.AllIPRFinishedGoods )
       {
         Batch _batchLookup = Batch.FindStockToBatchLookup( edc, _sex.Batch );
         if ( _batchLookup != null )
         {
+          _batches.Add( _batchLookup );
           _sex.BatchIndex = _batchLookup;
           continue;
         }
-        ActivityLogCT.WriteEntry( edc, "Validate", _sex.NoMachingBatcgWarningMessage );
+        ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _sex.NoMachingBatcgWarningMessage );
         _problems++;
       }
-      foreach ( StockEntry _senbx in this.FinishedGoodsNotBalanced( edc ) )
+      List<string> _warnings = new List<string>();
+      foreach ( Batch _senbx in _batches )
       {
-        ActivityLogCT.WriteEntry( edc, "Validate", _senbx.NoMachingQuantityWarningMessage );
-        _problems++;
+        _senbx.CheckQuantity( _warnings );
+        foreach ( string _msg in _warnings )
+        {
+          ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _msg );
+          _problems++;
+        }
       }
       foreach ( Batch _btx in DanglingBatches( edc ) )
       {
-        ActivityLogCT.WriteEntry( edc, "Validate", _btx.DanglingBatchWarningMessage );
+        ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _btx.DanglingBatchWarningMessage );
         _problems++;
       }
       return _problems > 0;
     }
+    private string m_ActivityLogEntryName = "Stock Validation";
     /// <summary>
     /// List of all IPR finished goods that have not batch associated.
     /// </summary>
     /// <param name="edc">The <see cref="Entities"/>.</param>
     /// <returns></returns>
-    private IQueryable<StockEntry> FinishedGoodsNotProcessed( Entities edc )
+    private IQueryable<StockEntry> AllIPRFinishedGoods
     {
-      return from _sex in this.StockEntry
-             where ( ( _sex.ProductType.Value == ProductType.Cigarette ) || ( _sex.ProductType.Value == ProductType.Cutfiller ) )
-             && _sex.IPRType.Value
-             && _sex.BatchIndex == null
-             select _sex;
+      get
+      {
+        return from _sex in this.StockEntry
+               where ( ( _sex.ProductType.Value == ProductType.Cigarette ) || ( _sex.ProductType.Value == ProductType.Cutfiller ) )
+               && _sex.IPRType.Value
+               select _sex;
+      }
     }
     /// <summary>
     /// List of all IPR finished goods not balanced with the batch.
