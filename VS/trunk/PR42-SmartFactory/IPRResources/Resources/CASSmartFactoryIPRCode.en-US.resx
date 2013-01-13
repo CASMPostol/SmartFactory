@@ -135,10 +135,10 @@
 	<data name="RevertFGTofreeCirculationIsNotImplementedYet" xml:space="preserve">
 		<value>Revert FG to free circulation is not implemented yet</value>
 	</data>
-	<data name="CannotProceedWithExportBecauseTheInvoiceItemContainsErrors{0}" xml:space="preserve">
+	<data name="CannotProceedWithExportBecauseTheInvoiceItemContainsErrors" xml:space="preserve">
 		<value>Cannot proceed with export because the invoice item contains errors {0}.</value>
 	</data>
-	<data name="Quantity_{0:F2}" xml:space="preserve">
+	<data name="QuantityFormat" xml:space="preserve">
 		<value>Quantity {0:F2}</value>
 	</data>
 	<data name="XMLResources_FinishedGoodsExportFormFileName" xml:space="preserve">
@@ -149,5 +149,17 @@
 	</data>
 	<data name="XMLResources_JsoxBalanceReport" xml:space="preserve">
 		<value>Bilans {0:D7}</value>
+	</data>
+	<data name="NegativeValueNotAllowedMessage" xml:space="preserve">
+		<value>Negative value of {0} is not allowed</value>
+	</data>
+	<data name="NeBatchQuantityIsUnavailableMessage" xml:space="preserve">
+		<value>The requested quantity is unavailable on the selected new batch. There is only {0} on the stock.</value>
+	</data>
+	<data name="QuantityIsUnavailableMessage" xml:space="preserve">
+		<value>The requested quantity is unavailable. There is only {0} on the stock.</value>
+	</data>
+	<data name="NotApplicable" xml:space="preserve">
+		<value>Not Applicable</value>
 	</data>
 </root>
