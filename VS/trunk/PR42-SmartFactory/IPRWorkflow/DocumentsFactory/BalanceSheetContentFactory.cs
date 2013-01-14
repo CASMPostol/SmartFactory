@@ -22,14 +22,14 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         if ( _old.JSOXLibraryReadOnly.Value )
           throw new ApplicationException( "The record is read only and new report must not be created." );
         _old.JSOXLibraryReadOnly = true;
-        _content = DocumentsFactory.BalanceSheetContentFactory.CreateEmptyRequestContent();
+        _content = DocumentsFactory.BalanceSheetContentFactory.CreateEmptyContent();
         string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( jsoxLibItemId + 1 );
         _newFile = SPDocumentFactory.Prepare( web, _content, _documentName );
         _newFile.DocumentLibrary.Update();
         JSOXLib _current = Element.GetAtIndex<JSOXLib>( _edc.JSOXLibrary, _newFile.Item.ID );
         _current.CreateJSOXReport( _edc, _old );
         _edc.SubmitChanges();
-        _content = DocumentsFactory.BalanceSheetContentFactory.CreateRequestContent( _current, _documentName );
+        _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName );
       }
       _content.UpdateDocument( _newFile );
       _newFile.DocumentLibrary.Update();
@@ -43,17 +43,17 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         if (_current.JSOXLibraryReadOnly.Value)
           throw new ApplicationException( "The record is read only and the report must not be updated." );
         _current.UpdateBalanceReport( edc );
-        edc.SubmitChanges();
         string _documentName = xml.XMLResources.RequestForBalanceSheetDocumentName( _current.Identyfikator.Value );
-        _content = DocumentsFactory.BalanceSheetContentFactory.CreateRequestContent( _current, _documentName );
+        _content = DocumentsFactory.BalanceSheetContentFactory.CreateContent( _current, _documentName );
+        edc.SubmitChanges();
       }
       _content.UpdateDocument( listItem.File );
-      listItem.Update();
+      listItem.ParentList.Update();
     }
     #endregion
 
     #region private
-    private static BalanceSheetContent CreateRequestContent( JSOXLib list, string documentName )
+    private static BalanceSheetContent CreateContent( JSOXLib list, string documentName )
     {
       BalanceSheetContent _ret = new BalanceSheetContent()
       {
@@ -67,7 +67,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
       };
       return _ret;
     }
-    private static BalanceSheetContent CreateEmptyRequestContent()
+    private static BalanceSheetContent CreateEmptyContent()
     {
       DateTime _default = DateTime.Today.Date;
       BalanceSheetContent _ret = new BalanceSheetContent()

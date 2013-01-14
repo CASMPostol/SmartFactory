@@ -408,6 +408,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       foreach ( Disposal _dx in _2Calculate )
         _dx.CalculateRemainingQuantity();
     }
+    internal static IQueryable<IGrouping<string, IPR>> GetAllOpen4JSOXGroups( Entities edc )
+    {
+      return from _iprx in edc.IPR
+             where !_iprx.AccountClosed.Value
+             orderby _iprx.CustomsDebtDate.Value ascending
+             group _iprx by _iprx.Batch;
+    }
     #endregion
 
     #region private
@@ -440,7 +447,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// </summary>
     /// <param name="edc">The <see cref="Entities"/>.</param>
     /// <returns></returns>
-    internal static IQueryable<IPR> GetAllOpen4JSOX( Entities edc )
+    private static IQueryable<IPR> GetAllOpen4JSOX( Entities edc )
     {
       return from _iprx in edc.IPR
              where !_iprx.AccountClosed.Value
