@@ -17,11 +17,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void GetInventory( Entities edc, Balance.StockDictionary balanceStock )
     {
+      string _mtmplt = "Stock inventory validation passed successfully.";
       if ( !Validate( edc ) )
-      {
-        string _mtmplt = "Data validation failed. There are problems reported that must be resolved to start calculation procedure. Details you can find on the application log.";
-        ActivityLogCT.WriteEntry( "GetInventory Validatoion", _mtmplt );
-      }
+        _mtmplt = "Stock inventory validation failed. There are problems reported that must be resolved to start calculation procedure. Details you can find on the application log.";
+      ActivityLogCT.WriteEntry( m_ActivityLogEntryName, _mtmplt );
       foreach ( StockEntry _sex in StockEntry )
         _sex.GetInventory( balanceStock );
     }
@@ -46,20 +45,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       }
       List<string> _warnings = new List<string>();
       foreach ( Batch _senbx in _batches )
-      {
         _senbx.CheckQuantity( _warnings );
-        foreach ( string _msg in _warnings )
-        {
-          ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _msg );
-          _problems++;
-        }
+      foreach ( string _msg in _warnings )
+      {
+        ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _msg );
+        _problems++;
       }
       foreach ( Batch _btx in DanglingBatches( edc ) )
       {
         ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _btx.DanglingBatchWarningMessage );
         _problems++;
       }
-      return _problems > 0;
+      return _problems == 0;
     }
     private string m_ActivityLogEntryName = "Stock Validation";
     /// <summary>

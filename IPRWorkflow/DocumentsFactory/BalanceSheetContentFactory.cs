@@ -8,7 +8,6 @@ using Microsoft.SharePoint.Linq;
 
 namespace CAS.SmartFactory.IPR.DocumentsFactory
 {
-
   internal static class BalanceSheetContentFactory
   {
     #region public
@@ -60,7 +59,7 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         DocumentDate = DateTime.Today.Date,
         DocumentNo = documentName,
         EndDate = list.SituationDate.GetValueOrDefault(),
-        IPRStock = GetIPRStock( null ),
+        IPRStock = GetIPRStock( list.BalanceBatch ),
         JSOX = GetJSOX( list ),
         SituationAtDate = list.SituationDate.GetValueOrDefault(),
         StartDate = list.PreviousMonthDate.GetValueOrDefault()
