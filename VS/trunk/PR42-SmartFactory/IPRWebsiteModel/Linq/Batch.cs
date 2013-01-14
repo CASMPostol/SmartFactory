@@ -157,7 +157,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _onStock += Convert.ToDecimal( _stock.Quantity );
       if ( Convert.ToDecimal( this.FGQuantityAvailable ) != _onStock )
       {
-        string _msg = string.Format( m_noMachingQuantityWarningMessage, Convert.ToDecimal( this.FGQuantityAvailable ) - _onStock, this.ProductType, this.Batch0, this.SKU );
+        string _msg = string.Format( m_noMachingQuantityWarningMessage, Convert.ToDecimal( this.FGQuantityAvailable ), _onStock, this.ProductType, this.Batch0, this.SKU );
         _warnings.Add( _msg );
       }
     }
@@ -167,6 +167,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     private const string m_Source = "Batch processing";
     private const string m_LookupFailedMessage = "I cannot recognize batch {0}.";
     private const string m_LookupFailedAndAddedMessage = "I cannot recognize batch {0} - added preliminary entry to the list that must be uploaded.";
+    private string m_noMachingQuantityWarningMessage = "Inconsistent quantity batch: {0} / stock: {1} of the product: {2} batch: {3}/sku: {4} on the stock.";
     /// <summary>
     /// Gets the overuse as the ratio of overused tobacco divided by totaly usage of tobacco.
     /// </summary>
@@ -185,7 +186,6 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         return _ret / _materialQuantity; //Underusage
       return 0;
     }
-    private string m_noMachingQuantityWarningMessage = "Inconsistent quantity {0} of the product: {1} batch:{2}/sku: {3} on the stock.";
     #endregion
 
   }
