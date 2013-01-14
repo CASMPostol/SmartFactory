@@ -10,7 +10,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     internal static StockLib Find( Entities edc )
     {
       return ( from _stcx in edc.StockLibrary
-               where _stcx.Stock2JSOXLibraryIndex == null
+               let _notAssociated = _stcx.Stock2JSOXLibraryIndex == null
+               where _notAssociated
                orderby _stcx.Identyfikator.Value descending
                select _stcx ).FirstOrDefault<StockLib>();
     }
@@ -90,9 +91,12 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
                    _sex.Quantity.Value != _sex.BatchIndex.FGQuantityAvailable.Value
              select _sex;
     }
-    private IQueryable<Batch> DanglingBatches( Entities edc )
+    private IEnumerable<Batch> DanglingBatches( Entities edc )
     {
-      return from _btx in edc.Batch where _btx.FGQuantityAvailable.Value > 0 && _btx.StockEntry.Count<StockEntry>() == 0 select _btx;
+      List<Batch> _list = ( from _btx in edc.Batch
+                            where _btx.FGQuantityAvailable.Value > 0
+                            select _btx ).ToList<Batch>();
+      return from _btx in _list where _btx.StockEntry.Any() select _btx;
     }
     #endregion
 

@@ -36,7 +36,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         _stock = Linq.StockLib.Find( edc );
       if ( _stock != null )
         _stock.GetInventory( edc, _balanceStock );
-      Dictionary<string, IGrouping<string, IPR>> _accountGroups = ( from _iprx in Linq.IPR.GetAllOpen4JSOX( edc ) group _iprx by _iprx.Batch ).ToDictionary( x => x.Key );
+      Dictionary<string, IGrouping<string, IPR>> _accountGroups = Linq.IPR.GetAllOpen4JSOXGroups( edc ).ToDictionary( x => x.Key );
       List<string> _processed = new List<string>();
       foreach ( BalanceBatch _bbx in BalanceBatch )
       {

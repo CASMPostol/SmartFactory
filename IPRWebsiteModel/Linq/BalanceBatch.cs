@@ -9,66 +9,80 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
   {
     internal static void Create( Entities edc, IGrouping<string, IPR> _grpx, JSOXLib parent, StockDictionary.BalanceStock balanceStock )
     {
-      IPR _firsTIPR = _grpx.FirstOrDefault<IPR>();
-      BalanceBatch _newBB = new BalanceBatch()
+      try
       {
-        Balance2JSOXLibraryIndex = parent,
-        Batch = _grpx.Key,
-        Title = "creating",
-        SKU = _firsTIPR == null ? "NA" : _firsTIPR.SKU,
-      };
-      edc.BalanceBatch.InsertOnSubmit( _newBB );
-      _newBB.Update( edc, _grpx, balanceStock );
+        IPR _firsTIPR = _grpx.FirstOrDefault<IPR>();
+        BalanceBatch _newBB = new BalanceBatch()
+        {
+          Balance2JSOXLibraryIndex = parent,
+          Batch = _grpx.Key,
+          Title = "creating",
+          SKU = _firsTIPR == null ? "NA" : _firsTIPR.SKU,
+        };
+        edc.BalanceBatch.InsertOnSubmit( _newBB );
+        _newBB.Update( edc, _grpx, balanceStock );
+      }
+      catch ( Exception ex )
+      {
+        throw new SharePoint.ApplicationError( "BalanceBatch.Create", "Body", ex.Message, ex );
+      }
     }
     internal void Update( Entities edc, IGrouping<string, IPR> grouping, StockDictionary.BalanceStock balanceStock )
     {
-      Dictionary<string, IPR> _iprDictionary = grouping.ToDictionary( x => x.DocumentNo );
-      List<string> _processed = new List<string>();
-      BalanceTotals _totals = new BalanceTotals();
-      foreach ( BalanceIPR _blncIPRx in this.BalanceIPR )
+      try
       {
-        if ( _iprDictionary.ContainsKey( _blncIPRx.DocumentNo ) )
+        Dictionary<string, IPR> _iprDictionary = grouping.ToDictionary( x => x.DocumentNo );
+        List<string> _processed = new List<string>();
+        BalanceTotals _totals = new BalanceTotals();
+        foreach ( BalanceIPR _blncIPRx in this.BalanceIPR )
         {
-          IPR.Balance _newBipr = _blncIPRx.Update();
+          if ( _iprDictionary.ContainsKey( _blncIPRx.DocumentNo ) )
+          {
+            IPR.Balance _newBipr = _blncIPRx.Update();
+            _totals.Add( _newBipr );
+          }
+          else
+            edc.BalanceIPR.DeleteOnSubmit( _blncIPRx );
+          _processed.Add( _blncIPRx.DocumentNo );
+        }
+        foreach ( string _dcn in _processed )
+          _iprDictionary.Remove( _dcn );
+        foreach ( IPR _iprx in _iprDictionary.Values )
+        {
+          IPR.Balance _newBipr = Linq.BalanceIPR.Create( edc, _iprx, this, this.Balance2JSOXLibraryIndex );
           _totals.Add( _newBipr );
         }
-        else
-          edc.BalanceIPR.DeleteOnSubmit( _blncIPRx );
-        _processed.Add( _blncIPRx.DocumentNo );
+        DustCSNotStarted = _totals[ IPR.ValueKey.DustCSNotStarted ];
+        DustCSStarted = _totals[ IPR.ValueKey.DustCSStarted ];
+        IPRBook = _totals[ IPR.ValueKey.IPRBook ];
+        OveruseCSNotStarted = _totals[ IPR.ValueKey.OveruseCSNotStarted ];
+        OveruseCSStarted = _totals[ IPR.ValueKey.OveruseCSStarted ];
+        PureTobaccoCSNotStarted = _totals[ IPR.ValueKey.PureTobaccoCSNotStarted ];
+        PureTobaccoCSStarted = _totals[ IPR.ValueKey.PureTobaccoCSStarted ];
+        SHMentholCSNotStarted = _totals[ IPR.ValueKey.SHMentholCSNotStarted ];
+        SHMentholCSStarted = _totals[ IPR.ValueKey.SHMentholCSStarted ];
+        SHWasteOveruseCSNotStarted = _totals[ IPR.ValueKey.SHWasteOveruseCSNotStarted ];
+        TobaccoAvailable = _totals[ IPR.ValueKey.TobaccoAvailable ];
+        TobaccoCSFinished = _totals[ IPR.ValueKey.TobaccoCSFinished ];
+        TobaccoEnteredIntoIPR = _totals[ IPR.ValueKey.TobaccoEnteredIntoIPR ];
+        TobaccoInFGCSNotStarted = _totals[ IPR.ValueKey.TobaccoInFGCSNotStarted ];
+        TobaccoInFGCSStarted = _totals[ IPR.ValueKey.TobaccoInFGCSStarted ];
+        TobaccoToBeUsedInTheProduction = _totals[ IPR.ValueKey.TobaccoToBeUsedInTheProduction ];
+        TobaccoUsedInTheProduction = _totals[ IPR.ValueKey.TobaccoUsedInTheProduction ];
+        WasteCSNotStarted = _totals[ IPR.ValueKey.WasteCSNotStarted ];
+        WasteCSStarted = _totals[ IPR.ValueKey.WasteCSStarted ];
+        //
+        balanceStock.CalculateBalance( _totals.Base[ IPR.ValueKey.TobaccoInFGCSNotStarted ], _totals.Base[ IPR.ValueKey.TobaccoAvailable ] );
+        this.Balance = balanceStock[ StockDictionary.StockValueKey.Balance ];
+        this.TobaccoInCigarettesProduction = balanceStock[ StockDictionary.StockValueKey.TobaccoInCigarettesProduction ];
+        this.TobaccoInCigarettesWarehouse = balanceStock[ StockDictionary.StockValueKey.TobaccoInCigarettesWarehouse ];
+        this.TobaccoInCutfillerWarehouse = balanceStock[ StockDictionary.StockValueKey.TobaccoInCutfillerWarehouse ];
+        this.TobaccoInWarehouse = balanceStock[ StockDictionary.StockValueKey.TobaccoInWarehouse ];
       }
-      foreach ( string _dcn in _processed )
-        _iprDictionary.Remove( _dcn );
-      foreach ( IPR _iprx in _iprDictionary.Values )
+      catch ( Exception ex )
       {
-        IPR.Balance _newBipr = Linq.BalanceIPR.Create( edc, _iprx, this, this.Balance2JSOXLibraryIndex );
-        _totals.Add( _newBipr );
+        throw new SharePoint.ApplicationError( "BalanceBatch.Update", "Body", ex.Message, ex );
       }
-      DustCSNotStarted = _totals[ IPR.ValueKey.DustCSNotStarted ];
-      DustCSStarted = _totals[ IPR.ValueKey.DustCSStarted ];
-      IPRBook = _totals[ IPR.ValueKey.IPRBook ];
-      OveruseCSNotStarted = _totals[ IPR.ValueKey.OveruseCSNotStarted ];
-      OveruseCSStarted = _totals[ IPR.ValueKey.OveruseCSStarted ];
-      PureTobaccoCSNotStarted = _totals[ IPR.ValueKey.PureTobaccoCSNotStarted ];
-      PureTobaccoCSStarted = _totals[ IPR.ValueKey.PureTobaccoCSStarted ];
-      SHMentholCSNotStarted = _totals[ IPR.ValueKey.SHMentholCSNotStarted ];
-      SHMentholCSStarted = _totals[ IPR.ValueKey.SHMentholCSStarted ];
-      SHWasteOveruseCSNotStarted = _totals[ IPR.ValueKey.SHWasteOveruseCSNotStarted ];
-      TobaccoAvailable = _totals[ IPR.ValueKey.TobaccoAvailable ];
-      TobaccoCSFinished = _totals[ IPR.ValueKey.TobaccoCSFinished ];
-      TobaccoEnteredIntoIPR = _totals[ IPR.ValueKey.TobaccoEnteredIntoIPR ];
-      TobaccoInFGCSNotStarted = _totals[ IPR.ValueKey.TobaccoInFGCSNotStarted ];
-      TobaccoInFGCSStarted = _totals[ IPR.ValueKey.TobaccoInFGCSStarted ];
-      TobaccoToBeUsedInTheProduction = _totals[ IPR.ValueKey.TobaccoToBeUsedInTheProduction ];
-      TobaccoUsedInTheProduction = _totals[ IPR.ValueKey.TobaccoUsedInTheProduction ];
-      WasteCSNotStarted = _totals[ IPR.ValueKey.WasteCSNotStarted ];
-      WasteCSStarted = _totals[ IPR.ValueKey.WasteCSStarted ];
-      //
-      balanceStock.CalculateBalance( _totals.Base[ IPR.ValueKey.TobaccoInFGCSNotStarted ], _totals.Base[ IPR.ValueKey.TobaccoAvailable ] );
-      this.Balance = balanceStock[ StockDictionary.StockValueKey.Balance ];
-      this.TobaccoInCigarettesProduction = balanceStock[ StockDictionary.StockValueKey.TobaccoInCigarettesProduction ];
-      this.TobaccoInCigarettesWarehouse = balanceStock[ StockDictionary.StockValueKey.TobaccoInCigarettesWarehouse ];
-      this.TobaccoInCutfillerWarehouse = balanceStock[ StockDictionary.StockValueKey.TobaccoInCutfillerWarehouse ];
-      this.TobaccoInWarehouse = balanceStock[ StockDictionary.StockValueKey.TobaccoInWarehouse ];
     }
     /// <summary>
     /// Balance Totals
