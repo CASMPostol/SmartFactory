@@ -162,4 +162,7 @@
 	<data name="NeBatchQuantityIsUnavailableMessage" xml:space="preserve">
 		<value>The requested quantity is unavailable on the selected new batch. There is only {0} on the stock.</value>
 	</data>
+	<data name="Units" xml:space="preserve">
+		<value>szt.</value>
+	</data>
 </root>
