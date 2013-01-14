@@ -17,17 +17,10 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     }
     internal void GetInventory( Entities edc, Balance.StockDictionary balanceStock )
     {
-      string _mtmplt = "Stock inventory validation passed successfully.";
-      if ( !Validate( edc ) )
-        _mtmplt = "Stock inventory validation failed. There are problems reported that must be resolved to start calculation procedure. Details you can find on the application log.";
-      ActivityLogCT.WriteEntry( m_ActivityLogEntryName, _mtmplt );
       foreach ( StockEntry _sex in StockEntry )
         _sex.GetInventory( balanceStock );
     }
-    #endregion
-
-    #region private
-    private bool Validate( Entities edc )
+    internal void Validate( Entities edc, Dictionary<string, System.Linq.IGrouping<string, IPR>> _accountGroups )
     {
       int _problems = 0;
       List<Batch> _batches = new List<Batch>();
@@ -40,7 +33,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
           _sex.BatchIndex = _batchLookup;
           continue;
         }
-        ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _sex.NoMachingBatcgWarningMessage );
+        ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _sex.NoMachingBatchWarningMessage );
+        _problems++;
+      }
+      foreach ( StockEntry _sex in this.AllIPRTobacco )
+      {
+        if ( _accountGroups.ContainsKey( _sex.Batch ) )
+          continue;
+        ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _sex.NoMachingTobaccoWarningMessage );
         _problems++;
       }
       List<string> _warnings = new List<string>();
@@ -56,8 +56,14 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
         ActivityLogCT.WriteEntry( edc, m_ActivityLogEntryName, _btx.DanglingBatchWarningMessage );
         _problems++;
       }
-      return _problems == 0;
+      string _mtmplt = "Stock inventory validation passed successfully.";
+      if ( _problems > 0 )
+        _mtmplt = "Stock inventory validation failed. There are problems reported that must be resolved to start calculation procedure. Details you can find on the application log.";
+      ActivityLogCT.WriteEntry( m_ActivityLogEntryName, _mtmplt );
     }
+    #endregion
+
+    #region private
     private string m_ActivityLogEntryName = "Stock Validation";
     /// <summary>
     /// List of all IPR finished goods that have not batch associated.
@@ -70,6 +76,16 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       {
         return from _sex in this.StockEntry
                where ( ( _sex.ProductType.Value == ProductType.Cigarette ) || ( _sex.ProductType.Value == ProductType.Cutfiller ) )
+               && _sex.IPRType.Value
+               select _sex;
+      }
+    }
+    public IEnumerable<StockEntry> AllIPRTobacco
+    {
+      get
+      {
+        return from _sex in this.StockEntry
+               where ( _sex.ProductType.Value == ProductType.Tobacco )
                && _sex.IPRType.Value
                select _sex;
       }
@@ -96,6 +112,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       return from _btx in _list where _btx.StockEntry.Any() select _btx;
     }
     #endregion
+
 
   }
 }

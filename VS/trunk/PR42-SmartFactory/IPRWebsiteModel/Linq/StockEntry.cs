@@ -21,11 +21,18 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
     /// <value>
     /// The no maching batcg warning message.
     /// </value>
-    public string NoMachingBatcgWarningMessage
+    public string NoMachingBatchWarningMessage
     {
       get
       {
         return String.Format( "Cannot find batch:{0}/sku: {1} for stock record {2} on the stock location:{3}.", this.Batch, this.SKU, this.Title, this.StorLoc );
+      }
+    }
+    public string NoMachingTobaccoWarningMessage
+    {
+      get
+      {
+        return String.Format( "Cannot find open IPR account for tobacco batch:{0}/sku: {1} for stock record {2} on the stock location: {3}.", this.Batch, this.SKU, this.Title, this.StorLoc );
       }
     }
     internal void GetInventory( Balance.StockDictionary balanceStock )
@@ -66,7 +73,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       this.BatchIndex = Linq.Batch.FindStockToBatchLookup( edc, this.Batch );
       if ( this.BatchIndex != null )
         return;
-      warnings.Add( NoMachingBatcgWarningMessage, false );
+      warnings.Add( NoMachingBatchWarningMessage, false );
     }
     #endregion
 
