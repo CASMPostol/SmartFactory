@@ -52,20 +52,6 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
     #endregion
 
     #region private
-    private static BalanceSheetContent CreateContent( JSOXLib list, string documentName )
-    {
-      BalanceSheetContent _ret = new BalanceSheetContent()
-      {
-        DocumentDate = DateTime.Today.Date,
-        DocumentNo = documentName,
-        EndDate = list.SituationDate.GetValueOrDefault(),
-        IPRStock = GetIPRStock( list.BalanceBatch ),
-        JSOX = GetJSOX( list ),
-        SituationAtDate = list.SituationDate.GetValueOrDefault(),
-        StartDate = list.PreviousMonthDate.GetValueOrDefault()
-      };
-      return _ret;
-    }
     private static BalanceSheetContent CreateEmptyContent()
     {
       DateTime _default = DateTime.Today.Date;
@@ -78,6 +64,20 @@ namespace CAS.SmartFactory.IPR.DocumentsFactory
         JSOX = null,
         SituationAtDate = _default,
         StartDate = _default
+      };
+      return _ret;
+    }
+    private static BalanceSheetContent CreateContent( JSOXLib list, string documentName )
+    {
+      BalanceSheetContent _ret = new BalanceSheetContent()
+      {
+        DocumentDate = DateTime.Today.Date,
+        DocumentNo = documentName,
+        EndDate = list.SituationDate.GetValueOrDefault(),
+        IPRStock = GetIPRStock( list.BalanceBatch ),
+        JSOX = GetJSOX( list ),
+        SituationAtDate = list.SituationDate.GetValueOrDefault(),
+        StartDate = list.PreviousMonthDate.GetValueOrDefault()
       };
       return _ret;
     }
