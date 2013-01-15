@@ -5665,7 +5665,8 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq {
 				e.Item.Material.Remove(this);
 			}
 		}
-	}
+
+  }
 	
 	/// <summary>
 	/// Utwórz nowy element listy.
