@@ -42,8 +42,8 @@ namespace CAS.SmartFactory.xml
     {
       return String.Format( m_JsoxBalanceReport.GetLocalizedString(), number );
     }
-    private const string m_FinishedGoodsExportFormFileName = "XMLResources_FinishedGoodsExportFormFileName".GetLocalizedString();
-    private const string m_RequestForAccountClearenceDocumentName = "XMLResources_RequestForAccountClearence".GetLocalizedString();
-    private const string m_JsoxBalanceReport = "XMLResources_JsoxBalanceReport".GetLocalizedString();
+    private const string m_FinishedGoodsExportFormFileName = "XMLResources_FinishedGoodsExportFormFileName";
+    private const string m_RequestForAccountClearenceDocumentName = "XMLResources_RequestForAccountClearence";
+    private const string m_JsoxBalanceReport = "XMLResources_JsoxBalanceReport";
   }
 }
