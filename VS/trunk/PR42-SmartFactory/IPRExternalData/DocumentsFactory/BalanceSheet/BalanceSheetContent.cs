@@ -122,15 +122,124 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://cas.eu/schemas/SmartFactory/xml/DocumentsFactory/BalanceSheetContent.xsd")]
     public partial class BalanceBatchContent {
         
-        private BalanceIPRContent[] balanceIPRContentField;
+        private BalanceIPRContent[] balanceIPRField;
+        
+        private double totalIPRBookField;
+        
+        private double totalSHWasteOveruseCSNotStartedField;
+        
+        private double totalDustCSNotStartedField;
+        
+        private double totalTobaccoAvailableField;
+        
+        private double totalTobaccoInWarehouseField;
+        
+        private double totalTobaccoInCigarettesWarehouseField;
+        
+        private double totalTobaccoInCigarettesProductionField;
+        
+        private double totalTobaccoInCutfillerWarehouseField;
+        
+        private double totalBalanceField;
         
         /// <uwagi/>
-        public BalanceIPRContent[] BalanceIPRContent {
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
+        public BalanceIPRContent[] BalanceIPR {
             get {
-                return this.balanceIPRContentField;
+                return this.balanceIPRField;
             }
             set {
-                this.balanceIPRContentField = value;
+                this.balanceIPRField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double TotalIPRBook {
+            get {
+                return this.totalIPRBookField;
+            }
+            set {
+                this.totalIPRBookField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double TotalSHWasteOveruseCSNotStarted {
+            get {
+                return this.totalSHWasteOveruseCSNotStartedField;
+            }
+            set {
+                this.totalSHWasteOveruseCSNotStartedField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double TotalDustCSNotStarted {
+            get {
+                return this.totalDustCSNotStartedField;
+            }
+            set {
+                this.totalDustCSNotStartedField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double TotalTobaccoAvailable {
+            get {
+                return this.totalTobaccoAvailableField;
+            }
+            set {
+                this.totalTobaccoAvailableField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double TotalTobaccoInWarehouse {
+            get {
+                return this.totalTobaccoInWarehouseField;
+            }
+            set {
+                this.totalTobaccoInWarehouseField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double TotalTobaccoInCigarettesWarehouse {
+            get {
+                return this.totalTobaccoInCigarettesWarehouseField;
+            }
+            set {
+                this.totalTobaccoInCigarettesWarehouseField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double TotalTobaccoInCigarettesProduction {
+            get {
+                return this.totalTobaccoInCigarettesProductionField;
+            }
+            set {
+                this.totalTobaccoInCigarettesProductionField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double TotalTobaccoInCutfillerWarehouse {
+            get {
+                return this.totalTobaccoInCutfillerWarehouseField;
+            }
+            set {
+                this.totalTobaccoInCutfillerWarehouseField = value;
+            }
+        }
+        
+        /// <uwagi/>
+        public double TotalBalance {
+            get {
+                return this.totalBalanceField;
+            }
+            set {
+                this.totalBalanceField = value;
             }
         }
     }
@@ -407,6 +516,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         private double subtotalQuantityField;
         
         /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
         public JSOXCustomsSummaryContent[] JSOXCustomsSummaryContent {
             get {
                 return this.jSOXCustomsSummaryContentField;
@@ -440,6 +550,7 @@ namespace CAS.SmartFactory.xml.DocumentsFactory.BalanceSheet {
         private double subtotalQuantityField;
         
         /// <uwagi/>
+        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
         public JSOXCustomsSummaryContentOGLGroup[] JSOXCustomsSummaryContentOGLGroup {
             get {
                 return this.jSOXCustomsSummaryContentOGLGroupField;
