@@ -109,7 +109,7 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
       internal void Add( IPR.Balance balance )
       {
         foreach ( IPR.ValueKey _vkx in Enum.GetValues( typeof( IPR.ValueKey ) ) )
-          base[ _vkx ] = balance.Base[ _vkx ];
+          base[ _vkx ] += balance.Base[ _vkx ];
       }
     }
   }

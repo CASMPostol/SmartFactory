@@ -357,7 +357,13 @@ namespace CAS.SmartFactory.IPR.WebsiteModel.Linq
             base[ ValueKey.TobaccoInFGCSNotStarted ] +
             base[ ValueKey.DustCSNotStarted ] +
             base[ ValueKey.SHWasteOveruseCSNotStarted ] +
-            base[ ValueKey.IPRBook ];
+            base[ ValueKey.TobaccoCSFinished ] +
+            base[ ValueKey.TobaccoInFGCSStarted ] +
+            base[ ValueKey.DustCSStarted ] +
+            base[ ValueKey.WasteCSStarted ] +
+            base[ ValueKey.SHMentholCSStarted ] +
+            base[ ValueKey.OveruseCSStarted ] +
+            base[ ValueKey.PureTobaccoCSStarted ];
         }
       }
       #endregion
